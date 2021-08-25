@@ -1119,60 +1119,50 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
-      generateSpec: async (_tokens, executeShellCommand) => {
-        const { postProcess } = scriptList;
-        const subcommands = [];
+      generateSpec: async (_, executeShellCommand) => {
+        const subcommands: Fig.Subcommand[] = [];
 
         try {
           const out = await executeShellCommand("cat package.json");
 
-          if (out.trim() == "") {
-            return { name: "workspaces" };
+          if (!out.trim()) {
+            return { name: "workspace" };
           }
           const packageContent = JSON.parse(out);
-          const workspaces = packageContent["workspaces"];
+          const workspaces = packageContent["workspaces"] || [];
 
-          if (workspaces) {
-            for (const workspace of workspaces) {
+          for (const workspace of workspaces) {
+            try {
+              const pushSubcommand = async (packageJsonPath: string) => {
+                const json = await executeShellCommand(
+                  `cat ${packageJsonPath}`
+                );
+                const parsed = JSON.parse(json.trim());
+                subcommands.push({
+                  name: parsed.name,
+                });
+              };
               if (workspace.includes("*")) {
                 const out = await executeShellCommand(
-                  `ls ${workspace.slice(0, -1)}`
+                  `ls -1 -d ${workspace}/` // e.g. packages/* -> packages/*/
                 );
                 const workspaceList = out.split("\n");
-
                 for (const space of workspaceList) {
-                  subcommands.push({
-                    name: space,
-                    description: "Workspaces",
-                    args: {
-                      name: "script",
-                      generators: {
-                        script: `cat ${workspace.slice(
-                          0,
-                          -1
-                        )}/${space}/package.json`,
-                        postProcess,
-                      },
-                    },
-                  });
+                  try {
+                    await pushSubcommand(space + "package.json");
+                  } catch {
+                    continue;
+                  }
                 }
               } else {
-                subcommands.push({
-                  name: workspace,
-                  description: "Workspaces",
-                  args: {
-                    name: "script",
-                    generators: {
-                      script: `cat ${workspace}/package.json`,
-                      postProcess,
-                    },
-                  },
-                });
+                await pushSubcommand(workspace + "/package.json");
               }
+            } catch {
+              continue;
             }
           }
-        } catch (e) {
-          return { name: "workspaces" };
+        } catch {
+          return { name: "workspace" };
         }
 
         return {
