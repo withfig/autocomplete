@@ -186,6 +186,7 @@ const completionSpec: Fig.Spec = {
       "eslint",
       "prettier",
       "tsc",
+      "typeorm",
     ];
     const subcommands = packages
       .filter((name) => cli.includes(name))
