@@ -125,8 +125,7 @@ const subcommands: Fig.Subcommand[] = [
               suggestions.filter(
                 (suggestion) =>
                   suggestion.type === "folder" ||
-                  (typeof suggestion.name === "string" &&
-                    suggestion.name.endsWith(".shortcut"))
+                  suggestion.name.endsWith(".shortcut")
               ),
           },
         },

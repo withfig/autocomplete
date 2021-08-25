@@ -723,14 +723,10 @@ const completionSpec: Fig.Spec = {
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((file) => {
-            if (typeof file.name === "string") {
-              return file.name.endsWith(".ts") || file.name.endsWith("/");
-            }
-            return false;
+            return file.name.endsWith(".ts") || file.name.endsWith("/");
           })
           .map((file) => {
-            const isTsFile =
-              typeof file.name === "string" && file.name.endsWith(".ts");
+            const isTsFile = file.name.endsWith(".ts");
             return {
               ...file,
               priority: isTsFile ? 76 : 70,

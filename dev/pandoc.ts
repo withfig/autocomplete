@@ -32,10 +32,7 @@ const pandocGenerators: Record<string, Fig.Generator> = {
     filterTemplateSuggestions: function (paths) {
       const suffix = ".yaml";
       return paths.filter((file) => {
-        if (typeof file.name === "string") {
-          return file.name.endsWith(suffix);
-        }
-        return false;
+        return file.name.endsWith(suffix);
       });
     },
   },
@@ -43,10 +40,7 @@ const pandocGenerators: Record<string, Fig.Generator> = {
     template: "filepaths",
     filterTemplateSuggestions: function (paths) {
       return paths.filter((file) => {
-        if (typeof file.name === "string") {
-          return file.name.endsWith(".yaml") || file.name.endsWith(".json");
-        }
-        return false;
+        return file.name.endsWith(".yaml") || file.name.endsWith(".json");
       });
     },
   },
