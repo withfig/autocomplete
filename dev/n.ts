@@ -25,14 +25,17 @@ const versionArg: Fig.Arg = {
     {
       script: "n lsr --all",
       postProcess: function (out) {
+        const set = new Set()
         const versions = out
           .split("\n")
           .slice(1)
-          .map((i) =>
-            i.split(".").map((_, i, a) => a.slice(0, i + 1).join("."))
-          )
-          .flat();
-        return [...new Set(versions)].map((version) => {
+        for (const version of versions) {
+          set.add(version); // 16.1.2
+          const splitted = version.split(".")
+          set.add(splitted[0] + "." + splitted[1]); // 16.1
+          set.add(splitted[0]); // 16
+        }
+        return Array.from(set).map((version) => {
           return {
             name: [version, `v${version}`],
             description: `Node.js ${version}`,
@@ -59,7 +62,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["i", "install"],
       description: "Install a Node.js version",
-      args: [versionArg],
+      args: versionArg,
     },
     {
       name: ["rm", "–"],
@@ -67,7 +70,7 @@ const completionSpec: Fig.Spec = {
       args: [variadicVersionArg],
     },
     {
-      name: ["prune"],
+      name: "prune",
       description:
         "Remove all cached Node.js versions except the installed version",
     },
@@ -89,7 +92,7 @@ const completionSpec: Fig.Spec = {
       args: [versionArg],
       options: [
         {
-          name: ["--all"],
+          name: "--all",
           description: "ls-remote displays all matches instead of last 20",
         },
       ],
