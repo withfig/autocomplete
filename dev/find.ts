@@ -6,6 +6,7 @@ const completionSpec: Fig.Spec = {
       name: "path",
       isOptional: true,
       isVariadic: true,
+      template: ["folders"],
     },
     {
       // TODO Suggestions for primaries and operands. See `man find`
