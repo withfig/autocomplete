@@ -20,7 +20,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          priority: 1,
           description: "Output usage information",
         },
         {
