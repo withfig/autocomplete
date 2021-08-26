@@ -1195,12 +1195,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "remove installed package",
-      args: [
-        {
-          generators: packageList,
-          isVariadic: true,
-        },
-      ],
+      args: {
+        generators: packageList,
+        isVariadic: true,
+      },
       options: [
         ...commonOptions,
         {
