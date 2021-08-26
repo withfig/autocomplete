@@ -38,6 +38,7 @@ const completionSpec: Fig.Spec = {
             'browser to open SSO with (example: "firefox", "safari")',
           args: {
             name: "browser",
+            suggestions: ["firefox", "safari", "chrome", "brave", "explorer"],
           },
         },
         {
@@ -3724,6 +3725,7 @@ const completionSpec: Fig.Spec = {
             "path to use as build context (defaults to Dockerfile dir)",
           args: {
             name: "context-path",
+            template: "filepaths",
           },
         },
         {
@@ -6110,6 +6112,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "path to plugin",
+        template: "folders",
       },
     },
     {
@@ -7961,7 +7964,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "app", generators: getAppGenerator },
         },
       ],
-      args: { name: "path" },
+      args: { name: "path", template: "filepaths" },
     },
     {
       name: "rename",
