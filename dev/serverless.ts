@@ -177,7 +177,7 @@ const completionSpec: Fig.Spec = {
   description: "zero-friction serverless development",
   options: [
     {
-      name: ["--help"],
+      name: "--help",
       description: "Show help",
     },
   ],

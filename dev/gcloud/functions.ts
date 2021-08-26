@@ -165,14 +165,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "call",
@@ -326,14 +324,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "delete",
@@ -477,14 +473,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "deploy",
@@ -930,14 +924,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "describe",
@@ -1081,14 +1073,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "event-types",
@@ -1546,14 +1536,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -1974,14 +1962,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description:
-                "Name of the function which logs are to be displayed. If no name is specified, logs from all functions are displayed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description:
+              "Name of the function which logs are to be displayed. If no name is specified, logs from all functions are displayed.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2589,14 +2575,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "NAME",
-          description:
-            "ID of the function or fully qualified identifier for the function.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "NAME",
+        description:
+          "ID of the function or fully qualified identifier for the function.",
+        isVariadic: false,
+      },
     },
     {
       name: "set-iam-policy",

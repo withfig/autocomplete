@@ -144,13 +144,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SERVICE",
-          description: "The name of the service(s) to disable.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SERVICE",
+        description: "The name of the service(s) to disable.",
+        isVariadic: false,
+      },
     },
     {
       name: "enable",
@@ -289,13 +287,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SERVICE",
-          description: "The name of the service(s) to enable.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SERVICE",
+        description: "The name of the service(s) to enable.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -627,13 +623,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "The name of the operation to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "The name of the operation to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "wait",
@@ -768,13 +762,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "The name of the operation on which to wait.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "The name of the operation on which to wait.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

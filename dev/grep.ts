@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["-F"],
+      name: "-F",
       description: "Search for an exact string",
       args: [
         {
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-RIn"],
+      name: "-RIn",
       description:
         "Search for a pattern [R]ecursively in the current directory, showing matching line [n]umbers, [I]gnoring non-text files",
       args: {
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-Ei"],
+      name: "-Ei",
       args: [
         {
           name: "search pattern",
@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-C"],
+      name: "-C",
       description: "Print 3 lines of context around each match",
       args: [
         {
@@ -62,7 +62,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-B"],
+      name: "-B",
       description: "Print 3 lines of before each match",
       args: [
         {
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-A"],
+      name: "-A",
       description: "Print 3 lines of content after each match",
       args: [
         {
@@ -94,7 +94,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-Hn"],
+      name: "-Hn",
       description:
         "Print file name with the corresponding line number (n) for each match",
       args: [
@@ -108,7 +108,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-v"],
+      name: "-v",
       description: "Invert match for excluding specific strings",
       args: {
         name: "search pattern",
@@ -123,7 +123,7 @@ const completionSpec: Fig.Spec = {
       description: "Interpret pattern as a Perl regular expression",
     },
     {
-      name: ["-f"],
+      name: "-f",
     },
   ],
 };

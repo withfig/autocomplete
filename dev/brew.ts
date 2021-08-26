@@ -13,6 +13,108 @@ const generators: Record<string, Fig.Generator> = {
   },
 };
 
+// brew info is equiv to brew abv. Everything but 'name' is shared.
+const brewInfo = (name: string): Fig.Subcommand => ({
+  name,
+  description: "Display brief statistics for your Homebrew installation",
+  args: {
+    isVariadic: true,
+    isOptional: true,
+    name: "formula",
+    description: "Formula or cask to summarize",
+    generators: {
+      script:
+        "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
+      postProcess: function (out) {
+        return out.split("\n").map((formula) => {
+          return {
+            name: formula.replace(".rb", ""),
+            description: "formula",
+            icon: "🍺",
+            priority:
+              (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
+                ? 0
+                : 51,
+          };
+        });
+      },
+    },
+  },
+  options: [
+    {
+      name: "--analytics",
+      description:
+        "List global Homebrew analytics data or, if specified, installation and build error data for formula",
+    },
+    {
+      name: "--days",
+      description: "How many days of analytics data to retrieve",
+      exclusiveOn: ["--analytics"],
+      args: {
+        name: "days",
+        description: "Number of days of data to retrieve",
+      },
+    },
+    {
+      name: "--category",
+      description: "Which type of analytics data to retrieve",
+      exclusiveOn: ["--analytics"],
+      args: {
+        generators: {
+          custom: async (ctx) => {
+            // if anything provided after the subcommand does not begin with '-'
+            // then a formula has been provided and we should provide info on it
+            if (
+              ctx.slice(2, ctx.length - 1).some((token) => token[0] !== "-")
+            ) {
+              return ["install", "install-on-request", "build-error"].map(
+                (sugg) => ({
+                  name: sugg,
+                })
+              );
+            }
+
+            // if no formulas are specified, then we should provide system info
+            return ["cask-install", "os-version"].map((sugg) => ({
+              name: sugg,
+            }));
+          },
+        },
+      },
+    },
+    {
+      name: "--github",
+      description: "Open the GitHub source page for formula in a browser",
+    },
+    {
+      name: "--json",
+      description: "Print a JSON representation",
+    },
+    {
+      name: "--installed",
+      exclusiveOn: ["--json"],
+      description: "Print JSON of formulae that are currently installed",
+    },
+    {
+      name: "--all",
+      exclusiveOn: ["--json"],
+      description: "Print JSON of all available formulae",
+    },
+    {
+      name: ["-v", "--verbose"],
+      description: "Show more verbose analytics data for formulae",
+    },
+    {
+      name: "--formula",
+      description: "Treat all named arguments as formulae",
+    },
+    {
+      name: "--cash",
+      description: "Treat all named arguments as casks",
+    },
+  ],
+});
+
 const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
@@ -47,10 +149,8 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    {
-      name: "info",
-      description: "Display brief statistics for your Homebrew installation",
-    },
+    brewInfo("info"),
+    brewInfo("abv"),
     {
       name: "update",
       description: "Fetch the newest version of Homebrew and all formulae",
@@ -354,7 +454,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version"],
+      name: "--version",
       description: "The current Homebrew version",
     },
   ],

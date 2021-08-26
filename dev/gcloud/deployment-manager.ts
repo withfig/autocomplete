@@ -153,13 +153,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEPLOYMENT_NAME",
-              description: "Deployment name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEPLOYMENT_NAME",
+            description: "Deployment name.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -367,13 +365,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEPLOYMENT_NAME",
-              description: "Deployment name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEPLOYMENT_NAME",
+            description: "Deployment name.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -522,13 +518,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEPLOYMENT_NAME",
-              description: "Deployment name.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "DEPLOYMENT_NAME",
+            description: "Deployment name.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -662,13 +656,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEPLOYMENT_NAME",
-              description: "Deployment name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEPLOYMENT_NAME",
+            description: "Deployment name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1001,13 +993,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEPLOYMENT_NAME",
-              description: "Deployment name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEPLOYMENT_NAME",
+            description: "Deployment name.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -1250,13 +1240,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEPLOYMENT_NAME",
-              description: "Deployment name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEPLOYMENT_NAME",
+            description: "Deployment name.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1534,13 +1522,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MANIFEST",
-              description: "Manifest name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MANIFEST",
+            description: "Manifest name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2001,13 +1987,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION_NAME",
-              description: "Operation name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION_NAME",
+            description: "Operation name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2325,13 +2309,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION_NAME",
-              description: "Operation name.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "OPERATION_NAME",
+            description: "Operation name.",
+            isVariadic: true,
+          },
         },
       ],
       options: [
@@ -2608,13 +2590,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "RESOURCE",
-              description: "Resource name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "RESOURCE",
+            description: "Resource name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

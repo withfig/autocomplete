@@ -1,12 +1,10 @@
 const completionSpec: Fig.Spec = {
   name: "rm",
   description: "remove directory entries",
-  args: [
-    {
-      isVariadic: true,
-      template: ["folders", "filepaths"],
-    },
-  ],
+  args: {
+    isVariadic: true,
+    template: ["folders", "filepaths"],
+  },
 
   options: [
     {

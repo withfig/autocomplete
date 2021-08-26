@@ -243,26 +243,24 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "reboot",
-      args: [
-        {
-          isOptional: true,
-          name: "type",
-          suggestions: [
-            {
-              name: "bootloader",
-            },
-            {
-              name: "recovery",
-            },
-            {
-              name: "sideload",
-            },
-            {
-              name: "sideload-auto-reboot",
-            },
-          ],
-        },
-      ],
+      args: {
+        isOptional: true,
+        name: "type",
+        suggestions: [
+          {
+            name: "bootloader",
+          },
+          {
+            name: "recovery",
+          },
+          {
+            name: "sideload",
+          },
+          {
+            name: "sideload-auto-reboot",
+          },
+        ],
+      },
       description:
         "reboot the device; defaults to booting system image but supports bootloader and recovery too. sideload reboots into recovery and automatically starts sideload mode, sideload-auto-reboot is the same but reboots after sideloading.",
     },
@@ -419,12 +417,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "bugreport",
       description: "write bugreport to given PATH [default=bugreport.zip];",
-      args: [
-        {
-          name: "PATH",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "PATH",
+        isOptional: true,
+      },
     },
     {
       name: "pair",
@@ -456,34 +452,28 @@ const completionSpec: Fig.Spec = {
     {
       name: "emu",
       description: "run emulator console command",
-      args: [
-        {
-          name: "COMMAND",
-        },
-      ],
+      args: {
+        name: "COMMAND",
+      },
     },
     {
       name: "install",
       description: "push a single package to the device and install it",
-      args: [
-        {
-          name: "PACKAGE",
-          template: "filepaths",
-        },
-      ],
+      args: {
+        name: "PACKAGE",
+        template: "filepaths",
+      },
       options: installOptions,
     },
     {
       name: "install-multiple",
       description:
         "push multiple APKs to the device for a single package and install them",
-      args: [
-        {
-          name: "PACKAGE",
-          template: "filepaths",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "PACKAGE",
+        template: "filepaths",
+        isVariadic: true,
+      },
       options: [
         {
           name: "-p",
@@ -496,13 +486,11 @@ const completionSpec: Fig.Spec = {
       name: "install-multi-package",
       description:
         "push one or more packages to the device and install them atomically",
-      args: [
-        {
-          name: "PACKAGE",
-          template: "filepaths",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "PACKAGE",
+        template: "filepaths",
+        isVariadic: true,
+      },
       options: [
         {
           name: "-p",

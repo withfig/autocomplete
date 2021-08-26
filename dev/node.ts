@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "node",
-  description: "Run the node interpretor",
+  description: "Run the node interpreter",
   args: {
     name: "node script",
     isScript: true,
@@ -9,14 +9,10 @@ const completionSpec: Fig.Spec = {
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((file) => {
-            if (typeof file.name === "string") {
-              return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
-            }
-            return false;
+            return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
           })
           .map((file) => {
-            const isJsFile =
-              typeof file.name === "string" && file.name.match(/.*\.m?js/g);
+            const isJsFile = file.name.match(/.*\.m?js/g);
 
             return {
               ...file,

@@ -19,7 +19,7 @@ const projectsGenerator = {
   },
 };
 const projectsOption = {
-  name: ["--project"],
+  name: "--project",
   description: "Project name",
   args: {
     generators: projectsGenerator,
@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--create-application"],
+          name: "--create-application",
           description: "Create a default application?",
           args: {
             name: "project",
@@ -62,7 +62,7 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name: ["--style"],
+              name: "--style",
               args: {
                 name: "extension",
                 suggestions: ["css", "scss", "sass", "less", "styl"],
@@ -97,7 +97,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--flat"],
+              name: "--flat",
               description: "Create at the top level",
               args: {
                 name: "boolean",
@@ -128,7 +128,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version"],
+      name: "--version",
       description: "View your Angular CLI version",
     },
   ],

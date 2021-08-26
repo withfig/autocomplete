@@ -21,9 +21,7 @@ const flutterGenerators: Record<string, Fig.Generator> = {
     filterTemplateSuggestions: function (suggestions) {
       return suggestions.filter(
         (suggestion) =>
-          suggestion.type === "folder" ||
-          (typeof suggestion.name === "string" &&
-            suggestion.name.endsWith(".dart"))
+          suggestion.type === "folder" || suggestion.name.endsWith(".dart")
       );
     },
   },
@@ -637,6 +635,7 @@ const run = [
     insertValue: "--dart-entrypoint-args",
     description:
       "Pass a list of arguments to the Dart entrypoint at application startup. By default this is main(List<String> args). Specify this option multiple times each with one argument to pass multiple arguments to the Dart entrypoint. Currently this is only supported on desktop platforms.",
+    isRepeatable: true,
   },
   target,
   observatoryPort,

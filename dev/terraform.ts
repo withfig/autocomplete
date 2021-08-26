@@ -168,12 +168,14 @@ const mainCommands: Fig.Subcommand[] = [
         displayName: "-target=resource",
         description:
           "A Resource Address to target. This flag can be used multiple times.",
+        isRepeatable: true,
       },
       {
         name: "-var",
         insertValue: "-var {cursor}",
         description:
           "Set a variable in the Terraform configuration. This flag can be set multiple times.",
+        isRepeatable: true,
         args: {
           name: "foo=bar",
         },

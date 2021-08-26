@@ -175,14 +175,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ORGANIZATION",
-          description:
-            "ID of the organization or fully qualified identifier for the organization.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ORGANIZATION",
+        description:
+          "ID of the organization or fully qualified identifier for the organization.",
+        isVariadic: false,
+      },
     },
     {
       name: "describe",
@@ -316,14 +314,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ORGANIZATION_ID",
-          description:
-            "ID or domain for the organization you want to describe.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ORGANIZATION_ID",
+        description: "ID or domain for the organization you want to describe.",
+        isVariadic: false,
+      },
     },
     {
       name: "get-iam-policy",
@@ -497,14 +492,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ORGANIZATION_ID",
-          description:
-            "ID or domain for the organization whose policy you want to get.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ORGANIZATION_ID",
+        description:
+          "ID or domain for the organization whose policy you want to get.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -862,14 +855,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ORGANIZATION",
-          description:
-            "ID of the organization or fully qualified identifier for the organization.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ORGANIZATION",
+        description:
+          "ID of the organization or fully qualified identifier for the organization.",
+        isVariadic: false,
+      },
     },
     {
       name: "set-iam-policy",

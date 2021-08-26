@@ -195,14 +195,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "ID of the domain or fully qualified identifier for the domain.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "ID of the domain or fully qualified identifier for the domain.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -341,14 +339,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "ID of the domain or fully qualified identifier for the domain.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "ID of the domain or fully qualified identifier for the domain.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -482,14 +478,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "ID of the domain or fully qualified identifier for the domain.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "ID of the domain or fully qualified identifier for the domain.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -664,14 +658,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "ID of the domain or fully qualified identifier for the domain.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "ID of the domain or fully qualified identifier for the domain.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -979,14 +971,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "ID of the domain or fully qualified identifier for the domain.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "ID of the domain or fully qualified identifier for the domain.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -1345,14 +1335,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DOMAIN",
-                  description:
-                    "ID of the domain or fully qualified identifier for the domain.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DOMAIN",
+                description:
+                  "ID of the domain or fully qualified identifier for the domain.",
+                isVariadic: false,
+              },
             },
             {
               name: "delete",
@@ -1503,14 +1491,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DOMAIN",
-                  description:
-                    "ID of the domain or fully qualified identifier for the domain.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DOMAIN",
+                description:
+                  "ID of the domain or fully qualified identifier for the domain.",
+                isVariadic: false,
+              },
             },
             {
               name: "update",
@@ -1672,14 +1658,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DOMAIN",
-                  description:
-                    "ID of the domain or fully qualified identifier for the domain.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DOMAIN",
+                description:
+                  "ID of the domain or fully qualified identifier for the domain.",
+                isVariadic: false,
+              },
             },
             {
               name: "validate-state",
@@ -1830,14 +1814,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DOMAIN",
-                  description:
-                    "ID of the domain or fully qualified identifier for the domain.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DOMAIN",
+                description:
+                  "ID of the domain or fully qualified identifier for the domain.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -2171,14 +2153,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "ID of the domain or fully qualified identifier for the domain.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "ID of the domain or fully qualified identifier for the domain.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2446,14 +2426,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2587,14 +2565,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

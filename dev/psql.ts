@@ -1,9 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "psql",
   description: "psql is a terminal-based front-end to PostgreSQL",
-  args: [
-    {}, // [dbname [username]]
-  ],
+  args: {},
   options: [
     {
       name: ["-a", "--echo-all"],
@@ -31,7 +29,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--csv"],
+      name: "--csv",
       description:
         "Switches to CSV (Comma-Separated Values) output mode. This is equivalent to \\pset format csv.",
     },

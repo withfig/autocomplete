@@ -24,14 +24,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "install",
       description: "Install a specific version of Terraform",
-      args: [
-        {
-          name: "version",
-          description: "Possible Terraform Version",
-          suggestions: ["latest", "min-required"],
-          generators: generators.allVersions,
-        },
-      ],
+      args: {
+        name: "version",
+        description: "Possible Terraform Version",
+        suggestions: ["latest", "min-required"],
+        generators: generators.allVersions,
+      },
     },
     {
       name: "use",
@@ -74,7 +72,7 @@ const completionSpec: Fig.Spec = {
       description: "View your current tfenv version",
     },
     {
-      name: ["--help"],
+      name: "--help",
       description: "View commands",
     },
   ],

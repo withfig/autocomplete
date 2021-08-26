@@ -1334,12 +1334,10 @@ const completionSpec: Fig.Spec = {
       name: "get",
       description:
         "Makes GET HTTP requests to retrieve an individual API object",
-      args: [
-        {
-          name: "id or path",
-          description: "ID or URL path of the API object to retrieve",
-        },
-      ],
+      args: {
+        name: "id or path",
+        description: "ID or URL path of the API object to retrieve",
+      },
       options: [
         {
           name: ["-b", "--ending-before"],

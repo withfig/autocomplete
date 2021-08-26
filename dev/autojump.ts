@@ -9,24 +9,24 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-a", "--add"],
       description: "add path",
-      args: [{ name: "directory", template: ["folders"] }],
+      args: { name: "directory", template: ["folders"] },
     },
     {
       name: ["-i", "--increase"],
       description: "increase current directory weight",
-      args: [{ name: "weight", isOptional: true }],
+      args: { name: "weight", isOptional: true },
     },
     {
       name: ["-d", "--decrease"],
       description: "decrease current directory weight",
-      args: [{ name: "weight", isOptional: true }],
+      args: { name: "weight", isOptional: true },
     },
     {
-      name: ["--complete"],
+      name: "--complete",
       description: "used for tab completion",
     },
     {
-      name: ["--purge"],
+      name: "--purge",
       description: "remove non-existent paths from database",
     },
     {

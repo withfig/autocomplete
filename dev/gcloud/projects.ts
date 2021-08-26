@@ -175,14 +175,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID",
-          description:
-            "ID of the project or fully qualified identifier for the project.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID",
+        description:
+          "ID of the project or fully qualified identifier for the project.",
+        isVariadic: false,
+      },
     },
     {
       name: "create",
@@ -363,14 +361,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID",
-          description:
-            "ID for the project you want to create.\n+\nProject IDs are immutable and can be set only during project creation. They must start with a lowercase letter and can have lowercase ASCII letters, digits or hyphens. Project IDs must be between 6 and 30 characters.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID",
+        description:
+          "ID for the project you want to create.\n+\nProject IDs are immutable and can be set only during project creation. They must start with a lowercase letter and can have lowercase ASCII letters, digits or hyphens. Project IDs must be between 6 and 30 characters.",
+        isVariadic: false,
+      },
     },
     {
       name: "delete",
@@ -504,13 +500,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID_OR_NUMBER",
-          description: "ID or number for the project you want to delete.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID_OR_NUMBER",
+        description: "ID or number for the project you want to delete.",
+        isVariadic: false,
+      },
     },
     {
       name: "describe",
@@ -644,13 +638,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID_OR_NUMBER",
-          description: "ID or number for the project you want to describe.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID_OR_NUMBER",
+        description: "ID or number for the project you want to describe.",
+        isVariadic: false,
+      },
     },
     {
       name: "get-ancestors",
@@ -784,14 +776,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID",
-          description:
-            "ID of the project or fully qualified identifier for the project.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID",
+        description:
+          "ID of the project or fully qualified identifier for the project.",
+        isVariadic: false,
+      },
     },
     {
       name: "get-ancestors-iam-policy",
@@ -965,14 +955,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID",
-          description:
-            "ID of the project_id or fully qualified identifier for the project_id.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID",
+        description:
+          "ID of the project_id or fully qualified identifier for the project_id.",
+        isVariadic: false,
+      },
     },
     {
       name: "get-iam-policy",
@@ -1146,14 +1134,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID_OR_NUMBER",
-          description:
-            "ID or number for the project you want to get IAM policy for.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID_OR_NUMBER",
+        description:
+          "ID or number for the project you want to get IAM policy for.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -1511,14 +1497,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID",
-          description:
-            "ID of the project or fully qualified identifier for the project.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID",
+        description:
+          "ID of the project or fully qualified identifier for the project.",
+        isVariadic: false,
+      },
     },
     {
       name: "set-iam-policy",
@@ -1799,13 +1783,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID_OR_NUMBER",
-          description: "ID or number for the project you want to undelete.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID_OR_NUMBER",
+        description: "ID or number for the project you want to undelete.",
+        isVariadic: false,
+      },
     },
     {
       name: "update",
@@ -1949,13 +1931,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "PROJECT_ID",
-          description: "ID for the project you want to update.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "PROJECT_ID",
+        description: "ID for the project you want to update.",
+        isVariadic: false,
+      },
     },
   ],
   options: [

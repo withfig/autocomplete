@@ -130,7 +130,7 @@ const completionSpec: Fig.Spec = {
               description: "Get help regarding template add subcommand",
             },
             {
-              name: ["-n"],
+              name: "-n",
               description: "Set template id",
               args: {
                 name: "Template id",
@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
               description: "Get help regarding template edit subcommand",
             },
             {
-              name: ["-n"],
+              name: "-n",
               description: "Edit template by id",
               args: {
                 name: "Template id",

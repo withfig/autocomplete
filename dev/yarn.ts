@@ -363,6 +363,7 @@ const completionSpec: Fig.Spec = {
       "eslint",
       "prettier",
       "tsc",
+      "typeorm",
     ];
     const subcommands = packages
       .filter((name) => cli.includes(name))
@@ -377,16 +378,221 @@ const completionSpec: Fig.Spec = {
       subcommands,
     } as Fig.Spec;
   },
-  args: [
-    {
-      generators: getScriptsGenerator,
-      isOptional: true,
-    },
-  ],
+  args: {
+    generators: getScriptsGenerator,
+    isOptional: true,
+  },
   options: [
     {
       name: "--disable-pnp",
       description: "disable the Plug'n'Play installation",
+    },
+    {
+      name: "--emoji",
+      description: "enable emoji in output (default: true)",
+      args: {
+        name: "bool",
+        suggestions: [{ name: "true" }, { name: "false" }],
+      },
+    },
+    {
+      name: ["--enable-pnp", "--pnp"],
+      description: "enable the Plug'n'Play installation",
+    },
+    {
+      name: "--flat",
+      description: "only allow one version of a package",
+    },
+    {
+      name: "--focus",
+      description:
+        "Focus on a single workspace by installing remote copies of its sibling workspaces.",
+    },
+    {
+      name: "--force",
+      description:
+        " install and build packages even if they were built before, overwrite lockfile",
+    },
+    {
+      name: "--frozen-lockfile",
+      description: "don't generate a lockfile and fail if an update is needed",
+    },
+    {
+      name: "--global-folder",
+      description: "specify a custom folder to store global packages",
+      args: {
+        template: "folders",
+      },
+    },
+    {
+      name: "--har",
+      description: "save HAR output of network traffic",
+    },
+    {
+      name: "--https-proxy",
+      description: "",
+      args: {
+        name: "path",
+        suggestions: [{ name: "https://" }],
+      },
+    },
+    {
+      name: "--ignore-engines",
+      description: "ignore engines check",
+    },
+    {
+      name: "--ignore-optional",
+      description: "ignore optional dependencies",
+    },
+    {
+      name: "--ignore-platform",
+      description: "ignore platform checks",
+    },
+    {
+      name: "--ignore-scripts",
+      description: "don't run lifecycle scripts",
+    },
+    {
+      name: "--json",
+      description:
+        "format Yarn log messages as lines of JSON (see jsonlines.org)",
+    },
+    {
+      name: "--link-duplicates",
+      description: "create hardlinks to the repeated modules in node_modules",
+    },
+    {
+      name: "--link-folder",
+      description: "specify a custom folder to store global links",
+      args: {
+        template: "folders",
+      },
+    },
+    {
+      name: "--modules-folder",
+      description:
+        "rather than installing modules into the node_modules folder relative to the cwd, output them here",
+      args: {
+        template: "folders",
+      },
+    },
+    {
+      name: "--mutex",
+      description: "use a mutex to ensure only one yarn instance is executing",
+      args: [
+        {
+          name: "type",
+          suggestions: [{ name: ":" }],
+        },
+        {
+          name: "specifier",
+          suggestions: [{ name: ":" }],
+        },
+      ],
+    },
+    {
+      name: "--network-concurrency",
+      description: "maximum number of concurrent network requests",
+      args: {
+        name: "number",
+      },
+    },
+    {
+      name: "--network-timeout",
+      description: "TCP timeout for network requests",
+      args: {
+        name: "milliseconds",
+      },
+    },
+    {
+      name: "--no-bin-links",
+      description: "don't generate bin links when setting up packages",
+    },
+    {
+      name: "--no-default-rc",
+      description:
+        "prevent Yarn from automatically detecting yarnrc and npmrc files",
+    },
+    {
+      name: "--no-lockfile",
+      description: "don't read or generate a lockfile",
+    },
+    {
+      name: "--non-interactive",
+      description: "do not show interactive prompts",
+    },
+    {
+      name: "--no-node-version-check",
+      description:
+        "do not warn when using a potentially unsupported Node version",
+    },
+    {
+      name: "--no-progress",
+      description: "disable progress bar",
+    },
+    {
+      name: "--offline",
+      description:
+        "trigger an error if any required dependencies are not available in local cache",
+    },
+    {
+      name: "--otp",
+      description: "one-time password for two factor authentication",
+      args: {
+        name: "otpcode",
+      },
+    },
+    {
+      name: "--prefer-offline",
+      description:
+        "use network only if dependencies are not available in local cache",
+    },
+    {
+      name: "--preferred-cache-folder",
+      description:
+        "specify a custom folder to store the yarn cache if possible",
+      args: {
+        template: "folders",
+      },
+    },
+    {
+      name: ["--prod", "--production"],
+      description: "",
+      args: {},
+    },
+    {
+      name: "--proxy",
+      description: "",
+      args: {
+        name: "host",
+      },
+    },
+    {
+      name: "--pure-lockfile",
+      description: "don't generate a lockfile",
+    },
+    {
+      name: "--registry",
+      description: "override configuration registry",
+      args: {
+        name: "url",
+      },
+    },
+    {
+      name: ["-s", "--silent"],
+      description:
+        "skip Yarn console logs, other types of logs (script output) will be printed",
+    },
+    {
+      name: "--scripts-prepend-node-path",
+      description: "prepend the node executable dir to the PATH in scripts",
+      args: {
+        suggestions: [{ name: "true" }, { name: "false" }],
+      },
+    },
+    {
+      name: "--skip-integrity-check",
+      description: "run install without checking if node_modules is installed",
     },
     {
       name: "--strict-semver",
@@ -545,11 +751,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--pattern",
               description: "filter cached packages by pattern",
-              args: [
-                {
-                  name: "pattern",
-                },
-              ],
+              args: {
+                name: "pattern",
+              },
             },
           ],
         },
@@ -578,20 +782,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Print the value for a given key",
-          args: [
-            {
-              generators: configList,
-            },
-          ],
+          args: {
+            generators: configList,
+          },
         },
         {
           name: "delete",
           description: "Deletes a given key from the config",
-          args: [
-            {
-              generators: configList,
-            },
-          ],
+          args: {
+            generators: configList,
+          },
         },
         {
           name: "list",
@@ -795,14 +995,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-i", "--install"],
           description: "install a specific Yarn release",
-          args: [
-            {
-              name: "version",
-            },
-          ],
+          args: {
+            name: "version",
+          },
         },
         {
-          name: ["-2"],
+          name: "-2",
           description: "generates the project using Yarn 2",
         },
         {
@@ -1069,12 +1267,10 @@ const completionSpec: Fig.Spec = {
       name: "upgrade",
       description:
         "Upgrades packages to their latest version based on the specified range",
-      args: [
-        {
-          generators: packageList,
-          isVariadic: true,
-        },
-      ],
+      args: {
+        generators: packageList,
+        isVariadic: true,
+      },
     },
     {
       name: "upgrade-interactive",
@@ -1091,15 +1287,15 @@ const completionSpec: Fig.Spec = {
       description: "update version of your package",
       options: [
         {
-          name: ["--major"],
+          name: "--major",
           description: "auto-increment major version number",
         },
         {
-          name: ["--minor"],
+          name: "--minor",
           description: "auto-increment minor version number",
         },
         {
-          name: ["--patch"],
+          name: "--patch",
           description: "auto-increment patch version number",
         },
       ],

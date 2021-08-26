@@ -189,14 +189,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -353,14 +351,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "deidentify",
@@ -545,14 +541,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -695,14 +689,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -845,14 +837,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -1036,14 +1026,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1421,14 +1409,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -1736,14 +1722,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATASET",
-              description:
-                "ID of the dataset or fully qualified identifier for the dataset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATASET",
+            description:
+              "ID of the dataset or fully qualified identifier for the dataset.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2071,14 +2055,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -2240,14 +2222,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -2399,14 +2379,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2558,14 +2536,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -2743,14 +2719,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DICOM_STORE",
-                  description:
-                    "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DICOM_STORE",
+                description:
+                  "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+                isVariadic: false,
+              },
             },
             {
               name: "gcs",
@@ -2929,14 +2903,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DICOM_STORE",
-                  description:
-                    "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DICOM_STORE",
+                description:
+                  "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -3259,14 +3231,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -3439,14 +3409,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DICOM_STORE",
-                  description:
-                    "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DICOM_STORE",
+                description:
+                  "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -3973,14 +3941,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -4308,14 +4274,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DICOM_STORE",
-              description:
-                "ID of the dicomStore or fully qualified identifier for the dicomStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DICOM_STORE",
+            description:
+              "ID of the dicomStore or fully qualified identifier for the dicomStore.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4643,14 +4607,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -4827,14 +4789,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -4986,14 +4946,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -5145,14 +5103,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -5345,14 +5301,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FHIR_STORE",
-                  description:
-                    "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FHIR_STORE",
+                description:
+                  "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+                isVariadic: false,
+              },
             },
             {
               name: "gcs",
@@ -5521,14 +5475,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FHIR_STORE",
-                  description:
-                    "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FHIR_STORE",
+                description:
+                  "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -5851,14 +5803,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -6047,14 +5997,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FHIR_STORE",
-                  description:
-                    "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FHIR_STORE",
+                description:
+                  "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -6581,14 +6529,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -6921,14 +6867,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FHIR_STORE",
-              description:
-                "ID of the fhirStore or fully qualified identifier for the fhirStore.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FHIR_STORE",
+            description:
+              "ID of the fhirStore or fully qualified identifier for the fhirStore.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -7256,14 +7200,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -7426,14 +7368,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -7585,14 +7525,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -7744,14 +7682,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -7944,14 +7880,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -8348,14 +8282,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -8684,14 +8616,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "HL7V2_STORE",
-              description:
-                "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "HL7V2_STORE",
+            description:
+              "ID of the hl7v2Store or fully qualified identifier for the hl7v2Store.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -8977,14 +8907,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

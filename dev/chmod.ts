@@ -7,33 +7,33 @@ const completionSpec: Fig.Spec = {
       suggestions: [
         // Some of the most common chmod's (non-exhaustive)
         {
-          name: ["u+x"],
+          name: "u+x",
           type: "arg",
           description: "give execute permission for the user",
           icon: "🔐",
         },
         {
-          name: ["a+rx"],
+          name: "a+rx",
           type: "arg",
           description: "adds read and execute permissions for all classes",
           icon: "🔐",
         },
         {
-          name: ["744"],
+          name: "744",
           type: "arg",
           description:
             "sets read, write, and execute permissions for user, and sets read permission for Group and Others",
           icon: "🔐",
         },
         {
-          name: ["664"],
+          name: "664",
           type: "arg",
           description:
             "sets read and write permissions for user and Group, and provides read to Others.",
           icon: "🔐",
         },
         {
-          name: ["777"],
+          name: "777",
           type: "arg",
           description: "⚠️ allows all actions for all users",
           icon: "🔐",

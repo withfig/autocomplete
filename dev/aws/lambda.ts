@@ -1826,7 +1826,7 @@ const completionSpec: Fig.Spec = {
             "Specify a version to delete. You can't delete a version that's referenced by an alias.",
           args: {
             name: "string",
-            generators: [generators.listVersions],
+            generators: generators.listVersions,
           },
         },
         {
@@ -3656,7 +3656,7 @@ const completionSpec: Fig.Spec = {
             "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of an SQS queue.    Topic - The ARN of an SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus.",
           args: {
             name: "structure",
-            generators: [generators.listDestinationConfigArns],
+            generators: generators.listDestinationConfigArns,
           },
         },
         {

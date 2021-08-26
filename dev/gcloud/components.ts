@@ -267,13 +267,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "COMPONENT-IDS",
-          description: "The IDs of the components to be installed.",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "COMPONENT-IDS",
+        description: "The IDs of the components to be installed.",
+        isVariadic: true,
+      },
     },
     {
       name: "list",
@@ -846,13 +844,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "COMPONENT_ID",
-          description: "The IDs of the components to be removed.",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "COMPONENT_ID",
+        description: "The IDs of the components to be removed.",
+        isVariadic: true,
+      },
     },
     {
       name: "repositories",
@@ -991,14 +987,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "URL",
-              description:
-                "One or more URLs for the component repositories you want to add.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "URL",
+            description:
+              "One or more URLs for the component repositories you want to add.",
+            isVariadic: true,
+          },
         },
         {
           name: "list",
@@ -1300,14 +1294,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "URL",
-              description:
-                "Zero or more URLs for the component repositories you want to remove.  If none are given, you will be prompted to choose which existing repository you want to remove.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "URL",
+            description:
+              "Zero or more URLs for the component repositories you want to remove.  If none are given, you will be prompted to choose which existing repository you want to remove.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1705,13 +1697,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "COMPONENT-IDS",
-          description: "THIS ARGUMENT NEEDS HELP TEXT.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "COMPONENT-IDS",
+        description: "THIS ARGUMENT NEEDS HELP TEXT.",
+        isVariadic: false,
+      },
     },
   ],
   options: [

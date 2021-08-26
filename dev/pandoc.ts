@@ -32,10 +32,7 @@ const pandocGenerators: Record<string, Fig.Generator> = {
     filterTemplateSuggestions: function (paths) {
       const suffix = ".yaml";
       return paths.filter((file) => {
-        if (typeof file.name === "string") {
-          return file.name.endsWith(suffix);
-        }
-        return false;
+        return file.name.endsWith(suffix);
       });
     },
   },
@@ -43,10 +40,7 @@ const pandocGenerators: Record<string, Fig.Generator> = {
     template: "filepaths",
     filterTemplateSuggestions: function (paths) {
       return paths.filter((file) => {
-        if (typeof file.name === "string") {
-          return file.name.endsWith(".yaml") || file.name.endsWith(".json");
-        }
-        return false;
+        return file.name.endsWith(".yaml") || file.name.endsWith(".json");
       });
     },
   },
@@ -98,7 +92,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--data-dir"],
+      name: "--data-dir",
       description:
         "Specify the user data directory to search for pandoc data files",
       args: {
@@ -709,6 +703,7 @@ const completionSpec: Fig.Spec = {
       name: "--bibliography",
       description:
         "Set the bibliography field in the document’s metadata to FILE, overriding any value set in the metadata. If you supply this argument multiple times, each FILE will be added to bibliography. If FILE is a URL, it will be fetched via HTTP. If FILE is not found relative to the working directory, it will be sought in the resource path",
+      isRepeatable: true,
       args: {
         name: "file",
         template: "filepaths",

@@ -784,7 +784,7 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Names (ARNs) of Amazon Simple Notification Service (Amazon SNS) topics that AWS CloudFormation associates with the stack. To remove all associated notification topics, specify an empty list.",
           args: {
             name: "list",
-            generators: [generators.listSNSTopics],
+            generators: generators.listSNSTopics,
             isVariadic: true,
           },
         },

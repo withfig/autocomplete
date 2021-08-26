@@ -34,12 +34,10 @@ const completionSpec: Fig.Spec = {
           icon: "🔐",
         },
       ],
-      args: [
-        {
-          name: "XCODE_PROJECT",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "XCODE_PROJECT",
+        isOptional: true,
+      },
     },
     {
       description: "Manipulate the CocoaPods cache",
@@ -66,12 +64,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "NAME",
+            isOptional: true,
+          },
         },
         {
           description: "List the paths of pod caches for each known pod",
@@ -87,12 +83,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "NAME",
+            isOptional: true,
+          },
         },
       ],
     },
@@ -155,12 +149,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "QUERY",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "QUERY",
+            isOptional: true,
+          },
         },
         {
           description: "Create spec file stub.",
@@ -172,12 +164,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME|https://github.com/USER/REPO",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "NAME|https://github.com/USER/REPO",
+            isOptional: true,
+          },
         },
         {
           description: "Prints a spec file",
@@ -197,12 +187,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "QUERY",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "QUERY",
+            isOptional: true,
+          },
         },
         {
           description: "Prints the path of the given spec",
@@ -222,12 +210,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "QUERY",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "QUERY",
+            isOptional: true,
+          },
         },
         {
           description: "Validates a spec file",
@@ -362,16 +348,14 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME.podspec|DIRECTORY|http://PATH/NAME.podspec",
-              isOptional: true,
-              generators: {
-                template: "filepaths",
-                filterTemplateSuggestions: getPodspecsAndFolders,
-              },
+          args: {
+            name: "NAME.podspec|DIRECTORY|http://PATH/NAME.podspec",
+            isOptional: true,
+            generators: {
+              template: "filepaths",
+              filterTemplateSuggestions: getPodspecsAndFolders,
             },
-          ],
+          },
         },
       ],
     },
@@ -454,11 +438,9 @@ const completionSpec: Fig.Spec = {
           icon: "🔐",
         },
       ],
-      args: [
-        {
-          name: "XCODEPROJ",
-        },
-      ],
+      args: {
+        name: "XCODEPROJ",
+      },
     },
     {
       description: "Inter-process communication",
@@ -511,12 +493,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "PATH",
-              template: "filepaths",
-            },
-          ],
+          args: {
+            name: "PATH",
+            template: "filepaths",
+          },
         },
         {
           description: "Converts a podspec to JSON",
@@ -528,11 +508,9 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "PATH",
-            },
-          ],
+          args: {
+            name: "PATH",
+          },
         },
         {
           description: "Converts a Podfile to YAML",
@@ -552,12 +530,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "PATH",
-              template: "filepaths",
-            },
-          ],
+          args: {
+            name: "PATH",
+            template: "filepaths",
+          },
         },
         {
           description: "The repl listens to commands on standard input",
@@ -605,11 +581,9 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "QUERY",
-            },
-          ],
+          args: {
+            name: "QUERY",
+          },
         },
         {
           description: "List plugins installed on your machine",
@@ -685,11 +659,9 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-            },
-          ],
+          args: {
+            name: "NAME",
+          },
         },
         {
           description: "Validates a Pod",
@@ -848,16 +820,14 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "PODSPEC_PATHS",
-              isOptional: true,
-              generators: {
-                template: "filepaths",
-                filterTemplateSuggestions: getPodspecsAndFolders,
-              },
+          args: {
+            name: "PODSPEC_PATHS",
+            isOptional: true,
+            generators: {
+              template: "filepaths",
+              filterTemplateSuggestions: getPodspecsAndFolders,
             },
-          ],
+          },
         },
       ],
     },
@@ -912,11 +882,9 @@ const completionSpec: Fig.Spec = {
           icon: "🔐",
         },
       ],
-      args: [
-        {
-          name: "QUERY",
-        },
-      ],
+      args: {
+        name: "QUERY",
+      },
     },
     {
       description: "Manage spec-repositories",
@@ -1064,11 +1032,9 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-            },
-          ],
+          args: {
+            name: "NAME",
+          },
         },
         {
           description: "Add a spec repo backed by a CDN",
@@ -1103,12 +1069,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME|DIRECTORY",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "NAME|DIRECTORY",
+            isOptional: true,
+          },
         },
         {
           description: "Update a spec repo",
@@ -1120,12 +1084,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "NAME",
+            isOptional: true,
+          },
         },
       ],
     },
@@ -1188,12 +1150,10 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "PATH",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "PATH",
+            isOptional: true,
+          },
         },
         {
           description: "Deprecates a pod.",
@@ -1212,11 +1172,9 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-            },
-          ],
+          args: {
+            name: "NAME",
+          },
         },
         {
           description: "Deletes a version of a pod.",
@@ -1342,11 +1300,9 @@ const completionSpec: Fig.Spec = {
               icon: "🔐",
             },
           ],
-          args: [
-            {
-              name: "NAME",
-            },
-          ],
+          args: {
+            name: "NAME",
+          },
         },
       ],
     },
@@ -1395,12 +1351,10 @@ const completionSpec: Fig.Spec = {
           icon: "🔐",
         },
       ],
-      args: [
-        {
-          name: "POD_NAMES",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "POD_NAMES",
+        isOptional: true,
+      },
     },
     {
       description: "Try a Pod!",
@@ -1424,30 +1378,28 @@ const completionSpec: Fig.Spec = {
           icon: "🔐",
         },
       ],
-      args: [
-        {
-          name: "NAME|URL",
-        },
-      ],
+      args: {
+        name: "NAME|URL",
+      },
     },
   ],
   options: [
     {
-      name: ["--silent"],
+      name: "--silent",
       icon: "🔇",
       description: "Show nothing",
     },
     {
-      name: ["--verbose"],
+      name: "--verbose",
       icon: "🔊",
       description: "Show more debugging information",
     },
     {
-      name: ["--no-ansi"],
+      name: "--no-ansi",
       description: "Show output without ANSI codes",
     },
     {
-      name: ["--help"],
+      name: "--help",
       description: "Show help banner of specified command",
     },
   ],

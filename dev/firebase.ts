@@ -22,22 +22,22 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--app"],
+          name: "--app",
           description: "the app id of your Firebase app",
           args: {},
         },
         {
-          name: ["--release-notes"],
+          name: "--release-notes",
           description: "release notes to include with this distribution",
         },
         {
-          name: ["--release-notes-file"],
+          name: "--release-notes-file",
           description:
             "path to file with release notes to include with this distribution",
           args: {},
         },
         {
-          name: ["--testers"],
+          name: "--testers",
           description:
             "a comma separated list of tester emails to distribute to",
           args: {
@@ -45,13 +45,13 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--testers-file"],
+          name: "--testers-file",
           description:
             "path to file with a comma separated list of tester emails to distribute to",
           args: {},
         },
         {
-          name: ["--groups"],
+          name: "--groups",
           description:
             "a comma separated list of group aliases to distribute to",
           args: {
@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--groups-file"],
+          name: "--groups-file",
           description:
             "path to file with a comma separated list of group aliases to distribute to",
           args: {
@@ -152,7 +152,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--format"],
+          name: "--format",
           description:
             "Format of exported data (csv, json). Ignored if [dataFile] has format extension.",
           args: {
@@ -182,51 +182,51 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--hash-algo"],
+          name: "--hash-algo",
           description:
             "specify the hash algorithm used in password for these accounts",
           args: {},
         },
         {
-          name: ["--hash-key"],
+          name: "--hash-key",
           description: "specify the key used in hash algorithm",
           args: {},
         },
         {
-          name: ["--salt-separator"],
+          name: "--salt-separator",
           description:
             "specify the salt separator which will be appended to salt when verifying password. only used by SCRYPT now.",
           args: {},
         },
         {
-          name: ["--rounds"],
+          name: "--rounds",
           description: "specify how many rounds for hash calculation.",
           args: {},
         },
         {
-          name: ["--mem-cost"],
+          name: "--mem-cost",
           description:
             "specify the memory cost for firebase scrypt, or cpu/memory cost for standard scrypt",
           args: {},
         },
         {
-          name: ["--parallelization"],
+          name: "--parallelization",
           description: "specify the parallelization for standard scrypt.",
           args: {},
         },
         {
-          name: ["--block-size"],
+          name: "--block-size",
           description:
             "specify the block size (normally is 8) for standard scrypt.",
           args: {},
         },
         {
-          name: ["--dk-len"],
+          name: "--dk-len",
           description: "specify derived key length for standard scrypt.",
           args: {},
         },
         {
-          name: ["--hash-input-order"],
+          name: "--hash-input-order",
           description:
             "specify the order of password and salt. Possible values are SALT_FIRST and PASSWORD_FIRST. MD5, SHA1, SHA256, SHA512, HMAC_MD5, HMAC_SHA1, HMAC_SHA256, HMAC_SHA512 support this flag.",
           args: {},
@@ -290,13 +290,13 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           description:
             "output the raw stats collected as newline delimited json",
           args: {},
         },
         {
-          name: ["--no-collapse"],
+          name: "--no-collapse",
           description:
             "prevent collapsing similar paths into $wildcard locations",
         },
@@ -307,7 +307,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
           args: {},
@@ -332,7 +332,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
           args: {},
@@ -356,7 +356,7 @@ const completionSpec: Fig.Spec = {
           description: "pass this option to bypass confirmation prompt",
         },
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
           args: {},
@@ -386,7 +386,7 @@ const completionSpec: Fig.Spec = {
           description: "pass this option to bypass confirmation prompt",
         },
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
           args: {},
@@ -407,7 +407,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, uses default database instance)",
           args: {},
@@ -431,7 +431,7 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
           args: {},
@@ -461,7 +461,7 @@ const completionSpec: Fig.Spec = {
           description: "pass this option to bypass confirmation prompt",
         },
         {
-          name: ["--instance"],
+          name: "--instance",
           description:
             "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
           args: {},
@@ -492,12 +492,12 @@ const completionSpec: Fig.Spec = {
             "delete Cloud Functions missing from the current working directory without confirmation",
         },
         {
-          name: ["--only"],
+          name: "--only",
           description:
             'only deploy to specified, comma-separated targets (e.g. "hosting,storage"). For functions, can specify filters with colons to scope function deploys to only those functions (e.g. "--only functions:func1,functions:func2"). When filtering based on export groups (the exported module object keys), use dots to specify group names (e.g. "--only functions:group1.subgroup1,functions:group2)"',
         },
         {
-          name: ["--except"],
+          name: "--except",
           description:
             'deploy to all targets except specified (e.g. "database")',
           args: {},
@@ -517,29 +517,29 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--only"],
+          name: "--only",
           description:
             'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]',
           args: {},
         },
         {
-          name: ["--inspect-functions"],
+          name: "--inspect-functions",
           description:
             "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)",
         },
         {
-          name: ["--import"],
+          name: "--import",
           description:
             "import emulator data from a previous export (see emulators:export)",
           args: {},
         },
         {
-          name: ["--export-on-exit"],
+          name: "--export-on-exit",
           description:
             "automatically export emulator data (emulators:export) when the emulators make a clean exit (SIGINT), when no dir is provided the location of --import [dir] is used",
         },
         {
-          name: ["--ui"],
+          name: "--ui",
           description: "run the Emulator UI",
         },
         {
@@ -557,13 +557,13 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--only"],
+          name: "--only",
           description:
             'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]',
           args: {},
         },
         {
-          name: ["--force"],
+          name: "--force",
           description: "Overwrite any export data in the target directory.",
         },
         {
@@ -577,24 +577,24 @@ const completionSpec: Fig.Spec = {
       description: "start the local Firebase emulators",
       options: [
         {
-          name: ["--only"],
+          name: "--only",
           description:
             'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]',
           args: {},
         },
         {
-          name: ["--inspect-functions"],
+          name: "--inspect-functions",
           description:
             "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)",
           args: {},
         },
         {
-          name: ["--import"],
+          name: "--import",
           description:
             "import emulator data from a previous export (see emulators:export)",
         },
         {
-          name: ["--export-on-exit"],
+          name: "--export-on-exit",
           description:
             "automatically export emulator data (emulators:export) when the emulators make a clean exit (SIGINT), when no dir is provided the location of --import [dir] is used",
         },
@@ -628,7 +628,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--params"],
+          name: "--params",
           description: "path of params file with .env format.",
           args: {},
         },
@@ -647,7 +647,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--markdown"],
+          name: "--markdown",
           description:
             "output info in Markdown suitable for constructing a README file",
         },
@@ -680,11 +680,9 @@ const completionSpec: Fig.Spec = {
       name: "ext:update",
       description:
         "update an existing extension instance to the latest version",
-      args: [
-        {
-          name: "extensionInstanceId",
-        },
-      ],
+      args: {
+        name: "extensionInstanceId",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -705,12 +703,12 @@ const completionSpec: Fig.Spec = {
             "Recursive. Delete all documents and subcollections at and under the specified level. May not be passed along with",
         },
         {
-          name: ["--shallow"],
+          name: "--shallow",
           description:
             "Shallow. Delete only documents at the specified level and ignore documents in subcollections. This action can potentially orphan documents nested in subcollections. May not be passed along with -r.",
         },
         {
-          name: ["--all-collections"],
+          name: "--all-collections",
           description:
             "Delete all. Deletes the entire Firestore database, including all collections and documents. Any other flags or arguments will be ignored.",
         },
@@ -730,7 +728,7 @@ const completionSpec: Fig.Spec = {
       description: "List indexes in your project's Cloud Firestore database.",
       options: [
         {
-          name: ["--pretty"],
+          name: "--pretty",
           description:
             "Pretty print. When not specified the indexes are printed in the JSON specification format.",
         },
@@ -745,17 +743,17 @@ const completionSpec: Fig.Spec = {
       description: "clone environment config from another project",
       options: [
         {
-          name: ["--from"],
+          name: "--from",
           description: "the project from which to clone configuration",
           args: {},
         },
         {
-          name: ["--only"],
+          name: "--only",
           description: "a comma-separated list of keys to clone",
           args: {},
         },
         {
-          name: ["--except"],
+          name: "--except",
           description: "a comma-separated list of keys to not clone",
           args: {},
         },
@@ -798,7 +796,7 @@ const completionSpec: Fig.Spec = {
       description: "read logs from deployed functions",
       options: [
         {
-          name: ["--only"],
+          name: "--only",
           description:
             'only show logs of specified, comma-seperated functions (e.g. "funcA,funcB")',
           args: {},
@@ -809,7 +807,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--open"],
+          name: "--open",
           description: "open logs page in web browser",
         },
         {
@@ -828,7 +826,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--inspect-functions"],
+          name: "--inspect-functions",
           description:
             "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)",
           args: {},
@@ -863,7 +861,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--site"],
+          name: "--site",
           description: "site for which to create the channel",
           args: {},
         },
@@ -881,7 +879,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--site"],
+          name: "--site",
           description: "site in which the channel exists",
           args: {},
         },
@@ -909,15 +907,15 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--only"],
+          name: "--only",
           description: "only create previews for specified targets",
         },
         {
-          name: ["--open"],
+          name: "--open",
           description: "open a browser to the channel after deploying",
         },
         {
-          name: ["--no-authorized-domains"],
+          name: "--no-authorized-domains",
           description: "do not sync channel domains with Firebase Auth",
         },
         {
@@ -931,7 +929,7 @@ const completionSpec: Fig.Spec = {
       description: "list all Firebase Hosting channels for your project",
       options: [
         {
-          name: ["--site"],
+          name: "--site",
           description: "list channels for the specified site",
           args: {},
         },
@@ -949,7 +947,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--site"],
+          name: "--site",
           description: "the site to which the channel belongs",
           args: {},
         },
@@ -1004,7 +1002,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--app"],
+          name: "--app",
           description: "specify an existing Firebase Web App ID",
           args: {},
         },
@@ -1069,12 +1067,12 @@ const completionSpec: Fig.Spec = {
       description: "log the CLI into Firebase",
       options: [
         {
-          name: ["--no-localhost"],
+          name: "--no-localhost",
           description:
             "copy and paste a code instead of starting a local server for authentication",
         },
         {
-          name: ["--reauth"],
+          name: "--reauth",
           description: "force reauthentication even if already logged in",
         },
         {
@@ -1089,7 +1087,7 @@ const completionSpec: Fig.Spec = {
       args: { name: "email" },
       options: [
         {
-          name: ["--no-localhost"],
+          name: "--no-localhost",
           description:
             "copy and paste a code instead of starting a local server for authentication",
         },
@@ -1105,7 +1103,7 @@ const completionSpec: Fig.Spec = {
         "generate an access token for use in non-interactive environments",
       options: [
         {
-          name: ["--no-localhost"],
+          name: "--no-localhost",
           description:
             "copy and paste a code instead of starting a local server for authentication",
         },
@@ -1245,7 +1243,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--force"],
+          name: "--force",
           description:
             "rollback template to the specified version without confirmation",
         },
@@ -1261,7 +1259,7 @@ const completionSpec: Fig.Spec = {
         "get a list of Remote Config template versions that have been published for a Firebase project",
       options: [
         {
-          name: ["--limit"],
+          name: "--limit",
           description:
             "limit the number of versions being returned. Pass '0' to fetch all versions.",
           args: {},
@@ -1289,12 +1287,12 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--only"],
+          name: "--only",
           description:
             "only serve specified targets (valid targets are: hosting, functions)",
         },
         {
-          name: ["--except"],
+          name: "--except",
           description:
             "serve all except specified targets (valid targets are: hosting, functions)",
           args: {},
@@ -1423,22 +1421,22 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--add"],
+          name: "--add",
           description: "create a new project alias interactively",
           args: {},
         },
         {
-          name: ["--alias"],
+          name: "--alias",
           description: "create a new alias for the provided project id",
           args: {},
         },
         {
-          name: ["--unalias"],
+          name: "--unalias",
           description: "remove an already created project alias",
           args: {},
         },
         {
-          name: ["--clear"],
+          name: "--clear",
           description: "clear the active project selection",
         },
         {

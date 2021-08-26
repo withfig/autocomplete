@@ -22,6 +22,9 @@ declare namespace Fig {
   // set to void by default
   export type Function<T = void, R = void> = (param?: T) => R;
 
+  // A utility type to modify a property type
+  export type Modify<T, R> = Omit<T, keyof R> & R;
+
   // A string or a function which can have a T argument and a R result,
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
@@ -120,7 +123,7 @@ declare namespace Fig {
      * @example
      * For `npm install`, the subcommand `install` would have "name: install"
      */
-    name: string | string[];
+    name: SingleOrArray<string>;
 
     /**
      * A list of subcommands for this spec.
@@ -412,7 +415,10 @@ declare namespace Fig {
      * @example
      * The python spec has an arg object which has a template for "filepaths" and then filters out all suggestions generated that don't end with "/" (to keep folders) or ".py" (to keep python files)
      */
-    filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>;
+    filterTemplateSuggestions?: Function<
+      Modify<Suggestion, { name?: string }>[],
+      Suggestion[]
+    >;
     /**
      * In order to generate contextual suggestions for arguments, Fig lets you execute a shell command on the users local device as if it were done in their current working directory.
      * You can either specify
@@ -488,7 +494,7 @@ declare namespace Fig {
      * @example
      * ```
      * const generator: Fig.Generator = {
-     *   custom: (tokens) => {
+     *   custom: async (tokens, executeShellCommand) => {
      *     const out = await executeShellCommand("ls");
      *     return out.split("\n").map((elm) => ({ name: elm }));
      *   },

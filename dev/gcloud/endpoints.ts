@@ -149,13 +149,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONFIG_ID",
-              description: "The configuration ID to retrieve.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONFIG_ID",
+            description: "The configuration ID to retrieve.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -613,13 +611,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "The name of the operation to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "The name of the operation to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -941,13 +937,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "The name of the operation on which to wait.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "The name of the operation on which to wait.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1236,14 +1230,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "check-iam-policy",
@@ -1378,14 +1370,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "The name of the service for which to check the IAM policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "The name of the service for which to check the IAM policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1524,13 +1514,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description: "The name of the service to delete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description: "The name of the service to delete.",
+            isVariadic: false,
+          },
         },
         {
           name: "deploy",
@@ -1680,14 +1668,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE_CONFIG_FILE",
-              description:
-                "The service configuration file (or files) containing the API specification to upload. Proto Descriptors, Open API (Swagger) specifications, and Google Service Configuration files in JSON and YAML formats are acceptable.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SERVICE_CONFIG_FILE",
+            description:
+              "The service configuration file (or files) containing the API specification to upload. Proto Descriptors, Open API (Swagger) specifications, and Google Service Configuration files in JSON and YAML formats are acceptable.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -1821,13 +1807,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description: "The name of the service to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description: "The name of the service to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -2001,14 +1985,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "The name of the service whose IAM policy is to be described.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "The name of the service whose IAM policy is to be described.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2336,14 +2318,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "undelete",
@@ -2483,13 +2463,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description: "The name of the service to undelete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description: "The name of the service to undelete.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

@@ -288,6 +288,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against logpoint\nlocations. All logpoints matching this value will be\ndeleted.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -357,14 +358,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more logpoint resource identifiers. The specified\nlogpoints will be deleted.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more logpoint resource identifiers. The specified\nlogpoints will be deleted.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -485,6 +484,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against logpoint\nlocations. All logpoints matching this value will be\nlisted.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -564,14 +564,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more logpoint resource identifiers. The specified\nlogpoints will be listed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more logpoint resource identifiers. The specified\nlogpoints will be listed.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -767,6 +765,7 @@ const completionSpec: Fig.Spec = {
               name: "--expression",
               description:
                 "An expression to evaluate when the snapshot is taken. You may\nspecify --expression multiple times.",
+              isRepeatable: true,
               args: {
                 name: "EXPRESSION",
                 description: "string",
@@ -890,14 +889,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "LOCATION",
-              description:
-                "The location where the snapshot should be taken. Locations are of\nthe form FILE:LINE, where FILE can be simply the file name, or the\nfile name preceded by enough path components to differntiate it from\nother files with the same name. If the file name is not unique in\nthe debug target, the behavior is unspecified.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "LOCATION",
+            description:
+              "The location where the snapshot should be taken. Locations are of\nthe form FILE:LINE, where FILE can be simply the file name, or the\nfile name preceded by enough path components to differntiate it from\nother files with the same name. If the file name is not unique in\nthe debug target, the behavior is unspecified.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -993,6 +990,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. All snapshots matching this value will be\ndeleted.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1062,14 +1060,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The specified\nsnapshots will be deleted.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The specified\nsnapshots will be deleted.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1155,6 +1151,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. All snapshots matching this value will be\ndisplayed.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1224,14 +1221,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1352,6 +1347,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. All snapshots matching this value will be\ndisplayed.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1431,14 +1427,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
+            isVariadic: false,
+          },
         },
         {
           name: "wait",
@@ -1554,6 +1548,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. The command will wait for any snapshots matching these\ncriteria to complete. You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n    --location foo.py:[1-3] --location bar.py:3",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1643,14 +1638,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The command will\nwait for any of the specified snapshots to complete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The command will\nwait for any of the specified snapshots to complete.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

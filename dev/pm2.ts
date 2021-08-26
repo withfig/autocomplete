@@ -4,10 +4,7 @@ const generators: Record<string, Fig.Generator> = {
     filterTemplateSuggestions: function (paths) {
       const suffix = ".json";
       return paths.filter((file) => {
-        if (typeof file.name === "string") {
-          return file.name.endsWith(suffix);
-        }
-        return false;
+        return file.name.endsWith(suffix);
       });
     },
   },
@@ -51,7 +48,7 @@ const sharedOptions: Fig.Option[] = [
     description: "Outputs the version number",
   },
   {
-    name: ["-v"],
+    name: "-v",
     description: "Gets version",
   },
   {
@@ -341,7 +338,7 @@ const sharedOptions: Fig.Option[] = [
     description:
       "Enables all monitoring tools (equivalent to –v8 –event-loop-inspector –trace)",
   },
-  { name: ["-h, –-help"], description: "Outputs usage information" },
+  { name: "-h, –-help", description: "Outputs usage information" },
 ];
 
 const completionSpec: Fig.Spec = {

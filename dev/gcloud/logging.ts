@@ -138,13 +138,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "LOG_NAME",
-              description: "Log name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "LOG_NAME",
+            description: "Log name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -596,13 +594,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "METRIC_NAME",
-              description: "The name of the new metric.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "METRIC_NAME",
+            description: "The name of the new metric.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -736,13 +732,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "METRIC_NAME",
-              description: "The name of the metric to delete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "METRIC_NAME",
+            description: "The name of the metric to delete.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -876,13 +870,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "METRIC_NAME",
-              description: "The name of the metric.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "METRIC_NAME",
+            description: "The name of the metric.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1199,13 +1191,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "METRIC_NAME",
-              description: "The name of the log-based metric to update.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "METRIC_NAME",
+            description: "The name of the log-based metric to update.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1517,14 +1507,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "LOG_FILTER",
-          description:
-            "Filter expression that specifies the log entries to return. A detailed guide on basic and advanced filters can be found at: https://cloud.google.com/logging/docs/view/overview",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "LOG_FILTER",
+        description:
+          "Filter expression that specifies the log entries to return. A detailed guide on basic and advanced filters can be found at: https://cloud.google.com/logging/docs/view/overview",
+        isVariadic: false,
+      },
     },
     {
       name: "resource-descriptors",
@@ -2155,13 +2143,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SINK_NAME",
-              description: "The name of the sink to delete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SINK_NAME",
+            description: "The name of the sink to delete.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2313,13 +2299,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SINK_NAME",
-              description: "The name of the sink to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SINK_NAME",
+            description: "The name of the sink to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

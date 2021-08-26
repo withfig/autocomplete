@@ -33,6 +33,63 @@ interface ComposerListOutput {
   commands: ComposerCommand[];
 }
 
+const PACKAGE_REGEXP = new RegExp("^.*/.*$");
+
+const searchGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = context[context.length - 1];
+    return `curl -s -H "Accept: application/json" "https://packagist.org/search.json?q=${searchTerm}&per_page=20"`;
+  },
+  postProcess: function (out) {
+    try {
+      return JSON.parse(out).results.map(
+        (item) =>
+          ({
+            name: item.name,
+            description: item.description,
+            icon: "📦",
+          } as Fig.Suggestion)
+      ) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
+// generate package list from composer.json file
+const packagesGenerator: Fig.Generator = {
+  script: "cat composer.json",
+  postProcess: function (out) {
+    if (out.trim() == "") {
+      return [];
+    }
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent["require"] || {};
+      const devDependencies = packageContent["require-dev"] || {};
+
+      return filterRealDependencies(
+        Object.assign(dependencies, devDependencies)
+      ).map((dependencyName) => ({
+        name: dependencyName,
+        icon: "📦",
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+
+    return [];
+  },
+};
+
+function filterRealDependencies(dependencies) {
+  return Object.keys(dependencies).filter((dependency) =>
+    dependency.match(PACKAGE_REGEXP)
+  );
+}
+
 const completionSpec: Fig.Spec = {
   name: "composer",
   description: "Composer Command",
@@ -43,6 +100,8 @@ const completionSpec: Fig.Spec = {
 
     try {
       const data: ComposerListOutput = JSON.parse(jsonList);
+      const packagesGeneratorTriggersCommands = ["update", "remove"];
+
       for (const command of data.commands) {
         subcommands.push({
           name: command.name,
@@ -63,6 +122,12 @@ const completionSpec: Fig.Spec = {
               isOptional: !arg.is_required,
               default: argDefault,
               isVariadic: arg.is_array,
+              generators:
+                command.name === "require"
+                  ? searchGenerator
+                  : packagesGeneratorTriggersCommands.includes(command.name)
+                  ? packagesGenerator
+                  : [],
             };
           }),
 

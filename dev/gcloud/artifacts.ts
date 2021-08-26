@@ -152,14 +152,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "IMAGE",
-                  description:
-                    "A container image.\n+\nA valid container image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE\n+\nA valid container image that can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "IMAGE",
+                description:
+                  "A container image.\n+\nA valid container image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE\n+\nA valid container image that can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -323,14 +321,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "IMAGE",
-                  description:
-                    "A container image.\n+\nA valid container image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE\n+\nA valid container image that can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "IMAGE",
+                description:
+                  "A container image.\n+\nA valid container image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE\n+\nA valid container image that can be referenced by tag or digest, has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE@sha256:digest",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -534,14 +530,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "IMAGE_PATH",
-                  description:
-                    "An Artifact Registry repository or a container image.\nIf not specified, default config values are used.\n+\nA valid docker repository has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID\n+\nA valid image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE_PATH",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "IMAGE_PATH",
+                description:
+                  "An Artifact Registry repository or a container image.\nIf not specified, default config values are used.\n+\nA valid docker repository has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID\n+\nA valid image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE_PATH",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -958,14 +952,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DOCKER_TAG",
-                  description:
-                    "Image tag - The container image tag.\n+\nA valid Docker tag has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DOCKER_TAG",
+                description:
+                  "Image tag - The container image tag.\n+\nA valid Docker tag has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE:tag",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -1140,14 +1132,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "IMAGE_PATH",
-                  description:
-                    "An Artifact Registry repository or a container image.\nIf not specified, default config values are used.\n+\nA valid docker repository has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID\n+\nA valid image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE_PATH",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "IMAGE_PATH",
+                description:
+                  "An Artifact Registry repository or a container image.\nIf not specified, default config values are used.\n+\nA valid docker repository has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID\n+\nA valid image has the format of\n  LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY-ID/IMAGE_PATH",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -1862,14 +1852,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2162,14 +2150,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PACKAGE",
-              description:
-                "ID of the package or fully qualified identifier for the package.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PACKAGE",
+            description:
+              "ID of the package or fully qualified identifier for the package.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3317,14 +3303,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -3514,14 +3498,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -3670,14 +3652,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3821,14 +3801,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -4012,14 +3990,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4394,14 +4370,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -4737,14 +4711,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY",
-              description:
-                "ID of the repository or fully qualified identifier for the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY",
+            description:
+              "ID of the repository or fully qualified identifier for the repository.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -5041,14 +5013,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG",
-              description:
-                "ID of the tag or fully qualified identifier for the tag.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG",
+            description:
+              "ID of the tag or fully qualified identifier for the tag.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -5211,14 +5181,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG",
-              description:
-                "ID of the tag or fully qualified identifier for the tag.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG",
+            description:
+              "ID of the tag or fully qualified identifier for the tag.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -5585,14 +5553,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG",
-              description:
-                "ID of the tag or fully qualified identifier for the tag.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG",
+            description:
+              "ID of the tag or fully qualified identifier for the tag.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -5899,14 +5865,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

@@ -149,14 +149,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUTOSCALING_POLICY",
-              description:
-                "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUTOSCALING_POLICY",
+            description:
+              "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -300,14 +298,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUTOSCALING_POLICY",
-              description:
-                "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUTOSCALING_POLICY",
+            description:
+              "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -461,14 +457,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUTOSCALING_POLICY",
-              description:
-                "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUTOSCALING_POLICY",
+            description:
+              "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -612,14 +606,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUTOSCALING_POLICY",
-              description:
-                "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUTOSCALING_POLICY",
+            description:
+              "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -773,14 +765,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUTOSCALING_POLICY",
-              description:
-                "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUTOSCALING_POLICY",
+            description:
+              "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1974,14 +1964,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -2130,14 +2118,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2281,14 +2267,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "diagnose",
@@ -2432,14 +2416,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -2593,14 +2575,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -2784,14 +2764,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -2950,14 +2928,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3560,14 +3536,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CLUSTER",
-              description:
-                "ID of the cluster or fully qualified identifier for the cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CLUSTER",
+            description:
+              "ID of the cluster or fully qualified identifier for the cluster.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -3845,14 +3819,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description:
-                "ID of the job or fully qualified identifier for the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description:
+              "ID of the job or fully qualified identifier for the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3996,14 +3968,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description:
-                "ID of the job or fully qualified identifier for the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description:
+              "ID of the job or fully qualified identifier for the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -4187,14 +4157,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description:
-                "ID of the job or fully qualified identifier for the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description:
+              "ID of the job or fully qualified identifier for the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "kill",
@@ -4338,14 +4306,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description:
-                "ID of the job or fully qualified identifier for the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description:
+              "ID of the job or fully qualified identifier for the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4967,14 +4933,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "JOB_ARGS",
-                  description:
-                    "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "JOB_ARGS",
+                description:
+                  "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
+                isVariadic: false,
+              },
             },
             {
               name: "hive",
@@ -6235,14 +6199,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "JOB_ARGS",
-                  description:
-                    "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "JOB_ARGS",
+                description:
+                  "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
+                isVariadic: false,
+              },
             },
             {
               name: "spark-r",
@@ -7054,14 +7016,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description:
-                "ID of the job or fully qualified identifier for the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description:
+              "ID of the job or fully qualified identifier for the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "wait",
@@ -7206,14 +7166,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description:
-                "ID of the job or fully qualified identifier for the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description:
+              "ID of the job or fully qualified identifier for the job.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -7491,14 +7449,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -7642,14 +7598,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -7793,14 +7747,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -7984,14 +7936,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -8745,14 +8695,12 @@ const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [
-                {
-                  name: "JOB_ARGS",
-                  description:
-                    "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "JOB_ARGS",
+                description:
+                  "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
+                isVariadic: false,
+              },
             },
             {
               name: "hive",
@@ -9998,14 +9946,12 @@ const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [
-                {
-                  name: "JOB_ARGS",
-                  description:
-                    "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "JOB_ARGS",
+                description:
+                  "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
+                isVariadic: false,
+              },
             },
             {
               name: "spark-r",
@@ -10771,14 +10717,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -10922,14 +10866,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -11073,14 +11015,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -11234,14 +11174,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -11385,14 +11323,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -11546,14 +11482,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "instantiate",
@@ -11712,14 +11646,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "instantiate-from-file",
@@ -12215,14 +12147,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-cluster-selector",
@@ -12375,14 +12305,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -13189,14 +13117,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE",
-              description:
-                "ID of the template or fully qualified identifier for the template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE",
+            description:
+              "ID of the template or fully qualified identifier for the template.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

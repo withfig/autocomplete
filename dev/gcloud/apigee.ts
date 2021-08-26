@@ -173,14 +173,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REVISION",
-              description:
-                "ID of the revision or fully qualified identifier for the revision.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REVISION",
+            description:
+              "ID of the revision or fully qualified identifier for the revision.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -328,14 +326,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "API",
-              description:
-                "ID of the API proxy or fully qualified identifier for the API proxy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "API",
+            description:
+              "ID of the API proxy or fully qualified identifier for the API proxy.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -686,14 +682,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REVISION",
-              description:
-                "ID of the revision or fully qualified identifier for the revision.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REVISION",
+            description:
+              "ID of the revision or fully qualified identifier for the revision.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -972,14 +966,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "APPLICATION",
-              description:
-                "ID of the application or fully qualified identifier for the application.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "APPLICATION",
+            description:
+              "ID of the application or fully qualified identifier for the application.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1474,14 +1466,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REVISION",
-              description:
-                "ID of the revision or fully qualified identifier for the revision.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REVISION",
+            description:
+              "ID of the revision or fully qualified identifier for the revision.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1977,14 +1967,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEVELOPER",
-              description:
-                "ID of the developer or fully qualified identifier for the developer.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEVELOPER",
+            description:
+              "ID of the developer or fully qualified identifier for the developer.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3214,14 +3202,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INTERNAL_NAME",
-              description:
-                "ID of the API product or fully qualified identifier for the API product.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INTERNAL_NAME",
+            description:
+              "ID of the API product or fully qualified identifier for the API product.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -3365,14 +3351,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRODUCT",
-              description:
-                "ID of the API product or fully qualified identifier for the API product.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRODUCT",
+            description:
+              "ID of the API product or fully qualified identifier for the API product.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3516,14 +3500,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRODUCT",
-              description:
-                "ID of the API product or fully qualified identifier for the API product.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRODUCT",
+            description:
+              "ID of the API product or fully qualified identifier for the API product.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4055,14 +4037,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRODUCT",
-              description:
-                "ID of the API product or fully qualified identifier for the API product.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRODUCT",
+            description:
+              "ID of the API product or fully qualified identifier for the API product.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

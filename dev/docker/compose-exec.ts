@@ -12,14 +12,14 @@ const getServices: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "exec",
   description: "Execute a command in a running container",
-  args: [{ generators: getServices }],
+  args: { generators: getServices },
   options: [
     {
       name: ["-d", "--detach"],
       description: "Detached mode: Run command in the background.",
     },
     {
-      name: ["--privileged"],
+      name: "--privileged",
       description: "Give extended privileges to the process.",
     },
     {
@@ -30,12 +30,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-T"],
+      name: "-T",
       description:
         "Disable pseudo-tty allocation. By default `docker-compose exec` allocates a TTY.",
     },
     {
-      name: ["--index"],
+      name: "--index",
       description:
         "index of the container if there are multiple instances of a service [default: 1]",
       args: {

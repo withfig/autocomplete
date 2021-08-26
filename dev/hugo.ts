@@ -344,7 +344,7 @@ const convertOptions: Fig.Option[] = [
     },
   },
   {
-    name: ["--unsafe"],
+    name: "--unsafe",
     description: "enable less safe operations, please backup first",
     isDangerous: true,
   },
@@ -416,25 +416,25 @@ const completionSpec: Fig.Spec = {
         help("deploy"),
         ...globalOptions,
         {
-          name: ["--confirm"],
+          name: "--confirm",
           description:
             "ask for confirmation before making changes to the target",
         },
         {
-          name: ["--dryRun"],
+          name: "--dryRun",
           description: "dry run",
         },
         {
-          name: ["--force"],
+          name: "--force",
           description: "force upload of all files",
         },
         {
-          name: ["--invalidateCDN"],
+          name: "--invalidateCDN",
           description:
             "invalidate the CDN cache listed in the deployment target (default true)",
         },
         {
-          name: ["--maxDeletes"],
+          name: "--maxDeletes",
           description:
             "maximum # of files to delete, or -1 to disable (default 256)",
           args: {
@@ -442,7 +442,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--target"],
+          name: "--target",
           description:
             "target deployment from deployments section in config file; defaults to the first one",
           args: {
@@ -458,7 +458,7 @@ const completionSpec: Fig.Spec = {
         help("env"),
         ...globalOptions,
         {
-          name: ["-v"],
+          name: "-v",
           description: "Get a full dependency list",
         },
       ],
@@ -508,7 +508,7 @@ const completionSpec: Fig.Spec = {
           options: [
             help("chromastyles"),
             {
-              name: ["--highlightStyle"],
+              name: "--highlightStyle",
               description:
                 "style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
               args: {
@@ -516,7 +516,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--linesStyle"],
+              name: "--linesStyle",
               description:
                 "style used for line numbers (see https://github.com/alecthomas/chroma)",
               args: {
@@ -524,7 +524,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--style"],
+              name: "--style",
               description:
                 "highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
               args: {
@@ -587,7 +587,7 @@ const completionSpec: Fig.Spec = {
           options: [
             help("doc"),
             {
-              name: ["--dir"],
+              name: "--dir",
               description:
                 "the directory to write the doc. (default '/tmp/hugodoc/')",
               args: {
@@ -603,7 +603,7 @@ const completionSpec: Fig.Spec = {
           options: [
             help("man"),
             {
-              name: ["--dir"],
+              name: "--dir",
               description:
                 "the directory to write the man pages. (default 'man/')",
               args: {
@@ -663,7 +663,7 @@ const completionSpec: Fig.Spec = {
           options: [
             help("jekyll"),
             {
-              name: ["--force"],
+              name: "--force",
               description: "allow import into non-empty target directory",
               isDangerous: true,
             },
@@ -735,36 +735,36 @@ const completionSpec: Fig.Spec = {
           options: [
             help("get"),
             {
-              name: ["-d"],
+              name: "-d",
               description: "download packages only and do not install",
             },
             {
-              name: ["-f"],
+              name: "-f",
               description:
                 "valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original.",
             },
             {
-              name: ["-fix"],
+              name: "-fix",
               description:
                 "run the fix tool on downloaded packages before resolving dependencies or building the code",
             },
             {
-              name: ["-insecure"],
+              name: "-insecure",
               description:
                 "permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution.",
             },
             {
-              name: ["-t"],
+              name: "-t",
               description:
                 "also download the packages required to build the tests for the specified packages",
             },
             {
-              name: ["-u"],
+              name: "-u",
               description:
                 "recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages.",
             },
             {
-              name: ["-v"],
+              name: "-v",
               description: "enables verbose progress and debug output",
             },
           ],
@@ -873,16 +873,14 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "archetype|default",
-              generators: [
-                {
-                  script: "ls ./archetypes/",
-                  postProcess: (output) =>
-                    output.split("\n").map((fileName) => ({
-                      name: fileName,
-                      icon: "fig://icon?type=string",
-                    })),
-                },
-              ],
+              generators: {
+                script: "ls ./archetypes/",
+                postProcess: (output) =>
+                  output.split("\n").map((fileName) => ({
+                    name: fileName,
+                    icon: "fig://icon?type=string",
+                  })),
+              },
             },
             {
               name: "content-section/file-name.md",
@@ -907,7 +905,7 @@ const completionSpec: Fig.Spec = {
         ...globalOptions,
         watch,
         {
-          name: ["--appendPort"],
+          name: "--appendPort",
           description: "append port to baseURL (default true)",
           args: {
             name: "boolean",

@@ -24,9 +24,9 @@ const completionSpec: Fig.Spec = {
       name: ["-v", "--verbose"],
       description: "always print headers giving file names",
     },
-    { name: ["--help"], description: "display this help and exit" },
+    { name: "--help", description: "display this help and exit" },
     {
-      name: ["--version"],
+      name: "--version",
       description: "output version information and exit",
     },
   ],
