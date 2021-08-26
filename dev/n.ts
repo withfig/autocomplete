@@ -153,21 +153,33 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-a", "--arch"],
       description: "Override system architecture",
+      args: {
+        name: "Architecture",
+        suggestions: [
+          { name: ["x64", "x86_64"] },
+          { name: ["arm64", "aarch64", "armv8l"] },
+          { name: ["x86", "i386", "i686"] },
+          { name: ["armv6l", "armv7l"] },
+        ],
+      },
     },
     {
       name: ["--insecure"],
       description:
         "Turn off certificate checking for https requests (may be needed from behind a proxy server)",
+      isDangerous: true,
     },
     {
       name: ["--use-xz"],
       description:
         "Override automatic detection of xz support and enable use of xz compressed node downloads.",
+      exclusiveOn: ["--no-use-xz"],
     },
     {
       name: ["--no-use-xz"],
       description:
         "Override automatic detection of xz support and disable use of xz compressed node downloads.",
+      exclusiveOn: ["--use-xz"],
     },
   ],
 };
