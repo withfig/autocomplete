@@ -12,12 +12,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "new",
       description: "Creates a new Elixir project at the given path",
-      args: [
-        {
-          name: "path",
-        },
-      ],
-
+      args: {
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -53,12 +50,10 @@ const completionSpec: Fig.Spec = {
       name: "pp",
       description:
         "Prints documentation for a given task (Lists all the tasks if no task is specified)",
-      args: [
-        {
-          isOptional: true,
-          name: "task",
-        },
-      ],
+      args: {
+        isOptional: true,
+        name: "task",
+      },
       options: [
         {
           name: "--search",
