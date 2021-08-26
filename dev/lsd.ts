@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "lsd",
-  description: "an ls command with a lot of pretty colors and some other stuff",
+  description: "An ls command with a lot of pretty colors and some other stuff",
   args: {
     isVariadic: true,
     template: "folders",
@@ -13,11 +13,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-A", "--almost-all"],
-      description: "Do not list implied . and ",
+      description: "Do not list implied . and",
     },
     {
       name: ["-a", "--all"],
-      description: "Do not ignore entries starting with ",
+      description: "Do not ignore entries starting with",
     },
     {
       name: ["-d", "--directory-only"],

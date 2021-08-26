@@ -1102,7 +1102,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--endpoint-name",
           description:
-            "The name of the endpoint.The name must be unique within an AWS Region in your AWS account. The name is case-insensitive in CreateEndpoint, but the case is preserved and must be matched in ",
+            "The name of the endpoint.The name must be unique within an AWS Region in your AWS account. The name is case-insensitive in CreateEndpoint, but the case is preserved and must be matched in",
           args: {
             name: "string",
           },

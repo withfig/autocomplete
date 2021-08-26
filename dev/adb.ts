@@ -1,73 +1,73 @@
 const installOptions: Fig.Option[] = [
   {
     name: "-l",
-    description: "forward-lock the app",
+    description: "Forward-lock the app",
   },
   {
     name: "-r",
-    description: "replace existing application",
+    description: "Replace existing application",
   },
   {
     name: "-t",
-    description: "allow test packages",
+    description: "Allow test packages",
   },
   {
     name: "-d",
-    description: "allow version code downgrade (debuggable packages only)",
+    description: "Allow version code downgrade (debuggable packages only)",
   },
   {
     name: "-s",
-    description: "install on SD card instead of internal storage",
+    description: "Install on SD card instead of internal storage",
   },
   {
     name: "-g",
-    description: "grant all runtime permissions",
+    description: "Grant all runtime permissions",
   },
   {
-    description: "override platform's default ABI",
+    description: "Override platform's default ABI",
     name: "--abi",
     args: {
       name: "ABI",
     },
   },
   {
-    description: "cause the app to be installed as an ephemeral install app",
+    description: "Cause the app to be installed as an ephemeral install app",
     name: "--instant",
   },
   {
     description:
-      "always push APK to device and invoke Package Manager as separate steps",
+      "Always push APK to device and invoke Package Manager as separate steps",
     name: "--no-streaming",
   },
   {
-    description: "force streaming APK directly into Package Manager",
+    description: "Force streaming APK directly into Package Manager",
     name: "--streaming",
   },
   {
-    description: "use fast deploy",
+    description: "Use fast deploy",
     name: "--fastdeploy",
   },
   {
-    description: "prevent use of fast deploy",
+    description: "Prevent use of fast deploy",
     name: "--no-fastdeploy",
   },
   {
-    description: "force update of deployment agent when using fast deploy",
+    description: "Force update of deployment agent when using fast deploy",
     name: "--force-agent",
   },
   {
     description:
-      "update deployment agent when local version is newer and using fast deploy",
+      "Update deployment agent when local version is newer and using fast deploy",
     name: "--date-check-agent",
   },
   {
     description:
-      "update deployment agent when local version has different version code and using fast deploy",
+      "Update deployment agent when local version has different version code and using fast deploy",
     name: "--version-check-agent",
   },
   {
     description:
-      "locate agent files from local source build (instead of SDK location)",
+      "Locate agent files from local source build (instead of SDK location)",
     name: "--local-agent",
   },
 ];
@@ -75,7 +75,7 @@ const installOptions: Fig.Option[] = [
 const compressionOptions: Fig.Option[] = [
   {
     description:
-      "enable compression with a specified algorithm (any, none, brotli)",
+      "Enable compression with a specified algorithm (any, none, brotli)",
     name: "-z",
     args: {
       name: "ALGORITHM",
@@ -93,7 +93,7 @@ const compressionOptions: Fig.Option[] = [
     },
   },
   {
-    description: "disable compression",
+    description: "Disable compression",
     name: "-Z",
   },
 ];
@@ -154,89 +154,89 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "devices",
-      description: " list connected devices ",
+      description: "List connected devices",
       options: [
         {
           name: "-l",
-          description: "long output",
+          description: "Long output",
         },
       ],
     },
     {
       name: "help",
-      description: "show this help message",
+      description: "Show this help message",
     },
     {
       name: "get-state",
-      description: "print offline | bootloader | device",
+      description: "Print offline | bootloader | device",
     },
     {
       name: "get-serialno",
-      description: "print <serial-number>",
+      description: "Print <serial-number>",
     },
     {
       name: "get-devpath",
-      description: "print <device-path>",
+      description: "Print <device-path>",
     },
     {
       name: "remount",
       options: [
         {
           name: "-R",
-          description: "reboot device",
+          description: "Reboot device",
         },
       ],
       description:
-        "remount partitions read-write. if a reboot is required, -R will automatically reboot the device",
+        "Remount partitions read-write. if a reboot is required, -R will automatically reboot the device",
     },
     {
       name: "jdwp",
-      description: "list pids of processes hosting a JDWP transport",
+      description: "List pids of processes hosting a JDWP transport",
     },
     {
       name: "root",
-      description: "restart adbd with root permissions",
+      description: "Restart adbd with root permissions",
     },
     {
       name: "unroot",
-      description: "restart adbd without root permissions",
+      description: "Restart adbd without root permissions",
     },
     {
       name: "usb",
-      description: "restart adbd listening on USB",
+      description: "Restart adbd listening on USB",
     },
     {
       name: "sideload",
-      description: "sideload the given full OTA package",
+      description: "Sideload the given full OTA package",
       args: {
         name: "OTAPACKAGE",
       },
     },
     {
-      description: "ensure that there is a server running",
+      description: "Ensure that there is a server running",
       name: "start-server",
     },
     {
-      description: "kill the server if it is running",
+      description: "Kill the server if it is running",
       name: "kill-server",
     },
     {
-      description: "kick connection from host side to force reconnect",
+      description: "Kick connection from host side to force reconnect",
       name: "reconnect",
       subcommands: [
         {
-          description: "kick connection from device side to force reconnect",
+          description: "Kick connection from device side to force reconnect",
           name: "device",
         },
         {
-          description: "reset offline/unauthorized devices to force reconnect`",
+          description: "Reset offline/unauthorized devices to force reconnect`",
           name: "offline",
         },
       ],
     },
     {
       name: "tcpip",
-      description: "restart adbd listening on TCP on PORT",
+      description: "Restart adbd listening on TCP on PORT",
       args: {
         name: "PORT",
       },
@@ -262,119 +262,119 @@ const completionSpec: Fig.Spec = {
         ],
       },
       description:
-        "reboot the device; defaults to booting system image but supports bootloader and recovery too. sideload reboots into recovery and automatically starts sideload mode, sideload-auto-reboot is the same but reboots after sideloading",
+        "Reboot the device; defaults to booting system image but supports bootloader and recovery too. sideload reboots into recovery and automatically starts sideload mode, sideload-auto-reboot is the same but reboots after sideloading",
     },
     {
       name: "disable-verity",
-      description: "disable dm-verity checking on userdebug builds",
+      description: "Disable dm-verity checking on userdebug builds",
     },
     {
       name: "enable-verity",
-      description: "re-enable dm-verity checking on userdebug builds",
+      description: "Re-enable dm-verity checking on userdebug builds",
     },
     {
       name: "wait-for-device",
-      description: "wait for state=device",
+      description: "Wait for state=device",
     },
     {
       name: "wait-for-recovery",
-      description: "wait for state=recovery",
+      description: "Wait for state=recovery",
     },
     {
       name: "wait-for-rescue",
-      description: "wait for state=rescue",
+      description: "Wait for state=rescue",
     },
     {
       name: "wait-for-sideload",
-      description: "wait for state=sideload",
+      description: "Wait for state=sideload",
     },
     {
       name: "wait-for-bootloader",
-      description: "wait for state=bootloader",
+      description: "Wait for state=bootloader",
     },
     {
       name: "wait-for-disconnect",
-      description: "wait for state=disconnect",
+      description: "Wait for state=disconnect",
     },
     {
       name: "wait-for-usb-device",
-      description: "wait for usb in state=device",
+      description: "Wait for usb in state=device",
     },
     {
       name: "wait-for-usb-recovery",
-      description: "wait for usb in state=recovery",
+      description: "Wait for usb in state=recovery",
     },
     {
       name: "wait-for-usb-rescue",
-      description: "wait for usb in state=rescue",
+      description: "Wait for usb in state=rescue",
     },
     {
       name: "wait-for-usb-sideload",
-      description: "wait for usb in state=sideload",
+      description: "Wait for usb in state=sideload",
     },
     {
       name: "wait-for-usb-bootloader",
-      description: "wait for usb in state=bootloader",
+      description: "Wait for usb in state=bootloader",
     },
     {
       name: "wait-for-usb-disconnect",
-      description: "wait for usb in state=disconnect",
+      description: "Wait for usb in state=disconnect",
     },
 
     {
       name: "wait-for-local-device",
-      description: "wait for local in state=device",
+      description: "Wait for local in state=device",
     },
     {
       name: "wait-for-local-recovery",
-      description: "wait for local in state=recovery",
+      description: "Wait for local in state=recovery",
     },
     {
       name: "wait-for-local-rescue",
-      description: "wait for local in state=rescue",
+      description: "Wait for local in state=rescue",
     },
     {
       name: "wait-for-local-sideload",
-      description: "wait for local in state=sideload",
+      description: "Wait for local in state=sideload",
     },
     {
       name: "wait-for-local-bootloader",
-      description: "wait for local in state=bootloader",
+      description: "Wait for local in state=bootloader",
     },
     {
       name: "wait-for-local-disconnect",
-      description: "wait for local in state=disconnect",
+      description: "Wait for local in state=disconnect",
     },
 
     {
       name: "wait-for-any-device",
-      description: "wait for any in state=device",
+      description: "Wait for any in state=device",
     },
     {
       name: "wait-for-any-recovery",
-      description: "wait for any in state=recovery",
+      description: "Wait for any in state=recovery",
     },
     {
       name: "wait-for-any-rescue",
-      description: "wait for any in state=rescue",
+      description: "Wait for any in state=rescue",
     },
     {
       name: "wait-for-any-sideload",
-      description: "wait for any in state=sideload",
+      description: "Wait for any in state=sideload",
     },
     {
       name: "wait-for-any-bootloader",
-      description: "wait for any in state=bootloader",
+      description: "Wait for any in state=bootloader",
     },
     {
       name: "wait-for-any-disconnect",
-      description: "wait for any in state=disconnect",
+      description: "Wait for any in state=disconnect",
     },
 
     {
       name: "keygen",
       description:
-        "generate adb public/private key; private key stored in FILE",
+        "Generate adb public/private key; private key stored in FILE",
       args: {
         name: "FILE",
         template: "filepaths",
@@ -382,15 +382,15 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "logcat",
-      description: "show device log (logcat --help for more)",
+      description: "Show device log (logcat --help for more)",
     },
     {
       name: "version",
-      description: "show version num",
+      description: "Show version num",
     },
     {
       name: "connect",
-      description: "connect to a device via TCP/IP [default port=5555]",
+      description: "Connect to a device via TCP/IP [default port=5555]",
       args: {
         name: "HOST[:PORT]",
       },
@@ -398,7 +398,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "disconnect",
       description:
-        "disconnect from given TCP/IP device [default port=5555], or all",
+        "Disconnect from given TCP/IP device [default port=5555], or all",
       args: {
         name: "HOST[:PORT]",
         isOptional: true,
@@ -406,17 +406,17 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "uninstall",
-      description: "remove this app package from the device",
+      description: "Remove this app package from the device",
       options: [
         {
           name: "-k",
-          description: "keep the data and cache directories",
+          description: "Keep the data and cache directories",
         },
       ],
     },
     {
       name: "bugreport",
-      description: "write bugreport to given PATH [default=bugreport.zip];",
+      description: "Write bugreport to given PATH [default=bugreport.zip];",
       args: {
         name: "PATH",
         isOptional: true,
@@ -424,7 +424,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "pair",
-      description: "pair with a device for secure TCP/IP communication",
+      description: "Pair with a device for secure TCP/IP communication",
       args: [
         {
           name: "HOST[:PORT]",
@@ -437,7 +437,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "ppp",
-      description: "run PPP over USB",
+      description: "Run PPP over USB",
       args: [
         {
           name: "TTY",
@@ -451,14 +451,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "emu",
-      description: "run emulator console command",
+      description: "Run emulator console command",
       args: {
         name: "COMMAND",
       },
     },
     {
       name: "install",
-      description: "push a single package to the device and install it",
+      description: "Push a single package to the device and install it",
       args: {
         name: "PACKAGE",
         template: "filepaths",
@@ -468,7 +468,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "install-multiple",
       description:
-        "push multiple APKs to the device for a single package and install them",
+        "Push multiple APKs to the device for a single package and install them",
       args: {
         name: "PACKAGE",
         template: "filepaths",
@@ -477,7 +477,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "-p",
-          description: "partial application install (install-multiple only)",
+          description: "Partial application install (install-multiple only)",
         },
         ...installOptions,
       ],
@@ -485,7 +485,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "install-multi-package",
       description:
-        "push one or more packages to the device and install them atomically",
+        "Push one or more packages to the device and install them atomically",
       args: {
         name: "PACKAGE",
         template: "filepaths",
@@ -494,7 +494,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "-p",
-          description: "partial application install (install-multiple only)",
+          description: "Partial application install (install-multiple only)",
         },
         ...installOptions,
       ],
@@ -502,23 +502,23 @@ const completionSpec: Fig.Spec = {
     {
       name: "shell",
       description:
-        "run remote shell command (interactive shell if no command given)",
+        "Run remote shell command (interactive shell if no command given)",
       options: [
         {
           name: "-e",
-          description: "choose escape character, or `none` default '~'",
+          description: "Choose escape character, or `none` default '~'",
         },
         {
           name: "-n",
-          description: "don't read from stdin",
+          description: "Don't read from stdin",
         },
         {
           name: "-T",
-          description: "disable pty allocation",
+          description: "Disable pty allocation",
         },
         {
           name: "-t",
-          description: " allocate a pty if on a tty",
+          description: "Allocate a pty if on a tty",
         },
         {
           name: "-tt",
@@ -526,7 +526,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-x",
-          description: "disable remote exit codes and stdout/stderr separation",
+          description: "Disable remote exit codes and stdout/stderr separation",
         },
       ],
       args: {
@@ -537,30 +537,30 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "mdns",
-      description: "mdns utils",
+      description: "Mdns utils",
       subcommands: [
         {
           name: "check",
-          description: "check if mdns discovery is available",
+          description: "Check if mdns discovery is available",
         },
         {
           name: "services",
-          description: "list all discovered services",
+          description: "List all discovered services",
         },
       ],
     },
     {
       name: "push",
-      description: "copy local files/directories to device",
+      description: "Copy local files/directories to device",
       options: [
         {
           description:
-            "only push files that are newer on the host than the device",
+            "Only push files that are newer on the host than the device",
           name: "--sync",
         },
         {
           description:
-            "dry run: push files to device without storing to the filesystem",
+            "Dry run: push files to device without storing to the filesystem",
           name: "-n",
         },
         ...compressionOptions,
@@ -579,15 +579,15 @@ const completionSpec: Fig.Spec = {
     {
       name: "sync",
       description:
-        "sync a local build from $ANDROID_PRODUCT_OUT to the device (default all)",
+        "Sync a local build from $ANDROID_PRODUCT_OUT to the device (default all)",
       options: [
         {
           description:
-            "dry run: push files to device without storing to the filesystem",
+            "Dry run: push files to device without storing to the filesystem",
           name: "-n",
         },
         {
-          description: "list files that would be copied, but don't copy them",
+          description: "List files that would be copied, but don't copy them",
           name: "-l",
         },
         ...compressionOptions,
@@ -624,10 +624,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "pull",
-      description: "copy files/dirs from device",
+      description: "Copy files/dirs from device",
       options: [
         {
-          description: "preserve file timestamp and mode",
+          description: "Preserve file timestamp and mode",
           name: "-a",
         },
         ...compressionOptions,
@@ -645,27 +645,27 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "forward",
-      description: "forward connection",
+      description: "Forward connection",
       options: [
         {
           name: "--list",
-          description: "list all forward socket connections",
+          description: "List all forward socket connections",
         },
         {
           name: "--remove",
-          description: "remove specific forward socket connection",
+          description: "Remove specific forward socket connection",
           args: {
             name: "LOCAL",
           },
         },
         {
           name: "--remove-all",
-          description: "remove all forward socket connections",
+          description: "Remove all forward socket connections",
         },
         {
           name: "--no-rebind",
           description:
-            "reversal fails if the specified socket is already bound through a previous reverse command",
+            "Reversal fails if the specified socket is already bound through a previous reverse command",
         },
       ],
       args: [
@@ -681,27 +681,27 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "reverse",
-      description: "reverse connection",
+      description: "Reverse connection",
       options: [
         {
           name: "--list",
-          description: "list all reverse socket connections from device",
+          description: "List all reverse socket connections from device",
         },
         {
           name: "--remove",
-          description: "remove specific reverse socket connection",
+          description: "Remove specific reverse socket connection",
           args: {
             name: "REMOTE",
           },
         },
         {
           name: "--remove-all",
-          description: "remove all reverse socket connections from device",
+          description: "Remove all reverse socket connections from device",
         },
         {
           name: "--no-rebind",
           description:
-            "reversal fails if the specified socket is already bound through a previous reverse command",
+            "Reversal fails if the specified socket is already bound through a previous reverse command",
         },
       ],
       args: [
@@ -718,41 +718,41 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      description: "listen on all network interfaces, not just localhost",
+      description: "Listen on all network interfaces, not just localhost",
       name: "-a",
     },
     {
-      description: "use USB device (error if multiple devices connected)",
+      description: "Use USB device (error if multiple devices connected)",
       name: "-d",
     },
     {
       description:
-        "use TCP/IP device (error if multiple TCP/IP devices available)",
+        "Use TCP/IP device (error if multiple TCP/IP devices available)",
       name: "-e",
     },
     {
-      description: "use device with given serial (overrides $ANDROID_SERIAL)",
+      description: "Use device with given serial (overrides $ANDROID_SERIAL)",
       name: "-s",
       args: {
         name: "SERIAL",
       },
     },
     {
-      description: "use device with given transport id",
+      description: "Use device with given transport id",
       name: "-t",
       args: {
         name: "ID",
       },
     },
     {
-      description: "name of adb server host [default=localhost]",
+      description: "Name of adb server host [default=localhost]",
       name: "-H",
       args: {
         name: "host name",
       },
     },
     {
-      description: "port of adb server [default=5037]",
+      description: "Port of adb server [default=5037]",
       name: "-P",
       args: {
         name: "port",
@@ -760,7 +760,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description:
-        "listen on given socket for adb server [default=tcp:localhost:5037]",
+        "Listen on given socket for adb server [default=tcp:localhost:5037]",
       name: "-L",
       args: {
         name: "socket",

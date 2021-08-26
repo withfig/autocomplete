@@ -376,7 +376,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--column-level-permission-rules",
           description:
-            "A set of one or more definitions of a  ColumnLevelPermissionRule ",
+            "A set of one or more definitions of a  ColumnLevelPermissionRule",
           args: {
             name: "list",
           },
@@ -5007,7 +5007,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--column-level-permission-rules",
           description:
-            "A set of one or more definitions of a  ColumnLevelPermissionRule ",
+            "A set of one or more definitions of a  ColumnLevelPermissionRule",
           args: {
             name: "list",
           },

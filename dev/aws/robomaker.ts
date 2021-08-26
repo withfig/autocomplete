@@ -2491,7 +2491,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-resource",
       description:
-        "Removes the specified tags from the specified AWS RoboMaker resource. To remove a tag, specify the tag key. To change the tag value of an existing tag key, use  TagResource ",
+        "Removes the specified tags from the specified AWS RoboMaker resource. To remove a tag, specify the tag key. To change the tag value of an existing tag key, use  TagResource",
       options: [
         {
           name: "--resource-arn",

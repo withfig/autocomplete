@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "publish",
   description:
-    "dotnet publish compiles the application, reads through its dependencies specified in the project file, and publishes the resulting set of files to a directory",
+    "Dotnet publish compiles the application, reads through its dependencies specified in the project file, and publishes the resulting set of files to a directory",
   args: {
     name: "project",
     description: "The project or solution to publish",
@@ -108,7 +108,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--self-contained",
       description:
-        "Publishes the .NET runtime with your application so the runtime doesn't need to be installed on the target machine. Default is true if a runtime identifier is specified and the project is an executable project (not a library project). ",
+        "Publishes the .NET runtime with your application so the runtime doesn't need to be installed on the target machine. Default is true if a runtime identifier is specified and the project is an executable project (not a library project)",
       args: {
         name: "self-contained",
         default: "true",

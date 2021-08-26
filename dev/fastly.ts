@@ -701,7 +701,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--name",
-              description: "backend name",
+              description: "Backend name",
               args: {
                 name: "name",
               },
@@ -786,7 +786,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--request-condition",
               description:
-                "condition, which if met, will select this backend during a request",
+                "Condition, which if met, will select this backend during a request",
               args: {
                 name: "request-condition",
               },
@@ -2333,7 +2333,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -2588,7 +2588,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -3092,7 +3092,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -3341,7 +3341,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -3763,7 +3763,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -4016,7 +4016,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -4552,7 +4552,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -4793,7 +4793,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -4938,7 +4938,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -5164,7 +5164,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -8461,7 +8461,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -8701,7 +8701,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -9133,7 +9133,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -9411,7 +9411,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -9890,7 +9890,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },
@@ -10155,7 +10155,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--timestamp-format",
                   description:
-                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                    'Strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
                   args: {
                     name: "timestamp-format",
                   },

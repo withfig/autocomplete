@@ -1481,7 +1481,7 @@ const completionSpec = {
             {
               name: "action",
               description:
-                "add, remove, or update a platform; ls, check, or save all project platforms",
+                "Add, remove, or update a platform; ls, check, or save all project platforms",
               isOptional: true,
               suggestions: ["add", "remove", "update", "ls", "check", "save"],
             },
@@ -1515,7 +1515,7 @@ const completionSpec = {
             {
               name: "action",
               description:
-                "add or remove a plugin; ls or save all project plugins",
+                "Add or remove a plugin; ls or save all project plugins",
               isOptional: true,
               suggestions: ["add", "remove", "ls", "save"],
             },

@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
       description: "Static analyzer report output format",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         suggestions: [
           "html",
           "plist",
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-arcmt-migrate-report-output",
       description: "Output path for the plist report",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-B",
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
         "Add <dir> to search path for binaries and object files used implicitly",
       args: {
         name: "dir",
-        description: "dir",
+        description: "Dir",
         template: "folders",
       },
     },
@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-cl-std",
       description: "OpenCL language standard to compile for",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-cl-strict-aliasing",
@@ -107,7 +107,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--config",
       description: "Specifies configuration file",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--cuda-compile-host-device",
@@ -125,7 +125,7 @@ const completionSpec: Fig.Spec = {
       name: "--cuda-include-ptx",
       description:
         "Include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once",
-      args: { name: "value", description: "value", isVariadic: true },
+      args: { name: "value", description: "Value", isVariadic: true },
     },
     {
       name: "--cuda-noopt-device-debug",
@@ -139,14 +139,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "--cuda-path",
       description: "CUDA installation path",
-      args: { name: "value", description: "value", template: "folders" },
+      args: { name: "value", description: "Value", template: "folders" },
     },
     {
       name: "-cxx-isystem",
       description: "Add directory to the C++ SYSTEM include search path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -163,14 +163,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "-dependency-dot",
       description: "Filename to write DOT-formatted header dependencies to",
-      args: { name: "value", description: "value", template: "filepaths" },
+      args: { name: "value", description: "Value", template: "filepaths" },
     },
     {
       name: "-dependency-file",
       description: "Filename (or -) to write dependency output to",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         suggestions: ["-"],
         template: "filepaths",
       },
@@ -188,7 +188,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-D",
       description: "Define <macro> to <value> (or 1 if <value> omitted)",
-      args: { name: "macro>=<value", description: "macro>=<value" },
+      args: { name: "macro>=<value", description: "Macro>=<value" },
     },
     {
       name: "-emit-ast",
@@ -241,7 +241,7 @@ const completionSpec: Fig.Spec = {
         "Does nothing; API notes are no longer cached separately from modules",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -252,7 +252,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fapinotes-swift-version",
       description: "Specify the Swift version to use when filtering API notes",
-      args: { name: "version", description: "version" },
+      args: { name: "version", description: "Version" },
     },
     { name: "-fapinotes", description: "Enable external API notes support" },
     { name: "-fapple-kext", description: "Use Apple's kernel extensions ABI" },
@@ -273,7 +273,7 @@ const completionSpec: Fig.Spec = {
         "Place each function's basic blocks in unique sections (ELF Only) : all | labels | none | list=<file>",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         suggestions: ["all", "labels", "none"],
       },
     },
@@ -292,14 +292,14 @@ const completionSpec: Fig.Spec = {
       name: "-fbuild-session-file",
       description:
         "Use the last modification time of <file> as the build session timestamp",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-fbuild-session-timestamp",
       description: "Time when the current build session started",
       args: {
         name: "time since Epoch in seconds",
-        description: "time since Epoch in seconds",
+        description: "Time since Epoch in seconds",
       },
     },
     {
@@ -347,13 +347,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fcf-protection",
       description: "Enable cf-protection in 'full' mode",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     { name: "-fchar8_t", description: "Enable C++ builtin type char8_t" },
     {
       name: "-fclang-abi-compat",
       description: "Attempt to match the ABI of Clang <version>",
-      args: { name: "version", description: "version" },
+      args: { name: "version", description: "Version" },
     },
     {
       name: "-fcolor-diagnostics",
@@ -363,7 +363,7 @@ const completionSpec: Fig.Spec = {
       name: "-fcomment-block-commands",
       description:
         "Treat each comma separated argument in <arg> as a documentation comment block command",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-fcommon",
@@ -392,7 +392,7 @@ const completionSpec: Fig.Spec = {
         "Generate instrumented code to collect context sensitive execution counts into <directory>/default.profraw (overridden by LLVM_PROFILE_FILE env var)",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         isOptional: true,
         template: "folders",
       },
@@ -419,13 +419,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fdebug-compilation-dir",
       description: "The compilation directory to embed in the debug info",
-      args: { name: "value", description: "value", template: "folders" },
+      args: { name: "value", description: "Value", template: "folders" },
     },
     {
       name: "-fdebug-default-version",
       description:
         "Default DWARF version to use, if a -g option caused DWARF debug info to be produced",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fdebug-info-for-profiling",
@@ -434,8 +434,8 @@ const completionSpec: Fig.Spec = {
     { name: "-fdebug-macro", description: "Emit macro debug information" },
     {
       name: "-fdebug-prefix-map",
-      description: "remap file source paths in debug info",
-      args: { name: "value", description: "value" },
+      description: "Remap file source paths in debug info",
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fdebug-ranges-base-address",
@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
       name: "-fdiagnostics-hotness-threshold",
       description:
         "Prevent optimization remarks from being output if they do not have at least this profile count",
-      args: { name: "number", description: "number" },
+      args: { name: "number", description: "Number" },
     },
     {
       name: "-fdiagnostics-parseable-fixits",
@@ -516,7 +516,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fembed-bitcode",
       description: "Embed LLVM bitcode (option: off, all, bitcode, marker)",
-      args: { name: "option", description: "option", isOptional: true },
+      args: { name: "option", description: "Option", isOptional: true },
     },
     {
       name: "-femit-all-decls",
@@ -562,8 +562,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ffile-prefix-map",
       description:
-        "remap file source paths in debug info and predefined preprocessor macros",
-      args: { name: "value", description: "value" },
+        "Remap file source paths in debug info and predefined preprocessor macros",
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ffine-grained-bitfield-accesses",
@@ -718,7 +718,7 @@ const completionSpec: Fig.Spec = {
         "Form fused FP ops (e.g. FMAs): fast (everywhere) | on (according to FP_CONTRACT pragma) | off (never fuse). Default is 'fast' for CUDA/HIP and 'on' otherwise",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         suggestions: ["fast", "on", "off"],
       },
     },
@@ -726,12 +726,12 @@ const completionSpec: Fig.Spec = {
       name: "-ffp-exception-behavior",
       description:
         "Specifies the exception behavior of floating-point operations",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ffp-model",
       description: "Controls the semantics of floating-point calculations",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ffreestanding",
@@ -762,7 +762,7 @@ const completionSpec: Fig.Spec = {
       name: "-fgnuc-version",
       description:
         "Sets various macros to claim compatibility with the given GCC version",
-      args: { name: "value", description: "value", default: "4.2.1" },
+      args: { name: "value", description: "Value", default: "4.2.1" },
     },
     { name: "-fgpu-allow-device-init", description: "Allow" },
     {
@@ -814,28 +814,28 @@ const completionSpec: Fig.Spec = {
     {
       name: "-flax-vector-conversions",
       description: "Enable implicit vector bit-casts",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-flto-jobs",
       description:
         "Controls the backend parallelism of -flto=thin (default of 0 means the number of threads will be derived from the number of CPUs detected)",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-flto",
       description: "Set LTO mode to either 'full' or 'thin'",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         isOptional: true,
         suggestions: ["full", "thin"],
       },
     },
     {
       name: "-fmacro-prefix-map",
-      description: "remap file source paths in predefined preprocessor macros",
-      args: { name: "value", description: "value" },
+      description: "Remap file source paths in predefined preprocessor macros",
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fmath-errno",
@@ -844,13 +844,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fmax-tokens",
       description: "Max total number of preprocessed tokens for -Wmax-tokens",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fmax-type-align",
       description:
         "Specify the maximum alignment to enforce on pointers lacking an explicit alignment",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fmerge-all-constants",
@@ -860,7 +860,7 @@ const completionSpec: Fig.Spec = {
       name: "-fmessage-length",
       description:
         "Format message diagnostics so that they fit within N columns",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fmodule-file",
@@ -871,19 +871,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fmodule-map-file",
       description: "Load this module map file",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-fmodule-name",
       description: "Specify the name of the module to build",
-      args: { name: "name", description: "name" },
+      args: { name: "name", description: "Name" },
     },
     {
       name: "-fmodules-cache-path",
       description: "Specify the module cache path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -900,19 +900,19 @@ const completionSpec: Fig.Spec = {
       name: "-fmodules-ignore-macro",
       description:
         "Ignore the definition of the given macro when building and loading modules",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fmodules-prune-after",
       description:
         "Specify the interval (in seconds) after which a module file will be considered unused",
-      args: { name: "seconds", description: "seconds" },
+      args: { name: "seconds", description: "Seconds" },
     },
     {
       name: "-fmodules-prune-interval",
       description:
         "Specify the interval (in seconds) between attempts to prune the module cache",
-      args: { name: "seconds", description: "seconds" },
+      args: { name: "seconds", description: "Seconds" },
     },
     {
       name: "-fmodules-search-all",
@@ -932,7 +932,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the module user build path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -958,7 +958,7 @@ const completionSpec: Fig.Spec = {
       name: "-fms-compatibility-version",
       description:
         "Dot-separated value representing the Microsoft compiler version number to report in _MSC_VER (0 = don't define it (default))",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fms-compatibility",
@@ -973,13 +973,13 @@ const completionSpec: Fig.Spec = {
       name: "-fmsc-version",
       description:
         "Microsoft compiler version number to report in _MSC_VER (0 = don't define it (default))",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fnew-alignment",
       description:
         "Specifies the largest alignment guaranteed by '::operator new(size_t)'",
-      args: { name: "align", description: "align" },
+      args: { name: "align", description: "Align" },
     },
     { name: "-fno-access-control", description: "" },
     {
@@ -1010,7 +1010,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fno-builtin",
       description: "Disable implicit builtin knowledge of functions",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fno-c++-static-destructors",
@@ -1173,7 +1173,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fno-objc-infer-related-result-type",
       description:
-        "do not infer Objective-C related result type based on method family",
+        "Do not infer Objective-C related result type based on method family",
     },
     {
       name: "-fno-operator-names",
@@ -1268,7 +1268,7 @@ const completionSpec: Fig.Spec = {
       name: "-fno-sanitize-coverage",
       description:
         "Disable specified features of coverage instrumentation for Sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fno-sanitize-memory-track-origins",
@@ -1281,7 +1281,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fno-sanitize-recover",
       description: "Disable recovery for specified sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fno-sanitize-stats",
@@ -1304,7 +1304,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fno-sanitize-trap",
       description: "Disable trapping for specified sanitizers",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     {
       name: "-fno-short-wchar",
@@ -1319,7 +1319,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Do not include source location information with diagnostics",
     },
-    { name: "-fno-signed-char", description: "char is unsigned" },
+    { name: "-fno-signed-char", description: "Char is unsigned" },
     {
       name: "-fno-signed-zeros",
       description:
@@ -1424,7 +1424,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fobjc-runtime",
       description: "Specify the target Objective-C runtime kind and version",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fobjc-weak",
@@ -1438,7 +1438,7 @@ const completionSpec: Fig.Spec = {
       name: "-fopenmp-targets",
       description:
         "Specify comma-separated list of triples OpenMP offloading targets to be supported",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fopenmp",
@@ -1448,13 +1448,13 @@ const completionSpec: Fig.Spec = {
       name: "-foptimization-record-file",
       description:
         "Specify the output name of the file containing the optimization remarks. Implies -fsave-optimization-record. On Darwin platforms, this cannot be used with multiple -arch <arch> options",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-foptimization-record-passes",
       description:
         "Only include passes which match a specified regular expression in the generated optimization record (by default, include all passes)",
-      args: { name: "regex", description: "regex" },
+      args: { name: "regex", description: "Regex" },
     },
     {
       name: "-forder-file-instrumentation",
@@ -1464,7 +1464,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fpack-struct",
       description: "Specify the default maximum struct packing alignment",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fpascal-strings",
@@ -1474,7 +1474,7 @@ const completionSpec: Fig.Spec = {
       name: "-fpass-plugin",
       description:
         "Load pass plugin from a dynamic shared object file (only with new pass manager)",
-      args: { name: "dsopath", description: "dsopath" },
+      args: { name: "dsopath", description: "Dsopath" },
     },
     {
       name: "-fpatchable-function-entry",
@@ -1509,14 +1509,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fplugin",
       description: "Load the named plugin (dynamic shared object)",
-      args: { name: "dsopath", description: "dsopath" },
+      args: { name: "dsopath", description: "Dsopath" },
     },
     {
       name: "-fprebuilt-module-path",
       description: "Specify the prebuilt module path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -1525,13 +1525,13 @@ const completionSpec: Fig.Spec = {
       name: "-fprofile-exclude-files",
       description:
         "Instrument only functions from files where names don't match all the regexes separated by a semi-colon",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fprofile-filter-files",
       description:
         "Instrument only functions from files where names match any regex separated by a semi-colon",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fprofile-generate",
@@ -1539,7 +1539,7 @@ const completionSpec: Fig.Spec = {
         "Generate instrumented code to collect execution counts into <directory>/default.profraw (overridden by LLVM_PROFILE_FILE env var)",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         isOptional: true,
         template: "folders",
       },
@@ -1550,7 +1550,7 @@ const completionSpec: Fig.Spec = {
         "Generate instrumented code to collect execution counts into <file> (overridden by LLVM_PROFILE_FILE env var)",
       args: {
         name: "file",
-        description: "file",
+        description: "File",
         isOptional: true,
         template: "filepaths",
       },
@@ -1558,13 +1558,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fprofile-instr-use",
       description: "Use instrumentation data for profile-guided optimization",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fprofile-remapping-file",
       description:
         "Use the remappings described in <file> to match the profile data against names in the program",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-fprofile-sample-accurate",
@@ -1573,18 +1573,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fprofile-sample-use",
       description: "Enable sample-based profile guided optimizations",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fprofile-use",
       description:
         "Use instrumentation data for profile-guided optimization. If pathname is a directory, it reads from <pathname>/default.profdata. Otherwise, it reads from file <pathname>",
-      args: { name: "pathname", description: "pathname" },
+      args: { name: "pathname", description: "Pathname" },
     },
     {
       name: "-fptrauth-abi-version",
       description: "Pointer Authentication ABI version",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fptrauth-auth-traps",
@@ -1592,7 +1592,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fptrauth-block-descriptor-pointers",
-      description: "enable signing block descriptors",
+      description: "Enable signing block descriptors",
     },
     {
       name: "-fptrauth-calls",
@@ -1617,13 +1617,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fptrauth-objc-isa-masking",
       description:
-        "pre- and post-authentication masking mode of objective-c isa pointers",
+        "Pre- and post-authentication masking mode of objective-c isa pointers",
     },
     {
       name: "-fptrauth-objc-isa-mode",
       description:
         "Authentication mode for ObjC isa field. Full auth if unspecified",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fptrauth-objc-isa",
@@ -1684,7 +1684,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-address-field-padding",
       description: "Level of field padding for AddressSanitizer",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-address-globals-dead-stripping",
@@ -1708,7 +1708,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-blacklist",
       description: "Path to blacklist file for sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-cfi-canonical-jump-tables",
@@ -1729,40 +1729,40 @@ const completionSpec: Fig.Spec = {
       name: "-fsanitize-coverage-allowlist",
       description:
         "Restrict sanitizer coverage instrumentation exclusively to modules and functions that match the provided special case list, except the blocked ones",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-coverage-blacklist",
       description: "Deprecated, use -fsanitize-coverage-blocklist= instead",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-coverage-blocklist",
       description:
         "Disable sanitizer coverage instrumentation for modules and functions that match the provided special case list, even the allowed ones",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-coverage-whitelist",
       description: "Deprecated, use -fsanitize-coverage-allowlist= instead",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-coverage",
       description:
         "Specify the type of coverage instrumentation for Sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-hwaddress-abi",
       description:
         "Select the HWAddressSanitizer ABI to target (interceptor or platform, default interceptor). This option is currently unused",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-memory-track-origins",
       description: "Enable origins tracking in MemorySanitizer",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     {
       name: "-fsanitize-memory-use-after-dtor",
@@ -1771,7 +1771,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-recover",
       description: "Enable recovery for specified sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-stats",
@@ -1780,7 +1780,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-system-blacklist",
       description: "Path to system blacklist file for sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-thread-atomics",
@@ -1800,24 +1800,24 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-trap",
       description: "Enable trapping for sanitizers",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fsanitize-undefined-strip-path-components",
       description:
         "Strip (or keep only, if negative) a given number of path components when emitting check metadata",
-      args: { name: "number", description: "number" },
+      args: { name: "number", description: "Number" },
     },
     {
       name: "-fsanitize",
       description:
         "Turn on runtime checks for various forms of undefined or suspicious behavior. See user manual for available checks",
-      args: { name: "check", description: "check" },
+      args: { name: "check", description: "Check" },
     },
     {
       name: "-fsave-optimization-record",
       description: "Generate an optimization record file in a specific format",
-      args: { name: "format", description: "format", isOptional: true },
+      args: { name: "format", description: "Format", isOptional: true },
     },
     { name: "-fseh-exceptions", description: "Use SEH style exceptions" },
     {
@@ -1836,11 +1836,11 @@ const completionSpec: Fig.Spec = {
         "Which overload candidates to show when overload resolution fails: best|all; defaults to all",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         suggestions: ["best", "all"],
       },
     },
-    { name: "-fsigned-char", description: "char is signed" },
+    { name: "-fsigned-char", description: "Char is signed" },
     {
       name: "-fsized-deallocation",
       description: "Enable C++14 sized global deallocation functions",
@@ -1924,19 +1924,19 @@ const completionSpec: Fig.Spec = {
       name: "-fthin-link-bitcode",
       description:
         "Write minimized bitcode to <file> for the ThinLTO thin link only",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fthinlto-index",
       description:
         "Perform ThinLTO importing using provided function summary index",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ftime-trace-granularity",
       description:
         "Minimum time granularity (in microseconds) traced by time profiler",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ftime-trace",
@@ -1947,12 +1947,12 @@ const completionSpec: Fig.Spec = {
       name: "-ftrap-function",
       description:
         "Issue call to specified function rather than a trap instruction",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ftrapv-handler",
       description: "Specify the function to be called on overflow",
-      args: { name: "function name", description: "function name" },
+      args: { name: "function name", description: "Function name" },
     },
     { name: "-ftrapv", description: "Trap on integer overflow" },
     { name: "-ftrigraphs", description: "Process trigraph sequences" },
@@ -1960,14 +1960,14 @@ const completionSpec: Fig.Spec = {
       name: "-ftrivial-auto-var-init-stop-after",
       description:
         "Stop initializing trivial automatic stack variables after the specified number of instances",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ftrivial-auto-var-init",
       description: "Initialize trivial automatic stack variables",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         default: "uninitialized",
         suggestions: ["uninitialized", "pattern"],
       },
@@ -1996,7 +1996,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fveclib",
       description: "Use the given vector functions library",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fvectorize",
@@ -2032,7 +2032,7 @@ const completionSpec: Fig.Spec = {
       name: "-fvisibility",
       description:
         "Set the default symbol visibility for all global declarations",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fwasm-exceptions",
@@ -2061,13 +2061,13 @@ const completionSpec: Fig.Spec = {
       name: "-fxray-always-instrument",
       description:
         "DEPRECATED: Filename defining the whitelist for imbuing the 'always instrument' XRay attribute",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fxray-attr-list",
       description:
         "Filename defining the list of functions/types for imbuing XRay attributes",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     { name: "-fxray-function-index", description: "" },
     {
@@ -2078,7 +2078,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fxray-instruction-threshold",
       description: "Sets the minimum function size to instrument with XRay",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "'function' includes both 'function-entry' and 'function-exit'.",
@@ -2086,7 +2086,7 @@ const completionSpec: Fig.Spec = {
         "Select which XRay instrumentation points to emit. Options: all, none, function-entry, function-exit, function, custom. Default is 'all'",
       args: {
         name: "fxray-instrumentation-bundl",
-        description: "fxray-instrumentation-bundl",
+        description: "Fxray-instrumentation-bundl",
       },
     },
     {
@@ -2102,13 +2102,13 @@ const completionSpec: Fig.Spec = {
       name: "-fxray-modes",
       description:
         "List of modes to link in by default into XRay instrumented binaries",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-fxray-never-instrument",
       description:
         "DEPRECATED: Filename defining the whitelist for imbuing the 'never instrument' XRay attribute",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     { name: "-fzero-initialized-in-bss", description: "" },
     {
@@ -2118,12 +2118,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "-F",
       description: "Add directory to framework include search path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--gcc-toolchain",
       description: "Use the gcc toolchain at the given directory",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-gcodeview-ghash",
@@ -2182,23 +2182,23 @@ const completionSpec: Fig.Spec = {
       name: "--gpu-max-threads-per-block",
       description:
         "Default max threads per block for kernel launch bounds for HIP",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-gsplit-dwarf",
       description: "Set DWARF fission mode to either 'split' or 'single'",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-gz",
       description: "DWARF debug sections compression type",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     {
       name: "-G",
       description:
         "Put objects of at most <size> bytes into small data section (MIPS / Hexagon)",
-      args: { name: "size", description: "size" },
+      args: { name: "size", description: "Size" },
     },
     { name: "-g", description: "Generate source-level debug information" },
     { name: "--help-hidden", description: "Display help for hidden options" },
@@ -2206,7 +2206,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--hip-device-lib",
       description: "HIP device library",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--hip-link",
@@ -2215,7 +2215,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--hip-version",
       description: "HIP version in the format of major.minor.patch",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     { name: "-H", description: "Show header includes and nesting depth" },
     {
@@ -2229,7 +2229,7 @@ const completionSpec: Fig.Spec = {
         "Add directory to the API notes search path referenced by module name",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -2241,7 +2241,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-idirafter",
       description: "Add directory to AFTER include search path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-iframeworkwithsysroot",
@@ -2249,29 +2249,29 @@ const completionSpec: Fig.Spec = {
         "Add directory to SYSTEM framework search path, absolute paths are relative to -isysroot",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
     {
       name: "-iframework",
       description: "Add directory to SYSTEM framework search path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-imacros",
       description: "Include macros from file before parsing",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-include-pch",
       description: "Include precompiled header file",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-include",
       description: "Include file before parsing",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-index-header-map",
@@ -2289,33 +2289,33 @@ const completionSpec: Fig.Spec = {
     {
       name: "-index-store-path",
       description: "Enable indexing with the specified data store path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-iprefix",
       description: "Set the -iwithprefix/-iwithprefixbefore prefix",
-      args: { name: "dir", description: "dir", template: "folders" },
+      args: { name: "dir", description: "Dir", template: "folders" },
     },
     {
       name: "-iquote",
       description: "Add directory to QUOTE include search path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
     {
       name: "-isysroot",
       description: "Set the system root directory (usually /)",
-      args: { name: "dir", description: "dir", template: "folders" },
+      args: { name: "dir", description: "Dir", template: "folders" },
     },
     {
       name: "-isystem-after",
       description: "Add directory to end of the SYSTEM include search path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -2324,7 +2324,7 @@ const completionSpec: Fig.Spec = {
       description: "Add directory to SYSTEM include search path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
@@ -2332,17 +2332,17 @@ const completionSpec: Fig.Spec = {
       name: "-ivfsoverlay",
       description:
         "Overlay the virtual filesystem described by file over the real file system",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-iwithprefixbefore",
       description: "Set directory to include search path with prefix",
-      args: { name: "dir", description: "dir", template: "folders" },
+      args: { name: "dir", description: "Dir", template: "folders" },
     },
     {
       name: "-iwithprefix",
       description: "Set directory to SYSTEM include search path with prefix",
-      args: { name: "dir", description: "dir", template: "folders" },
+      args: { name: "dir", description: "Dir", template: "folders" },
     },
     {
       name: "-iwithsysroot",
@@ -2350,24 +2350,24 @@ const completionSpec: Fig.Spec = {
         "Add directory to SYSTEM include search path, absolute paths are relative to -isysroot",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
     {
       name: "-I",
       description: "Add directory to include search path",
-      args: { name: "dir", description: "dir", template: "folders" },
+      args: { name: "dir", description: "Dir", template: "folders" },
     },
     {
       name: "--libomptarget-nvptx-path",
       description: "Path to libomptarget-nvptx libraries",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-L",
       description: "Add directory to library search path",
-      args: { name: "dir", description: "dir", template: "folders" },
+      args: { name: "dir", description: "Dir", template: "folders" },
     },
     {
       name: "-mabicalls",
@@ -2380,12 +2380,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "-malign-branch-boundary",
       description: "Specify the boundary's size to align branches",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-malign-branch",
       description: "Specify types of branches to align",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-malign-double",
@@ -2398,7 +2398,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mbranch-protection",
       description: "Enforce targets of indirect branches and function returns",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mbranches-within-32B-boundaries",
@@ -2408,7 +2408,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mcmodel",
       description: "Equivalent to -mcmodel=medium, compatible with RISC-V gcc",
-      args: { name: "edan", description: "edan", isOptional: true },
+      args: { name: "edan", description: "Edan", isOptional: true },
     },
     {
       name: "-mcmse",
@@ -2429,7 +2429,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mdouble",
       description: "Force double to be 32 bits or 64 bits",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-MD",
@@ -2439,7 +2439,7 @@ const completionSpec: Fig.Spec = {
       name: "-meabi",
       description:
         "Set EABI type, e.g. 4, 5 or gnu (default depends on triple)",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-membedded-data",
@@ -2453,7 +2453,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mexec-model",
       description: "Execution model (WebAssembly only)",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mexecute-only",
@@ -2482,7 +2482,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-MF",
       description: "Write depfile output from -MMD, -MD, -MM, or -M to <file>",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-mgeneral-regs-only",
@@ -2499,17 +2499,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mharden-sls",
       description: "Select straight-line speculation hardening scope",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mhvx-length",
       description: "Set Hexagon Vector Length",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mhvx",
       description: "Enable Hexagon Vector eXtensions",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     { name: "-miamcu", description: "Use Intel MCU ABI" },
     { name: "--migrate", description: "Run the migrator" },
@@ -2521,23 +2521,23 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mindirect-jump",
       description: "Change indirect jump instructions to inhibit speculation",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mios-version-min",
       description: "Set iOS deployment target",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-MJ",
       description: "Write a compilation database entry per input",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mllvm",
       description:
         "Additional arguments to forward to LLVM's option processing",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mlocal-sdata",
@@ -2573,7 +2573,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mmacosx-version-min",
       description: "Set Mac OS X deployment target",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mmadd4",
@@ -2745,7 +2745,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-module-dependency-dir",
       description: "Directory to dump module dependencies to",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-module-file-info",
@@ -2770,7 +2770,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mpad-max-prefix-size",
       description: "Specify maximum number of prefixes to use for padding",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mpie-copy-relocations",
@@ -2780,7 +2780,7 @@ const completionSpec: Fig.Spec = {
       name: "-mprefer-vector-width",
       description:
         "Specifies preferred vector width for auto-vectorization. Defaults to 'none' which allows target specific decisions",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-MP",
@@ -2794,7 +2794,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-MQ",
       description: "Specify name of main file output to quote in depfile",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mrecord-mcount",
@@ -2827,26 +2827,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "-msign-return-address",
       description: "Select return address signing scope",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-msmall-data-limit",
       description:
         "Put global and static data smaller than the limit into a special section",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     { name: "-msoft-float", description: "Use software floating point" },
     { name: "-msram-ecc", description: "Enable SRAM ECC (AMDGPU only)" },
     {
       name: "-mstack-alignment",
       description: "Set the stack alignment",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     { name: "-mstack-arg-probe", description: "Enable stack probes" },
     {
       name: "-mstack-probe-size",
       description: "Set the stack probe size",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mstackrealign",
@@ -2860,7 +2860,7 @@ const completionSpec: Fig.Spec = {
       name: "-mthread-model",
       description:
         "The thread model to use, e.g. posix, single (posix by default)",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mtls-direct-seg-refs",
@@ -2873,25 +2873,25 @@ const completionSpec: Fig.Spec = {
         "Specify bit size of immediate TLS offsets (AArch64 ELF only): 12 (for 4KB) | 24 (for 16MB, default) | 32 (for 4GB) | 48 (for 256TB, needs -mcmodel=large)",
       args: {
         name: "value",
-        description: "value",
+        description: "Value",
         suggestions: ["12", "24", "32", "48"],
       },
     },
     {
       name: "-mtp",
       description: "Thread pointer access method (AArch32/AArch64 only)",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-mtune",
       description:
         "Accepted for compatibility with GCC. Currently has no effect",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-MT",
       description: "Specify name of main file output in depfile",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-munaligned-access",
@@ -2910,20 +2910,20 @@ const completionSpec: Fig.Spec = {
       name: "--no-cuda-include-ptx",
       description:
         "Do not include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once",
-      args: { name: "value", description: "value", isVariadic: true },
+      args: { name: "value", description: "Value", isVariadic: true },
     },
     { name: "--no-cuda-version-check", description: "Don't" },
     {
       name: "--no-offload-arch",
       description:
         "Remove CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. 'all' resets the list to its default value",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--no-system-header-prefix",
       description:
         "Treat all #include paths starting with <prefix> as not including a system header",
-      args: { name: "prefix", description: "prefix" },
+      args: { name: "prefix", description: "Prefix" },
     },
     {
       name: "-nobuiltininc",
@@ -3008,7 +3008,7 @@ const completionSpec: Fig.Spec = {
       name: "-objcmt-whitelist-dir-path",
       description:
         "Only modify files with a filename contained in the provided directory path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-ObjC",
@@ -3017,7 +3017,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-o",
       description: "Write output to <file>",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     { name: "-pg", description: "Enable mcount instrumentation" },
     {
@@ -3029,7 +3029,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-print-file-name",
       description: "Print the full library path",
-      args: { name: "file", description: "file", template: "filepaths" },
+      args: { name: "file", description: "File", template: "filepaths" },
     },
     {
       name: "-print-ivar-layout",
@@ -3039,7 +3039,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-print-prog-name",
       description: "Print the full program path of <name>",
-      args: { name: "name", description: "name" },
+      args: { name: "name", description: "Name" },
     },
     {
       name: "-print-resource-dir",
@@ -3066,7 +3066,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ptxas-path",
       description: "Path to ptxas (used for compiling CUDA code)",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     { name: "-P", description: "Disable linemarker output in -E mode" },
     {
@@ -3096,56 +3096,56 @@ const completionSpec: Fig.Spec = {
     {
       name: "--rocm-device-lib-path",
       description: "ROCm device library path. Alternative to rocm-path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--rocm-path",
       description:
         "ROCm installation path, used for finding and automatically linking required bitcode libraries",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-Rpass-analysis",
       description:
         "Report transformation analysis from optimization passes whose name matches the given POSIX regular expression",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-Rpass-missed",
       description:
         "Report missed transformations by optimization passes whose name matches the given POSIX regular expression",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-Rpass",
       description:
         "Report transformations performed by optimization passes whose name matches the given POSIX regular expression",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-rtlib",
       description: "Compiler runtime library to use",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-R",
       description: "Enable the specified remark",
-      args: { name: "remark", description: "remark" },
+      args: { name: "remark", description: "Remark" },
     },
     {
       name: "-save-stats",
       description: "Save llvm statistics",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     {
       name: "-save-temps",
       description: "Save intermediate compilation results",
-      args: { name: "value", description: "value", isOptional: true },
+      args: { name: "value", description: "Value", isOptional: true },
     },
     {
       name: "-serialize-diagnostics",
       description: "Serialize compiler diagnostics to a file",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-shared-libsan",
@@ -3162,54 +3162,54 @@ const completionSpec: Fig.Spec = {
     {
       name: "-std",
       description: "Language standard to compile for",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-stdlib++-isystem",
       description: "Use directory as the C++ standard library include path",
       args: {
         name: "directory",
-        description: "directory",
+        description: "Directory",
         template: "folders",
       },
     },
     {
       name: "-stdlib",
       description: "C++ standard library to use",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-sycl-std",
       description: "SYCL language standard to compile for",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--system-header-prefix",
       description:
         "Treat all #include paths starting with <prefix> as including a system header",
-      args: { name: "prefix", description: "prefix" },
+      args: { name: "prefix", description: "Prefix" },
     },
     { name: "-S", description: "Only run preprocess and compilation steps" },
     {
       name: "-target-variant",
       description:
         "Generate code that may run on a particular variant of the deployment target",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "--target",
       description: "Generate code for the given target",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-Tbss",
       description: "Set starting address of BSS to <addr>",
-      args: { name: "addr", description: "addr" },
+      args: { name: "addr", description: "Addr" },
     },
     {
       name: "-Tdata",
       description: "Set starting address of DATA to <addr>",
-      args: { name: "addr", description: "addr" },
+      args: { name: "addr", description: "Addr" },
     },
     { name: "-time", description: "Time individual commands" },
     {
@@ -3220,23 +3220,23 @@ const completionSpec: Fig.Spec = {
     {
       name: "-Ttext",
       description: "Set starting address of TEXT to <addr>",
-      args: { name: "addr", description: "addr" },
+      args: { name: "addr", description: "Addr" },
     },
     {
       name: "-T",
       description: "Specify <script> as linker script",
-      args: { name: "script", description: "script" },
+      args: { name: "script", description: "Script" },
     },
-    { name: "-undef", description: "undef all system defines" },
+    { name: "-undef", description: "Undef all system defines" },
     {
       name: "-unwindlib",
       description: "Unwind library to use",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "Value" },
     },
     {
       name: "-U",
       description: "Undefine macro <macro>",
-      args: { name: "macro", description: "macro" },
+      args: { name: "macro", description: "Macro" },
     },
     {
       name: "--verify-debug-info",
@@ -3257,69 +3257,69 @@ const completionSpec: Fig.Spec = {
     {
       name: "-working-directory",
       description: "Resolve file paths relative to the specified directory",
-      args: { name: "value", description: "value", isVariadic: true },
+      args: { name: "value", description: "Value", isVariadic: true },
     },
     { name: "-w", description: "Suppress all warnings" },
     {
       name: "-Xanalyzer",
       description: "Pass <arg> to the static analyzer",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xarch_device",
       description: "Pass <arg> to the CUDA/HIP device compilation",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xarch_host",
       description: "Pass <arg> to the CUDA/HIP host compilation",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xassembler",
       description: "Pass <arg> to the assembler",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xclang",
       description: "Pass <arg> to the clang compiler",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xcuda-fatbinary",
       description: "Pass <arg> to fatbinary invocation",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xcuda-ptxas",
       description: "Pass <arg> to the ptxas assembler",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xlinker",
       description: "Pass <arg> to the linker",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-Xopenmp-target",
       description:
         "Pass <arg> to the target offloading toolchain identified by <triple>",
-      args: { name: "triple", description: "triple", isOptional: true },
+      args: { name: "triple", description: "Triple", isOptional: true },
     },
     {
       name: "-Xpreprocessor",
       description: "Pass <arg> to the preprocessor",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
     {
       name: "-x",
       description: "Treat subsequent input files as having type <language>",
-      args: { name: "language", description: "language" },
+      args: { name: "language", description: "Language" },
     },
     {
       name: "-z",
       description: "Pass -z <arg> to the linker",
-      args: { name: "arg", description: "arg" },
+      args: { name: "arg", description: "Arg" },
     },
   ],
 };

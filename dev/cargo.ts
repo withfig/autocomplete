@@ -32,32 +32,32 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: ["build", "b"],
-      description: "compile local package and dependencies",
+      description: "Compile local package and dependencies",
       icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
           name: "--bins",
-          description: "build all binaries",
+          description: "Build all binaries",
         },
         {
           name: "--all-targets",
-          description: "activate all available features",
+          description: "Activate all available features",
         },
         {
           name: "--all",
-          description: "alias for workspace",
+          description: "Alias for workspace",
         },
         {
           name: "--release",
-          description: "build in release mode, with optimizations",
+          description: "Build in release mode, with optimizations",
         },
         {
           name: ["-j", "--jobs"],
-          description: "number of CPUs",
+          description: "Number of CPUs",
           insertValue: "-j {cursor}",
         },
       ],
@@ -69,22 +69,22 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
           name: "--release",
-          description: "run in release mode, with optimizations",
+          description: "Run in release mode, with optimizations",
         },
       ],
     },
     {
       name: "init",
-      description: "creates new cargo pkg in directory",
+      description: "Creates new cargo pkg in directory",
       icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
           name: "--bin",
@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--offline",
-          description: "run without network",
+          description: "Run without network",
         },
       ],
       args: {
@@ -101,7 +101,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["test", "t"],
-      description: "run tests",
+      description: "Run tests",
       icon: "📦",
       args: {
         name: "test name",
@@ -110,11 +110,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--h"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
           name: "--release",
-          description: "test in release mode, with optimizations",
+          description: "Test in release mode, with optimizations",
         },
       ],
     },
@@ -449,7 +449,7 @@ const completionSpec: Fig.Spec = {
               description: "Set unstable options",
               args: {
                 name: "option",
-                description: "unstable options to pass to rustc",
+                description: "Unstable options to pass to rustc",
               },
             },
             {
@@ -620,7 +620,7 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "human",
-                description: "human readable, conflicts with short and json",
+                description: "Human readable, conflicts with short and json",
               },
               {
                 name: "short",
@@ -713,7 +713,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-q", "--quiet"],
-      description: "no output",
+      description: "No output",
     },
   ],
 };

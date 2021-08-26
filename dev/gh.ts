@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "alias",
-      description: "create command shortcuts",
+      description: "Create command shortcuts",
       options: [ghOptions.help],
       subcommands: [
         {
@@ -169,7 +169,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "http_unix_socket",
               description:
-                "the path to a unix socket through which to make HTTP connection",
+                "The path to a unix socket through which to make HTTP connection",
               args: { name: "path" },
             },
           ],
@@ -1039,16 +1039,16 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-h", "--homepage"],
-              description: "repository home page URL",
+              description: "Repository home page URL",
               args: {
                 name: "string",
               },
             },
-            { name: "--public", description: "make the repository public" },
-            { name: "--private", description: "make the repository private" },
+            { name: "--public", description: "Make the repository public" },
+            { name: "--private", description: "Make the repository private" },
             {
               name: "--internal",
-              description: "make the repository internal",
+              description: "Make the repository internal",
             },
             {
               name: "--enable-issues",

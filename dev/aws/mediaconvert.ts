@@ -626,7 +626,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--id",
-          description: "the job ID of the job",
+          description: "The job ID of the job",
           args: {
             name: "string",
           },

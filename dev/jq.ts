@@ -57,7 +57,7 @@ const sharedOptions: Fig.Option[] = [
   {
     name: ["--ascii-output", "-a"],
     description:
-      "jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified them as escape sequences",
+      "Jq usually outputs non-ASCII Unicode codepoints as UTF-8, even if the input specified them as escape sequences",
   },
   {
     name: "--unbuffered",

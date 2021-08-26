@@ -179,7 +179,7 @@ const completionSpec: Fig.Spec = {
             schemaOptions,
             {
               name: "--applied",
-              description: " Record a specific migration as applied",
+              description: "Record a specific migration as applied",
               args: {
                 name: "migration file path",
                 template: "filepaths",

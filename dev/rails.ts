@@ -563,7 +563,7 @@ const defaultCommands: Fig.Subcommand[] = [
       },
       {
         name: "-E",
-        description: "Print routes expanded vertically with parts explained. ",
+        description: "Print routes expanded vertically with parts explained",
         args: {},
       },
     ],

@@ -18,7 +18,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be added. When the condition is explicitly\nspecified as `None` (`--condition=None`), a binding without a condition is\nadded. When the condition is specified and is not `None`, `--role`\ncannot be a primitive role. Primitive roles are `roles/editor`, `roles/owner`,\nand `roles/viewer`.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -48,7 +48,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -68,7 +68,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -102,7 +102,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -111,7 +111,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -126,7 +126,7 @@ const completionSpec: Fig.Spec = {
                 "The member to add the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -137,7 +137,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -151,7 +151,7 @@ const completionSpec: Fig.Spec = {
               description: "Define the role of the member",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -162,7 +162,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -177,7 +177,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -207,7 +207,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -222,7 +222,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -232,7 +232,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -242,7 +242,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -252,7 +252,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -262,7 +262,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -276,7 +276,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -285,7 +285,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -300,7 +300,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -314,7 +314,7 @@ const completionSpec: Fig.Spec = {
               description: "Default timezone used by this dataset",
               args: {
                 name: "TIME_ZONE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -324,7 +324,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -339,7 +339,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -370,7 +370,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -385,7 +385,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -395,7 +395,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -409,7 +409,7 @@ const completionSpec: Fig.Spec = {
                 "The name of the dataset resource to which the redacted data should be written\n(e.g., projects/{projectId}/locations/{locationId}/datasets/{datasetId}).\nThe new dataset must not exist, or the request will fail",
               args: {
                 name: "DESTINATION_DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -420,7 +420,7 @@ const completionSpec: Fig.Spec = {
                 'Tags to be filtered. Tags must be DICOM Data Elements, File Meta Elements, or\nDirectory Structuring Elements, as defined at:\nhttp://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,.\nThey may be provided by "Keyword" or "Tag". For example "PatientID", "0010,0010"',
               args: {
                 name: "DICOM_FILTER_TAGS",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -430,7 +430,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -440,7 +440,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -450,7 +450,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -473,7 +473,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -504,7 +504,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "TEXT_REDACTION_MODE",
                 description:
-                  "googlecloudsdk.command_lib.util.apis.arg_utils:EnumNameToChoice",
+                  "Googlecloudsdk.command_lib.util.apis.arg_utils:EnumNameToChoice",
                 suggestions: ["all"],
               },
             },
@@ -514,7 +514,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -529,7 +529,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -559,7 +559,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -569,7 +569,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -579,7 +579,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -589,7 +589,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -599,7 +599,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -609,7 +609,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -623,7 +623,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -632,7 +632,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -647,7 +647,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -662,7 +662,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -677,7 +677,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -707,7 +707,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -717,7 +717,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -727,7 +727,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -737,7 +737,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -747,7 +747,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -757,7 +757,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -771,7 +771,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -780,7 +780,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -795,7 +795,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -810,7 +810,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -825,7 +825,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -856,7 +856,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -866,7 +866,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -876,7 +876,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -886,7 +886,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -896,7 +896,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -906,7 +906,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -916,7 +916,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -930,7 +930,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -940,7 +940,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -949,7 +949,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -964,7 +964,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -974,7 +974,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -989,7 +989,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -999,7 +999,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1014,7 +1014,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -1044,7 +1044,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1054,7 +1054,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1064,7 +1064,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1074,7 +1074,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1084,7 +1084,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1094,7 +1094,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -1104,7 +1104,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1118,7 +1118,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1128,7 +1128,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -1138,7 +1138,7 @@ const completionSpec: Fig.Spec = {
                 "ID of the location or fully qualified identifier for the location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1153,7 +1153,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -1163,7 +1163,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1178,7 +1178,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -1188,7 +1188,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1208,7 +1208,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -1233,7 +1233,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1248,7 +1248,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1258,7 +1258,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be removed. When the condition is explicitly\nspecified as `None` (`--condition=None`), it matches a binding without a\ncondition. Otherwise, only the binding with a condition which exactly matches\nthe specified condition (including the optional description) will be removed.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -1268,7 +1268,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -1278,7 +1278,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1288,7 +1288,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1298,7 +1298,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -1308,7 +1308,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1322,7 +1322,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1331,7 +1331,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1346,7 +1346,7 @@ const completionSpec: Fig.Spec = {
                 "The member to remove the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -1357,7 +1357,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1371,7 +1371,7 @@ const completionSpec: Fig.Spec = {
               description: "The role to remove the member from",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -1382,7 +1382,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1397,7 +1397,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -1427,7 +1427,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1437,7 +1437,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1447,7 +1447,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1457,7 +1457,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1467,7 +1467,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -1477,7 +1477,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1491,7 +1491,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1500,7 +1500,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1515,7 +1515,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1530,7 +1530,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1545,7 +1545,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -1583,7 +1583,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1593,7 +1593,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1603,7 +1603,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1613,7 +1613,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1623,7 +1623,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -1633,7 +1633,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1647,7 +1647,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1656,7 +1656,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1671,7 +1671,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1685,7 +1685,7 @@ const completionSpec: Fig.Spec = {
               description: "Default timezone used by this dataset",
               args: {
                 name: "TIME_ZONE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1695,7 +1695,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1710,7 +1710,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -1737,7 +1737,7 @@ const completionSpec: Fig.Spec = {
             "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
           args: {
             name: "ACCOUNT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1747,7 +1747,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
           args: {
             name: "BILLING_PROJECT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1757,7 +1757,7 @@ const completionSpec: Fig.Spec = {
             "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
           args: {
             name: "CONFIGURATION",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1767,7 +1767,7 @@ const completionSpec: Fig.Spec = {
             "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
           args: {
             name: "YAML_FILE",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1777,7 +1777,7 @@ const completionSpec: Fig.Spec = {
             "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
           args: {
             name: "KEY",
-            description: "list",
+            description: "List",
             suggestions: [],
           },
         },
@@ -1787,7 +1787,7 @@ const completionSpec: Fig.Spec = {
             "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
           args: {
             name: "FORMAT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1801,7 +1801,7 @@ const completionSpec: Fig.Spec = {
             "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
           args: {
             name: "SERVICE_ACCOUNT_EMAIL",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1816,7 +1816,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
           args: {
             name: "PROJECT_ID",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1831,7 +1831,7 @@ const completionSpec: Fig.Spec = {
             "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
           args: {
             name: "TRACE_TOKEN",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -1846,7 +1846,7 @@ const completionSpec: Fig.Spec = {
             "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
           args: {
             name: "VERBOSITY",
-            description: "string",
+            description: "String",
             suggestions: [
               "debug",
               "info",
@@ -1875,7 +1875,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1885,7 +1885,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1895,7 +1895,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be added. When the condition is explicitly\nspecified as `None` (`--condition=None`), a binding without a condition is\nadded. When the condition is specified and is not `None`, `--role`\ncannot be a primitive role. Primitive roles are `roles/editor`, `roles/owner`,\nand `roles/viewer`.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -1905,7 +1905,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -1915,7 +1915,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1924,7 +1924,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1934,7 +1934,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1944,7 +1944,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -1954,7 +1954,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1968,7 +1968,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1977,7 +1977,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -1992,7 +1992,7 @@ const completionSpec: Fig.Spec = {
                 "The member to add the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -2003,7 +2003,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2017,7 +2017,7 @@ const completionSpec: Fig.Spec = {
               description: "Define the role of the member",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -2028,7 +2028,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2043,7 +2043,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -2073,7 +2073,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2083,7 +2083,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2093,7 +2093,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2102,7 +2102,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2112,7 +2112,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2122,7 +2122,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -2132,7 +2132,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2146,7 +2146,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2155,7 +2155,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2170,7 +2170,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2180,7 +2180,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Pub/Sub topic to send updates to.\n+\nNote: A topic must be created before publishing or subscribing to it. For instructions\non creating topics, refer to: https://cloud.google.com/pubsub/docs/admin#create_a_topic",
               args: {
                 name: "PUBSUB_TOPIC",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2195,7 +2195,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2210,7 +2210,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -2240,7 +2240,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2250,7 +2250,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2260,7 +2260,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2269,7 +2269,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2279,7 +2279,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2289,7 +2289,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -2299,7 +2299,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2313,7 +2313,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2322,7 +2322,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2337,7 +2337,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2352,7 +2352,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2367,7 +2367,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -2397,7 +2397,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2407,7 +2407,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2417,7 +2417,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2426,7 +2426,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2436,7 +2436,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2446,7 +2446,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -2456,7 +2456,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2470,7 +2470,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2479,7 +2479,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2494,7 +2494,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2509,7 +2509,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2524,7 +2524,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -2559,7 +2559,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
                   args: {
                     name: "ACCOUNT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2574,7 +2574,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
                   args: {
                     name: "BILLING_PROJECT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2584,7 +2584,7 @@ const completionSpec: Fig.Spec = {
                     "The BigQuery table where the DICOM store should\nbe written. If this table does not exist, a new table with the given\nname will be created",
                   args: {
                     name: "BQ_TABLE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                   priority: 100,
@@ -2595,7 +2595,7 @@ const completionSpec: Fig.Spec = {
                     "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
                   args: {
                     name: "CONFIGURATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2604,7 +2604,7 @@ const completionSpec: Fig.Spec = {
                   description: "Cloud Healthcare dataset",
                   args: {
                     name: "DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2614,7 +2614,7 @@ const completionSpec: Fig.Spec = {
                     "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
                   args: {
                     name: "YAML_FILE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2624,7 +2624,7 @@ const completionSpec: Fig.Spec = {
                     "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
                   args: {
                     name: "KEY",
-                    description: "list",
+                    description: "List",
                     suggestions: [],
                   },
                 },
@@ -2634,7 +2634,7 @@ const completionSpec: Fig.Spec = {
                     "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
                   args: {
                     name: "FORMAT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2648,7 +2648,7 @@ const completionSpec: Fig.Spec = {
                     "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
                   args: {
                     name: "SERVICE_ACCOUNT_EMAIL",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2657,7 +2657,7 @@ const completionSpec: Fig.Spec = {
                   description: "Google Cloud location",
                   args: {
                     name: "LOCATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2677,7 +2677,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
                   args: {
                     name: "PROJECT_ID",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2692,7 +2692,7 @@ const completionSpec: Fig.Spec = {
                     "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
                   args: {
                     name: "TRACE_TOKEN",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2707,7 +2707,7 @@ const completionSpec: Fig.Spec = {
                     "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
                   args: {
                     name: "VERBOSITY",
-                    description: "string",
+                    description: "String",
                     suggestions: [
                       "debug",
                       "info",
@@ -2738,7 +2738,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
                   args: {
                     name: "ACCOUNT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2753,7 +2753,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
                   args: {
                     name: "BILLING_PROJECT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2763,7 +2763,7 @@ const completionSpec: Fig.Spec = {
                     "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
                   args: {
                     name: "CONFIGURATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2772,7 +2772,7 @@ const completionSpec: Fig.Spec = {
                   description: "Cloud Healthcare dataset",
                   args: {
                     name: "DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2782,7 +2782,7 @@ const completionSpec: Fig.Spec = {
                     "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
                   args: {
                     name: "YAML_FILE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2792,7 +2792,7 @@ const completionSpec: Fig.Spec = {
                     "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
                   args: {
                     name: "KEY",
-                    description: "list",
+                    description: "List",
                     suggestions: [],
                   },
                 },
@@ -2802,7 +2802,7 @@ const completionSpec: Fig.Spec = {
                     "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
                   args: {
                     name: "FORMAT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2812,7 +2812,7 @@ const completionSpec: Fig.Spec = {
                     "URI for a Google Cloud Storage directory to which result\nfiles should be written (for example, `gs://bucket-id/path/to/destination/dir`).\nIf there is no trailing slash, the service will append one when composing\nthe object path. The user is responsible for creating the Google Cloud\nStorage bucket referenced in `uri_prefix`",
                   args: {
                     name: "GCS_URI_PREFIX",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                   priority: 100,
@@ -2827,7 +2827,7 @@ const completionSpec: Fig.Spec = {
                     "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
                   args: {
                     name: "SERVICE_ACCOUNT_EMAIL",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2836,7 +2836,7 @@ const completionSpec: Fig.Spec = {
                   description: "Google Cloud location",
                   args: {
                     name: "LOCATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2851,7 +2851,7 @@ const completionSpec: Fig.Spec = {
                     "'MIME types supported by DICOM spec. Each file will be\nwritten in the following format:\n`.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}`\nThe frame_number component will exist only for multi-frame instances.\nRefer to the DICOM conformance statement for permissible MIME types:\nhttps://cloud.google.com/healthcare/docs/dicom#wado-rs  The following\nextensions will be used for output files:   application/dicom -> .dcm\nimage/jpeg -> .jpg   image/png -> .png  If unspecified, the instances\nwill be exported in their original DICOM format.'",
                   args: {
                     name: "MIME_TYPE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2861,7 +2861,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
                   args: {
                     name: "PROJECT_ID",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2876,7 +2876,7 @@ const completionSpec: Fig.Spec = {
                     "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
                   args: {
                     name: "TRACE_TOKEN",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -2891,7 +2891,7 @@ const completionSpec: Fig.Spec = {
                     "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
                   args: {
                     name: "VERBOSITY",
-                    description: "string",
+                    description: "String",
                     suggestions: [
                       "debug",
                       "info",
@@ -2918,7 +2918,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2928,7 +2928,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2938,7 +2938,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2948,7 +2948,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2958,7 +2958,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -2968,7 +2968,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2982,7 +2982,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -2997,7 +2997,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3012,7 +3012,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3027,7 +3027,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -3052,7 +3052,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3062,7 +3062,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3072,7 +3072,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3081,7 +3081,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3091,7 +3091,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3101,7 +3101,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3111,7 +3111,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -3121,7 +3121,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3135,7 +3135,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3145,7 +3145,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -3154,7 +3154,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3169,7 +3169,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -3179,7 +3179,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3194,7 +3194,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -3204,7 +3204,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3219,7 +3219,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -3254,7 +3254,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
                   args: {
                     name: "ACCOUNT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3269,7 +3269,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
                   args: {
                     name: "BILLING_PROJECT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3279,7 +3279,7 @@ const completionSpec: Fig.Spec = {
                     "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
                   args: {
                     name: "CONFIGURATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3288,7 +3288,7 @@ const completionSpec: Fig.Spec = {
                   description: "Cloud Healthcare dataset",
                   args: {
                     name: "DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3298,7 +3298,7 @@ const completionSpec: Fig.Spec = {
                     "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
                   args: {
                     name: "YAML_FILE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3308,7 +3308,7 @@ const completionSpec: Fig.Spec = {
                     "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
                   args: {
                     name: "KEY",
-                    description: "list",
+                    description: "List",
                     suggestions: [],
                   },
                 },
@@ -3318,7 +3318,7 @@ const completionSpec: Fig.Spec = {
                     "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
                   args: {
                     name: "FORMAT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3328,7 +3328,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Storage URI containing DICOM object data. It must match individual DICOM files or co",
                   args: {
                     name: "GCS_URI",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                   priority: 100,
@@ -3343,7 +3343,7 @@ const completionSpec: Fig.Spec = {
                     "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
                   args: {
                     name: "SERVICE_ACCOUNT_EMAIL",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3352,7 +3352,7 @@ const completionSpec: Fig.Spec = {
                   description: "Google Cloud location",
                   args: {
                     name: "LOCATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3367,7 +3367,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
                   args: {
                     name: "PROJECT_ID",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3382,7 +3382,7 @@ const completionSpec: Fig.Spec = {
                     "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
                   args: {
                     name: "TRACE_TOKEN",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -3397,7 +3397,7 @@ const completionSpec: Fig.Spec = {
                     "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
                   args: {
                     name: "VERBOSITY",
-                    description: "string",
+                    description: "String",
                     suggestions: [
                       "debug",
                       "info",
@@ -3424,7 +3424,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3434,7 +3434,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3444,7 +3444,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3454,7 +3454,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3464,7 +3464,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -3474,7 +3474,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3488,7 +3488,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3503,7 +3503,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3518,7 +3518,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3533,7 +3533,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -3557,7 +3557,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3567,7 +3567,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3577,7 +3577,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3587,7 +3587,7 @@ const completionSpec: Fig.Spec = {
                 "ID of the dataset or fully qualified identifier for the dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -3598,7 +3598,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3608,7 +3608,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3618,7 +3618,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -3628,7 +3628,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3642,7 +3642,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3652,7 +3652,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -3661,7 +3661,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3676,7 +3676,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -3686,7 +3686,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3701,7 +3701,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -3711,7 +3711,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3731,7 +3731,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -3756,7 +3756,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3771,7 +3771,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3781,7 +3781,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be removed. When the condition is explicitly\nspecified as `None` (`--condition=None`), it matches a binding without a\ncondition. Otherwise, only the binding with a condition which exactly matches\nthe specified condition (including the optional description) will be removed.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -3791,7 +3791,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -3801,7 +3801,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3810,7 +3810,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3820,7 +3820,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3830,7 +3830,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -3840,7 +3840,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3854,7 +3854,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3863,7 +3863,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3878,7 +3878,7 @@ const completionSpec: Fig.Spec = {
                 "The member to remove the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -3889,7 +3889,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3903,7 +3903,7 @@ const completionSpec: Fig.Spec = {
               description: "The role to remove the member from",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -3914,7 +3914,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3929,7 +3929,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -3960,7 +3960,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3970,7 +3970,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3980,7 +3980,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3989,7 +3989,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -3999,7 +3999,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4009,7 +4009,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -4019,7 +4019,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4033,7 +4033,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4042,7 +4042,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4057,7 +4057,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4072,7 +4072,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4087,7 +4087,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -4125,7 +4125,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4135,7 +4135,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4145,7 +4145,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4154,7 +4154,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4164,7 +4164,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4174,7 +4174,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -4184,7 +4184,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4198,7 +4198,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4207,7 +4207,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4222,7 +4222,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4232,7 +4232,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Pub/Sub topic to send updates to.\n+\nNote: A topic must be created before publishing or subscribing to it. For instructions\non creating topics, refer to: https://cloud.google.com/pubsub/docs/admin#create_a_topic",
               args: {
                 name: "PUBSUB_TOPIC",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4247,7 +4247,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4262,7 +4262,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -4289,7 +4289,7 @@ const completionSpec: Fig.Spec = {
             "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
           args: {
             name: "ACCOUNT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4299,7 +4299,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
           args: {
             name: "BILLING_PROJECT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4309,7 +4309,7 @@ const completionSpec: Fig.Spec = {
             "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
           args: {
             name: "CONFIGURATION",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4319,7 +4319,7 @@ const completionSpec: Fig.Spec = {
             "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
           args: {
             name: "YAML_FILE",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4329,7 +4329,7 @@ const completionSpec: Fig.Spec = {
             "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
           args: {
             name: "KEY",
-            description: "list",
+            description: "List",
             suggestions: [],
           },
         },
@@ -4339,7 +4339,7 @@ const completionSpec: Fig.Spec = {
             "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
           args: {
             name: "FORMAT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4353,7 +4353,7 @@ const completionSpec: Fig.Spec = {
             "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
           args: {
             name: "SERVICE_ACCOUNT_EMAIL",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4368,7 +4368,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
           args: {
             name: "PROJECT_ID",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4383,7 +4383,7 @@ const completionSpec: Fig.Spec = {
             "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
           args: {
             name: "TRACE_TOKEN",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -4398,7 +4398,7 @@ const completionSpec: Fig.Spec = {
             "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
           args: {
             name: "VERBOSITY",
-            description: "string",
+            description: "String",
             suggestions: [
               "debug",
               "info",
@@ -4427,7 +4427,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4437,7 +4437,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4447,7 +4447,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be added. When the condition is explicitly\nspecified as `None` (`--condition=None`), a binding without a condition is\nadded. When the condition is specified and is not `None`, `--role`\ncannot be a primitive role. Primitive roles are `roles/editor`, `roles/owner`,\nand `roles/viewer`.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -4457,7 +4457,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -4467,7 +4467,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4476,7 +4476,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4486,7 +4486,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4496,7 +4496,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -4506,7 +4506,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4520,7 +4520,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4529,7 +4529,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4544,7 +4544,7 @@ const completionSpec: Fig.Spec = {
                 "The member to add the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -4555,7 +4555,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4569,7 +4569,7 @@ const completionSpec: Fig.Spec = {
               description: "Define the role of the member",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -4580,7 +4580,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4595,7 +4595,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -4625,7 +4625,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4635,7 +4635,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4645,7 +4645,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4654,7 +4654,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4679,7 +4679,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4689,7 +4689,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -4699,7 +4699,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4713,7 +4713,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4722,7 +4722,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4737,7 +4737,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4747,7 +4747,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Pub/Sub topic to send updates to.\n+\nNote, a topic needs to be created before publishing or subscribing to it. For instructions\non creating topics, refer to: https://cloud.google.com/pubsub/docs/admin#create_a_topic",
               args: {
                 name: "PUBSUB_TOPIC",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4762,7 +4762,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4777,7 +4777,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -4807,7 +4807,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4817,7 +4817,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4827,7 +4827,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4836,7 +4836,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4846,7 +4846,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4856,7 +4856,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -4866,7 +4866,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4880,7 +4880,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4889,7 +4889,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4904,7 +4904,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4919,7 +4919,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4934,7 +4934,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -4964,7 +4964,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4974,7 +4974,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4984,7 +4984,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -4993,7 +4993,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5003,7 +5003,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5013,7 +5013,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -5023,7 +5023,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5037,7 +5037,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5046,7 +5046,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5061,7 +5061,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5076,7 +5076,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5091,7 +5091,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -5126,7 +5126,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
                   args: {
                     name: "ACCOUNT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5141,7 +5141,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
                   args: {
                     name: "BILLING_PROJECT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5151,7 +5151,7 @@ const completionSpec: Fig.Spec = {
                     "BigQuery dataset that houses the BigQuery tables",
                   args: {
                     name: "BQ_DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                   priority: 100,
@@ -5162,7 +5162,7 @@ const completionSpec: Fig.Spec = {
                     "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
                   args: {
                     name: "CONFIGURATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5171,7 +5171,7 @@ const completionSpec: Fig.Spec = {
                   description: "Cloud Healthcare dataset",
                   args: {
                     name: "DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5181,7 +5181,7 @@ const completionSpec: Fig.Spec = {
                     "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
                   args: {
                     name: "YAML_FILE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5191,7 +5191,7 @@ const completionSpec: Fig.Spec = {
                     "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
                   args: {
                     name: "KEY",
-                    description: "list",
+                    description: "List",
                     suggestions: [],
                   },
                 },
@@ -5201,7 +5201,7 @@ const completionSpec: Fig.Spec = {
                     "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
                   args: {
                     name: "FORMAT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5215,7 +5215,7 @@ const completionSpec: Fig.Spec = {
                     "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
                   args: {
                     name: "SERVICE_ACCOUNT_EMAIL",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5224,7 +5224,7 @@ const completionSpec: Fig.Spec = {
                   description: "Google Cloud location",
                   args: {
                     name: "LOCATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5239,7 +5239,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
                   args: {
                     name: "PROJECT_ID",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5254,7 +5254,7 @@ const completionSpec: Fig.Spec = {
                     "The depth for all recursive structures in the output analytics schema. For example,\nconcept in the CodeSystem resource is a recursive structure; when the depth\nis 2, the CodeSystem table will have a column called concept.concept but not\nconcept.concept.concept. If not specified or set to 0, the server will use the\ndefault value 2",
                   args: {
                     name: "RECURSIVE_DEPTH",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5264,7 +5264,7 @@ const completionSpec: Fig.Spec = {
                     "Specifies the output schema type. _SCHEMA_TYPE_ must be (currently only one value is supported):\n+\n*analytics*::: Analytics schema defined by the FHIR community.\nSee https://github.com/rbrush/sql-on-fhir/blob/master/sql-on-fhir.md.\n+\n:::\n+",
                   args: {
                     name: "SCHEMA_TYPE",
-                    description: "string",
+                    description: "String",
                     suggestions: ["analytics"],
                   },
                 },
@@ -5274,7 +5274,7 @@ const completionSpec: Fig.Spec = {
                     "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
                   args: {
                     name: "TRACE_TOKEN",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5289,7 +5289,7 @@ const completionSpec: Fig.Spec = {
                     "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
                   args: {
                     name: "VERBOSITY",
-                    description: "string",
+                    description: "String",
                     suggestions: [
                       "debug",
                       "info",
@@ -5320,7 +5320,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
                   args: {
                     name: "ACCOUNT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5335,7 +5335,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
                   args: {
                     name: "BILLING_PROJECT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5345,7 +5345,7 @@ const completionSpec: Fig.Spec = {
                     "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
                   args: {
                     name: "CONFIGURATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5354,7 +5354,7 @@ const completionSpec: Fig.Spec = {
                   description: "Cloud Healthcare dataset",
                   args: {
                     name: "DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5364,7 +5364,7 @@ const completionSpec: Fig.Spec = {
                     "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
                   args: {
                     name: "YAML_FILE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5374,7 +5374,7 @@ const completionSpec: Fig.Spec = {
                     "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
                   args: {
                     name: "KEY",
-                    description: "list",
+                    description: "List",
                     suggestions: [],
                   },
                 },
@@ -5384,7 +5384,7 @@ const completionSpec: Fig.Spec = {
                     "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
                   args: {
                     name: "FORMAT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5394,7 +5394,7 @@ const completionSpec: Fig.Spec = {
                     "The Cloud Storage destination location. Specify a path to a Cloud\nStorage bucket or folder rather than a concrete object. The exported outputs\nare organized by FHIR resource types. The server will create one object per\nresource type. Each object contains newline delimited JSON, and each line\nis a FHIR resource",
                   args: {
                     name: "GCS_URI",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                   priority: 100,
@@ -5409,7 +5409,7 @@ const completionSpec: Fig.Spec = {
                     "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
                   args: {
                     name: "SERVICE_ACCOUNT_EMAIL",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5418,7 +5418,7 @@ const completionSpec: Fig.Spec = {
                   description: "Google Cloud location",
                   args: {
                     name: "LOCATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5433,7 +5433,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
                   args: {
                     name: "PROJECT_ID",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5448,7 +5448,7 @@ const completionSpec: Fig.Spec = {
                     "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
                   args: {
                     name: "TRACE_TOKEN",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5463,7 +5463,7 @@ const completionSpec: Fig.Spec = {
                     "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
                   args: {
                     name: "VERBOSITY",
-                    description: "string",
+                    description: "String",
                     suggestions: [
                       "debug",
                       "info",
@@ -5490,7 +5490,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5500,7 +5500,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5510,7 +5510,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5520,7 +5520,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5530,7 +5530,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -5540,7 +5540,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5554,7 +5554,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5569,7 +5569,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5584,7 +5584,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5599,7 +5599,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -5624,7 +5624,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5634,7 +5634,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5644,7 +5644,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5653,7 +5653,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5663,7 +5663,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5673,7 +5673,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5683,7 +5683,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -5693,7 +5693,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5707,7 +5707,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5717,7 +5717,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -5726,7 +5726,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5741,7 +5741,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -5751,7 +5751,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5766,7 +5766,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -5776,7 +5776,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -5791,7 +5791,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -5826,7 +5826,7 @@ const completionSpec: Fig.Spec = {
                     "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
                   args: {
                     name: "ACCOUNT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5841,7 +5841,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
                   args: {
                     name: "BILLING_PROJECT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5851,7 +5851,7 @@ const completionSpec: Fig.Spec = {
                     "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
                   args: {
                     name: "CONFIGURATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5862,7 +5862,7 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "CONTENT_STRUCTURE",
                     description:
-                      "googlecloudsdk.command_lib.util.apis.arg_utils:EnumNameToChoice",
+                      "Googlecloudsdk.command_lib.util.apis.arg_utils:EnumNameToChoice",
                     suggestions: [
                       "bundle",
                       "bundle-pretty",
@@ -5876,7 +5876,7 @@ const completionSpec: Fig.Spec = {
                   description: "Cloud Healthcare dataset",
                   args: {
                     name: "DATASET",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5886,7 +5886,7 @@ const completionSpec: Fig.Spec = {
                     "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
                   args: {
                     name: "YAML_FILE",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5896,7 +5896,7 @@ const completionSpec: Fig.Spec = {
                     "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
                   args: {
                     name: "KEY",
-                    description: "list",
+                    description: "List",
                     suggestions: [],
                   },
                 },
@@ -5906,7 +5906,7 @@ const completionSpec: Fig.Spec = {
                     "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
                   args: {
                     name: "FORMAT",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5916,7 +5916,7 @@ const completionSpec: Fig.Spec = {
                     "Cloud Storage source data locations. Each Cloud Storage object\nshould be a text file that contains newline-delimited JSON structures conforming\nto the FHIR standard",
                   args: {
                     name: "GCS_URI",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                   priority: 100,
@@ -5931,7 +5931,7 @@ const completionSpec: Fig.Spec = {
                     "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
                   args: {
                     name: "SERVICE_ACCOUNT_EMAIL",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5940,7 +5940,7 @@ const completionSpec: Fig.Spec = {
                   description: "Google Cloud location",
                   args: {
                     name: "LOCATION",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5955,7 +5955,7 @@ const completionSpec: Fig.Spec = {
                     "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
                   args: {
                     name: "PROJECT_ID",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5970,7 +5970,7 @@ const completionSpec: Fig.Spec = {
                     "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
                   args: {
                     name: "TRACE_TOKEN",
-                    description: "string",
+                    description: "String",
                     suggestions: [],
                   },
                 },
@@ -5985,7 +5985,7 @@ const completionSpec: Fig.Spec = {
                     "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
                   args: {
                     name: "VERBOSITY",
-                    description: "string",
+                    description: "String",
                     suggestions: [
                       "debug",
                       "info",
@@ -6012,7 +6012,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6022,7 +6022,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6032,7 +6032,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6042,7 +6042,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6052,7 +6052,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -6062,7 +6062,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6076,7 +6076,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6091,7 +6091,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6106,7 +6106,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6121,7 +6121,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -6145,7 +6145,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6155,7 +6155,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6165,7 +6165,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6175,7 +6175,7 @@ const completionSpec: Fig.Spec = {
                 "ID of the dataset or fully qualified identifier for the dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -6186,7 +6186,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6196,7 +6196,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6206,7 +6206,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -6216,7 +6216,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6230,7 +6230,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6240,7 +6240,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -6249,7 +6249,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6264,7 +6264,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -6274,7 +6274,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6289,7 +6289,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -6299,7 +6299,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6319,7 +6319,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -6344,7 +6344,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6359,7 +6359,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6369,7 +6369,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be removed. When the condition is explicitly\nspecified as `None` (`--condition=None`), it matches a binding without a\ncondition. Otherwise, only the binding with a condition which exactly matches\nthe specified condition (including the optional description) will be removed.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -6379,7 +6379,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -6389,7 +6389,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6398,7 +6398,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6408,7 +6408,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6418,7 +6418,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -6428,7 +6428,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6442,7 +6442,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6451,7 +6451,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6466,7 +6466,7 @@ const completionSpec: Fig.Spec = {
                 "The member to remove the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -6477,7 +6477,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6491,7 +6491,7 @@ const completionSpec: Fig.Spec = {
               description: "The role to remove the member from",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -6502,7 +6502,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6517,7 +6517,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -6548,7 +6548,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6558,7 +6558,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6568,7 +6568,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6577,7 +6577,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6587,7 +6587,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6597,7 +6597,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -6607,7 +6607,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6621,7 +6621,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6630,7 +6630,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6645,7 +6645,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6660,7 +6660,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6675,7 +6675,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -6713,7 +6713,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6723,7 +6723,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6733,7 +6733,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6742,7 +6742,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6757,7 +6757,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6767,7 +6767,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -6777,7 +6777,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6791,7 +6791,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6800,7 +6800,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6815,7 +6815,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6825,7 +6825,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Pub/Sub topic to send updates to.\n+\nNote, a topic needs to be created before publishing or subscribing to it. For instructions\non creating topics, refer to: https://cloud.google.com/pubsub/docs/admin#create_a_topic",
               args: {
                 name: "PUBSUB_TOPIC",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6840,7 +6840,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -6855,7 +6855,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -6882,7 +6882,7 @@ const completionSpec: Fig.Spec = {
             "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
           args: {
             name: "ACCOUNT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6892,7 +6892,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
           args: {
             name: "BILLING_PROJECT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6902,7 +6902,7 @@ const completionSpec: Fig.Spec = {
             "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
           args: {
             name: "CONFIGURATION",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6912,7 +6912,7 @@ const completionSpec: Fig.Spec = {
             "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
           args: {
             name: "YAML_FILE",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6922,7 +6922,7 @@ const completionSpec: Fig.Spec = {
             "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
           args: {
             name: "KEY",
-            description: "list",
+            description: "List",
             suggestions: [],
           },
         },
@@ -6932,7 +6932,7 @@ const completionSpec: Fig.Spec = {
             "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
           args: {
             name: "FORMAT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6946,7 +6946,7 @@ const completionSpec: Fig.Spec = {
             "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
           args: {
             name: "SERVICE_ACCOUNT_EMAIL",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6961,7 +6961,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
           args: {
             name: "PROJECT_ID",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6976,7 +6976,7 @@ const completionSpec: Fig.Spec = {
             "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
           args: {
             name: "TRACE_TOKEN",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -6991,7 +6991,7 @@ const completionSpec: Fig.Spec = {
             "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
           args: {
             name: "VERBOSITY",
-            description: "string",
+            description: "String",
             suggestions: [
               "debug",
               "info",
@@ -7020,7 +7020,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7030,7 +7030,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7040,7 +7040,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be added. When the condition is explicitly\nspecified as `None` (`--condition=None`), a binding without a condition is\nadded. When the condition is specified and is not `None`, `--role`\ncannot be a primitive role. Primitive roles are `roles/editor`, `roles/owner`,\nand `roles/viewer`.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -7050,7 +7050,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -7060,7 +7060,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7069,7 +7069,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7079,7 +7079,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7089,7 +7089,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7099,7 +7099,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7113,7 +7113,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7122,7 +7122,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7137,7 +7137,7 @@ const completionSpec: Fig.Spec = {
                 "The member to add the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -7148,7 +7148,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7162,7 +7162,7 @@ const completionSpec: Fig.Spec = {
               description: "Define the role of the member",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -7173,7 +7173,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7188,7 +7188,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -7218,7 +7218,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7228,7 +7228,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7238,7 +7238,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7247,7 +7247,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7257,7 +7257,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7267,7 +7267,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7277,7 +7277,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7291,7 +7291,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7300,7 +7300,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7316,7 +7316,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "NOTIFICATION_CONFIG",
                 description:
-                  "googlecloudsdk.command_lib.util.apis.yaml_command_schema_util:Parse",
+                  "Googlecloudsdk.command_lib.util.apis.yaml_command_schema_util:Parse",
                 suggestions: [],
               },
             },
@@ -7326,7 +7326,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7341,7 +7341,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7356,7 +7356,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -7386,7 +7386,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7396,7 +7396,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7406,7 +7406,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7415,7 +7415,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7425,7 +7425,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7435,7 +7435,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7445,7 +7445,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7459,7 +7459,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7468,7 +7468,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7483,7 +7483,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7498,7 +7498,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7513,7 +7513,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -7543,7 +7543,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7553,7 +7553,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7563,7 +7563,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7572,7 +7572,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7582,7 +7582,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7592,7 +7592,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7602,7 +7602,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7616,7 +7616,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7625,7 +7625,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7640,7 +7640,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7655,7 +7655,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7670,7 +7670,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -7701,7 +7701,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7711,7 +7711,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7721,7 +7721,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7730,7 +7730,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7740,7 +7740,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7750,7 +7750,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7760,7 +7760,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7770,7 +7770,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7784,7 +7784,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7794,7 +7794,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -7803,7 +7803,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7818,7 +7818,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -7828,7 +7828,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7843,7 +7843,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7853,7 +7853,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7868,7 +7868,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -7898,7 +7898,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7908,7 +7908,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7918,7 +7918,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7928,7 +7928,7 @@ const completionSpec: Fig.Spec = {
                 "ID of the dataset or fully qualified identifier for the dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -7939,7 +7939,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7949,7 +7949,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7959,7 +7959,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -7969,7 +7969,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7983,7 +7983,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -7993,7 +7993,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -8002,7 +8002,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8017,7 +8017,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -8027,7 +8027,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8042,7 +8042,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -8052,7 +8052,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8072,7 +8072,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -8097,7 +8097,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8112,7 +8112,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8122,7 +8122,7 @@ const completionSpec: Fig.Spec = {
                 "+\nThe condition of the binding to be removed. When the condition is explicitly\nspecified as `None` (`--condition=None`), it matches a binding without a\ncondition. Otherwise, only the binding with a condition which exactly matches\nthe specified condition (including the optional description) will be removed.\n+\n*expression*::: (Required) Expression of the condition which\nevaluates to True or False. This uses a subset of Common Expression\nLanguage syntax.\n+\n*title*::: (Required) A short string describing the purpose of the expression.\n+\n*description*::: (Optional) Additional description for the expression.\n+\nNOTE: An unsatisfied condition will not allow access via this\nbinding",
               args: {
                 name: "KEY=VALUE",
-                description: "dict",
+                description: "Dict",
                 suggestions: [],
               },
             },
@@ -8132,7 +8132,7 @@ const completionSpec: Fig.Spec = {
                 "Path to a local JSON or YAML file that defines the condition.\nTo see available fields, see the help for `--condition`",
               args: {
                 name: "CONDITION_FROM_FILE",
-                description: "googlecloudsdk.calliope.arg_parsers:FileContents",
+                description: "Googlecloudsdk.calliope.arg_parsers:FileContents",
                 suggestions: [],
               },
             },
@@ -8142,7 +8142,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8151,7 +8151,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8161,7 +8161,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8171,7 +8171,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -8181,7 +8181,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8195,7 +8195,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8204,7 +8204,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8219,7 +8219,7 @@ const completionSpec: Fig.Spec = {
                 "The member to remove the binding for. Should be of the form `user|group|serviceAccount:email` or\n`domain:domain`.\n+\nExamples: `user:test-user@gmail.com`, `group:admins@example.com`,\n`serviceAccount:test123@example.domain.com`, or\n`domain:example.domain.com`.\n+\nCan also be one of the following special values:\n* `allUsers` - Special identifier that represents anyone who is on the internet,\n   with or without a Google account.\n* `allAuthenticatedUsers` - Special identifier that represents anyone who is\n   authenticated with a Google account or a service account",
               args: {
                 name: "MEMBER",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -8230,7 +8230,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8244,7 +8244,7 @@ const completionSpec: Fig.Spec = {
               description: "The role to remove the member from",
               args: {
                 name: "ROLE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -8255,7 +8255,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8270,7 +8270,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -8301,7 +8301,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8311,7 +8311,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8321,7 +8321,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8330,7 +8330,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8340,7 +8340,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8350,7 +8350,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -8360,7 +8360,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8374,7 +8374,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8383,7 +8383,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8398,7 +8398,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8413,7 +8413,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8428,7 +8428,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -8466,7 +8466,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8476,7 +8476,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8486,7 +8486,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8495,7 +8495,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8505,7 +8505,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8515,7 +8515,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -8525,7 +8525,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8539,7 +8539,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8548,7 +8548,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8564,7 +8564,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "NOTIFICATION_CONFIG",
                 description:
-                  "googlecloudsdk.command_lib.util.apis.yaml_command_schema_util:Parse",
+                  "Googlecloudsdk.command_lib.util.apis.yaml_command_schema_util:Parse",
                 suggestions: [],
               },
             },
@@ -8574,7 +8574,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8589,7 +8589,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8604,7 +8604,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -8631,7 +8631,7 @@ const completionSpec: Fig.Spec = {
             "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
           args: {
             name: "ACCOUNT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8641,7 +8641,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
           args: {
             name: "BILLING_PROJECT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8651,7 +8651,7 @@ const completionSpec: Fig.Spec = {
             "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
           args: {
             name: "CONFIGURATION",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8661,7 +8661,7 @@ const completionSpec: Fig.Spec = {
             "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
           args: {
             name: "YAML_FILE",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8671,7 +8671,7 @@ const completionSpec: Fig.Spec = {
             "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
           args: {
             name: "KEY",
-            description: "list",
+            description: "List",
             suggestions: [],
           },
         },
@@ -8681,7 +8681,7 @@ const completionSpec: Fig.Spec = {
             "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
           args: {
             name: "FORMAT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8695,7 +8695,7 @@ const completionSpec: Fig.Spec = {
             "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
           args: {
             name: "SERVICE_ACCOUNT_EMAIL",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8710,7 +8710,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
           args: {
             name: "PROJECT_ID",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8725,7 +8725,7 @@ const completionSpec: Fig.Spec = {
             "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
           args: {
             name: "TRACE_TOKEN",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -8740,7 +8740,7 @@ const completionSpec: Fig.Spec = {
             "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
           args: {
             name: "VERBOSITY",
-            description: "string",
+            description: "String",
             suggestions: [
               "debug",
               "info",
@@ -8768,7 +8768,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8778,7 +8778,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8788,7 +8788,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8797,7 +8797,7 @@ const completionSpec: Fig.Spec = {
               description: "Cloud Healthcare dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8807,7 +8807,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8817,7 +8817,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -8827,7 +8827,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8841,7 +8841,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8850,7 +8850,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8865,7 +8865,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8880,7 +8880,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8895,7 +8895,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -8925,7 +8925,7 @@ const completionSpec: Fig.Spec = {
                 "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
               args: {
                 name: "ACCOUNT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8935,7 +8935,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
               args: {
                 name: "BILLING_PROJECT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8945,7 +8945,7 @@ const completionSpec: Fig.Spec = {
                 "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
               args: {
                 name: "CONFIGURATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8955,7 +8955,7 @@ const completionSpec: Fig.Spec = {
                 "ID of the dataset or fully qualified identifier for the dataset",
               args: {
                 name: "DATASET",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
               priority: 100,
@@ -8966,7 +8966,7 @@ const completionSpec: Fig.Spec = {
                 "Apply a Boolean filter _EXPRESSION_ to each resource item to be listed.\nIf the expression evaluates `True`, then that item is listed. For more\ndetails and examples of filter expressions, run $ gcloud topic filters. This\nflag interacts with other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "EXPRESSION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8976,7 +8976,7 @@ const completionSpec: Fig.Spec = {
                 "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
               args: {
                 name: "YAML_FILE",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -8986,7 +8986,7 @@ const completionSpec: Fig.Spec = {
                 "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "KEY",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -8996,7 +8996,7 @@ const completionSpec: Fig.Spec = {
                 "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
               args: {
                 name: "FORMAT",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -9010,7 +9010,7 @@ const completionSpec: Fig.Spec = {
                 "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
               args: {
                 name: "SERVICE_ACCOUNT_EMAIL",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -9020,7 +9020,7 @@ const completionSpec: Fig.Spec = {
                 "Maximum number of resources to list. The default is *unlimited*.\nThis flag interacts with other flags that are applied in this order:\n*--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "LIMIT",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -9029,7 +9029,7 @@ const completionSpec: Fig.Spec = {
               description: "Google Cloud location",
               args: {
                 name: "LOCATION",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -9044,7 +9044,7 @@ const completionSpec: Fig.Spec = {
                 "Some services group resource list output into pages. This flag specifies\nthe maximum number of resources per page. The default is determined by the\nservice if it supports paging, otherwise it is *unlimited* (no paging).\nPaging may be applied before or after *--filter* and *--limit* depending\non the service",
               args: {
                 name: "PAGE_SIZE",
-                description: "googlecloudsdk.calliope.arg_parsers:Parse",
+                description: "Googlecloudsdk.calliope.arg_parsers:Parse",
                 suggestions: [],
               },
             },
@@ -9054,7 +9054,7 @@ const completionSpec: Fig.Spec = {
                 "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
               args: {
                 name: "PROJECT_ID",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -9069,7 +9069,7 @@ const completionSpec: Fig.Spec = {
                 "Comma-separated list of resource field key names to sort by. The\ndefault order is ascending. Prefix a field with ``~'' for descending\norder on that field. This flag interacts with other flags that are applied\nin this order: *--flatten*, *--sort-by*, *--filter*, *--limit*",
               args: {
                 name: "FIELD",
-                description: "list",
+                description: "List",
                 suggestions: [],
               },
             },
@@ -9079,7 +9079,7 @@ const completionSpec: Fig.Spec = {
                 "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
               args: {
                 name: "TRACE_TOKEN",
-                description: "string",
+                description: "String",
                 suggestions: [],
               },
             },
@@ -9099,7 +9099,7 @@ const completionSpec: Fig.Spec = {
                 "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
               args: {
                 name: "VERBOSITY",
-                description: "string",
+                description: "String",
                 suggestions: [
                   "debug",
                   "info",
@@ -9120,7 +9120,7 @@ const completionSpec: Fig.Spec = {
             "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
           args: {
             name: "ACCOUNT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9130,7 +9130,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
           args: {
             name: "BILLING_PROJECT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9140,7 +9140,7 @@ const completionSpec: Fig.Spec = {
             "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
           args: {
             name: "CONFIGURATION",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9150,7 +9150,7 @@ const completionSpec: Fig.Spec = {
             "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
           args: {
             name: "YAML_FILE",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9160,7 +9160,7 @@ const completionSpec: Fig.Spec = {
             "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
           args: {
             name: "KEY",
-            description: "list",
+            description: "List",
             suggestions: [],
           },
         },
@@ -9170,7 +9170,7 @@ const completionSpec: Fig.Spec = {
             "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
           args: {
             name: "FORMAT",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9184,7 +9184,7 @@ const completionSpec: Fig.Spec = {
             "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
           args: {
             name: "SERVICE_ACCOUNT_EMAIL",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9199,7 +9199,7 @@ const completionSpec: Fig.Spec = {
             "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
           args: {
             name: "PROJECT_ID",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9214,7 +9214,7 @@ const completionSpec: Fig.Spec = {
             "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
           args: {
             name: "TRACE_TOKEN",
-            description: "string",
+            description: "String",
             suggestions: [],
           },
         },
@@ -9229,7 +9229,7 @@ const completionSpec: Fig.Spec = {
             "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
           args: {
             name: "VERBOSITY",
-            description: "string",
+            description: "String",
             suggestions: [
               "debug",
               "info",
@@ -9250,7 +9250,7 @@ const completionSpec: Fig.Spec = {
         "Google Cloud Platform user account to use for invocation. Overrides the default *core/account* property value for this command invocation",
       args: {
         name: "ACCOUNT",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9260,7 +9260,7 @@ const completionSpec: Fig.Spec = {
         "The Google Cloud Platform project that will be charged quota for operations performed in gcloud. If you need to operate on one project, but need quota against a different project, you can use this flag to specify the billing project. If both `billing/quota_project` and `--billing-project` are specified, `--billing-project` takes precedence. Run `$ gcloud config set --help` to see more information about `billing/quota_project`",
       args: {
         name: "BILLING_PROJECT",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9270,7 +9270,7 @@ const completionSpec: Fig.Spec = {
         "The configuration to use for this command invocation. For more\ninformation on how to use configurations, run:\n`gcloud topic configurations`.  You can also use the CLOUDSDK_ACTIVE_CONFIG_NAME environment\nvariable to set the equivalent of this flag for a terminal\nsession",
       args: {
         name: "CONFIGURATION",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9280,7 +9280,7 @@ const completionSpec: Fig.Spec = {
         "A YAML or JSON file that specifies a *--flag*:*value* dictionary.\nUseful for specifying complex flag values with special characters\nthat work with any command interpreter. Additionally, each\n*--flags-file* arg is replaced by its constituent flags. See\n$ gcloud topic flags-file for more information",
       args: {
         name: "YAML_FILE",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9290,7 +9290,7 @@ const completionSpec: Fig.Spec = {
         "Flatten _name_[] output resource slices in _KEY_ into separate records\nfor each item in each slice. Multiple keys and slices may be specified.\nThis also flattens keys for *--format* and *--filter*. For example,\n*--flatten=abc.def* flattens *abc.def[].ghi* references to\n*abc.def.ghi*. A resource record containing *abc.def[]* with N elements\nwill expand to N records in the flattened output. This flag interacts\nwith other flags that are applied in this order: *--flatten*,\n*--sort-by*, *--filter*, *--limit*",
       args: {
         name: "KEY",
-        description: "list",
+        description: "List",
         suggestions: [],
       },
     },
@@ -9300,7 +9300,7 @@ const completionSpec: Fig.Spec = {
         "Set the format for printing command output resources. The default is a\ncommand-specific human-friendly output format. The supported formats\nare: `config`, `csv`, `default`, `diff`, `disable`, `flattened`, `get`, `json`, `list`, `multi`, `none`, `object`, `table`, `text`, `value`, `yaml`. For more details run $ gcloud topic formats",
       args: {
         name: "FORMAT",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9314,7 +9314,7 @@ const completionSpec: Fig.Spec = {
         "For this gcloud invocation, all API requests will be made as the given service account instead of the currently selected account. This is done without needing to create, download, and activate a key for the account. In order to perform operations as the service account, your currently selected account must have an IAM role that includes the iam.serviceAccounts.getAccessToken permission for the service account. The roles/iam.serviceAccountTokenCreator role has this permission or you may create a custom role. Overrides the default *auth/impersonate_service_account* property value for this command invocation",
       args: {
         name: "SERVICE_ACCOUNT_EMAIL",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9329,7 +9329,7 @@ const completionSpec: Fig.Spec = {
         "The Google Cloud Platform project ID to use for this invocation. If\nomitted, then the current project is assumed; the current project can\nbe listed using `gcloud config list --format='text(core.project)'`\nand can be set using `gcloud config set project PROJECTID`.\n+\n`--project` and its fallback `core/project` property play two roles\nin the invocation. It specifies the project of the resource to\noperate on. It also specifies the project for API enablement check,\nquota, and billing. To specify a different project for quota and\nbilling, use `--billing-project` or `billing/quota_project` property",
       args: {
         name: "PROJECT_ID",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9344,7 +9344,7 @@ const completionSpec: Fig.Spec = {
         "Token used to route traces of service requests for investigation of issues. Overrides the default *core/trace_token* property value for this command invocation",
       args: {
         name: "TRACE_TOKEN",
-        description: "string",
+        description: "String",
         suggestions: [],
       },
     },
@@ -9359,7 +9359,7 @@ const completionSpec: Fig.Spec = {
         "Override the default verbosity for this command. Overrides the default *core/verbosity* property value for this command invocation. _VERBOSITY_ must be one of: *debug*, *info*, *warning*, *error*, *critical*, *none*",
       args: {
         name: "VERBOSITY",
-        description: "string",
+        description: "String",
         suggestions: ["debug", "info", "warning", "error", "critical", "none"],
       },
     },

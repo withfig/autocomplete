@@ -156,7 +156,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--quantum-task-arn",
-          description: "the ARN of the task to retrieve",
+          description: "The ARN of the task to retrieve",
           args: {
             name: "string",
           },
@@ -403,7 +403,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "pecify the keys for the tags to remove from the resource",
+            "Pecify the keys for the tags to remove from the resource",
           args: {
             name: "list",
           },

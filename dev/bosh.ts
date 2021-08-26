@@ -14,7 +14,7 @@ const deployments: Fig.Generator = {
       return parsedOutput.Tables[0].Rows.forEach((deployment) => {
         return {
           name: deployment.name,
-          description: "deployment",
+          description: "Deployment",
         };
       });
     } catch (e) {
@@ -25,7 +25,7 @@ const deployments: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "bosh",
-  description: "bosh cli to managed your bosh deployment",
+  description: "Bosh cli to managed your bosh deployment",
   subcommands: [
     {
       name: "add-blob",

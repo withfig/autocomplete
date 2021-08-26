@@ -134,7 +134,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "detect-entities",
       description:
-        "The DetectEntities operation is deprecated. You should use the DetectEntitiesV2 operation instead.  Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information ",
+        "The DetectEntities operation is deprecated. You should use the DetectEntitiesV2 operation instead.  Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information",
       options: [
         {
           name: "--text",

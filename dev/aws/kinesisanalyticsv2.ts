@@ -702,7 +702,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-creation-timestamp",
           description:
-            "The creation timestamp of the application snapshot to delete. You can retrieve this value using or ",
+            "The creation timestamp of the application snapshot to delete. You can retrieve this value using or",
           args: {
             name: "timestamp",
           },
@@ -828,7 +828,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--snapshot-name",
           description:
-            "The identifier of an application snapshot. You can retrieve this value using ",
+            "The identifier of an application snapshot. You can retrieve this value using",
           args: {
             name: "string",
           },

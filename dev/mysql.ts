@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "mysql",
-  description: "mysql is a terminal-based front-end to MySQL",
+  description: "Mysql is a terminal-based front-end to MySQL",
   args: {},
   options: [
     {
@@ -228,11 +228,11 @@ const completionSpec: Fig.Spec = {
         suggestions: [
           {
             name: "0",
-            description: "disable",
+            description: "Disable",
           },
           {
             name: "1",
-            description: "enable",
+            description: "Enable",
           },
         ],
       },

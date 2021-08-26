@@ -91,12 +91,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disable-email-notification",
           description:
-            "if set to true, then the member accounts do not receive email notifications. By default, this is set to false, and the member accounts receive email notifications",
+            "If set to true, then the member accounts do not receive email notifications. By default, this is set to false, and the member accounts receive email notifications",
         },
         {
           name: "--no-disable-email-notification",
           description:
-            "if set to true, then the member accounts do not receive email notifications. By default, this is set to false, and the member accounts receive email notifications",
+            "If set to true, then the member accounts do not receive email notifications. By default, this is set to false, and the member accounts receive email notifications",
         },
         {
           name: "--accounts",

@@ -432,7 +432,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--coc",
           description:
-            " Add a CODE_OF_CONDUCT.md file to the root of the generated project",
+            "Add a CODE_OF_CONDUCT.md file to the root of the generated project",
         },
         {
           name: "--no-coc",

@@ -356,7 +356,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "build",
-      description: "compute all outputs",
+      description: "Compute all outputs",
       options: sharedOptions,
     },
     {

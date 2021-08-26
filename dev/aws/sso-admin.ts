@@ -165,7 +165,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-permission-set",
       description:
-        "Creates a permission set within a specified SSO instance.  To grant users and groups access to AWS account resources, use  CreateAccountAssignment ",
+        "Creates a permission set within a specified SSO instance.  To grant users and groups access to AWS account resources, use  CreateAccountAssignment",
       options: [
         {
           name: "--name",

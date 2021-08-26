@@ -952,7 +952,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--channel-id",
-          description: "channel ID",
+          description: "Channel ID",
           args: {
             name: "string",
           },
@@ -2315,7 +2315,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--channel-id",
-          description: "channel ID",
+          description: "Channel ID",
           args: {
             name: "string",
           },
@@ -2755,7 +2755,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--channel-id",
-              description: "channel ID",
+              description: "Channel ID",
               args: {
                 name: "string",
               },
@@ -2786,7 +2786,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--channel-id",
-              description: "channel ID",
+              description: "Channel ID",
               args: {
                 name: "string",
               },
@@ -2817,7 +2817,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--channel-id",
-              description: "channel ID",
+              description: "Channel ID",
               args: {
                 name: "string",
               },
@@ -2848,7 +2848,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--channel-id",
-              description: "channel ID",
+              description: "Channel ID",
               args: {
                 name: "string",
               },

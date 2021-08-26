@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "cp",
-  description: "copy files and directories",
+  description: "Copy files and directories",
   args: [
     {
       name: "source",

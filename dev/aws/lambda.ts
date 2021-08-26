@@ -1647,7 +1647,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             generators: generators.listFilesystemConfigs,
-            description: "Arn=string,LocalMountPath=string ",
+            description: "Arn=string,LocalMountPath=string",
           },
         },
         {
@@ -4431,7 +4431,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             generators: generators.listFilesystemConfigs,
-            description: "Arn=string,LocalMountPath=string ",
+            description: "Arn=string,LocalMountPath=string",
           },
         },
         {

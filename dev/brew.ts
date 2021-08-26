@@ -29,7 +29,7 @@ const brewInfo = (name: string): Fig.Subcommand => ({
         return out.split("\n").map((formula) => {
           return {
             name: formula.replace(".rb", ""),
-            description: "formula",
+            description: "Formula",
             icon: "🍺",
             priority:
               (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
@@ -216,7 +216,7 @@ const completionSpec: Fig.Spec = {
             return out.split("\n").map((formula) => {
               return {
                 name: formula.replace(".rb", ""),
-                description: "formula",
+                description: "Formula",
                 icon: "🍺",
                 priority:
                   (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"

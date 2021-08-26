@@ -22,7 +22,7 @@ const globalList: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "pyenv",
-  description: "pyenv",
+  description: "Pyenv",
   args: {},
   options: [
     {

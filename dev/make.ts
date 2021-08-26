@@ -6,7 +6,7 @@ const listTargets: Fig.Generator = {
     for (let i = 1; i < lines.length; i++) {
       targets.push({
         name: lines[i].trim(),
-        description: "make target",
+        description: "Make target",
         icon: "🎯",
         priority: 80,
       });
@@ -132,7 +132,7 @@ const completionSpec: Fig.Spec = {
         name: "file",
         template: "filepaths",
       },
-      description: "consider file to be very old and don't remake it",
+      description: "Consider file to be very old and don't remake it",
     },
     {
       name: "--no-print-directory",

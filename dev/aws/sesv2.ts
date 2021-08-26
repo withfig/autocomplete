@@ -1971,7 +1971,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--reasons",
           description:
-            "The factors that caused the email address to be added to ",
+            "The factors that caused the email address to be added to",
           args: {
             name: "list",
           },

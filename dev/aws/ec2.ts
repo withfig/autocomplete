@@ -6,7 +6,7 @@ const postProcessAWS: Fig.Generator["postProcess"] = (out) => {
     return {
       name: instance.replace(/[\[\]'"]+/g, "").trim(),
       icon: "fig://icon?type=aws",
-      description: "instance",
+      description: "Instance",
     };
   });
 };
@@ -11719,7 +11719,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--filters",
-          description: "the filters for the export tasks",
+          description: "The filters for the export tasks",
           args: {
             name: "list",
           },
@@ -24909,7 +24909,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "modify-traffic-mirror-filter-network-services",
       description:
-        "Allows or restricts mirroring network services.  By default, Amazon DNS network services are not eligible for Traffic Mirror. Use AddNetworkServices to add network services to a Traffic Mirror filter. When a network service is added to the Traffic Mirror filter, all traffic related to that network service will be mirrored. When you no longer want to mirror network services, use RemoveNetworkServices to remove the network services from the Traffic Mirror filter.  For information about filter rule properties, see Network Services in the Traffic Mirroring User Guide ",
+        "Allows or restricts mirroring network services.  By default, Amazon DNS network services are not eligible for Traffic Mirror. Use AddNetworkServices to add network services to a Traffic Mirror filter. When a network service is added to the Traffic Mirror filter, all traffic related to that network service will be mirrored. When you no longer want to mirror network services, use RemoveNetworkServices to remove the network services from the Traffic Mirror filter.  For information about filter rule properties, see Network Services in the Traffic Mirroring User Guide",
       options: [
         {
           name: "--traffic-mirror-filter-id",
@@ -26246,7 +26246,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "monitor-instances",
       description:
-        "Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see Monitoring your instances and volumes in the Amazon EC2 User Guide. To disable detailed monitoring, see ",
+        "Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see Monitoring your instances and volumes in the Amazon EC2 User Guide. To disable detailed monitoring, see",
       options: [
         {
           name: "--instance-ids",
@@ -26782,7 +26782,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "register-instance-event-notification-attributes",
       description:
-        "Registers a set of tag keys to include in scheduled event notifications for your resources.  To remove tags, use ",
+        "Registers a set of tag keys to include in scheduled event notifications for your resources.  To remove tags, use",
       options: [
         {
           name: "--dry-run",
@@ -30317,7 +30317,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--filters",
-              description: "the filters for the export tasks",
+              description: "The filters for the export tasks",
               args: {
                 name: "list",
               },
@@ -30355,7 +30355,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--filters",
-              description: "the filters for the export tasks",
+              description: "The filters for the export tasks",
               args: {
                 name: "list",
               },

@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "ps",
-  description: "report a snapshot of the current processes",
+  description: "Report a snapshot of the current processes",
   options: [
     { name: ["-A", "-e"], description: "Select all processes" },
     {
@@ -133,7 +133,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--width",
-      description: "set screen width",
+      description: "Set screen width",
       args: { name: "n" },
     },
     {

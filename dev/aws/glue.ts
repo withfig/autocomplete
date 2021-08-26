@@ -6433,7 +6433,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--catalog-id",
-          description: "A unique identifier, consisting of  account_id ",
+          description: "A unique identifier, consisting of  account_id",
           args: {
             name: "string",
           },

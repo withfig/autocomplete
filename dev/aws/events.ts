@@ -1280,7 +1280,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit",
           description:
-            "pecifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results",
+            "Pecifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results",
           args: {
             name: "integer",
           },

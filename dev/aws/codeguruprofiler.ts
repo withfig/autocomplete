@@ -778,7 +778,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "post-agent-profile",
       description:
-        "Submits profiling data to an aggregated profile of a profiling group. To get an aggregated profile that is created with this profiling data, use  GetProfile ",
+        "Submits profiling data to an aggregated profile of a profiling group. To get an aggregated profile that is created with this profiling data, use  GetProfile",
       options: [
         {
           name: "--agent-profile",
@@ -928,7 +928,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-permission",
       description:
-        "Removes permissions from a profiling group's resource-based policy that are provided using an action group. The one supported action group that can be removed is agentPermission which grants ConfigureAgent and PostAgent permissions. For more information, see Resource-based policies in CodeGuru Profiler in the Amazon CodeGuru Profiler User Guide,  ConfigureAgent , and  PostAgentProfile ",
+        "Removes permissions from a profiling group's resource-based policy that are provided using an action group. The one supported action group that can be removed is agentPermission which grants ConfigureAgent and PostAgent permissions. For more information, see Resource-based policies in CodeGuru Profiler in the Amazon CodeGuru Profiler User Guide,  ConfigureAgent , and  PostAgentProfile",
       options: [
         {
           name: "--action-group",

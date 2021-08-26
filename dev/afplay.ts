@@ -18,7 +18,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "print help",
+      description: "Print help",
     },
     {
       name: "--leaks",

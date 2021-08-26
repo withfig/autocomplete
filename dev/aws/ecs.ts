@@ -439,7 +439,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -482,7 +482,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -522,7 +522,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "capacityProvider=string,weight=integer,base=integer",
+            description: "CapacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -584,7 +584,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "targetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
+              "TargetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
           },
         },
         {
@@ -595,7 +595,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "registryArn=string,port=integer,containerName=string,containerPort=integer",
+              "RegistryArn=string,port=integer,containerName=string,containerPort=integer",
           },
         },
         {
@@ -630,7 +630,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "capacityProvider=string,weight=integer,base=integer",
+            description: "CapacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -666,7 +666,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "type=distinctInstance|memberOf,expression=string",
+            description: "Type=distinctInstance|memberOf,expression=string",
           },
         },
         {
@@ -676,7 +676,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "type=random|spread|binpack,field=string",
+            description: "Type=random|spread|binpack,field=string",
           },
         },
         {
@@ -686,7 +686,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=ENABLED|DISABLED}",
+              "AwsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=ENABLED|DISABLED}",
           },
         },
         {
@@ -721,7 +721,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -820,7 +820,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
+              "AwsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -831,7 +831,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "targetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
+              "TargetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
           },
         },
         {
@@ -842,7 +842,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "registryArn=string,port=integer,containerName=string,containerPort=integer",
+              "RegistryArn=string,port=integer,containerName=string,containerPort=integer",
           },
         },
         {
@@ -861,7 +861,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "capacityProvider=string,weight=integer,base=integer",
+            description: "CapacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -878,7 +878,7 @@ const completionSpec: Fig.Spec = {
             "A floating-point percentage of the desired number of tasks to place and keep running in the task set",
           args: {
             name: "structure",
-            description: "value=double,unit=string",
+            description: "Value=double,unit=string",
           },
         },
         {
@@ -896,7 +896,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -984,7 +984,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "name=string,value=string,targetType=string,targetId=string",
+              "Name=string,value=string,targetType=string,targetId=string",
           },
         },
         {
@@ -2653,7 +2653,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "name=string,value=string,targetType=string,targetId=string",
+              "Name=string,value=string,targetType=string,targetId=string",
           },
         },
         {
@@ -2707,7 +2707,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "capacityProvider=string,weight=integer,base=integer",
+            description: "CapacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -2767,7 +2767,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "name=string,type=string,doubleValue=double,longValue=long,integerValue=integer,stringSetValue=string,string",
+              "Name=string,type=string,doubleValue=double,longValue=long,integerValue=integer,stringSetValue=string,string",
           },
         },
         {
@@ -2777,7 +2777,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "agentVersion=string,agentHash=string,dockerVersion=string",
+              "AgentVersion=string,agentHash=string,dockerVersion=string",
           },
         },
         {
@@ -2797,7 +2797,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "name=string,value=string,targetType=string,targetId=string",
+              "Name=string,value=string,targetType=string,targetId=string",
           },
         },
         {
@@ -2807,7 +2807,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "id=string,type=GPU",
+            description: "Id=string,type=GPU",
           },
         },
         {
@@ -2817,7 +2817,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -2908,7 +2908,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "type=string,expression=string",
+            description: "Type=string,expression=string",
           },
         },
         {
@@ -2943,7 +2943,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -2971,7 +2971,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "type=string,containerName=string,properties=[{name=string,value=string},{name=string,value=string}]",
+              "Type=string,containerName=string,properties=[{name=string,value=string},{name=string,value=string}]",
           },
         },
         {
@@ -2981,7 +2981,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "deviceName=string,deviceType=string",
+            description: "DeviceName=string,deviceType=string",
           },
         },
         {
@@ -3016,7 +3016,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "capacityProvider=string,weight=integer,base=integer",
+            description: "CapacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -3080,7 +3080,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
+              "AwsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -3159,7 +3159,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -3251,7 +3251,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
+              "AwsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -3295,7 +3295,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -3404,7 +3404,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "attachmentArn=string,status=string",
+            description: "AttachmentArn=string,status=string",
           },
         },
         {
@@ -3578,7 +3578,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "containerName=string,managedAgentName=string,status=string,reason=string",
+              "ContainerName=string,managedAgentName=string,status=string,reason=string",
           },
         },
         {
@@ -3651,7 +3651,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "key=string,value=string",
+            description: "Key=string,value=string",
           },
         },
         {
@@ -3740,7 +3740,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "managedScaling={status=string,targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer,instanceWarmupPeriod=integer},managedTerminationProtection=string",
+              "ManagedScaling={status=string,targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer,instanceWarmupPeriod=integer},managedTerminationProtection=string",
           },
         },
         {
@@ -3999,7 +3999,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "capacityProvider=string,weight=integer,base=integer",
+            description: "CapacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -4023,7 +4023,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
+              "AwsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -4199,7 +4199,7 @@ const completionSpec: Fig.Spec = {
             "A floating-point percentage of the desired number of tasks to place and keep running in the task set",
           args: {
             name: "structure",
-            description: "value=double,unit=string",
+            description: "Value=double,unit=string",
           },
         },
         {

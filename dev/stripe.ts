@@ -1285,7 +1285,7 @@ const completionSpec: Fig.Spec = {
       description: "Triggers webhook events to conduct local testing",
       args: {
         name: "event",
-        description: "webhook events",
+        description: "Webhook events",
         suggestions: [...webhookSuggestions],
       },
       options: [
@@ -1428,7 +1428,7 @@ const completionSpec: Fig.Spec = {
       description: "Starts an HTTP server to serve static files",
       args: {
         name: "base path",
-        description: "path of the directory to serve files from",
+        description: "Path of the directory to serve files from",
       },
       options: [
         {

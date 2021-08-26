@@ -4,7 +4,7 @@ const completionSpec: Fig.Spec = {
   args: [
     {
       name: "name",
-      description: "name of archive",
+      description: "Name of archive",
     },
     {
       name: "dir",

@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "format",
   description:
-    "dotnet format is a code formatter that applies style preferences to a project or solution. Preferences will be read from an .editorconfig file, if present, otherwise a default set of preferences will be used",
+    "Dotnet format is a code formatter that applies style preferences to a project or solution. Preferences will be read from an .editorconfig file, if present, otherwise a default set of preferences will be used",
   args: {
     name: "project",
     description:
@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--diagnostics",
       description:
-        "A space-separated list of diagnostic IDs to use as a filter when fixing code style or third party issues. Default value is whichever IDs are listed in the editorconfig file. ",
+        "A space-separated list of diagnostic IDs to use as a filter when fixing code style or third party issues. Default value is whichever IDs are listed in the editorconfig file",
       args: {
         name: "diagnostics",
       },

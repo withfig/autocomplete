@@ -527,16 +527,16 @@ const completionSpec: Fig.Spec = {
 
     {
       name: "help",
-      description: "display help for <%= config.bin %>",
+      description: "Display help for <%= config.bin %>",
       options: [
         {
           name: "--all",
-          description: "see all commands in CLI",
+          description: "See all commands in CLI",
         },
       ],
       args: {
         name: "command",
-        description: "command to show help for",
+        description: "Command to show help for",
         isOptional: true,
       },
     },

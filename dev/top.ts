@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "top",
-  description: "display Linux tasks",
+  description: "Display Linux tasks",
   options: [
     {
       name: ["-h", "-v"],

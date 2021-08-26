@@ -24,7 +24,7 @@ const bazelBuildFiles: Fig.Generator = {
       } else if (isBazelTarget) {
         targets.push({
           name: currPath + isBazelTarget[1],
-          description: "bazel target",
+          description: "Bazel target",
           icon: "🎯",
           priority: 80,
         });

@@ -8,7 +8,7 @@ const completionSpec: Fig.Spec = {
     suggestions: [
       {
         name: "-",
-        description: "switch to the last used folder",
+        description: "Switch to the last used folder",
         hidden: true,
       },
     ],

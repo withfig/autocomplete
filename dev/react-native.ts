@@ -143,12 +143,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "builds the javascript bundle for offline use",
+      description: "Builds the javascript bundle for offline use",
       name: "bundle",
       options: [
         {
@@ -320,7 +320,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -372,7 +372,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -380,12 +380,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "uninstall and unlink native dependencies",
+      description: "Uninstall and unlink native dependencies",
       name: "uninstall",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -393,19 +393,19 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "starts the webserver",
+      description: "Starts the webserver",
       name: "start",
       options: [
         {
           name: "--port",
-          description: "port on which to listen to",
+          description: "Port on which to listen to",
           args: {
             name: "free port",
           },
         },
         {
           name: "--host",
-          description: "change the default host",
+          description: "Change the default host",
           args: {
             name: "new host",
           },
@@ -530,13 +530,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        'builds javascript as a "Random Access Module" bundle for offline use',
+        'Builds javascript as a "Random Access Module" bundle for offline use',
       name: "ram-bundle",
       options: [
         {
@@ -712,12 +712,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "links assets and optionally native modules",
+      description: "Links assets and optionally native modules",
       name: "link",
       options: [
         {
@@ -734,7 +734,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -749,7 +749,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -764,17 +764,17 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "install and link native dependencies",
+      description: "Install and link native dependencies",
       name: "install",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -788,12 +788,12 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "unlink native dependency",
+      description: "Unlink native dependency",
       name: "unlink",
       options: [
         {
@@ -806,7 +806,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -814,12 +814,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "starts iOS device syslog tail",
+      description: "Starts iOS device syslog tail",
       name: "log-ios",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -857,14 +857,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: 'default: "8081"',
+          description: 'Default: "8081"',
           args: {
             name: "free port",
           },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -874,18 +874,18 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "starts logkitty",
+      description: "Starts logkitty",
       name: "log-android",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        "builds your app and starts it on a connected Android emulator or device",
+        "Builds your app and starts it on a connected Android emulator or device",
       name: "run-android",
       options: [
         {
@@ -949,7 +949,7 @@ const completionSpec: Fig.Spec = {
           name: "--deviceId",
           icon: ANDROID_ICON,
           description:
-            'builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line)',
+            'Builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line)',
           args: {
             name: "deviceId",
             generators: androidGetDevicesGenerator,
@@ -961,7 +961,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: "default: 8081",
+          description: "Default: 8081",
           args: {
             name: "free port",
           },
@@ -992,12 +992,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "builds your app and starts it on iOS simulator",
+      description: "Builds your app and starts it on iOS simulator",
       name: "run-ios",
       options: [
         {
@@ -1065,7 +1065,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: "default: 8081",
+          description: "Default: 8081",
           args: {
             name: "free port",
           },
@@ -1080,7 +1080,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -1097,7 +1097,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "output usage information",
+      description: "Output usage information",
     },
   ],
 };

@@ -492,7 +492,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "extendedKeyUsage=string,string,keyUsage=string,string,keyTypes=string,string",
+              "ExtendedKeyUsage=string,string,keyUsage=string,string,keyTypes=string,string",
           },
         },
         {

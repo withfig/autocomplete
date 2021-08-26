@@ -16,7 +16,7 @@ const projectGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "store",
   description:
-    "dotnet store stores the specified assemblies in the runtime package store. By default, assemblies are optimized for the target runtime and framework. For more information, see the runtime package store topic",
+    "Dotnet store stores the specified assemblies in the runtime package store. By default, assemblies are optimized for the target runtime and framework. For more information, see the runtime package store topic",
   options: [
     {
       name: ["-f", "--framework"],

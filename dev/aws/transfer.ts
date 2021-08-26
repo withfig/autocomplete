@@ -121,7 +121,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--home-directory",
           description:
-            "The landing directory (folder) for a user when they log in to the server using the client. An example is  your-Amazon-S3-bucket-name&gt;/home/username ",
+            "The landing directory (folder) for a user when they log in to the server using the client. An example is  your-Amazon-S3-bucket-name&gt;/home/username",
           args: {
             name: "string",
           },

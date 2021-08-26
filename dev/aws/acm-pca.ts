@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) of the CA to be audited. This is of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) of the CA to be audited. This is of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -122,7 +122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) of the CA that grants the permissions. You can find the ARN by calling the ListCertificateAuthorities action. This must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) of the CA that grants the permissions. You can find the ARN by calling the ListCertificateAuthorities action. This must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -177,7 +177,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -217,7 +217,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Number (ARN) of the private CA that issued the permissions. You can find the CA's ARN by calling the ListCertificateAuthorities action. This must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Number (ARN) of the private CA that issued the permissions. You can find the CA's ARN by calling the ListCertificateAuthorities action. This must have the following form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -296,7 +296,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -328,7 +328,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) of the private CA. This must be of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) of the private CA. This must be of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -368,7 +368,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -408,7 +408,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-authority-arn",
           description:
-            "The Amazon Resource Name (ARN) of your private CA. This is of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+            "The Amazon Resource Name (ARN) of your private CA. This is of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
           args: {
             name: "string",
           },
@@ -1104,7 +1104,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--certificate-authority-arn",
               description:
-                "The Amazon Resource Name (ARN) of the private CA. This must be of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+                "The Amazon Resource Name (ARN) of the private CA. This must be of the form:  arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
               args: {
                 name: "string",
               },
@@ -1176,7 +1176,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--certificate-authority-arn",
               description:
-                "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 ",
+                "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:   arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
               args: {
                 name: "string",
               },

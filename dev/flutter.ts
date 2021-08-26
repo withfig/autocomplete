@@ -329,7 +329,7 @@ const withDriverTest = [
   {
     name: "--with-driver-test",
     description:
-      "(Deprecated) Also add a flutter_driver dependency and generate a sample 'flutter drive' test. This flag has been deprecated, instead see package:integration_test at https://pub.dev/packages/integration_test ",
+      "(Deprecated) Also add a flutter_driver dependency and generate a sample 'flutter drive' test. This flag has been deprecated, instead see package:integration_test at https://pub.dev/packages/integration_test",
   },
   {
     name: "--no-with-driver-test",
@@ -618,7 +618,7 @@ const run = [
   {
     name: "--endless-trace-buffer",
     description:
-      ' Enable tracing to the endless tracer. This is useful when recording huge amounts of traces. If we need to use endless buffer to record startup traces, we can combine the ("--trace-startup"). For example, flutter run --trace-startup --endless-trace-buffer',
+      'Enable tracing to the endless tracer. This is useful when recording huge amounts of traces. If we need to use endless buffer to record startup traces, we can combine the ("--trace-startup"). For example, flutter run --trace-startup --endless-trace-buffer',
   },
   {
     name: "--trace-systrace",
@@ -715,7 +715,7 @@ const completionSpec = {
         {
           name: "--depfile",
           description:
-            " A file path where a depfile will be written. This contains all build inputs and outputs in a make style syntax",
+            "A file path where a depfile will be written. This contains all build inputs and outputs in a make style syntax",
         },
         {
           name: "--build-inputs",
@@ -1485,7 +1485,7 @@ const completionSpec = {
           name: "--type",
 
           description:
-            "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri ",
+            "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri",
           args: {
             name: "type",
             suggestions: [
@@ -1668,7 +1668,7 @@ const completionSpec = {
         {
           name: "--dds-port",
           description:
-            " When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port",
+            "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port",
         },
       ],
     },

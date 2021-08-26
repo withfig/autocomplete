@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "ls",
-  description: "list directory contents",
+  description: "List directory contents",
   args: {
     isVariadic: true,
     template: ["filepaths", "folders"],
@@ -84,7 +84,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-g",
       description:
-        "This option is only available for compatibility with POSIX; it is used to display the group name in the long (-l) format output (the owner name is suppressed). ",
+        "This option is only available for compatibility with POSIX; it is used to display the group name in the long (-l) format output (the owner name is suppressed)",
     },
 
     {

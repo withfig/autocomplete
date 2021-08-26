@@ -63,14 +63,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "help",
-      description: "display help for command",
+      description: "Display help for command",
       args: {},
     },
   ],
   options: [
     {
       name: "--version",
-      description: "output the version number",
+      description: "Output the version number",
       args: {},
     },
     {
@@ -115,7 +115,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--env",
-      description: "environment, default: process.env.NODE_ENV || development",
+      description: "Environment, default: process.env.NODE_ENV || development",
       args: {
         name: "environment",
       },
@@ -137,7 +137,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--help",
-      description: "display help for command",
+      description: "Display help for command",
       args: {},
     },
   ],

@@ -557,7 +557,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maximum number of aliases to return in the response. The default is 50. ",
+            "The maximum number of aliases to return in the response. The default is 50",
           args: {
             name: "integer",
           },

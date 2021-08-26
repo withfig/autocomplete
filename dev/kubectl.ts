@@ -922,7 +922,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--embed-certs",
-              description: "embed-certs for the cluster entry in kubeconfig",
+              description: "Embed-certs for the cluster entry in kubeconfig",
             },
             {
               name: "--server",
@@ -1424,7 +1424,7 @@ const completionSpec: Fig.Spec = {
               name: "--restart",
               insertValue: "--restart=",
               description:
-                "job's restart policy. supported values: OnFailure, Never",
+                "Job's restart policy. supported values: OnFailure, Never",
               args: {
                 suggestions: ["OnFailure", "Never"],
               },
@@ -1676,7 +1676,7 @@ const completionSpec: Fig.Spec = {
               name: "--description",
               insertValue: "--description=",
               description:
-                "description is an arbitrary string that usually provides guidelines on when this priority class should be used",
+                "Description is an arbitrary string that usually provides guidelines on when this priority class should be used",
               args: {
                 name: "Description",
               },
@@ -1684,13 +1684,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "--global-default",
               description:
-                "global-default specifies whether this PriorityClass should be considered as the default priority",
+                "Global-default specifies whether this PriorityClass should be considered as the default priority",
             },
             {
               name: "--preemption-policy",
 
               description:
-                "preemption-policy is the policy for preempting pods with lower priority",
+                "Preemption-policy is the policy for preempting pods with lower priority",
               args: {
                 name: "Preemption Policy",
               },
@@ -1708,7 +1708,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--value",
               insertValue: "--value=",
-              description: "the value of this priority class",
+              description: "The value of this priority class",
               args: {
                 name: "INT",
               },
@@ -2719,11 +2719,11 @@ const completionSpec: Fig.Spec = {
         sharedOpts.output,
         {
           name: "--allow-id-changes",
-          description: "enable changes to a resourceId",
+          description: "Enable changes to a resourceId",
         },
         {
           name: "--enable-alpha-plugins",
-          description: "enable kustomize plugins",
+          description: "Enable kustomize plugins",
         },
         {
           name: "--enable-managedby-label",
@@ -2732,7 +2732,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--env", "-e"],
           description:
-            "a list of environment variables to be used by functions",
+            "A list of environment variables to be used by functions",
           insertValue: "--env=",
           args: {
             template: "filepaths",
@@ -2741,23 +2741,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--load-restrictor",
           description:
-            "if set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization",
+            "If set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization",
           insertValue: "--load-restrictor=",
           args: {},
         },
         {
           name: "--mount",
-          description: "a list of storage options read from the filesystem",
+          description: "A list of storage options read from the filesystem",
           insertValue: "--mount=",
           args: {},
         },
         {
           name: "--network",
-          description: "enable network access for functions that declare it",
+          description: "Enable network access for functions that declare it",
         },
         {
           name: "--network-name",
-          description: "the docker network to run the container in",
+          description: "The docker network to run the container in",
           insertValue: "--network-name=",
           args: {},
         },
@@ -3001,7 +3001,7 @@ const completionSpec: Fig.Spec = {
           name: "--keepalive",
           insertValue: "--keepalive=",
           description:
-            "keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive",
+            "Keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive",
           args: {},
         },
         {
@@ -3015,7 +3015,7 @@ const completionSpec: Fig.Spec = {
           name: "--reject-methods",
           insertValue: "--reject-methods=",
           description:
-            "Regular expression for HTTP methods that the proxy should reject (example --reject-methods='POST,PUT,PATCH'). ",
+            "Regular expression for HTTP methods that the proxy should reject (example --reject-methods='POST,PUT,PATCH')",
           args: {},
         },
         {

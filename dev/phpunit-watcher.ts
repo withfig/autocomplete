@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--filter",
-          description: "watch a specific test",
+          description: "Watch a specific test",
           args: {
             generators: tests,
             name: "filter",

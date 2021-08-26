@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "clean",
       description: "Clears the cache and deletes all artifacts",
-      options: [{ name: "--global", description: "clear the global cache" }],
+      options: [{ name: "--global", description: "Clear the global cache" }],
     },
     {
       name: "compile",

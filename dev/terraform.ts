@@ -8,7 +8,7 @@ const workspaceList: Fig.Generator = {
         name: workspace.replace("* ", "").trim(),
         // UPDATE: Update this after the Icons API is available publicly!
         icon: "fig://icon?type=terraform",
-        description: "workspace",
+        description: "Workspace",
       };
     });
   },
@@ -24,7 +24,7 @@ const addressList: Fig.Generator = {
       return {
         name: addresses.replace("* ", "").trim(),
         icon: "fig://icon?type=terraform",
-        description: "address",
+        description: "Address",
       };
     });
   },
@@ -334,7 +334,7 @@ const otherCommands: Fig.Subcommand[] = [
       {
         name: "new",
         insertValue: "new '{cursor}'",
-        description: "create a new workspace",
+        description: "Create a new workspace",
         args: {
           name: "workspace name",
         },
@@ -370,17 +370,17 @@ const otherCommands: Fig.Subcommand[] = [
       },
       {
         name: "show",
-        description: "display the current workspace",
+        description: "Display the current workspace",
         options: [...globalOptions],
       },
       {
         name: "list",
-        description: "list the workspace",
+        description: "List the workspace",
         options: [...globalOptions],
       },
       {
         name: "delete",
-        description: "delete the specified workspace",
+        description: "Delete the specified workspace",
         args: {
           generators: workspaceList,
           name: "workspace name",
@@ -389,7 +389,7 @@ const otherCommands: Fig.Subcommand[] = [
       },
       {
         name: "select",
-        description: "change the current working workspace",
+        description: "Change the current working workspace",
         args: {
           generators: workspaceList,
         },

@@ -1,19 +1,19 @@
 // args
 const version: Fig.Arg = {
   name: "version",
-  description: "node version",
+  description: "Node version",
   suggestions: [
     {
       name: "node",
-      description: "the latest version of node",
+      description: "The latest version of node",
     },
     {
       name: "iojs",
-      description: "the latest version of io.js",
+      description: "The latest version of io.js",
     },
     {
       name: "system",
-      description: "system-installed version of node",
+      description: "System-installed version of node",
     },
   ],
 };
@@ -42,7 +42,7 @@ const ltsName: Fig.Arg = {
 
 const colorCodes: Fig.Arg = {
   name: "color codes",
-  description: 'using format "yMeBg"',
+  description: 'Using format "yMeBg"',
 };
 
 // options
@@ -232,7 +232,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "pattern or name",
-          description: "pattern or name",
+          description: "Pattern or name",
         },
         {
           name: "version",

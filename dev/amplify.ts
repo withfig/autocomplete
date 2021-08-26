@@ -3,7 +3,7 @@ const envNameGenerator: Fig.Generator = {
   postProcess: function (out) {
     const envContent = JSON.parse(out);
     return envContent["envs"].map((env: string) => {
-      return { name: env, description: "environment" };
+      return { name: env, description: "Environment" };
     });
   },
 };

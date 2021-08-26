@@ -48,7 +48,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-m",
-      description: "module",
+      description: "Module",
       args: {
         name: "python module",
         isModule: "python/",

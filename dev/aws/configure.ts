@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--profile",
-          description: "profile-name",
+          description: "Profile-name",
         },
       ],
     },

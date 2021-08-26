@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "cut",
-  description: "cut out selected portions of each line of a file",
+  description: "Cut out selected portions of each line of a file",
   args: {
     template: "filepaths",
     isOptional: true,
@@ -9,46 +9,46 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "-b",
-      description: "byte positions as a comma or - separated list of numbers",
+      description: "Byte positions as a comma or - separated list of numbers",
       args: {
         name: "list",
-        description: "specifies byte positions",
+        description: "Specifies byte positions",
       },
     },
     {
       name: "-c",
-      description: "column positions as a comma or - separated list of numbers",
+      description: "Column positions as a comma or - separated list of numbers",
       args: {
         name: "list",
-        description: "specifies column positions",
+        description: "Specifies column positions",
       },
     },
     {
       name: "-f",
-      description: "field positions as a comma or - separated list of numbers",
+      description: "Field positions as a comma or - separated list of numbers",
       args: {
         name: "list",
-        description: "specifies column positions",
+        description: "Specifies column positions",
       },
     },
     {
       name: "-n",
-      description: "do not split multi-byte characters",
+      description: "Do not split multi-byte characters",
     },
     {
       name: "-d",
       description:
-        "use delim as the field delimiter character instead of the tab character",
+        "Use delim as the field delimiter character instead of the tab character",
       args: {
         name: "delim",
-        description: "field deliminator to use instead of the tab character",
+        description: "Field deliminator to use instead of the tab character",
         isOptional: true,
       },
     },
     {
       name: "-s",
       description:
-        "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified",
+        "Suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified",
     },
   ],
 };

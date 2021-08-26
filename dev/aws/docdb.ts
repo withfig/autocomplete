@@ -50,7 +50,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-name",
           description:
-            "The Amazon DocumentDB resource that the tags are added to. This value is an Amazon Resource Name ",
+            "The Amazon DocumentDB resource that the tags are added to. This value is an Amazon Resource Name",
           args: {
             name: "string",
           },

@@ -183,7 +183,7 @@ const logLevel: Fig.Option = {
 
 const nodeDistMirror: Fig.Option = {
   name: "--node-dist-mirror",
-  description: "https://nodejs.org/dist/ mirror",
+  description: "Https://nodejs.org/dist/ mirror",
   args: {
     name: "nodeDistMirror",
     default: "https://nodejs.org/dist",

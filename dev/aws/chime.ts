@@ -957,7 +957,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-meeting",
       description:
-        "Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see Amazon Chime SDK Media Regions in the Amazon Chime Developer Guide . For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see Amazon Chime SDK Media Regions in the Amazon Chime Developer Guide . For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--client-request-token",
@@ -984,7 +984,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--media-region",
           description:
-            "The Region in which to create the meeting. Default: us-east-1.   Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1 , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1 , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1 , us-east-2 , us-west-1 , us-west-2 ",
+            "The Region in which to create the meeting. Default: us-east-1.   Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1 , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1 , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1 , us-east-2 , us-west-1 , us-west-2",
           args: {
             name: "string",
           },
@@ -1080,7 +1080,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-meeting-with-attendees",
       description:
-        "Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see Amazon Chime SDK Media Regions in the Amazon Chime Developer Guide . For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see Amazon Chime SDK Media Regions in the Amazon Chime Developer Guide . For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--client-request-token",
@@ -1107,7 +1107,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--media-region",
           description:
-            "The Region in which to create the meeting. Default: us-east-1 .   Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1 , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1 , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1 , us-east-2 , us-west-1 , us-west-2 ",
+            "The Region in which to create the meeting. Default: us-east-1 .   Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1 , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1 , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1 , us-east-2 , us-west-1 , us-west-2",
           args: {
             name: "string",
           },
@@ -1592,7 +1592,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--aws-region",
           description:
-            "The AWS Region in which the Amazon Chime Voice Connector is created. Default value: us-east-1 ",
+            "The AWS Region in which the Amazon Chime Voice Connector is created. Default value: us-east-1",
           args: {
             name: "string",
           },
@@ -1828,7 +1828,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-attendee",
       description:
-        "Deletes an attendee from the specified Amazon Chime SDK meeting and deletes their JoinToken . Attendees are automatically deleted when a Amazon Chime SDK meeting is deleted. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Deletes an attendee from the specified Amazon Chime SDK meeting and deletes their JoinToken . Attendees are automatically deleted when a Amazon Chime SDK meeting is deleted. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--meeting-id",
@@ -2696,7 +2696,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-app-instance-user",
-      description: "Returns the full details of an AppInstanceUser ",
+      description: "Returns the full details of an AppInstanceUser",
       options: [
         {
           name: "--app-instance-user-arn",
@@ -3271,7 +3271,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-attendee",
       description:
-        "Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--meeting-id",
@@ -3455,7 +3455,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-meeting",
       description:
-        "Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--meeting-id",
@@ -3633,7 +3633,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-retention-settings",
       description:
-        "Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see Managing Chat Retention Policies in the Amazon Chime Administration Guide ",
+        "Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see Managing Chat Retention Policies in the Amazon Chime Administration Guide",
       options: [
         {
           name: "--account-id",
@@ -3933,7 +3933,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-voice-connector-group",
       description:
-        "Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated VoiceConnectorItems ",
+        "Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated VoiceConnectorItems",
       options: [
         {
           name: "--voice-connector-group-id",
@@ -4444,7 +4444,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-attendees",
       description:
-        "Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--meeting-id",
@@ -4988,7 +4988,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-meetings",
       description:
-        "Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide ",
+        "Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see Using the Amazon Chime SDK in the Amazon Chime Developer Guide",
       options: [
         {
           name: "--next-token",
@@ -5768,7 +5768,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-retention-settings",
       description:
-        "Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see Logging Amazon Chime API Calls with AWS CloudTrail in the Amazon Chime Administration Guide .   To turn off existing retention settings, remove the number of days from the corresponding RetentionDays field in the RetentionSettings object. For more information about retention settings, see Managing Chat Retention Policies in the Amazon Chime Administration Guide ",
+        "Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see Logging Amazon Chime API Calls with AWS CloudTrail in the Amazon Chime Administration Guide .   To turn off existing retention settings, remove the number of days from the corresponding RetentionDays field in the RetentionSettings object. For more information about retention settings, see Managing Chat Retention Policies in the Amazon Chime Administration Guide",
       options: [
         {
           name: "--account-id",

@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The ARN of the role that the web application assumes when it interacts with AWS IoT Core.  The name of the role must be in the form AWSIotFleetHub_random_string ",
+            "The ARN of the role that the web application assumes when it interacts with AWS IoT Core.  The name of the role must be in the form AWSIotFleetHub_random_string",
           args: {
             name: "string",
           },

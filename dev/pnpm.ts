@@ -59,7 +59,7 @@ const searchDependenciesGenerator: Fig.Generator = {
           return {
             name: pkg,
             icon: `fig://icon?type=npm`,
-            description: "dependency file",
+            description: "Dependency file",
           };
         });
       }
@@ -91,7 +91,7 @@ const searchBranches: Fig.Generator = {
           // Current branch.
           return {
             name: elm.replace("*", "").trim(),
-            description: "current branch",
+            description: "Current branch",
             icon: "⭐️",
           };
         } else if (parts[0] == "+") {
@@ -102,7 +102,7 @@ const searchBranches: Fig.Generator = {
 
       return {
         name,
-        description: "branch",
+        description: "Branch",
         icon: "fig://icon?type=git",
       };
     });
@@ -220,7 +220,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       },
       {
         name: "--no-optional",
-        description: "optionalDependencies are not installed",
+        description: "OptionalDependencies are not installed",
       },
       {
         name: "--lockfile-only",
@@ -296,7 +296,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       },
       {
         name: "--no-optional",
-        description: "optionalDependencies are not installed",
+        description: "OptionalDependencies are not installed",
       },
       {
         name: "--lockfile-only",
@@ -470,7 +470,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "import",
     description:
-      "pnpm import generates a pnpm-lock.yaml from an npm package-lock.json (or npm-shrinkwrap.json) file",
+      "Pnpm import generates a pnpm-lock.yaml from an npm package-lock.json (or npm-shrinkwrap.json) file",
   },
   {
     name: ["rebuild", "rb"],

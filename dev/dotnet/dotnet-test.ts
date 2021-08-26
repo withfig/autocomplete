@@ -89,7 +89,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--blame-hang-timeout",
       description:
-        "Per-test timeout, after which a hang dump is triggered and the test host process and all of its child processes are dumped and terminated. ",
+        "Per-test timeout, after which a hang dump is triggered and the test host process and all of its child processes are dumped and terminated",
       args: {
         name: "timeout",
       },

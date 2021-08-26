@@ -34,7 +34,7 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
           return [
             {
               name: out,
-              description: "clipboard",
+              description: "Clipboard",
               icon:
                 "https://www.youtube.com/s/desktop/810941b4/img/favicon_32.png",
             },
@@ -680,7 +680,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--user-agent",
-      description: "specify a custom user agent",
+      description: "Specify a custom user agent",
       args: {
         name: "UA",
       },
@@ -688,7 +688,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--referer",
       description:
-        "specify a custom referer, use if the video access is restricted to one domain",
+        "Specify a custom referer, use if the video access is restricted to one domain",
       args: {
         name: "URL",
       },
@@ -1072,15 +1072,15 @@ const completionSpec: Fig.Spec = {
         suggestions: [
           {
             name: "never",
-            description: "do nothing",
+            description: "Do nothing",
           },
           {
             name: "warn",
-            description: "only emit a warning",
+            description: "Only emit a warning",
           },
           {
             name: "detect_or_warn",
-            description: "fix file if we can, warn otherwise",
+            description: "Fix file if we can, warn otherwise",
           },
         ],
         default: "detect_or_warn",

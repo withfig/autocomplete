@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--noResolve",
       description:
-        " Disallow imports, requires or <reference>s from expanding the number of files TypeScript should add to a project",
+        "Disallow imports, requires or <reference>s from expanding the number of files TypeScript should add to a project",
     },
     {
       name: "--noStrictGenericChecks",

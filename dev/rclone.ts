@@ -261,21 +261,21 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "interactive",
-                description: "interactive",
+                description: "Interactive",
               },
               {
                 name: "skip",
-                description: "removes identical files then skips anything left",
+                description: "Removes identical files then skips anything left",
               },
               {
                 name: "rename",
                 description:
-                  "removes identical files then renames the rest to be different",
+                  "Removes identical files then renames the rest to be different",
               },
               {
                 name: "list",
                 description:
-                  "lists duplicate dirs and files only and changes nothing",
+                  "Lists duplicate dirs and files only and changes nothing",
               },
               ...["first", "newest", "oldest", "largest", "smallest"].map(
                 (_) => ({
@@ -297,7 +297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rmdirs",
           description:
-            "rmdirs removes empty directories but leaves root intact",
+            "Rmdirs removes empty directories but leaves root intact",
         },
       ],
     },
@@ -507,8 +507,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-modtime",
-          description:
-            " Don't read the modification time (can speed things up)",
+          description: "Don't read the modification time (can speed things up)",
         },
         {
           name: "--original",

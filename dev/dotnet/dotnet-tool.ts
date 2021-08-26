@@ -92,7 +92,7 @@ const toolInstallCommonOptions: Fig.Option[] = [
   {
     name: "--add-source",
     description:
-      "Adds an additional NuGet package source to use during installation. Feeds are accessed in parallel, not sequentially in some order of precedence. If the same package and version is in multiple feeds, the fastest feed wins. ",
+      "Adds an additional NuGet package source to use during installation. Feeds are accessed in parallel, not sequentially in some order of precedence. If the same package and version is in multiple feeds, the fastest feed wins",
     args: {
       name: "source",
     },
@@ -219,7 +219,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--configfile",
           description:
-            "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used. ",
+            "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used",
           args: {
             name: "file",
             generators: configFileGenerator,

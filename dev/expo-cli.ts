@@ -847,7 +847,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--platform",
-          description: "detached project platform",
+          description: "Detached project platform",
           args: {
             name: "platform",
             isOptional: false,
@@ -1604,7 +1604,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--experimental-bundle",
-          description: "export bundles for use with EAS updates",
+          description: "Export bundles for use with EAS updates",
           args: {
             name: "boolean",
             suggestions: [
@@ -2204,7 +2204,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--platform",
-          description: "detached project platform",
+          description: "Detached project platform",
           args: {
             name: "platform",
             isOptional: false,
@@ -3199,7 +3199,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -3584,7 +3584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -3957,7 +3957,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -4150,7 +4150,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--latest",
-          description: "upload the latest build",
+          description: "Upload the latest build",
           args: {
             name: "boolean",
             suggestions: [
@@ -4171,7 +4171,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--id",
-          description: "id of the build to upload",
+          description: "Id of the build to upload",
           args: {
             name: "id",
             isOptional: false,
@@ -4181,7 +4181,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--path",
-          description: "path to the .apk/.aab file",
+          description: "Path to the .apk/.aab file",
           args: {
             name: "path",
             isOptional: true,
@@ -4192,7 +4192,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "app archive url",
+          description: "App archive url",
           args: {
             name: "url",
             isOptional: false,
@@ -4203,7 +4203,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "path to the JSON key used to authenticate with Google Play",
+            "Path to the JSON key used to authenticate with Google Play",
           args: {
             name: "key",
             isOptional: false,
@@ -4235,7 +4235,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-          description: "archive type: apk, aab",
+          description: "Archive type: apk, aab",
           args: {
             name: "boolean",
             suggestions: [
@@ -4257,7 +4257,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--track",
           description:
-            "the track of the application to use, choose from: production, beta, alpha, internal, rollout",
+            "The track of the application to use, choose from: production, beta, alpha, internal, rollout",
           args: {
             name: "track",
             isOptional: false,
@@ -4268,7 +4268,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--release-status",
           description:
-            "release status (used when uploading new apks/aabs), choose from: completed, draft, halted, inProgress",
+            "Release status (used when uploading new apks/aabs), choose from: completed, draft, halted, inProgress",
           args: {
             name: "boolean",
             suggestions: [
@@ -4367,7 +4367,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--latest",
-          description: "upload the latest build (default)",
+          description: "Upload the latest build (default)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4388,7 +4388,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--id",
-          description: "id of the build to upload",
+          description: "Id of the build to upload",
           args: {
             name: "id",
             isOptional: false,
@@ -4398,7 +4398,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--path",
-          description: "path to the .ipa file",
+          description: "Path to the .ipa file",
           args: {
             name: "path",
             isOptional: true,
@@ -4409,7 +4409,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "app archive url",
+          description: "App archive url",
           args: {
             name: "url",
             isOptional: false,
@@ -4420,7 +4420,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apple-id",
           description:
-            "your Apple ID username (you can also set EXPO_APPLE_ID env variable)",
+            "Your Apple ID username (you can also set EXPO_APPLE_ID env variable)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4464,7 +4464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apple-id-password",
           description:
-            "your Apple ID password (you can also set EXPO_APPLE_PASSWORD env variable)",
+            "Your Apple ID password (you can also set EXPO_APPLE_PASSWORD env variable)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4486,7 +4486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--app-name",
           description:
-            "the name of your app as it will appear on the App Store, this can't be longer than 30 characters (default: expo.name from app.json)",
+            "The name of your app as it will appear on the App Store, this can't be longer than 30 characters (default: expo.name from app.json)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4508,7 +4508,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--company-name",
           description:
-            "the name of your company, needed only for the first upload of any app to App Store",
+            "The name of your company, needed only for the first upload of any app to App Store",
           args: {
             name: "boolean",
             suggestions: [
@@ -4530,7 +4530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sku",
           description:
-            "a unique ID for your app that is not visible on the App Store, will be generated unless provided",
+            "A unique ID for your app that is not visible on the App Store, will be generated unless provided",
           args: {
             name: "sku",
             isOptional: false,
@@ -4541,7 +4541,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--language",
           description:
-            "primary language (e.g. English, German; run `expo upload:ios --help` to see the list of available languages)",
+            "Primary language (e.g. English, German; run `expo upload:ios --help` to see the list of available languages)",
           args: {
             name: "language",
             isOptional: false,
@@ -4695,7 +4695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,

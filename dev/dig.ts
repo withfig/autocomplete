@@ -10,7 +10,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],
@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],
@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],
@@ -49,7 +49,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],
@@ -62,7 +62,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],
@@ -75,7 +75,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],
@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["+short", ""],
           insertValue: "+short {cursor}",
-          description: "only print meaningful results",
+          description: "Only print meaningful results",
           args: {},
         },
       ],

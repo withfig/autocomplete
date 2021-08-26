@@ -18,7 +18,7 @@ const getBranches: Fig.Generator = {
     return out.split("\n").map((output) => {
       return {
         name: output.replace("*", "").trim(),
-        description: "branch",
+        description: "Branch",
         icon: "fig://icon?type=git",
       };
     });
@@ -109,7 +109,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--max-buffer",
-    description: "Set a max buffer length for each underlying process call. ",
+    description: "Set a max buffer length for each underlying process call",
     args: {
       name: "bytes",
     },
@@ -358,7 +358,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dest",
           description:
-            "specify the destination directory by the directory listed in lerna.json",
+            "Specify the destination directory by the directory listed in lerna.json",
         },
         {
           name: "--preserve-commit",
@@ -471,7 +471,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--allow-branch",
           description:
-            "An allowlist of globs that match git branches where lerna version is enabled. ",
+            "An allowlist of globs that match git branches where lerna version is enabled",
           args: {
             name: "glob",
             generators: getBranches,
@@ -499,7 +499,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--conventional-prerelease",
           description:
-            "release with prerelease versions the specified packages (comma-separated) or all packages using *",
+            "Release with prerelease versions the specified packages (comma-separated) or all packages using *",
         },
         {
           name: "--create-release",
@@ -541,7 +541,7 @@ const completionSpec: Fig.Spec = {
               postProcess: (output) => {
                 return output.split("\n").map((remoteName) => ({
                   name: remoteName,
-                  description: "remote",
+                  description: "Remote",
                   icon:
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1024px-Git_icon.svg.png",
                 }));
@@ -729,7 +729,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--description",
-          description: " Package description",
+          description: "Package description",
         },
         {
           name: "--dependencies",
@@ -766,7 +766,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--registry",
-          description: "Configure the package's publishConfig.registry ",
+          description: "Configure the package's publishConfig.registry",
         },
         {
           name: "--tag",

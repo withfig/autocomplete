@@ -685,7 +685,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--global-replication-group-id-suffix",
           description:
-            'The suffix name of a Global datastore. Amazon ElastiCache automatically applies a prefix to the Global datastore ID when it is created. Each AWS Region has its own prefix. For instance, a Global datastore ID created in the US-West-1 region will begin with "dsdfu" along with the suffix name you provide. The suffix, combined with the auto-generated prefix, guarantees uniqueness of the Global datastore name across multiple regions.  For a full list of AWS Regions and their respective Global datastore iD prefixes, see Using the AWS CLI with Global datastores ',
+            'The suffix name of a Global datastore. Amazon ElastiCache automatically applies a prefix to the Global datastore ID when it is created. Each AWS Region has its own prefix. For instance, a Global datastore ID created in the US-West-1 region will begin with "dsdfu" along with the suffix name you provide. The suffix, combined with the auto-generated prefix, guarantees uniqueness of the Global datastore name across multiple regions.  For a full list of AWS Regions and their respective Global datastore iD prefixes, see Using the AWS CLI with Global datastores',
           args: {
             name: "string",
           },

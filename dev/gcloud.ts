@@ -347,7 +347,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "topic",
-      description: "gcloud supplementary help",
+      description: "Gcloud supplementary help",
       loadSpec: "gcloud/topic",
     },
     {

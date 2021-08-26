@@ -4244,7 +4244,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description:
-            "get a username SigV4 credential pair based on protocol, host and path provided from standard in. This is primarily called by git to generate credentials to authenticate against AWS CodeCommit",
+            "Get a username SigV4 credential pair based on protocol, host and path provided from standard in. This is primarily called by git to generate credentials to authenticate against AWS CodeCommit",
           options: [
             {
               name: "--ignore-host-check",

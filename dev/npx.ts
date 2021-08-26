@@ -163,7 +163,7 @@ const completionSpec: Fig.Spec = {
         name: "path to binary",
         template: "filepaths",
       },
-      description: "npm binary to use for internal operations",
+      description: "Npm binary to use for internal operations",
     },
     {
       args: {},

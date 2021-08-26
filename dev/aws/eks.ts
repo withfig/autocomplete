@@ -493,7 +493,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-name",
           description:
-            "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+            "The name of the add-on. The name must match one of the names returned by  ListAddons",
           args: {
             name: "string",
             generators: generators.listAddons,
@@ -502,7 +502,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-version",
           description:
-            "The version of the add-on. The version must match one of the versions returned by  DescribeAddonVersions ",
+            "The version of the add-on. The version must match one of the versions returned by  DescribeAddonVersions",
           args: {
             name: "string",
             generators: generators.listAddonVersions,
@@ -578,7 +578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf. For more information, see Amazon EKS Service IAM Role in the  Amazon EKS User Guide ",
+            "The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf. For more information, see Amazon EKS Service IAM Role in the  Amazon EKS User Guide",
           args: {
             name: "string",
             generators: generators.listEKSClusterRoles,
@@ -591,7 +591,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "subnetIds=string,string,securityGroupIds=string,string,endpointPublicAccess=boolean,endpointPrivateAccess=boolean,publicAccessCidrs=string,string",
+              "SubnetIds=string,string,securityGroupIds=string,string,endpointPublicAccess=boolean,endpointPrivateAccess=boolean,publicAccessCidrs=string,string",
           },
         },
         {
@@ -599,7 +599,7 @@ const completionSpec: Fig.Spec = {
           description: "The Kubernetes network configuration for the cluster",
           args: {
             name: "structure",
-            description: "serviceIpv4Cidr=string",
+            description: "ServiceIpv4Cidr=string",
           },
         },
         {
@@ -713,7 +713,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             isVariadic: true,
             description:
-              "namespace=string,labels={KeyName1=string,KeyName2=string}",
+              "Namespace=string,labels={KeyName1=string,KeyName2=string}",
           },
         },
         {
@@ -779,7 +779,7 @@ const completionSpec: Fig.Spec = {
             "The scaling configuration details for the Auto Scaling group that is created for your node group",
           args: {
             name: "structure",
-            description: "minSize=integer,maxSize=integer,desiredSize=integer",
+            description: "MinSize=integer,maxSize=integer,desiredSize=integer",
           },
         },
         {
@@ -829,7 +829,7 @@ const completionSpec: Fig.Spec = {
             "The remote access (SSH) configuration to use with your node group. If you specify launchTemplate, then don't specify remoteAccess, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support in the Amazon EKS User Guide",
           args: {
             name: "structure",
-            description: "ec2SshKey=string,sourceSecurityGroups=string,string",
+            description: "Ec2SshKey=string,sourceSecurityGroups=string,string",
           },
         },
         {
@@ -886,7 +886,7 @@ const completionSpec: Fig.Spec = {
             "An object representing a node group's launch template specification. If specified, then do not specify instanceTypes, diskSize, or remoteAccess and make sure that the launch template meets the requirements in launchTemplateSpecification",
           args: {
             name: "structure",
-            description: "name=string,version=string,id=string",
+            description: "Name=string,version=string,id=string",
           },
         },
         {
@@ -895,7 +895,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "maxUnavailable=integer,maxUnavailablePercentage=integer",
+              "MaxUnavailable=integer,maxUnavailablePercentage=integer",
           },
         },
         {
@@ -959,7 +959,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-name",
           description:
-            "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+            "The name of the add-on. The name must match one of the names returned by  ListAddons",
           args: {
             name: "string",
             generators: generators.listAddonsForCluster,
@@ -1116,7 +1116,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-name",
           description:
-            "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+            "The name of the add-on. The name must match one of the names returned by  ListAddons",
           args: {
             name: "string",
             generators: generators.listAddonsForCluster,
@@ -1174,7 +1174,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-name",
           description:
-            "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+            "The name of the add-on. The name must match one of the names returned by  ListAddons",
           args: {
             name: "string",
             generators: generators.listAddons,
@@ -1319,7 +1319,7 @@ const completionSpec: Fig.Spec = {
             "An object that represents an identity provider configuration",
           args: {
             name: "structure",
-            description: "type=string,name=string",
+            description: "Type=string,name=string",
           },
         },
         {
@@ -1417,7 +1417,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-name",
           description:
-            "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+            "The name of the add-on. The name must match one of the names returned by  ListAddons",
           args: {
             name: "string",
             generators: generators.listAddonsForCluster,
@@ -1463,7 +1463,7 @@ const completionSpec: Fig.Spec = {
             "An object that represents an identity provider configuration",
           args: {
             name: "structure",
-            description: "type=string,name=string",
+            description: "Type=string,name=string",
           },
         },
         {
@@ -2072,7 +2072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-name",
           description:
-            "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+            "The name of the add-on. The name must match one of the names returned by  ListAddons",
           args: {
             name: "string",
             generators: generators.listAddonsForCluster,
@@ -2081,7 +2081,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--addon-version",
           description:
-            "The version of the add-on. The version must match one of the versions returned by  DescribeAddonVersions ",
+            "The version of the add-on. The version must match one of the versions returned by  DescribeAddonVersions",
           args: {
             name: "string",
             generators: generators.listAddonVersions,
@@ -2153,7 +2153,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "subnetIds=string,string,securityGroupIds=string,string,endpointPublicAccess=boolean,endpointPrivateAccess=boolean,publicAccessCidrs=string,string",
+              "SubnetIds=string,string,securityGroupIds=string,string,endpointPublicAccess=boolean,endpointPrivateAccess=boolean,publicAccessCidrs=string,string",
           },
         },
         {
@@ -2271,7 +2271,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "structure",
             description:
-              "addOrUpdateLabels={Key1=string,Key2=string},removeLabels=string,string",
+              "AddOrUpdateLabels={Key1=string,Key2=string},removeLabels=string,string",
           },
         },
         {
@@ -2280,7 +2280,7 @@ const completionSpec: Fig.Spec = {
             "The scaling configuration details for the Auto Scaling group after the update",
           args: {
             name: "structure",
-            description: "minSize=integer,maxSize=integer,desiredSize=integer",
+            description: "MinSize=integer,maxSize=integer,desiredSize=integer",
           },
         },
         {
@@ -2347,7 +2347,7 @@ const completionSpec: Fig.Spec = {
             "An object representing a node group's launch template specification. You can only update a node group using a launch template if the node group was originally deployed with a launch template",
           args: {
             name: "structure",
-            description: "name=string,version=string,id=string",
+            description: "Name=string,version=string,id=string",
           },
         },
         {
@@ -2495,7 +2495,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--addon-name",
               description:
-                "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+                "The name of the add-on. The name must match one of the names returned by  ListAddons",
               args: {
                 name: "string",
                 generators: generators.listAddonsForCluster,
@@ -2537,7 +2537,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--addon-name",
               description:
-                "The name of the add-on. The name must match one of the names returned by  ListAddons ",
+                "The name of the add-on. The name must match one of the names returned by  ListAddons",
               args: {
                 name: "string",
                 generators: generators.listAddonsForCluster,

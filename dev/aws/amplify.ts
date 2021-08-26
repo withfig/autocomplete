@@ -864,7 +864,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "prefix=string,branchName=string",
+            description: "Prefix=string,branchName=string",
           },
         },
         {
@@ -2365,7 +2365,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             description:
-              "source=string,target=string,status=string,condition=string",
+              "Source=string,target=string,status=string,condition=string",
             isVariadic: true,
           },
         },
@@ -2649,7 +2649,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             isVariadic: true,
-            description: "prefix=string,branchName=string",
+            description: "Prefix=string,branchName=string",
           },
         },
         {

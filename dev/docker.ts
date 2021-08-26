@@ -1318,7 +1318,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     args: [
       {
         name: "image",
-        description: "the Docker image to use",
+        description: "The Docker image to use",
         generators: {
           script:
             "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
@@ -1940,7 +1940,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          description: "password",
+          description: "Password",
           name: ["-p", "--password"],
           args: {
             name: "string",
@@ -1951,7 +1951,7 @@ const completionSpec: Fig.Spec = {
           name: "--password-stdin",
         },
         {
-          description: "username",
+          description: "Username",
           name: ["-u", "--username"],
           args: {
             name: "string",
@@ -2604,7 +2604,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--driver-opt",
-              description: "driver options for the network",
+              description: "Driver options for the network",
               args: {
                 name: "strings",
               },
@@ -4671,14 +4671,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-              description: " Pretty-print stacks using a Go template",
+              description: "Pretty-print stacks using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
@@ -4695,14 +4695,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Filter output based on conditions provided",
+              description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Pretty-print tasks using a Go template",
+              description: "Pretty-print tasks using a Go template",
               args: {
                 name: "string",
               },
@@ -4717,14 +4717,14 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only display task IDs",
+              description: "Only display task IDs",
             },
           ],
         },
@@ -4739,7 +4739,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
@@ -4756,28 +4756,28 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Filter output based on conditions provided",
+              description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Pretty-print services using a Go template",
+              description: "Pretty-print services using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only display IDs",
+              description: "Only display IDs",
             },
           ],
         },
@@ -4803,7 +4803,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ca-key",
               description:
-                " Path to the PEM-formatted root CA key to use for the new cluster",
+                "Path to the PEM-formatted root CA key to use for the new cluster",
               args: {
                 name: "pem-file",
                 template: "filepaths",
@@ -4825,14 +4825,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--external-ca",
               description:
-                " Specifications of one or more certificate signing endpoints",
+                "Specifications of one or more certificate signing endpoints",
               args: {
                 name: "external-ca",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Suppress progress output",
+              description: "Suppress progress output",
             },
             {
               name: "--rotate",
@@ -4855,7 +4855,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autolock",
               description:
-                " Enable manager autolocking (requiring an unlock key to start a stopped manager)",
+                "Enable manager autolocking (requiring an unlock key to start a stopped manager)",
             },
             {
               name: "--availability",
@@ -4868,7 +4868,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cert-expiry",
               description:
-                " Validity period for node certificates (ns|us|ms|s|m|h) (default 2160h0m0s)",
+                "Validity period for node certificates (ns|us|ms|s|m|h) (default 2160h0m0s)",
               args: {
                 name: "duration",
               },
@@ -4891,7 +4891,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--default-addr-pool",
-              description: " default address pool in CIDR format (default [])",
+              description: "Default address pool in CIDR format (default [])",
               args: {
                 name: "ipNetSlice",
               },
@@ -4899,7 +4899,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--default-addr-pool-mask-length",
               description:
-                " default address pool subnet mask length (default 24)",
+                "Default address pool subnet mask length (default 24)",
               args: {
                 name: "uint32",
               },
@@ -4934,7 +4934,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--max-snapshots",
-              description: " Number of additional Raft snapshots to retain",
+              description: "Number of additional Raft snapshots to retain",
               args: {
                 name: "uint",
               },
@@ -4942,14 +4942,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--snapshot-interval",
               description:
-                " Number of log entries between Raft snapshots (default 10000)",
+                "Number of log entries between Raft snapshots (default 10000)",
               args: {
                 name: "uint",
               },
             },
             {
               name: "--task-history-limit",
-              description: " Task history retention limit (default 5)",
+              description: "Task history retention limit (default 5)",
               args: {
                 name: "int",
               },
@@ -4965,8 +4965,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--advertise-addr",
-              description:
-                " Advertised address (format: <ip|interface>[:port])",
+              description: "Advertised address (format: <ip|interface>[:port])",
               args: {
                 name: "string",
               },
@@ -4974,7 +4973,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--availability",
               description:
-                ' Availability of the node ("active"|"pause"|"drain") (default "active")',
+                'Availability of the node ("active"|"pause"|"drain") (default "active")',
               args: {
                 name: "string",
               },
@@ -4982,7 +4981,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--data-path-addr",
               description:
-                " Address or interface to use for data path traffic (format: <ip|interface>)",
+                "Address or interface to use for data path traffic (format: <ip|interface>)",
               args: {
                 name: "string",
               },
@@ -4990,7 +4989,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--listen-addr",
               description:
-                " Listen address (format: <ip|interface>[:port]) (default 0.0.0.0:2377)",
+                "Listen address (format: <ip|interface>[:port]) (default 0.0.0.0:2377)",
               args: {
                 name: "node-addr",
               },
@@ -5018,7 +5017,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--rotate",
-              description: " Rotate join token",
+              description: "Rotate join token",
             },
           ],
         },
@@ -5029,7 +5028,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-f", "--force"],
               description:
-                " Force this node to leave the swarm, ignoring warnings",
+                "Force this node to leave the swarm, ignoring warnings",
             },
           ],
         },
@@ -5047,7 +5046,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--rotate",
-              description: " Rotate unlock key",
+              description: "Rotate unlock key",
             },
           ],
         },
@@ -5073,7 +5072,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--dispatcher-heartbeat",
               description:
-                " Dispatcher heartbeat period (ns|us|ms|s|m|h) (default 5s)",
+                "Dispatcher heartbeat period (ns|us|ms|s|m|h) (default 5s)",
               args: {
                 name: "duration",
               },
@@ -5081,7 +5080,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--external-ca",
               description:
-                " Specifications of one or more certificate signing endpoints",
+                "Specifications of one or more certificate signing endpoints",
               args: {
                 name: "external-ca",
               },
@@ -5147,14 +5146,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-              description: " Pretty-print images using a Go template",
+              description: "Pretty-print images using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-v", "--verbose"],
-              description: " Show detailed information on space usage",
+              description: "Show detailed information on space usage",
             },
           ],
         },
@@ -5164,14 +5163,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Filter output based on conditions provided",
+              description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Format the output using the given Go template",
+              description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
@@ -5198,7 +5197,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--format"],
-              description: " Format the output using the given Go template",
+              description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
@@ -5221,7 +5220,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--pretty",
-              description: " Print the information in a human friendly format",
+              description: "Print the information in a human friendly format",
             },
           ],
         },
@@ -5232,7 +5231,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-y", "--yes"],
-              description: " Do not prompt for confirmation",
+              description: "Do not prompt for confirmation",
             },
           ],
         },
@@ -5243,7 +5242,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--local",
-              description: " Sign a locally tagged image",
+              description: "Sign a locally tagged image",
             },
           ],
         },
@@ -5262,7 +5261,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-d", "--driver"],
-              description: ' Specify volume driver name (default "local")',
+              description: 'Specify volume driver name (default "local")',
               args: {
                 name: "string",
               },
@@ -5276,7 +5275,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-o", "--opt"],
-              description: " Set driver specific options (default map[])",
+              description: "Set driver specific options (default map[])",
               args: {
                 name: "map",
               },
@@ -5294,7 +5293,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--format"],
-              description: " Format the output using the given Go template",
+              description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
@@ -5307,21 +5306,21 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Provide filter values (e.g. 'dangling=true')",
+              description: "Provide filter values (e.g. 'dangling=true')",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Pretty-print volumes using a Go template",
+              description: "Pretty-print volumes using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only display volume names",
+              description: "Only display volume names",
             },
           ],
         },
@@ -5331,14 +5330,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--filter",
-              description: " Provide filter values (e.g. 'label=<label>')",
+              description: "Provide filter values (e.g. 'label=<label>')",
               args: {
                 name: "filter",
               },
             },
             {
               name: ["-f", "--force"],
-              description: " Do not prompt for confirmation",
+              description: "Do not prompt for confirmation",
             },
           ],
         },
@@ -5353,7 +5352,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "-f, --force",
-              description: " Force the removal of one or more volumes",
+              description: "Force the removal of one or more volumes",
             },
           ],
         },

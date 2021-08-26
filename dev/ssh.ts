@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
   description: "Log into a remote machine",
   args: {
     name: "user@hostname",
-    description: "address of remote machine to log into",
+    description: "Address of remote machine to log into",
     generators: {
       script: "cat ~/.ssh/config",
       postProcess: function (out) {
@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
           .map((host) => {
             return {
               name: host.split(" ").slice(-1)[0],
-              description: "ssh host",
+              description: "Ssh host",
               priority: 90,
             };
           });
@@ -76,7 +76,7 @@ const completionSpec: Fig.Spec = {
         "Use bind_address on the local machine as the source address of the connection",
       args: {
         name: "bind address",
-        description: "source address of the connection",
+        description: "Source address of the connection",
       },
     },
     {
@@ -99,7 +99,7 @@ const completionSpec: Fig.Spec = {
         "Specifies a local 'dynamic' application-level port forwarding",
       args: {
         name: "port",
-        description: "port of the bind address",
+        description: "Port of the bind address",
       },
     },
     {
@@ -144,7 +144,7 @@ const completionSpec: Fig.Spec = {
       isRepeatable: true,
       args: {
         name: "identity file",
-        description: "path to identity (private key)",
+        description: "Path to identity (private key)",
         template: "filepaths",
       },
     },
@@ -164,7 +164,7 @@ const completionSpec: Fig.Spec = {
         "Specifies that the given port on the local (client) host is to be forwarded to the given host and port on the remote side",
       args: {
         name: "port:host:hostport",
-        description: "local port, followed by host and host port to forward to",
+        description: "Local port, followed by host and host port to forward to",
       },
     },
     {
@@ -203,7 +203,7 @@ const completionSpec: Fig.Spec = {
       description: "Control an active connection multiplexing master process",
       args: {
         name: "ctl cmd",
-        description: "command that's passed to the master process",
+        description: "Command that's passed to the master process",
       },
     },
     {
@@ -214,7 +214,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "option",
         description:
-          "options that can be specified in the format of the config file",
+          "Options that can be specified in the format of the config file",
         suggestions: [
           { name: "AddressFamily" },
           { name: "BatchMode" },
@@ -293,7 +293,7 @@ const completionSpec: Fig.Spec = {
       description: "Port to connect to on the remote host",
       args: {
         name: "port",
-        description: "port to connect to",
+        description: "Port to connect to",
       },
     },
     {
@@ -307,7 +307,7 @@ const completionSpec: Fig.Spec = {
         "Specifies that the given port on the remote (server) host is to be forwarded to the given host and port on the local side",
       args: {
         name: "port:host:hostport",
-        description: "local port, followed by host and host port to forward to",
+        description: "Local port, followed by host and host port to forward to",
       },
     },
     {
@@ -316,7 +316,7 @@ const completionSpec: Fig.Spec = {
         "Specifies the location of a control socket for connection sharing, or the string 'none' to disable connection sharing",
       args: {
         name: "ctl_path",
-        description: "location of the control socket",
+        description: "Location of the control socket",
         template: "filepaths",
       },
     },
@@ -350,7 +350,7 @@ const completionSpec: Fig.Spec = {
         "Requests that standard input and output on the client be forwarded to host on port over the secure channel",
       args: {
         name: "host:port",
-        description: "host and port to forward to",
+        description: "Host and port to forward to",
       },
     },
     {
@@ -359,7 +359,7 @@ const completionSpec: Fig.Spec = {
         "Requests tunnel device forwarding with the specified tun(4) devices between the client (local_tun) and the server (remote_tun)",
       args: {
         name: "local tun",
-        description: "local device to forward to",
+        description: "Local device to forward to",
       },
     },
     {

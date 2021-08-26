@@ -4446,7 +4446,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--cache-attributes",
-          description: "specifies refresh cache information for the file share",
+          description: "Specifies refresh cache information for the file share",
           args: {
             name: "structure",
           },

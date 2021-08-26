@@ -202,7 +202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations ",
+            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -234,7 +234,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations ",
+            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -443,7 +443,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-repository-associations",
       description:
-        "Returns a list of  RepositoryAssociationSummary  objects that contain summary information about a repository association. You can filter the returned list by  ProviderType ,  Name ,  State , and  Owner ",
+        "Returns a list of  RepositoryAssociationSummary  objects that contain summary information about a repository association. You can filter the returned list by  ProviderType ,  Name ,  State , and  Owner",
       options: [
         {
           name: "--provider-types",
@@ -542,7 +542,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations ",
+            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -621,7 +621,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations ",
+            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
           args: {
             name: "string",
           },
@@ -660,7 +660,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations ",
+            "The Amazon Resource Name (ARN) of the  RepositoryAssociation  object. You can retrieve this ARN by calling  ListRepositoryAssociations",
           args: {
             name: "string",
           },

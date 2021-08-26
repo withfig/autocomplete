@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "more",
-  description: "opposite of less",
+  description: "Opposite of less",
   options: [
     {
       name: "-d, --silent",

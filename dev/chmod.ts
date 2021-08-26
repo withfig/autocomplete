@@ -9,27 +9,27 @@ const completionSpec: Fig.Spec = {
         {
           name: "u+x",
           type: "arg",
-          description: "give execute permission for the user",
+          description: "Give execute permission for the user",
           icon: "🔐",
         },
         {
           name: "a+rx",
           type: "arg",
-          description: "adds read and execute permissions for all classes",
+          description: "Adds read and execute permissions for all classes",
           icon: "🔐",
         },
         {
           name: "744",
           type: "arg",
           description:
-            "sets read, write, and execute permissions for user, and sets read permission for Group and Others",
+            "Sets read, write, and execute permissions for user, and sets read permission for Group and Others",
           icon: "🔐",
         },
         {
           name: "664",
           type: "arg",
           description:
-            "sets read and write permissions for user and Group, and provides read to Others",
+            "Sets read and write permissions for user and Group, and provides read to Others",
           icon: "🔐",
         },
         {

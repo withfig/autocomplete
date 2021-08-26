@@ -1785,7 +1785,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--rules",
           description:
-            "The Expression object used to categorize costs. For more information, see CostCategoryRule ",
+            "The Expression object used to categorize costs. For more information, see CostCategoryRule",
           args: {
             name: "list",
           },

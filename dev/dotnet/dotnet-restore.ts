@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--configfile",
       description:
-        "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used. ",
+        "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used",
       args: {
         name: "file",
         generators: configFileGenerator,

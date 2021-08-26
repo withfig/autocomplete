@@ -37,14 +37,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "--index",
       description:
-        "index of the container if there are multiple instances of a service [default: 1]",
+        "Index of the container if there are multiple instances of a service [default: 1]",
       args: {
         name: "index",
       },
     },
     {
       name: ["-e", "--env"],
-      description: "not supported in API < 1.25)",
+      description: "Not supported in API < 1.25)",
       args: {
         name: "KEY=VAL",
         isVariadic: true,

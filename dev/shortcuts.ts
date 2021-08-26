@@ -63,7 +63,7 @@ const subcommands: Fig.Subcommand[] = [
             },
             {
               name: "public.vcard",
-              description: "vCard",
+              description: "VCard",
             },
           ],
         },

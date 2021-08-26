@@ -1823,7 +1823,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-task-execution",
       description:
-        "Updates execution of a task. You can modify bandwidth throttling for a task execution that is running or queued. For more information, see Adjusting Bandwidth Throttling for a Task Execution.  The only Option that can be modified by UpdateTaskExecution is  BytesPerSecond ",
+        "Updates execution of a task. You can modify bandwidth throttling for a task execution that is running or queued. For more information, see Adjusting Bandwidth Throttling for a Task Execution.  The only Option that can be modified by UpdateTaskExecution is  BytesPerSecond",
       options: [
         {
           name: "--task-execution-arn",

@@ -342,11 +342,11 @@ const completionSpec: Fig.Spec = {
         name: "type",
         suggestions: [
           { name: "crlf", description: "Windows" },
-          { name: "lf", description: "macOS/Linux/UNIX" },
+          { name: "lf", description: "MacOS/Linux/UNIX" },
           {
             name: "native",
             description:
-              "line endings appropriate to the OS on which Pandoc is being run",
+              "Line endings appropriate to the OS on which Pandoc is being run",
           },
         ],
       },
@@ -575,7 +575,7 @@ const completionSpec: Fig.Spec = {
         "Specifies that headings with the specified level create slides (for beamer, s5, slidy, slideous, dzslides). Headings above this level in the hierarchy are used to divide the slide show into sections; headings below this level create subheads within a slide",
       args: {
         name: "level",
-        description: "number",
+        description: "Number",
       },
     },
     {

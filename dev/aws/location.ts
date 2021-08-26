@@ -1481,7 +1481,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--position",
           description:
-            "Specifies a coordinate for the query defined by a longitude, and latitude.   The first position is the X coordinate, or longitude.   The second position is the Y coordinate, or latitude.    For example, position=xLongitude&amp;position=yLatitude ",
+            "Specifies a coordinate for the query defined by a longitude, and latitude.   The first position is the X coordinate, or longitude.   The second position is the Y coordinate, or latitude.    For example, position=xLongitude&amp;position=yLatitude",
           args: {
             name: "list",
           },

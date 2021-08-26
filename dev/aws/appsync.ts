@@ -99,7 +99,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The time from creation time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour. The default value for this parameter is 7 days from creation time. For more information, see ",
+            "The time from creation time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour. The default value for this parameter is 7 days from creation time. For more information, see",
           args: {
             name: "long",
           },
@@ -1834,7 +1834,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The time from update time after which the API key expires. The date is represented as seconds since the epoch. For more information, see ",
+            "The time from update time after which the API key expires. The date is represented as seconds since the epoch. For more information, see",
           args: {
             name: "long",
           },

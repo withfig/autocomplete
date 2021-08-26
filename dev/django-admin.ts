@@ -3,11 +3,11 @@ const DJANGO_ICON_URL = "https://github.com/django.png";
 const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [
   {
     name: ["-h", "--help"],
-    description: "show this help message and exit",
+    description: "Show this help message and exit",
   },
   {
     name: "--version",
-    description: "show program's version number and exit",
+    description: "Show program's version number and exit",
   },
   {
     name: ["-v", "--verbosity"],
@@ -546,12 +546,12 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
           suggestions: [
             {
               name: "full",
-              description: "the lines include both file name and line number",
+              description: "The lines include both file name and line number",
             },
-            { name: "file", description: "the line number is omitted" },
+            { name: "file", description: "The line number is omitted" },
             {
               name: "never",
-              description: "the lines are suppressed (same as --no-location)",
+              description: "The lines are suppressed (same as --no-location)",
             },
           ],
         },

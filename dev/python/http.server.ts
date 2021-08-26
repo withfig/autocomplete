@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
       description: "Bind to a specific IP address",
       args: {
         name: "IP Address",
-        description: "e.g. 127.0.0.1",
+        description: "E.g. 127.0.0.1",
       },
     },
     {
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
   // Only uncomment if http.server takes an argument
   args: {
     name: "port",
-    description: "port number",
+    description: "Port number",
   },
 };
 

@@ -43,15 +43,15 @@ const global_option_verbose: Fig.Option = {
     suggestions: [
       {
         name: "1",
-        description: "normal output",
+        description: "Normal output",
       },
       {
         name: "2",
-        description: "more verbose output",
+        description: "More verbose output",
       },
       {
         name: "3",
-        description: "debug output",
+        description: "Debug output",
       },
     ],
     isOptional: true,
@@ -104,7 +104,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "status",
         description:
-          "on or off. (default=off) will show a 404 page; [on] will display a listing if project folder exists but requested URI not found",
+          "On or off. (default=off) will show a 404 page; [on] will display a listing if project folder exists but requested URI not found",
         suggestions: [{ name: "on" }, { name: "off" }],
       },
       options: [
@@ -457,18 +457,18 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--auth",
-          description: "enforce basic auth on tunnel endpoint, 'user:password'",
+          description: "Enforce basic auth on tunnel endpoint, 'user:password'",
         },
         {
           name: "--authtoken",
-          description: "ngrok.com authtoken identifying a user",
+          description: "Ngrok.com authtoken identifying a user",
           args: {
             name: "token",
           },
         },
         {
           name: "--bind-tls",
-          description: "listen for http, https or both: true/false/both",
+          description: "Listen for http, https or both: true/false/both",
           args: {
             name: "listen",
             suggestions: [
@@ -480,7 +480,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "path to config files; they are merged if multiple",
+          description: "Path to config files; they are merged if multiple",
           args: {
             name: "config",
             template: "filepaths",
@@ -489,22 +489,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--host-header",
           description:
-            "set Host header; if 'rewrite' use local address hostname",
+            "Set Host header; if 'rewrite' use local address hostname",
           args: {
             name: "host",
           },
         },
         {
           name: "--hostname",
-          description: "host tunnel on custom hostname (requires DNS CNAME)",
+          description: "Host tunnel on custom hostname (requires DNS CNAME)",
         },
         {
           name: "--inspect",
-          description: "enable/disable http introspection",
+          description: "Enable/disable http introspection",
         },
         {
           name: "--log",
-          description: "path to log file, 'stdout', 'stderr' or 'false'",
+          description: "Path to log file, 'stdout', 'stderr' or 'false'",
           args: {
             name: "path",
             suggestions: [
@@ -516,7 +516,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--log-format",
-          description: "log record format: 'term', 'logfmt', 'json'",
+          description: "Log record format: 'term', 'logfmt', 'json'",
           args: {
             name: "format",
             suggestions: [
@@ -528,7 +528,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--log-level",
-          description: "logging level",
+          description: "Logging level",
           args: {
             name: "level",
             suggestions: [{ name: "info", insertValue: "'info'" }],
@@ -537,7 +537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--region",
           description:
-            "ngrok server region [us, eu, au, ap, sa, jp, in] (default: us)",
+            "Ngrok server region [us, eu, au, ap, sa, jp, in] (default: us)",
           args: {
             name: "region",
             suggestions: [
@@ -553,7 +553,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--subdomain",
-          description: "host tunnel on a custom subdomain",
+          description: "Host tunnel on a custom subdomain",
         },
         global_option_help,
         global_option_quiet,

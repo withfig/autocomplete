@@ -351,7 +351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The ARN of the canary that you want to view tags for. The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name ",
+            "The ARN of the canary that you want to view tags for. The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name",
           args: {
             name: "string",
           },
@@ -447,7 +447,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The ARN of the canary that you're adding tags to. The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name ",
+            "The ARN of the canary that you're adding tags to. The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name",
           args: {
             name: "string",
           },
@@ -486,7 +486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The ARN of the canary that you're removing tags from. The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name ",
+            "The ARN of the canary that you're removing tags from. The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name",
           args: {
             name: "string",
           },

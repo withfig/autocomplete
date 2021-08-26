@@ -225,11 +225,11 @@ const affectedOptions: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "nx",
-  description: "fig completions for Nx by Nrwl",
+  description: "Fig completions for Nx by Nrwl",
   subcommands: [
     {
       name: "build",
-      description: "build an Nx app",
+      description: "Build an Nx app",
       args: {
         generators: nxGenerators.apps,
         name: "app",
@@ -237,7 +237,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "serve",
-      description: "serve an Nx app",
+      description: "Serve an Nx app",
       args: {
         generators: nxGenerators.apps,
         name: "app",
@@ -314,7 +314,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "test",
-      description: "test an Nx app or lib",
+      description: "Test an Nx app or lib",
       args: {
         generators: nxGenerators.appsAndLibs,
         name: "app/lib",
@@ -323,7 +323,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "e2e",
-      description: "run e2e tests for an Nx app",
+      description: "Run e2e tests for an Nx app",
       args: {
         generators: nxGenerators.e2eApps,
         name: "app",
@@ -332,7 +332,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "lint",
-      description: "lint an Nx app or lib",
+      description: "Lint an Nx app or lib",
       args: {
         generators: nxGenerators.appsAndLibs,
         name: "app/lib",
@@ -371,7 +371,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "generate",
-      description: "run a generator",
+      description: "Run a generator",
       args: {
         generators: nxGenerators.pluginsSchematics,
         name: "collection:generator",
@@ -381,25 +381,25 @@ const completionSpec: Fig.Spec = {
           name: "--defaults",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when true, disables interactive input prompts for options with a default {true|false}",
+            "When true, disables interactive input prompts for options with a default {true|false}",
         },
         {
           name: "--dryRun",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when true, runs the generator without making actual changes {true|false}",
+            "When true, runs the generator without making actual changes {true|false}",
         },
         {
           name: "--force",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when true, forces overwriting of existing files {true|false}",
+            "When true, forces overwriting of existing files {true|false}",
         },
         {
           name: "--interactive",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when false, disables interactive input prompts {true|false}",
+            "When false, disables interactive input prompts {true|false}",
         },
         ...defaultOptions,
       ],
@@ -417,7 +417,7 @@ const completionSpec: Fig.Spec = {
           name: "--file",
           args: {},
           description:
-            "output file (e.g. --file=output.json or --file=dep-graph.html)",
+            "Output file (e.g. --file=output.json or --file=dep-graph.html)",
         },
         {
           name: "--focus",

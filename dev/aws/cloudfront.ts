@@ -2976,7 +2976,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--private-key",
-          description: "file://path/to/your/private-key.pem",
+          description: "File://path/to/your/private-key.pem",
           args: {
             name: "string",
           },

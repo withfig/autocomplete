@@ -309,7 +309,7 @@ const completionSpec: Fig.Spec = {
       description: "Set unstable options",
       args: {
         name: "option",
-        description: "unstable options to pass to rustc",
+        description: "Unstable options to pass to rustc",
       },
     },
     {

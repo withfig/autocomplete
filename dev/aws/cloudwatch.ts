@@ -2517,7 +2517,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dimensions",
           description:
-            "The --dimensions argument further expands on the identity of a metric using a Name=Value pair, separated by commas, for example: --dimensions InstanceID=1-23456789,InstanceType=m1.small. Note that the --dimensions argument has a different format when used in get-metric-data, where for the same example you would use the format --dimensions Name=InstanceID,Value=i-aaba32d4 Name=InstanceType,value=m1.small ",
+            "The --dimensions argument further expands on the identity of a metric using a Name=Value pair, separated by commas, for example: --dimensions InstanceID=1-23456789,InstanceType=m1.small. Note that the --dimensions argument has a different format when used in get-metric-data, where for the same example you would use the format --dimensions Name=InstanceID,Value=i-aaba32d4 Name=InstanceType,value=m1.small",
           args: {
             name: "string",
             generators: generators.listMetricDimensions,

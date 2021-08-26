@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "rake",
-  description: "a ruby build program with capabilities similar to make",
+  description: "A ruby build program with capabilities similar to make",
   args: {
     name: "targets",
     isVariadic: true,

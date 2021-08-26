@@ -64,7 +64,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
         // Current branch.
         return {
           name: elm.replace("*", "").trim(),
-          description: "current branch",
+          description: "Current branch",
           priority: 100,
           icon: "⭐️",
         };
@@ -76,7 +76,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
 
     return {
       name,
-      description: "branch",
+      description: "Branch",
       icon: "fig://icon?type=git",
       priority: 75,
     };
@@ -175,7 +175,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
           name: file,
           insertValue: "-- " + file,
           icon: `fig://icon?type=file`,
-          description: "staged file",
+          description: "Staged file",
         };
       });
     },
@@ -240,7 +240,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return {
           name: remote,
           icon: `fig://icon?type=${icon}`,
-          description: "remote",
+          description: "Remote",
         };
       });
     },
@@ -479,7 +479,7 @@ const head = {
 
 const completionSpec: Fig.Spec = {
   name: "git",
-  description: "the stupid content tracker",
+  description: "The stupid content tracker",
   options: [
     {
       name: "--version",
@@ -585,26 +585,26 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--message"],
           insertValue: "-m '{cursor}'",
-          description: "use the given message as the commit message",
+          description: "Use the given message as the commit message",
           args: {
             name: "message",
           },
         },
         {
           name: ["-a", "--all"],
-          description: "stage all modified and deleted paths",
+          description: "Stage all modified and deleted paths",
         },
         {
           name: "-am",
           insertValue: "-am '{cursor}'",
-          description: "stage all and use given text as commit message",
+          description: "Stage all and use given text as commit message",
           args: {
             name: "message",
           },
         },
         {
           name: ["-v", "--verbose"],
-          description: "show unified diff of all file changes",
+          description: "Show unified diff of all file changes",
         },
         {
           name: ["-p", "--patch"],
@@ -614,7 +614,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-C", "--reuse-message"],
           description:
-            "Take an existing commit object, and reuse the log message and the authorship ",
+            "Take an existing commit object, and reuse the log message and the authorship",
           args: {
             name: "commit",
             generators: gitGenerators.commits,
@@ -650,12 +650,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--reset-author",
           description:
-            "When used with -C/-c/--amend options, or when committing after a conflicting ",
+            "When used with -C/-c/--amend options, or when committing after a conflicting",
         },
         {
           name: "--short",
           description:
-            "When doing a dry-run, give the output in the short-format. See git-status[1] ",
+            "When doing a dry-run, give the output in the short-format. See git-status[1]",
         },
         {
           name: "--branch",
@@ -782,7 +782,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--amend",
           description:
-            "Replace the tip of the current branch by creating a new commit. The recorded ",
+            "Replace the tip of the current branch by creating a new commit. The recorded",
         },
         {
           name: "--no-post-rewrite",
@@ -862,7 +862,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "config",
-      description: "set author",
+      description: "Set author",
       options: [
         {
           name: "--local",
@@ -872,12 +872,12 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "user.name",
-                description: "set config for username",
+                description: "Set config for username",
                 insertValue: "user.name '{cursor}'",
               },
               {
                 name: "user.email",
-                description: "set config for email",
+                description: "Set config for email",
                 insertValue: "user.email '{cursor}'",
               },
             ],
@@ -893,12 +893,12 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "user.name",
-                description: "set config for username",
+                description: "Set config for username",
                 insertValue: "user.name '{cursor}'",
               },
               {
                 name: "user.email",
-                description: "set config for email",
+                description: "Set config for email",
                 insertValue: "user.email '{cursor}'",
               },
             ],
@@ -964,7 +964,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--blob",
           description:
-            "Similar to --file but use the given blob instead of a file. E.g. you can use ",
+            "Similar to --file but use the given blob instead of a file. E.g. you can use",
           args: {
             name: "blob",
           },
@@ -998,7 +998,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--type",
           description:
-            "git config will ensure that any input or output is valid under the given type",
+            "Git config will ensure that any input or output is valid under the given type",
           args: {
             name: "type",
             suggestions: [
@@ -1029,7 +1029,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--show-origin",
           description:
-            "Augment the output of all queried config options with the origin type (file, ",
+            "Augment the output of all queried config options with the origin type (file,",
         },
         {
           name: "--show-scope",
@@ -1076,7 +1076,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--default",
           description:
-            "When using --get, and the requested variable is not found, behave as if were ",
+            "When using --get, and the requested variable is not found, behave as if were",
           args: {
             name: "value",
             isOptional: true,
@@ -1488,15 +1488,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-v", "--verbose"],
-          description: "be verbose",
+          description: "Be verbose",
         },
         {
           name: ["-b", "--branch"],
-          description: "show branch information",
+          description: "Show branch information",
         },
         {
           name: "--show-stash",
-          description: "show stash information",
+          description: "Show stash information",
         },
         {
           name: "--porcelain",
@@ -1508,7 +1508,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--ahead-behind",
-          description: "display full ahead/behind values",
+          description: "Display full ahead/behind values",
         },
         {
           name: "--no-ahead-behind",
@@ -1516,33 +1516,33 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--column",
-          description: "display full ahead/behind values",
+          description: "Display full ahead/behind values",
           args: {
             name: "options",
-            description: "defaults to always",
+            description: "Defaults to always",
             isOptional: true,
           },
         },
         {
           name: "--no-column",
-          description: "Do not display untracked files in columns. ",
+          description: "Do not display untracked files in columns",
           args: {
             name: "options",
-            description: "defaults to never",
+            description: "Defaults to never",
             isOptional: true,
           },
         },
         {
           name: "--long",
-          description: "show status in long format (default)",
+          description: "Show status in long format (default)",
         },
         {
           name: ["-z", "--null"],
-          description: "terminate entries with NUL",
+          description: "Terminate entries with NUL",
         },
         {
           name: ["-u", "--untracked-files"],
-          description: "show untracked files",
+          description: "Show untracked files",
           args: {
             isOptional: true,
             suggestions: [
@@ -1584,7 +1584,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--ignored",
-          description: "show ignored files",
+          description: "Show ignored files",
           args: {
             isOptional: true,
             suggestions: [
@@ -1603,7 +1603,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-renames",
-          description: "do not detect renames",
+          description: "Do not detect renames",
         },
         {
           name: "--renames",
@@ -1860,7 +1860,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force-with-lease",
           description:
-            "protect the named ref (alone), if it is going to be updated, by requiring its current value to be the same as the specified value <expect> (which is allowed to be different from the remote-tracking branch we have for the refname, or we do not even have to have such a remote-tracking branch when this form is used). If <expect> is the empty string, then the named ref must not already exist",
+            "Protect the named ref (alone), if it is going to be updated, by requiring its current value to be the same as the specified value <expect> (which is allowed to be different from the remote-tracking branch we have for the refname, or we do not even have to have such a remote-tracking branch when this form is used). If <expect> is the empty string, then the named ref must not already exist",
           args: {
             name: "refname[:expect]",
             isOptional: true,
@@ -1911,7 +1911,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--edit", "-e"],
           description:
-            "Invoke an editor before committing successful mechanical merge to further edit the auto-generated merge message, so that the user can explain and justify the merge. ",
+            "Invoke an editor before committing successful mechanical merge to further edit the auto-generated merge message, so that the user can explain and justify the merge",
         },
 
         {
@@ -1958,7 +1958,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-S", "--gpg-sign"],
           description:
-            "GPG-sign the resulting merge commit. The keyid argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space. ",
+            "GPG-sign the resulting merge commit. The keyid argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space",
           args: {
             name: "keyid",
             isOptional: true,
@@ -2019,7 +2019,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-squash",
           description:
-            "perform the merge and commit the result. This option can be used to override --squash",
+            "Perform the merge and commit the result. This option can be used to override --squash",
         },
 
         {
@@ -2274,7 +2274,7 @@ const completionSpec: Fig.Spec = {
             name: "option",
           },
           description:
-            "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
+            "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character",
         },
         {
           name: "--show-forced-updates",
@@ -2351,7 +2351,7 @@ const completionSpec: Fig.Spec = {
           name: "--soft",
           insertValue: "--soft {cursor}",
           description:
-            "remove the last commit from the current branch, but the file changes will stay in your working tree",
+            "Remove the last commit from the current branch, but the file changes will stay in your working tree",
           args: {
             suggestions: [head],
             generators: gitGenerators.commits,
@@ -2378,7 +2378,7 @@ const completionSpec: Fig.Spec = {
           name: "--mixed",
           insertValue: "--mixed {cursor}",
           description:
-            "keep the changes in your working tree but not on the index",
+            "Keep the changes in your working tree but not on the index",
           args: {
             isVariadic: true,
             suggestions: [
@@ -2426,19 +2426,19 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-q", "--quiet"],
-          description: "suppress diff output",
+          description: "Suppress diff output",
         },
         {
           name: "--source",
-          description: "show source",
+          description: "Show source",
         },
         {
           name: "--oneline",
-          description: "show each commit as a single line",
+          description: "Show each commit as a single line",
         },
         {
           name: "--p",
-          description: "display the full diff of each commit",
+          description: "Display the full diff of each commit",
         },
         {
           name: "--stat",
@@ -2467,14 +2467,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "since",
           isOptional: true,
-          description: "commit ID, branch name, HEAD, or revision reference",
+          description: "Commit ID, branch name, HEAD, or revision reference",
           generators: gitGenerators.commits,
           suggestions: [{ name: "HEAD" }],
         },
         {
           name: "until",
           isOptional: true,
-          description: "commit ID, branch name, HEAD, or revision reference",
+          description: "Commit ID, branch name, HEAD, or revision reference",
           generators: gitGenerators.commits,
           suggestions: [{ name: "HEAD" }],
         },
@@ -2507,17 +2507,17 @@ const completionSpec: Fig.Spec = {
             {
               name: "-f",
               description:
-                "git fetch <name> is run immediately after the remote information is set up",
+                "Git fetch <name> is run immediately after the remote information is set up",
             },
             {
               name: "--tags",
               description:
-                "git fetch <name> imports every tag from the remote repository",
+                "Git fetch <name> imports every tag from the remote repository",
             },
             {
               name: "--no-tags",
               description:
-                "git fetch <name> does not import tags from the remote repository",
+                "Git fetch <name> does not import tags from the remote repository",
             },
             {
               name: "--mirror",
@@ -2545,12 +2545,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--auto", "-a"],
               description:
-                "the remote is queried to determine its HEAD, then the symbolic-ref refs/remotes/<name>/HEAD is set to the same branch",
+                "The remote is queried to determine its HEAD, then the symbolic-ref refs/remotes/<name>/HEAD is set to the same branch",
             },
             {
               name: ["--delete", "-d"],
               description:
-                "the symbolic ref refs/remotes/<name>/HEAD is deleted",
+                "The symbolic ref refs/remotes/<name>/HEAD is deleted",
             },
           ],
         },
@@ -2562,7 +2562,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--add",
               description:
-                "instead of replacing the list of currently tracked branches, adds to that list",
+                "Instead of replacing the list of currently tracked branches, adds to that list",
             },
           ],
           args: [
@@ -2602,11 +2602,11 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--push",
-              description: "push URLs are queried rather than fetch URLs",
+              description: "Push URLs are queried rather than fetch URLs",
             },
             {
               name: "--all",
-              description: "all URLs for the remote will be listed",
+              description: "All URLs for the remote will be listed",
             },
           ],
           args: {
@@ -2631,17 +2631,17 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--push",
-              description: "push URLs are manipulated instead of fetch URLs",
+              description: "Push URLs are manipulated instead of fetch URLs",
             },
             {
               name: "--add",
               description:
-                "instead of changing existing URLs, new URL is added",
+                "Instead of changing existing URLs, new URL is added",
             },
             {
               name: "--delete",
               description:
-                "instead of changing existing URLs, all URLs matching regex <url> are deleted for remote <name>. ",
+                "Instead of changing existing URLs, all URLs matching regex <url> are deleted for remote <name>",
             },
           ],
         },
@@ -2656,7 +2656,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-n",
               description:
-                "the remote heads are not queried first with git ls-remote <name>; cached information is used instead",
+                "The remote heads are not queried first with git ls-remote <name>; cached information is used instead",
             },
           ],
         },
@@ -2675,7 +2675,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--dry-run",
               description:
-                "report what branches would be pruned, but do not actually prune them",
+                "Report what branches would be pruned, but do not actually prune them",
             },
           ],
         },
@@ -2812,7 +2812,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-write-fetch-head",
-          description: "tells Git not to write the file",
+          description: "Tells Git not to write the file",
         },
         {
           name: ["-f", "--force"],
@@ -2958,7 +2958,7 @@ const completionSpec: Fig.Spec = {
             name: "option",
           },
           description:
-            "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
+            "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character",
         },
         {
           name: "--show-forced-updates",
@@ -2987,7 +2987,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stash",
-      description: "temporarily stores all the modified tracked files",
+      description: "Temporarily stores all the modified tracked files",
       subcommands: [
         {
           name: "push", // TODO: support for no subcommand is missing
@@ -3124,7 +3124,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "clear",
-          description: " Remove all the stash entries",
+          description: "Remove all the stash entries",
         },
         {
           name: "apply",
@@ -3149,7 +3149,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "branch",
-          description: "Creates and checks out a new branch named ",
+          description: "Creates and checks out a new branch named",
           insertValue: "branch {cursor}",
           args: [
             {
@@ -3208,11 +3208,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--relative-date",
-          description: "show date info",
+          description: "Show date info",
         },
         {
           name: "--all",
-          description: "show all refs",
+          description: "Show all refs",
         },
       ],
     },
@@ -3223,7 +3223,7 @@ const completionSpec: Fig.Spec = {
         { name: "repository", description: "Git library to be cloned" },
         {
           name: "directory",
-          description: "specify the new directory name or target folder",
+          description: "Specify the new directory name or target folder",
           template: "folders",
           isOptional: true,
         },
@@ -3489,7 +3489,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-b", "--initial-branch"],
-          description: "initial branch for new repo",
+          description: "Initial branch for new repo",
           args: {
             isOptional: true,
             name: "branch-name",
@@ -3549,12 +3549,12 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "source",
-          description: "file to move",
+          description: "File to move",
           template: "filepaths",
         },
         {
           name: "destination",
-          description: "location to move to",
+          description: "Location to move to",
           template: "folders",
         },
       ],
@@ -3587,7 +3587,7 @@ const completionSpec: Fig.Spec = {
         suggestions: [
           {
             name: ".",
-            description: "current directory",
+            description: "Current directory",
 
             icon: "fig://icon?type=folder",
           },
@@ -3598,14 +3598,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--",
           description:
-            "used to separate command-line options from the list of files",
+            "Used to separate command-line options from the list of files",
         },
-        { name: "--cached", description: "only remove from the index" },
+        { name: "--cached", description: "Only remove from the index" },
         {
           name: ["-f", "--force"],
-          description: "override the up-to-date check",
+          description: "Override the up-to-date check",
         },
-        { name: "-r", description: "allow recursive removal" },
+        { name: "-r", description: "Allow recursive removal" },
       ],
     },
     {
@@ -3816,11 +3816,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--all"],
           exclusiveOn: ["-r", "--remotes"],
-          description: "list both remote-tracking and local branches",
+          description: "List both remote-tracking and local branches",
         },
         {
           name: ["-d", "--delete"],
-          description: "delete fully merged branch",
+          description: "Delete fully merged branch",
           args: {
             generators: gitGenerators.localOrRemoteBranches,
             isVariadic: true,
@@ -3834,7 +3834,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-D",
-          description: "delete branch (even if not merged)",
+          description: "Delete branch (even if not merged)",
           args: {
             generators: gitGenerators.localOrRemoteBranches,
             isVariadic: true,
@@ -3848,7 +3848,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-m", "--move"],
-          description: "move/rename a branch and its reflog",
+          description: "Move/rename a branch and its reflog",
           args: [
             {
               generators: gitGenerators.localBranches,
@@ -3860,7 +3860,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-M",
-          description: "move/rename a branch, even if target exists",
+          description: "Move/rename a branch, even if target exists",
           args: [
             {
               generators: gitGenerators.localBranches,
@@ -3870,38 +3870,38 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
-        { name: ["-c", "--copy"], description: "copy a branch and its reflog" },
-        { name: "-C", description: "copy a branch, even if target exists" },
-        { name: ["-l", "--list"], description: "list branch names" },
+        { name: ["-c", "--copy"], description: "Copy a branch and its reflog" },
+        { name: "-C", description: "Copy a branch, even if target exists" },
+        { name: ["-l", "--list"], description: "List branch names" },
         {
           name: "--create-reflog",
-          description: "create the branch's reflog",
+          description: "Create the branch's reflog",
         },
         {
           name: "--edit-description",
-          description: "edit the description for the branch",
+          description: "Edit the description for the branch",
           args: {
             generators: gitGenerators.localBranches,
           },
         },
         {
           name: ["-f", "--force"],
-          description: "force creation, move/rename, deletion",
+          description: "Force creation, move/rename, deletion",
         },
         {
           name: "--merged",
-          description: "print only branches that are merged",
+          description: "Print only branches that are merged",
           args: { name: "commit" },
         },
         {
           name: "--no-merged",
-          description: "print only branches that are not merged",
+          description: "Print only branches that are not merged",
           args: { name: "commit" },
         },
         {
           name: "--column",
           exclusiveOn: ["--no-column"],
-          description: "list branches in columns [=<style>]",
+          description: "List branches in columns [=<style>]",
         },
         {
           name: "--no-column",
@@ -3910,21 +3910,21 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort",
-          description: "field name to sort on",
+          description: "Field name to sort on",
           args: { name: "key" },
         },
         {
           name: "--points-at",
-          description: "print only branches of the object",
+          description: "Print only branches of the object",
           args: { name: "object" },
         },
         {
           name: ["-i", "--ignore-case"],
-          description: "sorting and filtering are case insensitive",
+          description: "Sorting and filtering are case insensitive",
         },
         {
           name: "--format",
-          description: "format to use for the output",
+          description: "Format to use for the output",
           args: { name: "format" },
         },
         {
@@ -4154,7 +4154,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--merge"],
           description:
-            "When switching branches, if you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context. ",
+            "When switching branches, if you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context",
         },
 
         {
@@ -4177,13 +4177,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-other-worktrees",
           description:
-            "git checkout refuses when the wanted ref is already checked out by another worktree. This option makes it check the ref out anyway. In other words, the ref can be held by more than one worktree",
+            "Git checkout refuses when the wanted ref is already checked out by another worktree. This option makes it check the ref out anyway. In other words, the ref can be held by more than one worktree",
         },
 
         {
           name: "--overwrite-ignore",
           description:
-            "Silently overwrite ignored files when switching branches. This is the default behavior. ",
+            "Silently overwrite ignored files when switching branches. This is the default behavior",
         },
 
         {
@@ -4218,7 +4218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pathspec-from-file",
           description:
-            "Pathspec is passed in <file> instead of commandline args. ",
+            "Pathspec is passed in <file> instead of commandline args",
           args: {
             name: "file",
             template: "filepaths",
@@ -4233,7 +4233,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "branch, file, tag or commit",
-          description: "branch, file, tag or commit to switch to",
+          description: "Branch, file, tag or commit to switch to",
           isOptional: true,
           generators: [
             gitGenerators.remoteLocalBranches,
@@ -4243,7 +4243,7 @@ const completionSpec: Fig.Spec = {
           suggestions: [
             {
               name: "-",
-              description: "switch to the last used branch",
+              description: "Switch to the last used branch",
               icon: "fig://icon?type=git",
             },
           ],
@@ -4436,7 +4436,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "submodule",
-      description: " Initialize, update or inspect submodules",
+      description: "Initialize, update or inspect submodules",
       subcommands: [
         {
           name: "add",
@@ -4452,7 +4452,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-f", "--force"],
-              description: "allow adding an otherwise ignored submodule path",
+              description: "Allow adding an otherwise ignored submodule path",
             },
             {
               name: "--name",
@@ -4461,15 +4461,15 @@ const completionSpec: Fig.Spec = {
               insertValue: "--name '{cursor}'",
               args: {
                 name: "name",
-                description: "directory name",
+                description: "Directory name",
               },
             },
             {
               name: "--reference",
-              description: "remote repository to be cloned",
+              description: "Remote repository to be cloned",
               args: {
                 name: "repository",
-                description: "remote repository to be cloned",
+                description: "Remote repository to be cloned",
               },
             },
             {
@@ -4478,12 +4478,12 @@ const completionSpec: Fig.Spec = {
                 "Create a shallow clone with a history truncated to the specified number of revisions",
               args: {
                 name: "depth",
-                description: "specified number of revisions",
+                description: "Specified number of revisions",
               },
             },
             {
               name: "--",
-              description: "end of subcommand options",
+              description: "End of subcommand options",
             },
           ],
           args: [
@@ -4504,16 +4504,16 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cached",
               description:
-                "will instead print the SHA-1 recorded in the superproject for each submodule",
+                "Will instead print the SHA-1 recorded in the superproject for each submodule",
             },
             {
               name: "--recursive",
               description:
-                "will recurse into nested submodules, and show their status as well",
+                "Will recurse into nested submodules, and show their status as well",
             },
             {
               name: "--",
-              description: "end of subcommand options",
+              description: "End of subcommand options",
             },
           ],
           args: {
@@ -4529,7 +4529,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--",
-              description: "end of subcommand options",
+              description: "End of subcommand options",
             },
           ],
           args: {
@@ -4546,7 +4546,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-f", "--force"],
               description:
-                "the submodule’s working tree will be removed even if it contains local modifications",
+                "The submodule’s working tree will be removed even if it contains local modifications",
             },
             {
               name: "--all",
@@ -4554,7 +4554,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--",
-              description: "end of subcommand options",
+              description: "End of subcommand options",
             },
           ],
           args: {
@@ -4585,7 +4585,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--no-recommend-shallow",
-              description: "ignore the suggestions",
+              description: "Ignore the suggestions",
             },
             {
               name: "--recommend-shallow",
@@ -4595,26 +4595,26 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-f", "--force"],
               description:
-                "throw away local changes in submodules when switching to a different commit; and always run a checkout operation in the submodule, even if the commit listed in the index of the containing repository matches the commit checked out in the submodule",
+                "Throw away local changes in submodules when switching to a different commit; and always run a checkout operation in the submodule, even if the commit listed in the index of the containing repository matches the commit checked out in the submodule",
             },
             {
               name: "--checkout",
               description:
-                "the commit recorded in the superproject will be checked out in the submodule on a detached HEAD",
+                "The commit recorded in the superproject will be checked out in the submodule on a detached HEAD",
             },
             {
               name: "--rebase",
               description:
-                "the current branch of the submodule will be rebased onto the commit recorded in the superproject",
+                "The current branch of the submodule will be rebased onto the commit recorded in the superproject",
             },
             {
               name: "--merge",
               description:
-                "the commit recorded in the superproject will be merged into the current branch in the submodule",
+                "The commit recorded in the superproject will be merged into the current branch in the submodule",
             },
             {
               name: "--reference",
-              description: "remote repository",
+              description: "Remote repository",
               args: {
                 name: "repository",
               },
@@ -4648,7 +4648,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Don't clone only one branch during update: HEAD or one specified by --branch",
             },
-            { name: "--", description: "end of subcommand options" },
+            { name: "--", description: "End of subcommand options" },
           ],
           args: {
             name: "path",
@@ -4667,13 +4667,13 @@ const completionSpec: Fig.Spec = {
               description: "Branch of repository to add as submodule",
               args: {
                 name: "branch",
-                description: "remote branch to be specified",
+                description: "Remote branch to be specified",
               },
             },
             {
               name: ["-d", "--default"],
               description:
-                "removes the submodule.<name>.branch configuration key, which causes the tracking branch to default to the remote HEAD",
+                "Removes the submodule.<name>.branch configuration key, which causes the tracking branch to default to the remote HEAD",
             },
             {
               name: "--",
@@ -4682,7 +4682,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "path",
-            description: "path to submodule",
+            description: "Path to submodule",
             template: "filepaths",
           },
         },
@@ -4692,7 +4692,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--",
-              description: "end of command options",
+              description: "End of command options",
             },
           ],
           args: [
@@ -4703,7 +4703,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "newurl",
-              description: "new url of submodule",
+              description: "New url of submodule",
             },
           ],
         },
@@ -4715,17 +4715,17 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cached",
               description:
-                "this command will recurse into the registered submodules, and sync any nested submodules within",
+                "This command will recurse into the registered submodules, and sync any nested submodules within",
             },
             {
               name: "--files",
               description:
-                "show the series of commits in the submodule between the index of the super project and the working tree of the submodule",
+                "Show the series of commits in the submodule between the index of the super project and the working tree of the submodule",
             },
             {
               name: "-n",
               description:
-                " Limit the summary size (number of commits shown in total). Giving 0 will disable the summary; a negative number means unlimited (the default). This limit only applies to modified submodules. The size is always limited to 1 for added/deleted/typechanged submodules",
+                "Limit the summary size (number of commits shown in total). Giving 0 will disable the summary; a negative number means unlimited (the default). This limit only applies to modified submodules. The size is always limited to 1 for added/deleted/typechanged submodules",
               args: {
                 name: "n",
               },
@@ -4733,14 +4733,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--summary-limit",
               description:
-                " Limit the summary size (number of commits shown in total). Giving 0 will disable the summary; a negative number means unlimited (the default). This limit only applies to modified submodules. The size is always limited to 1 for added/deleted/typechanged submodules",
+                "Limit the summary size (number of commits shown in total). Giving 0 will disable the summary; a negative number means unlimited (the default). This limit only applies to modified submodules. The size is always limited to 1 for added/deleted/typechanged submodules",
               args: {
                 name: "n",
               },
             },
             {
               name: "--",
-              description: "everything after this is an argument",
+              description: "Everything after this is an argument",
             },
           ],
           args: [
@@ -4764,7 +4764,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--recursive",
               description:
-                "this command will recurse into the registered submodules, and sync any nested submodules within",
+                "This command will recurse into the registered submodules, and sync any nested submodules within",
             },
           ],
           args: {
@@ -4779,11 +4779,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "--recursive",
               description:
-                "this command will recurse into the registered submodules, and sync any nested submodules within",
+                "This command will recurse into the registered submodules, and sync any nested submodules within",
             },
             {
               name: "--",
-              description: "everything after this is an argument",
+              description: "Everything after this is an argument",
             },
           ],
           args: {
@@ -4806,7 +4806,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--cached",
-          description: " the commit stored in the index is used instead",
+          description: "The commit stored in the index is used instead",
         },
       ],
     },
@@ -4835,7 +4835,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--edit", "-e"],
           description:
-            "Invoke an editor before committing successful mechanical merge to further edit the auto-generated merge message, so that the user can explain and justify the merge. ",
+            "Invoke an editor before committing successful mechanical merge to further edit the auto-generated merge message, so that the user can explain and justify the merge",
         },
 
         {
@@ -4882,7 +4882,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-S", "--gpg-sign"],
           description:
-            "GPG-sign the resulting merge commit. The keyid argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space. ",
+            "GPG-sign the resulting merge commit. The keyid argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space",
           args: {
             name: "keyid",
             isOptional: true,
@@ -4943,7 +4943,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-squash",
           description:
-            "perform the merge and commit the result. This option can be used to override --squash",
+            "Perform the merge and commit the result. This option can be used to override --squash",
         },
 
         {
@@ -5123,25 +5123,25 @@ const completionSpec: Fig.Spec = {
       description:
         "Create, list, delete or verify a tag object signed with GPG",
       options: [
-        { name: ["-l", "--list"], description: "list tag names" },
+        { name: ["-l", "--list"], description: "List tag names" },
         {
           name: "-n",
-          description: "print <n> lines of each tag message",
+          description: "Print <n> lines of each tag message",
           args: {
             name: "n",
             suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }],
           },
         },
-        { name: ["-d", "--delete"], description: "delete tags" },
-        { name: ["-v", "--verify"], description: "verify tags" },
+        { name: ["-d", "--delete"], description: "Delete tags" },
+        { name: ["-v", "--verify"], description: "Verify tags" },
         {
           name: ["-a", "--annotate"],
-          description: "annotated tag, needs a message",
+          description: "Annotated tag, needs a message",
         },
         {
           name: ["-m", "--message"],
           insertValue: "-m '{cursor}'",
-          description: "tag message",
+          description: "Tag message",
           args: { name: "message" },
         },
       ],
@@ -5405,7 +5405,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-other-worktrees",
           description:
-            "git switch refuses when the wanted ref is already checked out by another worktree",
+            "Git switch refuses when the wanted ref is already checked out by another worktree",
         },
         {
           name: "--recurse-submodules",
@@ -5422,12 +5422,12 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "branch name",
-          description: "branch or commit to switch to",
+          description: "Branch or commit to switch to",
           generators: gitGenerators.localBranches,
           suggestions: [
             {
               name: "-",
-              description: "switch to the last used branch",
+              description: "Switch to the last used branch",
               icon: "fig://icon?type=git",
             },
           ],
