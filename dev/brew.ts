@@ -148,7 +148,170 @@ const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
   subcommands: [
-    { name: "list", description: "List all installed formulae" },
+    {
+      name: "list",
+      description: "List all installed formulae",
+      options: [
+        ...commonOptions,
+        {
+          name: ["--formula", "--formulae"],
+          description:
+            " List only formulae, or treat all named arguments as formulae.",
+        },
+        {
+          name: ["--cask", "--casks"],
+          description:
+            "List only casks, or treat all named arguments as casks.",
+        },
+        {
+          name: "--unbrewed",
+          description:
+            "List files in Homebrew's prefix not installed by Homebrew. (disabled; replaced by brew --prefix --unbrewed)",
+        },
+        {
+          name: "--full-name",
+          description:
+            "Print formulae with fully-qualified names. Unless --full-name, --versions or",
+        },
+        { name: "--pinned", description: "are passed, other options (i.e." },
+        {
+          name: "--versions",
+          description:
+            "Show the version number for installed formulae, or only the specified formulae if formula are provided.",
+        },
+        {
+          name: "--multiple",
+          description: "Only show formulae with multiple versions installed.",
+        },
+        {
+          name: "--pinned",
+          description:
+            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided. See also pin, unpin.",
+        },
+        {
+          name: "-1",
+          description:
+            "Force output to be one entry per line. This is the default when output is not to a terminal.",
+        },
+        {
+          name: "-l",
+          description:
+            "List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument.",
+        },
+        {
+          name: "-r",
+          description:
+            "Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument.",
+        },
+        {
+          name: "-t",
+          description:
+            "Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument.",
+        },
+      ],
+      args: {
+        isOptional: true,
+        isVariadic: true,
+        name: "formula",
+        generators: {
+          script: "brew list -1",
+          postProcess: function (out) {
+            return out
+              .split("\n")
+              .filter((line) => !line.includes("="))
+              .map((formula) => {
+                return {
+                  name: formula,
+                  icon: "🍺",
+                  description: "Installed formula",
+                };
+              });
+          },
+        },
+      },
+    },
+    {
+      name: "ls",
+      description: "List all installed formulae",
+      options: [
+        ...commonOptions,
+        {
+          name: "--formula,",
+          description:
+            "--formulae List only formulae, or treat all named arguments as formulae.",
+        },
+        {
+          name: "--cask,",
+          description:
+            "--casks List only casks, or treat all named arguments as casks.",
+        },
+        {
+          name: "--unbrewed",
+          description:
+            "List files in Homebrew's prefix not installed by Homebrew. (disabled; replaced by brew --prefix --unbrewed)",
+        },
+        {
+          name: "--full-name",
+          description:
+            "Print formulae with fully-qualified names. Unless --full-name, --versions or",
+        },
+        { name: "--pinned", description: "are passed, other options (i.e." },
+        {
+          name: "--versions",
+          description:
+            "Show the version number for installed formulae, or only the specified formulae if formula are provided.",
+        },
+        {
+          name: "--multiple",
+          description: "Only show formulae with multiple versions installed.",
+        },
+        {
+          name: "--pinned",
+          description:
+            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided. See also pin, unpin.",
+        },
+        {
+          name: "-1",
+          description:
+            "Force output to be one entry per line. This is the default when output is not to a terminal.",
+        },
+        {
+          name: "-l",
+          description:
+            "List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument.",
+        },
+        {
+          name: "-r",
+          description:
+            "Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument.",
+        },
+        {
+          name: "-t",
+          description:
+            "Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument.",
+        },
+      ],
+      args: {
+        isOptional: true,
+        isVariadic: true,
+        name: "formula",
+        generators: {
+          script: "brew list -1",
+          postProcess: function (out) {
+            return out
+              .split("\n")
+              .filter((line) => !line.includes("="))
+              .map((formula) => {
+                return {
+                  name: formula,
+                  icon: "🍺",
+                  description: "Installed formula",
+                };
+              });
+          },
+        },
+      },
+    },
     {
       name: "leaves",
       description:
@@ -168,6 +331,7 @@ const completionSpec: Fig.Spec = {
       name: "doctor",
       description: "Check your system for potential problems",
       options: [
+        ...commonOptions,
         {
           name: "--list-checks",
           description: "List all audit methods.",
@@ -183,6 +347,33 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Fetch the newest version of Homebrew and all formulae",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description: "Always do a slower, full update check",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description:
+            "Print the directories checked and git operations performed.",
+        },
+        {
+          name: ["-d", "--debug"],
+          description:
+            "Display a trace of all shell commands as they are executed.",
+        },
+        { name: ["-h", "--help"], description: "Show help message" },
+        {
+          name: "--merge",
+          description:
+            "Use git merge to apply updates (rather than git rebase).",
+        },
+        {
+          name: "--preinstall",
+          description:
+            "Run on auto-updates (e.g. before brew install). Skips some slower steps.",
+        },
+      ],
     },
     {
       name: "outdated",
@@ -278,7 +469,266 @@ const completionSpec: Fig.Spec = {
         },
       },
     },
-    { name: "upgrade", description: "Upgrade outdated casks and outdated" },
+    {
+      name: "upgrade",
+      description: "Upgrade outdated casks and outdated",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description:
+            "Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Print the verification and postinstall steps.",
+        },
+        {
+          name: ["-s", "--build-from-source"],
+          description:
+            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available.",
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Download and patch formula",
+        },
+        { name: ["-g", "--git"], description: "Create a Git repository" },
+        {
+          name: ["-q", "--quiet"],
+          description: "Make some output more quiet.",
+        },
+        { name: ["-h", "--help"], description: "Show this message." },
+        {
+          name: "--formula,",
+          description: "Treat all named arguments as formulae.",
+        },
+        {
+          name: "--env",
+          description: "Disabled other than for internal Homebrew use.",
+        },
+        {
+          name: "--ignore-dependencies",
+          description:
+            "An unsupported Homebrew development flag to skip installing any dependencies of any kind. If the dependencies are not already present, the formula will have issues. If you're not developing Homebrew, consider adjusting your PATH rather than using this flag.",
+        },
+        {
+          name: "--only-dependencies",
+          description:
+            "Install the dependencies with specified options but do not install the formula itself.",
+        },
+        {
+          name: "--cc",
+          description:
+            "Attempt to compile using the specified compiler, which should be the name of the compiler's executable.",
+          args: {
+            name: "compiler",
+            suggestions: ["gcc-7", "llvm_clang", "clang"],
+          },
+        },
+
+        {
+          name: "--force-bottle",
+          description:
+            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation.",
+        },
+        {
+          name: "--include-test",
+          description:
+            "Install testing dependencies required to run brew test formula.",
+        },
+        {
+          name: "--HEAD",
+          description:
+            "If formula defines it, install the HEAD version, aka. main, trunk, unstable, master.",
+        },
+        {
+          name: "--fetch-HEAD",
+          description:
+            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released.",
+        },
+        {
+          name: "--keep-tmp",
+          description:
+            "Retain the temporary files created during installation.",
+        },
+        {
+          name: "--build-bottle",
+          description:
+            "Prepare the formula for eventual bottling during installation, skipping any post-install steps.",
+        },
+        {
+          name: "--bottle-arch",
+          description:
+            "Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on.",
+        },
+        {
+          name: "--display-times",
+          description:
+            "Print install times for each formula at the end of the run.",
+        },
+        {
+          name: "--cask,",
+          description: "--casks Treat all named arguments as casks.",
+        },
+        {
+          name: "--binaries",
+          description:
+            "Disable/enable linking of helper executables (default: enabled).",
+        },
+        {
+          name: "--no-binaries",
+          description:
+            "Disable/enable linking of helper executables (default: enabled).",
+        },
+        {
+          name: "--require-sha",
+          description: "Require all casks to have a checksum.",
+        },
+        {
+          name: "--quarantine",
+          description:
+            "Disable/enable quarantining of downloads (default: enabled).",
+        },
+        {
+          name: "--no-quarantine",
+          description:
+            "Disable/enable quarantining of downloads (default: enabled).",
+        },
+        {
+          name: "--skip-cask-deps",
+          description: "Skip installing cask dependencies.",
+        },
+        {
+          name: "--appdir",
+          description:
+            "Target location for Applications (default: /Applications).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--colorpickerdir",
+          description:
+            "Target location for Color Pickers (default: ~/Library/ColorPickers).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--prefpanedir",
+          description:
+            "Target location for Preference Panes (default: ~/Library/PreferencePanes).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--qlplugindir",
+          description:
+            "Target location for QuickLook Plugins (default: ~/Library/QuickLook).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--mdimporterdir",
+          description:
+            "Target location for Spotlight Plugins (default: ~/Library/Spotlight).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--dictionarydir",
+          description:
+            "Target location for Dictionaries (default: ~/Library/Dictionaries).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--fontdir",
+          description: "Target location for Fonts (default: ~/Library/Fonts).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--servicedir",
+          description:
+            "Target location for Services (default: ~/Library/Services).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--input-methoddir",
+          description:
+            "Target location for Input Methods (default: ~/Library/Input Methods).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--internet-plugindir",
+          description:
+            "Target location for Internet Plugins (default: ~/Library/Internet Plug-Ins).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--audio-unit-plugindir",
+          description:
+            "Target location for Audio Unit Plugins (default: ~/Library/Audio/Plug-Ins/Components).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--vst-plugindir",
+          description:
+            "Target location for VST Plugins (default: ~/Library/Audio/Plug-Ins/VST).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--vst3-plugindir",
+          description:
+            "Target location for VST3 Plugins (default: ~/Library/Audio/Plug-Ins/VST3).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--screen-saverdir",
+          description:
+            "Target location for Screen Savers (default: ~/Library/Screen Savers).",
+          args: {
+            name: "location",
+            template: "folders",
+          },
+        },
+        {
+          name: "--language",
+          description:
+            "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system.",
+        },
+      ],
+    },
     {
       name: "search",
       description:
@@ -639,7 +1089,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cask",
-
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
       subcommands: [
@@ -699,6 +1148,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
       options: [
+        ...commonOptions,
         {
           name: ["--prune", "--prune=all"],
           description: "Remove all cache files older than specified days.",
@@ -727,45 +1177,35 @@ const completionSpec: Fig.Spec = {
     {
       name: "services",
       description:
-        "Manage background services with macOS' launchctl(1) daemon manager.",
+        "Manage background services with macOS's launchctl(1) daemon manager.",
       options: [
+        ...commonOptions,
         {
-          name: ["-d", "--debug"],
-          description: "Display any debugging information.",
+          name: "--file",
+          description:
+            "Use the plist file from this location to start or run the service",
         },
         {
-          name: ["-q", "--quiet"],
-          description: "Suppress any warnings.",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description: "Make some output more verbose.",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help with services command",
+          name: "--all",
+          description: "Run subcommand on all services",
         },
       ],
       subcommands: [
         {
           name: "cleanup",
-
           description: "Remove all unused services.",
         },
         {
           name: "list",
-
           description: "List all services.",
         },
         {
           name: "run",
-
           description:
             "Run the service formula without registering to launch at login (or boot).",
           options: [
             {
               name: "--all",
-
               description: "Start all services",
             },
           ],
@@ -776,13 +1216,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "start",
-
           description:
             "Start the service formula immediately and register it to launch at login",
           options: [
             {
               name: "--all",
-
               description: "Start all services",
             },
           ],
@@ -799,7 +1237,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--all",
-
               description: "Start all services",
             },
           ],
@@ -816,7 +1253,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--all",
-
               description: "Start all services",
             },
           ],
@@ -854,6 +1290,117 @@ const completionSpec: Fig.Spec = {
           name: ["-n", "--dry-run"],
           description:
             "List what would be uninstalled, but do not actually uninstall anything.",
+        },
+      ],
+    },
+    {
+      name: "tap",
+      description: "Tap a formula repository.",
+      options: [
+        ...commonOptions,
+        {
+          name: "--full",
+          description:
+            "Convert a shallow clone to a full clone without untapping",
+        },
+        {
+          name: "--shallow",
+          description: "Fetch tap as a shallow clone rather than a full clone",
+        },
+        {
+          name: "--force-auto-update",
+          description: "Auto-update tap even if it is not hosted on GitHub",
+        },
+        {
+          name: " --repair",
+          description:
+            "Migrate tapped formulae from symlink-based to directory-based structure.",
+        },
+        {
+          name: "--list-pinned",
+          description: "List all pinned taps",
+        },
+      ],
+      args: {
+        name: "user/repo or URL",
+      },
+    },
+    {
+      name: "link",
+      description:
+        "Symlink all of formula's installed files into Homebrew's prefix",
+      args: {
+        isOptional: true,
+        isVariadic: true,
+        name: "formula",
+        generators: {
+          script: "brew list -1",
+          postProcess: function (out) {
+            return out
+              .split("\n")
+              .filter((line) => !line.includes("="))
+              .map((formula) => {
+                return {
+                  name: formula,
+                  icon: "🍺",
+                  description: "Installed formula",
+                };
+              });
+          },
+        },
+      },
+      options: [
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "List files which would be linked or deleted by brew link --overwrite without actually linking or deleting any files.",
+        },
+        {
+          name: ["-f", "--force"],
+          description: "Allow keg-only formulae to be linked.",
+        },
+        {
+          name: "--HEAD",
+          description:
+            "Link the HEAD version of the formula if it is installed.",
+        },
+      ],
+    },
+    {
+      name: "edit",
+      description: "",
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "formula",
+        description: "Formula or cask to install",
+        generators: {
+          script:
+            "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
+          postProcess: function (out) {
+            return out.split("\n").map((formula) => {
+              return {
+                name: formula.replace(".rb", ""),
+                description: "formula",
+                icon: "🍺",
+                priority:
+                  (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
+                    ? 0
+                    : 51,
+              };
+            });
+          },
+        },
+      },
+      options: [
+        ...commonOptions,
+        {
+          name: ["--formula", "--formulae"],
+          description: "Treat all named arguments as formulae.",
+        },
+        {
+          name: ["--cask", "--casks"],
+          description: "Treat all named arguments as casks.",
         },
       ],
     },
