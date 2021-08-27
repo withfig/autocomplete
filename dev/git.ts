@@ -1454,7 +1454,7 @@ const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [gitGenerators.files_for_staging, { template: "folders" }],
       },
     },
     {
