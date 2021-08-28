@@ -8,40 +8,38 @@ const versionArg: Fig.Arg = {
       description: "Newest official release",
     },
     {
-      name: ["lts"],
+      name: "lts",
       description: "Newest Long Term Support official release",
     },
     {
-      name: ["auto"],
+      name: "auto",
       description:
         "Read version from file: .n-node-version, .node-version, .nvmrc, or package.json",
     },
     {
-      name: ["engine"],
+      name: "engine",
       description: "Read version from package.json",
     },
   ],
-  generators: [
-    {
-      script: "n lsr --all",
-      postProcess: function (out) {
-        const set = new Set<string>();
-        const versions = out.split("\n").slice(1);
-        for (const version of versions) {
-          set.add(version); // 16.1.2
-          const splitted = version.split(".");
-          set.add(splitted[0] + "." + splitted[1]); // 16.1
-          set.add(splitted[0]); // 16
-        }
-        return Array.from(set).map((version) => {
-          return {
-            name: [version, `v${version}`],
-            description: `Node.js ${version}`,
-          };
-        });
-      },
+  generators: {
+    script: "n lsr --all",
+    postProcess: function (out) {
+      const set = new Set<string>();
+      const versions = out.split("\n").slice(1);
+      for (const version of versions) {
+        set.add(version); // 16.1.2
+        const splitted = version.split(".");
+        set.add(splitted[0] + "." + splitted[1]); // 16.1
+        set.add(splitted[0]); // 16
+      }
+      return Array.from(set).map((version) => {
+        return {
+          name: [version, `v${version}`],
+          description: `Node.js ${version}`,
+        };
+      });
     },
-  ],
+  },
   isOptional: false,
 };
 const optionalVersionArg: Fig.Arg = {
@@ -65,7 +63,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["rm", "–"],
       description: "Remove a Node.js version",
-      args: [variadicVersionArg],
+      args: variadicVersionArg,
     },
     {
       name: "prune",
@@ -73,11 +71,11 @@ const completionSpec: Fig.Spec = {
         "Remove all cached Node.js versions except the installed version",
     },
     {
-      name: ["doctor"],
+      name: "doctor",
       description: "Display diagnostics to help resolve problems",
     },
     {
-      name: ["uninstall"],
+      name: "uninstall",
       description: "Remove the installed Node.js",
     },
     {
@@ -87,7 +85,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["lsr", "ls-remote", "list-remote"],
       description: "Output matching versions available for download",
-      args: [versionArg],
+      args: versionArg,
       options: [
         {
           name: "--all",
@@ -98,7 +96,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["which", "bin"],
       description: "Output path for downloaded node version",
-      args: [versionArg],
+      args: versionArg,
     },
     {
       name: ["run", "use", "as"],
@@ -108,7 +106,7 @@ const completionSpec: Fig.Spec = {
       options: node.options,
     },
     {
-      name: ["exec"],
+      name: "exec",
       description:
         "Execute command with modified PATH, so downloaded node version and npm first",
       args: [
@@ -124,7 +122,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
-  args: [optionalVersionArg],
+  args: optionalVersionArg,
   options: [
     {
       name: ["-V", "--version"],
@@ -139,7 +137,7 @@ const completionSpec: Fig.Spec = {
       description: "Preserve npm and npx during install of Node.js",
     },
     {
-      name: ["--no-preserve"],
+      name: "--no-preserve",
       description: "Do not preserve npm and npx during install of Node.js",
     },
     {
@@ -165,19 +163,19 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--insecure"],
+      name: "--insecure",
       description:
         "Turn off certificate checking for https requests (may be needed from behind a proxy server)",
       isDangerous: true,
     },
     {
-      name: ["--use-xz"],
+      name: "--use-xz",
       description:
         "Override automatic detection of xz support and enable use of xz compressed node downloads.",
       exclusiveOn: ["--no-use-xz"],
     },
     {
-      name: ["--no-use-xz"],
+      name: "--no-use-xz",
       description:
         "Override automatic detection of xz support and disable use of xz compressed node downloads.",
       exclusiveOn: ["--use-xz"],
