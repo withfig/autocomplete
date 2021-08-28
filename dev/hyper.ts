@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isOptional: true,
         name: "query",
-        description: "your search query",
+        description: "Your search query",
       },
     },
     {
@@ -45,22 +45,20 @@ const completionSpec: Fig.Spec = {
       description: "Uninstall plugin",
       args: {
         name: "plugin",
-        description: "plugin to uninstall",
-        generators: [
-          {
-            script: "hyper list",
-            postProcess: function (out) {
-              return out.split("\n").map((p) => {
-                return { name: p, description: "plugin" };
-              });
-            },
+        description: "Plugin to uninstall",
+        generators: {
+          script: "hyper list",
+          postProcess: function (out) {
+            return out.split("\n").map((p) => {
+              return { name: p, description: "Plugin name" };
+            });
           },
-        ],
+        },
       },
     },
     {
       name: "version",
-      description: "show version",
+      description: "Show version",
     },
   ],
   options: [
