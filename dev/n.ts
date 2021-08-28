@@ -89,7 +89,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--all",
-          description: "ls-remote displays all matches instead of last 20",
+          description: "Ls-remote displays all matches instead of last 20",
         },
       ],
     },
@@ -143,7 +143,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-q", "--quiet"],
       description:
-        'Disable curl output. Disable log messages processing "auto" and "engine" labels.',
+        'Disable curl output. Disable log messages processing "auto" and "engine" labels',
     },
     {
       name: ["-d", "--download"],
@@ -171,13 +171,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--use-xz",
       description:
-        "Override automatic detection of xz support and enable use of xz compressed node downloads.",
+        "Override automatic detection of xz support and enable use of xz compressed node downloads",
       exclusiveOn: ["--no-use-xz"],
     },
     {
       name: "--no-use-xz",
       description:
-        "Override automatic detection of xz support and disable use of xz compressed node downloads.",
+        "Override automatic detection of xz support and disable use of xz compressed node downloads",
       exclusiveOn: ["--use-xz"],
     },
   ],
