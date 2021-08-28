@@ -219,6 +219,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PATTERN",
         description: "The pattern to look for",
+        template: ["filepaths", "folders"],
       },
     },
 
@@ -228,6 +229,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "NAME",
         description: "The directory to ignore",
+        template: ["filepaths", "folders"],
       },
     },
 
@@ -318,6 +320,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "STRING",
         description: "The path to the ignore file",
+        template: "filepaths",
       },
     },
 
@@ -328,6 +331,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "COMMAND",
         description: "The pager",
+        suggestions: ["more", "less", "most"],
       },
     },
 
