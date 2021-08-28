@@ -28,11 +28,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--affinity",
       description: "Set thread affinity (if platform supports it)",
+      exclusiveOn: ["--noaffinity"],
     },
 
     {
       name: "--noaffinity",
       description: "Don't set thread affinity (if platform supports it)",
+      exclusiveOn: ["--affinity"],
     },
 
     {
@@ -78,11 +80,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--color",
       description: "Print color codes in results",
+      exclusiveOn: ["--nocolor"],
     },
 
     {
       name: "--nocolor",
       description: "Don't print color codes in results",
+      exclusiveOn: ["--color"],
     },
 
     {
@@ -133,21 +137,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "--filename",
       description: "Print file names",
+      exclusiveOn: ["--nofilename"],
     },
 
     {
       name: "--nofilename",
       description: "Don't print file names",
+      exclusiveOn: ["--filename"],
     },
 
     {
       name: ["-f", "--follow"],
       description: "Follow symlinks",
+      exclusiveOn: ["--nofollow"],
     },
 
     {
       name: "--nofollow",
       description: "Don't follow symlinks",
+      exclusiveOn: ["-f", "--follow"],
     },
 
     {
@@ -159,12 +167,14 @@ const completionSpec: Fig.Spec = {
       name: "--group",
       description:
         "Lumps multiple matches in the same file together, and presents them under a single occurrence of the filename",
+      exclusiveOn: ["--nogroup"],
     },
 
     {
       name: "--nogroup",
       description:
         "Refrains from lumping matches in the same file together, and instead places the filename at the start of each match line",
+      exclusiveOn: ["--group"],
     },
 
     {
@@ -188,11 +198,13 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-H", "--heading"],
       description: "Print filenames above matching contents",
+      exclusiveOn: ["--noheading"],
     },
 
     {
       name: "--noheading",
       description: "Don't print filenames above matching contents",
+      exclusiveOn: ["-H", "--heading"],
     },
 
     {
@@ -249,37 +261,44 @@ const completionSpec: Fig.Spec = {
       name: "--mmap",
       description:
         "Use of memory-mapped I/O. Defaults to true on platforms where mmap() is faster than read(). (All but macOS.)",
+      exclusiveOn: ["--nommap"],
     },
 
     {
       name: "--nommap",
       description:
         "Don't use of memory-mapped I/O. Defaults to true on platforms where mmap() is faster than read(). (All but macOS.)",
+      exclusiveOn: ["--mmap"],
     },
 
     {
       name: "--multiline",
       description: "Match regexes across newlines",
+      exclusiveOn: ["--nomultiline"],
     },
 
     {
       name: "--nomultiline",
       description: "Don't match regexes across newlines",
+      exclusiveOn: ["--multiline"],
     },
 
     {
       name: ["-n", "--norecurse"],
       description: "Don't recurse into directories",
+      exclusiveOn: ["-r", "--recurse"],
     },
 
     {
       name: "--numbers",
       description: "Print line numbers",
+      exclusiveOn: ["--nonumbers"],
     },
 
     {
       name: "--nonumbers",
       description: "Don't print line numbers",
+      exclusiveOn: ["--numbers"],
     },
 
     {
@@ -339,6 +358,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-r", "--recurse"],
       description: "Recurse into directories when searching. Default is true",
+      exclusiveOn: ["-n", "--norecurse"],
     },
 
     {
