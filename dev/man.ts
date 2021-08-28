@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "man",
-  description: "format and display the on-line manual pages",
+  description: "Format and display the on-line manual pages",
   args: {
     generators: {
       /* `man -w` lists all the directories in the manpath */
@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
           .map((line) => {
             return {
               name: line,
-              description: "man page",
+              description: "Man page",
               icon: "fig://icon?type=string",
             };
           });

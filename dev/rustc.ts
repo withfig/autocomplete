@@ -192,7 +192,7 @@ const completionSpec: Fig.Spec = {
           {
             name: "target-list",
             description:
-              "List of known targets. The target may be selected with the --target flag.",
+              "List of known targets. The target may be selected with the --target flag",
           },
           {
             name: "target-cpus",
@@ -206,7 +206,7 @@ const completionSpec: Fig.Spec = {
           {
             name: "relocation-models",
             description:
-              "List of relocation models. Relocation models may be selected with the -C relocation-model=val flag.",
+              "List of relocation models. Relocation models may be selected with the -C relocation-model=val flag",
           },
           { name: "code-models", description: "List of code models" },
           {
@@ -309,7 +309,7 @@ const completionSpec: Fig.Spec = {
       description: "Set unstable options",
       args: {
         name: "option",
-        description: "unstable options to pass to rustc",
+        description: "Unstable options to pass to rustc",
       },
     },
     {

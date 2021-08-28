@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "mysql",
-  description: "mysql is a terminal-based front-end to MySQL.",
+  description: "Mysql is a terminal-based front-end to MySQL",
   args: {},
   options: [
     {
@@ -149,7 +149,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--disable-named-commands",
       description:
-        "Disable named commands. Use the \\* form only, or use named commands only at the beginning of a line ending with a semicolon (;). mysql starts with this option enabled by default. However, even with this option, long-format commands still work from the first line.",
+        "Disable named commands. Use the \\* form only, or use named commands only at the beginning of a line ending with a semicolon (;). mysql starts with this option enabled by default. However, even with this option, long-format commands still work from the first line",
     },
     {
       name: "--dns-srv-name",
@@ -228,11 +228,11 @@ const completionSpec: Fig.Spec = {
         suggestions: [
           {
             name: "0",
-            description: "disable",
+            description: "Disable",
           },
           {
             name: "1",
-            description: "enable",
+            description: "Enable",
           },
         ],
       },
@@ -405,7 +405,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-s", "--silent"],
       description:
-        "Silent mode.  Produce less output. This option can be given multiple times to produce less and less output.",
+        "Silent mode.  Produce less output. This option can be given multiple times to produce less and less output",
       isRepeatable: true,
     },
     {

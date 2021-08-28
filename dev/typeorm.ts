@@ -1,14 +1,14 @@
 const cliOptions: Record<string, Fig.Option> = {
   help: { name: "--help", description: "Show help for command" },
-  version: { name: ["-v", "--version"], description: "Show the version." },
+  version: { name: ["-v", "--version"], description: "Show the version" },
   connection: {
     name: ["-c", "--connection"],
     args: { name: "connection" },
-    description: "Name of the connection on which to run a query.",
+    description: "Name of the connection on which to run a query",
   },
   config: {
     name: ["-f", "--config"],
-    description: "Name of the file with connection configuration.",
+    description: "Name of the file with connection configuration",
     args: { name: "file", template: "filepaths" },
   },
 };
@@ -19,13 +19,13 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "schema:sync",
-      description: "Synchronizes your entities with database schema.",
+      description: "Synchronizes your entities with database schema",
       options: [
         cliOptions.help,
         {
           ...cliOptions.connection,
           description:
-            "Name of the connection on which schema synchronization needs to to run.",
+            "Name of the connection on which schema synchronization needs to to run",
         },
         cliOptions.config,
         cliOptions.version,
@@ -33,13 +33,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "schema:log",
-      description: "Shows sql to be executed by schema:sync command.",
+      description: "Shows sql to be executed by schema:sync command",
       options: [
         cliOptions.help,
         {
           ...cliOptions.connection,
           description:
-            "Name of the connection of which schema sync log should be shown.",
+            "Name of the connection of which schema sync log should be shown",
         },
         cliOptions.config,
         cliOptions.version,
@@ -48,12 +48,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "schema:drop",
       description:
-        "Drops all tables in the database on your default connection.",
+        "Drops all tables in the database on your default connection",
       options: [
         cliOptions.help,
         {
           ...cliOptions.connection,
-          description: "Name of the connection on which to drop all tables.",
+          description: "Name of the connection on which to drop all tables",
         },
         cliOptions.config,
         cliOptions.version,
@@ -61,7 +61,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "query",
-      description: "Executes given SQL query on a default connection.",
+      description: "Executes given SQL query on a default connection",
       args: { name: "query", description: "The SQL Query to run" },
       options: [
         cliOptions.help,
@@ -72,19 +72,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "entity:create",
-      description: "Generates a new entity.",
+      description: "Generates a new entity",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-n", "--name"],
-          description: "Name of the entity class.",
+          description: "Name of the entity class",
           args: { name: "entity" },
           isRequired: true,
         },
         {
           name: ["-d", "--dir"],
-          description: "Directory where entity should be created.",
+          description: "Directory where entity should be created",
           args: { name: "directory", template: "folders" },
         },
         cliOptions.config,
@@ -93,19 +93,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "subscriber:create",
-      description: "Generates a new subscriber.",
+      description: "Generates a new subscriber",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-n", "--name"],
-          description: "Name of the subscriber class.",
+          description: "Name of the subscriber class",
           args: { name: "subscriber" },
           isRequired: true,
         },
         {
           name: ["-d", "--dir"],
-          description: "Directory where subscriber should be created.",
+          description: "Directory where subscriber should be created",
           args: { name: "directory", template: "folders" },
         },
         cliOptions.config,
@@ -114,26 +114,26 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["migration:create", "migrations:create"],
-      description: "Creates a new migration file.",
+      description: "Creates a new migration file",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-n", "--name"],
-          description: "Name of the migration class.",
+          description: "Name of the migration class",
           args: { name: "migration" },
           isRequired: true,
         },
         {
           name: ["-d", "--dir"],
-          description: "Directory where migration should be created.",
+          description: "Directory where migration should be created",
           args: { name: "directory", template: "folders" },
         },
         cliOptions.config,
         {
           name: ["-o", "--outputJs"],
           description:
-            "Generate a migration file on Javascript instead of Typescript.",
+            "Generate a migration file on Javascript instead of Typescript",
         },
         cliOptions.version,
       ],
@@ -141,19 +141,19 @@ const completionSpec: Fig.Spec = {
     {
       name: ["migration:generate", "migrations:generate"],
       description:
-        "Generates a new migration file with sql needs to be executed to update schema.",
+        "Generates a new migration file with sql needs to be executed to update schema",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-n", "--name"],
-          description: "Name of the migration class.",
+          description: "Name of the migration class",
           args: { name: "migration" },
           isRequired: true,
         },
         {
           name: ["-d", "--dir"],
-          description: "Directory where migration should be created.",
+          description: "Directory where migration should be created",
           args: { name: "directory", template: "folders" },
         },
         {
@@ -164,31 +164,31 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-o", "--outputJs"],
           description:
-            "Generate a migration file on Javascript instead of Typescript.",
+            "Generate a migration file on Javascript instead of Typescript",
         },
         {
           name: ["--dr", "--dryrun"],
           description:
-            "Prints out the contents of the migration instead of writing it to a file.",
+            "Prints out the contents of the migration instead of writing it to a file",
         },
         {
           name: ["--ch", "--check"],
           description:
-            "Verifies that the current database is up to date and that no migrations are needed.",
+            "Verifies that the current database is up to date and that no migrations are needed",
         },
         cliOptions.version,
       ],
     },
     {
       name: ["migration:run", "migrations:run"],
-      description: "Runs all pending migrations.",
+      description: "Runs all pending migrations",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-t", "--transaction"],
           description:
-            "Indicates if transaction should be used or not for migration run.",
+            "Indicates if transaction should be used or not for migration run",
         },
         cliOptions.config,
         cliOptions.version,
@@ -196,7 +196,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "migration:show",
-      description: "Show all migrations and whether they have been run or not.",
+      description: "Show all migrations and whether they have been run or not",
       options: [
         cliOptions.help,
         cliOptions.connection,
@@ -206,14 +206,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["migration:revert", "migrations:revert"],
-      description: "Reverts last executed migration.",
+      description: "Reverts last executed migration",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-t", "--transaction"],
           description:
-            "Indicates if transaction should be used or not for migration revert.",
+            "Indicates if transaction should be used or not for migration revert",
         },
         cliOptions.config,
         cliOptions.version,
@@ -221,12 +221,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "version",
-      description: "Prints TypeORM version this project uses.",
+      description: "Prints TypeORM version this project uses",
       options: [cliOptions.help, cliOptions.version],
     },
     {
       name: "cache:clear",
-      description: "Clears all data stored in query runner cache.",
+      description: "Clears all data stored in query runner cache",
       options: [
         cliOptions.help,
         cliOptions.connection,
@@ -236,18 +236,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "init",
-      description: "Generates initial TypeORM project structure.",
+      description: "Generates initial TypeORM project structure",
       options: [
         cliOptions.help,
         cliOptions.connection,
         {
           name: ["-n", "--name"],
-          description: "Name of the project directory.",
+          description: "Name of the project directory",
           args: { name: "name" },
         },
         {
           name: ["--db", "--database"],
-          description: "Database type you'll use in your project.",
+          description: "Database type you'll use in your project",
           args: {
             name: "database",
             suggestions: [
@@ -268,13 +268,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--express",
-          description:
-            "Indicates if express should be included in the project.",
+          description: "Indicates if express should be included in the project",
         },
         {
           name: "--docker",
           description:
-            "Set to true if docker-compose must be generated as well.",
+            "Set to true if docker-compose must be generated as well",
         },
         {
           name: ["--pm", "--manager"],

@@ -103,7 +103,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--to",
-      description: "ending date/month/year of date range",
+      description: "Ending date/month/year of date range",
       args: {
         name: "date",
         description:

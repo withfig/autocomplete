@@ -12,11 +12,11 @@ const shortcut: Fig.Arg = {
 const subcommands: Fig.Subcommand[] = [
   {
     name: "run",
-    description: "Run a shortcut.",
+    description: "Run a shortcut",
     icon: "▶️",
     args: {
       name: "shortcut-name",
-      description: "The name of the shortcut to run.",
+      description: "The name of the shortcut to run",
       generators: shortcut.generators,
     },
     options: [
@@ -26,7 +26,7 @@ const subcommands: Fig.Subcommand[] = [
           name: "input-path",
           template: "filepaths",
         },
-        description: "The input to provide to the shortcut.",
+        description: "The input to provide to the shortcut",
       },
       {
         name: ["-o", "--output-path"],
@@ -34,7 +34,7 @@ const subcommands: Fig.Subcommand[] = [
           name: "output-path",
           template: "filepaths",
         },
-        description: "Where to write the shortcut output, if applicable.",
+        description: "Where to write the shortcut output, if applicable",
       },
       {
         name: "--output-type",
@@ -63,23 +63,23 @@ const subcommands: Fig.Subcommand[] = [
             },
             {
               name: "public.vcard",
-              description: "vCard",
+              description: "VCard",
             },
           ],
         },
         description:
-          "What type to output data in, in Universal Type Identifier format.",
+          "What type to output data in, in Universal Type Identifier format",
       },
     ],
   },
   {
     name: "list",
-    description: "List your shortcuts.",
+    description: "List your shortcuts",
     icon: "📂",
     options: [
       {
         name: ["--folder-name", "-f"],
-        description: "The name of the folder to list.",
+        description: "The name of the folder to list",
         args: {
           name: "folder-name",
           generators: {
@@ -94,29 +94,29 @@ const subcommands: Fig.Subcommand[] = [
       },
       {
         name: "--folders",
-        description: "List folders instead of shortcuts.",
+        description: "List folders instead of shortcuts",
         icon: "📂",
       },
     ],
   },
   {
     name: "view",
-    description: "View a shortcut in Shortcuts.",
+    description: "View a shortcut in Shortcuts",
     icon: "🔍",
     args: {
       name: "shortcut-name",
-      description: "The name of the shortcut to view.",
+      description: "The name of the shortcut to view",
       generators: shortcut.generators,
     },
   },
   {
     name: "sign",
-    description: "Sign a shortcut file.",
+    description: "Sign a shortcut file",
     icon: "🔏",
     options: [
       {
         name: ["--input", "-i"],
-        description: "The shortcut file to sign.",
+        description: "The shortcut file to sign",
         args: {
           name: "input",
           generators: {
@@ -132,7 +132,7 @@ const subcommands: Fig.Subcommand[] = [
       },
       {
         name: ["--output", "-o"],
-        description: "Output path for the signed shortcut file.",
+        description: "Output path for the signed shortcut file",
         args: {
           name: "output",
           template: "filepaths",
@@ -152,12 +152,12 @@ const subcommands: Fig.Subcommand[] = [
 
 const completionSpec: Fig.Spec = {
   name: "shortcuts",
-  description: "Command-line utility for running shortcuts.",
+  description: "Command-line utility for running shortcuts",
   subcommands: [
     ...subcommands,
     {
       name: "help",
-      description: "Show help information.",
+      description: "Show help information",
       subcommands: subcommands.map(({ name, description, icon }) => ({
         name,
         description,

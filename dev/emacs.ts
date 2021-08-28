@@ -5,8 +5,7 @@ Here!
 */
 const completionSpec: Fig.Spec = {
   name: "emacs",
-  description:
-    "An extensible, customizable, free/libre text editor — and more.",
+  description: "An extensible, customizable, free/libre text editor — and more",
   args: {
     template: "filepaths",
   },

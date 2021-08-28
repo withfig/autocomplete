@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "wrk",
-  description: "wrk - a HTTP benchmarking tool",
+  description: "Wrk - a HTTP benchmarking tool",
   args: {
     name: "Url",
   },
@@ -57,7 +57,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "output usage information",
+      description: "Output usage information",
     },
   ],
 };

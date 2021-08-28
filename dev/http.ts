@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "http",
-  description: "HTTPie: command-line HTTP client for the API era.",
+  description: "HTTPie: command-line HTTP client for the API era",
   args: [
     {
       name: "METHOD",
@@ -8,19 +8,19 @@ const completionSpec: Fig.Spec = {
       suggestions: ["GET", "POST", "PUT", "DELETE", "HEAD"],
       default: "GET",
       description:
-        "The HTTP method to be used for the request (GET, POST, PUT, DELETE, ...).",
+        "The HTTP method to be used for the request (GET, POST, PUT, DELETE, ...)",
     },
     {
       name: "URL",
       description:
-        "The scheme defaults to 'http://' if the URL does not include one.",
+        "The scheme defaults to 'http://' if the URL does not include one",
     },
     {
       name: "REQUEST_ITEM",
       isOptional: true,
       isVariadic: true,
       description:
-        "Optional key-value pairs to be included in the request. The separator used determines the type.",
+        "Optional key-value pairs to be included in the request. The separator used determines the type",
     },
   ],
   options: [
@@ -44,18 +44,18 @@ const completionSpec: Fig.Spec = {
       name: "--multipart",
       exclusiveOn: ["--json", "-j", "--form", "-f", "--boundary"],
       description:
-        "Similar to --form, but always sends a multipart/form-data request (i.e., even without files).",
+        "Similar to --form, but always sends a multipart/form-data request (i.e., even without files)",
     },
     {
       name: "--boundary",
       exclusiveOn: ["--json", "-j", "--multipart"],
       description:
-        "Specify a custom boundary string for multipart/form-data requests. Has effect only together with --form.",
+        "Specify a custom boundary string for multipart/form-data requests. Has effect only together with --form",
     },
     {
       name: ["--compress", "-x"],
       description:
-        "Content compressed (encoded) with Deflate algorithm. The Content-Encoding header is set to deflate.",
+        "Content compressed (encoded) with Deflate algorithm. The Content-Encoding header is set to deflate",
     },
     {
       name: "--pretty",
@@ -117,12 +117,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--unsorted",
-      description: "Disables all sorting while formatting output.",
+      description: "Disables all sorting while formatting output",
       exclusiveOn: ["--sorted"],
     },
     {
       name: "--sorted",
-      description: "Re-enables all sorting options while formatting output.",
+      description: "Re-enables all sorting options while formatting output",
       exclusiveOn: ["--unsorted"],
     },
     {
@@ -137,7 +137,7 @@ const completionSpec: Fig.Spec = {
         ],
       },
       isRepeatable: true,
-      description: "Controls output formatting.",
+      description: "Controls output formatting",
     },
     {
       name: ["--print", "-p"],
@@ -162,11 +162,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--headers", "-h"],
-      description: "Print only the response headers. Shortcut for --print=h.",
+      description: "Print only the response headers. Shortcut for --print=h",
     },
     {
       name: ["--body", "-b"],
-      description: "Print only the response body. Shortcut for --print=b.",
+      description: "Print only the response body. Shortcut for --print=b",
     },
     {
       name: ["--verbose", "-v"],
@@ -207,7 +207,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--stream", "-S"],
       description:
-        "Always stream the response body by line, i.e., behave like `tail -f'.",
+        "Always stream the response body by line, i.e., behave like `tail -f'",
     },
     {
       name: ["--output", "-o"],
@@ -232,7 +232,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--continue", "-c"],
       description:
-        "Resume an interrupted download. Note that the --output option needs to be specified as well.",
+        "Resume an interrupted download. Note that the --output option needs to be specified as well",
     },
     {
       name: ["--quiet", "-q"],
@@ -261,7 +261,7 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
       },
       description:
-        "Create or read a session without updating it form the request/response exchange.",
+        "Create or read a session without updating it form the request/response exchange",
     },
     {
       name: ["--auth", "-a"],
@@ -269,7 +269,7 @@ const completionSpec: Fig.Spec = {
         name: "USER[:PASS]",
       },
       description:
-        "If only the username is provided (-a username), HTTPie will prompt for the password.",
+        "If only the username is provided (-a username), HTTPie will prompt for the password",
     },
     {
       name: ["--auth-type", "-A"],
@@ -280,15 +280,15 @@ const completionSpec: Fig.Spec = {
         ],
       },
       description:
-        'The authentication mechanism to be used. Defaults to "basic".',
+        'The authentication mechanism to be used. Defaults to "basic"',
     },
     {
       name: "--ignore-netrc",
-      description: "Ignore credentials from .netrc.",
+      description: "Ignore credentials from .netrc",
     },
     {
       name: "--offline",
-      description: "Build the request and print it but don’t actually send it.",
+      description: "Build the request and print it but don’t actually send it",
     },
     {
       name: "--proxy",
@@ -304,7 +304,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--follow", "-F"],
-      description: "Follow 30x Location redirects.",
+      description: "Follow 30x Location redirects",
     },
     {
       name: "--max-redirects",
@@ -312,7 +312,7 @@ const completionSpec: Fig.Spec = {
         name: "MAX_REDIRECTS",
       },
       description:
-        "By default, requests have a limit of 30 redirects (works with --follow).",
+        "By default, requests have a limit of 30 redirects (works with --follow)",
     },
     {
       name: "--max-headers",
@@ -320,7 +320,7 @@ const completionSpec: Fig.Spec = {
         name: "MAX_HEADERS",
       },
       description:
-        "The maximum number of response headers to be read before giving up (default 0, i.e., no limit).",
+        "The maximum number of response headers to be read before giving up (default 0, i.e., no limit)",
     },
     {
       name: "--timeout",
@@ -342,7 +342,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--path-as-is",
-      description: "Bypass dot segment (/../ or /./) URL squashing.",
+      description: "Bypass dot segment (/../ or /./) URL squashing",
     },
     {
       name: "--chunked",
@@ -378,7 +378,7 @@ const completionSpec: Fig.Spec = {
         default:
           "ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20:ECDH+AESGCM:DH+AESGCM:ECDH+AES:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!eNULL:!MD5:!DSS",
       },
-      description: "A string in the OpenSSL cipher list format.",
+      description: "A string in the OpenSSL cipher list format",
     },
     {
       name: "--cert",
@@ -397,30 +397,30 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
       },
       description:
-        "The private key to use with SSL. Only needed if --cert is given and the certificate file does not contain the private key.",
+        "The private key to use with SSL. Only needed if --cert is given and the certificate file does not contain the private key",
     },
     {
       name: ["--ignore-stdin", "-I"],
-      description: "Do not attempt to read stdin.",
+      description: "Do not attempt to read stdin",
     },
     {
       name: "--help",
-      description: "Show the help message and exit.",
+      description: "Show the help message and exit",
     },
     {
       name: "--version",
-      description: "Show version and exit.",
+      description: "Show version and exit",
     },
     {
       name: "--traceback",
-      description: "Prints the exception traceback should one occur.",
+      description: "Prints the exception traceback should one occur",
     },
     {
       name: "--default-scheme",
       args: {
         name: "DEFAULT_SCHEME",
       },
-      description: "The default scheme to use if not specified in the URL.",
+      description: "The default scheme to use if not specified in the URL",
     },
     {
       name: "--debug",

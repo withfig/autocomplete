@@ -5,12 +5,12 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "add-tags-to-on-premises-instances",
-      description: "Adds tags to on-premises instances.",
+      description: "Adds tags to on-premises instances",
       options: [
         {
           name: "--tags",
           description:
-            "The tag key-value pairs to add to the on-premises instances. Keys and values are both required. Keys cannot be null or empty strings. Value-only tags are not allowed.",
+            "The tag key-value pairs to add to the on-premises instances. Keys and values are both required. Keys cannot be null or empty strings. Value-only tags are not allowed",
           args: {
             name: "list",
           },
@@ -18,7 +18,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-names",
           description:
-            "The names of the on-premises instances to which to add tags.",
+            "The names of the on-premises instances to which to add tags",
           args: {
             name: "list",
           },
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -45,12 +45,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-application-revisions",
       description:
-        "Gets information about one or more application revisions. The maximum number of application revisions that can be returned is 25.",
+        "Gets information about one or more application revisions. The maximum number of application revisions that can be returned is 25",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application about which to get revision information.",
+            "The name of an AWS CodeDeploy application about which to get revision information",
           args: {
             name: "string",
           },
@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revisions",
           description:
-            "An array of RevisionLocation objects that specify information to get about the application revisions, including type and location. The maximum number of RevisionLocation objects you can specify is 25.",
+            "An array of RevisionLocation objects that specify information to get about the application revisions, including type and location. The maximum number of RevisionLocation objects you can specify is 25",
           args: {
             name: "list",
           },
@@ -66,7 +66,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -85,12 +85,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-applications",
       description:
-        "Gets information about one or more applications. The maximum number of applications that can be returned is 100.",
+        "Gets information about one or more applications. The maximum number of applications that can be returned is 100",
       options: [
         {
           name: "--application-names",
           description:
-            "A list of application names separated by spaces. The maximum number of application names you can specify is 100.",
+            "A list of application names separated by spaces. The maximum number of application names you can specify is 100",
           args: {
             name: "list",
           },
@@ -98,7 +98,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -116,19 +116,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "batch-get-deployment-groups",
-      description: "Gets information about one or more deployment groups.",
+      description: "Gets information about one or more deployment groups",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account",
           args: {
             name: "string",
           },
         },
         {
           name: "--deployment-group-names",
-          description: "The names of the deployment groups.",
+          description: "The names of the deployment groups",
           args: {
             name: "list",
           },
@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -144,7 +144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -155,11 +155,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-deployment-instances",
       description:
-        "This method works, but is deprecated. Use BatchGetDeploymentTargets instead.    Returns an array of one or more instances associated with a deployment. This method works with EC2/On-premises and AWS Lambda compute platforms. The newer BatchGetDeploymentTargets works with all compute platforms. The maximum number of instances that can be returned is 25.",
+        "This method works, but is deprecated. Use BatchGetDeploymentTargets instead.    Returns an array of one or more instances associated with a deployment. This method works with EC2/On-premises and AWS Lambda compute platforms. The newer BatchGetDeploymentTargets works with all compute platforms. The maximum number of instances that can be returned is 25",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
@@ -167,7 +167,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-ids",
           description:
-            "The unique IDs of instances used in the deployment. The maximum number of instance IDs you can specify is 25.",
+            "The unique IDs of instances used in the deployment. The maximum number of instance IDs you can specify is 25",
           args: {
             name: "list",
           },
@@ -175,7 +175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -183,7 +183,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -194,11 +194,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-deployment-targets",
       description:
-        "Returns an array of one or more targets associated with a deployment. This method works with all compute types and should be used instead of the deprecated BatchGetDeploymentInstances. The maximum number of targets that can be returned is 25.  The type of targets returned depends on the deployment's compute platform or deployment method:     EC2/On-premises: Information about EC2 instance targets.     AWS Lambda: Information about Lambda functions targets.     Amazon ECS: Information about Amazon ECS service targets.     CloudFormation: Information about targets of blue/green deployments initiated by a CloudFormation stack update.",
+        "Returns an array of one or more targets associated with a deployment. This method works with all compute types and should be used instead of the deprecated BatchGetDeploymentInstances. The maximum number of targets that can be returned is 25.  The type of targets returned depends on the deployment's compute platform or deployment method:     EC2/On-premises: Information about EC2 instance targets.     AWS Lambda: Information about Lambda functions targets.     Amazon ECS: Information about Amazon ECS service targets.     CloudFormation: Information about targets of blue/green deployments initiated by a CloudFormation stack update",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
@@ -206,7 +206,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target-ids",
           description:
-            "The unique IDs of the deployment targets. The compute platform of the deployment determines the type of the targets and their formats. The maximum number of deployment target IDs you can specify is 25.    For deployments that use the EC2/On-premises compute platform, the target IDs are EC2 or on-premises instances IDs, and their target type is instanceTarget.     For deployments that use the AWS Lambda compute platform, the target IDs are the names of Lambda functions, and their target type is instanceTarget.     For deployments that use the Amazon ECS compute platform, the target IDs are pairs of Amazon ECS clusters and services specified using the format &lt;clustername&gt;:&lt;servicename&gt;. Their target type is ecsTarget.     For deployments that are deployed with AWS CloudFormation, the target IDs are CloudFormation stack IDs. Their target type is cloudFormationTarget.",
+            "The unique IDs of the deployment targets. The compute platform of the deployment determines the type of the targets and their formats. The maximum number of deployment target IDs you can specify is 25.    For deployments that use the EC2/On-premises compute platform, the target IDs are EC2 or on-premises instances IDs, and their target type is instanceTarget.     For deployments that use the AWS Lambda compute platform, the target IDs are the names of Lambda functions, and their target type is instanceTarget.     For deployments that use the Amazon ECS compute platform, the target IDs are pairs of Amazon ECS clusters and services specified using the format &lt;clustername&gt;:&lt;servicename&gt;. Their target type is ecsTarget.     For deployments that are deployed with AWS CloudFormation, the target IDs are CloudFormation stack IDs. Their target type is cloudFormationTarget",
           args: {
             name: "list",
           },
@@ -214,7 +214,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -222,7 +222,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -233,12 +233,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-deployments",
       description:
-        "Gets information about one or more deployments. The maximum number of deployments that can be returned is 25.",
+        "Gets information about one or more deployments. The maximum number of deployments that can be returned is 25",
       options: [
         {
           name: "--deployment-ids",
           description:
-            "A list of deployment IDs, separated by spaces. The maximum number of deployment IDs you can specify is 25.",
+            "A list of deployment IDs, separated by spaces. The maximum number of deployment IDs you can specify is 25",
           args: {
             name: "list",
           },
@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -254,7 +254,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -265,12 +265,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "batch-get-on-premises-instances",
       description:
-        "Gets information about one or more on-premises instances. The maximum number of on-premises instances that can be returned is 25.",
+        "Gets information about one or more on-premises instances. The maximum number of on-premises instances that can be returned is 25",
       options: [
         {
           name: "--instance-names",
           description:
-            "The names of the on-premises instances about which to get information. The maximum number of instance names you can specify is 25.",
+            "The names of the on-premises instances about which to get information. The maximum number of instance names you can specify is 25",
           args: {
             name: "list",
           },
@@ -278,7 +278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -286,7 +286,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -302,7 +302,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-id",
           description:
-            "The unique ID of a blue/green deployment for which you want to start rerouting traffic to the replacement environment.",
+            "The unique ID of a blue/green deployment for which you want to start rerouting traffic to the replacement environment",
           args: {
             name: "string",
           },
@@ -310,7 +310,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-wait-type",
           description:
-            "The status of the deployment's waiting period. READY_WAIT indicates that the deployment is ready to start shifting traffic. TERMINATION_WAIT indicates that the traffic is shifted, but the original target is not terminated.",
+            "The status of the deployment's waiting period. READY_WAIT indicates that the deployment is ready to start shifting traffic. TERMINATION_WAIT indicates that the traffic is shifted, but the original target is not terminated",
           args: {
             name: "string",
           },
@@ -318,7 +318,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -326,7 +326,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -336,12 +336,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-application",
-      description: "Creates an application.",
+      description: "Creates an application",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of the application. This name must be unique with the applicable IAM user or AWS account.",
+            "The name of the application. This name must be unique with the applicable IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -349,7 +349,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compute-platform",
           description:
-            "The destination platform type for the deployment (Lambda, Server, or ECS).",
+            "The destination platform type for the deployment (Lambda, Server, or ECS)",
           args: {
             name: "string",
           },
@@ -357,7 +357,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The metadata that you apply to CodeDeploy applications to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define.",
+            "The metadata that you apply to CodeDeploy applications to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define",
           args: {
             name: "list",
           },
@@ -365,7 +365,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -373,7 +373,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -384,26 +384,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-deployment",
       description:
-        "Deploys an application revision through the specified deployment group.",
+        "Deploys an application revision through the specified deployment group",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
         },
         {
           name: "--deployment-group-name",
-          description: "The name of the deployment group.",
+          description: "The name of the deployment group",
           args: {
             name: "string",
           },
         },
         {
           name: "--revision",
-          description: "The type and location of the revision to deploy.",
+          description: "The type and location of the revision to deploy",
           args: {
             name: "structure",
           },
@@ -411,14 +411,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "The name of a deployment configuration associated with the IAM user or AWS account. If not specified, the value configured in the deployment group is used as the default. If the deployment group does not have a deployment configuration associated with it, CodeDeployDefault.OneAtATime is used by default.",
+            "The name of a deployment configuration associated with the IAM user or AWS account. If not specified, the value configured in the deployment group is used as the default. If the deployment group does not have a deployment configuration associated with it, CodeDeployDefault.OneAtATime is used by default",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "A comment about the deployment.",
+          description: "A comment about the deployment",
           args: {
             name: "string",
           },
@@ -426,17 +426,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-application-stop-failures",
           description:
-            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the AWS CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored.",
+            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the AWS CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored",
         },
         {
           name: "--no-ignore-application-stop-failures",
           description:
-            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the AWS CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored.",
+            "If true, then if an ApplicationStop, BeforeBlockTraffic, or AfterBlockTraffic deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if ApplicationStop fails, the deployment continues with DownloadBundle. If BeforeBlockTraffic fails, the deployment continues with BlockTraffic. If AfterBlockTraffic fails, the deployment continues with ApplicationStop.   If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted.   During a deployment, the AWS CodeDeploy agent runs the scripts specified for ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail.   If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use ignoreApplicationStopFailures to specify that the ApplicationStop, BeforeBlockTraffic, and AfterBlockTraffic failures should be ignored",
         },
         {
           name: "--target-instances",
           description:
-            "Information about the instances that belong to the replacement environment in a blue/green deployment.",
+            "Information about the instances that belong to the replacement environment in a blue/green deployment",
           args: {
             name: "structure",
           },
@@ -444,7 +444,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-rollback-configuration",
           description:
-            "Configuration information for an automatic rollback that is added when a deployment is created.",
+            "Configuration information for an automatic rollback that is added when a deployment is created",
           args: {
             name: "structure",
           },
@@ -452,17 +452,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--update-outdated-instances-only",
           description:
-            "Indicates whether to deploy to all instances or only to instances that are not running the latest application revision.",
+            "Indicates whether to deploy to all instances or only to instances that are not running the latest application revision",
         },
         {
           name: "--no-update-outdated-instances-only",
           description:
-            "Indicates whether to deploy to all instances or only to instances that are not running the latest application revision.",
+            "Indicates whether to deploy to all instances or only to instances that are not running the latest application revision",
         },
         {
           name: "--file-exists-behavior",
           description:
-            "Information about how AWS CodeDeploy handles files that already exist in a deployment target location but weren't part of the previous successful deployment. The fileExistsBehavior parameter takes any of the following values:   DISALLOW: The deployment fails. This is also the default behavior if no option is specified.   OVERWRITE: The version of the file from the application revision currently being deployed replaces the version already on the instance.   RETAIN: The version of the file already on the instance is kept and used as part of the new deployment.",
+            "Information about how AWS CodeDeploy handles files that already exist in a deployment target location but weren't part of the previous successful deployment. The fileExistsBehavior parameter takes any of the following values:   DISALLOW: The deployment fails. This is also the default behavior if no option is specified.   OVERWRITE: The version of the file from the application revision currently being deployed replaces the version already on the instance.   RETAIN: The version of the file already on the instance is kept and used as part of the new deployment",
           args: {
             name: "string",
           },
@@ -470,7 +470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-location",
           description:
-            "Information about the location of the application revision in Amazon S3. You must specify the bucket, the key, and bundleType. Optionally, you can also specify an eTag and version.",
+            "Information about the location of the application revision in Amazon S3. You must specify the bucket, the key, and bundleType. Optionally, you can also specify an eTag and version",
           args: {
             name: "structure",
           },
@@ -478,7 +478,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--github-location",
           description:
-            "Information about the location of the application revision in GitHub. You must specify the repository and commit ID that references the application revision. For the repository, use the format GitHub-account/repository-name or GitHub-org/repository-name. For the commit ID, use the SHA1 Git commit reference.",
+            "Information about the location of the application revision in GitHub. You must specify the repository and commit ID that references the application revision. For the repository, use the format GitHub-account/repository-name or GitHub-org/repository-name. For the commit ID, use the SHA1 Git commit reference",
           args: {
             name: "structure",
           },
@@ -486,7 +486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -494,7 +494,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -504,11 +504,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-deployment-config",
-      description: "Creates a deployment configuration.",
+      description: "Creates a deployment configuration",
       options: [
         {
           name: "--deployment-config-name",
-          description: "The name of the deployment configuration to create.",
+          description: "The name of the deployment configuration to create",
           args: {
             name: "string",
           },
@@ -516,7 +516,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--minimum-healthy-hosts",
           description:
-            "The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value. The type parameter takes either of the following values:   HOST_COUNT: The value parameter represents the minimum number of healthy instances as an absolute value.   FLEET_PERCENT: The value parameter represents the minimum number of healthy instances as a percentage of the total number of instances in the deployment. If you specify FLEET_PERCENT, at the start of the deployment, AWS CodeDeploy converts the percentage to the equivalent number of instances and rounds up fractional instances.   The value parameter takes an integer. For example, to set a minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of 95.",
+            "The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value. The type parameter takes either of the following values:   HOST_COUNT: The value parameter represents the minimum number of healthy instances as an absolute value.   FLEET_PERCENT: The value parameter represents the minimum number of healthy instances as a percentage of the total number of instances in the deployment. If you specify FLEET_PERCENT, at the start of the deployment, AWS CodeDeploy converts the percentage to the equivalent number of instances and rounds up fractional instances.   The value parameter takes an integer. For example, to set a minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of 95",
           args: {
             name: "structure",
           },
@@ -524,7 +524,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--traffic-routing-config",
           description:
-            "The configuration that specifies how the deployment traffic is routed.",
+            "The configuration that specifies how the deployment traffic is routed",
           args: {
             name: "structure",
           },
@@ -532,7 +532,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--compute-platform",
           description:
-            "The destination platform type for the deployment (Lambda, Server, or ECS).",
+            "The destination platform type for the deployment (Lambda, Server, or ECS)",
           args: {
             name: "string",
           },
@@ -540,7 +540,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -548,7 +548,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -559,12 +559,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-deployment-group",
       description:
-        "Creates a deployment group to which application revisions are deployed.",
+        "Creates a deployment group to which application revisions are deployed",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -572,7 +572,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-group-name",
           description:
-            "The name of a new deployment group for the specified application.",
+            "The name of a new deployment group for the specified application",
           args: {
             name: "string",
           },
@@ -580,7 +580,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "If specified, the deployment configuration name can be either one of the predefined configurations provided with AWS CodeDeploy or a custom deployment configuration that you create by calling the create deployment configuration operation.  CodeDeployDefault.OneAtATime is the default deployment configuration. It is used if a configuration isn't specified for the deployment or deployment group. For more information about the predefined deployment configurations in AWS CodeDeploy, see Working with Deployment Configurations in CodeDeploy in the AWS CodeDeploy User Guide.",
+            "If specified, the deployment configuration name can be either one of the predefined configurations provided with AWS CodeDeploy or a custom deployment configuration that you create by calling the create deployment configuration operation.  CodeDeployDefault.OneAtATime is the default deployment configuration. It is used if a configuration isn't specified for the deployment or deployment group. For more information about the predefined deployment configurations in AWS CodeDeploy, see Working with Deployment Configurations in CodeDeploy in the AWS CodeDeploy User Guide",
           args: {
             name: "string",
           },
@@ -588,7 +588,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-filters",
           description:
-            "The Amazon EC2 tags on which to filter. The deployment group includes EC2 instances with any of the specified tags. Cannot be used in the same call as ec2TagSet.",
+            "The Amazon EC2 tags on which to filter. The deployment group includes EC2 instances with any of the specified tags. Cannot be used in the same call as ec2TagSet",
           args: {
             name: "list",
           },
@@ -596,14 +596,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-premises-instance-tag-filters",
           description:
-            "The on-premises instance tags on which to filter. The deployment group includes on-premises instances with any of the specified tags. Cannot be used in the same call as OnPremisesTagSet.",
+            "The on-premises instance tags on which to filter. The deployment group includes on-premises instances with any of the specified tags. Cannot be used in the same call as OnPremisesTagSet",
           args: {
             name: "list",
           },
         },
         {
           name: "--auto-scaling-groups",
-          description: "A list of associated Amazon EC2 Auto Scaling groups.",
+          description: "A list of associated Amazon EC2 Auto Scaling groups",
           args: {
             name: "list",
           },
@@ -611,7 +611,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-role-arn",
           description:
-            "A service role Amazon Resource Name (ARN) that allows AWS CodeDeploy to act on the user's behalf when interacting with AWS services.",
+            "A service role Amazon Resource Name (ARN) that allows AWS CodeDeploy to act on the user's behalf when interacting with AWS services",
           args: {
             name: "string",
           },
@@ -619,7 +619,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--trigger-configurations",
           description:
-            "Information about triggers to create when the deployment group is created. For examples, see Create a Trigger for an AWS CodeDeploy Event in the AWS CodeDeploy User Guide.",
+            "Information about triggers to create when the deployment group is created. For examples, see Create a Trigger for an AWS CodeDeploy Event in the AWS CodeDeploy User Guide",
           args: {
             name: "list",
           },
@@ -627,7 +627,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--alarm-configuration",
           description:
-            "Information to add about Amazon CloudWatch alarms when the deployment group is created.",
+            "Information to add about Amazon CloudWatch alarms when the deployment group is created",
           args: {
             name: "structure",
           },
@@ -635,7 +635,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-rollback-configuration",
           description:
-            "Configuration information for an automatic rollback that is added when a deployment group is created.",
+            "Configuration information for an automatic rollback that is added when a deployment group is created",
           args: {
             name: "structure",
           },
@@ -643,7 +643,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--outdated-instances-strategy",
           description:
-            "Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions.",
+            "Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions",
           args: {
             name: "string",
           },
@@ -651,7 +651,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-style",
           description:
-            "Information about the type of deployment, in-place or blue/green, that you want to run and whether to route deployment traffic behind a load balancer.",
+            "Information about the type of deployment, in-place or blue/green, that you want to run and whether to route deployment traffic behind a load balancer",
           args: {
             name: "structure",
           },
@@ -659,7 +659,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--blue-green-deployment-configuration",
           description:
-            "Information about blue/green deployment options for a deployment group.",
+            "Information about blue/green deployment options for a deployment group",
           args: {
             name: "structure",
           },
@@ -667,7 +667,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--load-balancer-info",
           description:
-            "Information about the load balancer used in a deployment.",
+            "Information about the load balancer used in a deployment",
           args: {
             name: "structure",
           },
@@ -675,7 +675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-set",
           description:
-            "Information about groups of tags applied to EC2 instances. The deployment group includes only EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters.",
+            "Information about groups of tags applied to EC2 instances. The deployment group includes only EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters",
           args: {
             name: "structure",
           },
@@ -683,7 +683,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ecs-services",
           description:
-            "The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format &lt;clustername&gt;:&lt;servicename&gt;.",
+            "The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format &lt;clustername&gt;:&lt;servicename&gt;",
           args: {
             name: "list",
           },
@@ -691,7 +691,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-premises-tag-set",
           description:
-            "Information about groups of tags applied to on-premises instances. The deployment group includes only on-premises instances identified by all of the tag groups. Cannot be used in the same call as onPremisesInstanceTagFilters.",
+            "Information about groups of tags applied to on-premises instances. The deployment group includes only on-premises instances identified by all of the tag groups. Cannot be used in the same call as onPremisesInstanceTagFilters",
           args: {
             name: "structure",
           },
@@ -699,7 +699,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The metadata that you apply to CodeDeploy deployment groups to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define.",
+            "The metadata that you apply to CodeDeploy deployment groups to help you organize and categorize them. Each tag consists of a key and an optional value, both of which you define",
           args: {
             name: "list",
           },
@@ -707,7 +707,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec-2-tag-set",
           description:
-            "Information about groups of tags applied to EC2 instances. The deployment group includes only EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters.",
+            "Information about groups of tags applied to EC2 instances. The deployment group includes only EC2 instances identified by all the tag groups. Cannot be used in the same call as ec2TagFilters",
           args: {
             name: "structure",
           },
@@ -715,7 +715,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -723,7 +723,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -733,12 +733,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-application",
-      description: "Deletes an application.",
+      description: "Deletes an application",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -746,7 +746,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -754,7 +754,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -765,12 +765,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-deployment-config",
       description:
-        "Deletes a deployment configuration.  A deployment configuration cannot be deleted if it is currently in use. Predefined configurations cannot be deleted.",
+        "Deletes a deployment configuration.  A deployment configuration cannot be deleted if it is currently in use. Predefined configurations cannot be deleted",
       options: [
         {
           name: "--deployment-config-name",
           description:
-            "The name of a deployment configuration associated with the IAM user or AWS account.",
+            "The name of a deployment configuration associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -778,7 +778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -786,7 +786,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -796,12 +796,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-deployment-group",
-      description: "Deletes a deployment group.",
+      description: "Deletes a deployment group",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -809,7 +809,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-group-name",
           description:
-            "The name of a deployment group for the specified application.",
+            "The name of a deployment group for the specified application",
           args: {
             name: "string",
           },
@@ -817,7 +817,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -825,7 +825,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -835,11 +835,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-git-hub-account-token",
-      description: "Deletes a GitHub account connection.",
+      description: "Deletes a GitHub account connection",
       options: [
         {
           name: "--token-name",
-          description: "The name of the GitHub account connection to delete.",
+          description: "The name of the GitHub account connection to delete",
           args: {
             name: "string",
           },
@@ -847,7 +847,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -855,7 +855,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -865,12 +865,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-resources-by-external-id",
-      description: "Deletes resources linked to an external ID.",
+      description: "Deletes resources linked to an external ID",
       options: [
         {
           name: "--external-id",
           description:
-            "The unique ID of an external resource (for example, a CloudFormation stack ID) that is linked to one or more CodeDeploy resources.",
+            "The unique ID of an external resource (for example, a CloudFormation stack ID) that is linked to one or more CodeDeploy resources",
           args: {
             name: "string",
           },
@@ -878,7 +878,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -886,7 +886,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -896,11 +896,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "deregister-on-premises-instance",
-      description: "Deregisters an on-premises instance.",
+      description: "Deregisters an on-premises instance",
       options: [
         {
           name: "--instance-name",
-          description: "The name of the on-premises instance to deregister.",
+          description: "The name of the on-premises instance to deregister",
           args: {
             name: "string",
           },
@@ -908,7 +908,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -916,7 +916,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -926,12 +926,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-application",
-      description: "Gets information about an application.",
+      description: "Gets information about an application",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -939,7 +939,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -947,7 +947,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -957,12 +957,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-application-revision",
-      description: "Gets information about an application revision.",
+      description: "Gets information about an application revision",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of the application that corresponds to the revision.",
+            "The name of the application that corresponds to the revision",
           args: {
             name: "string",
           },
@@ -970,7 +970,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision",
           description:
-            "Information about the application revision to get, including type and location.",
+            "Information about the application revision to get, including type and location",
           args: {
             name: "structure",
           },
@@ -978,7 +978,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-location",
           description:
-            "Information about the location of the application revision in Amazon S3. You must specify the bucket, the key, and bundleType. Optionally, you can also specify an eTag and version.",
+            "Information about the location of the application revision in Amazon S3. You must specify the bucket, the key, and bundleType. Optionally, you can also specify an eTag and version",
           args: {
             name: "structure",
           },
@@ -986,7 +986,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--github-location",
           description:
-            "Information about the location of the application revision in GitHub. You must specify the repository and commit ID that references the application revision. For the repository, use the format GitHub-account/repository-name or GitHub-org/repository-name. For the commit ID, use the SHA1 Git commit reference.",
+            "Information about the location of the application revision in GitHub. You must specify the repository and commit ID that references the application revision. For the repository, use the format GitHub-account/repository-name or GitHub-org/repository-name. For the commit ID, use the SHA1 Git commit reference",
           args: {
             name: "structure",
           },
@@ -994,7 +994,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1002,7 +1002,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1013,12 +1013,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-deployment",
       description:
-        "Gets information about a deployment.   The content property of the appSpecContent object in the returned revision is always null. Use GetApplicationRevision and the sha256 property of the returned appSpecContent object to get the content of the deployment\u2019s AppSpec file.",
+        "Gets information about a deployment.   The content property of the appSpecContent object in the returned revision is always null. Use GetApplicationRevision and the sha256 property of the returned appSpecContent object to get the content of the deployment\u2019s AppSpec file",
       options: [
         {
           name: "--deployment-id",
           description:
-            "The unique ID of a deployment associated with the IAM user or AWS account.",
+            "The unique ID of a deployment associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -1026,7 +1026,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1034,7 +1034,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1044,12 +1044,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-deployment-config",
-      description: "Gets information about a deployment configuration.",
+      description: "Gets information about a deployment configuration",
       options: [
         {
           name: "--deployment-config-name",
           description:
-            "The name of a deployment configuration associated with the IAM user or AWS account.",
+            "The name of a deployment configuration associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -1057,7 +1057,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1065,7 +1065,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1075,12 +1075,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-deployment-group",
-      description: "Gets information about a deployment group.",
+      description: "Gets information about a deployment group",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -1088,7 +1088,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-group-name",
           description:
-            "The name of a deployment group for the specified application.",
+            "The name of a deployment group for the specified application",
           args: {
             name: "string",
           },
@@ -1096,7 +1096,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1104,7 +1104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1114,19 +1114,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-deployment-instance",
-      description:
-        "Gets information about an instance as part of a deployment.",
+      description: "Gets information about an instance as part of a deployment",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The unique ID of an instance in the deployment group.",
+          description: "The unique ID of an instance in the deployment group",
           args: {
             name: "string",
           },
@@ -1134,7 +1133,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1142,7 +1141,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1152,18 +1151,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-deployment-target",
-      description: "Returns information about a deployment target.",
+      description: "Returns information about a deployment target",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
         },
         {
           name: "--target-id",
-          description: "The unique ID of a deployment target.",
+          description: "The unique ID of a deployment target",
           args: {
             name: "string",
           },
@@ -1171,7 +1170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1179,7 +1178,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1189,12 +1188,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-on-premises-instance",
-      description: "Gets information about an on-premises instance.",
+      description: "Gets information about an on-premises instance",
       options: [
         {
           name: "--instance-name",
           description:
-            "The name of the on-premises instance about which to get information.",
+            "The name of the on-premises instance about which to get information",
           args: {
             name: "string",
           },
@@ -1202,7 +1201,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1210,7 +1209,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1220,12 +1219,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-application-revisions",
-      description: "Lists information about revisions for an application.",
+      description: "Lists information about revisions for an application",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -1233,7 +1232,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-by",
           description:
-            "The column name to use to sort the list results:    registerTime: Sort by the time the revisions were registered with AWS CodeDeploy.    firstUsedTime: Sort by the time the revisions were first used in a deployment.    lastUsedTime: Sort by the time the revisions were last used in a deployment.    If not specified or set to null, the results are returned in an arbitrary order.",
+            "The column name to use to sort the list results:    registerTime: Sort by the time the revisions were registered with AWS CodeDeploy.    firstUsedTime: Sort by the time the revisions were first used in a deployment.    lastUsedTime: Sort by the time the revisions were last used in a deployment.    If not specified or set to null, the results are returned in an arbitrary order",
           args: {
             name: "string",
           },
@@ -1241,7 +1240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-order",
           description:
-            "The order in which to sort the list results:     ascending: ascending order.    descending: descending order.   If not specified, the results are sorted in ascending order. If set to null, the results are sorted in an arbitrary order.",
+            "The order in which to sort the list results:     ascending: ascending order.    descending: descending order.   If not specified, the results are sorted in ascending order. If set to null, the results are sorted in an arbitrary order",
           args: {
             name: "string",
           },
@@ -1249,7 +1248,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-bucket",
           description:
-            "An Amazon S3 bucket name to limit the search for revisions.   If set to null, all of the user's buckets are searched.",
+            "An Amazon S3 bucket name to limit the search for revisions.   If set to null, all of the user's buckets are searched",
           args: {
             name: "string",
           },
@@ -1257,7 +1256,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-key-prefix",
           description:
-            "A key prefix for the set of Amazon S3 objects to limit the search for revisions.",
+            "A key prefix for the set of Amazon S3 objects to limit the search for revisions",
           args: {
             name: "string",
           },
@@ -1265,7 +1264,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployed",
           description:
-            "Whether to list revisions based on whether the revision is the target revision of a deployment group:     include: List revisions that are target revisions of a deployment group.    exclude: Do not list revisions that are target revisions of a deployment group.    ignore: List all revisions.",
+            "Whether to list revisions based on whether the revision is the target revision of a deployment group:     include: List revisions that are target revisions of a deployment group.    exclude: Do not list revisions that are target revisions of a deployment group.    ignore: List all revisions",
           args: {
             name: "string",
           },
@@ -1273,7 +1272,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous ListApplicationRevisions call. It can be used to return the next set of applications in the list.",
+            "An identifier returned from the previous ListApplicationRevisions call. It can be used to return the next set of applications in the list",
           args: {
             name: "string",
           },
@@ -1281,7 +1280,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s-3-bucket",
           description:
-            "An Amazon S3 bucket name to limit the search for revisions.   If set to null, all of the user's buckets are searched.",
+            "An Amazon S3 bucket name to limit the search for revisions.   If set to null, all of the user's buckets are searched",
           args: {
             name: "string",
           },
@@ -1289,7 +1288,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s-3-key-prefix",
           description:
-            "A key prefix for the set of Amazon S3 objects to limit the search for revisions.",
+            "A key prefix for the set of Amazon S3 objects to limit the search for revisions",
           args: {
             name: "string",
           },
@@ -1297,7 +1296,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1305,7 +1304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1313,7 +1312,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1321,7 +1320,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1332,12 +1331,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-applications",
       description:
-        "Lists the applications registered with the IAM user or AWS account.",
+        "Lists the applications registered with the IAM user or AWS account",
       options: [
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous list applications call. It can be used to return the next set of applications in the list.",
+            "An identifier returned from the previous list applications call. It can be used to return the next set of applications in the list",
           args: {
             name: "string",
           },
@@ -1345,7 +1344,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1353,7 +1352,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1361,7 +1360,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1369,7 +1368,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1380,12 +1379,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-configs",
       description:
-        "Lists the deployment configurations with the IAM user or AWS account.",
+        "Lists the deployment configurations with the IAM user or AWS account",
       options: [
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous ListDeploymentConfigs call. It can be used to return the next set of deployment configurations in the list.",
+            "An identifier returned from the previous ListDeploymentConfigs call. It can be used to return the next set of deployment configurations in the list",
           args: {
             name: "string",
           },
@@ -1393,7 +1392,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1401,7 +1400,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1409,7 +1408,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1417,7 +1416,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1428,12 +1427,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-groups",
       description:
-        "Lists the deployment groups for an application registered with the IAM user or AWS account.",
+        "Lists the deployment groups for an application registered with the IAM user or AWS account",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
@@ -1441,7 +1440,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous list deployment groups call. It can be used to return the next set of deployment groups in the list.",
+            "An identifier returned from the previous list deployment groups call. It can be used to return the next set of deployment groups in the list",
           args: {
             name: "string",
           },
@@ -1449,7 +1448,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1457,7 +1456,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1465,7 +1464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1473,7 +1472,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1484,11 +1483,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-instances",
       description:
-        "The newer BatchGetDeploymentTargets should be used instead because it works with all compute types. ListDeploymentInstances throws an exception if it is used with a compute platform other than EC2/On-premises or AWS Lambda.    Lists the instance for a deployment associated with the IAM user or AWS account.",
+        "The newer BatchGetDeploymentTargets should be used instead because it works with all compute types. ListDeploymentInstances throws an exception if it is used with a compute platform other than EC2/On-premises or AWS Lambda.    Lists the instance for a deployment associated with the IAM user or AWS account",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
@@ -1496,7 +1495,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous list deployment instances call. It can be used to return the next set of deployment instances in the list.",
+            "An identifier returned from the previous list deployment instances call. It can be used to return the next set of deployment instances in the list",
           args: {
             name: "string",
           },
@@ -1504,7 +1503,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-status-filter",
           description:
-            "A subset of instances to list by status:    Pending: Include those instances with pending deployments.    InProgress: Include those instances where deployments are still in progress.    Succeeded: Include those instances with successful deployments.    Failed: Include those instances with failed deployments.    Skipped: Include those instances with skipped deployments.    Unknown: Include those instances with deployments in an unknown state.",
+            "A subset of instances to list by status:    Pending: Include those instances with pending deployments.    InProgress: Include those instances where deployments are still in progress.    Succeeded: Include those instances with successful deployments.    Failed: Include those instances with failed deployments.    Skipped: Include those instances with skipped deployments.    Unknown: Include those instances with deployments in an unknown state",
           args: {
             name: "list",
           },
@@ -1512,7 +1511,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-type-filter",
           description:
-            'The set of instances in a blue/green deployment, either those in the original environment ("BLUE") or those in the replacement environment ("GREEN"), for which you want to view instance information.',
+            'The set of instances in a blue/green deployment, either those in the original environment ("BLUE") or those in the replacement environment ("GREEN"), for which you want to view instance information',
           args: {
             name: "list",
           },
@@ -1520,7 +1519,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1528,7 +1527,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1536,7 +1535,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1544,7 +1543,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1555,11 +1554,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployment-targets",
       description:
-        "Returns an array of target IDs that are associated a deployment.",
+        "Returns an array of target IDs that are associated a deployment",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
@@ -1567,7 +1566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "A token identifier returned from the previous ListDeploymentTargets call. It can be used to return the next set of deployment targets in the list.",
+            "A token identifier returned from the previous ListDeploymentTargets call. It can be used to return the next set of deployment targets in the list",
           args: {
             name: "string",
           },
@@ -1575,7 +1574,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target-filters",
           description:
-            "A key used to filter the returned targets. The two valid values are:    TargetStatus - A TargetStatus filter string can be Failed, InProgress, Pending, Ready, Skipped, Succeeded, or Unknown.     ServerInstanceLabel - A ServerInstanceLabel filter string can be Blue or Green.",
+            "A key used to filter the returned targets. The two valid values are:    TargetStatus - A TargetStatus filter string can be Failed, InProgress, Pending, Ready, Skipped, Succeeded, or Unknown.     ServerInstanceLabel - A ServerInstanceLabel filter string can be Blue or Green",
           args: {
             name: "map",
           },
@@ -1583,7 +1582,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1591,7 +1590,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1599,7 +1598,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1607,7 +1606,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1618,12 +1617,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-deployments",
       description:
-        "Lists the deployments in a deployment group for an application registered with the IAM user or AWS account.",
+        "Lists the deployments in a deployment group for an application registered with the IAM user or AWS account",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.  If applicationName is specified, then deploymentGroupName must be specified. If it is not specified, then deploymentGroupName must not be specified.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.  If applicationName is specified, then deploymentGroupName must be specified. If it is not specified, then deploymentGroupName must not be specified",
           args: {
             name: "string",
           },
@@ -1631,7 +1630,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-group-name",
           description:
-            "The name of a deployment group for the specified application.  If deploymentGroupName is specified, then applicationName must be specified. If it is not specified, then applicationName must not be specified.",
+            "The name of a deployment group for the specified application.  If deploymentGroupName is specified, then applicationName must be specified. If it is not specified, then applicationName must not be specified",
           args: {
             name: "string",
           },
@@ -1639,7 +1638,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--external-id",
           description:
-            "The unique ID of an external resource for returning deployments linked to the external resource.",
+            "The unique ID of an external resource for returning deployments linked to the external resource",
           args: {
             name: "string",
           },
@@ -1647,7 +1646,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-only-statuses",
           description:
-            "A subset of deployments to list by status:    Created: Include created deployments in the resulting list.    Queued: Include queued deployments in the resulting list.    In Progress: Include in-progress deployments in the resulting list.    Succeeded: Include successful deployments in the resulting list.    Failed: Include failed deployments in the resulting list.    Stopped: Include stopped deployments in the resulting list.",
+            "A subset of deployments to list by status:    Created: Include created deployments in the resulting list.    Queued: Include queued deployments in the resulting list.    In Progress: Include in-progress deployments in the resulting list.    Succeeded: Include successful deployments in the resulting list.    Failed: Include failed deployments in the resulting list.    Stopped: Include stopped deployments in the resulting list",
           args: {
             name: "list",
           },
@@ -1655,7 +1654,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--create-time-range",
           description:
-            "A time range (start and end) for returning a subset of the list of deployments.",
+            "A time range (start and end) for returning a subset of the list of deployments",
           args: {
             name: "structure",
           },
@@ -1663,7 +1662,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous list deployments call. It can be used to return the next set of deployments in the list.",
+            "An identifier returned from the previous list deployments call. It can be used to return the next set of deployments in the list",
           args: {
             name: "string",
           },
@@ -1671,7 +1670,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1679,7 +1678,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1687,7 +1686,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1695,7 +1694,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1705,12 +1704,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-git-hub-account-token-names",
-      description: "Lists the names of stored connections to GitHub accounts.",
+      description: "Lists the names of stored connections to GitHub accounts",
       options: [
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous ListGitHubAccountTokenNames call. It can be used to return the next set of names in the list.",
+            "An identifier returned from the previous ListGitHubAccountTokenNames call. It can be used to return the next set of names in the list",
           args: {
             name: "string",
           },
@@ -1718,7 +1717,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1726,7 +1725,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1734,7 +1733,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1742,7 +1741,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1753,12 +1752,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-on-premises-instances",
       description:
-        "Gets a list of names for one or more on-premises instances. Unless otherwise specified, both registered and deregistered on-premises instance names are listed. To list only registered or deregistered on-premises instance names, use the registration status parameter.",
+        "Gets a list of names for one or more on-premises instances. Unless otherwise specified, both registered and deregistered on-premises instance names are listed. To list only registered or deregistered on-premises instance names, use the registration status parameter",
       options: [
         {
           name: "--registration-status",
           description:
-            "The registration status of the on-premises instances:    Deregistered: Include deregistered on-premises instances in the resulting list.    Registered: Include registered on-premises instances in the resulting list.",
+            "The registration status of the on-premises instances:    Deregistered: Include deregistered on-premises instances in the resulting list.    Registered: Include registered on-premises instances in the resulting list",
           args: {
             name: "string",
           },
@@ -1766,7 +1765,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-filters",
           description:
-            "The on-premises instance tags that are used to restrict the on-premises instance names returned.",
+            "The on-premises instance tags that are used to restrict the on-premises instance names returned",
           args: {
             name: "list",
           },
@@ -1774,7 +1773,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous list on-premises instances call. It can be used to return the next set of on-premises instances in the list.",
+            "An identifier returned from the previous list on-premises instances call. It can be used to return the next set of on-premises instances in the list",
           args: {
             name: "string",
           },
@@ -1782,7 +1781,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1790,7 +1789,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1798,7 +1797,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1806,7 +1805,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1817,12 +1816,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags-for-resource",
       description:
-        "Returns a list of tags for the resource identified by a specified Amazon Resource Name (ARN). Tags are used to organize and categorize your CodeDeploy resources.",
+        "Returns a list of tags for the resource identified by a specified Amazon Resource Name (ARN). Tags are used to organize and categorize your CodeDeploy resources",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The ARN of a CodeDeploy resource. ListTagsForResource returns all the tags associated with the resource that is identified by the ResourceArn.",
+            "The ARN of a CodeDeploy resource. ListTagsForResource returns all the tags associated with the resource that is identified by the ResourceArn",
           args: {
             name: "string",
           },
@@ -1830,7 +1829,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "An identifier returned from the previous ListTagsForResource call. It can be used to return the next set of applications in the list.",
+            "An identifier returned from the previous ListTagsForResource call. It can be used to return the next set of applications in the list",
           args: {
             name: "string",
           },
@@ -1838,7 +1837,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1846,7 +1845,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1857,12 +1856,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-lifecycle-event-hook-execution-status",
       description:
-        "Sets the result of a Lambda validation function. The function validates lifecycle hooks during a deployment that uses the AWS Lambda or Amazon ECS compute platform. For AWS Lambda deployments, the available lifecycle hooks are BeforeAllowTraffic and AfterAllowTraffic. For Amazon ECS deployments, the available lifecycle hooks are BeforeInstall, AfterInstall, AfterAllowTestTraffic, BeforeAllowTraffic, and AfterAllowTraffic. Lambda validation functions return Succeeded or Failed. For more information, see AppSpec 'hooks' Section for an AWS Lambda Deployment  and AppSpec 'hooks' Section for an Amazon ECS Deployment.",
+        "Sets the result of a Lambda validation function. The function validates lifecycle hooks during a deployment that uses the AWS Lambda or Amazon ECS compute platform. For AWS Lambda deployments, the available lifecycle hooks are BeforeAllowTraffic and AfterAllowTraffic. For Amazon ECS deployments, the available lifecycle hooks are BeforeInstall, AfterInstall, AfterAllowTestTraffic, BeforeAllowTraffic, and AfterAllowTraffic. Lambda validation functions return Succeeded or Failed. For more information, see AppSpec 'hooks' Section for an AWS Lambda Deployment  and AppSpec 'hooks' Section for an Amazon ECS Deployment",
       options: [
         {
           name: "--deployment-id",
           description:
-            "The unique ID of a deployment. Pass this ID to a Lambda function that validates a deployment lifecycle event.",
+            "The unique ID of a deployment. Pass this ID to a Lambda function that validates a deployment lifecycle event",
           args: {
             name: "string",
           },
@@ -1870,7 +1869,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--lifecycle-event-hook-execution-id",
           description:
-            "The execution ID of a deployment's lifecycle hook. A deployment lifecycle hook is specified in the hooks section of the AppSpec file.",
+            "The execution ID of a deployment's lifecycle hook. A deployment lifecycle hook is specified in the hooks section of the AppSpec file",
           args: {
             name: "string",
           },
@@ -1878,7 +1877,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "The result of a Lambda function that validates a deployment lifecycle event. Succeeded and Failed are the only valid values for status.",
+            "The result of a Lambda function that validates a deployment lifecycle event. Succeeded and Failed are the only valid values for status",
           args: {
             name: "string",
           },
@@ -1886,7 +1885,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1894,7 +1893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1905,19 +1904,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "register-application-revision",
       description:
-        "Registers with AWS CodeDeploy a revision for the specified application.",
+        "Registers with AWS CodeDeploy a revision for the specified application",
       options: [
         {
           name: "--application-name",
           description:
-            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account.",
+            "The name of an AWS CodeDeploy application associated with the IAM user or AWS account",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "A comment about the revision.",
+          description: "A comment about the revision",
           args: {
             name: "string",
           },
@@ -1925,7 +1924,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision",
           description:
-            "Information about the application revision to register, including type and location.",
+            "Information about the application revision to register, including type and location",
           args: {
             name: "structure",
           },
@@ -1933,7 +1932,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--s3-location",
           description:
-            "Information about the location of the application revision in Amazon S3. You must specify the bucket, the key, and bundleType. Optionally, you can also specify an eTag and version.",
+            "Information about the location of the application revision in Amazon S3. You must specify the bucket, the key, and bundleType. Optionally, you can also specify an eTag and version",
           args: {
             name: "structure",
           },
@@ -1941,7 +1940,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--github-location",
           description:
-            "Information about the location of the application revision in GitHub. You must specify the repository and commit ID that references the application revision. For the repository, use the format GitHub-account/repository-name or GitHub-org/repository-name. For the commit ID, use the SHA1 Git commit reference.",
+            "Information about the location of the application revision in GitHub. You must specify the repository and commit ID that references the application revision. For the repository, use the format GitHub-account/repository-name or GitHub-org/repository-name. For the commit ID, use the SHA1 Git commit reference",
           args: {
             name: "structure",
           },
@@ -1949,7 +1948,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1957,7 +1956,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1968,11 +1967,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "register-on-premises-instance",
       description:
-        "Registers an on-premises instance.  Only one IAM ARN (an IAM session ARN or IAM user ARN) is supported in the request. You cannot use both.",
+        "Registers an on-premises instance.  Only one IAM ARN (an IAM session ARN or IAM user ARN) is supported in the request. You cannot use both",
       options: [
         {
           name: "--instance-name",
-          description: "The name of the on-premises instance to register.",
+          description: "The name of the on-premises instance to register",
           args: {
             name: "string",
           },
@@ -1980,7 +1979,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-session-arn",
           description:
-            "The ARN of the IAM session to associate with the on-premises instance.",
+            "The ARN of the IAM session to associate with the on-premises instance",
           args: {
             name: "string",
           },
@@ -1988,7 +1987,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-user-arn",
           description:
-            "The ARN of the IAM user to associate with the on-premises instance.",
+            "The ARN of the IAM user to associate with the on-premises instance",
           args: {
             name: "string",
           },
@@ -1996,7 +1995,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2004,7 +2003,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2015,12 +2014,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-tags-from-on-premises-instances",
       description:
-        "Removes one or more tags from one or more on-premises instances.",
+        "Removes one or more tags from one or more on-premises instances",
       options: [
         {
           name: "--tags",
           description:
-            "The tag key-value pairs to remove from the on-premises instances.",
+            "The tag key-value pairs to remove from the on-premises instances",
           args: {
             name: "list",
           },
@@ -2028,7 +2027,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--instance-names",
           description:
-            "The names of the on-premises instances from which to remove tags.",
+            "The names of the on-premises instances from which to remove tags",
           args: {
             name: "list",
           },
@@ -2036,7 +2035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2044,7 +2043,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2055,12 +2054,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "skip-wait-time-for-instance-termination",
       description:
-        "In a blue/green deployment, overrides any specified wait time and starts terminating instances immediately after the traffic routing is complete.",
+        "In a blue/green deployment, overrides any specified wait time and starts terminating instances immediately after the traffic routing is complete",
       options: [
         {
           name: "--deployment-id",
           description:
-            "The unique ID of a blue/green deployment for which you want to skip the instance termination wait time.",
+            "The unique ID of a blue/green deployment for which you want to skip the instance termination wait time",
           args: {
             name: "string",
           },
@@ -2068,7 +2067,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2076,7 +2075,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2086,11 +2085,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop-deployment",
-      description: "Attempts to stop an ongoing deployment.",
+      description: "Attempts to stop an ongoing deployment",
       options: [
         {
           name: "--deployment-id",
-          description: "The unique ID of a deployment.",
+          description: "The unique ID of a deployment",
           args: {
             name: "string",
           },
@@ -2098,17 +2097,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-rollback-enabled",
           description:
-            "Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision.",
+            "Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision",
         },
         {
           name: "--no-auto-rollback-enabled",
           description:
-            "Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision.",
+            "Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2116,7 +2115,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2127,12 +2126,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Associates the list of tags in the input Tags parameter with the resource identified by the ResourceArn input parameter.",
+        "Associates the list of tags in the input Tags parameter with the resource identified by the ResourceArn input parameter",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The ARN of a resource, such as a CodeDeploy application or deployment group.",
+            "The ARN of a resource, such as a CodeDeploy application or deployment group",
           args: {
             name: "string",
           },
@@ -2140,7 +2139,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that TagResource associates with a resource. The resource is identified by the ResourceArn input parameter.",
+            "A list of tags that TagResource associates with a resource. The resource is identified by the ResourceArn input parameter",
           args: {
             name: "list",
           },
@@ -2148,7 +2147,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2156,7 +2155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2167,12 +2166,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-resource",
       description:
-        "Disassociates a resource from a list of tags. The resource is identified by the ResourceArn input parameter. The tags are identified by the list of keys in the TagKeys input parameter.",
+        "Disassociates a resource from a list of tags. The resource is identified by the ResourceArn input parameter. The tags are identified by the list of keys in the TagKeys input parameter",
       options: [
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) that specifies from which resource to disassociate the tags with the keys in the TagKeys input parameter.",
+            "The Amazon Resource Name (ARN) that specifies from which resource to disassociate the tags with the keys in the TagKeys input parameter",
           args: {
             name: "string",
           },
@@ -2180,7 +2179,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of keys of Tag objects. The Tag objects identified by the keys are disassociated from the resource specified by the ResourceArn input parameter.",
+            "A list of keys of Tag objects. The Tag objects identified by the keys are disassociated from the resource specified by the ResourceArn input parameter",
           args: {
             name: "list",
           },
@@ -2188,7 +2187,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2196,7 +2195,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2206,19 +2205,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-application",
-      description: "Changes the name of an application.",
+      description: "Changes the name of an application",
       options: [
         {
           name: "--application-name",
-          description:
-            "The current name of the application you want to change.",
+          description: "The current name of the application you want to change",
           args: {
             name: "string",
           },
         },
         {
           name: "--new-application-name",
-          description: "The new name to give the application.",
+          description: "The new name to give the application",
           args: {
             name: "string",
           },
@@ -2226,7 +2224,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2234,7 +2232,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2244,19 +2242,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-deployment-group",
-      description: "Changes information about a deployment group.",
+      description: "Changes information about a deployment group",
       options: [
         {
           name: "--application-name",
           description:
-            "The application name that corresponds to the deployment group to update.",
+            "The application name that corresponds to the deployment group to update",
           args: {
             name: "string",
           },
         },
         {
           name: "--current-deployment-group-name",
-          description: "The current name of the deployment group.",
+          description: "The current name of the deployment group",
           args: {
             name: "string",
           },
@@ -2264,7 +2262,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-deployment-group-name",
           description:
-            "The new name of the deployment group, if you want to change it.",
+            "The new name of the deployment group, if you want to change it",
           args: {
             name: "string",
           },
@@ -2272,7 +2270,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-config-name",
           description:
-            "The replacement deployment configuration name to use, if you want to change it.",
+            "The replacement deployment configuration name to use, if you want to change it",
           args: {
             name: "string",
           },
@@ -2280,7 +2278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-filters",
           description:
-            "The replacement set of Amazon EC2 tags on which to filter, if you want to change them. To keep the existing tags, enter their names. To remove tags, do not enter any tag names.",
+            "The replacement set of Amazon EC2 tags on which to filter, if you want to change them. To keep the existing tags, enter their names. To remove tags, do not enter any tag names",
           args: {
             name: "list",
           },
@@ -2288,7 +2286,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-premises-instance-tag-filters",
           description:
-            "The replacement set of on-premises instance tags on which to filter, if you want to change them. To keep the existing tags, enter their names. To remove tags, do not enter any tag names.",
+            "The replacement set of on-premises instance tags on which to filter, if you want to change them. To keep the existing tags, enter their names. To remove tags, do not enter any tag names",
           args: {
             name: "list",
           },
@@ -2296,7 +2294,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-scaling-groups",
           description:
-            "The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them. To keep the Auto Scaling groups, enter their names. To remove Auto Scaling groups, do not enter any Auto Scaling group names.",
+            "The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them. To keep the Auto Scaling groups, enter their names. To remove Auto Scaling groups, do not enter any Auto Scaling group names",
           args: {
             name: "list",
           },
@@ -2304,7 +2302,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-role-arn",
           description:
-            "A replacement ARN for the service role, if you want to change it.",
+            "A replacement ARN for the service role, if you want to change it",
           args: {
             name: "string",
           },
@@ -2312,7 +2310,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--trigger-configurations",
           description:
-            "Information about triggers to change when the deployment group is updated. For examples, see Edit a Trigger in a CodeDeploy Deployment Group in the AWS CodeDeploy User Guide.",
+            "Information about triggers to change when the deployment group is updated. For examples, see Edit a Trigger in a CodeDeploy Deployment Group in the AWS CodeDeploy User Guide",
           args: {
             name: "list",
           },
@@ -2320,7 +2318,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--alarm-configuration",
           description:
-            "Information to add or change about Amazon CloudWatch alarms when the deployment group is updated.",
+            "Information to add or change about Amazon CloudWatch alarms when the deployment group is updated",
           args: {
             name: "structure",
           },
@@ -2328,7 +2326,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-rollback-configuration",
           description:
-            "Information for an automatic rollback configuration that is added or changed when a deployment group is updated.",
+            "Information for an automatic rollback configuration that is added or changed when a deployment group is updated",
           args: {
             name: "structure",
           },
@@ -2336,7 +2334,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--outdated-instances-strategy",
           description:
-            "Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions.",
+            "Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision. If this option is set to UPDATE or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances. If this option is set to IGNORE, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions",
           args: {
             name: "string",
           },
@@ -2344,7 +2342,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--deployment-style",
           description:
-            "Information about the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer.",
+            "Information about the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer",
           args: {
             name: "structure",
           },
@@ -2352,7 +2350,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--blue-green-deployment-configuration",
           description:
-            "Information about blue/green deployment options for a deployment group.",
+            "Information about blue/green deployment options for a deployment group",
           args: {
             name: "structure",
           },
@@ -2360,7 +2358,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--load-balancer-info",
           description:
-            "Information about the load balancer used in a deployment.",
+            "Information about the load balancer used in a deployment",
           args: {
             name: "structure",
           },
@@ -2368,7 +2366,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec2-tag-set",
           description:
-            "Information about groups of tags applied to on-premises instances. The deployment group includes only EC2 instances identified by all the tag groups.",
+            "Information about groups of tags applied to on-premises instances. The deployment group includes only EC2 instances identified by all the tag groups",
           args: {
             name: "structure",
           },
@@ -2376,7 +2374,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ecs-services",
           description:
-            "The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format &lt;clustername&gt;:&lt;servicename&gt;.",
+            "The target Amazon ECS services in the deployment group. This applies only to deployment groups that use the Amazon ECS compute platform. A target Amazon ECS service is specified as an Amazon ECS cluster and service name pair using the format &lt;clustername&gt;:&lt;servicename&gt;",
           args: {
             name: "list",
           },
@@ -2384,7 +2382,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--on-premises-tag-set",
           description:
-            "Information about an on-premises instance tag set. The deployment group includes only on-premises instances identified by all the tag groups.",
+            "Information about an on-premises instance tag set. The deployment group includes only on-premises instances identified by all the tag groups",
           args: {
             name: "structure",
           },
@@ -2392,7 +2390,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ec-2-tag-set",
           description:
-            "Information about groups of tags applied to on-premises instances. The deployment group includes only EC2 instances identified by all the tag groups.",
+            "Information about groups of tags applied to on-premises instances. The deployment group includes only EC2 instances identified by all the tag groups",
           args: {
             name: "structure",
           },
@@ -2400,7 +2398,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2408,7 +2406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2419,12 +2417,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "push",
       description:
-        "Bundles and uploads to Amazon Simple Storage Service (Amazon S3) an application revision, which is a zip archive file that contains deployable content and an accompanying Application Specification file (AppSpec file). If the upload is successful, a message is returned that describes how to call the create-deployment command to deploy the application revision from Amazon S3 to target Amazon Elastic Compute Cloud (Amazon EC2) instances.",
+        "Bundles and uploads to Amazon Simple Storage Service (Amazon S3) an application revision, which is a zip archive file that contains deployable content and an accompanying Application Specification file (AppSpec file). If the upload is successful, a message is returned that describes how to call the create-deployment command to deploy the application revision from Amazon S3 to target Amazon Elastic Compute Cloud (Amazon EC2) instances",
       options: [
         {
           name: "--application-name",
           description:
-            "Required. The name of the AWS CodeDeploy application to be associated with the application revision.",
+            "Required. The name of the AWS CodeDeploy application to be associated with the application revision",
           args: {
             name: "string",
           },
@@ -2440,7 +2438,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-hidden-files",
           description:
-            "Optional. Set the --ignore-hidden-files flag to not bundle and upload hidden files to Amazon S3; otherwise, set the --no-ignore-hidden-files flag (the default) to bundle and upload hidden files to Amazon S3.",
+            "Optional. Set the --ignore-hidden-files flag to not bundle and upload hidden files to Amazon S3; otherwise, set the --no-ignore-hidden-files flag (the default) to bundle and upload hidden files to Amazon S3",
         },
         {
           name: "--no-ignore-hidden-files",
@@ -2448,7 +2446,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source",
           description:
-            "Optional. The location of the deployable content and the accompanying AppSpec file on the development machine to be zipped and uploaded to Amazon S3. If not specified, the current directory is used.",
+            "Optional. The location of the deployable content and the accompanying AppSpec file on the development machine to be zipped and uploaded to Amazon S3. If not specified, the current directory is used",
           args: {
             name: "string",
           },
@@ -2456,7 +2454,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            "Optional. A comment that summarizes the application revision. If not specified, the default string \"Uploaded by AWS CLI 'time' UTC\" is used, where 'time' is the current system time in Coordinated Universal Time (UTC).",
+            "Optional. A comment that summarizes the application revision. If not specified, the default string \"Uploaded by AWS CLI 'time' UTC\" is used, where 'time' is the current system time in Coordinated Universal Time (UTC)",
           args: {
             name: "string",
           },
@@ -2466,11 +2464,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "register",
       description:
-        "Creates an IAM user for the on-premises instance, if not provided, and saves the user's credentials to an on-premises instance configuration file; registers the on-premises instance with AWS CodeDeploy; and optionally adds tags to the on-premises instance.",
+        "Creates an IAM user for the on-premises instance, if not provided, and saves the user's credentials to an on-premises instance configuration file; registers the on-premises instance with AWS CodeDeploy; and optionally adds tags to the on-premises instance",
       options: [
         {
           name: "--instance-name",
-          description: "Required. The name of the on-premises instance.",
+          description: "Required. The name of the on-premises instance",
           args: {
             name: "string",
           },
@@ -2478,7 +2476,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "Optional. The list of key/value pairs to tag the on-premises instance.",
+            "Optional. The list of key/value pairs to tag the on-premises instance",
           args: {
             name: "list",
             isVariadic: true,
@@ -2487,7 +2485,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--iam-user-arn",
           description:
-            "Optional. The IAM user associated with the on-premises instance.",
+            "Optional. The IAM user associated with the on-premises instance",
           args: {
             name: "string",
           },
@@ -2497,11 +2495,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "deregister",
       description:
-        "Removes any tags from the on-premises instance; deregisters the on-premises instance from AWS CodeDeploy; and, unless requested otherwise, deletes the IAM user for the on-premises instance.",
+        "Removes any tags from the on-premises instance; deregisters the on-premises instance from AWS CodeDeploy; and, unless requested otherwise, deletes the IAM user for the on-premises instance",
       options: [
         {
           name: "--instance-name",
-          description: "Required. The name of the on-premises instance.",
+          description: "Required. The name of the on-premises instance",
           args: {
             name: "string",
           },
@@ -2509,19 +2507,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-delete-iam-user",
           description:
-            "Optional. Do not delete the IAM user for the registered on-premises instance.",
+            "Optional. Do not delete the IAM user for the registered on-premises instance",
         },
       ],
     },
     {
       name: "install",
       description:
-        "Configures and installs the AWS CodeDeploy Agent on the on-premises instance.",
+        "Configures and installs the AWS CodeDeploy Agent on the on-premises instance",
       options: [
         {
           name: "--config-file",
           description:
-            "Required. The path to the on-premises instance configuration file.",
+            "Required. The path to the on-premises instance configuration file",
           args: {
             name: "string",
           },
@@ -2529,11 +2527,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--override-config",
           description:
-            "Optional. Overrides the on-premises instance configuration file.",
+            "Optional. Overrides the on-premises instance configuration file",
         },
         {
           name: "--agent-installer",
-          description: "Optional. The AWS CodeDeploy Agent installer file.",
+          description: "Optional. The AWS CodeDeploy Agent installer file",
           args: {
             name: "string",
           },
@@ -2543,22 +2541,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "uninstall",
       description:
-        "Uninstalls the AWS CodeDeploy Agent from the on-premises instance.",
+        "Uninstalls the AWS CodeDeploy Agent from the on-premises instance",
     },
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
       subcommands: [
         {
           name: "deployment-successful",
           description:
-            "Wait until JMESPath query deploymentInfo.status returns Succeeded when polling with ``get-deployment``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 120 failed checks.",
+            "Wait until JMESPath query deploymentInfo.status returns Succeeded when polling with ``get-deployment``. It will poll every 15 seconds until a successful state has been reached. This will exit with a return code of 255 after 120 failed checks",
           options: [
             {
               name: "--deployment-id",
               description:
-                "The unique ID of a deployment associated with the IAM user or AWS account.",
+                "The unique ID of a deployment associated with the IAM user or AWS account",
               args: {
                 name: "string",
               },
@@ -2566,7 +2564,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
               },
@@ -2574,7 +2572,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],

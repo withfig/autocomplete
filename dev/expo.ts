@@ -110,7 +110,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-c", "--clear-credentials"],
-          description: "Clear all credentials stored on Expo servers.",
+          description: "Clear all credentials stored on Expo servers",
           args: {
             name: "boolean",
             suggestions: [
@@ -131,8 +131,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--clear-dist-cert",
-          description:
-            "Remove Distribution Certificate stored on Expo servers.",
+          description: "Remove Distribution Certificate stored on Expo servers",
           args: {
             name: "boolean",
             suggestions: [
@@ -153,7 +152,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--clear-push-key",
-          description: "Remove Push Notifications Key stored on Expo servers.",
+          description: "Remove Push Notifications Key stored on Expo servers",
           args: {
             name: "boolean",
             suggestions: [
@@ -175,7 +174,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--clear-push-cert",
           description:
-            "Remove Push Notifications Certificate stored on Expo servers. Use of Push Notifications Certificates is deprecated.",
+            "Remove Push Notifications Certificate stored on Expo servers. Use of Push Notifications Certificates is deprecated",
           args: {
             name: "boolean",
             suggestions: [
@@ -196,7 +195,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--clear-provisioning-profile",
-          description: "Remove Provisioning Profile stored on Expo servers.",
+          description: "Remove Provisioning Profile stored on Expo servers",
           args: {
             name: "boolean",
             suggestions: [
@@ -218,7 +217,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-r", "--revoke-credentials"],
           description:
-            "Revoke credentials on developer.apple.com, select appropriate using --clear-* options.",
+            "Revoke credentials on developer.apple.com, select appropriate using --clear-* options",
           args: {
             name: "boolean",
             suggestions: [
@@ -240,7 +239,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apple-id",
           description:
-            "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable).",
+            "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable)",
           args: {
             name: "login",
             isOptional: false,
@@ -250,7 +249,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--type"],
-          description: "Type of build: [archive|simulator].",
+          description: "Type of build: [archive|simulator]",
           args: {
             name: "archive|simulator",
             isOptional: false,
@@ -270,7 +269,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--release-channel",
-          description: "Pull from specified release channel.",
+          description: "Pull from specified release channel",
           args: {
             name: "name",
             isOptional: false,
@@ -280,7 +279,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-publish",
-          description: "Disable automatic publishing before building.",
+          description: "Disable automatic publishing before building",
           args: {
             name: "boolean",
             suggestions: [
@@ -301,7 +300,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-wait",
-          description: "Exit immediately after scheduling build.",
+          description: "Exit immediately after scheduling build",
           args: {
             name: "boolean",
             suggestions: [
@@ -322,7 +321,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--team-id",
-          description: "Apple Team ID.",
+          description: "Apple Team ID",
           args: {
             name: "boolean",
             suggestions: [
@@ -344,7 +343,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dist-p12-path",
           description:
-            "Path to your Distribution Certificate P12 (set password as EXPO_IOS_DIST_P12_PASSWORD environment variable).",
+            "Path to your Distribution Certificate P12 (set password as EXPO_IOS_DIST_P12_PASSWORD environment variable)",
           args: {
             name: "path",
             isOptional: false,
@@ -355,7 +354,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--push-id",
-          description: "Push Key ID (ex: 123AB4C56D).",
+          description: "Push Key ID (ex: 123AB4C56D)",
           args: {
             name: "boolean",
             suggestions: [
@@ -376,7 +375,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--push-p8-path",
-          description: "Path to your Push Key .p8 file.",
+          description: "Path to your Push Key .p8 file",
           args: {
             name: "path",
             isOptional: false,
@@ -387,7 +386,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--provisioning-profile-path",
-          description: "Path to your Provisioning Profile.",
+          description: "Path to your Provisioning Profile",
           args: {
             name: "path",
             isOptional: false,
@@ -399,7 +398,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--public-url",
           description:
-            "The URL of an externally hosted manifest (for self-hosted apps).",
+            "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
             isOptional: false,
@@ -409,7 +408,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--skip-credentials-check",
-          description: "Skip checking credentials.",
+          description: "Skip checking credentials",
           args: {
             name: "boolean",
             suggestions: [
@@ -431,7 +430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--skip-workflow-check",
           description:
-            "Skip warning about build service bare workflow limitations.",
+            "Skip warning about build service bare workflow limitations",
           args: {
             name: "boolean",
             suggestions: [
@@ -453,7 +452,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -488,7 +487,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-c", "--clear-credentials"],
-          description: "Clear stored credentials.",
+          description: "Clear stored credentials",
           args: {
             name: "boolean",
             suggestions: [
@@ -509,7 +508,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--release-channel",
-          description: "Pull from specified release channel.",
+          description: "Pull from specified release channel",
           args: {
             name: "name",
             isOptional: false,
@@ -519,7 +518,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-publish",
-          description: "Disable automatic publishing before building.",
+          description: "Disable automatic publishing before building",
           args: {
             name: "boolean",
             suggestions: [
@@ -540,7 +539,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-wait",
-          description: "Exit immediately after triggering build.",
+          description: "Exit immediately after triggering build",
           args: {
             name: "boolean",
             suggestions: [
@@ -561,7 +560,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--keystore-path",
-          description: "Path to your Keystore: *.jks.",
+          description: "Path to your Keystore: *.jks",
           args: {
             name: "path",
             isOptional: false,
@@ -615,7 +614,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--skip-workflow-check",
           description:
-            "Skip warning about build service bare workflow limitations.",
+            "Skip warning about build service bare workflow limitations",
           args: {
             name: "boolean",
             suggestions: [
@@ -636,7 +635,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--type"],
-          description: "Type of build: [app-bundle|apk].",
+          description: "Type of build: [app-bundle|apk]",
           args: {
             name: "boolean",
             suggestions: [
@@ -658,7 +657,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -692,7 +691,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-c", "--clear"],
-          description: "Clear all cached build files and assets.",
+          description: "Clear all cached build files and assets",
           args: {
             name: "boolean",
             suggestions: [
@@ -714,7 +713,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-pwa",
           description:
-            "Prevent webpack from generating the manifest.json and injecting meta into the index.html head.",
+            "Prevent webpack from generating the manifest.json and injecting meta into the index.html head",
           args: {
             name: "boolean",
             suggestions: [
@@ -757,7 +756,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -792,7 +791,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--public-url",
           description:
-            "The URL of an externally hosted manifest (for self-hosted apps).",
+            "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
             isOptional: false,
@@ -803,7 +802,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -848,7 +847,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--platform",
-          description: "detached project platform",
+          description: "Detached project platform",
           args: {
             name: "platform",
             isOptional: false,
@@ -871,7 +870,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -905,7 +904,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apple-id",
           description:
-            "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable).",
+            "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable)",
           args: {
             name: "login",
             isOptional: false,
@@ -916,7 +915,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -946,7 +945,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--latest",
           description:
-            "Install the latest version of Expo Go, ignoring the current project version.",
+            "Install the latest version of Expo Go, ignoring the current project version",
           args: {
             name: "boolean",
             suggestions: [
@@ -986,7 +985,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--latest",
           description:
-            "Install the latest version of Expo Go, ignore the current project version.",
+            "Install the latest version of Expo Go, ignore the current project version",
           args: {
             name: "boolean",
             suggestions: [
@@ -1029,7 +1028,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--type"],
-          description: "Type of config to show.",
+          description: "Type of config to show",
           args: {
             name: "public|prebuild|introspect",
             isOptional: false,
@@ -1072,7 +1071,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1129,7 +1128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1206,7 +1205,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1241,7 +1240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1276,7 +1275,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1311,7 +1310,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-install",
-          description: "Skip installing npm packages and CocoaPods.",
+          description: "Skip installing npm packages and CocoaPods",
           args: {
             name: "boolean",
             suggestions: [
@@ -1379,7 +1378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1459,7 +1458,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--asset-url"],
           description:
-            "The absolute or relative url that will host the asset files. Default is './assets', which will be resolved against the public-url.",
+            "The absolute or relative url that will host the asset files. Default is './assets', which will be resolved against the public-url",
           args: {
             name: "url",
             isOptional: false,
@@ -1469,7 +1468,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-d", "--dump-assetmap"],
-          description: "Dump the asset map for further processing.",
+          description: "Dump the asset map for further processing",
           args: {
             name: "boolean",
             suggestions: [
@@ -1512,7 +1511,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-s", "--dump-sourcemap"],
-          description: "Dump the source map for debugging the JS bundle.",
+          description: "Dump the source map for debugging the JS bundle",
           args: {
             name: "boolean",
             suggestions: [
@@ -1533,7 +1532,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-q", "--quiet"],
-          description: "Suppress verbose output.",
+          description: "Suppress verbose output",
           args: {
             name: "boolean",
             suggestions: [
@@ -1554,7 +1553,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--target"],
-          description: "Target environment for which this export is intended.",
+          description: "Target environment for which this export is intended",
           args: {
             name: "managed|bare",
             isOptional: false,
@@ -1573,7 +1572,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--merge-src-dir",
-          description: "A repeatable source dir to merge in.",
+          description: "A repeatable source dir to merge in",
           args: {
             name: "dir",
             isOptional: false,
@@ -1584,7 +1583,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--merge-src-url",
-          description: "A repeatable source tar.gz file URL to merge in.",
+          description: "A repeatable source tar.gz file URL to merge in",
           args: {
             name: "url",
             isOptional: false,
@@ -1594,7 +1593,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-workers",
-          description: "Maximum number of tasks to allow Metro to spawn.",
+          description: "Maximum number of tasks to allow Metro to spawn",
           args: {
             generators: _gen[`max-workers`],
             name: "Number of workers",
@@ -1605,7 +1604,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--experimental-bundle",
-          description: "export bundles for use with EAS updates.",
+          description: "Export bundles for use with EAS updates",
           args: {
             name: "boolean",
             suggestions: [
@@ -1627,7 +1626,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1663,7 +1662,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1698,7 +1697,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1733,7 +1732,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1768,7 +1767,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -1802,7 +1801,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-t", "--template"],
           description:
-            'Specify which template to use. Valid options are "blank", "tabs", "bare-minimum" or a package on npm (e.g. "expo-template-bare-minimum") that includes an Expo project template.',
+            'Specify which template to use. Valid options are "blank", "tabs", "bare-minimum" or a package on npm (e.g. "expo-template-bare-minimum") that includes an Expo project template',
           args: {
             name: "name",
             isOptional: true,
@@ -1854,7 +1853,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-install",
-          description: "Skip installing npm packages or CocoaPods.",
+          description: "Skip installing npm packages or CocoaPods",
           args: {
             name: "boolean",
             suggestions: [
@@ -1875,7 +1874,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--name",
-          description: "The name of your app visible on the home screen.",
+          description: "The name of your app visible on the home screen",
           args: {
             name: "name",
             isOptional: true,
@@ -2059,7 +2058,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-install",
-          description: "Skip installing npm packages and CocoaPods.",
+          description: "Skip installing npm packages and CocoaPods",
           args: {
             name: "boolean",
             suggestions: [
@@ -2171,7 +2170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2205,7 +2204,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--platform",
-          description: "detached project platform",
+          description: "Detached project platform",
           args: {
             name: "platform",
             isOptional: false,
@@ -2238,7 +2237,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2270,7 +2269,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-q", "--quiet"],
-          description: "Suppress verbose output from the Metro bundler.",
+          description: "Suppress verbose output from the Metro bundler",
           args: {
             name: "boolean",
             suggestions: [
@@ -2323,7 +2322,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-t", "--target"],
           description:
-            "Target environment for which this publish is intended. Options are `managed` or `bare`.",
+            "Target environment for which this publish is intended. Options are `managed` or `bare`",
           args: {
             name: "managed|bare",
             isOptional: false,
@@ -2342,7 +2341,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-workers",
-          description: "Maximum number of tasks to allow Metro to spawn.",
+          description: "Maximum number of tasks to allow Metro to spawn",
           args: {
             generators: _gen[`max-workers`],
             name: "Number of workers",
@@ -2354,7 +2353,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--release-channel",
           description:
-            "The release channel to publish to. Default is 'default'.",
+            "The release channel to publish to. Default is 'default'",
           args: {
             name: "name",
             isOptional: false,
@@ -2365,7 +2364,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2432,7 +2431,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2466,7 +2465,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--channel-id",
-          description: "This flag is deprecated.",
+          description: "This flag is deprecated",
           args: {
             name: "boolean",
             suggestions: [
@@ -2507,7 +2506,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-p", "--platform"],
-          description: "The platform to rollback.",
+          description: "The platform to rollback",
           args: {
             name: "platform",
             isOptional: false,
@@ -2530,7 +2529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2565,7 +2564,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-c", "--release-channel"],
           description:
-            "Filter by release channel. If this flag is not included, the most recent publications will be shown.",
+            "Filter by release channel. If this flag is not included, the most recent publications will be shown",
           args: {
             name: "name",
             isOptional: false,
@@ -2575,7 +2574,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--count",
-          description: "Number of logs to view, maximum 100, default 5.",
+          description: "Number of logs to view, maximum 100, default 5",
           args: {
             name: "boolean",
             suggestions: [
@@ -2597,7 +2596,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-p", "--platform"],
           description:
-            "Filter by platform, android or ios. Defaults to both platforms.",
+            "Filter by platform, android or ios. Defaults to both platforms",
           args: {
             name: "platform",
             isOptional: false,
@@ -2629,7 +2628,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-r", "--raw"],
-          description: "Produce some raw output.",
+          description: "Produce some raw output",
           args: {
             name: "boolean",
             suggestions: [
@@ -2651,7 +2650,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2706,7 +2705,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-r", "--raw"],
-          description: "Produce some raw output.",
+          description: "Produce some raw output",
           args: {
             name: "boolean",
             suggestions: [
@@ -2728,7 +2727,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2762,7 +2761,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--api-key",
-          description: "Server API key for FCM.",
+          description: "Server API key for FCM",
           args: {
             name: "boolean",
             suggestions: [
@@ -2784,7 +2783,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2820,7 +2819,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2855,7 +2854,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -2958,7 +2957,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -3058,7 +3057,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -3200,7 +3199,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -3274,7 +3273,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -3339,7 +3338,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max-workers",
-          description: "Maximum number of tasks to allow Metro to spawn.",
+          description: "Maximum number of tasks to allow Metro to spawn",
           args: {
             generators: _gen[`max-workers`],
             name: "Number of workers",
@@ -3585,7 +3584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -3680,7 +3679,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -3958,7 +3957,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -4053,7 +4052,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4151,7 +4150,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--latest",
-          description: "upload the latest build",
+          description: "Upload the latest build",
           args: {
             name: "boolean",
             suggestions: [
@@ -4172,7 +4171,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--id",
-          description: "id of the build to upload",
+          description: "Id of the build to upload",
           args: {
             name: "id",
             isOptional: false,
@@ -4182,7 +4181,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--path",
-          description: "path to the .apk/.aab file",
+          description: "Path to the .apk/.aab file",
           args: {
             name: "path",
             isOptional: true,
@@ -4193,7 +4192,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "app archive url",
+          description: "App archive url",
           args: {
             name: "url",
             isOptional: false,
@@ -4204,7 +4203,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "path to the JSON key used to authenticate with Google Play",
+            "Path to the JSON key used to authenticate with Google Play",
           args: {
             name: "key",
             isOptional: false,
@@ -4236,7 +4235,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-          description: "archive type: apk, aab",
+          description: "Archive type: apk, aab",
           args: {
             name: "boolean",
             suggestions: [
@@ -4258,7 +4257,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--track",
           description:
-            "the track of the application to use, choose from: production, beta, alpha, internal, rollout",
+            "The track of the application to use, choose from: production, beta, alpha, internal, rollout",
           args: {
             name: "track",
             isOptional: false,
@@ -4269,7 +4268,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--release-status",
           description:
-            "release status (used when uploading new apks/aabs), choose from: completed, draft, halted, inProgress",
+            "Release status (used when uploading new apks/aabs), choose from: completed, draft, halted, inProgress",
           args: {
             name: "boolean",
             suggestions: [
@@ -4291,7 +4290,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--use-submission-service",
           description:
-            "Experimental: Use Submission Service for uploading your app. The upload process will happen on Expo servers.",
+            "Experimental: Use Submission Service for uploading your app. The upload process will happen on Expo servers",
           args: {
             name: "boolean",
             suggestions: [
@@ -4334,7 +4333,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4351,7 +4350,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["upload:ios", "ui"],
       hidden: false,
-      description: "Unsupported: Use eas submit or Transporter app instead.",
+      description: "Unsupported: Use eas submit or Transporter app instead",
       priority: 54,
       args: {
         isOptional: true,
@@ -4368,7 +4367,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--latest",
-          description: "upload the latest build (default)",
+          description: "Upload the latest build (default)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4389,7 +4388,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--id",
-          description: "id of the build to upload",
+          description: "Id of the build to upload",
           args: {
             name: "id",
             isOptional: false,
@@ -4399,7 +4398,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--path",
-          description: "path to the .ipa file",
+          description: "Path to the .ipa file",
           args: {
             name: "path",
             isOptional: true,
@@ -4410,7 +4409,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "app archive url",
+          description: "App archive url",
           args: {
             name: "url",
             isOptional: false,
@@ -4421,7 +4420,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apple-id",
           description:
-            "your Apple ID username (you can also set EXPO_APPLE_ID env variable)",
+            "Your Apple ID username (you can also set EXPO_APPLE_ID env variable)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4465,7 +4464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--apple-id-password",
           description:
-            "your Apple ID password (you can also set EXPO_APPLE_PASSWORD env variable)",
+            "Your Apple ID password (you can also set EXPO_APPLE_PASSWORD env variable)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4487,7 +4486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--app-name",
           description:
-            "the name of your app as it will appear on the App Store, this can't be longer than 30 characters (default: expo.name from app.json)",
+            "The name of your app as it will appear on the App Store, this can't be longer than 30 characters (default: expo.name from app.json)",
           args: {
             name: "boolean",
             suggestions: [
@@ -4509,7 +4508,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--company-name",
           description:
-            "the name of your company, needed only for the first upload of any app to App Store",
+            "The name of your company, needed only for the first upload of any app to App Store",
           args: {
             name: "boolean",
             suggestions: [
@@ -4531,7 +4530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sku",
           description:
-            "a unique ID for your app that is not visible on the App Store, will be generated unless provided",
+            "A unique ID for your app that is not visible on the App Store, will be generated unless provided",
           args: {
             name: "sku",
             isOptional: false,
@@ -4542,7 +4541,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--language",
           description:
-            "primary language (e.g. English, German; run `expo upload:ios --help` to see the list of available languages)",
+            "Primary language (e.g. English, German; run `expo upload:ios --help` to see the list of available languages)",
           args: {
             name: "language",
             isOptional: false,
@@ -4564,7 +4563,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4696,7 +4695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--host"],
           description:
-            'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
+            'Lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks',
           args: {
             name: "mode",
             isOptional: true,
@@ -4791,7 +4790,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4837,7 +4836,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4883,7 +4882,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4918,7 +4917,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -4985,7 +4984,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret",
           description:
-            "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header.",
+            "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header",
           args: {
             name: "secret",
             isOptional: false,
@@ -4996,7 +4995,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -5030,7 +5029,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--id",
-          description: "ID of the webhook to remove.",
+          description: "ID of the webhook to remove",
           args: {
             name: "id",
             isOptional: false,
@@ -5041,7 +5040,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,
@@ -5075,7 +5074,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--id",
-          description: "ID of the webhook to update.",
+          description: "ID of the webhook to update",
           args: {
             name: "id",
             isOptional: false,
@@ -5085,7 +5084,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "URL the webhook will request.",
+          description: "URL the webhook will request",
           args: {
             name: "url",
             isOptional: true,
@@ -5117,7 +5116,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--secret",
           description:
-            "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header.",
+            "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header",
           args: {
             name: "secret",
             isOptional: true,
@@ -5128,7 +5127,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--config",
           description:
-            "Deprecated: Use app.config.js to switch config files instead.",
+            "Deprecated: Use app.config.js to switch config files instead",
           args: {
             name: "file",
             isOptional: true,

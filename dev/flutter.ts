@@ -29,13 +29,13 @@ const flutterGenerators: Record<string, Fig.Generator> = {
 
 const help = {
   name: ["-h", "--help"],
-  description: "Print this usage information.",
+  description: "Print this usage information",
 };
 
 const verbose = {
   name: ["-v", "--verbose"],
   description:
-    "Noisy logging, including all shell commands executed. If used with --help, shows hidden options.",
+    "Noisy logging, including all shell commands executed. If used with --help, shows hidden options",
 };
 
 const deviceId = {
@@ -51,12 +51,12 @@ const deviceId = {
 
 const version = {
   name: "--version",
-  description: "Reports the version of this tool.",
+  description: "Reports the version of this tool",
 };
 
 const suppressAnalytics = {
   name: "--suppress-analytics",
-  description: "Suppress analytics reporting when this command runs.",
+  description: "Suppress analytics reporting when this command runs",
 };
 
 const globalOpts = [help, verbose, deviceId, suppressAnalytics];
@@ -65,22 +65,22 @@ const globalOpts = [help, verbose, deviceId, suppressAnalytics];
 const pub = [
   {
     name: "--pub",
-    description: "Run 'flutter pub get' before executing this command.",
+    description: "Run 'flutter pub get' before executing this command",
   },
   {
     name: "--no-pub",
-    description: "Don't run 'flutter pub get' before executing this command.",
+    description: "Don't run 'flutter pub get' before executing this command",
   },
 ];
 
 const currentPackage = [
   {
     name: "--current-package",
-    description: "Analyze the current project, if applicable.",
+    description: "Analyze the current project, if applicable",
   },
   {
     name: "--no-current-package",
-    description: "Don't analyze the current project, if applicable.",
+    description: "Don't analyze the current project, if applicable",
   },
 ];
 
@@ -88,12 +88,12 @@ const congratulate = [
   {
     name: "--congratulate",
     description:
-      "Show output even when there are no errors, warnings, hints, or lints. Ignored if --watch is specified.",
+      "Show output even when there are no errors, warnings, hints, or lints. Ignored if --watch is specified",
   },
   {
     name: "--no-congratulate",
     description:
-      "Hide output even when there are no errors, warnings, hints, or lints. Ignored if --watch is specified.",
+      "Hide output even when there are no errors, warnings, hints, or lints. Ignored if --watch is specified",
   },
 ];
 
@@ -101,34 +101,34 @@ const preamble = [
   {
     name: "--preamble",
     description:
-      "When analyzing the flutter repository, display the number of files that will be analyzed. Ignored if --watch is specified.",
+      "When analyzing the flutter repository, display the number of files that will be analyzed. Ignored if --watch is specified",
   },
   {
     name: "--no-preamble",
     description:
-      "When analyzing the flutter repository, don't display the number of files that will be analyzed. Ignored if --watch is specified.",
+      "When analyzing the flutter repository, don't display the number of files that will be analyzed. Ignored if --watch is specified",
   },
 ];
 
 const fatalInfos = [
   {
     name: "--fatal-infos",
-    description: "Treat info level issues as fatal.",
+    description: "Treat info level issues as fatal",
   },
   {
     name: "--no-fatal-infos",
-    description: "Don't treat info level issues as fatal.",
+    description: "Don't treat info level issues as fatal",
   },
 ];
 
 const fatalWarnings = [
   {
     name: "--fatal-warnings",
-    description: "Treat warning level issues as fatal.",
+    description: "Treat warning level issues as fatal",
   },
   {
     name: "--no-fatal-warnings",
-    description: "Don't treat warning level issues as fatal.",
+    description: "Don't treat warning level issues as fatal",
   },
 ];
 
@@ -136,13 +136,13 @@ const nullAssertions = [
   {
     name: "--null-assertions",
     description:
-      "Perform additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices.",
+      "Perform additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices",
   },
 
   {
     name: "--no-null-assertions",
     description:
-      "Not performing additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices.",
+      "Not performing additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices",
   },
 ];
 
@@ -150,12 +150,12 @@ const trackWidgetCreation = [
   {
     name: "--track-widget-creation",
     description:
-      "Track widget creation locations. This enables features such as the widget inspector. This parameter is only functional in debug mode (i.e. when compiling JIT, not AOT).",
+      "Track widget creation locations. This enables features such as the widget inspector. This parameter is only functional in debug mode (i.e. when compiling JIT, not AOT)",
   },
   {
     name: "--no-track-widget-creation",
     description:
-      "No tracking widget creation locations. This disables features such as the widget inspector. This parameter is only functional in debug mode (i.e. when compiling JIT, not AOT).",
+      "No tracking widget creation locations. This disables features such as the widget inspector. This parameter is only functional in debug mode (i.e. when compiling JIT, not AOT)",
   },
 ];
 
@@ -163,18 +163,18 @@ const testAssets = [
   {
     name: "--test-assets",
     description:
-      "Build the assets bundle for testing. Consider using --no-test-assets if assets are not required.",
+      "Build the assets bundle for testing. Consider using --no-test-assets if assets are not required",
   },
   {
     name: "--no-test-assets",
-    description: "Exclude the assets bundle for build testing.",
+    description: "Exclude the assets bundle for build testing",
   },
 ];
 
 const uninstallOnly = [
   {
     name: "--uninstall-only",
-    description: "Uninstall the app if already on the device. Skip install.",
+    description: "Uninstall the app if already on the device. Skip install",
   },
   {
     name: "--no-uninstall-only",
@@ -185,7 +185,7 @@ const useDefferedLoading = [
   {
     name: "--use-deferred-loading",
     description:
-      "Generate the Dart localization file with locales imported as deferred, allowing for lazy loading of each locale in Flutter web. \n\nThis can reduce a web app’s initial startup time by decreasing the size of the JavaScript bundle. When this flag is set to true, the messages for a particular locale are only downloaded and loaded by the Flutter app as they are needed. For projects with a lot of different locales and many localization strings, it can be an performance improvement to have deferred loading. For projects with a small number of locales, the difference is negligible, and might slow down the start up compared to bundling the localizations with the rest of the application. \n\nNote that this flag does not affect other platforms such as mobile or desktop.",
+      "Generate the Dart localization file with locales imported as deferred, allowing for lazy loading of each locale in Flutter web. \n\nThis can reduce a web app’s initial startup time by decreasing the size of the JavaScript bundle. When this flag is set to true, the messages for a particular locale are only downloaded and loaded by the Flutter app as they are needed. For projects with a lot of different locales and many localization strings, it can be an performance improvement to have deferred loading. For projects with a small number of locales, the difference is negligible, and might slow down the start up compared to bundling the localizations with the rest of the application. \n\nNote that this flag does not affect other platforms such as mobile or desktop",
   },
   {
     name: "--no-use-deferred-loading",
@@ -198,7 +198,7 @@ const syntheticPackage = [
   {
     name: "--synthetic-package",
     description:
-      "Determines that the generated output files will be generated as a synthetic package or at a specified directory in the Flutter project. \n\nThis flag is set to true by default. \n\nWhen synthetic-package is set to false, it will generate the localizations files in the directory specified by arb-dir by default. \n\nIf output-dir is specified, files will be generated there.",
+      "Determines that the generated output files will be generated as a synthetic package or at a specified directory in the Flutter project. \n\nThis flag is set to true by default. \n\nWhen synthetic-package is set to false, it will generate the localizations files in the directory specified by arb-dir by default. \n\nIf output-dir is specified, files will be generated there",
   },
   {
     name: "--no-synthetic-package",
@@ -209,7 +209,7 @@ const requiredResourceAttributes = [
   {
     name: "--required-resource-attributes",
     description:
-      "Requires all resource ids to contain a corresponding resource attribute. \n\nBy default, simple messages will not require metadata, but it is highly recommended as this provides context for the meaning of a message to readers. \n\nResource attributes are still required for plural messages.",
+      "Requires all resource ids to contain a corresponding resource attribute. \n\nBy default, simple messages will not require metadata, but it is highly recommended as this provides context for the meaning of a message to readers. \n\nResource attributes are still required for plural messages",
   },
   {
     name: "--no-required-resource-attributes",
@@ -219,7 +219,7 @@ const requiredResourceAttributes = [
 const startPaused = [
   {
     name: "--start-paused",
-    description: "Start in a paused mode and wait for a debugger to connect.",
+    description: "Start in a paused mode and wait for a debugger to connect",
   },
   {
     name: "--no-start-paused",
@@ -230,7 +230,7 @@ const keepAppRunning = [
   {
     name: "--keep-app-running",
     description:
-      'Will keep the Flutter application running when done testing. By default, "flutter drive" stops the application after tests are finished, and --keep-app-running overrides this. On the other hand, if --use-existing-app is specified, then "flutter drive" instead defaults to leaving the application running, and --no-keep-app-running overrides it.',
+      'Will keep the Flutter application running when done testing. By default, "flutter drive" stops the application after tests are finished, and --keep-app-running overrides this. On the other hand, if --use-existing-app is specified, then "flutter drive" instead defaults to leaving the application running, and --no-keep-app-running overrides it',
   },
   {
     name: "--no-keep-app-running",
@@ -252,7 +252,7 @@ const headless = [
   {
     name: "--headless",
     description:
-      "Whether the driver browser is going to be launched in headless mode. Defaults to true.",
+      "Whether the driver browser is going to be launched in headless mode. Defaults to true",
   },
   {
     name: "--no-headless",
@@ -274,7 +274,7 @@ const awaitFirstFrameWhenTracing = [
   {
     name: "--await-first-frame-when-tracing",
     description:
-      'Whether to wait for the first frame when tracing startup ("--trace-startup"), or just dump the trace as soon as the application is running. The first frame is detected by looking for a Timeline event with the name "Rasterized first useful frame". By default, the widgets library\'s binding takes care of sending this event.',
+      'Whether to wait for the first frame when tracing startup ("--trace-startup"), or just dump the trace as soon as the application is running. The first frame is detected by looking for a Timeline event with the name "Rasterized first useful frame". By default, the widgets library\'s binding takes care of sending this event',
   },
   {
     name: "--no-await-first-frame-when-tracing",
@@ -285,7 +285,7 @@ const useTestFonts = [
   {
     name: "--use-test-fonts",
     description:
-      'Enable (and default to) the "Ahem" font. This is a special font used in tests to remove any dependencies on the font metrics. It is enabled when you use "flutter test". Set this flag when running a test using "flutter run" for debugging purposes. This flag is only available when running in debug mode.',
+      'Enable (and default to) the "Ahem" font. This is a special font used in tests to remove any dependencies on the font metrics. It is enabled when you use "flutter test". Set this flag when running a test using "flutter run" for debugging purposes. This flag is only available when running in debug mode',
   },
   {
     name: "--no-use-test-fonts",
@@ -296,7 +296,7 @@ const hot = [
   {
     name: "--hot",
     description:
-      'Run with support for hot reloading. Only available for debug mode. Not available with "--trace-startup".',
+      'Run with support for hot reloading. Only available for debug mode. Not available with "--trace-startup"',
   },
   {
     name: "--no-hot",
@@ -307,7 +307,7 @@ const fastStart = [
   {
     name: "--fast-start",
     description:
-      "Whether to quickly bootstrap applications with a minimal app. Currently this is only supported on Android devices. This option cannot be paired with --use-application-binary.",
+      "Whether to quickly bootstrap applications with a minimal app. Currently this is only supported on Android devices. This option cannot be paired with --use-application-binary",
   },
   {
     name: "--no-fast-start",
@@ -318,7 +318,7 @@ const offline = [
   {
     name: "--offline",
     description:
-      'When "flutter pub get" is run by the create command, this indicates whether to run it in offline mode or not. In offline mode, it will need to have all dependencies already available in the pub cache to succeed.',
+      'When "flutter pub get" is run by the create command, this indicates whether to run it in offline mode or not. In offline mode, it will need to have all dependencies already available in the pub cache to succeed',
   },
   {
     name: "--no-offline",
@@ -329,7 +329,7 @@ const withDriverTest = [
   {
     name: "--with-driver-test",
     description:
-      "(Deprecated) Also add a flutter_driver dependency and generate a sample 'flutter drive' test. This flag has been deprecated, instead see package:integration_test at https://pub.dev/packages/integration_test .",
+      "(Deprecated) Also add a flutter_driver dependency and generate a sample 'flutter drive' test. This flag has been deprecated, instead see package:integration_test at https://pub.dev/packages/integration_test",
   },
   {
     name: "--no-with-driver-test",
@@ -339,7 +339,7 @@ const withDriverTest = [
 const overwrite = [
   {
     name: "--overwrite",
-    description: "When performing operations, overwrite existing files.",
+    description: "When performing operations, overwrite existing files",
   },
   {
     name: "--no-overwrite",
@@ -350,12 +350,12 @@ const analytics = [
   {
     name: "--analytics",
     description:
-      "Enable reporting anonymously tool usage statistics and crash reports.",
+      "Enable reporting anonymously tool usage statistics and crash reports",
   },
   {
     name: "--no-analytics",
     description:
-      "Disable reporting anonymously tool usage statistics and crash reports.",
+      "Disable reporting anonymously tool usage statistics and crash reports",
   },
 ];
 
@@ -363,12 +363,12 @@ const enableWeb = [
   {
     name: "--enable-web",
     description:
-      "Enable Flutter for web. This setting will take effect on the master, dev, beta, and stable channels.",
+      "Enable Flutter for web. This setting will take effect on the master, dev, beta, and stable channels",
   },
   {
     name: "--no-enable-web",
     description:
-      "Disable Flutter for web. This setting will take effect on the master, dev, beta, and stable channels.",
+      "Disable Flutter for web. This setting will take effect on the master, dev, beta, and stable channels",
   },
 ];
 
@@ -376,12 +376,12 @@ const enableLinuxDesktop = [
   {
     name: "--enable-linux-desktop",
     description:
-      "Enable beta-quality support for desktop on Linux. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel.",
+      "Enable beta-quality support for desktop on Linux. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel",
   },
   {
     name: "--no-enable-linux-desktop",
     description:
-      "Disable beta-quality support for desktop on Linux. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel.",
+      "Disable beta-quality support for desktop on Linux. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel",
   },
 ];
 
@@ -389,12 +389,12 @@ const enableMacosDekstop = [
   {
     name: "--enable-macos-desktop",
     description:
-      "Enable beta-quality support for desktop on macOS. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel.",
+      "Enable beta-quality support for desktop on macOS. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel",
   },
   {
     name: "--no-enable-macos-desktop",
     description:
-      "Disable beta-quality support for desktop on macOS. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel.",
+      "Disable beta-quality support for desktop on macOS. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel",
   },
 ];
 
@@ -402,12 +402,12 @@ const enableWidowsDesktop = [
   {
     name: "--enable-windows-desktop",
     description:
-      "Enable beta-quality support for desktop on Windows. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel.",
+      "Enable beta-quality support for desktop on Windows. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel",
   },
   {
     name: "--no-enable-windows-desktop",
     description:
-      "Disable beta-quality support for desktop on Windows. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel.",
+      "Disable beta-quality support for desktop on Windows. This setting will take effect on the master, dev, beta, and stable channels. Newer beta versions are available on the beta channel",
   },
 ];
 
@@ -415,12 +415,12 @@ const singleWidgetReloadOptimization = [
   {
     name: "--single-widget-reload-optimization",
     description:
-      "Enable Hot reload optimization for changes to class body of a single widget. This setting will take effect on the master, dev, and beta channels.",
+      "Enable Hot reload optimization for changes to class body of a single widget. This setting will take effect on the master, dev, and beta channels",
   },
   {
     name: "--no-single-widget-reload-optimization",
     description:
-      "Disable Hot reload optimization for changes to class body of a single widget. This setting will take effect on the master, dev, and beta channels.",
+      "Disable Hot reload optimization for changes to class body of a single widget. This setting will take effect on the master, dev, and beta channels",
   },
 ];
 
@@ -428,12 +428,12 @@ const enableAndroid = [
   {
     name: "--enable-android",
     description:
-      "Enable Flutter for Android. This setting will take effect on the master, dev, beta, and stable channels.",
+      "Enable Flutter for Android. This setting will take effect on the master, dev, beta, and stable channels",
   },
   {
     name: "--no-enable-android",
     description:
-      "Disable Flutter for Android. This setting will take effect on the master, dev, beta, and stable channels.",
+      "Disable Flutter for Android. This setting will take effect on the master, dev, beta, and stable channels",
   },
 ];
 
@@ -441,12 +441,12 @@ const enableIos = [
   {
     name: "--enable-ios",
     description:
-      "Enable Flutter for iOS. This setting will take effect on the master, dev, beta, and stable channels.",
+      "Enable Flutter for iOS. This setting will take effect on the master, dev, beta, and stable channels",
   },
   {
     name: "--no-enable-ios",
     description:
-      "Disable Flutter for iOS. This setting will take effect on the master, dev, beta, and stable channels.",
+      "Disable Flutter for iOS. This setting will take effect on the master, dev, beta, and stable channels",
   },
 ];
 
@@ -454,12 +454,12 @@ const enabledFuchsia = [
   {
     name: "--enable-fuchsia",
     description:
-      "Enable Flutter for Fuchsia. This setting will take effect on the master channel.",
+      "Enable Flutter for Fuchsia. This setting will take effect on the master channel",
   },
   {
     name: "--no-enable-fuchsia",
     description:
-      "Disable Flutter for Fuchsia. This setting will take effect on the master channel.",
+      "Disable Flutter for Fuchsia. This setting will take effect on the master channel",
   },
 ];
 
@@ -467,12 +467,12 @@ const experimentalInvalidationStrategy = [
   {
     name: "--experimental-invalidation-strategy",
     description:
-      "Enable Hot reload optimization that reduces incremental artifact size. This setting will take effect on the master, dev, and beta channels.",
+      "Enable Hot reload optimization that reduces incremental artifact size. This setting will take effect on the master, dev, and beta channels",
   },
   {
     name: "--no-experimental-invalidation-strategy",
     description:
-      "Disable Hot reload optimization that reduces incremental artifact size. This setting will take effect on the master, dev, and beta channels.",
+      "Disable Hot reload optimization that reduces incremental artifact size. This setting will take effect on the master, dev, and beta channels",
   },
 ];
 
@@ -482,7 +482,7 @@ const deviceUser = {
   name: "--device-user",
 
   description:
-    'Identifier number for a user or work profile on Android only. Run "adb shell pm list users" for available identifiers.',
+    'Identifier number for a user or work profile on Android only. Run "adb shell pm list users" for available identifiers',
   args: {
     name: "seconds",
   },
@@ -492,7 +492,7 @@ const deviceTimeout = {
   name: "--device-timeout",
 
   description:
-    "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
+    "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices",
   args: {
     name: "seconds",
   },
@@ -500,13 +500,13 @@ const deviceTimeout = {
 
 const debug = {
   name: "--debug",
-  description: "Build a debug version of your app (default mode).",
+  description: "Build a debug version of your app (default mode)",
 };
 
 const profile = {
   name: "--profile",
   description:
-    "Build a version of your app specialized for performance profiling.",
+    "Build a version of your app specialized for performance profiling",
 };
 
 const target = {
@@ -523,26 +523,26 @@ const target = {
 const observatoryPort = {
   name: "--observatory-port",
   description:
-    "(deprecated use host-vmservice-port instead) Listen to the given port for an observatory debugger connection. Specifying port 0 (the default) will find a random free port.",
+    "(deprecated use host-vmservice-port instead) Listen to the given port for an observatory debugger connection. Specifying port 0 (the default) will find a random free port",
 };
 
 const deviceVmservicePort = {
   name: "--device-vmservice-port",
   description:
-    "Look for vmservice connections only from the specified port. Specifying port 0 (the default) will accept the first vmservice discovered.",
+    "Look for vmservice connections only from the specified port. Specifying port 0 (the default) will accept the first vmservice discovered",
 };
 
 const hostVmServicePort = {
   name: "--host-vmservice-port",
   description:
-    "When a device-side vmservice port is forwarded to a host-side port, use this value as the host port. Specifying port 0 (the default) will find a random free host port.",
+    "When a device-side vmservice port is forwarded to a host-side port, use this value as the host port. Specifying port 0 (the default) will find a random free host port",
 };
 
 const dartDefine = {
   name: "--dart-define",
 
   description:
-    "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors.",
+    "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors",
   args: {
     name: "foo=bar",
   },
@@ -555,13 +555,13 @@ const run = [
   profile,
   {
     name: "--release",
-    description: "Build a release version of your app.",
+    description: "Build a release version of your app",
   },
   dartDefine,
   {
     name: "--flavor",
     description:
-      "Build a custom app flavor as defined by platform-specific build setup. Supports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes.",
+      "Build a custom app flavor as defined by platform-specific build setup. Supports the use of product flavors in Android Gradle scripts, and the use of custom Xcode schemes",
   },
   {
     name: "--web-renderer",
@@ -571,29 +571,29 @@ const run = [
   {
     name: "--trace-startup",
     description:
-      "Trace application startup, then exit, saving the trace to a file.",
+      "Trace application startup, then exit, saving the trace to a file",
   },
   {
     name: "--verbose-system-logs",
-    description: "Include verbose logging from the flutter engine.",
+    description: "Include verbose logging from the flutter engine",
   },
   {
     name: "--cache-sksl",
-    description: "Only cache the shader in SkSL instead of binary or GLSL.",
+    description: "Only cache the shader in SkSL instead of binary or GLSL",
   },
   {
     name: "--dump-skp-on-shader-compilation",
     description:
-      "Automatically dump the skp that triggers new shader compilations. This is useful for writing custom ShaderWarmUp to reduce jank. By default, this is not enabled to reduce the overhead. This is only available in profile or debug build.",
+      "Automatically dump the skp that triggers new shader compilations. This is useful for writing custom ShaderWarmUp to reduce jank. By default, this is not enabled to reduce the overhead. This is only available in profile or debug build",
   },
   {
     name: "--purge-persistent-cache",
     description:
-      "Removes all existing persistent caches. This allows reproducing shader compilation jank that normally only happens the first time an app is run, or for reliable testing of compilation jank fixes (e.g. shader warm-up).",
+      "Removes all existing persistent caches. This allows reproducing shader compilation jank that normally only happens the first time an app is run, or for reliable testing of compilation jank fixes (e.g. shader warm-up)",
   },
   {
     name: "--route",
-    description: "Which route to load when running the app.",
+    description: "Which route to load when running the app",
   },
   {
     name: "--vmservice-out-file",
@@ -618,23 +618,23 @@ const run = [
   {
     name: "--endless-trace-buffer",
     description:
-      ' Enable tracing to the endless tracer. This is useful when recording huge amounts of traces. If we need to use endless buffer to record startup traces, we can combine the ("--trace-startup"). For example, flutter run --trace-startup --endless-trace-buffer.',
+      'Enable tracing to the endless tracer. This is useful when recording huge amounts of traces. If we need to use endless buffer to record startup traces, we can combine the ("--trace-startup"). For example, flutter run --trace-startup --endless-trace-buffer',
   },
   {
     name: "--trace-systrace",
     description:
-      "Enable tracing to the system tracer. This is only useful on platforms where such a tracer is available (Android and Fuchsia).",
+      "Enable tracing to the system tracer. This is only useful on platforms where such a tracer is available (Android and Fuchsia)",
   },
   {
     name: "--trace-skia",
     description:
-      "Enable tracing of Skia code. This is useful when debugging the raster thread (formerly known as the GPU thread). By default, Flutter will not log skia code.",
+      "Enable tracing of Skia code. This is useful when debugging the raster thread (formerly known as the GPU thread). By default, Flutter will not log skia code",
   },
   {
     name: ["-a", "--dart-entrypoint-args"],
     insertValue: "--dart-entrypoint-args",
     description:
-      "Pass a list of arguments to the Dart entrypoint at application startup. By default this is main(List<String> args). Specify this option multiple times each with one argument to pass multiple arguments to the Dart entrypoint. Currently this is only supported on desktop platforms.",
+      "Pass a list of arguments to the Dart entrypoint at application startup. By default this is main(List<String> args). Specify this option multiple times each with one argument to pass multiple arguments to the Dart entrypoint. Currently this is only supported on desktop platforms",
     isRepeatable: true,
   },
   target,
@@ -649,12 +649,12 @@ const run = [
   {
     name: "--dds-port",
     description:
-      "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port.",
+      "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port",
   },
   {
     name: "--devtools-server-address",
     description:
-      "When this value is provided, the Flutter tool will not spin up a new DevTools server instance, but instead will use the one provided at this address.",
+      "When this value is provided, the Flutter tool will not spin up a new DevTools server instance, but instead will use the one provided at this address",
   },
 ];
 
@@ -662,24 +662,24 @@ const run = [
 
 const completionSpec = {
   name: "flutter",
-  description: "Run flutter command.",
+  description: "Run flutter command",
   subcommands: [
     {
       name: "analyze",
-      description: "Analyze the project's Dart code.",
+      description: "Analyze the project's Dart code",
       options: [
         ...globalOpts,
         ...currentPackage,
         {
           name: "--watch",
           description:
-            "Run analysis continuously, watching the filesystem for changes.",
+            "Run analysis continuously, watching the filesystem for changes",
         },
         {
           name: "--write",
 
           description:
-            "Also output the results to a file. This is useful with --watch if you want a file to always contain the latest results.",
+            "Also output the results to a file. This is useful with --watch if you want a file to always contain the latest results",
           args: {
             name: "file path",
             template: "filepaths",
@@ -694,43 +694,43 @@ const completionSpec = {
     },
     {
       name: "assemble",
-      description: "Assemble and build Flutter resources.",
+      description: "Assemble and build Flutter resources",
       options: [
         ...globalOpts,
         {
           name: ["-d", "--define"],
           description:
-            "Allows passing configuration to a target with --define=target=key=value.",
+            "Allows passing configuration to a target with --define=target=key=value",
           insertValue: "--define",
         },
         {
           name: "--performance-measurement-file",
-          description: "Output individual target performance to a JSON file.",
+          description: "Output individual target performance to a JSON file",
         },
         {
           name: ["-i", "--input"],
-          description: "Treat warning level issues as fatal.",
+          description: "Treat warning level issues as fatal",
           insertValue: "--input",
         },
         {
           name: "--depfile",
           description:
-            " A file path where a depfile will be written. This contains all build inputs and outputs in a make style syntax",
+            "A file path where a depfile will be written. This contains all build inputs and outputs in a make style syntax",
         },
         {
           name: "--build-inputs",
           description:
-            "A file path where a newline separated file containing all inputs used will be written after a build. This file is not included as a build input or output. This file is not written if the build fails for any reason.",
+            "A file path where a newline separated file containing all inputs used will be written after a build. This file is not included as a build input or output. This file is not written if the build fails for any reason",
         },
         {
           name: "--build-outputs",
           description:
-            "A file path where a newline separated file containing all outputs used will be written after a build. This file is not included as a build input or output. This file is not written if the build fails for any reason.",
+            "A file path where a newline separated file containing all outputs used will be written after a build. This file is not included as a build input or output. This file is not written if the build fails for any reason",
         },
         {
           name: ["-o", "--output"],
           description:
-            "A directory where output files will be written. Must be either absolute or relative from the root of the current Flutter project.",
+            "A directory where output files will be written. Must be either absolute or relative from the root of the current Flutter project",
           insertValue: "--output",
         },
         {
@@ -745,13 +745,13 @@ const completionSpec = {
         {
           name: "--resource-pool-size",
           description:
-            "The maximum number of concurrent tasks the build system will run.",
+            "The maximum number of concurrent tasks the build system will run",
         },
       ],
     },
     {
       name: "attach",
-      description: "Attach to a running app.",
+      description: "Attach to a running app",
       options: [
         ...globalOpts,
         debug,
@@ -765,40 +765,40 @@ const completionSpec = {
         ...nullAssertions,
         {
           name: "--debug-uri",
-          description: "The URI at which the observatory is listening.",
+          description: "The URI at which the observatory is listening",
         },
         {
           name: "--app-id",
           description:
-            'The package name (Android) or bundle identifier (iOS) for the app. This can be specified to avoid being prompted if multiple observatory ports are advertised. If you have multiple devices or emulators running, you should include the device hostname as well, e.g. "com.example.myApp@my-iphone". This parameter is case-insensitive.',
+            'The package name (Android) or bundle identifier (iOS) for the app. This can be specified to avoid being prompted if multiple observatory ports are advertised. If you have multiple devices or emulators running, you should include the device hostname as well, e.g. "com.example.myApp@my-iphone". This parameter is case-insensitive',
         },
         {
           name: "--pid-file",
           description:
-            "Specify a file to write the process id to. You can send SIGUSR1 to trigger a hot reload and SIGUSR2 to trigger a hot restart.",
+            "Specify a file to write the process id to. You can send SIGUSR1 to trigger a hot reload and SIGUSR2 to trigger a hot restart",
         },
         ...trackWidgetCreation,
         {
           name: "--dds-port",
           description:
-            "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port.",
+            "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port",
         },
         {
           name: "--devtools-server-address",
           description:
-            "When this value is provided, the Flutter tool will not spin up a new DevTools server instance, but instead will use the one provided at this address.",
+            "When this value is provided, the Flutter tool will not spin up a new DevTools server instance, but instead will use the one provided at this address",
         },
         deviceTimeout,
       ],
     },
     {
       name: "bash-completion",
-      description: "Output command line shell completion setup scripts.",
+      description: "Output command line shell completion setup scripts",
       options: [...globalOpts, ...overwrite],
     },
     {
       name: "build",
-      description: "Build an executable app or install bundle.",
+      description: "Build an executable app or install bundle",
       options: [
         ...globalOpts,
         {
@@ -818,51 +818,50 @@ const completionSpec = {
         suggestions: [
           {
             name: "aar",
-            description: "Build a repository containing an AAR and a POM file.",
+            description: "Build a repository containing an AAR and a POM file",
             type: "argument",
             icon: "📦",
           },
           {
             name: "apk",
-            description: "Build an Android APK file from your app.",
+            description: "Build an Android APK file from your app",
             type: "argument",
             icon: "🤖",
           },
           {
             name: "appbundle",
-            description: "Build an Android App Bundle file from your app.",
+            description: "Build an Android App Bundle file from your app",
             type: "argument",
             icon: "🤖",
           },
           {
             name: "bundle",
-            description: "Build the Flutter assets directory from your app.",
+            description: "Build the Flutter assets directory from your app",
             type: "argument",
             icon: "📦",
           },
           {
             name: "ios",
-            description:
-              "Build an iOS application bundle (Mac OS X host only).",
+            description: "Build an iOS application bundle (Mac OS X host only)",
             type: "argument",
             icon: "📱",
           },
           {
             name: "ios-framework",
             description:
-              "Produces .xcframeworks for a Flutter project and its plugins for integration into existing, plain Xcode projects.",
+              "Produces .xcframeworks for a Flutter project and its plugins for integration into existing, plain Xcode projects",
             type: "argument",
             icon: "📱",
           },
           {
             name: "ipa",
-            description: "Build an iOS archive bundle (Mac OS X host only).",
+            description: "Build an iOS archive bundle (Mac OS X host only)",
             type: "argument",
             icon: "📱",
           },
           {
             name: "web",
-            description: "Build a web application bundle.",
+            description: "Build a web application bundle",
             type: "argument",
             icon: "🌎",
           },
@@ -871,11 +870,11 @@ const completionSpec = {
     },
     {
       name: "channel",
-      description: "List or switch Flutter channels.",
+      description: "List or switch Flutter channels",
       args: {
         name: "channel-name",
         description:
-          "Switch to <channel name>. Leave this blank to see available channels.",
+          "Switch to <channel name>. Leave this blank to see available channels",
         generators: {
           script: "flutter channel",
           postProcess: function (out) {
@@ -898,27 +897,27 @@ const completionSpec = {
     },
     {
       name: "clean",
-      description: "Delete the build/ and .dart_tool/ directories.",
+      description: "Delete the build/ and .dart_tool/ directories",
       options: globalOpts,
     },
     {
       name: "config",
-      description: "Configure Flutter settings.",
+      description: "Configure Flutter settings",
       options: [
         ...globalOpts,
         ...analytics,
         {
           name: "--clear-ios-signing-cert",
           description:
-            "Clear the saved development certificate choice used to sign apps for iOS device deployment.",
+            "Clear the saved development certificate choice used to sign apps for iOS device deployment",
         },
         {
           name: "--android-sdk",
-          description: "The Android SDK directory.",
+          description: "The Android SDK directory",
         },
         {
           name: "--android-studio-dir",
-          description: "The Android Studio install directory.",
+          description: "The Android Studio install directory",
         },
         {
           name: "--build-dir",
@@ -942,13 +941,13 @@ const completionSpec = {
         {
           name: "--clear-features",
           description:
-            "Remove all configured features and restore them to the default values.",
+            "Remove all configured features and restore them to the default values",
         },
       ],
     },
     {
       name: "create",
-      description: "Create a new Flutter project.",
+      description: "Create a new Flutter project",
       options: [
         ...globalOpts,
         ...pub,
@@ -971,7 +970,7 @@ const completionSpec = {
           name: "--project-name",
 
           description:
-            "The project name for this new Flutter project. This must be a valid dart package name.",
+            "The project name for this new Flutter project. This must be a valid dart package name",
         },
         {
           name: ["-i", "--ios-language"],
@@ -1057,7 +1056,7 @@ const completionSpec = {
           name: ["-t", "--template"],
           insertValue: "--template ",
           description:
-            "Specify the type of project to create. [app] (default) Generate a Flutter application. [module] Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin] Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both.",
+            "Specify the type of project to create. [app] (default) Generate a Flutter application. [module] Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin] Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both",
           args: {
             name: "type",
             suggestions: [
@@ -1098,7 +1097,7 @@ const completionSpec = {
           name: "--list-samples",
 
           description:
-            "Specifies a JSON output file for a listing of Flutter code samples that can be created with --sample.",
+            "Specifies a JSON output file for a listing of Flutter code samples that can be created with --sample",
           args: {
             name: "file path",
             template: "filepaths",
@@ -1108,7 +1107,7 @@ const completionSpec = {
     },
     {
       name: "devices",
-      description: "List all connected devices.",
+      description: "List all connected devices",
       options: [
         ...globalOpts,
         {
@@ -1125,26 +1124,26 @@ const completionSpec = {
     },
     {
       name: "doctor",
-      description: "Show information about the installed tooling.",
+      description: "Show information about the installed tooling",
       options: [
         ...globalOpts,
         {
           name: "--android-licenses",
           description:
-            "Run the Android SDK manager tool to accept the SDK's licenses.",
+            "Run the Android SDK manager tool to accept the SDK's licenses",
         },
       ],
     },
     {
       name: "downgrade",
       description:
-        "Downgrade Flutter to the last active version for the current channel.",
+        "Downgrade Flutter to the last active version for the current channel",
       options: globalOpts,
     },
     {
       name: "drive",
       description:
-        "Run integration tests for the project on an attached device or emulator.",
+        "Run integration tests for the project on an attached device or emulator",
       options: [
         ...globalOpts,
         ...run,
@@ -1153,7 +1152,7 @@ const completionSpec = {
           name: "--use-existing-app",
 
           description:
-            "Connect to an already running instance via the given observatory URL. If this option is given, the application will not be automatically started, and it will only be stopped if --no-keep-app-running is explicitly set.",
+            "Connect to an already running instance via the given observatory URL. If this option is given, the application will not be automatically started, and it will only be stopped if --no-keep-app-running is explicitly set",
           args: {
             name: "URL",
           },
@@ -1162,7 +1161,7 @@ const completionSpec = {
           name: "--driver",
 
           description:
-            'The test file to run on the host (as opposed to the target file to run on the device). By default, this file has the same base name as the target file, but in the "test_driver/" directory instead, and with "_test" inserted just before the extension, so e.g. if the target is "lib/main.dart", the driver will be "test_driver/main_test.dart".',
+            'The test file to run on the host (as opposed to the target file to run on the device). By default, this file has the same base name as the target file, but in the "test_driver/" directory instead, and with "_test" inserted just before the extension, so e.g. if the target is "lib/main.dart", the driver will be "test_driver/main_test.dart"',
           args: {
             name: "driver",
           },
@@ -1172,7 +1171,7 @@ const completionSpec = {
           name: "--driver-port",
 
           description:
-            "The port where Webdriver server is launched at. Defaults to 4444.",
+            "The port where Webdriver server is launched at. Defaults to 4444",
           args: {
             name: "port number",
           },
@@ -1197,24 +1196,24 @@ const completionSpec = {
         {
           name: "--write-sksl-on-exit",
           description:
-            "Attempts to write an SkSL file when the drive process is finished to the provided file, overwriting it if necessary.",
+            "Attempts to write an SkSL file when the drive process is finished to the provided file, overwriting it if necessary",
         },
         {
           name: "--test-arguments",
           description:
-            "Additional arguments to pass to the Dart VM running The test script.",
+            "Additional arguments to pass to the Dart VM running The test script",
         },
       ],
     },
     {
       name: "emulators",
-      description: "List, launch and create emulators.",
+      description: "List, launch and create emulators",
       options: [
         ...globalOpts,
         {
           name: "--launch",
           insertValue: "--launch '{cursor}'",
-          description: "The full or partial ID of the emulator to launch.",
+          description: "The full or partial ID of the emulator to launch",
           args: {
             name: "emulator id",
             generators: flutterGenerators.emulators,
@@ -1223,35 +1222,32 @@ const completionSpec = {
         {
           name: "--create",
 
-          description:
-            "Creates a new Android emulator based on a Pixel device.",
+          description: "Creates a new Android emulator based on a Pixel device",
         },
         {
           name: "--name",
 
           description:
-            "Used with flag --create. Specifies a name for the emulator being created.",
+            "Used with flag --create. Specifies a name for the emulator being created",
         },
       ],
     },
     {
       name: "format",
-      description: "Format one or more Dart files.",
+      description: "Format one or more Dart files",
       options: [
         ...globalOpts,
         {
           name: ["-n", "--dry-run"],
-          description:
-            "Show which files would be modified but make no changes.",
+          description: "Show which files would be modified but make no changes",
         },
         {
           name: "--set-exit-if-changed",
-          description:
-            "Return exit code 1 if there are any formatting changes.",
+          description: "Return exit code 1 if there are any formatting changes",
         },
         {
           name: ["-m", "--machine"],
-          description: "Produce machine-readable JSON output.",
+          description: "Produce machine-readable JSON output",
         },
         {
           name: ["-l", "--line-length"],
@@ -1262,7 +1258,7 @@ const completionSpec = {
     },
     {
       name: "gen-l10n",
-      description: "Generate localizations for the current project.",
+      description: "Generate localizations for the current project",
       options: [
         ...globalOpts,
         {
@@ -1288,7 +1284,7 @@ const completionSpec = {
         {
           name: "--untranslated-messages-file",
           description:
-            'The location of a file that describes the localization messages have not been translated yet. Using this option will create a JSON file at the target location, in the following format: "locale": ["message_1", "message_2" ... "message_n"] If this option is not specified, a summary of the messages that have not been translated will be printed on the command line.',
+            'The location of a file that describes the localization messages have not been translated yet. Using this option will create a JSON file at the target location, in the following format: "locale": ["message_1", "message_2" ... "message_n"] If this option is not specified, a summary of the messages that have not been translated will be printed on the command line',
         },
         {
           name: "--output-class",
@@ -1307,19 +1303,19 @@ const completionSpec = {
         {
           name: "--header",
           description:
-            'The header to prepend to the generated Dart localizations files. This option takes in a string. For example, pass in "/// All localized files." if you would like this string prepended to the generated Dart file. Alternatively, see the `header-file` option to pass in a text file for longer headers.',
+            'The header to prepend to the generated Dart localizations files. This option takes in a string. For example, pass in "/// All localized files." if you would like this string prepended to the generated Dart file. Alternatively, see the `header-file` option to pass in a text file for longer headers',
         },
         {
           name: "--header-file",
           description:
-            "The header to prepend to the generated Dart localizations files. The value of this option is the name of the file that contains the header text which will be inserted at the top of each generated Dart file. Alternatively, see the `header` option to pass in a string for a simpler header. This file should be placed in the directory specified in 'arb-dir'.",
+            "The header to prepend to the generated Dart localizations files. The value of this option is the name of the file that contains the header text which will be inserted at the top of each generated Dart file. Alternatively, see the `header` option to pass in a string for a simpler header. This file should be placed in the directory specified in 'arb-dir'",
         },
         ...useDefferedLoading,
         {
           name: "--gen-inputs-and-outputs-list",
 
           description:
-            "When specified, the tool generates a JSON file containing the tool's inputs and outputs named gen_l10n_inputs_and_outputs.json. \n\nThis can be useful for keeping track of which files of the Flutter project were used when generating the latest set of localizations. For example, the Flutter tool's build system uses this file to keep track of when to call gen_l10n during hot reload. \n\nThe value of this option is the directory where the JSON file will be generated. \n\nWhen null, the JSON file will not be generated.",
+            "When specified, the tool generates a JSON file containing the tool's inputs and outputs named gen_l10n_inputs_and_outputs.json. \n\nThis can be useful for keeping track of which files of the Flutter project were used when generating the latest set of localizations. For example, the Flutter tool's build system uses this file to keep track of when to call gen_l10n during hot reload. \n\nThe value of this option is the directory where the JSON file will be generated. \n\nWhen null, the JSON file will not be generated",
           args: {
             name: "path to output directory",
             template: "filepaths",
@@ -1330,7 +1326,7 @@ const completionSpec = {
           name: "--project-dir",
 
           description:
-            "When specified, the tool uses the path passed into this option as the directory of the root Flutter project. \n\nWhen null, the relative path to the present working directory will be used.",
+            "When specified, the tool uses the path passed into this option as the directory of the root Flutter project. \n\nWhen null, the relative path to the present working directory will be used",
           args: {
             name: "absolute path to flutter project",
             template: "filepaths",
@@ -1341,102 +1337,102 @@ const completionSpec = {
     },
     {
       name: "install",
-      description: "Install a Flutter app on an attached device.",
+      description: "Install a Flutter app on an attached device",
       options: [...globalOpts, deviceUser, deviceTimeout],
     },
     {
       name: "logs",
-      description: "Show log output for running Flutter apps.",
+      description: "Show log output for running Flutter apps",
       options: [
         ...globalOpts,
         {
           name: ["-c", "--clear"],
           insertValue: "--clear",
-          description: "Clear log history before reading from logs.",
+          description: "Clear log history before reading from logs",
         },
         deviceTimeout,
       ],
     },
     {
       name: "pub",
-      description: "Commands for managing Flutter packages.",
+      description: "Commands for managing Flutter packages",
       options: [
         ...globalOpts,
         {
           name: "add",
-          description: "Add a dependency to pubspec.yaml..",
+          description: "Add a dependency to pubspec.yaml",
         },
         {
           name: "cache",
-          description: "Work with the Pub system cache.",
+          description: "Work with the Pub system cache",
         },
         {
           name: "deps",
-          description: "Print package dependencies.",
+          description: "Print package dependencies",
         },
         {
           name: "downgrade",
-          description: "Downgrade packages in a Flutter project.",
+          description: "Downgrade packages in a Flutter project",
         },
         {
           name: "get",
-          description: "Get packages in a Flutter project.",
+          description: "Get packages in a Flutter project",
         },
         {
           name: "global",
-          description: "Work with Pub global packages.",
+          description: "Work with Pub global packages",
         },
         {
           name: "login",
-          description: "Log into pub.dev..",
+          description: "Log into pub.dev",
         },
         {
           name: "logout",
-          description: "Log out of pub.dev..",
+          description: "Log out of pub.dev",
         },
         {
           name: "outdated",
           description:
-            "Analyze dependencies to find which ones can be upgraded.",
+            "Analyze dependencies to find which ones can be upgraded",
         },
         {
           name: "pub",
-          description: 'Pass the remaining arguments to Dart\'s "pub" tool.',
+          description: 'Pass the remaining arguments to Dart\'s "pub" tool',
         },
         {
           name: "publish",
-          description: "Publish the current package to pub.dartlang.org.",
+          description: "Publish the current package to pub.dartlang.org",
         },
         {
           name: "remove",
-          description: "Removes a dependency from the current package..",
+          description: "Removes a dependency from the current package",
         },
         {
           name: "run",
-          description: "Run an executable from a package.",
+          description: "Run an executable from a package",
         },
         {
           name: "test",
-          description: 'Run the "test" package.',
+          description: 'Run the "test" package',
         },
         {
           name: "upgrade",
           description:
-            "Upgrade the current package's dependencies to latest versions.",
+            "Upgrade the current package's dependencies to latest versions",
         },
         {
           name: "uploader",
-          description: "Manage uploaders for a package on pub.dev.",
+          description: "Manage uploaders for a package on pub.dev",
         },
         {
           name: "version",
-          description: "Print Pub version.",
+          description: "Print Pub version",
         },
       ],
     },
     {
       name: "run",
-      description: "Run your Flutter app on an attached device.",
+      description: "Run your Flutter app on an attached device",
 
       options: [
         ...globalOpts,
@@ -1444,12 +1440,12 @@ const completionSpec = {
         {
           name: "--enable-software-rendering",
           description:
-            "Enable rendering using the Skia software backend. This is useful when testing Flutter on emulators. By default, Flutter will attempt to either use OpenGL or Vulkan and fall back to software when neither is available.",
+            "Enable rendering using the Skia software backend. This is useful when testing Flutter on emulators. By default, Flutter will attempt to either use OpenGL or Vulkan and fall back to software when neither is available",
         },
         {
           name: "--skia-deterministic-rendering",
           description:
-            "When combined with --enable-software-rendering, provides 100% deterministic Skia rendering.",
+            "When combined with --enable-software-rendering, provides 100% deterministic Skia rendering",
         },
         ...awaitFirstFrameWhenTracing,
         ...useTestFonts,
@@ -1457,20 +1453,20 @@ const completionSpec = {
         {
           name: "--pid-file",
           description:
-            "Specify a file to write the process id to. You can send SIGUSR1 to trigger a hot reload and SIGUSR2 to trigger a hot restart.",
+            "Specify a file to write the process id to. You can send SIGUSR1 to trigger a hot reload and SIGUSR2 to trigger a hot restart",
         },
         ...fastStart,
       ],
     },
     {
       name: "screenshot",
-      description: "Take a screenshot from a connected device.",
+      description: "Take a screenshot from a connected device",
       options: [
         ...globalOpts,
         {
           name: ["-o", "--out"],
           insertValue: "--out ",
-          description: "Location to write the screenshot.",
+          description: "Location to write the screenshot",
           args: {
             name: "path to file",
             template: "filepaths",
@@ -1480,7 +1476,7 @@ const completionSpec = {
           name: "--observatory-uri",
 
           description:
-            'The observatory URI to connect to. This is required when --type is "skia" or "rasterizer". To find the observatory URI, use "flutter run" and look for "An Observatory ... is available at" in the output.',
+            'The observatory URI to connect to. This is required when --type is "skia" or "rasterizer". To find the observatory URI, use "flutter run" and look for "An Observatory ... is available at" in the output',
           args: {
             name: "URI",
           },
@@ -1489,7 +1485,7 @@ const completionSpec = {
           name: "--type",
 
           description:
-            "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri ",
+            "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri",
           args: {
             name: "type",
             suggestions: [
@@ -1516,7 +1512,7 @@ const completionSpec = {
           name: "--device-timeout",
 
           description:
-            "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
+            "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices",
           args: {
             name: "seconds",
           },
@@ -1525,7 +1521,7 @@ const completionSpec = {
     },
     {
       name: "symbolize",
-      description: "Symbolize a stack trace from an AOT-compiled Flutter app.",
+      description: "Symbolize a stack trace from an AOT-compiled Flutter app",
       options: [
         ...globalOpts,
         {
@@ -1554,7 +1550,7 @@ const completionSpec = {
           args: {
             name: "file path",
             description:
-              "A file path for a symbolized stack trace to be written to.",
+              "A file path for a symbolized stack trace to be written to",
             template: "filepaths",
           },
         },
@@ -1562,7 +1558,7 @@ const completionSpec = {
     },
     {
       name: "test",
-      description: "Run Flutter unit tests for the current project.",
+      description: "Run Flutter unit tests for the current project",
       options: [
         ...globalOpts,
         ...pub,
@@ -1578,7 +1574,7 @@ const completionSpec = {
           name: "--name",
 
           description:
-            "A regular expression matching substrings of the names of tests to run.",
+            "A regular expression matching substrings of the names of tests to run",
           args: {
             name: "regexp",
           },
@@ -1586,7 +1582,7 @@ const completionSpec = {
         {
           name: "--plain-name",
 
-          description: "A plain-text substring of the names of tests to run.",
+          description: "A plain-text substring of the names of tests to run",
           args: {
             name: "substring",
           },
@@ -1604,11 +1600,11 @@ const completionSpec = {
         {
           name: "--start-paused",
           description:
-            "Start in a paused mode and wait for a debugger to connect. You must specify a single test file to run, explicitly. Instructions for connecting with a debugger are printed to the console once the test has started.",
+            "Start in a paused mode and wait for a debugger to connect. You must specify a single test file to run, explicitly. Instructions for connecting with a debugger are printed to the console once the test has started",
         },
         {
           name: "--coverage",
-          description: "Whether to collect coverage information.",
+          description: "Whether to collect coverage information",
         },
         {
           name: "--merge-coverage",
@@ -1623,7 +1619,7 @@ const completionSpec = {
         {
           name: "--update-goldens",
           description:
-            "Whether matchesGoldenFile() calls within your test methods should update the golden files rather than test for an existing match.",
+            "Whether matchesGoldenFile() calls within your test methods should update the golden files rather than test for an existing match",
         },
         {
           name: ["--j", "--concurrency"],
@@ -1638,7 +1634,7 @@ const completionSpec = {
         {
           name: "--test-randomize-ordering-seed",
           description:
-            'The seed to randomize the execution order of test cases. Must be a 32bit unsigned integer or "random". If "random", pick a random seed to use. If not passed, do not randomize test case execution order.',
+            'The seed to randomize the execution order of test cases. Must be a 32bit unsigned integer or "random". If "random", pick a random seed to use. If not passed, do not randomize test case execution order',
         },
         {
           name: ["-r", "--reporter"],
@@ -1672,25 +1668,25 @@ const completionSpec = {
         {
           name: "--dds-port",
           description:
-            " When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port.",
+            "When this value is provided, the Dart Development Service (DDS) will be bound to the provided port. Specifying port 0 (the default) will find a random free port",
         },
       ],
     },
     {
       name: "upgrade",
-      description: "Upgrade your copy of Flutter.",
+      description: "Upgrade your copy of Flutter",
       options: [
         ...globalOpts,
         {
           name: ["-f", "--force"],
           insertValue: "--force",
           description:
-            "Force upgrade the flutter branch, potentially discarding local changes.",
+            "Force upgrade the flutter branch, potentially discarding local changes",
         },
         {
           name: "--verify-only",
           description:
-            "Verifies for any new flutter update, without fetching the update.",
+            "Verifies for any new flutter update, without fetching the update",
         },
       ],
     },

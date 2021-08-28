@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-v",
-      description: "verbose",
+      description: "Verbose",
     },
     {
       name: "-F",

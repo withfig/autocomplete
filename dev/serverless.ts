@@ -174,7 +174,7 @@ const options: Record<string, Fig.Option> = {
 
 const completionSpec: Fig.Spec = {
   name: "serverless",
-  description: "zero-friction serverless development",
+  description: "Zero-friction serverless development",
   options: [
     {
       name: "--help",

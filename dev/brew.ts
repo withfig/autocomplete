@@ -29,7 +29,7 @@ const brewInfo = (name: string): Fig.Subcommand => ({
         return out.split("\n").map((formula) => {
           return {
             name: formula.replace(".rb", ""),
-            description: "formula",
+            description: "Formula",
             icon: "🍺",
             priority:
               (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
@@ -127,11 +127,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-r", "--installed-on-request"],
-          description: "Show manually installed formula.",
+          description: "Show manually installed formula",
         },
         {
           name: ["-p", "--installed-as-dependency"],
-          description: "Show installed formula as dependencies.",
+          description: "Show installed formula as dependencies",
         },
       ],
     },
@@ -141,11 +141,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--list-checks",
-          description: "List all audit methods.",
+          description: "List all audit methods",
         },
         {
           name: ["-D", "--audit-debug"],
-          description: "Enable debugging and profiling of audit methods.",
+          description: "Enable debugging and profiling of audit methods",
         },
       ],
     },
@@ -162,33 +162,33 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-d", "--debug"],
-          description: "Display any debugging information.",
+          description: "Display any debugging information",
         },
         {
           name: ["-q", "--quiet"],
-          description: "List only the names of outdated kegs.",
+          description: "List only the names of outdated kegs",
         },
         {
           name: ["-v", "--verbose"],
-          description: "Include detailed version information.",
+          description: "Include detailed version information",
         },
         {
           name: ["-h", "--help"],
-          description: "Show help message for the outdated command.",
+          description: "Show help message for the outdated command",
         },
-        { name: "--cask", description: "List only outdated casks." },
+        { name: "--cask", description: "List only outdated casks" },
         {
           name: "--fetch-HEAD",
           description:
-            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated.",
+            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated",
         },
-        { name: "--formula", description: "List only outdated formulae." },
+        { name: "--formula", description: "List only outdated formulae" },
         {
           name: "--greedy",
           description:
-            "Print outdated casks with auto_updates or version :latest.",
+            "Print outdated casks with auto_updates or version :latest",
         },
-        { name: "--json", description: "Print output in JSON format." },
+        { name: "--json", description: "Print output in JSON format" },
       ],
     },
     { name: "upgrade", description: "Upgrade outdated casks and outdated" },
@@ -216,7 +216,7 @@ const completionSpec: Fig.Spec = {
             return out.split("\n").map((formula) => {
               return {
                 name: formula.replace(".rb", ""),
-                description: "formula",
+                description: "Formula",
                 icon: "🍺",
                 priority:
                   (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
@@ -255,7 +255,7 @@ const completionSpec: Fig.Spec = {
       name: "cask",
 
       description:
-        "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
+        "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries",
       subcommands: [
         {
           name: "install",
@@ -291,26 +291,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "cleanup",
       description:
-        "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
+        "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae",
       options: [
         {
           name: ["--prune", "--prune=all"],
-          description: "Remove all cache files older than specified days.",
+          description: "Remove all cache files older than specified days",
         },
         {
           name: ["-n", "--dry-run"],
           description:
-            "Show what would be removed, but do not actually remove anything.",
+            "Show what would be removed, but do not actually remove anything",
         },
         {
           name: "-s",
           description:
-            "Scrub the cache, including downloads for even the latest versions.",
+            "Scrub the cache, including downloads for even the latest versions",
         },
         {
           name: "--prune-prefix",
           description:
-            "Only prune the symlinks and directories from the prefix and remove no other files.",
+            "Only prune the symlinks and directories from the prefix and remove no other files",
         },
       ],
       args: {
@@ -321,19 +321,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "services",
       description:
-        "Manage background services with macOS' launchctl(1) daemon manager.",
+        "Manage background services with macOS' launchctl(1) daemon manager",
       options: [
         {
           name: ["-d", "--debug"],
-          description: "Display any debugging information.",
+          description: "Display any debugging information",
         },
         {
           name: ["-q", "--quiet"],
-          description: "Suppress any warnings.",
+          description: "Suppress any warnings",
         },
         {
           name: ["-v", "--verbose"],
-          description: "Make some output more verbose.",
+          description: "Make some output more verbose",
         },
         {
           name: ["-h", "--help"],
@@ -344,18 +344,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "cleanup",
 
-          description: "Remove all unused services.",
+          description: "Remove all unused services",
         },
         {
           name: "list",
 
-          description: "List all services.",
+          description: "List all services",
         },
         {
           name: "run",
 
           description:
-            "Run the service formula without registering to launch at login (or boot).",
+            "Run the service formula without registering to launch at login (or boot)",
           options: [
             {
               name: "--all",
@@ -406,7 +406,7 @@ const completionSpec: Fig.Spec = {
           name: "restart",
 
           description:
-            "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).",
+            "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot)",
           options: [
             {
               name: "--all",
@@ -442,12 +442,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "autoremove",
       description:
-        "Uninstall formulae that were only installed as a dependency of another formula and are now no longer needed.",
+        "Uninstall formulae that were only installed as a dependency of another formula and are now no longer needed",
       options: [
         {
           name: ["-n", "--dry-run"],
           description:
-            "List what would be uninstalled, but do not actually uninstall anything.",
+            "List what would be uninstalled, but do not actually uninstall anything",
         },
       ],
     },

@@ -14,7 +14,7 @@ const getPodspecsAndFolders = (paths) => {
 
 const completionSpec: Fig.Spec = {
   name: "pod",
-  description: "CocoaPods, the Cocoa library package manager.",
+  description: "CocoaPods, the Cocoa library package manager",
   subcommands: [
     {
       description: "Deintegrate CocoaPods from your project",
@@ -155,7 +155,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          description: "Create spec file stub.",
+          description: "Create spec file stub",
           name: "create",
           options: [
             {
@@ -1123,7 +1123,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--swift-version",
               description:
-                "The SWIFT_VERSION that should be used to lint the spec. This takes precedence over a .swift-version file.",
+                "The SWIFT_VERSION that should be used to lint the spec. This takes precedence over a .swift-version file",
               args: {
                 name: "VERSION",
               },
@@ -1156,12 +1156,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          description: "Deprecates a pod.",
+          description: "Deprecates a pod",
           name: "deprecate",
           options: [
             {
               name: "--in-favor-of",
-              description: "The pod to deprecate this pod in favor of.",
+              description: "The pod to deprecate this pod in favor of",
               args: {
                 name: "OTHER_NAME",
               },
@@ -1177,7 +1177,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          description: "Deletes a version of a pod.",
+          description: "Deletes a version of a pod",
           name: "delete",
           options: [
             {
@@ -1269,7 +1269,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--description",
               description:
-                "An arbitrary description to easily identify your session later on.",
+                "An arbitrary description to easily identify your session later on",
               args: {
                 name: "DESCRIPTION",
               },
@@ -1291,7 +1291,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          description: "Returns information about a Pod.",
+          description: "Returns information about a Pod",
           name: "info",
           options: [
             {

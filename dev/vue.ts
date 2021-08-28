@@ -1,10 +1,10 @@
 const completionSpec: Fig.Spec = {
   name: "vue",
-  description: "vue cli tools",
+  description: "Vue cli tools",
   subcommands: [
     {
       name: "create",
-      description: "create a new project powered by vue-cli-service",
+      description: "Create a new project powered by vue-cli-service",
       args: {
         name: "app-name",
       },
@@ -82,14 +82,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "add",
       description:
-        "install a plugin and invoke its generator in an already created project",
+        "Install a plugin and invoke its generator in an already created project",
       args: {
         name: "plugin",
       },
@@ -104,14 +104,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "invoke",
       description:
-        "invoke the generator of a plugin in an already created project",
+        "Invoke the generator of a plugin in an already created project",
       args: {
         name: "plugin",
       },
@@ -126,14 +126,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "inspect",
       description:
-        "inspect the webpack config in a project with vue-cli-service",
+        "Inspect the webpack config in a project with vue-cli-service",
       args: {},
       options: [
         {
@@ -144,25 +144,25 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--rule",
-          description: "inspect a specific module rule",
+          description: "Inspect a specific module rule",
           args: {
             name: "ruleName",
           },
         },
         {
           name: "--plugin",
-          description: "inspect a specific plugin",
+          description: "Inspect a specific plugin",
           args: {
             name: "pluginName",
           },
         },
         {
           name: "--rules",
-          description: "list all module rule names",
+          description: "List all module rule names",
         },
         {
           name: "--plugins",
-          description: "list all plugin names",
+          description: "List all plugin names",
         },
         {
           name: ["-v", "--verbose"],
@@ -170,14 +170,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "serve",
       description:
-        "serve a .js or .vue file in development mode with zero config",
+        "Serve a .js or .vue file in development mode with zero config",
       args: {
         template: "filepaths",
       },
@@ -200,14 +200,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "build",
       description:
-        "build a .js or .vue file in production mode with zero config",
+        "Build a .js or .vue file in production mode with zero config",
       args: {
         template: "filepaths",
       },
@@ -222,27 +222,27 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-n", "--name"],
           description:
-            "name for lib or web-component mode (default: entry filename)",
+            "Name for lib or web-component mode (default: entry filename)",
           args: {
             name: "name",
           },
         },
         {
           name: ["-d", "--destination"],
-          description: "output directory (default: dist)",
+          description: "Output directory (default: dist)",
           args: {
             name: "dir",
           },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "ui",
-      description: "start and open the vue-cli ui",
+      description: "Start and open the vue-cli ui",
       options: [
         {
           name: ["-H", "--host"],
@@ -273,14 +273,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "init",
       description:
-        "generate a project from a remote template (legacy API, requires @vue/cli-init)",
+        "Generate a project from a remote template (legacy API, requires @vue/cli-init)",
       args: [
         {
           name: "template",
@@ -300,49 +300,49 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "config",
-      description: "inspect and modify the config",
+      description: "Inspect and modify the config",
       args: {
         name: "value",
       },
       options: [
         {
           name: ["-g", "--get"],
-          description: "get value from option",
+          description: "Get value from option",
           args: {
             name: "path",
           },
         },
         {
           name: ["-s", "--set"],
-          description: "set option value",
+          description: "Set option value",
           args: {
             name: "value",
           },
         },
         {
           name: ["-d", "--delete"],
-          description: "delete option from config",
+          description: "Delete option from config",
           args: {
             name: "path",
           },
         },
         {
           name: ["-e", "--edit"],
-          description: "open config with default editor",
+          description: "Open config with default editor",
         },
         {
           name: "--json",
-          description: "outputs JSON result only",
+          description: "Outputs JSON result only",
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -358,7 +358,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -403,7 +403,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -424,17 +424,17 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       name: "info",
-      description: "print debugging information about your environment",
+      description: "Print debugging information about your environment",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -442,11 +442,11 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-V", "--version"],
-      description: "output the version number",
+      description: "Output the version number",
     },
     {
       name: ["-h", "--help"],
-      description: "output usage information",
+      description: "Output usage information",
     },
   ],
 };

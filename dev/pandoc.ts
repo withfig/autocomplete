@@ -307,7 +307,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-V", "--variable"],
       description:
-        "Set the template variable KEY to the value VAL when rendering the document in standalone mode. If no VAL is specified, the key will be given the value true.",
+        "Set the template variable KEY to the value VAL when rendering the document in standalone mode. If no VAL is specified, the key will be given the value true",
       args: [
         { name: "key" },
         {
@@ -337,16 +337,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "--eol",
       description:
-        "Manually specify line endings: crlf (Windows), lf (macOS/Linux/UNIX), or native (line endings appropriate to the OS on which pandoc is being run). The default is native.",
+        "Manually specify line endings: crlf (Windows), lf (macOS/Linux/UNIX), or native (line endings appropriate to the OS on which pandoc is being run). The default is native",
       args: {
         name: "type",
         suggestions: [
           { name: "crlf", description: "Windows" },
-          { name: "lf", description: "macOS/Linux/UNIX" },
+          { name: "lf", description: "MacOS/Linux/UNIX" },
           {
             name: "native",
             description:
-              "line endings appropriate to the OS on which Pandoc is being run",
+              "Line endings appropriate to the OS on which Pandoc is being run",
           },
         ],
       },
@@ -481,7 +481,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--request-header",
       description:
-        "Set the request header NAME to the value VAL when making HTTP requests. If you’re behind a proxy, you also need to set the environment variable http_proxy to http://....",
+        "Set the request header NAME to the value VAL when making HTTP requests. If you’re behind a proxy, you also need to set the environment variable http_proxy to http://",
       args: {
         name: "NAME:VAL",
       },
@@ -575,7 +575,7 @@ const completionSpec: Fig.Spec = {
         "Specifies that headings with the specified level create slides (for beamer, s5, slidy, slideous, dzslides). Headings above this level in the hierarchy are used to divide the slide show into sections; headings below this level create subheads within a slide",
       args: {
         name: "level",
-        description: "number",
+        description: "Number",
       },
     },
     {

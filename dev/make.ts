@@ -6,7 +6,7 @@ const listTargets: Fig.Generator = {
     for (let i = 1; i < lines.length; i++) {
       targets.push({
         name: lines[i].trim(),
-        description: "make target",
+        description: "Make target",
         icon: "🎯",
         priority: 80,
       });
@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-B", "--always-make"],
-      description: "Unconditionally make all targets.",
+      description: "Unconditionally make all targets",
       args: {
         name: "target",
         generators: listTargets,
@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-e", "--environment-overrides"],
-      description: "Environment variables override makefiles.",
+      description: "Environment variables override makefiles",
       args: {
         name: "target",
         generators: listTargets,
@@ -60,55 +60,55 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "Print this message and exit.",
+      description: "Print this message and exit",
     },
     {
       name: ["-i", "--ignore-errors"],
-      description: "Ignore errors from commands.",
+      description: "Ignore errors from commands",
     },
     {
       name: ["-k", "--keep-going"],
-      description: "Keep going when some targets can't be made.",
+      description: "Keep going when some targets can't be made",
     },
     {
       name: ["-L", "--check-symlink-times"],
-      description: "Use the latest mtime between symlinks and target.",
+      description: "Use the latest mtime between symlinks and target",
     },
     {
       name: ["-p", "--print-data-base"],
-      description: "Print make's internal database.",
+      description: "Print make's internal database",
     },
     {
       name: ["-q", "--question"],
-      description: "Run no commands; exit status says if up to date.",
+      description: "Run no commands; exit status says if up to date",
     },
     {
       name: ["-r", "--no-builtin-rules"],
-      description: "Disable the built-in implicit rules.",
+      description: "Disable the built-in implicit rules",
     },
     {
       name: ["-R", "--no-builtin-variables"],
-      description: "Disable the built-in variable settings.",
+      description: "Disable the built-in variable settings",
     },
     {
       name: ["-t", "--touch"],
-      description: "Touch targets instead of remaking them.",
+      description: "Touch targets instead of remaking them",
     },
     {
       name: ["-v", "--version"],
-      description: "Print the version number of make and exit.",
+      description: "Print the version number of make and exit",
     },
     {
       name: ["-w", "--print-directory"],
-      description: "Print the current directory.",
+      description: "Print the current directory",
     },
     {
       name: "-d",
-      description: "Print lots of debugging information.",
+      description: "Print lots of debugging information",
     },
     {
       name: "--debug",
-      description: "Print various types of debugging information.",
+      description: "Print various types of debugging information",
     },
     {
       name: ["-I", "--include-dir"],
@@ -116,7 +116,7 @@ const completionSpec: Fig.Spec = {
         name: "directory",
         template: "folders",
       },
-      description: "Search directory for included makefiles.",
+      description: "Search directory for included makefiles",
     },
     {
       name: ["-l", "--load-average"],
@@ -124,7 +124,7 @@ const completionSpec: Fig.Spec = {
         name: "N",
         isOptional: true,
       },
-      description: "Don't start multiple jobs unless load is below N.",
+      description: "Don't start multiple jobs unless load is below N",
     },
     {
       name: ["-o", "--old-file"],
@@ -132,11 +132,11 @@ const completionSpec: Fig.Spec = {
         name: "file",
         template: "filepaths",
       },
-      description: "consider file to be very old and don't remake it.",
+      description: "Consider file to be very old and don't remake it",
     },
     {
       name: "--no-print-directory",
-      description: "Turn off -w, even if it was turned on implicitly.",
+      description: "Turn off -w, even if it was turned on implicitly",
     },
     {
       name: ["-W", "--what-if", "--new-file", "--assume-new"],
@@ -144,18 +144,18 @@ const completionSpec: Fig.Spec = {
         name: "file",
         template: "filepaths",
       },
-      description: "Consider file to be infinitely new.",
+      description: "Consider file to be infinitely new",
     },
     {
       name: "--warn-undefined-variables",
-      description: "Warn when an undefined variable is referenced.",
+      description: "Warn when an undefined variable is referenced",
     },
     {
       name: ["-N", "--Next-option"],
       args: {
         name: "option",
       },
-      description: "Turn on value of next option.",
+      description: "Turn on value of next option",
     },
   ],
 };
