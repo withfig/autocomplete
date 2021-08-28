@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "head",
-  description: "output the first part of files",
+  description: "Output the first part of files",
   args: {
     name: "file",
     template: "filepaths",
@@ -8,26 +8,26 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-c", "--bytes"],
-      description: "print the first [numBytes] bytes of each file",
+      description: "Print the first [numBytes] bytes of each file",
       args: { name: "numBytes" },
     },
     {
       name: ["-n", "--lines"],
-      description: "print the first [numLines] lines instead of the first 10",
+      description: "Print the first [numLines] lines instead of the first 10",
       args: { name: "numLines" },
     },
     {
       name: ["-q", "--quiet", "--silent"],
-      description: "never print headers giving file names",
+      description: "Never print headers giving file names",
     },
     {
       name: ["-v", "--verbose"],
-      description: "always print headers giving file names",
+      description: "Always print headers giving file names",
     },
-    { name: ["--help"], description: "display this help and exit" },
+    { name: "--help", description: "Display this help and exit" },
     {
-      name: ["--version"],
-      description: "output version information and exit",
+      name: "--version",
+      description: "Output version information and exit",
     },
   ],
 };

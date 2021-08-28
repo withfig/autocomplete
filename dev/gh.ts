@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "alias",
-      description: "create command shortcuts",
+      description: "Create command shortcuts",
       options: [ghOptions.help],
       subcommands: [
         {
@@ -169,7 +169,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "http_unix_socket",
               description:
-                "the path to a unix socket through which to make HTTP connection",
+                "The path to a unix socket through which to make HTTP connection",
               args: { name: "path" },
             },
           ],
@@ -335,7 +335,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Supply a body. Will prompt for one otherwise.",
+              description: "Supply a body. Will prompt for one otherwise",
               args: { name: "string" },
             },
             {
@@ -369,13 +369,13 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-a", "--assignee"],
               description:
-                'Assign people by their login. Use "@me" to self-assign.',
+                'Assign people by their login. Use "@me" to self-assign',
               args: { name: "login" },
             },
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Supply a body. Will prompt for one otherwise.",
+              description: "Supply a body. Will prompt for one otherwise",
               args: { name: "string" },
             },
             {
@@ -408,7 +408,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-t", "--title"],
-              description: "Supply a title. Will prompt for one otherwise.",
+              description: "Supply a title. Will prompt for one otherwise",
               insertValue: "-t '{cursor}'",
               args: { name: "string" },
             },
@@ -448,7 +448,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--add-assignee",
               description:
-                'Add assigned users by their login. Use "@me" to assign yourself.',
+                'Add assigned users by their login. Use "@me" to assign yourself',
               args: { name: "login" },
             },
             {
@@ -459,7 +459,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Set the new body.",
+              description: "Set the new body",
               args: { name: "string" },
             },
             {
@@ -475,7 +475,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--remove-assignee",
               description:
-                'Remove assigned users by their login. Use "@me" to unassign yourself.',
+                'Remove assigned users by their login. Use "@me" to unassign yourself',
               args: { name: "login" },
             },
             {
@@ -490,7 +490,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-t", "--title"],
-              description: "Set the new title.",
+              description: "Set the new title",
               insertValue: "-t '{cursor}'",
               args: { name: "string" },
             },
@@ -691,7 +691,7 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name: ["--recurse-submodules"],
+              name: "--recurse-submodules",
               description: "Update all active submodules (recursively)",
             },
           ],
@@ -735,7 +735,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Supply a body. Will prompt for one otherwise.",
+              description: "Supply a body. Will prompt for one otherwise",
               args: {
                 name: "message",
               },
@@ -806,7 +806,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--no-maintainer-edit"],
+              name: "--no-maintainer-edit",
               description:
                 "Disable maintainer's ability to modify pull request",
             },
@@ -818,7 +818,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["-recover"],
+              name: "-recover",
               description: "Recover input from a failed run of create",
               args: {
                 name: "string",
@@ -854,7 +854,7 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name: ["--color"],
+              name: "--color",
               description: "Use color in diff output: {always|never|auto}",
               args: {
                 name: "choice",
@@ -1039,23 +1039,23 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-h", "--homepage"],
-              description: "repository home page URL",
+              description: "Repository home page URL",
               args: {
                 name: "string",
               },
             },
-            { name: ["--public"], description: "make the repository public" },
-            { name: ["--private"], description: "make the repository private" },
+            { name: "--public", description: "Make the repository public" },
+            { name: "--private", description: "Make the repository private" },
             {
-              name: ["--internal"],
-              description: "make the repository internal",
+              name: "--internal",
+              description: "Make the repository internal",
             },
             {
-              name: ["--enable-issues"],
+              name: "--enable-issues",
               description: "Enable issues in the new repository {true|false}",
             },
             {
-              name: ["--enable-wiki"],
+              name: "--enable-wiki",
               description: "Enable wiki in the new repository {true|false}",
             },
           ],
@@ -1068,13 +1068,13 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             { name: ["-h", "--help"], description: "Show help for command" },
-            { name: ["--clone"], description: "Clone the fork {true|false}" },
+            { name: "--clone", description: "Clone the fork {true|false}" },
             {
-              name: ["--remote"],
+              name: "--remote",
               description: "Add remote for fork {true|false}",
             },
             {
-              name: ["--remote-name"],
+              name: "--remote-name",
               description:
                 'Specify a name for a fork\'s new remote. (default "origin")',
               args: {
@@ -1092,10 +1092,10 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: ["-h", "--help"], description: "Show help for command" },
             {
-              name: ["--archived"],
+              name: "--archived",
               description: "Show only archived repositories",
             },
-            { name: ["--fork"], description: "Show only forked repositories" },
+            { name: "--fork", description: "Show only forked repositories" },
             {
               name: ["-l", "--language"],
               description: "Filter by primary coding language",
@@ -1109,18 +1109,18 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--no-archived"],
+              name: "--no-archived",
               description: "Omit archived repositories",
             },
             {
-              name: ["--private"],
+              name: "--private",
               description: "Show only private repositories",
             },
             {
-              name: ["--public"],
+              name: "--public",
               description: "Show only public repositories",
             },
-            { name: ["--source"], description: "Show only non-forks" },
+            { name: "--source", description: "Show only non-forks" },
           ],
         },
         {

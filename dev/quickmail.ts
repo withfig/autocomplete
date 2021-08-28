@@ -14,7 +14,7 @@ const bodyTempalates: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "quickmail",
-  description: "quickmail is a terminal-based solution to send mails",
+  description: "Quickmail is a terminal-based solution to send mails",
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "clear",
-      description: "Clear the files stored locally ",
+      description: "Clear the files stored locally",
       options: [
         {
           name: ["-h", "--help"],
@@ -130,7 +130,7 @@ const completionSpec: Fig.Spec = {
               description: "Get help regarding template add subcommand",
             },
             {
-              name: ["-n"],
+              name: "-n",
               description: "Set template id",
               args: {
                 name: "Template id",
@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
               description: "Get help regarding template edit subcommand",
             },
             {
-              name: ["-n"],
+              name: "-n",
               description: "Edit template by id",
               args: {
                 name: "Template id",

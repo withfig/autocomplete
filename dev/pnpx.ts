@@ -37,114 +37,100 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--package", "-p"],
-      description: "Package to be executed.",
-      args: [
-        {
-          name: "package",
-        },
-      ],
+      description: "Package to be executed",
+      args: {
+        name: "package",
+      },
     },
     {
-      name: ["--cache"],
-      args: [
-        {
-          name: "path",
-          template: "filepaths",
-        },
-      ],
-      description: "Location of the npm cache.",
+      name: "--cache",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      description: "Location of the npm cache",
     },
     {
-      name: ["--always-spawn"],
-      description: "Always spawn a child process to execute the command.",
+      name: "--always-spawn",
+      description: "Always spawn a child process to execute the command",
     },
     {
-      description: "Skip installation if a package is missing.",
-      name: ["--no-install"],
+      description: "Skip installation if a package is missing",
+      name: "--no-install",
     },
     {
-      args: [
-        {
-          name: "path",
-          template: "filepaths",
-        },
-      ],
-      description: "Path to user npmrc.",
-      name: ["--userconfig"],
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+      description: "Path to user npmrc",
+      name: "--userconfig",
     },
     {
       name: ["--call", "-c"],
-      args: [
-        {
-          name: "script",
-        },
-      ],
-      description: "Execute string as if inside `npm run-script`.",
+      args: {
+        name: "script",
+      },
+      description: "Execute string as if inside `npm run-script`",
     },
     {
       name: ["--shell", "-s"],
-      description: "Shell to execute the command with, if any.",
-      args: [
-        {
-          name: "shell",
-          suggestions: [
-            {
-              name: "bash",
-            },
-            {
-              name: "fish",
-            },
-            {
-              name: "zsh",
-            },
-          ],
-        },
-      ],
+      description: "Shell to execute the command with, if any",
+      args: {
+        name: "shell",
+        suggestions: [
+          {
+            name: "bash",
+          },
+          {
+            name: "fish",
+          },
+          {
+            name: "zsh",
+          },
+        ],
+      },
     },
     {
-      args: [
-        {
-          name: "shell-fallback",
-          suggestions: [
-            {
-              name: "bash",
-            },
-            {
-              name: "fish",
-            },
-            {
-              name: "zsh",
-            },
-          ],
-        },
-      ],
-      name: ["--shell-auto-fallback"],
+      args: {
+        name: "shell-fallback",
+        suggestions: [
+          {
+            name: "bash",
+          },
+          {
+            name: "fish",
+          },
+          {
+            name: "zsh",
+          },
+        ],
+      },
+      name: "--shell-auto-fallback",
       description:
-        'Generate shell code to use pnpx as the "command not found" fallback.',
+        'Generate shell code to use pnpx as the "command not found" fallback',
     },
     {
-      name: ["--ignore-existing"],
+      name: "--ignore-existing",
       description:
-        "Ignores existing binaries in $PATH, or in the localproject. This forces pnpx to do a temporary install and use the latest version.",
+        "Ignores existing binaries in $PATH, or in the localproject. This forces pnpx to do a temporary install and use the latest version",
     },
     {
       name: ["--quiet", "-q"],
       description:
-        "Suppress output from pnpx itself. Subcommands will not be affected.",
+        "Suppress output from pnpx itself. Subcommands will not be affected",
     },
     {
-      name: ["--npm"],
-      args: [
-        {
-          name: "path to binary",
-          template: "filepaths",
-        },
-      ],
-      description: "npm binary to use for internal operations.",
+      name: "--npm",
+      args: {
+        name: "path to binary",
+        template: "filepaths",
+      },
+      description: "Npm binary to use for internal operations",
     },
     {
       args: {},
-      description: "Extra node argument when calling a node binary.",
+      description: "Extra node argument when calling a node binary",
       name: ["--node-arg", "-n"],
     },
     {

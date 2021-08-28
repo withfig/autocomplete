@@ -129,404 +129,350 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       description:
-        "[EXPERIMENTAL] Diagnose and fix common Node.js, iOS, Android & React Native issues.",
+        "[EXPERIMENTAL] Diagnose and fix common Node.js, iOS, Android & React Native issues",
       name: "doctor",
       options: [
         {
-          name: ["--fix"],
-          description: "Attempt to fix all diagnosed issues.",
+          name: "--fix",
+          description: "Attempt to fix all diagnosed issues",
         },
         {
-          name: ["--contributor"],
+          name: "--contributor",
           description:
-            "Add healthchecks required to installations required for contributing to React Native.",
+            "Add healthchecks required to installations required for contributing to React Native",
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "builds the javascript bundle for offline use",
+      description: "Builds the javascript bundle for offline use",
       name: "bundle",
       options: [
         {
-          name: ["--entry-file"],
+          name: "--entry-file",
           description:
             "Path to the root JS file, either absolute or relative to JS root",
-          args: [
-            {
-              name: "file",
-              generators: {
-                template: "filepaths",
-                filterTemplateSuggestions: getJsFilesAndFolders,
-              },
+          args: {
+            name: "file",
+            generators: {
+              template: "filepaths",
+              filterTemplateSuggestions: getJsFilesAndFolders,
             },
-          ],
+          },
         },
         {
-          name: ["--platform"],
+          name: "--platform",
           description: 'Either "ios" or "android" (default: "ios")',
-          args: [
-            {
-              name: "platform",
-              suggestions: [
-                {
-                  name: "android",
-                  icon: ANDROID_ICON,
-                },
-                {
-                  name: "ios",
-                  icon: APPLE_ICON,
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "platform",
+            suggestions: [
+              {
+                name: "android",
+                icon: ANDROID_ICON,
+              },
+              {
+                name: "ios",
+                icon: APPLE_ICON,
+              },
+            ],
+          },
         },
         {
-          name: ["--transformer"],
+          name: "--transformer",
           description: "Specify a custom transformer to be used",
-          args: [
-            {
-              name: "transformer",
-            },
-          ],
+          args: {
+            name: "transformer",
+          },
         },
         {
-          name: ["--dev"],
+          name: "--dev",
           description:
             "If false, warnings are disabled and the bundle is minified (default: true)",
-          args: [
-            {
-              name: "boolean",
-              isOptional: true,
-              suggestions: [
-                { name: "true", icon: "✅" },
-                { name: "false", icon: "❌" },
-              ],
-            },
-          ],
+          args: {
+            name: "boolean",
+            isOptional: true,
+            suggestions: [
+              { name: "true", icon: "✅" },
+              { name: "false", icon: "❌" },
+            ],
+          },
         },
         {
-          name: ["--minify"],
+          name: "--minify",
           description:
-            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
-          args: [
-            {
-              name: "boolean",
-              isOptional: true,
-              suggestions: [
-                { name: "true", icon: "✅" },
-                { name: "false", icon: "❌" },
-              ],
-            },
-          ],
+            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes",
+          args: {
+            name: "boolean",
+            isOptional: true,
+            suggestions: [
+              { name: "true", icon: "✅" },
+              { name: "false", icon: "❌" },
+            ],
+          },
         },
         {
-          name: ["--bundle-output"],
+          name: "--bundle-output",
           description:
             "File name where to store the resulting bundle, ex. /tmp/groups.bundle",
-          args: [
-            {
-              name: "bundle file",
-            },
-          ],
+          args: {
+            name: "bundle file",
+          },
         },
         {
-          name: ["--bundle-encoding"],
+          name: "--bundle-encoding",
           description:
             'Encoding the bundle should be written in (https://nodejs.org/api/buffer.html#buffer_buffer). (default: "utf8")',
-          args: [
-            {
-              name: "encoding",
-              suggestions: [
-                {
-                  name: "utf8",
-                },
-                {
-                  name: "utf16le",
-                },
-                {
-                  name: "latin1",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "encoding",
+            suggestions: [
+              {
+                name: "utf8",
+              },
+              {
+                name: "utf16le",
+              },
+              {
+                name: "latin1",
+              },
+            ],
+          },
         },
         {
-          name: ["--max-workers"],
+          name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
-          args: [
-            {
-              name: "Number of workers",
-              generators: workerGenerator,
-            },
-          ],
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
+          args: {
+            name: "Number of workers",
+            generators: workerGenerator,
+          },
         },
         {
-          name: ["--sourcemap-output"],
+          name: "--sourcemap-output",
           description:
             "File name where to store the sourcemap file for resulting bundle, ex. /tmp/groups.map",
-          args: [
-            {
-              name: "sourcemap-output",
-            },
-          ],
+          args: {
+            name: "sourcemap-output",
+          },
         },
         {
-          name: ["--sourcemap-sources-root"],
+          name: "--sourcemap-sources-root",
           description:
             "Path to make sourcemap's sources entries relative to, ex. /root/dir",
-          args: [
-            {
-              template: "folders",
-              name: "root",
-            },
-          ],
+          args: {
+            template: "folders",
+            name: "root",
+          },
         },
         {
-          name: ["--sourcemap-use-absolute-path"],
+          name: "--sourcemap-use-absolute-path",
           description: "Report SourceMapURL using its full path",
         },
         {
-          name: ["--assets-dest"],
+          name: "--assets-dest",
           description:
             "Directory name where to store assets referenced in the bundle",
-          args: [
-            {
-              name: "directory",
-              template: "folders",
-            },
-          ],
+          args: {
+            name: "directory",
+            template: "folders",
+          },
         },
         {
-          name: ["--unstable-transform-profile"],
+          name: "--unstable-transform-profile",
           description:
             "Experimental, transform JS for a specific JS engine. Currently supported: hermes, hermes-canary, default",
-          args: [
-            {
-              name: "transform-profile",
-              suggestions: [
-                {
-                  name: "hermes",
-                  icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
-                },
-                {
-                  name: "hermes-canary",
-                  icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
-                },
-                {
-                  name: "default",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "transform-profile",
+            suggestions: [
+              {
+                name: "hermes",
+                icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
+              },
+              {
+                name: "hermes-canary",
+                icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
+              },
+              {
+                name: "default",
+              },
+            ],
+          },
         },
         {
-          name: ["--reset-cache"],
+          name: "--reset-cache",
           description: "Removes cached files",
         },
         {
-          name: ["--read-global-cache"],
+          name: "--read-global-cache",
           description:
-            "Try to fetch transformed JS code from the global cache, if configured.",
+            "Try to fetch transformed JS code from the global cache, if configured",
         },
         {
-          name: ["--config"],
+          name: "--config",
           description: "Path to the CLI configuration file",
           icon: "🛠",
-          args: [
-            {
-              template: "filepaths",
-              name: "string",
-            },
-          ],
+          args: {
+            template: "filepaths",
+            name: "string",
+          },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        "Initialize a new React Native project named <projectName> in a directory of the same name.",
+        "Initialize a new React Native project named <projectName> in a directory of the same name",
       name: "init",
       options: [
         {
-          name: ["--version"],
+          name: "--version",
           description: "Shortcut for `--template react-native@version`",
-          args: [
-            {
-              name: "version",
-            },
-          ],
+          args: {
+            name: "version",
+          },
         },
         {
-          name: ["--template"],
+          name: "--template",
           description:
             "Uses a custom template. Valid arguments are the ones supported by `yarn add [package]` or `npm install [package]`, if you are using `--npm` option",
-          args: [
-            {
-              name: "template",
-            },
-          ],
+          args: {
+            name: "template",
+          },
         },
         {
-          name: ["--npm"],
+          name: "--npm",
           description: "Forces using npm for initialization",
           icon:
             "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
         },
         {
-          name: ["--directory"],
-          description: "Uses a custom directory instead of `<projectName>`.",
-          args: [
-            {
-              template: "folders",
-              name: "string",
-            },
-          ],
+          name: "--directory",
+          description: "Uses a custom directory instead of `<projectName>`",
+          args: {
+            template: "folders",
+            name: "string",
+          },
         },
         {
-          name: ["--title"],
+          name: "--title",
           description: "Uses a custom app title name for application",
-          args: [
-            {
-              name: "title",
-            },
-          ],
+          args: {
+            name: "title",
+          },
         },
         {
-          name: ["--skip-install"],
+          name: "--skip-install",
           description: "Skips dependencies installation step",
           icon: "⏭️",
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "projectName",
-        },
-      ],
+      args: {
+        name: "projectName",
+      },
     },
     {
-      description: "uninstall and unlink native dependencies",
+      description: "Uninstall and unlink native dependencies",
       name: "uninstall",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "packageName",
-        },
-      ],
+      args: {
+        name: "packageName",
+      },
     },
     {
-      description: "starts the webserver",
+      description: "Starts the webserver",
       name: "start",
       options: [
         {
-          name: ["--port"],
-          description: "port on which to listen to",
-          args: [
-            {
-              name: "free port",
-            },
-          ],
+          name: "--port",
+          description: "Port on which to listen to",
+          args: {
+            name: "free port",
+          },
         },
         {
-          name: ["--host"],
-          description: "change the default host",
-          args: [
-            {
-              name: "new host",
-            },
-          ],
+          name: "--host",
+          description: "Change the default host",
+          args: {
+            name: "new host",
+          },
         },
         {
-          name: ["--projectRoot"],
+          name: "--projectRoot",
           description: "Path to a custom project root",
-          args: [
-            {
-              name: "path",
-              template: "folders",
-            },
-          ],
+          args: {
+            name: "path",
+            template: "folders",
+          },
         },
         {
-          name: ["--watchFolders"],
+          name: "--watchFolders",
           description:
             "Specify any additional folders to be added to the watch list",
-          args: [
-            {
-              template: "folders",
-              name: "folders",
-            },
-          ],
+          args: {
+            template: "folders",
+            name: "folders",
+          },
         },
         {
-          name: ["--assetPlugins"],
+          name: "--assetPlugins",
           description:
             "Specify any additional asset plugins to be used by the packager by full filepath",
-          args: [
-            {
-              template: "folders",
-              name: "plugins",
-            },
-          ],
+          args: {
+            template: "folders",
+            name: "plugins",
+          },
         },
         {
-          name: ["--sourceExts"],
+          name: "--sourceExts",
           description:
             "Specify any additional source extensions to be used by the packager",
-          args: [
-            {
-              name: "sourceExts",
-              suggestions: [
-                {
-                  name: "js",
-                },
-                {
-                  name: "css",
-                },
-                {
-                  name: "png",
-                },
-                {
-                  name: "xml",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "sourceExts",
+            suggestions: [
+              {
+                name: "js",
+              },
+              {
+                name: "css",
+              },
+              {
+                name: "png",
+              },
+              {
+                name: "xml",
+              },
+            ],
+          },
         },
         {
-          name: ["--max-workers"],
+          name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
-          args: [
-            {
-              name: "Number of workers",
-              generators: workerGenerator,
-            },
-          ],
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
+          args: {
+            name: "Number of workers",
+            generators: workerGenerator,
+          },
         },
         {
-          name: ["--transformer"],
+          name: "--transformer",
           description: "Specify a custom transformer to be used",
-          args: [
-            {
-              name: "transformer",
-            },
-          ],
+          args: {
+            name: "transformer",
+          },
         },
         {
           name: ["--reset-cache", "--resetCache"],
@@ -536,320 +482,280 @@ const completionSpec: Fig.Spec = {
           name: ["--custom-log-reporter-path", "--customLogReporterPath"],
           description:
             "Path to a JavaScript file that exports a log reporter as a replacement for TerminalReporter",
-          args: [
-            {
-              name: "logFile",
-              generators: {
-                template: "filepaths",
-                filterTemplateSuggestions: getJsFilesAndFolders,
-              },
+          args: {
+            name: "logFile",
+            generators: {
+              template: "filepaths",
+              filterTemplateSuggestions: getJsFilesAndFolders,
             },
-          ],
+          },
         },
         {
-          name: ["--verbose"],
+          name: "--verbose",
           icon: "🔊",
           description: "Enables logging",
         },
         {
-          name: ["--https"],
+          name: "--https",
           icon: "🌐",
           description: "Enables https connections to the server",
         },
         {
-          name: ["--key"],
+          name: "--key",
           description: "Path to custom SSL key",
-          args: [
-            {
-              template: "filepaths",
-              name: "path",
-            },
-          ],
+          args: {
+            template: "filepaths",
+            name: "path",
+          },
         },
         {
-          name: ["--cert"],
+          name: "--cert",
           description: "Path to custom SSL cert",
-          args: [
-            {
-              template: "filepaths",
-              name: "path",
-            },
-          ],
+          args: {
+            template: "filepaths",
+            name: "path",
+          },
         },
         {
-          name: ["--config"],
+          name: "--config",
           icon: "🛠",
           description: "Path to the CLI configuration file",
-          args: [
-            {
-              name: "string",
-            },
-          ],
+          args: {
+            name: "string",
+          },
         },
         {
-          name: ["--no-interactive"],
+          name: "--no-interactive",
           description: "Disables interactive mode",
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        'builds javascript as a "Random Access Module" bundle for offline use',
+        'Builds javascript as a "Random Access Module" bundle for offline use',
       name: "ram-bundle",
       options: [
         {
-          name: ["--entry-file"],
+          name: "--entry-file",
           description:
             "Path to the root JS file, either absolute or relative to JS root",
-          args: [
-            {
-              name: "file",
-              generators: {
-                template: "filepaths",
-                filterTemplateSuggestions: getJsFilesAndFolders,
-              },
+          args: {
+            name: "file",
+            generators: {
+              template: "filepaths",
+              filterTemplateSuggestions: getJsFilesAndFolders,
             },
-          ],
+          },
         },
         {
-          name: ["--platform"],
+          name: "--platform",
           description: 'Either "ios" or "android" (default: "ios")',
-          args: [
-            {
-              name: "platform",
-              suggestions: [
-                {
-                  name: "android",
-                  icon: ANDROID_ICON,
-                },
-                {
-                  name: "ios",
-                  icon: APPLE_ICON,
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "platform",
+            suggestions: [
+              {
+                name: "android",
+                icon: ANDROID_ICON,
+              },
+              {
+                name: "ios",
+                icon: APPLE_ICON,
+              },
+            ],
+          },
         },
         {
-          name: ["--transformer"],
+          name: "--transformer",
           description: "Specify a custom transformer to be used",
-          args: [
-            {
-              name: "transformer",
-            },
-          ],
+          args: {
+            name: "transformer",
+          },
         },
         {
-          name: ["--dev"],
+          name: "--dev",
           description:
             "If false, warnings are disabled and the bundle is minified (default: true)",
-          args: [
-            {
-              name: "boolean",
-              isOptional: true,
-              suggestions: [
-                { name: "true", icon: "✅" },
-                { name: "false", icon: "❌" },
-              ],
-            },
-          ],
+          args: {
+            name: "boolean",
+            isOptional: true,
+            suggestions: [
+              { name: "true", icon: "✅" },
+              { name: "false", icon: "❌" },
+            ],
+          },
         },
         {
-          name: ["--minify"],
+          name: "--minify",
           description:
-            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
-          args: [
-            {
-              name: "boolean",
-              isOptional: true,
-              suggestions: [
-                { name: "true", icon: "✅" },
-                { name: "false", icon: "❌" },
-              ],
-            },
-          ],
+            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes",
+          args: {
+            name: "boolean",
+            isOptional: true,
+            suggestions: [
+              { name: "true", icon: "✅" },
+              { name: "false", icon: "❌" },
+            ],
+          },
         },
         {
-          name: ["--bundle-output"],
+          name: "--bundle-output",
           description:
             "File name where to store the resulting bundle, ex. /tmp/groups.bundle",
-          args: [
-            {
-              name: "output file",
-            },
-          ],
+          args: {
+            name: "output file",
+          },
         },
         {
-          name: ["--bundle-encoding"],
+          name: "--bundle-encoding",
           description:
             'Encoding the bundle should be written in (https://nodejs.org/api/buffer.html#buffer_buffer). (default: "utf8")',
-          args: [
-            {
-              name: "encoding",
-              suggestions: [
-                {
-                  name: "utf8",
-                },
-                {
-                  name: "utf16le",
-                },
-                {
-                  name: "latin1",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "encoding",
+            suggestions: [
+              {
+                name: "utf8",
+              },
+              {
+                name: "utf16le",
+              },
+              {
+                name: "latin1",
+              },
+            ],
+          },
         },
         {
-          name: ["--max-workers"],
+          name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
-          args: [
-            {
-              name: "Number of workers",
-              generators: workerGenerator,
-            },
-          ],
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
+          args: {
+            name: "Number of workers",
+            generators: workerGenerator,
+          },
         },
         {
-          name: ["--sourcemap-output"],
+          name: "--sourcemap-output",
           description:
             "File name where to store the sourcemap file for resulting bundle, ex. /tmp/groups.map",
-          args: [
-            {
-              name: "sourcemap-output",
-            },
-          ],
+          args: {
+            name: "sourcemap-output",
+          },
         },
         {
-          name: ["--sourcemap-sources-root"],
+          name: "--sourcemap-sources-root",
           description:
             "Path to make sourcemap's sources entries relative to, ex. /root/dir",
-          args: [
-            {
-              template: "folders",
-              name: "root",
-            },
-          ],
+          args: {
+            template: "folders",
+            name: "root",
+          },
         },
         {
-          name: ["--sourcemap-use-absolute-path"],
+          name: "--sourcemap-use-absolute-path",
           description: "Report SourceMapURL using its full path",
         },
         {
-          name: ["--assets-dest"],
+          name: "--assets-dest",
           description:
             "Directory name where to store assets referenced in the bundle",
-          args: [
-            {
-              name: "directory",
-              template: "folders",
-            },
-          ],
+          args: {
+            name: "directory",
+            template: "folders",
+          },
         },
         {
-          name: ["--unstable-transform-profile"],
+          name: "--unstable-transform-profile",
           description:
             "Experimental, transform JS for a specific JS engine. Currently supported: hermes, hermes-canary, default",
-          args: [
-            {
-              name: "transform-profile",
-              suggestions: [
-                {
-                  name: "hermes",
-                  icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
-                },
-                {
-                  name: "hermes-canary",
-                  icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
-                },
-                {
-                  name: "default",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "transform-profile",
+            suggestions: [
+              {
+                name: "hermes",
+                icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
+              },
+              {
+                name: "hermes-canary",
+                icon: "https://reactnative.dev/docs/assets/HermesLogo.svg",
+              },
+              {
+                name: "default",
+              },
+            ],
+          },
         },
         {
-          name: ["--reset-cache"],
+          name: "--reset-cache",
           description: "Removes cached files",
         },
         {
-          name: ["--read-global-cache"],
+          name: "--read-global-cache",
           description:
-            "Try to fetch transformed JS code from the global cache, if configured.",
+            "Try to fetch transformed JS code from the global cache, if configured",
         },
         {
-          name: ["--config"],
+          name: "--config",
           icon: "🛠",
           description: "Path to the CLI configuration file",
-          args: [
-            {
-              name: "string",
-            },
-          ],
+          args: {
+            name: "string",
+          },
         },
         {
-          name: ["--indexed-ram-bundle"],
+          name: "--indexed-ram-bundle",
           description:
             'Force the "Indexed RAM" bundle file format, even when building for android',
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "links assets and optionally native modules",
+      description: "Links assets and optionally native modules",
       name: "link",
       options: [
         {
-          name: ["--platforms"],
+          name: "--platforms",
           description: "Scope linking to specified platforms",
-          args: [
-            {
-              name: "list",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "list",
+            isOptional: true,
+          },
         },
         {
-          name: ["--all"],
+          name: "--all",
           description: "Link all native modules and assets",
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "packageName",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "packageName",
+        isOptional: true,
+      },
     },
     {
       description:
-        "Upgrade your app's template files to the specified or latest npm version using `rn-diff-purge` project. Only valid semver versions are allowed.",
+        "Upgrade your app's template files to the specified or latest npm version using `rn-diff-purge` project. Only valid semver versions are allowed",
       name: "upgrade",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "version",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "version",
+        isOptional: true,
+      },
     },
     {
       description:
@@ -858,24 +764,22 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "install and link native dependencies",
+      description: "Install and link native dependencies",
       name: "install",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "packageName",
-        },
-      ],
+      args: {
+        name: "packageName",
+      },
     },
     {
       description: "Print CLI configuration",
@@ -884,42 +788,38 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "unlink native dependency",
+      description: "Unlink native dependency",
       name: "unlink",
       options: [
         {
-          name: ["--platforms"],
+          name: "--platforms",
           description: "Scope unlinking to specified platforms",
-          args: [
-            {
-              name: "list",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "list",
+            isOptional: true,
+          },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "packageName",
-        },
-      ],
+      args: {
+        name: "packageName",
+      },
     },
     {
-      description: "starts iOS device syslog tail",
+      description: "Starts iOS device syslog tail",
       name: "log-ios",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -929,319 +829,275 @@ const completionSpec: Fig.Spec = {
       name: "profile-hermes",
       options: [
         {
-          name: ["--filename"],
+          name: "--filename",
           description:
             "File name of the profile to be downloaded, eg. sampling-profiler-trace8593107139682635366.cpuprofile",
-          args: [
-            {
-              template: "filepaths",
-              name: "profile",
-            },
-          ],
+          args: {
+            template: "filepaths",
+            name: "profile",
+          },
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           description:
             "Pulls the original Hermes tracing profile without any transformation",
         },
         {
-          name: ["--sourcemap-path"],
+          name: "--sourcemap-path",
           description:
             "The local path to your source map file, eg. /tmp/sourcemap.json",
-          args: [
-            {
-              name: "sourcemap-path",
-              template: "filepaths",
-            },
-          ],
+          args: {
+            name: "sourcemap-path",
+            template: "filepaths",
+          },
         },
         {
-          name: ["--generate-sourcemap"],
+          name: "--generate-sourcemap",
           description: "Generates the JS bundle and source map",
         },
         {
-          name: ["--port"],
-          description: 'default: "8081"',
-          args: [
-            {
-              name: "free port",
-            },
-          ],
+          name: "--port",
+          description: 'Default: "8081"',
+          args: {
+            name: "free port",
+          },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
-      args: [
-        {
-          name: "destinationDir",
-          template: "folders",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "destinationDir",
+        template: "folders",
+        isOptional: true,
+      },
     },
     {
-      description: "starts logkitty",
+      description: "Starts logkitty",
       name: "log-android",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        "builds your app and starts it on a connected Android emulator or device",
+        "Builds your app and starts it on a connected Android emulator or device",
       name: "run-android",
       options: [
         {
-          name: ["--root"],
+          name: "--root",
           description:
             '[DEPRECATED - root is discovered automatically] Override the root directory for the android build (which contains the android directory) (default: "")',
-          args: [
-            {
-              name: "root",
-              template: "folders",
-            },
-          ],
+          args: {
+            name: "root",
+            template: "folders",
+          },
         },
         {
-          name: ["--variant"],
+          name: "--variant",
           description: 'Specify your app\'s build variant (default: "debug")',
-          args: [
-            {
-              name: "variant",
-              suggestions: [
-                {
-                  name: "debug",
-                },
-                {
-                  name: "release",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "variant",
+            suggestions: [
+              {
+                name: "debug",
+              },
+              {
+                name: "release",
+              },
+            ],
+          },
         },
         {
-          name: ["--appFolder"],
+          name: "--appFolder",
           description:
             '[DEPRECATED – use "project.android.appName" in react-native.config.js] Specify a different application folder name for the android source. If not, we assume is "app"',
-          args: [
-            {
-              template: "folders",
-              name: "string",
-            },
-          ],
+          args: {
+            template: "folders",
+            name: "string",
+          },
         },
         {
-          name: ["--appId"],
+          name: "--appId",
           description:
             'Specify an applicationId to launch after build. If not specified, `package` from AndroidManifest.xml will be used. (default: "")',
-          args: [
-            {
-              name: "appId",
-            },
-          ],
+          args: {
+            name: "appId",
+          },
         },
         {
-          name: ["--appIdSuffix"],
+          name: "--appIdSuffix",
           description:
             'Specify an applicationIdSuffix to launch after build. (default: "")',
-          args: [
-            {
-              name: "appIdSuffix",
-            },
-          ],
+          args: {
+            name: "appIdSuffix",
+          },
         },
         {
-          name: ["--main-activity"],
+          name: "--main-activity",
           description:
             'Name of the activity to start (default: "MainActivity")',
-          args: [
-            {
-              name: "main activity",
-            },
-          ],
+          args: {
+            name: "main activity",
+          },
         },
         {
-          name: ["--deviceId"],
+          name: "--deviceId",
           icon: ANDROID_ICON,
           description:
-            'builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line).',
-          args: [
-            {
-              name: "deviceId",
-              generators: androidGetDevicesGenerator,
-            },
-          ],
+            'Builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line)',
+          args: {
+            name: "deviceId",
+            generators: androidGetDevicesGenerator,
+          },
         },
         {
-          name: ["--no-packager"],
+          name: "--no-packager",
           description: "Do not launch packager while building",
         },
         {
-          name: ["--port"],
-          description: "default: 8081",
-          args: [
-            {
-              name: "free port",
-            },
-          ],
+          name: "--port",
+          description: "Default: 8081",
+          args: {
+            name: "free port",
+          },
         },
         {
-          name: ["--terminal"],
+          name: "--terminal",
           description:
             'Launches the Metro Bundler in a new window using the specified terminal path. (default: "Apple_Terminal")',
-          args: [
-            {
-              name: "terminal path",
-            },
-          ],
+          args: {
+            name: "terminal path",
+          },
         },
         {
-          name: ["--tasks"],
+          name: "--tasks",
           description:
             'Run custom Gradle tasks. By default it\'s "installDebug"',
           icon: GRADLE_ICON,
-          args: [
-            {
-              name: "task list",
-              // TODO: Ask about scripts that take longer to execute
-              generators: gradleTasksGenerator,
-            },
-          ],
+          args: {
+            name: "task list",
+            // TODO: Ask about scripts that take longer to execute
+            generators: gradleTasksGenerator,
+          },
         },
         {
-          name: ["--no-jetifier"],
+          name: "--no-jetifier",
           description:
-            'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier.',
+            'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier',
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "builds your app and starts it on iOS simulator",
+      description: "Builds your app and starts it on iOS simulator",
       name: "run-ios",
       options: [
         {
-          name: ["--simulator"],
+          name: "--simulator",
           description:
             'Explicitly set simulator to use. Optionally include iOS version between parenthesis at the end to match an exact version: "iPhone 6 (10.0)" (default: "iPhone 12")',
-          args: [
-            {
-              name: "simulator",
-              generators: iosGetDevicesSimulatorGenerator,
-            },
-          ],
+          args: {
+            name: "simulator",
+            generators: iosGetDevicesSimulatorGenerator,
+          },
         },
         {
-          name: ["--configuration"],
+          name: "--configuration",
           icon: "🛠",
           description:
             'Explicitly set the scheme configuration to use (default: "Debug")',
-          args: [
-            {
-              name: "config scheme",
-              // TODO: Ask about scripts that take longer to execute
-              generators: xcodeConfigGenerator,
-            },
-          ],
+          args: {
+            name: "config scheme",
+            // TODO: Ask about scripts that take longer to execute
+            generators: xcodeConfigGenerator,
+          },
         },
         {
-          name: ["--scheme"],
+          name: "--scheme",
           description: "Explicitly set Xcode scheme to use",
-          args: [
-            {
-              name: "scheme",
-              generators: xcodeSchemeGenerator,
-            },
-          ],
+          args: {
+            name: "scheme",
+            generators: xcodeSchemeGenerator,
+          },
         },
         {
-          name: ["--project-path"],
+          name: "--project-path",
           description:
             'Path relative to project root where the Xcode project (.xcodeproj) lives. (default: "ios")',
-          args: [
-            {
-              template: "folders",
-              name: "path",
-            },
-          ],
+          args: {
+            template: "folders",
+            name: "path",
+          },
         },
         {
-          name: ["--device"],
-          description: "Explicitly set device to use by name.",
-          args: [
-            {
-              name: "device name",
-              isOptional: true,
-              generators: iosGetDevicesGenerator,
-            },
-          ],
+          name: "--device",
+          description: "Explicitly set device to use by name",
+          args: {
+            name: "device name",
+            isOptional: true,
+            generators: iosGetDevicesGenerator,
+          },
         },
         {
-          name: ["--udid"],
+          name: "--udid",
           description: "Explicitly set device to use by udid",
-          args: [
-            {
-              name: "udid",
-              generators: iosGetDevicesUdidGenerator,
-            },
-          ],
+          args: {
+            name: "udid",
+            generators: iosGetDevicesUdidGenerator,
+          },
         },
         {
-          name: ["--no-packager"],
+          name: "--no-packager",
           description: "Do not launch packager while building",
         },
         {
-          name: ["--verbose"],
+          name: "--verbose",
           icon: "🔊",
           description: "Do not use xcpretty even if installed",
         },
         {
-          name: ["--port"],
-          description: "default: 8081",
-          args: [
-            {
-              name: "free port",
-            },
-          ],
+          name: "--port",
+          description: "Default: 8081",
+          args: {
+            name: "free port",
+          },
         },
         {
-          name: ["--terminal"],
+          name: "--terminal",
           description:
             'Launches the Metro Bundler in a new window using the specified terminal path. (default: "Apple_Terminal")',
-          args: [
-            {
-              name: "terminal path",
-            },
-          ],
+          args: {
+            name: "terminal path",
+          },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
   ],
   options: [
     {
-      name: ["--version "],
+      name: "--version ",
       description: "Print CLI version",
     },
     {
-      name: ["--verbose"],
+      name: "--verbose",
       icon: "🔊",
       description: "Increase logging verbosity",
     },
     {
       name: ["-h", "--help"],
-      description: "output usage information",
+      description: "Output usage information",
     },
   ],
 };

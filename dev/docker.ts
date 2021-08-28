@@ -162,12 +162,12 @@ const dockerGenerators: Record<string, Fig.Generator> = {
 
 const containersArg = {
   name: "container",
-  generators: [dockerGenerators.runningDockerContainers],
+  generators: dockerGenerators.runningDockerContainers,
 };
 
 const imagesArg = {
   name: "image",
-  generators: [dockerGenerators.allLocalImages],
+  generators: dockerGenerators.allLocalImages,
 };
 
 const containerAndCommandArgs = [
@@ -180,7 +180,7 @@ const containerAndCommandArgs = [
 
 const contextsArg = {
   name: "CONTEXT",
-  generators: [dockerGenerators.allDockerContexts],
+  generators: dockerGenerators.allDockerContexts,
 };
 
 const sharedCommands: Record<string, Fig.Subcommand> = {
@@ -189,11 +189,9 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Build an image from a Dockerfile",
     args: {
       name: "path",
-      generators: [
-        {
-          template: "folders",
-        },
-      ],
+      generators: {
+        template: "folders",
+      },
     },
     options: [
       {
@@ -226,11 +224,9 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         description: "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
         args: {
           name: "string",
-          generators: [
-            {
-              template: "filepaths",
-            },
-          ],
+          generators: {
+            template: "filepaths",
+          },
         },
       },
       {
@@ -324,45 +320,43 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         description: "Set the target build stage to build",
         args: {
           name: "target build stage",
-          generators: [
-            {
-              trigger: function () {
-                return true;
-              },
-              script: function (context) {
-                let fileFlagIndex, dockerfilePath;
-                if (context.includes("-f")) {
-                  fileFlagIndex = context.indexOf("-f");
-                  dockerfilePath = context[fileFlagIndex + 1];
-                } else if (context.includes("--file")) {
-                  fileFlagIndex = context.indexOf("--file");
-                  dockerfilePath = context[fileFlagIndex + 1];
-                } else {
-                  dockerfilePath = "$PWD/Dockerfile";
-                }
-
-                return `grep -iE 'FROM.*AS' "${dockerfilePath}"`;
-              },
-              postProcess: function (out) {
-                // This just searches the Dockerfile for the alias name after AS,
-                // and due to the grep above, will only match lines where FROM and AS
-                // are on the same line. This could certainly be made more robust
-                // down the line.
-                const imageNameRegexp = /(?:[aA][sS]\s+)([\w:.-]+)/;
-                return out
-                  .split("\n")
-                  .map((i) => {
-                    const result = imageNameRegexp.exec(i);
-                    if (result) {
-                      return {
-                        name: result[1],
-                      };
-                    }
-                  })
-                  .filter((i) => i !== undefined);
-              },
+          generators: {
+            trigger: function () {
+              return true;
             },
-          ],
+            script: function (context) {
+              let fileFlagIndex, dockerfilePath;
+              if (context.includes("-f")) {
+                fileFlagIndex = context.indexOf("-f");
+                dockerfilePath = context[fileFlagIndex + 1];
+              } else if (context.includes("--file")) {
+                fileFlagIndex = context.indexOf("--file");
+                dockerfilePath = context[fileFlagIndex + 1];
+              } else {
+                dockerfilePath = "$PWD/Dockerfile";
+              }
+
+              return `grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+            },
+            postProcess: function (out) {
+              // This just searches the Dockerfile for the alias name after AS,
+              // and due to the grep above, will only match lines where FROM and AS
+              // are on the same line. This could certainly be made more robust
+              // down the line.
+              const imageNameRegexp = /(?:[aA][sS]\s+)([\w:.-]+)/;
+              return out
+                .split("\n")
+                .map((i) => {
+                  const result = imageNameRegexp.exec(i);
+                  if (result) {
+                    return {
+                      name: result[1],
+                    };
+                  }
+                })
+                .filter((i) => i !== undefined);
+            },
+          },
         },
       },
     ],
@@ -373,7 +367,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     args: [
       {
         name: "container",
-        generators: [dockerGenerators.allLocalImages],
+        generators: dockerGenerators.allLocalImages,
       },
       {
         name: "command",
@@ -386,7 +380,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "list",
         },
         description: "Add a custom host-to-IP mapping (host:ip)",
-        name: ["--add-host"],
+        name: "--add-host",
       },
       {
         args: {
@@ -401,77 +395,77 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
-        name: ["--blkio-weight"],
+        name: "--blkio-weight",
       },
       {
         args: {
           name: "list",
         },
         description: "Block IO weight (relative device weight) (default [])",
-        name: ["--blkio-weight-device"],
+        name: "--blkio-weight-device",
       },
       {
         args: {
           name: "list",
         },
         description: "Add Linux capabilities",
-        name: ["--cap-add"],
+        name: "--cap-add",
       },
       {
         args: {
           name: "list",
         },
         description: "Drop Linux capabilities",
-        name: ["--cap-drop"],
+        name: "--cap-drop",
       },
       {
         args: {
           name: "string",
         },
         description: "Optional parent cgroup for the container",
-        name: ["--cgroup-parent"],
+        name: "--cgroup-parent",
       },
       {
         args: {
           name: "string",
         },
         description: "Cgroup namespace to use (host|private)",
-        name: ["--cgroupns"],
+        name: "--cgroupns",
       },
       {
         args: {
           name: "string",
         },
         description: "Write the container ID to the file",
-        name: ["--cidfile"],
+        name: "--cidfile",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit CPU CFS (Completely Fair Scheduler) period",
-        name: ["--cpu-period"],
+        name: "--cpu-period",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit CPU CFS (Completely Fair Scheduler) quota",
-        name: ["--cpu-quota"],
+        name: "--cpu-quota",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit CPU real-time period in microseconds",
-        name: ["--cpu-rt-period"],
+        name: "--cpu-rt-period",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit CPU real-time runtime in microseconds",
-        name: ["--cpu-rt-runtime"],
+        name: "--cpu-rt-runtime",
       },
       {
         args: {
@@ -485,35 +479,35 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "decimal",
         },
         description: "Number of CPUs",
-        name: ["--cpus"],
+        name: "--cpus",
       },
       {
         args: {
           name: "string",
         },
         description: "CPUs in which to allow execution (0-3, 0,1)",
-        name: ["--cpuset-cpus"],
+        name: "--cpuset-cpus",
       },
       {
         args: {
           name: "string",
         },
         description: "MEMs in which to allow execution (0-3, 0,1)",
-        name: ["--cpuset-mems"],
+        name: "--cpuset-mems",
       },
       {
         args: {
           name: "list",
         },
         description: "Add a host device to the container",
-        name: ["--device"],
+        name: "--device",
       },
       {
         args: {
           name: "list",
         },
         description: "Add a rule to the cgroup allowed devices list",
-        name: ["--device-cgroup-rule"],
+        name: "--device-cgroup-rule",
       },
       {
         args: {
@@ -521,7 +515,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Limit read rate (bytes per second) from a device (default [])",
-        name: ["--device-read-bps"],
+        name: "--device-read-bps",
       },
       {
         args: {
@@ -529,7 +523,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Limit read rate (IO per second) from a device (default [])",
-        name: ["--device-read-iops"],
+        name: "--device-read-iops",
       },
       {
         args: {
@@ -537,7 +531,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Limit write rate (bytes per second) to a device (default [])",
-        name: ["--device-write-bps"],
+        name: "--device-write-bps",
       },
       {
         args: {
@@ -545,46 +539,46 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Limit write rate (IO per second) to a device (default [])",
-        name: ["--device-write-iops"],
+        name: "--device-write-iops",
       },
       {
         description: "Skip image verification (default true)",
-        name: ["--disable-content-trust"],
+        name: "--disable-content-trust",
       },
       {
         args: {
           name: "list",
         },
         description: "Set custom DNS servers",
-        name: ["--dns"],
+        name: "--dns",
       },
       {
         args: {
           name: "list",
         },
         description: "Set DNS options",
-        name: ["--dns-option"],
+        name: "--dns-option",
       },
       {
         args: {
           name: "list",
         },
         description: "Set custom DNS search domains",
-        name: ["--dns-search"],
+        name: "--dns-search",
       },
       {
         args: {
           name: "string",
         },
         description: "Container NIS domain name",
-        name: ["--domainname"],
+        name: "--domainname",
       },
       {
         args: {
           name: "string",
         },
         description: "Overwrite the default ENTRYPOINT of the image",
-        name: ["--entrypoint"],
+        name: "--entrypoint",
       },
       {
         args: {
@@ -598,14 +592,14 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "list",
         },
         description: "Read in a file of environment variables",
-        name: ["--env-file"],
+        name: "--env-file",
       },
       {
         args: {
           name: "list",
         },
         description: "Expose a port or a range of ports",
-        name: ["--expose"],
+        name: "--expose",
       },
       {
         args: {
@@ -613,35 +607,35 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "GPU devices to add to the container ('all' to pass all GPUs)",
-        name: ["--gpus"],
+        name: "--gpus",
       },
       {
         args: {
           name: "list",
         },
         description: "Add additional groups to join",
-        name: ["--group-add"],
+        name: "--group-add",
       },
       {
         args: {
           name: "string",
         },
         description: "Command to run to check health",
-        name: ["--health-cmd"],
+        name: "--health-cmd",
       },
       {
         args: {
           name: "duration",
         },
         description: "Time between running the check (ms|s|m|h) (default 0s)",
-        name: ["--health-interval"],
+        name: "--health-interval",
       },
       {
         args: {
           name: "int",
         },
         description: "Consecutive failures needed to report unhealthy",
-        name: ["--health-retries"],
+        name: "--health-retries",
       },
       {
         args: {
@@ -649,7 +643,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
-        name: ["--health-start-period"],
+        name: "--health-start-period",
       },
       {
         args: {
@@ -657,11 +651,11 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
-        name: ["--health-timeout"],
+        name: "--health-timeout",
       },
       {
         description: "Print usage",
-        name: ["--help"],
+        name: "--help",
       },
       {
         args: {
@@ -673,7 +667,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       {
         description:
           "Run an init inside the container that forwards signals and reaps processes",
-        name: ["--init"],
+        name: "--init",
       },
       {
         description: "Keep STDIN open even if not attached",
@@ -684,35 +678,35 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "string",
         },
         description: "IPv4 address (e.g., 172.30.100.104)",
-        name: ["--ip"],
+        name: "--ip",
       },
       {
         args: {
           name: "string",
         },
         description: "IPv6 address (e.g., 2001:db8::33)",
-        name: ["--ip6"],
+        name: "--ip6",
       },
       {
         args: {
           name: "string",
         },
         description: "IPC mode to use",
-        name: ["--ipc"],
+        name: "--ipc",
       },
       {
         args: {
           name: "string",
         },
         description: "Container isolation technology",
-        name: ["--isolation"],
+        name: "--isolation",
       },
       {
         args: {
           name: "bytes",
         },
         description: "Kernel memory limit",
-        name: ["--kernel-memory"],
+        name: "--kernel-memory",
       },
       {
         args: {
@@ -726,42 +720,42 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "list",
         },
         description: "Read in a line delimited file of labels",
-        name: ["--label-file"],
+        name: "--label-file",
       },
       {
         args: {
           name: "list",
         },
         description: "Add link to another container",
-        name: ["--link"],
+        name: "--link",
       },
       {
         args: {
           name: "list",
         },
         description: "Container IPv4/IPv6 link-local addresses",
-        name: ["--link-local-ip"],
+        name: "--link-local-ip",
       },
       {
         args: {
           name: "string",
         },
         description: "Logging driver for the container",
-        name: ["--log-driver"],
+        name: "--log-driver",
       },
       {
         args: {
           name: "list",
         },
         description: "Log driver options",
-        name: ["--log-opt"],
+        name: "--log-opt",
       },
       {
         args: {
           name: "string",
         },
         description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
-        name: ["--mac-address"],
+        name: "--mac-address",
       },
       {
         args: {
@@ -775,7 +769,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "bytes",
         },
         description: "Memory soft limit",
-        name: ["--memory-reservation"],
+        name: "--memory-reservation",
       },
       {
         args: {
@@ -783,82 +777,82 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
-        name: ["--memory-swap"],
+        name: "--memory-swap",
       },
       {
         args: {
           name: "int",
         },
         description: "Tune container memory swappiness (0 to 100) (default -1)",
-        name: ["--memory-swappiness"],
+        name: "--memory-swappiness",
       },
       {
         args: {
           name: "mount",
         },
         description: "Attach a filesystem mount to the container",
-        name: ["--mount"],
+        name: "--mount",
       },
       {
         args: {
           name: "string",
         },
         description: "Assign a name to the container",
-        name: ["--name"],
+        name: "--name",
       },
       {
         args: {
           name: "network",
         },
         description: "Connect a container to a network",
-        name: ["--network"],
+        name: "--network",
       },
       {
         args: {
           name: "list",
         },
         description: "Add network-scoped alias for the container",
-        name: ["--network-alias"],
+        name: "--network-alias",
       },
       {
         description: "Disable any container-specified HEALTHCHECK",
-        name: ["--no-healthcheck"],
+        name: "--no-healthcheck",
       },
       {
         description: "Disable OOM Killer",
-        name: ["--oom-kill-disable"],
+        name: "--oom-kill-disable",
       },
       {
         args: {
           name: "int",
         },
         description: "Tune host's OOM preferences (-1000 to 1000)",
-        name: ["--oom-score-adj"],
+        name: "--oom-score-adj",
       },
       {
         args: {
           name: "string",
         },
         description: "PID namespace to use",
-        name: ["--pid"],
+        name: "--pid",
       },
       {
         args: {
           name: "int",
         },
         description: "Tune container pids limit (set -1 for unlimited)",
-        name: ["--pids-limit"],
+        name: "--pids-limit",
       },
       {
         args: {
           name: "string",
         },
         description: "Set platform if server is multi-platform capable",
-        name: ["--platform"],
+        name: "--platform",
       },
       {
         description: "Give extended privileges to this container",
-        name: ["--privileged"],
+        name: "--privileged",
       },
       {
         args: {
@@ -877,11 +871,11 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           'Pull image before creating ("always"|"missing"|"never") (default "missing")',
-        name: ["--pull"],
+        name: "--pull",
       },
       {
         description: "Mount the container's root filesystem as read only",
-        name: ["--read-only"],
+        name: "--read-only",
       },
       {
         args: {
@@ -889,67 +883,67 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           'Restart policy to apply when a container exits (default "no")',
-        name: ["--restart"],
+        name: "--restart",
       },
       {
         description: "Automatically remove the container when it exits",
-        name: ["--rm"],
+        name: "--rm",
       },
       {
         args: {
           name: "string",
         },
         description: "Runtime to use for this container",
-        name: ["--runtime"],
+        name: "--runtime",
       },
       {
         args: {
           name: "list",
         },
         description: "Security Options",
-        name: ["--security-opt"],
+        name: "--security-opt",
       },
       {
         args: {
           name: "bytes",
         },
         description: "Size of /dev/shm",
-        name: ["--shm-size"],
+        name: "--shm-size",
       },
       {
         args: {
           name: "string",
         },
         description: 'Signal to stop a container (default "SIGTERM")',
-        name: ["--stop-signal"],
+        name: "--stop-signal",
       },
       {
         args: {
           name: "int",
         },
         description: "Timeout (in seconds) to stop a container",
-        name: ["--stop-timeout"],
+        name: "--stop-timeout",
       },
       {
         args: {
           name: "list",
         },
         description: "Storage driver options for the container",
-        name: ["--storage-opt"],
+        name: "--storage-opt",
       },
       {
         args: {
           name: "map",
         },
         description: "Sysctl options (default map[])",
-        name: ["--sysctl"],
+        name: "--sysctl",
       },
       {
         args: {
           name: "list",
         },
         description: "Mount a tmpfs directory",
-        name: ["--tmpfs"],
+        name: "--tmpfs",
       },
       {
         description: "Allocate a pseudo-TTY",
@@ -960,7 +954,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "ulimit",
         },
         description: "Ulimit options (default [])",
-        name: ["--ulimit"],
+        name: "--ulimit",
       },
       {
         args: {
@@ -974,14 +968,14 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "string",
         },
         description: "User namespace to use",
-        name: ["--userns"],
+        name: "--userns",
       },
       {
         args: {
           name: "string",
         },
         description: "UTS namespace to use",
-        name: ["--uts"],
+        name: "--uts",
       },
       {
         args: {
@@ -995,14 +989,14 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "string",
         },
         description: "Optional volume driver for the container",
-        name: ["--volume-driver"],
+        name: "--volume-driver",
       },
       {
         args: {
           name: "list",
         },
         description: "Mount volumes from the specified container(s)",
-        name: ["--volumes-from"],
+        name: "--volumes-from",
       },
       {
         args: {
@@ -1019,18 +1013,18 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       "Attach local standard input, output, and error streams to a running container,",
     options: [
       {
-        name: ["--detach-keys"],
+        name: "--detach-keys",
         description: "Override the key sequence for detaching a container",
         args: {
           name: "string",
         },
       },
       {
-        name: ["--no-stdin"],
+        name: "--no-stdin",
         description: "Do not attach STDIN",
       },
       {
-        name: ["--sig-proxy"],
+        name: "--sig-proxy",
         description: "Proxy all received signals to the process (default true)",
       },
     ],
@@ -1102,7 +1096,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Run a command in a running container",
     options: [
       {
-        name: ["-it"],
+        name: "-it",
         description: "Launch an interactive session",
         icon: "fig://icon?type=commandkey",
       },
@@ -1115,7 +1109,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "string",
         },
         description: "Override the key sequence for detaching a container",
-        name: ["--detach-keys"],
+        name: "--detach-keys",
       },
       {
         args: {
@@ -1129,7 +1123,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "list",
         },
         description: "Read in a file of environment variables",
-        name: ["--env-file"],
+        name: "--env-file",
       },
       {
         description: "Keep STDIN open even if not attached",
@@ -1137,7 +1131,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Give extended privileges to the command",
-        name: ["--privileged"],
+        name: "--privileged",
       },
       {
         description: "Allocate a pseudo-TTY",
@@ -1195,7 +1189,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     options: [
       {
         description: "Show extra details provided to logs",
-        name: ["--details"],
+        name: "--details",
       },
       {
         description: "Follow log output",
@@ -1204,7 +1198,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       {
         description:
           "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
-        name: ["--since"],
+        name: "--since",
         args: {
           name: "string",
         },
@@ -1224,7 +1218,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       {
         description:
           "Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
-        name: ["--until"],
+        name: "--until",
         args: {
           name: "string",
         },
@@ -1287,7 +1281,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           description: "All running containers",
         },
       ],
-      generators: [dockerGenerators.allDockerContainers],
+      generators: dockerGenerators.allDockerContainers,
     },
     options: [
       {
@@ -1315,8 +1309,8 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       { name: ["-t", "--tty"], description: "Allocate a pseudo-TTY" },
       {
-        name: ["-it"],
-        insertValue: "-it ",
+        name: "-it",
+
         description: "Launch an interactive session",
         icon: "fig://icon?type=commandkey",
       },
@@ -1324,7 +1318,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     args: [
       {
         name: "image",
-        description: "the Docker image to use",
+        description: "The Docker image to use",
         generators: {
           script:
             "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
@@ -1351,7 +1345,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Start one or more stopped containers",
     args: {
       name: "container",
-      generators: [dockerGenerators.allDockerContainers],
+      generators: dockerGenerators.allDockerContainers,
     },
     options: [
       {
@@ -1360,7 +1354,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Override the key sequence for detaching a container",
-        name: ["--detach-keys"],
+        name: "--detach-keys",
         args: {
           name: "string",
         },
@@ -1383,18 +1377,18 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Pretty-print images using a Go template",
-        name: ["--format"],
+        name: "--format",
         args: {
           name: "string",
         },
       },
       {
         description: "Disable streaming stats and only pull the first result",
-        name: ["--no-stream"],
+        name: "--no-stream",
       },
       {
         description: "Do not truncate output",
-        name: ["--no-trunc"],
+        name: "--no-trunc",
       },
     ],
   },
@@ -1423,7 +1417,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Unpause all processes within one or more containers",
     args: {
       name: "container",
-      generators: [dockerGenerators.pausedDockerContainers],
+      generators: dockerGenerators.pausedDockerContainers,
     },
   },
   update: {
@@ -1439,35 +1433,35 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
-        name: ["--blkio-weight"],
+        name: "--blkio-weight",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit CPU CFS (Completely Fair Scheduler) period",
-        name: ["--cpu-period"],
+        name: "--cpu-period",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit CPU CFS (Completely Fair Scheduler) quota",
-        name: ["--cpu-quota"],
+        name: "--cpu-quota",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit the CPU real-time period in microseconds",
-        name: ["--cpu-rt-period"],
+        name: "--cpu-rt-period",
       },
       {
         args: {
           name: "int",
         },
         description: "Limit the CPU real-time runtime in microseconds",
-        name: ["--cpu-rt-runtime"],
+        name: "--cpu-rt-runtime",
       },
       {
         args: {
@@ -1481,28 +1475,28 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "decimal",
         },
         description: "Number of CPUs",
-        name: ["--cpus"],
+        name: "--cpus",
       },
       {
         args: {
           name: "string",
         },
         description: "CPUs in which to allow execution (0-3, 0,1)",
-        name: ["--cpuset-cpus"],
+        name: "--cpuset-cpus",
       },
       {
         args: {
           name: "string",
         },
         description: "MEMs in which to allow execution (0-3, 0,1)",
-        name: ["--cpuset-mems"],
+        name: "--cpuset-mems",
       },
       {
         args: {
           name: "bytes",
         },
         description: "Kernel memory limit",
-        name: ["--kernel-memory"],
+        name: "--kernel-memory",
       },
       {
         args: {
@@ -1516,7 +1510,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "bytes",
         },
         description: "Memory soft limit",
-        name: ["--memory-reservation"],
+        name: "--memory-reservation",
       },
       {
         args: {
@@ -1524,21 +1518,21 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         },
         description:
           "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
-        name: ["--memory-swap"],
+        name: "--memory-swap",
       },
       {
         args: {
           name: "int",
         },
         description: "Tune container pids limit (set -1 for unlimited)",
-        name: ["--pids-limit"],
+        name: "--pids-limit",
       },
       {
         args: {
           name: "string",
         },
         description: "Restart policy to apply when a container exits",
-        name: ["--restart"],
+        name: "--restart",
       },
     ],
   },
@@ -1568,7 +1562,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "string",
         },
         description: "Pretty-print containers using a Go template",
-        name: ["--format"],
+        name: "--format",
       },
       {
         args: {
@@ -1584,7 +1578,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Don't truncate output",
-        name: ["--no-trunc"],
+        name: "--no-trunc",
       },
       {
         description: "Only display container IDs",
@@ -1603,7 +1597,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     options: [
       {
         description: "Pretty-print images using a Go template",
-        name: ["--format"],
+        name: "--format",
         args: {
           name: "string",
         },
@@ -1615,7 +1609,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Don't truncate output",
-        name: ["--no-trunc"],
+        name: "--no-trunc",
       },
       {
         description: "Only show image IDs",
@@ -1650,7 +1644,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           name: "string",
         },
         description: "Set platform if server is multi-platform capable",
-        name: ["--platform"],
+        name: "--platform",
       },
     ],
   },
@@ -1725,11 +1719,11 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Skip image verification (default true)",
-        name: ["--disable-content-trust"],
+        name: "--disable-content-trust",
       },
       {
         description: "Set platform if server is multi-platform capable",
-        name: ["--platform"],
+        name: "--platform",
         args: {
           name: "string",
         },
@@ -1754,7 +1748,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
       {
         description: "Skip image signing (default true)",
-        name: ["--disable-content-trust"],
+        name: "--disable-content-trust",
       },
       {
         description: "Suppress verbose output",
@@ -1827,21 +1821,21 @@ const completionSpec: Fig.Spec = {
             name: "string",
           },
           description: "Format the output using the given Go template",
-          name: ["--format"],
+          name: "--format",
         },
         {
           args: {
             name: "string",
           },
           description: "Show all events created since timestamp",
-          name: ["--since"],
+          name: "--since",
         },
         {
           args: {
             name: "string",
           },
           description: "Stream events until this timestamp",
-          name: ["--until"],
+          name: "--until",
         },
       ],
     },
@@ -1946,7 +1940,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          description: "password",
+          description: "Password",
           name: ["-p", "--password"],
           args: {
             name: "string",
@@ -1954,10 +1948,10 @@ const completionSpec: Fig.Spec = {
         },
         {
           description: "Take the password from stdin",
-          name: ["--password-stdin"],
+          name: "--password-stdin",
         },
         {
-          description: "username",
+          description: "Username",
           name: ["-u", "--username"],
           args: {
             name: "string",
@@ -1987,12 +1981,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "search",
       description: "Search the Docker Hub for images",
-      args: [
-        {
-          name: "TERM",
-          description: "Search term",
-        },
-      ],
+      args: {
+        name: "TERM",
+        description: "Search term",
+      },
       options: [
         {
           args: {
@@ -2006,18 +1998,18 @@ const completionSpec: Fig.Spec = {
             name: "string",
           },
           description: "Pretty-print search using a Go template",
-          name: ["--format"],
+          name: "--format",
         },
         {
           args: {
             name: "int",
           },
           description: "Max number of search results (default 25)",
-          name: ["--limit"],
+          name: "--limit",
         },
         {
           description: "Don't truncate output",
-          name: ["--no-trunc"],
+          name: "--no-trunc",
         },
       ],
     },
@@ -2043,7 +2035,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           description: "Kubernetes config file",
-          name: ["--kubeconfig"],
+          name: "--kubeconfig",
           args: {
             name: "string",
           },
@@ -2598,7 +2590,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "NETWORK",
-              generators: [dockerGenerators.listDockerNetworks],
+              generators: dockerGenerators.listDockerNetworks,
             },
             containersArg,
           ],
@@ -2612,7 +2604,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--driver-opt",
-              description: "driver options for the network",
+              description: "Driver options for the network",
               args: {
                 name: "strings",
               },
@@ -2761,7 +2753,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "NETWORK",
-              generators: [dockerGenerators.listDockerNetworks],
+              generators: dockerGenerators.listDockerNetworks,
             },
             containersArg,
           ],
@@ -2777,7 +2769,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more networks",
           args: {
             name: "NETWORK",
-            generators: [dockerGenerators.listDockerNetworks],
+            generators: dockerGenerators.listDockerNetworks,
             isVariadic: true,
           },
           options: [
@@ -2844,7 +2836,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more networks",
           args: {
             name: "NETWORK",
-            generators: [dockerGenerators.listDockerNetworks],
+            generators: dockerGenerators.listDockerNetworks,
             isVariadic: true,
           },
         },
@@ -2859,7 +2851,7 @@ const completionSpec: Fig.Spec = {
           description: "Demote one or more nodes from manager in the swarm",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
         },
@@ -2868,7 +2860,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more nodes",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -2914,7 +2906,7 @@ const completionSpec: Fig.Spec = {
           description: "Promote one or more nodes to manager in the swarm",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
         },
@@ -2924,7 +2916,7 @@ const completionSpec: Fig.Spec = {
             "List tasks running on one or more nodes, defaults to current node",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -2961,7 +2953,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more nodes from the swarm",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -2976,7 +2968,7 @@ const completionSpec: Fig.Spec = {
           description: "Update a node",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -3020,7 +3012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description:
-            "Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory.",
+            "Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory",
           args: [
             { name: "PLUGIN" },
             { name: "PLUGIN-DATA-DIR", template: "filepaths" },
@@ -3037,7 +3029,7 @@ const completionSpec: Fig.Spec = {
           description: "Disable a plugin",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
           },
           options: [
             {
@@ -3051,7 +3043,7 @@ const completionSpec: Fig.Spec = {
           description: "Enable a plugin",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
           },
           options: [
             {
@@ -3068,7 +3060,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more plugins",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
             isVariadic: true,
           },
           options: [
@@ -3151,7 +3143,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more plugins",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
             isVariadic: true,
           },
           options: [
@@ -3167,7 +3159,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "PLUGIN",
-              generators: [dockerGenerators.listDockerPlugins],
+              generators: dockerGenerators.listDockerPlugins,
             },
             { name: "KEY=VALUE", isVariadic: true },
           ],
@@ -3178,7 +3170,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "PLUGIN",
-              generators: [dockerGenerators.listDockerPlugins],
+              generators: dockerGenerators.listDockerPlugins,
             },
             { name: "REMOTE" },
           ],
@@ -3245,7 +3237,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more secrets",
           args: {
             name: "SECRET",
-            generators: [dockerGenerators.listDockerSecrets],
+            generators: dockerGenerators.listDockerSecrets,
             isVariadic: true,
           },
           options: [
@@ -3291,7 +3283,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more secrets",
           args: {
             name: "SECRET",
-            generators: [dockerGenerators.listDockerSecrets],
+            generators: dockerGenerators.listDockerSecrets,
             isVariadic: true,
           },
         },
@@ -3824,7 +3816,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more services",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
             isVariadic: true,
           },
           options: [
@@ -3846,7 +3838,7 @@ const completionSpec: Fig.Spec = {
           description: "Fetch the logs of a service or task",
           args: {
             name: "SERVICE OR TASK",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
           },
           options: [
             {
@@ -3924,7 +3916,7 @@ const completionSpec: Fig.Spec = {
           description: "List the tasks of one or more services",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
             isVariadic: true,
           },
           options: [
@@ -3961,7 +3953,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more services",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
             isVariadic: true,
           },
         },
@@ -3970,7 +3962,7 @@ const completionSpec: Fig.Spec = {
           description: "Revert changes to a service's configuration",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
           },
           options: [
             {
@@ -3989,7 +3981,7 @@ const completionSpec: Fig.Spec = {
           description: "Scale one or multiple replicated services",
           args: {
             name: "SERVICE=REPLICAS",
-            generators: [dockerGenerators.listDockerServicesReplicas],
+            generators: dockerGenerators.listDockerServicesReplicas,
             isVariadic: true,
           },
           options: [
@@ -4005,7 +3997,7 @@ const completionSpec: Fig.Spec = {
           description: "Update a service",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
           },
           options: [
             {
@@ -4679,14 +4671,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-              description: " Pretty-print stacks using a Go template",
+              description: "Pretty-print stacks using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
@@ -4698,19 +4690,19 @@ const completionSpec: Fig.Spec = {
           description: "List the tasks in the stack",
           args: {
             name: "STACK",
-            generators: [dockerGenerators.listDockerStacks],
+            generators: dockerGenerators.listDockerStacks,
           },
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Filter output based on conditions provided",
+              description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Pretty-print tasks using a Go template",
+              description: "Pretty-print tasks using a Go template",
               args: {
                 name: "string",
               },
@@ -4725,14 +4717,14 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only display task IDs",
+              description: "Only display task IDs",
             },
           ],
         },
@@ -4741,13 +4733,13 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more stacks",
           args: {
             name: "STACK",
-            generators: [dockerGenerators.listDockerStacks],
+            generators: dockerGenerators.listDockerStacks,
             isVariadic: true,
           },
           options: [
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
@@ -4759,33 +4751,33 @@ const completionSpec: Fig.Spec = {
           description: "List the services in the stack",
           args: {
             name: "STACK",
-            generators: [dockerGenerators.listDockerStacks],
+            generators: dockerGenerators.listDockerStacks,
           },
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Filter output based on conditions provided",
+              description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Pretty-print services using a Go template",
+              description: "Pretty-print services using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: "--orchestrator",
-              description: " Orchestrator to use (swarm|kubernetes|all)",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only display IDs",
+              description: "Only display IDs",
             },
           ],
         },
@@ -4811,7 +4803,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ca-key",
               description:
-                " Path to the PEM-formatted root CA key to use for the new cluster",
+                "Path to the PEM-formatted root CA key to use for the new cluster",
               args: {
                 name: "pem-file",
                 template: "filepaths",
@@ -4833,14 +4825,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--external-ca",
               description:
-                " Specifications of one or more certificate signing endpoints",
+                "Specifications of one or more certificate signing endpoints",
               args: {
                 name: "external-ca",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Suppress progress output",
+              description: "Suppress progress output",
             },
             {
               name: "--rotate",
@@ -4863,7 +4855,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autolock",
               description:
-                " Enable manager autolocking (requiring an unlock key to start a stopped manager)",
+                "Enable manager autolocking (requiring an unlock key to start a stopped manager)",
             },
             {
               name: "--availability",
@@ -4876,7 +4868,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cert-expiry",
               description:
-                " Validity period for node certificates (ns|us|ms|s|m|h) (default 2160h0m0s)",
+                "Validity period for node certificates (ns|us|ms|s|m|h) (default 2160h0m0s)",
               args: {
                 name: "duration",
               },
@@ -4892,14 +4884,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--data-path-port",
               description:
-                "Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is used.",
+                "Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is used",
               args: {
                 name: "uint32",
               },
             },
             {
               name: "--default-addr-pool",
-              description: " default address pool in CIDR format (default [])",
+              description: "Default address pool in CIDR format (default [])",
               args: {
                 name: "ipNetSlice",
               },
@@ -4907,7 +4899,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--default-addr-pool-mask-length",
               description:
-                " default address pool subnet mask length (default 24)",
+                "Default address pool subnet mask length (default 24)",
               args: {
                 name: "uint32",
               },
@@ -4942,7 +4934,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--max-snapshots",
-              description: " Number of additional Raft snapshots to retain",
+              description: "Number of additional Raft snapshots to retain",
               args: {
                 name: "uint",
               },
@@ -4950,14 +4942,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--snapshot-interval",
               description:
-                " Number of log entries between Raft snapshots (default 10000)",
+                "Number of log entries between Raft snapshots (default 10000)",
               args: {
                 name: "uint",
               },
             },
             {
               name: "--task-history-limit",
-              description: " Task history retention limit (default 5)",
+              description: "Task history retention limit (default 5)",
               args: {
                 name: "int",
               },
@@ -4973,8 +4965,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--advertise-addr",
-              description:
-                " Advertised address (format: <ip|interface>[:port])",
+              description: "Advertised address (format: <ip|interface>[:port])",
               args: {
                 name: "string",
               },
@@ -4982,7 +4973,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--availability",
               description:
-                ' Availability of the node ("active"|"pause"|"drain") (default "active")',
+                'Availability of the node ("active"|"pause"|"drain") (default "active")',
               args: {
                 name: "string",
               },
@@ -4990,7 +4981,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--data-path-addr",
               description:
-                " Address or interface to use for data path traffic (format: <ip|interface>)",
+                "Address or interface to use for data path traffic (format: <ip|interface>)",
               args: {
                 name: "string",
               },
@@ -4998,7 +4989,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--listen-addr",
               description:
-                " Listen address (format: <ip|interface>[:port]) (default 0.0.0.0:2377)",
+                "Listen address (format: <ip|interface>[:port]) (default 0.0.0.0:2377)",
               args: {
                 name: "node-addr",
               },
@@ -5026,7 +5017,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--rotate",
-              description: " Rotate join token",
+              description: "Rotate join token",
             },
           ],
         },
@@ -5037,7 +5028,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-f", "--force"],
               description:
-                " Force this node to leave the swarm, ignoring warnings",
+                "Force this node to leave the swarm, ignoring warnings",
             },
           ],
         },
@@ -5055,7 +5046,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--rotate",
-              description: " Rotate unlock key",
+              description: "Rotate unlock key",
             },
           ],
         },
@@ -5081,7 +5072,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--dispatcher-heartbeat",
               description:
-                " Dispatcher heartbeat period (ns|us|ms|s|m|h) (default 5s)",
+                "Dispatcher heartbeat period (ns|us|ms|s|m|h) (default 5s)",
               args: {
                 name: "duration",
               },
@@ -5089,7 +5080,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--external-ca",
               description:
-                " Specifications of one or more certificate signing endpoints",
+                "Specifications of one or more certificate signing endpoints",
               args: {
                 name: "external-ca",
               },
@@ -5155,14 +5146,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-              description: " Pretty-print images using a Go template",
+              description: "Pretty-print images using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-v", "--verbose"],
-              description: " Show detailed information on space usage",
+              description: "Show detailed information on space usage",
             },
           ],
         },
@@ -5172,14 +5163,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Filter output based on conditions provided",
+              description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Format the output using the given Go template",
+              description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
@@ -5206,7 +5197,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--format"],
-              description: " Format the output using the given Go template",
+              description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
@@ -5229,7 +5220,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--pretty",
-              description: " Print the information in a human friendly format",
+              description: "Print the information in a human friendly format",
             },
           ],
         },
@@ -5240,7 +5231,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-y", "--yes"],
-              description: " Do not prompt for confirmation",
+              description: "Do not prompt for confirmation",
             },
           ],
         },
@@ -5251,7 +5242,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--local",
-              description: " Sign a locally tagged image",
+              description: "Sign a locally tagged image",
             },
           ],
         },
@@ -5270,7 +5261,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-d", "--driver"],
-              description: ' Specify volume driver name (default "local")',
+              description: 'Specify volume driver name (default "local")',
               args: {
                 name: "string",
               },
@@ -5284,7 +5275,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-o", "--opt"],
-              description: " Set driver specific options (default map[])",
+              description: "Set driver specific options (default map[])",
               args: {
                 name: "map",
               },
@@ -5296,13 +5287,13 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more volumes",
           args: {
             name: "VOLUME",
-            generators: [dockerGenerators.listDockerVolumes],
+            generators: dockerGenerators.listDockerVolumes,
             isVariadic: true,
           },
           options: [
             {
               name: ["-f", "--format"],
-              description: " Format the output using the given Go template",
+              description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
@@ -5315,21 +5306,21 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--filter"],
-              description: " Provide filter values (e.g. 'dangling=true')",
+              description: "Provide filter values (e.g. 'dangling=true')",
               args: {
                 name: "filter",
               },
             },
             {
               name: "--format",
-              description: " Pretty-print volumes using a Go template",
+              description: "Pretty-print volumes using a Go template",
               args: {
                 name: "string",
               },
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only display volume names",
+              description: "Only display volume names",
             },
           ],
         },
@@ -5339,14 +5330,14 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--filter",
-              description: " Provide filter values (e.g. 'label=<label>')",
+              description: "Provide filter values (e.g. 'label=<label>')",
               args: {
                 name: "filter",
               },
             },
             {
               name: ["-f", "--force"],
-              description: " Do not prompt for confirmation",
+              description: "Do not prompt for confirmation",
             },
           ],
         },
@@ -5355,13 +5346,13 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more volumes",
           args: {
             name: "VOLUME",
-            generators: [dockerGenerators.listDockerVolumes],
+            generators: dockerGenerators.listDockerVolumes,
             isVariadic: true,
           },
           options: [
             {
               name: "-f, --force",
-              description: " Force the removal of one or more volumes",
+              description: "Force the removal of one or more volumes",
             },
           ],
         },
@@ -5369,7 +5360,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "compose",
-      description: "Define and run multi-container applications with Docker.",
+      description: "Define and run multi-container applications with Docker",
       loadSpec: "docker-compose",
     },
   ],

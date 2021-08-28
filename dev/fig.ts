@@ -227,7 +227,7 @@ const completionSpec: Fig.Spec = {
       description: "Overview of Fig CLI",
     },
     {
-      name: ["--version"],
+      name: "--version",
       description: "The current Fig version",
     },
   ],

@@ -22,7 +22,7 @@ const globalList: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "pyenv",
-  description: "pyenv",
+  description: "Pyenv",
   args: {},
   options: [
     {
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "commands",
-      description: "Lists all available pyenv commands.",
+      description: "Lists all available pyenv commands",
     },
     {
       name: "local",
@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--unset"],
+          name: "--unset",
         },
       ],
     },
@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--unset"],
+          name: "--unset",
         },
       ],
     },
@@ -119,7 +119,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description:
-            "Attempt to remove the specified version without prompting for confirmation.",
+            "Attempt to remove the specified version without prompting for confirmation",
         },
       ],
     },
@@ -130,25 +130,24 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description:
-        "Displays the currently active Python version, along with information on how it was set.",
+        "Displays the currently active Python version, along with information on how it was set",
     },
     {
       name: "versions",
       description:
-        "Lists all Python versions known to pyenv, and shows an asterisk next to the currently active version.",
+        "Lists all Python versions known to pyenv, and shows an asterisk next to the currently active version",
     },
     {
       name: "which",
       description:
-        "Displays the full path to the executable that pyenv will invoke when you run the given command.",
+        "Displays the full path to the executable that pyenv will invoke when you run the given command",
       args: {
         name: "command",
       },
     },
     {
       name: "whence",
-      description:
-        "Lists all Python versions with the given command installed.",
+      description: "Lists all Python versions with the given command installed",
       args: {
         name: "command",
       },

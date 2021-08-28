@@ -1,7 +1,7 @@
 const commonOptions: Fig.Option[] = [
   {
     name: ["-d", "--diff"],
-    description: "Compare two files with each other.",
+    description: "Compare two files with each other",
     args: [
       {
         name: "file",
@@ -25,7 +25,7 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-g", "--goto"],
     description:
-      "Open a file at the path on the specified line and character position.",
+      "Open a file at the path on the specified line and character position",
     args: {
       name: "file:line[:character]",
       // TODO: Support :line[:character] completion?
@@ -34,19 +34,19 @@ const commonOptions: Fig.Option[] = [
   },
   {
     name: ["-n", "--new-window"],
-    description: "Force to open a new window.",
+    description: "Force to open a new window",
   },
   {
     name: ["-r", "--reuse-window"],
-    description: "Force to open a file or folder in an already opened window.",
+    description: "Force to open a file or folder in an already opened window",
   },
   {
     name: ["-w", "--wait"],
-    description: "Wait for the files to be closed before returning.",
+    description: "Wait for the files to be closed before returning",
   },
   {
     name: "--locale",
-    description: "The locale to use (e.g. en-US or zh-TW).",
+    description: "The locale to use (e.g. en-US or zh-TW)",
     args: {
       name: "locale",
       suggestions: [
@@ -71,7 +71,7 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--user-data-dir",
     description:
-      "Specifies the directory that user data is kept in. Can be used to open multiple distinct instances of Code.",
+      "Specifies the directory that user data is kept in. Can be used to open multiple distinct instances of Code",
     args: {
       name: "dir",
       template: "folders",
@@ -79,14 +79,14 @@ const commonOptions: Fig.Option[] = [
   },
   {
     name: ["-h", "--help"],
-    description: "Print usage.",
+    description: "Print usage",
   },
 ];
 
 const extensionManagementOptions: Fig.Option[] = [
   {
     name: "--extensions-dir",
-    description: "Set the root path for extensions.",
+    description: "Set the root path for extensions",
     args: {
       name: "dir",
       template: "folders",
@@ -94,12 +94,12 @@ const extensionManagementOptions: Fig.Option[] = [
   },
   {
     name: "--list-extensions",
-    description: "List the installed extensions.",
+    description: "List the installed extensions",
   },
   {
     name: "--category",
     description:
-      "Filters installed extensions by provided category, when using --list-extensions.",
+      "Filters installed extensions by provided category, when using --list-extensions",
     args: {
       name: "category",
       suggestions: [
@@ -127,12 +127,12 @@ const extensionManagementOptions: Fig.Option[] = [
   {
     name: "--show-versions",
     description:
-      "Show versions of installed extensions, when using --list-extensions.",
+      "Show versions of installed extensions, when using --list-extensions",
   },
   {
     name: "--install-extension",
     description:
-      "Installs or updates the extension. The identifier of an extension is always `${publisher}.${name}\n\nUse `--force` argument to update to latest version. To install a specific version provide `@${version}`. For example: 'vscode.csharp@1.2.3'.",
+      "Installs or updates the extension. The identifier of an extension is always `${publisher}.${name}\n\nUse `--force` argument to update to latest version. To install a specific version provide `@${version}`. For example: 'vscode.csharp@1.2.3'",
     args: {
       // TODO: Create extension ID generator
       name: "extension-id[@version] | path-to-vsix",
@@ -140,7 +140,7 @@ const extensionManagementOptions: Fig.Option[] = [
   },
   {
     name: "--uninstall-extension",
-    description: "Uninstalls an extension.",
+    description: "Uninstalls an extension",
     args: {
       // TODO: Create extension ID generator
       name: "extension-id",
@@ -149,22 +149,22 @@ const extensionManagementOptions: Fig.Option[] = [
   {
     name: "--enable-proposed-api",
     description:
-      "Enables proposed API features for extensions. Can receive one or more extension IDs to enable individually.",
+      "Enables proposed API features for extensions. Can receive one or more extension IDs to enable individually",
   },
 ];
 
 const troubleshootingOptions: Fig.Option[] = [
   {
     name: ["-v", "--version"],
-    description: "Print version.",
+    description: "Print version",
   },
   {
     name: "--verbose",
-    description: "Print verbose output (implies --wait).",
+    description: "Print verbose output (implies --wait)",
   },
   {
     name: "--log",
-    description: "Log level to use. Default is 'info' when unspecified.",
+    description: "Log level to use. Default is 'info' when unspecified",
     args: {
       name: "level",
       default: "info",
@@ -181,19 +181,19 @@ const troubleshootingOptions: Fig.Option[] = [
   },
   {
     name: ["-s", "--status"],
-    description: "Print process usage and diagnostics information.",
+    description: "Print process usage and diagnostics information",
   },
   {
     name: "--prof-startup",
-    description: "Run CPU profiler during startup.",
+    description: "Run CPU profiler during startup",
   },
   {
     name: "--disable-extensions",
-    description: "Disable all installed extensions.",
+    description: "Disable all installed extensions",
   },
   {
     name: "--disable-extension",
-    description: "Disable an extension.",
+    description: "Disable an extension",
     args: {
       // TODO: Create extension ID generator
       name: "extension-id",
@@ -201,7 +201,7 @@ const troubleshootingOptions: Fig.Option[] = [
   },
   {
     name: "--sync",
-    description: "Turn sync on or off.",
+    description: "Turn sync on or off",
     args: {
       name: "sync",
       description: "Whether to enable sync",
@@ -211,7 +211,7 @@ const troubleshootingOptions: Fig.Option[] = [
   {
     name: "--inspect-extensions",
     description:
-      "Allow debugging and profiling of extensions. Check the developer tools for the connection URI.",
+      "Allow debugging and profiling of extensions. Check the developer tools for the connection URI",
     args: {
       name: "port",
     },
@@ -219,18 +219,18 @@ const troubleshootingOptions: Fig.Option[] = [
   {
     name: "--inspect-brk-extensions",
     description:
-      "Allow debugging and profiling of extensions with the extension host being paused after start. Check the developer tools for the connection URI.",
+      "Allow debugging and profiling of extensions with the extension host being paused after start. Check the developer tools for the connection URI",
     args: {
       name: "port",
     },
   },
   {
     name: "--disable-gpu",
-    description: "Disable GPU hardware acceleration.",
+    description: "Disable GPU hardware acceleration",
   },
   {
     name: "--max-memory",
-    description: "Max memory size for a window (in Mbytes).",
+    description: "Max memory size for a window (in Mbytes)",
     args: {
       name: "memory",
       description: "Memory in megabytes",
@@ -238,7 +238,7 @@ const troubleshootingOptions: Fig.Option[] = [
   },
   {
     name: "--telemetry",
-    description: "Shows all telemetry events which VS code collects.",
+    description: "Shows all telemetry events which VS code collects",
   },
 ];
 

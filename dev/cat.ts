@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "cat",
-  description: "concatenate and print files",
+  description: "Concatenate and print files",
   args: {
     isVariadic: true,
     template: "filepaths",

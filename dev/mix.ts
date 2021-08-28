@@ -54,13 +54,11 @@ const completionSpec: Fig.Spec = {
         name: "task",
         isOptional: true,
         description: "Prints documentation for a given task",
-        generators: [
-          {
-            cache: { ttl: 10000 },
-            script: "mix help",
-            postProcess: makeTaskSuggestions,
-          },
-        ],
+        generators: {
+          cache: { ttl: 10000 },
+          script: "mix help",
+          postProcess: makeTaskSuggestions,
+        },
       },
       options: [
         {
@@ -82,13 +80,11 @@ const completionSpec: Fig.Spec = {
     name: "task",
     description: "Invokes the task (mix run) in a project",
     isOptional: true,
-    generators: [
-      {
-        cache: { ttl: 10000 },
-        script: "mix help",
-        postProcess: makeTaskSuggestions,
-      },
-    ],
+    generators: {
+      cache: { ttl: 10000 },
+      script: "mix help",
+      postProcess: makeTaskSuggestions,
+    },
   },
 
   options: [

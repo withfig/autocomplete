@@ -11,11 +11,11 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "events",
-  description: "Receive real time events from containers.",
-  args: [{ generators: getServices }],
+  description: "Receive real time events from containers",
+  args: { generators: getServices },
   options: [
     {
-      name: ["--json"],
+      name: "--json",
       description: "Output events as a stream of json objects",
     },
   ],
