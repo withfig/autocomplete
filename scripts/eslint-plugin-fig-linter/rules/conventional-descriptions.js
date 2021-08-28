@@ -2,22 +2,19 @@ const PROBLEMES = {
   trailingDot: "no trailing dot",
   leadingWhitespaces: "no leading whitespaces",
   trailingWhitespaces: "no trailing whitespaces",
-  uncapitalized: "first letter capitalized",
+  uncapitalized: "first letter capitalized"
 };
 
 module.exports = {
   meta: {
     type: "problem",
-    fixable: "code",
+    fixable: "code"
   },
   create: function (context) {
     return {
       'ObjectExpression > Property[key.name="description"]'(node) {
         const propValue = node.value;
-        if (
-          propValue.type === "Literal" &&
-          typeof propValue.value === "string"
-        ) {
+        if (propValue.type === "Literal" && typeof propValue.value === "string") {
           let problems = [];
           let newString = propValue.raw.slice(1, -1); // exclude the StringLiteral op but keep escapes
           if (newString.startsWith(" ")) {
@@ -41,13 +38,14 @@ module.exports = {
               node: propValue,
               message: `Descriptions should have: ${problems.join(", ")}.`,
               fix: function (fixer) {
-                const d = propValue.raw.slice(0, 1); // keep the original StringLiteral op
+                const d = propValue.raw.slice(0, 1) // keep the original StringLiteral op
                 return fixer.replaceText(propValue, d + newString + d);
-              },
+              }
             });
           }
         }
-      },
+      }
     };
-  },
+  }
 };
+
