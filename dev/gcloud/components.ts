@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "components",
   description: "List, install, update, or remove Google Cloud SDK components",

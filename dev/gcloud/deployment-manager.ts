@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "deployment-manager",
   description: "Manage deployments of cloud resources",

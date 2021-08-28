@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const versionList: Fig.Generator = {
   script: "pyenv install -l",
   postProcess: function (out) {

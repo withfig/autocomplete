@@ -1,4 +1,6 @@
 // Author: Yavko
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "eleventy",
   icon: "https://www.11ty.dev/favicon.ico",

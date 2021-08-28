@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "clear",
   description: "Clear the terminal screen",

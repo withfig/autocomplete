@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "head",
   description: "Output the first part of files",

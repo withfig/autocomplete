@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const RB_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_ruby.svg";
 

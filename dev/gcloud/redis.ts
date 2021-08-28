@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "redis",
   description: "Manage Cloud Memorystore Redis resources",

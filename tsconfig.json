@@ -8,5 +8,5 @@
     "noImplicitAny": false
   },
   "include": ["./dev/**/*", "dangerfile.ts"],
-  "files": ["./schemas/fig.d.ts"]
+  "files": ["schemas/index.d.ts"]
 }

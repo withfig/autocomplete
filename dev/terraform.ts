@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const workspaceList: Fig.Generator = {
   script: "terraform workspace list",
   postProcess: function (out) {

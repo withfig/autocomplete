@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "zip",
   description: "Package and compress (archive) files into zip file",

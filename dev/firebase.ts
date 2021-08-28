@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const projectAliasesGenerator: Fig.Generator = {
   script: "firebase projects:list", // this calls to a firebase server and is therefore slow
   postProcess: (out) => {

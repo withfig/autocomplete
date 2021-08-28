@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "debug",
   description: "Commands for interacting with the Cloud Debugger",

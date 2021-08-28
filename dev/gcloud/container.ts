@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "container",
   description: "Deploy and manage clusters of machines for running containers",

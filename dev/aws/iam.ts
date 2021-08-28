@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const ttl = 30000;
 
 const awsPrincipals = [

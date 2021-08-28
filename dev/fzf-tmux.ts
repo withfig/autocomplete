@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "fzf-tmux",
   description: "Opens a fuzzy finder in a tmux pane",

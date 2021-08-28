@@ -19,6 +19,8 @@
 
 // <arg1> [arg2...] -> This is just one argument that is NOT optional and is variadic
 
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "git_push_example",
   description: "",

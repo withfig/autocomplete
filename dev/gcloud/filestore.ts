@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "filestore",
   description: "Create and manipulate Cloud Filestore resources",

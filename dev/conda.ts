@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const getInstalledPackages: Fig.Generator = {
   script: "conda list",
   postProcess: function (out) {

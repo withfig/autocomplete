@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const bodyTempalates: Fig.Generator = {
   script: "quickmail template listall",
   postProcess: (output) => {

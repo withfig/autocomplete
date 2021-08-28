@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "policy-troubleshoot",
   description: "Troubleshoot Google Cloud Platform policies",

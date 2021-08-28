@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 import autojump from "./autojump";
 
 const completionSpec: Fig.Spec = {

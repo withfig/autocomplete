@@ -1,4 +1,6 @@
 // TODO: suggest available s3 endpoints
+import * as Fig from "../../schemas";
+
 const awsRegions = [
   "af-south-1",
   "eu-north-1",

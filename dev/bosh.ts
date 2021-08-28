@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const genericPathArg: Fig.Arg = {
   name: "PATH",
   template: "filepaths",

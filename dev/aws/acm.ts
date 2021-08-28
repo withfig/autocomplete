@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const postPrecessGenerator = (
   out: string,
   parentKey: string,

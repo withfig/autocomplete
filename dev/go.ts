@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const buildModeSuggestions: Fig.Suggestion[] = [
   {
     name: "archive",

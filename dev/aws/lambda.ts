@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const awsPrincipals = [
   "a4b.amazonaws.com",
   "acm-pca.amazonaws.com",

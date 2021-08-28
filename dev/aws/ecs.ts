@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const tags = ["TAGS"];
 const launchTypes = ["EC2", "FARGATE", "EXTERNAL"];
 const schedulingStrategy = ["REPLICA", "DAEMON"];

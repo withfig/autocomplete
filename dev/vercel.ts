@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const envVarList: Fig.Generator = {
   script: "vercel env ls",
   postProcess: function (out) {

@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "cloud-shell",
   description: "Manage Google Cloud Shell",

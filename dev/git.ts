@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
     ? out.split("\n").slice(1).join("\n")

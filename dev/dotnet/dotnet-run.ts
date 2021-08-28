@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 type LaunchProfile = {
   commandName: string;
 };

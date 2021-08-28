@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "pubsub",
   description: "Manage Cloud Pub/Sub topics, subscriptions, and snapshots",

@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "elastic-inference",
   description: "Elastic Inference public APIs",

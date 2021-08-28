@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "dataproc",
   description: "Create and manage Google Cloud Dataproc clusters and jobs",

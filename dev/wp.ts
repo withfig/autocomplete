@@ -3,6 +3,8 @@
 // 19 June 2021
 
 // To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
+import * as Fig from "../schemas";
+
 const global_parameter_path: Fig.Option = {
   name: "--path",
   insertValue: "--path=",

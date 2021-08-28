@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "access-context-manager",
   description: "Manage Access Context Manager resources",

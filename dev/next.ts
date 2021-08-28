@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const icon = "https://nextjs.org/static/favicon/favicon-16x16.png";
 
 const hostPortOptions: Fig.Option[] = [

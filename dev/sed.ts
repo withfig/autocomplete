@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const labelArg: Fig.Arg = {
   name: "label",
   isOptional: true,

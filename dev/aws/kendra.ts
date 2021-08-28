@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "kendra",
   description: "Amazon Kendra is a service for indexing large document sets",

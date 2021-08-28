@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "http",
   description: "HTTPie: command-line HTTP client for the API era",

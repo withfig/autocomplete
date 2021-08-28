@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const webhookSuggestions: Fig.Suggestion[] = [
   {
     name: "balance.available",

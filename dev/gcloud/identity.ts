@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "identity",
   description: "Manage Cloud Identity Groups and Memberships resources",

@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const listPackages: Fig.Generator = {
   script: "pip list",
   postProcess: function (out) {

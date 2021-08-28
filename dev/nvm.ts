@@ -1,4 +1,6 @@
 // args
+import * as Fig from "../schemas";
+
 const version: Fig.Arg = {
   name: "version",
   description: "Node version",

@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const commonOptions: Fig.Option = {
   name: ["-h", "--help"],
   description: "Display this help message",

@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const bazelBuildFiles: Fig.Generator = {
   script: `FILES=( $(find ./ -name BUILD) ); for f in $FILES; do echo "----$f"; cat "$f"; done`,
   // returns filepaths and contents in the form below, note the "----" to indicate the filepath

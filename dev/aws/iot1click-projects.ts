@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "iot1click-projects",
   description: "The AWS IoT 1-Click Projects API Reference",

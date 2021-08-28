@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "mediaconvert",
   description: "AWS Elemental MediaConvert",

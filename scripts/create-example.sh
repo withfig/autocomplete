@@ -35,6 +35,8 @@ else
 // To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 
 // The below is a dummy example for git. Make sure to change the file name!
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "$SPEC_NAME",
   description: "The stupid content tracker",

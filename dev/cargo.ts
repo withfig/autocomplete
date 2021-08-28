@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const testList: Fig.Generator = {
   script: function (context) {
     const base = context[context.length - 1];

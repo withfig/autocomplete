@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "fzf",
   description: "A general-purpose command-line fuzzy finder",

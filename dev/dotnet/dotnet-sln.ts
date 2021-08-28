@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const slnGenerator: Fig.Generator = {
   template: "filepaths",
   filterTemplateSuggestions(param) {

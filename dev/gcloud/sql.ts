@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "sql",
   description: "Create and manage Google Cloud SQL databases",

@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "builds",
   description: "Create and manage builds for Google Cloud Build",

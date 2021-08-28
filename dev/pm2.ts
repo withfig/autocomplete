@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const generators: Record<string, Fig.Generator> = {
   jsonFileGenerator: {
     template: "filepaths",

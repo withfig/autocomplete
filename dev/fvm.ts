@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const semverRegex = /((([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)/gm;
 
 const globalOptions: Fig.Option[] = [

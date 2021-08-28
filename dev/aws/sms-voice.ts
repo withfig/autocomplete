@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "sms-voice",
   description: "Pinpoint SMS and Voice Messaging public facing APIs",

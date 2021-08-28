@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const SPLIT_CHAR = "END";
 
 const getPackages: Fig.Generator = {

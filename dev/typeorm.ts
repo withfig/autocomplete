@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const cliOptions: Record<string, Fig.Option> = {
   help: { name: "--help", description: "Show help for command" },
   version: { name: ["-v", "--version"], description: "Show the version" },

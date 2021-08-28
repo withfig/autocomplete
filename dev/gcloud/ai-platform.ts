@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "ai-platform",
   description: "Manage AI Platform jobs and models",

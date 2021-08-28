@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const shortcut: Fig.Arg = {
   generators: {
     script: "shortcuts list",

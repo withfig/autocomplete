@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const youtubeDlGenerators: Record<string, Fig.Generator> = {
   listVideos: {
     script: (context) =>

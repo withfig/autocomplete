@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const JS_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_js.svg";
 const GRADLE_ICON =

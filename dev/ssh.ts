@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const pastConnections: Fig.Generator = {
   script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
   postProcess: function (out) {

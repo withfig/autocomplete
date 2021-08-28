@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "kms",
   description: "Manage cryptographic keys in the cloud",

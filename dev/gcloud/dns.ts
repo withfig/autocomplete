@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "dns",
   description: "Manage your Cloud DNS managed-zones and record-sets",

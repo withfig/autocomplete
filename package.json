@@ -60,7 +60,8 @@
     ]
   },
   "files": [
-    "specs/**/*.js"
+    "specs/**/*.js",
+    "schemas/"
   ],
   "author": "",
   "license": "ISC",

@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "composer",
   description: "Create and manage Cloud Composer Environments",

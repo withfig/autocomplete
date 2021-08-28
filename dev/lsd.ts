@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "lsd",
   description: "An ls command with a lot of pretty colors and some other stuff",

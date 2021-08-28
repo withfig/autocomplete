@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "glue",
   description: "AWS Glue Defines the public endpoint for the AWS Glue service",

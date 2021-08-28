@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "domains",
   description: "Manage domains for your Google Cloud projects",

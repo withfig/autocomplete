@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const kubernetesVersions = [
   "1.21.2",
   "1.20.4",

@@ -3,6 +3,8 @@
 // valet version 2.15.x
 // 19 June 2021
 
+import * as Fig from "../schemas";
+
 const global_option_help: Fig.Option = {
   name: ["-h", "--help"],
   description:

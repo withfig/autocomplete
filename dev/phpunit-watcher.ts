@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const tests: Fig.Generator = {
   script: "phpunit --list-tests",
   postProcess: function (out) {

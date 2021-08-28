@@ -1,4 +1,6 @@
 // TODO: dynamically suggest paths
+import * as Fig from "../schemas";
+
 const remote: Fig.Arg = {
   name: "remote:",
   generators: {

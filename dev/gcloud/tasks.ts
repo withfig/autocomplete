@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "tasks",
   description: "Manage Cloud Tasks queues and tasks",

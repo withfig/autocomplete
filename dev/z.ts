@@ -1,4 +1,6 @@
 // https://github.com/rupa/z
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "z",
   description: "CLI tool to jump around directories",

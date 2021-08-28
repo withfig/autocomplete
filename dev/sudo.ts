@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "sudo",
   description: "Execute a command as the superuser or another user",

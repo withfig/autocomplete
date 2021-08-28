@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "amp",
   description: "Amazon Managed Service for Prometheus",

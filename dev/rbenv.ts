@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const versionArg: Fig.Arg = {
   name: "version",
   isOptional: true,

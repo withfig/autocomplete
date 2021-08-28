@@ -1,4 +1,6 @@
 // Author: Yavko
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "cot",
   icon: "https://coteditor.com/favicon@2x.png",

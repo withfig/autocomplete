@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 interface ProjectDetails {
   projectType: string;
 }

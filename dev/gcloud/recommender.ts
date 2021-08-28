@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "recommender",
   description: "Manage Cloud recommendations and recommendation rules",

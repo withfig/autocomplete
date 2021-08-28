@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "mysql",
   description: "Mysql is a terminal-based front-end to MySQL",

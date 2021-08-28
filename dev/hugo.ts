@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const help = (name: string): Fig.Option => ({
   name: ["-h", "--help"],
   description: `help for ${name}`,

@@ -1,4 +1,6 @@
 // Options used commonly
+import * as Fig from "../schemas";
+
 const OPTION_CONFIG: Fig.Option = {
   name: ["-c", "--config"],
   args: {

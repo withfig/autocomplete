@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const domain: Fig.Arg = {
   name: "domain",
   generators: {

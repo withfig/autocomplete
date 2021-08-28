@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const consoleModeArg: Fig.Arg = {
   name: "mode",
   default: "auto",

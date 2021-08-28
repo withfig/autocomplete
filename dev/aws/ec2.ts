@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const postProcessAWS: Fig.Generator["postProcess"] = (out) => {
   if (out.startsWith("fatal:")) {
     return [];

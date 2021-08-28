@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const appGenerator = (path: string): Fig.Generator => ({
   script: `ls -1 ${path}`,
   postProcess: (out) => {

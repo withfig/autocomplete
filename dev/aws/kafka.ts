@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "kafka",
   description: "The operations for managing an Amazon MSK cluster",

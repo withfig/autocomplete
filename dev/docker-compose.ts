@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "docker-compose",
   description: "Define and run multi-container applications with Docker",

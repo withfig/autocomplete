@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "apigatewayv2",
   description: "Amazon API Gateway V2",

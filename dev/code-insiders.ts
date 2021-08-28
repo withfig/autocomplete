@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 import code from "./code";
 
 const completionSpec: Fig.Spec = {

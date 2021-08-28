@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const DOTNET_ICON =
   "https://upload.wikimedia.org/wikipedia/commons/a/a3/.NET_Logo.svg";
 

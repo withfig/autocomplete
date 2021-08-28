@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "active-directory",
   description: "Manage Managed Microsoft AD resources",

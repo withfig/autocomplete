@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "scheduler",
   description: "Manage Cloud Scheduler jobs and schedules",

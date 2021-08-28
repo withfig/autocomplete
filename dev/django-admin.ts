@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const DJANGO_ICON_URL = "https://github.com/django.png";
 
 const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [

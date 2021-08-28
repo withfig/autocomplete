@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "auth",
   description: "Manage oauth2 credentials for the Google Cloud SDK",

@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "unzip",
   description: "Extract compressed files in a ZIP archive",

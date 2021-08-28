@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const getServices: Fig.Generator = {
   script: (context) => {
     if (context.includes("-f")) {

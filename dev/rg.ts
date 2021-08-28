@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const sortbyArg: Fig.Arg = {
   name: "Sortby",
   default: "none",

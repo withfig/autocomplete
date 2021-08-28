@@ -1,5 +1,7 @@
 // To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 
+import * as Fig from "../schemas";
+
 const options: Record<string, Fig.Option> = {
   awsProfile: {
     name: "--aws-profile",

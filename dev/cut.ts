@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "cut",
   description: "Cut out selected portions of each line of a file",

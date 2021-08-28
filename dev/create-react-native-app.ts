@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const ICONS = {
   help:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",

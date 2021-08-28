@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const projectGenerator: Fig.Generator = {
   template: ["filepaths", "folders"],
   filterTemplateSuggestions(param) {

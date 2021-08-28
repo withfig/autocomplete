@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "xcode-select",
   description: "Active developer directory for Xcode tools",

@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const searchGenerator: Fig.Generator = {
   script: function (context) {
     if (context[context.length - 1] === "") return "";

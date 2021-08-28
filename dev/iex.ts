@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 import elixirSpec from "./elixir";
 
 const completionSpec: Fig.Spec = {

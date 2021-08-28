@@ -3,6 +3,8 @@ Made by Yavko :)
 I made this for fun, I don't actually use emacs so if you do use it
 Here!
 */
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "emacs",
   description: "An extensible, customizable, free/libre text editor — and more",

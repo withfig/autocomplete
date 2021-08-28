@@ -2,6 +2,8 @@
 // var executeShellCommand: Fig.ExecuteShellCommandFunction;
 
 // The below is a dummy example for git. Make sure to change the file name!
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "mask",
   generateSpec: async (tokens, executeShellCommand) => {

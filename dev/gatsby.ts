@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const sharedOptions: Fig.Option[] = [
   {
     name: ["-H", "--host"],

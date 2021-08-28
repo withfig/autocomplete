@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const defaultOptions: Fig.Option[] = [
   {
     name: "--verbose",

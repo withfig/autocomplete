@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const suggestions: Fig.Suggestion[] = [
   {
     name: "create-react-native-app",

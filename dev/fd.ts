@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "fd",
   description: "A simple, fast and user-friendly alternative to 'find'",

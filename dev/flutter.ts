@@ -1,5 +1,7 @@
 // Flutter version 2.0.1
 
+import * as Fig from "../schemas";
+
 const flutterGenerators: Record<string, Fig.Generator> = {
   emulators: {
     script: "flutter emulators",

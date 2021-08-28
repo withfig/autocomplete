@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "mediapackage-vod",
   description: "AWS Elemental MediaPackage VOD",

@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "transcribe",
   description: "Operations and objects for transcribing speech to text",

@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const postProcessDockerPs: Fig.Generator["postProcess"] = (out) => {
   return out.split("\n").map((i) => {
     try {

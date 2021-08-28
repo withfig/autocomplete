@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const lsArg = (name: string, command: string): Fig.Arg => ({
   name,
   generators: {

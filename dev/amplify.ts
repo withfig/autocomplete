@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const envNameGenerator: Fig.Generator = {
   script: "amplify env list --json",
   postProcess: function (out) {

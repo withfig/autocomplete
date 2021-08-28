@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "medialive",
   description: "API for AWS Elemental MediaLive",

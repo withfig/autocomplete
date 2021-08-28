@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "chmod",
   description: "Change file modes or Access Control Lists",

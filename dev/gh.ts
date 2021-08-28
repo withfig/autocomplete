@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const ghGenerators: Record<string, Fig.Generator> = {
   listPR: {
     script: "gh pr list",

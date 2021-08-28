@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 type PostProcessFn = (out: string, context: string[]) => Fig.Suggestion[];
 
 interface NxProject {

@@ -1,3 +1,5 @@
+import * as Fig from "../../schemas";
+
 type PackageSearchResultData = {
   id: string;
   title: string;

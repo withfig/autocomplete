@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const FILTER_OPTION: Fig.Option = {
   name: "--filter",
   args: {

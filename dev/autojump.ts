@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const completionSpec: Fig.Spec = {
   name: "autojump",
   description: "A faster way to navigate your filesystem",

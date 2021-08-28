@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const generators: Record<string, Fig.Generator> = {
   servicesgenerators: {
     script: "brew services list | sed -e 's/ .*//' | tail -n +2",

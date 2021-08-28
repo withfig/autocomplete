@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 interface ComposerArgument {
   name: string;
   is_required: boolean;

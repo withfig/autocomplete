@@ -1,4 +1,6 @@
 // Internal scripts for this spec, not to be confused with the script property
+import * as Fig from "../schemas";
+
 const scripts = {
   types: "kubectl api-resources -o name",
   typeWithoutName: function (type) {

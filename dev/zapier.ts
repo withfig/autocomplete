@@ -1,3 +1,5 @@
+import * as Fig from "../schemas";
+
 const formatFlag: Fig.Option = {
   name: ["-f", "--format"],
   description:
