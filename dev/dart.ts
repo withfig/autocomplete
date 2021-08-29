@@ -1,26 +1,26 @@
 const dartEntryPoint: Fig.Arg = {
   name: "dart-entry-point",
-  description: "The Dart file containing the main function.",
+  description: "The Dart file containing the main function",
 };
 
 const portOrBindAddress: Fig.Arg = {
   name: "port-or-address",
-  description: "Port to observe.",
+  description: "Port to observe",
 };
 
 const offline: Fig.Option = {
   name: ["--offline", "--no-offline"],
-  description: "Use cached packages instead of accessing the network.",
+  description: "Use cached packages instead of accessing the network",
 };
 
 const dryRun: Fig.Option = {
   name: ["-n", "--dry-run"],
-  description: "Report what dependencies would change but don't change any.",
+  description: "Report what dependencies would change but don't change any",
 };
 
 const precompile: Fig.Option = {
   name: ["--precompile", "--no-precompile"],
-  description: "Precompile executables in immediate dependencies.",
+  description: "Precompile executables in immediate dependencies",
 };
 
 const define: Fig.Subcommand = {
@@ -29,26 +29,26 @@ const define: Fig.Subcommand = {
     "Define an environment declaration. To specify multiple declarations, use multiple options or use commas to separate key-value pairs. For example: dart compile aot-snapshot -D a=1,b=2 main.dart",
   args: {
     name: "key-value-pairs",
-    description: "Key-value pairs to define in Dart script.",
+    description: "Key-value pairs to define in Dart script",
     isVariadic: true,
   },
 };
 
 const verbosity: Fig.Option = {
   name: "--verbosity",
-  description: "Sets the verbosity level of the compilation.",
+  description: "Sets the verbosity level of the compilation",
   args: {
     name: "verbosity-level",
     suggestions: [
-      { name: "all", description: "Show all messages." },
-      { name: "error", description: "Show only error messages." },
+      { name: "all", description: "Show all messages" },
+      { name: "error", description: "Show only error messages" },
       {
         name: "info",
-        description: "Show error, warning, and info messages.",
+        description: "Show error, warning, and info messages",
       },
       {
         name: "warning",
-        description: "Show only error and warning messages.",
+        description: "Show only error and warning messages",
       },
     ],
   },
@@ -57,14 +57,14 @@ const verbosity: Fig.Option = {
 const globalOptions: Fig.Option[] = [
   {
     name: ["-h", "--help"],
-    description: "Print this usage information.",
+    description: "Print this usage information",
   },
 ];
 
 const compileOptions: Fig.Subcommand[] = [
   {
     name: ["-o", "--output"],
-    description: "Write the output to <file-name>.",
+    description: "Write the output to <file-name>",
     args: { name: "dart-entry-point", template: "filepaths" },
   },
   verbosity,
@@ -74,29 +74,29 @@ const aotOptions: Fig.Subcommand[] = [
   define,
   {
     name: "--enable-asserts",
-    description: "Enable assert statements.",
+    description: "Enable assert statements",
   },
   {
     name: ["-p", "--packages"],
     description:
-      "Get package locations from the specified file instead of .packages. <path> can be relative or absolute.",
+      "Get package locations from the specified file instead of .packages. <path> can be relative or absolute",
     args: {
       name: "args-path",
-      description: "The path to draw packages from.",
+      description: "The path to draw packages from",
       template: "filepaths",
     },
   },
   {
     name: ["--no-sound-null-safety", "--sound-null-safety"],
-    description: "Respect the nullability of types at runtime.",
+    description: "Respect the nullability of types at runtime",
   },
   {
     name: ["-S", "--save-debugging-info"],
     description:
-      "Remove debugging information from the output and save it separately to the specified file.. <path> can be relative or absolute.",
+      "Remove debugging information from the output and save it separately to the specified file.. <path> can be relative or absolute",
     args: {
       name: "debug-info-path",
-      description: "The path to write debugging info to.",
+      description: "The path to write debugging info to",
       template: "filepaths",
     },
   },
@@ -104,87 +104,87 @@ const aotOptions: Fig.Subcommand[] = [
 
 const completionSpec: Fig.Spec = {
   name: "dart",
-  description: "A command-line utility for Dart development.",
+  description: "A command-line utility for Dart development",
   options: [
     ...globalOptions,
     {
       name: ["-v", "--verbose"],
-      description: "Print verbose output.",
+      description: "Print verbose output",
     },
     {
       name: "--version",
-      description: "Current Dart version.",
+      description: "Current Dart version",
     },
     {
       name: "--enable-analytics",
-      description: "Enables analytics.",
+      description: "Enables analytics",
     },
     {
       name: "--disable-analytics",
-      description: "Disables analytics.",
+      description: "Disables analytics",
     },
   ],
   subcommands: [
     {
       name: "analyze",
-      description: "Analyze Dart code in a directory.",
+      description: "Analyze Dart code in a directory",
       options: [
         ...globalOptions,
         {
           name: "--fatal-infos",
-          description: "Treat info level issues as fatal.",
+          description: "Treat info level issues as fatal",
         },
         {
           name: ["--fatal-warnings", "--no-fatal-warnings"],
-          description: "Treat warning level issues as fatal (defaults to on).",
+          description: "Treat warning level issues as fatal (defaults to on)",
         },
       ],
       args: {
         name: "directory",
-        description: "Dart project directoy to analyze.",
+        description: "Dart project directoy to analyze",
         template: "folders",
       },
     },
     {
       name: "compile",
-      description: "Compile Dart to various formats.",
+      description: "Compile Dart to various formats",
       options: [...globalOptions],
       subcommands: [
         {
           name: "aot-snapshot",
-          description: "Compile Dart to an AOT snapshot.",
+          description: "Compile Dart to an AOT snapshot",
           args: dartEntryPoint,
           options: [...globalOptions, ...compileOptions, ...aotOptions],
         },
         {
           name: "exe",
-          description: "Compile Dart to a self-contained executable.",
+          description: "Compile Dart to a self-contained executable",
           args: dartEntryPoint,
           options: [...globalOptions, ...compileOptions, ...aotOptions],
         },
         {
           name: "jit-snapshot",
-          description: "Compile Dart to a JIT snapshot.",
+          description: "Compile Dart to a JIT snapshot",
           args: dartEntryPoint,
           options: [...globalOptions, ...compileOptions],
         },
         {
           name: "js",
-          description: "Compile Dart to JavaScript.",
+          description: "Compile Dart to JavaScript",
           args: dartEntryPoint,
           options: [
             ...globalOptions,
             ...compileOptions,
             {
               name: ["-m", "--minified"],
-              description: "Generate minified output.",
+              description: "Generate minified output",
             },
             define,
           ],
         },
         {
           name: "kernel",
-          description: "Compile Dart to a kernel snapshot.",
+          description: "Compile Dart to a kernel snapshot",
           args: dartEntryPoint,
           options: [...globalOptions, ...compileOptions],
         },
@@ -192,36 +192,36 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create",
-      description: "Create a new Dart project.",
+      description: "Create a new Dart project",
       options: [
         ...globalOptions,
         {
           name: ["-t", "--template"],
-          description: "The project template to use.",
+          description: "The project template to use",
           args: {
             name: "template-type",
             default: "console-simple",
             suggestions: [
               {
                 name: "console-simple",
-                description: "A simple command-line application.",
+                description: "A simple command-line application",
               },
               {
                 name: "console-full",
-                description: "A command-line application sample.",
+                description: "A command-line application sample",
               },
               {
                 name: "package-simple",
                 description:
-                  "A starting point for Dart libraries or applications.",
+                  "A starting point for Dart libraries or applications",
               },
               {
                 name: "server-simple",
-                description: "A web server built using package:shelf.",
+                description: "A web server built using package:shelf",
               },
               {
                 name: "web-simple",
-                description: "A web app that uses only core Dart libraries.",
+                description: "A web app that uses only core Dart libraries",
               },
             ],
           },
@@ -229,93 +229,93 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--pub", "--no-pub"],
           description:
-            "Whether to run 'pub get' after the project has been created. Default to on.",
+            "Whether to run 'pub get' after the project has been created. Default to on",
         },
         {
           name: "--foce",
           description:
-            "Force project generation, even if the target directory already exists.",
+            "Force project generation, even if the target directory already exists",
         },
       ],
     },
     {
       name: "fix",
-      description: "pply automated fixes to Dart source code.",
+      description: "Pply automated fixes to Dart source code",
       options: [
         ...globalOptions,
         {
           name: ["-n", "--dry-run"],
-          description: "Preview the proposed changes but make no changes.",
+          description: "Preview the proposed changes but make no changes",
         },
         {
           name: "--apply",
-          description: "Apply the proposed changes.",
+          description: "Apply the proposed changes",
         },
       ],
     },
     {
       name: "format",
-      description: "Idiomatically format Dart source code.",
+      description: "Idiomatically format Dart source code",
       options: [
         ...globalOptions,
         {
           name: ["-v", "--verbose"],
-          description: "Show all options and flags with --help.",
+          description: "Show all options and flags with --help",
         },
         {
           name: ["-o", "--output"],
-          description: "Set where to write formatted output.",
+          description: "Set where to write formatted output",
           args: [
             {
               name: "json",
-              description: "Print code and selection as JSON.",
+              description: "Print code and selection as JSON",
             },
             {
               name: "none",
-              description: "Discard output.",
+              description: "Discard output",
             },
             {
               name: "show",
-              description: "Print code to terminal.",
+              description: "Print code to terminal",
             },
             {
               name: "write",
-              description: "Overwrite formatted files on disk.",
+              description: "Overwrite formatted files on disk",
             },
             {
               name: "--show",
-              description: "Set which filenames to print.",
+              description: "Set which filenames to print",
               suggestions: [
                 {
                   name: "all",
-                  description: "All visited files and directories.",
+                  description: "All visited files and directories",
                 },
                 {
                   name: "changed",
                   description:
-                    "nly the names of files whose formatting is changed.",
+                    "Nly the names of files whose formatting is changed",
                 },
                 {
                   name: "none",
-                  description: "No file names or directories.",
+                  description: "No file names or directories",
                 },
               ],
             },
             {
               name: "--summary",
-              description: "Show the specified summary after formatting.",
+              description: "Show the specified summary after formatting",
               suggestions: [
                 {
                   name: "line",
-                  description: "Single-line summary.",
+                  description: "Single-line summary",
                 },
                 {
                   name: "none",
-                  description: "No summary.",
+                  description: "No summary",
                 },
                 {
                   name: "profile",
-                  description: "How long it took to format each file.",
+                  description: "How long it took to format each file",
                 },
               ],
             },
@@ -324,65 +324,65 @@ const completionSpec: Fig.Spec = {
         {
           name: "--set-exit-if-changed",
           description:
-            "Return exist code 1 if there are any formatting changes.",
+            "Return exist code 1 if there are any formatting changes",
         },
         {
           name: "--fix",
-          description: "Apply all style fixes.",
+          description: "Apply all style fixes",
         },
         {
           name: "--fix-doc-comments",
-          description: "Use triple slash for documentation comments.",
+          description: "Use triple slash for documentation comments",
         },
         {
           name: "--fix-function-typedefs",
-          description: "Use new syntax for function type typedefs.",
+          description: "Use new syntax for function type typedefs",
         },
         {
           name: "--fix-named-default-separator",
           description:
-            "Use '=' as the separator before named parameter default values.",
+            "Use '=' as the separator before named parameter default values",
         },
         {
           name: "--fix-optional-const",
-          description: "Remove 'const' keyword inside constant context.",
+          description: "Remove 'const' keyword inside constant context",
         },
         {
           name: "--fix-optional-new",
-          description: "Remove 'new' keyword.",
+          description: "Remove 'new' keyword",
         },
         {
           name: "--fix-single-cascade-statements",
           description:
-            "Remove unnecessary single cascades from expression statements.",
+            "Remove unnecessary single cascades from expression statements",
         },
         {
           name: ["-l", "--line-length"],
-          description: "Wrap lines longer than this. Defaults to 80.",
+          description: "Wrap lines longer than this. Defaults to 80",
           args: {
             name: "line-length",
-            description: "Line length to wrap.",
+            description: "Line length to wrap",
             suggestions: ["80", "120"],
           },
         },
         {
           name: ["-i", "--indent"],
-          description: "Add this many spaces of leading indentation.",
+          description: "Add this many spaces of leading indentation",
           args: { name: "number-of-spaces" },
         },
         {
           name: "--follow-links",
           description:
-            "Follow links to files and directories. If unset, links will be ignored.",
+            "Follow links to files and directories. If unset, links will be ignored",
         },
         {
           name: "--version",
-          description: "Show dart_style version.",
+          description: "Show dart_style version",
         },
         {
           name: "--selection",
           description:
-            "Track selection (given as 'start:length') through formatting.",
+            "Track selection (given as 'start:length') through formatting",
         },
         {
           name: "--stdin-name",
@@ -393,33 +393,33 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "files-or-directory",
-        description: "The files or directories to format.",
+        description: "The files or directories to format",
         template: ["filepaths", "folders"],
       },
     },
     {
       name: "migrate",
-      description: "Perform null safety migration on a project.",
+      description: "Perform null safety migration on a project",
       options: [
         ...globalOptions,
         {
           name: ["-v", "--verbose"],
-          description: "Show additional command output.",
+          description: "Show additional command output",
         },
         {
           name: "--apply-changes",
           description:
-            "Apply the proposed null safety changes to the files on disk.",
+            "Apply the proposed null safety changes to the files on disk",
         },
         {
           name: "--ignore-errors",
           description:
-            "Attempt to perform null safety analysis even if the project has analysis errors.",
+            "Attempt to perform null safety analysis even if the project has analysis errors",
         },
         {
           name: "--skip-import-check",
           description:
-            "Go ahead with migration even if some imported files have not yet been migrated.",
+            "Go ahead with migration even if some imported files have not yet been migrated",
         },
         {
           name: ["--web-preview", "--no-web-preview"],
@@ -437,120 +437,119 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preview-port",
           description:
-            "Run the preview server on the specified port. If not specified, dynamically allocate a port.",
+            "Run the preview server on the specified port. If not specified, dynamically allocate a port",
           args: {
             name: "port",
           },
         },
         {
           name: "--summary",
-          description:
-            "Output a machine-readable summary of migration changes.",
+          description: "Output a machine-readable summary of migration changes",
           args: { name: "path", template: "filepaths" },
         },
         {
           name: "--ignore-exceptions",
           description:
-            "Attempt to perform null safety analysis even if exceptions occur.",
+            "Attempt to perform null safety analysis even if exceptions occur",
         },
         {
           name: "--sdk-path",
-          description: "The path to the Dart SDK.",
+          description: "The path to the Dart SDK",
           args: { name: "sdk-path" },
         },
       ],
     },
     {
       name: "pub",
-      description: "Work with packages.",
+      description: "Work with packages",
       options: [
         ...globalOptions,
         {
           name: ["--trace", "--no-trace"],
-          description: "Print debugging information when an error occurs.",
+          description: "Print debugging information when an error occurs",
         },
         {
           name: ["-v", "--verbose"],
-          description: "Shortcut for '--verbose=all.",
+          description: "Shortcut for '--verbose=all",
         },
       ],
       subcommands: [
         {
           name: "add",
-          description: "Add a dependency to pubspec.yaml.",
+          description: "Add a dependency to pubspec.yaml",
           options: [
             ...globalOptions,
             {
               name: ["-d", "--dev"],
               description:
-                "Adds package to the development dependencies instead.",
+                "Adds package to the development dependencies instead",
             },
             {
               name: "--git-url",
-              description: "Git URL of the package.",
+              description: "Git URL of the package",
             },
             {
               name: "--git-ref",
-              description: "Git branch or commit to be retrieved.",
+              description: "Git branch or commit to be retrieved",
             },
             {
               name: "--git-path",
-              description: "Path of git package in repository.",
+              description: "Path of git package in repository",
             },
             {
               name: "--hosted-url",
-              description: "URL of package host server.",
+              description: "URL of package host server",
             },
             {
               name: "--path",
-              description: "Local path.",
+              description: "Local path",
             },
             {
               name: "--sdk",
-              description: "SDK source for package.",
+              description: "SDK source for package",
             },
             offline,
             dryRun,
             precompile,
           ],
-          args: { name: "package", description: "Dart pub package name." },
+          args: { name: "package", description: "Dart pub package name" },
         },
         {
           name: "cache",
-          description: "Work with the Pub system cache.",
+          description: "Work with the Pub system cache",
           options: [...globalOptions],
           subcommands: [
             {
               name: "add",
-              description: "Install a package.",
+              description: "Install a package",
               options: [
                 ...globalOptions,
                 {
                   name: "--all",
-                  description: "Install all matching versions.",
+                  description: "Install all matching versions",
                 },
                 {
                   name: ["-v", "--version"],
-                  description: "Version constraint.",
+                  description: "Version constraint",
                 },
               ],
               args: { name: "package" },
             },
             {
               name: "repair",
-              description: "Reinstall a cached package.",
+              description: "Reinstall a cached package",
               options: globalOptions,
             },
           ],
         },
         {
           name: "deps",
-          description: "Print package dependencies.",
+          description: "Print package dependencies",
           options: [
             ...globalOptions,
             {
               name: ["-s", "--style"],
-              description: "How output should be displayed.",
+              description: "How output should be displayed",
               args: {
                 name: "style",
                 suggestions: ["compact", "tree", "list"],
@@ -563,33 +562,33 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--executables",
-              description: "List all available executables.",
+              description: "List all available executables",
             },
           ],
         },
         {
           name: "downgrade",
-          description: "Downgrade packages in a Flutter project.",
+          description: "Downgrade packages in a Flutter project",
           options: [...globalOptions, offline, dryRun],
         },
         {
           name: "get",
-          description: "Get packages in a Flutter project.",
+          description: "Get packages in a Flutter project",
           options: [...globalOptions, offline, dryRun, precompile],
         },
         {
           name: "global",
-          description: "Work with Pub global packages.",
+          description: "Work with Pub global packages",
           options: globalOptions,
           subcommands: [
             {
               name: "activate",
-              description: "Make a package's executables globally available.",
+              description: "Make a package's executables globally available",
               options: [
                 ...globalOptions,
                 {
                   name: ["-s", "--source"],
-                  description: "The source used to find the package.",
+                  description: "The source used to find the package",
                   args: {
                     name: "source",
                     suggestions: ["git", "hosted", "path"],
@@ -597,44 +596,44 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--no-executables",
-                  description: "Do not put executables on PATH.",
+                  description: "Do not put executables on PATH",
                 },
                 {
                   name: ["-x", "--executable"],
-                  description: "Executable(s) to place on PATH.",
+                  description: "Executable(s) to place on PATH",
                 },
                 {
                   name: "--overwrite",
                   description:
-                    "Overwrite executables from other packages with the same name.",
+                    "Overwrite executables from other packages with the same name",
                 },
                 {
                   name: ["-u", "--hosted-url"],
                   description:
-                    "A custom pub server URL for the package. Only applies when using the 'hosted' source.",
+                    "A custom pub server URL for the package. Only applies when using the 'hosted' source",
                   args: { name: "url" },
                 },
               ],
             },
             {
               name: "deactivate",
-              description: "Remove a previously activated package.",
+              description: "Remove a previously activated package",
               options: globalOptions,
             },
             {
               name: "list",
-              description: "List globally activated packages.",
+              description: "List globally activated packages",
               options: globalOptions,
             },
             {
               name: "run",
               description:
-                "Run an executable from a globally activated package.",
+                "Run an executable from a globally activated package",
               options: [
                 ...globalOptions,
                 {
                   name: ["--enable-asserts", "--no-enable-asserts"],
-                  description: "Enable assert statements.",
+                  description: "Enable assert statements",
                 },
                 {
                   name: "--enable-experiement",
@@ -645,7 +644,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--sound-null-safety", "--no-sound-null-safety"],
                   description:
-                    "Override the default null safety execution mode.",
+                    "Override the default null safety execution mode",
                 },
               ],
             },
@@ -658,19 +657,19 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "logout",
-          description: "Log out of pub.dev..",
+          description: "Log out of pub.dev",
           options: globalOptions,
         },
         {
           name: "outdated",
           description:
-            "Analyze dependencies to find which ones can be upgraded.",
+            "Analyze dependencies to find which ones can be upgraded",
           options: [
             ...globalOptions,
             {
               name: ["--color", "--no-color"],
               description:
-                "Whether to color the output. Defaults to color when connected to a terminal, and no-colo otherwise.",
+                "Whether to color the output. Defaults to color when connected to a terminal, and no-colo otherwise",
             },
             {
               name: ["--dependency-overrides", "--no-dependency-overrides"],
@@ -684,12 +683,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--json",
-              description: "Output the results sing a JSON format.",
+              description: "Output the results sing a JSON format",
             },
             {
               name: "--mode",
               description:
-                "Highlight versions with PROPERTY. Only packages missing the PROPERTY will be included unless --show-all.",
+                "Highlight versions with PROPERTY. Only packages missing the PROPERTY will be included unless --show-all",
               args: {
                 name: "property",
                 suggestions: ["outdated", "null-safety"],
@@ -703,37 +702,37 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--show-all", "--no-show-all"],
               description:
-                "Include dependencies that are already fullfilling --mode.",
+                "Include dependencies that are already fullfilling --mode",
             },
             {
               name: ["--transitive", "--no-transitive"],
               description:
-                "Show transitive dependencies. (defaults to off in --mode=null-safety.",
+                "Show transitive dependencies. (defaults to off in --mode=null-safety",
             },
           ],
         },
         {
           name: "publish",
-          description: "Publish the current package to pub.dartlang.org.",
+          description: "Publish the current package to pub.dartlang.org",
           options: [
             ...globalOptions,
             dryRun,
             {
               name: ["-f", "--force"],
               description:
-                "Publish without confirmation if there are no errors.",
+                "Publish without confirmation if there are no errors",
             },
           ],
         },
         {
           name: "remove",
-          description: "Removes a dependency from the current package.",
+          description: "Removes a dependency from the current package",
           options: [...globalOptions, offline, dryRun, precompile],
         },
         {
           name: "upgrade",
           description:
-            "Upgrade the current package's dependencies to latest versions.",
+            "Upgrade the current package's dependencies to latest versions",
           options: [
             ...globalOptions,
             offline,
@@ -742,18 +741,18 @@ const completionSpec: Fig.Spec = {
             {
               name: "--null-safety",
               description:
-                "Upgrade constraints in pubspec.yaml to null-safety versions.",
+                "Upgrade constraints in pubspec.yaml to null-safety versions",
             },
             {
               name: "--major-versions",
               description:
-                "Upgrades packages to their latest resolvable versions, and updates pubspec.yaml.",
+                "Upgrades packages to their latest resolvable versions, and updates pubspec.yaml",
             },
           ],
         },
         {
           name: "uploader",
-          description: "Manage uploaders for a package on pub.dev.",
+          description: "Manage uploaders for a package on pub.dev",
           options: [
             ...globalOptions,
             {
@@ -767,25 +766,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "run",
-      description: "Run a Dart program.",
+      description: "Run a Dart program",
       options: [
         ...globalOptions,
         {
           name: "--observe",
           description:
-            "The observe flag is a convenience flag used to run a program with a set of common options. Useful for debugging.",
+            "The observe flag is a convenience flag used to run a program with a set of common options. Useful for debugging",
           args: portOrBindAddress,
         },
         {
           name: "--enable-vm-service",
           description:
-            "Enables the VM service and listens on the specified port for connections (default port number is 8181, default dind address is localhost).",
+            "Enables the VM service and listens on the specified port for connections (default port number is 8181, default dind address is localhost)",
           args: portOrBindAddress,
         },
         {
           name: ["--pause-isolates-on-exit", "--no-pause-isolates-on-exit"],
           description:
-            "Pause isolates on exit when running with --enable-vm-service.",
+            "Pause isolates on exit when running with --enable-vm-service",
         },
         {
           name: [
@@ -793,7 +792,7 @@ const completionSpec: Fig.Spec = {
             "--no-pause-isolates-on-unhandled-exceptions",
           ],
           description:
-            "Pause isolates when an unhandled exception is encountered when running with --enable-vm-service.",
+            "Pause isolates when an unhandled exception is encountered when running with --enable-vm-service",
         },
         {
           name: [
@@ -801,33 +800,33 @@ const completionSpec: Fig.Spec = {
             "--no-warn-on-pause-with-no-debugger",
           ],
           description:
-            "Print a warning when an isolate pauses with no attahed debugger when running with --enable-vm-service.",
+            "Print a warning when an isolate pauses with no attahed debugger when running with --enable-vm-service",
         },
         {
           name: ["--pause-isolates-on-start", "--no-pause-isolates-on-start"],
           description:
-            "Pause isolates on start when running with --enable-vm-service.",
+            "Pause isolates on start when running with --enable-vm-service",
         },
         {
           name: ["--enable-asserts", "--no-enable-asserts"],
-          description: "Enable assert statements.",
+          description: "Enable assert statements",
         },
         verbosity,
         define,
         {
           name: "--disable-service-auth-codes",
           description:
-            "Disables the requirement for an authentication code to communicate with the VM service. Authentication codes help protect against CSRF attacks, so it is not recommended to diable them unless behind a firewall on a secure device.",
+            "Disables the requirement for an authentication code to communicate with the VM service. Authentication codes help protect against CSRF attacks, so it is not recommended to diable them unless behind a firewall on a secure device",
         },
         {
           name: "--enable-service-port-fallback",
           description:
-            "When the VM service is told to bind to a particular port, fallback to 0 if it fails to bind intead of failing to start.",
+            "When the VM service is told to bind to a particular port, fallback to 0 if it fails to bind intead of failing to start",
         },
         {
           name: "--namespace",
           description:
-            "The path to a directory that dart:io calls will treat as the root of the filesystem.",
+            "The path to a directory that dart:io calls will treat as the root of the filesystem",
           args: {
             name: "path",
             template: "folders",
@@ -836,7 +835,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--root-certs-file",
           description:
-            "The The path to a file containing the trusted root certificates to use for secure socket connections.",
+            "The The path to a file containing the trusted root certificates to use for secure socket connections",
           args: {
             name: "path",
             template: "filepaths",
@@ -845,7 +844,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--root-certs-cache",
           description:
-            "The path to a cache directory containing the trusted root certificates to use for secure socket connections.",
+            "The path to a cache directory containing the trusted root certificates to use for secure socket connections",
           args: {
             name: "path",
             template: "folders",
@@ -865,15 +864,15 @@ const completionSpec: Fig.Spec = {
               {
                 name: "const-functions",
                 description:
-                  "Allow more of the Dart language to be executed in const expressions.",
+                  "Allow more of the Dart language to be executed in const expressions",
               },
               {
                 name: "extension-methods",
-                description: "Extension methods (no-op - enabled by default).",
+                description: "Extension methods (no-op - enabled by default)",
               },
               {
                 name: "extension-types",
-                description: "Extension types.",
+                description: "Extension types",
               },
               {
                 name: "generic-metadata",
@@ -891,15 +890,15 @@ const completionSpec: Fig.Spec = {
               },
               {
                 name: "triple-shift",
-                description: "Triple-shift operator.",
+                description: "Triple-shift operator",
               },
               {
                 name: "value-class",
-                description: "Value classes.",
+                description: "Value classes",
               },
               {
                 name: "variance",
-                description: "Sound variance.",
+                description: "Sound variance",
               },
             ],
           },
@@ -908,7 +907,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "test",
-      description: "Run tests for a project.",
+      description: "Run tests for a project",
       options: [...globalOptions],
     },
   ],
