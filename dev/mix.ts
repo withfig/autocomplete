@@ -47,12 +47,18 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "pp",
+      name: "help",
       description:
         "Prints documentation for a given task (Lists all the tasks if no task is specified)",
       args: {
-        isOptional: true,
         name: "task",
+        isOptional: true,
+        description: "Prints documentation for a given task",
+        generators: {
+          cache: { ttl: 10000 },
+          script: "mix help",
+          postProcess: makeTaskSuggestions,
+        },
       },
       options: [
         {
@@ -70,6 +76,17 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
+  args: {
+    name: "task",
+    description: "Invokes the task (mix run) in a project",
+    isOptional: true,
+    generators: {
+      cache: { ttl: 10000 },
+      script: "mix help",
+      postProcess: makeTaskSuggestions,
+    },
+  },
+
   options: [
     {
       name: ["-h", "--help"],
@@ -81,5 +98,19 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+function makeTaskSuggestions(out: string) {
+  return out
+    .split("\n")
+    .map((task) => {
+      const [name, description] = task.split("#").map((x) => x.trim());
+
+      return {
+        name: name.replace(/^mix /, ""),
+        description,
+      };
+    }) // filter out commands which do not make sense here
+    .filter((x) => !["mix", "help", "new", "iex -S mix"].includes(x.name));
+}
 
 export default completionSpec;
