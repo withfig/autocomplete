@@ -3,6 +3,26 @@ const dartEntryPoint: Fig.Arg = {
   description: "The Dart file containing the main function.",
 };
 
+const portOrBindAddress: Fig.Arg = {
+  name: "port-or-address",
+  description: "Port to observe.",
+};
+
+const offline: Fig.Option = {
+  name: ["--offline", "--no-offline"],
+  description: "Use cached packages instead of accessing the network.",
+};
+
+const dryRun: Fig.Option = {
+  name: ["-n", "--dry-run"],
+  description: "Report what dependencies would change but don't change any.",
+};
+
+const precompile: Fig.Option = {
+  name: ["--precompile", "--no-precompile"],
+  description: "Precompile executables in immediate dependencies.",
+};
+
 const define: Fig.Subcommand = {
   name: ["-D", "--define"],
   description:
@@ -11,6 +31,26 @@ const define: Fig.Subcommand = {
     name: "key-value-pairs",
     description: "Key-value pairs to define in Dart script.",
     isVariadic: true,
+  },
+};
+
+const verbosity: Fig.Option = {
+  name: "--verbosity",
+  description: "Sets the verbosity level of the compilation.",
+  args: {
+    name: "verbosity-level",
+    suggestions: [
+      { name: "all", description: "Show all messages." },
+      { name: "error", description: "Show only error messages." },
+      {
+        name: "info",
+        description: "Show error, warning, and info messages.",
+      },
+      {
+        name: "warning",
+        description: "Show only error and warning messages.",
+      },
+    ],
   },
 };
 
@@ -27,25 +67,7 @@ const compileOptions: Fig.Subcommand[] = [
     description: "Write the output to <file-name>.",
     args: { name: "dart-entry-point", template: "filepaths" },
   },
-  {
-    name: "--verbosity",
-    description: "Sets the verbosity level of the compilation.",
-    args: {
-      name: "verbosity-level",
-      suggestions: [
-        { name: "all", description: "Show all messages." },
-        { name: "error", description: "Show only error messages." },
-        {
-          name: "info",
-          description: "Show error, warning, and info messages.",
-        },
-        {
-          name: "warning",
-          description: "Show only error and warning messages.",
-        },
-      ],
-    },
-  },
+  verbosity,
 ];
 
 const aotOptions: Fig.Subcommand[] = [
@@ -426,6 +448,16 @@ const completionSpec: Fig.Spec = {
             "Output a machine-readable summary of migration changes.",
           args: { name: "path", template: "filepaths" },
         },
+        {
+          name: "--ignore-exceptions",
+          description:
+            "Attempt to perform null safety analysis even if exceptions occur.",
+        },
+        {
+          name: "--sdk-path",
+          description: "The path to the Dart SDK.",
+          args: { name: "sdk-path" },
+        },
       ],
     },
     {
@@ -455,103 +487,424 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--git-url",
-              description: "Git URL of the package",
+              description: "Git URL of the package.",
             },
             {
-              name: "--",
-              description: "",
+              name: "--git-ref",
+              description: "Git branch or commit to be retrieved.",
             },
             {
-              name: "--",
-              description: "",
+              name: "--git-path",
+              description: "Path of git package in repository.",
             },
             {
-              name: "--",
-              description: "",
+              name: "--hosted-url",
+              description: "URL of package host server.",
             },
             {
-              name: "--",
-              description: "",
+              name: "--path",
+              description: "Local path.",
             },
             {
-              name: "--",
-              description: "",
+              name: "--sdk",
+              description: "SDK source for package.",
             },
-            {
-              name: "--",
-              description: "",
-            },
-            {
-              name: "--",
-              description: "",
-            },
-            {
-              name: ["-n", "--dry-run"],
-              description: "",
-            },
-            {
-              name: "--",
-              description: "",
-            },
+            offline,
+            dryRun,
+            precompile,
           ],
-          args: { name: "package" },
+          args: { name: "package", description: "Dart pub package name." },
         },
         {
           name: "cache",
           description: "Work with the Pub system cache.",
+          options: [...globalOptions],
+          subcommands: [
+            {
+              name: "add",
+              description: "Install a package.",
+              options: [
+                ...globalOptions,
+                {
+                  name: "--all",
+                  description: "Install all matching versions.",
+                },
+                {
+                  name: ["-v", "--version"],
+                  description: "Version constraint.",
+                },
+              ],
+              args: { name: "package" },
+            },
+            {
+              name: "repair",
+              description: "Reinstall a cached package.",
+              options: globalOptions,
+            },
+          ],
         },
         {
           name: "deps",
           description: "Print package dependencies.",
+          options: [
+            ...globalOptions,
+            {
+              name: ["-s", "--style"],
+              description: "How output should be displayed.",
+              args: {
+                name: "style",
+                suggestions: ["compact", "tree", "list"],
+              },
+            },
+            {
+              name: ["--dev", "--no-dev"],
+              description:
+                "Whether to include dev dependencies. (defaults to on)",
+            },
+            {
+              name: "--executables",
+              description: "List all available executables.",
+            },
+          ],
         },
         {
           name: "downgrade",
           description: "Downgrade packages in a Flutter project.",
+          options: [...globalOptions, offline, dryRun],
         },
         {
           name: "get",
           description: "Get packages in a Flutter project.",
+          options: [...globalOptions, offline, dryRun, precompile],
         },
         {
           name: "global",
           description: "Work with Pub global packages.",
+          options: globalOptions,
+          subcommands: [
+            {
+              name: "activate",
+              description: "Make a package's executables globally available.",
+              options: [
+                ...globalOptions,
+                {
+                  name: ["-s", "--source"],
+                  description: "The source used to find the package.",
+                  args: {
+                    name: "source",
+                    suggestions: ["git", "hosted", "path"],
+                  },
+                },
+                {
+                  name: "--no-executables",
+                  description: "Do not put executables on PATH.",
+                },
+                {
+                  name: ["-x", "--executable"],
+                  description: "Executable(s) to place on PATH.",
+                },
+                {
+                  name: "--overwrite",
+                  description:
+                    "Overwrite executables from other packages with the same name.",
+                },
+                {
+                  name: ["-u", "--hosted-url"],
+                  description:
+                    "A custom pub server URL for the package. Only applies when using the 'hosted' source.",
+                  args: { name: "url" },
+                },
+              ],
+            },
+            {
+              name: "deactivate",
+              description: "Remove a previously activated package.",
+              options: globalOptions,
+            },
+            {
+              name: "list",
+              description: "List globally activated packages.",
+              options: globalOptions,
+            },
+            {
+              name: "run",
+              description:
+                "Run an executable from a globally activated package.",
+              options: [
+                ...globalOptions,
+                {
+                  name: ["--enable-asserts", "--no-enable-asserts"],
+                  description: "Enable assert statements.",
+                },
+                {
+                  name: "--enable-experiement",
+                  description:
+                    "Runs the executable in a VM with the given experiments enabled. (Will disable snapshotting, resulting in slower startup)",
+                  args: { name: "experiment" },
+                },
+                {
+                  name: ["--sound-null-safety", "--no-sound-null-safety"],
+                  description:
+                    "Override the default null safety execution mode.",
+                },
+              ],
+            },
+          ],
         },
         {
           name: "login",
           description: "Log into pub.dev",
+          options: globalOptions,
         },
         {
           name: "logout",
           description: "Log out of pub.dev..",
+          options: globalOptions,
         },
         {
           name: "outdated",
           description:
             "Analyze dependencies to find which ones can be upgraded.",
+          options: [
+            ...globalOptions,
+            {
+              name: ["--color", "--no-color"],
+              description:
+                "Whether to color the output. Defaults to color when connected to a terminal, and no-colo otherwise.",
+            },
+            {
+              name: ["--dependency-overrides", "--no-dependency-overrides"],
+              description:
+                "Show resolutions with 'dependency_overries'. (defaults to on)",
+            },
+            {
+              name: ["--dev-dependencies", "--no-dev-dependencies"],
+              description:
+                "Take dev dependencies into account. (defaults to on)",
+            },
+            {
+              name: "--json",
+              description: "Output the results sing a JSON format.",
+            },
+            {
+              name: "--mode",
+              description:
+                "Highlight versions with PROPERTY. Only packages missing the PROPERTY will be included unless --show-all.",
+              args: {
+                name: "property",
+                suggestions: ["outdated", "null-safety"],
+              },
+            },
+            {
+              name: ["--prereleases", "--no-prereleases"],
+              description:
+                "Include prereleases in latest version. (defaults to on in --mode=null-safety",
+            },
+            {
+              name: ["--show-all", "--no-show-all"],
+              description:
+                "Include dependencies that are already fullfilling --mode.",
+            },
+            {
+              name: ["--transitive", "--no-transitive"],
+              description:
+                "Show transitive dependencies. (defaults to off in --mode=null-safety.",
+            },
+          ],
         },
         {
           name: "publish",
           description: "Publish the current package to pub.dartlang.org.",
+          options: [
+            ...globalOptions,
+            dryRun,
+            {
+              name: ["-f", "--force"],
+              description:
+                "Publish without confirmation if there are no errors.",
+            },
+          ],
         },
         {
           name: "remove",
-          description: "Removes a dependency from the current package..",
+          description: "Removes a dependency from the current package.",
+          options: [...globalOptions, offline, dryRun, precompile],
         },
         {
           name: "upgrade",
           description:
             "Upgrade the current package's dependencies to latest versions.",
+          options: [
+            ...globalOptions,
+            offline,
+            dryRun,
+            precompile,
+            {
+              name: "--null-safety",
+              description:
+                "Upgrade constraints in pubspec.yaml to null-safety versions.",
+            },
+            {
+              name: "--major-versions",
+              description:
+                "Upgrades packages to their latest resolvable versions, and updates pubspec.yaml.",
+            },
+          ],
         },
         {
           name: "uploader",
           description: "Manage uploaders for a package on pub.dev.",
+          options: [
+            ...globalOptions,
+            {
+              name: "--package",
+              description:
+                "The package whose uploaders will be modified. (defaults to the current package)",
+            },
+          ],
         },
       ],
     },
     {
       name: "run",
       description: "Run a Dart program.",
-      options: [...globalOptions],
+      options: [
+        ...globalOptions,
+        {
+          name: "--observe",
+          description:
+            "The observe flag is a convenience flag used to run a program with a set of common options. Useful for debugging.",
+          args: portOrBindAddress,
+        },
+        {
+          name: "--enable-vm-service",
+          description:
+            "Enables the VM service and listens on the specified port for connections (default port number is 8181, default dind address is localhost).",
+          args: portOrBindAddress,
+        },
+        {
+          name: ["--pause-isolates-on-exit", "--no-pause-isolates-on-exit"],
+          description:
+            "Pause isolates on exit when running with --enable-vm-service.",
+        },
+        {
+          name: [
+            "--pause-isolates-on-unhandled-exceptions",
+            "--no-pause-isolates-on-unhandled-exceptions",
+          ],
+          description:
+            "Pause isolates when an unhandled exception is encountered when running with --enable-vm-service.",
+        },
+        {
+          name: [
+            "--warn-on-pause-with-no-debugger",
+            "--no-warn-on-pause-with-no-debugger",
+          ],
+          description:
+            "Print a warning when an isolate pauses with no attahed debugger when running with --enable-vm-service.",
+        },
+        {
+          name: ["--pause-isolates-on-start", "--no-pause-isolates-on-start"],
+          description:
+            "Pause isolates on start when running with --enable-vm-service.",
+        },
+        {
+          name: ["--enable-asserts", "--no-enable-asserts"],
+          description: "Enable assert statements.",
+        },
+        verbosity,
+        define,
+        {
+          name: "--disable-service-auth-codes",
+          description:
+            "Disables the requirement for an authentication code to communicate with the VM service. Authentication codes help protect against CSRF attacks, so it is not recommended to diable them unless behind a firewall on a secure device.",
+        },
+        {
+          name: "--enable-service-port-fallback",
+          description:
+            "When the VM service is told to bind to a particular port, fallback to 0 if it fails to bind intead of failing to start.",
+        },
+        {
+          name: "--namespace",
+          description:
+            "The path to a directory that dart:io calls will treat as the root of the filesystem.",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: "--root-certs-file",
+          description:
+            "The The path to a file containing the trusted root certificates to use for secure socket connections.",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--root-certs-cache",
+          description:
+            "The path to a cache directory containing the trusted root certificates to use for secure socket connections.",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: "--trace-loading",
+          description: "Enables tracing of library and script loading",
+        },
+        {
+          name: "--enable-experiment",
+          description:
+            "Enable one or more experimental features (see dart.dev/go/experiments",
+          args: {
+            name: "experiment",
+            suggestions: [
+              {
+                name: "const-functions",
+                description:
+                  "Allow more of the Dart language to be executed in const expressions.",
+              },
+              {
+                name: "extension-methods",
+                description: "Extension methods (no-op - enabled by default).",
+              },
+              {
+                name: "extension-types",
+                description: "Extension types.",
+              },
+              {
+                name: "generic-metadata",
+                description:
+                  "Allow annotations to accept type arguments; also allow generic function types as type arguments",
+              },
+              {
+                name: "non-nullable",
+                description: "Non-nullable by default. (no-op - on by default)",
+              },
+              {
+                name: "nonfunction-type-aliases",
+                description:
+                  "Type aliases define a <type>, not just <functionType>. (no-op - enabled by default)",
+              },
+              {
+                name: "triple-shift",
+                description: "Triple-shift operator.",
+              },
+              {
+                name: "value-class",
+                description: "Value classes.",
+              },
+              {
+                name: "variance",
+                description: "Sound variance.",
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: "test",
