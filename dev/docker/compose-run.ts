@@ -11,13 +11,13 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "run",
-  description: "Run a one-off command on a service.",
+  description: "Run a one-off command on a service",
   args: { generators: getServices },
   options: [
     {
       name: ["-d", "--detach"],
       description:
-        "Detached mode: Run container in the background, print new container name.",
+        "Detached mode: Run container in the background, print new container name",
     },
     {
       name: "--name",
@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--entrypoint",
-      description: "Override the entrypoint of the image.",
+      description: "Override the entrypoint of the image",
       args: {
         name: "CMD",
       },
@@ -58,11 +58,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--no-deps",
-      description: "Don't start linked services.",
+      description: "Don't start linked services",
     },
     {
       name: "--rm",
-      description: "Remove container after run. Ignored in detached mode.",
+      description: "Remove container after run. Ignored in detached mode",
     },
     {
       name: ["-p", "--publish"],
@@ -74,12 +74,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--service-ports",
       description:
-        "Run command with the service's ports enabled and mapped to the host.",
+        "Run command with the service's ports enabled and mapped to the host",
     },
     {
       name: "--use-aliases",
       description:
-        "Use the service's network aliases in the network(s) the container connects to.",
+        "Use the service's network aliases in the network(s) the container connects to",
     },
     {
       name: ["-v", "--volume"],
@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-T",
       description:
-        "Disable pseudo-tty allocation. By default `docker-compose run` allocates a TTY.",
+        "Disable pseudo-tty allocation. By default `docker-compose run` allocates a TTY",
     },
     {
       name: ["-w", "--workdir"],

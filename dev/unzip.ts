@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "unzip",
-  description: "Extract compressed files in a ZIP archive.",
+  description: "Extract compressed files in a ZIP archive",
   args: {
     name: "file",
     template: "filepaths",

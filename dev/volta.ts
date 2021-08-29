@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--force"],
-          description: "Write over an existing file, if any.",
+          description: "Write over an existing file, if any",
         },
         ...defaultOptions,
         {

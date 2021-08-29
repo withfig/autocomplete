@@ -1,23 +1,23 @@
 const completionSpec: Fig.Spec = {
   name: "connect",
   description:
-    "Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale. Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents. There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide. You can connect programmatically to an AWS service by using an endpoint. For a list of Amazon Connect endpoints, see Amazon Connect Endpoints.  Working with contact flows? Check out the Amazon Connect Flow language.",
+    "Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale. Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents. There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide. You can connect programmatically to an AWS service by using an endpoint. For a list of Amazon Connect endpoints, see Amazon Connect Endpoints.  Working with contact flows? Check out the Amazon Connect Flow language",
   subcommands: [
     {
       name: "associate-approved-origin",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Associates an approved origin to an Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Associates an approved origin to an Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--origin",
-          description: "The domain to add to your allow list.",
+          description: "The domain to add to your allow list",
           args: {
             name: "string",
           },
@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -44,25 +44,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-instance-storage-config",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Associates a storage resource type for the first time. You can only associate one type of storage configuration in a single call. This means, for example, that you can't define an instance with multiple S3 buckets for storing chat transcripts. This API does not create a resource that doesn't exist. It only associates it to the instance. Ensure that the resource being specified in the storage configuration, like an S3 bucket, exists when being used for association.",
+        "This API is in preview release for Amazon Connect and is subject to change. Associates a storage resource type for the first time. You can only associate one type of storage configuration in a single call. This means, for example, that you can't define an instance with multiple S3 buckets for storing chat transcripts. This API does not create a resource that doesn't exist. It only associates it to the instance. Ensure that the resource being specified in the storage configuration, like an S3 bucket, exists when being used for association",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-type",
-          description: "A valid resource type.",
+          description: "A valid resource type",
           args: {
             name: "string",
           },
         },
         {
           name: "--storage-config",
-          description: "A valid storage type.",
+          description: "A valid storage type",
           args: {
             name: "structure",
           },
@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -89,11 +89,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-lambda-function",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Allows the specified Amazon Connect instance to access the specified Lambda function.",
+        "This API is in preview release for Amazon Connect and is subject to change. Allows the specified Amazon Connect instance to access the specified Lambda function",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -101,7 +101,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-arn",
           description:
-            "The Amazon Resource Name (ARN) for the Lambda function being associated. Maximum number of characters allowed is 140.",
+            "The Amazon Resource Name (ARN) for the Lambda function being associated. Maximum number of characters allowed is 140",
           args: {
             name: "string",
           },
@@ -109,7 +109,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -117,7 +117,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -128,18 +128,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-lex-bot",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Allows the specified Amazon Connect instance to access the specified Amazon Lex bot.",
+        "This API is in preview release for Amazon Connect and is subject to change. Allows the specified Amazon Connect instance to access the specified Amazon Lex bot",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--lex-bot",
-          description: "The Amazon Lex box to associate with the instance.",
+          description: "The Amazon Lex box to associate with the instance",
           args: {
             name: "structure",
           },
@@ -147,7 +147,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -155,7 +155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -166,25 +166,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-queue-quick-connects",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Associates a set of quick connects with a queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Associates a set of quick connects with a queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-ids",
-          description: "The quick connects to associate with this queue.",
+          description: "The quick connects to associate with this queue",
           args: {
             name: "list",
           },
@@ -192,7 +192,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -200,7 +200,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -210,25 +210,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "associate-routing-profile-queues",
-      description: "Associates a set of queues with a routing profile.",
+      description: "Associates a set of queues with a routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-configs",
-          description: "The queues to associate with this routing profile.",
+          description: "The queues to associate with this routing profile",
           args: {
             name: "list",
           },
@@ -236,7 +236,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -244,7 +244,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -255,18 +255,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "associate-security-key",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Associates a security key to the instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Associates a security key to the instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "A valid security key in PEM format.",
+          description: "A valid security key in PEM format",
           args: {
             name: "string",
           },
@@ -274,7 +274,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -282,7 +282,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -293,18 +293,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-contact-flow",
       description:
-        "Creates a contact flow for the specified Amazon Connect instance. You can also create and update contact flows using the Amazon Connect Flow language.",
+        "Creates a contact flow for the specified Amazon Connect instance. You can also create and update contact flows using the Amazon Connect Flow language",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the contact flow.",
+          description: "The name of the contact flow",
           args: {
             name: "string",
           },
@@ -312,28 +312,28 @@ const completionSpec: Fig.Spec = {
         {
           name: "--type",
           description:
-            "The type of the contact flow. For descriptions of the available types, see Choose a Contact Flow Type in the Amazon Connect Administrator Guide.",
+            "The type of the contact flow. For descriptions of the available types, see Choose a Contact Flow Type in the Amazon Connect Administrator Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "The description of the contact flow.",
+          description: "The description of the contact flow",
           args: {
             name: "string",
           },
         },
         {
           name: "--content",
-          description: "The content of the contact flow.",
+          description: "The content of the contact flow",
           args: {
             name: "string",
           },
         },
         {
           name: "--tags",
-          description: "One or more tags.",
+          description: "One or more tags",
           args: {
             name: "map",
           },
@@ -341,7 +341,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -349,7 +349,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -360,11 +360,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-instance",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect.",
+        "This API is in preview release for Amazon Connect and is subject to change. Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect",
       options: [
         {
           name: "--client-token",
-          description: "The idempotency token.",
+          description: "The idempotency token",
           args: {
             name: "string",
           },
@@ -372,45 +372,45 @@ const completionSpec: Fig.Spec = {
         {
           name: "--identity-management-type",
           description:
-            "The type of identity management for your Amazon Connect users.",
+            "The type of identity management for your Amazon Connect users",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-alias",
-          description: "The name for your instance.",
+          description: "The name for your instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--directory-id",
-          description: "The identifier for the directory.",
+          description: "The identifier for the directory",
           args: {
             name: "string",
           },
         },
         {
           name: "--inbound-calls-enabled",
-          description: "Your contact center handles incoming contacts.",
+          description: "Your contact center handles incoming contacts",
         },
         {
           name: "--no-inbound-calls-enabled",
-          description: "Your contact center handles incoming contacts.",
+          description: "Your contact center handles incoming contacts",
         },
         {
           name: "--outbound-calls-enabled",
-          description: "Your contact center allows outbound calls.",
+          description: "Your contact center allows outbound calls",
         },
         {
           name: "--no-outbound-calls-enabled",
-          description: "Your contact center allows outbound calls.",
+          description: "Your contact center allows outbound calls",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -418,7 +418,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -429,46 +429,46 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-integration-association",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Create an AppIntegration association with an Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Create an AppIntegration association with an Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--integration-type",
-          description: "The type of information to be ingested.",
+          description: "The type of information to be ingested",
           args: {
             name: "string",
           },
         },
         {
           name: "--integration-arn",
-          description: "The Amazon Resource Name (ARN) of the integration.",
+          description: "The Amazon Resource Name (ARN) of the integration",
           args: {
             name: "string",
           },
         },
         {
           name: "--source-application-url",
-          description: "The URL for the external application.",
+          description: "The URL for the external application",
           args: {
             name: "string",
           },
         },
         {
           name: "--source-application-name",
-          description: "The name of the external application.",
+          description: "The name of the external application",
           args: {
             name: "string",
           },
         },
         {
           name: "--source-type",
-          description: "The type of the data source.",
+          description: "The type of the data source",
           args: {
             name: "string",
           },
@@ -476,7 +476,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -484,7 +484,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -495,25 +495,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-queue",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Creates a new queue for the specified Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Creates a new queue for the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the queue.",
+          description: "The name of the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "The description of the queue.",
+          description: "The description of the queue",
           args: {
             name: "string",
           },
@@ -521,14 +521,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--outbound-caller-config",
           description:
-            "The outbound caller ID name, number, and outbound whisper flow.",
+            "The outbound caller ID name, number, and outbound whisper flow",
           args: {
             name: "structure",
           },
         },
         {
           name: "--hours-of-operation-id",
-          description: "The identifier for the hours of operation.",
+          description: "The identifier for the hours of operation",
           args: {
             name: "string",
           },
@@ -536,7 +536,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-contacts",
           description:
-            "The maximum number of contacts that can be in the queue before it is considered full.",
+            "The maximum number of contacts that can be in the queue before it is considered full",
           args: {
             name: "integer",
           },
@@ -544,14 +544,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--quick-connect-ids",
           description:
-            "The quick connects available to agents who are working the queue.",
+            "The quick connects available to agents who are working the queue",
           args: {
             name: "list",
           },
         },
         {
           name: "--tags",
-          description: "One or more tags.",
+          description: "One or more tags",
           args: {
             name: "map",
           },
@@ -559,7 +559,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -567,7 +567,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -578,39 +578,39 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-quick-connect",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Creates a quick connect for the specified Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Creates a quick connect for the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the quick connect.",
+          description: "The name of the quick connect",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "The description of the quick connect.",
+          description: "The description of the quick connect",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-config",
-          description: "Configuration settings for the quick connect.",
+          description: "Configuration settings for the quick connect",
           args: {
             name: "structure",
           },
         },
         {
           name: "--tags",
-          description: "One or more tags.",
+          description: "One or more tags",
           args: {
             name: "map",
           },
@@ -618,7 +618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -626,7 +626,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -636,11 +636,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-routing-profile",
-      description: "Creates a new routing profile.",
+      description: "Creates a new routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -648,7 +648,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description:
-            "The name of the routing profile. Must not be more than 127 characters.",
+            "The name of the routing profile. Must not be more than 127 characters",
           args: {
             name: "string",
           },
@@ -656,14 +656,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            "Description of the routing profile. Must not be more than 250 characters.",
+            "Description of the routing profile. Must not be more than 250 characters",
           args: {
             name: "string",
           },
         },
         {
           name: "--default-outbound-queue-id",
-          description: "The default outbound queue for the routing profile.",
+          description: "The default outbound queue for the routing profile",
           args: {
             name: "string",
           },
@@ -671,7 +671,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--queue-configs",
           description:
-            "The inbound queues associated with the routing profile. If no queue is added, the agent can make only outbound calls.",
+            "The inbound queues associated with the routing profile. If no queue is added, the agent can make only outbound calls",
           args: {
             name: "list",
           },
@@ -679,14 +679,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--media-concurrencies",
           description:
-            "The channels that agents can handle in the Contact Control Panel (CCP) for this routing profile.",
+            "The channels that agents can handle in the Contact Control Panel (CCP) for this routing profile",
           args: {
             name: "list",
           },
         },
         {
           name: "--tags",
-          description: "One or more tags.",
+          description: "One or more tags",
           args: {
             name: "map",
           },
@@ -694,7 +694,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -702,7 +702,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -713,18 +713,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-use-case",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Creates a use case for an AppIntegration association.",
+        "This API is in preview release for Amazon Connect and is subject to change. Creates a use case for an AppIntegration association",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--integration-association-id",
-          description: "The identifier for the AppIntegration association.",
+          description: "The identifier for the AppIntegration association",
           args: {
             name: "string",
           },
@@ -732,7 +732,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--use-case-type",
           description:
-            "The type of use case to associate to the AppIntegration association. Each AppIntegration association can have only one of each use case type.",
+            "The type of use case to associate to the AppIntegration association. Each AppIntegration association can have only one of each use case type",
           args: {
             name: "string",
           },
@@ -740,7 +740,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -748,7 +748,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -759,12 +759,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-user",
       description:
-        "Creates a user account for the specified Amazon Connect instance. For information about how to create user accounts using the Amazon Connect console, see Add Users in the Amazon Connect Administrator Guide.",
+        "Creates a user account for the specified Amazon Connect instance. For information about how to create user accounts using the Amazon Connect console, see Add Users in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--username",
           description:
-            "The user name for the account. For instances not using SAML for identity management, the user name can include up to 20 characters. If you are using SAML for identity management, the user name can include up to 64 characters from [a-zA-Z0-9_-.\\@]+.",
+            "The user name for the account. For instances not using SAML for identity management, the user name can include up to 20 characters. If you are using SAML for identity management, the user name can include up to 64 characters from [a-zA-Z0-9_-.\\@]+",
           args: {
             name: "string",
           },
@@ -772,21 +772,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password",
           description:
-            "The password for the user account. A password is required if you are using Amazon Connect for identity management. Otherwise, it is an error to include a password.",
+            "The password for the user account. A password is required if you are using Amazon Connect for identity management. Otherwise, it is an error to include a password",
           args: {
             name: "string",
           },
         },
         {
           name: "--identity-info",
-          description: "The information about the identity of the user.",
+          description: "The information about the identity of the user",
           args: {
             name: "structure",
           },
         },
         {
           name: "--phone-config",
-          description: "The phone settings for the user.",
+          description: "The phone settings for the user",
           args: {
             name: "structure",
           },
@@ -794,42 +794,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "--directory-user-id",
           description:
-            "The identifier of the user account in the directory used for identity management. If Amazon Connect cannot access the directory, you can specify this identifier to authenticate users. If you include the identifier, we assume that Amazon Connect cannot access the directory. Otherwise, the identity information is used to authenticate users from your directory. This parameter is required if you are using an existing directory for identity management in Amazon Connect when Amazon Connect cannot access your directory to authenticate users. If you are using SAML for identity management and include this parameter, an error is returned.",
+            "The identifier of the user account in the directory used for identity management. If Amazon Connect cannot access the directory, you can specify this identifier to authenticate users. If you include the identifier, we assume that Amazon Connect cannot access the directory. Otherwise, the identity information is used to authenticate users from your directory. This parameter is required if you are using an existing directory for identity management in Amazon Connect when Amazon Connect cannot access your directory to authenticate users. If you are using SAML for identity management and include this parameter, an error is returned",
           args: {
             name: "string",
           },
         },
         {
           name: "--security-profile-ids",
-          description: "The identifier of the security profile for the user.",
+          description: "The identifier of the security profile for the user",
           args: {
             name: "list",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile for the user.",
+          description: "The identifier of the routing profile for the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--hierarchy-group-id",
-          description: "The identifier of the hierarchy group for the user.",
+          description: "The identifier of the hierarchy group for the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--tags",
-          description: "One or more tags.",
+          description: "One or more tags",
           args: {
             name: "map",
           },
@@ -837,7 +837,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -845,7 +845,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -855,12 +855,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-user-hierarchy-group",
-      description: "Creates a new user hierarchy group.",
+      description: "Creates a new user hierarchy group",
       options: [
         {
           name: "--name",
           description:
-            "The name of the user hierarchy group. Must not be more than 100 characters.",
+            "The name of the user hierarchy group. Must not be more than 100 characters",
           args: {
             name: "string",
           },
@@ -868,14 +868,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--parent-group-id",
           description:
-            "The identifier for the parent hierarchy group. The user hierarchy is created at level one if the parent group ID is null.",
+            "The identifier for the parent hierarchy group. The user hierarchy is created at level one if the parent group ID is null",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -883,7 +883,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -891,7 +891,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -902,11 +902,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-instance",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Deletes the Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Deletes the Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -914,7 +914,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -922,7 +922,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -933,18 +933,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-integration-association",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Deletes an AppIntegration association from an Amazon Connect instance. The association must not have any use cases associated with it.",
+        "This API is in preview release for Amazon Connect and is subject to change. Deletes an AppIntegration association from an Amazon Connect instance. The association must not have any use cases associated with it",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--integration-association-id",
-          description: "The identifier for the AppIntegration association.",
+          description: "The identifier for the AppIntegration association",
           args: {
             name: "string",
           },
@@ -952,7 +952,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -960,7 +960,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -971,18 +971,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-quick-connect",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Deletes a quick connect.",
+        "This API is in preview release for Amazon Connect and is subject to change. Deletes a quick connect",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-id",
-          description: "The identifier for the quick connect.",
+          description: "The identifier for the quick connect",
           args: {
             name: "string",
           },
@@ -990,7 +990,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -998,7 +998,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1009,25 +1009,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-use-case",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Deletes a use case from an AppIntegration association.",
+        "This API is in preview release for Amazon Connect and is subject to change. Deletes a use case from an AppIntegration association",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--integration-association-id",
-          description: "The identifier for the AppIntegration association.",
+          description: "The identifier for the AppIntegration association",
           args: {
             name: "string",
           },
         },
         {
           name: "--use-case-id",
-          description: "The identifier for the use case.",
+          description: "The identifier for the use case",
           args: {
             name: "string",
           },
@@ -1035,7 +1035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1043,7 +1043,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1054,18 +1054,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-user",
       description:
-        "Deletes a user account from the specified Amazon Connect instance. For information about what happens to a user's data when their account is deleted, see Delete Users from Your Amazon Connect Instance in the Amazon Connect Administrator Guide.",
+        "Deletes a user account from the specified Amazon Connect instance. For information about what happens to a user's data when their account is deleted, see Delete Users from Your Amazon Connect Instance in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--user-id",
-          description: "The identifier of the user.",
+          description: "The identifier of the user",
           args: {
             name: "string",
           },
@@ -1073,7 +1073,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1081,7 +1081,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1092,18 +1092,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-user-hierarchy-group",
       description:
-        "Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups.",
+        "Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups",
       options: [
         {
           name: "--hierarchy-group-id",
-          description: "The identifier of the hierarchy group.",
+          description: "The identifier of the hierarchy group",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1111,7 +1111,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1119,7 +1119,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1130,18 +1130,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-contact-flow",
       description:
-        "Describes the specified contact flow. You can also create and update contact flows using the Amazon Connect Flow language.",
+        "Describes the specified contact flow. You can also create and update contact flows using the Amazon Connect Flow language",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-flow-id",
-          description: "The identifier of the contact flow.",
+          description: "The identifier of the contact flow",
           args: {
             name: "string",
           },
@@ -1149,7 +1149,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1157,7 +1157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1168,18 +1168,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-hours-of-operation",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Describes the hours of operation.",
+        "This API is in preview release for Amazon Connect and is subject to change. Describes the hours of operation",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--hours-of-operation-id",
-          description: "The identifier for the hours of operation.",
+          description: "The identifier for the hours of operation",
           args: {
             name: "string",
           },
@@ -1187,7 +1187,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1195,7 +1195,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1206,11 +1206,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-instance",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns the current state of the specified instance identifier. It tracks the instance while it is being created and returns an error status, if applicable.  If an instance is not created successfully, the instance status reason field returns details relevant to the reason. The instance in a failed state is returned only for 24 hours after the CreateInstance API was invoked.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns the current state of the specified instance identifier. It tracks the instance while it is being created and returns an error status, if applicable.  If an instance is not created successfully, the instance status reason field returns details relevant to the reason. The instance in a failed state is returned only for 24 hours after the CreateInstance API was invoked",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1218,7 +1218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1226,7 +1226,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1237,18 +1237,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-instance-attribute",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Describes the specified instance attribute.",
+        "This API is in preview release for Amazon Connect and is subject to change. Describes the specified instance attribute",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--attribute-type",
-          description: "The type of attribute.",
+          description: "The type of attribute",
           args: {
             name: "string",
           },
@@ -1256,7 +1256,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1264,7 +1264,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1275,11 +1275,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-instance-storage-config",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Retrieves the current storage configurations for the specified resource type, association ID, and instance ID.",
+        "This API is in preview release for Amazon Connect and is subject to change. Retrieves the current storage configurations for the specified resource type, association ID, and instance ID",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1287,14 +1287,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-id",
           description:
-            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.",
+            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-type",
-          description: "A valid resource type.",
+          description: "A valid resource type",
           args: {
             name: "string",
           },
@@ -1302,7 +1302,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1310,7 +1310,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1321,18 +1321,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-queue",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Describes the specified queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Describes the specified queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
@@ -1340,7 +1340,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1348,7 +1348,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1359,18 +1359,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-quick-connect",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Describes the quick connect.",
+        "This API is in preview release for Amazon Connect and is subject to change. Describes the quick connect",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-id",
-          description: "The identifier for the quick connect.",
+          description: "The identifier for the quick connect",
           args: {
             name: "string",
           },
@@ -1378,7 +1378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1386,7 +1386,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1396,18 +1396,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-routing-profile",
-      description: "Describes the specified routing profile.",
+      description: "Describes the specified routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
@@ -1415,7 +1415,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1423,7 +1423,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1434,18 +1434,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-user",
       description:
-        "Describes the specified user account. You can find the instance ID in the console (it\u2019s the final part of the ARN). The console does not display the user IDs. Instead, list the users and note the IDs provided in the output.",
+        "Describes the specified user account. You can find the instance ID in the console (it\u2019s the final part of the ARN). The console does not display the user IDs. Instead, list the users and note the IDs provided in the output",
       options: [
         {
           name: "--user-id",
-          description: "The identifier of the user account.",
+          description: "The identifier of the user account",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1453,7 +1453,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1461,7 +1461,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1471,18 +1471,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-user-hierarchy-group",
-      description: "Describes the specified hierarchy group.",
+      description: "Describes the specified hierarchy group",
       options: [
         {
           name: "--hierarchy-group-id",
-          description: "The identifier of the hierarchy group.",
+          description: "The identifier of the hierarchy group",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1490,7 +1490,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1498,7 +1498,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1509,11 +1509,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-user-hierarchy-structure",
       description:
-        "Describes the hierarchy structure of the specified Amazon Connect instance.",
+        "Describes the hierarchy structure of the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1521,7 +1521,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1529,7 +1529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1540,18 +1540,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-approved-origin",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Revokes access to integrated applications from Amazon Connect.",
+        "This API is in preview release for Amazon Connect and is subject to change. Revokes access to integrated applications from Amazon Connect",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--origin",
-          description: "The domain URL of the integrated application.",
+          description: "The domain URL of the integrated application",
           args: {
             name: "string",
           },
@@ -1559,7 +1559,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1567,7 +1567,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1578,11 +1578,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-instance-storage-config",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Removes the storage type configurations for the specified resource type and association ID.",
+        "This API is in preview release for Amazon Connect and is subject to change. Removes the storage type configurations for the specified resource type and association ID",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1590,14 +1590,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-id",
           description:
-            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.",
+            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-type",
-          description: "A valid resource type.",
+          description: "A valid resource type",
           args: {
             name: "string",
           },
@@ -1605,7 +1605,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1613,7 +1613,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1624,11 +1624,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-lambda-function",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Remove the Lambda function from the dropdown options available in the relevant contact flow blocks.",
+        "This API is in preview release for Amazon Connect and is subject to change. Remove the Lambda function from the dropdown options available in the relevant contact flow blocks",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance..",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1636,7 +1636,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--function-arn",
           description:
-            "The Amazon Resource Name (ARN) of the Lambda function being disassociated.",
+            "The Amazon Resource Name (ARN) of the Lambda function being disassociated",
           args: {
             name: "string",
           },
@@ -1644,7 +1644,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1652,7 +1652,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1663,11 +1663,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-lex-bot",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Revokes authorization from the specified instance to access the specified Amazon Lex bot.",
+        "This API is in preview release for Amazon Connect and is subject to change. Revokes authorization from the specified instance to access the specified Amazon Lex bot",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1675,7 +1675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bot-name",
           description:
-            "The name of the Amazon Lex bot. Maximum character limit of 50.",
+            "The name of the Amazon Lex bot. Maximum character limit of 50",
           args: {
             name: "string",
           },
@@ -1683,7 +1683,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--lex-region",
           description:
-            "The Region in which the Amazon Lex bot has been created.",
+            "The Region in which the Amazon Lex bot has been created",
           args: {
             name: "string",
           },
@@ -1691,7 +1691,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1699,7 +1699,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1710,25 +1710,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-queue-quick-connects",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Disassociates a set of quick connects from a queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Disassociates a set of quick connects from a queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-ids",
-          description: "The quick connects to disassociate from the queue.",
+          description: "The quick connects to disassociate from the queue",
           args: {
             name: "list",
           },
@@ -1736,7 +1736,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1744,7 +1744,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1754,25 +1754,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "disassociate-routing-profile-queues",
-      description: "Disassociates a set of queues from a routing profile.",
+      description: "Disassociates a set of queues from a routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-references",
-          description: "The queues to disassociate from this routing profile.",
+          description: "The queues to disassociate from this routing profile",
           args: {
             name: "list",
           },
@@ -1780,7 +1780,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1788,7 +1788,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1799,11 +1799,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "disassociate-security-key",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Deletes the specified security key.",
+        "This API is in preview release for Amazon Connect and is subject to change. Deletes the specified security key",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1811,7 +1811,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-id",
           description:
-            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.",
+            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID",
           args: {
             name: "string",
           },
@@ -1819,7 +1819,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1827,7 +1827,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1837,19 +1837,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-contact-attributes",
-      description:
-        "Retrieves the contact attributes for the specified contact.",
+      description: "Retrieves the contact attributes for the specified contact",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--initial-contact-id",
-          description: "The identifier of the initial contact.",
+          description: "The identifier of the initial contact",
           args: {
             name: "string",
           },
@@ -1857,7 +1856,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1865,7 +1864,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1876,11 +1875,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-current-metric-data",
       description:
-        "Gets the real-time metric data from the specified Amazon Connect instance. For a description of each metric, see Real-time Metrics Definitions in the Amazon Connect Administrator Guide.",
+        "Gets the real-time metric data from the specified Amazon Connect instance. For a description of each metric, see Real-time Metrics Definitions in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1888,7 +1887,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "The queues, up to 100, or channels, to use to filter the metrics returned. Metric data is retrieved only for the resources associated with the queues or channels included in the filter. You can include both queue IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels are supported.",
+            "The queues, up to 100, or channels, to use to filter the metrics returned. Metric data is retrieved only for the resources associated with the queues or channels included in the filter. You can include both queue IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels are supported",
           args: {
             name: "structure",
           },
@@ -1896,7 +1895,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--groupings",
           description:
-            "The grouping applied to the metrics returned. For example, when grouped by QUEUE, the metrics returned apply to each queue rather than aggregated for all queues. If you group by CHANNEL, you should include a Channels filter. VOICE, CHAT, and TASK channels are supported. If no Grouping is included in the request, a summary of metrics is returned.",
+            "The grouping applied to the metrics returned. For example, when grouped by QUEUE, the metrics returned apply to each queue rather than aggregated for all queues. If you group by CHANNEL, you should include a Channels filter. VOICE, CHAT, and TASK channels are supported. If no Grouping is included in the request, a summary of metrics is returned",
           args: {
             name: "list",
           },
@@ -1912,14 +1911,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results. The token expires after 5 minutes from the time it is created. Subsequent requests that use the token must use the same request parameters as the request that generated the token.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results. The token expires after 5 minutes from the time it is created. Subsequent requests that use the token must use the same request parameters as the request that generated the token",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -1927,7 +1926,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1935,7 +1934,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1945,11 +1944,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-federation-token",
-      description: "Retrieves a token for federation.",
+      description: "Retrieves a token for federation",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1957,7 +1956,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1965,7 +1964,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1976,11 +1975,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-metric-data",
       description:
-        "Gets historical metric data from the specified Amazon Connect instance. For a description of each historical metric, see Historical Metrics Definitions in the Amazon Connect Administrator Guide.",
+        "Gets historical metric data from the specified Amazon Connect instance. For a description of each historical metric, see Historical Metrics Definitions in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -1988,7 +1987,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15. The start time cannot be earlier than 24 hours before the time of the request. Historical metrics are available only for 24 hours.",
+            "The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15. The start time cannot be earlier than 24 hours before the time of the request. Historical metrics are available only for 24 hours",
           args: {
             name: "timestamp",
           },
@@ -1996,7 +1995,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10, and must be later than the start time timestamp. The time range between the start and end time must be less than 24 hours.",
+            "The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10, and must be later than the start time timestamp. The time range between the start and end time must be less than 24 hours",
           args: {
             name: "timestamp",
           },
@@ -2004,7 +2003,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--filters",
           description:
-            "The queues, up to 100, or channels, to use to filter the metrics returned. Metric data is retrieved only for the resources associated with the queues or channels included in the filter. You can include both queue IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels are supported.",
+            "The queues, up to 100, or channels, to use to filter the metrics returned. Metric data is retrieved only for the resources associated with the queues or channels included in the filter. You can include both queue IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels are supported",
           args: {
             name: "structure",
           },
@@ -2012,7 +2011,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--groupings",
           description:
-            "The grouping applied to the metrics returned. For example, when results are grouped by queue, the metrics returned are grouped by queue. The values returned apply to the metrics for each queue rather than aggregated for all queues. The only supported grouping is QUEUE. If no grouping is specified, a summary of metrics for all queues is returned.",
+            "The grouping applied to the metrics returned. For example, when results are grouped by queue, the metrics returned are grouped by queue. The values returned apply to the metrics for each queue rather than aggregated for all queues. The only supported grouping is QUEUE. If no grouping is specified, a summary of metrics for all queues is returned",
           args: {
             name: "list",
           },
@@ -2028,14 +2027,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2043,7 +2042,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2051,7 +2050,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2059,7 +2058,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2067,7 +2066,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2075,7 +2074,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2086,11 +2085,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-approved-origins",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all approved origins associated with the instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all approved origins associated with the instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2098,14 +2097,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2113,7 +2112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2121,7 +2120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2129,7 +2128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2137,7 +2136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2145,7 +2144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2156,18 +2155,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-contact-flows",
       description:
-        "Provides information about the contact flows for the specified Amazon Connect instance. You can also create and update contact flows using the Amazon Connect Flow language. For more information about contact flows, see Contact Flows in the Amazon Connect Administrator Guide.",
+        "Provides information about the contact flows for the specified Amazon Connect instance. You can also create and update contact flows using the Amazon Connect Flow language. For more information about contact flows, see Contact Flows in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-flow-types",
-          description: "The type of contact flow.",
+          description: "The type of contact flow",
           args: {
             name: "list",
           },
@@ -2175,14 +2174,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2190,7 +2189,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2198,7 +2197,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2206,7 +2205,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2214,7 +2213,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2222,7 +2221,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2233,11 +2232,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-hours-of-operations",
       description:
-        "Provides information about the hours of operation for the specified Amazon Connect instance. For more information about hours of operation, see Set the Hours of Operation for a Queue in the Amazon Connect Administrator Guide.",
+        "Provides information about the hours of operation for the specified Amazon Connect instance. For more information about hours of operation, see Set the Hours of Operation for a Queue in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2245,14 +2244,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2260,7 +2259,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2268,7 +2267,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2276,7 +2275,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2284,7 +2283,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2292,7 +2291,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2303,11 +2302,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-instance-attributes",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all attribute types for the given instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all attribute types for the given instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2315,14 +2314,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2330,7 +2329,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2338,7 +2337,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2346,7 +2345,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2354,7 +2353,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2362,7 +2361,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2373,18 +2372,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-instance-storage-configs",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of storage configs for the identified instance and resource type.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of storage configs for the identified instance and resource type",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-type",
-          description: "A valid resource type.",
+          description: "A valid resource type",
           args: {
             name: "string",
           },
@@ -2392,14 +2391,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2407,7 +2406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2415,7 +2414,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2423,7 +2422,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2431,7 +2430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2439,7 +2438,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2450,19 +2449,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-instances",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Return a list of instances which are in active state, creation-in-progress state, and failed state. Instances that aren't successfully created (they are in a failed state) are returned only for 24 hours after the CreateInstance API was invoked.",
+        "This API is in preview release for Amazon Connect and is subject to change. Return a list of instances which are in active state, creation-in-progress state, and failed state. Instances that aren't successfully created (they are in a failed state) are returned only for 24 hours after the CreateInstance API was invoked",
       options: [
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2470,7 +2469,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2478,7 +2477,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2486,7 +2485,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2494,7 +2493,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2502,7 +2501,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2513,11 +2512,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-integration-associations",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Provides summary information about the AppIntegration associations for the specified Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Provides summary information about the AppIntegration associations for the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2525,14 +2524,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2540,7 +2539,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2548,7 +2547,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2556,7 +2555,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2564,7 +2563,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2572,7 +2571,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2583,11 +2582,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-lambda-functions",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all Lambda functions that display in the dropdown options in the relevant contact flow blocks.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all Lambda functions that display in the dropdown options in the relevant contact flow blocks",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2595,14 +2594,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2610,7 +2609,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2618,7 +2617,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2626,7 +2625,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2634,7 +2633,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2642,7 +2641,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2653,11 +2652,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-lex-bots",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all the Amazon Lex bots currently associated with the instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all the Amazon Lex bots currently associated with the instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2665,14 +2664,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2680,7 +2679,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2688,7 +2687,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2696,7 +2695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2704,7 +2703,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2712,7 +2711,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2723,25 +2722,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-phone-numbers",
       description:
-        "Provides information about the phone numbers for the specified Amazon Connect instance.  For more information about phone numbers, see Set Up Phone Numbers for Your Contact Center in the Amazon Connect Administrator Guide.",
+        "Provides information about the phone numbers for the specified Amazon Connect instance.  For more information about phone numbers, see Set Up Phone Numbers for Your Contact Center in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--phone-number-types",
-          description: "The type of phone number.",
+          description: "The type of phone number",
           args: {
             name: "list",
           },
         },
         {
           name: "--phone-number-country-codes",
-          description: "The ISO country code.",
+          description: "The ISO country code",
           args: {
             name: "list",
           },
@@ -2749,14 +2748,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2764,7 +2763,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2772,7 +2771,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2780,7 +2779,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2788,7 +2787,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2796,7 +2795,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2807,11 +2806,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-prompts",
       description:
-        "Provides information about the prompts for the specified Amazon Connect instance.",
+        "Provides information about the prompts for the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -2819,14 +2818,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2834,7 +2833,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2842,7 +2841,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2850,7 +2849,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2858,7 +2857,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2866,7 +2865,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2877,18 +2876,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-queue-quick-connects",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Lists the quick connects associated with a queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Lists the quick connects associated with a queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
@@ -2896,14 +2895,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2911,7 +2910,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2919,7 +2918,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -2927,7 +2926,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2935,7 +2934,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -2943,7 +2942,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2954,18 +2953,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-queues",
       description:
-        "Provides information about the queues for the specified Amazon Connect instance. For more information about queues, see Queues: Standard and Agent in the Amazon Connect Administrator Guide.",
+        "Provides information about the queues for the specified Amazon Connect instance. For more information about queues, see Queues: Standard and Agent in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-types",
-          description: "The type of queue.",
+          description: "The type of queue",
           args: {
             name: "list",
           },
@@ -2973,14 +2972,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -2988,7 +2987,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2996,7 +2995,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3004,7 +3003,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3012,7 +3011,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3020,7 +3019,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3031,11 +3030,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-quick-connects",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Provides information about the quick connects for the specified Amazon Connect instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Provides information about the quick connects for the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3043,14 +3042,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3058,7 +3057,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--quick-connect-types",
           description:
-            "The type of quick connect. In the Amazon Connect console, when you create a quick connect, you are prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).",
+            "The type of quick connect. In the Amazon Connect console, when you create a quick connect, you are prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE)",
           args: {
             name: "list",
           },
@@ -3066,7 +3065,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3074,7 +3073,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3082,7 +3081,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3090,7 +3089,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3098,7 +3097,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3108,18 +3107,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-routing-profile-queues",
-      description: "Lists the queues associated with a routing profile.",
+      description: "Lists the queues associated with a routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
@@ -3127,14 +3126,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3142,7 +3141,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3150,7 +3149,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3158,7 +3157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3166,7 +3165,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3174,7 +3173,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3185,11 +3184,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-routing-profiles",
       description:
-        "Provides summary information about the routing profiles for the specified Amazon Connect instance. For more information about routing profiles, see Routing Profiles and Create a Routing Profile in the Amazon Connect Administrator Guide.",
+        "Provides summary information about the routing profiles for the specified Amazon Connect instance. For more information about routing profiles, see Routing Profiles and Create a Routing Profile in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3197,14 +3196,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3212,7 +3211,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3220,7 +3219,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3228,7 +3227,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3236,7 +3235,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3244,7 +3243,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3255,11 +3254,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-security-keys",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all security keys associated with the instance.",
+        "This API is in preview release for Amazon Connect and is subject to change. Returns a paginated list of all security keys associated with the instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3267,14 +3266,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3282,7 +3281,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3290,7 +3289,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3298,7 +3297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3306,7 +3305,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3314,7 +3313,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3325,11 +3324,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-security-profiles",
       description:
-        "Provides summary information about the security profiles for the specified Amazon Connect instance. For more information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide.",
+        "Provides summary information about the security profiles for the specified Amazon Connect instance. For more information about security profiles, see Security Profiles in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3337,14 +3336,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3352,7 +3351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3360,7 +3359,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3368,7 +3367,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3376,7 +3375,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3384,7 +3383,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3395,11 +3394,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-tags-for-resource",
       description:
-        "Lists the tags for the specified resource. For sample policies that use tags, see Amazon Connect Identity-Based Policy Examples in the Amazon Connect Administrator Guide.",
+        "Lists the tags for the specified resource. For sample policies that use tags, see Amazon Connect Identity-Based Policy Examples in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the resource.",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
@@ -3407,7 +3406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3415,7 +3414,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3426,18 +3425,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-use-cases",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Lists the use cases.",
+        "This API is in preview release for Amazon Connect and is subject to change. Lists the use cases",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--integration-association-id",
-          description: "The identifier for the integration association.",
+          description: "The identifier for the integration association",
           args: {
             name: "string",
           },
@@ -3445,14 +3444,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3460,7 +3459,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3468,7 +3467,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3476,7 +3475,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3484,7 +3483,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3492,7 +3491,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3503,11 +3502,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-user-hierarchy-groups",
       description:
-        "Provides summary information about the hierarchy groups for the specified Amazon Connect instance. For more information about agent hierarchies, see Set Up Agent Hierarchies in the Amazon Connect Administrator Guide.",
+        "Provides summary information about the hierarchy groups for the specified Amazon Connect instance. For more information about agent hierarchies, see Set Up Agent Hierarchies in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3515,14 +3514,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3530,7 +3529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3538,7 +3537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3546,7 +3545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3554,7 +3553,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3562,7 +3561,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3573,11 +3572,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-users",
       description:
-        "Provides summary information about the users for the specified Amazon Connect instance.",
+        "Provides summary information about the users for the specified Amazon Connect instance",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3585,14 +3584,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--next-token",
           description:
-            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-results",
-          description: "The maximum number of results to return per page.",
+          description: "The maximum number of results to return per page",
           args: {
             name: "integer",
           },
@@ -3600,7 +3599,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3608,7 +3607,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3616,7 +3615,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3624,7 +3623,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3632,7 +3631,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3643,18 +3642,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "resume-contact-recording",
       description:
-        "When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call. Only voice recordings are supported at this time.",
+        "When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call. Only voice recordings are supported at this time",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-id",
-          description: "The identifier of the contact.",
+          description: "The identifier of the contact",
           args: {
             name: "string",
           },
@@ -3662,7 +3661,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--initial-contact-id",
           description:
-            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.",
+            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center",
           args: {
             name: "string",
           },
@@ -3670,7 +3669,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3678,7 +3677,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3689,11 +3688,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-chat-contact",
       description:
-        "Initiates a contact flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the CreateParticipantConnection API in the Amazon Connect Participant Service. When a new chat contact is successfully created, clients must subscribe to the participant\u2019s connection for the created chat within 5 minutes. This is achieved by invoking CreateParticipantConnection with WEBSOCKET and CONNECTION_CREDENTIALS.  A 429 error occurs in two situations:   API rate limit is exceeded. API TPS throttling returns a TooManyRequests exception from the API Gateway.   The quota for concurrent active chats is exceeded. Active chat throttling returns a LimitExceededException.   For more information about chat, see Chat in the Amazon Connect Administrator Guide.",
+        "Initiates a contact flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the CreateParticipantConnection API in the Amazon Connect Participant Service. When a new chat contact is successfully created, clients must subscribe to the participant\u2019s connection for the created chat within 5 minutes. This is achieved by invoking CreateParticipantConnection with WEBSOCKET and CONNECTION_CREDENTIALS.  A 429 error occurs in two situations:   API rate limit is exceeded. API TPS throttling returns a TooManyRequests exception from the API Gateway.   The quota for concurrent active chats is exceeded. Active chat throttling returns a LimitExceededException.   For more information about chat, see Chat in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3709,14 +3708,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in contact flows just like any other contact attributes.  There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.",
+            "A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in contact flows just like any other contact attributes.  There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters",
           args: {
             name: "map",
           },
         },
         {
           name: "--participant-details",
-          description: "Information identifying the participant.",
+          description: "Information identifying the participant",
           args: {
             name: "structure",
           },
@@ -3724,7 +3723,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--initial-message",
           description:
-            "The initial message to be sent to the newly created chat.",
+            "The initial message to be sent to the newly created chat",
           args: {
             name: "structure",
           },
@@ -3732,7 +3731,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-token",
           description:
-            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request",
           args: {
             name: "string",
           },
@@ -3740,7 +3739,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3748,7 +3747,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3759,18 +3758,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-contact-recording",
       description:
-        "Starts recording the contact when the agent joins the call. StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording. You can use this API to override the recording behavior configured in the Set recording behavior block. Only voice recordings are supported at this time.",
+        "Starts recording the contact when the agent joins the call. StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording. You can use this API to override the recording behavior configured in the Set recording behavior block. Only voice recordings are supported at this time",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-id",
-          description: "The identifier of the contact.",
+          description: "The identifier of the contact",
           args: {
             name: "string",
           },
@@ -3778,14 +3777,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--initial-contact-id",
           description:
-            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.",
+            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center",
           args: {
             name: "string",
           },
         },
         {
           name: "--voice-recording-configuration",
-          description: "The person being recorded.",
+          description: "The person being recorded",
           args: {
             name: "structure",
           },
@@ -3793,7 +3792,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3801,7 +3800,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3812,11 +3811,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "start-outbound-voice-contact",
       description:
-        "Places an outbound call to a contact, and then initiates the contact flow. It performs the actions in the contact flow that's specified (in ContactFlowId). Agents do not initiate the outbound API, which means that they do not dial the contact. If the contact flow places an outbound call to a contact, and then puts the contact in queue, the call is then routed to the agent, like any other inbound case. There is a 60-second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.  UK numbers with a 447 prefix are not allowed by default. Before you can dial these UK mobile numbers, you must submit a service quota increase request. For more information, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide.",
+        "Places an outbound call to a contact, and then initiates the contact flow. It performs the actions in the contact flow that's specified (in ContactFlowId). Agents do not initiate the outbound API, which means that they do not dial the contact. If the contact flow places an outbound call to a contact, and then puts the contact in queue, the call is then routed to the agent, like any other inbound case. There is a 60-second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.  UK numbers with a 447 prefix are not allowed by default. Before you can dial these UK mobile numbers, you must submit a service quota increase request. For more information, see Amazon Connect Service Quotas in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--destination-phone-number",
-          description: "The phone number of the customer, in E.164 format.",
+          description: "The phone number of the customer, in E.164 format",
           args: {
             name: "string",
           },
@@ -3831,7 +3830,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3839,7 +3838,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-token",
           description:
-            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. If the contact is disconnected, a new contact is started.",
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. If the contact is disconnected, a new contact is started",
           args: {
             name: "string",
           },
@@ -3847,7 +3846,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-phone-number",
           description:
-            "The phone number associated with the Amazon Connect instance, in E.164 format. If you do not specify a source phone number, you must specify a queue.",
+            "The phone number associated with the Amazon Connect instance, in E.164 format. If you do not specify a source phone number, you must specify a queue",
           args: {
             name: "string",
           },
@@ -3855,7 +3854,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--queue-id",
           description:
-            "The queue for the call. If you specify a queue, the phone displayed for caller ID is the phone number specified in the queue. If you do not specify a queue, the queue defined in the contact flow is used. If you do not specify a queue, you must specify a source phone number.",
+            "The queue for the call. If you specify a queue, the phone displayed for caller ID is the phone number specified in the queue. If you do not specify a queue, the queue defined in the contact flow is used. If you do not specify a queue, you must specify a source phone number",
           args: {
             name: "string",
           },
@@ -3863,7 +3862,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes. There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.",
+            "A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes. There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters",
           args: {
             name: "map",
           },
@@ -3871,7 +3870,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3879,7 +3878,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3889,11 +3888,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "start-task-contact",
-      description: "Initiates a contact flow to start a new task.",
+      description: "Initiates a contact flow to start a new task",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3901,7 +3900,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--previous-contact-id",
           description:
-            "The identifier of the previous chat, voice, or task contact.",
+            "The identifier of the previous chat, voice, or task contact",
           args: {
             name: "string",
           },
@@ -3917,7 +3916,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes. There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.",
+            "A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes. There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters",
           args: {
             name: "map",
           },
@@ -3925,7 +3924,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description:
-            "The name of a task that is shown to an agent in the Contact Control Panel (CCP).",
+            "The name of a task that is shown to an agent in the Contact Control Panel (CCP)",
           args: {
             name: "string",
           },
@@ -3933,7 +3932,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--references",
           description:
-            "A formatted URL that is shown to an agent in the Contact Control Panel (CCP).",
+            "A formatted URL that is shown to an agent in the Contact Control Panel (CCP)",
           args: {
             name: "map",
           },
@@ -3941,7 +3940,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            "A description of the task that is shown to an agent in the Contact Control Panel (CCP).",
+            "A description of the task that is shown to an agent in the Contact Control Panel (CCP)",
           args: {
             name: "string",
           },
@@ -3949,7 +3948,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-token",
           description:
-            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request",
           args: {
             name: "string",
           },
@@ -3957,7 +3956,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3965,7 +3964,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3975,18 +3974,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop-contact",
-      description: "Ends the specified contact.",
+      description: "Ends the specified contact",
       options: [
         {
           name: "--contact-id",
-          description: "The ID of the contact.",
+          description: "The ID of the contact",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -3994,7 +3993,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4002,7 +4001,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4013,18 +4012,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "stop-contact-recording",
       description:
-        "Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording. Only voice recordings are supported at this time.",
+        "Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording. Only voice recordings are supported at this time",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-id",
-          description: "The identifier of the contact.",
+          description: "The identifier of the contact",
           args: {
             name: "string",
           },
@@ -4032,7 +4031,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--initial-contact-id",
           description:
-            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.",
+            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center",
           args: {
             name: "string",
           },
@@ -4040,7 +4039,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4048,7 +4047,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4059,18 +4058,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "suspend-contact-recording",
       description:
-        "When a contact is being recorded, this API suspends recording the call. For example, you might suspend the call recording while collecting sensitive information, such as a credit card number. Then use ResumeContactRecording to restart recording.  The period of time that the recording is suspended is filled with silence in the final recording.  Only voice recordings are supported at this time.",
+        "When a contact is being recorded, this API suspends recording the call. For example, you might suspend the call recording while collecting sensitive information, such as a credit card number. Then use ResumeContactRecording to restart recording.  The period of time that the recording is suspended is filled with silence in the final recording.  Only voice recordings are supported at this time",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-id",
-          description: "The identifier of the contact.",
+          description: "The identifier of the contact",
           args: {
             name: "string",
           },
@@ -4078,7 +4077,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--initial-contact-id",
           description:
-            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.",
+            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center",
           args: {
             name: "string",
           },
@@ -4086,7 +4085,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4094,7 +4093,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4105,11 +4104,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-resource",
       description:
-        "Adds the specified tags to the specified resource. The supported resource types are users, routing profiles, queues, quick connects, and contact flows. For sample policies that use tags, see Amazon Connect Identity-Based Policy Examples in the Amazon Connect Administrator Guide.",
+        "Adds the specified tags to the specified resource. The supported resource types are users, routing profiles, queues, quick connects, and contact flows. For sample policies that use tags, see Amazon Connect Identity-Based Policy Examples in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the resource.",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
@@ -4117,7 +4116,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            'One or more tags. For example, { "tags": {"key1":"value1", "key2":"value2"} }.',
+            'One or more tags. For example, { "tags": {"key1":"value1", "key2":"value2"} }',
           args: {
             name: "map",
           },
@@ -4125,7 +4124,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4133,7 +4132,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4143,18 +4142,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "untag-resource",
-      description: "Removes the specified tags from the specified resource.",
+      description: "Removes the specified tags from the specified resource",
       options: [
         {
           name: "--resource-arn",
-          description: "The Amazon Resource Name (ARN) of the resource.",
+          description: "The Amazon Resource Name (ARN) of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--tag-keys",
-          description: "The tag keys.",
+          description: "The tag keys",
           args: {
             name: "list",
           },
@@ -4162,7 +4161,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4170,7 +4169,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4181,19 +4180,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-contact-attributes",
       description:
-        "Creates or updates the contact attributes associated with the specified contact. You can add or update attributes for both ongoing and completed contacts. For example, while the call is active, you can update the customer's name or the reason the customer called. You can add notes about steps that the agent took during the call that display to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or to identify abusive callers. Contact attributes are available in Amazon Connect for 24 months, and are then deleted.  Important: You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, which was September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.",
+        "Creates or updates the contact attributes associated with the specified contact. You can add or update attributes for both ongoing and completed contacts. For example, while the call is active, you can update the customer's name or the reason the customer called. You can add notes about steps that the agent took during the call that display to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or to identify abusive callers. Contact attributes are available in Amazon Connect for 24 months, and are then deleted.  Important: You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, which was September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance",
       options: [
         {
           name: "--initial-contact-id",
           description:
-            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.",
+            "The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -4201,7 +4200,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--attributes",
           description:
-            "The Amazon Connect attributes. These attributes can be accessed in contact flows just like any other contact attributes. You can have up to 32,768 UTF-8 bytes across all attributes for a contact. Attribute keys can include only alphanumeric, dash, and underscore characters.",
+            "The Amazon Connect attributes. These attributes can be accessed in contact flows just like any other contact attributes. You can have up to 32,768 UTF-8 bytes across all attributes for a contact. Attribute keys can include only alphanumeric, dash, and underscore characters",
           args: {
             name: "map",
           },
@@ -4209,7 +4208,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4217,7 +4216,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4228,18 +4227,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-contact-flow-content",
       description:
-        "Updates the specified contact flow. You can also create and update contact flows using the Amazon Connect Flow language.",
+        "Updates the specified contact flow. You can also create and update contact flows using the Amazon Connect Flow language",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-flow-id",
-          description: "The identifier of the contact flow.",
+          description: "The identifier of the contact flow",
           args: {
             name: "string",
           },
@@ -4247,7 +4246,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content",
           description:
-            "The JSON string that represents contact flow\u2019s content. For an example, see Example contact flow in Amazon Connect Flow language in the Amazon Connect Administrator Guide.",
+            "The JSON string that represents contact flow\u2019s content. For an example, see Example contact flow in Amazon Connect Flow language in the Amazon Connect Administrator Guide",
           args: {
             name: "string",
           },
@@ -4255,7 +4254,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4263,7 +4262,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4274,32 +4273,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-contact-flow-name",
       description:
-        "The name of the contact flow. You can also create and update contact flows using the Amazon Connect Flow language.",
+        "The name of the contact flow. You can also create and update contact flows using the Amazon Connect Flow language",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--contact-flow-id",
-          description: "The identifier of the contact flow.",
+          description: "The identifier of the contact flow",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the contact flow.",
+          description: "The name of the contact flow",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "The description of the contact flow.",
+          description: "The description of the contact flow",
           args: {
             name: "string",
           },
@@ -4307,7 +4306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4315,7 +4314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4326,18 +4325,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-instance-attribute",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the value for the specified attribute type.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the value for the specified attribute type",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--attribute-type",
-          description: "The type of attribute.",
+          description: "The type of attribute",
           args: {
             name: "string",
           },
@@ -4345,7 +4344,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--value",
           description:
-            "The value for the attribute. Maximum character limit is 100.",
+            "The value for the attribute. Maximum character limit is 100",
           args: {
             name: "string",
           },
@@ -4353,7 +4352,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4361,7 +4360,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4372,11 +4371,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-instance-storage-config",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates an existing configuration for a resource type. This API is idempotent.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates an existing configuration for a resource type. This API is idempotent",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -4384,21 +4383,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--association-id",
           description:
-            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.",
+            "The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-type",
-          description: "A valid resource type.",
+          description: "A valid resource type",
           args: {
             name: "string",
           },
         },
         {
           name: "--storage-config",
-          description: "The storage configuration for the instance.",
+          description: "The storage configuration for the instance",
           args: {
             name: "structure",
           },
@@ -4406,7 +4405,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4414,7 +4413,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4425,25 +4424,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-queue-hours-of-operation",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the hours of operation for the specified queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the hours of operation for the specified queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--hours-of-operation-id",
-          description: "The identifier for the hours of operation.",
+          description: "The identifier for the hours of operation",
           args: {
             name: "string",
           },
@@ -4451,7 +4450,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4459,7 +4458,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4470,18 +4469,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-queue-max-contacts",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the maximum number of contacts allowed in a queue before it is considered full.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the maximum number of contacts allowed in a queue before it is considered full",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
@@ -4489,7 +4488,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-contacts",
           description:
-            "The maximum number of contacts that can be in the queue before it is considered full.",
+            "The maximum number of contacts that can be in the queue before it is considered full",
           args: {
             name: "integer",
           },
@@ -4497,7 +4496,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4505,7 +4504,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4516,32 +4515,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-queue-name",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the name and description of a queue. At least Name or Description must be provided.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the name and description of a queue. At least Name or Description must be provided",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the queue.",
+          description: "The name of the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "The description of the queue.",
+          description: "The description of the queue",
           args: {
             name: "string",
           },
@@ -4549,7 +4548,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4557,7 +4556,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4568,18 +4567,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-queue-outbound-caller-config",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the outbound caller ID name, number, and outbound whisper flow for a specified queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the outbound caller ID name, number, and outbound whisper flow for a specified queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
@@ -4587,7 +4586,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--outbound-caller-config",
           description:
-            "The outbound caller ID name, number, and outbound whisper flow.",
+            "The outbound caller ID name, number, and outbound whisper flow",
           args: {
             name: "structure",
           },
@@ -4595,7 +4594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4603,7 +4602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4614,25 +4613,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-queue-status",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the status of the queue.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the status of the queue",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--queue-id",
-          description: "The identifier for the queue.",
+          description: "The identifier for the queue",
           args: {
             name: "string",
           },
         },
         {
           name: "--status",
-          description: "The status of the queue.",
+          description: "The status of the queue",
           args: {
             name: "string",
           },
@@ -4640,7 +4639,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4648,7 +4647,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4659,18 +4658,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-quick-connect-config",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the configuration settings for the specified quick connect.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the configuration settings for the specified quick connect",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-id",
-          description: "The identifier for the quick connect.",
+          description: "The identifier for the quick connect",
           args: {
             name: "string",
           },
@@ -4678,7 +4677,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--quick-connect-config",
           description:
-            "Information about the configuration settings for the quick connect.",
+            "Information about the configuration settings for the quick connect",
           args: {
             name: "structure",
           },
@@ -4686,7 +4685,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4694,7 +4693,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4705,32 +4704,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-quick-connect-name",
       description:
-        "This API is in preview release for Amazon Connect and is subject to change. Updates the name and description of a quick connect. The request accepts the following data in JSON format. At least Name or Description must be provided.",
+        "This API is in preview release for Amazon Connect and is subject to change. Updates the name and description of a quick connect. The request accepts the following data in JSON format. At least Name or Description must be provided",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--quick-connect-id",
-          description: "The identifier for the quick connect.",
+          description: "The identifier for the quick connect",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the quick connect.",
+          description: "The name of the quick connect",
           args: {
             name: "string",
           },
         },
         {
           name: "--description",
-          description: "The description of the quick connect.",
+          description: "The description of the quick connect",
           args: {
             name: "string",
           },
@@ -4738,7 +4737,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4746,7 +4745,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4757,18 +4756,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-routing-profile-concurrency",
       description:
-        "Updates the channels that agents can handle in the Contact Control Panel (CCP) for a routing profile.",
+        "Updates the channels that agents can handle in the Contact Control Panel (CCP) for a routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
@@ -4776,7 +4775,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--media-concurrencies",
           description:
-            "The channels that agents can handle in the Contact Control Panel (CCP).",
+            "The channels that agents can handle in the Contact Control Panel (CCP)",
           args: {
             name: "list",
           },
@@ -4784,7 +4783,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4792,7 +4791,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4802,25 +4801,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-routing-profile-default-outbound-queue",
-      description: "Updates the default outbound queue of a routing profile.",
+      description: "Updates the default outbound queue of a routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
         },
         {
           name: "--default-outbound-queue-id",
-          description: "The identifier for the default outbound queue.",
+          description: "The identifier for the default outbound queue",
           args: {
             name: "string",
           },
@@ -4828,7 +4827,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4836,7 +4835,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4847,18 +4846,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-routing-profile-name",
       description:
-        "Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least Name or Description must be provided.",
+        "Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least Name or Description must be provided",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
@@ -4866,7 +4865,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description:
-            "The name of the routing profile. Must not be more than 127 characters.",
+            "The name of the routing profile. Must not be more than 127 characters",
           args: {
             name: "string",
           },
@@ -4874,7 +4873,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            "The description of the routing profile. Must not be more than 250 characters.",
+            "The description of the routing profile. Must not be more than 250 characters",
           args: {
             name: "string",
           },
@@ -4882,7 +4881,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4890,7 +4889,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4901,18 +4900,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-routing-profile-queues",
       description:
-        "Updates the properties associated with a set of queues for a routing profile.",
+        "Updates the properties associated with a set of queues for a routing profile",
       options: [
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
         },
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile.",
+          description: "The identifier of the routing profile",
           args: {
             name: "string",
           },
@@ -4920,7 +4919,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--queue-configs",
           description:
-            "The queues to be updated for this routing profile. Queues must first be associated to the routing profile. You can do this using AssociateRoutingProfileQueues.",
+            "The queues to be updated for this routing profile. Queues must first be associated to the routing profile. You can do this using AssociateRoutingProfileQueues",
           args: {
             name: "list",
           },
@@ -4928,7 +4927,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4936,7 +4935,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4947,25 +4946,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user-hierarchy",
       description:
-        "Assigns the specified hierarchy group to the specified user.",
+        "Assigns the specified hierarchy group to the specified user",
       options: [
         {
           name: "--hierarchy-group-id",
-          description: "The identifier of the hierarchy group.",
+          description: "The identifier of the hierarchy group",
           args: {
             name: "string",
           },
         },
         {
           name: "--user-id",
-          description: "The identifier of the user account.",
+          description: "The identifier of the user account",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -4973,7 +4972,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4981,7 +4980,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4991,26 +4990,26 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "update-user-hierarchy-group-name",
-      description: "Updates the name of the user hierarchy group.",
+      description: "Updates the name of the user hierarchy group",
       options: [
         {
           name: "--name",
           description:
-            "The name of the hierarchy group. Must not be more than 100 characters.",
+            "The name of the hierarchy group. Must not be more than 100 characters",
           args: {
             name: "string",
           },
         },
         {
           name: "--hierarchy-group-id",
-          description: "The identifier of the hierarchy group.",
+          description: "The identifier of the hierarchy group",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -5018,7 +5017,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5026,7 +5025,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5037,18 +5036,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user-hierarchy-structure",
       description:
-        "Updates the user hierarchy structure: add, remove, and rename user hierarchy levels.",
+        "Updates the user hierarchy structure: add, remove, and rename user hierarchy levels",
       options: [
         {
           name: "--hierarchy-structure",
-          description: "The hierarchy levels to update.",
+          description: "The hierarchy levels to update",
           args: {
             name: "structure",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -5056,7 +5055,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5064,7 +5063,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5075,25 +5074,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user-identity-info",
       description:
-        "Updates the identity information for the specified user.  We strongly recommend limiting who has the ability to invoke UpdateUserIdentityInfo. Someone with that ability can change the login credentials of other users by changing their email address. This poses a security risk to your organization. They can change the email address of a user to the attacker's email address, and then reset the password through email. For more information, see Best Practices for Security Profiles in the Amazon Connect Administrator Guide.",
+        "Updates the identity information for the specified user.  We strongly recommend limiting who has the ability to invoke UpdateUserIdentityInfo. Someone with that ability can change the login credentials of other users by changing their email address. This poses a security risk to your organization. They can change the email address of a user to the attacker's email address, and then reset the password through email. For more information, see Best Practices for Security Profiles in the Amazon Connect Administrator Guide",
       options: [
         {
           name: "--identity-info",
-          description: "The identity information for the user.",
+          description: "The identity information for the user",
           args: {
             name: "structure",
           },
         },
         {
           name: "--user-id",
-          description: "The identifier of the user account.",
+          description: "The identifier of the user account",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -5101,7 +5100,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5109,7 +5108,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5120,26 +5119,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user-phone-config",
       description:
-        "Updates the phone configuration settings for the specified user.",
+        "Updates the phone configuration settings for the specified user",
       options: [
         {
           name: "--phone-config",
           description:
-            "Information about phone configuration settings for the user.",
+            "Information about phone configuration settings for the user",
           args: {
             name: "structure",
           },
         },
         {
           name: "--user-id",
-          description: "The identifier of the user account.",
+          description: "The identifier of the user account",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -5147,7 +5146,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5155,7 +5154,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5166,25 +5165,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user-routing-profile",
       description:
-        "Assigns the specified routing profile to the specified user.",
+        "Assigns the specified routing profile to the specified user",
       options: [
         {
           name: "--routing-profile-id",
-          description: "The identifier of the routing profile for the user.",
+          description: "The identifier of the routing profile for the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--user-id",
-          description: "The identifier of the user account.",
+          description: "The identifier of the user account",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -5192,7 +5191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5200,7 +5199,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5211,25 +5210,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user-security-profiles",
       description:
-        "Assigns the specified security profiles to the specified user.",
+        "Assigns the specified security profiles to the specified user",
       options: [
         {
           name: "--security-profile-ids",
-          description: "The identifiers of the security profiles for the user.",
+          description: "The identifiers of the security profiles for the user",
           args: {
             name: "list",
           },
         },
         {
           name: "--user-id",
-          description: "The identifier of the user account.",
+          description: "The identifier of the user account",
           args: {
             name: "string",
           },
         },
         {
           name: "--instance-id",
-          description: "The identifier of the Amazon Connect instance.",
+          description: "The identifier of the Amazon Connect instance",
           args: {
             name: "string",
           },
@@ -5237,7 +5236,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5245,7 +5244,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],

@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--graphql-tracing",
           description:
-            "Trace every graphql resolver, may have performance implications.",
+            "Trace every graphql resolver, may have performance implications",
         },
         {
           name: ["--no-color", "--no-colors"],

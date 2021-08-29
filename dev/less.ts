@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "less",
-  description: "opposite of more",
+  description: "Opposite of more",
   args: {
     isVariadic: true,
     template: "filepaths",

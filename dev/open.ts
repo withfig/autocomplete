@@ -11,7 +11,7 @@ const appGenerator = (path: string): Fig.Generator => ({
 
 const completionSpec: Fig.Spec = {
   name: "open",
-  description: "open files using default application",
+  description: "Open files using default application",
   options: [
     {
       name: "-a",

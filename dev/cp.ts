@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "cp",
-  description: "copy files and directories",
+  description: "Copy files and directories",
   args: [
     {
       name: "source",
@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-R",
       description:
-        "If source designates a directory, cp copies the directory and the entire subtree connected at that point. If source ends in a /, the contents of the directory are copied rather than the directory itself.",
+        "If source designates a directory, cp copies the directory and the entire subtree connected at that point. If source ends in a /, the contents of the directory are copied rather than the directory itself",
     },
     {
       name: "-v",

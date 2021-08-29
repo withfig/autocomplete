@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-n", "--name"],
               description:
-                "The name of the migration. If no name is provided, the CLI will prompt you.",
+                "The name of the migration. If no name is provided, the CLI will prompt you",
               args: {
                 name: "filename",
                 isOptional: true,
@@ -179,7 +179,7 @@ const completionSpec: Fig.Spec = {
             schemaOptions,
             {
               name: "--applied",
-              description: " Record a specific migration as applied",
+              description: "Record a specific migration as applied",
               args: {
                 name: "migration file path",
                 template: "filepaths",
@@ -236,13 +236,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "--force-reset",
               description:
-                "Resets the database and then updates the schema - useful if you need to start from scratch due to unexecutable migrations.",
+                "Resets the database and then updates the schema - useful if you need to start from scratch due to unexecutable migrations",
               isDangerous: true,
             },
             {
               name: "--accept-data-loss",
               description:
-                "Ignore data loss warnings. This option is required if as a result of making the schema changes, data may be lost.",
+                "Ignore data loss warnings. This option is required if as a result of making the schema changes, data may be lost",
               isDangerous: true,
             },
           ],

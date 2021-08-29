@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--template",
       description:
-        "The name of a template from expo/examples or URL to a GitHub repo that contains an example.",
+        "The name of a template from expo/examples or URL to a GitHub repo that contains an example",
       args: {
         name: "template",
         isOptional: false,
@@ -55,7 +55,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--template-path",
-      description: "The path inside of a GitHub repo where the example lives.",
+      description: "The path inside of a GitHub repo where the example lives",
       args: {
         name: "name",
         isOptional: false,
@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--no-install",
-      description: "Skip installing npm packages or CocoaPods.",
+      description: "Skip installing npm packages or CocoaPods",
       args: boolArg,
       icon: ICONS.skip,
       priority: 76,

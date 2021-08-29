@@ -1,10 +1,10 @@
 const completionSpec: Fig.Spec = {
   name: "zip",
-  description: "Package and compress (archive) files into zip file.",
+  description: "Package and compress (archive) files into zip file",
   args: [
     {
       name: "name",
-      description: "name of archive",
+      description: "Name of archive",
     },
     {
       name: "dir",
