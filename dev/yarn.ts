@@ -364,6 +364,7 @@ const completionSpec: Fig.Spec = {
       "prettier",
       "tsc",
       "typeorm",
+      "create-next-app",
     ];
     const subcommands = packages
       .filter((name) => cli.includes(name))
