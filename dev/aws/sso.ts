@@ -203,6 +203,21 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "login",
+      description:
+        "Refreshes SSO access tokens and logs in. Required setup using ``aws configure sso``",
+      options: [
+        {
+          name: "--profile",
+          description:
+            "The name of the profile to use.\n\nIf not set, will use the default profile",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
+    {
       name: "logout",
       description:
         "Removes the client- and server-side session that is associated with the user",
