@@ -13,6 +13,7 @@ const listPackages: Fig.Generator = {
   },
 };
 
+export { packageList }; // To use it - import { packageList } from "./pip"
 const packageList: Array<Fig.Suggestion> = [
   {
     name: "urllib3",
