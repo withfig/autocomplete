@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "splash-cli",
   displayName: "Splash",
-  description: "Download wallpapers from Unsplash with ease",
+  description: "Get stunning wallpapers from Unsplash",
   subcommands: [
     {
       priority: 100,
