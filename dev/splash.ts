@@ -18,9 +18,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "set",
+          description: "Setup the configuration",
         },
         {
           name: "restore",
+          description: "Restore default settings",
         },
       ],
     },
@@ -130,9 +132,11 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "login",
+          description: "Login with your Unsplash account",
         },
         {
           name: "logout",
+          description: "Removes all user data",
         },
         {
           name: "liked",
@@ -166,7 +170,10 @@ const completionSpec: Fig.Spec = {
       name: ["--help", "-h"],
       description: "Help Message",
       icon: "📚",
-      isRequired: false,
+    },
+    {
+      name: ["--version", "-v"],
+      description: "Prints `splash-cli` version",
     },
     {
       name: "--scale",
