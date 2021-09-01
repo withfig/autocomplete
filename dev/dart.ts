@@ -726,11 +726,6 @@ const completionSpec: Fig.Spec = {
               exclusiveOn: ["--dependency-overrides"],
             },
             {
-              name: ["--dev-dependencies", "--no-dev-dependencies"],
-              description:
-                "Take dev dependencies into account. (defaults to on)",
-            },
-            {
               name: "--json",
               description: "Output the results sing a JSON format",
             },
