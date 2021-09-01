@@ -26,8 +26,27 @@ const dryRun: Fig.Option = {
 };
 
 const precompile: Fig.Option = {
-  name: ["--precompile", "--no-precompile"],
+  name: "--precompile",
   description: "Precompile executables in immediate dependencies",
+  exclusiveOn: ["--no-precompile"],
+};
+
+const noPrecompile: Fig.Option = {
+  name: "--no-precompile",
+  description: "Do not precompile executables in immediate dependencies",
+  exclusiveOn: ["--precompile"],
+};
+
+const enableAsserts: Fig.Option = {
+  name: "--enable-asserts",
+  description: "Enable assert statements",
+  exclusiveOn: ["--no-enable-asserts"],
+};
+
+const noEnableAsserts: Fig.Option = {
+  name: "--no-enable-asserts",
+  description: "Do not enable assert statements",
+  exclusiveOn: ["--enable-asserts"],
 };
 
 const define: Fig.Subcommand = {
@@ -142,8 +161,15 @@ const completionSpec: Fig.Spec = {
           description: "Treat info level issues as fatal",
         },
         {
-          name: ["--fatal-warnings", "--no-fatal-warnings"],
+          name: "--fatal-warnings",
           description: "Treat warning level issues as fatal (defaults to on)",
+          exclusiveOn: ["--no-fatal-warnings"],
+        },
+        {
+          name: "--no-fatal-warnings",
+          description:
+            "Do not treat warning level issues as fatal (defaults to on)",
+          exclusiveOn: ["--fatal-warnings"],
         },
       ],
       args: {
@@ -438,13 +464,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--web-preview",
           description:
-            "Show and interactive preview of the proposed null safety changes in a browser window. User --no-web-preview to print proposed changes to the console. (defaults to on)",
+            "Show and interactive preview of the proposed null safety changes in a browser window. (defaults to on)",
           exclusiveOn: ["--no-web-preview"],
         },
         {
           name: "--no-web-preview",
           description:
-            "Do not show and interactive preview of the proposed null safety changes in a browser window. User --no-web-preview to print proposed changes to the console. (defaults to on)",
+            "Do not show and interactive preview of the proposed null safety changes in a browser window. (defaults to off)",
           exclusiveOn: ["--web-preview"],
         },
         {
@@ -540,6 +566,7 @@ const completionSpec: Fig.Spec = {
             noOffline,
             dryRun,
             precompile,
+            noPrecompile,
           ],
           args: { name: "package", description: "Dart pub package name" },
         },
@@ -585,9 +612,14 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--dev", "--no-dev"],
-              description:
-                "Whether to include dev dependencies. (defaults to on)",
+              name: "--dev",
+              description: "Include dev dependencies. (defaults to on)",
+              exclusiveOn: ["--no-dev"],
+            },
+            {
+              name: "--no-dev",
+              description: "Do not include dev dependencies. (defaults to off)",
+              exclusiveOn: ["--dev"],
             },
             {
               name: "--executables",
@@ -603,7 +635,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get packages in a Flutter project",
-          options: [...globalOptions, offline, noOffline, dryRun, precompile],
+          options: [
+            ...globalOptions,
+            offline,
+            noOffline,
+            dryRun,
+            precompile,
+            noPrecompile,
+          ],
         },
         {
           name: "global",
@@ -660,16 +699,8 @@ const completionSpec: Fig.Spec = {
                 "Run an executable from a globally activated package",
               options: [
                 ...globalOptions,
-                {
-                  name: "--enable-asserts",
-                  description: "Enable assert statements",
-                  exclusiveOn: ["--no-enable-asserts"],
-                },
-                {
-                  name: "--no-enable-asserts",
-                  description: "Do not enable assert statements",
-                  exclusiveOn: ["--enable-asserts"],
-                },
+                enableAsserts,
+                noEnableAsserts,
                 {
                   name: "--enable-experiement",
                   description:
@@ -709,9 +740,16 @@ const completionSpec: Fig.Spec = {
           options: [
             ...globalOptions,
             {
-              name: ["--color", "--no-color"],
+              name: "--color",
               description:
-                "Whether to color the output. Defaults to color when connected to a terminal, and no-colo otherwise",
+                "Color the the output. Defaults to color when connected to a terminal, and no-color otherwise",
+              exclusiveOn: ["--no-color"],
+            },
+            {
+              name: "--no-color",
+              description:
+                "Do not color the output. Defaults to color when connected to a terminal, and no-color otherwise",
+              exclusiveOn: ["--color"],
             },
             {
               name: "--dependency-overrides",
@@ -739,14 +777,28 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--prereleases", "--no-prereleases"],
+              name: "--prereleases",
               description:
-                "Include prereleases in latest version. (defaults to on in --mode=null-safety",
+                "Include prereleases in latest version. (defaults to on in --mode=null-safety)",
+              exclusiveOn: ["--no-prereleases"],
             },
             {
-              name: ["--show-all", "--no-show-all"],
+              name: "--no-prereleases",
+              description:
+                "Do not inlcude prereleases in latest version. (defaults to off in --mode=null-safety)",
+              exclusiveOn: ["--prereleases"],
+            },
+            {
+              name: "--show-all",
               description:
                 "Include dependencies that are already fullfilling --mode",
+              exclusiveOn: ["--no-show-all"],
+            },
+            {
+              name: "--no-show-all",
+              description:
+                "Do not include dependencies that are already fullfilling --mode",
+              exclusiveOn: ["--show-all"],
             },
             {
               name: ["--transitive", "--no-transitive"],
@@ -771,7 +823,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove",
           description: "Removes a dependency from the current package",
-          options: [...globalOptions, offline, noOffline, dryRun, precompile],
+          options: [
+            ...globalOptions,
+            offline,
+            noOffline,
+            dryRun,
+            precompile,
+            noPrecompile,
+          ],
         },
         {
           name: "upgrade",
@@ -783,6 +842,7 @@ const completionSpec: Fig.Spec = {
             noOffline,
             dryRun,
             precompile,
+            noPrecompile,
             {
               name: "--null-safety",
               description:
@@ -832,30 +892,43 @@ const completionSpec: Fig.Spec = {
             "Pause isolates on exit when running with --enable-vm-service",
         },
         {
-          name: [
-            "--pause-isolates-on-unhandled-exceptions",
-            "--no-pause-isolates-on-unhandled-exceptions",
-          ],
+          name: "--pause-isolates-on-unhandled-exceptions",
           description:
             "Pause isolates when an unhandled exception is encountered when running with --enable-vm-service",
+          exclusiveOn: ["--no-pause-isolates-on-unhandled-exceptions"],
         },
         {
-          name: [
-            "--warn-on-pause-with-no-debugger",
-            "--no-warn-on-pause-with-no-debugger",
-          ],
+          name: "--no-pause-isolates-on-unhandled-exceptions",
+          description:
+            "Do not pause isolates when an unhandled exception is encountered when running with --enable-vm-service",
+          exclusiveOn: ["--pause-isolates-on-unhandled-exceptions"],
+        },
+        {
+          name: "--warn-on-pause-with-no-debugger",
           description:
             "Print a warning when an isolate pauses with no attahed debugger when running with --enable-vm-service",
+          exclusiveOn: ["--no-warn-on-pause-with-no-debugger"],
         },
         {
-          name: ["--pause-isolates-on-start", "--no-pause-isolates-on-start"],
+          name: "--no-warn-on-pause-with-no-debugger",
+          description:
+            "Do not print a warning when an isolate pauses with no attahed debugger when running with --enable-vm-service",
+          exclusiveOn: ["--warn-on-pause-with-no-debugger"],
+        },
+        {
+          name: "--pause-isolates-on-start",
           description:
             "Pause isolates on start when running with --enable-vm-service",
+          exclusiveOn: ["--no-pause-isolates-on-start"],
         },
         {
-          name: ["--enable-asserts", "--no-enable-asserts"],
-          description: "Enable assert statements",
+          name: "--no-pause-isolates-on-start",
+          description:
+            "Do not pause isolates on start when running with --enable-vm-service",
+          exclusiveOn: ["--pause-isolates-on-start"],
         },
+        enableAsserts,
+        noEnableAsserts,
         verbosity,
         define,
         {
