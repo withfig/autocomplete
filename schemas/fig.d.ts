@@ -26,7 +26,13 @@ declare namespace Fig {
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export type Spec = Subcommand;
+  export type GetVersionedSpec = (version: string | undefined) => Subcommand;
+
+  export type Spec = Subcommand | GetVersionedSpec;
+
+  export type GetVersionCommand = (
+    executeShellCommand: ExecuteShellCommandFunction
+  ) => Promise<string>;
 
   // Execute shell command function inside generators
   export type ExecuteShellCommandFunction = (
