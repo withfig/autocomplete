@@ -45,6 +45,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "typeorm",
     icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4",
   },
+  {
+    name: "fig-teams",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
