@@ -4,10 +4,11 @@ const helpOption: Fig.Option = {
 
 const completionSpec: Fig.Spec = {
   name: "graphcdn",
-  description: "Change the shell working directory",
+  description: "GraphCDN CLI",
   subcommands: [
     {
       name: "login",
+      description: "Authenticate the CLI",
       options: [
         {
           name: "--token",
@@ -20,6 +21,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "init",
+      description: "Create a new GraphCDN service",
       options: [
         {
           name: ["-y", "--yes"],
@@ -30,6 +32,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "pull",
+      description: "Pull the latest service configuration",
       options: [
         {
           name: "--service",
@@ -51,6 +54,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "push",
+      description: "Push and deploy the latest app configuration",
       options: [
         {
           name: "--env",
