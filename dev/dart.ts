@@ -9,8 +9,15 @@ const portOrBindAddress: Fig.Arg = {
 };
 
 const offline: Fig.Option = {
-  name: ["--offline", "--no-offline"],
+  name: "--offline",
   description: "Use cached packages instead of accessing the network",
+  exclusiveOn: ["--no-offline"],
+};
+
+const noOffline: Fig.Option = {
+  name: "--no-offline",
+  description: "Do not use cached packages instead of accessing the network",
+  exclusiveOn: ["--offline"],
 };
 
 const dryRun: Fig.Option = {
@@ -227,9 +234,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--pub", "--no-pub"],
+          name: "--pub",
           description:
-            "Whether to run 'pub get' after the project has been created. Default to on",
+            "Run 'pub get' after the project has been created. Default to on",
+          exclusiveOn: ["--no-pub"],
+        },
+        {
+          name: "--no-pub",
+          description:
+            "Do not run 'pub get' after the project has been created. Default to on",
+          exclusiveOn: ["--pub"],
         },
         {
           name: "--foce",
@@ -240,7 +254,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fix",
-      description: "Pply automated fixes to Dart source code",
+      description: "Apply automated fixes to Dart source code",
       options: [
         ...globalOptions,
         {
@@ -422,9 +436,16 @@ const completionSpec: Fig.Spec = {
             "Go ahead with migration even if some imported files have not yet been migrated",
         },
         {
-          name: ["--web-preview", "--no-web-preview"],
+          name: "--web-preview",
           description:
             "Show and interactive preview of the proposed null safety changes in a browser window. User --no-web-preview to print proposed changes to the console. (defaults to on)",
+          exclusiveOn: ["--no-web-preview"],
+        },
+        {
+          name: "--no-web-preview",
+          description:
+            "Do not show and interactive preview of the proposed null safety changes in a browser window. User --no-web-preview to print proposed changes to the console. (defaults to on)",
+          exclusiveOn: ["--web-preview"],
         },
         {
           name: "--preview-hostname",
@@ -465,8 +486,15 @@ const completionSpec: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--trace", "--no-trace"],
+          name: "--trace",
           description: "Print debugging information when an error occurs",
+          exclusiveOn: ["--no-trace"],
+        },
+        {
+          name: "--no-trace",
+          description:
+            "Do not print debugging information when an error occurs",
+          exclusiveOn: ["--trace"],
         },
         {
           name: ["-v", "--verbose"],
@@ -509,6 +537,7 @@ const completionSpec: Fig.Spec = {
               description: "SDK source for package",
             },
             offline,
+            noOffline,
             dryRun,
             precompile,
           ],
@@ -569,12 +598,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "downgrade",
           description: "Downgrade packages in a Flutter project",
-          options: [...globalOptions, offline, dryRun],
+          options: [...globalOptions, offline, noOffline, dryRun],
         },
         {
           name: "get",
           description: "Get packages in a Flutter project",
-          options: [...globalOptions, offline, dryRun, precompile],
+          options: [...globalOptions, offline, noOffline, dryRun, precompile],
         },
         {
           name: "global",
@@ -632,8 +661,14 @@ const completionSpec: Fig.Spec = {
               options: [
                 ...globalOptions,
                 {
-                  name: ["--enable-asserts", "--no-enable-asserts"],
+                  name: "--enable-asserts",
                   description: "Enable assert statements",
+                  exclusiveOn: ["--no-enable-asserts"],
+                },
+                {
+                  name: "--no-enable-asserts",
+                  description: "Do not enable assert statements",
+                  exclusiveOn: ["--enable-asserts"],
                 },
                 {
                   name: "--enable-experiement",
@@ -642,9 +677,16 @@ const completionSpec: Fig.Spec = {
                   args: { name: "experiment" },
                 },
                 {
-                  name: ["--sound-null-safety", "--no-sound-null-safety"],
+                  name: "--sound-null-safety",
                   description:
                     "Override the default null safety execution mode",
+                  exclusiveOn: ["--no-sound-null-safety"],
+                },
+                {
+                  name: "--no-sound-null-safety",
+                  description:
+                    "Do not override the default null safety execution mode",
+                  exclusiveOn: ["--sound-null-safety"],
                 },
               ],
             },
@@ -672,9 +714,16 @@ const completionSpec: Fig.Spec = {
                 "Whether to color the output. Defaults to color when connected to a terminal, and no-colo otherwise",
             },
             {
-              name: ["--dependency-overrides", "--no-dependency-overrides"],
+              name: "--dependency-overrides",
               description:
                 "Show resolutions with 'dependency_overries'. (defaults to on)",
+              exclusiveOn: ["--no-dependency-overrides"],
+            },
+            {
+              name: "--no-dependency-overrides",
+              description:
+                "Do not show resolutions with 'dependency_overries'. (defaults to on)",
+              exclusiveOn: ["--dependency-overrides"],
             },
             {
               name: ["--dev-dependencies", "--no-dev-dependencies"],
@@ -727,7 +776,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove",
           description: "Removes a dependency from the current package",
-          options: [...globalOptions, offline, dryRun, precompile],
+          options: [...globalOptions, offline, noOffline, dryRun, precompile],
         },
         {
           name: "upgrade",
@@ -736,6 +785,7 @@ const completionSpec: Fig.Spec = {
           options: [
             ...globalOptions,
             offline,
+            noOffline,
             dryRun,
             precompile,
             {
