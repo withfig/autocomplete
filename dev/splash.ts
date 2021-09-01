@@ -52,6 +52,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "help",
+          description: "Show help menu",
         },
       ],
     },
