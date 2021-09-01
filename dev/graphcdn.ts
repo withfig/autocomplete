@@ -11,6 +11,9 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--token",
+          args: {
+            name: "token",
+          },
         },
         helpOption,
       ],
