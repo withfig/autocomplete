@@ -60,7 +60,11 @@ const completionSpec: Fig.Spec = {
         },
         helpOption,
       ],
-      subcommands: [{ name: "schema" }],
+      args: {
+        name: "field",
+        isOptional: true,
+        suggestions: ["schema", "rules"],
+      },
     },
   ],
   options: [helpOption],
