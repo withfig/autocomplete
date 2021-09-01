@@ -4,7 +4,6 @@ const completionSpec: Fig.Spec = {
   description: "Get stunning wallpapers from Unsplash",
   subcommands: [
     {
-      priority: 100,
       name: "settings",
       description: "Manage settings",
       icon: "⚙️",
@@ -26,7 +25,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      priority: 99,
       name: "aliases",
       description: "Manage aliases",
       icon: "🔗",
@@ -56,7 +54,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      priority: 98,
       name: "collection",
       description: "Manage collections",
       icon: "🗃",
@@ -94,7 +91,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      priority: 97,
       name: "dir",
       description: "Manage SplashCLI download directory",
       icon: "📁",
@@ -130,7 +126,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      priority: 96,
       name: "user",
       subcommands: [
         {
