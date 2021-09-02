@@ -221,8 +221,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "debug",
-      // workaround to avoid showing immediate insert arrow when 'debug' is entered
-      // Do we have a way of inc
+      // workaround to avoid showing immediate execute arrow from appearing when 'debug' is entered
       insertValue: "debug {cursor}",
       description: "Utilities that are helpful when things break",
       subcommands: [
