@@ -237,7 +237,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "sample",
           description:
-            "Profile a the Fig process to determine why it is hanging or locked",
+            "Profile the Fig process to determine why it is hanging or locked",
         },
         {
           name: "prefs",
