@@ -1,3 +1,20 @@
+const createCLIs = ["create-next-app", "create-react-native-app"];
+
+const clis = [
+  "vue",
+  "nuxt",
+  "expo",
+  "jest",
+  "next",
+  "electron",
+  "prisma",
+  "eslint",
+  "prettier",
+  "tsc",
+  "typeorm",
+  "babel",
+];
+
 type SearchResult = {
   package: {
     name: string;
@@ -352,22 +369,8 @@ const completionSpec: Fig.Spec = {
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
-    const cli = [
-      "vue",
-      "nuxt",
-      "expo",
-      "jest",
-      "next",
-      "electron",
-      "prisma",
-      "eslint",
-      "prettier",
-      "tsc",
-      "typeorm",
-      "babel",
-    ];
     const subcommands = packages
-      .filter((name) => cli.includes(name))
+      .filter((name) => clis.includes(name))
       .map((name) => ({
         name,
         loadSpec: name,
@@ -803,6 +806,15 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Creates new projects from any create-* starter kits",
+      generateSpec: async () => {
+        return {
+          name: "create",
+          subcommands: createCLIs.map((name) => ({
+            name: name.slice(7),
+            loadSpec: name,
+          })),
+        };
+      },
       options: [
         ...commonOptions,
         {

@@ -45,6 +45,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "typeorm",
     icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4",
   },
+  {
+    name: "create-next-app",
+    icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
