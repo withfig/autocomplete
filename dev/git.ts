@@ -3083,7 +3083,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "pop",
           description: "Restores the most recently stashed files",
-          insertValue: "pop {cursor}",
           options: [
             {
               name: "--index",
