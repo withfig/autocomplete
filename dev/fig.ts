@@ -262,8 +262,8 @@ const completionSpec: Fig.Spec = {
                 const insertedLogFiles = tokens.slice(pivot);
                 return out
                   .split("\n")
-                  .map((log) => ({
-                    name: log.replace(".log", ""),
+                  .map((log) => {
+                    return { name: log.replace(".log", "") };
                   })
                   .filter(
                     (suggestion) => !insertedLogFiles.includes(suggestion.name)
