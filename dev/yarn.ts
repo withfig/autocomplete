@@ -12,6 +12,7 @@ const clis = [
   "prettier",
   "tsc",
   "typeorm",
+  "babel",
 ];
 
 type SearchResult = {
