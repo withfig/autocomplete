@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The friendly name of the role that is assigned to the user",
           args: {
-            name: "string",
+            name: "name",
           },
         },
         {
@@ -21,7 +21,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The identifier for the AWS account that is assigned to the user",
           args: {
-            name: "string",
+            name: "account id",
           },
         },
         {
@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
           args: {
-            name: "string",
+            name: "token",
           },
         },
         {
@@ -76,7 +76,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
           args: {
-            name: "string",
+            name: "token",
           },
         },
         {
@@ -84,7 +84,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The identifier for the AWS account that is assigned to the user",
           args: {
-            name: "string",
+            name: "account id",
           },
         },
         {
@@ -156,7 +156,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
           args: {
-            name: "string",
+            name: "token",
           },
         },
         {
@@ -203,6 +203,21 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "login",
+      description:
+        "Refreshes SSO access tokens and logs in. Required setup using `aws configure sso`",
+      options: [
+        {
+          name: "--profile",
+          description:
+            "The name of the profile to use.\n\nIf not set, will use the default profile",
+          args: {
+            name: "name",
+          },
+        },
+      ],
+    },
+    {
       name: "logout",
       description:
         "Removes the client- and server-side session that is associated with the user",
@@ -212,7 +227,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The token issued by the CreateToken API call. For more information, see CreateToken in the AWS SSO OIDC API Reference Guide",
           args: {
-            name: "string",
+            name: "token",
           },
         },
         {
