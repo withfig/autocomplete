@@ -11,3 +11,4 @@ npm-debug.log
 .vscode
 specs
 .idea/
+package-lock.json
