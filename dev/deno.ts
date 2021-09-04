@@ -183,12 +183,13 @@ const seedArg: Fig.Option = {
 
 const v8FlagsOption: Fig.Option = {
   name: "--v8-flags",
+  insertValue: "--v8-flags=",
   description: "Set V8 command line options (for help: --v8-flags=--help",
   // requiresEquals: true,
-  // args: {
-  //   name: "V8 flags",
-  //   description: "Flags to pass to V8",
-  // },
+  args: {
+    name: "V8 flags",
+    description: "Flags to pass to V8",
+  },
 };
 
 const watchOption: Fig.Option = {
@@ -292,11 +293,12 @@ const denoTest: Fig.Subcommand = {
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: "--ignore",
+      insertValue: "--ignore=",
       description: "Ignore files",
       // requiresEquals: true,
-      // args: {
-      //   name: "Files to ignore",
-      // },
+      args: {
+        name: "Files to ignore",
+      },
     },
     {
       name: "--no-run",
@@ -339,12 +341,13 @@ const denoTest: Fig.Subcommand = {
     },
     {
       name: "--coverage",
+      insertValue: "--coverage=",
       description: "UNSTABLE: Collect coverage profile data into the directory",
       // requiresEquals: true,
-      // args: {
-      //   name: "directory",
-      //   description: "The directory to use for coverage data",
-      // },
+      args: {
+        name: "directory",
+        description: "The directory to use for coverage data",
+      },
     },
     {
       name: ["-j", "--jobs"],
@@ -391,12 +394,13 @@ const denoFmt: Fig.Subcommand = {
     },
     {
       name: "--ignore",
+      insertValue: "--ignore=",
       description: "Ignore formatting particular source files",
       // requiresEquals: true,
-      // args: {
-      //   name: "Files to ignore",
-      //   template: "filepaths",
-      // },
+      args: {
+        name: "Files to ignore",
+        template: "filepaths",
+      },
     },
     watchOption,
   ],
@@ -589,32 +593,35 @@ const denoCoverage: Fig.Subcommand = {
     ...globalOptions,
     {
       name: "--ignore",
+      insertValue: "--ignore=",
       description: "Ignore coverage files",
       // requiresEquals: true,
-      // args: {
-      //   name: "pattern",
-      //   description: "Ignore files matching this regex pattern",
-      // },
+      args: {
+        name: "pattern",
+        description: "Ignore files matching this regex pattern",
+      },
     },
     {
       name: "--include",
+      insertValue: "--include=",
       description: "Include source files in the report",
       isRepeatable: true,
       // requiresEquals: true,
-      // args: {
-      //   name: "pattern",
-      //   description: "Include files matching this regex pattern",
-      // },
+      args: {
+        name: "pattern",
+        description: "Include files matching this regex pattern",
+      },
     },
     {
       name: "--exclude",
+      insertValue: "--exclude=",
       description: "Exclude source files from the report",
       isRepeatable: true,
       // requiresEquals: true,
-      // args: {
-      //   name: "pattern",
-      //   description: "Exclude files matching this regex pattern",
-      // },
+      args: {
+        name: "pattern",
+        description: "Exclude files matching this regex pattern",
+      },
     },
     {
       name: "--lcov",
