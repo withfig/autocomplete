@@ -4768,7 +4768,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "export",
-          description: "Exports data from a Cloud SQL instance.",
+          description: "Exports data from a Cloud SQL instance",
           deprecated: true,
 
           options: [
@@ -5085,7 +5085,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "import",
           description:
-            "Imports data into a Cloud SQL instance from Google Cloud Storage.",
+            "Imports data into a Cloud SQL instance from Google Cloud Storage",
           deprecated: true,
 
           options: [
@@ -5655,7 +5655,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--gce-zone",
               description:
-                "Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.). WARNING: Instance may be restarted.",
+                "Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.). WARNING: Instance may be restarted",
               deprecated: {
                 alternative: "Use the `--zone` flag",
                 message: "It will be removed by release 255.0.0",
@@ -8324,7 +8324,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "create",
-          description: "Creates an SSL certificate for a Cloud SQL instance.",
+          description: "Creates an SSL certificate for a Cloud SQL instance",
           deprecated: true,
           options: [
             {
@@ -8481,7 +8481,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
-          description: "Deletes an SSL certificate for a Cloud SQL instance.",
+          description: "Deletes an SSL certificate for a Cloud SQL instance",
           deprecated: true,
 
           options: [
@@ -8637,7 +8637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description:
-            "Retrieves information about an SSL cert for a Cloud SQL instance.",
+            "Retrieves information about an SSL cert for a Cloud SQL instance",
           deprecated: true,
           options: [
             {
@@ -8786,7 +8786,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "Lists all SSL certs for a Cloud SQL instance.",
+          description: "Lists all SSL certs for a Cloud SQL instance",
           deprecated: true,
           options: [
             {
