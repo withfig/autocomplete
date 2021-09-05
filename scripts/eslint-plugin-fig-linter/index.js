@@ -9,6 +9,7 @@ module.exports = {
     "no-duplicate-options-subcommands": require("./rules/no-duplicate-options-subcommands"),
     "no-missing-default-export": require("./rules/no-missing-default-export"),
     "no-useless-arrays": require("./rules/no-useless-arrays"),
+    "conventional-descriptions": require("./rules/conventional-descriptions"),
   },
   configs: {
     recommended: {
@@ -24,6 +25,7 @@ module.exports = {
         "fig-linter/no-duplicate-options-subcommands": "error",
         "fig-linter/no-missing-default-export": "off",
         "fig-linter/no-useless-arrays": "error",
+        "fig-linter/conventional-descriptions": "error",
       },
       overrides: [
         {

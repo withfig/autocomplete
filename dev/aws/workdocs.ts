@@ -1,31 +1,31 @@
 const completionSpec: Fig.Spec = {
   name: "workdocs",
   description:
-    "The WorkDocs API is designed for the following use cases:   File Migration: File migration applications are supported for users who want to migrate their files from an on-premises or off-premises file system or service. Users can insert files into a user directory structure, as well as allow for basic metadata changes, such as modifications to the permissions of files.   Security: Support security applications are supported for users who have additional security needs, such as antivirus or data loss prevention. The API actions, along with AWS CloudTrail, allow these applications to detect when changes occur in Amazon WorkDocs. Then, the application can take the necessary actions and replace the target file. If the target file violates the policy, the application can also choose to email the user.   eDiscovery/Analytics: General administrative applications are supported, such as eDiscovery and analytics. These applications can choose to mimic or record the actions in an Amazon WorkDocs site, along with AWS CloudTrail, to replicate data for eDiscovery, backup, or analytical applications.   All Amazon WorkDocs API actions are Amazon authenticated and certificate-signed. They not only require the use of the AWS SDK, but also allow for the exclusive use of IAM users and roles to help facilitate access, trust, and permission policies. By creating a role and allowing an IAM user to access the Amazon WorkDocs site, the IAM user gains full administrative visibility into the entire Amazon WorkDocs site (or as set in the IAM policy). This includes, but is not limited to, the ability to modify file permissions and upload any file to any user. This allows developers to perform the three use cases above, as well as give users the ability to grant access on a selective basis using the IAM model.",
+    "The WorkDocs API is designed for the following use cases:   File Migration: File migration applications are supported for users who want to migrate their files from an on-premises or off-premises file system or service. Users can insert files into a user directory structure, as well as allow for basic metadata changes, such as modifications to the permissions of files.   Security: Support security applications are supported for users who have additional security needs, such as antivirus or data loss prevention. The API actions, along with AWS CloudTrail, allow these applications to detect when changes occur in Amazon WorkDocs. Then, the application can take the necessary actions and replace the target file. If the target file violates the policy, the application can also choose to email the user.   eDiscovery/Analytics: General administrative applications are supported, such as eDiscovery and analytics. These applications can choose to mimic or record the actions in an Amazon WorkDocs site, along with AWS CloudTrail, to replicate data for eDiscovery, backup, or analytical applications.   All Amazon WorkDocs API actions are Amazon authenticated and certificate-signed. They not only require the use of the AWS SDK, but also allow for the exclusive use of IAM users and roles to help facilitate access, trust, and permission policies. By creating a role and allowing an IAM user to access the Amazon WorkDocs site, the IAM user gains full administrative visibility into the entire Amazon WorkDocs site (or as set in the IAM policy). This includes, but is not limited to, the ability to modify file permissions and upload any file to any user. This allows developers to perform the three use cases above, as well as give users the ability to grant access on a selective basis using the IAM model",
   subcommands: [
     {
       name: "abort-document-version-upload",
       description:
-        "Aborts the upload of the specified document version that was previously initiated by InitiateDocumentVersionUpload. The client should make this call only when it no longer intends to upload the document version, or fails to do so.",
+        "Aborts the upload of the specified document version that was previously initiated by InitiateDocumentVersionUpload. The client should make this call only when it no longer intends to upload the document version, or fails to do so",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-id",
-          description: "The ID of the version.",
+          description: "The ID of the version",
           args: {
             name: "string",
           },
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -52,11 +52,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "activate-user",
       description:
-        "Activates the specified user. Only active users can access Amazon WorkDocs.",
+        "Activates the specified user. Only active users can access Amazon WorkDocs",
       options: [
         {
           name: "--user-id",
-          description: "The ID of the user.",
+          description: "The ID of the user",
           args: {
             name: "string",
           },
@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -72,7 +72,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -80,7 +80,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -91,19 +91,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-resource-permissions",
       description:
-        "Creates a set of permissions for the specified folder or document. The resource permissions are overwritten if the principals already have different permissions.",
+        "Creates a set of permissions for the specified folder or document. The resource permissions are overwritten if the principals already have different permissions",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
@@ -111,14 +111,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--principals",
           description:
-            "The users, groups, or organization being granted permission.",
+            "The users, groups, or organization being granted permission",
           args: {
             name: "list",
           },
         },
         {
           name: "--notification-options",
-          description: "The notification options.",
+          description: "The notification options",
           args: {
             name: "structure",
           },
@@ -126,7 +126,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -134,7 +134,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -144,47 +144,47 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-comment",
-      description: "Adds a new comment to the specified document version.",
+      description: "Adds a new comment to the specified document version",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-id",
-          description: "The ID of the document version.",
+          description: "The ID of the document version",
           args: {
             name: "string",
           },
         },
         {
           name: "--parent-id",
-          description: "The ID of the parent comment.",
+          description: "The ID of the parent comment",
           args: {
             name: "string",
           },
         },
         {
           name: "--thread-id",
-          description: "The ID of the root comment in the thread.",
+          description: "The ID of the root comment in the thread",
           args: {
             name: "string",
           },
         },
         {
           name: "--text",
-          description: "The text of the comment.",
+          description: "The text of the comment",
           args: {
             name: "string",
           },
@@ -192,7 +192,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--visibility",
           description:
-            "The visibility of the comment. Options are either PRIVATE, where the comment is visible only to the comment author and document owner and co-owners, or PUBLIC, where the comment is visible to document owners, co-owners, and contributors.",
+            "The visibility of the comment. Options are either PRIVATE, where the comment is visible only to the comment author and document owner and co-owners, or PUBLIC, where the comment is visible to document owners, co-owners, and contributors",
           args: {
             name: "string",
           },
@@ -200,17 +200,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--notify-collaborators",
           description:
-            "Set this parameter to TRUE to send an email out to the document collaborators after the comment is created.",
+            "Set this parameter to TRUE to send an email out to the document collaborators after the comment is created",
         },
         {
           name: "--no-notify-collaborators",
           description:
-            "Set this parameter to TRUE to send an email out to the document collaborators after the comment is created.",
+            "Set this parameter to TRUE to send an email out to the document collaborators after the comment is created",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -218,7 +218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -229,19 +229,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-custom-metadata",
       description:
-        "Adds one or more custom properties to the specified resource (a folder, document, or version).",
+        "Adds one or more custom properties to the specified resource (a folder, document, or version)",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
@@ -249,14 +249,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The ID of the version, if the custom metadata is being added to a document version.",
+            "The ID of the version, if the custom metadata is being added to a document version",
           args: {
             name: "string",
           },
         },
         {
           name: "--custom-metadata",
-          description: "Custom metadata in the form of name-value pairs.",
+          description: "Custom metadata in the form of name-value pairs",
           args: {
             name: "map",
           },
@@ -264,7 +264,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -272,7 +272,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -282,27 +282,26 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-folder",
-      description:
-        "Creates a folder with the specified name and parent folder.",
+      description: "Creates a folder with the specified name and parent folder",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the new folder.",
+          description: "The name of the new folder",
           args: {
             name: "string",
           },
         },
         {
           name: "--parent-folder-id",
-          description: "The ID of the parent folder.",
+          description: "The ID of the parent folder",
           args: {
             name: "string",
           },
@@ -310,7 +309,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -318,7 +317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -333,14 +332,14 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--labels",
-          description: "List of labels to add to the resource.",
+          description: "List of labels to add to the resource",
           args: {
             name: "list",
           },
@@ -348,7 +347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -356,7 +355,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -364,7 +363,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -375,11 +374,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-notification-subscription",
       description:
-        "Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription. For more information, see Subscribe to Notifications in the Amazon WorkDocs Developer Guide.",
+        "Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription. For more information, see Subscribe to Notifications in the Amazon WorkDocs Developer Guide",
       options: [
         {
           name: "--organization-id",
-          description: "The ID of the organization.",
+          description: "The ID of the organization",
           args: {
             name: "string",
           },
@@ -387,14 +386,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--protocol",
           description:
-            "The protocol to use. The supported value is https, which delivers JSON-encoded messages using HTTPS POST.",
+            "The protocol to use. The supported value is https, which delivers JSON-encoded messages using HTTPS POST",
           args: {
             name: "string",
           },
         },
         {
           name: "--subscription-type",
-          description: "The notification type.",
+          description: "The notification type",
           args: {
             name: "string",
           },
@@ -402,7 +401,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--notification-endpoint",
           description:
-            "The endpoint to receive the notifications. If the protocol is HTTPS, the endpoint is a URL that begins with https.",
+            "The endpoint to receive the notifications. If the protocol is HTTPS, the endpoint is a URL that begins with https",
           args: {
             name: "string",
           },
@@ -410,7 +409,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -418,7 +417,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -429,60 +428,60 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-user",
       description:
-        'Creates a user in a Simple AD or Microsoft AD directory. The status of a newly created user is "ACTIVE". New users can access Amazon WorkDocs.',
+        'Creates a user in a Simple AD or Microsoft AD directory. The status of a newly created user is "ACTIVE". New users can access Amazon WorkDocs',
       options: [
         {
           name: "--organization-id",
-          description: "The ID of the organization.",
+          description: "The ID of the organization",
           args: {
             name: "string",
           },
         },
         {
           name: "--username",
-          description: "The login name of the user.",
+          description: "The login name of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--email-address",
-          description: "The email address of the user.",
+          description: "The email address of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--given-name",
-          description: "The given name of the user.",
+          description: "The given name of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--surname",
-          description: "The surname of the user.",
+          description: "The surname of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--password",
-          description: "The password of the user.",
+          description: "The password of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--time-zone-id",
-          description: "The time zone ID of the user.",
+          description: "The time zone ID of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--storage-rule",
-          description: "The amount of storage for the user.",
+          description: "The amount of storage for the user",
           args: {
             name: "structure",
           },
@@ -490,7 +489,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -498,7 +497,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -506,7 +505,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -517,11 +516,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "deactivate-user",
       description:
-        "Deactivates the specified user, which revokes the user's access to Amazon WorkDocs.",
+        "Deactivates the specified user, which revokes the user's access to Amazon WorkDocs",
       options: [
         {
           name: "--user-id",
-          description: "The ID of the user.",
+          description: "The ID of the user",
           args: {
             name: "string",
           },
@@ -529,7 +528,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -537,7 +536,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -545,7 +544,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -555,33 +554,33 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-comment",
-      description: "Deletes the specified comment from the document version.",
+      description: "Deletes the specified comment from the document version",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-id",
-          description: "The ID of the document version.",
+          description: "The ID of the document version",
           args: {
             name: "string",
           },
         },
         {
           name: "--comment-id",
-          description: "The ID of the comment.",
+          description: "The ID of the comment",
           args: {
             name: "string",
           },
@@ -589,7 +588,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -597,7 +596,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -607,19 +606,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-custom-metadata",
-      description: "Deletes custom metadata from the specified resource.",
+      description: "Deletes custom metadata from the specified resource",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-id",
-          description: "The ID of the resource, either a document or folder.",
+          description: "The ID of the resource, either a document or folder",
           args: {
             name: "string",
           },
@@ -627,14 +626,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The ID of the version, if the custom metadata is being deleted from a document version.",
+            "The ID of the version, if the custom metadata is being deleted from a document version",
           args: {
             name: "string",
           },
         },
         {
           name: "--keys",
-          description: "List of properties to remove.",
+          description: "List of properties to remove",
           args: {
             name: "list",
           },
@@ -642,17 +641,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--delete-all",
           description:
-            "Flag to indicate removal of all custom metadata properties from the specified resource.",
+            "Flag to indicate removal of all custom metadata properties from the specified resource",
         },
         {
           name: "--no-delete-all",
           description:
-            "Flag to indicate removal of all custom metadata properties from the specified resource.",
+            "Flag to indicate removal of all custom metadata properties from the specified resource",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -660,7 +659,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -671,19 +670,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-document",
       description:
-        "Permanently deletes the specified document and its associated metadata.",
+        "Permanently deletes the specified document and its associated metadata",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
@@ -691,7 +690,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -699,7 +698,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -709,19 +708,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-folder",
-      description: "Permanently deletes the specified folder and its contents.",
+      description: "Permanently deletes the specified folder and its contents",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--folder-id",
-          description: "The ID of the folder.",
+          description: "The ID of the folder",
           args: {
             name: "string",
           },
@@ -729,7 +728,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -737,7 +736,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -747,19 +746,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-folder-contents",
-      description: "Deletes the contents of the specified folder.",
+      description: "Deletes the contents of the specified folder",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--folder-id",
-          description: "The ID of the folder.",
+          description: "The ID of the folder",
           args: {
             name: "string",
           },
@@ -767,7 +766,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -775,7 +774,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -785,11 +784,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-labels",
-      description: "Deletes the specified list of labels from a resource.",
+      description: "Deletes the specified list of labels from a resource",
       options: [
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
@@ -797,14 +796,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--labels",
-          description: "List of labels to delete from the resource.",
+          description: "List of labels to delete from the resource",
           args: {
             name: "list",
           },
@@ -812,17 +811,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--delete-all",
           description:
-            "Flag to request removal of all labels from the specified resource.",
+            "Flag to request removal of all labels from the specified resource",
         },
         {
           name: "--no-delete-all",
           description:
-            "Flag to request removal of all labels from the specified resource.",
+            "Flag to request removal of all labels from the specified resource",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -830,7 +829,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -841,18 +840,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-notification-subscription",
       description:
-        "Deletes the specified subscription from the specified organization.",
+        "Deletes the specified subscription from the specified organization",
       options: [
         {
           name: "--subscription-id",
-          description: "The ID of the subscription.",
+          description: "The ID of the subscription",
           args: {
             name: "string",
           },
         },
         {
           name: "--organization-id",
-          description: "The ID of the organization.",
+          description: "The ID of the organization",
           args: {
             name: "string",
           },
@@ -860,7 +859,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -868,7 +867,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -879,19 +878,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-user",
       description:
-        "Deletes the specified user from a Simple AD or Microsoft AD directory.",
+        "Deletes the specified user from a Simple AD or Microsoft AD directory",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Do not set this field when using administrative API actions, as in accessing the API using AWS credentials.",
+            "Amazon WorkDocs authentication token. Do not set this field when using administrative API actions, as in accessing the API using AWS credentials",
           args: {
             name: "string",
           },
         },
         {
           name: "--user-id",
-          description: "The ID of the user.",
+          description: "The ID of the user",
           args: {
             name: "string",
           },
@@ -899,7 +898,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -907,7 +906,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -917,12 +916,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-activities",
-      description: "Describes the user activities in a specified time period.",
+      description: "Describes the user activities in a specified time period",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -930,7 +929,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--start-time",
           description:
-            "The timestamp that determines the starting time of the activities. The response includes the activities performed after the specified timestamp.",
+            "The timestamp that determines the starting time of the activities. The response includes the activities performed after the specified timestamp",
           args: {
             name: "timestamp",
           },
@@ -938,7 +937,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--end-time",
           description:
-            "The timestamp that determines the end time of the activities. The response includes the activities performed before the specified timestamp.",
+            "The timestamp that determines the end time of the activities. The response includes the activities performed before the specified timestamp",
           args: {
             name: "timestamp",
           },
@@ -946,7 +945,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--organization-id",
           description:
-            "The ID of the organization. This is a mandatory parameter when using administrative API (SigV4) requests.",
+            "The ID of the organization. This is a mandatory parameter when using administrative API (SigV4) requests",
           args: {
             name: "string",
           },
@@ -954,7 +953,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--activity-types",
           description:
-            "Specifies which activity types to include in the response. If this field is left empty, all activity types are returned.",
+            "Specifies which activity types to include in the response. If this field is left empty, all activity types are returned",
           args: {
             name: "string",
           },
@@ -962,7 +961,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-id",
           description:
-            "The document or folder ID for which to describe activity types.",
+            "The document or folder ID for which to describe activity types",
           args: {
             name: "string",
           },
@@ -970,7 +969,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-id",
           description:
-            "The ID of the user who performed the action. The response includes activities pertaining to this user. This is an optional parameter and is only applicable for administrative API (SigV4) requests.",
+            "The ID of the user who performed the action. The response includes activities pertaining to this user. This is an optional parameter and is only applicable for administrative API (SigV4) requests",
           args: {
             name: "string",
           },
@@ -978,23 +977,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-indirect-activities",
           description:
-            "Includes indirect activities. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity).",
+            "Includes indirect activities. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity)",
         },
         {
           name: "--no-include-indirect-activities",
           description:
-            "Includes indirect activities. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity).",
+            "Includes indirect activities. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity)",
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return.",
+          description: "The maximum number of items to return",
           args: {
             name: "integer",
           },
         },
         {
           name: "--marker",
-          description: "The marker for the next set of results.",
+          description: "The marker for the next set of results",
           args: {
             name: "string",
           },
@@ -1002,7 +1001,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1010,7 +1009,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1018,7 +1017,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1026,7 +1025,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1034,7 +1033,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1044,33 +1043,33 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-comments",
-      description: "List all the comments for the specified document version.",
+      description: "List all the comments for the specified document version",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-id",
-          description: "The ID of the document version.",
+          description: "The ID of the document version",
           args: {
             name: "string",
           },
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return.",
+          description: "The maximum number of items to return",
           args: {
             name: "integer",
           },
@@ -1078,7 +1077,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "The marker for the next set of results. This marker was received from a previous call.",
+            "The marker for the next set of results. This marker was received from a previous call",
           args: {
             name: "string",
           },
@@ -1086,7 +1085,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1094,7 +1093,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1102,7 +1101,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1110,7 +1109,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1118,7 +1117,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1129,19 +1128,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-document-versions",
       description:
-        "Retrieves the document versions for the specified document. By default, only active versions are returned.",
+        "Retrieves the document versions for the specified document. By default, only active versions are returned",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
@@ -1157,7 +1156,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit",
           description:
-            "The maximum number of versions to return with this call.",
+            "The maximum number of versions to return with this call",
           args: {
             name: "integer",
           },
@@ -1165,7 +1164,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include",
           description:
-            'A comma-separated list of values. Specify "INITIALIZED" to include incomplete versions.',
+            'A comma-separated list of values. Specify "INITIALIZED" to include incomplete versions',
           args: {
             name: "string",
           },
@@ -1173,7 +1172,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fields",
           description:
-            'Specify "SOURCE" to include initialized versions and a URL for the source document.',
+            'Specify "SOURCE" to include initialized versions and a URL for the source document',
           args: {
             name: "string",
           },
@@ -1181,7 +1180,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1189,7 +1188,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1197,7 +1196,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1205,7 +1204,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1213,7 +1212,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1224,40 +1223,40 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-folder-contents",
       description:
-        "Describes the contents of the specified folder, including its documents and subfolders. By default, Amazon WorkDocs returns the first 100 active document and folder metadata items. If there are more results, the response includes a marker that you can use to request the next set of results. You can also request initialized documents.",
+        "Describes the contents of the specified folder, including its documents and subfolders. By default, Amazon WorkDocs returns the first 100 active document and folder metadata items. If there are more results, the response includes a marker that you can use to request the next set of results. You can also request initialized documents",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--folder-id",
-          description: "The ID of the folder.",
+          description: "The ID of the folder",
           args: {
             name: "string",
           },
         },
         {
           name: "--sort",
-          description: "The sorting criteria.",
+          description: "The sorting criteria",
           args: {
             name: "string",
           },
         },
         {
           name: "--order",
-          description: "The order for the contents of the folder.",
+          description: "The order for the contents of the folder",
           args: {
             name: "string",
           },
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return with this call.",
+          description: "The maximum number of items to return with this call",
           args: {
             name: "integer",
           },
@@ -1265,14 +1264,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "The marker for the next set of results. This marker was received from a previous call.",
+            "The marker for the next set of results. This marker was received from a previous call",
           args: {
             name: "string",
           },
         },
         {
           name: "--type",
-          description: "The type of items.",
+          description: "The type of items",
           args: {
             name: "string",
           },
@@ -1280,7 +1279,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include",
           description:
-            'The contents to include. Specify "INITIALIZED" to include initialized documents.',
+            'The contents to include. Specify "INITIALIZED" to include initialized documents',
           args: {
             name: "string",
           },
@@ -1288,7 +1287,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1296,7 +1295,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1304,7 +1303,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1312,7 +1311,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1320,7 +1319,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1331,26 +1330,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-groups",
       description:
-        "Describes the groups specified by the query. Groups are defined by the underlying Active Directory.",
+        "Describes the groups specified by the query. Groups are defined by the underlying Active Directory",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--search-query",
-          description: "A query to describe groups by group name.",
+          description: "A query to describe groups by group name",
           args: {
             name: "string",
           },
         },
         {
           name: "--organization-id",
-          description: "The ID of the organization.",
+          description: "The ID of the organization",
           args: {
             name: "string",
           },
@@ -1365,7 +1364,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return with this call.",
+          description: "The maximum number of items to return with this call",
           args: {
             name: "integer",
           },
@@ -1373,7 +1372,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1381,7 +1380,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1389,7 +1388,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1397,7 +1396,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1405,7 +1404,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1415,11 +1414,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-notification-subscriptions",
-      description: "Lists the specified notification subscriptions.",
+      description: "Lists the specified notification subscriptions",
       options: [
         {
           name: "--organization-id",
-          description: "The ID of the organization.",
+          description: "The ID of the organization",
           args: {
             name: "string",
           },
@@ -1434,7 +1433,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return with this call.",
+          description: "The maximum number of items to return with this call",
           args: {
             name: "integer",
           },
@@ -1442,7 +1441,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1450,7 +1449,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1458,7 +1457,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1466,7 +1465,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1474,7 +1473,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1484,33 +1483,33 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "describe-resource-permissions",
-      description: "Describes the permissions of a specified resource.",
+      description: "Describes the permissions of a specified resource",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--principal-id",
-          description: "The ID of the principal to filter permissions by.",
+          description: "The ID of the principal to filter permissions by",
           args: {
             name: "string",
           },
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return with this call.",
+          description: "The maximum number of items to return with this call",
           args: {
             name: "integer",
           },
@@ -1526,7 +1525,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1534,7 +1533,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1542,7 +1541,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1550,7 +1549,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1558,7 +1557,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1569,18 +1568,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-root-folders",
       description:
-        "Describes the current user's special folders; the RootFolder and the RecycleBin. RootFolder is the root of user's files and folders and RecycleBin is the root of recycled items. This is not a valid action for SigV4 (administrative API) clients. This action requires an authentication token. To get an authentication token, register an application with Amazon WorkDocs. For more information, see Authentication and Access Control for User Applications in the Amazon WorkDocs Developer Guide.",
+        "Describes the current user's special folders; the RootFolder and the RecycleBin. RootFolder is the root of user's files and folders and RecycleBin is the root of recycled items. This is not a valid action for SigV4 (administrative API) clients. This action requires an authentication token. To get an authentication token, register an application with Amazon WorkDocs. For more information, see Authentication and Access Control for User Applications in the Amazon WorkDocs Developer Guide",
       options: [
         {
           name: "--authentication-token",
-          description: "Amazon WorkDocs authentication token.",
+          description: "Amazon WorkDocs authentication token",
           args: {
             name: "string",
           },
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return.",
+          description: "The maximum number of items to return",
           args: {
             name: "integer",
           },
@@ -1596,7 +1595,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1604,7 +1603,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1612,7 +1611,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1620,7 +1619,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1628,7 +1627,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1639,26 +1638,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe-users",
       description:
-        "Describes the specified users. You can describe all users or filter the results (for example, by status or organization). By default, Amazon WorkDocs returns the first 24 active or pending users. If there are more results, the response includes a marker that you can use to request the next set of results.",
+        "Describes the specified users. You can describe all users or filter the results (for example, by status or organization). By default, Amazon WorkDocs returns the first 24 active or pending users. If there are more results, the response includes a marker that you can use to request the next set of results",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--organization-id",
-          description: "The ID of the organization.",
+          description: "The ID of the organization",
           args: {
             name: "string",
           },
         },
         {
           name: "--user-ids",
-          description: "The IDs of the users.",
+          description: "The IDs of the users",
           args: {
             name: "string",
           },
@@ -1666,21 +1665,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include",
           description:
-            'The state of the users. Specify "ALL" to include inactive users.',
+            'The state of the users. Specify "ALL" to include inactive users',
           args: {
             name: "string",
           },
         },
         {
           name: "--order",
-          description: "The order for the results.",
+          description: "The order for the results",
           args: {
             name: "string",
           },
         },
         {
           name: "--sort",
-          description: "The sorting criteria.",
+          description: "The sorting criteria",
           args: {
             name: "string",
           },
@@ -1695,7 +1694,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limit",
-          description: "The maximum number of items to return.",
+          description: "The maximum number of items to return",
           args: {
             name: "integer",
           },
@@ -1703,14 +1702,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fields",
           description:
-            'A comma-separated list of values. Specify "STORAGE_METADATA" to include the user storage quota and utilization information.',
+            'A comma-separated list of values. Specify "STORAGE_METADATA" to include the user storage quota and utilization information',
           args: {
             name: "string",
           },
         },
         {
           name: "--user-query",
-          description: "A query to filter users by user name.",
+          description: "A query to filter users by user name",
           args: {
             name: "string",
           },
@@ -1718,7 +1717,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1726,7 +1725,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -1734,7 +1733,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1742,7 +1741,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -1750,7 +1749,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1761,11 +1760,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-current-user",
       description:
-        "Retrieves details of the current user for whom the authentication token was generated. This is not a valid action for SigV4 (administrative API) clients. This action requires an authentication token. To get an authentication token, register an application with Amazon WorkDocs. For more information, see Authentication and Access Control for User Applications in the Amazon WorkDocs Developer Guide.",
+        "Retrieves details of the current user for whom the authentication token was generated. This is not a valid action for SigV4 (administrative API) clients. This action requires an authentication token. To get an authentication token, register an application with Amazon WorkDocs. For more information, see Authentication and Access Control for User Applications in the Amazon WorkDocs Developer Guide",
       options: [
         {
           name: "--authentication-token",
-          description: "Amazon WorkDocs authentication token.",
+          description: "Amazon WorkDocs authentication token",
           args: {
             name: "string",
           },
@@ -1773,7 +1772,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1781,7 +1780,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1791,19 +1790,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-document",
-      description: "Retrieves details of a document.",
+      description: "Retrieves details of a document",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
@@ -1811,17 +1810,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-custom-metadata",
           description:
-            "Set this to TRUE to include custom metadata in the response.",
+            "Set this to TRUE to include custom metadata in the response",
         },
         {
           name: "--no-include-custom-metadata",
           description:
-            "Set this to TRUE to include custom metadata in the response.",
+            "Set this to TRUE to include custom metadata in the response",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1829,7 +1828,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1840,19 +1839,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-document-path",
       description:
-        "Retrieves the path information (the hierarchy from the root folder) for the requested document. By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the requested document and only includes the IDs of the parent folders in the path. You can limit the maximum number of levels. You can also request the names of the parent folders.",
+        "Retrieves the path information (the hierarchy from the root folder) for the requested document. By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the requested document and only includes the IDs of the parent folders in the path. You can limit the maximum number of levels. You can also request the names of the parent folders",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
@@ -1860,7 +1859,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit",
           description:
-            "The maximum number of levels in the hierarchy to return.",
+            "The maximum number of levels in the hierarchy to return",
           args: {
             name: "integer",
           },
@@ -1868,14 +1867,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fields",
           description:
-            "A comma-separated list of values. Specify NAME to include the names of the parent folders.",
+            "A comma-separated list of values. Specify NAME to include the names of the parent folders",
           args: {
             name: "string",
           },
         },
         {
           name: "--marker",
-          description: "This value is not supported.",
+          description: "This value is not supported",
           args: {
             name: "string",
           },
@@ -1883,7 +1882,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1891,7 +1890,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1901,26 +1900,26 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-document-version",
-      description: "Retrieves version metadata for the specified document.",
+      description: "Retrieves version metadata for the specified document",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-id",
-          description: "The version ID of the document.",
+          description: "The version ID of the document",
           args: {
             name: "string",
           },
@@ -1928,7 +1927,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fields",
           description:
-            'A comma-separated list of values. Specify "SOURCE" to include a URL for the source document.',
+            'A comma-separated list of values. Specify "SOURCE" to include a URL for the source document',
           args: {
             name: "string",
           },
@@ -1936,17 +1935,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-custom-metadata",
           description:
-            "Set this to TRUE to include custom metadata in the response.",
+            "Set this to TRUE to include custom metadata in the response",
         },
         {
           name: "--no-include-custom-metadata",
           description:
-            "Set this to TRUE to include custom metadata in the response.",
+            "Set this to TRUE to include custom metadata in the response",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1954,7 +1953,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1964,37 +1963,35 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-folder",
-      description: "Retrieves the metadata of the specified folder.",
+      description: "Retrieves the metadata of the specified folder",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--folder-id",
-          description: "The ID of the folder.",
+          description: "The ID of the folder",
           args: {
             name: "string",
           },
         },
         {
           name: "--include-custom-metadata",
-          description:
-            "Set to TRUE to include custom metadata in the response.",
+          description: "Set to TRUE to include custom metadata in the response",
         },
         {
           name: "--no-include-custom-metadata",
-          description:
-            "Set to TRUE to include custom metadata in the response.",
+          description: "Set to TRUE to include custom metadata in the response",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2002,7 +1999,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2013,19 +2010,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-folder-path",
       description:
-        "Retrieves the path information (the hierarchy from the root folder) for the specified folder. By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the requested folder and only includes the IDs of the parent folders in the path. You can limit the maximum number of levels. You can also request the parent folder names.",
+        "Retrieves the path information (the hierarchy from the root folder) for the specified folder. By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the requested folder and only includes the IDs of the parent folders in the path. You can limit the maximum number of levels. You can also request the parent folder names",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--folder-id",
-          description: "The ID of the folder.",
+          description: "The ID of the folder",
           args: {
             name: "string",
           },
@@ -2033,7 +2030,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit",
           description:
-            "The maximum number of levels in the hierarchy to return.",
+            "The maximum number of levels in the hierarchy to return",
           args: {
             name: "integer",
           },
@@ -2041,14 +2038,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fields",
           description:
-            'A comma-separated list of values. Specify "NAME" to include the names of the parent folders.',
+            'A comma-separated list of values. Specify "NAME" to include the names of the parent folders',
           args: {
             name: "string",
           },
         },
         {
           name: "--marker",
-          description: "This value is not supported.",
+          description: "This value is not supported",
           args: {
             name: "string",
           },
@@ -2056,7 +2053,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2064,7 +2061,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2075,12 +2072,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-resources",
       description:
-        "Retrieves a collection of resources, including folders and documents. The only CollectionType supported is SHARED_WITH_ME.",
+        "Retrieves a collection of resources, including folders and documents. The only CollectionType supported is SHARED_WITH_ME",
       options: [
         {
           name: "--authentication-token",
           description:
-            "The Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "The Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
@@ -2088,21 +2085,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-id",
           description:
-            "The user ID for the resource collection. This is a required field for accessing the API operation using IAM credentials.",
+            "The user ID for the resource collection. This is a required field for accessing the API operation using IAM credentials",
           args: {
             name: "string",
           },
         },
         {
           name: "--collection-type",
-          description: "The collection type.",
+          description: "The collection type",
           args: {
             name: "string",
           },
         },
         {
           name: "--limit",
-          description: "The maximum number of resources to return.",
+          description: "The maximum number of resources to return",
           args: {
             name: "integer",
           },
@@ -2110,7 +2107,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "The marker for the next set of results. This marker was received from a previous call.",
+            "The marker for the next set of results. This marker was received from a previous call",
           args: {
             name: "string",
           },
@@ -2118,7 +2115,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2126,7 +2123,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2137,26 +2134,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "initiate-document-version-upload",
       description:
-        "Creates a new document object and version object. The client specifies the parent folder ID and name of the document to upload. The ID is optionally specified when creating a new version of an existing document. This is the first step to upload a document. Next, upload the document to the URL returned from the call, and then call UpdateDocumentVersion. To cancel the document upload, call AbortDocumentVersionUpload.",
+        "Creates a new document object and version object. The client specifies the parent folder ID and name of the document to upload. The ID is optionally specified when creating a new version of an existing document. This is the first step to upload a document. Next, upload the document to the URL returned from the call, and then call UpdateDocumentVersion. To cancel the document upload, call AbortDocumentVersionUpload",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the document.",
+          description: "The name of the document",
           args: {
             name: "string",
           },
@@ -2164,7 +2161,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-created-timestamp",
           description:
-            "The timestamp when the content of the document was originally created.",
+            "The timestamp when the content of the document was originally created",
           args: {
             name: "timestamp",
           },
@@ -2172,28 +2169,28 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-modified-timestamp",
           description:
-            "The timestamp when the content of the document was modified.",
+            "The timestamp when the content of the document was modified",
           args: {
             name: "timestamp",
           },
         },
         {
           name: "--content-type",
-          description: "The content type of the document.",
+          description: "The content type of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-size-in-bytes",
-          description: "The size of the document, in bytes.",
+          description: "The size of the document, in bytes",
           args: {
             name: "long",
           },
         },
         {
           name: "--parent-folder-id",
-          description: "The ID of the parent folder.",
+          description: "The ID of the parent folder",
           args: {
             name: "string",
           },
@@ -2201,7 +2198,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2209,7 +2206,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2219,19 +2216,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "remove-all-resource-permissions",
-      description: "Removes all the permissions from the specified resource.",
+      description: "Removes all the permissions from the specified resource",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
@@ -2239,7 +2236,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2247,7 +2244,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2258,33 +2255,33 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-resource-permission",
       description:
-        "Removes the permission for the specified principal from the specified resource.",
+        "Removes the permission for the specified principal from the specified resource",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--resource-id",
-          description: "The ID of the resource.",
+          description: "The ID of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--principal-id",
-          description: "The principal ID of the resource.",
+          description: "The principal ID of the resource",
           args: {
             name: "string",
           },
         },
         {
           name: "--principal-type",
-          description: "The principal type of the resource.",
+          description: "The principal type of the resource",
           args: {
             name: "string",
           },
@@ -2292,7 +2289,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2300,7 +2297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2311,33 +2308,33 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-document",
       description:
-        "Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable.",
+        "Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the document.",
+          description: "The name of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--parent-folder-id",
-          description: "The ID of the parent folder.",
+          description: "The ID of the parent folder",
           args: {
             name: "string",
           },
@@ -2345,7 +2342,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-state",
           description:
-            "The resource state of the document. Only ACTIVE and RECYCLED are supported.",
+            "The resource state of the document. Only ACTIVE and RECYCLED are supported",
           args: {
             name: "string",
           },
@@ -2353,7 +2350,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2361,7 +2358,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2372,33 +2369,33 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-document-version",
       description:
-        "Changes the status of the document version to ACTIVE.  Amazon WorkDocs also sets its document container to ACTIVE. This is the last step in a document upload, after the client uploads the document to an S3-presigned URL returned by InitiateDocumentVersionUpload.",
+        "Changes the status of the document version to ACTIVE.  Amazon WorkDocs also sets its document container to ACTIVE. This is the last step in a document upload, after the client uploads the document to an S3-presigned URL returned by InitiateDocumentVersionUpload",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--document-id",
-          description: "The ID of the document.",
+          description: "The ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-id",
-          description: "The version ID of the document.",
+          description: "The version ID of the document",
           args: {
             name: "string",
           },
         },
         {
           name: "--version-status",
-          description: "The status of the version.",
+          description: "The status of the version",
           args: {
             name: "string",
           },
@@ -2406,7 +2403,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2414,7 +2411,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2425,33 +2422,33 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-folder",
       description:
-        "Updates the specified attributes of the specified folder. The user must have access to both the folder and its parent folder, if applicable.",
+        "Updates the specified attributes of the specified folder. The user must have access to both the folder and its parent folder, if applicable",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--folder-id",
-          description: "The ID of the folder.",
+          description: "The ID of the folder",
           args: {
             name: "string",
           },
         },
         {
           name: "--name",
-          description: "The name of the folder.",
+          description: "The name of the folder",
           args: {
             name: "string",
           },
         },
         {
           name: "--parent-folder-id",
-          description: "The ID of the parent folder.",
+          description: "The ID of the parent folder",
           args: {
             name: "string",
           },
@@ -2459,7 +2456,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-state",
           description:
-            "The resource state of the folder. Only ACTIVE and RECYCLED are accepted values from the API.",
+            "The resource state of the folder. Only ACTIVE and RECYCLED are accepted values from the API",
           args: {
             name: "string",
           },
@@ -2467,7 +2464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2475,7 +2472,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2486,61 +2483,61 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user",
       description:
-        "Updates the specified attributes of the specified user, and grants or revokes administrative privileges to the Amazon WorkDocs site.",
+        "Updates the specified attributes of the specified user, and grants or revokes administrative privileges to the Amazon WorkDocs site",
       options: [
         {
           name: "--authentication-token",
           description:
-            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.",
+            "Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API",
           args: {
             name: "string",
           },
         },
         {
           name: "--user-id",
-          description: "The ID of the user.",
+          description: "The ID of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--given-name",
-          description: "The given name of the user.",
+          description: "The given name of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--surname",
-          description: "The surname of the user.",
+          description: "The surname of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--type",
-          description: "The type of the user.",
+          description: "The type of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--storage-rule",
-          description: "The amount of storage for the user.",
+          description: "The amount of storage for the user",
           args: {
             name: "structure",
           },
         },
         {
           name: "--time-zone-id",
-          description: "The time zone ID of the user.",
+          description: "The time zone ID of the user",
           args: {
             name: "string",
           },
         },
         {
           name: "--locale",
-          description: "The locale of the user.",
+          description: "The locale of the user",
           args: {
             name: "string",
           },
@@ -2548,7 +2545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-poweruser-privileges",
           description:
-            "Boolean value to determine whether the user is granted Poweruser privileges.",
+            "Boolean value to determine whether the user is granted Poweruser privileges",
           args: {
             name: "string",
           },
@@ -2556,7 +2553,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2564,7 +2561,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],

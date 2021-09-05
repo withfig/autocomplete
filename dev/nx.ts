@@ -225,11 +225,11 @@ const affectedOptions: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "nx",
-  description: "fig completions for Nx by Nrwl",
+  description: "Fig completions for Nx by Nrwl",
   subcommands: [
     {
       name: "build",
-      description: "build an Nx app",
+      description: "Build an Nx app",
       args: {
         generators: nxGenerators.apps,
         name: "app",
@@ -237,7 +237,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "serve",
-      description: "serve an Nx app",
+      description: "Serve an Nx app",
       args: {
         generators: nxGenerators.apps,
         name: "app",
@@ -247,7 +247,7 @@ const completionSpec: Fig.Spec = {
           name: "--allowedHosts",
           args: {},
           description:
-            "This option allows you to whitelist services that are allowed to access the dev server.",
+            "This option allows you to whitelist services that are allowed to access the dev server",
         },
         {
           name: "--host",
@@ -258,7 +258,7 @@ const completionSpec: Fig.Spec = {
           name: "--liveReload",
           args: { suggestions: ["true", "false"] },
           description:
-            "Whether to reload the page on change, using live-reload.",
+            "Whether to reload the page on change, using live-reload",
         },
         {
           name: ["--open", "-o"],
@@ -276,17 +276,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssl",
           args: { suggestions: ["true", "false"] },
-          description: "Serve using HTTPS.",
+          description: "Serve using HTTPS",
         },
         {
           name: "--sslKey",
           args: {},
-          description: "SSL key to use for serving HTTPS.",
+          description: "SSL key to use for serving HTTPS",
         },
         {
           name: "--sslCert",
           args: {},
-          description: "SSL certificate to use for serving HTTPS.",
+          description: "SSL certificate to use for serving HTTPS",
         },
         {
           name: "--watch",
@@ -302,19 +302,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "--memoryLimit",
           args: {},
-          description: "Memory limit for type checking service process in MB.",
+          description: "Memory limit for type checking service process in MB",
         },
         {
           name: "--maxWorkers",
           args: {},
-          description: "Number of workers to use for type checking.",
+          description: "Number of workers to use for type checking",
         },
         ...defaultOptions,
       ],
     },
     {
       name: "test",
-      description: "test an Nx app or lib",
+      description: "Test an Nx app or lib",
       args: {
         generators: nxGenerators.appsAndLibs,
         name: "app/lib",
@@ -323,7 +323,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "e2e",
-      description: "run e2e tests for an Nx app",
+      description: "Run e2e tests for an Nx app",
       args: {
         generators: nxGenerators.e2eApps,
         name: "app",
@@ -332,7 +332,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "lint",
-      description: "lint an Nx app or lib",
+      description: "Lint an Nx app or lib",
       args: {
         generators: nxGenerators.appsAndLibs,
         name: "app/lib",
@@ -371,7 +371,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "generate",
-      description: "run a generator",
+      description: "Run a generator",
       args: {
         generators: nxGenerators.pluginsSchematics,
         name: "collection:generator",
@@ -381,25 +381,25 @@ const completionSpec: Fig.Spec = {
           name: "--defaults",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when true, disables interactive input prompts for options with a default {true|false}",
+            "When true, disables interactive input prompts for options with a default {true|false}",
         },
         {
           name: "--dryRun",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when true, runs the generator without making actual changes {true|false}",
+            "When true, runs the generator without making actual changes {true|false}",
         },
         {
           name: "--force",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when true, forces overwriting of existing files {true|false}",
+            "When true, forces overwriting of existing files {true|false}",
         },
         {
           name: "--interactive",
           args: [{ name: "true" }, { name: "false" }],
           description:
-            "when false, disables interactive input prompts {true|false}",
+            "When false, disables interactive input prompts {true|false}",
         },
         ...defaultOptions,
       ],
@@ -411,19 +411,19 @@ const completionSpec: Fig.Spec = {
           name: "--exclude",
           args: {},
           description:
-            "List of projects delimited by commas to exclude from the dependency graph.",
+            "List of projects delimited by commas to exclude from the dependency graph",
         },
         {
           name: "--file",
           args: {},
           description:
-            "output file (e.g. --file=output.json or --file=dep-graph.html)",
+            "Output file (e.g. --file=output.json or --file=dep-graph.html)",
         },
         {
           name: "--focus",
           args: {},
           description:
-            "Use to show the dependency graph for a particular project and every node that is either an ancestor or a descendant.",
+            "Use to show the dependency graph for a particular project and every node that is either an ancestor or a descendant",
         },
         {
           name: "--groupByFolder",
@@ -432,12 +432,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--host",
           args: {},
-          description: "Bind the dep graph server to a specific ip address.",
+          description: "Bind the dep graph server to a specific ip address",
         },
         {
           name: "--port",
           args: {},
-          description: "Bind the dep graph server to a specific port.",
+          description: "Bind the dep graph server to a specific port",
         },
         ...defaultOptions,
       ],

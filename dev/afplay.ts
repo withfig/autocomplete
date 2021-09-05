@@ -18,11 +18,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "print help",
+      description: "Print help",
     },
     {
       name: "--leaks",
-      description: "Run leaks analysis.",
+      description: "Run leaks analysis",
     },
     {
       name: ["-t", "--time"],

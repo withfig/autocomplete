@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--version",
-          description: "Show version of ruby-build ",
+          description: "Show version of ruby-build",
           args: versionArg,
         },
       ],
@@ -65,7 +65,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-f",
           description:
-            "If the version does not exist, do not display an error message. ",
+            "If the version does not exist, do not display an error message",
           args: {},
         },
       ],

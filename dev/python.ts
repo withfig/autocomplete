@@ -22,14 +22,10 @@ const completionSpec: Fig.Spec = {
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((file) => {
-            if (typeof file.name === "string") {
-              return file.name.endsWith(".py") || file.name.endsWith("/");
-            }
-            return false;
+            return file.name.endsWith(".py") || file.name.endsWith("/");
           })
           .map((file) => {
-            const isPyFile =
-              typeof file.name === "string" && file.name.endsWith(".js");
+            const isPyFile = file.name.endsWith(".py");
 
             return {
               ...file,
@@ -44,7 +40,7 @@ const completionSpec: Fig.Spec = {
       name: "-c",
       insertValue: "-c '{cursor}'",
       description:
-        "Execute the Python code in command. command can be one or more statements separated by newlines, with significant leading whitespace as in normal module code.",
+        "Execute the Python code in command. command can be one or more statements separated by newlines, with significant leading whitespace as in normal module code",
       args: {
         name: "command",
         isCommand: true,
@@ -52,7 +48,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-m",
-      description: "module",
+      description: "Module",
       args: {
         name: "python module",
         isModule: "python/",
@@ -61,11 +57,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-?", "-h", "--help"],
-      description: "Print a short description of all command line options.",
+      description: "Print a short description of all command line options",
     },
     {
       name: ["-V", "--version"],
-      description: "Print the Python version number and exit.",
+      description: "Print the Python version number and exit",
     },
     {
       name: "-b",
@@ -75,12 +71,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "-B",
       description:
-        "If given, Python won’t try to write .pyc files on the import of source modules.",
+        "If given, Python won’t try to write .pyc files on the import of source modules",
     },
     {
       name: "--check-hash-based-pycs",
       description:
-        "Control the validation behavior of hash-based .pyc files. See Cached bytecode invalidation.",
+        "Control the validation behavior of hash-based .pyc files. See Cached bytecode invalidation",
       args: {
         suggestions: [
           { name: "default" },
@@ -92,75 +88,75 @@ const completionSpec: Fig.Spec = {
     {
       name: "-d",
       description:
-        "Turn on parser debugging output (for expert only, depending on compilation options).",
+        "Turn on parser debugging output (for expert only, depending on compilation options)",
     },
     {
       name: "-E",
       description:
-        "Ignore all PYTHON* environment variables, e.g. PYTHONPATH and PYTHONHOME, that might be set.",
+        "Ignore all PYTHON* environment variables, e.g. PYTHONPATH and PYTHONHOME, that might be set",
     },
     {
       name: "-i",
       description:
-        "When a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command, even when sys.stdin does not appear to be a terminal.",
+        "When a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command, even when sys.stdin does not appear to be a terminal",
     },
     {
       name: "-I",
       description:
-        "Run Python in isolated mode. This also implies -E and -s. In isolated mode sys.path contains neither the script’s directory nor the user’s site-packages directory.",
+        "Run Python in isolated mode. This also implies -E and -s. In isolated mode sys.path contains neither the script’s directory nor the user’s site-packages directory",
     },
     {
       name: "-O",
       description:
-        "Remove assert statements and any code conditional on the value of __debug__.",
+        "Remove assert statements and any code conditional on the value of __debug__",
     },
     {
       name: "-OO",
-      description: "Do -O and also discard docstrings.",
+      description: "Do -O and also discard docstrings",
     },
     {
       name: "-g",
       description:
-        "Don’t display the copyright and version messages even in interactive mode.",
+        "Don’t display the copyright and version messages even in interactive mode",
     },
     {
       name: "-R",
       description:
-        "Turn on hash randomization. This option only has an effect if the PYTHONHASHSEED environment variable is set to 0, since hash randomization is enabled by default.",
+        "Turn on hash randomization. This option only has an effect if the PYTHONHASHSEED environment variable is set to 0, since hash randomization is enabled by default",
     },
     {
       name: "-s",
-      description: "Don’t add the user site-packages directory to sys.path.",
+      description: "Don’t add the user site-packages directory to sys.path",
     },
     {
       name: "-S",
       description:
-        "Disable the import of the module site and the site-dependent manipulations of sys.path that it entails.",
+        "Disable the import of the module site and the site-dependent manipulations of sys.path that it entails",
     },
     {
       name: "-u",
       description:
-        "Force the stdout and stderr streams to be unbuffered. This option has no effect on the stdin stream.",
+        "Force the stdout and stderr streams to be unbuffered. This option has no effect on the stdin stream",
     },
     {
       name: "-v",
       description:
-        "Print a message each time a module is initialized, showing the place (filename or built-in module) from which it is loaded.",
+        "Print a message each time a module is initialized, showing the place (filename or built-in module) from which it is loaded",
     },
     {
       name: "-W",
       description:
-        "Warning control. Python’s warning machinery by default prints warning messages to sys.stderr.",
+        "Warning control. Python’s warning machinery by default prints warning messages to sys.stderr",
       args: {},
     },
     {
       name: "-x",
       description:
-        "Skip the first line of the source, allowing use of non-Unix forms of #!cmd. This is intended for a DOS specific hack only.",
+        "Skip the first line of the source, allowing use of non-Unix forms of #!cmd. This is intended for a DOS specific hack only",
     },
     {
       name: "-X",
-      description: "Reserved for various implementation-specific options.",
+      description: "Reserved for various implementation-specific options",
       args: {
         suggestions: [
           { name: "faulthandler" },

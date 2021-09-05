@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
         "Comma-separated list of field index expressions for limiting search scope",
       args: {
         name: "index expressions",
-        description: "non-zero integer or range expression ([BEGIN]..[END])",
+        description: "Non-zero integer or range expression ([BEGIN]..[END])",
       },
     },
     {
@@ -54,7 +54,7 @@ const completionSpec: Fig.Spec = {
         "Transform the presentation of each line using field index expressions",
       args: {
         name: "index expressions",
-        description: "non-zero integer or range expression ([BEGIN]..[END])",
+        description: "Non-zero integer or range expression ([BEGIN]..[END])",
       },
     },
     {
@@ -144,7 +144,7 @@ const completionSpec: Fig.Spec = {
         "Display fzf window below the cursor with the given height instead of using fullscreen",
       args: {
         name: "height",
-        description: "height[%]",
+        description: "Height[%]",
       },
     },
     {
@@ -189,7 +189,7 @@ const completionSpec: Fig.Spec = {
       description: "Screen margin (TRBL | TB,RL | T,RL,B | T,R,B,L)",
       args: {
         name: "margin",
-        description: "number",
+        description: "Number",
       },
     },
     {
@@ -197,7 +197,7 @@ const completionSpec: Fig.Spec = {
       description: "Padding inside border (TRBL | TB,RL | T,RL,B | T,R,B,L)",
       args: {
         name: "padding",
-        description: "number",
+        description: "Number",
       },
     },
     {

@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
     { name: "--version", description: "Version" },
     {
       name: "--wildcards",
-      args: { name: "pattern", description: "ex: *.html" },
+      args: { name: "pattern", description: "Ex: *.html" },
     },
   ],
 };

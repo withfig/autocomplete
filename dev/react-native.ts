@@ -129,26 +129,26 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       description:
-        "[EXPERIMENTAL] Diagnose and fix common Node.js, iOS, Android & React Native issues.",
+        "[EXPERIMENTAL] Diagnose and fix common Node.js, iOS, Android & React Native issues",
       name: "doctor",
       options: [
         {
           name: "--fix",
-          description: "Attempt to fix all diagnosed issues.",
+          description: "Attempt to fix all diagnosed issues",
         },
         {
           name: "--contributor",
           description:
-            "Add healthchecks required to installations required for contributing to React Native.",
+            "Add healthchecks required to installations required for contributing to React Native",
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "builds the javascript bundle for offline use",
+      description: "Builds the javascript bundle for offline use",
       name: "bundle",
       options: [
         {
@@ -203,7 +203,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--minify",
           description:
-            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
+            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes",
           args: {
             name: "boolean",
             isOptional: true,
@@ -243,7 +243,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
           args: {
             name: "Number of workers",
             generators: workerGenerator,
@@ -307,7 +307,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--read-global-cache",
           description:
-            "Try to fetch transformed JS code from the global cache, if configured.",
+            "Try to fetch transformed JS code from the global cache, if configured",
         },
         {
           name: "--config",
@@ -320,13 +320,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        "Initialize a new React Native project named <projectName> in a directory of the same name.",
+        "Initialize a new React Native project named <projectName> in a directory of the same name",
       name: "init",
       options: [
         {
@@ -352,7 +352,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--directory",
-          description: "Uses a custom directory instead of `<projectName>`.",
+          description: "Uses a custom directory instead of `<projectName>`",
           args: {
             template: "folders",
             name: "string",
@@ -372,7 +372,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -380,12 +380,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "uninstall and unlink native dependencies",
+      description: "Uninstall and unlink native dependencies",
       name: "uninstall",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -393,19 +393,19 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "starts the webserver",
+      description: "Starts the webserver",
       name: "start",
       options: [
         {
           name: "--port",
-          description: "port on which to listen to",
+          description: "Port on which to listen to",
           args: {
             name: "free port",
           },
         },
         {
           name: "--host",
-          description: "change the default host",
+          description: "Change the default host",
           args: {
             name: "new host",
           },
@@ -461,7 +461,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
           args: {
             name: "Number of workers",
             generators: workerGenerator,
@@ -530,13 +530,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        'builds javascript as a "Random Access Module" bundle for offline use',
+        'Builds javascript as a "Random Access Module" bundle for offline use',
       name: "ram-bundle",
       options: [
         {
@@ -591,7 +591,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--minify",
           description:
-            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
+            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes",
           args: {
             name: "boolean",
             isOptional: true,
@@ -631,7 +631,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
           args: {
             name: "Number of workers",
             generators: workerGenerator,
@@ -695,7 +695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--read-global-cache",
           description:
-            "Try to fetch transformed JS code from the global cache, if configured.",
+            "Try to fetch transformed JS code from the global cache, if configured",
         },
         {
           name: "--config",
@@ -712,12 +712,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "links assets and optionally native modules",
+      description: "Links assets and optionally native modules",
       name: "link",
       options: [
         {
@@ -734,7 +734,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -744,12 +744,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       description:
-        "Upgrade your app's template files to the specified or latest npm version using `rn-diff-purge` project. Only valid semver versions are allowed.",
+        "Upgrade your app's template files to the specified or latest npm version using `rn-diff-purge` project. Only valid semver versions are allowed",
       name: "upgrade",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -764,17 +764,17 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "install and link native dependencies",
+      description: "Install and link native dependencies",
       name: "install",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -788,12 +788,12 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "unlink native dependency",
+      description: "Unlink native dependency",
       name: "unlink",
       options: [
         {
@@ -806,7 +806,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -814,12 +814,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "starts iOS device syslog tail",
+      description: "Starts iOS device syslog tail",
       name: "log-ios",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -857,14 +857,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: 'default: "8081"',
+          description: 'Default: "8081"',
           args: {
             name: "free port",
           },
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
       args: {
@@ -874,18 +874,18 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "starts logkitty",
+      description: "Starts logkitty",
       name: "log-android",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
       description:
-        "builds your app and starts it on a connected Android emulator or device",
+        "Builds your app and starts it on a connected Android emulator or device",
       name: "run-android",
       options: [
         {
@@ -949,7 +949,7 @@ const completionSpec: Fig.Spec = {
           name: "--deviceId",
           icon: ANDROID_ICON,
           description:
-            'builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line).',
+            'Builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line)',
           args: {
             name: "deviceId",
             generators: androidGetDevicesGenerator,
@@ -961,7 +961,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: "default: 8081",
+          description: "Default: 8081",
           args: {
             name: "free port",
           },
@@ -988,16 +988,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-jetifier",
           description:
-            'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier.',
+            'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier',
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
     {
-      description: "builds your app and starts it on iOS simulator",
+      description: "Builds your app and starts it on iOS simulator",
       name: "run-ios",
       options: [
         {
@@ -1039,7 +1039,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--device",
-          description: "Explicitly set device to use by name.",
+          description: "Explicitly set device to use by name",
           args: {
             name: "device name",
             isOptional: true,
@@ -1065,7 +1065,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: "default: 8081",
+          description: "Default: 8081",
           args: {
             name: "free port",
           },
@@ -1080,7 +1080,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-h", "--help"],
-          description: "output usage information",
+          description: "Output usage information",
         },
       ],
     },
@@ -1097,7 +1097,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "output usage information",
+      description: "Output usage information",
     },
   ],
 };
