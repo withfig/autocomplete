@@ -529,13 +529,13 @@ const denoInstall: Fig.Subcommand = {
 const denoLsp: Fig.Subcommand = {
   name: "lsp",
   description: "Start the language server",
-  options: [...globalOptions],
+  options: globalOptions,
 };
 
 const denoTypes: Fig.Subcommand = {
   name: "types",
   description: "Print Deno's runtime TypeScript declarations",
-  options: [...globalOptions],
+  options: globalOptions,
 };
 
 const denoUpgrade: Fig.Subcommand = {
@@ -608,7 +608,7 @@ const denoCompletions: Fig.Subcommand = {
     description: "Name of the shell to generate completions for",
     // TODO: Suggest shells
   },
-  options: [...globalOptions],
+  options: globalOptions,
 };
 
 const denoCoverage: Fig.Subcommand = {
