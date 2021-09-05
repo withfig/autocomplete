@@ -670,11 +670,15 @@ const denoInfo: Fig.Subcommand = {
     ...globalOptions,
     reloadOption,
     caFileOption,
-    {
-      ...locationOption,
-      description: "Show files used for origin-bound APIs (like Web Storage)",
-    },
     importMapOption,
+    {
+      name: "--location",
+      description: "Show files used for origin-bound APIs (like Web Storage)",
+      args: {
+        name: "URL",
+        description: "Show files used for this location",
+      },
+    },
     {
       name: "--json",
       description: "UNSTABLE: Output information as JSON",
