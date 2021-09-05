@@ -1,3 +1,6 @@
+// page https://hasseg.org/trash/
+// made by yavko®
+
 const completionSpec: Fig.Spec = {
   name: "trash",
   description: "Trash, move files/folders to the trash",
