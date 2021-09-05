@@ -209,7 +209,7 @@ const completionSpec: Fig.Spec = {
       description: "Do not print ANSI control characters",
       name: "--no-ansi",
       deprecated: {
-        alternative: "docker-compose --ansi never",
+        alternative: { insertValue: "--ansi never" },
       },
     },
     {

@@ -2700,7 +2700,7 @@ const completionSpec: Fig.Spec = {
           description:
             'Specifies the full name of the output file to contain a single source context. The file name must be "source-context.json" in order to work with cloud diagnostic tools',
           deprecated: {
-            alternative: "`--output-directory` flag",
+            alternative: { insertValue: "--output-directory" },
           },
           args: {
             name: "OUTPUT_FILE",

@@ -4217,7 +4217,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.)",
               deprecated: {
-                alternative: "Use the `--zone` flag",
+                alternative: { insertValue: "--zone" },
                 message: "It will be removed by release 255.0.0",
               },
               args: {
@@ -5657,7 +5657,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.). WARNING: Instance may be restarted",
               deprecated: {
-                alternative: "Use the `--zone` flag",
+                alternative: { insertValue: "--zone" },
                 message: "It will be removed by release 255.0.0",
               },
               args: {

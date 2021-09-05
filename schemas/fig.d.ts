@@ -116,7 +116,7 @@ declare namespace Fig {
            * Provide an alternative to the deprecated command.
            *
            * @example
-           * alternative: 'npm install'
+           * alternative: { insertValue: "--zone" }
            */
           alternative?: Omit<BaseSuggestion, "deprecated">;
           /**
