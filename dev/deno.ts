@@ -784,9 +784,12 @@ const completionSpec: Fig.Spec = {
   options: [
     ...globalOptions,
     {
-      name: ["-V", "--version"],
-      insertValue: "--version", // -V prints short info, not useful
-      description: "Prints version information",
+      name: "--version",
+      description: "Prints version information, including TypeScript and V8",
+    },
+    {
+      name: "-V",
+      description: "Prints Deno's version",
     },
   ],
 };
