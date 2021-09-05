@@ -116,6 +116,8 @@ const caFileOption: Fig.Option = {
   description: "Load certificate authority from a PEM encoded file",
   args: {
     name: "certificate file",
+    description: "The certificate file to load",
+    template: "filepaths",
   },
 };
 
@@ -124,6 +126,9 @@ const configOption: Fig.Option = {
   description: "Load tsconfig.json configuration file",
   args: {
     name: "tsconfig file",
+    description: "The tsconfig file to load",
+    // TODO: if present, suggest tsconfig.json first
+    template: "filepaths",
   },
 };
 
@@ -132,6 +137,9 @@ const importMapOption: Fig.Option = {
   description: "Load an import map from a local file or remote URL",
   args: {
     name: "source",
+    description: "The location of the import map (can be a URL)",
+    // TODO: If present, suggest these first: import_map.json, import-map.json, imports.json
+    template: "filepaths",
   },
 };
 
@@ -140,6 +148,8 @@ const lockOption: Fig.Option = {
   description: "Check the specified lock file",
   args: {
     name: "lock file",
+    description: "The location of the JSON lock file",
+    // TODO: If present, suggest lock.json first
     template: "filepaths",
   },
 };
@@ -189,6 +199,7 @@ const v8FlagsOption: Fig.Option = {
   args: {
     name: "V8 flags",
     description: "Flags to pass to V8",
+    // TODO: Using `deno run --v8-flags=--help` to generate suggestions
   },
 };
 
@@ -291,15 +302,18 @@ const denoTest: Fig.Subcommand = {
   options: [
     ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: true }),
-    {
-      name: "--ignore",
-      insertValue: "--ignore=",
-      description: "Ignore files",
-      // requiresEquals: true,
-      args: {
-        name: "Files to ignore",
-      },
-    },
+    // TODO: Uncomment once Deno 1.14.0 is out
+    // {
+    //   name: "--ignore",
+    //   insertValue: "--ignore=",
+    //   description: "Ignore files",
+    //   // requiresEquals: true,
+    //   args: {
+    //     name: "Files to ignore",
+    //     description: "Files matching this pattern will be ignored",
+    //     template: "filepaths",
+    //   },
+    // },
     {
       name: "--no-run",
       description: "Cache test modules, but don't run tests",
@@ -354,7 +368,7 @@ const denoTest: Fig.Subcommand = {
       description:
         "Set the number of parallel workers. With no value, the number of CPU cores. Defaults to 1 if omitted",
       args: {
-        name: "workers",
+        name: "number",
         description:
           "The number of parallel workers (defaults to number of CPU cores)",
         isOptional: true,
@@ -439,6 +453,9 @@ const denoDoc: Fig.Subcommand = {
     {
       name: "scope",
       description: "The scope to get documentation for",
+      // `deno doc` doesn't treat --builtin as a flag, it's more like a file
+      // that just happens to mean "show documentation for built-ins". From the
+      // user's perspective, it's *basically* a flag, but it's actually not!
       suggestions: ["--builtin"],
       template: "filepaths",
       isOptional: true,
@@ -447,6 +464,8 @@ const denoDoc: Fig.Subcommand = {
       name: "node",
       description: "The node to get documentation for (must exist in scope)",
       isOptional: true,
+      // TODO: Parse `deno doc --json`'s output for the scope to suggest nodes?
+      // This is challenging as the CLI expects dot-separated names (eg. Deno.test)
     },
   ],
   options: [
@@ -471,6 +490,7 @@ const denoInstall: Fig.Subcommand = {
     {
       name: "source",
       description: "A local or remote JavaScript or TypeScript file",
+      template: "filepaths",
     },
     {
       name: "args",
@@ -528,6 +548,8 @@ const denoUpgrade: Fig.Subcommand = {
       description: "The version to upgrade to",
       args: {
         name: "version",
+        // TODO: Suggest Deno versions, ordered most to least recent
+        // This can be gathered by querying the GitHub API
       },
     },
     {
@@ -535,6 +557,7 @@ const denoUpgrade: Fig.Subcommand = {
       description: "The path to output the updated version to",
       args: {
         name: "path",
+        template: "filepaths",
       },
     },
     {
@@ -551,6 +574,7 @@ const denoUpgrade: Fig.Subcommand = {
 
 const denoEval: Fig.Subcommand = {
   name: "eval",
+  insertValue: "eval '{cursor}'",
   description: "Evaluate JavaScript from the command line",
   options: [
     ...globalOptions,
@@ -582,6 +606,7 @@ const denoCompletions: Fig.Subcommand = {
   args: {
     name: "shell",
     description: "Name of the shell to generate completions for",
+    // TODO: Suggest shells
   },
   options: [...globalOptions],
 };
@@ -599,6 +624,7 @@ const denoCoverage: Fig.Subcommand = {
       args: {
         name: "pattern",
         description: "Ignore files matching this regex pattern",
+        template: "filepaths",
       },
     },
     {
@@ -610,6 +636,7 @@ const denoCoverage: Fig.Subcommand = {
       args: {
         name: "pattern",
         description: "Include files matching this regex pattern",
+        template: "filepaths",
       },
     },
     {
@@ -621,6 +648,7 @@ const denoCoverage: Fig.Subcommand = {
       args: {
         name: "pattern",
         description: "Exclude files matching this regex pattern",
+        template: "filepaths",
       },
     },
     {
@@ -629,8 +657,9 @@ const denoCoverage: Fig.Subcommand = {
     },
   ],
   args: {
-    name: "files",
+    name: "coverage directory",
     isVariadic: true,
+    template: "folders",
   },
 };
 
@@ -666,6 +695,7 @@ const denoRepl: Fig.Subcommand = {
     ...runtimeOptions({ perms: false, inspector: true }),
     {
       name: "--eval",
+      insertValue: "--eval '{cursor}'",
       description: "Evaluate this code when the REPL starts",
       args: {
         name: "code",
@@ -682,6 +712,7 @@ const denoCompile: Fig.Subcommand = {
     {
       name: "script",
       description: "The source to be compiled",
+      template: "filepaths",
     },
     {
       name: "arguments",
@@ -698,6 +729,9 @@ const denoCompile: Fig.Subcommand = {
       description: "Location of the output binary (default: ./<inferred-name>)",
       args: {
         name: "destination",
+        // Using folders because users probably don't want to select
+        // the name of a pre-existing file
+        template: "folders",
       },
     },
     {
@@ -705,6 +739,8 @@ const denoCompile: Fig.Subcommand = {
       description: "The target OS architecture",
       args: {
         name: "arch",
+        // TODO: Maybe use a fun CPU icon for these? Something like this:
+        // https://github.com/elementary/icons/blob/master/mimes/128/application-x-firmware.svg
         suggestions: [
           "x86_64-unknown-linux-gnu",
           "x86_64-pc-windows-msvc",
@@ -722,6 +758,7 @@ const denoCache: Fig.Subcommand = {
   args: {
     name: "script",
     description: "The script(s) to cache",
+    template: "filepaths",
     isVariadic: true,
   },
   options: [...globalOptions, ...compileOptions],
@@ -734,10 +771,12 @@ const denoBundle: Fig.Subcommand = {
     {
       name: "source",
       description: "The source file to bundle",
+      template: "filepaths",
     },
     {
       name: "output",
       description: "The output file",
+      template: "folders",
       isOptional: true,
     },
   ],
