@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "trash",
-  description: "Trash, move files/folders to the trash.",
+  description: "Trash, move files/folders to the trash",
   args: {
     isVariadic: true,
     template: ["folders", "filepaths"],
@@ -10,7 +10,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-v",
       description:
-        "Be verbose when moving items to the trash showing them as they are moved.",
+        "Be verbose when moving items to the trash showing them as they are moved",
     },
     {
       name: "-F",
@@ -19,22 +19,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "-l",
       description:
-        "List items currently in the trash. If this argument is no files need to be specified.",
+        "List items currently in the trash. If this argument is no files need to be specified",
     },
     {
       name: "-e",
       description:
-        "Empty the trash. trash asks for confirmation before this action. If this argument is used, no files need to specified.",
+        "Empty the trash. trash asks for confirmation before this action. If this argument is used, no files need to specified",
     },
     {
       name: "-s",
       description:
-        "Securely empty the trash. trash asks for confirmation executing this action. If this argument is used, no need to be specified.",
+        "Securely empty the trash. trash asks for confirmation executing this action. If this argument is used, no need to be specified",
     },
     {
       name: "-y",
       description:
-        "Skips the confirmation prompt for -e and -s. CAUTION: permanently instantly.",
+        "Skips the confirmation prompt for -e and -s. CAUTION: permanently instantly",
     },
   ],
 };
