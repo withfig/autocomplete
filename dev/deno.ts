@@ -583,10 +583,16 @@ const denoDoc: Fig.Subcommand = {
     {
       name: "scope",
       description: "The scope to get documentation for",
-      // `deno doc` doesn't treat --builtin as a flag, it's more like a file
-      // that just happens to mean "show documentation for built-ins". From the
-      // user's perspective, it's *basically* a flag, but it's actually not!
-      suggestions: ["--builtin"],
+      // From the user's perspective, --builtin is a flag that means "show me
+      // documentation for built-in symbols", but it's actually more like a
+      // file that just happens to always be equivalent to be Deno's types.
+      suggestions: [
+        {
+          name: "--builtin",
+          description: "Get documentation for built-in symbols",
+          icon: "fig://icon?type=option",
+        },
+      ],
       generators: generateRunnableFiles,
       isOptional: true,
     },
