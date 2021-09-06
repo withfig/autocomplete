@@ -4,8 +4,11 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
-const CPU_ARCH_ICON =
-  "data:image/png;base64,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";
+const CPU_ICON =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVNSURBVHgBrVdLbxtVFP7unTt+pHaah/qigEIVUFsF1ZRHC9k4QkhtF8hIbOim6j/ooixaNpUQ6qKbbqqyq9iUBUKUTUAC1YkURLIg8SJBlSJEiojapE3iJI4f8+ScO5nUSTxxHnzS9YztM+f77rnnnjlXoAE+vZXJKtO8JJTI0tcuIQAe/ur/AtHwN974KHiOX7Ad+8fvrxYebLRf5yt3M9MVT6p7ZsLIGqaEVIKIacg69nVU4sVVYL1C3w++0pUEwKl5sCrOlFVz+x5cK0xtEpD76t1MMoV8LKXaVExqUk0eMXMfmyPhN7DhD5/FeIGI6opd9EpO33dfFAprPvXME2os0WoSuQFpCLiWj6d/1PBs3EJt0cNu0HLQwD4aRz9IIN4q4bk++XVRXrKL1qLz1oMbhSnFhoYU+ViLajOU1OTPJyw8zlfgVH3sBeVZV4/5SRsvk4jDb8fg09LGiYuW5R6Z9Incl5lcolX9kEib4NDPFGw8fljRDkrLK5h9MoNKpQrXdbFTpFL70N7Zrgfj2PkWdJ5QFAVaiiUb1WWnTwlD5AzT0GtuLfmY/q2qjWeIOKbiuH//W/T09GD//v3YKfr7+3H9+nXt69CRQ3pi7cfSIE4YvNTSuSSlgVNSBsn27+9VShQfC3MLmnxwcBC9vb27ImdcuHBB+2BfpdIKXPL9dLSmuYRBBlJkFWVpBjJ4oDIbJBsLuHv3a008OTmJkZERWJaFnSCVSuH06dPo7u7GnTt3cPHiZ0i9cYzyy8aR92LhDutS4RZmrDwL1pnVsnrG2NiYXoKOjg4kk0kopfTDG8FbjeE4DuVMBXNzcxgeHtYC+HnOI0ZtKZikdkEfKvgWPZNSqYR0Oq3JtxIQirBtW185AmHUOJJRSaywDZimqYl5xGKxhjYsyvOC2XEU+JmtsBowFtCozG52LqXUI1g7serEX3ffyCbCI8K/ZVP2yBn460g2Em4t4AWnRH0WRqCRM/4tTLwogdvBniLQ6D5EsyUIsa0kbEaw1baM8Lh2JwNj7Akhmb8LRzoCQjQn4MHbLIqkXkQ4msMPBDSz5X3NBYbrAMMwjDWC+vCHhYjtm7499eNcCbchtFqtrpFzgWlWCcvlsi7HTfnJXumJ+FtHgctx6DwsxeE2rBfDS8SzZ8EsIpJ8lZOH4l5Nh7NOAId4cXFR13AuvQsLC7qux+PxtUhEZT6HngWwaH4fRCkIeLUA6F6Nf+C+jd9WyWQC4+Pjuhc4e/YsRkdHMT09jZ2AhZ85c0bfc2MSikkekJqY+ZhXfHzj1N8t7WZXLKkwM2bjyYilX8dO1cHAwMCum5EQHMlsNgtPevRKb6eWzMQr2RissotK0SpI1/EHuV12HQ8H3jRhxIXu5Wp2TT/I6ndLPDQ0pH2wLyZn34ffMeHZ3KK7dF5AQZy72pONtxp5asmh4rT2f7n452FNO5mfX0DxeVGv507BecT9w8EjB5FK79O/He2NofOkgk3k3JRaJe8TnUnnr/Xkk61m1qRl4M54bsLBzKite7j/Azzzl9430dYddMRWmbqmZWvqp5sTrwWFqOJctiTG6LbN9yTajxtofZVa9FEynKcWem53BxMzLdHxuoHOHqWbULvq6tDXyk7R990+tlnbSx99fjJjmjJPydhmUBT4kMIPidWOOazXYhvE+lS4WluCbKedRjmmZ191i7bl9v1y68/CJn/nrhzvopNLnnKhi5dCGnxGDKzEdpjrRYQFjgRQosO1PR4DqLmXf779aCq0a+j2wysnchSBHPGf8oXISIkdof5QSh9TdBkg8m9+vf1oYKPtf7NIvBdpvFmHAAAAAElFTkSuQmCC";
+
+const VERSIONS_URL =
+  "https://raw.githubusercontent.com/denoland/deno_website2/main/versions.json";
 
 /**
  * Equivalent to the `"filepaths"` template, but boosts the priority of files
@@ -64,9 +67,6 @@ function generateFilepathsMatch(init: {
     },
   };
 }
-
-const VERSIONS_URL =
-  "https://raw.githubusercontent.com/denoland/deno_website2/main/versions.json";
 
 /**
  * Generates a list of Deno versions and caches that list for one day.
@@ -880,10 +880,10 @@ const denoCompile: Fig.Subcommand = {
       args: {
         name: "arch",
         suggestions: [
-          { name: "x86_64-unknown-linux-gnu", icon: CPU_ARCH_ICON },
-          { name: "x86_64-pc-windows-msvc", icon: CPU_ARCH_ICON },
-          { name: "x86_64-apple-darwin", icon: CPU_ARCH_ICON },
-          { name: "aarch64-apple-darwin", icon: CPU_ARCH_ICON },
+          { name: "x86_64-unknown-linux-gnu", icon: CPU_ICON },
+          { name: "x86_64-pc-windows-msvc", icon: CPU_ICON },
+          { name: "x86_64-apple-darwin", icon: CPU_ICON },
+          { name: "aarch64-apple-darwin", icon: CPU_ICON },
         ],
       },
     },
