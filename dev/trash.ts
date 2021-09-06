@@ -5,6 +5,7 @@ const completionSpec: Fig.Spec = {
   name: "trash",
   description: "Trash, move files/folders to the trash",
   args: {
+    isOptional: true,
     isVariadic: true,
     template: ["folders", "filepaths"],
   },
@@ -12,22 +13,20 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "-v",
-      description:
-        "Be verbose when moving items to the trash showing them as they are moved",
+      description: "Print verbose output while moving items",
     },
     {
       name: "-F",
-      description: `Ask Finder to move the files to the trash, instead of the system API. This is slower, but it utilizes Finder's (e.g. sounds) and ensures that the "put back" feature works.`,
+      description: `Use the Finder API to move items to the trash, this is slower, but most MacOS features such as sounds and the \"put back\" feature work.`,
     },
     {
       name: "-l",
-      description:
-        "List items currently in the trash. If this argument is no files need to be specified",
+      description: "List items currently in the trash",
     },
     {
       name: "-e",
-      description:
-        "Empty the trash. trash asks for confirmation before this action. If this argument is used, no files need to specified",
+      description: "Empty the trash asking for confirmation",
+      isDangerous: true,
     },
     {
       name: "-s",
