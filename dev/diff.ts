@@ -54,10 +54,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ignore-file-name-case",
       description: "Ignore case when comparing file names",
+      exclusiveOn: ["--no-ignore-file-name-case"],
     },
     {
       name: "--no-ignore-file-name-case",
       description: "Consider case when comparing file names",
+      exclusiveOn: ["--ignore-file-name-case"],
     },
     {
       name: ["-E", "--ignore-tab-expansion"],
