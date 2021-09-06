@@ -10,29 +10,92 @@ const cache = {
   },
 } as const;
 
+/**
+ * Equivalent to the `"filepaths"` template, but boosts the priority of files
+ * that match one of the names provided.
+ */
+const generatePreferredFilepaths = ({
+  names,
+  matchPriority = 75,
+}: {
+  names: string[];
+  matchPriority?: number;
+}): Fig.Generator => ({
+  template: "filepaths",
+  filterTemplateSuggestions: (paths) => {
+    for (const path of paths) {
+      if (names.some((name) => path.name === name)) {
+        path.priority = matchPriority;
+      }
+    }
+    return paths;
+  },
+});
+
+/**
+ * Equivalent to the `"filepaths"` template, but removes files that don't
+ * end with one of the given endings. Files are given a priority of 75, so
+ * they should always appear first.
+ *
+ * Paths are normalized to lower-case.
+ */
+const generateFilepathsEndsWith = ({
+  endings,
+  filePriority = 75,
+}: {
+  endings: string[];
+  filePriority?: number;
+}): Fig.Generator => ({
+  template: "filepaths",
+  filterTemplateSuggestions: (paths) => {
+    const out: Fig.Suggestion[] = [];
+    // This is basically a longer form of Array.filter, because the HOF
+    // version became too long to read easily. It's clearer imperatively.
+    for (const path of paths) {
+      if (path.type === "folder") {
+        out.push(path);
+        continue;
+      }
+      // macOS is case-sensitive (usually), so it's good to normalize the name
+      const name = path.name.toLowerCase();
+      if (endings.some((end) => name.endsWith(end))) {
+        path.priority = filePriority;
+        out.push(path);
+      }
+    }
+    return out;
+  },
+});
+
 const VERSIONS_URL =
   "https://raw.githubusercontent.com/denoland/deno_website2/main/versions.json";
 
-const generators = {
-  /**
-   * Generates a list of Deno versions and caches that list for one day.
-   */
-  denoVersions: <Fig.Generator>{
-    script: `curl -s '${VERSIONS_URL}'`,
-    cache: cache.oneDay,
-    postProcess: (out) => {
-      try {
-        const json = JSON.parse(out);
-        return json.cli.map((version: string) => ({
-          // Removes the leading 'v', if present
-          name: version.replace(/^v/, ""),
-        }));
-      } catch (e) {
-        return [];
-      }
-    },
+/**
+ * Generates a list of Deno versions and caches that list for one day.
+ */
+const generateDenoVersions: Fig.Generator = {
+  script: `curl -s '${VERSIONS_URL}'`,
+  cache: cache.oneDay,
+  postProcess: (out) => {
+    try {
+      const versions = JSON.parse(out);
+      return (versions.cli as string[]).map((version) => ({
+        // Currently, the JSON does have a leading 'v', but that may not always
+        // be the case. Removing a leading 'v' instead of slicing is resilient.
+        name: version.replace(/^v/, ""),
+      }));
+    } catch (e) {
+      console.error(`Failed to parse the text: ${out}`);
+      return [];
+    }
   },
-} as const;
+};
+
+// The Deno core team is looking at adding runnable metadata JSON file, so
+// ".json" will have to be added to this eventually.
+const generateRunnableFiles = generateFilepathsEndsWith({
+  endings: [".js", ".jsx", ".mjs", ".ts", ".tsx"],
+});
 
 type ExclusiveOn = {
   exclusiveOn?: string[];
@@ -165,8 +228,7 @@ const configOption: Fig.Option = {
   args: {
     name: "tsconfig file",
     description: "The tsconfig file to load",
-    // TODO: if present, suggest tsconfig.json first
-    template: "filepaths",
+    generators: generatePreferredFilepaths({ names: ["tsconfig.json"] }),
   },
 };
 
@@ -176,8 +238,9 @@ const importMapOption: Fig.Option = {
   args: {
     name: "source",
     description: "The location of the import map (can be a URL)",
-    // TODO: If present, suggest these first: import_map.json, import-map.json, imports.json
-    template: "filepaths",
+    generators: generatePreferredFilepaths({
+      names: ["import_map.json", "import-map.json", "imports.json"],
+    }),
   },
 };
 
@@ -187,8 +250,7 @@ const lockOption: Fig.Option = {
   args: {
     name: "lock file",
     description: "The location of the JSON lock file",
-    // TODO: If present, suggest lock.json first
-    template: "filepaths",
+    generators: generatePreferredFilepaths({ names: ["lock.json"] }),
   },
 };
 
@@ -333,7 +395,7 @@ const denoRun: Fig.Subcommand = {
   args: {
     name: "script",
     description: "The JavaScript or TypeScript file to run",
-    template: "filepaths",
+    generators: generateRunnableFiles,
   },
   options: [
     ...globalOptions,
@@ -421,6 +483,7 @@ const denoTest: Fig.Subcommand = {
       args: {
         name: "directory",
         description: "The directory to use for coverage data",
+        template: "folders",
       },
       exclusiveOn: ["--watch"],
     },
@@ -449,7 +512,9 @@ const denoFmt: Fig.Subcommand = {
     description: "Files to format",
     isOptional: true,
     isVariadic: true,
-    template: "filepaths",
+    generators: generateFilepathsEndsWith({
+      endings: [".mjs", ".js", ".jsx", ".ts", ".tsx", ".json", ".jsonc", ".md"],
+    }),
   },
   options: [
     ...globalOptions,
@@ -483,6 +548,13 @@ const denoFmt: Fig.Subcommand = {
 const denoLint: Fig.Subcommand = {
   name: "lint",
   description: "Lint JavaScript and TypeScript source code",
+  args: {
+    name: "files",
+    description: "Files to lint",
+    isOptional: true,
+    isVariadic: true,
+    generators: generateRunnableFiles,
+  },
   options: [
     ...globalOptions,
     {
@@ -517,7 +589,7 @@ const denoDoc: Fig.Subcommand = {
       // that just happens to mean "show documentation for built-ins". From the
       // user's perspective, it's *basically* a flag, but it's actually not!
       suggestions: ["--builtin"],
-      template: "filepaths",
+      generators: generateRunnableFiles,
       isOptional: true,
     },
     {
@@ -550,7 +622,7 @@ const denoInstall: Fig.Subcommand = {
     {
       name: "source",
       description: "A local or remote JavaScript or TypeScript file",
-      template: "filepaths",
+      generators: generateRunnableFiles,
     },
     {
       name: "args",
@@ -608,12 +680,12 @@ const denoUpgrade: Fig.Subcommand = {
       description: "The version to upgrade to",
       args: {
         name: "version",
-        generators: generators.denoVersions,
+        generators: generateDenoVersions,
       },
     },
     {
       name: "--output",
-      description: "The path to output the updated version to",
+      description: "Output path of the downloaded binary",
       args: {
         name: "path",
         template: "filepaths",
@@ -665,7 +737,7 @@ const denoCompletions: Fig.Subcommand = {
   args: {
     name: "shell",
     description: "Name of the shell to generate completions for",
-    // TODO: Suggest shells
+    suggestions: ["zsh", "bash", "fish", "powershell", "elvish"],
   },
   options: globalOptions,
 };
@@ -747,6 +819,7 @@ const denoInfo: Fig.Subcommand = {
     name: "file",
     description: "The source file to show information for",
     isOptional: true,
+    generators: generateRunnableFiles,
   },
 };
 
@@ -892,6 +965,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-V",
       description: "Prints Deno's version",
+      priority: 25,
     },
   ],
 };
