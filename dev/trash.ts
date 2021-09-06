@@ -21,11 +21,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-l",
-description: "List items in the trash"
+      description: "List items in the trash",
     },
     {
       name: "-e",
-description: "Empty the trash"
+      description: "Empty the trash",
       isDangerous: true,
     },
     {
