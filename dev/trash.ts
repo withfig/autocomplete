@@ -17,8 +17,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-F",
-      description:
-        'Use the Finder API to move items to the trash, this is slower, but most MacOS features such as sounds and the "put back" feature work',
+      description: "Use the Finder API to move items to the trash",
     },
     {
       name: "-l",
