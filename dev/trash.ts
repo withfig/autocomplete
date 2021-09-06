@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-e",
-      description: "Empty the trash asking for confirmation",
+description: "Empty the trash"
       isDangerous: true,
     },
     {
