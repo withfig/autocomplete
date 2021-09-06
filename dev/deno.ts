@@ -4,6 +4,9 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
+const CPU_ARCH_ICON =
+  "data:image/png;base64,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";
+
 const cache = {
   oneDay: <Fig.Cache>{
     ttl: 1000 * 60 * 60 * 24,
@@ -875,13 +878,11 @@ const denoCompile: Fig.Subcommand = {
       description: "The target OS architecture",
       args: {
         name: "arch",
-        // TODO: Maybe use a fun CPU icon for these? Something like this:
-        // https://github.com/elementary/icons/blob/master/mimes/128/application-x-firmware.svg
         suggestions: [
-          "x86_64-unknown-linux-gnu",
-          "x86_64-pc-windows-msvc",
-          "x86_64-apple-darwin",
-          "aarch64-apple-darwin",
+          { name: "x86_64-unknown-linux-gnu", icon: CPU_ARCH_ICON },
+          { name: "x86_64-pc-windows-msvc", icon: CPU_ARCH_ICON },
+          { name: "x86_64-apple-darwin", icon: CPU_ARCH_ICON },
+          { name: "aarch64-apple-darwin", icon: CPU_ARCH_ICON },
         ],
       },
     },
