@@ -4,6 +4,36 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
+const cache = {
+  oneDay: <Fig.Cache>{
+    ttl: 1000 * 60 * 60 * 24,
+  },
+} as const;
+
+const VERSIONS_URL =
+  "https://raw.githubusercontent.com/denoland/deno_website2/main/versions.json";
+
+const generators = {
+  /**
+   * Generates a list of Deno versions and caches that list for one day.
+   */
+  denoVersions: <Fig.Generator>{
+    script: `curl -s '${VERSIONS_URL}'`,
+    cache: cache.oneDay,
+    postProcess: (out) => {
+      try {
+        const json = JSON.parse(out);
+        return json.cli.map((version: string) => ({
+          // Removes the leading 'v', if present
+          name: version.replace(/^v/, ""),
+        }));
+      } catch (e) {
+        return [];
+      }
+    },
+  },
+} as const;
+
 type ExclusiveOn = {
   exclusiveOn?: string[];
 };
@@ -578,8 +608,7 @@ const denoUpgrade: Fig.Subcommand = {
       description: "The version to upgrade to",
       args: {
         name: "version",
-        // TODO: Suggest Deno versions, ordered most to least recent
-        // This can be gathered by querying the GitHub API
+        generators: generators.denoVersions,
       },
     },
     {
