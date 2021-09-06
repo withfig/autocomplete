@@ -4,6 +4,10 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
+type ExclusiveOn = {
+  exclusiveOn?: string[];
+};
+
 const permissionOptions: Fig.Option[] = [
   {
     name: ["-A", "--allow-all"],
@@ -87,29 +91,33 @@ const permissionOptions: Fig.Option[] = [
   },
 ];
 
-const inspectorOptions: Fig.Option[] = [
-  {
-    name: "--inspect",
-    description: "Activate inspector on host:port (default: 127.0.0.1:9229)",
-    // requiresEquals: true,
-    // args: {
-    //   name: "host:port",
-    //   description: "The host:port to activate the inspector on",
-    //   isOptional: true,
-    // },
-  },
-  {
-    name: "--inspect-brk",
-    description:
-      "Activate inspector on host:port and break at the start of user script (default: 127.0.0.1:9229)",
-    // requiresEquals: true,
-    // args: {
-    //   name: "host:port",
-    //   description: "The host:port to activate the inspector on",
-    //   isOptional: true,
-    // },
-  },
-];
+function inspectorOptions(options: ExclusiveOn = {}): Fig.Option[] {
+  return [
+    {
+      name: "--inspect",
+      description: "Activate inspector on host:port (default: 127.0.0.1:9229)",
+      // requiresEquals: true,
+      // args: {
+      //   name: "host:port",
+      //   description: "The host:port to activate the inspector on",
+      //   isOptional: true,
+      // },
+      exclusiveOn: options.exclusiveOn,
+    },
+    {
+      name: "--inspect-brk",
+      description:
+        "Activate inspector on host:port and break at the start of user script (default: 127.0.0.1:9229)",
+      // requiresEquals: true,
+      // args: {
+      //   name: "host:port",
+      //   description: "The host:port to activate the inspector on",
+      //   isOptional: true,
+      // },
+      exclusiveOn: options.exclusiveOn,
+    },
+  ];
+}
 
 const caFileOption: Fig.Option = {
   name: "--cert",
@@ -203,11 +211,14 @@ const v8FlagsOption: Fig.Option = {
   },
 };
 
-const watchOption: Fig.Option = {
-  name: "--watch",
-  description:
-    "UNSTABLE: Watch for file changes and restart process automatically",
-};
+function watchOption(options: ExclusiveOn = {}): Fig.Option {
+  return {
+    name: "--watch",
+    description:
+      "UNSTABLE: Watch for file changes and restart process automatically",
+    exclusiveOn: options.exclusiveOn,
+  };
+}
 
 const locationOption: Fig.Option = {
   name: "--location",
@@ -226,10 +237,12 @@ const globalOptions: Fig.Option[] = [
   {
     name: ["-h", "--help"],
     description: "Prints help information",
+    priority: 40,
   },
   {
     name: ["-L", "--log-level"],
     description: "Set log level",
+    priority: 40,
     args: {
       suggestions: ["info", "debug"],
     },
@@ -256,21 +269,33 @@ const compileOptions: Fig.Option[] = [
   caFileOption,
 ];
 
-const runtimeOptions = ({
-  perms,
-  inspector,
-}: {
+/**
+ * Generate an array of options that control runtime behavior.
+ *
+ * This function mirrors the `runtime_args` function:
+ * https://github.com/denoland/deno/blob/930cb0a/cli/flags.rs#L1383
+ */
+function runtimeOptions(init: {
   perms: boolean;
   inspector: boolean;
-}): Fig.Option[] => [
-  ...compileOptions,
-  ...(perms ? permissionOptions : []),
-  ...(inspector ? inspectorOptions : []),
-  cachedOnlyOption,
-  locationOption,
-  v8FlagsOption,
-  seedArg,
-];
+  inspectorExclusiveOn?: string[];
+}): Fig.Option[] {
+  const options = [
+    // Without this spread, calling runtimeOptions would mutate compileOptions
+    ...compileOptions,
+  ];
+  if (init.perms) {
+    options.push(...permissionOptions);
+  }
+  if (init.inspector) {
+    const inspector = inspectorOptions({
+      exclusiveOn: init.inspectorExclusiveOn,
+    });
+    options.push(...inspector);
+  }
+  options.push(cachedOnlyOption, locationOption, v8FlagsOption, seedArg);
+  return options;
+}
 
 const denoRun: Fig.Subcommand = {
   name: "run",
@@ -281,11 +306,15 @@ const denoRun: Fig.Subcommand = {
     template: "filepaths",
   },
   options: [
-    ...runtimeOptions({ perms: true, inspector: true }),
-    {
-      ...watchOption,
+    ...globalOptions,
+    ...runtimeOptions({
+      perms: true,
+      inspector: true,
+      inspectorExclusiveOn: ["--watch"],
+    }),
+    watchOption({
       exclusiveOn: ["--inspect", "--inspect-brk"],
-    },
+    }),
   ],
 };
 
@@ -317,6 +346,7 @@ const denoTest: Fig.Subcommand = {
     {
       name: "--no-run",
       description: "Cache test modules, but don't run tests",
+      exclusiveOn: ["--watch"],
     },
     {
       name: "--doc",
@@ -362,6 +392,7 @@ const denoTest: Fig.Subcommand = {
         name: "directory",
         description: "The directory to use for coverage data",
       },
+      exclusiveOn: ["--watch"],
     },
     {
       name: ["-j", "--jobs"],
@@ -374,10 +405,9 @@ const denoTest: Fig.Subcommand = {
         isOptional: true,
       },
     },
-    {
-      ...watchOption,
+    watchOption({
       exclusiveOn: ["--no-run", "--coverage"],
-    },
+    }),
   ],
 };
 
@@ -416,7 +446,7 @@ const denoFmt: Fig.Subcommand = {
         template: "filepaths",
       },
     },
-    watchOption,
+    watchOption(),
   ],
 };
 
