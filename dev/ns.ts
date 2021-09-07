@@ -11,7 +11,7 @@ const daysFromNowMilliseconds = (num: number): number => {
  */
 const cleanOption: Fig.Option = {
   name: "--clean",
-  description: "If set forces rebuilding the native application",
+  description: "Forces rebuilding the native application",
 };
 
 const timeoutOption: Fig.Option = {
@@ -42,13 +42,12 @@ const deviceOption: Fig.Option = {
 const forceOption: Fig.Option = {
   name: "--force",
   description:
-    "If set, skips the application compatibility checks and forces npm i to ensure all dependencies are installed",
+    "Skips the application compatibility checks and forces npm i to ensure all dependencies are installed",
 };
 
 const noHmrOption: Fig.Option = {
   name: "--no-hmr",
   description: "Disables Hot Module Replacement (HMR)",
-  priority: 1,
 };
 
 const frameworkPathOption: Fig.Option = {
@@ -63,14 +62,13 @@ const frameworkPathOption: Fig.Option = {
 
 const justLaunchOption: Fig.Option = {
   name: "--justlaunch",
-  description: "If set, does not print the application output in the console",
-  priority: 0,
+  description: "Does not print the application output in the console",
 };
 
 const releaseOption: Fig.Option = {
   name: "--release",
   description:
-    "If set, produces a release build by running webpack in production mode and native build in release mode. Otherwise, produces a debug build",
+    "Produces a release build by running webpack in production mode and native build in release mode. Otherwise, produces a debug build",
 };
 
 const helpOption = (label: string): Fig.Option => {
@@ -218,29 +216,29 @@ const platformOptions = {
       },
       {
         name: "--no-watch",
-        description: "If set, changes in your code will not be livesynced",
+        description: "Changes in your code will not be livesynced",
       },
     ],
     ios: [
       {
         name: "--no-client",
         description:
-          "If set, the NativeScript CLI attaches the debug tools but does not launch the developer tools in Safari. Could be used on already started Safari Web Inspector",
+          "The NativeScript CLI attaches the debug tools but does not launch the developer tools in Safari. Could be used on already started Safari Web Inspector",
       },
       {
         name: "--inspector",
         description:
-          "If set, the developer tools in the Safari Web Inspector are used for debugging the application",
+          "The developer tools in the Safari Web Inspector are used for debugging the application",
       },
     ],
-    android: [...androidGeneralOptions],
+    android: androidGeneralOptions,
   },
   test: {
     both: [
       {
         name: "--watch",
         description:
-          "If set, when you save changes to the project, changes are automatically synchronized to the connected device and tests are re-run",
+          "When you save changes to the project, changes are automatically synchronized to the connected device and tests are re-run",
       },
       {
         name: "--debug-brk",
@@ -253,7 +251,7 @@ const platformOptions = {
       emulatorOption,
     ],
     ios: [],
-    android: [...androidGeneralOptions],
+    android: androidGeneralOptions,
   },
   build: {
     both: [
@@ -298,12 +296,12 @@ const platformOptions = {
       {
         name: "--for-device",
         description:
-          "If set, produces an application package that you can deploy on device. Otherwise, produces a build that you can run only in the native iOS Simulator",
+          "Produces an application package that you can deploy on device. Otherwise, produces a build that you can run only in the native iOS Simulator",
       },
       {
         name: "--i-cloud-container-environment",
         description:
-          "If set, adds the passed iCloudContainerEnvironment when exporting an application package with the --for-device option",
+          "Adds the passed iCloudContainerEnvironment when exporting an application package with the --for-device option",
         dependsOn: ["--for-device"],
       },
       {
@@ -576,7 +574,6 @@ const createCommand: Fig.Subcommand = {
       description:
         "Sets the application identifier of your project. <appid> is the value of the application identifier and it must meet the specific requirements of each platform that you want to target. If not specified, the application identifier is set to org.nativescript.<Project Name>. The application identifier must be a domain name in reverse",
       insertValue: "--appid '{cursor}'",
-      priority: 0,
       args: {
         name: "identifier",
       },
@@ -737,12 +734,14 @@ const testCommand: Fig.Subcommand = {
       description:
         "Run unit tests on all connected android devices or native emulators",
       options: [...platformOptions.test.both, ...platformOptions.test.android],
+      priority: 90,
     },
     {
       name: "ios",
       description:
         "Run unit tests on all connected ios devices or native emulators",
       options: [...platformOptions.test.both, ...platformOptions.test.ios],
+      priority: 90,
     },
   ],
   options: [helpOption("test")],
@@ -951,10 +950,12 @@ const buildCommand: Fig.Subcommand = {
         ...platformOptions.build.both,
         ...platformOptions.build.android,
       ],
+      priority: 90,
     },
     {
       name: "ios",
       options: [...platformOptions.build.both, ...platformOptions.build.ios],
+      priority: 90,
     },
   ],
   options: [
@@ -979,10 +980,12 @@ const deployCommand: Fig.Subcommand = {
         ...platformOptions.deploy.both,
         ...platformOptions.deploy.android,
       ],
+      priority: 90,
     },
     {
       name: "ios",
       options: [...platformOptions.deploy.both, ...platformOptions.deploy.ios],
+      priority: 90,
     },
   ],
   options: [helpOption("deploy")],
@@ -1051,7 +1054,7 @@ const appStoreCommand: Fig.Subcommand = {
         {
           name: "--ipa",
           description:
-            "If set, will use provided .ipa file instead of building the project",
+            "Use the provided .ipa file instead of building the project",
           insertValue: "--ipa {cursor}",
           args: {
             name: "ipa file path",
@@ -1235,7 +1238,7 @@ const completionSpec: Fig.Spec = {
   name: "ns",
   description:
     "The NativeScript CLI lets you create, build, and deploy NativeScript based apps on iOS and Android devices",
-  subcommands: [...allCommands],
+  subcommands: allCommands,
   options: [
     {
       name: ["-v", "--version"],
