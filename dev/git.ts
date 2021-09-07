@@ -4236,7 +4236,7 @@ const completionSpec: Fig.Spec = {
           generators: [
             gitGenerators.remoteLocalBranches,
             gitGenerators.tags,
-            { template: "filepaths" },
+            { template: ["filepaths", "folders"] },
           ],
           suggestions: [
             {
