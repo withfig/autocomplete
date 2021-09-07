@@ -5,12 +5,11 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "-0",
-      description:
-        "Change xargs to expect NUL (0x00) characters as separators, instead of newlines and spaces. This is expected to be used with the -print0 function of find(1)",
+      description: "Use NUL (0x00) as a separator, instead of whitespace",
     },
     {
       name: "-E",
-      description: "Use this string as a logic EOF marker",
+      description: "Use this string as a logical EOF marker",
       args: {
         name: "eof-str",
         description: "The string to use that marks EOF",
