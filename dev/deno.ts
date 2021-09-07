@@ -418,7 +418,7 @@ const denoTest: Fig.Subcommand = {
     isVariadic: true,
     generators: generateFilepathsMatch({
       // Any files with a test suffix should be suggested
-      match: /(\.|_)?test.(tsx?|jsx?)$/,
+      match: /(\.|_)?test\.(tsx?|jsx?)$/,
     }),
   },
   options: [
