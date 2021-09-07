@@ -579,6 +579,14 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
+function docNameToSuggestion(name: string): Fig.Suggestion {
+  return {
+    name: name,
+    priority: /^[A-Z]/.test(name) ? 60 : 50,
+    icon: "fig://icon?type=string",
+  };
+}
+
 const denoDoc: Fig.Subcommand = {
   name: "doc",
   description: "Show documentation for a module",
@@ -600,11 +608,94 @@ const denoDoc: Fig.Subcommand = {
       isOptional: true,
     },
     {
-      name: "node",
-      description: "The node to get documentation for (must exist in scope)",
+      name: "filter",
+      description: "The symbol to get documentation for (must exist in scope)",
       isOptional: true,
-      // TODO: Parse `deno doc --json`'s output for the scope to suggest nodes?
-      // This is challenging as the CLI expects dot-separated names (eg. Deno.test)
+      generators: {
+        // Options can go in any order, which means you can't rely on the second
+        // last element to be the `scope`. The solution is to add the --json
+        // flag and run whatever the user entered. There can only be one
+        //  occurrence of --json, so it needs to be guarded.
+        script: (tokens) => {
+          // The last element is always the `node`, which must be removed.
+          const commandUntilNode = tokens.slice(0, -1);
+          const jsonFlagIndex = commandUntilNode.indexOf("--json");
+          if (jsonFlagIndex === -1) {
+            commandUntilNode.push("--json");
+          }
+          const script = commandUntilNode.join(" ");
+          return script;
+        },
+        // This can't be a string because it should only be triggered on the
+        // first dot.
+        trigger: (newToken, oldToken) => {
+          return newToken.indexOf(".") !== oldToken.indexOf(".");
+        },
+        // There won't be any trailing dots in the suggestions, so this can
+        // be a string.
+        getQueryTerm: ".",
+        // The output for `deno doc --json` is `DocNode[]` - the types:
+        // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
+        postProcess: (out, tokens) => {
+          let nodes;
+          try {
+            nodes = JSON.parse(out);
+            if (!Array.isArray(nodes)) {
+              throw new Error(`Output data was JSON, but was not an array`);
+            }
+          } catch (err) {
+            console.error("Returning early due to error:", err);
+            return [];
+          }
+
+          const nodeToken = tokens[tokens.length - 1];
+          const firstDot = nodeToken.indexOf(".");
+
+          const suggestions: Fig.Suggestion[] = [];
+
+          // If there's no dot, all the top level nodes should be suggested.
+          if (firstDot === -1) {
+            const names = new Set(nodes.map((node) => node.name));
+            for (const name of names) {
+              suggestions.push(docNameToSuggestion(name));
+            }
+
+            return suggestions;
+          }
+
+          // Everything until the first dot is the name of the node, so we're
+          // looking for children of that node.
+          const firstSegment = nodeToken.slice(0, firstDot);
+
+          // It's not uncommon that there'd be multiple occurrences of the same
+          // name with different values, for example an overloaded function.
+          const foundNodes = nodes.filter((node) => node.name === firstSegment);
+
+          const childNodes = [];
+          for (const node of foundNodes) {
+            // `deno doc` only generates docs for these nodes' children
+            if (node.kind === "namespace") {
+              childNodes.push(...node.namespaceDef.elements);
+            } else if (node.kind === "interface") {
+              childNodes.push(
+                ...node.interfaceDef.methods,
+                ...node.interfaceDef.properties
+              );
+            } else if (node.kind === "class") {
+              childNodes.push(
+                ...node.classDef.methods,
+                ...node.classDef.properties
+              );
+            }
+          }
+          const childNames = childNodes.map((node) => node.name);
+          const uniqueNames = new Set(childNames);
+          for (const name of uniqueNames) {
+            suggestions.push(docNameToSuggestion(name));
+          }
+          return suggestions;
+        },
+      },
     },
   ],
   options: [
