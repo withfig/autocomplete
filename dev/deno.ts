@@ -416,7 +416,10 @@ const denoTest: Fig.Subcommand = {
     description: "The paths of tests to run",
     isOptional: true,
     isVariadic: true,
-    template: "filepaths",
+    generators: generateFilepathsMatch({
+      // Any files with a test suffix should be suggested
+      match: /(\.|_)?test.(tsx?|jsx?)$/,
+    }),
   },
   options: [
     ...globalOptions,
@@ -896,7 +899,7 @@ const denoCache: Fig.Subcommand = {
   args: {
     name: "script",
     description: "The script(s) to cache",
-    template: "filepaths",
+    generators: generateRunnableFiles,
     isVariadic: true,
   },
   options: [...globalOptions, ...compileOptions],
@@ -909,7 +912,7 @@ const denoBundle: Fig.Subcommand = {
     {
       name: "source",
       description: "The source file to bundle",
-      template: "filepaths",
+      generators: generateRunnableFiles,
     },
     {
       name: "output",
