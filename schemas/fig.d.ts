@@ -224,6 +224,22 @@ declare namespace Fig {
     args?: SingleOrArray<Arg>;
     /**
      *
+     * Signals whether an option is persistent, meaning that it will still be available
+     * as an option for all child subcommands. As of now there is no way to disable this
+     * persistence for certain children. Also see
+     * https://github.com/spf13/cobra/blob/master/user_guide.md#persistent-flags.
+     *
+     * By default this option is false.
+     *
+     * @example
+     * Say the `git` spec had an option at the top level with `{ name: "--help", isPersistent: true }`.
+     * Then the spec would recognize both `git --help` and `git commit --help`
+     * as a valid passing of the `--help` option to the `git` subcommand.
+     *
+     */
+    isPersistent?: boolean;
+    /**
+     *
      * Signals whether an option is required. The default value is false, meaning an option is NOT required.
      *
      * Signalling that an option is required currently doesn't do anything. However, Fig will handle it in the future.
