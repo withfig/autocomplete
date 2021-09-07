@@ -611,13 +611,15 @@ const denoDoc: Fig.Subcommand = {
       name: "filter",
       description: "The symbol to get documentation for (must exist in scope)",
       isOptional: true,
+      // This generator helps you construct a filter by suggesting top level
+      // nodes from the provided scope, and more specific nodes after a period
       generators: {
-        // Options can go in any order, which means you can't rely on the second
-        // last element to be the `scope`. The solution is to add the --json
-        // flag and run whatever the user entered. There can only be one
-        //  occurrence of --json, so it needs to be guarded.
+        // Options can be provided in any order, so the second last element
+        // isn't guaranteed to be the scope. The solution is to modify the
+        // array of tokens to insert --json. However, since there can only be
+        // one occurrence of that flag, it has to be guarded.
         script: (tokens) => {
-          // The last element is always the `node`, which must be removed.
+          // The last element is always the `filter`, which must be removed
           const commandUntilNode = tokens.slice(0, -1);
           const jsonFlagIndex = commandUntilNode.indexOf("--json");
           if (jsonFlagIndex === -1) {
@@ -626,14 +628,17 @@ const denoDoc: Fig.Subcommand = {
           const script = commandUntilNode.join(" ");
           return script;
         },
+
         // This can't be a string because it should only be triggered on the
         // first dot.
         trigger: (newToken, oldToken) => {
           return newToken.indexOf(".") !== oldToken.indexOf(".");
         },
-        // There won't be any trailing dots in the suggestions, so this can
-        // be a string.
+
+        // The query term can be reset with each dot, since it's guaranteed
+        // that there's no dots in the suggestions.
         getQueryTerm: ".",
+
         // The output for `deno doc --json` is `DocNode[]` - the types:
         // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
         postProcess: (out, tokens) => {
@@ -648,8 +653,10 @@ const denoDoc: Fig.Subcommand = {
             return [];
           }
 
-          const nodeToken = tokens[tokens.length - 1];
-          const firstDot = nodeToken.indexOf(".");
+          // The final token *must* be the filter, otherwise this generator
+          // wouldn't have been invoked.
+          const filterToken = tokens[tokens.length - 1];
+          const firstDot = filterToken.indexOf(".");
 
           const suggestions: Fig.Suggestion[] = [];
 
@@ -665,7 +672,7 @@ const denoDoc: Fig.Subcommand = {
 
           // Everything until the first dot is the name of the node, so we're
           // looking for children of that node.
-          const firstSegment = nodeToken.slice(0, firstDot);
+          const firstSegment = filterToken.slice(0, firstDot);
 
           // It's not uncommon that there'd be multiple occurrences of the same
           // name with different values, for example an overloaded function.
