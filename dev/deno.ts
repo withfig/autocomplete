@@ -579,10 +579,20 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
+function getNamePriority(name: string): number {
+  if (/^[A-Z]/.test(name)) {
+    return 60;
+  }
+  if (name.startsWith("_")) {
+    return 40;
+  }
+  return 50;
+}
+
 function createFilterSuggestion(name: string): Fig.Suggestion {
   return {
     name: name,
-    priority: /^[A-Z]/.test(name) ? 60 : 50,
+    priority: getNamePriority(name),
     icon: "fig://icon?type=string",
   };
 }
@@ -639,13 +649,14 @@ const denoDoc: Fig.Subcommand = {
         // dot anyway.
         getQueryTerm: ".",
 
-        // The output for `deno doc --json` is `DocNode[]` - the types:
-        // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
         postProcess: (out, tokens) => {
-          let allNodes;
+          // The output for `deno doc --json` is `DocNode[]` - the types:
+          // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          let nodes: any[];
           try {
-            allNodes = JSON.parse(out);
-            if (!Array.isArray(allNodes)) {
+            nodes = JSON.parse(out);
+            if (!Array.isArray(nodes)) {
               throw new Error(`Output data was JSON, but was not an array`);
             }
           } catch (err) {
@@ -653,8 +664,16 @@ const denoDoc: Fig.Subcommand = {
             return [];
           }
 
-          // Imports won't show in deno doc, these should never be suggested.
-          const nodes = allNodes.filter((node) => node.kind !== "import");
+          const showPrivateSymbols = tokens.includes("--private");
+
+          // If we're not showing private symbols, imports aren't valid since
+          // they're private by definition. Deno includes these in the output
+          // (probably) to allow you to build a module graph without --private
+          if (!showPrivateSymbols) {
+            nodes = nodes.filter((node) => node.kind !== "import");
+          }
+
+          if (nodes.length === 0) return [];
 
           // The final token has to be the filter, it's the only way this
           // generator could have been invoked.
@@ -665,8 +684,14 @@ const denoDoc: Fig.Subcommand = {
 
           // If there's no dot, all the top level nodes should be suggested.
           if (firstDotIndex === -1) {
-            const names = new Set(nodes.map((node) => node.name));
-            for (const name of names) {
+            const nodeNames = nodes.map((node) => node.name);
+            const uniqueNames = new Set(nodeNames);
+
+            // Deno sets the name to <TODO> when it gets confused, and fig
+            // replaces that with an empty string for a name.
+            uniqueNames.delete("<TODO>");
+
+            for (const name of uniqueNames) {
               suggestions.push(createFilterSuggestion(name));
             }
 
@@ -680,6 +705,10 @@ const denoDoc: Fig.Subcommand = {
           // name with different values, eg. overloads and interface merging.
           // Deno's builtin types actually do this with the `Deno` interface.
           const foundNodes = nodes.filter((node) => node.name === filterName);
+
+          // This is what would happen anyway, but doing it explicitly makes
+          // the intention much clearer: if there are no nodes, return nothing.
+          if (foundNodes.length === 0) return [];
 
           const childNodes = [];
           for (const node of foundNodes) {
@@ -698,10 +727,21 @@ const denoDoc: Fig.Subcommand = {
               );
             }
           }
-          // This array doesn't need to be filtered for imports because, at
-          // least as far as I know, they can only appear at the top level.
-          const childNames = childNodes.map((node) => node.name);
+
+          // For the sake of being explicit, once more...
+          if (childNodes.length === 0) return [];
+
+          // If we're not hiding private symbols then show everything,
+          // otherwise show it if it's not an import.
+          const childNames = childNodes
+            .filter((node) => showPrivateSymbols || node.kind !== "import")
+            .map((node) => node.name);
+
           const uniqueNames = new Set(childNames);
+
+          // Just like above, if <TODO> snuck in we need to get rid of it.
+          uniqueNames.delete("<TODO>");
+
           for (const name of uniqueNames) {
             suggestions.push(createFilterSuggestion(name));
           }
