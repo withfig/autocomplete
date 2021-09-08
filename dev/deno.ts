@@ -642,16 +642,19 @@ const denoDoc: Fig.Subcommand = {
         // The output for `deno doc --json` is `DocNode[]` - the types:
         // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
         postProcess: (out, tokens) => {
-          let nodes;
+          let allNodes;
           try {
-            nodes = JSON.parse(out);
-            if (!Array.isArray(nodes)) {
+            allNodes = JSON.parse(out);
+            if (!Array.isArray(allNodes)) {
               throw new Error(`Output data was JSON, but was not an array`);
             }
           } catch (err) {
             console.error("Returning early due to error:", err);
             return [];
           }
+
+          // Imports won't show in deno doc, these should never be suggested.
+          const nodes = allNodes.filter((node) => node.kind !== "import");
 
           // The final token has to be the filter, it's the only way this
           // generator could have been invoked.
@@ -695,6 +698,8 @@ const denoDoc: Fig.Subcommand = {
               );
             }
           }
+          // This array doesn't need to be filtered for imports because, at
+          // least as far as I know, they can only appear at the top level.
           const childNames = childNodes.map((node) => node.name);
           const uniqueNames = new Set(childNames);
           for (const name of uniqueNames) {
