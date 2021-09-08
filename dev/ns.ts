@@ -1,11 +1,3 @@
-const daysFromNowMilliseconds = (num: number): number => {
-  const result = new Date();
-  result.setDate(result.getDate() + num);
-  const milliseconds = result.getUTCMilliseconds();
-  // console.log("daysFromNowMilliseconds", milliseconds);
-  return milliseconds;
-};
-
 /**
  * Common options used throughout the CLI
  */
@@ -18,7 +10,6 @@ const timeoutOption: Fig.Option = {
   name: "--timeout",
   description:
     "Sets the number of seconds that the NativeScript CLI will wait for the debugger to boot. If not set, the default timeout is 90 seconds",
-  insertValue: "--timeout {cursor}",
   args: {
     name: "seconds",
   },
@@ -32,10 +23,18 @@ const emulatorOption: Fig.Option = {
 const deviceOption: Fig.Option = {
   name: "--device",
   description: "Specifies a connected device/emulator to start and run the app",
-  insertValue: "--device {cursor}",
   args: {
     name: "device id",
     // TODO: create a generator of ns device <platform> --available-devices
+    // generators: {
+    //   script: "ns devices --json",
+    //   postProcess: (output) => {
+    //     return [{
+    //       name: "test1",
+    //       description: "Test 1"
+    //     }]
+    //   },
+    // },
   },
 };
 
@@ -53,11 +52,16 @@ const noHmrOption: Fig.Option = {
 const frameworkPathOption: Fig.Option = {
   name: "--framework-path",
   description:
-    "Sets the path to a NativeScript runtime for the specified platform that you want to use instead of the default runtime",
-  insertValue: "--framework-path {cursor}",
+    "Sets the path to a NativeScript runtime for the specified platform that you want to use instead of the default runtime. <File Path> must point to a valid npm package",
   args: {
     name: "path",
+    template: "filepaths",
   },
+};
+
+const jsonOption: Fig.Option = {
+  name: "--json",
+  description: "Show the output of the command in JSON format",
 };
 
 const justLaunchOption: Fig.Option = {
@@ -71,6 +75,11 @@ const releaseOption: Fig.Option = {
     "Produces a release build by running webpack in production mode and native build in release mode. Otherwise, produces a debug build",
 };
 
+const bundleOption: Fig.Option = {
+  name: "--bundle",
+  description: "Bundle the application",
+};
+
 const helpOption = (label: string): Fig.Option => {
   return {
     name: ["--help", "-h"],
@@ -82,9 +91,9 @@ const helpOption = (label: string): Fig.Option => {
 /**
  * Plaform options used across many commands of the CLI
  */
-const iosGeneralOptions = [];
+const iosGeneralOptions: Fig.Option[] = [];
 
-const androidGeneralOptions = [
+const androidGeneralOptions: Fig.Option[] = [
   {
     name: "--aab",
     description:
@@ -104,14 +113,14 @@ const androidGeneralOptions = [
   },
 ];
 
-const androidKeyOptions = [
+const androidKeyOptions: Fig.Option[] = [
   {
     name: "--key-store-path",
     description:
       "Specifies the file path to the keystore file (P12) which you want to use to code sign your APK",
-    insertValue: "--key-store-path {cursor}",
     args: {
       name: "path",
+      template: "filepaths",
     },
     dependsOn: ["--release"],
   },
@@ -119,7 +128,6 @@ const androidKeyOptions = [
     name: "--key-store-password",
     description:
       "Provides the password for the keystore file specified with --key-store-path",
-    insertValue: "--key-store-password {cursor}",
     args: {
       name: "password",
     },
@@ -129,7 +137,6 @@ const androidKeyOptions = [
     name: "--key-store-alias",
     description:
       "Provides the alias for the keystore file specified with --key-store-path",
-    insertValue: "--key-store-alias {cursor}",
     args: {
       name: "alias",
     },
@@ -139,7 +146,6 @@ const androidKeyOptions = [
     name: "--key-store-alias-password",
     description:
       "Provides the password for the alias specified with --key-store-alias-password",
-    insertValue: "--key-store-alias-password {cursor}",
     args: {
       name: "alias password",
     },
@@ -147,7 +153,7 @@ const androidKeyOptions = [
   },
 ];
 
-const platformEnvOptions = [
+const platformEnvOptions: Fig.Option[] = [
   {
     name: "--env.aot",
     description: "Creates an Ahead-Of-Time build (Angular only)",
@@ -172,7 +178,7 @@ const platformEnvOptions = [
   },
 ];
 
-const platformGeneralOptions = [
+const platformGeneralOptions: Fig.Option[] = [
   ...platformEnvOptions,
   noHmrOption,
   forceOption,
@@ -182,19 +188,27 @@ const platformGeneralOptions = [
   timeoutOption,
 ];
 
+/**
+ * Defined a map of shared options for various commands
+ * Some commands have slightly varied options.
+ */
 const platformOptions = {
   // NOTE: used like so:
-  // ...platformOption.<command>.all
+  // ...platformOption.<command>.both
   // ...platformOption.<command>.ios
 
   run: {
-    both: [...platformGeneralOptions, justLaunchOption, releaseOption],
+    both: [
+      ...platformGeneralOptions,
+      justLaunchOption,
+      releaseOption,
+      bundleOption,
+    ],
     ios: [
       ...iosGeneralOptions,
       {
         name: "--sdk",
         description: "Specifies the target simulator's sdk",
-        insertValue: "--sdk {cursor}",
         args: {
           name: "sdk",
         },
@@ -261,18 +275,18 @@ const platformOptions = {
         name: "--copy-to",
         description:
           "Specifies the file path where the built .ipa|.apk will be copied. If it points to a non-existent directory path, it will be created. If the specified value is existing directory, the original file name will be used",
-        insertValue: "--copy-to {cursor}",
         args: {
           name: "path",
+          template: "folders" as Fig.Template,
         },
       },
       {
         name: "--path",
         description:
           "Specifies the directory where you want to create the project, if different from the current directory",
-        insertValue: "--path {cursor}",
         args: {
           name: "directory",
+          template: "folders" as Fig.Template,
         },
       },
       forceOption,
@@ -285,7 +299,6 @@ const platformOptions = {
         name: "--compileSdk",
         description:
           "Sets the Android SDK that will be used to build the project",
-        insertValue: "--compileSdk {cursor}",
         args: {
           name: "api level",
         },
@@ -308,7 +321,6 @@ const platformOptions = {
         name: "--team-id",
         description:
           "If used without parameter, lists all team names and ids. If used with team name or id, it will switch to automatic signing mode and configure the .xcodeproj file of your app. In this case .xcconfig should not contain any provisioning/team id flags",
-        insertValue: "--team-id {cursor}",
         args: {
           name: "team id",
           isOptional: true,
@@ -318,7 +330,6 @@ const platformOptions = {
         name: "--provision",
         description:
           "If used without parameter, lists all eligible provisioning profiles. If used with UUID or name of your provisioning profile, it will switch to manual signing mode and configure the .xcodeproj file of your app",
-        insertValue: "--provision {cursor}",
         args: {
           name: "uuid",
           isOptional: true,
@@ -393,13 +404,14 @@ const doctorCommand: Fig.Subcommand = {
   name: "doctor",
   description:
     "Checks your system for configuration problems which might prevent the NativeScript CLI from working properly for the specified platform, if configured",
-  args: {},
   subcommands: [
     {
       name: "android",
+      description: "Check your system configuration for android",
     },
     {
       name: "ios",
+      description: "Check your system configuration for ios",
     },
   ],
   options: [helpOption("doctor")],
@@ -514,14 +526,13 @@ const createCommand: Fig.Subcommand = {
     {
       name: "--template",
       description: "Create a project using a predefined template",
-      insertValue: "--template {cursor}",
       args: {
         name: "template",
         generators: {
           script:
             "curl https://api.github.com/repos/NativeScript/nativescript-app-templates/contents/packages",
           cache: {
-            ttl: daysFromNowMilliseconds(100),
+            ttl: 100 * 24 * 60 * 60 * 1000, // 100days
           },
           postProcess: (output) => {
             return JSON.parse(output).map((branch) => {
@@ -563,17 +574,16 @@ const createCommand: Fig.Subcommand = {
       name: "--path",
       description:
         "Specifies the directory where you want to create the project, if different from the current directory. <directory> is the absolute path to an empty directory in which you want to create the project",
-      insertValue: "--path {cursor}",
-      priority: 1,
+      priority: 10,
       args: {
         name: "directory",
+        template: "folders",
       },
     },
     {
       name: "--appid",
       description:
         "Sets the application identifier of your project. <appid> is the value of the application identifier and it must meet the specific requirements of each platform that you want to target. If not specified, the application identifier is set to org.nativescript.<Project Name>. The application identifier must be a domain name in reverse",
-      insertValue: "--appid '{cursor}'",
       args: {
         name: "identifier",
       },
@@ -599,7 +609,6 @@ const platformCommand: Fig.Subcommand = {
   name: "platform",
   description:
     "Lists all platforms that the project currently targets. You can build and deploy your project only for these target platforms",
-  insertValue: "platform {cursor}",
   subcommands: [
     {
       name: "list",
@@ -610,7 +619,6 @@ const platformCommand: Fig.Subcommand = {
       name: "add",
       description:
         "Configures the current project to target the selected platform",
-      insertValue: "add {cursor}",
       subcommands: [
         {
           name: "android",
@@ -618,8 +626,20 @@ const platformCommand: Fig.Subcommand = {
           options: [frameworkPathOption],
         },
         {
+          name: "android@[Version]",
+          insertValue: "android@{cursor}",
+          description: "The defined android platform eg. 1.0.0",
+          options: [frameworkPathOption],
+        },
+        {
           name: "ios",
           description: "The latest ios platform",
+          options: [frameworkPathOption],
+        },
+        {
+          name: "ios@[Version]",
+          insertValue: "ios@{cursor}",
+          description: "The defined ios platform eg. 1.0.0",
           options: [frameworkPathOption],
         },
       ],
@@ -628,7 +648,6 @@ const platformCommand: Fig.Subcommand = {
       name: "remove",
       description:
         "Removes the selected platform from the platforms that the project currently targets",
-      insertValue: "remove {cursor}",
       subcommands: [
         {
           name: "android",
@@ -644,7 +663,6 @@ const platformCommand: Fig.Subcommand = {
       name: "update",
       description:
         "Updates the NativeScript runtime for the specified platform",
-      insertValue: "update {cursor}",
       subcommands: [
         {
           name: "android",
@@ -664,7 +682,6 @@ const runCommand: Fig.Subcommand = {
   name: "run",
   description:
     "Runs your project on all connected devices or in native emulators for the selected platform",
-  insertValue: "run {cursor}",
   subcommands: [
     {
       name: "android",
@@ -686,7 +703,6 @@ const debugCommand: Fig.Subcommand = {
   name: "debug",
   description:
     "Initiates a debugging session for your project on a connected device or native emulator",
-  insertValue: "debug {cursor}",
   subcommands: [
     {
       name: "android",
@@ -712,7 +728,6 @@ const debugCommand: Fig.Subcommand = {
 const testCommand: Fig.Subcommand = {
   name: "test",
   description: "Runs unit tests on the selected mobile platform",
-  insertValue: "test {cursor}",
   subcommands: [
     {
       name: "init",
@@ -721,7 +736,6 @@ const testCommand: Fig.Subcommand = {
         {
           name: "--framework",
           description: "Sets the unit testing framework to install",
-          insertValue: "--framework {cursor}",
           args: {
             name: "framework",
             suggestions: ["mocha", "jasmine", "qunit"],
@@ -754,7 +768,6 @@ const pluginCommand: Fig.Subcommand = {
     {
       name: "add",
       description: "Installs the specified plugin and its dependencies",
-      insertValue: "add {cursor}",
       args: {
         name: "plugin",
         description: "A valid Nativescript plugin",
@@ -763,7 +776,6 @@ const pluginCommand: Fig.Subcommand = {
     {
       name: "remove",
       description: "Uninstalls the specified plugin and its dependencies",
-      insertValue: "remove {cursor}",
       args: {
         name: "plugin",
         description: "A valid Nativescript plugin",
@@ -773,7 +785,6 @@ const pluginCommand: Fig.Subcommand = {
       name: "update",
       description:
         "Uninstalls and installs the specified plugin(s) and its dependencies",
-      insertValue: "update {cursor}",
       args: {
         name: "plugin(s)",
         description: "A valid Nativescript plugin",
@@ -795,18 +806,17 @@ const pluginCommand: Fig.Subcommand = {
           name: "--path",
           description:
             "Specifies the directory where you want to create the project, if different from the current directory",
-          insertValue: "--path {cursor}",
           args: {
             name: "directory",
             description:
               "Specifies the directory where you want to create the project, if different from the current directory",
+            template: "folders",
           },
         },
         {
           name: "--username",
           description:
             "Specifies the Github username, which will be used to build the URLs in the plugin's package.json file",
-          insertValue: "--username {cursor}",
           args: {
             name: "username",
             description: "Github username",
@@ -816,7 +826,6 @@ const pluginCommand: Fig.Subcommand = {
           name: "--pluginName",
           description:
             "Used to set the default file and class names in the plugin source",
-          insertValue: "--pluginName {cursor}",
           args: {
             name: "name",
           },
@@ -841,7 +850,6 @@ const pluginCommand: Fig.Subcommand = {
           name: "--template",
           description:
             "Specifies the custom seed archive, which you want to use to create your plugin",
-          insertValue: "--template {cursor}",
           args: {
             name: "template",
             description: "Specifies the template for the plugin",
@@ -856,7 +864,6 @@ const pluginCommand: Fig.Subcommand = {
 const resourcesCommand: Fig.Subcommand = {
   name: "resources",
   description: "Manage the plugins for your project",
-  insertValue: "resources {cursor}",
   subcommands: [
     {
       name: "update",
@@ -865,34 +872,33 @@ const resourcesCommand: Fig.Subcommand = {
     },
     {
       name: "generate",
-      insertValue: "generate {cursor}",
       subcommands: [
         {
           name: "splashes",
-          insertValue: "splashes {cursor}",
           args: {
-            name: "path to image",
+            name: "image path",
             description:
               "Path to an image that will be used to generate all splashscreens",
+            template: "filepaths",
           },
           options: [
             {
               name: "--background",
-              description:
-                "Sets the background color of the splashscreen. When no color is specified, a default value of white is used",
+              description: "Sets the background color of the splashscreen",
               args: {
                 name: "color",
+                default: "white",
               },
             },
           ],
         },
         {
           name: "icons",
-          insertValue: "icons {cursor}",
           args: {
-            name: "path to image",
+            name: "image path",
             description:
               "Path to an image that will be used to generate all splashscreens",
+            template: "filepaths",
           },
         },
       ],
@@ -1011,9 +1017,9 @@ const installCommand: Fig.Subcommand = {
       name: "--path",
       description:
         "Specifies the directory which contains the package.json file, if different from the current directory",
-      insertValue: "--path {cursor}",
       args: {
         name: "directory",
+        template: "folders",
       },
     },
     helpOption("install"),
@@ -1055,16 +1061,15 @@ const appStoreCommand: Fig.Subcommand = {
           name: "--ipa",
           description:
             "Use the provided .ipa file instead of building the project",
-          insertValue: "--ipa {cursor}",
           args: {
             name: "ipa file path",
+            template: "filepaths",
           },
         },
         {
           name: "--appleApplicationSpecificPassword",
           description:
             "Specifies the password for accessing the information you store in iTunes Transporter application",
-          insertValue: "--appleApplicationSpecificPassword {cursor}",
           args: {
             name: "password",
           },
@@ -1073,7 +1078,6 @@ const appStoreCommand: Fig.Subcommand = {
           name: "--appleSessionBase64",
           description:
             "The session that will be used instead of triggering a new login each time NativeScript CLI communicates with Apple's APIs",
-          insertValue: "--appleSessionBase64 {cursor}",
           args: {
             name: "base64",
           },
@@ -1097,7 +1101,6 @@ const appStoreCommand: Fig.Subcommand = {
       name: "--team-id",
       description:
         "Specifies the team id for which Xcode will try to find distribution certificate and provisioning profile when exporting for AppStore submission",
-      insertValue: "--team-id {cursor}",
       args: {
         name: "team id",
       },
@@ -1123,6 +1126,7 @@ const deviceCommand: Fig.Subcommand = {
           name: "--available-devices",
           description: "Lists all available Android devices",
         },
+        jsonOption,
       ],
     },
     {
@@ -1135,6 +1139,7 @@ const deviceCommand: Fig.Subcommand = {
           name: "--available-devices",
           description: "Lists all available iOS devices",
         },
+        jsonOption,
       ],
     },
     {
@@ -1153,12 +1158,11 @@ const deviceCommand: Fig.Subcommand = {
       name: "run",
       description:
         "Runs the selected application on a connected Android or iOS device",
-      insertValue: "run {cursor}",
       args: {
         name: "application id",
         description: "The application identifier", //TODO: generator $ tns device list-applications.
         // generators: {
-        //   script: "ns devices",
+        //   script: "ns device list-applications",
         //   postProcess: (output) => {
         //     return JSON.parse(output).map((branch) => {
         //       const template = branch?.name;
@@ -1178,6 +1182,7 @@ const deviceCommand: Fig.Subcommand = {
       name: "--available-devices",
       description: "Lists all available devices",
     },
+    jsonOption,
     helpOption("device"),
   ],
 };
