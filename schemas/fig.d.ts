@@ -229,12 +229,12 @@ declare namespace Fig {
      * persistence for certain children. Also see
      * https://github.com/spf13/cobra/blob/master/user_guide.md#persistent-flags.
      *
-     * By default this option is false.
+     * By default, this option is false.
      *
      * @example
      * Say the `git` spec had an option at the top level with `{ name: "--help", isPersistent: true }`.
      * Then the spec would recognize both `git --help` and `git commit --help`
-     * as a valid passing of the `--help` option to the `git` subcommand.
+     * as a valid passing the `--help` option to all `git` subcommands.
      *
      */
     isPersistent?: boolean;
