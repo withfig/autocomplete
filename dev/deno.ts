@@ -579,7 +579,7 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
-function docNameToSuggestion(name: string): Fig.Suggestion {
+function createFilterSuggestion(name: string): Fig.Suggestion {
   return {
     name: name,
     priority: /^[A-Z]/.test(name) ? 60 : 50,
@@ -612,31 +612,31 @@ const denoDoc: Fig.Subcommand = {
       description: "The symbol to get documentation for (must exist in scope)",
       isOptional: true,
       // This generator helps you construct a filter by suggesting top level
-      // nodes from the provided scope, and more specific nodes after a period
+      // symbol from the provided scope, and more specific filter after "."
       generators: {
         // Options can be provided in any order, so the second last element
         // isn't guaranteed to be the scope. The solution is to modify the
         // array of tokens to insert --json. However, since there can only be
         // one occurrence of that flag, it has to be guarded.
         script: (tokens) => {
-          // The last element is always the `filter`, which must be removed
-          const commandUntilNode = tokens.slice(0, -1);
-          const jsonFlagIndex = commandUntilNode.indexOf("--json");
+          // A filter can't be used with `--json`, so it has to be removed.
+          const command = tokens.slice(0, -1);
+          const jsonFlagIndex = command.indexOf("--json");
           if (jsonFlagIndex === -1) {
-            commandUntilNode.push("--json");
+            command.push("--json");
           }
-          const script = commandUntilNode.join(" ");
+          const script = command.join(" ");
           return script;
         },
 
-        // This can't be a string because it should only be triggered on the
-        // first dot.
+        // Only the first period should trigger this, so it has to be a func
         trigger: (newToken, oldToken) => {
           return newToken.indexOf(".") !== oldToken.indexOf(".");
         },
 
-        // The query term can be reset with each dot, since it's guaranteed
-        // that there's no dots in the suggestions.
+        // Suggestions can't have a period in them, so a string is fine here.
+        // Resetting the query term would have the same effect as entering a
+        // dot anyway.
         getQueryTerm: ".",
 
         // The output for `deno doc --json` is `DocNode[]` - the types:
@@ -653,34 +653,34 @@ const denoDoc: Fig.Subcommand = {
             return [];
           }
 
-          // The final token *must* be the filter, otherwise this generator
-          // wouldn't have been invoked.
+          // The final token has to be the filter, it's the only way this
+          // generator could have been invoked.
           const filterToken = tokens[tokens.length - 1];
-          const firstDot = filterToken.indexOf(".");
+          const firstDotIndex = filterToken.indexOf(".");
 
           const suggestions: Fig.Suggestion[] = [];
 
           // If there's no dot, all the top level nodes should be suggested.
-          if (firstDot === -1) {
+          if (firstDotIndex === -1) {
             const names = new Set(nodes.map((node) => node.name));
             for (const name of names) {
-              suggestions.push(docNameToSuggestion(name));
+              suggestions.push(createFilterSuggestion(name));
             }
 
             return suggestions;
           }
 
-          // Everything until the first dot is the name of the node, so we're
-          // looking for children of that node.
-          const firstSegment = filterToken.slice(0, firstDot);
+          // There is a dot, everything until that dot is the name.
+          const filterName = filterToken.slice(0, firstDotIndex);
 
           // It's not uncommon that there'd be multiple occurrences of the same
-          // name with different values, for example an overloaded function.
-          const foundNodes = nodes.filter((node) => node.name === firstSegment);
+          // name with different values, eg. overloads and interface merging.
+          // Deno's builtin types actually do this with the `Deno` interface.
+          const foundNodes = nodes.filter((node) => node.name === filterName);
 
           const childNodes = [];
           for (const node of foundNodes) {
-            // `deno doc` only generates docs for these nodes' children
+            // `deno doc` can only generate docs for these nodes' children
             if (node.kind === "namespace") {
               childNodes.push(...node.namespaceDef.elements);
             } else if (node.kind === "interface") {
@@ -698,7 +698,7 @@ const denoDoc: Fig.Subcommand = {
           const childNames = childNodes.map((node) => node.name);
           const uniqueNames = new Set(childNames);
           for (const name of uniqueNames) {
-            suggestions.push(docNameToSuggestion(name));
+            suggestions.push(createFilterSuggestion(name));
           }
           return suggestions;
         },
