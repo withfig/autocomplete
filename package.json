@@ -1,8 +1,11 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "1.22.1",
+  "version": "1.30.2",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
+  "browserslist": [
+    "safari >=11"
+  ],
   "scripts": {
     "dev": "\"$npm_execpath\" run build && source scripts/dev.sh",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
@@ -76,6 +79,7 @@
     "esbuild": "^0.12.15",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-compat": "^3.13.0",
     "eslint-plugin-fig-linter": "file:scripts/eslint-plugin-fig-linter",
     "eslint-plugin-prettier": "^3.3.1",
     "fast-glob": "^3.2.7",

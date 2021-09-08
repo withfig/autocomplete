@@ -13,7 +13,8 @@ const listPackages: Fig.Generator = {
   },
 };
 
-const packageList: Array<Fig.Suggestion> = [
+// Accessible through ES imports - e.g. import { packageList } from "./pip"
+export const packageList: Array<Fig.Suggestion> = [
   {
     name: "urllib3",
     icon: "📦",

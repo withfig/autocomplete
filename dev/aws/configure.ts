@@ -93,7 +93,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--profile",
-          description: "Profile-name",
+          description:
+            "The name of the profile to configure.\n\nIf not set, will use the default profile",
         },
       ],
     },

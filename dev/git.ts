@@ -3083,7 +3083,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "pop",
           description: "Restores the most recently stashed files",
-          insertValue: "pop {cursor}",
           options: [
             {
               name: "--index",
@@ -3400,7 +3399,6 @@ const completionSpec: Fig.Spec = {
           name: "--recurse-submodules",
           description:
             "After the clone is created, initialize and clone submodules within based on the provided pathspec. If no pathspec is provided, all submodules are initialized and cloned. This option can be given multiple times for pathspecs consisting of multiple entries",
-          insertValue: "--recurse-submodules=",
           args: {
             isOptional: true,
             name: "pathspec",
@@ -4238,7 +4236,7 @@ const completionSpec: Fig.Spec = {
           generators: [
             gitGenerators.remoteLocalBranches,
             gitGenerators.tags,
-            { template: "filepaths" },
+            { template: ["filepaths", "folders"] },
           ],
           suggestions: [
             {

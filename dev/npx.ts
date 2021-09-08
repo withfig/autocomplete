@@ -49,6 +49,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "fig-teams",
     icon: "https://fig.io/icons/fig-light.png",
   },
+  {
+    name: "create-next-app",
+    icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
