@@ -176,6 +176,23 @@ const platformEnvOptions: Fig.Option[] = [
     description:
       "Creates sources maps in the root folder (useful for Crashlytics usage with bundled app in release)",
   },
+  {
+    name: "--env.verbose",
+    description: "Print a more detailed version of the logs in the output",
+  },
+  {
+    name: "--env.production",
+    description: "Run Webpack in production mode",
+  },
+  {
+    name: "--env.appComponents",
+    // TODO: get description from maintainer
+  },
+  {
+    name: "--env.replace=from:to",
+    // TODO: get description from maintainer
+    insertValue: "--env.replace={cursor}:",
+  },
 ];
 
 const platformGeneralOptions: Fig.Option[] = [
