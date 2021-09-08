@@ -4,9 +4,10 @@
     "outDir": "./specs",
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "noImplicitAny": false
   },
   "include": ["./dev/**/*", "dangerfile.ts"],
+  "exclude": ["node_modules"],
   "files": ["./schemas/fig.d.ts"]
 }

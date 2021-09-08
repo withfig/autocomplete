@@ -29,9 +29,9 @@ declare namespace Fig {
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export type GetVersionedSpec = (version: string | undefined) => Subcommand;
+  export type VersionedSpec = (version: string | undefined) => Spec;
 
-  export type Spec = Subcommand | GetVersionedSpec;
+  export type Spec = Subcommand;
 
   export type GetVersionCommand = (
     executeShellCommand: ExecuteShellCommandFunction
