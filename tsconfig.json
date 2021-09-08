@@ -5,7 +5,8 @@
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext"],
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["./dev/**/*", "dangerfile.ts"],
   "files": ["./schemas/fig.d.ts"]
