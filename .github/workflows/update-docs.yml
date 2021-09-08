@@ -21,14 +21,14 @@ jobs:
 
           curl https://fig.io/api/docs/parseDocs -o newDocs.zip
 
-          unzip -o newDocs.zip -d docs/reference/
+          unzip -o newDocs.zip -d pages/docs/reference/
 
           rm -f newDocs.zip
 
           git config user.email "tim@withfig.com"
           git config user.name "Figbot"
 
-          git add docs/reference/
+          git add pages/docs/reference/
 
           git commit -m "added updates to docs" --allow-empty
           git push origin main --force
