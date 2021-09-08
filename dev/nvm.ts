@@ -1,19 +1,19 @@
 // args
 const version: Fig.Arg = {
   name: "version",
-  description: "node version",
+  description: "Node version",
   suggestions: [
     {
       name: "node",
-      description: "the latest version of node",
+      description: "The latest version of node",
     },
     {
       name: "iojs",
-      description: "the latest version of io.js",
+      description: "The latest version of io.js",
     },
     {
       name: "system",
-      description: "system-installed version of node",
+      description: "System-installed version of node",
     },
   ],
 };
@@ -42,7 +42,7 @@ const ltsName: Fig.Arg = {
 
 const colorCodes: Fig.Arg = {
   name: "color codes",
-  description: 'using format "yMeBg"',
+  description: 'Using format "yMeBg"',
 };
 
 // options
@@ -64,12 +64,12 @@ const silent: Fig.Option = {
 const lts: Fig.Option = {
   name: "--lts",
   description:
-    "Uses automatic LTS (long-term support) alias `lts/*`, if available.",
+    "Uses automatic LTS (long-term support) alias `lts/*`, if available",
 };
 
 const ltsWithName: Fig.Option = {
   name: "--lts",
-  description: "Uses automatic alias for provided LTS line, if available.",
+  description: "Uses automatic alias for provided LTS line, if available",
   args: ltsName,
 };
 
@@ -80,12 +80,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "install",
       description:
-        "Download and install a <version>. Uses .nvmrc if available and version is omitted.",
+        "Download and install a <version>. Uses .nvmrc if available and version is omitted",
       args: { ...version, isOptional: true },
       options: [
         {
           name: "-s",
-          description: "Skip binary download, install from source only.",
+          description: "Skip binary download, install from source only",
         },
         {
           name: "--reinstall-packages-from",
@@ -138,33 +138,33 @@ const completionSpec: Fig.Spec = {
         {
           ...lts,
           description:
-            "Uninstall using automatic LTS (long-term support) alias `lts/*`, if available.",
+            "Uninstall using automatic LTS (long-term support) alias `lts/*`, if available",
         },
         {
           ...ltsWithName,
           description:
-            "Uninstall using automatic alias for provided LTS line, if available.",
+            "Uninstall using automatic alias for provided LTS line, if available",
         },
       ],
     },
     {
       name: "use",
       description:
-        "Modify PATH to use <version>. Uses .nvmrc if available and version is omitted.",
+        "Modify PATH to use <version>. Uses .nvmrc if available and version is omitted",
       args: { ...version, isOptional: true },
       options: [silent, lts, ltsWithName],
     },
     {
       name: "exec",
       description:
-        "Run <command> on <version>. Uses .nvmrc if available and version is omitted.",
+        "Run <command> on <version>. Uses .nvmrc if available and version is omitted",
       args: [{ ...version, isOptional: true }, command],
       options: [silent, lts, ltsWithName],
     },
     {
       name: "run",
       description:
-        "Run `node` on <version> with <args> as arguments. Uses .nvmrc if available and version is omitted.",
+        "Run `node` on <version> with <args> as arguments. Uses .nvmrc if available and version is omitted",
       args: [{ ...version, isOptional: true }, args],
       options: [silent, lts, ltsWithName],
     },
@@ -232,7 +232,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "pattern or name",
-          description: "pattern or name",
+          description: "Pattern or name",
         },
         {
           name: "version",
@@ -263,7 +263,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "which",
       description:
-        "Display path to installed node version. Uses .nvmrc if available and version is omitted.",
+        "Display path to installed node version. Uses .nvmrc if available and version is omitted",
       args: { ...version, isOptional: true },
       subcommands: [
         {
@@ -298,7 +298,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-colors",
       description:
-        'Set five text colors using format "yMeBg". Available when supported.',
+        'Set five text colors using format "yMeBg". Available when supported',
       args: colorCodes,
     },
   ],

@@ -491,7 +491,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-allowProvisioningDeviceRegistration",
       description:
-        "Allow xcodebuild to register your destination device on the developer portal if necessary. This flag only takes effect if -allowProvisioningUpdates is also passed.",
+        "Allow xcodebuild to register your destination device on the developer portal if necessary. This flag only takes effect if -allowProvisioningUpdates is also passed",
     },
     {
       name: "-scmProvider",
@@ -510,7 +510,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-create-xcframework",
       description:
-        "Create an xcframework from prebuilt libraries; -help for more information.",
+        "Create an xcframework from prebuilt libraries; -help for more information",
     },
     {
       name: "build",

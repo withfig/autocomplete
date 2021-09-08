@@ -1,41 +1,41 @@
 const completionSpec: Fig.Spec = {
   name: "autojump",
-  description: "a faster way to navigate your filesystem",
+  description: "A faster way to navigate your filesystem",
   options: [
     {
       name: ["-h", "--help"],
-      description: "show the help message and exit",
+      description: "Show the help message and exit",
     },
     {
       name: ["-a", "--add"],
-      description: "add path",
+      description: "Add path",
       args: { name: "directory", template: ["folders"] },
     },
     {
       name: ["-i", "--increase"],
-      description: "increase current directory weight",
+      description: "Increase current directory weight",
       args: { name: "weight", isOptional: true },
     },
     {
       name: ["-d", "--decrease"],
-      description: "decrease current directory weight",
+      description: "Decrease current directory weight",
       args: { name: "weight", isOptional: true },
     },
     {
       name: "--complete",
-      description: "used for tab completion",
+      description: "Used for tab completion",
     },
     {
       name: "--purge",
-      description: "remove non-existent paths from database",
+      description: "Remove non-existent paths from database",
     },
     {
       name: ["-s", "--stat"],
-      description: "show database entries and their key weights",
+      description: "Show database entries and their key weights",
     },
     {
       name: ["-v", "--version"],
-      description: "show version information",
+      description: "Show version information",
     },
   ],
 };

@@ -18,15 +18,15 @@ const hashes = [
 const listOptions: Fig.Option[] = [
   {
     name: "--dirs-only",
-    description: "Only list directories.",
+    description: "Only list directories",
   },
   {
     name: "--files-only",
-    description: "Only list files.",
+    description: "Only list files",
   },
   {
     name: ["--recursive", "-R"],
-    description: "Recurse into the listing.",
+    description: "Recurse into the listing",
   },
 ];
 const cryptedremote: Fig.Arg = {
@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "about",
-      description: "Get quota information from the remote.",
+      description: "Get quota information from the remote",
       args: remote,
       options: [
         {
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "authorize",
-      description: "Remote authorization.",
+      description: "Remote authorization",
       options: [
         {
           name: "--auth-no-open-browser",
@@ -116,7 +116,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "backend",
-      description: "Run a backend specific command.",
+      description: "Run a backend specific command",
       options: [
         {
           name: "--json",
@@ -126,12 +126,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cat",
-      description: "Concatenates any files and sends them to stdout.",
+      description: "Concatenates any files and sends them to stdout",
       args: remotePath,
       options: [
         {
           name: "--discard",
-          description: "Discard the output instead of printing.",
+          description: "Discard the output instead of printing",
         },
         {
           name: "--count",
@@ -142,7 +142,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--head",
-          description: "Only print the first N characters.",
+          description: "Only print the first N characters",
           args: {
             name: "int",
           },
@@ -156,7 +156,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tail",
-          description: "Only print the last N characters.",
+          description: "Only print the last N characters",
           args: {
             name: "int",
           },
@@ -165,28 +165,28 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "check",
-      description: "Checks the files in the source and destination match.",
+      description: "Checks the files in the source and destination match",
       args: [sourcePath, remotePath],
       options: [
         {
           name: "--download",
-          description: "Check by downloading rather than with hash.",
+          description: "Check by downloading rather than with hash",
         },
         ...checkFlags,
       ],
     },
     {
       name: "cleanup",
-      description: "Clean up the remote if possible.",
+      description: "Clean up the remote if possible",
       args: remotePath,
     },
     {
       name: "config",
-      description: "Enter an interactive configuration session.",
+      description: "Enter an interactive configuration session",
       subcommands: [
         {
           name: "create",
-          description: "Create a new remote with name, type and options.",
+          description: "Create a new remote with name, type and options",
           args: [
             {
               name: "name",
@@ -202,17 +202,17 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "copy",
-      description: "Copy files from source to dest, skipping already copied.",
+      description: "Copy files from source to dest, skipping already copied",
       args: [sourcePath, destPath],
     },
     {
       name: "copyto",
-      description: "Copy files from source to dest, skipping already copied.",
+      description: "Copy files from source to dest, skipping already copied",
       args: [sourcePath, destPath],
     },
     {
       name: "copyurl",
-      description: "Copy url content to dest.",
+      description: "Copy url content to dest",
       args: [
         {
           name: "url",
@@ -222,13 +222,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cryptcheck",
-      description: "Cryptcheck checks the integrity of a crypted remote.",
+      description: "Cryptcheck checks the integrity of a crypted remote",
       args: [remotePath, cryptedremote],
       options: checkFlags,
     },
     {
       name: "cryptdecode",
-      description: "Cryptdecode returns unencrypted file names.",
+      description: "Cryptdecode returns unencrypted file names",
       args: [
         cryptedremote,
         {
@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "dedupe",
       description:
-        "Interactively find duplicate filenames and delete/rename them.",
+        "Interactively find duplicate filenames and delete/rename them",
       args: remotePath,
       options: [
         {
@@ -261,22 +261,21 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "interactive",
-                description: "interactive",
+                description: "Interactive",
               },
               {
                 name: "skip",
-                description:
-                  "removes identical files then skips anything left.",
+                description: "Removes identical files then skips anything left",
               },
               {
                 name: "rename",
                 description:
-                  "removes identical files then renames the rest to be different.",
+                  "Removes identical files then renames the rest to be different",
               },
               {
                 name: "list",
                 description:
-                  "lists duplicate dirs and files only and changes nothing.",
+                  "Lists duplicate dirs and files only and changes nothing",
               },
               ...["first", "newest", "oldest", "largest", "smallest"].map(
                 (_) => ({
@@ -291,26 +290,26 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete",
-      description: "Remove the files in path.",
+      description: "Remove the files in path",
       isDangerous: true,
       args: remotePath,
       options: [
         {
           name: "--rmdirs",
           description:
-            "rmdirs removes empty directories but leaves root intact",
+            "Rmdirs removes empty directories but leaves root intact",
         },
       ],
     },
     {
       name: "deletefile",
       isDangerous: true,
-      description: "Remove a single file from remote.",
+      description: "Remove a single file from remote",
       args: remotePath,
     },
     {
       name: "genautocomplete",
-      description: "Output completion script for a given shell.",
+      description: "Output completion script for a given shell",
       subcommands: [
         ...["bash", "fish", "zsh"].map((_) => ({
           name: _,
@@ -319,14 +318,14 @@ const completionSpec: Fig.Spec = {
             name: "output_file",
             isOptional: true,
             description:
-              'If output_file is "-", then the output will be written to stdout.',
+              'If output_file is "-", then the output will be written to stdout',
           },
         })),
       ],
     },
     {
       name: "gendocs",
-      description: "Output markdown docs for rclone to the directory supplied.",
+      description: "Output markdown docs for rclone to the directory supplied",
       args: {
         name: "output_directory",
         template: "folders",
@@ -334,7 +333,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "hashsum",
-      description: "Produces a hashsum file for all the objects in the path.",
+      description: "Produces a hashsum file for all the objects in the path",
       args: [
         {
           name: "hash",
@@ -364,7 +363,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "help",
-      description: "Show help for rclone commands, flags and backends.",
+      description: "Show help for rclone commands, flags and backends",
       subcommands: [
         {
           name: "flags",
@@ -374,7 +373,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "link",
-      description: "Generate public link to file/folder.",
+      description: "Generate public link to file/folder",
       args: remotePath,
       options: [
         {
@@ -393,22 +392,22 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "listremotes",
-      description: "List all the remotes in the config file.",
+      description: "List all the remotes in the config file",
       options: [
         {
           name: "--long",
-          description: "Show the type as well as names.",
+          description: "Show the type as well as names",
         },
       ],
     },
     {
       name: "ls",
-      description: "List the objects in the path with size and path.",
+      description: "List the objects in the path with size and path",
       args: remotePath,
     },
     {
       name: "lsd",
-      description: "List all directories/containers/buckets in the path.",
+      description: "List all directories/containers/buckets in the path",
       args: remotePath,
       options: [
         {
@@ -419,7 +418,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "lsf",
       description:
-        "List directories and objects in remote:path formatted for parsing.",
+        "List directories and objects in remote:path formatted for parsing",
       args: {
         ...remotePath,
         isOptional: false,
@@ -428,11 +427,11 @@ const completionSpec: Fig.Spec = {
         ...listOptions,
         {
           name: "--absolute",
-          description: "Put a leading / in front of path names.",
+          description: "Put a leading / in front of path names",
         },
         {
           name: "--csv",
-          description: "Output in CSV format.",
+          description: "Output in CSV format",
         },
         {
           name: ["-d", "--dir-slash"],
@@ -481,21 +480,21 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "lsjson",
-      description: "List directories and objects in the path in JSON format.",
+      description: "List directories and objects in the path in JSON format",
       args: remotePath,
       options: [
         ...listOptions,
         {
           name: ["--encrypted", "-M"],
-          description: "Show the encrypted names.",
+          description: "Show the encrypted names",
         },
         {
           name: "--hash",
-          description: "Include hashes in the output (may take longer).",
+          description: "Include hashes in the output (may take longer)",
         },
         {
           name: "--hash-type",
-          description: "Show only this hash type (may be repeated).",
+          description: "Show only this hash type (may be repeated)",
           args: {
             name: "hashes",
             isOptional: false,
@@ -504,28 +503,27 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-mimetype",
-          description: "Don't read the mime type (can speed things up).",
+          description: "Don't read the mime type (can speed things up)",
         },
         {
           name: "--no-modtime",
-          description:
-            " Don't read the modification time (can speed things up).",
+          description: "Don't read the modification time (can speed things up)",
         },
         {
           name: "--original",
-          description: "Show the ID of the underlying Object.",
+          description: "Show the ID of the underlying Object",
         },
       ],
     },
     {
       name: "lsl",
       description:
-        "List the objects in path with modification time, size and path.",
+        "List the objects in path with modification time, size and path",
       args: remotePath,
     },
     {
       name: "md5sum",
-      description: "Produces an md5sum file for all the objects in the path.",
+      description: "Produces an md5sum file for all the objects in the path",
       args: remotePath,
       options: [
         {
@@ -550,12 +548,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "mkdir",
-      description: "Make the path if it doesn't already exist.",
+      description: "Make the path if it doesn't already exist",
       args: remotePath,
     },
     {
       name: "mount",
-      description: "Mount the remote as file system on a mountpoint.",
+      description: "Mount the remote as file system on a mountpoint",
       args: [
         remotePath,
         {
@@ -567,84 +565,82 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "move",
-      description: "Move files from source to dest.",
+      description: "Move files from source to dest",
       args: {},
     },
     {
       name: "moveto",
-      description: "Move file or directory from source to dest.",
+      description: "Move file or directory from source to dest",
       args: {},
     },
     {
       name: "ncdu",
-      description: "Explore a remote with a text based user interface.",
+      description: "Explore a remote with a text based user interface",
       args: {},
     },
     {
       name: "obscure",
-      description: "Obscure password for use in the rclone config file.",
+      description: "Obscure password for use in the rclone config file",
       args: {},
     },
     {
       name: "purge",
-      description: "Remove the path and all of its contents.",
+      description: "Remove the path and all of its contents",
       isDangerous: true,
       args: {},
     },
     {
       name: "rc",
-      description: "Run a command against a running rclone.",
+      description: "Run a command against a running rclone",
       args: {},
     },
     {
       name: "rcat",
-      description: "Copies standard input to file on remote.",
+      description: "Copies standard input to file on remote",
       args: {},
     },
     {
       name: "rcd",
-      description: "Run rclone listening to remote control commands only.",
+      description: "Run rclone listening to remote control commands only",
       args: {},
     },
     {
       name: "rmdir",
-      description: "Remove the empty directory at path.",
+      description: "Remove the empty directory at path",
       args: {},
     },
     {
       name: "rmdirs",
-      description: "Remove empty directories under the path.",
+      description: "Remove empty directories under the path",
       args: {},
     },
     {
       name: "selfupdate",
-      description: "Update the rclone binary.",
+      description: "Update the rclone binary",
     },
     {
       name: "serve",
-      description: "Serve a remote over a protocol.",
+      description: "Serve a remote over a protocol",
       args: {},
     },
     {
       name: "settier",
-      description: "Changes storage class/tier of objects in remote.",
+      description: "Changes storage class/tier of objects in remote",
       args: [{}, {}],
     },
     {
       name: "sha1sum",
-      description: "Produces an sha1sum file for all the objects in the path.",
+      description: "Produces an sha1sum file for all the objects in the path",
       args: {},
     },
     {
       name: "size",
-      description:
-        "Prints the total size and number of objects in remote:path.",
+      description: "Prints the total size and number of objects in remote:path",
       args: {},
     },
     {
       name: "sync",
-      description:
-        "Make source and dest identical, modifying destination only.",
+      description: "Make source and dest identical, modifying destination only",
       args: [sourcePath, destPath],
     },
     {
@@ -654,17 +650,17 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "touch",
-      description: "Create new file or change file modification time.",
+      description: "Create new file or change file modification time",
       args: {},
     },
     {
       name: "tree",
-      description: "List the contents of the remote in a tree like fashion.",
+      description: "List the contents of the remote in a tree like fashion",
       args: {},
     },
     {
       name: "version",
-      description: "Show the version number.",
+      description: "Show the version number",
     },
   ],
   options: [
@@ -674,7 +670,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--help", "-h"],
-      description: "Show help for rclone commands, flags and backends.",
+      description: "Show help for rclone commands, flags and backends",
     },
   ],
 };

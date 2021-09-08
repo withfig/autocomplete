@@ -25,11 +25,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "watch",
       description:
-        "This will run the tests and rerun them whenever a file in the app, src or tests directory is modified.",
+        "This will run the tests and rerun them whenever a file in the app, src or tests directory is modified",
       options: [
         {
           name: "--filter",
-          description: "watch a specific test",
+          description: "Watch a specific test",
           args: {
             generators: tests,
             name: "filter",

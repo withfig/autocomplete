@@ -13,7 +13,8 @@ const listPackages: Fig.Generator = {
   },
 };
 
-const packageList: Array<Fig.Suggestion> = [
+// Accessible through ES imports - e.g. import { packageList } from "./pip"
+export const packageList: Array<Fig.Suggestion> = [
   {
     name: "urllib3",
     icon: "📦",
@@ -16396,28 +16397,28 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-c", "--constraint"],
           description:
-            "Constrain versions using the given constraints file. This option can be used multiple times.",
+            "Constrain versions using the given constraints file. This option can be used multiple times",
           isRepeatable: true,
         },
         {
           name: ["-r", "--requirement"],
           description:
-            "Install from the given requirements file. This option can be used multiple times.",
+            "Install from the given requirements file. This option can be used multiple times",
           isRepeatable: true,
         },
         {
           name: "--no-deps",
-          description: "Don’t install package dependencies.",
+          description: "Don’t install package dependencies",
         },
         {
           name: "--global-option",
           description:
-            "Extra global options to be supplied to the setup.py call before the install command.",
+            "Extra global options to be supplied to the setup.py call before the install command",
         },
         {
           name: "--no-binary",
           description:
-            "Constrain versions using the given constraints file. This option can be used multiple times.",
+            "Constrain versions using the given constraints file. This option can be used multiple times",
           isRepeatable: true,
         },
         {
@@ -16439,11 +16440,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prefer-binary",
           description:
-            "Prefer older binary packages over newer source packages.",
+            "Prefer older binary packages over newer source packages",
         },
         {
           name: "--src",
-          description: "Directory to check out editable projects into.",
+          description: "Directory to check out editable projects into",
           args: {
             name: "source folder",
             template: "folders",
@@ -16452,12 +16453,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pre",
           description:
-            "Include pre-release and development versions. By default, pip only finds stable versions.",
+            "Include pre-release and development versions. By default, pip only finds stable versions",
         },
         {
           name: "--require-hashes",
           description:
-            "Require a hash to check each requirement against, for repeatable installs.",
+            "Require a hash to check each requirement against, for repeatable installs",
         },
         {
           name: "--progress-bar",
@@ -16475,7 +16476,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-build-isolation",
           description:
-            "Disable isolation when building a modern source distribution.",
+            "Disable isolation when building a modern source distribution",
         },
         {
           name: "--use-pep517",
@@ -16483,12 +16484,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--ignore-requires-python",
-          description: "Ignore the Requires-Python information.",
+          description: "Ignore the Requires-Python information",
         },
         {
           name: ["-d", "--dest"],
           description:
-            "Require a hash to check each requirement against, for repeatable installs.",
+            "Require a hash to check each requirement against, for repeatable installs",
           args: {
             name: "dir",
             template: "folders",
@@ -16496,13 +16497,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--platform",
-          description: "Only use wheels compatible with platform.",
+          description: "Only use wheels compatible with platform",
           args: { name: "platform" },
         },
         {
           name: "--python-version",
           description:
-            "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
+            "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks",
         },
         {
           name: "--implementation",
@@ -16514,14 +16515,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--abi",
           description:
-            "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’.",
+            "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’",
           args: {
             name: "abi",
           },
         },
         {
           name: "--no-clean",
-          description: "Don’t clean up build directories.",
+          description: "Don’t clean up build directories",
         },
         {
           name: ["-i", "--index-url"],
@@ -16533,12 +16534,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-index",
           description:
-            "Ignore package index (only looking at --find-links URLs instead).",
+            "Ignore package index (only looking at --find-links URLs instead)",
         },
         {
           name: "--extra-index-url",
           description:
-            "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url.",
+            "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url",
         },
         {
           name: ["-f", "--find-links"],
@@ -16557,12 +16558,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "freeze",
-      description: "Output installed packages in requirements format.",
+      description: "Output installed packages in requirements format",
       options: [
         {
           name: ["-r", "--requirement"],
           description:
-            "Use the order in the given requirements file and its comments when generating output.",
+            "Use the order in the given requirements file and its comments when generating output",
         },
         {
           name: ["-l", "--local"],
@@ -16571,12 +16572,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--user",
-          description: "Only output packages installed in user-site.",
+          description: "Only output packages installed in user-site",
         },
         {
           name: "--path",
           description:
-            "Restrict to the specified installation path for listing packages (can be used multiple times).",
+            "Restrict to the specified installation path for listing packages (can be used multiple times)",
           isRepeatable: true,
         },
         {
@@ -16600,7 +16601,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list",
-      description: "List installed packages.",
+      description: "List installed packages",
       options: [
         {
           name: ["-o", "--outdated"],
@@ -16612,12 +16613,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-e", "--editable"],
-          description: "List editable projects.",
+          description: "List editable projects",
         },
         {
           name: ["-l", "--local"],
           description:
-            "If in a virtualenv that has global access, do not list globally-installed packages.",
+            "If in a virtualenv that has global access, do not list globally-installed packages",
         },
         {
           name: "--user",
@@ -16626,7 +16627,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path",
           description:
-            "Restrict to the specified installation path for listing packages (can be used multiple times).",
+            "Restrict to the specified installation path for listing packages (can be used multiple times)",
           isRepeatable: true,
           args: {
             name: "path",
@@ -16636,7 +16637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pre",
           description:
-            "Include pre-release and development versions. By default, pip only finds stable versions.",
+            "Include pre-release and development versions. By default, pip only finds stable versions",
         },
         {
           name: "--format",
@@ -16646,19 +16647,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "--not-required",
           description:
-            "List packages that are not dependencies of installed packages.",
+            "List packages that are not dependencies of installed packages",
         },
         {
           name: "--exclude-editable",
-          description: "Exclude editable package from output.",
+          description: "Exclude editable package from output",
         },
         {
           name: "--include-editable",
-          description: "Include editable package from output.",
+          description: "Include editable package from output",
         },
         {
           name: "--exclude",
-          description: "Exclude specified package from the output.",
+          description: "Exclude specified package from the output",
           args: {
             name: "package",
             generators: listPackages,
@@ -16667,23 +16668,23 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-i", "--index-url"],
           description:
-            "Base URL of the Python Package Index (default https://pypi.org/simple).",
+            "Base URL of the Python Package Index (default https://pypi.org/simple)",
           args: {},
         },
         {
           name: "--extra-index-url",
           description:
-            "Include pre-release and development versions. By default, pip only finds stable versions.",
+            "Include pre-release and development versions. By default, pip only finds stable versions",
         },
         {
           name: "--no-index",
           description:
-            "Ignore package index (only looking at --find-links URLs instead).",
+            "Ignore package index (only looking at --find-links URLs instead)",
         },
         {
           name: ["-f", "--find-links"],
           description:
-            "If a URL or path to an html file, then parse for links to archives such as sdist (.tar.gz) or wheel (.whl) files.",
+            "If a URL or path to an html file, then parse for links to archives such as sdist (.tar.gz) or wheel (.whl) files",
           args: {
             name: "url",
           },
@@ -16692,7 +16693,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "show",
-      description: "Show information about installed packages.",
+      description: "Show information about installed packages",
       options: [
         {
           name: ["-f", "--files"],
@@ -16701,16 +16702,16 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "check",
-      description: "Verify installed packages have compatible dependencies.",
+      description: "Verify installed packages have compatible dependencies",
     },
     {
       name: "config",
-      description: "Manage local and global configuration.",
+      description: "Manage local and global configuration",
       options: [
         {
           name: "--editor",
           description:
-            "Editor to use to edit the file. Uses VISUAL or EDITOR environment variables if not provided.",
+            "Editor to use to edit the file. Uses VISUAL or EDITOR environment variables if not provided",
         },
         {
           name: "--global",
@@ -16728,7 +16729,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "search",
-      description: "Search PyPI for packages.",
+      description: "Search PyPI for packages",
       options: [
         {
           name: ["-i", "--index"],
@@ -16737,15 +16738,15 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cache",
-      description: "Inspect and manage pip's wheel cache.",
+      description: "Inspect and manage pip's wheel cache",
     },
     {
       name: "wheel",
-      description: "Build wheels from your requirements.",
+      description: "Build wheels from your requirements",
     },
     {
       name: "hash",
-      description: "Compute hashes of package archives.",
+      description: "Compute hashes of package archives",
       options: [
         {
           name: ["-a", "--algorithm"],
@@ -16762,15 +16763,15 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "completion",
-      description: "A helper command used for command completion.",
+      description: "A helper command used for command completion",
     },
     {
       name: "debug",
-      description: "Show information useful for debugging.",
+      description: "Show information useful for debugging",
       options: [
         {
           name: "--platform",
-          description: "Only use wheels compatible with platform.",
+          description: "Only use wheels compatible with platform",
           args: {
             name: "platform",
           },
@@ -16778,7 +16779,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--python-version",
           description:
-            "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
+            "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks",
           args: {
             name: "python version",
           },
@@ -16794,7 +16795,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "help",
-      description: "Show help for commands.",
+      description: "Show help for commands",
     },
   ],
 };

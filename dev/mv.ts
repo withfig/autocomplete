@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "mv",
-  description: "move & rename files and folders",
+  description: "Move & rename files and folders",
   args: [
     {
       name: "source",

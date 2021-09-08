@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "node",
-  description: "Run the node interpretor",
+  description: "Run the node interpreter",
   args: {
     name: "node script",
     isScript: true,
@@ -9,14 +9,10 @@ const completionSpec: Fig.Spec = {
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((file) => {
-            if (typeof file.name === "string") {
-              return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
-            }
-            return false;
+            return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
           })
           .map((file) => {
-            const isJsFile =
-              typeof file.name === "string" && file.name.match(/.*\.m?js/g);
+            const isJsFile = file.name.match(/.*\.m?js/g);
 
             return {
               ...file,
@@ -30,25 +26,25 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-e", "--eval=..."],
       insertValue: "-e '{cursor}'",
-      description: "evaluate script",
+      description: "Evaluate script",
       args: {},
     },
     {
       name: ["-p", "--print"],
-      description: "evaluate script and print result",
+      description: "Evaluate script and print result",
     },
     {
       name: ["-c", "--check"],
-      description: "syntax check script without executing",
+      description: "Syntax check script without executing",
     },
     {
       name: ["-v", "--version"],
-      description: "print Node.js version",
+      description: "Print Node.js version",
     },
     {
       name: ["-i", "--interactive"],
       description:
-        "always enter the REPL even if stdin does not appear to be a terminal",
+        "Always enter the REPL even if stdin does not appear to be a terminal",
     },
   ],
 };

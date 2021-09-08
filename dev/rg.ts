@@ -30,11 +30,11 @@ const sortbyArg: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "rg",
   description:
-    "recursively searches current directory for lines matching a pattern",
+    "Recursively searches current directory for lines matching a pattern",
   options: [
     {
       name: ["-A", "--after-context"],
-      description: "Shows NUM lines after each match.",
+      description: "Shows NUM lines after each match",
       args: {
         name: "Num",
       },

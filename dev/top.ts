@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "top",
-  description: "display Linux tasks",
+  description: "Display Linux tasks",
   options: [
     {
       name: ["-h", "-v"],
@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-i",
       description:
-        "Starts top with the last remembered 'i' state reversed. When this toggle is Off, tasks that are idled or zombied will not be displayed.",
+        "Starts top with the last remembered 'i' state reversed. When this toggle is Off, tasks that are idled or zombied will not be displayed",
       args: {
         name: "toggle",
       },
