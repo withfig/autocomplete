@@ -2,6 +2,7 @@
 // todo:
 // - [] Add suggestions for cargo installed packages (cargo install)
 // - [] Parse .cargo/config and add subcommands depending on the alias' defined
+// - [] Parse the alias' and check what commands they run and compare with other commands to not give completion for flags that were already passed
 // Please suggest other things in the PR.
 // draft
 // goodbye (●'◡'●)
