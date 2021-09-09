@@ -1117,10 +1117,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--version",
       description: "Prints version information, including TypeScript and V8",
+      exclusiveOn: ["-V"],
     },
     {
       name: "-V",
       description: "Prints Deno's version",
+      exclusiveOn: ["--version"],
       priority: 25,
     },
   ],
