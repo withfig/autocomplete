@@ -1,3 +1,11 @@
+// hello (●'◡'●)
+// todo:
+// - [] Add suggestions for cargo installed packages (cargo install)
+// - [] Parse .cargo/config and add subcommands depending on the alias' defined
+// Please suggest other things in the PR.
+// draft
+// goodbye (●'◡'●)
+
 const testList: Fig.Generator = {
   script: function (context) {
     const base = context[context.length - 1];
