@@ -111,6 +111,10 @@ const androidGeneralOptions: Fig.Option[] = [
       "Compiles the static assets produced by --env.snapshot into .so files allowing the native build to split them per architecture. This will reduce the app size when using the --aab option",
     dependsOn: ["--env.snapshot", "--aab"],
   },
+  {
+    name: "--env.appComponents",
+    description: "Allows passing additional App Components for android",
+  },
 ];
 
 const androidKeyOptions: Fig.Option[] = [
@@ -178,19 +182,16 @@ const platformEnvOptions: Fig.Option[] = [
   },
   {
     name: "--env.verbose",
-    description: "Print a more detailed version of the logs in the output",
+    description: "Prints verbose logs and the internal config before building",
   },
   {
     name: "--env.production",
-    description: "Run Webpack in production mode",
-  },
-  {
-    name: "--env.appComponents",
-    // TODO: get description from maintainer
+    description: "Enable production mode (will minify the code)",
   },
   {
     name: "--env.replace=from:to",
-    // TODO: get description from maintainer
+    description:
+      "Add file replacement rules. For source files (.js and .ts) this will add a new alias to the config, for everything else, this will add a new copy rule",
     insertValue: "--env.replace={cursor}:",
   },
 ];
