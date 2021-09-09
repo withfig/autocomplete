@@ -639,24 +639,35 @@ const denoDoc: Fig.Subcommand = {
           return script;
         },
 
-        // Only the first period should trigger this, so it has to be a func
+        // Only the first period should trigger the script again.
         trigger: (newToken, oldToken) => {
           return newToken.indexOf(".") !== oldToken.indexOf(".");
         },
 
-        // Suggestions can't have a period in them, so a string is fine here.
-        // Resetting the query term would have the same effect as entering a
-        // dot anyway.
-        getQueryTerm: ".",
+        // If there's not dot, the query term is the whole string. If there is
+        // a dot, the query term is everything after it. This intentionally
+        // uses indexOf returning -1, since -1 + 1 = 0 (correct index to slice)
+        getQueryTerm: (token) => {
+          return token.slice(token.indexOf(".") + 1);
+        },
 
+        // This is quite a long function, but it's conceptually simple:
+        // 1. There's an array that will be filled with doc nodes.
+        //    a. If there is no dot in the filter token, that array will be
+        //       populated with the top level nodes.
+        //    b. If there is a dot, everything up to the dot becomes the name.
+        //       All nodes with that name are collected, and the array is
+        //       populated with their children.
+        // 2. Those nodes are filtered, and their names are added to a set.
+        // 3. Those names in that set are transformed into suggestions.
         postProcess: (out, tokens) => {
           // The output for `deno doc --json` is `DocNode[]` - the types:
           // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          let nodes: any[];
+          let docNodes: any[];
           try {
-            nodes = JSON.parse(out);
-            if (!Array.isArray(nodes)) {
+            docNodes = JSON.parse(out);
+            if (!Array.isArray(docNodes)) {
               throw new Error(`Output data was JSON, but was not an array`);
             }
           } catch (err) {
@@ -666,83 +677,79 @@ const denoDoc: Fig.Subcommand = {
 
           const showPrivateSymbols = tokens.includes("--private");
 
-          // If we're not showing private symbols, imports aren't valid since
-          // they're private by definition. Deno includes these in the output
-          // (probably) to allow you to build a module graph without --private
-          if (!showPrivateSymbols) {
-            nodes = nodes.filter((node) => node.kind !== "import");
-          }
-
-          if (nodes.length === 0) return [];
+          if (docNodes.length === 0) return [];
 
           // The final token has to be the filter, it's the only way this
           // generator could have been invoked.
           const filterToken = tokens[tokens.length - 1];
           const firstDotIndex = filterToken.indexOf(".");
 
-          const suggestions: Fig.Suggestion[] = [];
+          // Based on whether the user has typed a period, this will be
+          // populated with either the top level nodes or the children of
+          // whatever node the user has searched for.
+          const suggestNodes = [];
 
-          // If there's no dot, all the top level nodes should be suggested.
           if (firstDotIndex === -1) {
-            const nodeNames = nodes.map((node) => node.name);
-            const uniqueNames = new Set(nodeNames);
+            suggestNodes.push(...docNodes);
+          } else {
+            const filterName = filterToken.slice(0, firstDotIndex);
 
-            // Deno sets the name to <TODO> when it gets confused, and fig
-            // replaces that with an empty string for a name.
-            uniqueNames.delete("<TODO>");
+            // It's not uncommon that there'd be multiple occurrences of the
+            // same name with different values, eg. overloads and interface
+            // merging. Deno's builtin types actually do this with the `Deno`
+            // interface. Typically this will only be one or two nodes.
+            const foundNodes = docNodes.filter(
+              (node) => node.name === filterName
+            );
 
-            for (const name of uniqueNames) {
-              suggestions.push(createFilterSuggestion(name));
-            }
-
-            return suggestions;
-          }
-
-          // There is a dot, everything until that dot is the name.
-          const filterName = filterToken.slice(0, firstDotIndex);
-
-          // It's not uncommon that there'd be multiple occurrences of the same
-          // name with different values, eg. overloads and interface merging.
-          // Deno's builtin types actually do this with the `Deno` interface.
-          const foundNodes = nodes.filter((node) => node.name === filterName);
-
-          // This is what would happen anyway, but doing it explicitly makes
-          // the intention much clearer: if there are no nodes, return nothing.
-          if (foundNodes.length === 0) return [];
-
-          const childNodes = [];
-          for (const node of foundNodes) {
             // `deno doc` can only generate docs for these nodes' children
-            if (node.kind === "namespace") {
-              childNodes.push(...node.namespaceDef.elements);
-            } else if (node.kind === "interface") {
-              childNodes.push(
-                ...node.interfaceDef.methods,
-                ...node.interfaceDef.properties
-              );
-            } else if (node.kind === "class") {
-              childNodes.push(
-                ...node.classDef.methods,
-                ...node.classDef.properties
-              );
+            for (const node of foundNodes) {
+              if (node.kind === "namespace") {
+                suggestNodes.push(...node.namespaceDef.elements);
+              } else if (node.kind === "interface") {
+                suggestNodes.push(
+                  ...node.interfaceDef.methods,
+                  ...node.interfaceDef.properties
+                );
+              } else if (node.kind === "class") {
+                suggestNodes.push(
+                  ...node.classDef.methods,
+                  ...node.classDef.properties
+                );
+              }
+            }
+
+            // It's a common case to have no children, so it's worth checking.
+            if (suggestNodes.length === 0) return [];
+          }
+
+          // The names are added to a set because duplicates are common.
+          const suggestionNames = new Set<string>();
+
+          // Which nodes are visible is dependent on --private
+          if (showPrivateSymbols) {
+            for (const node of suggestNodes) {
+              suggestionNames.add(node.name);
+            }
+          } else {
+            for (const node of suggestNodes) {
+              // Deno includes imports in the JSON regardless of privacy,
+              // probably so it's easier to build a module graph. However,
+              // imports are (by definition) private, so they must be removed.
+              if (node.kind === "import") continue;
+              suggestionNames.add(node.name);
             }
           }
 
-          // For the sake of being explicit, once more...
-          if (childNodes.length === 0) return [];
+          // Deno uses the name <TODO> when it gets confused, which is common in
+          // type-heavy projects. Fig renders this name as an empty string, and
+          // since you can't specify it as a filter, don't suggest it.
+          // Faster to do this once than check the name on each iteration.
+          suggestionNames.delete("<TODO>");
 
-          // If we're not hiding private symbols then show everything,
-          // otherwise show it if it's not an import.
-          const childNames = childNodes
-            .filter((node) => showPrivateSymbols || node.kind !== "import")
-            .map((node) => node.name);
-
-          const uniqueNames = new Set(childNames);
-
-          // Just like above, if <TODO> snuck in we need to get rid of it.
-          uniqueNames.delete("<TODO>");
-
-          for (const name of uniqueNames) {
+          const suggestions: Fig.Suggestion[] = [];
+          // Can't just .map() over suggestionNames because it's a Set :(
+          for (const name of suggestionNames) {
             suggestions.push(createFilterSuggestion(name));
           }
           return suggestions;
