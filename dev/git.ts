@@ -471,11 +471,18 @@ const addOptions: Fig.Option[] = [
   },
 ];
 
-const head = {
-  name: "HEAD",
-  icon: "🔻",
-  description: "Reset multiple commits",
-};
+const headSuggestions = [
+  {
+    name: "HEAD",
+    icon: "🔻",
+    description: "The most recent commit",
+  },
+  {
+    name: "HEAD~<N>",
+    description: "A specific number of commits",
+    insertValue: "HEAD~",
+  },
+];
 
 const completionSpec: Fig.Spec = {
   name: "git",
@@ -2325,7 +2332,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "commit or file",
         isOptional: true,
-        suggestions: [{ name: "HEAD" }],
+        suggestions: headSuggestions,
         generators: [
           gitGenerators.commits,
           gitGenerators.getChangedTrackedFiles,
@@ -2343,7 +2350,7 @@ const completionSpec: Fig.Spec = {
             "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
           args: {
             isVariadic: true,
-            suggestions: [head],
+            suggestions: headSuggestions,
             generators: gitGenerators.commits,
           },
         },
@@ -2353,7 +2360,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Remove the last commit from the current branch, but the file changes will stay in your working tree",
           args: {
-            suggestions: [head],
+            suggestions: headSuggestions,
             generators: gitGenerators.commits,
           },
         },
@@ -2364,13 +2371,7 @@ const completionSpec: Fig.Spec = {
             "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
           args: {
             isVariadic: true,
-            suggestions: [
-              {
-                name: "HEAD~<N>",
-                description: "Reset back to any number of commits",
-                insertValue: "HEAD~",
-              },
-            ],
+            suggestions: headSuggestions,
             generators: gitGenerators.commits,
           },
         },
@@ -2381,13 +2382,7 @@ const completionSpec: Fig.Spec = {
             "Keep the changes in your working tree but not on the index",
           args: {
             isVariadic: true,
-            suggestions: [
-              {
-                name: "HEAD~[insert # of commits]",
-                description: "Reset back any number of commits",
-                insertValue: "HEAD~",
-              },
-            ],
+            suggestions: headSuggestions,
             generators: gitGenerators.commits,
           },
         },
@@ -2399,7 +2394,7 @@ const completionSpec: Fig.Spec = {
             " between 'commit' and HEAD",
           args: {
             isVariadic: true,
-            suggestions: [head],
+            suggestions: headSuggestions,
             generators: gitGenerators.commits,
           },
         },
@@ -2469,14 +2464,14 @@ const completionSpec: Fig.Spec = {
           isOptional: true,
           description: "Commit ID, branch name, HEAD, or revision reference",
           generators: gitGenerators.commits,
-          suggestions: [{ name: "HEAD" }],
+          suggestions: headSuggestions,
         },
         {
           name: "until",
           isOptional: true,
           description: "Commit ID, branch name, HEAD, or revision reference",
           generators: gitGenerators.commits,
-          suggestions: [{ name: "HEAD" }],
+          suggestions: headSuggestions,
         },
       ],
     },
@@ -3618,13 +3613,13 @@ const completionSpec: Fig.Spec = {
               name: "bad",
               isOptional: true,
               generators: gitGenerators.revs,
-              suggestions: ["HEAD"],
+              suggestions: headSuggestions,
             },
             {
               name: "good",
               isOptional: true,
               generators: [gitGenerators.revs, gitGenerators.revs],
-              suggestions: ["HEAD"],
+              suggestions: headSuggestions,
               isVariadic: true,
             },
           ],
@@ -3693,7 +3688,7 @@ const completionSpec: Fig.Spec = {
             name: "rev",
             isOptional: true,
             generators: gitGenerators.revs,
-            suggestions: ["HEAD"],
+            suggestions: headSuggestions,
           },
         },
         {
@@ -3703,7 +3698,7 @@ const completionSpec: Fig.Spec = {
             name: "rev",
             isOptional: true,
             generators: gitGenerators.revs,
-            suggestions: ["HEAD"],
+            suggestions: headSuggestions,
           },
         },
         {
@@ -3713,7 +3708,7 @@ const completionSpec: Fig.Spec = {
             name: "rev",
             isOptional: true,
             generators: gitGenerators.revs,
-            suggestions: ["HEAD"],
+            suggestions: headSuggestions,
             isVariadic: true,
           },
         },
@@ -3724,7 +3719,7 @@ const completionSpec: Fig.Spec = {
             name: "rev",
             isOptional: true,
             generators: gitGenerators.revs,
-            suggestions: ["HEAD"],
+            suggestions: headSuggestions,
             isVariadic: true,
           },
         },
@@ -3755,7 +3750,7 @@ const completionSpec: Fig.Spec = {
             isVariadic: true,
             isOptional: true,
             generators: gitGenerators.revs,
-            suggestions: ["HEAD"],
+            suggestions: headSuggestions,
           },
         },
         {
@@ -3765,7 +3760,7 @@ const completionSpec: Fig.Spec = {
             name: "commit",
             isOptional: true,
             generators: gitGenerators.commits,
-            suggestions: ["HEAD"],
+            suggestions: headSuggestions,
           },
         },
         {
