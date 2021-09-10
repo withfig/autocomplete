@@ -712,6 +712,38 @@ const completionSpec: Fig.Spec = {
           ],
         },
     ];
+    // Welcome to the magic!
+    // Execute the shel command "cat .cargo/config". We will see if it exists first.
+    const config = await executeShellCommand("cat .cargo/config");
+    // Create a variable for the alias' found.
+    const aliases: Array<{ alias: string, content: string }> = [];
+    if(config.startsWith("cat:")) {
+        // Well, the file doesn't exist. Continue with your day...
+    } else {
+        // The file exists! Now lets write a makeship TOML parser.
+        const lines = config.split("\n").filter((value) => !!value.trim().length); // Split by line
+        // We create a variable, "aliasFound" to prevent duplicate keys breaking the code.
+        let aliasFound = false;
+        lines.map((line, index) => {
+            if(line.startsWith("[alias]") && !aliasFound) {
+                // We have found the alias key. Let's now update the variable.
+                aliasFound = true
+                // Now lets iterate through every line until we find another [.
+                const keys = lines.slice(index);
+                keys.map((key, key_index) => {
+                    if(key.startsWith("[")) {
+                        // We have found another [.
+                        // We will now exit the loop.
+                    } else {
+                        aliases.push({ alias: key.split('=')[0].trim(), content: key.split('=').slice(1).join(" ") })
+                    }
+                })
+            }
+        })
+    };
+    aliases.map((alias) => {
+        subcommands.push({name: alias.alias, description: "A cargo alias", icon: '🔧'})
+    })
     return { subcommands, name: 'cargo' };
   }, 
   options: [
