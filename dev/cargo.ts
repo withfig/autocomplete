@@ -740,7 +740,7 @@ const completionSpec: Fig.Spec = {
                 })
             }
         })
-    };
+    }
     aliases.map((alias) => {
         subcommands.push({name: alias.alias, description: "A cargo alias", icon: '🔧'})
     })
