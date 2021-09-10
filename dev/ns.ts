@@ -91,8 +91,6 @@ const helpOption = (label: string): Fig.Option => {
 /**
  * Plaform options used across many commands of the CLI
  */
-const iosGeneralOptions: Fig.Option[] = [];
-
 const androidGeneralOptions: Fig.Option[] = [
   {
     name: "--aab",
@@ -223,7 +221,6 @@ const platformOptions = {
       bundleOption,
     ],
     ios: [
-      ...iosGeneralOptions,
       {
         name: "--sdk",
         description: "Specifies the target simulator's sdk",
