@@ -1,16 +1,12 @@
 const ICONS = {
-  help:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
+  help: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
   version:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/info.png",
-  true:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+  true: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
   false:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-  skip:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
-  path:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
+  skip: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
+  path: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
   string:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
   template:

@@ -347,8 +347,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--npm",
           description: "Forces using npm for initialization",
-          icon:
-            "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+          icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
         },
         {
           name: "--directory",

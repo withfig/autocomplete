@@ -514,8 +514,7 @@ const completionSpec: Fig.Spec = {
               },
               {
                 name: "gitlab",
-                icon:
-                  "https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/a0178a3dfdb9c4e34857bad3d2d788036baa0c76/icons/gitlab.svg",
+                icon: "https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/a0178a3dfdb9c4e34857bad3d2d788036baa0c76/icons/gitlab.svg",
               },
             ],
           },
@@ -542,8 +541,7 @@ const completionSpec: Fig.Spec = {
                 return output.split("\n").map((remoteName) => ({
                   name: remoteName,
                   description: "Remote",
-                  icon:
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1024px-Git_icon.svg.png",
+                  icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1024px-Git_icon.svg.png",
                 }));
               },
             },

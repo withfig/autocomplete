@@ -25,8 +25,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "prisma",
-    icon:
-      "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+    icon: "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
   },
   {
     name: "eslint",
@@ -38,8 +37,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "tsc",
-    icon:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
   },
   {
     name: "typeorm",
