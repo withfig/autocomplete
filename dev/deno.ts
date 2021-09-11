@@ -731,7 +731,7 @@ const denoDoc: Fig.Subcommand = {
           // Based on whether the user has typed a period, this will be
           // populated with either the top level nodes or the children of
           // whatever node the user has searched for.
-          const suggestNodes = [];
+          const suggestNodes: (Named & Partial<Kind>)[] = [];
 
           if (firstDotIndex === -1) {
             suggestNodes.push(...docNodes);
@@ -741,13 +741,11 @@ const denoDoc: Fig.Subcommand = {
             // It's not uncommon that there'd be multiple occurrences of the
             // same name with different values, eg. overloads and interface
             // merging. Deno's builtin types actually do this with the `Deno`
-            // interface. Typically this will only be one or two nodes.
-            const foundNodes = docNodes.filter((node) => {
-              return node.name === filterName;
-            });
+            // interface. Typically, `found` will only be one or two nodes.
+            const found = docNodes.filter((node) => node.name === filterName);
 
             // `deno doc` can only generate docs for these nodes' children
-            for (const node of foundNodes) {
+            for (const node of found) {
               if (node.kind === "namespace") {
                 suggestNodes.push(...node.namespaceDef.elements);
               } else if (node.kind === "interface") {
@@ -768,12 +766,16 @@ const denoDoc: Fig.Subcommand = {
           }
 
           // The names are added to a set because duplicates are common.
-          const suggestionNames = new Set<string>();
+          const names = new Set<string>();
 
-          // Which nodes are visible is dependent on --private
+          // More nodes should be visible if --private was used. This is two
+          // separate loops because the logic is fundamentally different - one
+          // loop just adds all the nodes, while the other is a filter. It also
+          // avoids checking showPrivateSymbols in each iteration, since that
+          // value won't change.
           if (showPrivateSymbols) {
             for (const node of suggestNodes) {
-              suggestionNames.add(node.name);
+              names.add(node.name);
             }
           } else {
             for (const node of suggestNodes) {
@@ -781,7 +783,8 @@ const denoDoc: Fig.Subcommand = {
               // probably so it's easier to build a module graph. However,
               // imports are (by definition) private, so they must be removed.
               if (node.kind === "import") continue;
-              suggestionNames.add(node.name);
+
+              names.add(node.name);
             }
           }
 
@@ -789,11 +792,12 @@ const denoDoc: Fig.Subcommand = {
           // type-heavy projects. Fig renders this name as an empty string, and
           // since you can't specify it as a filter, don't suggest it.
           // Faster to do this once than check the name on each iteration.
-          suggestionNames.delete("<TODO>");
+          names.delete("<TODO>");
 
           const suggestions: Fig.Suggestion[] = [];
-          // Can't just .map() over suggestionNames because it's a Set :(
-          for (const name of suggestionNames) {
+
+          // Can't just .map() over a Set... (one day?)
+          for (const name of names) {
             suggestions.push(createFilterSuggestion(name));
           }
           return suggestions;
