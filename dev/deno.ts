@@ -581,6 +581,113 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
+// The following region was adapted from denoland/deno_doc:
+// https://github.com/denoland/deno_doc/blob/main/lib/types.d.ts
+// It is not stripped further to make updating it easier.
+
+//#region Documentation types
+
+type DocNode =
+  | DocNodeFunction
+  | DocNodeVariable
+  | DocNodeEnum
+  | DocNodeClass
+  | DocNodeTypeAlias
+  | DocNodeNamespace
+  | DocNodeInterface
+  | DocNodeImport;
+
+interface DocNodeBase {
+  kind: DocNodeKind;
+  name: string;
+}
+
+type DocNodeKind =
+  | "function"
+  | "variable"
+  | "enum"
+  | "class"
+  | "typeAlias"
+  | "namespace"
+  | "interface"
+  | "import";
+
+interface DocNodeFunction extends DocNodeBase {
+  kind: "function";
+}
+
+interface DocNodeVariable extends DocNodeBase {
+  kind: "variable";
+}
+
+interface DocNodeEnum extends DocNodeBase {
+  kind: "enum";
+  enumDef: EnumDef;
+}
+
+interface DocNodeClass extends DocNodeBase {
+  kind: "class";
+  classDef: ClassDef;
+}
+
+interface DocNodeTypeAlias extends DocNodeBase {
+  kind: "typeAlias";
+}
+
+interface DocNodeNamespace extends DocNodeBase {
+  kind: "namespace";
+  namespaceDef: NamespaceDef;
+}
+
+interface DocNodeInterface extends DocNodeBase {
+  kind: "interface";
+  interfaceDef: InterfaceDef;
+}
+
+interface DocNodeImport extends DocNodeBase {
+  kind: "import";
+}
+
+interface ClassDef {
+  properties: ClassPropertyDef[];
+  methods: ClassMethodDef[];
+}
+
+interface ClassMethodDef {
+  name: string;
+}
+
+interface ClassPropertyDef {
+  name: string;
+}
+
+interface EnumDef {
+  members: EnumMemberDef[];
+}
+
+interface EnumMemberDef {
+  name: string;
+}
+
+interface InterfaceDef {
+  methods: InterfaceMethodDef[];
+  properties: InterfacePropertyDef[];
+}
+
+interface InterfaceMethodDef {
+  name: string;
+}
+
+interface InterfacePropertyDef {
+  name: string;
+}
+
+interface NamespaceDef {
+  elements: DocNode[];
+}
+
+//#endregion
+
 function getNamePriority(name: string): number {
   if (/^[A-Z]/.test(name)) {
     return 60;
@@ -665,7 +772,7 @@ const denoDoc: Fig.Subcommand = {
           // The output for `deno doc --json` is `DocNode[]` - the types:
           // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          let docNodes: any[];
+          let docNodes: DocNode[];
           try {
             docNodes = JSON.parse(out);
             if (!Array.isArray(docNodes)) {
