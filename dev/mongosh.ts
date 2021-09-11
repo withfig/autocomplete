@@ -1,8 +1,11 @@
 // https://docs.mongodb.com/mongodb-shell/reference/options/
 
+import { decodedTextSpanIntersectsWith } from "typescript";
+
 const completionSpec: Fig.Spec = {
   name: "mongosh",
-  description: "The stupid content tracker",
+  description:
+    "The MongoDB Shell, mongosh , is a fully functional JavaScript and Node.js 14.x REPL environment for interacting with MongoDB deployments",
   args: {
     name: "Connection String",
     isOptional: true,
@@ -16,6 +19,7 @@ const completionSpec: Fig.Spec = {
       {
         name: "mongodb+srv://cluster0.example.mongodb.net/sample_geospatial",
         description: "Atlas Connection String Example",
+        priority: 35,
       },
     ],
   },
@@ -34,6 +38,9 @@ const completionSpec: Fig.Spec = {
       name: "--eval",
       description:
         "<javascript>: Evaluates a JavaScript expression that is specified as an argument. mongosh does not load its own environment when evaluating code. As a result many options of the shell environment are not available. The result of evaluating a JavaScript argument is printed to your command line",
+      args: {
+        name: "javascript",
+      },
     },
     {
       name: ["--help", "-h"],
@@ -44,6 +51,9 @@ const completionSpec: Fig.Spec = {
       name: "--authenticationDatabase",
       description:
         "Specifies the authentication database where the specified --username has been created. See Authentication Database",
+      args: {
+        name: "dbname",
+      },
     },
     {
       name: "--gssapiHostName",
@@ -59,11 +69,17 @@ const completionSpec: Fig.Spec = {
       name: ["--password", "-p"],
       description:
         "Specifies a password with which to authenticate to a MongoDB database that uses authentication. Use in conjunction with the --username and --authenticationDatabase options",
+      args: {
+        name: "password",
+      },
     },
     {
       name: ["--username", "-u"],
       description:
         "Specifies a username with which to authenticate to a MongoDB database that uses authentication. Use in conjunction with the --password and --authenticationDatabase options",
+      args: {
+        name: "username",
+      },
     },
     {
       name: "--retryWrites",
@@ -107,7 +123,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--nodb",
       description:
-        "<javascript>: Evaluates a JavaScript expression that is specified as an argument. mongosh does not load its own environment when evaluating code. As a result many options of the shell environment are not available. The result of evaluating a JavaScript argument is printed to your command line",
+        "Prevents the shell from connecting to any database instances",
     },
     {
       name: "--norc",
@@ -128,11 +144,74 @@ const completionSpec: Fig.Spec = {
       name: "--port",
       description:
         "Specifies the port where the mongod or mongos instance is listening. If --port is not specified, the MongoDB Shell attempts to connect to port 27017",
+      args: {
+        name: "port",
+        suggestions: [
+          {
+            name: "27017",
+            description: "Default-port",
+          },
+        ],
+      },
     },
     {
       name: "--tls",
       description:
         "Enables connection to a mongod or mongos that has TLS SSL support enabled",
+    },
+    {
+      name: "--tlsAllowInvalidHostnames",
+      description:
+        "Disables the validation of the hostnames in the certificate presented by the mongod/mongos instance. Allows the MongoDB Shell to connect to MongoDB instances even if the hostname in the server certificates do not match the server's host",
+    },
+    {
+      name: "--tlsAllowInvalidCertificates",
+      description:
+        "Bypasses the validation checks for the certificates presented by the mongod/mongos instance and allows connections to servers that present invalid certificates",
+    },
+    {
+      name: "--tlsDisabledProtocols",
+      description: "Disables the specified TLS protocols",
+      args: {
+        name: "protocols",
+        suggestions: [
+          {
+            name: "TLS1_0",
+          },
+          {
+            name: "TLS1_1",
+          },
+          {
+            name: "TLS1_2",
+          },
+          {
+            name: "TLS1_3",
+            description: "(Starting in version 4.0.4, 3.6.9, 3.4.24)",
+          },
+        ],
+      },
+    },
+    {
+      name: "--tlsCAFile",
+      description:
+        "Specifies the .pem file that contains the root certificate chain from the Certificate Authority. This file is used to validate the certificate presented by the mongod/mongos instance",
+      args: {
+        name: "filePath",
+        generators: {
+          template: "filepaths",
+        },
+      },
+    },
+    {
+      name: "--tlsCRLFile",
+      description:
+        "Specifies the .pem file that contains the root certificate chain from the Certificate Authority. This file is used to validate the certificate presented by the mongod/mongos instance",
+      args: {
+        name: "filePath",
+        generators: {
+          template: "filepaths",
+        },
+      },
     },
     {
       name: "--tlsCertificateKeyFile",
