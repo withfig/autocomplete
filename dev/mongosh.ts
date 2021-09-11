@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-v", "--version"],
-      description: "View your current git version",
+      description: "View your current mongosh version",
     },
     {
       name: "--shell",
