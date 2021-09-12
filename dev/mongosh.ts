@@ -59,11 +59,20 @@ const completionSpec: Fig.Spec = {
       name: "--gssapiHostName",
       description:
         "Specify the hostname of a service using GSSAPI/Kerberos. Only required if the hostname of a machine does not match the hostname resolved by DNS",
+      args: {
+        name: "hostname",
+        description: "This option is available only in MongoDB Enterprise",
+      },
     },
     {
       name: "--gssapiServiceName",
       description:
         "Specify the name of the service using GSSAPI/Kerberos. Only required if the service does not use the default name of mongodb",
+      args: {
+        name: "saslServiceName",
+        description:
+          "GssapiServiceName defaults to mongodb for all clients and MongoDB instances. If you change saslServiceName setting on a MongoDB instance, you must set gssapiServiceName to match that setting",
+      },
     },
     {
       name: ["--password", "-p"],
