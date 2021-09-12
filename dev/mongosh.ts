@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--eval",
       description:
-        "<javascript>: Evaluates a JavaScript expression that is specified as an argument. mongosh does not load its own environment when evaluating code. As a result many options of the shell environment are not available. The result of evaluating a JavaScript argument is printed to your command line",
+        "Evaluates a JavaScript expression that is specified as an argument. mongosh does not load its own environment when evaluating code. As a result many options of the shell environment are not available. The result of evaluating a JavaScript argument is printed to your command line",
       args: {
         name: "javascript",
       },
