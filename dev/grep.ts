@@ -20,12 +20,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-E", "--extended-regexp"],
       description:
-        "Interpret PATTERN as an extended regular expression (-E is specified by POSIX .)",
+        "Interpret PATTERN as an extended regular expression (-E is specified by POSIX.)",
     },
     {
       name: ["-F", "--fixed-string"],
       description:
-        "Interpret PATTERN as a list of fixed strings, separated by newlines, any of which is to be matched. (-F is specified by POSIX .)",
+        "Interpret PATTERN as a list of fixed strings, separated by newlines, any of which is to be matched. (-F is specified by POSIX.)",
     },
     {
       name: ["-G", "--basic-regexp"],
@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-e", "--regexp"],
       description:
-        "Use PATTERN as the pattern. This can be used to specify multiple search patterns, or to protect a pattern beginning with a hyphen (-). (-e is specified by POSIX .)",
+        "Use PATTERN as the pattern. This can be used to specify multiple search patterns, or to protect a pattern beginning with a hyphen (-). (-e is specified by POSIX.)",
       args: {
         name: "pattern",
       },
@@ -43,12 +43,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-i", "--ignore-case", "-y"],
       description:
-        "Ignore case distinctions in both the PATTERN and the input files. (-i is specified by POSIX .)",
+        "Ignore case distinctions in both the PATTERN and the input files. (-i is specified by POSIX.)",
     },
     {
       name: ["-v", "--invert-match"],
       description:
-        "Invert the sense of matching, to select non-matching lines. (-v is specified by POSIX .)",
+        "Invert the sense of matching, to select non-matching lines. (-v is specified by POSIX.)",
     },
     {
       name: ["-w", "--word-regexp"],
@@ -58,12 +58,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-x", "--line-regexp"],
       description:
-        "Select only those matches that exactly match the whole line. (-x is specified by POSIX .)",
+        "Select only those matches that exactly match the whole line. (-x is specified by POSIX.)",
     },
     {
       name: ["-c", "--count"],
       description:
-        "Suppress normal output; instead print a count of matching lines for each input file. With the -v, --invert-match option, count non-matching lines. (-c is specified by POSIX .)",
+        "Suppress normal output; instead print a count of matching lines for each input file. With the -v, --invert-match option, count non-matching lines. (-c is specified by POSIX.)",
     },
     {
       name: "--color",
@@ -77,13 +77,15 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-L", "--files-without-match"],
+      exclusiveOn: ["-l", "--files-with-matches"],
       description:
         "Suppress normal output; instead print the name of each input file from which no output would normally have been printed. The scanning will stop on the first match",
     },
     {
       name: ["-l", "--files-with-matches"],
+      exclusiveOn: ["-L", "--files-without-match"],
       description:
-        "Suppress normal output; instead print the name of each input file from which output would normally have been printed. The scanning will stop on the first match. (-l is specified by POSIX .)",
+        "Suppress normal output; instead print the name of each input file from which output would normally have been printed. The scanning will stop on the first match. (-l is specified by POSIX.)",
     },
     {
       name: ["-m", "--max-count"],
@@ -101,12 +103,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-q", "--quiet", "--silent"],
       description:
-        "Quiet; do not write anything to standard output. Exit immediately with zero status if any match is found, even if an error was detected. Also see the -s or --no-messages option. (-q is specified by POSIX .)",
+        "Quiet; do not write anything to standard output. Exit immediately with zero status if any match is found, even if an error was detected. Also see the -s or --no-messages option. (-q is specified by POSIX.)",
     },
     {
       name: ["-s", "--no-messages"],
       description:
-        "Suppress error messages about nonexistent or unreadable files. Portability note: unlike GNU grep, 7th Edition Unix grep did not conform to POSIX , because it lacked -q and its -s option behaved like GNU grep's -q option. USG -style grep also lacked -q but its -s option behaved like GNU grep. Portable shell scripts should avoid both -q and -s and should redirect standard and error output to /dev/null instead. (-s is specified by POSIX .)",
+        "Suppress error messages about nonexistent or unreadable files. Portability note: unlike GNU grep, 7th Edition Unix grep did not conform to POSIX, because it lacked -q and its -s option behaved like GNU grep's -q option. USG -style grep also lacked -q but its -s option behaved like GNU grep. Portable shell scripts should avoid both -q and -s and should redirect standard and error output to /dev/null instead. (-s is specified by POSIX.)",
     },
     {
       name: ["-b", "--byte-offset"],
@@ -134,7 +136,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-n", "--line-number"],
       description:
-        "Prefix each line of output with the 1-based line number within its input file. (-n is specified by POSIX .)",
+        "Prefix each line of output with the 1-based line number within its input file. (-n is specified by POSIX.)",
     },
     {
       name: ["-T", "--initial-tab"],
@@ -161,7 +163,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-B", "--before-context"],
       description:
-        "Print num lines of leading context before each match.  See also the -A and -C options",
+        "Print num lines of leading context before each match. See also the -A and -C options",
       args: {
         name: "NUM",
       },
@@ -177,7 +179,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-a", "--text"],
       description:
-        "Treat all files as ASCII text.  Normally grep will simply print ``Binary file ... matches'' if files contain binary characters. Use of this option forces grep to output lines matching the specified pattern",
+        "Treat all files as ASCII text. Normally grep will simply print ``Binary file ... matches'' if files contain binary characters. Use of this option forces grep to output lines matching the specified pattern",
     },
     {
       name: "--binary-files",
@@ -192,11 +194,11 @@ const completionSpec: Fig.Spec = {
           },
           {
             name: "without-match",
-            description: "do not search binary files",
+            description: "Do not search binary files",
           },
           {
             name: "text",
-            description: "treat all files as text",
+            description: "Treat all files as text",
           },
         ],
       },
@@ -315,7 +317,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-f", "--file"],
       description:
-        "Obtain patterns from FILE, one per line. The empty file contains zero patterns, and therefore matches nothing. (-f is specified by POSIX .)",
+        "Obtain patterns from FILE, one per line. The empty file contains zero patterns, and therefore matches nothing. (-f is specified by POSIX.)",
       args: {
         name: "FILE",
         template: "filepaths",
@@ -324,13 +326,13 @@ const completionSpec: Fig.Spec = {
   ],
   additionalSuggestions: [
     {
-      name: ["-RIn"],
+      name: "-RIn",
       description:
         "Search for a pattern [R]ecursively in the current directory, showing matching line [n]umbers, [I]gnoring non-text files",
       insertValue: "-RI{cursor}",
     },
     {
-      name: ["-Hn"],
+      name: "-Hn",
       description:
         "Print file name with the corresponding line number (n) for each match",
       insertValue: "-H{cursor}",
