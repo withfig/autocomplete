@@ -11,3 +11,8 @@ npm-debug.log
 .vscode
 specs
 .idea/
+
+# we don't have any dependencies which are bundled with
+# the specs so we can safely ignore the package-lock
+# to make everyones life easier
+package-lock.json   

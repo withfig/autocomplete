@@ -11,7 +11,7 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "rm",
-  description: "Removes stopped service containers.",
+  description: "Removes stopped service containers",
   args: { generators: getServices },
   options: [
     {

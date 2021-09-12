@@ -92,7 +92,7 @@ const toolInstallCommonOptions: Fig.Option[] = [
   {
     name: "--add-source",
     description:
-      "Adds an additional NuGet package source to use during installation. Feeds are accessed in parallel, not sequentially in some order of precedence. If the same package and version is in multiple feeds, the fastest feed wins. ",
+      "Adds an additional NuGet package source to use during installation. Feeds are accessed in parallel, not sequentially in some order of precedence. If the same package and version is in multiple feeds, the fastest feed wins",
     args: {
       name: "source",
     },
@@ -100,7 +100,7 @@ const toolInstallCommonOptions: Fig.Option[] = [
   {
     name: "--configfile",
     description:
-      "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used.",
+      "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used",
     args: {
       name: "file",
       generators: configFileGenerator,
@@ -108,12 +108,12 @@ const toolInstallCommonOptions: Fig.Option[] = [
   },
   {
     name: "--disable-parallel",
-    description: "Prevent restoring multiple projects in parallel.",
+    description: "Prevent restoring multiple projects in parallel",
   },
   {
     name: "--framework",
     description:
-      "Specifies the target framework to install the tool for. By default, the .NET SDK tries to choose the most appropriate target framework.",
+      "Specifies the target framework to install the tool for. By default, the .NET SDK tries to choose the most appropriate target framework",
     args: {
       name: "framework",
     },
@@ -121,31 +121,31 @@ const toolInstallCommonOptions: Fig.Option[] = [
   {
     name: ["-g", "--global"],
     description:
-      "Specifies that the installation is user wide. Can't be combined with the --tool-path option. Omitting both --global and --tool-path specifies a local tool installation.",
+      "Specifies that the installation is user wide. Can't be combined with the --tool-path option. Omitting both --global and --tool-path specifies a local tool installation",
     exclusiveOn: ["--tool-path"],
   },
   {
     name: "--ignore-failed-sources",
-    description: "Treat package source failures as warnings.",
+    description: "Treat package source failures as warnings",
   },
   {
     name: "--interactive",
     description:
-      "Allows the command to stop and wait for user input or action. For example, to complete authentication.",
+      "Allows the command to stop and wait for user input or action. For example, to complete authentication",
   },
   {
     name: "--local",
     description:
-      "Update the tool and the local tool manifest. Can't be combined with the --global option or the --tool-path option.",
+      "Update the tool and the local tool manifest. Can't be combined with the --global option or the --tool-path option",
     exclusiveOn: ["--global", "--tool-path"],
   },
   {
     name: "--no-cache",
-    description: "Do not cache packages and HTTP requests.",
+    description: "Do not cache packages and HTTP requests",
   },
   {
     name: "--tool-manifest",
-    description: "Path to the manifest file.",
+    description: "Path to the manifest file",
     args: {
       name: "path",
       template: "filepaths",
@@ -163,7 +163,7 @@ const toolInstallCommonOptions: Fig.Option[] = [
   {
     name: "--version",
     description:
-      "The version of the tool to install. By default, the latest stable package version is installed. Use this option to install preview or older versions of the tool.",
+      "The version of the tool to install. By default, the latest stable package version is installed. Use this option to install preview or older versions of the tool",
     args: {
       name: "version",
       debounce: true,
@@ -175,7 +175,7 @@ const toolInstallCommonOptions: Fig.Option[] = [
 const completionSpec: Fig.Spec = {
   name: "tool",
   description:
-    "The dotnet tool install command provides a way for you to install .NET tools on your machine.",
+    "The dotnet tool install command provides a way for you to install .NET tools on your machine",
   subcommands: [
     {
       name: "install",
@@ -189,24 +189,24 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description:
-        "The dotnet tool list command provides a way for you to list all .NET global, tool-path, or local tools installed on your machine. The command lists the package name, version installed, and the tool command.",
+        "The dotnet tool list command provides a way for you to list all .NET global, tool-path, or local tools installed on your machine. The command lists the package name, version installed, and the tool command",
       options: [
         {
           name: ["-g", "--global"],
           description:
-            "Lists user-wide global tools. Can't be combined with the --tool-path option. Omitting both --global and --tool-path lists local tools.",
+            "Lists user-wide global tools. Can't be combined with the --tool-path option. Omitting both --global and --tool-path lists local tools",
           exclusiveOn: ["--tool-path"],
         },
         {
           name: "--local",
           description:
-            "Lists local tools for the current directory. Can't be combined with the --global or --tool-path options. Omitting both --global and --tool-path lists local tools even if --local is not specified.",
+            "Lists local tools for the current directory. Can't be combined with the --global or --tool-path options. Omitting both --global and --tool-path lists local tools even if --local is not specified",
           exclusiveOn: ["--global", "--tool-path"],
         },
         {
           name: "--tool-path",
           description:
-            "Specifies a custom location where to find global tools. PATH can be absolute or relative. Can't be combined with the --global option. Omitting both --global and --tool-path lists local tools.",
+            "Specifies a custom location where to find global tools. PATH can be absolute or relative. Can't be combined with the --global option. Omitting both --global and --tool-path lists local tools",
           exclusiveOn: ["--global"],
         },
       ],
@@ -214,12 +214,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "restore",
       description:
-        "The dotnet tool restore command finds the tool manifest file that is in scope for the current directory and installs the tools that are listed in it. For information about manifest files, see Install a local tool and Invoke a local tool.",
+        "The dotnet tool restore command finds the tool manifest file that is in scope for the current directory and installs the tools that are listed in it. For information about manifest files, see Install a local tool and Invoke a local tool",
       options: [
         {
           name: "--configfile",
           description:
-            "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used. ",
+            "The NuGet configuration file (nuget.config) to use. If specified, only the settings from this file will be used. If not specified, the hierarchy of configuration files from the current directory will be used",
           args: {
             name: "file",
             generators: configFileGenerator,
@@ -235,7 +235,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tool-manifest",
-          description: "Path to the manifest file.",
+          description: "Path to the manifest file",
           args: {
             name: "path",
             template: "filepaths",
@@ -243,16 +243,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--ignore-failed-sources",
-          description: "Treat package source failures as warnings.",
+          description: "Treat package source failures as warnings",
         },
         {
           name: "--no-cache",
-          description: "Do not cache packages and HTTP requests.",
+          description: "Do not cache packages and HTTP requests",
         },
         {
           name: "--interactive",
           description:
-            "Allows the command to stop and wait for user input or action. For example, to complete authentication.",
+            "Allows the command to stop and wait for user input or action. For example, to complete authentication",
         },
         {
           name: ["-v", "--verbosity"],
@@ -274,7 +274,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "run",
       description:
-        "The dotnet tool run command searches tool manifest files that are in scope for the current directory. When it finds a reference to the specified tool, it runs the tool.",
+        "The dotnet tool run command searches tool manifest files that are in scope for the current directory. When it finds a reference to the specified tool, it runs the tool",
       args: {
         name: "command",
         generators: toolListGenerator,
@@ -283,20 +283,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "search",
       description:
-        "The dotnet tool search command provides a way for you to search NuGet for tools that can be used as .NET global, tool-path, or local tools. The command searches the tool names and metadata such as titles, descriptions, and tags.",
+        "The dotnet tool search command provides a way for you to search NuGet for tools that can be used as .NET global, tool-path, or local tools. The command searches the tool names and metadata such as titles, descriptions, and tags",
       options: [
         {
           name: "--detail",
-          description: "Shows detailed results from the query.",
+          description: "Shows detailed results from the query",
         },
         {
           name: "--prerelease",
-          description: "Includes pre-release packages.",
+          description: "Includes pre-release packages",
         },
         {
           name: "--skip",
           description:
-            "Specifies the number of query results to skip. Used for pagination.",
+            "Specifies the number of query results to skip. Used for pagination",
           args: {
             name: "number",
           },
@@ -304,7 +304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--take",
           description:
-            "Specifies the number of query results to show. Used for pagination.",
+            "Specifies the number of query results to show. Used for pagination",
           args: {
             name: "number",
           },
@@ -314,24 +314,24 @@ const completionSpec: Fig.Spec = {
     {
       name: "uninstall",
       description:
-        "The dotnet tool uninstall command provides a way for you to uninstall .NET tools from your machine.",
+        "The dotnet tool uninstall command provides a way for you to uninstall .NET tools from your machine",
       args: {
         name: "package",
         description:
-          "Name/ID of the NuGet package that contains the .NET tool to uninstall. You can find the package name using the dotnet tool list command.",
+          "Name/ID of the NuGet package that contains the .NET tool to uninstall. You can find the package name using the dotnet tool list command",
         generators: toolListGenerator,
       },
       options: [
         {
           name: ["-g", "--global"],
           description:
-            "Specifies that the tool to be removed is from a user-wide installation. Can't be combined with the --tool-path option. Omitting both --global and --tool-path specifies that the tool to be removed is a local tool.",
+            "Specifies that the tool to be removed is from a user-wide installation. Can't be combined with the --tool-path option. Omitting both --global and --tool-path specifies that the tool to be removed is a local tool",
           exclusiveOn: ["--tool-path"],
         },
         {
           name: "--tool-path",
           description:
-            "Specifies the location where to uninstall the tool. PATH can be absolute or relative. Can't be combined with the --global option. Omitting both --global and --tool-path specifies that the tool to be removed is a local tool.",
+            "Specifies the location where to uninstall the tool. PATH can be absolute or relative. Can't be combined with the --global option. Omitting both --global and --tool-path specifies that the tool to be removed is a local tool",
           exclusiveOn: ["--global"],
         },
       ],
@@ -339,7 +339,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description:
-        "The dotnet tool update command provides a way for you to update .NET tools on your machine to the latest stable version of the package.",
+        "The dotnet tool update command provides a way for you to update .NET tools on your machine to the latest stable version of the package",
       args: {
         name: "package",
         generators: toolListGenerator,

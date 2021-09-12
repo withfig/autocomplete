@@ -99,28 +99,28 @@ const valueArgs = [
 
 const completionSpec: Fig.Spec = {
   name: "defaults",
-  description: "Command line interface to a user's defaults.",
+  description: "Command line interface to a user's defaults",
 
   subcommands: [
     {
       name: "read",
-      description: "shows defaults",
+      description: "Shows defaults",
       args: [domain, key],
     },
     {
       name: "write",
 
-      description: "writes key for domain",
+      description: "Writes key for domain",
       args: [domain, key, value],
     },
     {
       name: "delete",
-      description: "deletes domain or key in domain",
+      description: "Deletes domain or key in domain",
       args: [domain, key],
     },
     {
       name: "rename",
-      description: "renames old_key to new_key",
+      description: "Renames old_key to new_key",
       args: [
         domain,
         {
@@ -133,23 +133,23 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "domains",
-      description: "lists all domains",
+      description: "Lists all domains",
     },
     {
       name: "find",
-      description: "lists all entries containing word",
+      description: "Lists all entries containing word",
       args: {
         name: "word",
-        description: "The word to search for...",
+        description: "The word to search for",
       },
     },
     {
       name: "help",
-      description: "show help text",
+      description: "Show help text",
     },
     {
       name: "read-type",
-      description: "shows the type for the given domain, key",
+      description: "Shows the type for the given domain, key",
       args: [domain, key],
     },
   ],

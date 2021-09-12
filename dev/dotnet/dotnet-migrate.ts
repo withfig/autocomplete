@@ -3,7 +3,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "project",
     description:
-      "The project or solution file to operate on. If not specified, the command searches the current directory for one. If more than one solution or project is found, an error is thrown.",
+      "The project or solution file to operate on. If not specified, the command searches the current directory for one. If more than one solution or project is found, an error is thrown",
     isOptional: true,
     generators: {
       template: ["filepaths", "folders"],
@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--format-report-file-json",
       description:
-        "Output migration report file as JSON rather than user messages.",
+        "Output migration report file as JSON rather than user messages",
       args: {
         name: "file",
         template: "filepaths",
@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-r", "--report"],
       description:
-        "Output migration report to a file in addition to the console.",
+        "Output migration report to a file in addition to the console",
       args: {
         name: "report_file",
         template: "filepaths",
@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-s", "--skip-project-references"],
       description:
-        "Skip migrating project references. By default, project references are migrated recursively.",
+        "Skip migrating project references. By default, project references are migrated recursively",
       args: {
         name: "type",
         isOptional: true,
@@ -55,12 +55,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--skip-backup",
       description:
-        "Skip moving project.json, global.json, and *.xproj to a backup directory after successful migration.",
+        "Skip moving project.json, global.json, and *.xproj to a backup directory after successful migration",
     },
     {
       name: ["-t", "--template-file"],
       description:
-        "Template csproj file to use for migration. By default, the same template as the one dropped by dotnet new console is used.",
+        "Template csproj file to use for migration. By default, the same template as the one dropped by dotnet new console is used",
       args: {
         name: "file",
         generators: {
@@ -84,7 +84,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-v", "--sdk-package-version"],
       description:
-        "The version of the sdk package that's referenced in the migrated app. The default is the version of the SDK in dotnet new.",
+        "The version of the sdk package that's referenced in the migrated app. The default is the version of the SDK in dotnet new",
       args: {
         name: "version",
       },
@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-x", "--xproj-file"],
       description:
-        "The path to the xproj file to use. Required when there is more than one xproj in a project directory.",
+        "The path to the xproj file to use. Required when there is more than one xproj in a project directory",
       args: {
         name: "file",
         template: "filepaths",

@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "exa",
-  description: "a modern replacement for ls",
+  description: "A modern replacement for ls",
   args: {
     isVariadic: true,
     name: "files...",
@@ -8,43 +8,43 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      description: "show list of command-line options",
+      description: "Show list of command-line options",
       name: ["-?", "--help"],
     },
     {
-      description: "show version of exa",
+      description: "Show version of exa",
       name: ["-v", "--version"],
     },
     {
-      description: "display one entry per line",
+      description: "Display one entry per line",
       name: ["-1", "--oneline"],
     },
     {
-      description: "display extended file metadata as a table",
+      description: "Display extended file metadata as a table",
       name: ["-l", "--long"],
     },
     {
-      description: "display entries as a grid (default)",
+      description: "Display entries as a grid (default)",
       name: ["-G", "--grid"],
     },
     {
-      description: "sort the grid across, rather than downwards",
+      description: "Sort the grid across, rather than downwards",
       name: ["-x", "--across"],
     },
     {
-      description: "recurse into directories",
+      description: "Recurse into directories",
       name: ["-R", "--recurse"],
     },
     {
-      description: "recurse into directories as a tree",
+      description: "Recurse into directories as a tree",
       name: ["-T", "--tree"],
     },
     {
-      description: "display type indicator by file names",
+      description: "Display type indicator by file names",
       name: ["-F", "--classify"],
     },
     {
-      description: "when to use terminal colours (always, auto, never)",
+      description: "When to use terminal colours (always, auto, never)",
       name: ["--colour", "--color"],
       insertValue: "--colour=",
       args: {
@@ -63,30 +63,30 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "highlight levels of file sizes distinctly",
+      description: "Highlight levels of file sizes distinctly",
       name: ["--colour-scale", "--color-scale"],
     },
     {
-      description: "show hidden and 'dot' files",
+      description: "Show hidden and 'dot' files",
       name: ["-a", "--all"],
     },
     {
-      description: "list directories like regular files",
+      description: "List directories like regular files",
       name: ["-d", "--list-dirs"],
     },
     {
-      description: "limit the depth of recursion",
+      description: "Limit the depth of recursion",
       name: ["-L", "--level"],
       args: {
         name: "DEPTH",
       },
     },
     {
-      description: "reverse the sort order",
+      description: "Reverse the sort order",
       name: ["-r", "--reverse"],
     },
     {
-      description: "which field to sort by",
+      description: "Which field to sort by",
       name: ["-s", "--sort"],
       args: {
         name: "sort field",
@@ -140,15 +140,15 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "list directories before other files",
+      description: "List directories before other files",
       name: "--group-directories-first",
     },
     {
-      description: "list only directories",
+      description: "List only directories",
       name: ["-D", "--only-dirs"],
     },
     {
-      description: "glob patterns (pipe-separated) of files to ignore",
+      description: "Glob patterns (pipe-separated) of files to ignore",
       name: ["-I", "--ignore-glob"],
       args: {
         name: "GLOB",
@@ -159,40 +159,40 @@ const completionSpec: Fig.Spec = {
       name: "--git-ignore",
     },
     {
-      description: "list file sizes with binary prefixes",
+      description: "List file sizes with binary prefixes",
       name: ["-b", "--binary"],
     },
     {
-      description: "list file sizes in bytes, without any prefixes",
+      description: "List file sizes in bytes, without any prefixes",
       name: ["-B", "--bytes"],
     },
     {
-      description: "list each file's group",
+      description: "List each file's group",
       name: ["-g", "--group"],
     },
     {
-      description: "add a header row to each column",
+      description: "Add a header row to each column",
       name: ["-h", "--header"],
     },
     {
-      description: "list each file's number of hard links",
+      description: "List each file's number of hard links",
       name: ["-H", "--links"],
     },
     {
-      description: "list each file's inode number",
+      description: "List each file's inode number",
       name: ["-i", "--inode"],
     },
     {
-      description: "use the modified timestamp field",
+      description: "Use the modified timestamp field",
       name: ["-m", "--modified"],
     },
     {
-      description: "show number of file system blocks",
+      description: "Show number of file system blocks",
       name: ["-S", "--blocks"],
     },
     {
       description:
-        "which timestamp field to list (modified, accessed, created)",
+        "Which timestamp field to list (modified, accessed, created)",
       name: ["-t", "--time"],
       args: {
         name: "FIELD",
@@ -210,16 +210,16 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "use the accessed timestamp field",
+      description: "Use the accessed timestamp field",
       name: ["-u", "--accessed"],
     },
     {
-      description: "use the created timestamp field",
+      description: "Use the created timestamp field",
       name: ["-U", "--created"],
     },
     {
       description:
-        "how to format timestamps (default, iso, long-iso, full-iso)",
+        "How to format timestamps (default, iso, long-iso, full-iso)",
       name: "--time-style",
       args: {
         name: "style",
@@ -240,11 +240,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "list each file's Git status, if tracked or ignored",
+      description: "List each file's Git status, if tracked or ignored",
       name: "--git",
     },
     {
-      description: "list each file's extended attributes and sizes",
+      description: "List each file's extended attributes and sizes",
       name: ["-@", "--extended"],
     },
   ],

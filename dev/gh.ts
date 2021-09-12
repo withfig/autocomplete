@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "alias",
-      description: "create command shortcuts",
+      description: "Create command shortcuts",
       options: [ghOptions.help],
       subcommands: [
         {
@@ -169,7 +169,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "http_unix_socket",
               description:
-                "the path to a unix socket through which to make HTTP connection",
+                "The path to a unix socket through which to make HTTP connection",
               args: { name: "path" },
             },
           ],
@@ -335,7 +335,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Supply a body. Will prompt for one otherwise.",
+              description: "Supply a body. Will prompt for one otherwise",
               args: { name: "string" },
             },
             {
@@ -369,13 +369,13 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-a", "--assignee"],
               description:
-                'Assign people by their login. Use "@me" to self-assign.',
+                'Assign people by their login. Use "@me" to self-assign',
               args: { name: "login" },
             },
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Supply a body. Will prompt for one otherwise.",
+              description: "Supply a body. Will prompt for one otherwise",
               args: { name: "string" },
             },
             {
@@ -408,7 +408,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-t", "--title"],
-              description: "Supply a title. Will prompt for one otherwise.",
+              description: "Supply a title. Will prompt for one otherwise",
               insertValue: "-t '{cursor}'",
               args: { name: "string" },
             },
@@ -448,7 +448,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--add-assignee",
               description:
-                'Add assigned users by their login. Use "@me" to assign yourself.',
+                'Add assigned users by their login. Use "@me" to assign yourself',
               args: { name: "login" },
             },
             {
@@ -459,7 +459,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Set the new body.",
+              description: "Set the new body",
               args: { name: "string" },
             },
             {
@@ -475,7 +475,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--remove-assignee",
               description:
-                'Remove assigned users by their login. Use "@me" to unassign yourself.',
+                'Remove assigned users by their login. Use "@me" to unassign yourself',
               args: { name: "login" },
             },
             {
@@ -490,7 +490,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-t", "--title"],
-              description: "Set the new title.",
+              description: "Set the new title",
               insertValue: "-t '{cursor}'",
               args: { name: "string" },
             },
@@ -735,7 +735,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-b", "--body"],
               insertValue: "-b '{cursor}'",
-              description: "Supply a body. Will prompt for one otherwise.",
+              description: "Supply a body. Will prompt for one otherwise",
               args: {
                 name: "message",
               },
@@ -1039,16 +1039,16 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-h", "--homepage"],
-              description: "repository home page URL",
+              description: "Repository home page URL",
               args: {
                 name: "string",
               },
             },
-            { name: "--public", description: "make the repository public" },
-            { name: "--private", description: "make the repository private" },
+            { name: "--public", description: "Make the repository public" },
+            { name: "--private", description: "Make the repository private" },
             {
               name: "--internal",
-              description: "make the repository internal",
+              description: "Make the repository internal",
             },
             {
               name: "--enable-issues",

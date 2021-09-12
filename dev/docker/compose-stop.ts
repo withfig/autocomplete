@@ -11,7 +11,7 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "stop",
-  description: "Stop running containers without removing them.",
+  description: "Stop running containers without removing them",
   args: { generators: getServices },
   options: [
     {

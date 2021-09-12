@@ -126,7 +126,7 @@ const sharedOptions: Fig.Option[] = [
   {
     name: "--max-memory-restart",
     description:
-      "specify max memory amount used to autorestart (in octet or use syntax like 100M)",
+      "Specify max memory amount used to autorestart (in octet or use syntax like 100M)",
     args: {
       name: "memory",
     },
@@ -296,7 +296,7 @@ const sharedOptions: Fig.Option[] = [
       description: "–node-args=`–debug=7001 –trace-deprecation`",
     },
   },
-  { name: "–-no-color", description: "skip colors" },
+  { name: "–-no-color", description: "Skip colors" },
   {
     name: "–-no-vizion",
     description: "Starts an app without vizion feature (versioning control)",
@@ -325,7 +325,7 @@ const sharedOptions: Fig.Option[] = [
     description: "Sort process according to field’s name",
     args: {
       name: "field name",
-      description: "field_name:sort",
+      description: "Field_name:sort",
     },
   },
   { name: "–-v8", description: "Enables v8 data collecting" },
@@ -528,7 +528,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "multiset",
-      description: "multiset eg `key1 val1 key2 val2`",
+      description: "Multiset eg `key1 val1 key2 val2`",
       args: {
         name: "key value",
         isVariadic: true,
@@ -598,7 +598,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "unlink",
-      description: "linking action to keymetrics.io",
+      description: "Linking action to keymetrics.io",
     },
     {
       name: "unmonitor",

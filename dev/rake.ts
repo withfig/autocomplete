@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "rake",
-  description: "a ruby build program with capabilities similar to make",
+  description: "A ruby build program with capabilities similar to make",
   args: {
     name: "targets",
     isVariadic: true,
@@ -9,16 +9,16 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-n", "--dry-run"],
-      description: "Do a dry run without executing actions.",
+      description: "Do a dry run without executing actions",
     },
     {
       name: ["-h", "-H", "--help"],
-      description: "Display this help message.",
+      description: "Display this help message",
     },
     {
       name: ["-I", "--libdir"],
       insertValue: "--libdir=",
-      description: "Include LIBDIR in the search path for required modules.",
+      description: "Include LIBDIR in the search path for required modules",
       args: {
         name: "LIBDIR",
         template: "folders",
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-P", "--prereqs"],
-      description: "Display the tasks and dependencies, then exit.",
+      description: "Display the tasks and dependencies, then exit",
     },
     {
       name: ["-q", "--quiet"],
@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-f", "--rakefile"],
       insertValue: "--rakeFile=",
-      description: "Use FILE as the rakefile.",
+      description: "Use FILE as the rakefile",
       args: {
         name: "FILE",
         template: "filepaths",
@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-r", "--require"],
       insertValue: "--require=",
-      description: "Require MODULE before executing rakefile.",
+      description: "Require MODULE before executing rakefile",
       args: {
         name: "MODULE",
       },
@@ -52,11 +52,11 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-s", "--silent"],
       description:
-        "Like --quiet, but also suppresses the 'in directory' announcement.",
+        "Like --quiet, but also suppresses the 'in directory' announcement",
     },
     {
       name: ["-T", "--tasks"],
-      description: "Display the tasks and dependencies, then exit.",
+      description: "Display the tasks and dependencies, then exit",
       args: {
         name: "pattern",
         isOptional: true,
@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-t", "--trace"],
-      description: "Turn on invoke/execute tracing, enable full backtrace.",
+      description: "Turn on invoke/execute tracing, enable full backtrace",
       args: {
         name: "output",
         isOptional: true,
@@ -72,11 +72,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-v", "--verbose"],
-      description: "Log message to standard output (default).",
+      description: "Log message to standard output (default)",
     },
     {
       name: ["-V", "--version"],
-      description: "Display the program version.",
+      description: "Display the program version",
     },
   ],
 };

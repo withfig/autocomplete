@@ -43,20 +43,20 @@ const buildModeSuggestions: Fig.Suggestion[] = [
 const resolutionAndExecutionOptions: Fig.Option[] = [
   {
     name: "-n",
-    description: "print the commands but do not run them.",
+    description: "Print the commands but do not run them",
   },
   {
     name: "-v",
-    description: "print the names of packages as they are compiled.",
+    description: "Print the names of packages as they are compiled",
   },
   {
     name: "-x",
-    description: "print the commands.",
+    description: "Print the commands",
   },
   {
     name: "-tags",
     description:
-      "a comma-separated list of build tags to consider satisfied during the build.",
+      "A comma-separated list of build tags to consider satisfied during the build",
     args: {
       name: "tags",
     },
@@ -65,7 +65,7 @@ const resolutionAndExecutionOptions: Fig.Option[] = [
     name: "-toolexec",
     insertValue: "-toolexec '{cursor}'",
     description:
-      "a program to use to invoke toolchain programs like vet and asm.",
+      "A program to use to invoke toolchain programs like vet and asm",
     args: {
       name: "cmd",
     },
@@ -76,12 +76,12 @@ const globalOptions: Fig.Option[] = [
   ...resolutionAndExecutionOptions,
   {
     name: "-a",
-    description: "force rebuilding of packages that are already up-to-date.",
+    description: "Force rebuilding of packages that are already up-to-date",
   },
 
   {
     name: "-p",
-    description: "the number of programs, such as build commands or",
+    description: "The number of programs, such as build commands or",
     args: {
       name: "programs",
     },
@@ -107,7 +107,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-asmflags",
     insertValue: "-asmflags='{cursor}'",
-    description: "arguments to pass on each go tool asm invocation.",
+    description: "Arguments to pass on each go tool asm invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -115,7 +115,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "-buildmode",
-    description: "build mode to use. See 'go help buildmode' for more.",
+    description: "Build mode to use. See 'go help buildmode' for more",
     args: {
       name: "mode",
       suggestions: buildModeSuggestions,
@@ -124,7 +124,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-compiler",
     description:
-      "name of compiler to use, as in runtime.Compiler (gccgo or gc).",
+      "Name of compiler to use, as in runtime.Compiler (gccgo or gc)",
     args: {
       name: "name",
     },
@@ -132,7 +132,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-gccgoflags",
     insertValue: "--gccgoflags='{cursor}'",
-    description: "arguments to pass on each gccgo compiler/linker invocation.",
+    description: "Arguments to pass on each gccgo compiler/linker invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -141,7 +141,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-gcflags",
     insertValue: "-gcflags='{cursor}'",
-    description: "arguments to pass on each go tool compile invocation.",
+    description: "Arguments to pass on each go tool compile invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -150,7 +150,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-installsuffix",
     description:
-      "a suffix to use in the name of the package installation directory,",
+      "A suffix to use in the name of the package installation directory,",
     args: {
       name: "suffix",
     },
@@ -158,7 +158,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-ldflags",
     insertValue: "-ldflags='{cursor}'",
-    description: "arguments to pass on each go tool link invocation..",
+    description: "Arguments to pass on each go tool link invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -167,11 +167,11 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-linkshared",
     description:
-      "build code that will be linked against shared libraries previously",
+      "Build code that will be linked against shared libraries previously",
   },
   {
     name: "-mod",
-    description: "module download mode to use: readonly, vendor, or mod.",
+    description: "Module download mode to use: readonly, vendor, or mod",
     args: {
       name: "mode",
       suggestions: [
@@ -190,12 +190,12 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-modcacherw",
     description:
-      "leave newly-created directories in the module cache read-write",
+      "Leave newly-created directories in the module cache read-write",
   },
   {
     name: "-modfile",
     description:
-      "in module aware mode, read (and possibly write) an alternate go.mod file instead of the one in the module root directory.",
+      "In module aware mode, read (and possibly write) an alternate go.mod file instead of the one in the module root directory",
     args: {
       name: "file",
     },
@@ -203,7 +203,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-overlay",
     description:
-      "read a JSON config file that provides an overlay for build operations.",
+      "Read a JSON config file that provides an overlay for build operations",
     args: {
       name: "file",
     },
@@ -211,14 +211,14 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-pkgdir",
     description:
-      "install and load all packages from dir instead of the usual locations.",
+      "Install and load all packages from dir instead of the usual locations",
     args: {
       name: "dir",
     },
   },
   {
     name: "-trimpath",
-    description: "remove all file system paths from the resulting executable.",
+    description: "Remove all file system paths from the resulting executable",
   },
 ];
 
@@ -230,24 +230,24 @@ const packagesArg: Fig.Arg = {
 
 const completionSpec: Fig.Spec = {
   name: "go",
-  description: "Go is a tool for managing Go source code.",
+  description: "Go is a tool for managing Go source code",
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
   subcommands: [
     {
       name: "bug",
-      description: "start a bug report",
+      description: "Start a bug report",
     },
     {
       name: "build",
-      description: "compile packages and dependencies",
+      description: "Compile packages and dependencies",
       options: [
         ...globalOptions,
         {
           name: "-o",
           description:
-            "write the resulting executable or object to the named output file or directory",
+            "Write the resulting executable or object to the named output file or directory",
           args: {
             template: ["filepaths", "folders"],
           },
@@ -255,69 +255,69 @@ const completionSpec: Fig.Spec = {
         {
           name: "-i",
           description:
-            "install the packages that are dependencies of the target",
+            "Install the packages that are dependencies of the target",
         },
       ],
       args: packagesArg,
     },
     {
       name: "clean",
-      description: "remove object files and cached files",
+      description: "Remove object files and cached files",
       options: [
         ...globalOptions,
         {
           name: "-i",
-          description: "remove the corresponding installed archive or binary",
+          description: "Remove the corresponding installed archive or binary",
         },
         {
           name: "-r",
           description:
-            "apply recursively to all the dependencies of the packages named by the import paths.",
+            "Apply recursively to all the dependencies of the packages named by the import paths",
         },
         {
           name: "-cache",
-          description: "remove the entire go build cache",
+          description: "Remove the entire go build cache",
         },
         {
           name: "-testcache",
-          description: "expire all test results in the go build cache.",
+          description: "Expire all test results in the go build cache",
         },
         {
           name: "-modcache",
           description:
-            "remove the entire module download cache, including unpacked source code of versioned dependencies.",
+            "Remove the entire module download cache, including unpacked source code of versioned dependencies",
         },
       ],
     },
     {
       name: "doc",
-      description: "show documentation for package or symbol",
+      description: "Show documentation for package or symbol",
       options: [
         {
           name: "-all",
-          description: "Show all the documentation for the package.",
+          description: "Show all the documentation for the package",
         },
         {
           name: "-c",
-          description: "Respect case when matching symbols.",
+          description: "Respect case when matching symbols",
         },
         {
           name: "-cmd",
           description:
-            "Treat a command (package main) like a regular package. Otherwise package main's exported symbols are hidden when showing the package's top-level documentation.",
+            "Treat a command (package main) like a regular package. Otherwise package main's exported symbols are hidden when showing the package's top-level documentation",
         },
         {
           name: "-short",
-          description: "One-line representation for each symbol.",
+          description: "One-line representation for each symbol",
         },
         {
           name: "-src",
-          description: "Show the full source code for the symbol.",
+          description: "Show the full source code for the symbol",
         },
         {
           name: "-u",
           description:
-            "Show documentation for unexported as well as exported symbols, methods, and fields.",
+            "Show documentation for unexported as well as exported symbols, methods, and fields",
         },
       ],
       args: {
@@ -326,17 +326,17 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "env",
-      description: "print Go environment information",
+      description: "Print Go environment information",
       options: [
         {
           name: "-json",
           description:
-            "prints the environment in JSON format instead of as a shell script.",
+            "Prints the environment in JSON format instead of as a shell script",
         },
         {
           name: "-u",
           description:
-            "unset the default setting for the named environment variables",
+            "Unset the default setting for the named environment variables",
           args: {
             isVariadic: true,
           },
@@ -344,7 +344,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-w",
           description:
-            "change the default settings of the named environment variables to the given values.",
+            "Change the default settings of the named environment variables to the given values",
           args: {
             isVariadic: true,
           },
@@ -353,24 +353,24 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "fix",
-      description: "update packages to use new APIs",
+      description: "Update packages to use new APIs",
       args: packagesArg,
     },
     {
       name: "fmt",
-      description: "gofmt (reformat) package sources",
+      description: "Gofmt (reformat) package sources",
       options: [
         {
           name: "-n",
-          description: "print the commands that would be executed",
+          description: "Print the commands that would be executed",
         },
         {
           name: "-x",
-          description: "print the commands as they are exectued",
+          description: "Print the commands as they are exectued",
         },
         {
           name: "-mod",
-          description: "which module download mode to use",
+          description: "Which module download mode to use",
           args: {
             name: "mode",
             suggestions: [
@@ -388,48 +388,48 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "generate",
-      description: "generate Go files by processing source",
+      description: "Generate Go files by processing source",
       options: [
         ...globalOptions,
         {
           name: "-run",
           insertValue: '-run "{cursor}"',
           description:
-            "specifies a regular expression to select directives whose full original source text matches the expression.",
+            "Specifies a regular expression to select directives whose full original source text matches the expression",
         },
       ],
     },
     {
       name: "get",
-      description: "add dependencies to current module and install them",
+      description: "Add dependencies to current module and install them",
       options: [
         ...globalOptions,
         {
           name: "-t",
           description:
-            "modules needed to build tests of packages specified on the command line.",
+            "Modules needed to build tests of packages specified on the command line",
         },
         {
           name: "-u",
-          description: "update to newer minor or patch releases when available",
+          description: "Update to newer minor or patch releases when available",
           args: {
             isOptional: true,
             suggestions: [
               {
                 name: "patch",
-                description: "update to newer patch releases",
+                description: "Update to newer patch releases",
               },
             ],
           },
         },
         {
           name: "-insecure",
-          description: "permit fetching from insecure origins",
+          description: "Permit fetching from insecure origins",
         },
         {
           name: "-d",
           description:
-            "only update go.mod and download source code needed to build packages.",
+            "Only update go.mod and download source code needed to build packages",
         },
       ],
       args: {
@@ -439,7 +439,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "install",
-      description: "compile and install packages and dependencies",
+      description: "Compile and install packages and dependencies",
       options: [...globalOptions],
       args: {
         name: "packages",
@@ -448,22 +448,22 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list",
-      description: "list packages or modules",
+      description: "List packages or modules",
       options: [
         ...globalOptions,
         {
           name: "-compiled",
-          description: "set CompiledGoFiles to the Go source files",
+          description: "Set CompiledGoFiles to the Go source files",
         },
         {
           name: "-deps",
           description:
-            "terate over not just the named packages but also all their dependencies",
+            "Terate over not just the named packages but also all their dependencies",
         },
         {
           name: "-f",
           insertValue: "-f '{cursor}'",
-          description: "specify an alternate format for the list",
+          description: "Specify an alternate format for the list",
           args: {
             name: "format",
           },
@@ -471,38 +471,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "-e",
           description:
-            "processes the erroneous packages with the usual printing",
+            "Processes the erroneous packages with the usual printing",
         },
         {
           name: "-export",
           description:
-            "set the Export field to the name of a file containing up-to-date export information for the given package.",
+            "Set the Export field to the name of a file containing up-to-date export information for the given package",
         },
         {
           name: "-find",
           description:
-            "identify the named packages but not resolve their dependencies",
+            "Identify the named packages but not resolve their dependencies",
         },
         {
           name: "-test",
-          description: "report test binaries",
+          description: "Report test binaries",
         },
         {
           name: "-m",
-          description: "list modules instead of packages",
+          description: "List modules instead of packages",
         },
         {
           name: "-u",
-          description: "add information about available upgrades",
+          description: "Add information about available upgrades",
         },
         {
           name: "-versions",
           description:
-            "set the Module's Versions field to a list of all known versions of that module",
+            "Set the Module's Versions field to a list of all known versions of that module",
         },
         {
           name: "-retracted",
-          description: "eport information about retracted module versions",
+          description: "Eport information about retracted module versions",
         },
       ],
       args: {
@@ -511,21 +511,21 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "mod",
-      description: "module maintenance",
+      description: "Module maintenance",
       subcommands: [
         {
           name: "download",
-          description: "download the named modules into the module cache",
+          description: "Download the named modules into the module cache",
           options: [
             {
               name: "-json",
               description:
-                "print a sequence of JSON objects to standard output, describing each downloaded module (or failure)",
+                "Print a sequence of JSON objects to standard output, describing each downloaded module (or failure)",
             },
             {
               name: "-x",
               description:
-                " print the commands download executes to standard error.",
+                "Print the commands download executes to standard error",
             },
           ],
           args: {
@@ -535,16 +535,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "edit",
-          description: "edit and format go.mod files",
+          description: "Edit and format go.mod files",
           options: [
             {
               name: "-module",
-              description: "change the module's path",
+              description: "Change the module's path",
             },
             {
               name: "-go",
               insertValue: "-go=",
-              description: "set the expected Go language version",
+              description: "Set the expected Go language version",
               args: {
                 name: "version",
               },
@@ -552,7 +552,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-require",
               insertValue: "-require=",
-              description: "add a requirement on the given module",
+              description: "Add a requirement on the given module",
               args: {
                 name: "path",
               },
@@ -560,7 +560,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-droprequire",
               insertValue: "-droprequire=",
-              description: "drop a requirement on the given module",
+              description: "Drop a requirement on the given module",
               args: {
                 name: "path",
               },
@@ -568,7 +568,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-exclude",
               insertValue: "-exclude=",
-              description: "add an exclusion on the given module",
+              description: "Add an exclusion on the given module",
               args: {
                 name: "path",
               },
@@ -576,7 +576,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-dropexclude",
               insertValue: "-dropexclude=",
-              description: "drop an exclusion on the given module",
+              description: "Drop an exclusion on the given module",
               args: {
                 name: "path",
               },
@@ -585,7 +585,7 @@ const completionSpec: Fig.Spec = {
               name: "-replace",
               insertValue: "-replace=",
               description:
-                "add a replacement of the given module path and version pair",
+                "Add a replacement of the given module path and version pair",
               args: {
                 name: "path",
               },
@@ -594,7 +594,7 @@ const completionSpec: Fig.Spec = {
               name: "-dropreplace",
               insertValue: "-dropreplace=",
               description:
-                "drops a replacement of the given module path and version pair",
+                "Drops a replacement of the given module path and version pair",
               args: {
                 name: "path",
               },
@@ -602,7 +602,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-retract",
               insertValue: "-retract=",
-              description: "add a retraction for the given version",
+              description: "Add a retraction for the given version",
               args: {
                 name: "version",
               },
@@ -610,7 +610,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-dropretract",
               insertValue: "-dropretract=",
-              description: "drop a retraction for the given version",
+              description: "Drop a retraction for the given version",
               args: {
                 name: "version",
               },
@@ -618,28 +618,28 @@ const completionSpec: Fig.Spec = {
             {
               name: "-fmt",
               description:
-                "format the go.mod file without making other changes",
+                "Format the go.mod file without making other changes",
             },
             {
               name: "-print",
               description:
-                "print the final go.mod in its text format instead of writing it back to disk",
+                "Print the final go.mod in its text format instead of writing it back to disk",
             },
             {
               name: "-json",
               description:
-                " print the final go.mod in JSON format instead of writing it back to disk in text forma",
+                "Print the final go.mod in JSON format instead of writing it back to disk in text forma",
             },
           ],
         },
         {
           name: "graph",
-          description: "print the module requirement graph",
+          description: "Print the module requirement graph",
         },
         {
           name: "init",
           description:
-            "initialize and write a new go.mod file in the current directory",
+            "Initialize and write a new go.mod file in the current directory",
           args: {
             name: "module path",
             isOptional: true,
@@ -648,53 +648,53 @@ const completionSpec: Fig.Spec = {
         {
           name: "tidy",
           description:
-            "ensure that the go.mod file matches the source code in the module",
+            "Ensure that the go.mod file matches the source code in the module",
           options: [
             {
               name: "-e",
               description:
-                "attempt to proceed despite errors encountered while loading packages",
+                "Attempt to proceed despite errors encountered while loading packages",
             },
             {
               name: "-v",
-              description: "print information about removed modules",
+              description: "Print information about removed modules",
             },
           ],
         },
         {
           name: "vendor",
           description:
-            "construct a directory named vendor in the main module's root directory",
+            "Construct a directory named vendor in the main module's root directory",
           options: [
             {
               name: "-e",
               description:
-                "attempt to proceed despite errors encountered while loading packages",
+                "Attempt to proceed despite errors encountered while loading packages",
             },
             {
               name: "-v",
-              description: "print information about removed modules",
+              description: "Print information about removed modules",
             },
           ],
         },
         {
           name: "verify",
           description:
-            "check that dependencies of the main module stored in the module cache have not been modified since they were downloaded",
+            "Check that dependencies of the main module stored in the module cache have not been modified since they were downloaded",
         },
         {
           name: "why",
           description:
-            "show a shortest path in the import graph from the main module to each of the listed packages",
+            "Show a shortest path in the import graph from the main module to each of the listed packages",
           options: [
             {
               name: "-m",
-              description: "treat its arguments as a list of modules",
+              description: "Treat its arguments as a list of modules",
             },
             {
               name: "-vendor",
               description:
-                "ignore imports in tests of packages outside the main module ",
+                "Ignore imports in tests of packages outside the main module",
             },
           ],
           args: {
@@ -706,12 +706,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "run",
-      description: "compile and run Go program",
+      description: "Compile and run Go program",
       options: [
         ...globalOptions,
         {
           name: "-exec",
-          description: "invoke the binary using xprog",
+          description: "Invoke the binary using xprog",
           args: {},
         },
       ],
@@ -722,37 +722,37 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "test",
-      description: "test packages",
+      description: "Test packages",
       options: [
         ...globalOptions,
         {
           name: "-args",
           description:
-            "pass the remainder of the command line to the test binary",
+            "Pass the remainder of the command line to the test binary",
           args: {
             isVariadic: true,
           },
         },
         {
           name: "-c",
-          description: "compile the test binary to pkg.test but do not run it",
+          description: "Compile the test binary to pkg.test but do not run it",
         },
         {
           name: "-exec",
-          description: "invoke the binary using xprog",
+          description: "Invoke the binary using xprog",
           args: {},
         },
         {
           name: "-i",
-          description: "install packages that are dependencies of the test.",
+          description: "Install packages that are dependencies of the test",
         },
         {
           name: "-json",
-          description: "convert test output to JSON suitable",
+          description: "Convert test output to JSON suitable",
         },
         {
           name: "-o",
-          description: " Compile the test binary to the named file",
+          description: "Compile the test binary to the named file",
           args: {
             name: "file",
             template: "filepaths",
@@ -762,12 +762,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tool",
-      description: "run specified go tool",
+      description: "Run specified go tool",
       options: [
         {
           name: "-n",
           description:
-            "print the command that would be executed but not execute it",
+            "Print the command that would be executed but not execute it",
         },
       ],
       args: {
@@ -780,16 +780,16 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "version",
-      description: "print Go version",
+      description: "Print Go version",
       options: [
         {
           name: "-m",
           description:
-            "print each executable's embedded module version information",
+            "Print each executable's embedded module version information",
         },
         {
           name: "-v",
-          description: "report unrecognized files",
+          description: "Report unrecognized files",
         },
       ],
       args: {
@@ -799,14 +799,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "vet",
-      description: "report likely mistakes in packages",
+      description: "Report likely mistakes in packages",
       options: [
         ...resolutionAndExecutionOptions,
         {
           name: "-vettool",
           insertValue: "-vettool=",
           description:
-            "select a different analysis tool with alternative or additional checks",
+            "Select a different analysis tool with alternative or additional checks",
           args: {
             name: "tool",
           },

@@ -191,7 +191,7 @@ const dbOptions = [
   {
     name: "--backtrace",
     description:
-      "Enable full backtrace.  OUT can be stderr (default) or stdout.",
+      "Enable full backtrace.  OUT can be stderr (default) or stdout",
   },
   {
     name: "--comments",
@@ -204,12 +204,12 @@ const dbOptions = [
   },
   {
     name: "--rules",
-    description: "Trace the rules resolution.",
+    description: "Trace the rules resolution",
   },
   {
     name: "--suppress-backtrace",
     description:
-      "Suppress backtrace lines matching regexp PATTERN. Ignored if --trace is on.",
+      "Suppress backtrace lines matching regexp PATTERN. Ignored if --trace is on",
     args: { name: "pattern" },
   },
   {
@@ -220,11 +220,11 @@ const dbOptions = [
   {
     name: ["-B", "--build-all"],
     description:
-      "Build all prerequisites, including those which are up-to-date.",
+      "Build all prerequisites, including those which are up-to-date",
   },
   {
     name: ["-D", "--describe"],
-    description: "Describe the tasks (matching optional PATTERN), then exit.",
+    description: "Describe the tasks (matching optional PATTERN), then exit",
     args: {
       name: "pattern",
       isOptional: true,
@@ -232,33 +232,33 @@ const dbOptions = [
   },
   {
     name: ["-e", "--execute"],
-    description: "Execute some Ruby code and exit.",
+    description: "Execute some Ruby code and exit",
     args: { name: "code" },
   },
   {
     name: ["-E", "--execute-continue"],
     description:
-      "Execute some Ruby code, then continue with normal task processing.",
+      "Execute some Ruby code, then continue with normal task processing",
     args: { name: "code" },
   },
   {
     name: ["-f", "--rakefile"],
-    description: "Use FILENAME as the rakefile to search for.",
+    description: "Use FILENAME as the rakefile to search for",
     args: { name: "filename" },
   },
   {
     name: "-G",
     description:
-      "Use standard project Rakefile search paths, ignore system wide rakefiles.",
+      "Use standard project Rakefile search paths, ignore system wide rakefiles",
   },
   {
     name: ["-g", "--system"],
     description:
-      "Using system wide (global) rakefiles (usually '~/.rake/*.rake').",
+      "Using system wide (global) rakefiles (usually '~/.rake/*.rake')",
   },
   {
     name: ["-I", "--libdir"],
-    description: "Include LIBDIR in the search path for required modules.",
+    description: "Include LIBDIR in the search path for required modules",
     args: { name: "libdir" },
   },
   {
@@ -269,37 +269,37 @@ const dbOptions = [
   },
   {
     name: ["-m", "--multitask"],
-    description: "Treat all tasks as multitasks.",
+    description: "Treat all tasks as multitasks",
     args: {},
   },
   {
     name: ["-n", "--dry-run"],
-    description: "Do a dry run without executing actions.",
+    description: "Do a dry run without executing actions",
     args: {},
   },
   {
     name: "-N",
-    description: "Do not search parent directories for the Rakefile.",
+    description: "Do not search parent directories for the Rakefile",
     args: {},
   },
   {
     name: ["-P", "--prereqs"],
-    description: "Display the tasks and dependencies, then exit.",
+    description: "Display the tasks and dependencies, then exit",
     args: {},
   },
   {
     name: ["-p", "--execute-print"],
-    description: "Execute some Ruby code, print the result, then exit.",
+    description: "Execute some Ruby code, print the result, then exit",
     args: {},
   },
   {
     name: ["-q", "--quiet"],
-    description: "Do not log messages to standard output.",
+    description: "Do not log messages to standard output",
     args: {},
   },
   {
     name: ["-r", "--require"],
-    description: "Require MODULE before executing rakefile.",
+    description: "Require MODULE before executing rakefile",
     args: { name: "module" },
   },
   {
@@ -311,44 +311,44 @@ const dbOptions = [
   {
     name: "--rakelib",
     description:
-      "-s, --silent                     Like --quiet, but also suppresses the 'in directory' announcement.",
+      "-s, --silent                     Like --quiet, but also suppresses the 'in directory' announcement",
     args: {},
   },
   {
     name: ["-t", "--trace"],
     description:
-      "Turn on invoke/execute tracing, enable full backtrace. OUT can be stderr (default) or stdout.",
+      "Turn on invoke/execute tracing, enable full backtrace. OUT can be stderr (default) or stdout",
     args: {},
   },
   {
     name: ["-T", "--tasks"],
     description:
-      "Display the tasks (matching optional PATTERN) with descriptions, then exit. -AT combination displays all of tasks contained no description.",
+      "Display the tasks (matching optional PATTERN) with descriptions, then exit. -AT combination displays all of tasks contained no description",
     args: {},
   },
   {
     name: ["-v", "--verbose"],
-    description: "Log message to standard output.",
+    description: "Log message to standard output",
     args: {},
   },
   {
     name: ["-V", "--version"],
-    description: "Display the program version.",
+    description: "Display the program version",
     args: {},
   },
   {
     name: ["-W", "--where"],
-    description: "Describe the tasks (matching optional PATTERN), then exit.",
+    description: "Describe the tasks (matching optional PATTERN), then exit",
     args: { name: "pattern" },
   },
   {
     name: ["-X", "--no-deprecation-warnings"],
-    description: "Disable the deprecation warnings.",
+    description: "Disable the deprecation warnings",
     args: {},
   },
   {
     name: ["-h", "--help"],
-    description: "Display this help message.",
+    description: "Display this help message",
     args: {},
   },
 ];
@@ -356,7 +356,7 @@ const dbOptions = [
 const defaultCommands: Fig.Subcommand[] = [
   {
     name: "console",
-    description: "Interact with your Rails application from the command line.",
+    description: "Interact with your Rails application from the command line",
     options: [
       {
         name: ["-s", "--sandbox"],
@@ -379,18 +379,18 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: ["-e", "--environment"],
         description:
-          "Specifies the environment to run this server under (e.g. test/development/production).",
+          "Specifies the environment to run this server under (e.g. test/development/production)",
         args: { name: "environment" },
       },
       {
         name: ["-p", "--port"],
-        description: "Runs Rails on the specified port - defaults to 3000.",
+        description: "Runs Rails on the specified port - defaults to 3000",
         args: { name: "port" },
       },
       {
         name: ["-b", "--binding"],
         description:
-          "Binds Rails to the specified IP - defaults to 'localhost' in development and '0.0.0.0' in other environments'.",
+          "Binds Rails to the specified IP - defaults to 'localhost' in development and '0.0.0.0' in other environments'",
         args: { name: "IP" },
       },
       {
@@ -401,12 +401,12 @@ const defaultCommands: Fig.Subcommand[] = [
       },
       {
         name: ["-d", "--daemon"],
-        description: "Runs server as a Daemon.",
+        description: "Runs server as a Daemon",
       },
       {
         name: ["-u", "--using"],
         description:
-          "Specifies the Rack server used to run the application (thin/puma/webrick).",
+          "Specifies the Rack server used to run the application (thin/puma/webrick)",
         args: { name: "server" },
       },
       {
@@ -447,7 +447,7 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: "-e",
         description:
-          "Specifies the environment to run this dbconsole under (e.g. test/development/production).",
+          "Specifies the environment to run this dbconsole under (e.g. test/development/production)",
         args: {},
       },
       {
@@ -466,12 +466,12 @@ const defaultCommands: Fig.Subcommand[] = [
       },
       {
         name: "-c",
-        description: "Specifies the connection to use.",
+        description: "Specifies the connection to use",
         args: { name: "connection" },
       },
       {
         name: ["-db", "--database"],
-        description: "Specifies the database to use.",
+        description: "Specifies the database to use",
       },
     ],
   },
@@ -553,17 +553,17 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: "-c",
         description:
-          "Filter by a specific controller, e.g. PostsController or Admin::PostsController.",
+          "Filter by a specific controller, e.g. PostsController or Admin::PostsController",
         args: {},
       },
       {
         name: "-g",
-        description: "Grep routes by a specific pattern.",
+        description: "Grep routes by a specific pattern",
         args: {},
       },
       {
         name: "-E",
-        description: "Print routes expanded vertically with parts explained. ",
+        description: "Print routes expanded vertically with parts explained",
         args: {},
       },
     ],

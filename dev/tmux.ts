@@ -334,7 +334,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-N",
-          description: "start without the preview",
+          description: "Start without the preview",
         },
         {
           name: "-r",
@@ -734,7 +734,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "-b",
-          description: "src-pane will be joined to left of or above dst-pane",
+          description: "Src-pane will be joined to left of or above dst-pane",
           args: panesArg,
         },
         {
@@ -918,7 +918,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-s",
-          description: "target-window becomes a session",
+          description: "Target-window becomes a session",
         },
         formatOption,
         {
@@ -1739,7 +1739,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["info", "server-info"],
-      description: "Show every session, window, pane, etc...",
+      description: "Show every session, window, pane, etc",
     },
     {
       name: ["setb", "set-buffer"],
