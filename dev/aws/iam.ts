@@ -948,17 +948,17 @@ const generators: Record<string, Fig.Generator> = {
 const completionSpec: Fig.Spec = {
   name: "iam",
   description:
-    "AWS Identity and Access Management AWS Identity and Access Management (IAM) is a web service for securely controlling access to AWS services. With IAM, you can centrally manage users, security credentials such as access keys, and permissions that control which AWS resources users and applications can access. For more information about IAM, see AWS Identity and Access Management (IAM) and the AWS Identity and Access Management User Guide.",
+    "AWS Identity and Access Management AWS Identity and Access Management (IAM) is a web service for securely controlling access to AWS services. With IAM, you can centrally manage users, security credentials such as access keys, and permissions that control which AWS resources users and applications can access. For more information about IAM, see AWS Identity and Access Management (IAM) and the AWS Identity and Access Management User Guide",
   subcommands: [
     {
       name: "add-client-id-to-open-id-connect-provider",
       description:
-        "Adds a new client ID (also known as audience) to the list of client IDs already registered for the specified IAM OpenID Connect (OIDC) provider resource. This operation is idempotent; it does not fail or return an error if you add an existing client ID to the provider.",
+        "Adds a new client ID (also known as audience) to the list of client IDs already registered for the specified IAM OpenID Connect (OIDC) provider resource. This operation is idempotent; it does not fail or return an error if you add an existing client ID to the provider",
       options: [
         {
           name: "--open-id-connect-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider resource to add the client ID to. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation.",
+            "The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider resource to add the client ID to. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation",
           args: {
             name: "string",
             generators: generators.listOpenIdProviders,
@@ -967,7 +967,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-id",
           description:
-            "The client ID (also known as audience) to add to the IAM OpenID Connect provider resource.",
+            "The client ID (also known as audience) to add to the IAM OpenID Connect provider resource",
           args: {
             name: "string",
             generators: generators.listOpenIdClientsForProvider,
@@ -976,7 +976,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -985,7 +985,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -996,7 +996,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-role-to-instance-profile",
       description:
-        "Adds the specified IAM role to the specified instance profile. An instance profile can contain only one role, and this quota cannot be increased. You can remove the existing role and then add a different role to an instance profile. You must then wait for the change to appear across all of AWS because of eventual consistency. To force the change, you must disassociate the instance profile and then associate the instance profile, or you can stop your instance and then restart it.  The caller of this operation must be granted the PassRole permission on the IAM role by a permissions policy.  For more information about roles, see Working with roles. For more information about instance profiles, see About instance profiles.",
+        "Adds the specified IAM role to the specified instance profile. An instance profile can contain only one role, and this quota cannot be increased. You can remove the existing role and then add a different role to an instance profile. You must then wait for the change to appear across all of AWS because of eventual consistency. To force the change, you must disassociate the instance profile and then associate the instance profile, or you can stop your instance and then restart it.  The caller of this operation must be granted the PassRole permission on the IAM role by a permissions policy.  For more information about roles, see Working with roles. For more information about instance profiles, see About instance profiles",
       options: [
         {
           name: "--instance-profile-name",
@@ -1018,7 +1018,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1027,7 +1027,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1037,7 +1037,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "add-user-to-group",
-      description: "Adds the specified user to the specified group.",
+      description: "Adds the specified user to the specified group",
       options: [
         {
           name: "--group-name",
@@ -1060,7 +1060,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1069,7 +1069,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1080,7 +1080,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "attach-group-policy",
       description:
-        "Attaches the specified managed policy to the specified IAM group. You use this operation to attach a managed policy to a group. To embed an inline policy in a group, use PutGroupPolicy. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide. For more information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Attaches the specified managed policy to the specified IAM group. You use this operation to attach a managed policy to a group. To embed an inline policy in a group, use PutGroupPolicy. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide. For more information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--group-name",
@@ -1094,7 +1094,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             // NOTE: only suggest user policies to streamline number of returned items
@@ -1104,7 +1104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1113,7 +1113,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1124,7 +1124,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "attach-role-policy",
       description:
-        "Attaches the specified managed policy to the specified IAM role. When you attach a managed policy to a role, the managed policy becomes part of the role's permission (access) policy.  You cannot use a managed policy as the role's trust policy. The role's trust policy is created at the same time as the role, using CreateRole. You can update a role's trust policy using UpdateAssumeRolePolicy.  Use this operation to attach a managed policy to a role. To embed an inline policy in a role, use PutRolePolicy. For more information about policies, see Managed policies and inline policies in the IAM User Guide. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide.",
+        "Attaches the specified managed policy to the specified IAM role. When you attach a managed policy to a role, the managed policy becomes part of the role's permission (access) policy.  You cannot use a managed policy as the role's trust policy. The role's trust policy is created at the same time as the role, using CreateRole. You can update a role's trust policy using UpdateAssumeRolePolicy.  Use this operation to attach a managed policy to a role. To embed an inline policy in a role, use PutRolePolicy. For more information about policies, see Managed policies and inline policies in the IAM User Guide. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -1138,7 +1138,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -1147,7 +1147,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1156,7 +1156,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1167,7 +1167,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "attach-user-policy",
       description:
-        "Attaches the specified managed policy to the specified user. You use this operation to attach a managed policy to a user. To embed an inline policy in a user, use PutUserPolicy. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide. For more information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Attaches the specified managed policy to the specified user. You use this operation to attach a managed policy to a user. To embed an inline policy in a user, use PutUserPolicy. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide. For more information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -1181,7 +1181,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -1190,7 +1190,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1199,7 +1199,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1210,11 +1210,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "change-password",
       description:
-        "Changes the password of the IAM user who is calling this operation. This operation can be performed using the AWS CLI, the AWS API, or the My Security Credentials page in the AWS Management Console. The AWS account root user password is not affected by this operation. Use UpdateLoginProfile to use the AWS CLI, the AWS API, or the Users page in the IAM console to change the password for any IAM user. For more information about modifying passwords, see Managing passwords in the IAM User Guide.",
+        "Changes the password of the IAM user who is calling this operation. This operation can be performed using the AWS CLI, the AWS API, or the My Security Credentials page in the AWS Management Console. The AWS account root user password is not affected by this operation. Use UpdateLoginProfile to use the AWS CLI, the AWS API, or the Users page in the IAM console to change the password for any IAM user. For more information about modifying passwords, see Managing passwords in the IAM User Guide",
       options: [
         {
           name: "--old-password",
-          description: "The IAM user's current password.",
+          description: "The IAM user's current password",
           args: {
             name: "string",
           },
@@ -1222,7 +1222,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-password",
           description:
-            "The new password. The new password must conform to the AWS account's password policy, if one exists. The regex pattern that is used to validate this parameter is a string of characters. That string can include almost any printable ASCII character from the space (\\u0020) through the end of the ASCII character range (\\u00FF). You can also include the tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D) characters. Any of these characters are valid in a password. However, many tools, such as the AWS Management Console, might restrict the ability to type certain characters because they have special meaning within that tool.",
+            "The new password. The new password must conform to the AWS account's password policy, if one exists. The regex pattern that is used to validate this parameter is a string of characters. That string can include almost any printable ASCII character from the space (\\u0020) through the end of the ASCII character range (\\u00FF). You can also include the tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D) characters. Any of these characters are valid in a password. However, many tools, such as the AWS Management Console, might restrict the ability to type certain characters because they have special meaning within that tool",
           args: {
             name: "string",
           },
@@ -1230,7 +1230,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1239,7 +1239,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1250,7 +1250,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-access-key",
       description:
-        "Creates a new AWS secret access key and corresponding AWS access key ID for the specified user. The default status for new keys is Active. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials. This is true even if the AWS account has no associated users.  For information about quotas on the number of keys you can create, see IAM and STS quotas in the IAM User Guide.  To ensure the security of your AWS account, the secret access key is accessible only during key and user creation. You must save the key (for example, in a text file) if you want to be able to access it again. If a secret key is lost, you can delete the access keys for the associated user and then create new keys.",
+        "Creates a new AWS secret access key and corresponding AWS access key ID for the specified user. The default status for new keys is Active. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials. This is true even if the AWS account has no associated users.  For information about quotas on the number of keys you can create, see IAM and STS quotas in the IAM User Guide.  To ensure the security of your AWS account, the secret access key is accessible only during key and user creation. You must save the key (for example, in a text file) if you want to be able to access it again. If a secret key is lost, you can delete the access keys for the associated user and then create new keys",
       options: [
         {
           name: "--user-name",
@@ -1264,7 +1264,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1273,7 +1273,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1284,12 +1284,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-account-alias",
       description:
-        "Creates an alias for your AWS account. For information about using an AWS account alias, see Using an alias for your AWS account ID in the IAM User Guide.",
+        "Creates an alias for your AWS account. For information about using an AWS account alias, see Using an alias for your AWS account ID in the IAM User Guide",
       options: [
         {
           name: "--account-alias",
           description:
-            "The account alias to create. This parameter allows (through its regex pattern) a string of characters consisting of lowercase letters, digits, and dashes. You cannot start or finish with a dash, nor can you have two dashes in a row.",
+            "The account alias to create. This parameter allows (through its regex pattern) a string of characters consisting of lowercase letters, digits, and dashes. You cannot start or finish with a dash, nor can you have two dashes in a row",
           args: {
             name: "string",
           },
@@ -1297,7 +1297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1306,7 +1306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1317,12 +1317,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-group",
       description:
-        "Creates a new group.  For information about the number of groups you can create, see IAM and STS quotas in the IAM User Guide.",
+        "Creates a new group.  For information about the number of groups you can create, see IAM and STS quotas in the IAM User Guide",
       options: [
         {
           name: "--path",
           description:
-            "The path to the group. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path to the group. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -1331,7 +1331,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--group-name",
           description:
-            'The name of the group to create. Do not include the path in this value. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
+            'The name of the group to create. Do not include the path in this value. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource"',
           args: {
             name: "string",
             generators: generators.listGroups,
@@ -1340,7 +1340,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1349,7 +1349,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1360,7 +1360,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-instance-profile",
       description:
-        "Creates a new instance profile. For information about instance profiles, see Using roles for applications on Amazon EC2 in the IAM User Guide, and Instance profiles in the Amazon EC2 User Guide.  For information about the number of instance profiles you can create, see IAM object quotas in the IAM User Guide.",
+        "Creates a new instance profile. For information about instance profiles, see Using roles for applications on Amazon EC2 in the IAM User Guide, and Instance profiles in the Amazon EC2 User Guide.  For information about the number of instance profiles you can create, see IAM object quotas in the IAM User Guide",
       options: [
         {
           name: "--instance-profile-name",
@@ -1373,7 +1373,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path",
           description:
-            "The path to the instance profile. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path to the instance profile. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -1382,17 +1382,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1401,7 +1401,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1412,7 +1412,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-login-profile",
       description:
-        "Creates a password for the specified IAM user. A password allows an IAM user to access AWS services through the AWS Management Console. You can use the AWS CLI, the AWS API, or the Users page in the IAM console to create a password for any IAM user. Use ChangePassword to update your own existing password in the My Security Credentials page in the AWS Management Console. For more information about managing passwords, see Managing passwords in the IAM User Guide.",
+        "Creates a password for the specified IAM user. A password allows an IAM user to access AWS services through the AWS Management Console. You can use the AWS CLI, the AWS API, or the Users page in the IAM console to create a password for any IAM user. Use ChangePassword to update your own existing password in the My Security Credentials page in the AWS Management Console. For more information about managing passwords, see Managing passwords in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -1426,7 +1426,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password",
           description:
-            "The new password for the user. The regex pattern that is used to validate this parameter is a string of characters. That string can include almost any printable ASCII character from the space (\\u0020) through the end of the ASCII character range (\\u00FF). You can also include the tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D) characters. Any of these characters are valid in a password. However, many tools, such as the AWS Management Console, might restrict the ability to type certain characters because they have special meaning within that tool.",
+            "The new password for the user. The regex pattern that is used to validate this parameter is a string of characters. That string can include almost any printable ASCII character from the space (\\u0020) through the end of the ASCII character range (\\u00FF). You can also include the tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D) characters. Any of these characters are valid in a password. However, many tools, such as the AWS Management Console, might restrict the ability to type certain characters because they have special meaning within that tool",
           args: {
             name: "string",
           },
@@ -1434,17 +1434,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password-reset-required",
           description:
-            "Specifies whether the user is required to set a new password on next sign-in.",
+            "Specifies whether the user is required to set a new password on next sign-in",
         },
         {
           name: "--no-password-reset-required",
           description:
-            "Specifies whether the user is required to set a new password on next sign-in.",
+            "Specifies whether the user is required to set a new password on next sign-in",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1453,7 +1453,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1464,12 +1464,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-open-id-connect-provider",
       description:
-        "Creates an IAM entity to describe an identity provider (IdP) that supports OpenID Connect (OIDC). The OIDC provider that you create with this operation can be used as a principal in a role's trust policy. Such a policy establishes a trust relationship between AWS and the OIDC provider. When you create the IAM OIDC provider, you specify the following:   The URL of the OIDC identity provider (IdP) to trust   A list of client IDs (also known as audiences) that identify the application or applications that are allowed to authenticate using the OIDC provider   A list of thumbprints of one or more server certificates that the IdP uses   You get all of this information from the OIDC IdP that you want to use to access AWS.  The trust for the OIDC provider is derived from the IAM provider that this operation creates. Therefore, it is best to limit access to the CreateOpenIDConnectProvider operation to highly privileged users.",
+        "Creates an IAM entity to describe an identity provider (IdP) that supports OpenID Connect (OIDC). The OIDC provider that you create with this operation can be used as a principal in a role's trust policy. Such a policy establishes a trust relationship between AWS and the OIDC provider. When you create the IAM OIDC provider, you specify the following:   The URL of the OIDC identity provider (IdP) to trust   A list of client IDs (also known as audiences) that identify the application or applications that are allowed to authenticate using the OIDC provider   A list of thumbprints of one or more server certificates that the IdP uses   You get all of this information from the OIDC IdP that you want to use to access AWS.  The trust for the OIDC provider is derived from the IAM provider that this operation creates. Therefore, it is best to limit access to the CreateOpenIDConnectProvider operation to highly privileged users",
       options: [
         {
           name: "--url",
           description:
-            "The URL of the identity provider. The URL must begin with https:// and should correspond to the iss claim in the provider's OpenID Connect ID tokens. Per the OIDC standard, path components are allowed but query parameters are not. Typically the URL consists of only a hostname, like https://server.example.org or https://example.com. You cannot register the same provider multiple times in a single AWS account. If you try to submit a URL that has already been used for an OpenID Connect provider in the AWS account, you will get an error.",
+            "The URL of the identity provider. The URL must begin with https:// and should correspond to the iss claim in the provider's OpenID Connect ID tokens. Per the OIDC standard, path components are allowed but query parameters are not. Typically the URL consists of only a hostname, like https://server.example.org or https://example.com. You cannot register the same provider multiple times in a single AWS account. If you try to submit a URL that has already been used for an OpenID Connect provider in the AWS account, you will get an error",
           args: {
             name: "string",
             suggestions: ["https://"],
@@ -1478,7 +1478,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-id-list",
           description:
-            "A list of client IDs (also known as audiences). When a mobile or web app registers with an OpenID Connect provider, they establish a value that identifies the application. (This is the value that's sent as the client_id parameter on OAuth requests.) You can register multiple client IDs with the same provider. For example, you might have multiple applications that use the same OIDC provider. You cannot register more than 100 client IDs with a single IAM OIDC provider. There is no defined format for a client ID. The CreateOpenIDConnectProviderRequest operation accepts client IDs up to 255 characters long.",
+            "A list of client IDs (also known as audiences). When a mobile or web app registers with an OpenID Connect provider, they establish a value that identifies the application. (This is the value that's sent as the client_id parameter on OAuth requests.) You can register multiple client IDs with the same provider. For example, you might have multiple applications that use the same OIDC provider. You cannot register more than 100 client IDs with a single IAM OIDC provider. There is no defined format for a client ID. The CreateOpenIDConnectProviderRequest operation accepts client IDs up to 255 characters long",
           args: {
             name: "list",
           },
@@ -1486,7 +1486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--thumbprint-list",
           description:
-            "A list of server certificate thumbprints for the OpenID Connect (OIDC) identity provider's server certificates. Typically this list includes only one entry. However, IAM lets you have up to five thumbprints for an OIDC provider. This lets you maintain multiple thumbprints if the identity provider is rotating certificates. The server certificate thumbprint is the hex-encoded SHA-1 hash value of the X.509 certificate used by the domain where the OpenID Connect provider makes its keys available. It is always a 40-character string. You must provide at least one thumbprint when creating an IAM OIDC provider. For example, assume that the OIDC provider is server.example.com and the provider stores its keys at https://keys.server.example.com/openid-connect. In that case, the thumbprint string would be the hex-encoded SHA-1 hash value of the certificate used by https://keys.server.example.com. For more information about obtaining the OIDC provider's thumbprint, see Obtaining the thumbprint for an OpenID Connect provider in the IAM User Guide.",
+            "A list of server certificate thumbprints for the OpenID Connect (OIDC) identity provider's server certificates. Typically this list includes only one entry. However, IAM lets you have up to five thumbprints for an OIDC provider. This lets you maintain multiple thumbprints if the identity provider is rotating certificates. The server certificate thumbprint is the hex-encoded SHA-1 hash value of the X.509 certificate used by the domain where the OpenID Connect provider makes its keys available. It is always a 40-character string. You must provide at least one thumbprint when creating an IAM OIDC provider. For example, assume that the OIDC provider is server.example.com and the provider stores its keys at https://keys.server.example.com/openid-connect. In that case, the thumbprint string would be the hex-encoded SHA-1 hash value of the certificate used by https://keys.server.example.com. For more information about obtaining the OIDC provider's thumbprint, see Obtaining the thumbprint for an OpenID Connect provider in the IAM User Guide",
           args: {
             name: "list",
           },
@@ -1494,17 +1494,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new IAM OpenID Connect (OIDC) provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new IAM OpenID Connect (OIDC) provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1513,7 +1513,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1524,12 +1524,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-policy",
       description:
-        "Creates a new managed policy for your AWS account. This operation creates a policy version with a version identifier of v1 and sets v1 as the policy's default version. For more information about policy versions, see Versioning for managed policies in the IAM User Guide. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide. For more information about managed policies in general, see Managed policies and inline policies in the IAM User Guide.",
+        "Creates a new managed policy for your AWS account. This operation creates a policy version with a version identifier of v1 and sets v1 as the policy's default version. For more information about policy versions, see Versioning for managed policies in the IAM User Guide. As a best practice, you can validate your IAM policies. To learn more, see Validating IAM policies in the IAM User Guide. For more information about managed policies in general, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--policy-name",
           description:
-            'The friendly name of the policy. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
+            'The friendly name of the policy. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource"',
           args: {
             name: "string",
           },
@@ -1537,7 +1537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path",
           description:
-            "The path for the policy. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path for the policy. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -1555,7 +1555,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            'A friendly description of the policy. Typically used to store information about the permissions defined in the policy. For example, "Grants access to production DynamoDB tables." The policy description is immutable. After a value is assigned, it cannot be changed.',
+            'A friendly description of the policy. Typically used to store information about the permissions defined in the policy. For example, "Grants access to production DynamoDB tables." The policy description is immutable. After a value is assigned, it cannot be changed',
           args: {
             name: "string",
           },
@@ -1563,17 +1563,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new IAM customer managed policy. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new IAM customer managed policy. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1582,7 +1582,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1593,12 +1593,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-policy-version",
       description:
-        "Creates a new version of the specified managed policy. To update a managed policy, you create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must delete an existing version using DeletePolicyVersion before you create a new version. Optionally, you can set the new version as the policy's default version. The default version is the version that is in effect for the IAM users, groups, and roles to which the policy is attached. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
+        "Creates a new version of the specified managed policy. To update a managed policy, you create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must delete an existing version using DeletePolicyVersion before you create a new version. Optionally, you can set the new version as the policy's default version. The default version is the version that is in effect for the IAM users, groups, and roles to which the policy is attached. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy to which you want to add a new version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy to which you want to add a new version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -1616,17 +1616,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--set-as-default",
           description:
-            "Specifies whether to set this version as the policy's default version. When this parameter is true, the new policy version becomes the operative version. That is, it becomes the version that is in effect for the IAM users, groups, and roles that the policy is attached to. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
+            "Specifies whether to set this version as the policy's default version. When this parameter is true, the new policy version becomes the operative version. That is, it becomes the version that is in effect for the IAM users, groups, and roles that the policy is attached to. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide",
         },
         {
           name: "--no-set-as-default",
           description:
-            "Specifies whether to set this version as the policy's default version. When this parameter is true, the new policy version becomes the operative version. That is, it becomes the version that is in effect for the IAM users, groups, and roles that the policy is attached to. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
+            "Specifies whether to set this version as the policy's default version. When this parameter is true, the new policy version becomes the operative version. That is, it becomes the version that is in effect for the IAM users, groups, and roles that the policy is attached to. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1635,7 +1635,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1646,12 +1646,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-role",
       description:
-        "Creates a new role for your AWS account. For more information about roles, see IAM roles. For information about quotas for role names and the number of roles you can create, see IAM and STS quotas in the IAM User Guide.",
+        "Creates a new role for your AWS account. For more information about roles, see IAM roles. For information about quotas for role names and the number of roles you can create, see IAM and STS quotas in the IAM User Guide",
       options: [
         {
           name: "--path",
           description:
-            "The path to the role. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path to the role. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -1660,7 +1660,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--role-name",
           description:
-            'The name of the role to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
+            'The name of the role to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource"',
           args: {
             name: "string",
           },
@@ -1668,7 +1668,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--assume-role-policy-document",
           description:
-            "The trust relationship policy document that grants an entity permission to assume the role. In IAM, you must provide a JSON policy that has been converted to a string. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)    Upon success, the response includes the same trust policy in JSON format.",
+            "The trust relationship policy document that grants an entity permission to assume the role. In IAM, you must provide a JSON policy that has been converted to a string. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)    Upon success, the response includes the same trust policy in JSON format",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1676,7 +1676,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--description",
-          description: "A description of the role.",
+          description: "A description of the role",
           args: {
             name: "string",
           },
@@ -1684,7 +1684,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-session-duration",
           description:
-            "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide.",
+            "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide",
           args: {
             name: "integer",
             suggestions: Array.from({ length: 13 - 1 }, (v, k) =>
@@ -1695,7 +1695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--permissions-boundary",
           description:
-            "The ARN of the policy that is used to set the permissions boundary for the role.",
+            "The ARN of the policy that is used to set the permissions boundary for the role",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -1704,17 +1704,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new role. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new role. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1723,7 +1723,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1734,7 +1734,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-saml-provider",
       description:
-        "Creates an IAM resource that describes an identity provider (IdP) that supports SAML 2.0. The SAML provider resource that you create with this operation can be used as a principal in an IAM role's trust policy. Such a policy can enable federated users who sign in using the SAML IdP to assume the role. You can create an IAM role that supports Web-based single sign-on (SSO) to the AWS Management Console or one that supports API access to AWS. When you create the SAML provider resource, you upload a SAML metadata document that you get from your IdP. That document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that the IdP sends. You must generate the metadata document using the identity management software that is used as your organization's IdP.   This operation requires Signature Version 4.   For more information, see Enabling SAML 2.0 federated users to access the AWS Management Console and About SAML 2.0-based federation in the IAM User Guide.",
+        "Creates an IAM resource that describes an identity provider (IdP) that supports SAML 2.0. The SAML provider resource that you create with this operation can be used as a principal in an IAM role's trust policy. Such a policy can enable federated users who sign in using the SAML IdP to assume the role. You can create an IAM role that supports Web-based single sign-on (SSO) to the AWS Management Console or one that supports API access to AWS. When you create the SAML provider resource, you upload a SAML metadata document that you get from your IdP. That document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that the IdP sends. You must generate the metadata document using the identity management software that is used as your organization's IdP.   This operation requires Signature Version 4.   For more information, see Enabling SAML 2.0 federated users to access the AWS Management Console and About SAML 2.0-based federation in the IAM User Guide",
       options: [
         {
           name: "--saml-metadata-document",
@@ -1756,17 +1756,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new IAM SAML provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new IAM SAML provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1775,7 +1775,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1786,12 +1786,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-service-linked-role",
       description:
-        "Creates an IAM role that is linked to a specific AWS service. The service controls the attached policies and when the role can be deleted. This helps ensure that the service is not broken by an unexpectedly changed or deleted role, which could put your AWS resources into an unknown state. Allowing the service to control the role helps improve service stability and proper cleanup when a service and its role are no longer needed. For more information, see Using service-linked roles in the IAM User Guide.  To attach a policy to this service-linked role, you must make the request using the AWS service that depends on this role.",
+        "Creates an IAM role that is linked to a specific AWS service. The service controls the attached policies and when the role can be deleted. This helps ensure that the service is not broken by an unexpectedly changed or deleted role, which could put your AWS resources into an unknown state. Allowing the service to control the role helps improve service stability and proper cleanup when a service and its role are no longer needed. For more information, see Using service-linked roles in the IAM User Guide.  To attach a policy to this service-linked role, you must make the request using the AWS service that depends on this role",
       options: [
         {
           name: "--aws-service-name",
           description:
-            "The service principal for the AWS service to which this role is attached. You use a string similar to a URL but without the http:// in front. For example: elasticbeanstalk.amazonaws.com.  Service principals are unique and case-sensitive. To find the exact service principal for your service-linked role, see AWS services that work with IAM in the IAM User Guide. Look for the services that have Yes in the Service-Linked Role column. Choose the Yes link to view the service-linked role documentation for that service.",
+            "The service principal for the AWS service to which this role is attached. You use a string similar to a URL but without the http:// in front. For example: elasticbeanstalk.amazonaws.com.  Service principals are unique and case-sensitive. To find the exact service principal for your service-linked role, see AWS services that work with IAM in the IAM User Guide. Look for the services that have Yes in the Service-Linked Role column. Choose the Yes link to view the service-linked role documentation for that service",
           args: {
             name: "string",
             suggestions: awsPrincipals,
@@ -1799,7 +1799,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--description",
-          description: "The description of the role.",
+          description: "The description of the role",
           args: {
             name: "string",
           },
@@ -1807,7 +1807,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--custom-suffix",
           description:
-            "A string that you provide, which is combined with the service-provided prefix to form the complete role name. If you make multiple requests for the same service, then you must supply a different CustomSuffix for each request. Otherwise the request fails with a duplicate role name error. For example, you could add -1 or -debug to the suffix. Some services do not support the CustomSuffix parameter. If you provide an optional suffix and the operation fails, try the operation again without the suffix.",
+            "A string that you provide, which is combined with the service-provided prefix to form the complete role name. If you make multiple requests for the same service, then you must supply a different CustomSuffix for each request. Otherwise the request fails with a duplicate role name error. For example, you could add -1 or -debug to the suffix. Some services do not support the CustomSuffix parameter. If you provide an optional suffix and the operation fails, try the operation again without the suffix",
           args: {
             name: "string",
           },
@@ -1815,7 +1815,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1824,7 +1824,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1835,7 +1835,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-service-specific-credential",
       description:
-        "Generates a set of credentials consisting of a user name and password that can be used to access the service specified in the request. These credentials are generated by IAM, and can be used only for the specified service.  You can have a maximum of two sets of service-specific credentials for each supported service per user. You can create service-specific credentials for AWS CodeCommit and Amazon Keyspaces (for Apache Cassandra). You can reset the password to a new service-generated value by calling ResetServiceSpecificCredential. For more information about service-specific credentials, see Using IAM with AWS CodeCommit: Git credentials, SSH keys, and AWS access keys in the IAM User Guide.",
+        "Generates a set of credentials consisting of a user name and password that can be used to access the service specified in the request. These credentials are generated by IAM, and can be used only for the specified service.  You can have a maximum of two sets of service-specific credentials for each supported service per user. You can create service-specific credentials for AWS CodeCommit and Amazon Keyspaces (for Apache Cassandra). You can reset the password to a new service-generated value by calling ResetServiceSpecificCredential. For more information about service-specific credentials, see Using IAM with AWS CodeCommit: Git credentials, SSH keys, and AWS access keys in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -1849,7 +1849,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-name",
           description:
-            "The name of the AWS service that is to be associated with the credentials. The service you specify here is the only service that can be accessed using these credentials.",
+            "The name of the AWS service that is to be associated with the credentials. The service you specify here is the only service that can be accessed using these credentials",
           args: {
             name: "string",
             suggestions: awsPrincipals,
@@ -1858,7 +1858,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1867,7 +1867,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1878,12 +1878,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-user",
       description:
-        "Creates a new IAM user for your AWS account.  For information about quotas for the number of IAM users you can create, see IAM and STS quotas in the IAM User Guide.",
+        "Creates a new IAM user for your AWS account.  For information about quotas for the number of IAM users you can create, see IAM and STS quotas in the IAM User Guide",
       options: [
         {
           name: "--path",
           description:
-            "The path for the user name. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path for the user name. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -1892,7 +1892,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user-name",
           description:
-            'The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
+            'The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource"',
           args: {
             name: "string",
             generators: generators.listUsers,
@@ -1901,7 +1901,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--permissions-boundary",
           description:
-            "The ARN of the policy that is used to set the permissions boundary for the user.",
+            "The ARN of the policy that is used to set the permissions boundary for the user",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -1910,17 +1910,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -1929,7 +1929,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1940,12 +1940,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-virtual-mfa-device",
       description:
-        "Creates a new virtual MFA device for the AWS account. After creating the virtual MFA, use EnableMFADevice to attach the MFA device to an IAM user. For more information about creating and working with virtual MFA devices, see Using a virtual MFA device in the IAM User Guide. For information about the maximum number of MFA devices you can create, see IAM and STS quotas in the IAM User Guide.  The seed information contained in the QR code and the Base32 string should be treated like any other secret access information. In other words, protect the seed information as you would your AWS access keys or your passwords. After you provision your virtual device, you should ensure that the information is destroyed following secure procedures.",
+        "Creates a new virtual MFA device for the AWS account. After creating the virtual MFA, use EnableMFADevice to attach the MFA device to an IAM user. For more information about creating and working with virtual MFA devices, see Using a virtual MFA device in the IAM User Guide. For information about the maximum number of MFA devices you can create, see IAM and STS quotas in the IAM User Guide.  The seed information contained in the QR code and the Base32 string should be treated like any other secret access information. In other words, protect the seed information as you would your AWS access keys or your passwords. After you provision your virtual device, you should ensure that the information is destroyed following secure procedures",
       options: [
         {
           name: "--path",
           description:
-            "The path for the virtual MFA device. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path for the virtual MFA device. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -1962,17 +1962,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new IAM virtual MFA device. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new IAM virtual MFA device. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--outfile",
           description:
-            "The output path and file name where the bootstrap information will be stored.",
+            "The output path and file name where the bootstrap information will be stored",
           args: {
             name: "string",
           },
@@ -1991,7 +1991,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "deactivate-mfa-device",
       description:
-        "Deactivates the specified MFA device and removes it from association with the user name for which it was originally enabled. For more information about creating and working with virtual MFA devices, see Enabling a virtual multi-factor authentication (MFA) device in the IAM User Guide.",
+        "Deactivates the specified MFA device and removes it from association with the user name for which it was originally enabled. For more information about creating and working with virtual MFA devices, see Enabling a virtual multi-factor authentication (MFA) device in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -2014,7 +2014,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2023,7 +2023,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2034,7 +2034,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-access-key",
       description:
-        "Deletes the access key pair associated with the specified IAM user. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.",
+        "Deletes the access key pair associated with the specified IAM user. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users",
       options: [
         {
           name: "--user-name",
@@ -2048,7 +2048,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-key-id",
           description:
-            "The access key ID for the access key ID and secret access key you want to delete. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The access key ID for the access key ID and secret access key you want to delete. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listAcessKeyIds,
@@ -2057,7 +2057,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2066,7 +2066,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2077,12 +2077,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-account-alias",
       description:
-        "Deletes the specified AWS account alias. For information about using an AWS account alias, see Using an alias for your AWS account ID in the IAM User Guide.",
+        "Deletes the specified AWS account alias. For information about using an AWS account alias, see Using an alias for your AWS account ID in the IAM User Guide",
       options: [
         {
           name: "--account-alias",
           description:
-            "The name of the account alias to delete. This parameter allows (through its regex pattern) a string of characters consisting of lowercase letters, digits, and dashes. You cannot start or finish with a dash, nor can you have two dashes in a row.",
+            "The name of the account alias to delete. This parameter allows (through its regex pattern) a string of characters consisting of lowercase letters, digits, and dashes. You cannot start or finish with a dash, nor can you have two dashes in a row",
           args: {
             name: "string",
             generators: generators.listAccountAliases,
@@ -2091,7 +2091,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2100,7 +2100,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2111,12 +2111,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-account-password-policy",
       description:
-        "Deletes the password policy for the AWS account. There are no parameters.",
+        "Deletes the password policy for the AWS account. There are no parameters",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2125,7 +2125,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2136,7 +2136,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-group",
       description:
-        "Deletes the specified IAM group. The group must not contain any users or have any attached policies.",
+        "Deletes the specified IAM group. The group must not contain any users or have any attached policies",
       options: [
         {
           name: "--group-name",
@@ -2150,7 +2150,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2159,7 +2159,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2170,7 +2170,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-group-policy",
       description:
-        "Deletes the specified inline policy that is embedded in the specified IAM group. A group can also have managed policies attached to it. To detach a managed policy from a group, use DetachGroupPolicy. For more information about policies, refer to Managed policies and inline policies in the IAM User Guide.",
+        "Deletes the specified inline policy that is embedded in the specified IAM group. A group can also have managed policies attached to it. To detach a managed policy from a group, use DetachGroupPolicy. For more information about policies, refer to Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--group-name",
@@ -2193,7 +2193,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2202,7 +2202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2213,7 +2213,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-instance-profile",
       description:
-        "Deletes the specified instance profile. The instance profile must not have an associated role.  Make sure that you do not have any Amazon EC2 instances running with the instance profile you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance.  For more information about instance profiles, see About instance profiles.",
+        "Deletes the specified instance profile. The instance profile must not have an associated role.  Make sure that you do not have any Amazon EC2 instances running with the instance profile you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance.  For more information about instance profiles, see About instance profiles",
       options: [
         {
           name: "--instance-profile-name",
@@ -2227,7 +2227,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2236,7 +2236,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2247,7 +2247,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-login-profile",
       description:
-        "Deletes the password for the specified IAM user, which terminates the user's ability to access AWS services through the AWS Management Console. You can use the AWS CLI, the AWS API, or the Users page in the IAM console to delete a password for any IAM user. You can use ChangePassword to update, but not delete, your own password in the My Security Credentials page in the AWS Management Console.   Deleting a user's password does not prevent a user from accessing AWS through the command line interface or the API. To prevent all user access, you must also either make any access keys inactive or delete them. For more information about making keys inactive or deleting them, see UpdateAccessKey and DeleteAccessKey.",
+        "Deletes the password for the specified IAM user, which terminates the user's ability to access AWS services through the AWS Management Console. You can use the AWS CLI, the AWS API, or the Users page in the IAM console to delete a password for any IAM user. You can use ChangePassword to update, but not delete, your own password in the My Security Credentials page in the AWS Management Console.   Deleting a user's password does not prevent a user from accessing AWS through the command line interface or the API. To prevent all user access, you must also either make any access keys inactive or delete them. For more information about making keys inactive or deleting them, see UpdateAccessKey and DeleteAccessKey",
       options: [
         {
           name: "--user-name",
@@ -2261,7 +2261,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2270,7 +2270,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2281,12 +2281,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-open-id-connect-provider",
       description:
-        "Deletes an OpenID Connect identity provider (IdP) resource object in IAM. Deleting an IAM OIDC provider resource does not update any roles that reference the provider as a principal in their trust policies. Any attempt to assume a role that references a deleted provider fails. This operation is idempotent; it does not fail or return an error if you call the operation for a provider that does not exist.",
+        "Deletes an OpenID Connect identity provider (IdP) resource object in IAM. Deleting an IAM OIDC provider resource does not update any roles that reference the provider as a principal in their trust policies. Any attempt to assume a role that references a deleted provider fails. This operation is idempotent; it does not fail or return an error if you call the operation for a provider that does not exist",
       options: [
         {
           name: "--open-id-connect-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM OpenID Connect provider resource object to delete. You can get a list of OpenID Connect provider resource ARNs by using the ListOpenIDConnectProviders operation.",
+            "The Amazon Resource Name (ARN) of the IAM OpenID Connect provider resource object to delete. You can get a list of OpenID Connect provider resource ARNs by using the ListOpenIDConnectProviders operation",
           args: {
             name: "string",
             generators: generators.listOpenIdProviders,
@@ -2295,7 +2295,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2304,7 +2304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2315,12 +2315,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-policy",
       description:
-        "Deletes the specified managed policy. Before you can delete a managed policy, you must first detach the policy from all users, groups, and roles that it is attached to. In addition, you must delete all the policy's versions. The following steps describe the process for deleting a managed policy:   Detach the policy from all users, groups, and roles that the policy is attached to, using DetachUserPolicy, DetachGroupPolicy, or DetachRolePolicy. To list all the users, groups, and roles that a policy is attached to, use ListEntitiesForPolicy.   Delete all versions of the policy using DeletePolicyVersion. To list the policy's versions, use ListPolicyVersions. You cannot use DeletePolicyVersion to delete the version that is marked as the default version. You delete the policy's default version in the next step of the process.   Delete the policy (this automatically deletes the policy's default version) using this operation.   For information about managed policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Deletes the specified managed policy. Before you can delete a managed policy, you must first detach the policy from all users, groups, and roles that it is attached to. In addition, you must delete all the policy's versions. The following steps describe the process for deleting a managed policy:   Detach the policy from all users, groups, and roles that the policy is attached to, using DetachUserPolicy, DetachGroupPolicy, or DetachRolePolicy. To list all the users, groups, and roles that a policy is attached to, use ListEntitiesForPolicy.   Delete all versions of the policy using DeletePolicyVersion. To list the policy's versions, use ListPolicyVersions. You cannot use DeletePolicyVersion to delete the version that is marked as the default version. You delete the policy's default version in the next step of the process.   Delete the policy (this automatically deletes the policy's default version) using this operation.   For information about managed policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to delete. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to delete. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -2329,7 +2329,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2338,7 +2338,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2349,12 +2349,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-policy-version",
       description:
-        "Deletes the specified version from the specified managed policy. You cannot delete the default version from a policy using this operation. To delete the default version from a policy, use DeletePolicy. To find out which version of a policy is marked as the default version, use ListPolicyVersions. For information about versions for managed policies, see Versioning for managed policies in the IAM User Guide.",
+        "Deletes the specified version from the specified managed policy. You cannot delete the default version from a policy using this operation. To delete the default version from a policy, use DeletePolicy. To find out which version of a policy is marked as the default version, use ListPolicyVersions. For information about versions for managed policies, see Versioning for managed policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy from which you want to delete a version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy from which you want to delete a version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -2363,7 +2363,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The policy version to delete. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
+            "The policy version to delete. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide",
           args: {
             name: "string",
             generators: generators.listVersionsForPolicy,
@@ -2372,7 +2372,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2381,7 +2381,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2392,7 +2392,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-role",
       description:
-        "Deletes the specified role. The role must not have any policies attached. For more information about roles, see Working with roles.  Make sure that you do not have any Amazon EC2 instances running with the role you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance.",
+        "Deletes the specified role. The role must not have any policies attached. For more information about roles, see Working with roles.  Make sure that you do not have any Amazon EC2 instances running with the role you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance",
       options: [
         {
           name: "--role-name",
@@ -2406,7 +2406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2415,7 +2415,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2426,12 +2426,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-role-permissions-boundary",
       description:
-        "Deletes the permissions boundary for the specified IAM role.   Deleting the permissions boundary for a role might increase its permissions. For example, it might allow anyone who assumes the role to perform all the actions granted in its permissions policies.",
+        "Deletes the permissions boundary for the specified IAM role.   Deleting the permissions boundary for a role might increase its permissions. For example, it might allow anyone who assumes the role to perform all the actions granted in its permissions policies",
       options: [
         {
           name: "--role-name",
           description:
-            "The name (friendly name, not ARN) of the IAM role from which you want to remove the permissions boundary.",
+            "The name (friendly name, not ARN) of the IAM role from which you want to remove the permissions boundary",
           args: {
             name: "string",
             generators: generators.listRoles,
@@ -2440,7 +2440,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2449,7 +2449,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2460,7 +2460,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-role-policy",
       description:
-        "Deletes the specified inline policy that is embedded in the specified IAM role. A role can also have managed policies attached to it. To detach a managed policy from a role, use DetachRolePolicy. For more information about policies, refer to Managed policies and inline policies in the IAM User Guide.",
+        "Deletes the specified inline policy that is embedded in the specified IAM role. A role can also have managed policies attached to it. To detach a managed policy from a role, use DetachRolePolicy. For more information about policies, refer to Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -2483,7 +2483,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2492,7 +2492,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2503,12 +2503,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-saml-provider",
       description:
-        "Deletes a SAML provider resource in IAM. Deleting the provider resource from IAM does not update any roles that reference the SAML provider resource's ARN as a principal in their trust policies. Any attempt to assume a role that references a non-existent provider resource ARN fails.   This operation requires Signature Version 4.",
+        "Deletes a SAML provider resource in IAM. Deleting the provider resource from IAM does not update any roles that reference the SAML provider resource's ARN as a principal in their trust policies. Any attempt to assume a role that references a non-existent provider resource ARN fails.   This operation requires Signature Version 4",
       options: [
         {
           name: "--saml-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the SAML provider to delete.",
+            "The Amazon Resource Name (ARN) of the SAML provider to delete",
           args: {
             name: "string",
             generators: generators.listSamlProviders,
@@ -2517,7 +2517,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2526,7 +2526,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2537,7 +2537,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-ssh-public-key",
       description:
-        "Deletes the specified SSH public key. The SSH public key deleted by this operation is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide.",
+        "Deletes the specified SSH public key. The SSH public key deleted by this operation is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide",
       options: [
         {
           name: "--user-name",
@@ -2551,7 +2551,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssh-public-key-id",
           description:
-            "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listSSHPublicKeysForUser,
@@ -2560,7 +2560,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2569,7 +2569,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2580,7 +2580,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-server-certificate",
       description:
-        "Deletes the specified server certificate. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic also includes a list of AWS services that can use the server certificates that you manage with IAM.   If you are using a server certificate with Elastic Load Balancing, deleting the certificate could have implications for your application. If Elastic Load Balancing doesn't detect the deletion of bound certificates, it may continue to use the certificates. This could cause Elastic Load Balancing to stop accepting traffic. We recommend that you remove the reference to the certificate from Elastic Load Balancing before using this command to delete the certificate. For more information, see DeleteLoadBalancerListeners in the Elastic Load Balancing API Reference.",
+        "Deletes the specified server certificate. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic also includes a list of AWS services that can use the server certificates that you manage with IAM.   If you are using a server certificate with Elastic Load Balancing, deleting the certificate could have implications for your application. If Elastic Load Balancing doesn't detect the deletion of bound certificates, it may continue to use the certificates. This could cause Elastic Load Balancing to stop accepting traffic. We recommend that you remove the reference to the certificate from Elastic Load Balancing before using this command to delete the certificate. For more information, see DeleteLoadBalancerListeners in the Elastic Load Balancing API Reference",
       options: [
         {
           name: "--server-certificate-name",
@@ -2594,7 +2594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2603,7 +2603,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2614,11 +2614,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-service-linked-role",
       description:
-        "Submits a service-linked role deletion request and returns a DeletionTaskId, which you can use to check the status of the deletion. Before you call this operation, confirm that the role has no active sessions and that any resources used by the role in the linked service are deleted. If you call this operation more than once for the same service-linked role and an earlier deletion task is not complete, then the DeletionTaskId of the earlier request is returned. If you submit a deletion request for a service-linked role whose linked service is still accessing a resource, then the deletion task fails. If it fails, the GetServiceLinkedRoleDeletionStatus operation returns the reason for the failure, usually including the resources that must be deleted. To delete the service-linked role, you must first remove those resources from the linked service and then submit the deletion request again. Resources are specific to the service that is linked to the role. For more information about removing resources from a service, see the AWS documentation for your service. For more information about service-linked roles, see Roles terms and concepts: AWS service-linked role in the IAM User Guide.",
+        "Submits a service-linked role deletion request and returns a DeletionTaskId, which you can use to check the status of the deletion. Before you call this operation, confirm that the role has no active sessions and that any resources used by the role in the linked service are deleted. If you call this operation more than once for the same service-linked role and an earlier deletion task is not complete, then the DeletionTaskId of the earlier request is returned. If you submit a deletion request for a service-linked role whose linked service is still accessing a resource, then the deletion task fails. If it fails, the GetServiceLinkedRoleDeletionStatus operation returns the reason for the failure, usually including the resources that must be deleted. To delete the service-linked role, you must first remove those resources from the linked service and then submit the deletion request again. Resources are specific to the service that is linked to the role. For more information about removing resources from a service, see the AWS documentation for your service. For more information about service-linked roles, see Roles terms and concepts: AWS service-linked role in the IAM User Guide",
       options: [
         {
           name: "--role-name",
-          description: "The name of the service-linked role to be deleted.",
+          description: "The name of the service-linked role to be deleted",
           args: {
             name: "string",
             generators: generators.listRoles,
@@ -2627,7 +2627,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2636,7 +2636,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2646,7 +2646,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "delete-service-specific-credential",
-      description: "Deletes the specified service-specific credential.",
+      description: "Deletes the specified service-specific credential",
       options: [
         {
           name: "--user-name",
@@ -2660,7 +2660,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-specific-credential-id",
           description:
-            "The unique identifier of the service-specific credential. You can get this value by calling listServiceSpecificCredentialsForUser. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier of the service-specific credential. You can get this value by calling listServiceSpecificCredentialsForUser. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listServiceSpecificCredentialsForUser,
@@ -2669,7 +2669,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2678,7 +2678,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2689,7 +2689,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-signing-certificate",
       description:
-        "Deletes a signing certificate associated with the specified IAM user. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated IAM users.",
+        "Deletes a signing certificate associated with the specified IAM user. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated IAM users",
       options: [
         {
           name: "--user-name",
@@ -2703,7 +2703,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-id",
           description:
-            "The ID of the signing certificate to delete. The format of this parameter, as described by its regex pattern, is a string of characters that can be upper- or lower-cased letters or digits.",
+            "The ID of the signing certificate to delete. The format of this parameter, as described by its regex pattern, is a string of characters that can be upper- or lower-cased letters or digits",
           args: {
             name: "string",
             generators: generators.listSigningCertificatesForUser,
@@ -2712,7 +2712,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2721,7 +2721,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2746,7 +2746,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2755,7 +2755,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2766,12 +2766,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-user-permissions-boundary",
       description:
-        "Deletes the permissions boundary for the specified IAM user.  Deleting the permissions boundary for a user might increase its permissions by allowing the user to perform all the actions granted in its permissions policies.",
+        "Deletes the permissions boundary for the specified IAM user.  Deleting the permissions boundary for a user might increase its permissions by allowing the user to perform all the actions granted in its permissions policies",
       options: [
         {
           name: "--user-name",
           description:
-            "The name (friendly name, not ARN) of the IAM user from which you want to remove the permissions boundary.",
+            "The name (friendly name, not ARN) of the IAM user from which you want to remove the permissions boundary",
           args: {
             name: "string",
             generators: generators.listUsers,
@@ -2780,7 +2780,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2789,7 +2789,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2800,7 +2800,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-user-policy",
       description:
-        "Deletes the specified inline policy that is embedded in the specified IAM user. A user can also have managed policies attached to it. To detach a managed policy from a user, use DetachUserPolicy. For more information about policies, refer to Managed policies and inline policies in the IAM User Guide.",
+        "Deletes the specified inline policy that is embedded in the specified IAM user. A user can also have managed policies attached to it. To detach a managed policy from a user, use DetachUserPolicy. For more information about policies, refer to Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -2823,7 +2823,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2832,7 +2832,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2843,7 +2843,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-virtual-mfa-device",
       description:
-        "Deletes a virtual MFA device.   You must deactivate a user's virtual MFA device before you can delete it. For information about deactivating MFA devices, see DeactivateMFADevice.",
+        "Deletes a virtual MFA device.   You must deactivate a user's virtual MFA device before you can delete it. For information about deactivating MFA devices, see DeactivateMFADevice",
       options: [
         {
           name: "--serial-number",
@@ -2857,7 +2857,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2866,7 +2866,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2877,7 +2877,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "detach-group-policy",
       description:
-        "Removes the specified managed policy from the specified IAM group. A group can also have inline policies embedded with it. To delete an inline policy, use DeleteGroupPolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Removes the specified managed policy from the specified IAM group. A group can also have inline policies embedded with it. To delete an inline policy, use DeleteGroupPolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--group-name",
@@ -2891,7 +2891,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listAttachedPolicyArnsForGroup,
@@ -2900,7 +2900,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2909,7 +2909,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2920,7 +2920,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "detach-role-policy",
       description:
-        "Removes the specified managed policy from the specified role. A role can also have inline policies embedded with it. To delete an inline policy, use DeleteRolePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Removes the specified managed policy from the specified role. A role can also have inline policies embedded with it. To delete an inline policy, use DeleteRolePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -2934,7 +2934,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listAttachedPolicyArnsForRole,
@@ -2943,7 +2943,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2952,7 +2952,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2963,7 +2963,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "detach-user-policy",
       description:
-        "Removes the specified managed policy from the specified user. A user can also have inline policies embedded with it. To delete an inline policy, use DeleteUserPolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Removes the specified managed policy from the specified user. A user can also have inline policies embedded with it. To delete an inline policy, use DeleteUserPolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -2977,7 +2977,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listAttachedPolicyArnsUser,
@@ -2986,7 +2986,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -2995,7 +2995,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3006,7 +3006,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "enable-mfa-device",
       description:
-        "Enables the specified MFA device and associates it with the specified IAM user. When enabled, the MFA device is required for every subsequent login by the IAM user associated with the device.",
+        "Enables the specified MFA device and associates it with the specified IAM user. When enabled, the MFA device is required for every subsequent login by the IAM user associated with the device",
       options: [
         {
           name: "--user-name",
@@ -3029,7 +3029,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code1",
           description:
-            "An authentication code emitted by the device.  The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device.",
+            "An authentication code emitted by the device.  The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device",
           args: {
             name: "string",
           },
@@ -3037,7 +3037,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code2",
           description:
-            "A subsequent authentication code emitted by the device. The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device.",
+            "A subsequent authentication code emitted by the device. The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device",
           args: {
             name: "string",
           },
@@ -3045,7 +3045,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code-1",
           description:
-            "An authentication code emitted by the device.  The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device.",
+            "An authentication code emitted by the device.  The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device",
           args: {
             name: "string",
           },
@@ -3053,7 +3053,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code-2",
           description:
-            "A subsequent authentication code emitted by the device. The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device.",
+            "A subsequent authentication code emitted by the device. The format for this parameter is a string of six digits.  Submit your request immediately after generating the authentication codes. If you generate the codes and then wait too long to submit the request, the MFA device successfully associates with the user but the MFA device becomes out of sync. This happens because time-based one-time passwords (TOTP) expire after a short period of time. If this happens, you can resync the device",
           args: {
             name: "string",
           },
@@ -3061,7 +3061,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3070,7 +3070,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3081,12 +3081,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "generate-credential-report",
       description:
-        "Generates a credential report for the AWS account. For more information about the credential report, see Getting credential reports in the IAM User Guide.",
+        "Generates a credential report for the AWS account. For more information about the credential report, see Getting credential reports in the IAM User Guide",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3095,7 +3095,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3106,12 +3106,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "generate-organizations-access-report",
       description:
-        "Generates a report for service last accessed data for AWS Organizations. You can generate a report for any entities (organization root, organizational unit, or account) or policies in your organization. To call this operation, you must be signed in using your AWS Organizations management account credentials. You can use your long-term IAM user or root user credentials, or temporary credentials from assuming an IAM role. SCPs must be enabled for your organization root. You must have the required IAM and AWS Organizations permissions. For more information, see Refining permissions using service last accessed data in the IAM User Guide. You can generate a service last accessed data report for entities by specifying only the entity's path. This data includes a list of services that are allowed by any service control policies (SCPs) that apply to the entity. You can generate a service last accessed data report for a policy by specifying an entity's path and an optional AWS Organizations policy ID. This data includes a list of services that are allowed by the specified SCP. For each service in both report types, the data includes the most recent account activity that the policy allows to account principals in the entity or the entity's children. For important information about the data, reporting period, permissions required, troubleshooting, and supported Regions see Reducing permissions using service last accessed data in the IAM User Guide.  The data includes\u00a0all\u00a0attempts to access AWS, not just the successful ones. This includes all attempts that were made using the AWS Management Console, the AWS API through any of the SDKs, or any of the command line tools. An unexpected entry in the service last accessed data does not mean that an account has been compromised, because the request might have been denied. Refer to your CloudTrail logs as the authoritative source for information about all API calls and whether they were successful or denied access. For more information, see\u00a0Logging IAM events with CloudTrail in the IAM User Guide.  This operation returns a JobId. Use this parameter in the  GetOrganizationsAccessReport  operation to check the status of the report generation. To check the status of this request, use the JobId parameter in the  GetOrganizationsAccessReport  operation and test the JobStatus response parameter. When the job is complete, you can retrieve the report. To generate a service last accessed data report for entities, specify an entity path without specifying the optional AWS Organizations policy ID. The type of entity that you specify determines the data returned in the report.    Root \u2013 When you specify the organizations root as the entity, the resulting report lists all of the services allowed by SCPs that are attached to your root. For each service, the report includes data for all accounts in your organization except the management account, because the management account is not limited by SCPs.    OU \u2013 When you specify an organizational unit (OU) as the entity, the resulting report lists all of the services allowed by SCPs that are attached to the OU and its parents. For each service, the report includes data for all accounts in the OU or its children. This data excludes the management account, because the management account is not limited by SCPs.    management account \u2013 When you specify the management account, the resulting report lists all AWS services, because the management account is not limited by SCPs. For each service, the report includes data for only the management account.    Account \u2013 When you specify another account as the entity, the resulting report lists all of the services allowed by SCPs that are attached to the account and its parents. For each service, the report includes data for only the specified account.   To generate a service last accessed data report for policies, specify an entity path and the optional AWS Organizations policy ID. The type of entity that you specify determines the data returned for each service.    Root \u2013 When you specify the root entity and a policy ID, the resulting report lists all of the services that are allowed by the specified SCP. For each service, the report includes data for all accounts in your organization to which the SCP applies. This data excludes the management account, because the management account is not limited by SCPs. If the SCP is not attached to any entities in the organization, then the report will return a list of services with no data.    OU \u2013 When you specify an OU entity and a policy ID, the resulting report lists all of the services that are allowed by the specified SCP. For each service, the report includes data for all accounts in the OU or its children to which the SCP applies. This means that other accounts outside the OU that are affected by the SCP might not be included in the data. This data excludes the management account, because the management account is not limited by SCPs. If the SCP is not attached to the OU or one of its children, the report will return a list of services with no data.    management account \u2013 When you specify the management account, the resulting report lists all AWS services, because the management account is not limited by SCPs. If you specify a policy ID in the CLI or API, the policy is ignored. For each service, the report includes data for only the management account.    Account \u2013 When you specify another account entity and a policy ID, the resulting report lists all of the services that are allowed by the specified SCP. For each service, the report includes data for only the specified account. This means that other accounts in the organization that are affected by the SCP might not be included in the data. If the SCP is not attached to the account, the report will return a list of services with no data.    Service last accessed data does not use other policy types when determining whether a principal could access a service. These other policy types include identity-based policies, resource-based policies, access control lists, IAM permissions boundaries, and STS assume role policies. It only applies SCP logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  For more information about service last accessed data, see Reducing policy scope by viewing user activity in the IAM User Guide.",
+        "Generates a report for service last accessed data for AWS Organizations. You can generate a report for any entities (organization root, organizational unit, or account) or policies in your organization. To call this operation, you must be signed in using your AWS Organizations management account credentials. You can use your long-term IAM user or root user credentials, or temporary credentials from assuming an IAM role. SCPs must be enabled for your organization root. You must have the required IAM and AWS Organizations permissions. For more information, see Refining permissions using service last accessed data in the IAM User Guide. You can generate a service last accessed data report for entities by specifying only the entity's path. This data includes a list of services that are allowed by any service control policies (SCPs) that apply to the entity. You can generate a service last accessed data report for a policy by specifying an entity's path and an optional AWS Organizations policy ID. This data includes a list of services that are allowed by the specified SCP. For each service in both report types, the data includes the most recent account activity that the policy allows to account principals in the entity or the entity's children. For important information about the data, reporting period, permissions required, troubleshooting, and supported Regions see Reducing permissions using service last accessed data in the IAM User Guide.  The data includes\u00a0all\u00a0attempts to access AWS, not just the successful ones. This includes all attempts that were made using the AWS Management Console, the AWS API through any of the SDKs, or any of the command line tools. An unexpected entry in the service last accessed data does not mean that an account has been compromised, because the request might have been denied. Refer to your CloudTrail logs as the authoritative source for information about all API calls and whether they were successful or denied access. For more information, see\u00a0Logging IAM events with CloudTrail in the IAM User Guide.  This operation returns a JobId. Use this parameter in the  GetOrganizationsAccessReport  operation to check the status of the report generation. To check the status of this request, use the JobId parameter in the  GetOrganizationsAccessReport  operation and test the JobStatus response parameter. When the job is complete, you can retrieve the report. To generate a service last accessed data report for entities, specify an entity path without specifying the optional AWS Organizations policy ID. The type of entity that you specify determines the data returned in the report.    Root \u2013 When you specify the organizations root as the entity, the resulting report lists all of the services allowed by SCPs that are attached to your root. For each service, the report includes data for all accounts in your organization except the management account, because the management account is not limited by SCPs.    OU \u2013 When you specify an organizational unit (OU) as the entity, the resulting report lists all of the services allowed by SCPs that are attached to the OU and its parents. For each service, the report includes data for all accounts in the OU or its children. This data excludes the management account, because the management account is not limited by SCPs.    management account \u2013 When you specify the management account, the resulting report lists all AWS services, because the management account is not limited by SCPs. For each service, the report includes data for only the management account.    Account \u2013 When you specify another account as the entity, the resulting report lists all of the services allowed by SCPs that are attached to the account and its parents. For each service, the report includes data for only the specified account.   To generate a service last accessed data report for policies, specify an entity path and the optional AWS Organizations policy ID. The type of entity that you specify determines the data returned for each service.    Root \u2013 When you specify the root entity and a policy ID, the resulting report lists all of the services that are allowed by the specified SCP. For each service, the report includes data for all accounts in your organization to which the SCP applies. This data excludes the management account, because the management account is not limited by SCPs. If the SCP is not attached to any entities in the organization, then the report will return a list of services with no data.    OU \u2013 When you specify an OU entity and a policy ID, the resulting report lists all of the services that are allowed by the specified SCP. For each service, the report includes data for all accounts in the OU or its children to which the SCP applies. This means that other accounts outside the OU that are affected by the SCP might not be included in the data. This data excludes the management account, because the management account is not limited by SCPs. If the SCP is not attached to the OU or one of its children, the report will return a list of services with no data.    management account \u2013 When you specify the management account, the resulting report lists all AWS services, because the management account is not limited by SCPs. If you specify a policy ID in the CLI or API, the policy is ignored. For each service, the report includes data for only the management account.    Account \u2013 When you specify another account entity and a policy ID, the resulting report lists all of the services that are allowed by the specified SCP. For each service, the report includes data for only the specified account. This means that other accounts in the organization that are affected by the SCP might not be included in the data. If the SCP is not attached to the account, the report will return a list of services with no data.    Service last accessed data does not use other policy types when determining whether a principal could access a service. These other policy types include identity-based policies, resource-based policies, access control lists, IAM permissions boundaries, and STS assume role policies. It only applies SCP logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  For more information about service last accessed data, see Reducing policy scope by viewing user activity in the IAM User Guide",
       options: [
         {
           name: "--entity-path",
           description:
-            "The path of the AWS Organizations entity (root, OU, or account). You can build an entity path using the known structure of your organization. For example, assume that your account ID is 123456789012 and its parent OU ID is ou-rge0-awsabcde. The organization root ID is r-f6g7h8i9j0example and your organization ID is o-a1b2c3d4e5. Your entity path is o-a1b2c3d4e5/r-f6g7h8i9j0example/ou-rge0-awsabcde/123456789012.",
+            "The path of the AWS Organizations entity (root, OU, or account). You can build an entity path using the known structure of your organization. For example, assume that your account ID is 123456789012 and its parent OU ID is ou-rge0-awsabcde. The organization root ID is r-f6g7h8i9j0example and your organization ID is o-a1b2c3d4e5. Your entity path is o-a1b2c3d4e5/r-f6g7h8i9j0example/ou-rge0-awsabcde/123456789012",
           args: {
             name: "string",
           },
@@ -3119,7 +3119,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--organizations-policy-id",
           description:
-            "The identifier of the AWS Organizations service control policy (SCP). This parameter is optional. This ID is used to generate information about when an account principal that is limited by the SCP attempted to access an AWS service.",
+            "The identifier of the AWS Organizations service control policy (SCP). This parameter is optional. This ID is used to generate information about when an account principal that is limited by the SCP attempted to access an AWS service",
           args: {
             name: "string",
           },
@@ -3127,7 +3127,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3136,7 +3136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3147,12 +3147,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "generate-service-last-accessed-details",
       description:
-        "Generates a report that includes details about when an IAM resource (user, group, role, or policy) was last used in an attempt to access AWS services. Recent activity usually appears within four hours. IAM reports activity for the last 365 days, or less if your Region began supporting this feature within the last year. For more information, see Regions where data is tracked.  The service last accessed data includes\u00a0all\u00a0attempts to access an AWS API, not just the successful ones. This includes all attempts that were made using the AWS Management Console, the AWS API through any of the SDKs, or any of the command line tools. An unexpected entry in the service last accessed data does not mean that your account has been compromised, because the request might have been denied. Refer to your CloudTrail logs as the authoritative source for information about all API calls and whether they were successful or denied access. For more information, see\u00a0Logging IAM events with CloudTrail in the IAM User Guide.  The GenerateServiceLastAccessedDetails operation returns a JobId. Use this parameter in the following operations to retrieve the following details from your report:     GetServiceLastAccessedDetails \u2013 Use this operation for users, groups, roles, or policies to list every AWS service that the resource could access using permissions policies. For each service, the response includes information about the most recent access attempt. The JobId returned by GenerateServiceLastAccessedDetail must be used by the same role within a session, or by the same user when used to call GetServiceLastAccessedDetail.    GetServiceLastAccessedDetailsWithEntities \u2013 Use this operation for groups and policies to list information about the associated entities (users or roles) that attempted to access a specific AWS service.    To check the status of the GenerateServiceLastAccessedDetails request, use the JobId parameter in the same operations and test the JobStatus response parameter. For additional information about the permissions policies that allow an identity (user, group, or role) to access specific services, use the ListPoliciesGrantingServiceAccess operation.  Service last accessed data does not use other policy types when determining whether a resource could access a service. These other policy types include resource-based policies, access control lists, AWS Organizations policies, IAM permissions boundaries, and AWS STS assume role policies. It only applies permissions policy logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  For more information about service and action last accessed data, see Reducing permissions using service last accessed data in the IAM User Guide.",
+        "Generates a report that includes details about when an IAM resource (user, group, role, or policy) was last used in an attempt to access AWS services. Recent activity usually appears within four hours. IAM reports activity for the last 365 days, or less if your Region began supporting this feature within the last year. For more information, see Regions where data is tracked.  The service last accessed data includes\u00a0all\u00a0attempts to access an AWS API, not just the successful ones. This includes all attempts that were made using the AWS Management Console, the AWS API through any of the SDKs, or any of the command line tools. An unexpected entry in the service last accessed data does not mean that your account has been compromised, because the request might have been denied. Refer to your CloudTrail logs as the authoritative source for information about all API calls and whether they were successful or denied access. For more information, see\u00a0Logging IAM events with CloudTrail in the IAM User Guide.  The GenerateServiceLastAccessedDetails operation returns a JobId. Use this parameter in the following operations to retrieve the following details from your report:     GetServiceLastAccessedDetails \u2013 Use this operation for users, groups, roles, or policies to list every AWS service that the resource could access using permissions policies. For each service, the response includes information about the most recent access attempt. The JobId returned by GenerateServiceLastAccessedDetail must be used by the same role within a session, or by the same user when used to call GetServiceLastAccessedDetail.    GetServiceLastAccessedDetailsWithEntities \u2013 Use this operation for groups and policies to list information about the associated entities (users or roles) that attempted to access a specific AWS service.    To check the status of the GenerateServiceLastAccessedDetails request, use the JobId parameter in the same operations and test the JobStatus response parameter. For additional information about the permissions policies that allow an identity (user, group, or role) to access specific services, use the ListPoliciesGrantingServiceAccess operation.  Service last accessed data does not use other policy types when determining whether a resource could access a service. These other policy types include resource-based policies, access control lists, AWS Organizations policies, IAM permissions boundaries, and AWS STS assume role policies. It only applies permissions policy logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  For more information about service and action last accessed data, see Reducing permissions using service last accessed data in the IAM User Guide",
       options: [
         {
           name: "--arn",
           description:
-            "The ARN of the IAM resource (user, group, role, or managed policy) used to generate information about when the resource was last used in an attempt to access an AWS service.",
+            "The ARN of the IAM resource (user, group, role, or managed policy) used to generate information about when the resource was last used in an attempt to access an AWS service",
           args: {
             name: "string",
             generators: generators.listAllArns,
@@ -3161,7 +3161,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--granularity",
           description:
-            "The level of detail that you want to generate. You can specify whether you want to generate information about the last attempt to access services or actions. If you specify service-level granularity, this operation generates only service data. If you specify action-level granularity, it generates service and action data. If you don't include this optional parameter, the operation generates service data.",
+            "The level of detail that you want to generate. You can specify whether you want to generate information about the last attempt to access services or actions. If you specify service-level granularity, this operation generates only service data. If you specify action-level granularity, it generates service and action data. If you don't include this optional parameter, the operation generates service data",
           args: {
             name: "string",
             suggestions: ["SERVICE_LEVEL", "ACTION_LEVEL"],
@@ -3170,7 +3170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3179,7 +3179,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3190,12 +3190,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-access-key-last-used",
       description:
-        "Retrieves information about when the specified access key was last used. The information includes the date and time of last use, along with the AWS service and Region that were specified in the last request made with that key.",
+        "Retrieves information about when the specified access key was last used. The information includes the date and time of last use, along with the AWS service and Region that were specified in the last request made with that key",
       options: [
         {
           name: "--access-key-id",
           description:
-            "The identifier of an access key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The identifier of an access key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listAcessKeyIds,
@@ -3204,7 +3204,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3213,7 +3213,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3224,12 +3224,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-account-authorization-details",
       description:
-        "Retrieves information about all IAM users, groups, roles, and policies in your AWS account, including their relationships to one another. Use this operation to obtain a snapshot of the configuration of IAM permissions (users, groups, roles, and policies) in your account.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  You can optionally filter the results using the Filter parameter. You can paginate the results using the MaxItems and Marker parameters.",
+        "Retrieves information about all IAM users, groups, roles, and policies in your AWS account, including their relationships to one another. Use this operation to obtain a snapshot of the configuration of IAM permissions (users, groups, roles, and policies) in your account.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  You can optionally filter the results using the Filter parameter. You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--filter",
           description:
-            "A list of entity types used to filter the results. Only the entities that match the types you specify are included in the output. Use the value LocalManagedPolicy to include customer managed policies. The format for this parameter is a comma-separated (if more than one) list of strings. Each string value in the list must be one of the valid values listed below.",
+            "A list of entity types used to filter the results. Only the entities that match the types you specify are included in the output. Use the value LocalManagedPolicy to include customer managed policies. The format for this parameter is a comma-separated (if more than one) list of strings. Each string value in the list must be one of the valid values listed below",
           args: {
             name: "list",
             isVariadic: true,
@@ -3245,7 +3245,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3253,7 +3253,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -3261,7 +3261,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3270,7 +3270,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3278,7 +3278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3286,7 +3286,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3297,12 +3297,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-account-password-policy",
       description:
-        "Retrieves the password policy for the AWS account. This tells you the complexity requirements and mandatory rotation periods for the IAM user passwords in your account. For more information about using a password policy, see Managing an IAM password policy.",
+        "Retrieves the password policy for the AWS account. This tells you the complexity requirements and mandatory rotation periods for the IAM user passwords in your account. For more information about using a password policy, see Managing an IAM password policy",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3311,7 +3311,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3322,12 +3322,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-account-summary",
       description:
-        "Retrieves information about IAM entity usage and IAM quotas in the AWS account.  For information about IAM quotas, see IAM and STS quotas in the IAM User Guide.",
+        "Retrieves information about IAM entity usage and IAM quotas in the AWS account.  For information about IAM quotas, see IAM and STS quotas in the IAM User Guide",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3336,7 +3336,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3347,7 +3347,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-context-keys-for-custom-policy",
       description:
-        "Gets a list of all of the context keys referenced in the input policies. The policies are supplied as a list of one or more strings. To get the context keys from policies associated with an IAM user, group, or role, use GetContextKeysForPrincipalPolicy. Context keys are variables maintained by AWS and its services that provide details about the context of an API query request. Context keys can be evaluated by testing against a value specified in an IAM policy. Use GetContextKeysForCustomPolicy to understand what key names and values you must supply when you call SimulateCustomPolicy. Note that all parameters are shown in unencoded form here for clarity but must be URL encoded to be included as a part of a real HTML request.",
+        "Gets a list of all of the context keys referenced in the input policies. The policies are supplied as a list of one or more strings. To get the context keys from policies associated with an IAM user, group, or role, use GetContextKeysForPrincipalPolicy. Context keys are variables maintained by AWS and its services that provide details about the context of an API query request. Context keys can be evaluated by testing against a value specified in an IAM policy. Use GetContextKeysForCustomPolicy to understand what key names and values you must supply when you call SimulateCustomPolicy. Note that all parameters are shown in unencoded form here for clarity but must be URL encoded to be included as a part of a real HTML request",
       options: [
         {
           name: "--policy-input-list",
@@ -3362,7 +3362,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3371,7 +3371,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3382,12 +3382,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-context-keys-for-principal-policy",
       description:
-        "Gets a list of all of the context keys referenced in all the IAM policies that are attached to the specified IAM entity. The entity can be an IAM user, group, or role. If you specify a user, then the request also includes all of the policies attached to groups that the user is a member of. You can optionally include a list of one or more additional policies, specified as strings. If you want to include only a list of policies by string, use GetContextKeysForCustomPolicy instead.  Note: This operation discloses information about the permissions granted to other users. If you do not want users to see other user's permissions, then consider allowing them to use GetContextKeysForCustomPolicy instead. Context keys are variables maintained by AWS and its services that provide details about the context of an API query request. Context keys can be evaluated by testing against a value in an IAM policy. Use GetContextKeysForPrincipalPolicy to understand what key names and values you must supply when you call SimulatePrincipalPolicy.",
+        "Gets a list of all of the context keys referenced in all the IAM policies that are attached to the specified IAM entity. The entity can be an IAM user, group, or role. If you specify a user, then the request also includes all of the policies attached to groups that the user is a member of. You can optionally include a list of one or more additional policies, specified as strings. If you want to include only a list of policies by string, use GetContextKeysForCustomPolicy instead.  Note: This operation discloses information about the permissions granted to other users. If you do not want users to see other user's permissions, then consider allowing them to use GetContextKeysForCustomPolicy instead. Context keys are variables maintained by AWS and its services that provide details about the context of an API query request. Context keys can be evaluated by testing against a value in an IAM policy. Use GetContextKeysForPrincipalPolicy to understand what key names and values you must supply when you call SimulatePrincipalPolicy",
       options: [
         {
           name: "--policy-source-arn",
           description:
-            "The ARN of a user, group, or role whose policies contain the context keys that you want listed. If you specify a user, the list includes context keys that are found in all policies that are attached to the user. The list also includes all groups that the user is a member of. If you pick a group or a role, then it includes only those context keys that are found in policies attached to that entity. Note that all parameters are shown in unencoded form here for clarity, but must be URL encoded to be included as a part of a real HTML request. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The ARN of a user, group, or role whose policies contain the context keys that you want listed. If you specify a user, the list includes context keys that are found in all policies that are attached to the user. The list also includes all groups that the user is a member of. If you pick a group or a role, then it includes only those context keys that are found in policies attached to that entity. Note that all parameters are shown in unencoded form here for clarity, but must be URL encoded to be included as a part of a real HTML request. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listAllArns,
@@ -3406,7 +3406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3415,7 +3415,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3426,12 +3426,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-credential-report",
       description:
-        "Retrieves a credential report for the AWS account. For more information about the credential report, see Getting credential reports in the IAM User Guide.",
+        "Retrieves a credential report for the AWS account. For more information about the credential report, see Getting credential reports in the IAM User Guide",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3440,7 +3440,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3451,7 +3451,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-group",
       description:
-        "Returns a list of IAM users that are in the specified IAM group. You can paginate the results using the MaxItems and Marker parameters.",
+        "Returns a list of IAM users that are in the specified IAM group. You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--group-name",
@@ -3465,7 +3465,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -3473,7 +3473,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3481,7 +3481,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3490,7 +3490,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3498,7 +3498,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3506,7 +3506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3517,7 +3517,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-group-policy",
       description:
-        "Retrieves the specified inline policy document that is embedded in the specified IAM group.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  An IAM group can also have managed policies attached to it. To retrieve a managed policy document that is attached to a group, use GetPolicy to determine the policy's default version, then use GetPolicyVersion to retrieve the policy document. For more information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Retrieves the specified inline policy document that is embedded in the specified IAM group.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  An IAM group can also have managed policies attached to it. To retrieve a managed policy document that is attached to a group, use GetPolicy to determine the policy's default version, then use GetPolicyVersion to retrieve the policy document. For more information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--group-name",
@@ -3540,7 +3540,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3549,7 +3549,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3560,7 +3560,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-instance-profile",
       description:
-        "Retrieves information about the specified instance profile, including the instance profile's path, GUID, ARN, and role. For more information about instance profiles, see About instance profiles in the IAM User Guide.",
+        "Retrieves information about the specified instance profile, including the instance profile's path, GUID, ARN, and role. For more information about instance profiles, see About instance profiles in the IAM User Guide",
       options: [
         {
           name: "--instance-profile-name",
@@ -3574,7 +3574,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3583,7 +3583,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3594,7 +3594,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-login-profile",
       description:
-        "Retrieves the user name and password creation date for the specified IAM user. If the user has not been assigned a password, the operation returns a 404 (NoSuchEntity) error.",
+        "Retrieves the user name and password creation date for the specified IAM user. If the user has not been assigned a password, the operation returns a 404 (NoSuchEntity) error",
       options: [
         {
           name: "--user-name",
@@ -3608,7 +3608,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3617,7 +3617,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3628,12 +3628,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-open-id-connect-provider",
       description:
-        "Returns information about the specified OpenID Connect (OIDC) provider resource object in IAM.",
+        "Returns information about the specified OpenID Connect (OIDC) provider resource object in IAM",
       options: [
         {
           name: "--open-id-connect-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the OIDC provider resource object in IAM to get information for. You can get a list of OIDC provider resource ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the OIDC provider resource object in IAM to get information for. You can get a list of OIDC provider resource ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listOpenIdProviders,
@@ -3642,7 +3642,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3651,7 +3651,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3662,12 +3662,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-organizations-access-report",
       description:
-        "Retrieves the service last accessed data report for AWS Organizations that was previously generated using the  GenerateOrganizationsAccessReport  operation. This operation retrieves the status of your report job and the report contents. Depending on the parameters that you passed when you generated the report, the data returned could include different information. For details, see GenerateOrganizationsAccessReport. To call this operation, you must be signed in to the management account in your organization. SCPs must be enabled for your organization root. You must have permissions to perform this operation. For more information, see Refining permissions using service last accessed data in the IAM User Guide. For each service that principals in an account (root users, IAM users, or IAM roles) could access using SCPs, the operation returns details about the most recent access attempt. If there was no attempt, the service is listed without details about the most recent attempt to access the service. If the operation fails, it returns the reason that it failed. By default, the list is sorted by service namespace.",
+        "Retrieves the service last accessed data report for AWS Organizations that was previously generated using the  GenerateOrganizationsAccessReport  operation. This operation retrieves the status of your report job and the report contents. Depending on the parameters that you passed when you generated the report, the data returned could include different information. For details, see GenerateOrganizationsAccessReport. To call this operation, you must be signed in to the management account in your organization. SCPs must be enabled for your organization root. You must have permissions to perform this operation. For more information, see Refining permissions using service last accessed data in the IAM User Guide. For each service that principals in an account (root users, IAM users, or IAM roles) could access using SCPs, the operation returns details about the most recent access attempt. If there was no attempt, the service is listed without details about the most recent attempt to access the service. If the operation fails, it returns the reason that it failed. By default, the list is sorted by service namespace",
       options: [
         {
           name: "--job-id",
           description:
-            "The identifier of the request generated by the GenerateOrganizationsAccessReport operation.",
+            "The identifier of the request generated by the GenerateOrganizationsAccessReport operation",
           args: {
             name: "string",
           },
@@ -3675,7 +3675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "Use this only when paginating results to indicate the maximum number of items you want in the response. If additional items exist beyond the maximum you specify, the IsTruncated response element is true. If you do not include this parameter, the number of items defaults to 100. Note that IAM might return fewer results, even when there are more results available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "Use this only when paginating results to indicate the maximum number of items you want in the response. If additional items exist beyond the maximum you specify, the IsTruncated response element is true. If you do not include this parameter, the number of items defaults to 100. Note that IAM might return fewer results, even when there are more results available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -3683,7 +3683,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -3691,7 +3691,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sort-key",
           description:
-            "The key that is used to sort the results. If you choose the namespace key, the results are returned in alphabetical order. If you choose the time key, the results are sorted numerically by the date and time.",
+            "The key that is used to sort the results. If you choose the namespace key, the results are returned in alphabetical order. If you choose the time key, the results are sorted numerically by the date and time",
           args: {
             name: "string",
             suggestions: [
@@ -3705,7 +3705,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3714,7 +3714,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3725,12 +3725,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-policy",
       description:
-        "Retrieves information about the specified managed policy, including the policy's default version and the total number of IAM users, groups, and roles to which the policy is attached. To retrieve the list of the specific users, groups, and roles that the policy is attached to, use ListEntitiesForPolicy. This operation returns metadata about the policy. To retrieve the actual policy document for a specific version of the policy, use GetPolicyVersion. This operation retrieves information about managed policies. To retrieve information about an inline policy that is embedded with an IAM user, group, or role, use GetUserPolicy, GetGroupPolicy, or GetRolePolicy. For more information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Retrieves information about the specified managed policy, including the policy's default version and the total number of IAM users, groups, and roles to which the policy is attached. To retrieve the list of the specific users, groups, and roles that the policy is attached to, use ListEntitiesForPolicy. This operation returns metadata about the policy. To retrieve the actual policy document for a specific version of the policy, use GetPolicyVersion. This operation retrieves information about managed policies. To retrieve information about an inline policy that is embedded with an IAM user, group, or role, use GetUserPolicy, GetGroupPolicy, or GetRolePolicy. For more information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -3739,7 +3739,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3748,7 +3748,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3759,12 +3759,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-policy-version",
       description:
-        "Retrieves information about the specified version of the specified managed policy, including the policy document.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  To list the available versions for a policy, use ListPolicyVersions. This operation retrieves information about managed policies. To retrieve information about an inline policy that is embedded in a user, group, or role, use GetUserPolicy, GetGroupPolicy, or GetRolePolicy. For more information about the types of policies, see Managed policies and inline policies in the IAM User Guide. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
+        "Retrieves information about the specified version of the specified managed policy, including the policy document.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  To list the available versions for a policy, use ListPolicyVersions. This operation retrieves information about managed policies. To retrieve information about an inline policy that is embedded in a user, group, or role, use GetUserPolicy, GetGroupPolicy, or GetRolePolicy. For more information about the types of policies, see Managed policies and inline policies in the IAM User Guide. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -3773,7 +3773,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "Identifies the policy version to retrieve. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits.",
+            "Identifies the policy version to retrieve. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits",
           args: {
             name: "string",
             generators: generators.listVersionsForPolicy,
@@ -3782,7 +3782,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3791,7 +3791,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3802,7 +3802,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-role",
       description:
-        "Retrieves information about the specified role, including the role's path, GUID, ARN, and the role's trust policy that grants permission to assume the role. For more information about roles, see Working with roles.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.",
+        "Retrieves information about the specified role, including the role's path, GUID, ARN, and the role's trust policy that grants permission to assume the role. For more information about roles, see Working with roles.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality",
       options: [
         {
           name: "--role-name",
@@ -3816,7 +3816,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3825,7 +3825,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3836,7 +3836,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-role-policy",
       description:
-        "Retrieves the specified inline policy document that is embedded with the specified IAM role.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  An IAM role can also have managed policies attached to it. To retrieve a managed policy document that is attached to a role, use GetPolicy to determine the policy's default version, then use GetPolicyVersion to retrieve the policy document. For more information about policies, see Managed policies and inline policies in the IAM User Guide. For more information about roles, see Using roles to delegate permissions and federate identities.",
+        "Retrieves the specified inline policy document that is embedded with the specified IAM role.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  An IAM role can also have managed policies attached to it. To retrieve a managed policy document that is attached to a role, use GetPolicy to determine the policy's default version, then use GetPolicyVersion to retrieve the policy document. For more information about policies, see Managed policies and inline policies in the IAM User Guide. For more information about roles, see Using roles to delegate permissions and federate identities",
       options: [
         {
           name: "--role-name",
@@ -3859,7 +3859,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3868,7 +3868,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3879,12 +3879,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-saml-provider",
       description:
-        "Returns the SAML provider metadocument that was uploaded when the IAM SAML provider resource object was created or updated.  This operation requires Signature Version 4.",
+        "Returns the SAML provider metadocument that was uploaded when the IAM SAML provider resource object was created or updated.  This operation requires Signature Version 4",
       options: [
         {
           name: "--saml-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the SAML provider resource object in IAM to get information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the SAML provider resource object in IAM to get information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listSamlProviders,
@@ -3893,7 +3893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3902,7 +3902,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3913,7 +3913,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-ssh-public-key",
       description:
-        "Retrieves the specified SSH public key, including metadata about the key. The SSH public key retrieved by this operation is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide.",
+        "Retrieves the specified SSH public key, including metadata about the key. The SSH public key retrieved by this operation is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide",
       options: [
         {
           name: "--user-name",
@@ -3927,7 +3927,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssh-public-key-id",
           description:
-            "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listSSHPublicKeysForUser,
@@ -3936,7 +3936,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encoding",
           description:
-            "Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use SSH. To retrieve the public key in PEM format, use PEM.",
+            "Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use SSH. To retrieve the public key in PEM format, use PEM",
           args: {
             name: "string",
             suggestions: ["SSH", "PEM"],
@@ -3945,7 +3945,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3954,7 +3954,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3965,7 +3965,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-server-certificate",
       description:
-        "Retrieves information about the specified server certificate stored in IAM. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic includes a list of AWS services that can use the server certificates that you manage with IAM.",
+        "Retrieves information about the specified server certificate stored in IAM. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic includes a list of AWS services that can use the server certificates that you manage with IAM",
       options: [
         {
           name: "--server-certificate-name",
@@ -3979,7 +3979,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -3988,7 +3988,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3999,12 +3999,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-service-last-accessed-details",
       description:
-        "Retrieves a service last accessed report that was created using the GenerateServiceLastAccessedDetails operation. You can use the JobId parameter in GetServiceLastAccessedDetails to retrieve the status of your report job. When the report is complete, you can retrieve the generated report. The report includes a list of AWS services that the resource (user, group, role, or managed policy) can access.  Service last accessed data does not use other policy types when determining whether a resource could access a service. These other policy types include resource-based policies, access control lists, AWS Organizations policies, IAM permissions boundaries, and AWS STS assume role policies. It only applies permissions policy logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  For each service that the resource could access using permissions policies, the operation returns details about the most recent access attempt. If there was no attempt, the service is listed without details about the most recent attempt to access the service. If the operation fails, the GetServiceLastAccessedDetails operation returns the reason that it failed. The GetServiceLastAccessedDetails operation returns a list of services. This list includes the number of entities that have attempted to access the service and the date and time of the last attempt. It also returns the ARN of the following entity, depending on the resource ARN that you used to generate the report:    User \u2013 Returns the user ARN that you used to generate the report    Group \u2013 Returns the ARN of the group member (user) that last attempted to access the service    Role \u2013 Returns the role ARN that you used to generate the report    Policy \u2013 Returns the ARN of the user or role that last used the policy to attempt to access the service   By default, the list is sorted by service namespace. If you specified ACTION_LEVEL granularity when you generated the report, this operation returns service and action last accessed data. This includes the most recent access attempt for each tracked action within a service. Otherwise, this operation returns only service data. For more information about service and action last accessed data, see Reducing permissions using service last accessed data in the IAM User Guide.",
+        "Retrieves a service last accessed report that was created using the GenerateServiceLastAccessedDetails operation. You can use the JobId parameter in GetServiceLastAccessedDetails to retrieve the status of your report job. When the report is complete, you can retrieve the generated report. The report includes a list of AWS services that the resource (user, group, role, or managed policy) can access.  Service last accessed data does not use other policy types when determining whether a resource could access a service. These other policy types include resource-based policies, access control lists, AWS Organizations policies, IAM permissions boundaries, and AWS STS assume role policies. It only applies permissions policy logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  For each service that the resource could access using permissions policies, the operation returns details about the most recent access attempt. If there was no attempt, the service is listed without details about the most recent attempt to access the service. If the operation fails, the GetServiceLastAccessedDetails operation returns the reason that it failed. The GetServiceLastAccessedDetails operation returns a list of services. This list includes the number of entities that have attempted to access the service and the date and time of the last attempt. It also returns the ARN of the following entity, depending on the resource ARN that you used to generate the report:    User \u2013 Returns the user ARN that you used to generate the report    Group \u2013 Returns the ARN of the group member (user) that last attempted to access the service    Role \u2013 Returns the role ARN that you used to generate the report    Policy \u2013 Returns the ARN of the user or role that last used the policy to attempt to access the service   By default, the list is sorted by service namespace. If you specified ACTION_LEVEL granularity when you generated the report, this operation returns service and action last accessed data. This includes the most recent access attempt for each tracked action within a service. Otherwise, this operation returns only service data. For more information about service and action last accessed data, see Reducing permissions using service last accessed data in the IAM User Guide",
       options: [
         {
           name: "--job-id",
           description:
-            "The ID of the request generated by the GenerateServiceLastAccessedDetails operation. The JobId returned by GenerateServiceLastAccessedDetail must be used by the same role within a session, or by the same user when used to call GetServiceLastAccessedDetail.",
+            "The ID of the request generated by the GenerateServiceLastAccessedDetails operation. The JobId returned by GenerateServiceLastAccessedDetail must be used by the same role within a session, or by the same user when used to call GetServiceLastAccessedDetail",
           args: {
             name: "string",
           },
@@ -4012,7 +4012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "Use this only when paginating results to indicate the maximum number of items you want in the response. If additional items exist beyond the maximum you specify, the IsTruncated response element is true. If you do not include this parameter, the number of items defaults to 100. Note that IAM might return fewer results, even when there are more results available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "Use this only when paginating results to indicate the maximum number of items you want in the response. If additional items exist beyond the maximum you specify, the IsTruncated response element is true. If you do not include this parameter, the number of items defaults to 100. Note that IAM might return fewer results, even when there are more results available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -4020,7 +4020,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4028,7 +4028,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4037,7 +4037,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4048,12 +4048,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-service-last-accessed-details-with-entities",
       description:
-        "After you generate a group or policy report using the GenerateServiceLastAccessedDetails operation, you can use the JobId parameter in GetServiceLastAccessedDetailsWithEntities. This operation retrieves the status of your report job and a list of entities that could have used group or policy permissions to access the specified service.    Group \u2013 For a group report, this operation returns a list of users in the group that could have used the group\u2019s policies in an attempt to access the service.    Policy \u2013 For a policy report, this operation returns a list of entities (users or roles) that could have used the policy in an attempt to access the service.   You can also use this operation for user or role reports to retrieve details about those entities. If the operation fails, the GetServiceLastAccessedDetailsWithEntities operation returns the reason that it failed. By default, the list of associated entities is sorted by date, with the most recent access listed first.",
+        "After you generate a group or policy report using the GenerateServiceLastAccessedDetails operation, you can use the JobId parameter in GetServiceLastAccessedDetailsWithEntities. This operation retrieves the status of your report job and a list of entities that could have used group or policy permissions to access the specified service.    Group \u2013 For a group report, this operation returns a list of users in the group that could have used the group\u2019s policies in an attempt to access the service.    Policy \u2013 For a policy report, this operation returns a list of entities (users or roles) that could have used the policy in an attempt to access the service.   You can also use this operation for user or role reports to retrieve details about those entities. If the operation fails, the GetServiceLastAccessedDetailsWithEntities operation returns the reason that it failed. By default, the list of associated entities is sorted by date, with the most recent access listed first",
       options: [
         {
           name: "--job-id",
           description:
-            "The ID of the request generated by the GenerateServiceLastAccessedDetails operation.",
+            "The ID of the request generated by the GenerateServiceLastAccessedDetails operation",
           args: {
             name: "string",
           },
@@ -4061,7 +4061,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-namespace",
           description:
-            "The service namespace for an AWS service. Provide the service namespace to learn when the IAM entity last attempted to access the specified service. To learn the service namespace for a service, see Actions, resources, and condition keys for AWS services in the IAM User Guide. Choose the name of the service to view details for that service. In the first paragraph, find the service prefix. For example, (service prefix: a4b). For more information about service namespaces, see AWS service namespaces in the\u00a0AWS General Reference.",
+            "The service namespace for an AWS service. Provide the service namespace to learn when the IAM entity last attempted to access the specified service. To learn the service namespace for a service, see Actions, resources, and condition keys for AWS services in the IAM User Guide. Choose the name of the service to view details for that service. In the first paragraph, find the service prefix. For example, (service prefix: a4b). For more information about service namespaces, see AWS service namespaces in the\u00a0AWS General Reference",
           args: {
             name: "string",
             suggestions: awsPrincipals.map((elm) =>
@@ -4072,7 +4072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "Use this only when paginating results to indicate the maximum number of items you want in the response. If additional items exist beyond the maximum you specify, the IsTruncated response element is true. If you do not include this parameter, the number of items defaults to 100. Note that IAM might return fewer results, even when there are more results available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "Use this only when paginating results to indicate the maximum number of items you want in the response. If additional items exist beyond the maximum you specify, the IsTruncated response element is true. If you do not include this parameter, the number of items defaults to 100. Note that IAM might return fewer results, even when there are more results available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -4080,7 +4080,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4088,7 +4088,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4097,7 +4097,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4108,12 +4108,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-service-linked-role-deletion-status",
       description:
-        "Retrieves the status of your service-linked role deletion. After you use DeleteServiceLinkedRole to submit a service-linked role for deletion, you can use the DeletionTaskId parameter in GetServiceLinkedRoleDeletionStatus to check the status of the deletion. If the deletion fails, this operation returns the reason that it failed, if that information is returned by the service.",
+        "Retrieves the status of your service-linked role deletion. After you use DeleteServiceLinkedRole to submit a service-linked role for deletion, you can use the DeletionTaskId parameter in GetServiceLinkedRoleDeletionStatus to check the status of the deletion. If the deletion fails, this operation returns the reason that it failed, if that information is returned by the service",
       options: [
         {
           name: "--deletion-task-id",
           description:
-            "The deletion task identifier. This identifier is returned by the DeleteServiceLinkedRole operation in the format task/aws-service-role/&lt;service-principal-name&gt;/&lt;role-name&gt;/&lt;task-uuid&gt;.",
+            "The deletion task identifier. This identifier is returned by the DeleteServiceLinkedRole operation in the format task/aws-service-role/&lt;service-principal-name&gt;/&lt;role-name&gt;/&lt;task-uuid&gt;",
           args: {
             name: "string",
           },
@@ -4121,7 +4121,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4130,7 +4130,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4141,7 +4141,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-user",
       description:
-        "Retrieves information about the specified IAM user, including the user's creation date, path, unique ID, and ARN. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID used to sign the request to this operation.",
+        "Retrieves information about the specified IAM user, including the user's creation date, path, unique ID, and ARN. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID used to sign the request to this operation",
       options: [
         {
           name: "--user-name",
@@ -4155,7 +4155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4164,7 +4164,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4175,7 +4175,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-user-policy",
       description:
-        "Retrieves the specified inline policy document that is embedded in the specified IAM user.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  An IAM user can also have managed policies attached to it. To retrieve a managed policy document that is attached to a user, use GetPolicy to determine the policy's default version. Then use GetPolicyVersion to retrieve the policy document. For more information about policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Retrieves the specified inline policy document that is embedded in the specified IAM user.  Policies returned by this operation are URL-encoded compliant with RFC 3986. You can use a URL decoding method to convert the policy back to plain JSON text. For example, if you use Java, you can use the decode method of the java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs provide similar functionality.  An IAM user can also have managed policies attached to it. To retrieve a managed policy document that is attached to a user, use GetPolicy to determine the policy's default version. Then use GetPolicyVersion to retrieve the policy document. For more information about policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -4198,7 +4198,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4207,7 +4207,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4218,7 +4218,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-access-keys",
       description:
-        "Returns information about the access key IDs associated with the specified IAM user. If there is none, the operation returns an empty list. Although each user is limited to a small number of keys, you can still paginate the results using the MaxItems and Marker parameters. If the UserName field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.  To ensure the security of your AWS account, the secret access key is accessible only during key and user creation.",
+        "Returns information about the access key IDs associated with the specified IAM user. If there is none, the operation returns an empty list. Although each user is limited to a small number of keys, you can still paginate the results using the MaxItems and Marker parameters. If the UserName field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.  To ensure the security of your AWS account, the secret access key is accessible only during key and user creation",
       options: [
         {
           name: "--user-name",
@@ -4232,7 +4232,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4240,7 +4240,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4248,7 +4248,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4257,7 +4257,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4265,7 +4265,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4273,7 +4273,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4284,12 +4284,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-account-aliases",
       description:
-        "Lists the account alias associated with the AWS account (Note: you can have only one). For information about using an AWS account alias, see Using an alias for your AWS account ID in the IAM User Guide.",
+        "Lists the account alias associated with the AWS account (Note: you can have only one). For information about using an AWS account alias, see Using an alias for your AWS account ID in the IAM User Guide",
       options: [
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4297,7 +4297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4305,7 +4305,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4314,7 +4314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4322,7 +4322,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4330,7 +4330,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4341,7 +4341,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-attached-group-policies",
       description:
-        "Lists all managed policies that are attached to the specified IAM group. An IAM group can also have inline policies embedded with it. To list the inline policies for a group, use listPoliciesForGroup. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the operation returns an empty list.",
+        "Lists all managed policies that are attached to the specified IAM group. An IAM group can also have inline policies embedded with it. To list the inline policies for a group, use listPoliciesForGroup. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the operation returns an empty list",
       options: [
         {
           name: "--group-name",
@@ -4355,7 +4355,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -4364,7 +4364,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4372,7 +4372,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4380,7 +4380,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4389,7 +4389,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4397,7 +4397,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4405,7 +4405,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4416,7 +4416,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-attached-role-policies",
       description:
-        "Lists all managed policies that are attached to the specified IAM role. An IAM role can also have inline policies embedded with it. To list the inline policies for a role, use ListRolePolicies. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified role (or none that match the specified path prefix), the operation returns an empty list.",
+        "Lists all managed policies that are attached to the specified IAM role. An IAM role can also have inline policies embedded with it. To list the inline policies for a role, use ListRolePolicies. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified role (or none that match the specified path prefix), the operation returns an empty list",
       options: [
         {
           name: "--role-name",
@@ -4430,7 +4430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -4439,7 +4439,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4447,7 +4447,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4455,7 +4455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4464,7 +4464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4472,7 +4472,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4480,7 +4480,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4491,7 +4491,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-attached-user-policies",
       description:
-        "Lists all managed policies that are attached to the specified IAM user. An IAM user can also have inline policies embedded with it. To list the inline policies for a user, use ListUserPolicies. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the operation returns an empty list.",
+        "Lists all managed policies that are attached to the specified IAM user. An IAM user can also have inline policies embedded with it. To list the inline policies for a user, use ListUserPolicies. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the operation returns an empty list",
       options: [
         {
           name: "--user-name",
@@ -4505,7 +4505,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -4514,7 +4514,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4522,7 +4522,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4530,7 +4530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4539,7 +4539,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4547,7 +4547,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4555,7 +4555,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4566,12 +4566,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-entities-for-policy",
       description:
-        "Lists all IAM users, groups, and roles that the specified managed policy is attached to. You can use the optional EntityFilter parameter to limit the results to a particular type of entity (users, groups, or roles). For example, to list only the roles that are attached to the specified policy, set EntityFilter to Role. You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists all IAM users, groups, and roles that the specified managed policy is attached to. You can use the optional EntityFilter parameter to limit the results to a particular type of entity (users, groups, or roles). For example, to list only the roles that are attached to the specified policy, set EntityFilter to Role. You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy for which you want the versions. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy for which you want the versions. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -4580,7 +4580,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--entity-filter",
           description:
-            "The entity type to use for filtering the results. For example, when EntityFilter is Role, only the roles that are attached to the specified policy are returned. This parameter is optional. If it is not included, all attached entities (users, groups, and roles) are returned. The argument for this parameter must be one of the valid values listed below.",
+            "The entity type to use for filtering the results. For example, when EntityFilter is Role, only the roles that are attached to the specified policy are returned. This parameter is optional. If it is not included, all attached entities (users, groups, and roles) are returned. The argument for this parameter must be one of the valid values listed below",
           args: {
             name: "string",
             suggestions: [
@@ -4595,7 +4595,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all entities. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all entities. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -4604,7 +4604,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-usage-filter",
           description:
-            "The policy usage method to use for filtering the results. To list only permissions policies, set\u00a0PolicyUsageFilter\u00a0to\u00a0PermissionsPolicy. To list only the policies used to set permissions boundaries, set\u00a0the value to\u00a0PermissionsBoundary. This parameter is optional. If it is not included, all policies are returned.",
+            "The policy usage method to use for filtering the results. To list only permissions policies, set\u00a0PolicyUsageFilter\u00a0to\u00a0PermissionsPolicy. To list only the policies used to set permissions boundaries, set\u00a0the value to\u00a0PermissionsBoundary. This parameter is optional. If it is not included, all policies are returned",
           args: {
             name: "string",
             suggestions: ["PermissionsPolicy", "PermissionsBoundary"],
@@ -4613,7 +4613,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4621,7 +4621,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4629,7 +4629,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4638,7 +4638,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4646,7 +4646,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4654,7 +4654,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4665,7 +4665,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-group-policies",
       description:
-        "Lists the names of the inline policies that are embedded in the specified IAM group. An IAM group can also have managed policies attached to it. To list the managed policies that are attached to a group, use ListAttachedGroupPolicies. For more information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. If there are no inline policies embedded with the specified group, the operation returns an empty list.",
+        "Lists the names of the inline policies that are embedded in the specified IAM group. An IAM group can also have managed policies attached to it. To list the managed policies that are attached to a group, use ListAttachedGroupPolicies. For more information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. If there are no inline policies embedded with the specified group, the operation returns an empty list",
       options: [
         {
           name: "--group-name",
@@ -4679,7 +4679,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4687,7 +4687,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4695,7 +4695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4704,7 +4704,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4712,7 +4712,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4720,7 +4720,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4731,12 +4731,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-groups",
       description:
-        "Lists the IAM groups that have the specified path prefix.  You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the IAM groups that have the specified path prefix.  You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/ gets all groups whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/ gets all groups whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -4745,7 +4745,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4753,7 +4753,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4761,7 +4761,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4770,7 +4770,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4778,7 +4778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4786,7 +4786,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4797,7 +4797,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-groups-for-user",
       description:
-        "Lists the IAM groups that the specified IAM user belongs to. You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the IAM groups that the specified IAM user belongs to. You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--user-name",
@@ -4811,7 +4811,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4819,7 +4819,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4827,7 +4827,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4836,7 +4836,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4844,7 +4844,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4852,7 +4852,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4863,7 +4863,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-instance-profile-tags",
       description:
-        "Lists the tags that are attached to the specified IAM instance profile. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified IAM instance profile. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--instance-profile-name",
@@ -4877,7 +4877,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4885,7 +4885,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -4893,7 +4893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4902,7 +4902,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4913,12 +4913,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-instance-profiles",
       description:
-        "Lists the instance profiles that have the specified path prefix. If there are none, the operation returns an empty list. For more information about instance profiles, see About instance profiles.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for an instance profile, see GetInstanceProfile.  You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the instance profiles that have the specified path prefix. If there are none, the operation returns an empty list. For more information about instance profiles, see About instance profiles.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for an instance profile, see GetInstanceProfile.  You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all instance profiles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all instance profiles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all instance profiles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all instance profiles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -4927,7 +4927,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -4935,7 +4935,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4943,7 +4943,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -4952,7 +4952,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -4960,7 +4960,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -4968,7 +4968,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4979,7 +4979,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-instance-profiles-for-role",
       description:
-        "Lists the instance profiles that have the specified associated IAM role. If there are none, the operation returns an empty list. For more information about instance profiles, go to About instance profiles. You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the instance profiles that have the specified associated IAM role. If there are none, the operation returns an empty list. For more information about instance profiles, go to About instance profiles. You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--role-name",
@@ -4993,7 +4993,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5001,7 +5001,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5009,7 +5009,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5018,7 +5018,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5026,7 +5026,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5034,7 +5034,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5045,7 +5045,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-mfa-device-tags",
       description:
-        "Lists the tags that are attached to the specified IAM virtual multi-factor authentication (MFA) device. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified IAM virtual multi-factor authentication (MFA) device. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--serial-number",
@@ -5059,7 +5059,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5067,7 +5067,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -5075,7 +5075,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5084,7 +5084,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5095,7 +5095,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-mfa-devices",
       description:
-        "Lists the MFA devices for an IAM user. If the request includes a IAM user name, then this operation lists all the MFA devices associated with the specified user. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request for this operation. You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the MFA devices for an IAM user. If the request includes a IAM user name, then this operation lists all the MFA devices associated with the specified user. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request for this operation. You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--user-name",
@@ -5109,7 +5109,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5117,7 +5117,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5125,7 +5125,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5134,7 +5134,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5142,7 +5142,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5150,7 +5150,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5161,7 +5161,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-open-id-connect-provider-tags",
       description:
-        "Lists the tags that are attached to the specified OpenID Connect (OIDC)-compatible identity provider. The returned list of tags is sorted by tag key. For more information, see About web identity federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified OpenID Connect (OIDC)-compatible identity provider. The returned list of tags is sorted by tag key. For more information, see About web identity federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--open-id-connect-provider-arn",
@@ -5175,7 +5175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5183,7 +5183,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -5191,7 +5191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5200,7 +5200,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5211,12 +5211,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-open-id-connect-providers",
       description:
-        "Lists information about the IAM OpenID Connect (OIDC) provider resource objects defined in the AWS account.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for an OIDC provider, see GetOpenIDConnectProvider.",
+        "Lists information about the IAM OpenID Connect (OIDC) provider resource objects defined in the AWS account.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for an OIDC provider, see GetOpenIDConnectProvider",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5225,7 +5225,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5236,12 +5236,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-policies",
       description:
-        "Lists all the managed policies that are available in your AWS account, including your own customer-defined managed policies and all AWS managed policies. You can filter the list of policies that is returned using the optional OnlyAttached, Scope, and PathPrefix parameters. For example, to list only the customer managed policies in your AWS account, set Scope to Local. To list only AWS managed policies, set Scope to AWS. You can paginate the results using the MaxItems and Marker parameters. For more information about managed policies, see Managed policies and inline policies in the IAM User Guide.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a customer manged policy, see GetPolicy.",
+        "Lists all the managed policies that are available in your AWS account, including your own customer-defined managed policies and all AWS managed policies. You can filter the list of policies that is returned using the optional OnlyAttached, Scope, and PathPrefix parameters. For example, to list only the customer managed policies in your AWS account, set Scope to Local. To list only AWS managed policies, set Scope to AWS. You can paginate the results using the MaxItems and Marker parameters. For more information about managed policies, see Managed policies and inline policies in the IAM User Guide.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a customer manged policy, see GetPolicy",
       options: [
         {
           name: "--scope",
           description:
-            "The scope to use for filtering the results. To list only AWS managed policies, set Scope to AWS. To list only the customer managed policies in your AWS account, set Scope to Local. This parameter is optional. If it is not included, or if it is set to All, all policies are returned.",
+            "The scope to use for filtering the results. To list only AWS managed policies, set Scope to AWS. To list only the customer managed policies in your AWS account, set Scope to Local. This parameter is optional. If it is not included, or if it is set to All, all policies are returned",
           args: {
             name: "string",
             suggestions: ["Local", "AWS"],
@@ -5250,17 +5250,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only-attached",
           description:
-            "A flag to filter the results to only the attached policies. When OnlyAttached is true, the returned list contains only the policies that are attached to an IAM user, group, or role. When OnlyAttached is false, or when the parameter is not included, all policies are returned.",
+            "A flag to filter the results to only the attached policies. When OnlyAttached is true, the returned list contains only the policies that are attached to an IAM user, group, or role. When OnlyAttached is false, or when the parameter is not included, all policies are returned",
         },
         {
           name: "--no-only-attached",
           description:
-            "A flag to filter the results to only the attached policies. When OnlyAttached is true, the returned list contains only the policies that are attached to an IAM user, group, or role. When OnlyAttached is false, or when the parameter is not included, all policies are returned.",
+            "A flag to filter the results to only the attached policies. When OnlyAttached is true, the returned list contains only the policies that are attached to an IAM user, group, or role. When OnlyAttached is false, or when the parameter is not included, all policies are returned",
         },
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -5269,7 +5269,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--policy-usage-filter",
           description:
-            "The policy usage method to use for filtering the results. To list only permissions policies, set\u00a0PolicyUsageFilter\u00a0to\u00a0PermissionsPolicy. To list only the policies used to set permissions boundaries, set\u00a0the value to\u00a0PermissionsBoundary. This parameter is optional. If it is not included, all policies are returned.",
+            "The policy usage method to use for filtering the results. To list only permissions policies, set\u00a0PolicyUsageFilter\u00a0to\u00a0PermissionsPolicy. To list only the policies used to set permissions boundaries, set\u00a0the value to\u00a0PermissionsBoundary. This parameter is optional. If it is not included, all policies are returned",
           args: {
             name: "string",
           },
@@ -5277,7 +5277,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5285,7 +5285,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5293,7 +5293,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5302,7 +5302,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5310,7 +5310,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5318,7 +5318,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5329,12 +5329,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-policies-granting-service-access",
       description:
-        "Retrieves a list of policies that the IAM identity (user, group, or role) can use to access each specified service.  This operation does not use other policy types when determining whether a resource could access a service. These other policy types include resource-based policies, access control lists, AWS Organizations policies, IAM permissions boundaries, and AWS STS assume role policies. It only applies permissions policy logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  The list of policies returned by the operation depends on the ARN of the identity that you provide.    User \u2013 The list of policies includes the managed and inline policies that are attached to the user directly. The list also includes any additional managed and inline policies that are attached to the group to which the user belongs.     Group \u2013 The list of policies includes only the managed and inline policies that are attached to the group directly. Policies that are attached to the group\u2019s user are not included.    Role \u2013 The list of policies includes only the managed and inline policies that are attached to the role.   For each managed policy, this operation returns the ARN and policy name. For each inline policy, it returns the policy name and the entity to which it is attached. Inline policies do not have an ARN. For more information about these policy types, see Managed policies and inline policies in the IAM User Guide. Policies that are attached to users and roles as permissions boundaries are not returned. To view which managed policy is currently used to set the permissions boundary for a user or role, use the GetUser or GetRole operations.",
+        "Retrieves a list of policies that the IAM identity (user, group, or role) can use to access each specified service.  This operation does not use other policy types when determining whether a resource could access a service. These other policy types include resource-based policies, access control lists, AWS Organizations policies, IAM permissions boundaries, and AWS STS assume role policies. It only applies permissions policy logic. For more about the evaluation of policy types, see Evaluating policies in the IAM User Guide.  The list of policies returned by the operation depends on the ARN of the identity that you provide.    User \u2013 The list of policies includes the managed and inline policies that are attached to the user directly. The list also includes any additional managed and inline policies that are attached to the group to which the user belongs.     Group \u2013 The list of policies includes only the managed and inline policies that are attached to the group directly. Policies that are attached to the group\u2019s user are not included.    Role \u2013 The list of policies includes only the managed and inline policies that are attached to the role.   For each managed policy, this operation returns the ARN and policy name. For each inline policy, it returns the policy name and the entity to which it is attached. Inline policies do not have an ARN. For more information about these policy types, see Managed policies and inline policies in the IAM User Guide. Policies that are attached to users and roles as permissions boundaries are not returned. To view which managed policy is currently used to set the permissions boundary for a user or role, use the GetUser or GetRole operations",
       options: [
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5342,7 +5342,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--arn",
           description:
-            "The ARN of the IAM identity (user, group, or role) whose policies you want to list.",
+            "The ARN of the IAM identity (user, group, or role) whose policies you want to list",
           args: {
             name: "string",
             generators: generators.listIdentityArns,
@@ -5351,7 +5351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-namespaces",
           description:
-            "The service namespace for the AWS services whose policies you want to list. To learn the service namespace for a service, see Actions, resources, and condition keys for AWS services in the IAM User Guide. Choose the name of the service to view details for that service. In the first paragraph, find the service prefix. For example, (service prefix: a4b). For more information about service namespaces, see AWS service namespaces in the\u00a0AWS General Reference.",
+            "The service namespace for the AWS services whose policies you want to list. To learn the service namespace for a service, see Actions, resources, and condition keys for AWS services in the IAM User Guide. Choose the name of the service to view details for that service. In the first paragraph, find the service prefix. For example, (service prefix: a4b). For more information about service namespaces, see AWS service namespaces in the\u00a0AWS General Reference",
           args: {
             name: "list",
             suggestions: awsPrincipals.map((elm) =>
@@ -5362,7 +5362,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5371,7 +5371,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5382,7 +5382,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-policy-tags",
       description:
-        "Lists the tags that are attached to the specified IAM customer managed policy. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified IAM customer managed policy. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
@@ -5396,7 +5396,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5404,7 +5404,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -5412,7 +5412,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5421,7 +5421,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5432,12 +5432,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-policy-versions",
       description:
-        "Lists information about the versions of the specified managed policy, including the version that is currently set as the policy's default version. For more information about managed policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Lists information about the versions of the specified managed policy, including the version that is currently set as the policy's default version. For more information about managed policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy for which you want the versions. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy for which you want the versions. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -5446,7 +5446,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5454,7 +5454,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5462,7 +5462,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5471,7 +5471,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5479,7 +5479,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5487,7 +5487,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5498,7 +5498,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-role-policies",
       description:
-        "Lists the names of the inline policies that are embedded in the specified IAM role. An IAM role can also have managed policies attached to it. To list the managed policies that are attached to a role, use ListAttachedRolePolicies. For more information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. If there are no inline policies embedded with the specified role, the operation returns an empty list.",
+        "Lists the names of the inline policies that are embedded in the specified IAM role. An IAM role can also have managed policies attached to it. To list the managed policies that are attached to a role, use ListAttachedRolePolicies. For more information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. If there are no inline policies embedded with the specified role, the operation returns an empty list",
       options: [
         {
           name: "--role-name",
@@ -5512,7 +5512,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5520,7 +5520,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5528,7 +5528,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5537,7 +5537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5545,7 +5545,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5553,7 +5553,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5564,7 +5564,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-role-tags",
       description:
-        "Lists the tags that are attached to the specified role. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified role. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -5578,7 +5578,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5586,7 +5586,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -5594,7 +5594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5603,7 +5603,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5614,12 +5614,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-roles",
       description:
-        "Lists the IAM roles that have the specified path prefix. If there are none, the operation returns an empty list. For more information about roles, see Working with roles.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a role, see GetRole.  You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the IAM roles that have the specified path prefix. If there are none, the operation returns an empty list. For more information about roles, see Working with roles.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a role, see GetRole.  You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all roles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all roles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all roles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all roles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -5628,7 +5628,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5636,7 +5636,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5644,7 +5644,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5653,7 +5653,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5661,7 +5661,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5669,7 +5669,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5680,7 +5680,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-saml-provider-tags",
       description:
-        "Lists the tags that are attached to the specified Security Assertion Markup Language (SAML) identity provider. The returned list of tags is sorted by tag key. For more information, see About SAML 2.0-based federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified Security Assertion Markup Language (SAML) identity provider. The returned list of tags is sorted by tag key. For more information, see About SAML 2.0-based federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--saml-provider-arn",
@@ -5694,7 +5694,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5702,7 +5702,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -5710,7 +5710,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5719,7 +5719,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5730,12 +5730,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-saml-providers",
       description:
-        "Lists the SAML provider resource objects defined in IAM in the account. IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a SAML provider, see GetSAMLProvider.   This operation requires Signature Version 4.",
+        "Lists the SAML provider resource objects defined in IAM in the account. IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a SAML provider, see GetSAMLProvider.   This operation requires Signature Version 4",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5744,7 +5744,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5755,7 +5755,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-ssh-public-keys",
       description:
-        "Returns information about the SSH public keys associated with the specified IAM user. If none exists, the operation returns an empty list. The SSH public keys returned by this operation are used only for authenticating the IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide. Although each user is limited to a small number of keys, you can still paginate the results using the MaxItems and Marker parameters.",
+        "Returns information about the SSH public keys associated with the specified IAM user. If none exists, the operation returns an empty list. The SSH public keys returned by this operation are used only for authenticating the IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide. Although each user is limited to a small number of keys, you can still paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--user-name",
@@ -5769,7 +5769,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5777,7 +5777,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5785,7 +5785,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5794,7 +5794,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5802,7 +5802,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5810,7 +5810,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5821,7 +5821,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-server-certificate-tags",
       description:
-        "Lists the tags that are attached to the specified IAM server certificate. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  For certificates in a Region supported by AWS Certificate Manager (ACM), we recommend that you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server certificates. For more information about IAM server certificates, Working with server certificates in the IAM User Guide.",
+        "Lists the tags that are attached to the specified IAM server certificate. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  For certificates in a Region supported by AWS Certificate Manager (ACM), we recommend that you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server certificates. For more information about IAM server certificates, Working with server certificates in the IAM User Guide",
       options: [
         {
           name: "--server-certificate-name",
@@ -5835,7 +5835,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5843,7 +5843,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -5851,7 +5851,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5860,7 +5860,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5871,12 +5871,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-server-certificates",
       description:
-        "Lists the server certificates stored in IAM that have the specified path prefix. If none exist, the operation returns an empty list.  You can paginate the results using the MaxItems and Marker parameters. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic also includes a list of AWS services that can use the server certificates that you manage with IAM.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a servercertificate, see GetServerCertificate.",
+        "Lists the server certificates stored in IAM that have the specified path prefix. If none exist, the operation returns an empty list.  You can paginate the results using the MaxItems and Marker parameters. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic also includes a list of AWS services that can use the server certificates that you manage with IAM.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a servercertificate, see GetServerCertificate",
       options: [
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. For example: /company/servercerts would get all server certificates for which the path starts with /company/servercerts. This parameter is optional. If it is not included, it defaults to a slash (/), listing all server certificates. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. For example: /company/servercerts would get all server certificates for which the path starts with /company/servercerts. This parameter is optional. If it is not included, it defaults to a slash (/), listing all server certificates. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -5885,7 +5885,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -5893,7 +5893,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5901,7 +5901,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5910,7 +5910,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -5918,7 +5918,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -5926,7 +5926,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5937,7 +5937,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-service-specific-credentials",
       description:
-        "Returns information about the service-specific credentials associated with the specified IAM user. If none exists, the operation returns an empty list. The service-specific credentials returned by this operation are used only for authenticating the IAM user to a specific service. For more information about using service-specific credentials to authenticate to an AWS service, see Set up service-specific credentials in the AWS CodeCommit User Guide.",
+        "Returns information about the service-specific credentials associated with the specified IAM user. If none exists, the operation returns an empty list. The service-specific credentials returned by this operation are used only for authenticating the IAM user to a specific service. For more information about using service-specific credentials to authenticate to an AWS service, see Set up service-specific credentials in the AWS CodeCommit User Guide",
       options: [
         {
           name: "--user-name",
@@ -5951,7 +5951,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-name",
           description:
-            "Filters the returned results to only those for the specified AWS service. If not specified, then AWS returns service-specific credentials for all services.",
+            "Filters the returned results to only those for the specified AWS service. If not specified, then AWS returns service-specific credentials for all services",
           args: {
             name: "string",
             suggestions: awsPrincipals,
@@ -5960,7 +5960,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -5969,7 +5969,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5980,7 +5980,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-signing-certificates",
       description:
-        "Returns information about the signing certificates associated with the specified IAM user. If none exists, the operation returns an empty list. Although each user is limited to a small number of signing certificates, you can still paginate the results using the MaxItems and Marker parameters. If the UserName field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request for this operation. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.",
+        "Returns information about the signing certificates associated with the specified IAM user. If none exists, the operation returns an empty list. Although each user is limited to a small number of signing certificates, you can still paginate the results using the MaxItems and Marker parameters. If the UserName field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request for this operation. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users",
       options: [
         {
           name: "--user-name",
@@ -5994,7 +5994,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -6002,7 +6002,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6010,7 +6010,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6019,7 +6019,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -6027,7 +6027,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6035,7 +6035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6046,7 +6046,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-user-policies",
       description:
-        "Lists the names of the inline policies embedded in the specified IAM user. An IAM user can also have managed policies attached to it. To list the managed policies that are attached to a user, use ListAttachedUserPolicies. For more information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. If there are no inline policies embedded with the specified user, the operation returns an empty list.",
+        "Lists the names of the inline policies embedded in the specified IAM user. An IAM user can also have managed policies attached to it. To list the managed policies that are attached to a user, use ListAttachedUserPolicies. For more information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. If there are no inline policies embedded with the specified user, the operation returns an empty list",
       options: [
         {
           name: "--user-name",
@@ -6060,7 +6060,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -6068,7 +6068,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6076,7 +6076,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6085,7 +6085,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -6093,7 +6093,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6101,7 +6101,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6112,7 +6112,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-user-tags",
       description:
-        "Lists the tags that are attached to the specified IAM user. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Lists the tags that are attached to the specified IAM user. The returned list of tags is sorted by tag key. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -6126,7 +6126,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -6134,7 +6134,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from.",
+            "(Optional) Use this only when paginating results to indicate the maximum number of items that you want in the response. If additional items exist beyond the maximum that you specify, the IsTruncated response element is true. If you do not include this parameter, it defaults to 100. Note that IAM might return fewer results, even when more results are available. In that case, the IsTruncated response element returns true, and Marker contains a value to include in the subsequent call that tells the service where to continue from",
           args: {
             name: "integer",
           },
@@ -6142,7 +6142,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6151,7 +6151,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6162,12 +6162,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-users",
       description:
-        "Lists the IAM users that have the specified path prefix. If no path prefix is specified, the operation returns all users in the AWS account. If there are none, the operation returns an empty list.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a user, see GetUser.  You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the IAM users that have the specified path prefix. If no path prefix is specified, the operation returns all users in the AWS account. If there are none, the operation returns an empty list.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a user, see GetUser.  You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--path-prefix",
           description:
-            "The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all user names whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all user names. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all user names whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all user names. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
             description: "Default path: /",
@@ -6176,7 +6176,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -6184,7 +6184,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6192,7 +6192,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6201,7 +6201,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -6209,7 +6209,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6217,7 +6217,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6228,7 +6228,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-virtual-mfa-devices",
       description:
-        "Lists the virtual MFA devices defined in the AWS account by assignment status. If you do not specify an assignment status, the operation returns a list of all virtual MFA devices. Assignment status can be Assigned, Unassigned, or Any.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a virtual MFA device, see ListVirtualMFADevices.  You can paginate the results using the MaxItems and Marker parameters.",
+        "Lists the virtual MFA devices defined in the AWS account by assignment status. If you do not specify an assignment status, the operation returns a list of all virtual MFA devices. Assignment status can be Assigned, Unassigned, or Any.  IAM resource-listing operations return a subset of the available attributes for the resource. For example, this operation does not return tags, even though they are an attribute of the returned object. To view all of the information for a virtual MFA device, see ListVirtualMFADevices.  You can paginate the results using the MaxItems and Marker parameters",
       options: [
         {
           name: "--assignment-status",
@@ -6242,7 +6242,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -6250,7 +6250,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6258,7 +6258,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6267,7 +6267,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -6275,7 +6275,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6283,7 +6283,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6294,12 +6294,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-group-policy",
       description:
-        "Adds or updates an inline policy document that is embedded in the specified IAM group. A user can also have managed policies attached to it. To attach a managed policy to a group, use AttachGroupPolicy. To create a new managed policy, use CreatePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide. For information about the maximum number of inline policies that you can embed in a group, see IAM and STS quotas in the IAM User Guide.  Because policy documents can be large, you should use POST rather than GET when calling PutGroupPolicy. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide.",
+        "Adds or updates an inline policy document that is embedded in the specified IAM group. A user can also have managed policies attached to it. To attach a managed policy to a group, use AttachGroupPolicy. To create a new managed policy, use CreatePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide. For information about the maximum number of inline policies that you can embed in a group, see IAM and STS quotas in the IAM User Guide.  Because policy documents can be large, you should use POST rather than GET when calling PutGroupPolicy. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide",
       options: [
         {
           name: "--group-name",
           description:
-            "The name of the group to associate the policy with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-.",
+            "The name of the group to associate the policy with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
             generators: generators.listGroups,
@@ -6326,7 +6326,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6335,7 +6335,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6346,12 +6346,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-role-permissions-boundary",
       description:
-        "Adds or updates the policy that is specified as the IAM role's permissions boundary. You can use an AWS managed policy or a customer managed policy to set the boundary for a role. Use the boundary to control the maximum permissions that the role can have. Setting a permissions boundary is an advanced feature that can affect the permissions for the role. You cannot set the boundary for a service-linked role.   Policies used as permissions boundaries do not provide permissions. You must also attach a permissions policy to the role. To learn how the effective permissions for a role are evaluated, see IAM JSON policy evaluation logic in the IAM User Guide.",
+        "Adds or updates the policy that is specified as the IAM role's permissions boundary. You can use an AWS managed policy or a customer managed policy to set the boundary for a role. Use the boundary to control the maximum permissions that the role can have. Setting a permissions boundary is an advanced feature that can affect the permissions for the role. You cannot set the boundary for a service-linked role.   Policies used as permissions boundaries do not provide permissions. You must also attach a permissions policy to the role. To learn how the effective permissions for a role are evaluated, see IAM JSON policy evaluation logic in the IAM User Guide",
       options: [
         {
           name: "--role-name",
           description:
-            "The name (friendly name, not ARN) of the IAM role for which you want to set the permissions boundary.",
+            "The name (friendly name, not ARN) of the IAM role for which you want to set the permissions boundary",
           args: {
             name: "string",
             generators: generators.listRoles,
@@ -6360,7 +6360,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--permissions-boundary",
           description:
-            "The ARN of the policy that is used to set the permissions boundary for the role.",
+            "The ARN of the policy that is used to set the permissions boundary for the role",
           args: {
             name: "string",
             generators: generators.listAttachedPolicyArnsForRole,
@@ -6369,7 +6369,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6378,7 +6378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6389,7 +6389,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-role-policy",
       description:
-        "Adds or updates an inline policy document that is embedded in the specified IAM role. When you embed an inline policy in a role, the inline policy is used as part of the role's access (permissions) policy. The role's trust policy is created at the same time as the role, using CreateRole. You can update a role's trust policy using UpdateAssumeRolePolicy. For more information about IAM roles, see Using roles to delegate permissions and federate identities. A role can also have a managed policy attached to it. To attach a managed policy to a role, use AttachRolePolicy. To create a new managed policy, use CreatePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide. For information about the maximum number of inline policies that you can embed with a role, see IAM and STS quotas in the IAM User Guide.  Because policy documents can be large, you should use POST rather than GET when calling PutRolePolicy. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide.",
+        "Adds or updates an inline policy document that is embedded in the specified IAM role. When you embed an inline policy in a role, the inline policy is used as part of the role's access (permissions) policy. The role's trust policy is created at the same time as the role, using CreateRole. You can update a role's trust policy using UpdateAssumeRolePolicy. For more information about IAM roles, see Using roles to delegate permissions and federate identities. A role can also have a managed policy attached to it. To attach a managed policy to a role, use AttachRolePolicy. To create a new managed policy, use CreatePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide. For information about the maximum number of inline policies that you can embed with a role, see IAM and STS quotas in the IAM User Guide.  Because policy documents can be large, you should use POST rather than GET when calling PutRolePolicy. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -6421,7 +6421,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6430,7 +6430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6441,12 +6441,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-user-permissions-boundary",
       description:
-        "Adds or updates the policy that is specified as the IAM user's permissions boundary. You can use an AWS managed policy or a customer managed policy to set the boundary for a user. Use the boundary to control the maximum permissions that the user can have. Setting a permissions boundary is an advanced feature that can affect the permissions for the user.  Policies that are used as permissions boundaries do not provide permissions. You must also attach a permissions policy to the user. To learn how the effective permissions for a user are evaluated, see IAM JSON policy evaluation logic in the IAM User Guide.",
+        "Adds or updates the policy that is specified as the IAM user's permissions boundary. You can use an AWS managed policy or a customer managed policy to set the boundary for a user. Use the boundary to control the maximum permissions that the user can have. Setting a permissions boundary is an advanced feature that can affect the permissions for the user.  Policies that are used as permissions boundaries do not provide permissions. You must also attach a permissions policy to the user. To learn how the effective permissions for a user are evaluated, see IAM JSON policy evaluation logic in the IAM User Guide",
       options: [
         {
           name: "--user-name",
           description:
-            "The name (friendly name, not ARN) of the IAM user for which you want to set the permissions boundary.",
+            "The name (friendly name, not ARN) of the IAM user for which you want to set the permissions boundary",
           args: {
             name: "string",
             generators: generators.listUsers,
@@ -6455,7 +6455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--permissions-boundary",
           description:
-            "The ARN of the policy that is used to set the permissions boundary for the user.",
+            "The ARN of the policy that is used to set the permissions boundary for the user",
           args: {
             name: "string",
             generators: generators.listAttachedPolicyArnsUser,
@@ -6464,7 +6464,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6473,7 +6473,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6484,7 +6484,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-user-policy",
       description:
-        "Adds or updates an inline policy document that is embedded in the specified IAM user. An IAM user can also have a managed policy attached to it. To attach a managed policy to a user, use AttachUserPolicy. To create a new managed policy, use CreatePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide. For information about the maximum number of inline policies that you can embed in a user, see IAM and STS quotas in the IAM User Guide.  Because policy documents can be large, you should use POST rather than GET when calling PutUserPolicy. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide.",
+        "Adds or updates an inline policy document that is embedded in the specified IAM user. An IAM user can also have a managed policy attached to it. To attach a managed policy to a user, use AttachUserPolicy. To create a new managed policy, use CreatePolicy. For information about policies, see Managed policies and inline policies in the IAM User Guide. For information about the maximum number of inline policies that you can embed in a user, see IAM and STS quotas in the IAM User Guide.  Because policy documents can be large, you should use POST rather than GET when calling PutUserPolicy. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -6516,7 +6516,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6525,7 +6525,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6536,12 +6536,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-client-id-from-open-id-connect-provider",
       description:
-        "Removes the specified client ID (also known as audience) from the list of client IDs registered for the specified IAM OpenID Connect (OIDC) provider resource object. This operation is idempotent; it does not fail or return an error if you try to remove a client ID that does not exist.",
+        "Removes the specified client ID (also known as audience) from the list of client IDs registered for the specified IAM OpenID Connect (OIDC) provider resource object. This operation is idempotent; it does not fail or return an error if you try to remove a client ID that does not exist",
       options: [
         {
           name: "--open-id-connect-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM OIDC provider resource to remove the client ID from. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM OIDC provider resource to remove the client ID from. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listOpenIdProviders,
@@ -6550,7 +6550,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--client-id",
           description:
-            "The client ID (also known as audience) to remove from the IAM OIDC provider resource. For more information about client IDs, see CreateOpenIDConnectProvider.",
+            "The client ID (also known as audience) to remove from the IAM OIDC provider resource. For more information about client IDs, see CreateOpenIDConnectProvider",
           args: {
             name: "string",
             generators: generators.listOpenIdClientsForProvider,
@@ -6559,7 +6559,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6568,7 +6568,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6579,7 +6579,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-role-from-instance-profile",
       description:
-        "Removes the specified IAM role from the specified EC2 instance profile.  Make sure that you do not have any Amazon EC2 instances running with the role you are about to remove from the instance profile. Removing a role from an instance profile that is associated with a running instance might break any applications running on the instance.   For more information about IAM roles, see Working with roles. For more information about instance profiles, see About instance profiles.",
+        "Removes the specified IAM role from the specified EC2 instance profile.  Make sure that you do not have any Amazon EC2 instances running with the role you are about to remove from the instance profile. Removing a role from an instance profile that is associated with a running instance might break any applications running on the instance.   For more information about IAM roles, see Working with roles. For more information about instance profiles, see About instance profiles",
       options: [
         {
           name: "--instance-profile-name",
@@ -6602,7 +6602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6611,7 +6611,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6621,7 +6621,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "remove-user-from-group",
-      description: "Removes the specified user from the specified group.",
+      description: "Removes the specified user from the specified group",
       options: [
         {
           name: "--group-name",
@@ -6644,7 +6644,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6653,7 +6653,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6664,7 +6664,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reset-service-specific-credential",
       description:
-        "Resets the password for a service-specific credential. The new password is AWS generated and cryptographically strong. It cannot be configured by the user. Resetting the password immediately invalidates the previous password associated with this user.",
+        "Resets the password for a service-specific credential. The new password is AWS generated and cryptographically strong. It cannot be configured by the user. Resetting the password immediately invalidates the previous password associated with this user",
       options: [
         {
           name: "--user-name",
@@ -6678,7 +6678,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-specific-credential-id",
           description:
-            "The unique identifier of the service-specific credential. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier of the service-specific credential. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listServiceSpecificCredentialsForUser,
@@ -6687,7 +6687,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6696,7 +6696,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6707,7 +6707,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "resync-mfa-device",
       description:
-        "Synchronizes the specified MFA device with its IAM resource object on the AWS servers. For more information about creating and working with virtual MFA devices, see Using a virtual MFA device in the IAM User Guide.",
+        "Synchronizes the specified MFA device with its IAM resource object on the AWS servers. For more information about creating and working with virtual MFA devices, see Using a virtual MFA device in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -6730,7 +6730,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code1",
           description:
-            "An authentication code emitted by the device. The format for this parameter is a sequence of six digits.",
+            "An authentication code emitted by the device. The format for this parameter is a sequence of six digits",
           args: {
             name: "string",
           },
@@ -6738,7 +6738,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code2",
           description:
-            "A subsequent authentication code emitted by the device. The format for this parameter is a sequence of six digits.",
+            "A subsequent authentication code emitted by the device. The format for this parameter is a sequence of six digits",
           args: {
             name: "string",
           },
@@ -6746,7 +6746,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code-1",
           description:
-            "An authentication code emitted by the device. The format for this parameter is a sequence of six digits.",
+            "An authentication code emitted by the device. The format for this parameter is a sequence of six digits",
           args: {
             name: "string",
           },
@@ -6754,7 +6754,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--authentication-code-2",
           description:
-            "A subsequent authentication code emitted by the device. The format for this parameter is a sequence of six digits.",
+            "A subsequent authentication code emitted by the device. The format for this parameter is a sequence of six digits",
           args: {
             name: "string",
           },
@@ -6762,7 +6762,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6771,7 +6771,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6782,12 +6782,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-default-policy-version",
       description:
-        "Sets the specified version of the specified policy as the policy's default (operative) version. This operation affects all users, groups, and roles that the policy is attached to. To list the users, groups, and roles that the policy is attached to, use ListEntitiesForPolicy. For information about managed policies, see Managed policies and inline policies in the IAM User Guide.",
+        "Sets the specified version of the specified policy as the policy's default (operative) version. This operation affects all users, groups, and roles that the policy is attached to. To list the users, groups, and roles that the policy is attached to, use ListEntitiesForPolicy. For information about managed policies, see Managed policies and inline policies in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM policy whose default version you want to set. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM policy whose default version you want to set. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIamPoliciesArn,
@@ -6796,7 +6796,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The version of the policy to set as the default (operative) version. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
+            "The version of the policy to set as the default (operative) version. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide",
           args: {
             name: "string",
             generators: generators.listVersionsForPolicy,
@@ -6805,7 +6805,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6814,7 +6814,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6825,12 +6825,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-security-token-service-preferences",
       description:
-        "Sets the specified version of the global endpoint token as the token version used for the AWS account. By default, AWS Security Token Service (STS) is available as a global service, and all STS requests go to a single endpoint at https://sts.amazonaws.com. AWS recommends using Regional STS endpoints to reduce latency, build in redundancy, and increase session token availability. For information about Regional endpoints for STS, see AWS AWS Security Token Service endpoints and quotas in the AWS General Reference. If you make an STS call to the global endpoint, the resulting session tokens might be valid in some Regions but not others. It depends on the version that is set in this operation. Version 1 tokens are valid only in AWS Regions that are available by default. These tokens do not work in manually enabled Regions, such as Asia Pacific (Hong Kong). Version 2 tokens are valid in all Regions. However, version 2 tokens are longer and might affect systems where you temporarily store tokens. For information, see Activating and deactivating STS in an AWS region in the IAM User Guide. To view the current session token version, see the GlobalEndpointTokenVersion entry in the response of the GetAccountSummary operation.",
+        "Sets the specified version of the global endpoint token as the token version used for the AWS account. By default, AWS Security Token Service (STS) is available as a global service, and all STS requests go to a single endpoint at https://sts.amazonaws.com. AWS recommends using Regional STS endpoints to reduce latency, build in redundancy, and increase session token availability. For information about Regional endpoints for STS, see AWS AWS Security Token Service endpoints and quotas in the AWS General Reference. If you make an STS call to the global endpoint, the resulting session tokens might be valid in some Regions but not others. It depends on the version that is set in this operation. Version 1 tokens are valid only in AWS Regions that are available by default. These tokens do not work in manually enabled Regions, such as Asia Pacific (Hong Kong). Version 2 tokens are valid in all Regions. However, version 2 tokens are longer and might affect systems where you temporarily store tokens. For information, see Activating and deactivating STS in an AWS region in the IAM User Guide. To view the current session token version, see the GlobalEndpointTokenVersion entry in the response of the GetAccountSummary operation",
       options: [
         {
           name: "--global-endpoint-token-version",
           description:
-            "The version of the global endpoint token. Version 1 tokens are valid only in AWS Regions that are available by default. These tokens do not work in manually enabled Regions, such as Asia Pacific (Hong Kong). Version 2 tokens are valid in all Regions. However, version 2 tokens are longer and might affect systems where you temporarily store tokens. For information, see Activating and deactivating STS in an AWS region in the IAM User Guide.",
+            "The version of the global endpoint token. Version 1 tokens are valid only in AWS Regions that are available by default. These tokens do not work in manually enabled Regions, such as Asia Pacific (Hong Kong). Version 2 tokens are valid in all Regions. However, version 2 tokens are longer and might affect systems where you temporarily store tokens. For information, see Activating and deactivating STS in an AWS region in the IAM User Guide",
           args: {
             name: "string",
           },
@@ -6838,7 +6838,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6847,7 +6847,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6858,7 +6858,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "simulate-custom-policy",
       description:
-        "Simulate how a set of IAM policies and optionally a resource-based policy works with a list of API operations and AWS resources to determine the policies' effective permissions. The policies are provided as strings. The simulation does not perform the API operations; it only checks the authorization to determine if the simulated policies allow or deny the operations. You can simulate resources that don't exist in your account. If you want to simulate existing policies that are attached to an IAM user, group, or role, use SimulatePrincipalPolicy instead. Context keys are variables that are maintained by AWS and its services and which provide details about the context of an API query request. You can use the Condition element of an IAM policy to evaluate context keys. To get the list of context keys that the policies require for correct simulation, use GetContextKeysForCustomPolicy. If the output is long, you can use MaxItems and Marker parameters to paginate the results. For more information about using the policy simulator, see Testing IAM policies with the IAM policy simulator in the IAM User Guide.",
+        "Simulate how a set of IAM policies and optionally a resource-based policy works with a list of API operations and AWS resources to determine the policies' effective permissions. The policies are provided as strings. The simulation does not perform the API operations; it only checks the authorization to determine if the simulated policies allow or deny the operations. You can simulate resources that don't exist in your account. If you want to simulate existing policies that are attached to an IAM user, group, or role, use SimulatePrincipalPolicy instead. Context keys are variables that are maintained by AWS and its services and which provide details about the context of an API query request. You can use the Condition element of an IAM policy to evaluate context keys. To get the list of context keys that the policies require for correct simulation, use GetContextKeysForCustomPolicy. If the output is long, you can use MaxItems and Marker parameters to paginate the results. For more information about using the policy simulator, see Testing IAM policies with the IAM policy simulator in the IAM User Guide",
       options: [
         {
           name: "--policy-input-list",
@@ -6883,7 +6883,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--action-names",
           description:
-            "A list of names of API operations to evaluate in the simulation. Each operation is evaluated against each resource. Each operation must include the service identifier, such as iam:CreateUser. This operation does not support using wildcards (*) in an action name.",
+            "A list of names of API operations to evaluate in the simulation. Each operation is evaluated against each resource. Each operation must include the service identifier, such as iam:CreateUser. This operation does not support using wildcards (*) in an action name",
           args: {
             name: "list",
           },
@@ -6891,7 +6891,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arns",
           description:
-            "A list of ARNs of AWS resources to include in the simulation. If this parameter is not provided, then the value defaults to * (all resources). Each API in the ActionNames parameter is evaluated for each resource in this list. The simulation determines the access result (allowed or denied) of each combination and reports it in the response. You can simulate resources that don't exist in your account. The simulation does not automatically retrieve policies for the specified resources. If you want to include a resource policy in the simulation, then you must include the policy as a string in the ResourcePolicy parameter. If you include a ResourcePolicy, then it must be applicable to all of the resources included in the simulation or you receive an invalid input error. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "A list of ARNs of AWS resources to include in the simulation. If this parameter is not provided, then the value defaults to * (all resources). Each API in the ActionNames parameter is evaluated for each resource in this list. The simulation determines the access result (allowed or denied) of each combination and reports it in the response. You can simulate resources that don't exist in your account. The simulation does not automatically retrieve policies for the specified resources. If you want to include a resource policy in the simulation, then you must include the policy as a string in the ResourcePolicy parameter. If you include a ResourcePolicy, then it must be applicable to all of the resources included in the simulation or you receive an invalid input error. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "list",
           },
@@ -6908,7 +6908,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-owner",
           description:
-            "An ARN representing the AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN. Examples of resource ARNs include an S3 bucket or object. If ResourceOwner is specified, it is also used as the account owner of any ResourcePolicy included in the simulation. If the ResourceOwner parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in CallerArn. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user CallerArn. The ARN for an account uses the following syntax: arn:aws:iam::AWS-account-ID:root. For example, to represent the account with the 112233445566 ID, use the following ARN: arn:aws:iam::112233445566-ID:root.",
+            "An ARN representing the AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN. Examples of resource ARNs include an S3 bucket or object. If ResourceOwner is specified, it is also used as the account owner of any ResourcePolicy included in the simulation. If the ResourceOwner parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in CallerArn. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user CallerArn. The ARN for an account uses the following syntax: arn:aws:iam::AWS-account-ID:root. For example, to represent the account with the 112233445566 ID, use the following ARN: arn:aws:iam::112233445566-ID:root",
           args: {
             name: "string",
             generators: generators.getAccountArn,
@@ -6917,7 +6917,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--caller-arn",
           description:
-            "The ARN of the IAM user that you want to use as the simulated caller of the API operations. CallerArn is required if you include a ResourcePolicy so that the policy's Principal element has a value to use in evaluating the policy. You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.",
+            "The ARN of the IAM user that you want to use as the simulated caller of the API operations. CallerArn is required if you include a ResourcePolicy so that the policy's Principal element has a value to use in evaluating the policy. You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal",
           args: {
             name: "string",
             generators: generators.listUserArns,
@@ -6926,7 +6926,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--context-entries",
           description:
-            "A list of context keys and corresponding values for the simulation to use. Whenever a context key is evaluated in one of the simulated IAM permissions policies, the corresponding value is supplied.",
+            "A list of context keys and corresponding values for the simulation to use. Whenever a context key is evaluated in one of the simulated IAM permissions policies, the corresponding value is supplied",
           args: {
             name: "list",
           },
@@ -6942,7 +6942,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6950,7 +6950,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -6958,7 +6958,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -6967,7 +6967,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -6975,7 +6975,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -6983,7 +6983,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6994,12 +6994,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "simulate-principal-policy",
       description:
-        "Simulate how a set of IAM policies attached to an IAM entity works with a list of API operations and AWS resources to determine the policies' effective permissions. The entity can be an IAM user, group, or role. If you specify a user, then the simulation also includes all of the policies that are attached to groups that the user belongs to. You can simulate resources that don't exist in your account. You can optionally include a list of one or more additional policies specified as strings to include in the simulation. If you want to simulate only policies specified as strings, use SimulateCustomPolicy instead. You can also optionally include one resource-based policy to be evaluated with each of the resources included in the simulation. The simulation does not perform the API operations; it only checks the authorization to determine if the simulated policies allow or deny the operations.  Note: This operation discloses information about the permissions granted to other users. If you do not want users to see other user's permissions, then consider allowing them to use SimulateCustomPolicy instead. Context keys are variables maintained by AWS and its services that provide details about the context of an API query request. You can use the Condition element of an IAM policy to evaluate context keys. To get the list of context keys that the policies require for correct simulation, use GetContextKeysForPrincipalPolicy. If the output is long, you can use the MaxItems and Marker parameters to paginate the results. For more information about using the policy simulator, see Testing IAM policies with the IAM policy simulator in the IAM User Guide.",
+        "Simulate how a set of IAM policies attached to an IAM entity works with a list of API operations and AWS resources to determine the policies' effective permissions. The entity can be an IAM user, group, or role. If you specify a user, then the simulation also includes all of the policies that are attached to groups that the user belongs to. You can simulate resources that don't exist in your account. You can optionally include a list of one or more additional policies specified as strings to include in the simulation. If you want to simulate only policies specified as strings, use SimulateCustomPolicy instead. You can also optionally include one resource-based policy to be evaluated with each of the resources included in the simulation. The simulation does not perform the API operations; it only checks the authorization to determine if the simulated policies allow or deny the operations.  Note: This operation discloses information about the permissions granted to other users. If you do not want users to see other user's permissions, then consider allowing them to use SimulateCustomPolicy instead. Context keys are variables maintained by AWS and its services that provide details about the context of an API query request. You can use the Condition element of an IAM policy to evaluate context keys. To get the list of context keys that the policies require for correct simulation, use GetContextKeysForPrincipalPolicy. If the output is long, you can use the MaxItems and Marker parameters to paginate the results. For more information about using the policy simulator, see Testing IAM policies with the IAM policy simulator in the IAM User Guide",
       options: [
         {
           name: "--policy-source-arn",
           description:
-            "The Amazon Resource Name (ARN) of a user, group, or role whose policies you want to include in the simulation. If you specify a user, group, or role, the simulation includes all policies that are associated with that entity. If you specify a user, the simulation also includes all policies that are attached to any groups the user belongs to. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of a user, group, or role whose policies you want to include in the simulation. If you specify a user, group, or role, the simulation includes all policies that are associated with that entity. If you specify a user, the simulation also includes all policies that are attached to any groups the user belongs to. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listIdentityArns,
@@ -7028,7 +7028,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--action-names",
           description:
-            "A list of names of API operations to evaluate in the simulation. Each operation is evaluated for each resource. Each operation must include the service identifier, such as iam:CreateUser.",
+            "A list of names of API operations to evaluate in the simulation. Each operation is evaluated for each resource. Each operation must include the service identifier, such as iam:CreateUser",
           args: {
             name: "list",
           },
@@ -7036,7 +7036,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arns",
           description:
-            "A list of ARNs of AWS resources to include in the simulation. If this parameter is not provided, then the value defaults to * (all resources). Each API in the ActionNames parameter is evaluated for each resource in this list. The simulation determines the access result (allowed or denied) of each combination and reports it in the response. You can simulate resources that don't exist in your account. The simulation does not automatically retrieve policies for the specified resources. If you want to include a resource policy in the simulation, then you must include the policy as a string in the ResourcePolicy parameter. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "A list of ARNs of AWS resources to include in the simulation. If this parameter is not provided, then the value defaults to * (all resources). Each API in the ActionNames parameter is evaluated for each resource in this list. The simulation determines the access result (allowed or denied) of each combination and reports it in the response. You can simulate resources that don't exist in your account. The simulation does not automatically retrieve policies for the specified resources. If you want to include a resource policy in the simulation, then you must include the policy as a string in the ResourcePolicy parameter. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "list",
           },
@@ -7053,7 +7053,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-owner",
           description:
-            "An AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN. Examples of resource ARNs include an S3 bucket or object. If ResourceOwner is specified, it is also used as the account owner of any ResourcePolicy included in the simulation. If the ResourceOwner parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in CallerArn. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user CallerArn.",
+            "An AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN. Examples of resource ARNs include an S3 bucket or object. If ResourceOwner is specified, it is also used as the account owner of any ResourcePolicy included in the simulation. If the ResourceOwner parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in CallerArn. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user CallerArn",
           args: {
             name: "string",
             generators: generators.getAccountArn,
@@ -7062,7 +7062,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--caller-arn",
           description:
-            "The ARN of the IAM user that you want to specify as the simulated caller of the API operations. If you do not specify a CallerArn, it defaults to the ARN of the user that you specify in PolicySourceArn, if you specified a user. If you include both a PolicySourceArn (for example, arn:aws:iam::123456789012:user/David) and a CallerArn (for example, arn:aws:iam::123456789012:user/Bob), the result is that you simulate calling the API operations as Bob, as if Bob had David's policies. You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.  CallerArn is required if you include a ResourcePolicy and the PolicySourceArn is not the ARN for an IAM user. This is required so that the resource-based policy's Principal element has a value to use in evaluating the policy. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The ARN of the IAM user that you want to specify as the simulated caller of the API operations. If you do not specify a CallerArn, it defaults to the ARN of the user that you specify in PolicySourceArn, if you specified a user. If you include both a PolicySourceArn (for example, arn:aws:iam::123456789012:user/David) and a CallerArn (for example, arn:aws:iam::123456789012:user/Bob), the result is that you simulate calling the API operations as Bob, as if Bob had David's policies. You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.  CallerArn is required if you include a ResourcePolicy and the PolicySourceArn is not the ARN for an IAM user. This is required so that the resource-based policy's Principal element has a value to use in evaluating the policy. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listUserArns,
@@ -7071,7 +7071,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--context-entries",
           description:
-            "A list of context keys and corresponding values for the simulation to use. Whenever a context key is evaluated in one of the simulated IAM permissions policies, the corresponding value is supplied.",
+            "A list of context keys and corresponding values for the simulation to use. Whenever a context key is evaluated in one of the simulated IAM permissions policies, the corresponding value is supplied",
           args: {
             name: "list",
           },
@@ -7087,7 +7087,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -7095,7 +7095,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start.",
+            "Use this parameter only when paginating results and only after you receive a response indicating that the results are truncated. Set it to the value of the Marker element in the response that you received to indicate where the next call should start",
           args: {
             name: "string",
           },
@@ -7103,7 +7103,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7112,7 +7112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -7120,7 +7120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -7128,7 +7128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7139,7 +7139,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-instance-profile",
       description:
-        "Adds one or more tags to an IAM instance profile. If a tag with the same key name already exists, then that tag is overwritten with the new value. Each tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM instance profile that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.",
+        "Adds one or more tags to an IAM instance profile. If a tag with the same key name already exists, then that tag is overwritten with the new value. Each tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM instance profile that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code",
       options: [
         {
           name: "--instance-profile-name",
@@ -7153,17 +7153,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the IAM instance profile. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the IAM instance profile. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7172,7 +7172,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7183,7 +7183,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-mfa-device",
       description:
-        "Adds one or more tags to an IAM virtual multi-factor authentication (MFA) device. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM virtual MFA device that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.",
+        "Adds one or more tags to an IAM virtual multi-factor authentication (MFA) device. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM virtual MFA device that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code",
       options: [
         {
           name: "--serial-number",
@@ -7197,17 +7197,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the IAM virtual MFA device. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the IAM virtual MFA device. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7216,7 +7216,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7227,7 +7227,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-open-id-connect-provider",
       description:
-        "Adds one or more tags to an OpenID Connect (OIDC)-compatible identity provider. For more information about these providers, see About web identity federation. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an OIDC provider that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.",
+        "Adds one or more tags to an OpenID Connect (OIDC)-compatible identity provider. For more information about these providers, see About web identity federation. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an OIDC provider that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code",
       options: [
         {
           name: "--open-id-connect-provider-arn",
@@ -7241,17 +7241,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the OIDC identity provider in IAM. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the OIDC identity provider in IAM. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7260,7 +7260,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7271,7 +7271,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-policy",
       description:
-        "Adds one or more tags to an IAM customer managed policy. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM customer managed policy that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.",
+        "Adds one or more tags to an IAM customer managed policy. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM customer managed policy that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code",
       options: [
         {
           name: "--policy-arn",
@@ -7285,17 +7285,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the IAM customer managed policy. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the IAM customer managed policy. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7304,7 +7304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7315,7 +7315,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-role",
       description:
-        "Adds one or more tags to an IAM role. The role can be a regular role or a service-linked role. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM role that has a specified tag attached. You can also restrict access to only those resources that have a certain tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.    Cost allocation - Use tags to help track which individuals and teams are using which AWS resources.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.    For more information about tagging, see Tagging IAM identities in the IAM User Guide.",
+        "Adds one or more tags to an IAM role. The role can be a regular role or a service-linked role. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM role that has a specified tag attached. You can also restrict access to only those resources that have a certain tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.    Cost allocation - Use tags to help track which individuals and teams are using which AWS resources.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.    For more information about tagging, see Tagging IAM identities in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -7329,17 +7329,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the IAM role. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the IAM role. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7348,7 +7348,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7359,7 +7359,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-saml-provider",
       description:
-        "Adds one or more tags to a Security Assertion Markup Language (SAML) identity provider. For more information about these providers, see About SAML 2.0-based federation . If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only a SAML identity provider that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.",
+        "Adds one or more tags to a Security Assertion Markup Language (SAML) identity provider. For more information about these providers, see About SAML 2.0-based federation . If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only a SAML identity provider that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code",
       options: [
         {
           name: "--saml-provider-arn",
@@ -7373,17 +7373,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the SAML identity provider in IAM. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the SAML identity provider in IAM. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7392,7 +7392,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7403,7 +7403,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-server-certificate",
       description:
-        "Adds one or more tags to an IAM server certificate. If a tag with the same key name already exists, then that tag is overwritten with the new value.  For certificates in a Region supported by AWS Certificate Manager (ACM), we recommend that you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server certificates. For more information about IAM server certificates, Working with server certificates in the IAM User Guide.  A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only a server certificate that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.    Cost allocation - Use tags to help track which individuals and teams are using which AWS resources.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.",
+        "Adds one or more tags to an IAM server certificate. If a tag with the same key name already exists, then that tag is overwritten with the new value.  For certificates in a Region supported by AWS Certificate Manager (ACM), we recommend that you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server certificates. For more information about IAM server certificates, Working with server certificates in the IAM User Guide.  A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only a server certificate that has a specified tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.    Cost allocation - Use tags to help track which individuals and teams are using which AWS resources.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code",
       options: [
         {
           name: "--server-certificate-name",
@@ -7417,17 +7417,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the IAM server certificate. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the IAM server certificate. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7436,7 +7436,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7447,7 +7447,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "tag-user",
       description:
-        "Adds one or more tags to an IAM user. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM requesting user that has a specified tag attached. You can also restrict access to only those resources that have a certain tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.    Cost allocation - Use tags to help track which individuals and teams are using which AWS resources.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.    For more information about tagging, see Tagging IAM identities in the IAM User Guide.",
+        "Adds one or more tags to an IAM user. If a tag with the same key name already exists, then that tag is overwritten with the new value. A tag consists of a key name and an associated value. By assigning tags to your resources, you can do the following:    Administrative grouping and discovery - Attach tags to resources to aid in organization and search. For example, you could search for all resources with the key name Project and the value MyImportantProject. Or search for all resources with the key name Cost Center and the value 41200.     Access control - Include tags in IAM user-based and resource-based policies. You can use tags to restrict access to only an IAM requesting user that has a specified tag attached. You can also restrict access to only those resources that have a certain tag attached. For examples of policies that show how to use tags to control access, see Control access using IAM tags in the IAM User Guide.    Cost allocation - Use tags to help track which individuals and teams are using which AWS resources.      If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created. For more information about tagging, see Tagging IAM resources in the IAM User Guide.   AWS always interprets the tag Value as a single string. If you need to store an array, you can store comma-separated values in the string. However, you must interpret the value in your code.    For more information about tagging, see Tagging IAM identities in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -7461,17 +7461,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "The list of tags that you want to attach to the IAM user. Each tag consists of a key name and an associated value.",
+            "The list of tags that you want to attach to the IAM user. Each tag consists of a key name and an associated value",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7480,7 +7480,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7491,7 +7491,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-instance-profile",
       description:
-        "Removes the specified tags from the IAM instance profile. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the IAM instance profile. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--instance-profile-name",
@@ -7505,7 +7505,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified instance profile.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified instance profile",
           args: {
             name: "list",
             generators: generators.listInstanceProfileTags,
@@ -7514,7 +7514,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7523,7 +7523,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7534,7 +7534,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-mfa-device",
       description:
-        "Removes the specified tags from the IAM virtual multi-factor authentication (MFA) device. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the IAM virtual multi-factor authentication (MFA) device. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--serial-number",
@@ -7548,7 +7548,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified instance profile.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified instance profile",
           args: {
             name: "list",
             generators: generators.listMfaDeviceTags,
@@ -7557,7 +7557,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7566,7 +7566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7577,7 +7577,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-open-id-connect-provider",
       description:
-        "Removes the specified tags from the specified OpenID Connect (OIDC)-compatible identity provider in IAM. For more information about OIDC providers, see About web identity federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the specified OpenID Connect (OIDC)-compatible identity provider in IAM. For more information about OIDC providers, see About web identity federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--open-id-connect-provider-arn",
@@ -7591,7 +7591,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified OIDC provider.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified OIDC provider",
           args: {
             name: "list",
             generators: generators.listOpenIdProviderTags,
@@ -7600,7 +7600,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7609,7 +7609,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7620,7 +7620,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-policy",
       description:
-        "Removes the specified tags from the customer managed policy. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the customer managed policy. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--policy-arn",
@@ -7634,7 +7634,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified policy.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified policy",
           args: {
             name: "list",
             generators: generators.listIamPolicyTags,
@@ -7643,7 +7643,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7652,7 +7652,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7663,7 +7663,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-role",
       description:
-        "Removes the specified tags from the role. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the role. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--role-name",
@@ -7677,7 +7677,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified role.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified role",
           args: {
             name: "list",
             generators: generators.listRoleTags,
@@ -7686,7 +7686,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7695,7 +7695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7706,7 +7706,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-saml-provider",
       description:
-        "Removes the specified tags from the specified Security Assertion Markup Language (SAML) identity provider in IAM. For more information about these providers, see About web identity federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the specified Security Assertion Markup Language (SAML) identity provider in IAM. For more information about these providers, see About web identity federation. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--saml-provider-arn",
@@ -7720,7 +7720,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified SAML identity provider.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified SAML identity provider",
           args: {
             name: "list",
             generators: generators.listSamlProviderTags,
@@ -7729,7 +7729,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7738,7 +7738,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7749,7 +7749,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-server-certificate",
       description:
-        "Removes the specified tags from the IAM server certificate. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  For certificates in a Region supported by AWS Certificate Manager (ACM), we recommend that you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server certificates. For more information about IAM server certificates, Working with server certificates in the IAM User Guide.",
+        "Removes the specified tags from the IAM server certificate. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  For certificates in a Region supported by AWS Certificate Manager (ACM), we recommend that you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server certificates. For more information about IAM server certificates, Working with server certificates in the IAM User Guide",
       options: [
         {
           name: "--server-certificate-name",
@@ -7763,7 +7763,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified IAM server certificate.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified IAM server certificate",
           args: {
             name: "list",
             generators: generators.listServerCertsKeys,
@@ -7772,7 +7772,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7781,7 +7781,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7792,7 +7792,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "untag-user",
       description:
-        "Removes the specified tags from the user. For more information about tagging, see Tagging IAM resources in the IAM User Guide.",
+        "Removes the specified tags from the user. For more information about tagging, see Tagging IAM resources in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -7806,7 +7806,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tag-keys",
           description:
-            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified user.",
+            "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified user",
           args: {
             name: "list",
             generators: generators.listUserTags,
@@ -7815,7 +7815,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7824,7 +7824,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7835,7 +7835,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-access-key",
       description:
-        "Changes the status of the specified access key from Active to Inactive, or vice versa. This operation can be used to disable a user's key as part of a key rotation workflow. If the UserName is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users. For information about rotating keys, see Managing keys and certificates in the IAM User Guide.",
+        "Changes the status of the specified access key from Active to Inactive, or vice versa. This operation can be used to disable a user's key as part of a key rotation workflow. If the UserName is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users. For information about rotating keys, see Managing keys and certificates in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -7849,7 +7849,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-key-id",
           description:
-            "The access key ID of the secret access key you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The access key ID of the secret access key you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listAcessKeyIds,
@@ -7858,7 +7858,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "The status you want to assign to the secret access key. Active means that the key can be used for programmatic calls to AWS, while Inactive means that the key cannot be used.",
+            "The status you want to assign to the secret access key. Active means that the key can be used for programmatic calls to AWS, while Inactive means that the key cannot be used",
           args: {
             name: "string",
             suggestions: ["Active", "Inactive"],
@@ -7867,7 +7867,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7876,7 +7876,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7887,12 +7887,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-account-password-policy",
       description:
-        "Updates the password policy settings for the AWS account.    This operation does not support partial updates. No parameters are required, but if you do not specify a parameter, that parameter's value reverts to its default value. See the Request Parameters section for each parameter's default value. Also note that some parameters do not allow the default parameter to be explicitly set. Instead, to invoke the default value, do not include that parameter when you invoke the operation.     For more information about using a password policy, see Managing an IAM password policy in the IAM User Guide.",
+        "Updates the password policy settings for the AWS account.    This operation does not support partial updates. No parameters are required, but if you do not specify a parameter, that parameter's value reverts to its default value. See the Request Parameters section for each parameter's default value. Also note that some parameters do not allow the default parameter to be explicitly set. Instead, to invoke the default value, do not include that parameter when you invoke the operation.     For more information about using a password policy, see Managing an IAM password policy in the IAM User Guide",
       options: [
         {
           name: "--minimum-password-length",
           description:
-            "The minimum number of characters allowed in an IAM user password. If you do not specify a value for this parameter, then the operation uses the default value of 6.",
+            "The minimum number of characters allowed in an IAM user password. If you do not specify a value for this parameter, then the operation uses the default value of 6",
           args: {
             name: "integer",
           },
@@ -7900,57 +7900,57 @@ const completionSpec: Fig.Spec = {
         {
           name: "--require-symbols",
           description:
-            "Specifies whether IAM user passwords must contain at least one of the following non-alphanumeric characters: ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | ' If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one symbol character.",
+            "Specifies whether IAM user passwords must contain at least one of the following non-alphanumeric characters: ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | ' If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one symbol character",
         },
         {
           name: "--no-require-symbols",
           description:
-            "Specifies whether IAM user passwords must contain at least one of the following non-alphanumeric characters: ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | ' If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one symbol character.",
+            "Specifies whether IAM user passwords must contain at least one of the following non-alphanumeric characters: ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | ' If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one symbol character",
         },
         {
           name: "--require-numbers",
           description:
-            "Specifies whether IAM user passwords must contain at least one numeric character (0 to 9). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one numeric character.",
+            "Specifies whether IAM user passwords must contain at least one numeric character (0 to 9). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one numeric character",
         },
         {
           name: "--no-require-numbers",
           description:
-            "Specifies whether IAM user passwords must contain at least one numeric character (0 to 9). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one numeric character.",
+            "Specifies whether IAM user passwords must contain at least one numeric character (0 to 9). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one numeric character",
         },
         {
           name: "--require-uppercase-characters",
           description:
-            "Specifies whether IAM user passwords must contain at least one uppercase character from the ISO basic Latin alphabet (A to Z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one uppercase character.",
+            "Specifies whether IAM user passwords must contain at least one uppercase character from the ISO basic Latin alphabet (A to Z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one uppercase character",
         },
         {
           name: "--no-require-uppercase-characters",
           description:
-            "Specifies whether IAM user passwords must contain at least one uppercase character from the ISO basic Latin alphabet (A to Z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one uppercase character.",
+            "Specifies whether IAM user passwords must contain at least one uppercase character from the ISO basic Latin alphabet (A to Z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one uppercase character",
         },
         {
           name: "--require-lowercase-characters",
           description:
-            "Specifies whether IAM user passwords must contain at least one lowercase character from the ISO basic Latin alphabet (a to z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one lowercase character.",
+            "Specifies whether IAM user passwords must contain at least one lowercase character from the ISO basic Latin alphabet (a to z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one lowercase character",
         },
         {
           name: "--no-require-lowercase-characters",
           description:
-            "Specifies whether IAM user passwords must contain at least one lowercase character from the ISO basic Latin alphabet (a to z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one lowercase character.",
+            "Specifies whether IAM user passwords must contain at least one lowercase character from the ISO basic Latin alphabet (a to z). If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that passwords do not require at least one lowercase character",
         },
         {
           name: "--allow-users-to-change-password",
           description:
-            "Allows all IAM users in your account to use the AWS Management Console to change their own passwords. For more information, see Letting IAM users change their own passwords in the IAM User Guide. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users in the account do not automatically have permissions to change their own password.",
+            "Allows all IAM users in your account to use the AWS Management Console to change their own passwords. For more information, see Letting IAM users change their own passwords in the IAM User Guide. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users in the account do not automatically have permissions to change their own password",
         },
         {
           name: "--no-allow-users-to-change-password",
           description:
-            "Allows all IAM users in your account to use the AWS Management Console to change their own passwords. For more information, see Letting IAM users change their own passwords in the IAM User Guide. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users in the account do not automatically have permissions to change their own password.",
+            "Allows all IAM users in your account to use the AWS Management Console to change their own passwords. For more information, see Letting IAM users change their own passwords in the IAM User Guide. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users in the account do not automatically have permissions to change their own password",
         },
         {
           name: "--max-password-age",
           description:
-            "The number of days that an IAM user password is valid. If you do not specify a value for this parameter, then the operation uses the default value of 0. The result is that IAM user passwords never expire.",
+            "The number of days that an IAM user password is valid. If you do not specify a value for this parameter, then the operation uses the default value of 0. The result is that IAM user passwords never expire",
           args: {
             name: "integer",
           },
@@ -7958,7 +7958,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password-reuse-prevention",
           description:
-            "Specifies the number of previous passwords that IAM users are prevented from reusing. If you do not specify a value for this parameter, then the operation uses the default value of 0. The result is that IAM users are not prevented from reusing previous passwords.",
+            "Specifies the number of previous passwords that IAM users are prevented from reusing. If you do not specify a value for this parameter, then the operation uses the default value of 0. The result is that IAM users are not prevented from reusing previous passwords",
           args: {
             name: "integer",
           },
@@ -7966,17 +7966,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--hard-expiry",
           description:
-            "Prevents IAM users from setting a new password after their password has expired. The IAM user cannot be accessed until an administrator resets the password. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users can change their passwords after they expire and continue to sign in as the user.",
+            "Prevents IAM users from setting a new password after their password has expired. The IAM user cannot be accessed until an administrator resets the password. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users can change their passwords after they expire and continue to sign in as the user",
         },
         {
           name: "--no-hard-expiry",
           description:
-            "Prevents IAM users from setting a new password after their password has expired. The IAM user cannot be accessed until an administrator resets the password. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users can change their passwords after they expire and continue to sign in as the user.",
+            "Prevents IAM users from setting a new password after their password has expired. The IAM user cannot be accessed until an administrator resets the password. If you do not specify a value for this parameter, then the operation uses the default value of false. The result is that IAM users can change their passwords after they expire and continue to sign in as the user",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -7985,7 +7985,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -7996,7 +7996,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-assume-role-policy",
       description:
-        'Updates the policy that grants an IAM entity permission to assume a role. This is typically referred to as the "role trust policy". For more information about roles, see Using roles to delegate permissions and federate identities.',
+        'Updates the policy that grants an IAM entity permission to assume a role. This is typically referred to as the "role trust policy". For more information about roles, see Using roles to delegate permissions and federate identities',
       options: [
         {
           name: "--role-name",
@@ -8019,7 +8019,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8028,7 +8028,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8039,7 +8039,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-group",
       description:
-        "Updates the name and/or the path of the specified IAM group.   You should understand the implications of changing a group's path or name. For more information, see Renaming users and groups in the IAM User Guide.   The person making the request (the principal), must have permission to change the role group with the old name and the new name. For example, to change the group named Managers to MGRs, the principal must have a policy that allows them to update both groups. If the principal has permission to update the Managers group, but not the MGRs group, then the update fails. For more information about permissions, see Access management.",
+        "Updates the name and/or the path of the specified IAM group.   You should understand the implications of changing a group's path or name. For more information, see Renaming users and groups in the IAM User Guide.   The person making the request (the principal), must have permission to change the role group with the old name and the new name. For example, to change the group named Managers to MGRs, the principal must have a policy that allows them to update both groups. If the principal has permission to update the Managers group, but not the MGRs group, then the update fails. For more information about permissions, see Access management",
       options: [
         {
           name: "--group-name",
@@ -8053,7 +8053,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-path",
           description:
-            "New path for the IAM group. Only include this if changing the group's path. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "New path for the IAM group. Only include this if changing the group's path. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
           },
@@ -8061,7 +8061,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-group-name",
           description:
-            'New name for the IAM group. Only include this if changing the group\'s name. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
+            'New name for the IAM group. Only include this if changing the group\'s name. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource"',
           args: {
             name: "string",
           },
@@ -8069,7 +8069,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8078,7 +8078,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8089,7 +8089,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-login-profile",
       description:
-        "Changes the password for the specified IAM user. You can use the AWS CLI, the AWS API, or the Users page in the IAM console to change the password for any IAM user. Use ChangePassword to change your own password in the My Security Credentials page in the AWS Management Console. For more information about modifying passwords, see Managing passwords in the IAM User Guide.",
+        "Changes the password for the specified IAM user. You can use the AWS CLI, the AWS API, or the Users page in the IAM console to change the password for any IAM user. Use ChangePassword to change your own password in the My Security Credentials page in the AWS Management Console. For more information about modifying passwords, see Managing passwords in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -8103,7 +8103,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password",
           description:
-            "The new password for the specified IAM user. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)   However, the format can be further restricted by the account administrator by setting a password policy on the AWS account. For more information, see UpdateAccountPasswordPolicy.",
+            "The new password for the specified IAM user. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)   However, the format can be further restricted by the account administrator by setting a password policy on the AWS account. For more information, see UpdateAccountPasswordPolicy",
           args: {
             name: "string",
           },
@@ -8111,17 +8111,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--password-reset-required",
           description:
-            "Allows this new password to be used only once by requiring the specified IAM user to set a new password on next sign-in.",
+            "Allows this new password to be used only once by requiring the specified IAM user to set a new password on next sign-in",
         },
         {
           name: "--no-password-reset-required",
           description:
-            "Allows this new password to be used only once by requiring the specified IAM user to set a new password on next sign-in.",
+            "Allows this new password to be used only once by requiring the specified IAM user to set a new password on next sign-in",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8130,7 +8130,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8141,12 +8141,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-open-id-connect-provider-thumbprint",
       description:
-        "Replaces the existing list of server certificate thumbprints associated with an OpenID Connect (OIDC) provider resource object with a new list of thumbprints. The list that you pass with this operation completely replaces the existing list of thumbprints. (The lists are not merged.) Typically, you need to update a thumbprint only when the identity provider's certificate changes, which occurs rarely. However, if the provider's certificate does change, any attempt to assume an IAM role that specifies the OIDC provider as a principal fails until the certificate thumbprint is updated.  Trust for the OIDC provider is derived from the provider's certificate and is validated by the thumbprint. Therefore, it is best to limit access to the UpdateOpenIDConnectProviderThumbprint operation to highly privileged users.",
+        "Replaces the existing list of server certificate thumbprints associated with an OpenID Connect (OIDC) provider resource object with a new list of thumbprints. The list that you pass with this operation completely replaces the existing list of thumbprints. (The lists are not merged.) Typically, you need to update a thumbprint only when the identity provider's certificate changes, which occurs rarely. However, if the provider's certificate does change, any attempt to assume an IAM role that specifies the OIDC provider as a principal fails until the certificate thumbprint is updated.  Trust for the OIDC provider is derived from the provider's certificate and is validated by the thumbprint. Therefore, it is best to limit access to the UpdateOpenIDConnectProviderThumbprint operation to highly privileged users",
       options: [
         {
           name: "--open-id-connect-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the IAM OIDC provider resource object for which you want to update the thumbprint. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the IAM OIDC provider resource object for which you want to update the thumbprint. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listOpenIdProviders,
@@ -8155,7 +8155,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--thumbprint-list",
           description:
-            "A list of certificate thumbprints that are associated with the specified IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.",
+            "A list of certificate thumbprints that are associated with the specified IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider",
           args: {
             name: "list",
             generators: generators.listOpenIdThumbprintsForProvider,
@@ -8164,7 +8164,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8173,7 +8173,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8184,11 +8184,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-role",
       description:
-        "Updates the description or maximum session duration setting of a role.",
+        "Updates the description or maximum session duration setting of a role",
       options: [
         {
           name: "--role-name",
-          description: "The name of the role that you want to modify.",
+          description: "The name of the role that you want to modify",
           args: {
             name: "string",
             generators: generators.listRoles,
@@ -8197,7 +8197,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            "The new description that you want to apply to the specified role.",
+            "The new description that you want to apply to the specified role",
           args: {
             name: "string",
           },
@@ -8205,7 +8205,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-session-duration",
           description:
-            "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide.",
+            "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide",
           args: {
             name: "integer",
             suggestions: Array.from({ length: 13 - 1 }, (v, k) =>
@@ -8216,7 +8216,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8225,7 +8225,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8236,11 +8236,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-role-description",
       description:
-        "Use UpdateRole instead. Modifies only the description of a role. This operation performs the same function as the Description parameter in the UpdateRole operation.",
+        "Use UpdateRole instead. Modifies only the description of a role. This operation performs the same function as the Description parameter in the UpdateRole operation",
       options: [
         {
           name: "--role-name",
-          description: "The name of the role that you want to modify.",
+          description: "The name of the role that you want to modify",
           args: {
             name: "string",
             generators: generators.listRoles,
@@ -8249,7 +8249,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--description",
           description:
-            "The new description that you want to apply to the specified role.",
+            "The new description that you want to apply to the specified role",
           args: {
             name: "string",
           },
@@ -8257,7 +8257,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8266,7 +8266,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8277,12 +8277,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-saml-provider",
       description:
-        "Updates the metadata document for an existing SAML provider resource object.  This operation requires Signature Version 4.",
+        "Updates the metadata document for an existing SAML provider resource object.  This operation requires Signature Version 4",
       options: [
         {
           name: "--saml-metadata-document",
           description:
-            "An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP.",
+            "An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8291,7 +8291,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--saml-provider-arn",
           description:
-            "The Amazon Resource Name (ARN) of the SAML provider to update. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+            "The Amazon Resource Name (ARN) of the SAML provider to update. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
           args: {
             name: "string",
             generators: generators.listSamlProviders,
@@ -8300,7 +8300,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8309,7 +8309,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8320,7 +8320,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-ssh-public-key",
       description:
-        "Sets the status of an IAM user's SSH public key to active or inactive. SSH public keys that are inactive cannot be used for authentication. This operation can be used to disable a user's SSH public key as part of a key rotation work flow. The SSH public key affected by this operation is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide.",
+        "Sets the status of an IAM user's SSH public key to active or inactive. SSH public keys that are inactive cannot be used for authentication. This operation can be used to disable a user's SSH public key as part of a key rotation work flow. The SSH public key affected by this operation is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide",
       options: [
         {
           name: "--user-name",
@@ -8334,7 +8334,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssh-public-key-id",
           description:
-            "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listSSHPublicKeysForUser,
@@ -8343,7 +8343,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "The status to assign to the SSH public key. Active means that the key can be used for authentication with an AWS CodeCommit repository. Inactive means that the key cannot be used.",
+            "The status to assign to the SSH public key. Active means that the key can be used for authentication with an AWS CodeCommit repository. Inactive means that the key cannot be used",
           args: {
             name: "string",
             suggestions: ["Active", "Inactive"],
@@ -8352,7 +8352,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8361,7 +8361,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8372,7 +8372,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-server-certificate",
       description:
-        "Updates the name and/or the path of the specified server certificate stored in IAM. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic also includes a list of AWS services that can use the server certificates that you manage with IAM.  You should understand the implications of changing a server certificate's path or name. For more information, see Renaming a server certificate in the IAM User Guide.   The person making the request (the principal), must have permission to change the server certificate with the old name and the new name. For example, to change the certificate named ProductionCert to ProdCert, the principal must have a policy that allows them to update both certificates. If the principal has permission to update the ProductionCert group, but not the ProdCert certificate, then the update fails. For more information about permissions, see Access management in the IAM User Guide.",
+        "Updates the name and/or the path of the specified server certificate stored in IAM. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic also includes a list of AWS services that can use the server certificates that you manage with IAM.  You should understand the implications of changing a server certificate's path or name. For more information, see Renaming a server certificate in the IAM User Guide.   The person making the request (the principal), must have permission to change the server certificate with the old name and the new name. For example, to change the certificate named ProductionCert to ProdCert, the principal must have a policy that allows them to update both certificates. If the principal has permission to update the ProductionCert group, but not the ProdCert certificate, then the update fails. For more information about permissions, see Access management in the IAM User Guide",
       options: [
         {
           name: "--server-certificate-name",
@@ -8386,7 +8386,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-path",
           description:
-            "The new path for the server certificate. Include this only if you are updating the server certificate's path. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "The new path for the server certificate. Include this only if you are updating the server certificate's path. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
           },
@@ -8402,7 +8402,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8411,7 +8411,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8422,7 +8422,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-service-specific-credential",
       description:
-        "Sets the status of a service-specific credential to Active or Inactive. Service-specific credentials that are inactive cannot be used for authentication to the service. This operation can be used to disable a user's service-specific credential as part of a credential rotation work flow.",
+        "Sets the status of a service-specific credential to Active or Inactive. Service-specific credentials that are inactive cannot be used for authentication to the service. This operation can be used to disable a user's service-specific credential as part of a credential rotation work flow",
       options: [
         {
           name: "--user-name",
@@ -8436,7 +8436,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-specific-credential-id",
           description:
-            "The unique identifier of the service-specific credential. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier of the service-specific credential. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listServiceSpecificCredentialsForUser,
@@ -8445,7 +8445,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "The status to be assigned to the service-specific credential.",
+            "The status to be assigned to the service-specific credential",
           args: {
             name: "string",
             suggestions: ["Active", "Inactive"],
@@ -8454,7 +8454,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8463,7 +8463,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8474,7 +8474,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-signing-certificate",
       description:
-        "Changes the status of the specified user signing certificate from active to disabled, or vice versa. This operation can be used to disable an IAM user's signing certificate as part of a certificate rotation work flow. If the UserName field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.",
+        "Changes the status of the specified user signing certificate from active to disabled, or vice versa. This operation can be used to disable an IAM user's signing certificate as part of a certificate rotation work flow. If the UserName field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users",
       options: [
         {
           name: "--user-name",
@@ -8488,7 +8488,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--certificate-id",
           description:
-            "The ID of the signing certificate you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The ID of the signing certificate you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
             generators: generators.listSigningCertificatesForUser,
@@ -8497,7 +8497,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--status",
           description:
-            "The status you want to assign to the certificate. Active means that the certificate can be used for programmatic calls to AWS Inactive means that the certificate cannot be used.",
+            "The status you want to assign to the certificate. Active means that the certificate can be used for programmatic calls to AWS Inactive means that the certificate cannot be used",
           args: {
             name: "string",
             suggestions: ["Active", "Inactive"],
@@ -8506,7 +8506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8515,7 +8515,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8526,7 +8526,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-user",
       description:
-        "Updates the name and/or the path of the specified IAM user.   You should understand the implications of changing an IAM user's path or name. For more information, see Renaming an IAM user and Renaming an IAM group in the IAM User Guide.    To change a user name, the requester must have appropriate permissions on both the source object and the target object. For example, to change Bob to Robert, the entity making the request must have permission on Bob and Robert, or must have permission on all (*). For more information about permissions, see Permissions and policies.",
+        "Updates the name and/or the path of the specified IAM user.   You should understand the implications of changing an IAM user's path or name. For more information, see Renaming an IAM user and Renaming an IAM group in the IAM User Guide.    To change a user name, the requester must have appropriate permissions on both the source object and the target object. For example, to change Bob to Robert, the entity making the request must have permission on Bob and Robert, or must have permission on all (*). For more information about permissions, see Permissions and policies",
       options: [
         {
           name: "--user-name",
@@ -8540,7 +8540,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-path",
           description:
-            "New path for the IAM user. Include this parameter only if you're changing the user's path. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
+            "New path for the IAM user. Include this parameter only if you're changing the user's path. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters",
           args: {
             name: "string",
           },
@@ -8548,7 +8548,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--new-user-name",
           description:
-            'New name for the user. Include this parameter only if you\'re changing the user\'s name. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
+            'New name for the user. Include this parameter only if you\'re changing the user\'s name. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource"',
           args: {
             name: "string",
           },
@@ -8556,7 +8556,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8565,7 +8565,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8576,7 +8576,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "upload-ssh-public-key",
       description:
-        "Uploads an SSH public key and associates it with the specified IAM user. The SSH public key uploaded by this operation can be used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide.",
+        "Uploads an SSH public key and associates it with the specified IAM user. The SSH public key uploaded by this operation can be used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see Set up AWS CodeCommit for SSH connections in the AWS CodeCommit User Guide",
       options: [
         {
           name: "--user-name",
@@ -8599,7 +8599,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8608,7 +8608,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8619,12 +8619,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "upload-server-certificate",
       description:
-        "Uploads a server certificate entity for the AWS account. The server certificate entity includes a public key certificate, a private key, and an optional certificate chain, which should all be PEM-encoded. We recommend that you use AWS Certificate Manager to provision, manage, and deploy your server certificates. With ACM you can request a certificate, deploy it to AWS resources, and let ACM handle certificate renewals for you. Certificates provided by ACM are free. For more information about using ACM, see the AWS Certificate Manager User Guide. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic includes a list of AWS services that can use the server certificates that you manage with IAM. For information about the number of server certificates you can upload, see IAM and STS quotas in the IAM User Guide.  Because the body of the public key certificate, private key, and the certificate chain can be large, you should use POST rather than GET when calling UploadServerCertificate. For information about setting up signatures and authorization through the API, see Signing AWS API requests in the AWS General Reference. For general information about using the Query API with IAM, see Calling the API by making HTTP query requests in the IAM User Guide.",
+        "Uploads a server certificate entity for the AWS account. The server certificate entity includes a public key certificate, a private key, and an optional certificate chain, which should all be PEM-encoded. We recommend that you use AWS Certificate Manager to provision, manage, and deploy your server certificates. With ACM you can request a certificate, deploy it to AWS resources, and let ACM handle certificate renewals for you. Certificates provided by ACM are free. For more information about using ACM, see the AWS Certificate Manager User Guide. For more information about working with server certificates, see Working with server certificates in the IAM User Guide. This topic includes a list of AWS services that can use the server certificates that you manage with IAM. For information about the number of server certificates you can upload, see IAM and STS quotas in the IAM User Guide.  Because the body of the public key certificate, private key, and the certificate chain can be large, you should use POST rather than GET when calling UploadServerCertificate. For information about setting up signatures and authorization through the API, see Signing AWS API requests in the AWS General Reference. For general information about using the Query API with IAM, see Calling the API by making HTTP query requests in the IAM User Guide",
       options: [
         {
           name: "--path",
           description:
-            "The path for the server certificate. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.   If you are uploading a server certificate specifically for use with Amazon CloudFront distributions, you must specify a path using the path parameter. The path must begin with /cloudfront and must include a trailing slash (for example, /cloudfront/test/).",
+            "The path for the server certificate. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.   If you are uploading a server certificate specifically for use with Amazon CloudFront distributions, you must specify a path using the path parameter. The path must begin with /cloudfront and must include a trailing slash (for example, /cloudfront/test/)",
           args: {
             name: "string",
             description: "Default path: /",
@@ -8668,17 +8668,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description:
-            "A list of tags that you want to attach to the new IAM server certificate resource. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
+            "A list of tags that you want to attach to the new IAM server certificate resource. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created",
           args: {
             name: "list",
             isVariadic: true,
-            description: "Key=string,Value=string...",
+            description: "Key=string,Value=string",
           },
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8687,7 +8687,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8698,7 +8698,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "upload-signing-certificate",
       description:
-        "Uploads an X.509 signing certificate and associates it with the specified IAM user. Some AWS services require you to use certificates to validate requests that are signed with a corresponding private key. When you upload the certificate, its default status is Active. For information about when you would use an X.509 signing certificate, see Managing server certificates in IAM in the IAM User Guide. If the UserName is not specified, the IAM user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.  Because the body of an X.509 certificate can be large, you should use POST rather than GET when calling UploadSigningCertificate. For information about setting up signatures and authorization through the API, see Signing AWS API requests in the AWS General Reference. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide.",
+        "Uploads an X.509 signing certificate and associates it with the specified IAM user. Some AWS services require you to use certificates to validate requests that are signed with a corresponding private key. When you upload the certificate, its default status is Active. For information about when you would use an X.509 signing certificate, see Managing server certificates in IAM in the IAM User Guide. If the UserName is not specified, the IAM user name is determined implicitly based on the AWS access key ID used to sign the request. This operation works for access keys under the AWS account. Consequently, you can use this operation to manage AWS account root user credentials even if the AWS account has no associated users.  Because the body of an X.509 certificate can be large, you should use POST rather than GET when calling UploadSigningCertificate. For information about setting up signatures and authorization through the API, see Signing AWS API requests in the AWS General Reference. For general information about using the Query API with IAM, see Making query requests in the IAM User Guide",
       options: [
         {
           name: "--user-name",
@@ -8721,7 +8721,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
             generators: generators.listFiles,
@@ -8730,7 +8730,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -8741,12 +8741,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
       subcommands: [
         {
           name: "instance-profile-exists",
           description:
-            "Wait until 200 response is received when polling with ``get-instance-profile``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks.",
+            "Wait until 200 response is received when polling with ``get-instance-profile``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 40 failed checks",
           options: [
             {
               name: "--instance-profile-name",
@@ -8760,7 +8760,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
                 generators: generators.listFiles,
@@ -8769,7 +8769,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],
@@ -8780,12 +8780,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "policy-exists",
           description:
-            "Wait until 200 response is received when polling with ``get-policy``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 200 response is received when polling with ``get-policy``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--policy-arn",
               description:
-                "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
+                "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference",
               args: {
                 name: "string",
                 generators: generators.listIamPoliciesArn,
@@ -8794,7 +8794,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
                 generators: generators.listFiles,
@@ -8803,7 +8803,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],
@@ -8814,7 +8814,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "role-exists",
           description:
-            "Wait until 200 response is received when polling with ``get-role``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 200 response is received when polling with ``get-role``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--role-name",
@@ -8828,7 +8828,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
                 generators: generators.listFiles,
@@ -8837,7 +8837,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],
@@ -8848,7 +8848,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "user-exists",
           description:
-            "Wait until 200 response is received when polling with ``get-user``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 200 response is received when polling with ``get-user``. It will poll every 1 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--user-name",
@@ -8862,7 +8862,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
                 generators: generators.listFiles,
@@ -8871,7 +8871,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],

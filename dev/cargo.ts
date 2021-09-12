@@ -1,44 +1,63 @@
 const testList: Fig.Generator = {
-  script: "cargo t -- --list",
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .filter((l) => /: test/.test(l))
-      .map((name) => ({ name }));
+  script: function (context) {
+    const base = context[context.length - 1];
+    // allow split by single colon so that it triggers on a::b:
+    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
+    // split by :: so that tokens with a single colon are allowed
+    const moduleTokens = base.split("::");
+    const lastModule = moduleTokens.pop();
+    // check if the token has a : on the end
+    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
+    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
   },
+  postProcess: function (out) {
+    return [...new Set(out.split("\n"))].map((line) => {
+      const [display, last] = line.split(" ");
+      const lastModule = parseInt(last);
+      const displayName = display.replaceAll(":", "");
+      const name = displayName.length
+        ? `${display}${lastModule ? "" : "::"}`
+        : "";
+      return { name, displayName };
+    });
+  },
+  trigger: ":",
+  getQueryTerm: ":",
 };
 
 const completionSpec: Fig.Spec = {
   name: "cargo",
+  icon: "📦",
   description: "CLI Interface for Cargo",
   subcommands: [
     {
       name: ["build", "b"],
-      description: "compile local package and dependencies",
+      description: "Compile local package and dependencies",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
-          name: ["--bins"],
-          description: "build all binaries",
+          name: "--bins",
+          description: "Build all binaries",
         },
         {
-          name: ["--all-targets"],
-          description: "activate all available features",
+          name: "--all-targets",
+          description: "Activate all available features",
         },
         {
-          name: ["--all"],
-          description: "alias for workspace",
+          name: "--all",
+          description: "Alias for workspace",
         },
         {
           name: "--release",
-          description: "build in release mode, with optimizations",
+          description: "Build in release mode, with optimizations",
         },
         {
-          name: ["-j, --jobs"],
-          description: "number of CPUS",
+          name: ["-j", "--jobs"],
+          description: "Number of CPUs",
           insertValue: "-j {cursor}",
         },
       ],
@@ -46,32 +65,34 @@ const completionSpec: Fig.Spec = {
     {
       name: ["run", "r"],
       description: "Run a binary or example of the local package",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
           name: "--release",
-          description: "run in release mode, with optimizations",
+          description: "Run in release mode, with optimizations",
         },
       ],
     },
     {
       name: "init",
-      description: "creates new cargo pkg in directory",
+      description: "Creates new cargo pkg in directory",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
-          name: ["--bin"],
+          name: "--bin",
           description: "Use a binary (application) template [default]",
         },
         {
-          name: ["--offline"],
-          description: "run without network",
+          name: "--offline",
+          description: "Run without network",
         },
       ],
       args: {
@@ -80,7 +101,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["test", "t"],
-      description: "run tests",
+      description: "Run tests",
+      icon: "📦",
       args: {
         name: "test name",
         generators: testList,
@@ -88,11 +110,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--h"],
-          description: "output usage info",
+          description: "Output usage info",
         },
         {
           name: "--release",
-          description: "test in release mode, with optimizations",
+          description: "Test in release mode, with optimizations",
         },
       ],
     },
@@ -307,7 +329,7 @@ const completionSpec: Fig.Spec = {
                   {
                     name: "target-list",
                     description:
-                      "List of known targets. The target may be selected with the --target flag.",
+                      "List of known targets. The target may be selected with the --target flag",
                   },
                   {
                     name: "target-cpus",
@@ -322,7 +344,7 @@ const completionSpec: Fig.Spec = {
                   {
                     name: "relocation-models",
                     description:
-                      "List of relocation models. Relocation models may be selected with the -C relocation-model=val flag.",
+                      "List of relocation models. Relocation models may be selected with the -C relocation-model=val flag",
                   },
                   { name: "code-models", description: "List of code models" },
                   {
@@ -427,7 +449,7 @@ const completionSpec: Fig.Spec = {
               description: "Set unstable options",
               args: {
                 name: "option",
-                description: "unstable options to pass to rustc",
+                description: "Unstable options to pass to rustc",
               },
             },
             {
@@ -598,7 +620,7 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "human",
-                description: "human readable, conflicts with short and json",
+                description: "Human readable, conflicts with short and json",
               },
               {
                 name: "short",
@@ -691,7 +713,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-q", "--quiet"],
-      description: "no output",
+      description: "No output",
     },
   ],
 };

@@ -11,8 +11,8 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "pause",
-  description: "Pause services.",
-  args: [{ generators: getServices }],
+  description: "Pause services",
+  args: { generators: getServices },
 };
 
 export default completionSpec;

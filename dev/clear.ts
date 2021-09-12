@@ -1,22 +1,22 @@
 const completionSpec: Fig.Spec = {
   name: "clear",
-  description: "clear the terminal screen",
+  description: "Clear the terminal screen",
   options: [
     {
-      name: ["-T"],
-      description: "indicates the type of terminal",
+      name: "-T",
+      description: "Indicates the type of terminal",
       args: {
         name: "type",
       },
     },
     {
-      name: ["-V"],
-      description: "reports version of ncurses used in this program, and exits",
+      name: "-V",
+      description: "Reports version of ncurses used in this program, and exits",
     },
     {
-      name: ["-x"],
+      name: "-x",
       description:
-        "do not attempt to clear terminal's scrollback buffer using the extended E3 capability",
+        "Do not attempt to clear terminal's scrollback buffer using the extended E3 capability",
     },
   ],
 };

@@ -219,6 +219,61 @@ const completionSpec: Fig.Spec = {
       name: "set:path",
       description: "Sync your $PATH variable with Fig",
     },
+    {
+      name: "debug",
+      // workaround to avoid showing immediate execute arrow from appearing when 'debug' is entered
+      insertValue: "debug {cursor}",
+      description: "Utilities that are helpful when things break",
+      subcommands: [
+        {
+          name: "terminal",
+          description:
+            "Print out terminal configuration and environment variables",
+        },
+        {
+          name: "app",
+          description: "Run app executable directly in terminal",
+        },
+        {
+          name: "sample",
+          description:
+            "Profile the Fig process to determine why it is hanging or locked",
+        },
+        {
+          name: "prefs",
+          description:
+            "Overview of user-defined preferences (config, settings.json, defaults)",
+        },
+        {
+          name: "logs",
+          description: "View categorized logs for all subsystems",
+          args: {
+            name: "subsystem",
+            isOptional: true,
+            isVariadic: true,
+            generators: {
+              script: "ls ~/.fig/logs",
+              trigger: (curr, prev) => {
+                // trigger on new token
+                return curr.length == 0 && prev.length > 0;
+              },
+              postProcess: (out, tokens) => {
+                const pivot = tokens.indexOf("logs");
+                const insertedLogFiles = tokens.slice(pivot);
+                return out
+                  .split("\n")
+                  .map((log) => {
+                    return { name: log.replace(".log", "") };
+                  })
+                  .filter(
+                    (suggestion) => !insertedLogFiles.includes(suggestion.name)
+                  );
+              },
+            },
+          },
+        },
+      ],
+    },
   ],
 
   options: [
@@ -227,7 +282,7 @@ const completionSpec: Fig.Spec = {
       description: "Overview of Fig CLI",
     },
     {
-      name: ["--version"],
+      name: "--version",
       description: "The current Fig version",
     },
   ],

@@ -1,16 +1,14 @@
 const completionSpec: Fig.Spec = {
   name: "pwd",
-  description: "print name of current/working directory",
+  description: "Return working directory name",
   options: [
     {
-      name: ["-L", "--logical"],
-      description: "use PWD from environment, even if it contains symlinks",
+      name: "-L",
+      description: "Display the logical current working directory",
     },
-    { name: ["-P", "--physical"], description: "avoid all symlinks" },
-    { name: ["--help"], description: "display this help and exit" },
     {
-      name: ["--version"],
-      description: "output version information and exit",
+      name: "-P",
+      description: "Display the physical current working directory",
     },
   ],
 };

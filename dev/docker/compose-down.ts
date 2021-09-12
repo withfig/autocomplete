@@ -15,9 +15,9 @@ const completionSpec: Fig.Spec = {
     "Stops containers and removes containers, networks, volumes, and images",
   options: [
     {
-      name: ["--rmi"],
+      name: "--rmi",
       description:
-        "Remove images. Type must be one of: 'all': Remove all images used by any service. 'local': Remove only images that don't have a custom tag set by the `image` field.",
+        "Remove images. Type must be one of: 'all': Remove all images used by any service. 'local': Remove only images that don't have a custom tag set by the `image` field",
       args: {
         name: "type",
         suggestions: ["all", "local"],
@@ -26,10 +26,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-v", "--volumes"],
       description:
-        "Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers.",
+        "Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers",
     },
     {
-      name: ["--remove-orphans"],
+      name: "--remove-orphans",
       description:
         "Remove containers for services not defined in the Compose file",
     },

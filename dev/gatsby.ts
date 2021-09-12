@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
           description: "Use HTTPS",
         },
         {
-          name: ["--inspect"],
+          name: "--inspect",
           description: "Opens a port for debugging",
         },
       ],
@@ -43,27 +43,27 @@ const completionSpec: Fig.Spec = {
       description: "Compile your application and make it ready for deployment",
       options: [
         {
-          name: ["--prefix-paths"],
+          name: "--prefix-paths",
           description:
             "Build site with link paths prefixed (set pathPrefix in your config)",
         },
         {
-          name: ["--no-uglify"],
+          name: "--no-uglify",
           description:
             "Build site without uglifying JS bundles (for debugging)",
         },
         {
-          name: ["--profile"],
+          name: "--profile",
           description: "Build site with react profiling",
         },
         {
-          name: ["--open-tracing-config-file"],
+          name: "--open-tracing-config-file",
           description: "Use Tracer configuration file",
         },
         {
-          name: ["--graphql-tracing"],
+          name: "--graphql-tracing",
           description:
-            "Trace every graphql resolver, may have performance implications.",
+            "Trace every graphql resolver, may have performance implications",
         },
         {
           name: ["--no-color", "--no-colors"],
@@ -77,7 +77,7 @@ const completionSpec: Fig.Spec = {
       options: [
         ...sharedOptions,
         {
-          name: ["--prefix-paths"],
+          name: "--prefix-paths",
           description: "Serve site with link paths prefixed",
         },
       ],
@@ -95,7 +95,7 @@ const completionSpec: Fig.Spec = {
       description: "Run commands pertaining to gatsby plugins",
       options: [
         {
-          name: ["docs"],
+          name: "docs",
           description: "Documentation about using and creating plugins",
         },
       ],

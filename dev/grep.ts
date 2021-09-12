@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "grep",
   description:
-    "Matches patterns in input text. Supports simple patterns and regular expressions.",
+    "Matches patterns in input text. Supports simple patterns and regular expressions",
   args: [
     {
       name: "search pattern",

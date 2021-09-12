@@ -107,21 +107,19 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--format"],
           description: "Limit the format to either sdist or wheel",
-          args: [
-            {
-              name: "format",
-              suggestions: [
-                {
-                  name: "sdist",
-                  description: "Use sdist format",
-                },
-                {
-                  name: "wheel",
-                  description: "Use wheel format",
-                },
-              ],
-            },
-          ],
+          args: {
+            name: "format",
+            suggestions: [
+              {
+                name: "sdist",
+                description: "Use sdist format",
+              },
+              {
+                name: "wheel",
+                description: "Use wheel format",
+              },
+            ],
+          },
         },
       ],
     },

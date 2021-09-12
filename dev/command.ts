@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "command",
-  description: "run a command!",
+  description: "Run a command!",
   args: {
     isCommand: true,
   },

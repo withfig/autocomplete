@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--force"],
-          description: "Write over an existing file, if any.",
+          description: "Write over an existing file, if any",
         },
         ...defaultOptions,
         {
@@ -168,6 +168,7 @@ const completionSpec: Fig.Spec = {
           name: "--env",
           description:
             "Set an environment variable (can be used multiple times)",
+          isRepeatable: true,
           args: {
             name: "NAME=value",
           },

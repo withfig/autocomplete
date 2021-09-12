@@ -84,20 +84,16 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-A", "--local-config"],
       description: "Path to the local 'vercel.json' file",
-      args: [
-        {
-          template: "filepaths",
-        },
-      ],
+      args: {
+        template: "filepaths",
+      },
     },
     {
       name: ["-Q", "--global-config"],
       description: "Path to the global '.vercel' directory",
-      args: [
-        {
-          template: "folders",
-        },
-      ],
+      args: {
+        template: "folders",
+      },
     },
     {
       name: ["-d", "--debug"],
@@ -108,7 +104,7 @@ const completionSpec: Fig.Spec = {
       description: "Force a new deployment even if nothing has changed",
     },
     {
-      name: ["-with-cache"],
+      name: "-with-cache",
       description: "Retain build cache when using --force",
     },
     {
@@ -116,7 +112,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute command with an auth token",
       args: {
         name: "auth token",
-        description: "auth token to add to your command",
+        description: "Auth token to add to your command",
       },
     },
     {
@@ -126,16 +122,16 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-e", "--env"],
       description:
-        "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times.",
+        "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times",
     },
     {
       name: ["-b", "--build-env"],
-      description: "Similar to `--env` but for build time only.",
+      description: "Similar to `--env` but for build time only",
     },
     {
       name: ["-m", "--meta"],
       description:
-        "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times.",
+        "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times",
     },
     {
       name: ["-C", "--no-clipboard"],
@@ -146,16 +142,16 @@ const completionSpec: Fig.Spec = {
       description: "Set a custom scope",
       args: {
         name: "team name",
-        description: "team to execute commands from",
+        description: "Team to execute commands from",
         // generator: teamList
       },
     },
     {
-      name: ["--regions"],
+      name: "--regions",
       description: "Set default regions to enable the deployment on",
     },
     {
-      name: ["--prod"],
+      name: "--prod",
       description: "Create a production deployment",
     },
     {
@@ -176,7 +172,7 @@ const completionSpec: Fig.Spec = {
       description: "Start a local development server",
       options: [
         {
-          name: ["--listen"],
+          name: "--listen",
           description: "Specifies which port to run on",
         },
       ],
@@ -187,19 +183,19 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "add",
-          description: "add an environment variable",
+          description: "Add an environment variable",
           args: [
             {
               name: "type",
-              description: "type of env variable to add",
+              description: "Type of env variable to add",
             },
             {
               name: "name",
-              description: "name of the env variable to add",
+              description: "Name of the env variable to add",
             },
             {
               name: "environment",
-              description: "environment to add the variable to",
+              description: "Environment to add the variable to",
               suggestions: [
                 {
                   name: "Production",
@@ -219,16 +215,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "rm",
-          description: "remove an environment variable",
+          description: "Remove an environment variable",
           args: [
             {
               name: "name",
-              description: "name of the variable to remove",
+              description: "Name of the variable to remove",
               //                             generator: envVarList
             },
             {
               name: "environment",
-              description: "environment to remove from",
+              description: "Environment to remove from",
               suggestions: [
                 {
                   name: "Production",
@@ -249,24 +245,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "pull",
           description:
-            "download dev env variables from cloud and write to .env",
-          args: [
-            {
-              name: "file",
-              description: "the file to write downloaded variables to",
-              template: "filepaths",
-            },
-          ],
+            "Download dev env variables from cloud and write to .env",
+          args: {
+            name: "file",
+            description: "The file to write downloaded variables to",
+            template: "filepaths",
+          },
         },
         {
           name: "ls",
           description: "List environment variables for a specific environment",
-          args: [
-            {
-              name: "environment",
-              description: "Environment to list variables for",
-            },
-          ],
+          args: {
+            name: "environment",
+            description: "Environment to list variables for",
+          },
         },
       ],
     },
@@ -281,7 +273,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "new project name",
           description:
-            "initialize specific project locally and rename directory",
+            "Initialize specific project locally and rename directory",
         },
       ],
     },
@@ -326,23 +318,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "switch",
       description: "Switches between teams and your personal account",
-      args: [
-        {
-          name: "team name",
-          description: "team to switch to",
-          //generator: teamList
-        },
-      ],
+      args: {
+        name: "team name",
+        description: "Team to switch to",
+        //generator: teamList
+      },
     },
     {
       name: "help",
       description: "Displays complete help for [cmd]",
-      args: [
-        {
-          name: "command",
-          description: "command to detailed information about",
-        },
-      ],
+      args: {
+        name: "command",
+        description: "Command to detailed information about",
+      },
     },
     {
       name: "rm",
@@ -369,13 +357,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "Removes a deployment",
-      args: [
-        {
-          name: "deployment url",
-          description: "URL of the deployment to remove",
-          // generator: deploymentList
-        },
-      ],
+      args: {
+        name: "deployment url",
+        description: "URL of the deployment to remove",
+        // generator: deploymentList
+      },
     },
     {
       name: "domains",
@@ -388,42 +374,34 @@ const completionSpec: Fig.Spec = {
         {
           name: "inspect",
           description: "Retrieves information about a domain",
-          args: [
-            {
-              name: "domain",
-              description: "domain to inspect",
-            },
-          ],
+          args: {
+            name: "domain",
+            description: "Domain to inspect",
+          },
         },
         {
           name: "add",
           description: "Add a domain to an account",
-          args: [
-            {
-              name: "domain",
-              description: "domain to add",
-            },
-          ],
+          args: {
+            name: "domain",
+            description: "Domain to add",
+          },
         },
         {
           name: "rm",
           description: "Removes a domain from an account",
-          args: [
-            {
-              name: "domain",
-              description: "domain to remove",
-            },
-          ],
+          args: {
+            name: "domain",
+            description: "Domain to remove",
+          },
         },
         {
           name: "buy",
           description: "Buy a domain for an account",
-          args: [
-            {
-              name: "domain",
-              description: "domain to buy",
-            },
-          ],
+          args: {
+            name: "domain",
+            description: "Domain to buy",
+          },
         },
         {
           name: "move",
@@ -431,33 +409,29 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "domain",
-              description: "domain to move",
+              description: "Domain to move",
             },
             {
               name: "account name",
-              description: "account to move the domain to",
+              description: "Account to move the domain to",
             },
           ],
         },
         {
           name: "transfer-in",
           description: "Transfers in a domain to an account",
-          args: [
-            {
-              name: "domain",
-              description: "domain to transfer in",
-            },
-          ],
+          args: {
+            name: "domain",
+            description: "Domain to transfer in",
+          },
         },
         {
           name: "verify",
           description: "Verifies a domain for an account",
-          args: [
-            {
-              name: "domain",
-              description: "domain to verify",
-            },
-          ],
+          args: {
+            name: "domain",
+            description: "Domain to verify",
+          },
         },
       ],
     },
@@ -467,20 +441,20 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "add",
-          description: "add DNS record for a domain",
+          description: "Add DNS record for a domain",
           args: [
             {
               name: "domain",
-              description: "domain to add record to",
+              description: "Domain to add record to",
               // generator: domainList
             },
             {
               name: "subdomain",
-              description: "subdomain to add record to",
+              description: "Subdomain to add record to",
             },
             {
               name: "record type",
-              description: "type of record to add",
+              description: "Type of record to add",
               suggestions: [
                 {
                   name: "A",
@@ -518,49 +492,47 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "ls",
-          description: "list all certificates under an account",
+          description: "List all certificates under an account",
         },
         {
           name: "issue",
-          description: "issue certificates for multiple domains",
+          description: "Issue certificates for multiple domains",
           args: {
             name: "Domains",
             description:
-              "list of domains separated by commas to issue certificates for",
+              "List of domains separated by commas to issue certificates for",
             // generator: domainList,
             isVariadic: true,
           },
         },
         {
           name: "rm",
-          description: "remove a certificate by id",
-          args: [
-            {
-              name: "certificate id",
-              description: "id of the certificate to remove",
-            },
-          ],
+          description: "Remove a certificate by id",
+          args: {
+            name: "certificate id",
+            description: "Id of the certificate to remove",
+          },
         },
       ],
       options: [
         {
-          name: ["--challenge-only"],
+          name: "--challenge-only",
           description: "Show challenges needed to issue a certificate",
         },
         {
-          name: ["--crt"],
+          name: "--crt",
           description: "Include path to .crt",
-          args: [{ template: "filepaths" }],
+          args: { template: "filepaths" },
         },
         {
-          name: ["--key"],
+          name: "--key",
           description: "Include path to .key",
-          args: [{ template: "filepaths" }],
+          args: { template: "filepaths" },
         },
         {
-          name: ["--ca"],
+          name: "--ca",
           description: "Include path to .ca",
-          args: [{ template: "filepaths" }],
+          args: { template: "filepaths" },
         },
       ],
     },
@@ -571,58 +543,54 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
-          description: "list all secrets",
+          description: "List all secrets",
         },
         {
           name: "add",
-          description: "add a new secret",
+          description: "Add a new secret",
           args: [
             {
               name: "secret name",
-              description: "name of the secret to add",
+              description: "Name of the secret to add",
             },
             {
               name: "secret value",
-              description: "value of the secret to add",
+              description: "Value of the secret to add",
             },
           ],
         },
         {
           name: "rename",
-          description: "rename a secret",
+          description: "Rename a secret",
           args: [
             {
               name: "old name",
-              description: "old name of the secret to rename",
+              description: "Old name of the secret to rename",
             },
             {
               name: "new name",
-              description: "new name of the secret",
+              description: "New name of the secret",
             },
           ],
         },
         {
           name: "remove",
-          description: "remove a secret",
-          args: [
-            {
-              name: "secret name",
-              description: "name of the seret to remove",
-            },
-          ],
+          description: "Remove a secret",
+          args: {
+            name: "secret name",
+            description: "Name of the seret to remove",
+          },
         },
       ],
     },
     {
       name: "logs",
       description: "Displays the logs for a deployment",
-      args: [
-        {
-          name: "deployment url",
-          description: "get logs for specified deployment",
-          // generator: deploymentList
-        },
-      ],
+      args: {
+        name: "deployment url",
+        description: "Get logs for specified deployment",
+        // generator: deploymentList
+      },
       options: [
         {
           name: ["-a", "--all"],
@@ -635,27 +603,27 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-n", "--number"],
           description: "Specify number of log lines to output",
-          args: [{}],
+          args: {},
         },
         {
           name: ["-o", "--output"],
           description: "Specifies format of logs output as 'short' or 'raw'",
-          args: [{}],
+          args: {},
         },
         {
-          name: ["--since"],
+          name: "--since",
           description: "Return logs after a specific ISO 8601 date",
-          args: [{}],
+          args: {},
         },
         {
           name: ["-q", "--query"],
           description: "Return logs against a search query",
-          args: [{}],
+          args: {},
         },
         {
-          name: ["--until"],
+          name: "--until",
           description: "Return logs up to a specific ISO 8601 date",
-          args: [{}],
+          args: {},
         },
       ],
     },
@@ -673,13 +641,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "invite",
-          description: "invite a new member to the team",
-          args: [
-            {
-              name: "email",
-              description: "email of member to invite to team",
-            },
-          ],
+          description: "Invite a new member to the team",
+          args: {
+            name: "email",
+            description: "Email of member to invite to team",
+          },
         },
       ],
     },

@@ -30,11 +30,11 @@ const sortbyArg: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "rg",
   description:
-    "recursively searches current directory for lines matching a pattern",
+    "Recursively searches current directory for lines matching a pattern",
   options: [
     {
       name: ["-A", "--after-context"],
-      description: "Shows NUM lines after each match.",
+      description: "Shows NUM lines after each match",
       args: {
         name: "Num",
       },
@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
       description: "Search case sensitively",
     },
     {
-      name: ["--color"],
+      name: "--color",
       description: "Controls when to use colors",
       args: {
         name: "when",
@@ -510,7 +510,7 @@ const completionSpec: Fig.Spec = {
       description: "Search in compressed files",
     },
     {
-      name: ["-S, --smart-case"],
+      name: "-S, --smart-case",
       description:
         "Searches case insensitively if the pattern is all lowercase",
     },

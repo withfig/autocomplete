@@ -10,7 +10,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name to which the upload was taking place.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name to which the upload was taking place.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -18,14 +18,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Key of the object for which the multipart upload was initiated.",
+            "Key of the object for which the multipart upload was initiated",
           args: {
             name: "string",
           },
         },
         {
           name: "--upload-id",
-          description: "Upload ID that identifies the multipart upload.",
+          description: "Upload ID that identifies the multipart upload",
           args: {
             name: "string",
           },
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -49,7 +49,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -57,7 +57,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "Name of the bucket to which the multipart upload was initiated.",
+            "Name of the bucket to which the multipart upload was initiated",
           args: {
             name: "string",
           },
@@ -81,7 +81,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Object key for which the multipart upload was initiated.",
+            "Object key for which the multipart upload was initiated",
           args: {
             name: "string",
           },
@@ -89,14 +89,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--multipart-upload",
           description:
-            "The container for the multipart upload request information.",
+            "The container for the multipart upload request information",
           args: {
             name: "structure",
           },
         },
         {
           name: "--upload-id",
-          description: "ID for the initiated multipart upload.",
+          description: "ID for the initiated multipart upload",
           args: {
             name: "string",
           },
@@ -104,7 +104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -112,7 +112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -120,7 +120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -128,7 +128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -139,12 +139,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "copy-object",
       description:
-        "Creates a copy of an object that is already stored in Amazon S3.  You can store individual objects of up to 5 TB in Amazon S3. You create a copy of your object up to 5 GB in size in a single atomic action using this API. However, to copy an object greater than 5 GB, you must use the multipart upload Upload Part - Copy API. For more information, see Copy Object Using the REST Multipart Upload API.  All copy requests must be authenticated. Additionally, you must have read access to the source object and write access to the destination bucket. For more information, see REST Authentication. Both the Region that you want to copy the object from and the Region that you want to copy the object to must be enabled for your account. A copy request might return an error when Amazon S3 receives the copy request or while Amazon S3 is copying the files. If the error occurs before the copy action starts, you receive a standard Amazon S3 error. If the error occurs during the copy operation, the error response is embedded in the 200 OK response. This means that a 200 OK response can contain either a success or an error. Design your application to parse the contents of the response and handle it appropriately. If the copy is successful, you receive a response with information about the copied object.  If the request is an HTTP 1.1 request, the response is chunk encoded. If it were not, it would not contain the content-length, and you would need to read the entire body.  The copy request charge is based on the storage class and Region that you specify for the destination object. For pricing information, see Amazon S3 pricing.  Amazon S3 transfer acceleration does not support cross-Region copies. If you request a cross-Region copy using a transfer acceleration endpoint, you get a 400 Bad Request error. For more information, see Transfer Acceleration.   Metadata  When copying an object, you can preserve all metadata (default) or specify new metadata. However, the ACL is not preserved and is set to private for the user making the request. To override the default ACL setting, specify a new ACL when generating a copy request. For more information, see Using ACLs.  To specify whether you want the object metadata copied from the source object or replaced with metadata provided in the request, you can optionally add the x-amz-metadata-directive header. When you grant permissions, you can use the s3:x-amz-metadata-directive condition key to enforce certain metadata behavior when objects are uploaded. For more information, see Specifying Conditions in a Policy in the Amazon S3 Developer Guide. For a complete list of Amazon S3-specific condition keys, see Actions, Resources, and Condition Keys for Amazon S3.   x-amz-copy-source-if Headers  To only copy an object under certain conditions, such as whether the Etag matches or whether the object was modified before or after a specified date, use the following request parameters:    x-amz-copy-source-if-match     x-amz-copy-source-if-none-match     x-amz-copy-source-if-unmodified-since     x-amz-copy-source-if-modified-since     If both the x-amz-copy-source-if-match and x-amz-copy-source-if-unmodified-since headers are present in the request and evaluate as follows, Amazon S3 returns 200 OK and copies the data:    x-amz-copy-source-if-match condition evaluates to true    x-amz-copy-source-if-unmodified-since condition evaluates to false   If both the x-amz-copy-source-if-none-match and x-amz-copy-source-if-modified-since headers are present in the request and evaluate as follows, Amazon S3 returns the 412 Precondition Failed response code:    x-amz-copy-source-if-none-match condition evaluates to false    x-amz-copy-source-if-modified-since condition evaluates to true    All headers with the x-amz- prefix, including x-amz-copy-source, must be signed.   Server-side encryption  When you perform a CopyObject operation, you can optionally use the appropriate encryption-related headers to encrypt the object using server-side encryption with AWS managed encryption keys (SSE-S3 or SSE-KMS) or a customer-provided encryption key. With server-side encryption, Amazon S3 encrypts your data as it writes it to disks in its data centers and decrypts the data when you access it. For more information about server-side encryption, see Using Server-Side Encryption. If a target object uses SSE-KMS, you can enable an S3 Bucket Key for the object. For more information, see Amazon S3 Bucket Keys in the Amazon S3 User Guide.  Access Control List (ACL)-Specific Request Headers  When copying an object, you can optionally use headers to grant ACL-based permissions. By default, all objects are private. Only the owner has full access control. When adding a new object, you can grant permissions to individual AWS accounts or to predefined groups defined by Amazon S3. These permissions are then added to the ACL on the object. For more information, see Access Control List (ACL) Overview and Managing ACLs Using the REST API.   Storage Class Options  You can use the CopyObject action to change the storage class of an object that is already stored in Amazon S3 using the StorageClass parameter. For more information, see Storage Classes in the Amazon S3 Service Developer Guide.  Versioning  By default, x-amz-copy-source identifies the current version of an object to copy. If the current version is a delete marker, Amazon S3 behaves as if the object was deleted. To copy a different version, use the versionId subresource. If you enable versioning on the target bucket, Amazon S3 generates a unique version ID for the object being copied. This version ID is different from the version ID of the source object. Amazon S3 returns the version ID of the copied object in the x-amz-version-id response header in the response. If you do not enable versioning or suspend it on the target bucket, the version ID that Amazon S3 generates is always null. If the source object's storage class is GLACIER, you must restore a copy of this object before you can use it as a source object for the copy operation. For more information, see RestoreObject. The following operations are related to CopyObject:    PutObject     GetObject    For more information, see Copying Objects.",
+        "Creates a copy of an object that is already stored in Amazon S3.  You can store individual objects of up to 5 TB in Amazon S3. You create a copy of your object up to 5 GB in size in a single atomic action using this API. However, to copy an object greater than 5 GB, you must use the multipart upload Upload Part - Copy API. For more information, see Copy Object Using the REST Multipart Upload API.  All copy requests must be authenticated. Additionally, you must have read access to the source object and write access to the destination bucket. For more information, see REST Authentication. Both the Region that you want to copy the object from and the Region that you want to copy the object to must be enabled for your account. A copy request might return an error when Amazon S3 receives the copy request or while Amazon S3 is copying the files. If the error occurs before the copy action starts, you receive a standard Amazon S3 error. If the error occurs during the copy operation, the error response is embedded in the 200 OK response. This means that a 200 OK response can contain either a success or an error. Design your application to parse the contents of the response and handle it appropriately. If the copy is successful, you receive a response with information about the copied object.  If the request is an HTTP 1.1 request, the response is chunk encoded. If it were not, it would not contain the content-length, and you would need to read the entire body.  The copy request charge is based on the storage class and Region that you specify for the destination object. For pricing information, see Amazon S3 pricing.  Amazon S3 transfer acceleration does not support cross-Region copies. If you request a cross-Region copy using a transfer acceleration endpoint, you get a 400 Bad Request error. For more information, see Transfer Acceleration.   Metadata  When copying an object, you can preserve all metadata (default) or specify new metadata. However, the ACL is not preserved and is set to private for the user making the request. To override the default ACL setting, specify a new ACL when generating a copy request. For more information, see Using ACLs.  To specify whether you want the object metadata copied from the source object or replaced with metadata provided in the request, you can optionally add the x-amz-metadata-directive header. When you grant permissions, you can use the s3:x-amz-metadata-directive condition key to enforce certain metadata behavior when objects are uploaded. For more information, see Specifying Conditions in a Policy in the Amazon S3 Developer Guide. For a complete list of Amazon S3-specific condition keys, see Actions, Resources, and Condition Keys for Amazon S3.   x-amz-copy-source-if Headers  To only copy an object under certain conditions, such as whether the Etag matches or whether the object was modified before or after a specified date, use the following request parameters:    x-amz-copy-source-if-match     x-amz-copy-source-if-none-match     x-amz-copy-source-if-unmodified-since     x-amz-copy-source-if-modified-since     If both the x-amz-copy-source-if-match and x-amz-copy-source-if-unmodified-since headers are present in the request and evaluate as follows, Amazon S3 returns 200 OK and copies the data:    x-amz-copy-source-if-match condition evaluates to true    x-amz-copy-source-if-unmodified-since condition evaluates to false   If both the x-amz-copy-source-if-none-match and x-amz-copy-source-if-modified-since headers are present in the request and evaluate as follows, Amazon S3 returns the 412 Precondition Failed response code:    x-amz-copy-source-if-none-match condition evaluates to false    x-amz-copy-source-if-modified-since condition evaluates to true    All headers with the x-amz- prefix, including x-amz-copy-source, must be signed.   Server-side encryption  When you perform a CopyObject operation, you can optionally use the appropriate encryption-related headers to encrypt the object using server-side encryption with AWS managed encryption keys (SSE-S3 or SSE-KMS) or a customer-provided encryption key. With server-side encryption, Amazon S3 encrypts your data as it writes it to disks in its data centers and decrypts the data when you access it. For more information about server-side encryption, see Using Server-Side Encryption. If a target object uses SSE-KMS, you can enable an S3 Bucket Key for the object. For more information, see Amazon S3 Bucket Keys in the Amazon S3 User Guide.  Access Control List (ACL)-Specific Request Headers  When copying an object, you can optionally use headers to grant ACL-based permissions. By default, all objects are private. Only the owner has full access control. When adding a new object, you can grant permissions to individual AWS accounts or to predefined groups defined by Amazon S3. These permissions are then added to the ACL on the object. For more information, see Access Control List (ACL) Overview and Managing ACLs Using the REST API.   Storage Class Options  You can use the CopyObject action to change the storage class of an object that is already stored in Amazon S3 using the StorageClass parameter. For more information, see Storage Classes in the Amazon S3 Service Developer Guide.  Versioning  By default, x-amz-copy-source identifies the current version of an object to copy. If the current version is a delete marker, Amazon S3 behaves as if the object was deleted. To copy a different version, use the versionId subresource. If you enable versioning on the target bucket, Amazon S3 generates a unique version ID for the object being copied. This version ID is different from the version ID of the source object. Amazon S3 returns the version ID of the copied object in the x-amz-version-id response header in the response. If you do not enable versioning or suspend it on the target bucket, the version ID that Amazon S3 generates is always null. If the source object's storage class is GLACIER, you must restore a copy of this object before you can use it as a source object for the copy operation. For more information, see RestoreObject. The following operations are related to CopyObject:    PutObject     GetObject    For more information, see Copying Objects",
       options: [
         {
           name: "--acl",
           description:
-            "The canned ACL to apply to the object. This action is not supported by Amazon S3 on Outposts.",
+            "The canned ACL to apply to the object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -152,7 +152,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the destination bucket. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the destination bucket. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -160,14 +160,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Specifies caching behavior along the request/reply chain.",
+            "Specifies caching behavior along the request/reply chain",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-disposition",
-          description: "Specifies presentational information for the object.",
+          description: "Specifies presentational information for the object",
           args: {
             name: "string",
           },
@@ -175,14 +175,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
@@ -190,7 +190,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "A standard MIME type describing the format of the object data.",
+            "A standard MIME type describing the format of the object data",
           args: {
             name: "string",
           },
@@ -198,7 +198,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source",
           description:
-            "Specifies the source object for the copy operation. You specify the value in one of two formats, depending on whether you want to access the source object through an access point:   For objects not accessed through an access point, specify the name of the source bucket and the key of the source object, separated by a slash (/). For example, to copy the object reports/january.pdf from the bucket awsexamplebucket, use awsexamplebucket/reports/january.pdf. The value must be URL encoded.   For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as accessed through the access point, in the format arn:aws:s3:&lt;Region&gt;:&lt;account-id&gt;:accesspoint/&lt;access-point-name&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through access point my-access-point owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf. The value must be URL encoded.  Amazon S3 supports copy operations using access points only when the source and destination buckets are in the same AWS Region.  Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf. The value must be URL encoded.    To copy a specific version of an object, append ?versionId=&lt;version-id&gt; to the value (for example, awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893). If you don't specify a version ID, Amazon S3 copies the latest version of the source object.",
+            "Specifies the source object for the copy operation. You specify the value in one of two formats, depending on whether you want to access the source object through an access point:   For objects not accessed through an access point, specify the name of the source bucket and the key of the source object, separated by a slash (/). For example, to copy the object reports/january.pdf from the bucket awsexamplebucket, use awsexamplebucket/reports/january.pdf. The value must be URL encoded.   For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as accessed through the access point, in the format arn:aws:s3:&lt;Region&gt;:&lt;account-id&gt;:accesspoint/&lt;access-point-name&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through access point my-access-point owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf. The value must be URL encoded.  Amazon S3 supports copy operations using access points only when the source and destination buckets are in the same AWS Region.  Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf. The value must be URL encoded.    To copy a specific version of an object, append ?versionId=&lt;version-id&gt; to the value (for example, awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893). If you don't specify a version ID, Amazon S3 copies the latest version of the source object",
           args: {
             name: "string",
           },
@@ -206,7 +206,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-match",
           description:
-            "Copies the object if its entity tag (ETag) matches the specified tag.",
+            "Copies the object if its entity tag (ETag) matches the specified tag",
           args: {
             name: "string",
           },
@@ -214,7 +214,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-modified-since",
           description:
-            "Copies the object if it has been modified since the specified time.",
+            "Copies the object if it has been modified since the specified time",
           args: {
             name: "timestamp",
           },
@@ -222,7 +222,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-none-match",
           description:
-            "Copies the object if its entity tag (ETag) is different than the specified ETag.",
+            "Copies the object if its entity tag (ETag) is different than the specified ETag",
           args: {
             name: "string",
           },
@@ -230,7 +230,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-unmodified-since",
           description:
-            "Copies the object if it hasn't been modified since the specified time.",
+            "Copies the object if it hasn't been modified since the specified time",
           args: {
             name: "timestamp",
           },
@@ -238,7 +238,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable.",
+            "The date and time at which the object is no longer cacheable",
           args: {
             name: "timestamp",
           },
@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-full-control",
           description:
-            "Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object. This action is not supported by Amazon S3 on Outposts.",
+            "Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -254,7 +254,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read",
           description:
-            "Allows grantee to read the object data and its metadata. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the object data and its metadata. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -262,7 +262,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read-acp",
           description:
-            "Allows grantee to read the object ACL. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the object ACL. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -270,21 +270,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write-acp",
           description:
-            "Allows grantee to write the ACL for the applicable object. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to write the ACL for the applicable object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "The key of the destination object.",
+          description: "The key of the destination object",
           args: {
             name: "string",
           },
         },
         {
           name: "--metadata",
-          description: "A map of metadata to store with the object in S3.",
+          description: "A map of metadata to store with the object in S3",
           args: {
             name: "map",
           },
@@ -292,7 +292,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata-directive",
           description:
-            "Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request.",
+            "Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request",
           args: {
             name: "string",
           },
@@ -300,7 +300,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tagging-directive",
           description:
-            "Specifies whether the object tag-set are copied from the source object or replaced with tag-set provided in the request.",
+            "Specifies whether the object tag-set are copied from the source object or replaced with tag-set provided in the request",
           args: {
             name: "string",
           },
@@ -308,7 +308,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-side-encryption",
           description:
-            "The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms).",
+            "The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms)",
           args: {
             name: "string",
           },
@@ -316,7 +316,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--storage-class",
           description:
-            "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see Storage Classes in the Amazon S3 Service Developer Guide.",
+            "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see Storage Classes in the Amazon S3 Service Developer Guide",
           args: {
             name: "string",
           },
@@ -324,7 +324,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--website-redirect-location",
           description:
-            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.",
+            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata",
           args: {
             name: "string",
           },
@@ -332,7 +332,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -340,7 +340,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
           args: {
             name: "string",
           },
@@ -348,7 +348,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -356,7 +356,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-key-id",
           description:
-            "Specifies the AWS KMS key ID to use for object encryption. All GET and PUT requests for an object protected by AWS KMS will fail if not made via SSL or using SigV4. For information about configuring using any of the officially supported AWS SDKs and AWS CLI, see Specifying the Signature Version in Request Authentication in the Amazon S3 Developer Guide.",
+            "Specifies the AWS KMS key ID to use for object encryption. All GET and PUT requests for an object protected by AWS KMS will fail if not made via SSL or using SigV4. For information about configuring using any of the officially supported AWS SDKs and AWS CLI, see Specifying the Signature Version in Request Authentication in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -364,7 +364,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-encryption-context",
           description:
-            "Specifies the AWS KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs.",
+            "Specifies the AWS KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs",
           args: {
             name: "string",
           },
@@ -372,17 +372,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket-key-enabled",
           description:
-            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.  Specifying this header with a COPY action doesn\u2019t affect bucket-level settings for S3 Bucket Key.",
+            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.  Specifying this header with a COPY action doesn\u2019t affect bucket-level settings for S3 Bucket Key",
         },
         {
           name: "--no-bucket-key-enabled",
           description:
-            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.  Specifying this header with a COPY action doesn\u2019t affect bucket-level settings for S3 Bucket Key.",
+            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.  Specifying this header with a COPY action doesn\u2019t affect bucket-level settings for S3 Bucket Key",
         },
         {
           name: "--copy-source-sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use when decrypting the source object (for example, AES256).",
+            "Specifies the algorithm to use when decrypting the source object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -390,7 +390,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided in this header must be one that was used when the source object was created.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided in this header must be one that was used when the source object was created",
           args: {
             name: "string",
           },
@@ -398,7 +398,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -406,7 +406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -414,7 +414,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tagging",
           description:
-            "The tag-set for the object destination object this value must be used in conjunction with the TaggingDirective. The tag-set must be encoded as URL Query parameters.",
+            "The tag-set for the object destination object this value must be used in conjunction with the TaggingDirective. The tag-set must be encoded as URL Query parameters",
           args: {
             name: "string",
           },
@@ -422,7 +422,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-mode",
           description:
-            "The Object Lock mode that you want to apply to the copied object.",
+            "The Object Lock mode that you want to apply to the copied object",
           args: {
             name: "string",
           },
@@ -430,7 +430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-retain-until-date",
           description:
-            "The date and time when you want the copied object's Object Lock to expire.",
+            "The date and time when you want the copied object's Object Lock to expire",
           args: {
             name: "timestamp",
           },
@@ -438,7 +438,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-legal-hold-status",
           description:
-            "Specifies whether you want to apply a Legal Hold to the copied object.",
+            "Specifies whether you want to apply a Legal Hold to the copied object",
           args: {
             name: "string",
           },
@@ -446,7 +446,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected destination bucket owner. If the destination bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected destination bucket owner. If the destination bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -454,7 +454,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-source-bucket-owner",
           description:
-            "The account ID of the expected source bucket owner. If the source bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected source bucket owner. If the source bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -462,7 +462,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -470,7 +470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -485,21 +485,21 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--acl",
-          description: "The canned ACL to apply to the bucket.",
+          description: "The canned ACL to apply to the bucket",
           args: {
             name: "string",
           },
         },
         {
           name: "--bucket",
-          description: "The name of the bucket to create.",
+          description: "The name of the bucket to create",
           args: {
             name: "string",
           },
         },
         {
           name: "--create-bucket-configuration",
-          description: "The configuration information for the bucket.",
+          description: "The configuration information for the bucket",
           args: {
             name: "structure",
           },
@@ -507,21 +507,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-full-control",
           description:
-            "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
+            "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket",
           args: {
             name: "string",
           },
         },
         {
           name: "--grant-read",
-          description: "Allows grantee to list the objects in the bucket.",
+          description: "Allows grantee to list the objects in the bucket",
           args: {
             name: "string",
           },
         },
         {
           name: "--grant-read-acp",
-          description: "Allows grantee to read the bucket ACL.",
+          description: "Allows grantee to read the bucket ACL",
           args: {
             name: "string",
           },
@@ -529,7 +529,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write",
           description:
-            "Allows grantee to create, overwrite, and delete any object in the bucket.",
+            "Allows grantee to create, overwrite, and delete any object in the bucket",
           args: {
             name: "string",
           },
@@ -537,7 +537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write-acp",
           description:
-            "Allows grantee to write the ACL for the applicable bucket.",
+            "Allows grantee to write the ACL for the applicable bucket",
           args: {
             name: "string",
           },
@@ -545,17 +545,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-enabled-for-bucket",
           description:
-            "Specifies whether you want S3 Object Lock to be enabled for the new bucket.",
+            "Specifies whether you want S3 Object Lock to be enabled for the new bucket",
         },
         {
           name: "--no-object-lock-enabled-for-bucket",
           description:
-            "Specifies whether you want S3 Object Lock to be enabled for the new bucket.",
+            "Specifies whether you want S3 Object Lock to be enabled for the new bucket",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -563,7 +563,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -579,7 +579,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--acl",
           description:
-            "The canned ACL to apply to the object. This action is not supported by Amazon S3 on Outposts.",
+            "The canned ACL to apply to the object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -587,7 +587,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket to which to initiate the upload When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the bucket to which to initiate the upload When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -595,14 +595,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Specifies caching behavior along the request/reply chain.",
+            "Specifies caching behavior along the request/reply chain",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-disposition",
-          description: "Specifies presentational information for the object.",
+          description: "Specifies presentational information for the object",
           args: {
             name: "string",
           },
@@ -610,14 +610,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
@@ -625,7 +625,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "A standard MIME type describing the format of the object data.",
+            "A standard MIME type describing the format of the object data",
           args: {
             name: "string",
           },
@@ -633,7 +633,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable.",
+            "The date and time at which the object is no longer cacheable",
           args: {
             name: "timestamp",
           },
@@ -641,7 +641,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-full-control",
           description:
-            "Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object. This action is not supported by Amazon S3 on Outposts.",
+            "Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -649,7 +649,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read",
           description:
-            "Allows grantee to read the object data and its metadata. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the object data and its metadata. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -657,7 +657,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read-acp",
           description:
-            "Allows grantee to read the object ACL. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the object ACL. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -665,7 +665,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write-acp",
           description:
-            "Allows grantee to write the ACL for the applicable object. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to write the ACL for the applicable object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -673,14 +673,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Object key for which the multipart upload is to be initiated.",
+            "Object key for which the multipart upload is to be initiated",
           args: {
             name: "string",
           },
         },
         {
           name: "--metadata",
-          description: "A map of metadata to store with the object in S3.",
+          description: "A map of metadata to store with the object in S3",
           args: {
             name: "map",
           },
@@ -688,7 +688,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-side-encryption",
           description:
-            "The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms).",
+            "The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms)",
           args: {
             name: "string",
           },
@@ -696,7 +696,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--storage-class",
           description:
-            "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see Storage Classes in the Amazon S3 Service Developer Guide.",
+            "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see Storage Classes in the Amazon S3 Service Developer Guide",
           args: {
             name: "string",
           },
@@ -704,7 +704,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--website-redirect-location",
           description:
-            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.",
+            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata",
           args: {
             name: "string",
           },
@@ -712,7 +712,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -720,7 +720,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
           args: {
             name: "string",
           },
@@ -728,7 +728,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -736,7 +736,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-key-id",
           description:
-            "Specifies the ID of the symmetric customer managed AWS KMS CMK to use for object encryption. All GET and PUT requests for an object protected by AWS KMS will fail if not made via SSL or using SigV4. For information about configuring using any of the officially supported AWS SDKs and AWS CLI, see Specifying the Signature Version in Request Authentication in the Amazon S3 Developer Guide.",
+            "Specifies the ID of the symmetric customer managed AWS KMS CMK to use for object encryption. All GET and PUT requests for an object protected by AWS KMS will fail if not made via SSL or using SigV4. For information about configuring using any of the officially supported AWS SDKs and AWS CLI, see Specifying the Signature Version in Request Authentication in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -744,7 +744,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-encryption-context",
           description:
-            "Specifies the AWS KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs.",
+            "Specifies the AWS KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs",
           args: {
             name: "string",
           },
@@ -752,17 +752,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket-key-enabled",
           description:
-            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with an object action doesn\u2019t affect bucket-level settings for S3 Bucket Key.",
+            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with an object action doesn\u2019t affect bucket-level settings for S3 Bucket Key",
         },
         {
           name: "--no-bucket-key-enabled",
           description:
-            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with an object action doesn\u2019t affect bucket-level settings for S3 Bucket Key.",
+            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with an object action doesn\u2019t affect bucket-level settings for S3 Bucket Key",
         },
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -770,7 +770,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--tagging",
           description:
-            "The tag-set for the object. The tag-set must be encoded as URL Query parameters.",
+            "The tag-set for the object. The tag-set must be encoded as URL Query parameters",
           args: {
             name: "string",
           },
@@ -778,7 +778,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-mode",
           description:
-            "Specifies the Object Lock mode that you want to apply to the uploaded object.",
+            "Specifies the Object Lock mode that you want to apply to the uploaded object",
           args: {
             name: "string",
           },
@@ -786,7 +786,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-retain-until-date",
           description:
-            "Specifies the date and time when you want the Object Lock to expire.",
+            "Specifies the date and time when you want the Object Lock to expire",
           args: {
             name: "timestamp",
           },
@@ -794,7 +794,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-legal-hold-status",
           description:
-            "Specifies whether you want to apply a Legal Hold to the uploaded object.",
+            "Specifies whether you want to apply a Legal Hold to the uploaded object",
           args: {
             name: "string",
           },
@@ -802,7 +802,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -810,7 +810,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -818,7 +818,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -833,7 +833,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "Specifies the bucket being deleted.",
+          description: "Specifies the bucket being deleted",
           args: {
             name: "string",
           },
@@ -841,7 +841,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -849,7 +849,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -857,7 +857,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -873,14 +873,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket from which an analytics configuration is deleted.",
+            "The name of the bucket from which an analytics configuration is deleted",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID that identifies the analytics configuration.",
+          description: "The ID that identifies the analytics configuration",
           args: {
             name: "string",
           },
@@ -888,7 +888,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -896,7 +896,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -904,7 +904,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -920,7 +920,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "Specifies the bucket whose cors configuration is being deleted.",
+            "Specifies the bucket whose cors configuration is being deleted",
           args: {
             name: "string",
           },
@@ -928,7 +928,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -936,7 +936,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -944,7 +944,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -960,7 +960,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the server-side encryption configuration to delete.",
+            "The name of the bucket containing the server-side encryption configuration to delete",
           args: {
             name: "string",
           },
@@ -968,7 +968,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -976,7 +976,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -984,7 +984,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1000,7 +1000,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.",
+            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
           },
@@ -1008,7 +1008,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description:
-            "The ID used to identify the S3 Intelligent-Tiering configuration.",
+            "The ID used to identify the S3 Intelligent-Tiering configuration",
           args: {
             name: "string",
           },
@@ -1016,7 +1016,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1024,7 +1024,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1040,14 +1040,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the inventory configuration to delete.",
+            "The name of the bucket containing the inventory configuration to delete",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID used to identify the inventory configuration.",
+          description: "The ID used to identify the inventory configuration",
           args: {
             name: "string",
           },
@@ -1055,7 +1055,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1063,7 +1063,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1071,7 +1071,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1086,7 +1086,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name of the lifecycle to delete.",
+          description: "The bucket name of the lifecycle to delete",
           args: {
             name: "string",
           },
@@ -1094,7 +1094,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1102,7 +1102,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1110,7 +1110,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1126,14 +1126,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the metrics configuration to delete.",
+            "The name of the bucket containing the metrics configuration to delete",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID used to identify the metrics configuration.",
+          description: "The ID used to identify the metrics configuration",
           args: {
             name: "string",
           },
@@ -1141,7 +1141,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1149,7 +1149,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1157,7 +1157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1173,7 +1173,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The Amazon S3 bucket whose OwnershipControls you want to delete.",
+            "The Amazon S3 bucket whose OwnershipControls you want to delete",
           args: {
             name: "string",
           },
@@ -1181,7 +1181,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1189,7 +1189,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1197,7 +1197,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1212,7 +1212,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name.",
+          description: "The bucket name",
           args: {
             name: "string",
           },
@@ -1220,7 +1220,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1228,7 +1228,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1236,7 +1236,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1251,7 +1251,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name.",
+          description: "The bucket name",
           args: {
             name: "string",
           },
@@ -1259,7 +1259,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1267,7 +1267,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1275,7 +1275,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1290,7 +1290,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket that has the tag set to be removed.",
+          description: "The bucket that has the tag set to be removed",
           args: {
             name: "string",
           },
@@ -1298,7 +1298,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1306,7 +1306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1314,7 +1314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1330,7 +1330,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name for which you want to remove the website configuration.",
+            "The bucket name for which you want to remove the website configuration",
           args: {
             name: "string",
           },
@@ -1338,7 +1338,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1346,7 +1346,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1354,7 +1354,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1370,14 +1370,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name of the bucket containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name of the bucket containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "Key name of the object to delete.",
+          description: "Key name of the object to delete",
           args: {
             name: "string",
           },
@@ -1385,7 +1385,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mfa",
           description:
-            "The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device. Required to permanently delete a versioned object if versioning is configured with MFA delete enabled.",
+            "The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device. Required to permanently delete a versioned object if versioning is configured with MFA delete enabled",
           args: {
             name: "string",
           },
@@ -1393,7 +1393,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "VersionId used to reference a specific version of the object.",
+            "VersionId used to reference a specific version of the object",
           args: {
             name: "string",
           },
@@ -1401,7 +1401,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -1409,17 +1409,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bypass-governance-retention",
           description:
-            "Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.",
+            "Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation",
         },
         {
           name: "--no-bypass-governance-retention",
           description:
-            "Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.",
+            "Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation",
         },
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1427,7 +1427,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1435,7 +1435,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1451,7 +1451,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name containing the objects from which to remove the tags.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name containing the objects from which to remove the tags.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -1459,7 +1459,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "The key that identifies the object in the bucket from which to remove all tags.",
+            "The key that identifies the object in the bucket from which to remove all tags",
           args: {
             name: "string",
           },
@@ -1467,7 +1467,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The versionId of the object that the tag-set will be removed from.",
+            "The versionId of the object that the tag-set will be removed from",
           args: {
             name: "string",
           },
@@ -1475,7 +1475,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1483,7 +1483,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1491,7 +1491,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1507,14 +1507,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name containing the objects to delete.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name containing the objects to delete.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--delete",
-          description: "Container for the request.",
+          description: "Container for the request",
           args: {
             name: "structure",
           },
@@ -1522,7 +1522,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mfa",
           description:
-            "The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device. Required to permanently delete a versioned object if versioning is configured with MFA delete enabled.",
+            "The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device. Required to permanently delete a versioned object if versioning is configured with MFA delete enabled",
           args: {
             name: "string",
           },
@@ -1530,7 +1530,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -1538,17 +1538,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bypass-governance-retention",
           description:
-            "Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place. You must have sufficient permissions to perform this operation.",
+            "Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place. You must have sufficient permissions to perform this operation",
         },
         {
           name: "--no-bypass-governance-retention",
           description:
-            "Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place. You must have sufficient permissions to perform this operation.",
+            "Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place. You must have sufficient permissions to perform this operation",
         },
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1556,7 +1556,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1564,7 +1564,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1580,7 +1580,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The Amazon S3 bucket whose PublicAccessBlock configuration you want to delete.",
+            "The Amazon S3 bucket whose PublicAccessBlock configuration you want to delete",
           args: {
             name: "string",
           },
@@ -1588,7 +1588,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1596,7 +1596,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1604,7 +1604,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1620,7 +1620,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which the accelerate configuration is retrieved.",
+            "The name of the bucket for which the accelerate configuration is retrieved",
           args: {
             name: "string",
           },
@@ -1628,7 +1628,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1636,7 +1636,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1644,7 +1644,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1659,7 +1659,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "Specifies the S3 bucket whose ACL is being requested.",
+          description: "Specifies the S3 bucket whose ACL is being requested",
           args: {
             name: "string",
           },
@@ -1667,7 +1667,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1675,7 +1675,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1683,7 +1683,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1699,14 +1699,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket from which an analytics configuration is retrieved.",
+            "The name of the bucket from which an analytics configuration is retrieved",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID that identifies the analytics configuration.",
+          description: "The ID that identifies the analytics configuration",
           args: {
             name: "string",
           },
@@ -1714,7 +1714,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1722,7 +1722,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1730,7 +1730,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1746,7 +1746,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name for which to get the cors configuration.",
+            "The bucket name for which to get the cors configuration",
           args: {
             name: "string",
           },
@@ -1754,7 +1754,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1762,7 +1762,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1770,7 +1770,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1786,7 +1786,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket from which the server-side encryption configuration is retrieved.",
+            "The name of the bucket from which the server-side encryption configuration is retrieved",
           args: {
             name: "string",
           },
@@ -1794,7 +1794,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1802,7 +1802,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1810,7 +1810,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1826,7 +1826,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.",
+            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
           },
@@ -1834,7 +1834,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description:
-            "The ID used to identify the S3 Intelligent-Tiering configuration.",
+            "The ID used to identify the S3 Intelligent-Tiering configuration",
           args: {
             name: "string",
           },
@@ -1842,7 +1842,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1850,7 +1850,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1866,14 +1866,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the inventory configuration to retrieve.",
+            "The name of the bucket containing the inventory configuration to retrieve",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID used to identify the inventory configuration.",
+          description: "The ID used to identify the inventory configuration",
           args: {
             name: "string",
           },
@@ -1881,7 +1881,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1889,7 +1889,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1897,7 +1897,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1913,7 +1913,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to get the lifecycle information.",
+            "The name of the bucket for which to get the lifecycle information",
           args: {
             name: "string",
           },
@@ -1921,7 +1921,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1929,7 +1929,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1937,7 +1937,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1953,7 +1953,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to get the lifecycle information.",
+            "The name of the bucket for which to get the lifecycle information",
           args: {
             name: "string",
           },
@@ -1961,7 +1961,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -1969,7 +1969,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -1977,7 +1977,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -1992,7 +1992,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The name of the bucket for which to get the location.",
+          description: "The name of the bucket for which to get the location",
           args: {
             name: "string",
           },
@@ -2000,7 +2000,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2008,7 +2008,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2016,7 +2016,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2032,7 +2032,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name for which to get the logging information.",
+            "The bucket name for which to get the logging information",
           args: {
             name: "string",
           },
@@ -2040,7 +2040,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2048,7 +2048,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2056,7 +2056,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2072,14 +2072,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the metrics configuration to retrieve.",
+            "The name of the bucket containing the metrics configuration to retrieve",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID used to identify the metrics configuration.",
+          description: "The ID used to identify the metrics configuration",
           args: {
             name: "string",
           },
@@ -2087,7 +2087,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2095,7 +2095,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2103,7 +2103,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2113,12 +2113,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "get-bucket-notification",
-      description: "No longer used, see GetBucketNotificationConfiguration.",
+      description: "No longer used, see GetBucketNotificationConfiguration",
       options: [
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to get the notification configuration.",
+            "The name of the bucket for which to get the notification configuration",
           args: {
             name: "string",
           },
@@ -2126,7 +2126,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2134,7 +2134,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2142,7 +2142,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2158,7 +2158,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to get the notification configuration.",
+            "The name of the bucket for which to get the notification configuration",
           args: {
             name: "string",
           },
@@ -2166,7 +2166,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2174,7 +2174,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2182,7 +2182,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2198,7 +2198,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose OwnershipControls you want to retrieve.",
+            "The name of the Amazon S3 bucket whose OwnershipControls you want to retrieve",
           args: {
             name: "string",
           },
@@ -2206,7 +2206,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2214,7 +2214,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2222,7 +2222,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2237,7 +2237,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name for which to get the bucket policy.",
+          description: "The bucket name for which to get the bucket policy",
           args: {
             name: "string",
           },
@@ -2245,7 +2245,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2253,7 +2253,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2261,7 +2261,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2277,7 +2277,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose policy status you want to retrieve.",
+            "The name of the Amazon S3 bucket whose policy status you want to retrieve",
           args: {
             name: "string",
           },
@@ -2285,7 +2285,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2293,7 +2293,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2301,7 +2301,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2317,7 +2317,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name for which to get the replication information.",
+            "The bucket name for which to get the replication information",
           args: {
             name: "string",
           },
@@ -2325,7 +2325,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2333,7 +2333,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2341,7 +2341,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2365,7 +2365,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2373,7 +2373,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2381,7 +2381,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2397,7 +2397,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to get the tagging information.",
+            "The name of the bucket for which to get the tagging information",
           args: {
             name: "string",
           },
@@ -2405,7 +2405,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2413,7 +2413,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2421,7 +2421,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2437,7 +2437,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to get the versioning information.",
+            "The name of the bucket for which to get the versioning information",
           args: {
             name: "string",
           },
@@ -2445,7 +2445,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2453,7 +2453,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2461,7 +2461,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2477,7 +2477,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name for which to get the website configuration.",
+            "The bucket name for which to get the website configuration",
           args: {
             name: "string",
           },
@@ -2485,7 +2485,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2493,7 +2493,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2501,7 +2501,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2517,7 +2517,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -2525,7 +2525,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-match",
           description:
-            "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed).",
+            "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed)",
           args: {
             name: "string",
           },
@@ -2533,7 +2533,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-modified-since",
           description:
-            "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified).",
+            "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified)",
           args: {
             name: "timestamp",
           },
@@ -2541,7 +2541,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-none-match",
           description:
-            "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified).",
+            "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified)",
           args: {
             name: "string",
           },
@@ -2549,14 +2549,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-unmodified-since",
           description:
-            "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed).",
+            "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed)",
           args: {
             name: "timestamp",
           },
         },
         {
           name: "--key",
-          description: "Key of the object to get.",
+          description: "Key of the object to get",
           args: {
             name: "string",
           },
@@ -2564,14 +2564,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--range",
           description:
-            "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request.",
+            "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request",
           args: {
             name: "string",
           },
         },
         {
           name: "--response-cache-control",
-          description: "Sets the Cache-Control header of the response.",
+          description: "Sets the Cache-Control header of the response",
           args: {
             name: "string",
           },
@@ -2585,28 +2585,28 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--response-content-encoding",
-          description: "Sets the Content-Encoding header of the response.",
+          description: "Sets the Content-Encoding header of the response",
           args: {
             name: "string",
           },
         },
         {
           name: "--response-content-language",
-          description: "Sets the Content-Language header of the response.",
+          description: "Sets the Content-Language header of the response",
           args: {
             name: "string",
           },
         },
         {
           name: "--response-content-type",
-          description: "Sets the Content-Type header of the response.",
+          description: "Sets the Content-Type header of the response",
           args: {
             name: "string",
           },
         },
         {
           name: "--response-expires",
-          description: "Sets the Expires header of the response.",
+          description: "Sets the Expires header of the response",
           args: {
             name: "timestamp",
           },
@@ -2614,7 +2614,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "VersionId used to reference a specific version of the object.",
+            "VersionId used to reference a specific version of the object",
           args: {
             name: "string",
           },
@@ -2622,7 +2622,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when decrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when decrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -2630,7 +2630,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 used to encrypt the data. This value is used to decrypt the object when recovering it and must match the one used when storing the data. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+            "Specifies the customer-provided encryption key for Amazon S3 used to encrypt the data. This value is used to decrypt the object when recovering it and must match the one used when storing the data. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
           args: {
             name: "string",
           },
@@ -2638,7 +2638,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -2646,7 +2646,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -2654,7 +2654,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--part-number",
           description:
-            "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' GET request for the part specified. Useful for downloading just a part of an object.",
+            "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' GET request for the part specified. Useful for downloading just a part of an object",
           args: {
             name: "integer",
           },
@@ -2662,7 +2662,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2684,7 +2684,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name that contains the object for which to get the ACL information.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket name that contains the object for which to get the ACL information.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -2692,7 +2692,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "The key of the object for which to get the ACL information.",
+            "The key of the object for which to get the ACL information",
           args: {
             name: "string",
           },
@@ -2700,7 +2700,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "VersionId used to reference a specific version of the object.",
+            "VersionId used to reference a specific version of the object",
           args: {
             name: "string",
           },
@@ -2708,7 +2708,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -2716,7 +2716,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2724,7 +2724,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2732,7 +2732,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2743,12 +2743,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-object-legal-hold",
       description:
-        "Gets an object's current Legal Hold status. For more information, see Locking Objects. This action is not supported by Amazon S3 on Outposts.",
+        "Gets an object's current Legal Hold status. For more information, see Locking Objects. This action is not supported by Amazon S3 on Outposts",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object whose Legal Hold status you want to retrieve.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket name containing the object whose Legal Hold status you want to retrieve.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -2756,7 +2756,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "The key name for the object whose Legal Hold status you want to retrieve.",
+            "The key name for the object whose Legal Hold status you want to retrieve",
           args: {
             name: "string",
           },
@@ -2764,7 +2764,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The version ID of the object whose Legal Hold status you want to retrieve.",
+            "The version ID of the object whose Legal Hold status you want to retrieve",
           args: {
             name: "string",
           },
@@ -2772,7 +2772,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -2780,7 +2780,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2788,7 +2788,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2796,7 +2796,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2807,12 +2807,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-object-lock-configuration",
       description:
-        "Gets the Object Lock configuration for a bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see Locking Objects.",
+        "Gets the Object Lock configuration for a bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see Locking Objects",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket whose Object Lock configuration you want to retrieve. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket whose Object Lock configuration you want to retrieve. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -2820,7 +2820,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2828,7 +2828,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2836,7 +2836,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2847,12 +2847,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-object-retention",
       description:
-        "Retrieves an object's retention settings. For more information, see Locking Objects. This action is not supported by Amazon S3 on Outposts.",
+        "Retrieves an object's retention settings. For more information, see Locking Objects. This action is not supported by Amazon S3 on Outposts",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object whose retention settings you want to retrieve.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket name containing the object whose retention settings you want to retrieve.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -2860,7 +2860,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "The key name for the object whose retention settings you want to retrieve.",
+            "The key name for the object whose retention settings you want to retrieve",
           args: {
             name: "string",
           },
@@ -2868,7 +2868,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The version ID for the object whose retention settings you want to retrieve.",
+            "The version ID for the object whose retention settings you want to retrieve",
           args: {
             name: "string",
           },
@@ -2876,7 +2876,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -2884,7 +2884,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2892,7 +2892,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2900,7 +2900,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2916,14 +2916,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object for which to get the tagging information.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name containing the object for which to get the tagging information.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "Object key for which to get the tagging information.",
+          description: "Object key for which to get the tagging information",
           args: {
             name: "string",
           },
@@ -2931,7 +2931,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The versionId of the object for which to get the tagging information.",
+            "The versionId of the object for which to get the tagging information",
           args: {
             name: "string",
           },
@@ -2939,7 +2939,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -2947,7 +2947,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -2955,7 +2955,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -2963,7 +2963,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -2979,14 +2979,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the object for which to get the torrent files.",
+            "The name of the bucket containing the object for which to get the torrent files",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "The object key for which to get the information.",
+          description: "The object key for which to get the information",
           args: {
             name: "string",
           },
@@ -2994,7 +2994,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -3002,7 +3002,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3024,7 +3024,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose PublicAccessBlock configuration you want to retrieve.",
+            "The name of the Amazon S3 bucket whose PublicAccessBlock configuration you want to retrieve",
           args: {
             name: "string",
           },
@@ -3032,7 +3032,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3040,7 +3040,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3048,7 +3048,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3059,12 +3059,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "head-bucket",
       description:
-        "This action is useful to determine if a bucket exists and you have permission to access it. The action returns a 200 OK if the bucket exists and you have permission to access it. If the bucket does not exist or you do not have permission to access it, the HEAD request returns a generic 404 Not Found or 403 Forbidden code. A message body is not included, so you cannot determine the exception beyond these error codes. To use this operation, you must have permissions to perform the s3:ListBucket action. The bucket owner has this permission by default and can grant this permission to others. For more information about permissions, see Permissions Related to Bucket Subresource Operations and Managing Access Permissions to Your Amazon S3 Resources.",
+        "This action is useful to determine if a bucket exists and you have permission to access it. The action returns a 200 OK if the bucket exists and you have permission to access it. If the bucket does not exist or you do not have permission to access it, the HEAD request returns a generic 404 Not Found or 403 Forbidden code. A message body is not included, so you cannot determine the exception beyond these error codes. To use this operation, you must have permissions to perform the s3:ListBucket action. The bucket owner has this permission by default and can grant this permission to others. For more information about permissions, see Permissions Related to Bucket Subresource Operations and Managing Access Permissions to Your Amazon S3 Resources",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -3072,7 +3072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3080,7 +3080,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3088,7 +3088,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3104,7 +3104,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -3112,7 +3112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-match",
           description:
-            "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed).",
+            "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed)",
           args: {
             name: "string",
           },
@@ -3120,7 +3120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-modified-since",
           description:
-            "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified).",
+            "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified)",
           args: {
             name: "timestamp",
           },
@@ -3128,7 +3128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-none-match",
           description:
-            "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified).",
+            "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified)",
           args: {
             name: "string",
           },
@@ -3136,14 +3136,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--if-unmodified-since",
           description:
-            "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed).",
+            "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed)",
           args: {
             name: "timestamp",
           },
         },
         {
           name: "--key",
-          description: "The object key.",
+          description: "The object key",
           args: {
             name: "string",
           },
@@ -3151,7 +3151,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--range",
           description:
-            "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request.",
+            "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request",
           args: {
             name: "string",
           },
@@ -3159,7 +3159,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "VersionId used to reference a specific version of the object.",
+            "VersionId used to reference a specific version of the object",
           args: {
             name: "string",
           },
@@ -3167,7 +3167,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -3175,7 +3175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
           args: {
             name: "string",
           },
@@ -3183,7 +3183,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -3191,7 +3191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -3199,7 +3199,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--part-number",
           description:
-            "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object.",
+            "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object",
           args: {
             name: "integer",
           },
@@ -3207,7 +3207,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3215,7 +3215,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3223,7 +3223,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3239,7 +3239,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket from which analytics configurations are retrieved.",
+            "The name of the bucket from which analytics configurations are retrieved",
           args: {
             name: "string",
           },
@@ -3247,7 +3247,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "The ContinuationToken that represents a placeholder from where this request should begin.",
+            "The ContinuationToken that represents a placeholder from where this request should begin",
           args: {
             name: "string",
           },
@@ -3255,7 +3255,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3263,7 +3263,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3271,7 +3271,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3287,7 +3287,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.",
+            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
           },
@@ -3295,7 +3295,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "The ContinuationToken that represents a placeholder from where this request should begin.",
+            "The ContinuationToken that represents a placeholder from where this request should begin",
           args: {
             name: "string",
           },
@@ -3303,7 +3303,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3311,7 +3311,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3327,7 +3327,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the inventory configurations to retrieve.",
+            "The name of the bucket containing the inventory configurations to retrieve",
           args: {
             name: "string",
           },
@@ -3335,7 +3335,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "The marker used to continue an inventory configuration listing that has been truncated. Use the NextContinuationToken from a previously truncated list response to continue the listing. The continuation token is an opaque value that Amazon S3 understands.",
+            "The marker used to continue an inventory configuration listing that has been truncated. Use the NextContinuationToken from a previously truncated list response to continue the listing. The continuation token is an opaque value that Amazon S3 understands",
           args: {
             name: "string",
           },
@@ -3343,7 +3343,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3351,7 +3351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3359,7 +3359,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3375,7 +3375,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the metrics configurations to retrieve.",
+            "The name of the bucket containing the metrics configurations to retrieve",
           args: {
             name: "string",
           },
@@ -3383,7 +3383,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "The marker that is used to continue a metrics configuration listing that has been truncated. Use the NextContinuationToken from a previously truncated list response to continue the listing. The continuation token is an opaque value that Amazon S3 understands.",
+            "The marker that is used to continue a metrics configuration listing that has been truncated. Use the NextContinuationToken from a previously truncated list response to continue the listing. The continuation token is an opaque value that Amazon S3 understands",
           args: {
             name: "string",
           },
@@ -3391,7 +3391,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3399,7 +3399,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3407,7 +3407,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3418,12 +3418,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-buckets",
       description:
-        "Returns a list of all buckets owned by the authenticated sender of the request.",
+        "Returns a list of all buckets owned by the authenticated sender of the request",
       options: [
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3431,7 +3431,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3447,7 +3447,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket to which the multipart upload was initiated.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the bucket to which the multipart upload was initiated.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -3455,7 +3455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--delimiter",
           description:
-            "Character you use to group keys. All keys that contain the same string between the prefix, if specified, and the first occurrence of the delimiter after the prefix are grouped under a single result element, CommonPrefixes. If you don't specify the prefix parameter, then the substring starts at the beginning of the key. The keys that are grouped under CommonPrefixes result element are not returned elsewhere in the response.",
+            "Character you use to group keys. All keys that contain the same string between the prefix, if specified, and the first occurrence of the delimiter after the prefix are grouped under a single result element, CommonPrefixes. If you don't specify the prefix parameter, then the substring starts at the beginning of the key. The keys that are grouped under CommonPrefixes result element are not returned elsewhere in the response",
           args: {
             name: "string",
           },
@@ -3463,7 +3463,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encoding-type",
           description:
-            "Requests Amazon S3 to encode the object keys in the response and specifies the encoding method to use. An object key may contain any Unicode character; however, XML 1.0 parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the response.",
+            "Requests Amazon S3 to encode the object keys in the response and specifies the encoding method to use. An object key may contain any Unicode character; however, XML 1.0 parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the response",
           args: {
             name: "string",
           },
@@ -3471,7 +3471,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key-marker",
           description:
-            "Together with upload-id-marker, this parameter specifies the multipart upload after which listing should begin. If upload-id-marker is not specified, only the keys lexicographically greater than the specified key-marker will be included in the list. If upload-id-marker is specified, any multipart uploads for a key equal to the key-marker might also be included, provided those multipart uploads have upload IDs lexicographically greater than the specified upload-id-marker.",
+            "Together with upload-id-marker, this parameter specifies the multipart upload after which listing should begin. If upload-id-marker is not specified, only the keys lexicographically greater than the specified key-marker will be included in the list. If upload-id-marker is specified, any multipart uploads for a key equal to the key-marker might also be included, provided those multipart uploads have upload IDs lexicographically greater than the specified upload-id-marker",
           args: {
             name: "string",
           },
@@ -3479,7 +3479,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-uploads",
           description:
-            "Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body. 1,000 is the maximum number of uploads that can be returned in a response.",
+            "Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body. 1,000 is the maximum number of uploads that can be returned in a response",
           args: {
             name: "integer",
           },
@@ -3495,7 +3495,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--upload-id-marker",
           description:
-            "Together with key-marker, specifies the multipart upload after which listing should begin. If key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart uploads for a key equal to the key-marker might be included in the list only if they have an upload ID lexicographically greater than the specified upload-id-marker.",
+            "Together with key-marker, specifies the multipart upload after which listing should begin. If key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart uploads for a key equal to the key-marker might be included in the list only if they have an upload ID lexicographically greater than the specified upload-id-marker",
           args: {
             name: "string",
           },
@@ -3503,7 +3503,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3511,7 +3511,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3519,7 +3519,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3527,7 +3527,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3535,7 +3535,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3543,7 +3543,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3558,7 +3558,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name that contains the objects.",
+          description: "The bucket name that contains the objects",
           args: {
             name: "string",
           },
@@ -3566,7 +3566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--delimiter",
           description:
-            "A delimiter is a character that you specify to group keys. All keys that contain the same string between the prefix and the first occurrence of the delimiter are grouped under a single result element in CommonPrefixes. These groups are counted as one result against the max-keys limitation. These keys are not returned elsewhere in the response.",
+            "A delimiter is a character that you specify to group keys. All keys that contain the same string between the prefix and the first occurrence of the delimiter are grouped under a single result element in CommonPrefixes. These groups are counted as one result against the max-keys limitation. These keys are not returned elsewhere in the response",
           args: {
             name: "string",
           },
@@ -3574,7 +3574,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encoding-type",
           description:
-            "Requests Amazon S3 to encode the object keys in the response and specifies the encoding method to use. An object key may contain any Unicode character; however, XML 1.0 parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the response.",
+            "Requests Amazon S3 to encode the object keys in the response and specifies the encoding method to use. An object key may contain any Unicode character; however, XML 1.0 parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the response",
           args: {
             name: "string",
           },
@@ -3582,7 +3582,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key-marker",
           description:
-            "Specifies the key to start with when listing objects in a bucket.",
+            "Specifies the key to start with when listing objects in a bucket",
           args: {
             name: "string",
           },
@@ -3590,7 +3590,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-keys",
           description:
-            "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more. If additional keys satisfy the search criteria, but were not returned because max-keys was exceeded, the response contains &lt;isTruncated&gt;true&lt;/isTruncated&gt;. To return the additional keys, see key-marker and version-id-marker.",
+            "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more. If additional keys satisfy the search criteria, but were not returned because max-keys was exceeded, the response contains &lt;isTruncated&gt;true&lt;/isTruncated&gt;. To return the additional keys, see key-marker and version-id-marker",
           args: {
             name: "integer",
           },
@@ -3598,7 +3598,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prefix",
           description:
-            "Use this parameter to select only those keys that begin with the specified prefix. You can use prefixes to separate a bucket into different groupings of keys. (You can think of using prefix to make groups in the same way you'd use a folder in a file system.) You can use prefix with delimiter to roll up numerous objects into a single result under CommonPrefixes.",
+            "Use this parameter to select only those keys that begin with the specified prefix. You can use prefixes to separate a bucket into different groupings of keys. (You can think of using prefix to make groups in the same way you'd use a folder in a file system.) You can use prefix with delimiter to roll up numerous objects into a single result under CommonPrefixes",
           args: {
             name: "string",
           },
@@ -3606,7 +3606,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id-marker",
           description:
-            "Specifies the object version you want to start listing from.",
+            "Specifies the object version you want to start listing from",
           args: {
             name: "string",
           },
@@ -3614,7 +3614,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3622,7 +3622,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3630,7 +3630,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3638,7 +3638,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3646,7 +3646,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3654,7 +3654,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3670,14 +3670,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket containing the objects. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the bucket containing the objects. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--delimiter",
-          description: "A delimiter is a character you use to group keys.",
+          description: "A delimiter is a character you use to group keys",
           args: {
             name: "string",
           },
@@ -3685,7 +3685,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encoding-type",
           description:
-            "Requests Amazon S3 to encode the object keys in the response and specifies the encoding method to use. An object key may contain any Unicode character; however, XML 1.0 parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the response.",
+            "Requests Amazon S3 to encode the object keys in the response and specifies the encoding method to use. An object key may contain any Unicode character; however, XML 1.0 parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the response",
           args: {
             name: "string",
           },
@@ -3693,7 +3693,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--marker",
           description:
-            "Specifies the key to start with when listing objects in a bucket.",
+            "Specifies the key to start with when listing objects in a bucket",
           args: {
             name: "string",
           },
@@ -3701,7 +3701,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-keys",
           description:
-            "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more.",
+            "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more",
           args: {
             name: "integer",
           },
@@ -3709,7 +3709,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prefix",
           description:
-            "Limits the response to keys that begin with the specified prefix.",
+            "Limits the response to keys that begin with the specified prefix",
           args: {
             name: "string",
           },
@@ -3717,7 +3717,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that she or he will be charged for the list objects request. Bucket owners need not specify this parameter in their requests.",
+            "Confirms that the requester knows that she or he will be charged for the list objects request. Bucket owners need not specify this parameter in their requests",
           args: {
             name: "string",
           },
@@ -3725,7 +3725,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3733,7 +3733,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3741,7 +3741,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3749,7 +3749,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3757,7 +3757,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3765,7 +3765,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3781,14 +3781,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "Bucket name to list.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "Bucket name to list.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--delimiter",
-          description: "A delimiter is a character you use to group keys.",
+          description: "A delimiter is a character you use to group keys",
           args: {
             name: "string",
           },
@@ -3796,7 +3796,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--encoding-type",
           description:
-            "Encoding type used by Amazon S3 to encode object keys in the response.",
+            "Encoding type used by Amazon S3 to encode object keys in the response",
           args: {
             name: "string",
           },
@@ -3804,7 +3804,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-keys",
           description:
-            "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more.",
+            "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names. The response might contain fewer keys but will never contain more",
           args: {
             name: "integer",
           },
@@ -3812,7 +3812,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prefix",
           description:
-            "Limits the response to keys that begin with the specified prefix.",
+            "Limits the response to keys that begin with the specified prefix",
           args: {
             name: "string",
           },
@@ -3820,7 +3820,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--continuation-token",
           description:
-            "ContinuationToken indicates Amazon S3 that the list is being continued on this bucket with a token. ContinuationToken is obfuscated and is not a real key.",
+            "ContinuationToken indicates Amazon S3 that the list is being continued on this bucket with a token. ContinuationToken is obfuscated and is not a real key",
           args: {
             name: "string",
           },
@@ -3828,17 +3828,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--fetch-owner",
           description:
-            "The owner field is not present in listV2 by default, if you want to return owner field with each key in the result then set the fetch owner field to true.",
+            "The owner field is not present in listV2 by default, if you want to return owner field with each key in the result then set the fetch owner field to true",
         },
         {
           name: "--no-fetch-owner",
           description:
-            "The owner field is not present in listV2 by default, if you want to return owner field with each key in the result then set the fetch owner field to true.",
+            "The owner field is not present in listV2 by default, if you want to return owner field with each key in the result then set the fetch owner field to true",
         },
         {
           name: "--start-after",
           description:
-            "StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts listing after this specified key. StartAfter can be any key in the bucket.",
+            "StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts listing after this specified key. StartAfter can be any key in the bucket",
           args: {
             name: "string",
           },
@@ -3846,7 +3846,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that she or he will be charged for the list objects request in V2 style. Bucket owners need not specify this parameter in their requests.",
+            "Confirms that the requester knows that she or he will be charged for the list objects request in V2 style. Bucket owners need not specify this parameter in their requests",
           args: {
             name: "string",
           },
@@ -3854,7 +3854,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3862,7 +3862,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3870,7 +3870,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3878,7 +3878,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3886,7 +3886,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3894,7 +3894,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -3910,7 +3910,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket to which the parts are being uploaded.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the bucket to which the parts are being uploaded.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -3918,14 +3918,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Object key for which the multipart upload was initiated.",
+            "Object key for which the multipart upload was initiated",
           args: {
             name: "string",
           },
         },
         {
           name: "--max-parts",
-          description: "Sets the maximum number of parts to return.",
+          description: "Sets the maximum number of parts to return",
           args: {
             name: "integer",
           },
@@ -3933,7 +3933,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--part-number-marker",
           description:
-            "Specifies the part after which listing should begin. Only parts with higher part numbers will be listed.",
+            "Specifies the part after which listing should begin. Only parts with higher part numbers will be listed",
           args: {
             name: "integer",
           },
@@ -3941,7 +3941,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--upload-id",
           description:
-            "Upload ID identifying the multipart upload whose parts are being listed.",
+            "Upload ID identifying the multipart upload whose parts are being listed",
           args: {
             name: "string",
           },
@@ -3949,7 +3949,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -3957,7 +3957,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -3965,7 +3965,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -3973,7 +3973,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--starting-token",
           description:
-            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "string",
           },
@@ -3981,7 +3981,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--page-size",
           description:
-            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3989,7 +3989,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-items",
           description:
-            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide",
           args: {
             name: "integer",
           },
@@ -3997,7 +3997,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4013,14 +4013,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which the accelerate configuration is set.",
+            "The name of the bucket for which the accelerate configuration is set",
           args: {
             name: "string",
           },
         },
         {
           name: "--accelerate-configuration",
-          description: "Container for setting the transfer acceleration state.",
+          description: "Container for setting the transfer acceleration state",
           args: {
             name: "structure",
           },
@@ -4028,7 +4028,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4036,7 +4036,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4044,7 +4044,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4059,7 +4059,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--acl",
-          description: "The canned ACL to apply to the bucket.",
+          description: "The canned ACL to apply to the bucket",
           args: {
             name: "string",
           },
@@ -4067,14 +4067,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-control-policy",
           description:
-            "Contains the elements that set the ACL permissions for an object per grantee.",
+            "Contains the elements that set the ACL permissions for an object per grantee",
           args: {
             name: "structure",
           },
         },
         {
           name: "--bucket",
-          description: "The bucket to which to apply the ACL.",
+          description: "The bucket to which to apply the ACL",
           args: {
             name: "string",
           },
@@ -4082,7 +4082,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. This header must be used as a message integrity check to verify that the request body was not corrupted in transit. For more information, go to RFC 1864.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. This header must be used as a message integrity check to verify that the request body was not corrupted in transit. For more information, go to RFC 1864.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4090,21 +4090,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-full-control",
           description:
-            "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
+            "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket",
           args: {
             name: "string",
           },
         },
         {
           name: "--grant-read",
-          description: "Allows grantee to list the objects in the bucket.",
+          description: "Allows grantee to list the objects in the bucket",
           args: {
             name: "string",
           },
         },
         {
           name: "--grant-read-acp",
-          description: "Allows grantee to read the bucket ACL.",
+          description: "Allows grantee to read the bucket ACL",
           args: {
             name: "string",
           },
@@ -4112,7 +4112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write",
           description:
-            "Allows grantee to create, overwrite, and delete any object in the bucket.",
+            "Allows grantee to create, overwrite, and delete any object in the bucket",
           args: {
             name: "string",
           },
@@ -4120,7 +4120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write-acp",
           description:
-            "Allows grantee to write the ACL for the applicable bucket.",
+            "Allows grantee to write the ACL for the applicable bucket",
           args: {
             name: "string",
           },
@@ -4128,7 +4128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4136,7 +4136,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4144,7 +4144,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4160,14 +4160,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket to which an analytics configuration is stored.",
+            "The name of the bucket to which an analytics configuration is stored",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID that identifies the analytics configuration.",
+          description: "The ID that identifies the analytics configuration",
           args: {
             name: "string",
           },
@@ -4175,7 +4175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--analytics-configuration",
           description:
-            "The configuration and any analyses for the analytics filter.",
+            "The configuration and any analyses for the analytics filter",
           args: {
             name: "structure",
           },
@@ -4183,7 +4183,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4191,7 +4191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4199,7 +4199,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4214,8 +4214,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description:
-            "Specifies the bucket impacted by the corsconfiguration.",
+          description: "Specifies the bucket impacted by the corsconfiguration",
           args: {
             name: "string",
           },
@@ -4223,7 +4222,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cors-configuration",
           description:
-            "Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see Enabling Cross-Origin Resource Sharing in the Amazon S3 User Guide.",
+            "Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see Enabling Cross-Origin Resource Sharing in the Amazon S3 User Guide",
           args: {
             name: "structure",
           },
@@ -4231,7 +4230,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. This header must be used as a message integrity check to verify that the request body was not corrupted in transit. For more information, go to RFC 1864.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. This header must be used as a message integrity check to verify that the request body was not corrupted in transit. For more information, go to RFC 1864.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4239,7 +4238,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4247,7 +4246,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4255,7 +4254,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4271,7 +4270,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys (SSE-S3) or customer master keys stored in AWS KMS (SSE-KMS). For information about the Amazon S3 default encryption feature, see Amazon S3 Default Bucket Encryption in the Amazon S3 User Guide.",
+            "Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys (SSE-S3) or customer master keys stored in AWS KMS (SSE-KMS). For information about the Amazon S3 default encryption feature, see Amazon S3 Default Bucket Encryption in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -4279,7 +4278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the server-side encryption configuration. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the server-side encryption configuration. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4287,7 +4286,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-side-encryption-configuration",
           description:
-            "Specifies the default server-side-encryption configuration.",
+            "Specifies the default server-side-encryption configuration",
           args: {
             name: "structure",
           },
@@ -4295,7 +4294,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4303,7 +4302,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4311,7 +4310,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4322,12 +4321,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-bucket-intelligent-tiering-configuration",
       description:
-        "Puts a S3 Intelligent-Tiering configuration to the specified bucket. You can have up to 1,000 S3 Intelligent-Tiering configurations per bucket. The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data to the most cost-effective storage access tier, without additional operational overhead. S3 Intelligent-Tiering delivers automatic cost savings by moving data between access tiers, when access patterns change. The S3 Intelligent-Tiering storage class is suitable for objects larger than 128 KB that you plan to store for at least 30 days. If the size of an object is less than 128 KB, it is not eligible for auto-tiering. Smaller objects can be stored, but they are always charged at the frequent access tier rates in the S3 Intelligent-Tiering storage class.  If you delete an object before the end of the 30-day minimum storage duration period, you are charged for 30 days. For more information, see Storage class for automatically optimizing frequently and infrequently accessed objects. Operations related to PutBucketIntelligentTieringConfiguration include:     DeleteBucketIntelligentTieringConfiguration     GetBucketIntelligentTieringConfiguration     ListBucketIntelligentTieringConfigurations     You only need S3 Intelligent-Tiering enabled on a bucket if you want to automatically move objects stored in the S3 Intelligent-Tiering storage class to the Archive Access or Deep Archive Access tier.   Special Errors     HTTP 400 Bad Request Error     Code: InvalidArgument    Cause: Invalid Argument      HTTP 400 Bad Request Error     Code: TooManyConfigurations    Cause: You are attempting to create a new configuration but have already reached the 1,000-configuration limit.       HTTP 403 Forbidden Error     Code: AccessDenied    Cause: You are not the owner of the specified bucket, or you do not have the s3:PutIntelligentTieringConfiguration bucket permission to set the configuration on the bucket.",
+        "Puts a S3 Intelligent-Tiering configuration to the specified bucket. You can have up to 1,000 S3 Intelligent-Tiering configurations per bucket. The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data to the most cost-effective storage access tier, without additional operational overhead. S3 Intelligent-Tiering delivers automatic cost savings by moving data between access tiers, when access patterns change. The S3 Intelligent-Tiering storage class is suitable for objects larger than 128 KB that you plan to store for at least 30 days. If the size of an object is less than 128 KB, it is not eligible for auto-tiering. Smaller objects can be stored, but they are always charged at the frequent access tier rates in the S3 Intelligent-Tiering storage class.  If you delete an object before the end of the 30-day minimum storage duration period, you are charged for 30 days. For more information, see Storage class for automatically optimizing frequently and infrequently accessed objects. Operations related to PutBucketIntelligentTieringConfiguration include:     DeleteBucketIntelligentTieringConfiguration     GetBucketIntelligentTieringConfiguration     ListBucketIntelligentTieringConfigurations     You only need S3 Intelligent-Tiering enabled on a bucket if you want to automatically move objects stored in the S3 Intelligent-Tiering storage class to the Archive Access or Deep Archive Access tier.   Special Errors     HTTP 400 Bad Request Error     Code: InvalidArgument    Cause: Invalid Argument      HTTP 400 Bad Request Error     Code: TooManyConfigurations    Cause: You are attempting to create a new configuration but have already reached the 1,000-configuration limit.       HTTP 403 Forbidden Error     Code: AccessDenied    Cause: You are not the owner of the specified bucket, or you do not have the s3:PutIntelligentTieringConfiguration bucket permission to set the configuration on the bucket",
       options: [
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.",
+            "The name of the Amazon S3 bucket whose configuration you want to modify or retrieve",
           args: {
             name: "string",
           },
@@ -4335,14 +4334,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--id",
           description:
-            "The ID used to identify the S3 Intelligent-Tiering configuration.",
+            "The ID used to identify the S3 Intelligent-Tiering configuration",
           args: {
             name: "string",
           },
         },
         {
           name: "--intelligent-tiering-configuration",
-          description: "Container for S3 Intelligent-Tiering configuration.",
+          description: "Container for S3 Intelligent-Tiering configuration",
           args: {
             name: "structure",
           },
@@ -4350,7 +4349,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4358,7 +4357,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4374,21 +4373,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket where the inventory configuration will be stored.",
+            "The name of the bucket where the inventory configuration will be stored",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID used to identify the inventory configuration.",
+          description: "The ID used to identify the inventory configuration",
           args: {
             name: "string",
           },
         },
         {
           name: "--inventory-configuration",
-          description: "Specifies the inventory configuration.",
+          description: "Specifies the inventory configuration",
           args: {
             name: "structure",
           },
@@ -4396,7 +4395,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4404,7 +4403,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4412,7 +4411,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4434,7 +4433,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4448,7 +4447,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4456,7 +4455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4464,7 +4463,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4480,7 +4479,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to set the configuration.",
+            "The name of the bucket for which to set the configuration",
           args: {
             name: "string",
           },
@@ -4488,7 +4487,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--lifecycle-configuration",
           description:
-            "Container for lifecycle rules. You can add as many as 1,000 rules.",
+            "Container for lifecycle rules. You can add as many as 1,000 rules",
           args: {
             name: "structure",
           },
@@ -4496,7 +4495,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4504,7 +4503,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4512,7 +4511,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4528,14 +4527,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which to set the logging parameters.",
+            "The name of the bucket for which to set the logging parameters",
           args: {
             name: "string",
           },
         },
         {
           name: "--bucket-logging-status",
-          description: "Container for logging status information.",
+          description: "Container for logging status information",
           args: {
             name: "structure",
           },
@@ -4543,7 +4542,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash of the PutBucketLogging request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash of the PutBucketLogging request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4551,7 +4550,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4559,7 +4558,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4567,7 +4566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4583,21 +4582,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket for which the metrics configuration is set.",
+            "The name of the bucket for which the metrics configuration is set",
           args: {
             name: "string",
           },
         },
         {
           name: "--id",
-          description: "The ID used to identify the metrics configuration.",
+          description: "The ID used to identify the metrics configuration",
           args: {
             name: "string",
           },
         },
         {
           name: "--metrics-configuration",
-          description: "Specifies the metrics configuration.",
+          description: "Specifies the metrics configuration",
           args: {
             name: "structure",
           },
@@ -4605,7 +4604,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4613,7 +4612,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4621,7 +4620,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4632,11 +4631,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-bucket-notification",
       description:
-        "No longer used, see the PutBucketNotificationConfiguration operation.",
+        "No longer used, see the PutBucketNotificationConfiguration operation",
       options: [
         {
           name: "--bucket",
-          description: "The name of the bucket.",
+          description: "The name of the bucket",
           args: {
             name: "string",
           },
@@ -4644,14 +4643,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash of the PutPublicAccessBlock request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash of the PutPublicAccessBlock request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
         },
         {
           name: "--notification-configuration",
-          description: "The container for the configuration.",
+          description: "The container for the configuration",
           args: {
             name: "structure",
           },
@@ -4659,7 +4658,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4667,7 +4666,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4675,7 +4674,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4690,7 +4689,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The name of the bucket.",
+          description: "The name of the bucket",
           args: {
             name: "string",
           },
@@ -4698,7 +4697,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--notification-configuration",
           description:
-            "A container for specifying the notification configuration of the bucket. If this element is empty, notifications are turned off for the bucket.",
+            "A container for specifying the notification configuration of the bucket. If this element is empty, notifications are turned off for the bucket",
           args: {
             name: "structure",
           },
@@ -4706,7 +4705,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4714,7 +4713,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4722,7 +4721,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4738,7 +4737,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose OwnershipControls you want to set.",
+            "The name of the Amazon S3 bucket whose OwnershipControls you want to set",
           args: {
             name: "string",
           },
@@ -4746,7 +4745,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash of the OwnershipControls request body.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash of the OwnershipControls request body.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4754,7 +4753,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4762,7 +4761,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ownership-controls",
           description:
-            "The OwnershipControls (BucketOwnerPreferred or ObjectWriter) that you want to apply to this Amazon S3 bucket.",
+            "The OwnershipControls (BucketOwnerPreferred or ObjectWriter) that you want to apply to this Amazon S3 bucket",
           args: {
             name: "structure",
           },
@@ -4770,7 +4769,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4778,7 +4777,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4793,7 +4792,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The name of the bucket.",
+          description: "The name of the bucket",
           args: {
             name: "string",
           },
@@ -4801,7 +4800,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash of the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash of the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4809,16 +4808,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--confirm-remove-self-bucket-access",
           description:
-            "Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.",
+            "Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future",
         },
         {
           name: "--no-confirm-remove-self-bucket-access",
           description:
-            "Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.",
+            "Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future",
         },
         {
           name: "--policy",
-          description: "The bucket policy as a JSON document.",
+          description: "The bucket policy as a JSON document",
           args: {
             name: "string",
           },
@@ -4826,7 +4825,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4834,7 +4833,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4842,7 +4841,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4865,7 +4864,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -4873,7 +4872,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-configuration",
           description:
-            "A container for replication rules. You can add up to 1,000 rules. The maximum size of a replication configuration is 2 MB.",
+            "A container for replication rules. You can add up to 1,000 rules. The maximum size of a replication configuration is 2 MB",
           args: {
             name: "structure",
           },
@@ -4881,7 +4880,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--token",
           description:
-            "A token to allow Object Lock to be enabled for an existing bucket.",
+            "A token to allow Object Lock to be enabled for an existing bucket",
           args: {
             name: "string",
           },
@@ -4889,7 +4888,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4897,7 +4896,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4905,7 +4904,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4920,7 +4919,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name.",
+          description: "The bucket name",
           args: {
             name: "string",
           },
@@ -4928,14 +4927,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
         },
         {
           name: "--request-payment-configuration",
-          description: "Container for Payer.",
+          description: "Container for Payer",
           args: {
             name: "structure",
           },
@@ -4943,7 +4942,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -4951,7 +4950,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -4959,7 +4958,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -4974,7 +4973,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name.",
+          description: "The bucket name",
           args: {
             name: "string",
           },
@@ -4982,14 +4981,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
         },
         {
           name: "--tagging",
-          description: "Container for the TagSet and Tag elements.",
+          description: "Container for the TagSet and Tag elements",
           args: {
             name: "structure",
           },
@@ -4997,7 +4996,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5005,7 +5004,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5013,7 +5012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5028,7 +5027,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The bucket name.",
+          description: "The bucket name",
           args: {
             name: "string",
           },
@@ -5036,7 +5035,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "&gt;The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "&gt;The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5044,14 +5043,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mfa",
           description:
-            "The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.",
+            "The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device",
           args: {
             name: "string",
           },
         },
         {
           name: "--versioning-configuration",
-          description: "Container for setting the versioning state.",
+          description: "Container for setting the versioning state",
           args: {
             name: "structure",
           },
@@ -5059,7 +5058,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5067,7 +5066,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5075,7 +5074,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5086,11 +5085,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-bucket-website",
       description:
-        "Sets the configuration of the website that is specified in the website subresource. To configure a bucket as a website, you can add this subresource on the bucket with website configuration information such as the file name of the index document and any redirect rules. For more information, see Hosting Websites on Amazon S3. This PUT action requires the S3:PutBucketWebsite permission. By default, only the bucket owner can configure the website attached to a bucket; however, bucket owners can allow other users to set the website configuration by writing a bucket policy that grants them the S3:PutBucketWebsite permission. To redirect all website requests sent to the bucket's website endpoint, you add a website configuration with the following elements. Because all requests are sent to another website, you don't need to provide index document name for the bucket.    WebsiteConfiguration     RedirectAllRequestsTo     HostName     Protocol    If you want granular control over redirects, you can use the following elements to add routing rules that describe conditions for redirecting requests and information about the redirect destination. In this case, the website configuration must provide an index document for the bucket, because some requests might not be redirected.     WebsiteConfiguration     IndexDocument     Suffix     ErrorDocument     Key     RoutingRules     RoutingRule     Condition     HttpErrorCodeReturnedEquals     KeyPrefixEquals     Redirect     Protocol     HostName     ReplaceKeyPrefixWith     ReplaceKeyWith     HttpRedirectCode    Amazon S3 has a limitation of 50 routing rules per website configuration. If you require more than 50 routing rules, you can use object redirect. For more information, see Configuring an Object Redirect in the Amazon S3 User Guide.",
+        "Sets the configuration of the website that is specified in the website subresource. To configure a bucket as a website, you can add this subresource on the bucket with website configuration information such as the file name of the index document and any redirect rules. For more information, see Hosting Websites on Amazon S3. This PUT action requires the S3:PutBucketWebsite permission. By default, only the bucket owner can configure the website attached to a bucket; however, bucket owners can allow other users to set the website configuration by writing a bucket policy that grants them the S3:PutBucketWebsite permission. To redirect all website requests sent to the bucket's website endpoint, you add a website configuration with the following elements. Because all requests are sent to another website, you don't need to provide index document name for the bucket.    WebsiteConfiguration     RedirectAllRequestsTo     HostName     Protocol    If you want granular control over redirects, you can use the following elements to add routing rules that describe conditions for redirecting requests and information about the redirect destination. In this case, the website configuration must provide an index document for the bucket, because some requests might not be redirected.     WebsiteConfiguration     IndexDocument     Suffix     ErrorDocument     Key     RoutingRules     RoutingRule     Condition     HttpErrorCodeReturnedEquals     KeyPrefixEquals     Redirect     Protocol     HostName     ReplaceKeyPrefixWith     ReplaceKeyWith     HttpRedirectCode    Amazon S3 has a limitation of 50 routing rules per website configuration. If you require more than 50 routing rules, you can use object redirect. For more information, see Configuring an Object Redirect in the Amazon S3 User Guide",
       options: [
         {
           name: "--bucket",
-          description: "The bucket name.",
+          description: "The bucket name",
           args: {
             name: "string",
           },
@@ -5098,14 +5097,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. You must use this header as a message integrity check to verify that the request body was not corrupted in transit. For more information, see RFC 1864. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
         },
         {
           name: "--website-configuration",
-          description: "Container for the request.",
+          description: "Container for the request",
           args: {
             name: "structure",
           },
@@ -5113,7 +5112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5121,7 +5120,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5129,7 +5128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5145,14 +5144,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--acl",
           description:
-            "The canned ACL to apply to the object. For more information, see Canned ACL. This action is not supported by Amazon S3 on Outposts.",
+            "The canned ACL to apply to the object. For more information, see Canned ACL. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
         },
         {
           name: "--body",
-          description: "Object data.",
+          description: "Object data",
           args: {
             name: "blob",
           },
@@ -5160,7 +5159,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name to which the PUT action was initiated.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name to which the PUT action was initiated.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -5168,7 +5167,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Can be used to specify caching behavior along the request/reply chain. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.",
+            "Can be used to specify caching behavior along the request/reply chain. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9",
           args: {
             name: "string",
           },
@@ -5176,7 +5175,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-disposition",
           description:
-            "Specifies presentational information for the object. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1.",
+            "Specifies presentational information for the object. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1",
           args: {
             name: "string",
           },
@@ -5184,14 +5183,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
@@ -5199,7 +5198,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-length",
           description:
-            "Size of the body in bytes. This parameter is useful when the size of the body cannot be determined automatically. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13.",
+            "Size of the body in bytes. This parameter is useful when the size of the body cannot be determined automatically. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13",
           args: {
             name: "long",
           },
@@ -5207,7 +5206,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864. This header can be used as a message integrity check to verify that the data is the same data that was originally sent. Although it is optional, we recommend using the Content-MD5 mechanism as an end-to-end integrity check. For more information about REST request authentication, see REST Authentication.",
+            "The base64-encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864. This header can be used as a message integrity check to verify that the data is the same data that was originally sent. Although it is optional, we recommend using the Content-MD5 mechanism as an end-to-end integrity check. For more information about REST request authentication, see REST Authentication",
           args: {
             name: "string",
           },
@@ -5215,7 +5214,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "A standard MIME type describing the format of the contents. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17.",
+            "A standard MIME type describing the format of the contents. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17",
           args: {
             name: "string",
           },
@@ -5223,7 +5222,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.21.",
+            "The date and time at which the object is no longer cacheable. For more information, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.21",
           args: {
             name: "timestamp",
           },
@@ -5231,7 +5230,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-full-control",
           description:
-            "Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object. This action is not supported by Amazon S3 on Outposts.",
+            "Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5239,7 +5238,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read",
           description:
-            "Allows grantee to read the object data and its metadata. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the object data and its metadata. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5247,7 +5246,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read-acp",
           description:
-            "Allows grantee to read the object ACL. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the object ACL. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5255,21 +5254,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write-acp",
           description:
-            "Allows grantee to write the ACL for the applicable object. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to write the ACL for the applicable object. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "Object key for which the PUT action was initiated.",
+          description: "Object key for which the PUT action was initiated",
           args: {
             name: "string",
           },
         },
         {
           name: "--metadata",
-          description: "A map of metadata to store with the object in S3.",
+          description: "A map of metadata to store with the object in S3",
           args: {
             name: "map",
           },
@@ -5277,7 +5276,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-side-encryption",
           description:
-            "The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms).",
+            "The server-side encryption algorithm used when storing this object in Amazon S3 (for example, AES256, aws:kms)",
           args: {
             name: "string",
           },
@@ -5285,7 +5284,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--storage-class",
           description:
-            "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see Storage Classes in the Amazon S3 Service Developer Guide.",
+            "By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD storage class provides high durability and high availability. Depending on performance needs, you can specify a different Storage Class. Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information, see Storage Classes in the Amazon S3 Service Developer Guide",
           args: {
             name: "string",
           },
@@ -5293,7 +5292,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--website-redirect-location",
           description:
-            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata. For information about object metadata, see Object Key and Metadata. In the following example, the request header sets the redirect to an object (anotherPage.html) in the same bucket:  x-amz-website-redirect-location: /anotherPage.html  In the following example, the request header sets the object redirect to another website:  x-amz-website-redirect-location: http://www.example.com/  For more information about website hosting in Amazon S3, see Hosting Websites on Amazon S3 and How to Configure Website Page Redirects.",
+            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata. For information about object metadata, see Object Key and Metadata. In the following example, the request header sets the redirect to an object (anotherPage.html) in the same bucket:  x-amz-website-redirect-location: /anotherPage.html  In the following example, the request header sets the object redirect to another website:  x-amz-website-redirect-location: http://www.example.com/  For more information about website hosting in Amazon S3, see Hosting Websites on Amazon S3 and How to Configure Website Page Redirects",
           args: {
             name: "string",
           },
@@ -5301,7 +5300,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -5309,7 +5308,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
           args: {
             name: "string",
           },
@@ -5317,7 +5316,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -5325,7 +5324,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-key-id",
           description:
-            "If x-amz-server-side-encryption is present and has the value of aws:kms, this header specifies the ID of the AWS Key Management Service (AWS KMS) symmetrical customer managed customer master key (CMK) that was used for the object.  If the value of x-amz-server-side-encryption is aws:kms, this header specifies the ID of the symmetric customer managed AWS KMS CMK that will be used for the object. If you specify x-amz-server-side-encryption:aws:kms, but do not provide x-amz-server-side-encryption-aws-kms-key-id, Amazon S3 uses the AWS managed CMK in AWS to protect the data.",
+            "If x-amz-server-side-encryption is present and has the value of aws:kms, this header specifies the ID of the AWS Key Management Service (AWS KMS) symmetrical customer managed customer master key (CMK) that was used for the object.  If the value of x-amz-server-side-encryption is aws:kms, this header specifies the ID of the symmetric customer managed AWS KMS CMK that will be used for the object. If you specify x-amz-server-side-encryption:aws:kms, but do not provide x-amz-server-side-encryption-aws-kms-key-id, Amazon S3 uses the AWS managed CMK in AWS to protect the data",
           args: {
             name: "string",
           },
@@ -5333,7 +5332,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-encryption-context",
           description:
-            "Specifies the AWS KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs.",
+            "Specifies the AWS KMS Encryption Context to use for object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs",
           args: {
             name: "string",
           },
@@ -5341,17 +5340,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket-key-enabled",
           description:
-            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with a PUT action doesn\u2019t affect bucket-level settings for S3 Bucket Key.",
+            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with a PUT action doesn\u2019t affect bucket-level settings for S3 Bucket Key",
         },
         {
           name: "--no-bucket-key-enabled",
           description:
-            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with a PUT action doesn\u2019t affect bucket-level settings for S3 Bucket Key.",
+            "Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS. Specifying this header with a PUT action doesn\u2019t affect bucket-level settings for S3 Bucket Key",
         },
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5367,7 +5366,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-mode",
           description:
-            "The Object Lock mode that you want to apply to this object.",
+            "The Object Lock mode that you want to apply to this object",
           args: {
             name: "string",
           },
@@ -5375,7 +5374,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-retain-until-date",
           description:
-            "The date and time when you want this object's Object Lock to expire.",
+            "The date and time when you want this object's Object Lock to expire",
           args: {
             name: "timestamp",
           },
@@ -5383,7 +5382,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-legal-hold-status",
           description:
-            "Specifies whether a legal hold will be applied to this object. For more information about S3 Object Lock, see Object Lock.",
+            "Specifies whether a legal hold will be applied to this object. For more information about S3 Object Lock, see Object Lock",
           args: {
             name: "string",
           },
@@ -5391,7 +5390,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5399,7 +5398,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5407,7 +5406,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5423,7 +5422,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--acl",
           description:
-            "The canned ACL to apply to the object. For more information, see Canned ACL.",
+            "The canned ACL to apply to the object. For more information, see Canned ACL",
           args: {
             name: "string",
           },
@@ -5431,7 +5430,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--access-control-policy",
           description:
-            "Contains the elements that set the ACL permissions for an object per grantee.",
+            "Contains the elements that set the ACL permissions for an object per grantee",
           args: {
             name: "structure",
           },
@@ -5439,7 +5438,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name that contains the object to which you want to attach the ACL.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket name that contains the object to which you want to attach the ACL.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -5447,7 +5446,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the data. This header must be used as a message integrity check to verify that the request body was not corrupted in transit. For more information, go to RFC 1864.&gt;  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The base64-encoded 128-bit MD5 digest of the data. This header must be used as a message integrity check to verify that the request body was not corrupted in transit. For more information, go to RFC 1864.&gt;  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5455,7 +5454,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-full-control",
           description:
-            "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5463,7 +5462,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read",
           description:
-            "Allows grantee to list the objects in the bucket. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to list the objects in the bucket. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5471,7 +5470,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-read-acp",
           description:
-            "Allows grantee to read the bucket ACL. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to read the bucket ACL. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5479,7 +5478,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write",
           description:
-            "Allows grantee to create, overwrite, and delete any object in the bucket.",
+            "Allows grantee to create, overwrite, and delete any object in the bucket",
           args: {
             name: "string",
           },
@@ -5487,7 +5486,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--grant-write-acp",
           description:
-            "Allows grantee to write the ACL for the applicable bucket. This action is not supported by Amazon S3 on Outposts.",
+            "Allows grantee to write the ACL for the applicable bucket. This action is not supported by Amazon S3 on Outposts",
           args: {
             name: "string",
           },
@@ -5495,7 +5494,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Key for which the PUT action was initiated. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "Key for which the PUT action was initiated. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -5503,7 +5502,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5511,7 +5510,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "VersionId used to reference a specific version of the object.",
+            "VersionId used to reference a specific version of the object",
           args: {
             name: "string",
           },
@@ -5519,7 +5518,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5527,7 +5526,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5535,7 +5534,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5546,12 +5545,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-object-legal-hold",
       description:
-        "Applies a Legal Hold configuration to the specified object. For more information, see Locking Objects. This action is not supported by Amazon S3 on Outposts.",
+        "Applies a Legal Hold configuration to the specified object. For more information, see Locking Objects. This action is not supported by Amazon S3 on Outposts",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object that you want to place a Legal Hold on.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket name containing the object that you want to place a Legal Hold on.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -5559,7 +5558,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "The key name for the object that you want to place a Legal Hold on.",
+            "The key name for the object that you want to place a Legal Hold on",
           args: {
             name: "string",
           },
@@ -5567,7 +5566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--legal-hold",
           description:
-            "Container element for the Legal Hold configuration you want to apply to the specified object.",
+            "Container element for the Legal Hold configuration you want to apply to the specified object",
           args: {
             name: "structure",
           },
@@ -5575,7 +5574,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5583,7 +5582,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The version ID of the object that you want to place a Legal Hold on.",
+            "The version ID of the object that you want to place a Legal Hold on",
           args: {
             name: "string",
           },
@@ -5591,7 +5590,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5599,7 +5598,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5607,7 +5606,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5615,7 +5614,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5626,12 +5625,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-object-lock-configuration",
       description:
-        "Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see Locking Objects.     The DefaultRetention settings require both a mode and a period.   The DefaultRetention period can be either Days or Years but you must select one. You cannot specify Days and Years at the same time.   You can only enable Object Lock for new buckets. If you want to turn on Object Lock for an existing bucket, contact AWS Support.",
+        "Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see Locking Objects.     The DefaultRetention settings require both a mode and a period.   The DefaultRetention period can be either Days or Years but you must select one. You cannot specify Days and Years at the same time.   You can only enable Object Lock for new buckets. If you want to turn on Object Lock for an existing bucket, contact AWS Support",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket whose Object Lock configuration you want to create or replace.",
+            "The bucket whose Object Lock configuration you want to create or replace",
           args: {
             name: "string",
           },
@@ -5639,7 +5638,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-configuration",
           description:
-            "The Object Lock configuration that you want to apply to the specified bucket.",
+            "The Object Lock configuration that you want to apply to the specified bucket",
           args: {
             name: "structure",
           },
@@ -5647,7 +5646,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5655,7 +5654,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--token",
           description:
-            "A token to allow Object Lock to be enabled for an existing bucket.",
+            "A token to allow Object Lock to be enabled for an existing bucket",
           args: {
             name: "string",
           },
@@ -5663,7 +5662,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5671,7 +5670,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5679,7 +5678,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5687,7 +5686,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5698,12 +5697,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-object-retention",
       description:
-        "Places an Object Retention configuration on an object. For more information, see Locking Objects.  This action is not supported by Amazon S3 on Outposts.",
+        "Places an Object Retention configuration on an object. For more information, see Locking Objects.  This action is not supported by Amazon S3 on Outposts",
       options: [
         {
           name: "--bucket",
           description:
-            "The bucket name that contains the object you want to apply this Object Retention configuration to.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide.",
+            "The bucket name that contains the object you want to apply this Object Retention configuration to.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -5711,7 +5710,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "The key name for the object that you want to apply this Object Retention configuration to.",
+            "The key name for the object that you want to apply this Object Retention configuration to",
           args: {
             name: "string",
           },
@@ -5719,7 +5718,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--retention",
           description:
-            "The container element for the Object Retention configuration.",
+            "The container element for the Object Retention configuration",
           args: {
             name: "structure",
           },
@@ -5727,7 +5726,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5735,7 +5734,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The version ID for the object that you want to apply this Object Retention configuration to.",
+            "The version ID for the object that you want to apply this Object Retention configuration to",
           args: {
             name: "string",
           },
@@ -5743,17 +5742,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bypass-governance-retention",
           description:
-            "Indicates whether this action should bypass Governance-mode restrictions.",
+            "Indicates whether this action should bypass Governance-mode restrictions",
         },
         {
           name: "--no-bypass-governance-retention",
           description:
-            "Indicates whether this action should bypass Governance-mode restrictions.",
+            "Indicates whether this action should bypass Governance-mode restrictions",
         },
         {
           name: "--content-md5",
           description:
-            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5761,7 +5760,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5769,7 +5768,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5777,7 +5776,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5793,14 +5792,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name containing the object.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "Name of the object key.",
+          description: "Name of the object key",
           args: {
             name: "string",
           },
@@ -5808,7 +5807,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "The versionId of the object that the tag-set will be added to.",
+            "The versionId of the object that the tag-set will be added to",
           args: {
             name: "string",
           },
@@ -5816,7 +5815,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash for the request body. For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5831,7 +5830,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5839,7 +5838,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5847,7 +5846,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5855,7 +5854,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5871,7 +5870,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the Amazon S3 bucket whose PublicAccessBlock configuration you want to set.",
+            "The name of the Amazon S3 bucket whose PublicAccessBlock configuration you want to set",
           args: {
             name: "string",
           },
@@ -5879,7 +5878,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The MD5 hash of the PutPublicAccessBlock request body.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically.",
+            "The MD5 hash of the PutPublicAccessBlock request body.  For requests made using the AWS Command Line Interface (CLI) or AWS SDKs, this field is calculated automatically",
           args: {
             name: "string",
           },
@@ -5887,7 +5886,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--public-access-block-configuration",
           description:
-            'The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see The Meaning of "Public" in the Amazon S3 User Guide.',
+            'The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see The Meaning of "Public" in the Amazon S3 User Guide',
           args: {
             name: "structure",
           },
@@ -5895,7 +5894,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5903,7 +5902,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5911,7 +5910,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5927,14 +5926,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name containing the object to restore.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name containing the object to restore.  When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "Object key for which the action was initiated.",
+          description: "Object key for which the action was initiated",
           args: {
             name: "string",
           },
@@ -5942,14 +5941,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "VersionId used to reference a specific version of the object.",
+            "VersionId used to reference a specific version of the object",
           args: {
             name: "string",
           },
         },
         {
           name: "--restore-request",
-          description: "Container for restore job parameters.",
+          description: "Container for restore job parameters",
           args: {
             name: "structure",
           },
@@ -5957,7 +5956,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -5965,7 +5964,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -5973,7 +5972,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -5981,7 +5980,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -5996,14 +5995,14 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--bucket",
-          description: "The S3 bucket.",
+          description: "The S3 bucket",
           args: {
             name: "string",
           },
         },
         {
           name: "--key",
-          description: "The object key.",
+          description: "The object key",
           args: {
             name: "string",
           },
@@ -6011,7 +6010,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "The SSE Algorithm used to encrypt the object. For more information, see Server-Side Encryption (Using Customer-Provided Encryption Keys.",
+            "The SSE Algorithm used to encrypt the object. For more information, see Server-Side Encryption (Using Customer-Provided Encryption Keys",
           args: {
             name: "string",
           },
@@ -6019,7 +6018,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "The SSE Customer Key. For more information, see Server-Side Encryption (Using Customer-Provided Encryption Keys.",
+            "The SSE Customer Key. For more information, see Server-Side Encryption (Using Customer-Provided Encryption Keys",
           args: {
             name: "string",
           },
@@ -6027,22 +6026,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "The SSE Customer Key MD5. For more information, see Server-Side Encryption (Using Customer-Provided Encryption Keys.",
+            "The SSE Customer Key MD5. For more information, see Server-Side Encryption (Using Customer-Provided Encryption Keys",
           args: {
             name: "string",
           },
         },
         {
           name: "--expression",
-          description: "The expression that is used to query the object.",
+          description: "The expression that is used to query the object",
           args: {
             name: "string",
           },
         },
         {
           name: "--expression-type",
-          description:
-            "The type of the provided expression (for example, SQL).",
+          description: "The type of the provided expression (for example, SQL)",
           args: {
             name: "string",
           },
@@ -6050,7 +6048,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-progress",
           description:
-            "Specifies if periodic request progress information should be enabled.",
+            "Specifies if periodic request progress information should be enabled",
           args: {
             name: "structure",
           },
@@ -6058,7 +6056,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--input-serialization",
           description:
-            "Describes the format of the data in the object that is being queried.",
+            "Describes the format of the data in the object that is being queried",
           args: {
             name: "structure",
           },
@@ -6066,7 +6064,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output-serialization",
           description:
-            "Describes the format of the data that you want Amazon S3 to return in response.",
+            "Describes the format of the data that you want Amazon S3 to return in response",
           args: {
             name: "structure",
           },
@@ -6074,7 +6072,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--scan-range",
           description:
-            "Specifies the byte range of the object to get the records from. A record is processed when its first byte is contained by the range. This parameter is optional, but when specified, it must not be empty. See RFC 2616, Section 14.35.1 about how to specify the start and end of the range.  ScanRangemay be used in the following ways:    &lt;scanrange&gt;&lt;start&gt;50&lt;/start&gt;&lt;end&gt;100&lt;/end&gt;&lt;/scanrange&gt; - process only the records starting between the bytes 50 and 100 (inclusive, counting from zero)    &lt;scanrange&gt;&lt;start&gt;50&lt;/start&gt;&lt;/scanrange&gt; - process only the records starting after the byte 50    &lt;scanrange&gt;&lt;end&gt;50&lt;/end&gt;&lt;/scanrange&gt; - process only the records within the last 50 bytes of the file.",
+            "Specifies the byte range of the object to get the records from. A record is processed when its first byte is contained by the range. This parameter is optional, but when specified, it must not be empty. See RFC 2616, Section 14.35.1 about how to specify the start and end of the range.  ScanRangemay be used in the following ways:    &lt;scanrange&gt;&lt;start&gt;50&lt;/start&gt;&lt;end&gt;100&lt;/end&gt;&lt;/scanrange&gt; - process only the records starting between the bytes 50 and 100 (inclusive, counting from zero)    &lt;scanrange&gt;&lt;start&gt;50&lt;/start&gt;&lt;/scanrange&gt; - process only the records starting after the byte 50    &lt;scanrange&gt;&lt;end&gt;50&lt;/end&gt;&lt;/scanrange&gt; - process only the records within the last 50 bytes of the file",
           args: {
             name: "structure",
           },
@@ -6082,18 +6080,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
         },
       ],
-      args: [
-        {
-          name: "outfile",
-          description: "Filename where the records will be saved",
-        },
-      ],
+      args: {
+        name: "outfile",
+        description: "Filename where the records will be saved",
+      },
     },
     {
       name: "upload-part",
@@ -6102,7 +6098,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--body",
-          description: "Object data.",
+          description: "Object data",
           args: {
             name: "blob",
           },
@@ -6110,7 +6106,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The name of the bucket to which the multipart upload was initiated. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The name of the bucket to which the multipart upload was initiated. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -6118,7 +6114,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-length",
           description:
-            "Size of the body in bytes. This parameter is useful when the size of the body cannot be determined automatically.",
+            "Size of the body in bytes. This parameter is useful when the size of the body cannot be determined automatically",
           args: {
             name: "long",
           },
@@ -6126,7 +6122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-md5",
           description:
-            "The base64-encoded 128-bit MD5 digest of the part data. This parameter is auto-populated when using the command from the CLI. This parameter is required if object lock parameters are specified.",
+            "The base64-encoded 128-bit MD5 digest of the part data. This parameter is auto-populated when using the command from the CLI. This parameter is required if object lock parameters are specified",
           args: {
             name: "string",
           },
@@ -6134,7 +6130,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Object key for which the multipart upload was initiated.",
+            "Object key for which the multipart upload was initiated",
           args: {
             name: "string",
           },
@@ -6142,7 +6138,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--part-number",
           description:
-            "Part number of part being uploaded. This is a positive integer between 1 and 10,000.",
+            "Part number of part being uploaded. This is a positive integer between 1 and 10,000",
           args: {
             name: "integer",
           },
@@ -6150,7 +6146,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--upload-id",
           description:
-            "Upload ID identifying the multipart upload whose part is being uploaded.",
+            "Upload ID identifying the multipart upload whose part is being uploaded",
           args: {
             name: "string",
           },
@@ -6158,7 +6154,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -6166,7 +6162,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header. This must be the same encryption key specified in the initiate multipart upload request.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header. This must be the same encryption key specified in the initiate multipart upload request",
           args: {
             name: "string",
           },
@@ -6174,7 +6170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -6182,7 +6178,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -6190,7 +6186,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -6198,7 +6194,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -6206,7 +6202,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6222,7 +6218,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket",
           description:
-            "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+            "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
           args: {
             name: "string",
           },
@@ -6230,7 +6226,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source",
           description:
-            "Specifies the source object for the copy operation. You specify the value in one of two formats, depending on whether you want to access the source object through an access point:   For objects not accessed through an access point, specify the name of the source bucket and key of the source object, separated by a slash (/). For example, to copy the object reports/january.pdf from the bucket awsexamplebucket, use awsexamplebucket/reports/january.pdf. The value must be URL encoded.   For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as accessed through the access point, in the format arn:aws:s3:&lt;Region&gt;:&lt;account-id&gt;:accesspoint/&lt;access-point-name&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through access point my-access-point owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf. The value must be URL encoded.  Amazon S3 supports copy operations using access points only when the source and destination buckets are in the same AWS Region.  Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf. The value must be URL encoded.    To copy a specific version of an object, append ?versionId=&lt;version-id&gt; to the value (for example, awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893). If you don't specify a version ID, Amazon S3 copies the latest version of the source object.",
+            "Specifies the source object for the copy operation. You specify the value in one of two formats, depending on whether you want to access the source object through an access point:   For objects not accessed through an access point, specify the name of the source bucket and key of the source object, separated by a slash (/). For example, to copy the object reports/january.pdf from the bucket awsexamplebucket, use awsexamplebucket/reports/january.pdf. The value must be URL encoded.   For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as accessed through the access point, in the format arn:aws:s3:&lt;Region&gt;:&lt;account-id&gt;:accesspoint/&lt;access-point-name&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through access point my-access-point owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf. The value must be URL encoded.  Amazon S3 supports copy operations using access points only when the source and destination buckets are in the same AWS Region.  Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/object/&lt;key&gt;. For example, to copy the object reports/january.pdf through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf. The value must be URL encoded.    To copy a specific version of an object, append ?versionId=&lt;version-id&gt; to the value (for example, awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893). If you don't specify a version ID, Amazon S3 copies the latest version of the source object",
           args: {
             name: "string",
           },
@@ -6238,7 +6234,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-match",
           description:
-            "Copies the object if its entity tag (ETag) matches the specified tag.",
+            "Copies the object if its entity tag (ETag) matches the specified tag",
           args: {
             name: "string",
           },
@@ -6246,7 +6242,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-modified-since",
           description:
-            "Copies the object if it has been modified since the specified time.",
+            "Copies the object if it has been modified since the specified time",
           args: {
             name: "timestamp",
           },
@@ -6254,7 +6250,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-none-match",
           description:
-            "Copies the object if its entity tag (ETag) is different than the specified ETag.",
+            "Copies the object if its entity tag (ETag) is different than the specified ETag",
           args: {
             name: "string",
           },
@@ -6262,7 +6258,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-if-unmodified-since",
           description:
-            "Copies the object if it hasn't been modified since the specified time.",
+            "Copies the object if it hasn't been modified since the specified time",
           args: {
             name: "timestamp",
           },
@@ -6270,7 +6266,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-range",
           description:
-            "The range of bytes to copy from the source object. The range value must use the form bytes=first-last, where the first and last are the zero-based byte offsets to copy. For example, bytes=0-9 indicates that you want to copy the first 10 bytes of the source. You can copy a range only if the source object is greater than 5 MB.",
+            "The range of bytes to copy from the source object. The range value must use the form bytes=first-last, where the first and last are the zero-based byte offsets to copy. For example, bytes=0-9 indicates that you want to copy the first 10 bytes of the source. You can copy a range only if the source object is greater than 5 MB",
           args: {
             name: "string",
           },
@@ -6278,7 +6274,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--key",
           description:
-            "Object key for which the multipart upload was initiated.",
+            "Object key for which the multipart upload was initiated",
           args: {
             name: "string",
           },
@@ -6286,7 +6282,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--part-number",
           description:
-            "Part number of part being copied. This is a positive integer between 1 and 10,000.",
+            "Part number of part being copied. This is a positive integer between 1 and 10,000",
           args: {
             name: "integer",
           },
@@ -6294,7 +6290,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--upload-id",
           description:
-            "Upload ID identifying the multipart upload whose part is being copied.",
+            "Upload ID identifying the multipart upload whose part is being copied",
           args: {
             name: "string",
           },
@@ -6302,7 +6298,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+            "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -6310,7 +6306,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header. This must be the same encryption key specified in the initiate multipart upload request.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header. This must be the same encryption key specified in the initiate multipart upload request",
           args: {
             name: "string",
           },
@@ -6318,7 +6314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -6326,7 +6322,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-sse-customer-algorithm",
           description:
-            "Specifies the algorithm to use when decrypting the source object (for example, AES256).",
+            "Specifies the algorithm to use when decrypting the source object (for example, AES256)",
           args: {
             name: "string",
           },
@@ -6334,7 +6330,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-sse-customer-key",
           description:
-            "Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided in this header must be one that was used when the source object was created.",
+            "Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided in this header must be one that was used when the source object was created",
           args: {
             name: "string",
           },
@@ -6342,7 +6338,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--copy-source-sse-customer-key-md5",
           description:
-            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+            "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
           args: {
             name: "string",
           },
@@ -6350,7 +6346,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-payer",
           description:
-            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+            "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
           args: {
             name: "string",
           },
@@ -6358,7 +6354,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-bucket-owner",
           description:
-            "The account ID of the expected destination bucket owner. If the destination bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected destination bucket owner. If the destination bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -6366,7 +6362,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-source-bucket-owner",
           description:
-            "The account ID of the expected source bucket owner. If the source bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+            "The account ID of the expected source bucket owner. If the source bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
           args: {
             name: "string",
           },
@@ -6374,7 +6370,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -6382,7 +6378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6393,11 +6389,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "write-get-object-response",
       description:
-        "Passes transformed objects to a GetObject operation when using Object Lambda Access Points. For information about Object Lambda Access Points, see Transforming objects with Object Lambda Access Points in the Amazon S3 User Guide. This operation supports metadata that can be returned by GetObject, in addition to RequestRoute, RequestToken, StatusCode, ErrorCode, and ErrorMessage. The GetObject response metadata is supported so that the WriteGetObjectResponse caller, typically an AWS Lambda function, can provide the same metadata when it internally invokes GetObject. When WriteGetObjectResponse is called by a customer-owned Lambda function, the metadata returned to the end user GetObject call might differ from what Amazon S3 would normally return. AWS provides some prebuilt Lambda functions that you can use with S3 Object Lambda to detect and redact personally identifiable information (PII) and decompress S3 objects. These Lambda functions are available in the AWS Serverless Application Repository, and can be selected through the AWS Management Console when you create your Object Lambda Access Point. Example 1: PII Access Control - This Lambda function uses Amazon Comprehend, a natural language processing (NLP) service using machine learning to find insights and relationships in text. It automatically detects personally identifiable information (PII) such as names, addresses, dates, credit card numbers, and social security numbers from documents in your Amazon S3 bucket.  Example 2: PII Redaction - This Lambda function uses Amazon Comprehend, a natural language processing (NLP) service using machine learning to find insights and relationships in text. It automatically redacts personally identifiable information (PII) such as names, addresses, dates, credit card numbers, and social security numbers from documents in your Amazon S3 bucket.  Example 3: Decompression - The Lambda function S3ObjectLambdaDecompression, is equipped to decompress objects stored in S3 in one of six compressed file formats including bzip2, gzip, snappy, zlib, zstandard and ZIP.  For information on how to view and use these functions, see Using AWS built Lambda functions in the Amazon S3 User Guide.",
+        "Passes transformed objects to a GetObject operation when using Object Lambda Access Points. For information about Object Lambda Access Points, see Transforming objects with Object Lambda Access Points in the Amazon S3 User Guide. This operation supports metadata that can be returned by GetObject, in addition to RequestRoute, RequestToken, StatusCode, ErrorCode, and ErrorMessage. The GetObject response metadata is supported so that the WriteGetObjectResponse caller, typically an AWS Lambda function, can provide the same metadata when it internally invokes GetObject. When WriteGetObjectResponse is called by a customer-owned Lambda function, the metadata returned to the end user GetObject call might differ from what Amazon S3 would normally return. AWS provides some prebuilt Lambda functions that you can use with S3 Object Lambda to detect and redact personally identifiable information (PII) and decompress S3 objects. These Lambda functions are available in the AWS Serverless Application Repository, and can be selected through the AWS Management Console when you create your Object Lambda Access Point. Example 1: PII Access Control - This Lambda function uses Amazon Comprehend, a natural language processing (NLP) service using machine learning to find insights and relationships in text. It automatically detects personally identifiable information (PII) such as names, addresses, dates, credit card numbers, and social security numbers from documents in your Amazon S3 bucket.  Example 2: PII Redaction - This Lambda function uses Amazon Comprehend, a natural language processing (NLP) service using machine learning to find insights and relationships in text. It automatically redacts personally identifiable information (PII) such as names, addresses, dates, credit card numbers, and social security numbers from documents in your Amazon S3 bucket.  Example 3: Decompression - The Lambda function S3ObjectLambdaDecompression, is equipped to decompress objects stored in S3 in one of six compressed file formats including bzip2, gzip, snappy, zlib, zstandard and ZIP.  For information on how to view and use these functions, see Using AWS built Lambda functions in the Amazon S3 User Guide",
       options: [
         {
           name: "--request-route",
-          description: "Route prefix to the HTTP URL generated.",
+          description: "Route prefix to the HTTP URL generated",
           args: {
             name: "string",
           },
@@ -6405,14 +6401,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-token",
           description:
-            "A single use encrypted token that maps WriteGetObjectResponse to the end user GetObject request.",
+            "A single use encrypted token that maps WriteGetObjectResponse to the end user GetObject request",
           args: {
             name: "string",
           },
         },
         {
           name: "--body",
-          description: "The object data.",
+          description: "The object data",
           args: {
             name: "blob",
           },
@@ -6428,7 +6424,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--error-code",
           description:
-            'A string that uniquely identifies an error condition. Returned in the &lt;Code&gt; tag of the error XML response for a corresponding GetObject call. Cannot be used with a successful StatusCode header or when the transformed object is provided in the body. All error codes from S3 are sentence-cased. Regex value is "^[A-Z][a-zA-Z]+$".',
+            'A string that uniquely identifies an error condition. Returned in the &lt;Code&gt; tag of the error XML response for a corresponding GetObject call. Cannot be used with a successful StatusCode header or when the transformed object is provided in the body. All error codes from S3 are sentence-cased. Regex value is "^[A-Z][a-zA-Z]+$"',
           args: {
             name: "string",
           },
@@ -6436,14 +6432,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--error-message",
           description:
-            "Contains a generic description of the error condition. Returned in the &lt;Message&gt; tag of the error XML response for a corresponding GetObject call. Cannot be used with a successful StatusCode header or when the transformed object is provided in body.",
+            "Contains a generic description of the error condition. Returned in the &lt;Message&gt; tag of the error XML response for a corresponding GetObject call. Cannot be used with a successful StatusCode header or when the transformed object is provided in body",
           args: {
             name: "string",
           },
         },
         {
           name: "--accept-ranges",
-          description: "Indicates that a range of bytes was specified.",
+          description: "Indicates that a range of bytes was specified",
           args: {
             name: "string",
           },
@@ -6451,14 +6447,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Specifies caching behavior along the request/reply chain.",
+            "Specifies caching behavior along the request/reply chain",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-disposition",
-          description: "Specifies presentational information for the object.",
+          description: "Specifies presentational information for the object",
           args: {
             name: "string",
           },
@@ -6466,28 +6462,28 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-length",
-          description: "The size of the content body in bytes.",
+          description: "The size of the content body in bytes",
           args: {
             name: "long",
           },
         },
         {
           name: "--content-range",
-          description: "The portion of the object returned in the response.",
+          description: "The portion of the object returned in the response",
           args: {
             name: "string",
           },
@@ -6495,7 +6491,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "A standard MIME type describing the format of the object data.",
+            "A standard MIME type describing the format of the object data",
           args: {
             name: "string",
           },
@@ -6503,17 +6499,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--delete-marker",
           description:
-            "Specifies whether an object stored in Amazon S3 is (true) or is not (false) a delete marker.",
+            "Specifies whether an object stored in Amazon S3 is (true) or is not (false) a delete marker",
         },
         {
           name: "--no-delete-marker",
           description:
-            "Specifies whether an object stored in Amazon S3 is (true) or is not (false) a delete marker.",
+            "Specifies whether an object stored in Amazon S3 is (true) or is not (false) a delete marker",
         },
         {
           name: "--e-tag",
           description:
-            "An opaque identifier assigned by a web server to a specific version of a resource found at a URL.",
+            "An opaque identifier assigned by a web server to a specific version of a resource found at a URL",
           args: {
             name: "string",
           },
@@ -6521,7 +6517,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable.",
+            "The date and time at which the object is no longer cacheable",
           args: {
             name: "timestamp",
           },
@@ -6529,14 +6525,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expiration",
           description:
-            "If object stored in Amazon S3 expiration is configured (see PUT Bucket lifecycle) it includes expiry-date and rule-id key-value pairs providing object expiration information. The value of the rule-id is URL encoded.",
+            "If object stored in Amazon S3 expiration is configured (see PUT Bucket lifecycle) it includes expiry-date and rule-id key-value pairs providing object expiration information. The value of the rule-id is URL encoded",
           args: {
             name: "string",
           },
         },
         {
           name: "--last-modified",
-          description: "The date and time that the object was last modified.",
+          description: "The date and time that the object was last modified",
           args: {
             name: "timestamp",
           },
@@ -6544,14 +6540,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--missing-meta",
           description:
-            "Set to the number of metadata entries not returned in x-amz-meta headers. This can happen if you create metadata using an API like SOAP that supports more flexible metadata than the REST API. For example, using SOAP, you can create metadata whose values are not legal HTTP headers.",
+            "Set to the number of metadata entries not returned in x-amz-meta headers. This can happen if you create metadata using an API like SOAP that supports more flexible metadata than the REST API. For example, using SOAP, you can create metadata whose values are not legal HTTP headers",
           args: {
             name: "integer",
           },
         },
         {
           name: "--metadata",
-          description: "A map of metadata to store with the object in S3.",
+          description: "A map of metadata to store with the object in S3",
           args: {
             name: "map",
           },
@@ -6559,7 +6555,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-mode",
           description:
-            "Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about S3 Object Lock, see Object Lock.",
+            "Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about S3 Object Lock, see Object Lock",
           args: {
             name: "string",
           },
@@ -6567,7 +6563,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-legal-hold-status",
           description:
-            "Indicates whether an object stored in Amazon S3 has an active legal hold.",
+            "Indicates whether an object stored in Amazon S3 has an active legal hold",
           args: {
             name: "string",
           },
@@ -6575,14 +6571,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--object-lock-retain-until-date",
           description:
-            "The date and time when Object Lock is configured to expire.",
+            "The date and time when Object Lock is configured to expire",
           args: {
             name: "timestamp",
           },
         },
         {
           name: "--parts-count",
-          description: "The count of parts this object has.",
+          description: "The count of parts this object has",
           args: {
             name: "integer",
           },
@@ -6590,7 +6586,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--replication-status",
           description:
-            "Indicates if request involves bucket that is either a source or destination in a Replication rule. For more information about S3 Replication, see Replication.",
+            "Indicates if request involves bucket that is either a source or destination in a Replication rule. For more information about S3 Replication, see Replication",
           args: {
             name: "string",
           },
@@ -6598,7 +6594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--request-charged",
           description:
-            "If present, indicates that the requester was successfully charged for the request.",
+            "If present, indicates that the requester was successfully charged for the request",
           args: {
             name: "string",
           },
@@ -6606,7 +6602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--restore",
           description:
-            "Provides information about object restoration operation and expiration time of the restored object copy.",
+            "Provides information about object restoration operation and expiration time of the restored object copy",
           args: {
             name: "string",
           },
@@ -6614,7 +6610,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--server-side-encryption",
           description:
-            "The server-side encryption algorithm used when storing requested object in Amazon S3 (for example, AES256, aws:kms).",
+            "The server-side encryption algorithm used when storing requested object in Amazon S3 (for example, AES256, aws:kms)",
           args: {
             name: "string",
           },
@@ -6622,7 +6618,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-algorithm",
           description:
-            "Encryption algorithm used if server-side encryption with a customer-provided encryption key was specified for object stored in Amazon S3.",
+            "Encryption algorithm used if server-side encryption with a customer-provided encryption key was specified for object stored in Amazon S3",
           args: {
             name: "string",
           },
@@ -6630,7 +6626,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssekms-key-id",
           description:
-            "If present, specifies the ID of the AWS Key Management Service (AWS KMS) symmetric customer managed customer master key (CMK) that was used for stored in Amazon S3 object.",
+            "If present, specifies the ID of the AWS Key Management Service (AWS KMS) symmetric customer managed customer master key (CMK) that was used for stored in Amazon S3 object",
           args: {
             name: "string",
           },
@@ -6638,22 +6634,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-customer-key-md5",
           description:
-            "128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in S3. For more information, see Protecting data using server-side encryption with customer-provided encryption keys (SSE-C).",
+            "128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in S3. For more information, see Protecting data using server-side encryption with customer-provided encryption keys (SSE-C)",
           args: {
             name: "string",
           },
         },
         {
           name: "--storage-class",
-          description:
-            "The class of storage used to store object in Amazon S3.",
+          description: "The class of storage used to store object in Amazon S3",
           args: {
             name: "string",
           },
         },
         {
           name: "--tag-count",
-          description: "The number of tags, if any, on the object.",
+          description: "The number of tags, if any, on the object",
           args: {
             name: "integer",
           },
@@ -6661,7 +6656,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--version-id",
           description:
-            "An ID used to reference a specific version of the object.",
+            "An ID used to reference a specific version of the object",
           args: {
             name: "string",
           },
@@ -6669,17 +6664,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bucket-key-enabled",
           description:
-            "Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption with AWS KMS (SSE-KMS).",
+            "Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption with AWS KMS (SSE-KMS)",
         },
         {
           name: "--no-bucket-key-enabled",
           description:
-            "Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption with AWS KMS (SSE-KMS).",
+            "Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption with AWS KMS (SSE-KMS)",
         },
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -6687,7 +6682,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -6698,17 +6693,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "wait",
       description:
-        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met.",
+        "Wait until a particular condition is satisfied. Each subcommand polls an API until the listed requirement is met",
       subcommands: [
         {
           name: "bucket-exists",
           description:
-            "Wait until 200 response is received when polling with ``head-bucket``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 200 response is received when polling with ``head-bucket``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--bucket",
               description:
-                "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+                "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
               },
@@ -6716,7 +6711,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--expected-bucket-owner",
               description:
-                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
               args: {
                 name: "string",
               },
@@ -6724,7 +6719,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
               },
@@ -6732,7 +6727,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],
@@ -6743,12 +6738,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "bucket-not-exists",
           description:
-            "Wait until 404 response is received when polling with ``head-bucket``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 404 response is received when polling with ``head-bucket``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--bucket",
               description:
-                "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+                "The bucket name. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
               },
@@ -6756,7 +6751,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--expected-bucket-owner",
               description:
-                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
               args: {
                 name: "string",
               },
@@ -6764,7 +6759,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
               },
@@ -6772,7 +6767,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],
@@ -6783,12 +6778,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "object-exists",
           description:
-            "Wait until 200 response is received when polling with ``head-object``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 200 response is received when polling with ``head-object``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--bucket",
               description:
-                "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+                "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
               },
@@ -6796,7 +6791,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-match",
               description:
-                "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed).",
+                "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed)",
               args: {
                 name: "string",
               },
@@ -6804,7 +6799,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-modified-since",
               description:
-                "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified).",
+                "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified)",
               args: {
                 name: "timestamp",
               },
@@ -6812,7 +6807,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-none-match",
               description:
-                "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified).",
+                "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified)",
               args: {
                 name: "string",
               },
@@ -6820,14 +6815,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-unmodified-since",
               description:
-                "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed).",
+                "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed)",
               args: {
                 name: "timestamp",
               },
             },
             {
               name: "--key",
-              description: "The object key.",
+              description: "The object key",
               args: {
                 name: "string",
               },
@@ -6835,7 +6830,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--range",
               description:
-                "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request.",
+                "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request",
               args: {
                 name: "string",
               },
@@ -6843,7 +6838,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--version-id",
               description:
-                "VersionId used to reference a specific version of the object.",
+                "VersionId used to reference a specific version of the object",
               args: {
                 name: "string",
               },
@@ -6851,7 +6846,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--sse-customer-algorithm",
               description:
-                "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+                "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
               args: {
                 name: "string",
               },
@@ -6859,7 +6854,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--sse-customer-key",
               description:
-                "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+                "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
               args: {
                 name: "string",
               },
@@ -6867,7 +6862,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--sse-customer-key-md5",
               description:
-                "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+                "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
               args: {
                 name: "string",
               },
@@ -6875,7 +6870,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--request-payer",
               description:
-                "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+                "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
               args: {
                 name: "string",
               },
@@ -6883,7 +6878,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--part-number",
               description:
-                "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object.",
+                "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object",
               args: {
                 name: "integer",
               },
@@ -6891,7 +6886,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--expected-bucket-owner",
               description:
-                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
               args: {
                 name: "string",
               },
@@ -6899,7 +6894,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
               },
@@ -6907,7 +6902,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],
@@ -6918,12 +6913,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "object-not-exists",
           description:
-            "Wait until 404 response is received when polling with ``head-object``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks.",
+            "Wait until 404 response is received when polling with ``head-object``. It will poll every 5 seconds until a successful state has been reached. This will exit with a return code of 255 after 20 failed checks",
           options: [
             {
               name: "--bucket",
               description:
-                "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide.",
+                "The name of the bucket containing the object. When using this action with an access point, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the AWS SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using Access Points in the Amazon S3 User Guide. When using this action with Amazon S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When using this action using S3 on Outposts through the AWS SDKs, you provide the Outposts bucket ARN in place of the bucket name. For more information about S3 on Outposts ARNs, see Using S3 on Outposts in the Amazon S3 User Guide",
               args: {
                 name: "string",
               },
@@ -6931,7 +6926,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-match",
               description:
-                "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed).",
+                "Return the object only if its entity tag (ETag) is the same as the one specified, otherwise return a 412 (precondition failed)",
               args: {
                 name: "string",
               },
@@ -6939,7 +6934,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-modified-since",
               description:
-                "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified).",
+                "Return the object only if it has been modified since the specified time, otherwise return a 304 (not modified)",
               args: {
                 name: "timestamp",
               },
@@ -6947,7 +6942,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-none-match",
               description:
-                "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified).",
+                "Return the object only if its entity tag (ETag) is different from the one specified, otherwise return a 304 (not modified)",
               args: {
                 name: "string",
               },
@@ -6955,14 +6950,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--if-unmodified-since",
               description:
-                "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed).",
+                "Return the object only if it has not been modified since the specified time, otherwise return a 412 (precondition failed)",
               args: {
                 name: "timestamp",
               },
             },
             {
               name: "--key",
-              description: "The object key.",
+              description: "The object key",
               args: {
                 name: "string",
               },
@@ -6970,7 +6965,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--range",
               description:
-                "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request.",
+                "Downloads the specified range bytes of an object. For more information about the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.  Amazon S3 doesn't support retrieving multiple ranges of data per GET request",
               args: {
                 name: "string",
               },
@@ -6978,7 +6973,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--version-id",
               description:
-                "VersionId used to reference a specific version of the object.",
+                "VersionId used to reference a specific version of the object",
               args: {
                 name: "string",
               },
@@ -6986,7 +6981,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--sse-customer-algorithm",
               description:
-                "Specifies the algorithm to use to when encrypting the object (for example, AES256).",
+                "Specifies the algorithm to use to when encrypting the object (for example, AES256)",
               args: {
                 name: "string",
               },
@@ -6994,7 +6989,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--sse-customer-key",
               description:
-                "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header.",
+                "Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must be appropriate for use with the algorithm specified in the x-amz-server-side-encryption-customer-algorithm header",
               args: {
                 name: "string",
               },
@@ -7002,7 +6997,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--sse-customer-key-md5",
               description:
-                "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error.",
+                "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error",
               args: {
                 name: "string",
               },
@@ -7010,7 +7005,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--request-payer",
               description:
-                "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide.",
+                "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. For information about downloading objects from requester pays buckets, see Downloading Objects in Requestor Pays Buckets in the Amazon S3 Developer Guide",
               args: {
                 name: "string",
               },
@@ -7018,7 +7013,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--part-number",
               description:
-                "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object.",
+                "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object",
               args: {
                 name: "integer",
               },
@@ -7026,7 +7021,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--expected-bucket-owner",
               description:
-                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error.",
+                "The account ID of the expected bucket owner. If the bucket is owned by a different account, the request will fail with an HTTP 403 (Access Denied) error",
               args: {
                 name: "string",
               },
@@ -7034,7 +7029,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-json",
               description:
-                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+                "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
               args: {
                 name: "string",
               },
@@ -7042,7 +7037,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--generate-cli-skeleton",
               description:
-                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+                "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
               args: {
                 name: "string",
                 suggestions: ["input", "output"],

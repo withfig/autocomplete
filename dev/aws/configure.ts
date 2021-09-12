@@ -12,12 +12,10 @@ const completionSpec: Fig.Spec = {
       name: "get",
       description:
         'Get a configuration value from the config file.\n\nThe ``aws configure get`` command can be used to print a configuration value in\nthe AWS config file.  The ``get`` command supports two types of configuration\nvalues, *unqualified* and *qualified* config values.\n\n\nNote that ``aws configure get`` only looks at values in the AWS configuration\nfile.  It does **not** resolve configuration variables specified anywhere else,\nincluding environment variables, command line arguments, etc.\n\n\nUnqualified Names\n-----------------\n\nEvery value in the AWS configuration file must be placed in a section (denoted\nby ``[section-name]`` in the config file).  To retrieve a value from the\nconfig file, the section name and the config name must be known.\n\nAn unqualified configuration name refers to a name that is not scoped to a\nspecific section in the configuration file.  Sections are specified by\nseparating parts with the ``"."`` character (``section.config-name``).  An\nunqualified name will be scoped to the current profile.  For example,\n``aws configure get aws_access_key_id`` will retrieve the ``aws_access_key_id``\nfrom the current profile,  or the ``default`` profile if no profile is\nspecified.  You can still provide a ``--profile`` argument to the ``aws\nconfigure get`` command.  For example, ``aws configure get region --profile\ntesting`` will print the region value for the ``testing`` profile.\n\n\nQualified Names\n---------------\n\nA qualified name is a name that has at least one ``"."`` character in the name.\nThis name provides a way to specify the config section from which to retrieve\nthe config variable.  When a qualified name is provided to ``aws configure\nget``, the currently specified profile is ignored.  Section names that have\nthe format ``[profile profile-name]`` can be specified by using the\n``profile.profile-name.config-name`` syntax, and the default profile can be\nspecified using the ``default.config-name`` syntax.\n',
-      args: [
-        {
-          name: "varname",
-          description: "The name of the config value to retrieve.",
-        },
-      ],
+      args: {
+        name: "varname",
+        description: "The name of the config value to retrieve",
+      },
     },
     {
       name: "set",
@@ -26,22 +24,22 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "varname",
-          description: "The name of the config value to set.",
+          description: "The name of the config value to set",
         },
         {
           name: "value",
-          description: "The value to set.",
+          description: "The value to set",
         },
       ],
     },
     {
       name: "add-model",
       description:
-        "Adds a service JSON model to the appropriate location in ~/.aws/models. Once the model gets added, CLI commands and Boto3 clients will be immediately available for the service JSON model provided.",
+        "Adds a service JSON model to the appropriate location in ~/.aws/models. Once the model gets added, CLI commands and Boto3 clients will be immediately available for the service JSON model provided",
       options: [
         {
           name: "--service-model",
-          description: "The contents of the service JSON model.",
+          description: "The contents of the service JSON model",
           args: {
             name: "string",
           },
@@ -49,7 +47,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--service-name",
           description:
-            "Overrides the default name used by the service JSON model to generate CLI service commands and Boto3 clients.",
+            "Overrides the default name used by the service JSON model to generate CLI service commands and Boto3 clients",
           args: {
             name: "string",
           },
@@ -95,7 +93,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--profile",
-          description: "profile-name",
+          description:
+            "The name of the profile to configure.\n\nIf not set, will use the default profile",
         },
       ],
     },

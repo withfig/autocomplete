@@ -6,32 +6,32 @@
 const global_option_help: Fig.Option = {
   name: ["-h", "--help"],
   description:
-    "Display help for the given command. When no command is given display help for the list command.",
+    "Display help for the given command. When no command is given display help for the list command",
 };
 
 const global_option_quiet: Fig.Option = {
   name: ["-q", "--quiet"],
-  description: "Do not output any message.",
+  description: "Do not output any message",
 };
 
 const global_option_version: Fig.Option = {
   name: ["-V", "--version"],
-  description: "Display this application version.",
+  description: "Display this application version",
 };
 
 const global_option_ansi: Fig.Option = {
   name: "--ansi",
-  description: "Force (or disable --no-ansi) ANSI output.",
+  description: "Force (or disable --no-ansi) ANSI output",
 };
 
 const global_option_noansi: Fig.Option = {
   name: "--no-ansi",
-  description: "Force (or disable --no-ansi) ANSI output.",
+  description: "Force (or disable --no-ansi) ANSI output",
 };
 
 const global_option_nointeraction: Fig.Option = {
   name: ["-n", "--no-interaction"],
-  description: "Do not ask any interactive question.",
+  description: "Do not ask any interactive question",
 };
 
 const global_option_verbose: Fig.Option = {
@@ -43,15 +43,15 @@ const global_option_verbose: Fig.Option = {
     suggestions: [
       {
         name: "1",
-        description: "normal output",
+        description: "Normal output",
       },
       {
         name: "2",
-        description: "more verbose output",
+        description: "More verbose output",
       },
       {
         name: "3",
-        description: "debug output",
+        description: "Debug output",
       },
     ],
     isOptional: true,
@@ -65,7 +65,7 @@ const global_option_secure: Fig.Option = {
 const completionSpec: Fig.Spec = {
   name: "valet",
   description:
-    "Valet is a Laravel development environment for macOS minimalists.",
+    "Valet is a Laravel development environment for macOS minimalists",
   options: [
     global_option_help,
     global_option_quiet,
@@ -78,15 +78,15 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "diagnose",
-      description: "Output diagnostics to aid in debugging Valet.",
+      description: "Output diagnostics to aid in debugging Valet",
       options: [
         {
           name: ["-p", "--print"],
-          description: "Print diagnostics output while running.",
+          description: "Print diagnostics output while running",
         },
         {
           name: "--plain",
-          description: "Format clipboard output as plain text.",
+          description: "Format clipboard output as plain text",
         },
         global_option_help,
         global_option_quiet,
@@ -100,11 +100,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "directory-listing",
       description:
-        "Determine directory-listing behavior. Default is off, which means a 404 will display.",
+        "Determine directory-listing behavior. Default is off, which means a 404 will display",
       args: {
         name: "status",
         description:
-          "on or off. (default=off) will show a 404 page; [on] will display a listing if project folder exists but requested URI not found.",
+          "On or off. (default=off) will show a 404 page; [on] will display a listing if project folder exists but requested URI not found",
         suggestions: [{ name: "on" }, { name: "off" }],
       },
       options: [
@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "forget",
       description:
-        "Remove the current working (or specified) directory from Valet's list of paths.",
+        "Remove the current working (or specified) directory from Valet's list of paths",
       args: {
         name: "path",
         template: "folders",
@@ -163,7 +163,7 @@ const completionSpec: Fig.Spec = {
           name: "--format",
           insertValue: "--format=",
           description:
-            "The output format (txt, xml, json, or md) [default: 'txt'].",
+            "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
             name: "FORMAT",
             suggestions: [
@@ -174,7 +174,7 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-        { name: "--raw", description: "To output raw command help." },
+        { name: "--raw", description: "To output raw command help" },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -186,7 +186,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "install",
-      description: "Install the Valet services.",
+      description: "Install the Valet services",
       options: [
         global_option_help,
         global_option_quiet,
@@ -199,7 +199,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "link",
-      description: "Link the current working directory to Valet.",
+      description: "Link the current working directory to Valet",
       args: {
         name: "name",
       },
@@ -216,7 +216,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "links",
-      description: "Display all of the registered Valet links.",
+      description: "Display all of the registered Valet links",
       options: [
         global_option_help,
         global_option_quiet,
@@ -229,17 +229,17 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list",
-      description: "List commands.",
+      description: "List commands",
       args: {
         name: "namespace",
       },
       options: [
-        { name: "--raw", description: "To output raw command list." },
+        { name: "--raw", description: "To output raw command list" },
         {
           name: "--format",
           insertValue: "--format=",
           description:
-            "The output format (txt, xml, json, or md) [default: 'txt'].",
+            "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
             name: "FORMAT",
             suggestions: [
@@ -252,7 +252,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--short",
-          description: "To skip describing commands' arguments.",
+          description: "To skip describing commands' arguments",
         },
         global_option_help,
         global_option_quiet,
@@ -311,7 +311,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "on-latest-version",
-      description: "Determine if this is the latest version of Valet.",
+      description: "Determine if this is the latest version of Valet",
       options: [
         global_option_help,
         global_option_quiet,
@@ -342,13 +342,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "park",
       description:
-        "Register the current working (or specified) directory with Valet.",
-      args: [
-        {
-          name: "path",
-          template: "folders",
-        },
-      ],
+        "Register the current working (or specified) directory with Valet",
+      args: {
+        name: "path",
+        template: "folders",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -361,7 +359,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "parked",
-      description: "Display all the current sites within parked paths.",
+      description: "Display all the current sites within parked paths",
       options: [
         global_option_help,
         global_option_quiet,
@@ -374,7 +372,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "paths",
-      description: "Get all of the paths registered with Valet.",
+      description: "Get all of the paths registered with Valet",
       options: [
         global_option_help,
         global_option_quiet,
@@ -387,7 +385,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "proxies",
-      description: "Display all of the proxy sites.",
+      description: "Display all of the proxy sites",
       options: [
         global_option_help,
         global_option_quiet,
@@ -401,7 +399,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "proxy",
       description:
-        "Create an Nginx proxy site for the specified host. Useful for docker, mailhog etc.",
+        "Create an Nginx proxy site for the specified host. Useful for docker, mailhog etc",
       args: [
         {
           name: "domain",
@@ -423,7 +421,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "restart",
-      description: "Restart the Valet services.",
+      description: "Restart the Valet services",
       args: {
         name: "service",
       },
@@ -459,18 +457,18 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--auth",
-          description: "enforce basic auth on tunnel endpoint, 'user:password'",
+          description: "Enforce basic auth on tunnel endpoint, 'user:password'",
         },
         {
           name: "--authtoken",
-          description: "ngrok.com authtoken identifying a user",
+          description: "Ngrok.com authtoken identifying a user",
           args: {
             name: "token",
           },
         },
         {
           name: "--bind-tls",
-          description: "listen for http, https or both: true/false/both",
+          description: "Listen for http, https or both: true/false/both",
           args: {
             name: "listen",
             suggestions: [
@@ -482,7 +480,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "path to config files; they are merged if multiple",
+          description: "Path to config files; they are merged if multiple",
           args: {
             name: "config",
             template: "filepaths",
@@ -491,22 +489,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--host-header",
           description:
-            "set Host header; if 'rewrite' use local address hostname",
+            "Set Host header; if 'rewrite' use local address hostname",
           args: {
             name: "host",
           },
         },
         {
           name: "--hostname",
-          description: "host tunnel on custom hostname (requires DNS CNAME)",
+          description: "Host tunnel on custom hostname (requires DNS CNAME)",
         },
         {
           name: "--inspect",
-          description: "enable/disable http introspection",
+          description: "Enable/disable http introspection",
         },
         {
           name: "--log",
-          description: "path to log file, 'stdout', 'stderr' or 'false'",
+          description: "Path to log file, 'stdout', 'stderr' or 'false'",
           args: {
             name: "path",
             suggestions: [
@@ -518,7 +516,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--log-format",
-          description: "log record format: 'term', 'logfmt', 'json'",
+          description: "Log record format: 'term', 'logfmt', 'json'",
           args: {
             name: "format",
             suggestions: [
@@ -530,7 +528,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--log-level",
-          description: "logging level",
+          description: "Logging level",
           args: {
             name: "level",
             suggestions: [{ name: "info", insertValue: "'info'" }],
@@ -539,7 +537,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--region",
           description:
-            "ngrok server region [us, eu, au, ap, sa, jp, in] (default: us)",
+            "Ngrok server region [us, eu, au, ap, sa, jp, in] (default: us)",
           args: {
             name: "region",
             suggestions: [
@@ -555,7 +553,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--subdomain",
-          description: "host tunnel on a custom subdomain",
+          description: "Host tunnel on a custom subdomain",
         },
         global_option_help,
         global_option_quiet,
@@ -568,7 +566,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "start",
-      description: "Start the Valet services.",
+      description: "Start the Valet services",
       args: {
         name: "service",
       },
@@ -584,7 +582,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop",
-      description: "Stop the Valet services.",
+      description: "Stop the Valet services",
       args: {
         name: "service",
       },
@@ -600,7 +598,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tld",
-      description: "Get or set the TLD used for Valet sites.",
+      description: "Get or set the TLD used for Valet sites",
       args: {
         name: "tld",
         suggestions: [{ name: "local" }, { name: "test" }],
@@ -618,7 +616,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "trust",
       description:
-        "Add sudoers files for Brew and Valet to make Valet commands run without passwords.",
+        "Add sudoers files for Brew and Valet to make Valet commands run without passwords",
       args: {
         name: "options",
       },
@@ -626,7 +624,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--off",
           description:
-            "Remove the sudoers files so normal sudo password prompts are required.",
+            "Remove the sudoers files so normal sudo password prompts are required",
         },
         global_option_help,
         global_option_quiet,
@@ -639,12 +637,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "uninstall",
-      description: "Uninstall the Valet services.",
+      description: "Uninstall the Valet services",
       options: [
         {
           name: "--force",
           description:
-            "Do a forceful uninstall of Valet and related Homebrew pkgs.",
+            "Do a forceful uninstall of Valet and related Homebrew pkgs",
         },
         global_option_help,
         global_option_quiet,
@@ -657,7 +655,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "unlink",
-      description: "Remove the specified Valet link.",
+      description: "Remove the specified Valet link",
       args: {
         name: "name",
       },
@@ -673,7 +671,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "unproxy",
-      description: "Delete an Nginx proxy config.",
+      description: "Delete an Nginx proxy config",
       args: {
         name: "domain",
       },
@@ -690,7 +688,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "unsecure",
       description:
-        "Stop serving the given domain over HTTPS and remove the trusted TLS certificate.",
+        "Stop serving the given domain over HTTPS and remove the trusted TLS certificate",
       args: {
         name: "domain",
       },

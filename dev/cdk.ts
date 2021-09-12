@@ -4,11 +4,11 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "init",
-      description: "Create a new, empty CDK project from a template.",
+      description: "Create a new, empty CDK project from a template",
     },
     {
       name: "metadata",
-      description: "Returns all metadata associated with this stack.",
+      description: "Returns all metadata associated with this stack",
     },
     { name: "doctor", description: "Check your set-up for potential problems" },
     {
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version"],
+      name: "--version",
       description: "The current version",
     },
     {

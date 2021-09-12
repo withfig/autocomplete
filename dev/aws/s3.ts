@@ -371,17 +371,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "ls",
       description:
-        "List S3 objects and common prefixes under a prefix or all S3 buckets. Note that the --output and --no-paginate arguments are ignored for this command.",
+        "List S3 objects and common prefixes under a prefix or all S3 buckets. Note that the --output and --no-paginate arguments are ignored for this command",
       options: [
         {
           name: "--recursive",
           description:
-            "Command is performed on all files or objects under the specified directory or prefix.",
+            "Command is performed on all files or objects under the specified directory or prefix",
         },
         {
           name: "--page-size",
           description:
-            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
+            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out",
           args: {
             name: "integer",
             description: "The default & max is 1000",
@@ -389,12 +389,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--human-readable",
-          description: "Displays file sizes in human readable format.",
+          description: "Displays file sizes in human readable format",
         },
         {
           name: "--summarize",
           description:
-            "Displays summary information (number of objects, total size).",
+            "Displays summary information (number of objects, total size)",
         },
         {
           name: "--request-payer",
@@ -406,21 +406,19 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "paths",
-          generators: generators.listRemoteFilesGenerator,
-        },
-      ],
+      args: {
+        name: "paths",
+        generators: generators.listRemoteFilesGenerator,
+      },
     },
     {
       name: "website",
-      description: "Set the website configuration for a bucket.",
+      description: "Set the website configuration for a bucket",
       options: [
         {
           name: "--index-document",
           description:
-            "A suffix that is appended to a request that is for a directory on the website endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character.",
+            "A suffix that is appended to a request that is for a directory on the website endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character",
           args: {
             name: "string",
             suggestions: ["index.html"],
@@ -429,39 +427,37 @@ const completionSpec: Fig.Spec = {
         {
           name: "--error-document",
           description:
-            "The object key name to use when a 4XX class error occurs.",
+            "The object key name to use when a 4XX class error occurs",
           args: {
             name: "string",
             suggestions: ["error.html"],
           },
         },
       ],
-      args: [
-        {
-          name: "paths",
-          generators: generators.listBuckets,
-        },
-      ],
+      args: {
+        name: "paths",
+        generators: generators.listBuckets,
+      },
     },
     {
       name: "cp",
       description:
-        "Copies a local file or S3 object to another location locally or in S3.",
+        "Copies a local file or S3 object to another location locally or in S3",
       options: [
         {
           name: "--dryrun",
           description:
-            "Displays the operations that would be performed using the specified command without actually running them.",
+            "Displays the operations that would be performed using the specified command without actually running them",
         },
         {
           name: "--quiet",
           description:
-            "Does not display the operations performed from the specified command.",
+            "Does not display the operations performed from the specified command",
         },
         {
           name: "--include",
           description:
-            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details.",
+            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details",
           args: {
             name: "string",
           },
@@ -469,7 +465,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Exclude all files or objects from the command that matches the specified pattern.",
+            "Exclude all files or objects from the command that matches the specified pattern",
           args: {
             name: "string",
           },
@@ -486,7 +482,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--follow-symlinks",
           description:
-            "Symbolic links are followed only when uploading to S3 from the local filesystem. Note that S3 does not support symbolic links, so the contents of the link target are uploaded under the name of the link. When neither ``--follow-symlinks`` nor ``--no-follow-symlinks`` is specified, the default is to follow symlinks.",
+            "Symbolic links are followed only when uploading to S3 from the local filesystem. Note that S3 does not support symbolic links, so the contents of the link target are uploaded under the name of the link. When neither ``--follow-symlinks`` nor ``--no-follow-symlinks`` is specified, the default is to follow symlinks",
         },
         {
           name: "--no-follow-symlinks",
@@ -494,12 +490,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-guess-mime-type",
           description:
-            "Do not try to guess the mime type for uploaded files.  By default the mime type of a file is guessed when it is uploaded.",
+            "Do not try to guess the mime type for uploaded files.  By default the mime type of a file is guessed when it is uploaded",
         },
         {
           name: "--sse",
           description:
-            "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
+            "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used",
           args: {
             name: "string",
             suggestions: sse,
@@ -508,7 +504,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c",
           description:
-            "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
+            "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well",
           args: {
             name: "string",
             suggestions: sseC,
@@ -517,7 +513,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-key",
           description:
-            "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
+            "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded",
           args: {
             name: "blob",
             generators: generators.listBlobsGenerator,
@@ -526,7 +522,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-kms-key-id",
           description:
-            "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
+            "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK",
           args: {
             name: "string",
             generators: generators.kmsKeyIdGenerator,
@@ -535,7 +531,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-copy-source",
           description:
-            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
+            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well",
           args: {
             name: "string",
             suggestions: sseC,
@@ -544,7 +540,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-copy-source-key",
           description:
-            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
+            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded",
           args: {
             name: "blob",
             generators: generators.listBlobsGenerator,
@@ -571,7 +567,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--website-redirect",
           description:
-            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.",
+            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata",
           args: {
             name: "string",
           },
@@ -579,7 +575,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "Specify an explicit content type for this operation.  This value overrides any guessed mime types.",
+            "Specify an explicit content type for this operation.  This value overrides any guessed mime types",
           args: {
             name: "string",
           },
@@ -587,14 +583,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Specifies caching behavior along the request/reply chain.",
+            "Specifies caching behavior along the request/reply chain",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-disposition",
-          description: "Specifies presentational information for the object.",
+          description: "Specifies presentational information for the object",
           args: {
             name: "string",
           },
@@ -602,14 +598,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
@@ -617,7 +613,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable.",
+            "The date and time at which the object is no longer cacheable",
           args: {
             name: "string",
           },
@@ -625,7 +621,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-region",
           description:
-            "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
+            "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket",
           args: {
             name: "string",
             suggestions: awsRegions,
@@ -634,17 +630,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only-show-errors",
           description:
-            "Only errors and warnings are displayed. All other output is suppressed.",
+            "Only errors and warnings are displayed. All other output is suppressed",
         },
         {
           name: "--no-progress",
           description:
-            "File transfer progress is not displayed. This flag is only applied when the quiet and only-show-errors flags are not provided.",
+            "File transfer progress is not displayed. This flag is only applied when the quiet and only-show-errors flags are not provided",
         },
         {
           name: "--page-size",
           description:
-            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
+            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out",
           args: {
             name: "integer",
             description: "The default & max is 1000",
@@ -653,12 +649,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-glacier-warnings",
           description:
-            "Turns off glacier warnings. Warnings about an operation that cannot be performed because it involves copying, downloading, or moving a glacier object will no longer be printed to standard error and will no longer cause the return code of the command to be ``2``.",
+            "Turns off glacier warnings. Warnings about an operation that cannot be performed because it involves copying, downloading, or moving a glacier object will no longer be printed to standard error and will no longer cause the return code of the command to be ``2``",
         },
         {
           name: "--force-glacier-transfer",
           description:
-            "Forces a transfer request on all Glacier objects in a sync or recursive copy.",
+            "Forces a transfer request on all Glacier objects in a sync or recursive copy",
         },
         {
           name: "--request-payer",
@@ -672,7 +668,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata",
           description:
-            "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
+            "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified",
           args: {
             name: "map",
             description: "KeyName1=string,KeyName2=string",
@@ -681,7 +677,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata-directive",
           description:
-            "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
+            "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values",
           args: {
             name: "string",
             suggestions: metadataDirective,
@@ -690,7 +686,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expected-size",
           description:
-            "This argument specifies the expected size of a stream in terms of bytes. Note that this argument is needed only when a stream is being uploaded to s3 and the size is larger than 50GB.  Failure to include this argument under these conditions may result in a failed upload due to too many parts in upload.",
+            "This argument specifies the expected size of a stream in terms of bytes. Note that this argument is needed only when a stream is being uploaded to s3 and the size is larger than 50GB.  Failure to include this argument under these conditions may result in a failed upload due to too many parts in upload",
           args: {
             name: "string",
           },
@@ -698,7 +694,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recursive",
           description:
-            "Command is performed on all files or objects under the specified directory or prefix.",
+            "Command is performed on all files or objects under the specified directory or prefix",
         },
       ],
       args: [
@@ -721,22 +717,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "mv",
       description:
-        "Moves a local file or S3 object to another location locally or in S3.",
+        "Moves a local file or S3 object to another location locally or in S3",
       options: [
         {
           name: "--dryrun",
           description:
-            "Displays the operations that would be performed using the specified command without actually running them.",
+            "Displays the operations that would be performed using the specified command without actually running them",
         },
         {
           name: "--quiet",
           description:
-            "Does not display the operations performed from the specified command.",
+            "Does not display the operations performed from the specified command",
         },
         {
           name: "--include",
           description:
-            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details.",
+            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details",
           args: {
             name: "string",
           },
@@ -744,7 +740,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Exclude all files or objects from the command that matches the specified pattern.",
+            "Exclude all files or objects from the command that matches the specified pattern",
           args: {
             name: "string",
           },
@@ -761,7 +757,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--follow-symlinks",
           description:
-            "Symbolic links are followed only when uploading to S3 from the local filesystem. Note that S3 does not support symbolic links, so the contents of the link target are uploaded under the name of the link. When neither ``--follow-symlinks`` nor ``--no-follow-symlinks`` is specified, the default is to follow symlinks.",
+            "Symbolic links are followed only when uploading to S3 from the local filesystem. Note that S3 does not support symbolic links, so the contents of the link target are uploaded under the name of the link. When neither ``--follow-symlinks`` nor ``--no-follow-symlinks`` is specified, the default is to follow symlinks",
         },
         {
           name: "--no-follow-symlinks",
@@ -769,12 +765,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-guess-mime-type",
           description:
-            "Do not try to guess the mime type for uploaded files.  By default the mime type of a file is guessed when it is uploaded.",
+            "Do not try to guess the mime type for uploaded files.  By default the mime type of a file is guessed when it is uploaded",
         },
         {
           name: "--sse",
           description:
-            "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
+            "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used",
           args: {
             name: "string",
             suggestions: sse,
@@ -783,7 +779,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c",
           description:
-            "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
+            "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well",
           args: {
             name: "string",
             suggestions: sseC,
@@ -792,7 +788,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-key",
           description:
-            "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
+            "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded",
           args: {
             name: "blob",
             generators: generators.listBlobsGenerator,
@@ -801,7 +797,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-kms-key-id",
           description:
-            "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
+            "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK",
           args: {
             name: "string",
             generators: generators.kmsKeyIdGenerator,
@@ -810,7 +806,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-copy-source",
           description:
-            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
+            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well",
           args: {
             name: "string",
             suggestions: sseC,
@@ -819,7 +815,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-copy-source-key",
           description:
-            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
+            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded",
           args: {
             name: "blob",
             generators: generators.listBlobsGenerator,
@@ -846,7 +842,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--website-redirect",
           description:
-            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.",
+            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata",
           args: {
             name: "string",
           },
@@ -854,7 +850,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "Specify an explicit content type for this operation.  This value overrides any guessed mime types.",
+            "Specify an explicit content type for this operation.  This value overrides any guessed mime types",
           args: {
             name: "string",
           },
@@ -862,14 +858,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Specifies caching behavior along the request/reply chain.",
+            "Specifies caching behavior along the request/reply chain",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-disposition",
-          description: "Specifies presentational information for the object.",
+          description: "Specifies presentational information for the object",
           args: {
             name: "string",
           },
@@ -877,14 +873,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
@@ -892,7 +888,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable.",
+            "The date and time at which the object is no longer cacheable",
           args: {
             name: "string",
           },
@@ -900,7 +896,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-region",
           description:
-            "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
+            "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket",
           args: {
             name: "string",
             suggestions: awsRegions,
@@ -909,17 +905,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only-show-errors",
           description:
-            "Only errors and warnings are displayed. All other output is suppressed.",
+            "Only errors and warnings are displayed. All other output is suppressed",
         },
         {
           name: "--no-progress",
           description:
-            "File transfer progress is not displayed. This flag is only applied when the quiet and only-show-errors flags are not provided.",
+            "File transfer progress is not displayed. This flag is only applied when the quiet and only-show-errors flags are not provided",
         },
         {
           name: "--page-size",
           description:
-            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
+            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out",
           args: {
             name: "integer",
             description: "The default & max is 1000",
@@ -928,12 +924,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-glacier-warnings",
           description:
-            "Turns off glacier warnings. Warnings about an operation that cannot be performed because it involves copying, downloading, or moving a glacier object will no longer be printed to standard error and will no longer cause the return code of the command to be ``2``.",
+            "Turns off glacier warnings. Warnings about an operation that cannot be performed because it involves copying, downloading, or moving a glacier object will no longer be printed to standard error and will no longer cause the return code of the command to be ``2``",
         },
         {
           name: "--force-glacier-transfer",
           description:
-            "Forces a transfer request on all Glacier objects in a sync or recursive copy.",
+            "Forces a transfer request on all Glacier objects in a sync or recursive copy",
         },
         {
           name: "--request-payer",
@@ -947,7 +943,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata",
           description:
-            "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
+            "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified",
           args: {
             name: "map",
             description: "KeyName1=string,KeyName2=string",
@@ -956,7 +952,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata-directive",
           description:
-            "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
+            "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values",
           args: {
             name: "string",
             suggestions: metadataDirective,
@@ -965,7 +961,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recursive",
           description:
-            "Command is performed on all files or objects under the specified directory or prefix.",
+            "Command is performed on all files or objects under the specified directory or prefix",
         },
       ],
       args: [
@@ -987,22 +983,22 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "rm",
-      description: "Deletes an S3 object.",
+      description: "Deletes an S3 object",
       options: [
         {
           name: "--dryrun",
           description:
-            "Displays the operations that would be performed using the specified command without actually running them.",
+            "Displays the operations that would be performed using the specified command without actually running them",
         },
         {
           name: "--quiet",
           description:
-            "Does not display the operations performed from the specified command.",
+            "Does not display the operations performed from the specified command",
         },
         {
           name: "--recursive",
           description:
-            "Command is performed on all files or objects under the specified directory or prefix.",
+            "Command is performed on all files or objects under the specified directory or prefix",
         },
         {
           name: "--request-payer",
@@ -1016,7 +1012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include",
           description:
-            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details.",
+            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details",
           args: {
             name: "string",
           },
@@ -1024,7 +1020,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Exclude all files or objects from the command that matches the specified pattern.",
+            "Exclude all files or objects from the command that matches the specified pattern",
           args: {
             name: "string",
           },
@@ -1032,44 +1028,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only-show-errors",
           description:
-            "Only errors and warnings are displayed. All other output is suppressed.",
+            "Only errors and warnings are displayed. All other output is suppressed",
         },
         {
           name: "--page-size",
           description:
-            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
+            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out",
           args: {
             name: "integer",
             description: "The default & max is 1000",
           },
         },
       ],
-      args: [
-        {
-          name: "paths",
-          generators: generators.listRemoteFilesGenerator,
-        },
-      ],
+      args: {
+        name: "paths",
+        generators: generators.listRemoteFilesGenerator,
+      },
     },
     {
       name: "sync",
       description:
-        "Syncs directories and S3 prefixes. Recursively copies new and updated files from the source directory to the destination. Only creates folders in the destination if they contain one or more files.",
+        "Syncs directories and S3 prefixes. Recursively copies new and updated files from the source directory to the destination. Only creates folders in the destination if they contain one or more files",
       options: [
         {
           name: "--dryrun",
           description:
-            "Displays the operations that would be performed using the specified command without actually running them.",
+            "Displays the operations that would be performed using the specified command without actually running them",
         },
         {
           name: "--quiet",
           description:
-            "Does not display the operations performed from the specified command.",
+            "Does not display the operations performed from the specified command",
         },
         {
           name: "--include",
           description:
-            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details.",
+            "Don't exclude files or objects in the command that match the specified pattern. See Use of Exclude and Include Filters for details",
           args: {
             name: "string",
           },
@@ -1077,7 +1071,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Exclude all files or objects from the command that matches the specified pattern.",
+            "Exclude all files or objects from the command that matches the specified pattern",
           args: {
             name: "string",
           },
@@ -1094,7 +1088,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--follow-symlinks",
           description:
-            "Symbolic links are followed only when uploading to S3 from the local filesystem. Note that S3 does not support symbolic links, so the contents of the link target are uploaded under the name of the link. When neither ``--follow-symlinks`` nor ``--no-follow-symlinks`` is specified, the default is to follow symlinks.",
+            "Symbolic links are followed only when uploading to S3 from the local filesystem. Note that S3 does not support symbolic links, so the contents of the link target are uploaded under the name of the link. When neither ``--follow-symlinks`` nor ``--no-follow-symlinks`` is specified, the default is to follow symlinks",
         },
         {
           name: "--no-follow-symlinks",
@@ -1102,12 +1096,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-guess-mime-type",
           description:
-            "Do not try to guess the mime type for uploaded files.  By default the mime type of a file is guessed when it is uploaded.",
+            "Do not try to guess the mime type for uploaded files.  By default the mime type of a file is guessed when it is uploaded",
         },
         {
           name: "--sse",
           description:
-            "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
+            "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used",
           args: {
             name: "string",
             suggestions: sse,
@@ -1116,7 +1110,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c",
           description:
-            "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
+            "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well",
           args: {
             name: "string",
             suggestions: sseC,
@@ -1125,7 +1119,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-key",
           description:
-            "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
+            "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded",
           args: {
             name: "blob",
             generators: generators.listBlobsGenerator,
@@ -1134,7 +1128,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-kms-key-id",
           description:
-            "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
+            "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK",
           args: {
             name: "string",
             generators: generators.kmsKeyIdGenerator,
@@ -1143,7 +1137,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-copy-source",
           description:
-            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
+            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well",
           args: {
             name: "string",
             suggestions: sseC,
@@ -1152,7 +1146,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sse-c-copy-source-key",
           description:
-            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
+            "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded",
           args: {
             name: "blob",
             generators: generators.listBlobsGenerator,
@@ -1179,7 +1173,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--website-redirect",
           description:
-            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.",
+            "If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata",
           args: {
             name: "string",
           },
@@ -1187,7 +1181,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-type",
           description:
-            "Specify an explicit content type for this operation.  This value overrides any guessed mime types.",
+            "Specify an explicit content type for this operation.  This value overrides any guessed mime types",
           args: {
             name: "string",
           },
@@ -1195,14 +1189,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cache-control",
           description:
-            "Specifies caching behavior along the request/reply chain.",
+            "Specifies caching behavior along the request/reply chain",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-disposition",
-          description: "Specifies presentational information for the object.",
+          description: "Specifies presentational information for the object",
           args: {
             name: "string",
           },
@@ -1210,14 +1204,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--content-encoding",
           description:
-            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.",
+            "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field",
           args: {
             name: "string",
           },
         },
         {
           name: "--content-language",
-          description: "The language the content is in.",
+          description: "The language the content is in",
           args: {
             name: "string",
           },
@@ -1225,7 +1219,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--expires",
           description:
-            "The date and time at which the object is no longer cacheable.",
+            "The date and time at which the object is no longer cacheable",
           args: {
             name: "string",
           },
@@ -1233,7 +1227,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--source-region",
           description:
-            "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
+            "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket",
           args: {
             name: "string",
             suggestions: awsRegions,
@@ -1242,17 +1236,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only-show-errors",
           description:
-            "Only errors and warnings are displayed. All other output is suppressed.",
+            "Only errors and warnings are displayed. All other output is suppressed",
         },
         {
           name: "--no-progress",
           description:
-            "File transfer progress is not displayed. This flag is only applied when the quiet and only-show-errors flags are not provided.",
+            "File transfer progress is not displayed. This flag is only applied when the quiet and only-show-errors flags are not provided",
         },
         {
           name: "--page-size",
           description:
-            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
+            "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out",
           args: {
             name: "integer",
             description: "The default & max is 1000",
@@ -1261,12 +1255,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-glacier-warnings",
           description:
-            "Turns off glacier warnings. Warnings about an operation that cannot be performed because it involves copying, downloading, or moving a glacier object will no longer be printed to standard error and will no longer cause the return code of the command to be ``2``.",
+            "Turns off glacier warnings. Warnings about an operation that cannot be performed because it involves copying, downloading, or moving a glacier object will no longer be printed to standard error and will no longer cause the return code of the command to be ``2``",
         },
         {
           name: "--force-glacier-transfer",
           description:
-            "Forces a transfer request on all Glacier objects in a sync or recursive copy.",
+            "Forces a transfer request on all Glacier objects in a sync or recursive copy",
         },
         {
           name: "--request-payer",
@@ -1280,7 +1274,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata",
           description:
-            "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
+            "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified",
           args: {
             name: "map",
             description: "KeyName1=string,KeyName2=string",
@@ -1289,7 +1283,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--metadata-directive",
           description:
-            "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
+            "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values",
           args: {
             name: "string",
             suggestions: metadataDirective,
@@ -1315,7 +1309,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "mb",
-      description: "Creates an S3 bucket.",
+      description: "Creates an S3 bucket",
       options: [
         {
           name: "--region",
@@ -1326,51 +1320,45 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "path",
-          generators: generators.listBuckets,
-        },
-      ],
+      args: {
+        name: "path",
+        generators: generators.listBuckets,
+      },
     },
     {
       name: "rb",
       description:
-        "Deletes an empty S3 bucket. A bucket must be completely empty of objects and versioned objects before it can be deleted. However, the ``--force`` parameter can be used to delete the non-versioned objects in the bucket before the bucket is deleted.",
+        "Deletes an empty S3 bucket. A bucket must be completely empty of objects and versioned objects before it can be deleted. However, the ``--force`` parameter can be used to delete the non-versioned objects in the bucket before the bucket is deleted",
       options: [
         {
           name: "--force",
           description:
-            "Deletes all objects in the bucket including the bucket itself. Note that versioned objects will not be deleted in this process which would cause the bucket deletion to fail because the bucket would not be empty. To delete versioned objects use the ``s3api delete-object`` command with the ``--version-id`` parameter.",
+            "Deletes all objects in the bucket including the bucket itself. Note that versioned objects will not be deleted in this process which would cause the bucket deletion to fail because the bucket would not be empty. To delete versioned objects use the ``s3api delete-object`` command with the ``--version-id`` parameter",
         },
       ],
-      args: [
-        {
-          name: "path",
-          generators: generators.listBuckets,
-        },
-      ],
+      args: {
+        name: "path",
+        generators: generators.listBuckets,
+      },
     },
     {
       name: "presign",
       description:
-        "Generate a pre-signed URL for an Amazon S3 object. This allows anyone who receives the pre-signed URL to retrieve the S3 object with an HTTP GET request. For sigv4 requests the region needs to be configured explicitly.",
+        "Generate a pre-signed URL for an Amazon S3 object. This allows anyone who receives the pre-signed URL to retrieve the S3 object with an HTTP GET request. For sigv4 requests the region needs to be configured explicitly",
       options: [
         {
           name: "--expires-in",
           description:
-            "Number of seconds until the pre-signed URL expires.  Default is 3600 seconds.",
+            "Number of seconds until the pre-signed URL expires.  Default is 3600 seconds",
           args: {
             name: "integer",
           },
         },
       ],
-      args: [
-        {
-          name: "path",
-          generators: generators.listRemoteFilesGenerator,
-        },
-      ],
+      args: {
+        name: "path",
+        generators: generators.listRemoteFilesGenerator,
+      },
     },
   ],
 };

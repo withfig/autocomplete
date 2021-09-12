@@ -11,7 +11,7 @@ const newCommand = {
   },
   options: [
     {
-      name: ["-skip-namespace"],
+      name: "-skip-namespace",
       description: "Skip namespace (affects only isolated applications)",
       args: {},
     },
@@ -21,12 +21,12 @@ const newCommand = {
       args: {},
     },
     {
-      name: ["-m"],
+      name: "-m",
       description:
         "Path to some application template (can be a filesystem path or URL)",
     },
     {
-      name: ["-d"],
+      name: "-d",
       description: "Preconfigure for selected database - defaults to sqlite3",
       args: {
         name: "database",
@@ -46,109 +46,109 @@ const newCommand = {
       },
     },
     {
-      name: ["--skip-gemfile"],
+      name: "--skip-gemfile",
       description: "Don't create a Gemfile",
     },
     {
-      name: ["-G"],
+      name: "-G",
       description: "Skip .gitignore file",
     },
     {
-      name: ["--skip-keeps"],
+      name: "--skip-keeps",
       description: "Skip source control .keep files",
     },
     {
-      name: ["-M"],
+      name: "-M",
       description: "Skip Action Mailer files",
     },
     {
-      name: ["--skip-action-mailbox"],
+      name: "--skip-action-mailbox",
       description: "Skip Action Mailbox gem",
     },
     {
-      name: ["--skip-action-text"],
+      name: "--skip-action-text",
       description: "Skip Action Text gem",
     },
     {
-      name: ["-O"],
+      name: "-O",
       description: "Skip Active Record files",
     },
     {
-      name: ["--skip-active-storage"],
+      name: "--skip-active-storage",
       description: "Skip Active Storage files",
     },
     {
-      name: ["-P"],
+      name: "-P",
       description: "Skip Puma related files",
     },
     {
-      name: ["-C"],
+      name: "-C",
       description: "Skip Action Cable files",
     },
     {
-      name: ["-S"],
+      name: "-S",
       description: "Skip Sprockets files",
     },
     {
-      name: ["--skip-spring"],
+      name: "--skip-spring",
       description: "Don't install Spring application preloader",
     },
     {
-      name: ["--skip-listen"],
+      name: "--skip-listen",
       description:
         "Don't generate configuration that depends on the listen gem",
     },
     {
-      name: ["-J"],
+      name: "-J",
       description: "Skip JavaScript files",
     },
     {
-      name: ["--skip-turbolinks"],
+      name: "--skip-turbolinks",
       description: "Skip turbolinks gem",
     },
     {
-      name: ["-T"],
+      name: "-T",
       description: "Skip test files",
     },
     {
-      name: ["--skip-system-test"],
+      name: "--skip-system-test",
       description: "Skip system test files",
     },
     {
-      name: ["--skip-bootsnap"],
+      name: "--skip-bootsnap",
       description: "Skip bootsnap gem",
     },
     {
-      name: ["--dev"],
+      name: "--dev",
       description:
         "Setup the application with Gemfile pointing to your Rails checkout",
     },
     {
-      name: ["--edge"],
+      name: "--edge",
       description:
         "Setup the application with Gemfile pointing to Rails repository",
     },
     {
-      name: ["--rc"],
+      name: "--rc",
       description:
         "Path to file containing extra configuration options for rails command",
       args: { name: "path" },
     },
     {
-      name: ["--no-rc"],
+      name: "--no-rc",
       description:
         "Skip loading of extra configuration options from .railsrc file",
     },
     {
-      name: ["--api"],
+      name: "--api",
       description: "Preconfigure smaller stack for API only apps",
     },
     {
-      name: ["-B"],
+      name: "-B",
       description: "Don't run bundle install",
     },
     {
-      name: ["--webpacker"],
+      name: "--webpacker",
       description: "Preconfigure Webpack with a particular framework",
       args: {
         name: "framework",
@@ -156,7 +156,7 @@ const newCommand = {
       },
     },
     {
-      name: ["--skip-webpack-install]"],
+      name: "--skip-webpack-install]",
       description: "Don't run Webpack install",
     },
 
@@ -189,27 +189,27 @@ const newCommand = {
 
 const dbOptions = [
   {
-    name: ["--backtrace"],
+    name: "--backtrace",
     description:
-      "Enable full backtrace.  OUT can be stderr (default) or stdout.",
+      "Enable full backtrace.  OUT can be stderr (default) or stdout",
   },
   {
-    name: ["--comments"],
+    name: "--comments",
     description: "Show commented tasks only",
   },
   {
-    name: ["--job-stats"],
+    name: "--job-stats",
     description:
       "Display job statistics. LEVEL=history displays a complete job list",
   },
   {
-    name: ["--rules"],
-    description: "Trace the rules resolution.",
+    name: "--rules",
+    description: "Trace the rules resolution",
   },
   {
-    name: ["--suppress-backtrace"],
+    name: "--suppress-backtrace",
     description:
-      "Suppress backtrace lines matching regexp PATTERN. Ignored if --trace is on.",
+      "Suppress backtrace lines matching regexp PATTERN. Ignored if --trace is on",
     args: { name: "pattern" },
   },
   {
@@ -220,11 +220,11 @@ const dbOptions = [
   {
     name: ["-B", "--build-all"],
     description:
-      "Build all prerequisites, including those which are up-to-date.",
+      "Build all prerequisites, including those which are up-to-date",
   },
   {
     name: ["-D", "--describe"],
-    description: "Describe the tasks (matching optional PATTERN), then exit.",
+    description: "Describe the tasks (matching optional PATTERN), then exit",
     args: {
       name: "pattern",
       isOptional: true,
@@ -232,33 +232,33 @@ const dbOptions = [
   },
   {
     name: ["-e", "--execute"],
-    description: "Execute some Ruby code and exit.",
+    description: "Execute some Ruby code and exit",
     args: { name: "code" },
   },
   {
     name: ["-E", "--execute-continue"],
     description:
-      "Execute some Ruby code, then continue with normal task processing.",
+      "Execute some Ruby code, then continue with normal task processing",
     args: { name: "code" },
   },
   {
     name: ["-f", "--rakefile"],
-    description: "Use FILENAME as the rakefile to search for.",
+    description: "Use FILENAME as the rakefile to search for",
     args: { name: "filename" },
   },
   {
-    name: ["-G"],
+    name: "-G",
     description:
-      "Use standard project Rakefile search paths, ignore system wide rakefiles.",
+      "Use standard project Rakefile search paths, ignore system wide rakefiles",
   },
   {
     name: ["-g", "--system"],
     description:
-      "Using system wide (global) rakefiles (usually '~/.rake/*.rake').",
+      "Using system wide (global) rakefiles (usually '~/.rake/*.rake')",
   },
   {
     name: ["-I", "--libdir"],
-    description: "Include LIBDIR in the search path for required modules.",
+    description: "Include LIBDIR in the search path for required modules",
     args: { name: "libdir" },
   },
   {
@@ -269,37 +269,37 @@ const dbOptions = [
   },
   {
     name: ["-m", "--multitask"],
-    description: "Treat all tasks as multitasks.",
+    description: "Treat all tasks as multitasks",
     args: {},
   },
   {
     name: ["-n", "--dry-run"],
-    description: "Do a dry run without executing actions.",
+    description: "Do a dry run without executing actions",
     args: {},
   },
   {
-    name: ["-N"],
-    description: "Do not search parent directories for the Rakefile.",
+    name: "-N",
+    description: "Do not search parent directories for the Rakefile",
     args: {},
   },
   {
     name: ["-P", "--prereqs"],
-    description: "Display the tasks and dependencies, then exit.",
+    description: "Display the tasks and dependencies, then exit",
     args: {},
   },
   {
     name: ["-p", "--execute-print"],
-    description: "Execute some Ruby code, print the result, then exit.",
+    description: "Execute some Ruby code, print the result, then exit",
     args: {},
   },
   {
     name: ["-q", "--quiet"],
-    description: "Do not log messages to standard output.",
+    description: "Do not log messages to standard output",
     args: {},
   },
   {
     name: ["-r", "--require"],
-    description: "Require MODULE before executing rakefile.",
+    description: "Require MODULE before executing rakefile",
     args: { name: "module" },
   },
   {
@@ -309,46 +309,46 @@ const dbOptions = [
     args: { name: "rakelibdir" },
   },
   {
-    name: ["--rakelib"],
+    name: "--rakelib",
     description:
-      "-s, --silent                     Like --quiet, but also suppresses the 'in directory' announcement.",
+      "-s, --silent                     Like --quiet, but also suppresses the 'in directory' announcement",
     args: {},
   },
   {
     name: ["-t", "--trace"],
     description:
-      "Turn on invoke/execute tracing, enable full backtrace. OUT can be stderr (default) or stdout.",
+      "Turn on invoke/execute tracing, enable full backtrace. OUT can be stderr (default) or stdout",
     args: {},
   },
   {
     name: ["-T", "--tasks"],
     description:
-      "Display the tasks (matching optional PATTERN) with descriptions, then exit. -AT combination displays all of tasks contained no description.",
+      "Display the tasks (matching optional PATTERN) with descriptions, then exit. -AT combination displays all of tasks contained no description",
     args: {},
   },
   {
     name: ["-v", "--verbose"],
-    description: "Log message to standard output.",
+    description: "Log message to standard output",
     args: {},
   },
   {
     name: ["-V", "--version"],
-    description: "Display the program version.",
+    description: "Display the program version",
     args: {},
   },
   {
     name: ["-W", "--where"],
-    description: "Describe the tasks (matching optional PATTERN), then exit.",
+    description: "Describe the tasks (matching optional PATTERN), then exit",
     args: { name: "pattern" },
   },
   {
     name: ["-X", "--no-deprecation-warnings"],
-    description: "Disable the deprecation warnings.",
+    description: "Disable the deprecation warnings",
     args: {},
   },
   {
     name: ["-h", "--help"],
-    description: "Display this help message.",
+    description: "Display this help message",
     args: {},
   },
 ];
@@ -356,7 +356,7 @@ const dbOptions = [
 const defaultCommands: Fig.Subcommand[] = [
   {
     name: "console",
-    description: "Interact with your Rails application from the command line.",
+    description: "Interact with your Rails application from the command line",
     options: [
       {
         name: ["-s", "--sandbox"],
@@ -379,18 +379,18 @@ const defaultCommands: Fig.Subcommand[] = [
       {
         name: ["-e", "--environment"],
         description:
-          "Specifies the environment to run this server under (e.g. test/development/production).",
+          "Specifies the environment to run this server under (e.g. test/development/production)",
         args: { name: "environment" },
       },
       {
         name: ["-p", "--port"],
-        description: "Runs Rails on the specified port - defaults to 3000.",
+        description: "Runs Rails on the specified port - defaults to 3000",
         args: { name: "port" },
       },
       {
         name: ["-b", "--binding"],
         description:
-          "Binds Rails to the specified IP - defaults to 'localhost' in development and '0.0.0.0' in other environments'.",
+          "Binds Rails to the specified IP - defaults to 'localhost' in development and '0.0.0.0' in other environments'",
         args: { name: "IP" },
       },
       {
@@ -401,12 +401,12 @@ const defaultCommands: Fig.Subcommand[] = [
       },
       {
         name: ["-d", "--daemon"],
-        description: "Runs server as a Daemon.",
+        description: "Runs server as a Daemon",
       },
       {
         name: ["-u", "--using"],
         description:
-          "Specifies the Rack server used to run the application (thin/puma/webrick).",
+          "Specifies the Rack server used to run the application (thin/puma/webrick)",
         args: { name: "server" },
       },
       {
@@ -419,11 +419,11 @@ const defaultCommands: Fig.Subcommand[] = [
         description: "Specifies whether to perform caching in development",
       },
       {
-        name: ["--early-hints"],
+        name: "--early-hints",
         description: "Enables HTTP/2 early hints",
       },
       {
-        name: ["--log-to-stdout"],
+        name: "--log-to-stdout",
         description:
           "Whether to log to stdout. Enabled by default in development when not daemonized",
       },
@@ -445,13 +445,13 @@ const defaultCommands: Fig.Subcommand[] = [
       "Opens a console to your database (supports MySQL, PostgreSQL, and SQLite3)",
     options: [
       {
-        name: ["-e"],
+        name: "-e",
         description:
-          "Specifies the environment to run this dbconsole under (e.g. test/development/production).",
+          "Specifies the environment to run this dbconsole under (e.g. test/development/production)",
         args: {},
       },
       {
-        name: ["--mode"],
+        name: "--mode",
         description:
           "Automatically put the sqlite3 database in the specified mode",
         args: {
@@ -460,18 +460,18 @@ const defaultCommands: Fig.Subcommand[] = [
         },
       },
       {
-        name: ["-p"],
+        name: "-p",
         description: "Automatically provide the password from database.yml",
         args: {},
       },
       {
-        name: ["-c"],
-        description: "Specifies the connection to use.",
+        name: "-c",
+        description: "Specifies the connection to use",
         args: { name: "connection" },
       },
       {
         name: ["-db", "--database"],
-        description: "Specifies the database to use.",
+        description: "Specifies the database to use",
       },
     ],
   },
@@ -520,27 +520,27 @@ const defaultCommands: Fig.Subcommand[] = [
     ],
     options: [
       {
-        name: ["-h"],
+        name: "-h",
         description: "Print generator's options and usage",
         args: {},
       },
       {
-        name: ["-p"],
+        name: "-p",
         description: "Run but do not make any changes",
         args: {},
       },
       {
-        name: ["-f"],
+        name: "-f",
         description: "Overwrite files that already exist",
         args: {},
       },
       {
-        name: ["-s"],
+        name: "-s",
         description: "Skip files that already exist",
         args: {},
       },
       {
-        name: ["-q"],
+        name: "-q",
         description: "Suppress status output",
         args: {},
       },
@@ -551,19 +551,19 @@ const defaultCommands: Fig.Subcommand[] = [
     description: "List all of the routes defined in your application",
     options: [
       {
-        name: ["-c"],
+        name: "-c",
         description:
-          "Filter by a specific controller, e.g. PostsController or Admin::PostsController.",
+          "Filter by a specific controller, e.g. PostsController or Admin::PostsController",
         args: {},
       },
       {
-        name: ["-g"],
-        description: "Grep routes by a specific pattern.",
+        name: "-g",
+        description: "Grep routes by a specific pattern",
         args: {},
       },
       {
-        name: ["-E"],
-        description: "Print routes expanded vertically with parts explained. ",
+        name: "-E",
+        description: "Print routes expanded vertically with parts explained",
         args: {},
       },
     ],
@@ -596,7 +596,7 @@ const defaultCommands: Fig.Subcommand[] = [
       const options = Array.from(helpText.matchAll(argRegex)).map((match) => {
         const [_match, _short, long, arg, description] = match;
         return {
-          name: [long.replace(/\[.+\]/g, "")],
+          name: long.replace(/\[.+\]/g, ""),
           description,
           args: { name: arg },
         };

@@ -14,7 +14,7 @@ const deployments: Fig.Generator = {
       return parsedOutput.Tables[0].Rows.forEach((deployment) => {
         return {
           name: deployment.name,
-          description: "deployment",
+          description: "Deployment",
         };
       });
     } catch (e) {
@@ -25,7 +25,7 @@ const deployments: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "bosh",
-  description: "bosh cli to managed your bosh deployment",
+  description: "Bosh cli to managed your bosh deployment",
   subcommands: [
     {
       name: "add-blob",
@@ -558,11 +558,11 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version"],
+      name: "--version",
       description: "Show CLI version",
     },
     {
-      name: ["--config"],
+      name: "--config",
       description: "Config file path (default: ~/.bosh/config)",
       args: genericPathArg,
     },
@@ -574,16 +574,16 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ca-cert"],
+      name: "--ca-cert",
       description: "Director CA certificate path or value",
       args: genericPathArg,
     },
     {
-      name: ["--sha2"],
+      name: "--sha2",
       description: "Use SHA256 checksums",
     },
     {
-      name: ["--parallel"],
+      name: "--parallel",
       description: "The max number of parallel operations (default: 5)",
       args: {
         name: "amount",
@@ -594,14 +594,14 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--client"],
+      name: "--client",
       description: "Override username or UAA client [$BOSH_CLIENT]",
       args: {
         name: "name",
       },
     },
     {
-      name: ["--client-secret"],
+      name: "--client-secret",
       description:
         "Override password or UAA client secret [$BOSH_CLIENT_SECRET]",
       args: {
@@ -609,14 +609,14 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--deployment"],
+      name: "--deployment",
       description: "Deployment name [$BOSH_DEPLOYMENT]",
       args: {
         generators: deployments,
       },
     },
     {
-      name: ["--column"],
+      name: "--column",
       description: "Filter to show only given column(s)",
       args: {
         name: "name",
@@ -624,15 +624,15 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--json"],
+      name: "--json",
       description: "Output as JSON",
     },
     {
-      name: ["--tty"],
+      name: "--tty",
       description: "Force TTY-like output",
     },
     {
-      name: ["--no-color"],
+      name: "--no-color",
       description: "Toggle colorized output",
     },
     {
