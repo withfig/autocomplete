@@ -5,7 +5,7 @@ import { decodedTextSpanIntersectsWith } from "typescript";
 const completionSpec: Fig.Spec = {
   name: "mongosh",
   description:
-    "The MongoDB Shell, mongosh , is a fully functional JavaScript and Node.js 14.x REPL environment for interacting with MongoDB deployments",
+    "The MongoDB Shell, mongosh  is a fully functional JavaScript and Node.js 14.x REPL environment for interacting with MongoDB deployments",
   args: {
     name: "Connection String",
     isOptional: true,
@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--eval",
       description:
-        "<javascript>: Evaluates a JavaScript expression that is specified as an argument. mongosh does not load its own environment when evaluating code. As a result many options of the shell environment are not available. The result of evaluating a JavaScript argument is printed to your command line",
+        "Evaluates a JavaScript expression that is specified as an argument. mongosh does not load its own environment when evaluating code. As a result many options of the shell environment are not available. The result of evaluating a JavaScript argument is printed to your command line",
       args: {
         name: "javascript",
       },
