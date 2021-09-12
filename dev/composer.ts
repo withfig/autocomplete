@@ -1,3 +1,6 @@
+const composerIcon =
+  "https://getcomposer.org/img/logo-composer-transparent5.png";
+
 interface ComposerArgument {
   name: string;
   is_required: boolean;
@@ -96,6 +99,8 @@ const completionSpec: Fig.Spec = {
 
   generateSpec: async (tokens, executeShellCommand) => {
     const jsonList = await executeShellCommand("composer list --format=json");
+    const symfonyLock = await executeShellCommand(`file symfony.lock`);
+
     const subcommands: Fig.Subcommand[] = [];
 
     try {
@@ -106,7 +111,7 @@ const completionSpec: Fig.Spec = {
         subcommands.push({
           name: command.name,
           description: command.description,
-          icon: "https://getcomposer.org/img/logo-composer-transparent5.png",
+          icon: composerIcon,
 
           args: Object.keys(command.definition.arguments).map((argKey) => {
             const arg = command.definition.arguments[argKey];
@@ -147,6 +152,107 @@ const completionSpec: Fig.Spec = {
               args: option.accept_value ? {} : undefined,
             };
           }),
+        });
+      }
+
+      const recipesCommonOptions: Fig.Option[] = [
+        { name: ["-h", "--help"], description: "Display this help message" },
+        { name: ["-q", "--quiet"], description: "Do not output any message" },
+        {
+          name: ["-V", "--version"],
+          description: "Display this application version",
+        },
+        {
+          name: "--ansi",
+          description: "Force ANSI output",
+          exclusiveOn: ["--no-ansi"],
+        },
+        {
+          name: "--no-ansi",
+          description: "Disable ANSI output",
+          exclusiveOn: ["--ansi"],
+        },
+        {
+          name: ["-n", "--no-interaction"],
+          description: "Do not ask any interactive question",
+        },
+        {
+          name: "--profile",
+          description: "Display timing and memory usage information",
+        },
+        { name: "--no-plugins", description: "Whether to disable plugins" },
+        {
+          name: ["-d", "--working-dir"],
+          description:
+            "If specified, use the given directory as working directory",
+          args: {
+            name: "dir",
+            template: "folders",
+          },
+        },
+        { name: "--no-cache", description: "Prevent use of the cache" },
+        {
+          name: ["-v", "--verbose"],
+          description: "Verbosity of messages: 1 for normal output",
+        },
+        {
+          name: "-vv",
+          description: "Verbosity of messages: 2 for more verbose output",
+        },
+        {
+          name: "-vvv",
+          description: "Verbosity of messages: 3 for debug",
+        },
+      ];
+
+      const symfonyLockExists = !symfonyLock.endsWith(
+        "(No such file or directory)"
+      );
+      if (symfonyLockExists) {
+        subcommands.push({
+          name: ["recipes", "symfony:recipes"],
+          description: "Shows information about all available recipes",
+          icon: composerIcon,
+          args: {
+            name: "package",
+            description: "Package to inspect, if not provided all packages are",
+            isOptional: true,
+            isVariadic: false,
+          },
+          options: [
+            {
+              name: ["-o", "--outdated"],
+              description: "Show only recipes that are outdated",
+            },
+            ...recipesCommonOptions,
+          ],
+        });
+
+        subcommands.push({
+          name: [
+            "recipes:install",
+            "symfony:recipes:install",
+            "symfony:sync-recipes",
+            "sync-recipes",
+            "fix-recipes",
+          ],
+          description:
+            "Installs or reinstalls recipes for already installed packages",
+          icon: composerIcon,
+          args: {
+            name: "packages",
+            description: "Recipes that should be installed",
+            isVariadic: true,
+          },
+          options: [
+            {
+              name: "--force",
+              description:
+                "Overwrite existing files when a new version of a recipe is available",
+              isDangerous: true,
+            },
+            ...recipesCommonOptions,
+          ],
         });
       }
     } catch (err) {
