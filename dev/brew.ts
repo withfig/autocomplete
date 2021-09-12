@@ -173,8 +173,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--cask", "--casks"],
-          description:
-            "List only casks, or treat all named arguments as casks",
+          description: "List only casks, or treat all named arguments as casks",
         },
         {
           name: "--unbrewed",
@@ -186,7 +185,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Print formulae with fully-qualified names. Unless --full-name, --versions or",
         },
-        { name: "--pinned", description: "List only pinned formulae, or only the specified (pinned) formulae if formula are provided" },
+        {
+          name: "--pinned",
+          description:
+            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided",
+        },
         {
           name: "--versions",
           description:
@@ -241,8 +244,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--cask,",
-          description:
-            "List only casks, or treat all named arguments as casks",
+          description: "List only casks, or treat all named arguments as casks",
         },
         {
           name: "--unbrewed",
@@ -254,7 +256,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Print formulae with fully-qualified names. Unless --full-name, --versions or",
         },
-        { name: "--pinned", description: "List only pinned formulae, or only the specified (pinned) formulae if formula are provided" },
+        {
+          name: "--pinned",
+          description:
+            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided",
+        },
         {
           name: "--versions",
           description:
@@ -504,8 +510,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--keep-tmp",
-          description:
-            "Retain the temporary files created during installation",
+          description: "Retain the temporary files created during installation",
         },
         {
           name: "--build-bottle",
@@ -817,8 +822,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--keep-tmp",
-          description:
-            "Retain the temporary files created during installation",
+          description: "Retain the temporary files created during installation",
         },
         {
           name: "--build-bottle",
