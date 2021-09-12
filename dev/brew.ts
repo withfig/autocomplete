@@ -11,22 +11,35 @@ const generators: Record<string, Fig.Generator> = {
         }));
     },
   },
+  formulaeGenerator: {
+    script: "brew list -1",
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .filter((line) => !line.includes("="))
+        .map((formula) => ({
+          name: formula,
+          icon: "🍺",
+          description: "Installed formula",
+        }));
+    },
+  },
 };
 
 const commonOptions: Fig.Option[] = [
   {
     name: ["-d", "--debug"],
-    description: "Display any debugging information.",
+    description: "Display any debugging information",
   },
   {
     name: ["-q", "--quiet"],
-    description: "Make some output more quiet.",
+    description: "Make some output more quiet",
   },
   {
     name: ["-v", "--verbose"],
-    description: "Make some output more verbose.",
+    description: "Make some output more verbose",
   },
-  { name: ["-h", "--help"], description: "Show this message." },
+  { name: ["-h", "--help"], description: "Show this message" },
 ];
 
 // brew info is equiv to brew abv. Everything but 'name' is shared.
@@ -131,11 +144,11 @@ const brewInfo = (name: string): Fig.Subcommand => ({
     },
     {
       name: ["-d", "--debug"],
-      description: "Display any debugging information.",
+      description: "Display any debugging information",
     },
     {
       name: ["-q", "--quiet"],
-      description: "List only the names of outdated kegs.",
+      description: "List only the names of outdated kegs",
     },
     {
       name: ["-h", "--help"],
@@ -156,12 +169,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--formula", "--formulae"],
           description:
-            " List only formulae, or treat all named arguments as formulae.",
+            "List only formulae, or treat all named arguments as formulae",
         },
         {
           name: ["--cask", "--casks"],
           description:
-            "List only casks, or treat all named arguments as casks.",
+            "List only casks, or treat all named arguments as casks",
         },
         {
           name: "--unbrewed",
@@ -173,61 +186,47 @@ const completionSpec: Fig.Spec = {
           description:
             "Print formulae with fully-qualified names. Unless --full-name, --versions or",
         },
-        { name: "--pinned", description: "are passed, other options (i.e." },
+        { name: "--pinned", description: "List only pinned formulae, or only the specified (pinned) formulae if formula are provided" },
         {
           name: "--versions",
           description:
-            "Show the version number for installed formulae, or only the specified formulae if formula are provided.",
+            "Show the version number for installed formulae, or only the specified formulae if formula are provided",
         },
         {
           name: "--multiple",
-          description: "Only show formulae with multiple versions installed.",
+          description: "Only show formulae with multiple versions installed",
         },
         {
           name: "--pinned",
           description:
-            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided. See also pin, unpin.",
+            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided. See also pin, unpin",
         },
         {
           name: "-1",
           description:
-            "Force output to be one entry per line. This is the default when output is not to a terminal.",
+            "Force output to be one entry per line. This is the default when output is not to a terminal",
         },
         {
           name: "-l",
           description:
-            "List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument.",
+            "List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument",
         },
         {
           name: "-r",
           description:
-            "Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument.",
+            "Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument",
         },
         {
           name: "-t",
           description:
-            "Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument.",
+            "Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument",
         },
       ],
       args: {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: {
-          script: "brew list -1",
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .filter((line) => !line.includes("="))
-              .map((formula) => {
-                return {
-                  name: formula,
-                  icon: "🍺",
-                  description: "Installed formula",
-                };
-              });
-          },
-        },
+        generators: generators.formulaeGenerator,
       },
     },
     {
@@ -238,12 +237,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--formula,",
           description:
-            "--formulae List only formulae, or treat all named arguments as formulae.",
+            "List only formulae, or treat all named arguments as formulae",
         },
         {
           name: "--cask,",
           description:
-            "--casks List only casks, or treat all named arguments as casks.",
+            "List only casks, or treat all named arguments as casks",
         },
         {
           name: "--unbrewed",
@@ -255,61 +254,47 @@ const completionSpec: Fig.Spec = {
           description:
             "Print formulae with fully-qualified names. Unless --full-name, --versions or",
         },
-        { name: "--pinned", description: "are passed, other options (i.e." },
+        { name: "--pinned", description: "List only pinned formulae, or only the specified (pinned) formulae if formula are provided" },
         {
           name: "--versions",
           description:
-            "Show the version number for installed formulae, or only the specified formulae if formula are provided.",
+            "Show the version number for installed formulae, or only the specified formulae if formula are provided",
         },
         {
           name: "--multiple",
-          description: "Only show formulae with multiple versions installed.",
+          description: "Only show formulae with multiple versions installed",
         },
         {
           name: "--pinned",
           description:
-            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided. See also pin, unpin.",
+            "List only pinned formulae, or only the specified (pinned) formulae if formula are provided",
         },
         {
           name: "-1",
           description:
-            "Force output to be one entry per line. This is the default when output is not to a terminal.",
+            "Force output to be one entry per line. This is the default when output is not to a terminal",
         },
         {
           name: "-l",
           description:
-            "List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument.",
+            "List formulae and/or casks in long format. Has no effect when a formula or cask name is passed as an argument",
         },
         {
           name: "-r",
           description:
-            "Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument.",
+            "Reverse the order of the formulae and/or casks sort to list the oldest entries first. Has no effect when a formula or cask name is passed as an argument",
         },
         {
           name: "-t",
           description:
-            "Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument.",
+            "Sort formulae and/or casks by time modified, listing most recently modified first. Has no effect when a formula or cask name is passed as an argument",
         },
       ],
       args: {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: {
-          script: "brew list -1",
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .filter((line) => !line.includes("="))
-              .map((formula) => {
-                return {
-                  name: formula,
-                  icon: "🍺",
-                  description: "Installed formula",
-                };
-              });
-          },
-        },
+        generators: generators.formulaeGenerator,
       },
     },
     {
@@ -355,23 +340,23 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-v", "--verbose"],
           description:
-            "Print the directories checked and git operations performed.",
+            "Print the directories checked and git operations performed",
         },
         {
           name: ["-d", "--debug"],
           description:
-            "Display a trace of all shell commands as they are executed.",
+            "Display a trace of all shell commands as they are executed",
         },
         { name: ["-h", "--help"], description: "Show help message" },
         {
           name: "--merge",
           description:
-            "Use git merge to apply updates (rather than git rebase).",
+            "Use git merge to apply updates (rather than git rebase)",
         },
         {
           name: "--preinstall",
           description:
-            "Run on auto-updates (e.g. before brew install). Skips some slower steps.",
+            "Run on auto-updates (e.g. before brew install). Skips some slower steps",
         },
       ],
     },
@@ -416,7 +401,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--greedy-auto-updates",
           description:
-            "Print outdated casks including those with auto_updates true.",
+            "Print outdated casks including those with auto_updates true",
         },
         { name: "--json", description: "Print output in JSON format" },
       ],
@@ -428,21 +413,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isVariadic: true,
         name: "formula",
-        generators: {
-          script: "brew list -1",
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .filter((line) => !line.includes("="))
-              .map((formula) => {
-                return {
-                  name: formula,
-                  icon: "🍺",
-                  description: "Installed formula",
-                };
-              });
-          },
-        },
+        generators: generators.formulaeGenerator,
       },
     },
     {
@@ -452,21 +423,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isVariadic: true,
         name: "formula",
-        generators: {
-          script: "brew list -1",
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .filter((line) => !line.includes("="))
-              .map((formula) => {
-                return {
-                  name: formula,
-                  icon: "🍺",
-                  description: "Installed formula",
-                };
-              });
-          },
-        },
+        generators: generators.formulaeGenerator,
       },
     },
     {
@@ -480,12 +437,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-v", "--verbose"],
-          description: "Print the verification and postinstall steps.",
+          description: "Print the verification and postinstall steps",
         },
         {
           name: ["-s", "--build-from-source"],
           description:
-            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available.",
+            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available",
         },
         {
           name: ["-i", "--interactive"],
@@ -494,31 +451,31 @@ const completionSpec: Fig.Spec = {
         { name: ["-g", "--git"], description: "Create a Git repository" },
         {
           name: ["-q", "--quiet"],
-          description: "Make some output more quiet.",
+          description: "Make some output more quiet",
         },
-        { name: ["-h", "--help"], description: "Show this message." },
+        { name: ["-h", "--help"], description: "Show this message" },
         {
           name: "--formula,",
-          description: "Treat all named arguments as formulae.",
+          description: "Treat all named arguments as formulae",
         },
         {
           name: "--env",
-          description: "Disabled other than for internal Homebrew use.",
+          description: "Disabled other than for internal Homebrew use",
         },
         {
           name: "--ignore-dependencies",
           description:
-            "An unsupported Homebrew development flag to skip installing any dependencies of any kind. If the dependencies are not already present, the formula will have issues. If you're not developing Homebrew, consider adjusting your PATH rather than using this flag.",
+            "An unsupported Homebrew development flag to skip installing any dependencies of any kind. If the dependencies are not already present, the formula will have issues. If you're not developing Homebrew, consider adjusting your PATH rather than using this flag",
         },
         {
           name: "--only-dependencies",
           description:
-            "Install the dependencies with specified options but do not install the formula itself.",
+            "Install the dependencies with specified options but do not install the formula itself",
         },
         {
           name: "--cc",
           description:
-            "Attempt to compile using the specified compiler, which should be the name of the compiler's executable.",
+            "Attempt to compile using the specified compiler, which should be the name of the compiler's executable",
           args: {
             name: "compiler",
             suggestions: ["gcc-7", "llvm_clang", "clang"],
@@ -528,79 +485,79 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force-bottle",
           description:
-            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation.",
+            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation",
         },
         {
           name: "--include-test",
           description:
-            "Install testing dependencies required to run brew test formula.",
+            "Install testing dependencies required to run brew test formula",
         },
         {
           name: "--HEAD",
           description:
-            "If formula defines it, install the HEAD version, aka. main, trunk, unstable, master.",
+            "If formula defines it, install the HEAD version, aka. main, trunk, unstable, master",
         },
         {
           name: "--fetch-HEAD",
           description:
-            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released.",
+            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released",
         },
         {
           name: "--keep-tmp",
           description:
-            "Retain the temporary files created during installation.",
+            "Retain the temporary files created during installation",
         },
         {
           name: "--build-bottle",
           description:
-            "Prepare the formula for eventual bottling during installation, skipping any post-install steps.",
+            "Prepare the formula for eventual bottling during installation, skipping any post-install steps",
         },
         {
           name: "--bottle-arch",
           description:
-            "Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on.",
+            "Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on",
         },
         {
           name: "--display-times",
           description:
-            "Print install times for each formula at the end of the run.",
+            "Print install times for each formula at the end of the run",
         },
         {
           name: "--cask,",
-          description: "--casks Treat all named arguments as casks.",
+          description: "--casks Treat all named arguments as casks",
         },
         {
           name: "--binaries",
           description:
-            "Disable/enable linking of helper executables (default: enabled).",
+            "Disable/enable linking of helper executables (default: enabled)",
         },
         {
           name: "--no-binaries",
           description:
-            "Disable/enable linking of helper executables (default: enabled).",
+            "Disable/enable linking of helper executables (default: enabled)",
         },
         {
           name: "--require-sha",
-          description: "Require all casks to have a checksum.",
+          description: "Require all casks to have a checksum",
         },
         {
           name: "--quarantine",
           description:
-            "Disable/enable quarantining of downloads (default: enabled).",
+            "Disable/enable quarantining of downloads (default: enabled)",
         },
         {
           name: "--no-quarantine",
           description:
-            "Disable/enable quarantining of downloads (default: enabled).",
+            "Disable/enable quarantining of downloads (default: enabled)",
         },
         {
           name: "--skip-cask-deps",
-          description: "Skip installing cask dependencies.",
+          description: "Skip installing cask dependencies",
         },
         {
           name: "--appdir",
           description:
-            "Target location for Applications (default: /Applications).",
+            "Target location for Applications (default: /Applications)",
           args: {
             name: "location",
             template: "folders",
@@ -609,7 +566,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--colorpickerdir",
           description:
-            "Target location for Color Pickers (default: ~/Library/ColorPickers).",
+            "Target location for Color Pickers (default: ~/Library/ColorPickers)",
           args: {
             name: "location",
             template: "folders",
@@ -618,7 +575,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prefpanedir",
           description:
-            "Target location for Preference Panes (default: ~/Library/PreferencePanes).",
+            "Target location for Preference Panes (default: ~/Library/PreferencePanes)",
           args: {
             name: "location",
             template: "folders",
@@ -627,7 +584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--qlplugindir",
           description:
-            "Target location for QuickLook Plugins (default: ~/Library/QuickLook).",
+            "Target location for QuickLook Plugins (default: ~/Library/QuickLook)",
           args: {
             name: "location",
             template: "folders",
@@ -636,7 +593,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mdimporterdir",
           description:
-            "Target location for Spotlight Plugins (default: ~/Library/Spotlight).",
+            "Target location for Spotlight Plugins (default: ~/Library/Spotlight)",
           args: {
             name: "location",
             template: "folders",
@@ -645,7 +602,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dictionarydir",
           description:
-            "Target location for Dictionaries (default: ~/Library/Dictionaries).",
+            "Target location for Dictionaries (default: ~/Library/Dictionaries)",
           args: {
             name: "location",
             template: "folders",
@@ -653,7 +610,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--fontdir",
-          description: "Target location for Fonts (default: ~/Library/Fonts).",
+          description: "Target location for Fonts (default: ~/Library/Fonts)",
           args: {
             name: "location",
             template: "folders",
@@ -662,7 +619,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--servicedir",
           description:
-            "Target location for Services (default: ~/Library/Services).",
+            "Target location for Services (default: ~/Library/Services)",
           args: {
             name: "location",
             template: "folders",
@@ -671,7 +628,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--input-methoddir",
           description:
-            "Target location for Input Methods (default: ~/Library/Input Methods).",
+            "Target location for Input Methods (default: ~/Library/Input Methods)",
           args: {
             name: "location",
             template: "folders",
@@ -680,7 +637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--internet-plugindir",
           description:
-            "Target location for Internet Plugins (default: ~/Library/Internet Plug-Ins).",
+            "Target location for Internet Plugins (default: ~/Library/Internet Plug-Ins)",
           args: {
             name: "location",
             template: "folders",
@@ -689,7 +646,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--audio-unit-plugindir",
           description:
-            "Target location for Audio Unit Plugins (default: ~/Library/Audio/Plug-Ins/Components).",
+            "Target location for Audio Unit Plugins (default: ~/Library/Audio/Plug-Ins/Components)",
           args: {
             name: "location",
             template: "folders",
@@ -698,7 +655,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vst-plugindir",
           description:
-            "Target location for VST Plugins (default: ~/Library/Audio/Plug-Ins/VST).",
+            "Target location for VST Plugins (default: ~/Library/Audio/Plug-Ins/VST)",
           args: {
             name: "location",
             template: "folders",
@@ -707,7 +664,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vst3-plugindir",
           description:
-            "Target location for VST3 Plugins (default: ~/Library/Audio/Plug-Ins/VST3).",
+            "Target location for VST3 Plugins (default: ~/Library/Audio/Plug-Ins/VST3)",
           args: {
             name: "location",
             template: "folders",
@@ -716,7 +673,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--screen-saverdir",
           description:
-            "Target location for Screen Savers (default: ~/Library/Screen Savers).",
+            "Target location for Screen Savers (default: ~/Library/Screen Savers)",
           args: {
             name: "location",
             template: "folders",
@@ -725,7 +682,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--language",
           description:
-            "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system.",
+            "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system",
         },
       ],
     },
@@ -737,44 +694,44 @@ const completionSpec: Fig.Spec = {
         ...commonOptions,
         {
           name: "--formula,",
-          description: "Search online and locally for formulae.",
+          description: "Search online and locally for formulae",
         },
         {
           name: "--cask,",
-          description: "Search online and locally for casks.",
+          description: "Search online and locally for casks",
         },
         {
           name: "--desc",
           description:
-            "Search for formulae with a description matching text and casks with a name matching text.",
+            "Search for formulae with a description matching text and casks with a name matching text",
         },
         {
           name: "--pull-request",
-          description: "Search for GitHub pull requests containing text.",
+          description: "Search for GitHub pull requests containing text",
         },
         {
           name: "--open",
-          description: "Search for only open GitHub pull requests.",
+          description: "Search for only open GitHub pull requests",
         },
         {
           name: "--closed",
-          description: "Search for only closed GitHub pull requests.",
+          description: "Search for only closed GitHub pull requests",
         },
         {
           name: ["--repology", "--macports"],
-          description: "Search for text in the given database.",
+          description: "Search for text in the given database",
         },
         {
           name: ["--fink", "--opensuse"],
-          description: "Search for text in the given database.",
+          description: "Search for text in the given database",
         },
         {
           name: ["--fedora", "--debian"],
-          description: "Search for text in the given database.",
+          description: "Search for text in the given database",
         },
         {
           name: "--ubuntu",
-          description: "Search for text in the given database.",
+          description: "Search for text in the given database",
         },
       ],
     },
@@ -793,12 +750,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-v", "--verbose"],
-          description: "Print the verification and postinstall steps.",
+          description: "Print the verification and postinstall steps",
         },
         {
           name: ["-s", "--build-from-source"],
           description:
-            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available.",
+            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available",
         },
         {
           name: ["-i", "--interactive"],
@@ -807,31 +764,31 @@ const completionSpec: Fig.Spec = {
         { name: ["-g", "--git"], description: "Create a Git repository" },
         {
           name: ["-q", "--quiet"],
-          description: "Make some output more quiet.",
+          description: "Make some output more quiet",
         },
-        { name: ["-h", "--help"], description: "Show this message." },
+        { name: ["-h", "--help"], description: "Show this message" },
         {
           name: "--formula,",
-          description: "Treat all named arguments as formulae.",
+          description: "Treat all named arguments as formulae",
         },
         {
           name: "--env",
-          description: "Disabled other than for internal Homebrew use.",
+          description: "Disabled other than for internal Homebrew use",
         },
         {
           name: "--ignore-dependencies",
           description:
-            "An unsupported Homebrew development flag to skip installing any dependencies of any kind. If the dependencies are not already present, the formula will have issues. If you're not developing Homebrew, consider adjusting your PATH rather than using this flag.",
+            "An unsupported Homebrew development flag to skip installing any dependencies of any kind. If the dependencies are not already present, the formula will have issues. If you're not developing Homebrew, consider adjusting your PATH rather than using this flag",
         },
         {
           name: "--only-dependencies",
           description:
-            "Install the dependencies with specified options but do not install the formula itself.",
+            "Install the dependencies with specified options but do not install the formula itself",
         },
         {
           name: "--cc",
           description:
-            "Attempt to compile using the specified compiler, which should be the name of the compiler's executable.",
+            "Attempt to compile using the specified compiler, which should be the name of the compiler's executable",
           args: {
             name: "compiler",
             suggestions: ["gcc-7", "llvm_clang", "clang"],
@@ -841,79 +798,79 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force-bottle",
           description:
-            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation.",
+            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation",
         },
         {
           name: "--include-test",
           description:
-            "Install testing dependencies required to run brew test formula.",
+            "Install testing dependencies required to run brew test formula",
         },
         {
           name: "--HEAD",
           description:
-            "If formula defines it, install the HEAD version, aka. main, trunk, unstable, master.",
+            "If formula defines it, install the HEAD version, aka. main, trunk, unstable, master",
         },
         {
           name: "--fetch-HEAD",
           description:
-            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released.",
+            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released",
         },
         {
           name: "--keep-tmp",
           description:
-            "Retain the temporary files created during installation.",
+            "Retain the temporary files created during installation",
         },
         {
           name: "--build-bottle",
           description:
-            "Prepare the formula for eventual bottling during installation, skipping any post-install steps.",
+            "Prepare the formula for eventual bottling during installation, skipping any post-install steps",
         },
         {
           name: "--bottle-arch",
           description:
-            "Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on.",
+            "Optimise bottles for the specified architecture rather than the oldest architecture supported by the version of macOS the bottles are built on",
         },
         {
           name: "--display-times",
           description:
-            "Print install times for each formula at the end of the run.",
+            "Print install times for each formula at the end of the run",
         },
         {
           name: "--cask,",
-          description: "--casks Treat all named arguments as casks.",
+          description: "--casks Treat all named arguments as casks",
         },
         {
           name: "--binaries",
           description:
-            "Disable/enable linking of helper executables (default: enabled).",
+            "Disable/enable linking of helper executables (default: enabled)",
         },
         {
           name: "--no-binaries",
           description:
-            "Disable/enable linking of helper executables (default: enabled).",
+            "Disable/enable linking of helper executables (default: enabled)",
         },
         {
           name: "--require-sha",
-          description: "Require all casks to have a checksum.",
+          description: "Require all casks to have a checksum",
         },
         {
           name: "--quarantine",
           description:
-            "Disable/enable quarantining of downloads (default: enabled).",
+            "Disable/enable quarantining of downloads (default: enabled)",
         },
         {
           name: "--no-quarantine",
           description:
-            "Disable/enable quarantining of downloads (default: enabled).",
+            "Disable/enable quarantining of downloads (default: enabled)",
         },
         {
           name: "--skip-cask-deps",
-          description: "Skip installing cask dependencies.",
+          description: "Skip installing cask dependencies",
         },
         {
           name: "--appdir",
           description:
-            "Target location for Applications (default: /Applications).",
+            "Target location for Applications (default: /Applications)",
           args: {
             name: "location",
             template: "folders",
@@ -922,7 +879,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--colorpickerdir",
           description:
-            "Target location for Color Pickers (default: ~/Library/ColorPickers).",
+            "Target location for Color Pickers (default: ~/Library/ColorPickers)",
           args: {
             name: "location",
             template: "folders",
@@ -931,7 +888,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--prefpanedir",
           description:
-            "Target location for Preference Panes (default: ~/Library/PreferencePanes).",
+            "Target location for Preference Panes (default: ~/Library/PreferencePanes)",
           args: {
             name: "location",
             template: "folders",
@@ -940,7 +897,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--qlplugindir",
           description:
-            "Target location for QuickLook Plugins (default: ~/Library/QuickLook).",
+            "Target location for QuickLook Plugins (default: ~/Library/QuickLook)",
           args: {
             name: "location",
             template: "folders",
@@ -949,7 +906,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--mdimporterdir",
           description:
-            "Target location for Spotlight Plugins (default: ~/Library/Spotlight).",
+            "Target location for Spotlight Plugins (default: ~/Library/Spotlight)",
           args: {
             name: "location",
             template: "folders",
@@ -958,7 +915,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dictionarydir",
           description:
-            "Target location for Dictionaries (default: ~/Library/Dictionaries).",
+            "Target location for Dictionaries (default: ~/Library/Dictionaries)",
           args: {
             name: "location",
             template: "folders",
@@ -966,7 +923,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--fontdir",
-          description: "Target location for Fonts (default: ~/Library/Fonts).",
+          description: "Target location for Fonts (default: ~/Library/Fonts)",
           args: {
             name: "location",
             template: "folders",
@@ -975,7 +932,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--servicedir",
           description:
-            "Target location for Services (default: ~/Library/Services).",
+            "Target location for Services (default: ~/Library/Services)",
           args: {
             name: "location",
             template: "folders",
@@ -984,7 +941,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--input-methoddir",
           description:
-            "Target location for Input Methods (default: ~/Library/Input Methods).",
+            "Target location for Input Methods (default: ~/Library/Input Methods)",
           args: {
             name: "location",
             template: "folders",
@@ -993,7 +950,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--internet-plugindir",
           description:
-            "Target location for Internet Plugins (default: ~/Library/Internet Plug-Ins).",
+            "Target location for Internet Plugins (default: ~/Library/Internet Plug-Ins)",
           args: {
             name: "location",
             template: "folders",
@@ -1002,7 +959,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--audio-unit-plugindir",
           description:
-            "Target location for Audio Unit Plugins (default: ~/Library/Audio/Plug-Ins/Components).",
+            "Target location for Audio Unit Plugins (default: ~/Library/Audio/Plug-Ins/Components)",
           args: {
             name: "location",
             template: "folders",
@@ -1011,7 +968,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vst-plugindir",
           description:
-            "Target location for VST Plugins (default: ~/Library/Audio/Plug-Ins/VST).",
+            "Target location for VST Plugins (default: ~/Library/Audio/Plug-Ins/VST)",
           args: {
             name: "location",
             template: "folders",
@@ -1020,7 +977,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vst3-plugindir",
           description:
-            "Target location for VST3 Plugins (default: ~/Library/Audio/Plug-Ins/VST3).",
+            "Target location for VST3 Plugins (default: ~/Library/Audio/Plug-Ins/VST3)",
           args: {
             name: "location",
             template: "folders",
@@ -1029,7 +986,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--screen-saverdir",
           description:
-            "Target location for Screen Savers (default: ~/Library/Screen Savers).",
+            "Target location for Screen Savers (default: ~/Library/Screen Savers)",
           args: {
             name: "location",
             template: "folders",
@@ -1038,7 +995,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--language",
           description:
-            "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system.",
+            "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system",
         },
       ],
       args: {
@@ -1070,21 +1027,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isVariadic: true,
         name: "formula",
-        generators: {
-          script: "brew list -1",
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .filter((line) => !line.includes("="))
-              .map((formula) => {
-                return {
-                  name: formula,
-                  icon: "🍺",
-                  description: "Installed formula",
-                };
-              });
-          },
-        },
+        generators: generators.formulaeGenerator,
       },
     },
     {
@@ -1109,20 +1052,20 @@ const completionSpec: Fig.Spec = {
             {
               name: "--zap",
               description:
-                "Remove all files associated with a cask. May remove files which are shared between applications.",
+                "Remove all files associated with a cask. May remove files which are shared between applications",
             },
             {
               name: "--ignore-dependencies",
               description:
-                "Don't fail uninstall, even if formula is a dependency of any installed formulae.",
+                "Don't fail uninstall, even if formula is a dependency of any installed formulae",
             },
             {
               name: "--formula,",
-              description: "Treat all named arguments as formulae.",
+              description: "Treat all named arguments as formulae",
             },
             {
               name: "--cask,",
-              description: "Treat all named arguments as casks.",
+              description: "Treat all named arguments as casks",
             },
           ],
           args: {
@@ -1191,7 +1134,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-v", "--verbose"],
-          description: "Make some output more verbose.",
+          description: "Make some output more verbose",
         },
         {
           name: ["-h", "--help"],
@@ -1305,7 +1248,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "tap",
-      description: "Tap a formula repository.",
+      description: "Tap a formula repository",
       options: [
         ...commonOptions,
         {
@@ -1322,9 +1265,9 @@ const completionSpec: Fig.Spec = {
           description: "Auto-update tap even if it is not hosted on GitHub",
         },
         {
-          name: " --repair",
+          name: "--repair",
           description:
-            "Migrate tapped formulae from symlink-based to directory-based structure.",
+            "Migrate tapped formulae from symlink-based to directory-based structure",
         },
         {
           name: "--list-pinned",
@@ -1343,36 +1286,22 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: {
-          script: "brew list -1",
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .filter((line) => !line.includes("="))
-              .map((formula) => {
-                return {
-                  name: formula,
-                  icon: "🍺",
-                  description: "Installed formula",
-                };
-              });
-          },
-        },
+        generators: generators.formulaeGenerator,
       },
       options: [
         {
           name: ["-n", "--dry-run"],
           description:
-            "List files which would be linked or deleted by brew link --overwrite without actually linking or deleting any files.",
+            "List files which would be linked or deleted by brew link --overwrite without actually linking or deleting any files",
         },
         {
           name: ["-f", "--force"],
-          description: "Allow keg-only formulae to be linked.",
+          description: "Allow keg-only formulae to be linked",
         },
         {
           name: "--HEAD",
           description:
-            "Link the HEAD version of the formula if it is installed.",
+            "Link the HEAD version of the formula if it is installed",
         },
       ],
     },
@@ -1391,7 +1320,7 @@ const completionSpec: Fig.Spec = {
             return out.split("\n").map((formula) => {
               return {
                 name: formula.replace(".rb", ""),
-                description: "formula",
+                description: "Formula",
                 icon: "🍺",
                 priority:
                   (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
@@ -1406,11 +1335,11 @@ const completionSpec: Fig.Spec = {
         ...commonOptions,
         {
           name: ["--formula", "--formulae"],
-          description: "Treat all named arguments as formulae.",
+          description: "Treat all named arguments as formulae",
         },
         {
           name: ["--cask", "--casks"],
-          description: "Treat all named arguments as casks.",
+          description: "Treat all named arguments as casks",
         },
       ],
     },
