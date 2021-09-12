@@ -97,9 +97,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--bazelrc",
-      insertValue: "--bazelrc={cursor}",
       description:
         "The location of the user .bazelrc file containing default values of Bazel options",
+      args: {
+        name: "bazelrc path",
+        template: "filepaths",
+      },
     },
     {
       name: "--block_for_lock",
@@ -125,9 +128,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--connect_timeout_secs",
-      insertValue: "--connect_timeout_secs={cursor}",
       description:
         "The amount of time the client waits for each attempt to connect to the server",
+      args: {
+        name: "time",
+      },
     },
     {
       name: "--expand_configs_in_place",
@@ -142,9 +147,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--failure_detail_out",
-      insertValue: "--failure_detail_out={cursor}",
       description:
         "Specifies a location to write a failure_detail protobuf message if the server experiences a failure and cannot report it via gRPC, as normal. Otherwise, the location will be ${OUTPUT_BASE}/failure_detail.rawproto",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
     },
     {
       name: "--home_rc",
@@ -179,10 +187,13 @@ const completionSpec: Fig.Spec = {
       description: "Doesn't disables all rc files",
     },
     {
-      name: "--io_nice_level={-1,0,1,2,3,4,5,6,7}",
-      insertValue: "--io_nice_level={cursor}",
+      name: "--io_nice_level",
       description:
         "Only on Linux; set a level from 0-7 for best-effort IO scheduling using the sys_ioprio_set system call. 0 is highest priority, 7 is lowest",
+      args: {
+        name: "io-level",
+        suggestions: ["0", "1", "2", "3", "4", "5", "6", "7"],
+      },
     },
     {
       name: "--local_startup_timeout_secs",
