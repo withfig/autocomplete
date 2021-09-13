@@ -4,8 +4,19 @@ const completionSpec: Fig.Spec = {
   icon: "https://www.vultr.com/favicon/favicon-32x32.png",
   subcommands: [
     { name: "account", description: "Retrieve information about your account" },
-    { name: "apps", description: "Display all available applications" },
-    { name: "backups", description: "Display backups" },
+    {
+      name: "apps",
+      description: "Display all available applications",
+      subcommands: [{ name: "list", description: "List applications" }],
+    },
+    {
+      name: "backups",
+      description: "Display backups",
+      subcommands: [
+        { name: "get", description: "Get backup" },
+        { name: "list", description: "List backups" },
+      ],
+    },
     {
       name: "bare-metal",
       description: "Bare-metal is used to access bare metal server commands",
@@ -24,6 +35,46 @@ const completionSpec: Fig.Spec = {
     {
       name: "instance",
       description: "Commands to interact with instances on vultr",
+      subcommands: [
+        { name: "app", description: "Update application for an instance" },
+        {
+          name: "backup",
+          description: "List and create backup schedules for an instance",
+        },
+        { name: "bandwidth", description: "Bandwidth for instance" },
+        { name: "create", description: "Create an instance" },
+        { name: "delete", description: "Delete/destroy an instance" },
+        { name: "get", description: "Get info about a specific instance" },
+        { name: "image", description: "Update image for an instance" },
+        { name: "ipv4", description: "List/create/delete ipv4 on instance" },
+        { name: "ipv6", description: "Commands for ipv6 on instance" },
+        { name: "iso", description: "Attach/detach ISOs to a given instance" },
+        { name: "label", description: "Label an instance" },
+        { name: "list", description: "List all available instances" },
+        { name: "os", description: "Update operating system for an instance" },
+        { name: "plan", description: "Update/list plans for an instance" },
+        { name: "reinstall", description: "Reinstall an instance" },
+        { name: "restart", description: "Restart an instance" },
+        {
+          name: "restore",
+          description: "Restore instance from backup/snapshot",
+        },
+        {
+          name: "reverse-dns",
+          description: "Commands to handle reverse-dns on an instance",
+        },
+        { name: "start", description: "Starts an instance" },
+        { name: "stop", description: "Stops an instance" },
+        { name: "tag", description: "Add/modify tag on instance" },
+        {
+          name: "update-firewall-group",
+          description: "Assign a firewall group to instance",
+        },
+        {
+          name: "user-data",
+          description: "Commands to handle userdata on an instance",
+        },
+      ],
     },
     { name: "iso", description: "Iso is used to access iso commands" },
     {
