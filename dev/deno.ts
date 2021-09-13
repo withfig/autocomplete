@@ -583,8 +583,14 @@ const denoLint: Fig.Subcommand = {
 
 //#region Documentation types
 
+// Everything has a name. Some things have a kind, but only a subset of those
+// have a kind that actually matters (hence the default of `string`)
 type Named = { name: string };
-type Kind<T = string> = { kind: T };
+type Kind<T extends string = string> = { kind: T };
+
+// Type aliases to make records clearer
+type DocProperty = Named;
+type DocMethod = Named & Kind;
 
 type DocNodeFunction = Named & Kind<"function">;
 type DocNodeVariable = Named & Kind<"variable">;
@@ -592,8 +598,8 @@ type DocNodeEnum = Named & Kind<"enum">;
 type DocNodeClass = Named &
   Kind<"class"> & {
     classDef: {
-      properties: Named[];
-      methods: (Named & Kind)[];
+      properties: DocProperty[];
+      methods: DocMethod[];
     };
   };
 type DocNodeTypeAlias = Named & Kind<"typeAlias">;
@@ -606,8 +612,8 @@ type DocNodeNamespace = Named &
 type DocNodeInterface = Named &
   Kind<"interface"> & {
     interfaceDef: {
-      properties: Named[];
-      methods: (Named & Kind)[];
+      properties: DocProperty[];
+      methods: DocMethod[];
     };
   };
 type DocNodeImport = Named & Kind<"import">;
@@ -621,6 +627,12 @@ type DocNode =
   | DocNodeNamespace
   | DocNodeInterface
   | DocNodeImport;
+
+/** Any node is assignable to this type. */
+type AnyNode = {
+  name: string;
+  kind?: string;
+};
 
 //#endregion
 
@@ -731,7 +743,7 @@ const denoDoc: Fig.Subcommand = {
           // Based on whether the user has typed a period, this will be
           // populated with either the top level nodes or the children of
           // whatever node the user has searched for.
-          const suggestNodes: (Named & Partial<Kind>)[] = [];
+          const suggestNodes: AnyNode[] = [];
 
           if (firstDotIndex === -1) {
             suggestNodes.push(...docNodes);
