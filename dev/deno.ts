@@ -69,6 +69,11 @@ function generateFilepathsMatch(init: {
   };
 }
 
+type VersionsJSON = {
+  latest: string;
+  versions: string[];
+};
+
 /**
  * Generates a list of Deno versions and caches that list for one day.
  */
@@ -77,8 +82,11 @@ const generateDenoVersions: Fig.Generator = {
   cache: { ttl: 1000 * 60 * 60 * 24 },
   postProcess: (out) => {
     try {
-      const data = JSON.parse(out);
-      return (data.versions as string[]).map((version) => ({
+      const data: VersionsJSON = JSON.parse(out);
+      // Using a regex instead of a slice because it's more resilient, even
+      // though it's marginally slower. The versions are currently tagged with
+      // a leading 'v', but that may not always be the case.
+      return data.versions.map((version) => ({
         name: version.replace(/^v/, ""),
       }));
     } catch (e) {
