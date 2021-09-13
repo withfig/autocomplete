@@ -46,6 +46,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4",
   },
   {
+    name: "fig-teams",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
+  {
     name: "create-next-app",
     icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   },
