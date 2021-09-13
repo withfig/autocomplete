@@ -230,16 +230,17 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Path",
         default: "${OUTPUT_ROOT}/_bazel_${USER}/${MD5_OF_WORKSPACE_ROOT}",
+        template: "filepaths",
       },
     },
     {
       name: "--output_base_root",
-      insertValue: "--output_base_root={cursor}",
       description:
         "The user-specific directory beneath which all build outputs are written",
       args: {
         name: "Path",
         default: "$USER",
+        template: "filepaths",
       },
     },
     {
@@ -259,6 +260,7 @@ const completionSpec: Fig.Spec = {
       description: "The location to write the server's JVM's output",
       args: {
         name: "Path",
+        template: "filepaths",
       },
     },
     {
@@ -293,7 +295,7 @@ const completionSpec: Fig.Spec = {
       name: "--nounlimit_coredumps",
       exclusiveOn: ["--unlimit_coredumps"],
       description:
-        "Don't raises the soft coredump limit to the hard limit to make coredumps of the server (including the JVM) and the client possible under common conditions",
+        "Don't raise the soft coredump limit to the hard limit to make coredumps of the server (including the JVM) and the client possible under common conditions",
     },
     {
       name: "--watchfs",
