@@ -768,24 +768,17 @@ const denoDoc: Fig.Subcommand = {
           // The names are added to a set because duplicates are common.
           const names = new Set<string>();
 
-          // More nodes should be visible if --private was used. This is two
-          // separate loops because the logic is fundamentally different - one
-          // loop just adds all the nodes, while the other is a filter. It also
-          // avoids checking showPrivateSymbols in each iteration, since that
-          // value won't change.
-          if (showPrivateSymbols) {
-            for (const node of suggestNodes) {
+          // More nodes should be visible if --private was used.
+          for (const node of suggestNodes) {
+            if (showPrivateSymbols) {
               names.add(node.name);
+              continue;
             }
-          } else {
-            for (const node of suggestNodes) {
-              // Deno includes imports in the JSON regardless of privacy,
-              // probably so it's easier to build a module graph. However,
-              // imports are (by definition) private, so they must be removed.
-              if (node.kind === "import") continue;
-
-              names.add(node.name);
-            }
+            // Deno includes imports in the JSON regardless of privacy,
+            // probably so it's easier to build a module graph. However,
+            // imports are (by definition) private, so they must be removed.
+            if (node.kind === "import") continue;
+            names.add(node.name);
           }
 
           // Deno uses the name <TODO> when it gets confused, which is common in
