@@ -600,6 +600,7 @@ type Kind<T extends string = string> = { kind: T };
 type DocProperty = Named;
 type DocMethod = Named & Kind;
 
+type DocNodeModuleDoc = Named & Kind<"moduleDoc">;
 type DocNodeFunction = Named & Kind<"function">;
 type DocNodeVariable = Named & Kind<"variable">;
 type DocNodeEnum = Named & Kind<"enum">;
@@ -627,6 +628,7 @@ type DocNodeInterface = Named &
 type DocNodeImport = Named & Kind<"import">;
 
 type DocNode =
+  | DocNodeModuleDoc
   | DocNodeFunction
   | DocNodeVariable
   | DocNodeEnum
@@ -660,6 +662,19 @@ function createFilterSuggestion(name: string): Fig.Suggestion {
     priority: getNamePriority(name),
     icon: STRING_ICON,
   };
+}
+
+function getDocNodeChildren(node: DocNode) {
+  if (node.kind === "namespace") {
+    return node.namespaceDef.elements;
+  }
+  if (node.kind === "interface") {
+    return [...node.interfaceDef.methods, ...node.interfaceDef.properties];
+  }
+  if (node.kind === "class") {
+    return [...node.classDef.methods, ...node.classDef.properties];
+  }
+  return [];
 }
 
 const denoDoc: Fig.Subcommand = {
@@ -739,65 +754,62 @@ const denoDoc: Fig.Subcommand = {
             return [];
           }
 
-          const showPrivateSymbols = tokens.includes("--private");
+          const hidePrivateSymbols = !tokens.includes("--private");
 
-          if (docNodes.length === 0) return [];
+          if (docNodes.length === 0) {
+            return [];
+          }
 
           // The final token has to be the filter, it's the only way this
           // generator could have been invoked.
           const filterToken = tokens[tokens.length - 1];
           const firstDotIndex = filterToken.indexOf(".");
 
+          // If the user hasn't entered a dot, suggest top level nodes.
+          const suggestTopLevelNodes = firstDotIndex === -1;
+
           // Based on whether the user has typed a period, this will be
           // populated with either the top level nodes or the children of
           // whatever node the user has searched for.
-          const suggestNodes: AnyNode[] = [];
+          const suggestionNodes: AnyNode[] = [];
 
-          if (firstDotIndex === -1) {
-            suggestNodes.push(...docNodes);
+          if (suggestTopLevelNodes) {
+            suggestionNodes.push(...docNodes);
           } else {
             const filterName = filterToken.slice(0, firstDotIndex);
 
             // It's not uncommon that there'd be multiple occurrences of the
             // same name with different values, eg. overloads and interface
             // merging. Deno's builtin types actually do this with the `Deno`
-            // interface. Typically, `found` will only be one or two nodes.
+            // namespace. Typically, `found` will only be one or two nodes.
             const found = docNodes.filter((node) => node.name === filterName);
 
             // `deno doc` can only generate docs for these nodes' children
             for (const node of found) {
-              if (node.kind === "namespace") {
-                suggestNodes.push(...node.namespaceDef.elements);
-              } else if (node.kind === "interface") {
-                suggestNodes.push(
-                  ...node.interfaceDef.methods,
-                  ...node.interfaceDef.properties
-                );
-              } else if (node.kind === "class") {
-                suggestNodes.push(
-                  ...node.classDef.methods,
-                  ...node.classDef.properties
-                );
-              }
+              suggestionNodes.push(...getDocNodeChildren(node));
             }
 
             // It's a common case to have no children, so it's worth checking.
-            if (suggestNodes.length === 0) return [];
+            if (suggestionNodes.length === 0) {
+              return [];
+            }
           }
 
           // The names are added to a set because duplicates are common.
           const names = new Set<string>();
 
-          // More nodes should be visible if --private was used.
-          for (const node of suggestNodes) {
-            if (showPrivateSymbols) {
-              names.add(node.name);
+          for (const node of suggestionNodes) {
+            // A module doc may not always be present, but if present it's
+            // always included in the JSON.
+            if (node.kind === "moduleDoc") {
               continue;
             }
-            // Deno includes imports in the JSON regardless of privacy,
-            // probably so it's easier to build a module graph. However,
-            // imports are (by definition) private, so they must be removed.
-            if (node.kind === "import") continue;
+
+            // Imports are always emitted, even without --private
+            if (hidePrivateSymbols && node.kind === "import") {
+              continue;
+            }
+
             names.add(node.name);
           }
 
@@ -806,10 +818,10 @@ const denoDoc: Fig.Subcommand = {
           // since you can't specify it as a filter, don't suggest it.
           // Faster to do this once than check the name on each iteration.
           names.delete("<TODO>");
-
-          const suggestions: Fig.Suggestion[] = [];
+          names.delete("");
 
           // Can't just .map() over a Set... (one day?)
+          const suggestions: Fig.Suggestion[] = [];
           for (const name of names) {
             suggestions.push(createFilterSuggestion(name));
           }
