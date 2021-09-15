@@ -1,6 +1,9 @@
 // This file largely follows the same structure (not order) as deno/cli/flags.rs:
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
+import { DESTRUCTION } from "dns";
+import { decodedTextSpanIntersectsWith } from "typescript";
+
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
@@ -94,6 +97,25 @@ const generateDenoVersions: Fig.Generator = {
 const generateRunnableFiles = generateFilepathsMatch({
   match: /\.(mjs|jsx?|tsx?)$/i,
 });
+
+const generateLintRules: Fig.Generator = {
+  script: "deno lint --rules",
+  getQueryTerm: ",",
+  cache: { ttl: 1000 * 60 * 60 * 24 * 3 },
+  postProcess: (out) => {
+    const lines = out.split("\n");
+    const suggestions: Fig.Suggestion[] = [];
+    for (const line of lines) {
+      if (line.startsWith(" - ")) {
+        suggestions.push({
+          name: line.slice(3),
+          icon: "fig://icon?type=string",
+        });
+      }
+    }
+    return suggestions;
+  },
+};
 
 type ExclusiveOn = {
   exclusiveOn?: string[];
@@ -222,11 +244,13 @@ const caFileOption: Fig.Option = {
 
 const configOption: Fig.Option = {
   name: ["-c", "--config"],
-  description: "Load tsconfig.json configuration file",
+  description: "Load a configuration file",
   args: {
-    name: "tsconfig file",
-    description: "The tsconfig file to load",
-    generators: generatePreferredFilepaths({ names: ["tsconfig.json"] }),
+    name: "config file",
+    description: "The config file to load",
+    generators: generatePreferredFilepaths({
+      names: ["tsconfig.json", "deno.json", "deno.jsonc"],
+    }),
   },
 };
 
@@ -237,7 +261,12 @@ const importMapOption: Fig.Option = {
     name: "source",
     description: "The location of the import map (can be a URL)",
     generators: generatePreferredFilepaths({
-      names: ["import_map.json", "import-map.json", "imports.json"],
+      names: [
+        "importmap.json",
+        "import_map.json",
+        "import-map.json",
+        "imports.json",
+      ],
     }),
   },
 };
@@ -424,18 +453,17 @@ const denoTest: Fig.Subcommand = {
   options: [
     ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: true }),
-    // TODO: Uncomment once Deno 1.14.0 is out
-    // {
-    //   name: "--ignore",
-    //   insertValue: "--ignore=",
-    //   description: "Ignore files",
-    //   // requiresEquals: true,
-    //   args: {
-    //     name: "Files to ignore",
-    //     description: "Files matching this pattern will be ignored",
-    //     template: "filepaths",
-    //   },
-    // },
+    {
+      name: "--ignore",
+      insertValue: "--ignore=",
+      description: "Ignore files",
+      // requiresEquals: true,
+      args: {
+        name: "Files to ignore",
+        description: "Files matching this pattern will be ignored",
+        template: "filepaths",
+      },
+    },
     {
       name: "--no-run",
       description: "Cache test modules, but don't run tests",
@@ -519,6 +547,7 @@ const denoFmt: Fig.Subcommand = {
   },
   options: [
     ...globalOptions,
+    configOption,
     {
       name: "--check",
       description: "Check if the source files are formatted",
@@ -543,6 +572,40 @@ const denoFmt: Fig.Subcommand = {
       },
     },
     watchOption(),
+    {
+      name: "--options-use-tabs",
+      description: "Use tabs instead of spaces",
+    },
+    {
+      name: "--options-line-width",
+      description: "Define the maximum line width",
+      args: {
+        name: "width",
+      },
+    },
+    {
+      name: "--options-indent-width",
+      description: "Set the number of spaces to use for indentation",
+      args: {
+        name: "width",
+      },
+    },
+    {
+      name: "--options-single-quote",
+      description: "Use single quotes",
+    },
+    {
+      name: "--options-prose-wrap",
+      description: "Define how prose should be wrapped (default: always)",
+      args: {
+        name: "wrap",
+        suggestions: [
+          { name: "always", icon: "fig://icon?type=string" },
+          { name: "never", icon: "fig://icon?type=string" },
+          { name: "preserve", icon: "fig://icon?type=string" },
+        ],
+      },
+    },
   ],
 };
 
@@ -558,9 +621,11 @@ const denoLint: Fig.Subcommand = {
   },
   options: [
     ...globalOptions,
+    configOption,
     {
       name: "--rules",
       description: "List available rules",
+      exclusiveOn: ["--rules-tags", "--rules-include", "--rules-exclude"],
     },
     {
       name: "--ignore",
@@ -575,6 +640,36 @@ const denoLint: Fig.Subcommand = {
     {
       name: "--json",
       description: "Output lint result in JSON format",
+    },
+    {
+      name: "--rules-tags",
+      insertValue: "--rules-tags=",
+      description: "Use a set of rules with a tag",
+      exclusiveOn: ["--rules"],
+      args: {
+        name: "rules",
+        generators: generateLintRules,
+      },
+    },
+    {
+      name: "--rules-include",
+      insertValue: "--rules-include=",
+      description: "Include lint rules",
+      exclusiveOn: ["--rules"],
+      args: {
+        name: "rules",
+        generators: generateLintRules,
+      },
+    },
+    {
+      name: "--rules-exclude",
+      insertValue: "--rules-exclude=",
+      description: "Exclude lint rules",
+      exclusiveOn: ["--rules"],
+      args: {
+        name: "rules",
+        generators: generateLintRules,
+      },
     },
   ],
 };
