@@ -1,9 +1,6 @@
 // This file largely follows the same structure (not order) as deno/cli/flags.rs:
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
-import { DESTRUCTION } from "dns";
-import { decodedTextSpanIntersectsWith } from "typescript";
-
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
