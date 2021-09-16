@@ -19,7 +19,7 @@ const OPTION_HELP: Fig.Option = {
   description: "Prints help information",
 };
 const OPTION_VERBOSE: Fig.Option = {
-  name: ["--verbose"],
+  name: "--verbose",
   description: "Toggle verbose output (when applicable)",
 };
 
@@ -103,30 +103,24 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a key and its value from a namespace",
-          args: [
-            {
-              name: "key",
-              description: "Key whose value to delete",
-            },
-          ],
+          args: {
+            name: "key",
+            description: "Key whose value to delete",
+          },
           options: [
             {
               name: ["-b", "--binding"],
-              args: [
-                {
-                  name: "binding",
-                },
-              ],
+              args: {
+                name: "binding",
+              },
               description:
                 "The binding of the namespace this action applies to",
             },
             {
               name: ["-n", "--namespace-id"],
-              args: [
-                {
-                  name: "namespace-id",
-                },
-              ],
+              args: {
+                name: "namespace-id",
+              },
               description: "The ID of the namespace this action applies to",
             },
           ],
@@ -241,13 +235,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "init",
       description: "Create a wrangler.toml for an existing project",
-      args: [
-        {
-          name: "name",
-          description: "The name of your worker! [default: worker]",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "name",
+        description: "The name of your worker! [default: worker]",
+        isOptional: true,
+      },
       options: [
         OPTION_CONFIG,
         OPTION_ENV,
@@ -298,11 +290,11 @@ const completionSpec: Fig.Spec = {
         OPTION_HELP,
         OPTION_VERBOSE,
         {
-          name: ["--headless"],
+          name: "--headless",
           description: "Don't open the browser on preview",
         },
         {
-          name: ["--watch"],
+          name: "--watch",
           description: `Watch your project for changes and update the preview 
             automagically`,
         },
@@ -348,20 +340,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish",
       description: "Publish your worker to the orange cloud",
-      args: [
-        {
-          name: "output",
-          suggestions: ["json"],
-          description: "[possible values: json]",
-        },
-      ],
+      args: {
+        name: "output",
+        suggestions: ["json"],
+        description: "[possible values: json]",
+      },
       options: [
         OPTION_CONFIG,
         OPTION_ENV,
         OPTION_HELP,
         OPTION_VERBOSE,
         {
-          name: ["--delete-class"],
+          name: "--delete-class",
           args: {
             name: "delete-class",
           },
@@ -369,7 +359,7 @@ const completionSpec: Fig.Spec = {
             "Delete all durable objects associated with a class in your script",
         },
         {
-          name: ["--new-class"],
+          name: "--new-class",
           args: {
             name: "new-class",
           },
@@ -377,14 +367,14 @@ const completionSpec: Fig.Spec = {
             "Allow durable objects to be created from a class in your script",
         },
         {
-          name: ["--rename-class"],
+          name: "--rename-class",
           args: {
             name: "rename-class new-name",
           },
           description: "Rename a durable object class in your script",
         },
         {
-          name: ["--transfer-class"],
+          name: "--transfer-class",
           args: {
             name: "transfer-class",
           },
@@ -404,12 +394,12 @@ const completionSpec: Fig.Spec = {
         OPTION_HELP,
         OPTION_VERBOSE,
         {
-          name: ["--api-key"],
+          name: "--api-key",
           description:
             "Use an email and global API key for authentication. This is not recommended; use API tokens (the default) if possible",
         },
         {
-          name: ["--no-verify"],
+          name: "--no-verify",
           description:
             "Do not verify provided credentials before writing out Wrangler config file",
         },
@@ -450,7 +440,7 @@ const completionSpec: Fig.Spec = {
             "Specify an output format [default: json]  [possible values: json, pretty]",
         },
         {
-          name: ["--metrics"],
+          name: "--metrics",
           args: {
             name: "metrics-port",
           },

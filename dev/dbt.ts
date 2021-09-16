@@ -4,12 +4,12 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "debug",
-      description: "debugs dbt connections and projects",
+      description: "Debugs dbt connections and projects",
       options: [{ name: "--config-dir" }],
     },
     {
       name: "run",
-      description: "runs the models in a project",
+      description: "Runs the models in a project",
       options: [
         {
           name: "--full-refresh",
@@ -17,13 +17,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-X", "--fail-fast"],
-          description: "exit immediately if a single model fails to build",
+          description: "Exit immediately if a single model fails to build",
         },
       ],
     },
     {
       name: "init",
-      description: "initializes a new dbt project",
+      description: "Initializes a new dbt project",
       args: {
         name: "YOUR PROJECT NAME",
       },
@@ -31,22 +31,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--adapter",
           description: "Add an adapter",
-          args: { name: "ADAPTER NAME", description: "e.g. big query" },
+          args: { name: "ADAPTER NAME", description: "E.g. big query" },
         },
       ],
     },
     {
       name: "compile",
-      description: "compiles (but does not run) the models in a project",
+      description: "Compiles (but does not run) the models in a project",
     },
     {
       name: "test",
-      description: "executes tests defined in a project",
+      description: "Executes tests defined in a project",
       options: [
         {
           name: "--models",
           description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command.",
+            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
           args: {
             name: "SELECTOR",
             isVariadic: true,
@@ -62,10 +62,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "deps", description: "downloads dependencies for a project" },
+    { name: "deps", description: "Downloads dependencies for a project" },
     {
       name: "snapshot",
-      description: "executes 'snapshot' jobs defined in a project",
+      description: "Executes 'snapshot' jobs defined in a project",
       options: [
         {
           name: "--profiles-dir",
@@ -107,25 +107,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "clean",
-      description: "deletes artifacts present in the dbt project",
+      description: "Deletes artifacts present in the dbt project",
     },
     {
       name: "seed",
-      description: "loads CSV files into the database",
+      description: "Loads CSV files into the database",
       options: [
         {
           name: "--select",
           description: "Run specific seeds",
           args: {
             name: "SEED",
-            description: "e.g. country_codes",
+            description: "E.g. country_codes",
           },
         },
       ],
     },
     {
       name: "docs",
-      description: "generates documentation for a project",
+      description: "Generates documentation for a project",
       subcommands: [
         {
           name: "generate",
@@ -167,7 +167,7 @@ const completionSpec: Fig.Spec = {
               description: "Choose a port",
               args: {
                 name: "port number",
-                description: "default is 8000",
+                description: "Default is 8000",
               },
             },
           ],
@@ -177,14 +177,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "source",
       description:
-        "provides tools for working with source data (including validating that sources are 'fresh')",
+        "Provides tools for working with source data (including validating that sources are 'fresh')",
       subcommands: [
         {
           name: "snapshot-freshness",
           options: [
             {
               name: ["-o", "--output"],
-              description: "override the destination for sources.json",
+              description: "Override the destination for sources.json",
               args: {
                 name: "FILEPATH",
                 template: "filepaths",
@@ -209,7 +209,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "MACRO",
         description:
-          "dbt will call this macro with the supplied arguments and then exit",
+          "Dbt will call this macro with the supplied arguments and then exit",
       },
       options: [
         {
@@ -224,14 +224,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "rpc",
-      description: "runs an RPC server that clients can submit queries to",
+      description: "Runs an RPC server that clients can submit queries to",
       options: [
         {
           name: "--host",
           description: "Specify the host to listen on",
           args: {
             name: "HOST",
-            description: "default: 0.0.0.0",
+            description: "Default: 0.0.0.0",
           },
         },
         {
@@ -239,19 +239,19 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "PORT",
-            description: "default: 8580",
+            description: "Default: 8580",
           },
         },
       ],
     },
     {
       name: ["ls", "list"],
-      description: "lists resources defined in a dbt project",
+      description: "Lists resources defined in a dbt project",
       options: [
         {
           name: "--resource-type",
           description:
-            "This flag limits the 'resource types' that dbt will return in the dbt ls command. By default, the following resources are included in the results of dbt ls: models, snapshots, seeds, tests, and sources.",
+            "This flag limits the 'resource types' that dbt will return in the dbt ls command. By default, the following resources are included in the results of dbt ls: models, snapshots, seeds, tests, and sources",
           args: {
             name: "resource-type",
             suggestions: [
@@ -278,7 +278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--models",
           description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command.",
+            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
           args: {
             name: "SELECTOR",
             isVariadic: true,
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Specify selectors that should be excluded from the list of returned nodes.",
+            "Specify selectors that should be excluded from the list of returned nodes",
           args: {
             name: "SELECTOR",
             isVariadic: true,
@@ -296,7 +296,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--selector",
           description:
-            "This flag specifies one or more named selectors, defined in a selectors.yml file.",
+            "This flag specifies one or more named selectors, defined in a selectors.yml file",
           args: {
             name: "YML_SELECTOR_NAME",
             isVariadic: true,
@@ -305,7 +305,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output",
           description:
-            "This flag controls the format of output from the dbt ls command.",
+            "This flag controls the format of output from the dbt ls command",
           args: {
             name: "output",
             suggestions: ["json", "name", "path", "selector"],
@@ -330,7 +330,7 @@ const completionSpec: Fig.Spec = {
       description: "Redirect debug logs to standard out",
     },
     {
-      name: ["--log-format"],
+      name: "--log-format",
       description: "Specify how dbt's logs should be formatted",
       args: {
         name: "log format",

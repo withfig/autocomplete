@@ -11,13 +11,12 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "kill",
-  description: "Force stop service containers.",
-  args: [{ generators: getServices }],
+  description: "Force stop service containers",
+  args: { generators: getServices },
   options: [
     {
-      name: ["-s"],
-      description:
-        "SIGNAL to send to the container. Default signal is SIGKILL.",
+      name: "-s",
+      description: "SIGNAL to send to the container. Default signal is SIGKILL",
     },
   ],
 };

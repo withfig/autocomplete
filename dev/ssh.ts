@@ -24,99 +24,96 @@ const pastConnections: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "ssh",
   description: "Log into a remote machine",
-  args: [
-    {
-      name: "user@hostname",
-      description: "address of remote machine to log into",
-      generators: {
-        script: "cat ~/.ssh/config",
-        postProcess: function (out) {
-          return out
-            .split("\n")
-            .filter((line) => {
-              return line.trim().startsWith("Host ") && !line.includes("*");
-            })
-            .map((host) => {
-              return {
-                name: host.split(" ").slice(-1)[0],
-                description: "ssh host",
-                priority: 90,
-              };
-            });
-        },
+  args: {
+    name: "user@hostname",
+    description: "Address of remote machine to log into",
+    generators: {
+      script: "cat ~/.ssh/config",
+      postProcess: function (out) {
+        return out
+          .split("\n")
+          .filter((line) => {
+            return line.trim().startsWith("Host ") && !line.includes("*");
+          })
+          .map((host) => {
+            return {
+              name: host.split(" ").slice(-1)[0],
+              description: "Ssh host",
+              priority: 90,
+            };
+          });
       },
     },
-  ],
+  },
   options: [
     {
-      name: ["-1"],
-      description: "Forces ssh to try protocol version 1 only..",
+      name: "-1",
+      description: "Forces ssh to try protocol version 1 only",
     },
     {
-      name: ["-2"],
+      name: "-2",
       description: "Forces ssh to try protocol version 2 only",
     },
     {
-      name: ["-4"],
-      description: "Forces ssh to use IPv4 addresses only.",
+      name: "-4",
+      description: "Forces ssh to use IPv4 addresses only",
     },
     {
-      name: ["-6"],
-      description: "Forces ssh to use IPv6 addresses only.",
+      name: "-6",
+      description: "Forces ssh to use IPv6 addresses only",
     },
     {
-      name: ["-A"],
-      description: "Enables forwarding of the authentication agent connection.",
+      name: "-A",
+      description: "Enables forwarding of the authentication agent connection",
     },
     {
-      name: ["-a"],
+      name: "-a",
+      description: "Disables forwarding of the authentication agent connection",
+    },
+    {
+      name: "-b",
       description:
-        "Disables forwarding of the authentication agent connection.",
-    },
-    {
-      name: ["-b"],
-      description:
-        "Use bind_address on the local machine as the source address of the connection.",
+        "Use bind_address on the local machine as the source address of the connection",
       args: {
         name: "bind address",
-        description: "source address of the connection",
+        description: "Source address of the connection",
       },
     },
     {
-      name: ["-C"],
+      name: "-C",
       description:
-        "Requests compression of all data (including stdin, stdout, stderr, and data for forwarded X11 and TCP connections).",
+        "Requests compression of all data (including stdin, stdout, stderr, and data for forwarded X11 and TCP connections)",
     },
     {
-      name: ["-c"],
+      name: "-c",
       description:
-        "Selects the cipher specification for encrypting the session.",
+        "Selects the cipher specification for encrypting the session",
       args: {
         name: "cipher spec",
         description: "The selected cipher specification",
       },
     },
     {
-      name: ["-D"],
+      name: "-D",
       description:
-        "Specifies a local 'dynamic' application-level port forwarding.",
+        "Specifies a local 'dynamic' application-level port forwarding",
       args: {
         name: "port",
-        description: "port of the bind address",
+        description: "Port of the bind address",
       },
     },
     {
-      name: ["-e"],
+      name: "-e",
       description:
-        "Sets the escape character for sessions with a pty (default: '~').",
+        "Sets the escape character for sessions with a pty (default: '~')",
       args: {
         name: "escape char",
         description: "Specified escape character",
       },
     },
     {
-      name: ["-F"],
-      description: "Specifies an alternative per-user configuration file.",
+      name: "-F",
+      description: "Specifies an alternative per-user configuration file",
       args: {
         name: "configfile",
         description: "Path to alternative config file",
@@ -124,97 +121,100 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-f"],
+      name: "-f",
       description:
-        "Requests ssh to go to background just before command execution.",
+        "Requests ssh to go to background just before command execution",
     },
     {
-      name: ["-g"],
-      description: "Allows remote hosts to connect to local forwarded ports.",
+      name: "-g",
+      description: "Allows remote hosts to connect to local forwarded ports",
     },
     {
-      name: ["-I"],
+      name: "-I",
       description:
-        "Specify the PKCS#11 shared library ssh should use to communicate with a PKCS#11 token providing the user's private RSA key.",
+        "Specify the PKCS#11 shared library ssh should use to communicate with a PKCS#11 token providing the user's private RSA key",
       args: {
         name: "pkcs11",
       },
     },
     {
-      name: ["-i"],
+      name: "-i",
       description:
-        "Selects a file from which the identity (private key) for public key authentication is read.",
+        "Selects a file from which the identity (private key) for public key authentication is read",
+      isRepeatable: true,
       args: {
         name: "identity file",
-        description: "path to identity (private key)",
+        description: "Path to identity (private key)",
         template: "filepaths",
       },
     },
     {
-      name: ["-K"],
+      name: "-K",
       description:
-        "Enables GSSAPI-based authentication and forwarding (delegation) of GSSAPI credentials to the server.",
+        "Enables GSSAPI-based authentication and forwarding (delegation) of GSSAPI credentials to the server",
     },
     {
-      name: ["-k"],
+      name: "-k",
       description:
-        "Disables forwarding (delegation) of GSSAPI credentials to the server.",
+        "Disables forwarding (delegation) of GSSAPI credentials to the server",
     },
     {
-      name: ["-L"],
+      name: "-L",
       description:
-        "Specifies that the given port on the local (client) host is to be forwarded to the given host and port on the remote side.",
+        "Specifies that the given port on the local (client) host is to be forwarded to the given host and port on the remote side",
       args: {
         name: "port:host:hostport",
-        description: "local port, followed by host and host port to forward to",
+        description: "Local port, followed by host and host port to forward to",
       },
     },
     {
-      name: ["-l"],
-      description: "Specifies the user to log in as on the remote machine.",
+      name: "-l",
+      description: "Specifies the user to log in as on the remote machine",
       args: {
         name: "login name",
         description: "Name of user logging into remote machine",
       },
     },
     {
-      name: ["-M"],
+      name: "-M",
       description:
-        "Places the ssh client into ``master'' mode for connection sharing.",
+        "Places the ssh client into ``master'' mode for connection sharing",
+      isRepeatable: true,
     },
     {
-      name: ["-m"],
+      name: "-m",
       description:
-        "Additionally, for protocol version 2 a comma-separated list of MAC (message authentication code) algorithms can be specified in order of preference.",
+        "Additionally, for protocol version 2 a comma-separated list of MAC (message authentication code) algorithms can be specified in order of preference",
       args: {
         name: "mac spec",
       },
     },
     {
-      name: ["-N"],
-      description: "Do not execute a remote command.",
+      name: "-N",
+      description: "Do not execute a remote command",
     },
     {
-      name: ["-n"],
+      name: "-n",
       description:
-        "Redirects stdin from /dev/null (actually, prevents reading from stdin).",
+        "Redirects stdin from /dev/null (actually, prevents reading from stdin)",
     },
     {
-      name: ["-O"],
-      description: "Control an active connection multiplexing master process.",
+      name: "-O",
+      description: "Control an active connection multiplexing master process",
       args: {
         name: "ctl cmd",
-        description: "command that's passed to the master process",
+        description: "Command that's passed to the master process",
       },
     },
     {
-      name: ["-o"],
+      name: "-o",
       description:
-        "Can be used to give options in the format used in the configuration file.",
+        "Can be used to give options in the format used in the configuration file",
+      isRepeatable: true,
       args: {
         name: "option",
         description:
-          "options that can be specified in the format of the config file",
+          "Options that can be specified in the format of the config file",
         suggestions: [
           { name: "AddressFamily" },
           { name: "BatchMode" },
@@ -289,92 +289,94 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-p"],
-      description: "Port to connect to on the remote host.",
+      name: "-p",
+      description: "Port to connect to on the remote host",
       args: {
         name: "port",
-        description: "port to connect to",
+        description: "Port to connect to",
       },
     },
     {
-      name: ["-q"],
+      name: "-q",
       description:
-        "Quiet mode.  Causes most warning and diagnostic messages to be suppressed.",
+        "Quiet mode.  Causes most warning and diagnostic messages to be suppressed",
     },
     {
-      name: ["-R"],
+      name: "-R",
       description:
-        "Specifies that the given port on the remote (server) host is to be forwarded to the given host and port on the local side.",
+        "Specifies that the given port on the remote (server) host is to be forwarded to the given host and port on the local side",
       args: {
         name: "port:host:hostport",
-        description: "local port, followed by host and host port to forward to",
+        description: "Local port, followed by host and host port to forward to",
       },
     },
     {
-      name: ["-S"],
+      name: "-S",
       description:
-        "Specifies the location of a control socket for connection sharing, or the string 'none' to disable connection sharing.",
+        "Specifies the location of a control socket for connection sharing, or the string 'none' to disable connection sharing",
       args: {
         name: "ctl_path",
-        description: "location of the control socket",
+        description: "Location of the control socket",
         template: "filepaths",
       },
     },
     {
-      name: ["-s"],
+      name: "-s",
       description:
-        "May be used to request invocation of a subsystem on the remote system.",
+        "May be used to request invocation of a subsystem on the remote system",
     },
     {
-      name: ["-T"],
-      description: "Disable pseudo-tty allocation.",
+      name: "-T",
+      description: "Disable pseudo-tty allocation",
     },
     {
-      name: ["-t"],
-      description: "Force pseudo-tty allocation.",
+      name: "-t",
+      description: "Force pseudo-tty allocation",
+      isRepeatable: true,
     },
     {
-      name: ["-V"],
-      description: "Display the version number and exit.",
+      name: "-V",
+      description: "Display the version number and exit",
     },
     {
-      name: ["-v"],
+      name: "-v",
       description:
-        "Verbose mode.  Causes ssh to print debugging messages about its progress.",
+        "Verbose mode.  Causes ssh to print debugging messages about its progress",
+      isRepeatable: 3,
     },
     {
-      name: ["-W"],
+      name: "-W",
       description:
-        "Requests that standard input and output on the client be forwarded to host on port over the secure channel.",
+        "Requests that standard input and output on the client be forwarded to host on port over the secure channel",
       args: {
         name: "host:port",
-        description: "host and port to forward to",
+        description: "Host and port to forward to",
       },
     },
     {
-      name: ["-w"],
+      name: "-w",
       description:
-        "Requests tunnel device forwarding with the specified tun(4) devices between the client (local_tun) and the server (remote_tun).",
+        "Requests tunnel device forwarding with the specified tun(4) devices between the client (local_tun) and the server (remote_tun)",
       args: {
         name: "local tun",
-        description: "local device to forward to",
+        description: "Local device to forward to",
       },
     },
     {
-      name: ["-X"],
-      description: "Enables X11 forwarding.",
+      name: "-X",
+      description: "Enables X11 forwarding",
     },
     {
-      name: ["-x"],
-      description: "Disables X11 forwarding.",
+      name: "-x",
+      description: "Disables X11 forwarding",
     },
     {
-      name: ["-Y"],
-      description: "Enables trusted X11 forwarding.",
+      name: "-Y",
+      description: "Enables trusted X11 forwarding",
     },
     {
-      name: ["-y"],
-      description: "Send log information using the syslog(3) system module.",
+      name: "-y",
+      description: "Send log information using the syslog(3) system module",
     },
   ],
 };

@@ -43,9 +43,9 @@ const completionSpec: Fig.Spec = {
   options: [
     // template
     {
-      name: ["--template"],
+      name: "--template",
       description:
-        "The name of a template from expo/examples or URL to a GitHub repo that contains an example.",
+        "The name of a template from expo/examples or URL to a GitHub repo that contains an example",
       args: {
         name: "template",
         isOptional: false,
@@ -54,8 +54,8 @@ const completionSpec: Fig.Spec = {
       priority: 76,
     },
     {
-      name: ["--template-path"],
-      description: "The path inside of a GitHub repo where the example lives.",
+      name: "--template-path",
+      description: "The path inside of a GitHub repo where the example lives",
       args: {
         name: "name",
         isOptional: false,
@@ -65,21 +65,21 @@ const completionSpec: Fig.Spec = {
     },
     // bool
     {
-      name: ["--yes"],
+      name: "--yes",
       description: "Use the default options for creating a project",
       args: boolArg,
       icon: ICONS.skip,
       priority: 76,
     },
     {
-      name: ["--no-install"],
-      description: "Skip installing npm packages or CocoaPods.",
+      name: "--no-install",
+      description: "Skip installing npm packages or CocoaPods",
       args: boolArg,
       icon: ICONS.skip,
       priority: 76,
     },
     {
-      name: ["--use-npm"],
+      name: "--use-npm",
       description:
         "Use npm to install dependencies. (default when Yarn is not installed)",
       args: boolArg,

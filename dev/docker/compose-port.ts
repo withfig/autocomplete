@@ -11,20 +11,20 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "port",
-  description: "Print the public port for a port binding.",
+  description: "Print the public port for a port binding",
   options: [
     {
-      name: ["--protocol"],
-      description: "tcp or udp [default: tcp]",
+      name: "--protocol",
+      description: "Tcp or udp [default: tcp]",
       args: {
         name: "Protocol",
         suggestions: ["tcp", "udp"],
       },
     },
     {
-      name: ["--index"],
+      name: "--index",
       description:
-        "index of the container if there are multiple instances of a service [default: 1]",
+        "Index of the container if there are multiple instances of a service [default: 1]",
       args: {
         name: "index",
       },

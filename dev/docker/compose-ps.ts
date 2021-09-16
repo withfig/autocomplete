@@ -11,19 +11,19 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "ps",
-  description: "List containers.",
-  args: [{ generators: getServices }],
+  description: "List containers",
+  args: { generators: getServices },
   options: [
     {
       name: ["-q", "--quiet"],
       description: "Only display IDs",
     },
     {
-      name: ["--services"],
+      name: "--services",
       description: "Display services",
     },
     {
-      name: ["--filter"],
+      name: "--filter",
       description: "Filter services by a property",
       args: {
         name: "KEY=VAL",

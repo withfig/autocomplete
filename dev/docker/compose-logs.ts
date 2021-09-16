@@ -11,24 +11,24 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "logs",
-  description: "View output from containers.",
-  args: [{ generators: getServices }],
+  description: "View output from containers",
+  args: { generators: getServices },
   options: [
     {
-      name: ["--no-color"],
-      description: "Produce monochrome output.",
+      name: "--no-color",
+      description: "Produce monochrome output",
     },
     {
       name: ["-f", "--follow"],
     },
     {
       name: ["-t", "--timestamps"],
-      description: "Show timestamps.",
+      description: "Show timestamps",
     },
     {
-      name: ["--tail"],
+      name: "--tail",
       description:
-        "Number of lines to show from the end of the logs for each container.",
+        "Number of lines to show from the end of the logs for each container",
       args: {
         name: "Num of Lines",
         suggestions: ["all"],
@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--no-log-prefix",
-      description: "Don't print prefix in logs.",
+      description: "Don't print prefix in logs",
     },
   ],
 };

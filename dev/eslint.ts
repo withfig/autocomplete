@@ -18,57 +18,55 @@ const completionSpec: Fig.Spec = {
       name: "--env",
       description: "Specify environments",
       args: {
-        generators: [
-          {
-            /*
-             * Multiple envs can be set with a ',' seperator.
-             * We want to filter over this static list of suggestions
-             * so we don't suggest envs that have already been entered.
-             * */
-            getQueryTerm: ",",
-            trigger: ",",
-            custom: async (ctx) => {
-              const suggestions = [
-                "browser",
-                "node",
-                "commonjs",
-                "shared-node-browser",
-                "es6",
-                "ecmaVersion",
-                "es2017",
-                "es2020",
-                "es2021",
-                "worker",
-                "amd",
-                "mocha",
-                "jasmine",
-                "jest",
-                "phantomjs",
-                "protractor",
-                "qunit",
-                "jquery",
-                "prototypejs",
-                "shelljs",
-                "meteor",
-                "mongo",
-                "applescript",
-                "nashorn",
-                "servicerworker",
-                "atomtest",
-                "embertest",
-                "webextensions",
-                "greasemonkey",
-              ];
+        generators: {
+          /*
+           * Multiple envs can be set with a ',' seperator.
+           * We want to filter over this static list of suggestions
+           * so we don't suggest envs that have already been entered.
+           * */
+          getQueryTerm: ",",
+          trigger: ",",
+          custom: async (ctx) => {
+            const suggestions = [
+              "browser",
+              "node",
+              "commonjs",
+              "shared-node-browser",
+              "es6",
+              "ecmaVersion",
+              "es2017",
+              "es2020",
+              "es2021",
+              "worker",
+              "amd",
+              "mocha",
+              "jasmine",
+              "jest",
+              "phantomjs",
+              "protractor",
+              "qunit",
+              "jquery",
+              "prototypejs",
+              "shelljs",
+              "meteor",
+              "mongo",
+              "applescript",
+              "nashorn",
+              "servicerworker",
+              "atomtest",
+              "embertest",
+              "webextensions",
+              "greasemonkey",
+            ];
 
-              const currentToken = [ctx[ctx.length - 1]][0];
+            const currentToken = [ctx[ctx.length - 1]][0];
 
-              // Return suggestions minus those that have already been entered
-              return suggestions
-                .filter((sugg) => !currentToken.split(",").includes(sugg))
-                .map((sugg) => ({ name: sugg }));
-            },
+            // Return suggestions minus those that have already been entered
+            return suggestions
+              .filter((sugg) => !currentToken.split(",").includes(sugg))
+              .map((sugg) => ({ name: sugg }));
           },
-        ],
+        },
       },
     },
     {
@@ -116,17 +114,15 @@ const completionSpec: Fig.Spec = {
       description: "Specify plugins",
       args: {
         name: "Plugin",
-        generators: [
-          {
-            script:
-              "{ ls node_modules ; ls $(npm root -g) ; ls $(yarn global dir)/node_modules/ ; } | cat",
-            postProcess: (out) =>
-              out
-                .split("\n")
-                .filter((dir) => dir.startsWith("eslint-plugin"))
-                .map((dir) => ({ name: dir.split(" ")[0].slice(14) })),
-          },
-        ],
+        generators: {
+          script:
+            "{ ls node_modules ; ls $(npm root -g) ; ls $(yarn global dir)/node_modules/ ; } | cat",
+          postProcess: (out) =>
+            out
+              .split("\n")
+              .filter((dir) => dir.startsWith("eslint-plugin"))
+              .map((dir) => ({ name: dir.split(" ")[0].slice(14) })),
+        },
       },
     },
     {

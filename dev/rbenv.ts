@@ -19,10 +19,10 @@ const completionSpec: Fig.Spec = {
       description: "List all available rbenv commands",
       options: [
         {
-          name: ["--sh"],
+          name: "--sh",
         },
         {
-          name: ["--no-sh"],
+          name: "--no-sh",
         },
       ],
     },
@@ -37,8 +37,8 @@ const completionSpec: Fig.Spec = {
       description: "Install a Ruby version using ruby-build",
       options: [
         {
-          name: ["--version"],
-          description: "Show version of ruby-build ",
+          name: "--version",
+          description: "Show version of ruby-build",
           args: versionArg,
         },
       ],
@@ -63,9 +63,9 @@ const completionSpec: Fig.Spec = {
       description: "Uninstall a specific Ruby version",
       options: [
         {
-          name: ["-f"],
+          name: "-f",
           description:
-            "If the version does not exist, do not display an error message. ",
+            "If the version does not exist, do not display an error message",
           args: {},
         },
       ],
@@ -81,7 +81,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "which",
       description: "Display the full path to an executable",
-      args: [{ name: "command" }],
+      args: { name: "command" },
     },
   ],
 };

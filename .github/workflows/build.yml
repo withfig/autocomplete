@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.ACTION_GITHUB_TOKEN }}
         # Install all dependencies
       - name: install
-        run: npm ci
+        run: npm install
         # Transpile all specs from ts to js
       - name: build
         run: npm run build
@@ -54,7 +54,7 @@ jobs:
           path: backend
       - name: Add @latest to cache
         run: |
-          cp ./specs.zip ./backend/public/specs.zip
+          cp ./specs.zip ./backend/src/public/specs.zip
           cd backend
           git config user.name "Build Action"
           git config user.email "noreply@fig.io"

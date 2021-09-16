@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
         "Replaces all non-ASCII characters with unicode escape sequences",
     },
     {
-      name: ["--with-surrogates"],
+      name: "--with-surrogates",
       description:
         "Converts astral code points to surrogate pairs if --escape is set",
     },
@@ -75,48 +75,44 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--min-repetitions"],
+      name: "--min-repetitions",
       description:
         "Specifies the minimum quantity of substring repetitions to be converted if --repetitions is set [default: 1]",
-      args: [
-        {
-          name: "QUANTITY",
-          suggestions: [
-            { name: "1", icon: "🔢" },
-            { name: "2", icon: "🔢" },
-            { name: "3", icon: "🔢" },
-            { name: "4", icon: "🔢" },
-            { name: "5", icon: "🔢" },
-            { name: "6", icon: "🔢" },
-            { name: "7", icon: "🔢" },
-            { name: "8", icon: "🔢" },
-            { name: "9", icon: "🔢" },
-            { name: "10", icon: "🔢" },
-          ],
-        },
-      ],
+      args: {
+        name: "QUANTITY",
+        suggestions: [
+          { name: "1", icon: "🔢" },
+          { name: "2", icon: "🔢" },
+          { name: "3", icon: "🔢" },
+          { name: "4", icon: "🔢" },
+          { name: "5", icon: "🔢" },
+          { name: "6", icon: "🔢" },
+          { name: "7", icon: "🔢" },
+          { name: "8", icon: "🔢" },
+          { name: "9", icon: "🔢" },
+          { name: "10", icon: "🔢" },
+        ],
+      },
     },
     {
-      name: ["--min-substring-length"],
+      name: "--min-substring-length",
       description:
         "Specifies the minimum length a repeated substring must have in order to be converted if --repetitions is set [default: 1]",
-      args: [
-        {
-          name: "LENGTH",
-          suggestions: [
-            { name: "1", icon: "🔢" },
-            { name: "2", icon: "🔢" },
-            { name: "3", icon: "🔢" },
-            { name: "4", icon: "🔢" },
-            { name: "5", icon: "🔢" },
-            { name: "6", icon: "🔢" },
-            { name: "7", icon: "🔢" },
-            { name: "8", icon: "🔢" },
-            { name: "9", icon: "🔢" },
-            { name: "10", icon: "🔢" },
-          ],
-        },
-      ],
+      args: {
+        name: "LENGTH",
+        suggestions: [
+          { name: "1", icon: "🔢" },
+          { name: "2", icon: "🔢" },
+          { name: "3", icon: "🔢" },
+          { name: "4", icon: "🔢" },
+          { name: "5", icon: "🔢" },
+          { name: "6", icon: "🔢" },
+          { name: "7", icon: "🔢" },
+          { name: "8", icon: "🔢" },
+          { name: "9", icon: "🔢" },
+          { name: "10", icon: "🔢" },
+        ],
+      },
     },
   ],
 };

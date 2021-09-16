@@ -22,6 +22,9 @@ declare namespace Fig {
   // set to void by default
   export type Function<T = void, R = void> = (param?: T) => R;
 
+  // A utility type to modify a property type
+  export type Modify<T, R> = Omit<T, keyof R> & R;
+
   // A string or a function which can have a T argument and a R result,
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
@@ -35,32 +38,31 @@ declare namespace Fig {
 
   export interface BaseSuggestion {
     /**
-     * The string that is displayed in the UI for a given suggestion. This Overrides the name property.
+     * The string that is displayed in the UI for a given suggestion. This overrides the name property.
      *
      * @example
-     * For the npm CLI we have a subcommand called `install`. If we wanted
+     * The npm CLI has a subcommand called `install`. If we wanted
      * to display some custom text like `Install an NPM package 📦` we would set
      * `name: "install"` and `displayName: "Install an NPM package 📦"`
      */
     displayName?: string;
     /**
-     * The value that's inserted into the terminal when a user presses enter/tab or clicks on a menu item.
-     * You can optionally specify {cursor} in the string and Fig will automatically place the cursor there after insert.
+     * The value that's inserted into the terminal when a user presses enter/tab or clicks on a menu item. You can use `\n` to insert a newline or `\b` to insert a backspace.
+     * You can also optionally specify {cursor} in the string and Fig will automatically place the cursor there after insert.
      * The default is the name prop.
      *
      * @example
-     * For `git commit` the `-m` option has an insert value of `-m '{cursor}'`
+     * For the `git commit` subcommand, the `-m` option has an insert value of `-m '{cursor}'`
      */
     insertValue?: string;
     /**
-     * The text that gets rendered at the bottom of the autocomplete box.
-     * Keep it short and simple!
+     * The text that gets rendered at the bottom of the autocomplete box (or the side if you hit ⌘i)
      */
     description?: string;
     /**
-     * The icon that is rendered is based on the type, unless overwritten. Icon
-     * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which lets you generate
-     * colorful and fun systems icons: https://fig.io/docs/reference/suggestion/icon-api
+     * The icon that is rendered is based on the type. Icons
+     * can be a 1 character string, a URL, or Fig's [icon protocol](https://fig.io/docs/reference/suggestion/icon-api) (fig://) which lets you generate
+     * colorful and fun systems icons.
      *
      * @example
      * `A`, `😊`
@@ -69,31 +71,33 @@ declare namespace Fig {
      */
     icon?: string;
     /**
-     * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
+     * Specifies whether the suggestion is "dangerous". If true, Fig will not enable
      * its "insert and run" functionality (when Fig has the red insert icon).
      * This will make it harder for a user to accidentally run a dangerous command.
      *
-     * @remark
-     * This is used in specs like rm and trash.
+     * @example
+     * This is used in the `rm` spec.
      */
     isDangerous?: boolean;
 
     /**
-     * The priority for a given suggestion determines its ranking in the Fig popup. A higher ranked priority will be listed first. The min priority is 0. The max priority is 100. The default priority is 50.
-     * If a given suggestion has a priority between 50 and 75 (including the default 50) AND has been selected by the user before, the priority will be replaced with 75 + the timestamp of when that suggestion was selected as a decimal.
+     * The priority between 0-100 for a given suggestion determines its ranking in the Fig popup. A higher ranked priority will be listed first. The default priority is 50.
+     * If a given suggestion has a priority between 50-75 inclusive AND has been selected by the user before, the priority will be replaced with 75 + the timestamp of when that suggestion was selected as a decimal.
+     *
      * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the priority will be increased by the timestamp of when that suggestion was selected as a decimal.
      *
      *
      * @example
-     * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
+     * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above.
+     *
      * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
      */
     priority?: number;
     /**
-     * Specifies whether a suggestion should be hidden from results. Fig will only show it if the user types the exact same thing as the name
+     * Specifies whether a suggestion should be hidden from results. Fig will only show it if the user types the exact name.
      *
      * @example
-     * The "-" suggestion is hidden in the `cd` spec. You will only see it if you type cd -
+     * The "-" suggestion is hidden in the `cd` spec. You will only see it if you type `cd -`
      */
     hidden?: boolean;
   }
@@ -101,7 +105,7 @@ declare namespace Fig {
   export interface Suggestion extends BaseSuggestion {
     /**
      * The text that’s rendered in each row of Fig's popup. displayName will override this.
-     * he `name` props of suggestion, subcommand, options, and args objects are all different. It's important to read them all carefully.
+     *  The `name` props of suggestion, subcommand, options, and args objects are all different. It's important to read them all carefully.
      *
      */
     name?: SingleOrArray<string>;
@@ -117,25 +121,24 @@ declare namespace Fig {
      * The exact name of the subcommand. It is important to get this right for parsing purposes.
      *
      * @example
-     * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
+     * For `npm install`, the subcommand `install` would have "name: install"
      */
-    name: string | string[];
+    name: SingleOrArray<string>;
 
     /**
      * A list of subcommands for this spec.
-     * Subcommands can be nested within subcommands.
+     * Subcommands can be nested recursively.
      */
     subcommands?: Subcommand[];
 
     /**
-     * A list of option objects for this subcommand.
+     * A list of [option objects](./option) for this subcommand.
      */
     options?: Option[];
 
     /**
      * An array of args or a single arg.
      *
-     * **Important**
      * If a subcommand takes an argument, please at least include an empty Arg Object
      * (e.g. `{}`). If you don't, Fig will assume the subcommand does not take an argument and we will present the wrong suggestions.
      *
@@ -147,25 +150,25 @@ declare namespace Fig {
     args?: SingleOrArray<Arg>;
 
     /**
-     * A list of Suggestion objects that are appended to a specific subcommand. Often these are shortcuts
+     * A list of Suggestion objects that are appended to a specific subcommand. These are often shortcuts.
      *
      * @example:
      * `commit -m '{cursor}'` is a shortcut for git
      */
     additionalSuggestions?: Suggestion[] | string[];
     /**
-     * Allows Fig to refer to another completion spec in the `~/.fig/autocomplete` folder.
-     * Specify the spec name without `js`. This is similar but different to isCommand in the Arg object so read both carefully
+     * Allows Fig to load another completion spec in the `~/.fig/autocomplete` folder.
+     * Specify the spec name without `js`.
      *
      * @example
-     * `aws-s3` refer to the `~/.fig/autocomplete/aws-s3` spec.
+     * `aws-s3` refers to the `~/.fig/autocomplete/aws-s3` spec.
      *
      * When is this used? The aws spec is so large that it is slow to load. It needs to be
      * broken up into a separate spec for each subcommand.
      *
-     * If your CLI tool takes another CLI command (e.g. time , builtin... ) or a script
+     * If your CLI tool takes another CLI command (e.g. time , builtin) or a script
      * (e.g. python, node) and you would like Fig to continue to provide completions for this
-     * script, see `isCommand` and `isScript` in {@link https://fig.io/docs/reference/arg | Arg}.
+     * script, see `isCommand` and `isScript` in @link https://fig.io/docs/reference/arg | Arg}.
      */
     loadSpec?: string;
     /**
@@ -174,10 +177,10 @@ declare namespace Fig {
      * 1. Tokens: an array of strings (the tokens the user has typed)
      * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
      *
-     * It outputs a completion spec object
+     * generateSpec outputs a completion spec object.
      *
      * @example
-     * Laravel artisan has its own subcommands but also lets you define your own completion spec.
+     * The python spec uses generateSpec to insert the django-admin spec if django manage.py exists.
      */
     generateSpec?: (
       tokens?: string[],
@@ -188,11 +191,12 @@ declare namespace Fig {
      * These flags allow customization of how Fig parses tokens from the
      * command line.
      *
-     * Currently, the only parser option is flagsArePosixNoncompliant, which
-     * allows options to have multiple characters even if they only have one hyphen.
+     * Currently, the only parser option that exists is flagsArePosixNoncompliant. This
+     * allows options to have multiple characters even if they only have one hyphen when set to `true`.
+     *
      *
      * @example
-     * `-longflag` is parsed as a single flag when `flagsArePosixNoncompliant: true`
+     * `-work` from the go spec is parsed as a single flag when `parserDirectives.flagsArePosixNoncompliant` is set to true. Normally, this would be chained and parsed as `-w -o -r -k` if `flagsArePosixNoncompliant` is not set to true.
      */
     parserDirectives?: {
       flagsArePosixNoncompliant?: boolean;
@@ -201,8 +205,7 @@ declare namespace Fig {
 
   export interface Option extends BaseSuggestion {
     /**
-     * The exact name(s) of the option. It is very important to get this right for parsing purposes. It can be a string or an array of strings.
-     * **Important**: do NOT include an = sign here. Fig handles this logic for you. Including one will mess up the parsing.
+     * The exact name(s) of the option represented as a string or array of strings. Do NOT include an = sign here as it will mess up the parsing. Fig handles this logic for you.
      *
      * @example
      * For git commit -m, the option name is `["-m", "--message"]`
@@ -212,9 +215,7 @@ declare namespace Fig {
     /**
      * An array of args or a single arg object.
      *
-     * **Important**
-     * If an option takes an argument, please at least include an empty Arg Object
-     * (e.g. `{}`). If you don't, Fig will assume the option does not take an argument and will present the wrong suggestions.
+     * If an option takes an argument, include an empty Arg Object (e.g. `{}`). If you don't, Fig will assume the option does not take an argument and will present the wrong suggestions.
      *
      * @example:
      * `git commit -m` takes one argument. The most basic representation of this is
@@ -223,19 +224,70 @@ declare namespace Fig {
     args?: SingleOrArray<Arg>;
     /**
      *
-     * Signals whether an option is required. The default is an option is NOT required.
+     * Signals whether an option is persistent, meaning that it will still be available
+     * as an option for all child subcommands. As of now there is no way to disable this
+     * persistence for certain children. Also see
+     * https://github.com/spf13/cobra/blob/master/user_guide.md#persistent-flags.
      *
-     * Currently, signalling that an option is required doesn't do anything, however, Fig will handle it in the future
+     * By default, this option is false.
      *
      * @example
-     * The "-m" option of git commit is required
+     * Say the `git` spec had an option at the top level with `{ name: "--help", isPersistent: true }`.
+     * Then the spec would recognize both `git --help` and `git commit --help`
+     * as a valid passing the `--help` option to all `git` subcommands.
+     *
+     */
+    isPersistent?: boolean;
+    /**
+     *
+     * Signals whether an option is required. The default value is false, meaning an option is NOT required.
+     *
+     * Signalling that an option is required currently doesn't do anything. However, Fig will handle it in the future.
+     *
+     * @example
+     * The `-m` option of git commit is required
      *
      */
     isRequired?: boolean;
     /**
      *
-     * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
-     * The default is an option is NOT mutually exclusive with any other options.
+     * Signals whether an option can be passed multiple times. The default is an
+     * option is NOT repeatable, meaning after you pass it, it will not be
+     * suggested again.
+     *
+     * Passing `isRepeatable: true` will allow an option to be passed any number
+     * of times, while passing `isRepeatable: 2` will allow it to be passed
+     * twice, etc. Passing `isRepeatable: false` is the same as passing
+     * `isRepeatable: 1`.
+     *
+     * If you explicitly specify the isRepeatable option in a spec, this
+     * constraint will be enforced at the parser level, meaning after the option
+     * (say `-o`) has been passed the maximum number of times, Fig's parser will
+     * not recognize `-o` as an option if the user types it again.
+     *
+     * @example
+     * In `npm install` doesn't specify `isRepeatable` for `{ name: ["-D", "--save-dev"] }`.
+     * When the user types `npm install -D`, Fig will no longer suggest `-D`.
+     * If the user types `npm install -D -D`. Fig will still parse the second
+     * `-D` as an option.
+     *
+     * Suppose `npm install` explicitly specified `{ name: ["-D", "--save-dev"], isRepeatable: false }`.
+     * Now if the user types `npm install -D -D`, Fig will instead parse the second
+     * `-D` as the argument to the `install` subcommand instead of as an option.
+     *
+     * @example
+     * SSH has `{ name: "-v", isRepeatable: 3 }`. When the user types `ssh -vv`, Fig
+     * will still suggest `-v`, when the user types `ssh -vvv` Fig will stop
+     * suggesting `-v` as an option. Finally if the user types `ssh -vvvv` Fig's
+     * parser will recognize that this is not a valid string of chained options
+     * and will treat this as an argument to `ssh`.
+     *
+     */
+    isRepeatable?: boolean | number;
+    /**
+     *
+     * Signals whether an option is mutually exclusive with other options. This is defined as an array of strings of the option names.
+     * The default behavior is that an option is NOT mutually exclusive with any other options.
      * Options that are mutually exclusive with flags the user has already passed will not be shown in the suggestions list.
      *
      * @example
@@ -246,13 +298,13 @@ declare namespace Fig {
     exclusiveOn?: string[];
     /**
      *
-     * Signals whether an option depends other options. Define this as an array of strings of the option names.
-     * The default is an option does NOT depend on any other options.
+     * Signals whether an option depends other options. This is defined as an array of strings of the option names.
+     * The default behavior is that an option does NOT depend on any other options.
      * If the user has an unmet dependency for a flag they've already typed, this dependency will have boosted priority in the suggestion list.
      *
      * @example
      * In a tool like firebase, we may want to delete a specific extension. The command might be `firebase delete --project ABC --extension 123` This would mean we delete the 123 extension from the ABC project.
-     * In this case, `--extension ` dependsOn `--project`
+     * In this case, `--extension` dependsOn `--project`
      *
      *
      */
@@ -277,19 +329,20 @@ declare namespace Fig {
     description?: string;
 
     /**
-     * Specifies whether the suggestions generated by this argument are "dangerous". If so, Fig will not enable
-     * its insert and run functionality (when the red icon appears that automatically executes commands for you rather than just inserting)
+     * Specifies whether the suggestion is "dangerous". If true, Fig will not enable
+     * its "insert and run" functionality (when Fig has the red insert icon).
+     * This will make it harder for a user to accidentally run a dangerous command.
      *
-     * @remark
-     * This is used in specs like rm and trash.
+     * @example
+     * This is used in the `rm` spec.
      */
     isDangerous?: boolean;
 
     /**
-     * An array of strings or Suggestion objects. Use this prop to specify custom suggestions
+     * An array of strings or [Suggestion objects](./suggestion). This is used to specify custom suggestions
      * that are static (ie you know of in advance and don't have to be statically generated).
      * If suggestions are dependent upon the user's input or tokens, you most likely will
-     * want to use a Generator object in this Arg's generator prop.
+     * want to use a [Generator object](./generator) instead.
      */
     suggestions?: string[] | Suggestion[];
     /**
@@ -305,14 +358,14 @@ declare namespace Fig {
      *
      * Generators let you run shell commands on the user's device to generate suggestions for arguments.
      * The generators prop takes a single generator object or a list of generator objects.
-     * The generator object outputs an array of suggestions which are offered to users when inserting an argument
+     * The generator object outputs an array of suggestions which are offered to users when inserting an argument.
      */
     generators?: SingleOrArray<Generator>;
     /**
      * Specifies that the argument is variadic and therefore repeats infinitely.
      *
      * @example
-     * `echo` takes a variadic argument (`echo hello world ...`) so does `git add`
+     * `echo` takes a variadic argument (`echo hello world ...`) and so does `git add`
      */
     isVariadic?: boolean;
 
@@ -324,25 +377,25 @@ declare namespace Fig {
      */
     isOptional?: boolean;
     /**
-     * Specifies that the argument is an entirely new command which Fig should start completing on from scratch
+     * Specifies that the argument is an entirely new command which Fig should start completing on from scratch.
      *
      * @example
      * `time` and `builtin` have only one argument and this argument has the `isCommand` property. If I type `time git`, Fig will load up the git completion spec because the isCommand property is set.
      */
     isCommand?: boolean;
     /**
-     * Exactly the same as isCommand, except, you specify a string to prepend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     * The same as the `isCommand` prop, except you specify a string to prepend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the `~/.fig/autocomplete` folder.
      *
      * @example
      * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
      */
     isModule?: string;
     /**
-     * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
+     * The same as the `isCommand` prop, except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
      * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
-     * See our docs for more on this {@link https://fig.io/docs/tutorials/building-internal-clis | Fig for Teams}
+     * See our docs for more on this @link https://fig.io/docs/tutorials/building-internal-clis | Fig for Teams}
      */
     isScript?: boolean;
 
@@ -350,11 +403,11 @@ declare namespace Fig {
      * This will debounce every keystroke event for this particular arg. If there are no keystroke events after 100ms, Fig will execute all the generators in this arg and return the suggestions.
      *
      * @example
-     * NPM install and pip install send debounced network requests after inactive typing from users.
+     * `npm install` and `pip install` send debounced network requests after inactive typing from users.
      */
     debounce?: boolean;
     /**
-     * The default value for an optional argument. This is just a string
+     * The default value for an optional argument.
      *
      */
     default?: string;
@@ -378,31 +431,32 @@ declare namespace Fig {
      * @example
      * The python spec has an arg object which has a template for "filepaths" and then filters out all suggestions generated that don't end with "/" (to keep folders) or ".py" (to keep python files)
      */
-    filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>;
+    filterTemplateSuggestions?: Function<
+      Modify<Suggestion, { name?: string }>[],
+      Suggestion[]
+    >;
     /**
      * In order to generate contextual suggestions for arguments, Fig lets you execute a shell command on the users local device as if it were done in their current working directory.
      * You can either specify
      * 1. a string to be executed (like `ls` or `git branch`)
-     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a kubernetes tokens etc)
+     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a Kubernetes token etc.)
      * After executing the script, the output will be passed to one of `splitOn` or `postProcess` for further processing to produce suggestion objects.
      *
      * @example
-     * `git checkout` takes one argument which is a git branch. Its arg object has a generator with a script of `git branch`
-     * `heroku features:disable --app ABC FEATURE` the suggestion for the FEATURE argument are dependent upon the --app given (in this case ABC). Therefore, we would use a function to generate the script we would run here
+     * `git checkout` takes one argument which is a git branch. Its arg object has a generator with a script of `git branch` to list out the branches.
      */
     script?: StringOrFunction<string[], string>;
     /**
-     * A syntactic sugar over postProcess. This takes in the text output of `script`, splits it on the string you provide here, and the automatically generates an array of suggestion objects for each item.
+     * This function takes one parameter: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
+     */
+    postProcess?: (out: string, tokens?: string[]) => Suggestion[];
+    /**
+     * Syntactic sugar for postProcess. This takes in the text output of `script`, splits it on the string you provide here, and then automatically generates an array of suggestion objects for each item.
      *
      * @example
      * Specify "," or "\n", and Fig will do the work of the `postProcess` prop for you
      */
     splitOn?: string;
-    /**
-     * This function takes one parameter: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
-     */
-    postProcess?: (out: string, tokens?: string[]) => Suggestion[];
-
     /**
      * Fig performs numerous optimizations to avoid running expensive shell functions many times. For instance, after you type `cd[space]` we load up a list of folders (the suggestions). After you start typing, we instead filter over this list of folders (the filteredSuggestions).
      * The suggestions remain the same while the filteredSuggestions change on each input.
@@ -428,12 +482,12 @@ declare namespace Fig {
      */
     trigger?: string | ((newToken: string, oldToken?: string) => boolean);
     /**
-     * Read the note above about how triggers work. Triggers and query term may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The query term defines what characters we should use to filter over these suggestions.
+     * Read the note above on how triggers work. Triggers and query term may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The query term defines what characters we should use to filter over these suggestions.
      *
-     * It can be a function: this takes in what the user has currently typed as a string and outputs a separate string that is used for filtering
+     * It can be a function: this takes in what the user has currently typed as a string and outputs a separate string that is used for filtering.
      * It can also be a string: this is syntactic sugar that takes everything in the string after the character(s) you choose.
      *
-     * Use some logging in the function to work out what the trigger is
+     * Use some logging in the function to work out what the trigger is.
      *
      * @example
      * cd has a filter term of "/". If an argument to `cd` includes a "/" Fig will filter over all of the suggestions generated using the string AFTER the last "/"
@@ -456,7 +510,7 @@ declare namespace Fig {
      * @example
      * ```
      * const generator: Fig.Generator = {
-     *   custom: (tokens) => {
+     *   custom: async (tokens, executeShellCommand) => {
      *     const out = await executeShellCommand("ls");
      *     return out.split("\n").map((elm) => ({ name: elm }));
      *   },

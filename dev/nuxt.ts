@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start",
       description:
-        "Start the production server (after running nuxt build). Use it for Node.js hosting like Heroku, Digital Ocean, etc.",
+        "Start the production server (after running nuxt build). Use it for Node.js hosting like Heroku, Digital Ocean, etc",
     },
     {
       name: "generate",
@@ -16,7 +16,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "build",
       description:
-        "Build and optimize your application with webpack for production.",
+        "Build and optimize your application with webpack for production",
     },
     {
       name: "webpack",
@@ -31,7 +31,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--depth",
           description:
-            "Inspection depth. Defaults to 2 to prevent verbose output.",
+            "Inspection depth. Defaults to 2 to prevent verbose output",
         },
         {
           name: "--no-colors",

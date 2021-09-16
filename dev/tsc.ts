@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--noResolve",
       description:
-        " Disallow imports, requires or <reference>s from expanding the number of files TypeScript should add to a project",
+        "Disallow imports, requires or <reference>s from expanding the number of files TypeScript should add to a project",
     },
     {
       name: "--noStrictGenericChecks",
@@ -609,7 +609,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--sourceRoot",
       description:
-        "Specify the root path for debuggers to find the reference source code.",
+        "Specify the root path for debuggers to find the reference source code",
       args: {
         name: "string",
         template: ["filepaths", "folders"],
@@ -700,7 +700,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--types",
       description:
-        "Specify type package names to be included without being referenced in a source file.",
+        "Specify type package names to be included without being referenced in a source file",
       args: {
         name: "package names",
         isVariadic: true,
@@ -723,14 +723,10 @@ const completionSpec: Fig.Spec = {
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((file) => {
-            if (typeof file.name === "string") {
-              return file.name.endsWith(".ts") || file.name.endsWith("/");
-            }
-            return false;
+            return file.name.endsWith(".ts") || file.name.endsWith("/");
           })
           .map((file) => {
-            const isTsFile =
-              typeof file.name === "string" && file.name.endsWith(".ts");
+            const isTsFile = file.name.endsWith(".ts");
             return {
               ...file,
               priority: isTsFile ? 76 : 70,

@@ -11,54 +11,54 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "build",
-  description: "Build or rebuild services.",
-  args: [{ generators: getServices }],
+  description: "Build or rebuild services",
+  args: { generators: getServices },
   options: [
     {
       name: "--build-arg",
-      description: "Set build-time variables for services.",
+      description: "Set build-time variables for services",
       args: {
         name: "key=val",
       },
     },
     {
       name: "--compress",
-      description: "Compress the build context using gzip.",
+      description: "Compress the build context using gzip",
     },
     {
       name: "--force-rm",
-      description: "Always remove intermediate containers.",
+      description: "Always remove intermediate containers",
     },
     {
       name: ["-m", "--memory"],
-      description: "Set memory limit for the build container.",
+      description: "Set memory limit for the build container",
       args: {
         name: "MEM",
       },
     },
     {
       name: "--no-cache",
-      description: "Do not use cache when building the image.",
+      description: "Do not use cache when building the image",
     },
     {
       name: "--no-rm",
       description:
-        "Do not remove intermediate containers after a successful build.",
+        "Do not remove intermediate containers after a successful build",
     },
     {
       name: "--parallel",
-      description: "Build images in parallel.",
+      description: "Build images in parallel",
     },
     {
       name: "--progress",
-      description: "Set type of progress output (auto, plain, tty).",
+      description: "Set type of progress output (auto, plain, tty)",
       args: {
         name: "string",
       },
     },
     {
       name: "--pull",
-      description: "Always attempt to pull a newer version of the image.",
+      description: "Always attempt to pull a newer version of the image",
     },
     {
       name: ["-q", "--quiet"],

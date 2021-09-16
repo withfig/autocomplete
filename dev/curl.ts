@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "curl",
-  description: "transfer a URL",
-  args: [{ name: "URL" }],
+  description: "Transfer a URL",
+  args: { name: "URL" },
   options: [
     {
       name: ["-a", "--append"],
@@ -42,6 +42,7 @@ const completionSpec: Fig.Spec = {
       description: "HTTP POST data",
       insertValue: "-d '{cursor}'",
       args: { name: "data" },
+      isRepeatable: true,
     },
     { name: ["-q", "--disable"], description: "Disable .curlrc" },
     {
@@ -57,6 +58,7 @@ const completionSpec: Fig.Spec = {
       name: ["-F", "--form"],
       description: "Specify multipart MIME data",
       args: { name: "content" },
+      isRepeatable: true,
     },
     {
       name: ["-P", "--ftp-port"],
@@ -241,7 +243,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--alt-svc",
-      description: "name> Enable alt-svc with this cache file",
+      description: "Name> Enable alt-svc with this cache file",
       args: { name: "file", template: "filepaths" },
     },
     { name: "--anyauth", description: "Pick any authentication method" },
@@ -270,7 +272,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--ciphers",
-      description: "of ciphers> SSL ciphers to use",
+      description: "Of ciphers> SSL ciphers to use",
       args: { name: "list" },
     },
     { name: "--compressed", description: "Request compressed response" },
@@ -692,7 +694,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--proxy-tls13-ciphers",
-      description: "list> TLS 1.3 proxy cipher suites",
+      description: "List> TLS 1.3 proxy cipher suites",
       args: { name: "ciphersuit" },
     },
     {
@@ -839,7 +841,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--tls13-ciphers",
-      description: "of TLS 1.3 ciphersuites> TLS 1.3 cipher suites to use",
+      description: "Of TLS 1.3 ciphersuites> TLS 1.3 cipher suites to use",
       args: { name: "list" },
     },
     {

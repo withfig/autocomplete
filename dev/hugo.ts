@@ -6,27 +6,27 @@ const help = (name: string): Fig.Option => ({
 const globalOptions: Fig.Option[] = [
   {
     name: "--config",
-    description: "config file (default is path/config.yaml|json|toml)",
+    description: "Config file (default is path/config.yaml|json|toml)",
     priority: 50,
     args: {
       name: "file",
-      description: "default is path/config.yaml|json|toml",
+      description: "Default is path/config.yaml|json|toml",
       template: "filepaths",
     },
   },
   {
     name: "--configDir",
-    description: "config dir (default 'config')",
+    description: "Config dir (default 'config')",
     priority: 50,
     args: {
       name: "directory path",
-      description: "default is 'config'",
+      description: "Default is 'config'",
       template: "folders",
     },
   },
   {
     name: "--debug",
-    description: "debug output (default false)",
+    description: "Debug output (default false)",
     priority: 50,
     args: {
       name: "boolean",
@@ -34,7 +34,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: ["-e", "--environment"],
-    description: "build environment",
+    description: "Build environment",
     priority: 50,
     args: {
       name: "environment",
@@ -42,7 +42,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--ignoreVendor",
-    description: "ignores any _vendor directory (default false)",
+    description: "Ignores any _vendor directory (default false)",
     priority: 50,
     args: {
       name: "boolean",
@@ -51,7 +51,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--ignoreVendorPaths",
     description:
-      "ignores any _vendor for module paths matching the given Glob pattern",
+      "Ignores any _vendor for module paths matching the given Glob pattern",
     priority: 50,
     args: {
       name: "glob pattern",
@@ -59,7 +59,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--log",
-    description: "enable Logging (default false)",
+    description: "Enable Logging (default false)",
     priority: 50,
     args: {
       name: "boolean",
@@ -67,7 +67,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--logFile",
-    description: "log File path (if set, logging enabled automatically)",
+    description: "Log File path (if set, logging enabled automatically)",
     priority: 50,
     args: {
       name: "file",
@@ -76,7 +76,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--quiet",
-    description: "build in quiet mode (default false)",
+    description: "Build in quiet mode (default false)",
     priority: 50,
     args: {
       name: "boolean",
@@ -84,7 +84,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: ["-s", "--source"],
-    description: "filesystem path to read files relative from",
+    description: "Filesystem path to read files relative from",
     priority: 50,
     args: {
       name: "file",
@@ -93,17 +93,17 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--themesDir",
-    description: "filesystem path to themes directory",
+    description: "Filesystem path to themes directory",
     priority: 50,
     args: {
       name: "file",
-      description: "default is path/config.yaml|json|toml",
+      description: "Default is path/config.yaml|json|toml",
       template: "filepaths",
     },
   },
   {
     name: "-v, --verbose",
-    description: "verbose output (default false)",
+    description: "Verbose output (default false)",
     priority: 50,
     args: {
       name: "boolean",
@@ -111,7 +111,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "--verboseLog",
-    description: "verbose logging (default false)",
+    description: "Verbose logging (default false)",
     priority: 50,
     args: {
       name: "boolean",
@@ -124,21 +124,21 @@ const globalOptions: Fig.Option[] = [
 const commonOptions: Fig.Option[] = [
   {
     name: ["-b", "--baseURL"],
-    description: "hostname (and path) to the root, e.g. http://spf13.com/",
+    description: "Hostname (and path) to the root, e.g. http://spf13.com/",
     args: {
       name: "hostname and path",
     },
   },
   {
     name: ["-D", "--buildDrafts"],
-    description: "include content marked as draft (default false)",
+    description: "Include content marked as draft (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: ["-E", "--buildExpired"],
-    description: "include expired content (default false)",
+    description: "Include expired content (default false)",
     args: {
       name: "boolean",
     },
@@ -146,7 +146,7 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-F", "--buildFuture"],
     description:
-      "include content with publishdate in the future (default false)",
+      "Include content with publishdate in the future (default false)",
     args: {
       name: "boolean",
     },
@@ -154,7 +154,7 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--cacheDir",
     description:
-      "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+      "Filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
     args: {
       name: "path",
       template: "folders",
@@ -163,14 +163,14 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--cleanDestinationDir",
     description:
-      "remove files from destination not found in static directories (default false)",
+      "Remove files from destination not found in static directories (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: ["-c", "--contentDir"],
-    description: "filesystem path to content directory",
+    description: "Filesystem path to content directory",
     args: {
       name: "path",
       template: "folders",
@@ -178,7 +178,7 @@ const commonOptions: Fig.Option[] = [
   },
   {
     name: ["-d", "--destination"],
-    description: "filesystem path to write files to",
+    description: "Filesystem path to write files to",
     args: {
       name: "path",
       template: "folders",
@@ -186,7 +186,7 @@ const commonOptions: Fig.Option[] = [
   },
   {
     name: "--disableKinds",
-    description: "disable different kind of pages (home, RSS etc.)",
+    description: "Disable different kind of pages (home, RSS etc.)",
     args: {
       name: "kind,kind",
       suggestions: [
@@ -205,14 +205,14 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--enableGitInfo",
     description:
-      "add Git revision, date and author info to the pages (default false)",
+      "Add Git revision, date and author info to the pages (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--forceSyncStatic",
-    description: "copy all files when static is changed (default false)",
+    description: "Copy all files when static is changed (default false)",
     args: {
       name: "boolean",
     },
@@ -220,28 +220,28 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--gc",
     description:
-      "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
+      "Enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--i18n-warnings",
-    description: "print missing translations (default false)",
+    description: "Print missing translations (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--ignoreCache",
-    description: "ignores the cache directory (default false)",
+    description: "Ignores the cache directory (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: ["-l", "--layoutDir"],
-    description: "filesystem path to layout directory",
+    description: "Filesystem path to layout directory",
     args: {
       name: "path",
       template: "folders",
@@ -250,28 +250,28 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--minify",
     description:
-      "minify any supported output format (HTML, XML etc.) (default false)",
+      "Minify any supported output format (HTML, XML etc.) (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--noChmod",
-    description: "don't sync permission mode of files (default false)",
+    description: "Don't sync permission mode of files (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--noTimes",
-    description: "don't sync modification time of files (default false)",
+    description: "Don't sync modification time of files (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--path-warnings",
-    description: "print warnings on duplicate target paths etc (default false)",
+    description: "Print warnings on duplicate target paths etc (default false)",
     args: {
       name: "boolean",
     },
@@ -279,21 +279,21 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--poll",
     description:
-      "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+      "Set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
     args: {
       name: "milliseconds",
     },
   },
   {
     name: "--print-mem",
-    description: "print memory usage to screen at intervals (default false)",
+    description: "Print memory usage to screen at intervals (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: "--templateMetrics",
-    description: "display metrics about template executions (default false)",
+    description: "Display metrics about template executions (default false)",
     args: {
       name: "boolean",
     },
@@ -301,19 +301,19 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--templateMetricsHints",
     description:
-      "calculate some improvement hints when combined with --templateMetrics (default false)",
+      "Calculate some improvement hints when combined with --templateMetrics (default false)",
     args: {
       name: "boolean",
     },
   },
   {
     name: ["-t", "--theme"],
-    description: "themes to use (located in /themes/THEMENAME/)",
+    description: "Themes to use (located in /themes/THEMENAME/)",
     args: { name: "theme name" },
   },
   {
     name: "--trace",
-    description: "write trace to file (not useful in general)",
+    description: "Write trace to file (not useful in general)",
     args: {
       name: "file",
       template: "filepaths",
@@ -326,7 +326,7 @@ const commonOptions: Fig.Option[] = [
 const watch = {
   name: ["-w", "--watch"],
   description:
-    "watch filesystem for changes and recreate as needed (default true)",
+    "Watch filesystem for changes and recreate as needed (default true)",
   args: {
     name: "boolean",
   },
@@ -337,22 +337,22 @@ const watch = {
 const convertOptions: Fig.Option[] = [
   {
     name: ["-o", "--output"],
-    description: "filesystem path to write files to",
+    description: "Filesystem path to write files to",
     args: {
       name: "path",
       template: "folders",
     },
   },
   {
-    name: ["--unsafe"],
-    description: "enable less safe operations, please backup first",
+    name: "--unsafe",
+    description: "Enable less safe operations, please backup first",
     isDangerous: true,
   },
 ];
 
 const completionSpec: Fig.Spec = {
   name: "hugo",
-  description: "hugo builds your site",
+  description: "Hugo builds your site",
   subcommands: [
     {
       name: "check",
@@ -416,35 +416,35 @@ const completionSpec: Fig.Spec = {
         help("deploy"),
         ...globalOptions,
         {
-          name: ["--confirm"],
+          name: "--confirm",
           description:
-            "ask for confirmation before making changes to the target",
+            "Ask for confirmation before making changes to the target",
         },
         {
-          name: ["--dryRun"],
-          description: "dry run",
+          name: "--dryRun",
+          description: "Dry run",
         },
         {
-          name: ["--force"],
-          description: "force upload of all files",
+          name: "--force",
+          description: "Force upload of all files",
         },
         {
-          name: ["--invalidateCDN"],
+          name: "--invalidateCDN",
           description:
-            "invalidate the CDN cache listed in the deployment target (default true)",
+            "Invalidate the CDN cache listed in the deployment target (default true)",
         },
         {
-          name: ["--maxDeletes"],
+          name: "--maxDeletes",
           description:
-            "maximum # of files to delete, or -1 to disable (default 256)",
+            "Maximum # of files to delete, or -1 to disable (default 256)",
           args: {
             name: "int",
           },
         },
         {
-          name: ["--target"],
+          name: "--target",
           description:
-            "target deployment from deployments section in config file; defaults to the first one",
+            "Target deployment from deployments section in config file; defaults to the first one",
           args: {
             name: "target",
           },
@@ -458,7 +458,7 @@ const completionSpec: Fig.Spec = {
         help("env"),
         ...globalOptions,
         {
-          name: ["-v"],
+          name: "-v",
           description: "Get a full dependency list",
         },
       ],
@@ -478,7 +478,7 @@ const completionSpec: Fig.Spec = {
             help("autocomplete"),
             {
               name: ["-f", "--completionfile"],
-              description: "autocompletion file, defaults to stdout",
+              description: "Autocompletion file, defaults to stdout",
               args: {
                 name: "file",
                 template: "filepaths",
@@ -487,12 +487,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-t", "--type"],
               description:
-                "autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
+                "Autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
               args: {
                 name: "type",
                 default: "bash",
                 suggestions: [
-                  { name: "bash", description: "default" },
+                  { name: "bash", description: "Default" },
                   { name: "zsh" },
                   { name: "fish" },
                   { name: "powershell" },
@@ -508,29 +508,29 @@ const completionSpec: Fig.Spec = {
           options: [
             help("chromastyles"),
             {
-              name: ["--highlightStyle"],
+              name: "--highlightStyle",
               description:
-                "style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
+                "Style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
               args: {
                 name: "hex triplet",
               },
             },
             {
-              name: ["--linesStyle"],
+              name: "--linesStyle",
               description:
-                "style used for line numbers (see https://github.com/alecthomas/chroma)",
+                "Style used for line numbers (see https://github.com/alecthomas/chroma)",
               args: {
                 name: "hex triplet",
               },
             },
             {
-              name: ["--style"],
+              name: "--style",
               description:
-                "highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
+                "Highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
               args: {
                 name: "style name",
                 suggestions: [
-                  { name: "friendly", description: "default" },
+                  { name: "friendly", description: "Default" },
                   { name: "abap" },
                   { name: "algol" },
                   { name: "algol_nu" },
@@ -587,9 +587,9 @@ const completionSpec: Fig.Spec = {
           options: [
             help("doc"),
             {
-              name: ["--dir"],
+              name: "--dir",
               description:
-                "the directory to write the doc. (default '/tmp/hugodoc/')",
+                "The directory to write the doc. (default '/tmp/hugodoc/')",
               args: {
                 name: "path",
                 template: "folders",
@@ -603,9 +603,9 @@ const completionSpec: Fig.Spec = {
           options: [
             help("man"),
             {
-              name: ["--dir"],
+              name: "--dir",
               description:
-                "the directory to write the man pages. (default 'man/')",
+                "The directory to write the man pages. (default 'man/')",
               args: {
                 name: "path",
                 template: "folders",
@@ -649,7 +649,7 @@ const completionSpec: Fig.Spec = {
           name: "jekyll",
           displayName: "jekyll",
           description:
-            "Import from Jekyll requires two paths, e.g. ` + `hugo import jekyll jekyll_root_path target_path`.",
+            "Import from Jekyll requires two paths, e.g. ` + `hugo import jekyll jekyll_root_path target_path`",
           args: [
             {
               name: "jekyll_root_path",
@@ -663,8 +663,8 @@ const completionSpec: Fig.Spec = {
           options: [
             help("jekyll"),
             {
-              name: ["--force"],
-              description: "allow import into non-empty target directory",
+              name: "--force",
+              description: "Allow import into non-empty target directory",
               isDangerous: true,
             },
           ],
@@ -716,12 +716,12 @@ const completionSpec: Fig.Spec = {
             help("clean"),
             {
               name: "--all",
-              description: "clean entire module cache",
+              description: "Clean entire module cache",
             },
             {
               name: "--pattern",
               description:
-                'pattern matching module paths to clean (all if not set)", "e.g. "**hugo*"',
+                'Pattern matching module paths to clean (all if not set)", "e.g. "**hugo*"',
               args: {
                 name: "path",
               },
@@ -735,44 +735,44 @@ const completionSpec: Fig.Spec = {
           options: [
             help("get"),
             {
-              name: ["-d"],
-              description: "download packages only and do not install",
+              name: "-d",
+              description: "Download packages only and do not install",
             },
             {
-              name: ["-f"],
+              name: "-f",
               description:
-                "valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original.",
+                "Valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original",
             },
             {
-              name: ["-fix"],
+              name: "-fix",
               description:
-                "run the fix tool on downloaded packages before resolving dependencies or building the code",
+                "Run the fix tool on downloaded packages before resolving dependencies or building the code",
             },
             {
-              name: ["-insecure"],
+              name: "-insecure",
               description:
-                "permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution.",
+                "Permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution",
             },
             {
-              name: ["-t"],
+              name: "-t",
               description:
-                "also download the packages required to build the tests for the specified packages",
+                "Also download the packages required to build the tests for the specified packages",
             },
             {
-              name: ["-u"],
+              name: "-u",
               description:
-                "recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages.",
+                "Recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages",
             },
             {
-              name: ["-v"],
-              description: "enables verbose progress and debug output",
+              name: "-v",
+              description: "Enables verbose progress and debug output",
             },
           ],
         },
         {
           name: "graph",
           description:
-            "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status.",
+            "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status",
           options: [help("graph")],
         },
         {
@@ -787,7 +787,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "pack",
               description:
-                "Experimental: Prepares and writes a composite package.json file for your project.",
+                "Experimental: Prepares and writes a composite package.json file for your project",
               options: [help("pack")],
             },
           ],
@@ -812,7 +812,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--clean",
               description:
-                "delete module cache for dependencies that fail verification",
+                "Delete module cache for dependencies that fail verification",
             },
           ],
         },
@@ -837,16 +837,16 @@ const completionSpec: Fig.Spec = {
             help("site"),
             {
               name: "--force",
-              description: "init inside non-empty directory",
+              description: "Init inside non-empty directory",
               isDangerous: true,
             },
             {
               name: ["-f", "--format"],
-              description: 'config & frontmatter format (default "toml")',
+              description: 'Config & frontmatter format (default "toml")',
               args: {
                 name: "format",
                 suggestions: [
-                  { name: "toml", description: "default" },
+                  { name: "toml", description: "Default" },
                   { name: "yaml" },
                   { name: "json" },
                 ],
@@ -869,20 +869,18 @@ const completionSpec: Fig.Spec = {
         ...globalOptions,
         {
           name: ["-k", "--kind"],
-          description: "content type to create",
+          description: "Content type to create",
           args: [
             {
               name: "archetype|default",
-              generators: [
-                {
-                  script: "ls ./archetypes/",
-                  postProcess: (output) =>
-                    output.split("\n").map((fileName) => ({
-                      name: fileName,
-                      icon: "fig://icon?type=string",
-                    })),
-                },
-              ],
+              generators: {
+                script: "ls ./archetypes/",
+                postProcess: (output) =>
+                  output.split("\n").map((fileName) => ({
+                    name: fileName,
+                    icon: "fig://icon?type=string",
+                  })),
+              },
             },
             {
               name: "content-section/file-name.md",
@@ -891,7 +889,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--editor",
-          description: "edit new content with this editor, if provided",
+          description: "Edit new content with this editor, if provided",
           args: {
             name: "editor",
           },
@@ -907,8 +905,8 @@ const completionSpec: Fig.Spec = {
         ...globalOptions,
         watch,
         {
-          name: ["--appendPort"],
-          description: "append port to baseURL (default true)",
+          name: "--appendPort",
+          description: "Append port to baseURL (default true)",
           args: {
             name: "boolean",
           },
@@ -916,7 +914,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bind",
           description:
-            "interface to which the server will bind (default '127.0.0.1')",
+            "Interface to which the server will bind (default '127.0.0.1')",
           args: {
             name: "ip address",
           },
@@ -924,14 +922,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disableBrowserError",
           description:
-            "do not show build errors in the browser (default false)",
+            "Do not show build errors in the browser (default false)",
           args: {
             name: "boolean",
           },
         },
         {
           name: "--disableFastRender",
-          description: "enables full re-renders on changes (default false)",
+          description: "Enables full re-renders on changes (default false)",
           args: {
             name: "boolean",
           },
@@ -939,7 +937,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--disableLiveReload",
           description:
-            "watch without enabling live browser reload on rebuild (default false)",
+            "Watch without enabling live browser reload on rebuild (default false)",
           args: {
             name: "boolean",
           },
@@ -947,7 +945,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--liveReloadPort",
           description:
-            "port for live reloading (i.e. 443 in HTTPS proxy situations) (default -1)",
+            "Port for live reloading (i.e. 443 in HTTPS proxy situations) (default -1)",
           args: {
             name: "port",
           },
@@ -955,14 +953,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--meminterval",
           description:
-            "interval to poll memory usage (requires --memstats), valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. (default '100ms')",
+            "Interval to poll memory usage (requires --memstats), valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. (default '100ms')",
           args: {
             name: "time unit",
           },
         },
         {
           name: "--memstats",
-          description: "log memory usage to this file",
+          description: "Log memory usage to this file",
           args: {
             name: "file",
             template: "filepaths",
@@ -971,21 +969,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "--navigateToChanged",
           description:
-            "navigate to changed content file on live browser reload (default false)",
+            "Navigate to changed content file on live browser reload (default false)",
           args: {
             name: "boolean",
           },
         },
         {
           name: "--noHTTPCache",
-          description: "prevent HTTP caching (default false)",
+          description: "Prevent HTTP caching (default false)",
           args: {
             name: "boolean",
           },
         },
         {
           name: ["-p", "--port"],
-          description: "port on which the server will listen (default 1313)",
+          description: "Port on which the server will listen (default 1313)",
           args: {
             name: "port",
           },
@@ -993,7 +991,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--renderToDisk",
           description:
-            "render to Destination path (default is false: render to memory & serve from there)",
+            "Render to Destination path (default is false: render to memory & serve from there)",
           args: {
             name: "boolean",
           },
@@ -1013,7 +1011,7 @@ const completionSpec: Fig.Spec = {
     watch,
     {
       name: "--renderToMemory",
-      description: "render to memory (only useful for benchmark testing)",
+      description: "Render to memory (only useful for benchmark testing)",
     },
   ],
 };

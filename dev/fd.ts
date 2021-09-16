@@ -60,21 +60,23 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-t", "--type"],
       description: "Filter by type",
+      isRepeatable: true,
       args: {
         name: "filetype",
         suggestions: [
-          { name: "f", description: "file" },
-          { name: "d", description: "directory" },
-          { name: "l", description: "symlink" },
-          { name: "x", description: "executable" },
-          { name: "e", description: "empty" },
-          { name: "s", description: "socket" },
-          { name: "p", description: "pipe" },
+          { name: "f", description: "File" },
+          { name: "d", description: "Directory" },
+          { name: "l", description: "Symlink" },
+          { name: "x", description: "Executable" },
+          { name: "e", description: "Empty" },
+          { name: "s", description: "Socket" },
+          { name: "p", description: "Pipe" },
         ],
       },
     },
     {
       name: ["-e", "--extension"],
+      isRepeatable: true,
       description: "Filter by file extension",
       args: {
         name: "file extension",
@@ -98,6 +100,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-E", "--exclude"],
+      isRepeatable: true,
       description: "Exclude entries that match the given glob pattern",
       args: {
         name: "pattern",
