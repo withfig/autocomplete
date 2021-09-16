@@ -793,7 +793,7 @@ const denoEval: Fig.Subcommand = {
       description: "Set standard input (stdin) content type",
       args: {
         name: "extension",
-        description: "The file extension to use to interpret stdin",
+        description: "Interpret stdin as this type of file",
         default: "ts",
         suggestions: ["ts", "tsx", "js", "jsx"],
       },
@@ -814,7 +814,7 @@ const denoCompletions: Fig.Subcommand = {
   description: "Generate shell completions",
   args: {
     name: "shell",
-    description: "Name of the shell to generate completions for",
+    description: "Generate completions for this shell",
     suggestions: ["zsh", "bash", "fish", "powershell", "elvish"],
   },
 };
