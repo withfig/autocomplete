@@ -349,31 +349,6 @@ const cachedOnlyOption: Fig.Option = {
   description: "Require that remote dependencies are already cached",
 };
 
-// const globalOptions: Fig.Option[] = [
-//   {
-//     name: ["-h", "--help"],
-//     description: "Prints help information",
-//     priority: 40,
-//   },
-//   {
-//     name: ["-L", "--log-level"],
-//     description: "Set log level",
-//     priority: 40,
-//     args: {
-//       suggestions: ["info", "debug"],
-//     },
-//   },
-//   {
-//     name: ["-q", "--quiet"],
-//     description:
-//       "Suppress diagnostic output (restrict stderr messages to errors)",
-//   },
-//   {
-//     name: "--unstable",
-//     description: "Enable unstable features and APIs",
-//   },
-// ];
-
 const compileOptions: Fig.Option[] = [
   importMapOption,
   noRemoteOption,
@@ -590,13 +565,27 @@ const denoFmt: Fig.Subcommand = {
     },
     {
       name: "--options-prose-wrap",
-      description: "Define how prose should be wrapped (default: always)",
+      description:
+        "Define how markdown prose should be wrapped (default: always)",
       args: {
+        default: "always",
         name: "wrap",
         suggestions: [
-          { name: "always", icon: "fig://icon?type=string" },
-          { name: "never", icon: "fig://icon?type=string" },
-          { name: "preserve", icon: "fig://icon?type=string" },
+          {
+            name: "always",
+            icon: "fig://icon?type=string",
+            description: "Hard-wrap the entire file",
+          },
+          {
+            name: "never",
+            icon: "fig://icon?type=string",
+            description: "Don't hard-wrap text",
+          },
+          {
+            name: "preserve",
+            icon: "fig://icon?type=string",
+            description: "Hard-wrap text that's changed",
+          },
         ],
       },
     },
