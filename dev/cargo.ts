@@ -25,6 +25,18 @@ const testList: Fig.Generator = {
   getQueryTerm: ":",
 };
 
+const binList: FIg.Generator = {
+  script: function () {
+    return `cargo read-manifest`;
+  },
+  postProcess: function (data: string) {
+    const manifest = JSON.parse(data);
+    return manifest.targets
+      .filter(({ kind }) => kind.includes("bin"))
+      .map(({ name }) => ({ name }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "cargo",
   icon: "📦",
@@ -70,6 +82,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Output usage info",
+        },
+        {
+          name: "--bin",
+          args: {
+            name: "bin",
+            generators: binList,
+          },
         },
         {
           name: "--release",
