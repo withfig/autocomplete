@@ -25,7 +25,7 @@ const testList: Fig.Generator = {
   getQueryTerm: ":",
 };
 
-const binList: FIg.Generator = {
+const binList: Fig.Generator = {
   script: function () {
     return `cargo read-manifest`;
   },
