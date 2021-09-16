@@ -42,16 +42,6 @@ const ghOptions: Record<string, Fig.Option> = {
     },
   },
 };
-const ghRunOptions: Record<string, Fig.Option> = {
-  help: { name: "--help", description: "Show help for command" },
-  all: {
-    name: ["--repo", "-R"],
-    description: "Select another repository",
-    args: {
-      name: "[HOST/]OWNER/REPO",
-    },
-  },
-};
 
 const completionSpec: Fig.Spec = {
   name: "gh",
