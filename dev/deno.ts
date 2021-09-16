@@ -349,30 +349,30 @@ const cachedOnlyOption: Fig.Option = {
   description: "Require that remote dependencies are already cached",
 };
 
-const globalOptions: Fig.Option[] = [
-  {
-    name: ["-h", "--help"],
-    description: "Prints help information",
-    priority: 40,
-  },
-  {
-    name: ["-L", "--log-level"],
-    description: "Set log level",
-    priority: 40,
-    args: {
-      suggestions: ["info", "debug"],
-    },
-  },
-  {
-    name: ["-q", "--quiet"],
-    description:
-      "Suppress diagnostic output (restrict stderr messages to errors)",
-  },
-  {
-    name: "--unstable",
-    description: "Enable unstable features and APIs",
-  },
-];
+// const globalOptions: Fig.Option[] = [
+//   {
+//     name: ["-h", "--help"],
+//     description: "Prints help information",
+//     priority: 40,
+//   },
+//   {
+//     name: ["-L", "--log-level"],
+//     description: "Set log level",
+//     priority: 40,
+//     args: {
+//       suggestions: ["info", "debug"],
+//     },
+//   },
+//   {
+//     name: ["-q", "--quiet"],
+//     description:
+//       "Suppress diagnostic output (restrict stderr messages to errors)",
+//   },
+//   {
+//     name: "--unstable",
+//     description: "Enable unstable features and APIs",
+//   },
+// ];
 
 const compileOptions: Fig.Option[] = [
   importMapOption,
@@ -422,7 +422,6 @@ const denoRun: Fig.Subcommand = {
     generators: generateRunnableFiles,
   },
   options: [
-    ...globalOptions,
     ...runtimeOptions({
       perms: true,
       inspector: true,
@@ -448,7 +447,6 @@ const denoTest: Fig.Subcommand = {
     }),
   },
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: "--ignore",
@@ -543,7 +541,6 @@ const denoFmt: Fig.Subcommand = {
     }),
   },
   options: [
-    ...globalOptions,
     configOption,
     {
       name: "--check",
@@ -617,7 +614,6 @@ const denoLint: Fig.Subcommand = {
     generators: generateRunnableFiles,
   },
   options: [
-    ...globalOptions,
     configOption,
     {
       name: "--rules",
@@ -700,7 +696,6 @@ const denoDoc: Fig.Subcommand = {
     },
   ],
   options: [
-    ...globalOptions,
     importMapOption,
     reloadOption,
     {
@@ -731,7 +726,6 @@ const denoInstall: Fig.Subcommand = {
     },
   ],
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: ["-n", "--name"],
@@ -760,20 +754,17 @@ const denoInstall: Fig.Subcommand = {
 const denoLsp: Fig.Subcommand = {
   name: "lsp",
   description: "Start the language server",
-  options: globalOptions,
 };
 
 const denoTypes: Fig.Subcommand = {
   name: "types",
   description: "Print Deno's runtime TypeScript declarations",
-  options: globalOptions,
 };
 
 const denoUpgrade: Fig.Subcommand = {
   name: "upgrade",
   description: "Upgrade the deno executable",
   options: [
-    ...globalOptions,
     {
       name: "--version",
       description: "The version to upgrade to",
@@ -807,7 +798,6 @@ const denoEval: Fig.Subcommand = {
   insertValue: "eval '{cursor}'",
   description: "Evaluate JavaScript from the command line",
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: false, inspector: true }),
     {
       name: "--ext",
@@ -838,14 +828,12 @@ const denoCompletions: Fig.Subcommand = {
     description: "Name of the shell to generate completions for",
     suggestions: ["zsh", "bash", "fish", "powershell", "elvish"],
   },
-  options: globalOptions,
 };
 
 const denoCoverage: Fig.Subcommand = {
   name: "coverage",
   description: "Print coverage reports from coverage profiles",
   options: [
-    ...globalOptions,
     {
       name: "--ignore",
       insertValue: "--ignore=",
@@ -897,7 +885,6 @@ const denoInfo: Fig.Subcommand = {
   name: "info",
   description: "Show info about the cache or info related to a source file",
   options: [
-    ...globalOptions,
     reloadOption,
     caFileOption,
     importMapOption,
@@ -926,7 +913,6 @@ const denoRepl: Fig.Subcommand = {
   name: "repl",
   description: "Open an interactive read-eval-print loop",
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: false, inspector: true }),
     {
       name: "--eval",
@@ -957,7 +943,6 @@ const denoCompile: Fig.Subcommand = {
     },
   ],
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: false }),
     {
       name: ["-o", "--output"],
@@ -994,7 +979,7 @@ const denoCache: Fig.Subcommand = {
     generators: generateRunnableFiles,
     isVariadic: true,
   },
-  options: [...globalOptions, ...compileOptions],
+  options: compileOptions,
 };
 
 const denoBundle: Fig.Subcommand = {
@@ -1013,7 +998,7 @@ const denoBundle: Fig.Subcommand = {
       isOptional: true,
     },
   ],
-  options: [...globalOptions, ...compileOptions],
+  options: compileOptions,
 };
 
 const subcommands: Fig.Subcommand[] = [
@@ -1054,7 +1039,32 @@ const completionSpec: Fig.Spec = {
     },
   ],
   options: [
-    ...globalOptions,
+    {
+      name: ["-h", "--help"],
+      description: "Prints help information",
+      isPersistent: true,
+      priority: 40,
+    },
+    {
+      name: ["-L", "--log-level"],
+      description: "Set log level",
+      isPersistent: true,
+      priority: 40,
+      args: {
+        suggestions: ["info", "debug"],
+      },
+    },
+    {
+      name: ["-q", "--quiet"],
+      description:
+        "Suppress diagnostic output (restrict stderr messages to errors)",
+      isPersistent: true,
+    },
+    {
+      name: "--unstable",
+      description: "Enable unstable features and APIs",
+      isPersistent: true,
+    },
     {
       name: "--version",
       description: "Prints version information, including TypeScript and V8",
