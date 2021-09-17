@@ -32,8 +32,10 @@ const binList: Fig.Generator = {
   postProcess: function (data: string) {
     const manifest = JSON.parse(data);
     return manifest.targets
-      .filter(({ kind }) => kind.includes("bin"))
-      .map(({ name }) => ({ name }));
+      ? manifest.targets
+          .filter(({ kind }) => kind.includes("bin"))
+          .map(({ name }) => ({ name }))
+      : [];
   },
 };
 
