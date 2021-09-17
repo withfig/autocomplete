@@ -95,18 +95,25 @@ const generateRunnableFiles = generateFilepathsMatch({
   match: /\.(mjs|jsx?|tsx?)$/i,
 });
 
+type DenoLintRulesJSON = {
+  code: string;
+  tags: string[];
+  docs: string;
+}[];
+
 const generateLintRules: Fig.Generator = {
-  script: "deno lint --rules",
+  script: "deno lint --rules --json",
   getQueryTerm: ",",
   cache: { ttl: 1000 * 60 * 60 * 24 * 3 },
   postProcess: (out) => {
-    return out
-      .split("\n")
-      .filter((line) => line.startsWith(" - "))
-      .map((line) => ({
-        name: line.slice(3),
-        icon: "fig://icon?type=string",
-      }));
+    const json = JSON.parse(out) as DenoLintRulesJSON;
+    return json.map((rule) => ({
+      name: rule.code,
+      description: rule.docs
+        .slice(0, rule.docs.indexOf("\n\n"))
+        .replace(/`(.+?)`/g, "$1"), // Fig doesn't render inline code, just remove it.
+      icon: "fig://icon?type=string",
+    }));
   },
 };
 
