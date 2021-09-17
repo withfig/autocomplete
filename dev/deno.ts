@@ -111,14 +111,12 @@ type DenoLintRulesJSON = {
 const generateLintRules: Fig.Generator = {
   script: "deno lint --rules --json",
   getQueryTerm: ",",
-  cache: { ttl: 1000 * 60 * 60 * 24 * 3 },
+  cache: { ttl: 1000 * 60 * 60 * 24 },
   postProcess: (out) => {
     const json = JSON.parse(out) as DenoLintRulesJSON;
     return json.map((rule) => ({
       name: rule.code,
-      description: rule.docs
-        .slice(0, rule.docs.indexOf("\n\n"))
-        .replace(/`(.+?)`/g, "$1"), // Fig doesn't render inline code, just remove it.
+      description: rule.docs.slice(0, rule.docs.indexOf("\n\n")),
       icon: "fig://icon?type=string",
     }));
   },
