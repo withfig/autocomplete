@@ -58,6 +58,13 @@ const completionSpec: Fig.Spec = {
           description: "Build all binaries",
         },
         {
+          name: "--bin",
+          args: {
+            name: "bin",
+            generators: binList,
+          },
+        },
+        {
           name: "--all-targets",
           description: "Activate all available features",
         },
