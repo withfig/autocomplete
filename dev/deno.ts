@@ -100,17 +100,13 @@ const generateLintRules: Fig.Generator = {
   getQueryTerm: ",",
   cache: { ttl: 1000 * 60 * 60 * 24 * 3 },
   postProcess: (out) => {
-    const lines = out.split("\n");
-    const suggestions: Fig.Suggestion[] = [];
-    for (const line of lines) {
-      if (line.startsWith(" - ")) {
-        suggestions.push({
-          name: line.slice(3),
-          icon: "fig://icon?type=string",
-        });
-      }
-    }
-    return suggestions;
+    return out
+      .split("\n")
+      .filter((line) => line.startsWith(" - "))
+      .map((line) => ({
+        name: line.slice(3),
+        icon: "fig://icon?type=string",
+      }));
   },
 };
 
