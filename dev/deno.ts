@@ -4,11 +4,12 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
+const STRING_ICON = "fig://icon?type=string";
+
 const CPU_ICON =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVNSURBVHgBrVdLbxtVFP7unTt+pHaah/qigEIVUFsF1ZRHC9k4QkhtF8hIbOim6j/ooixaNpUQ6qKbbqqyq9iUBUKUTUAC1YkURLIg8SJBlSJEiojapE3iJI4f8+ScO5nUSTxxHnzS9YztM+f77rnnnjlXoAE+vZXJKtO8JJTI0tcuIQAe/ur/AtHwN974KHiOX7Ad+8fvrxYebLRf5yt3M9MVT6p7ZsLIGqaEVIKIacg69nVU4sVVYL1C3w++0pUEwKl5sCrOlFVz+x5cK0xtEpD76t1MMoV8LKXaVExqUk0eMXMfmyPhN7DhD5/FeIGI6opd9EpO33dfFAprPvXME2os0WoSuQFpCLiWj6d/1PBs3EJt0cNu0HLQwD4aRz9IIN4q4bk++XVRXrKL1qLz1oMbhSnFhoYU+ViLajOU1OTPJyw8zlfgVH3sBeVZV4/5SRsvk4jDb8fg09LGiYuW5R6Z9Incl5lcolX9kEib4NDPFGw8fljRDkrLK5h9MoNKpQrXdbFTpFL70N7Zrgfj2PkWdJ5QFAVaiiUb1WWnTwlD5AzT0GtuLfmY/q2qjWeIOKbiuH//W/T09GD//v3YKfr7+3H9+nXt69CRQ3pi7cfSIE4YvNTSuSSlgVNSBsn27+9VShQfC3MLmnxwcBC9vb27ImdcuHBB+2BfpdIKXPL9dLSmuYRBBlJkFWVpBjJ4oDIbJBsLuHv3a008OTmJkZERWJaFnSCVSuH06dPo7u7GnTt3cPHiZ0i9cYzyy8aR92LhDutS4RZmrDwL1pnVsnrG2NiYXoKOjg4kk0kopfTDG8FbjeE4DuVMBXNzcxgeHtYC+HnOI0ZtKZikdkEfKvgWPZNSqYR0Oq3JtxIQirBtW185AmHUOJJRSaywDZimqYl5xGKxhjYsyvOC2XEU+JmtsBowFtCozG52LqXUI1g7serEX3ffyCbCI8K/ZVP2yBn460g2Em4t4AWnRH0WRqCRM/4tTLwogdvBniLQ6D5EsyUIsa0kbEaw1baM8Lh2JwNj7Akhmb8LRzoCQjQn4MHbLIqkXkQ4msMPBDSz5X3NBYbrAMMwjDWC+vCHhYjtm7499eNcCbchtFqtrpFzgWlWCcvlsi7HTfnJXumJ+FtHgctx6DwsxeE2rBfDS8SzZ8EsIpJ8lZOH4l5Nh7NOAId4cXFR13AuvQsLC7qux+PxtUhEZT6HngWwaH4fRCkIeLUA6F6Nf+C+jd9WyWQC4+Pjuhc4e/YsRkdHMT09jZ2AhZ85c0bfc2MSikkekJqY+ZhXfHzj1N8t7WZXLKkwM2bjyYilX8dO1cHAwMCum5EQHMlsNgtPevRKb6eWzMQr2RissotK0SpI1/EHuV12HQ8H3jRhxIXu5Wp2TT/I6ndLPDQ0pH2wLyZn34ffMeHZ3KK7dF5AQZy72pONtxp5asmh4rT2f7n452FNO5mfX0DxeVGv507BecT9w8EjB5FK79O/He2NofOkgk3k3JRaJe8TnUnnr/Xkk61m1qRl4M54bsLBzKite7j/Azzzl9430dYddMRWmbqmZWvqp5sTrwWFqOJctiTG6LbN9yTajxtofZVa9FEynKcWem53BxMzLdHxuoHOHqWbULvq6tDXyk7R990+tlnbSx99fjJjmjJPydhmUBT4kMIPidWOOazXYhvE+lS4WluCbKedRjmmZ191i7bl9v1y68/CJn/nrhzvopNLnnKhi5dCGnxGDKzEdpjrRYQFjgRQosO1PR4DqLmXf779aCq0a+j2wysnchSBHPGf8oXISIkdof5QSh9TdBkg8m9+vf1oYKPtf7NIvBdpvFmHAAAAAElFTkSuQmCC";
 
-const VERSIONS_URL =
-  "https://raw.githubusercontent.com/denoland/deno_website2/main/versions.json";
+const VERSIONS_URL = "https://cdn.deno.land/deno/meta/versions.json";
 
 /**
  * Equivalent to the `"filepaths"` template, but boosts the priority of files
@@ -68,18 +69,24 @@ function generateFilepathsMatch(init: {
   };
 }
 
+type VersionsJSON = {
+  latest: string;
+  versions: string[];
+};
+
 /**
  * Generates a list of Deno versions and caches that list for one day.
  */
 const generateDenoVersions: Fig.Generator = {
-  script: `curl -s '${VERSIONS_URL}'`,
+  script: `curl -sL '${VERSIONS_URL}'`,
   cache: { ttl: 1000 * 60 * 60 * 24 },
   postProcess: (out) => {
     try {
-      const versions = JSON.parse(out);
-      return (versions.cli as string[]).map((version) => ({
-        // Currently, the JSON does have a leading 'v', but that may not always
-        // be the case. Removing a leading 'v' instead of slicing is resilient.
+      const data: VersionsJSON = JSON.parse(out);
+      // Using a regex instead of a slice because it's more resilient, even
+      // though it's marginally slower. The versions are currently tagged with
+      // a leading 'v', but that may not always be the case.
+      return data.versions.map((version) => ({
         name: version.replace(/^v/, ""),
       }));
     } catch (e) {
@@ -334,7 +341,10 @@ const globalOptions: Fig.Option[] = [
     description: "Set log level",
     priority: 40,
     args: {
-      suggestions: ["info", "debug"],
+      suggestions: [
+        { name: "info", icon: STRING_ICON },
+        { name: "debug", icon: STRING_ICON },
+      ],
     },
   },
   {
@@ -579,6 +589,94 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
+//#region Documentation types
+
+// Everything has a name. Some things have a kind, but only a subset of those
+// have a kind that actually matters (hence the default of `string`)
+type Named = { name: string };
+type Kind<T extends string = string> = { kind: T };
+
+// Type aliases to make records clearer
+type DocProperty = Named;
+type DocMethod = Named & Kind;
+
+type DocNodeModuleDoc = Named & Kind<"moduleDoc">;
+type DocNodeFunction = Named & Kind<"function">;
+type DocNodeVariable = Named & Kind<"variable">;
+type DocNodeEnum = Named & Kind<"enum">;
+type DocNodeClass = Named &
+  Kind<"class"> & {
+    classDef: {
+      properties: DocProperty[];
+      methods: DocMethod[];
+    };
+  };
+type DocNodeTypeAlias = Named & Kind<"typeAlias">;
+type DocNodeNamespace = Named &
+  Kind<"namespace"> & {
+    namespaceDef: {
+      elements: DocNode[];
+    };
+  };
+type DocNodeInterface = Named &
+  Kind<"interface"> & {
+    interfaceDef: {
+      properties: DocProperty[];
+      methods: DocMethod[];
+    };
+  };
+type DocNodeImport = Named & Kind<"import">;
+
+type DocNode =
+  | DocNodeModuleDoc
+  | DocNodeFunction
+  | DocNodeVariable
+  | DocNodeEnum
+  | DocNodeClass
+  | DocNodeTypeAlias
+  | DocNodeNamespace
+  | DocNodeInterface
+  | DocNodeImport;
+
+/** Any node is assignable to this type. */
+type AnyNode = {
+  name: string;
+  kind?: string;
+};
+
+//#endregion
+
+function getNamePriority(name: string): number {
+  if (/^[A-Z]/.test(name)) {
+    return 60;
+  }
+  if (name.startsWith("_")) {
+    return 40;
+  }
+  return 50;
+}
+
+function createFilterSuggestion(name: string): Fig.Suggestion {
+  return {
+    name: name,
+    priority: getNamePriority(name),
+    icon: STRING_ICON,
+  };
+}
+
+function getDocNodeChildren(node: DocNode) {
+  if (node.kind === "namespace") {
+    return node.namespaceDef.elements;
+  }
+  if (node.kind === "interface") {
+    return [...node.interfaceDef.methods, ...node.interfaceDef.properties];
+  }
+  if (node.kind === "class") {
+    return [...node.classDef.methods, ...node.classDef.properties];
+  }
+  return [];
+}
+
 const denoDoc: Fig.Subcommand = {
   name: "doc",
   description: "Show documentation for a module",
@@ -600,11 +698,136 @@ const denoDoc: Fig.Subcommand = {
       isOptional: true,
     },
     {
-      name: "node",
-      description: "The node to get documentation for (must exist in scope)",
+      name: "filter",
+      description: "The symbol to get documentation for (must exist in scope)",
       isOptional: true,
-      // TODO: Parse `deno doc --json`'s output for the scope to suggest nodes?
-      // This is challenging as the CLI expects dot-separated names (eg. Deno.test)
+      // This generator helps you construct a filter by suggesting top level
+      // symbol from the provided scope, and more specific filter after "."
+      generators: {
+        // Options can be provided in any order, so the second last element
+        // isn't guaranteed to be the scope. The solution is to modify the
+        // array of tokens to insert --json. However, since there can only be
+        // one occurrence of that flag, it has to be guarded.
+        script: (tokens) => {
+          // A filter can't be used with `--json`, so it has to be removed.
+          const command = tokens.slice(0, -1);
+          if (!command.includes("--json")) {
+            command.push("--json");
+          }
+          const script = command.join(" ");
+          return script;
+        },
+
+        // Only the first period should trigger the script again.
+        trigger: (newToken, oldToken) => {
+          return newToken.indexOf(".") !== oldToken.indexOf(".");
+        },
+
+        // If there's not dot, the query term is the whole string. If there is
+        // a dot, the query term is everything after it. This intentionally
+        // uses indexOf returning -1, since -1 + 1 = 0 (correct index to slice)
+        getQueryTerm: (token) => {
+          return token.slice(token.indexOf(".") + 1);
+        },
+
+        // This is quite a long function, but it's conceptually simple:
+        // 1. There's an array that will be filled with doc nodes.
+        //    a. If there is no dot in the filter token, that array will be
+        //       populated with the top level nodes.
+        //    b. If there is a dot, everything up to the dot becomes the name.
+        //       All nodes with that name are collected, and the array is
+        //       populated with their children.
+        // 2. Those nodes are filtered, and their names are added to a set.
+        // 3. Those names in that set are transformed into suggestions.
+        postProcess: (out, tokens) => {
+          // The output for `deno doc --json` is `DocNode[]` - the types:
+          // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          let docNodes: DocNode[];
+          try {
+            docNodes = JSON.parse(out);
+            if (!Array.isArray(docNodes)) {
+              throw new Error(`Output data was JSON, but was not an array`);
+            }
+          } catch (err) {
+            console.error("Returning early due to error:", err);
+            return [];
+          }
+
+          const hidePrivateSymbols = !tokens.includes("--private");
+
+          if (docNodes.length === 0) {
+            return [];
+          }
+
+          // The final token has to be the filter, it's the only way this
+          // generator could have been invoked.
+          const filterToken = tokens[tokens.length - 1];
+          const firstDotIndex = filterToken.indexOf(".");
+
+          // If the user hasn't entered a dot, suggest top level nodes.
+          const suggestTopLevelNodes = firstDotIndex === -1;
+
+          // Based on whether the user has typed a period, this will be
+          // populated with either the top level nodes or the children of
+          // whatever node the user has searched for.
+          const suggestionNodes: AnyNode[] = [];
+
+          if (suggestTopLevelNodes) {
+            suggestionNodes.push(...docNodes);
+          } else {
+            const filterName = filterToken.slice(0, firstDotIndex);
+
+            // It's not uncommon that there'd be multiple occurrences of the
+            // same name with different values, eg. overloads and interface
+            // merging. Deno's builtin types actually do this with the `Deno`
+            // namespace. Typically, `found` will only be one or two nodes.
+            const found = docNodes.filter((node) => node.name === filterName);
+
+            // `deno doc` can only generate docs for these nodes' children
+            for (const node of found) {
+              suggestionNodes.push(...getDocNodeChildren(node));
+            }
+
+            // It's a common case to have no children, so it's worth checking.
+            if (suggestionNodes.length === 0) {
+              return [];
+            }
+          }
+
+          // The names are added to a set because duplicates are common.
+          const names = new Set<string>();
+
+          for (const node of suggestionNodes) {
+            // A module doc may not always be present, but if present it's
+            // always included in the JSON.
+            if (node.kind === "moduleDoc") {
+              continue;
+            }
+
+            // Imports are always emitted, even without --private
+            if (hidePrivateSymbols && node.kind === "import") {
+              continue;
+            }
+
+            names.add(node.name);
+          }
+
+          // Deno uses the name <TODO> when it gets confused, which is common in
+          // type-heavy projects. Fig renders this name as an empty string, and
+          // since you can't specify it as a filter, don't suggest it.
+          // Faster to do this once than check the name on each iteration.
+          names.delete("<TODO>");
+          names.delete("");
+
+          // Can't just .map() over a Set... (one day?)
+          const suggestions: Fig.Suggestion[] = [];
+          for (const name of names) {
+            suggestions.push(createFilterSuggestion(name));
+          }
+          return suggestions;
+        },
+      },
     },
   ],
   options: [
@@ -966,10 +1189,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--version",
       description: "Prints version information, including TypeScript and V8",
+      exclusiveOn: ["-V"],
     },
     {
       name: "-V",
       description: "Prints Deno's version",
+      exclusiveOn: ["--version"],
       priority: 25,
     },
   ],

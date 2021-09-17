@@ -4811,6 +4811,11 @@ const completionSpec: Fig.Spec = {
         generators: gitGenerators.localBranches,
         isVariadic: true,
         isOptional: true,
+        // A single dash can be used as arg to merge as short hand for the previous branch
+        // https://github.com/git/git/blob/master/Documentation/RelNotes/1.7.6.txt#L84
+        suggestions: [
+          { name: "-", description: "Shorthand for the previous branch" },
+        ],
       },
       options: [
         {
