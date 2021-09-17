@@ -6,7 +6,12 @@ const completionSpec: Fig.Spec = {
     { name: ["-h", "--help", "-?"], description: "Print usage information" },
   ],
   args: {
-    template: "filepaths",
+    generators: {
+      template: "filepaths",
+      filterTemplateSuggestions: function (paths) {
+        return paths.filter((file) => file.name.endsWith(".pdf"));
+      },
+    },
     isVariadic: true,
   },
 };
