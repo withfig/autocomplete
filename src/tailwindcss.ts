@@ -36,9 +36,8 @@ const buildOptions: Fig.Option[] = [
       "Content paths to use for removing unused classes. [Deprecated]: use `--content` instead",
   },
   {
-    name: "--purge",
-    description:
-      "Content paths to use for removing unused classes. [Deprecated]: use `--content` instead",
+    name: "--content",
+    description: "Content paths to use for removing unused classes instead",
   },
   {
     name: "--content",
