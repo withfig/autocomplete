@@ -25,6 +25,20 @@ const testList: Fig.Generator = {
   getQueryTerm: ":",
 };
 
+const binList: Fig.Generator = {
+  script: function () {
+    return `cargo read-manifest`;
+  },
+  postProcess: function (data: string) {
+    const manifest = JSON.parse(data);
+    return manifest.targets
+      ? manifest.targets
+          .filter(({ kind }) => kind.includes("bin"))
+          .map(({ name }) => ({ name }))
+      : [];
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "cargo",
   icon: "📦",
@@ -42,6 +56,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bins",
           description: "Build all binaries",
+        },
+        {
+          name: "--bin",
+          args: {
+            name: "bin",
+            generators: binList,
+          },
         },
         {
           name: "--all-targets",
@@ -70,6 +91,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Output usage info",
+        },
+        {
+          name: "--bin",
+          args: {
+            name: "bin",
+            generators: binList,
+          },
         },
         {
           name: "--release",
