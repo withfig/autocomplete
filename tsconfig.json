@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "outDir": "./specs",
+    "outDir": "./build",
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext"],
     "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["*", "node_modules/@withfig/autocomplete-tools/@types/*"]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@withfig/autocomplete-tools/@types"
+    ]
   },
-  "include": ["./dev/**/*", "dangerfile.ts"],
-  "files": ["./schemas/fig.d.ts"]
+  "include": ["./src/**/*", "dangerfile.ts"]
 }
