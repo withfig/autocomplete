@@ -7,7 +7,49 @@ const backupIdArg: Fig.Arg = {
   name: "backupId",
   description: "Backup ID",
 };
+const instance: Fig.Arg = {
+  name: "instanceID",
+  generators: {
+    script: "vultr-cli instance list", // 191d0b01-2e1b-41f8-bfc1-b53e2d0f2d6f	140.82.43.116		Ubuntu 21.04 x64	active		ewr	1	1024	25	1000
+    postProcess: (lines) =>
+      lines
+        .split("\n")
+        .slice(1, -3)
+        .map((line) => ({
+          name: line.split("\t")[0],
+          description: line.split("\t").slice(1, -4).join("\t"),
+        })),
+  },
+};
 
+const createOptions = [
+  {
+    name: ["--os", "-o"],
+    description:
+      "ID of the operating system that will be installed on the server",
+    isRequired: true,
+    args: {},
+  },
+  {
+    name: ["--persistent_pxe", "-x"],
+    description: "Enable persistent_pxe",
+    args: {
+      suggestions: ["true", "false"],
+    },
+  },
+  {
+    name: ["--plan", "-p"],
+    description: "ID of the plan that the server will subscribe to",
+    isRequired: true,
+    args: {},
+  },
+  {
+    name: ["--region", "-r"],
+    description: "ID of the region where the server will be created",
+    isRequired: true,
+    args: {},
+  },
+];
 const completionSpec: Fig.Spec = {
   name: "vultr-cli",
   description: "Official command line interface for the Vultr API",
@@ -66,39 +108,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["create", "c"],
           description: "Create a bare metal server",
-          options: [
-            {
-              name: ["--os", "-o"],
-              description:
-                "ID of the operating system that will be installed on the server",
-              isRequired: true,
-              args: {},
-            },
-            {
-              name: ["--persistent_pxe", "-x"],
-              description: "Enable persistent_pxe",
-              isRequired: true,
-              args: {
-                suggestions: ["true", "false"],
-              },
-            },
-            {
-              name: ["--plan", "-p"],
-              description: "ID of the plan that the server will subscribe to",
-              isRequired: true,
-              args: {},
-            },
-            {
-              name: ["--region", "-r"],
-              description: "ID of the region where the server will be created",
-              isRequired: true,
-              args: {},
-            },
-          ],
+          options: createOptions,
         },
         {
           name: ["delete", "destroy"],
           description: "Delete a bare metal server",
+          isDangerous: true,
           args: bareMetalIdArg,
         },
         {
@@ -305,12 +320,21 @@ const completionSpec: Fig.Spec = {
           description: "List and create backup schedules for an instance",
         },
         { name: "bandwidth", description: "Bandwidth for instance" },
-        { name: "create", description: "Create an instance" },
-        { name: "delete", description: "Delete/destroy an instance" },
+        {
+          name: "create",
+          description: "Create an instance",
+          options: createOptions,
+        },
+        {
+          name: ["delete", "destroy"],
+          description: "Delete/destroy an instance",
+          isDangerous: true,
+          args: instance,
+        },
         {
           name: "get",
           description: "Get info about a specific instance",
-          args: { name: "instanceID" },
+          args: instance,
         },
         { name: "image", description: "Update image for an instance" },
         { name: "ipv4", description: "List/create/delete ipv4 on instance" },
@@ -384,7 +408,11 @@ const completionSpec: Fig.Spec = {
       description: "Load balancer commands",
       subcommands: [
         { name: "create", description: "Create a load balancer" },
-        { name: "delete", description: "Deletes a load balancer" },
+        {
+          name: "delete",
+          description: "Deletes a load balancer",
+          isDangerous: true,
+        },
         {
           name: "firewall-rule",
           description: "Get/list firewall rules for a load balancer",
