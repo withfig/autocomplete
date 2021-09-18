@@ -10,7 +10,7 @@ const backupIdArg: Fig.Arg = {
 const instance: Fig.Arg = {
   name: "instanceID",
   generators: {
-    script: "vultr-cli instance list", // 191d0b01-2e1b-41f8-bfc1-b53e2d0f2d6f	140.82.43.116		Ubuntu 21.04 x64	active		ewr	1	1024	25	1000
+    script: "vultr-cli instance list",
     postProcess: (lines) =>
       lines
         .split("\n")
