@@ -1,3 +1,13 @@
+const bareMetalIdArg: Fig.Arg = {
+  name: "bareMetalId",
+  description: "Bare Metal ID",
+  // TODO: suggestions
+};
+const backupIdArg: Fig.Arg = {
+  name: "backupId",
+  description: "Backup ID",
+};
+
 const completionSpec: Fig.Spec = {
   name: "vultr-cli",
   description: "Official command line interface for the Vultr API",
@@ -7,14 +17,18 @@ const completionSpec: Fig.Spec = {
     {
       name: ["apps", "a"],
       description: "Display all available applications",
-      subcommands: [{ name: "list", description: "List applications" }],
+      subcommands: [{ name: ["list", "l"], description: "List applications" }],
     },
     {
       name: "backups",
       description: "Display backups",
       subcommands: [
-        { name: "get", description: "Get backup" },
-        { name: "list", description: "List backups" },
+        {
+          name: "get",
+          description: "Get backup",
+          args: backupIdArg,
+        },
+        { name: ["list", "l"], description: "List backups" },
       ],
     },
     {
@@ -22,25 +36,103 @@ const completionSpec: Fig.Spec = {
       description: "Bare-metal is used to access bare metal server commands",
       subcommands: [
         {
-          name: "app",
+          name: ["app", "a"],
           description:
             "App is used to access bare metal server application commands",
+          subcommands: [
+            {
+              name: ["change", "c"],
+              description: "Change a bare metal server's application",
+              args: [
+                bareMetalIdArg,
+                {
+                  name: "appID",
+                  description: "Application ID",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Available apps a bare metal server can change to",
+              args: bareMetalIdArg,
+            },
+          ],
         },
         {
-          name: "bandwidth",
+          name: ["bandwidth", "b"],
           description: "Get a bare metal server's bandwidth usage",
+          args: bareMetalIdArg,
         },
-        { name: "create", description: "Create a bare metal server" },
-        { name: "delete", description: "Delete a bare metal server" },
+        {
+          name: ["create", "c"],
+          description: "Create a bare metal server",
+          options: [
+            {
+              name: ["--os", "-o"],
+              description:
+                "ID of the operating system that will be installed on the server",
+              isRequired: true,
+              args: {},
+            },
+            {
+              name: ["--persistent_pxe", "-x"],
+              description: "Enable persistent_pxe",
+              isRequired: true,
+              args: {
+                suggestions: ["true", "false"],
+              },
+            },
+            {
+              name: ["--plan", "-p"],
+              description: "ID of the plan that the server will subscribe to",
+              isRequired: true,
+              args: {},
+            },
+            {
+              name: ["--region", "-r"],
+              description: "ID of the region where the server will be created",
+              isRequired: true,
+              args: {},
+            },
+          ],
+        },
+        {
+          name: ["delete", "destroy"],
+          description: "Delete a bare metal server",
+          args: bareMetalIdArg,
+        },
         {
           name: "get",
           description: "Get a bare metal server by <bareMetalID>",
+          args: bareMetalIdArg,
         },
-        { name: "halt", description: "Halt a bare metal server" },
         {
-          name: "image",
+          name: ["halt", "h"],
+          description: "Halt a bare metal server",
+          args: bareMetalIdArg,
+        },
+        {
+          name: ["image", "i"],
           description:
             "Image is used to access bare metal server image commands",
+          subcommands: [
+            {
+              name: "change",
+              description: "Change a bare metal server's image",
+              args: [
+                bareMetalIdArg,
+                {
+                  name: "imageID",
+                  description: "Image ID",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Available images a bare metal server can change to",
+              args: bareMetalIdArg,
+            },
+          ],
         },
         {
           name: "ipv4",
@@ -215,7 +307,11 @@ const completionSpec: Fig.Spec = {
         { name: "bandwidth", description: "Bandwidth for instance" },
         { name: "create", description: "Create an instance" },
         { name: "delete", description: "Delete/destroy an instance" },
-        { name: "get", description: "Get info about a specific instance" },
+        {
+          name: "get",
+          description: "Get info about a specific instance",
+          args: { name: "instanceID" },
+        },
         { name: "image", description: "Update image for an instance" },
         { name: "ipv4", description: "List/create/delete ipv4 on instance" },
         { name: "ipv6", description: "Commands for ipv6 on instance" },
@@ -253,7 +349,11 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         { name: "create", description: "Create iso from url" },
         { name: "delete", description: "Delete a private iso" },
-        { name: "get", description: "Get private ISO <isoID>" },
+        {
+          name: "get",
+          description: "Get private ISO <isoID>",
+          args: { name: "isoID" },
+        },
         { name: "list", description: "List all private ISOs available" },
         { name: "public", description: "List all public ISOs available" },
       ],
