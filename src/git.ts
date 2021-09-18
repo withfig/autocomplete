@@ -5297,7 +5297,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-C", "--force-create"],
           description:
-            "Similar to --create except that if <new-branch> already exists, it will be reset to <start-point>",
+            "Similar to --create except that if <new-branch> already exists it will be reset to <start-point>",
           args: [
             {
               name: "new branch",
