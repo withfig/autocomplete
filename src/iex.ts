@@ -1,11 +1,14 @@
 import elixirSpec from "./elixir";
 
-const completionSpec: Fig.Spec = {
-  ...elixirSpec,
+const elixir = (version?: string) =>
+  typeof elixirSpec === "function" ? elixirSpec(version) : elixirSpec;
+
+const completionSpec: Fig.Spec = (version?: string) => ({
+  ...elixir(version),
   name: "iex",
   description: "Elixir Interactive Shell",
   options: [
-    ...elixirSpec.options,
+    ...elixir(version).options,
     {
       name: "--dot-iex",
       description:
@@ -23,6 +26,6 @@ const completionSpec: Fig.Spec = {
       },
     },
   ],
-};
+});
 
 export default completionSpec;

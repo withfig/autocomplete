@@ -1,5 +1,8 @@
 import node from "./node";
 
+const nodeSpec = (version?: string) =>
+  typeof nodeSpec === "function" ? nodeSpec(version) : nodeSpec;
+
 const versionArg: Fig.Arg = {
   name: "version",
   suggestions: [
@@ -51,7 +54,7 @@ const variadicVersionArg: Fig.Arg = {
   isVariadic: true,
 };
 
-const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = (version?: string) => ({
   name: "n",
   description: "Node version management",
   subcommands: [
@@ -101,9 +104,9 @@ const completionSpec: Fig.Spec = {
     {
       name: ["run", "use", "as"],
       description: "Execute downloaded Node.js version with args",
-      args: [versionArg, ...[node.args].flat()],
-      subcommands: node.subcommands,
-      options: node.options,
+      args: [versionArg, ...[nodeSpec(version).args].flat()],
+      subcommands: nodeSpec(version).subcommands,
+      options: nodeSpec(version).options,
     },
     {
       name: "exec",
@@ -181,6 +184,6 @@ const completionSpec: Fig.Spec = {
       exclusiveOn: ["--use-xz"],
     },
   ],
-};
+});
 
 export default completionSpec;
