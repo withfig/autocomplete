@@ -25,24 +25,6 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     template: ["folders", "filepaths"],
   },
-  subcommands: [
-    {
-      name: "--",
-      description: "Treat everything following as a file",
-      icon: "fig://icon?type=option",
-      args: {
-        name: "files|directories",
-        isVariadic: true,
-        isOptional: true,
-        template: ["folders", "filepaths"],
-      },
-    },
-    {
-      name: "-",
-      description: "Edit stdin (implies --wait)",
-      icon: "fig://icon?type=option",
-    },
-  ],
   options: [
     {
       name: "--project",
