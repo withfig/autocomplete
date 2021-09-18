@@ -3,7 +3,7 @@ name: Build and release specs
 on:
   push:
     paths:
-      - "dev/**/*.ts"
+      - "src/**/*.ts"
       - "!package.json"
     branches:
       # We only want to create a new release when
@@ -27,7 +27,7 @@ jobs:
         run: npm run build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
-        run: zip -r specs.zip specs/
+        run: zip -r specs.zip build/
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version

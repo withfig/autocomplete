@@ -1897,6 +1897,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Fetch the remote’s copy of current branch and rebases it into the local copy",
           args: {
+            isOptional: true,
             name: "remote",
             generators: gitGenerators.remotes,
             suggestions: ["false", "true", "merges", "preserve", "interactive"],
