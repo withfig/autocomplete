@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     { name: "account", description: "Retrieve information about your account" },
     {
-      name: "apps",
+      name: ["apps", "a"],
       description: "Display all available applications",
       subcommands: [{ name: "list", description: "List applications" }],
     },
@@ -18,20 +18,191 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "bare-metal",
+      name: ["bare-metal", "bm"],
       description: "Bare-metal is used to access bare metal server commands",
+      subcommands: [
+        {
+          name: "app",
+          description:
+            "App is used to access bare metal server application commands",
+        },
+        {
+          name: "bandwidth",
+          description: "Get a bare metal server's bandwidth usage",
+        },
+        { name: "create", description: "Create a bare metal server" },
+        { name: "delete", description: "Delete a bare metal server" },
+        {
+          name: "get",
+          description: "Get a bare metal server by <bareMetalID>",
+        },
+        { name: "halt", description: "Halt a bare metal server" },
+        {
+          name: "image",
+          description:
+            "Image is used to access bare metal server image commands",
+        },
+        {
+          name: "ipv4",
+          description: "List the IPv4 information of a bare metal server",
+        },
+        {
+          name: "ipv6",
+          description: "List the IPv6 information of a bare metal server",
+        },
+        { name: "list", description: "List all bare metal servers" },
+        {
+          name: "os",
+          description:
+            "Os is used to access bare metal server operating system commands",
+        },
+        {
+          name: "reboot",
+          description:
+            "Reboot a bare metal server. This is a hard reboot, which means that the server is powered off, then back on",
+        },
+        {
+          name: "reinstall",
+          description: "Reinstall the operating system on a bare metal server",
+        },
+        { name: "start", description: "Start a bare metal server" },
+        {
+          name: "user-data",
+          description:
+            "User-data is used to access bare metal server user-data commands",
+        },
+        {
+          name: "vnc",
+          description: "Get a bare metal server's VNC url by <bareMetalID>",
+        },
+      ],
     },
-    { name: "block-storage", description: "Block storage commands" },
+    {
+      name: "block-storage",
+      description: "Block storage commands",
+      subcommands: [
+        {
+          name: "attach",
+          description: "Attaches a block storage to an instance",
+        },
+        { name: "create", description: "Create a new block storage" },
+        { name: "delete", description: "Delete a block storage" },
+        {
+          name: "detach",
+          description: "Detaches a block storage from an instance",
+        },
+        { name: "get", description: "Retrieves a block storage" },
+        { name: "label", description: "Sets a label for a block storage" },
+        {
+          name: "list",
+          description: "Retrieves a list of active block storage",
+        },
+        { name: "resize", description: "Resize a block storage" },
+      ],
+    },
     {
       name: "completion",
       description: "Generate the autocompletion script for the specified shell",
+      subcommands: [
+        {
+          name: "bash",
+          description: "Generate the autocompletion script for bash",
+        },
+        {
+          name: "fish",
+          description: "Generate the autocompletion script for fish",
+        },
+        {
+          name: "powershell",
+          description: "Generate the autocompletion script for powershell",
+        },
+        {
+          name: "zsh",
+          description: "Generate the autocompletion script for zsh",
+        },
+      ],
     },
-    { name: "dns", description: "Dns is used to access dns commands" },
     {
-      name: "firewall",
-      description: "Firewall is used to access firewall commands",
+      name: "dns",
+      description: "Dns is used to access dns commands",
+      subcommands: [
+        { name: "domain", description: "Dns domain" },
+        { name: "record", description: "Dns record" },
+      ],
     },
-    { name: "help", description: "Help about any command" },
+    {
+      name: ["firewall", "fw"],
+      description: "Firewall is used to access firewall commands",
+      subcommands: [
+        {
+          name: "group",
+          description: "Group is used to access firewall group commands",
+        },
+        {
+          name: "rule",
+          description: "Rule is used to access firewall rule commands",
+        },
+      ],
+    },
+    {
+      name: "help",
+      description: "Help about any command",
+      subcommands: [
+        {
+          name: "account",
+          description: "Retrieve information about your account",
+        },
+        { name: "apps", description: "Display all available applications" },
+        { name: "backups", description: "Display backups" },
+        {
+          name: "bare-metal",
+          description:
+            "Bare-metal is used to access bare metal server commands",
+        },
+        { name: "block-storage", description: "Block storage commands" },
+        {
+          name: "completion",
+          description:
+            "Generate the autocompletion script for the specified shell",
+        },
+        { name: "dns", description: "Dns is used to access dns commands" },
+        {
+          name: "firewall",
+          description: "Firewall is used to access firewall commands",
+        },
+        { name: "help", description: "Help about any command" },
+        {
+          name: "instance",
+          description: "Commands to interact with instances on vultr",
+        },
+        { name: "iso", description: "Iso is used to access iso commands" },
+        {
+          name: "kubernetes",
+          description: "Kubernetes is used to access kubernetes commands",
+        },
+        { name: "load-balancer", description: "Load balancer commands" },
+        {
+          name: "network",
+          description: "Network interacts with network actions",
+        },
+        { name: "object-storage", description: "Object storage commands" },
+        { name: "os", description: "Os is used to access os commands" },
+        { name: "plans", description: "Get information about Vultr plans" },
+        { name: "regions", description: "Get regions" },
+        {
+          name: "reserved-ip",
+          description: "Reserved-ip lets you interact with reserved-ip",
+        },
+        { name: "script", description: "Startup script commands" },
+        { name: "snapshot", description: "Snapshot commands" },
+        { name: "ssh-key", description: "Ssh-key commands" },
+        { name: "user", description: "User commands" },
+        {
+          name: "version",
+          description: "Display current version of Vultr-cli",
+        },
+      ],
+    },
     {
       name: "instance",
       description: "Commands to interact with instances on vultr",
@@ -76,25 +247,187 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "iso", description: "Iso is used to access iso commands" },
     {
-      name: "kubernetes",
+      name: "iso",
+      description: "Iso is used to access iso commands",
+      subcommands: [
+        { name: "create", description: "Create iso from url" },
+        { name: "delete", description: "Delete a private iso" },
+        { name: "get", description: "Get private ISO <isoID>" },
+        { name: "list", description: "List all private ISOs available" },
+        { name: "public", description: "List all public ISOs available" },
+      ],
+    },
+    {
+      name: ["kubernetes", "k"],
       description: "Kubernetes is used to access kubernetes commands",
+      subcommands: [
+        { name: "config", description: "Gets a kubernetes cluster's config" },
+        { name: "create", description: "Create kubernetes cluster" },
+        { name: "delete", description: "Delete a kubernetes cluster" },
+        {
+          name: "delete-with-resources",
+          description: "Delete a kubernetes cluster and related resources",
+        },
+        { name: "get", description: "Retrieves a kubernetes cluster" },
+        { name: "list", description: "List kubernetes clusters" },
+        {
+          name: "node-pool",
+          description: "Node pools commands for a kubernetes cluster",
+        },
+        { name: "update", description: "Updates a kubernetes cluster" },
+        { name: "versions", description: "Gets supported kubernetes versions" },
+      ],
     },
-    { name: "load-balancer  ", description: "Load balancer commands" },
-    { name: "network", description: "Network interacts with network actions" },
-    { name: "object-storage ", description: "Object storage commands" },
-    { name: "os", description: "Os is used to access os commands" },
-    { name: "plans", description: "Get information about Vultr plans" },
-    { name: "regions", description: "Get regions" },
     {
-      name: "reserved-ip",
-      description: "Reserved-ip lets you interact with reserved-ip",
+      name: ["load-balancer", "lb"],
+      description: "Load balancer commands",
+      subcommands: [
+        { name: "create", description: "Create a load balancer" },
+        { name: "delete", description: "Deletes a load balancer" },
+        {
+          name: "firewall-rule",
+          description: "Get/list firewall rules for a load balancer",
+        },
+        { name: "get", description: "Retrieves a load balancer" },
+        {
+          name: "list",
+          description: "Retrieves a list of active load balancers",
+        },
+        {
+          name: "rule",
+          description:
+            "Create/delete/list forwarding rules for a load balancer",
+        },
+        { name: "update", description: "Updates a load balancer" },
+      ],
     },
-    { name: "script", description: "Startup script commands" },
-    { name: "snapshot", description: "Snapshot commands" },
-    { name: "ssh-key", description: "Ssh-key commands" },
-    { name: "user", description: "User commands" },
+    {
+      name: "network",
+      description: "Network interacts with network actions",
+      subcommands: [
+        { name: "create", description: "Create a private network" },
+        { name: "delete", description: "Delete a private network" },
+        { name: "get", description: "Get a private network" },
+        { name: "list", description: "List all private networks" },
+      ],
+    },
+    {
+      name: "object-storage",
+      description: "Object storage commands",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new object storage subscription",
+        },
+        {
+          name: "delete",
+          description: "Deletes an object storage subscription",
+        },
+        {
+          name: "get",
+          description: "Retrieves a given object storage subscription",
+        },
+        {
+          name: "label",
+          description: "Change the label for object storage subscription",
+        },
+        {
+          name: "list",
+          description:
+            "Retrieves a list of active object storage subscriptions",
+        },
+        {
+          name: "list-cluster",
+          description: "Retrieves a list of object storage clusters",
+        },
+        {
+          name: "s3key-regenerate",
+          description:
+            "Regenerate the S3 API keys of an object storage subscription",
+        },
+      ],
+    },
+    {
+      name: "os",
+      description: "Os is used to access os commands",
+      subcommands: [
+        { name: "list", description: "List all available operating systems" },
+      ],
+    },
+    {
+      name: ["plans", "p"],
+      description: "Get information about Vultr plans",
+      subcommands: [{ name: "list", description: "List plans" }],
+    },
+    {
+      name: "regions",
+      description: "Get regions",
+      subcommands: [
+        { name: "availability", description: "List availability in region" },
+        { name: "list", description: "List regions" },
+      ],
+    },
+    {
+      name: ["reserved-ip", "rip"],
+      description: "Reserved-ip lets you interact with reserved-ip",
+      subcommands: [
+        { name: "attach", description: "Attach a reservedIP to an instance" },
+        { name: "convert", description: "Convert IP address to reservedIP" },
+        { name: "create", description: "Create reservedIP" },
+        { name: "delete", description: "Delete a reserved ip" },
+        { name: "detach", description: "Detach a reservedIP to an instance" },
+        { name: "get", description: "Get a reserved IP" },
+        { name: "list", description: "List all reserved IPs" },
+      ],
+    },
+    {
+      name: ["script", "ss"],
+      description: "Startup script commands",
+      subcommands: [
+        { name: "create", description: "Create a startup script" },
+        { name: "delete", description: "Delete a startup script" },
+        {
+          name: "get",
+          description: "Displays the contents of specified script",
+        },
+        { name: "list", description: "List all startup scripts" },
+        { name: "update", description: "Update startup script" },
+      ],
+    },
+    {
+      name: ["snapshot", "sn"],
+      description: "Snapshot commands",
+      subcommands: [
+        { name: "create", description: "Create a snapshot" },
+        { name: "create-url", description: "Create a snapshot from a URL" },
+        { name: "delete", description: "Delete a snapshot" },
+        { name: "get", description: "Get a snapshot" },
+        { name: "list", description: "List all snapshots" },
+      ],
+    },
+    {
+      name: ["ssh-key", "ssh"],
+      description: "Ssh-key commands",
+      subcommands: [
+        { name: "create", description: "Create an SSH key" },
+        { name: "delete", description: "Delete an SSH key" },
+        { name: "get", description: "Get an SSH key" },
+        { name: "list", description: "List all SSH keys" },
+        { name: "update", description: "Update SSH key" },
+      ],
+    },
+    {
+      name: ["user", "u"],
+      description: "User commands",
+      subcommands: [
+        { name: "create", description: "Create a user" },
+        { name: "delete", description: "Delete a user" },
+        { name: "get", description: "Get a user" },
+        { name: "list", description: "List all available users" },
+        { name: "update", description: "Update User" },
+      ],
+    },
     { name: "version", description: "Display current version of Vultr-cli" },
   ],
 };
