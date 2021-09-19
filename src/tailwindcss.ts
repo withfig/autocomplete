@@ -37,10 +37,6 @@ const buildOptions: Fig.Option[] = [
   },
   {
     name: "--content",
-    description: "Content paths to use for removing unused classes instead",
-  },
-  {
-    name: "--content",
     description: "Content paths to use for removing unused classes",
   },
   {
