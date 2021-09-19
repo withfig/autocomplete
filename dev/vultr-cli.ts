@@ -181,6 +181,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "vnc",
           description: "Get a bare metal server's VNC url by <bareMetalID>",
+          args: bareMetalIdArg,
         },
       ],
     },
