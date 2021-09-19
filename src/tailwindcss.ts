@@ -32,15 +32,16 @@ const buildOptions: Fig.Option[] = [
   },
   {
     name: "--purge",
+    description:
+      "Content paths to use for removing unused classes. [Deprecated]: use `--content` instead",
+  },
+  {
+    name: "--content",
     description: "Content paths to use for removing unused classes",
   },
   {
     name: ["--watch", "-w"],
     description: "Watch for changes and rebuild as needed",
-  },
-  {
-    name: "--jit",
-    description: "Build using JIT mode",
   },
   {
     name: ["--minify", "-m"],
@@ -67,10 +68,6 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
       options: [
-        {
-          name: "--jit",
-          description: "Initialize for JIT mode",
-        },
         {
           name: ["-p", "--postcss"],
           description: "Initialize a 'postcss.config.js' file",
