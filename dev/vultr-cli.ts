@@ -22,7 +22,7 @@ const instance: Fig.Arg = {
   },
 };
 
-const createOptions = [
+const createOptions: Fig.Option[] = [
   {
     name: ["--os", "-o"],
     description:
