@@ -1,6 +1,3 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
-
-// The below is a dummy example for git. Make sure to change the file name!
 const completionSpec: Fig.Spec = {
   name: "serve",
   description: "Static file serving and directory listing",
