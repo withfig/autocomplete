@@ -36,15 +36,16 @@ Completion specs are defined in a _declarative_ schema that specifies `subcomman
 Build your first spec in 3 min or less: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
 
 **Prerequisites:**
-- Early access to the Fig macOS app. 
-> If you don't have access yet, sign up for the [waitlist](https://fig.io) and say you're interested in building completions!
+
+- Early access to the Fig macOS app.
+  > If you don't have access yet, sign up for the [waitlist](https://fig.io) and say you're interested in building completions!
 - Node and NPM (or Yarn).
 
 <br/>
 
 **Setup:**
 
-1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo. 
+1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
 
 2. Clone your forked repo and create an example spec
 
@@ -70,9 +71,9 @@ npm run dev
 
 #### Other things to know
 
-- Edit your spec in typescript in the `dev/` folder
-- On save, specs are compiled to the `specs/` folder
-- In **dev mode** specs are read from the `specs` folders. Otherwise they are read from `~/.fig/autocomplete`
+- Edit your spec in typescript in the `src/` folder
+- On save, specs are compiled to the `build/` folder
+- In **dev mode** specs are read from the `build` folders. Otherwise they are read from `~/.fig/autocomplete`
 
 <br/>
 
@@ -83,16 +84,16 @@ npm run dev
 # Create a new spec from a boilerplate template
 npm run create-boilerplate
 
-# Typecheck all specs in the dev/ folder
+# Typecheck all specs in the src/ folder
 npm test
 
-# Compile typescripts specs from dev/ folder to specs/ folder
+# Compile typescripts specs from src/ folder to build/ folder
 npm run build
 
-# Copy all specs from the specs/ folder to the ~/.fig/autocomplete folder
+# Copy all specs from the build/ folder to the ~/.fig/autocomplete folder
 npm run copy:all
 
-# Copy an individual spec from the specs/ folder to the ~/.fig/autocomplete folder
+# Copy an individual spec from the build/ folder to the ~/.fig/autocomplete folder
 npm run copy <spec-name>
 ```
 

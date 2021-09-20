@@ -4,12 +4,8 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
-const STRING_ICON = "fig://icon?type=string";
-
 const CPU_ICON =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVNSURBVHgBrVdLbxtVFP7unTt+pHaah/qigEIVUFsF1ZRHC9k4QkhtF8hIbOim6j/ooixaNpUQ6qKbbqqyq9iUBUKUTUAC1YkURLIg8SJBlSJEiojapE3iJI4f8+ScO5nUSTxxHnzS9YztM+f77rnnnjlXoAE+vZXJKtO8JJTI0tcuIQAe/ur/AtHwN974KHiOX7Ad+8fvrxYebLRf5yt3M9MVT6p7ZsLIGqaEVIKIacg69nVU4sVVYL1C3w++0pUEwKl5sCrOlFVz+x5cK0xtEpD76t1MMoV8LKXaVExqUk0eMXMfmyPhN7DhD5/FeIGI6opd9EpO33dfFAprPvXME2os0WoSuQFpCLiWj6d/1PBs3EJt0cNu0HLQwD4aRz9IIN4q4bk++XVRXrKL1qLz1oMbhSnFhoYU+ViLajOU1OTPJyw8zlfgVH3sBeVZV4/5SRsvk4jDb8fg09LGiYuW5R6Z9Incl5lcolX9kEib4NDPFGw8fljRDkrLK5h9MoNKpQrXdbFTpFL70N7Zrgfj2PkWdJ5QFAVaiiUb1WWnTwlD5AzT0GtuLfmY/q2qjWeIOKbiuH//W/T09GD//v3YKfr7+3H9+nXt69CRQ3pi7cfSIE4YvNTSuSSlgVNSBsn27+9VShQfC3MLmnxwcBC9vb27ImdcuHBB+2BfpdIKXPL9dLSmuYRBBlJkFWVpBjJ4oDIbJBsLuHv3a008OTmJkZERWJaFnSCVSuH06dPo7u7GnTt3cPHiZ0i9cYzyy8aR92LhDutS4RZmrDwL1pnVsnrG2NiYXoKOjg4kk0kopfTDG8FbjeE4DuVMBXNzcxgeHtYC+HnOI0ZtKZikdkEfKvgWPZNSqYR0Oq3JtxIQirBtW185AmHUOJJRSaywDZimqYl5xGKxhjYsyvOC2XEU+JmtsBowFtCozG52LqXUI1g7serEX3ffyCbCI8K/ZVP2yBn460g2Em4t4AWnRH0WRqCRM/4tTLwogdvBniLQ6D5EsyUIsa0kbEaw1baM8Lh2JwNj7Akhmb8LRzoCQjQn4MHbLIqkXkQ4msMPBDSz5X3NBYbrAMMwjDWC+vCHhYjtm7499eNcCbchtFqtrpFzgWlWCcvlsi7HTfnJXumJ+FtHgctx6DwsxeE2rBfDS8SzZ8EsIpJ8lZOH4l5Nh7NOAId4cXFR13AuvQsLC7qux+PxtUhEZT6HngWwaH4fRCkIeLUA6F6Nf+C+jd9WyWQC4+Pjuhc4e/YsRkdHMT09jZ2AhZ85c0bfc2MSikkekJqY+ZhXfHzj1N8t7WZXLKkwM2bjyYilX8dO1cHAwMCum5EQHMlsNgtPevRKb6eWzMQr2RissotK0SpI1/EHuV12HQ8H3jRhxIXu5Wp2TT/I6ndLPDQ0pH2wLyZn34ffMeHZ3KK7dF5AQZy72pONtxp5asmh4rT2f7n452FNO5mfX0DxeVGv507BecT9w8EjB5FK79O/He2NofOkgk3k3JRaJe8TnUnnr/Xkk61m1qRl4M54bsLBzKite7j/Azzzl9430dYddMRWmbqmZWvqp5sTrwWFqOJctiTG6LbN9yTajxtofZVa9FEynKcWem53BxMzLdHxuoHOHqWbULvq6tDXyk7R990+tlnbSx99fjJjmjJPydhmUBT4kMIPidWOOazXYhvE+lS4WluCbKedRjmmZ191i7bl9v1y68/CJn/nrhzvopNLnnKhi5dCGnxGDKzEdpjrRYQFjgRQosO1PR4DqLmXf779aCq0a+j2wysnchSBHPGf8oXISIkdof5QSh9TdBkg8m9+vf1oYKPtf7NIvBdpvFmHAAAAAElFTkSuQmCC";
-
-const VERSIONS_URL = "https://cdn.deno.land/deno/meta/versions.json";
 
 /**
  * Equivalent to the `"filepaths"` template, but boosts the priority of files
@@ -57,8 +53,6 @@ function generateFilepathsMatch(init: {
           out.push(path);
           continue;
         }
-        // Originally this used an array of strings -- regex should be faster
-        // thanks to V8's magic.
         if (match.test(path.name)) {
           path.priority = filePriority;
           out.push(path);
@@ -78,21 +72,13 @@ type VersionsJSON = {
  * Generates a list of Deno versions and caches that list for one day.
  */
 const generateDenoVersions: Fig.Generator = {
-  script: `curl -sL '${VERSIONS_URL}'`,
+  script: `curl -sL 'https://cdn.deno.land/deno/meta/versions.json'`,
   cache: { ttl: 1000 * 60 * 60 * 24 },
   postProcess: (out) => {
-    try {
-      const data: VersionsJSON = JSON.parse(out);
-      // Using a regex instead of a slice because it's more resilient, even
-      // though it's marginally slower. The versions are currently tagged with
-      // a leading 'v', but that may not always be the case.
-      return data.versions.map((version) => ({
-        name: version.replace(/^v/, ""),
-      }));
-    } catch (e) {
-      console.error(`Failed to parse the text: ${out}`);
-      return [];
-    }
+    const data = JSON.parse(out) as VersionsJSON;
+    return data.versions.map((version) => ({
+      name: version.startsWith("v") ? version.slice(1) : version,
+    }));
   },
 };
 
@@ -101,6 +87,26 @@ const generateDenoVersions: Fig.Generator = {
 const generateRunnableFiles = generateFilepathsMatch({
   match: /\.(mjs|jsx?|tsx?)$/i,
 });
+
+type DenoLintRulesJSON = {
+  code: string;
+  tags: string[];
+  docs: string;
+}[];
+
+const generateLintRules: Fig.Generator = {
+  script: "deno lint --rules --json",
+  getQueryTerm: ",",
+  cache: { ttl: 1000 * 60 * 60 * 24 },
+  postProcess: (out) => {
+    const json = JSON.parse(out) as DenoLintRulesJSON;
+    return json.map((rule) => ({
+      name: rule.code,
+      description: rule.docs.slice(0, rule.docs.indexOf("\n\n")),
+      icon: "fig://icon?type=string",
+    }));
+  },
+};
 
 type ExclusiveOn = {
   exclusiveOn?: string[];
@@ -229,11 +235,13 @@ const caFileOption: Fig.Option = {
 
 const configOption: Fig.Option = {
   name: ["-c", "--config"],
-  description: "Load tsconfig.json configuration file",
+  description: "Load a configuration file",
   args: {
-    name: "tsconfig file",
-    description: "The tsconfig file to load",
-    generators: generatePreferredFilepaths({ names: ["tsconfig.json"] }),
+    name: "config file",
+    description: "The config file to load",
+    generators: generatePreferredFilepaths({
+      names: ["tsconfig.json", "deno.json", "deno.jsonc"],
+    }),
   },
 };
 
@@ -244,7 +252,12 @@ const importMapOption: Fig.Option = {
     name: "source",
     description: "The location of the import map (can be a URL)",
     generators: generatePreferredFilepaths({
-      names: ["import_map.json", "import-map.json", "imports.json"],
+      names: [
+        "importmap.json",
+        "import_map.json",
+        "import-map.json",
+        "imports.json",
+      ],
     }),
   },
 };
@@ -330,34 +343,6 @@ const cachedOnlyOption: Fig.Option = {
   description: "Require that remote dependencies are already cached",
 };
 
-const globalOptions: Fig.Option[] = [
-  {
-    name: ["-h", "--help"],
-    description: "Prints help information",
-    priority: 40,
-  },
-  {
-    name: ["-L", "--log-level"],
-    description: "Set log level",
-    priority: 40,
-    args: {
-      suggestions: [
-        { name: "info", icon: STRING_ICON },
-        { name: "debug", icon: STRING_ICON },
-      ],
-    },
-  },
-  {
-    name: ["-q", "--quiet"],
-    description:
-      "Suppress diagnostic output (restrict stderr messages to errors)",
-  },
-  {
-    name: "--unstable",
-    description: "Enable unstable features and APIs",
-  },
-];
-
 const compileOptions: Fig.Option[] = [
   importMapOption,
   noRemoteOption,
@@ -406,7 +391,6 @@ const denoRun: Fig.Subcommand = {
     generators: generateRunnableFiles,
   },
   options: [
-    ...globalOptions,
     ...runtimeOptions({
       perms: true,
       inspector: true,
@@ -432,20 +416,18 @@ const denoTest: Fig.Subcommand = {
     }),
   },
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: true }),
-    // TODO: Uncomment once Deno 1.14.0 is out
-    // {
-    //   name: "--ignore",
-    //   insertValue: "--ignore=",
-    //   description: "Ignore files",
-    //   // requiresEquals: true,
-    //   args: {
-    //     name: "Files to ignore",
-    //     description: "Files matching this pattern will be ignored",
-    //     template: "filepaths",
-    //   },
-    // },
+    {
+      name: "--ignore",
+      insertValue: "--ignore=",
+      description: "Ignore files",
+      // requiresEquals: true,
+      args: {
+        name: "Files to ignore",
+        description: "Files matching this pattern will be ignored",
+        template: "filepaths",
+      },
+    },
     {
       name: "--no-run",
       description: "Cache test modules, but don't run tests",
@@ -528,7 +510,7 @@ const denoFmt: Fig.Subcommand = {
     }),
   },
   options: [
-    ...globalOptions,
+    configOption,
     {
       name: "--check",
       description: "Check if the source files are formatted",
@@ -553,6 +535,54 @@ const denoFmt: Fig.Subcommand = {
       },
     },
     watchOption(),
+    {
+      name: "--options-use-tabs",
+      description: "Use tabs instead of spaces",
+    },
+    {
+      name: "--options-line-width",
+      description: "Define the maximum line width",
+      args: {
+        name: "width",
+      },
+    },
+    {
+      name: "--options-indent-width",
+      description: "Set the number of spaces to use for indentation",
+      args: {
+        name: "width",
+      },
+    },
+    {
+      name: "--options-single-quote",
+      description: "Use single quotes",
+    },
+    {
+      name: "--options-prose-wrap",
+      description:
+        "Define how markdown prose should be wrapped (default: always)",
+      args: {
+        default: "always",
+        name: "wrap",
+        suggestions: [
+          {
+            name: "always",
+            icon: "fig://icon?type=string",
+            description: "Hard-wrap the entire file",
+          },
+          {
+            name: "never",
+            icon: "fig://icon?type=string",
+            description: "Don't hard-wrap text",
+          },
+          {
+            name: "preserve",
+            icon: "fig://icon?type=string",
+            description: "Hard-wrap text that's changed",
+          },
+        ],
+      },
+    },
   ],
 };
 
@@ -567,10 +597,11 @@ const denoLint: Fig.Subcommand = {
     generators: generateRunnableFiles,
   },
   options: [
-    ...globalOptions,
+    configOption,
     {
       name: "--rules",
       description: "List available rules",
+      exclusiveOn: ["--rules-tags", "--rules-include", "--rules-exclude"],
     },
     {
       name: "--ignore",
@@ -585,6 +616,36 @@ const denoLint: Fig.Subcommand = {
     {
       name: "--json",
       description: "Output lint result in JSON format",
+    },
+    {
+      name: "--rules-tags",
+      insertValue: "--rules-tags=",
+      description: "Use a set of rules with a tag",
+      exclusiveOn: ["--rules"],
+      args: {
+        name: "rules",
+        generators: generateLintRules,
+      },
+    },
+    {
+      name: "--rules-include",
+      insertValue: "--rules-include=",
+      description: "Include lint rules",
+      exclusiveOn: ["--rules"],
+      args: {
+        name: "rules",
+        generators: generateLintRules,
+      },
+    },
+    {
+      name: "--rules-exclude",
+      insertValue: "--rules-exclude=",
+      description: "Exclude lint rules",
+      exclusiveOn: ["--rules"],
+      args: {
+        name: "rules",
+        generators: generateLintRules,
+      },
     },
   ],
 };
@@ -660,7 +721,7 @@ function createFilterSuggestion(name: string): Fig.Suggestion {
   return {
     name: name,
     priority: getNamePriority(name),
-    icon: STRING_ICON,
+    icon: "fig://icon?type=string",
   };
 }
 
@@ -831,7 +892,6 @@ const denoDoc: Fig.Subcommand = {
     },
   ],
   options: [
-    ...globalOptions,
     importMapOption,
     reloadOption,
     {
@@ -862,7 +922,6 @@ const denoInstall: Fig.Subcommand = {
     },
   ],
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: ["-n", "--name"],
@@ -891,20 +950,17 @@ const denoInstall: Fig.Subcommand = {
 const denoLsp: Fig.Subcommand = {
   name: "lsp",
   description: "Start the language server",
-  options: globalOptions,
 };
 
 const denoTypes: Fig.Subcommand = {
   name: "types",
   description: "Print Deno's runtime TypeScript declarations",
-  options: globalOptions,
 };
 
 const denoUpgrade: Fig.Subcommand = {
   name: "upgrade",
   description: "Upgrade the deno executable",
   options: [
-    ...globalOptions,
     {
       name: "--version",
       description: "The version to upgrade to",
@@ -938,14 +994,13 @@ const denoEval: Fig.Subcommand = {
   insertValue: "eval '{cursor}'",
   description: "Evaluate JavaScript from the command line",
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: false, inspector: true }),
     {
       name: "--ext",
       description: "Set standard input (stdin) content type",
       args: {
         name: "extension",
-        description: "The file extension to use to interpret stdin",
+        description: "Interpret stdin as this type of file",
         default: "ts",
         suggestions: ["ts", "tsx", "js", "jsx"],
       },
@@ -966,17 +1021,15 @@ const denoCompletions: Fig.Subcommand = {
   description: "Generate shell completions",
   args: {
     name: "shell",
-    description: "Name of the shell to generate completions for",
+    description: "Generate completions for this shell",
     suggestions: ["zsh", "bash", "fish", "powershell", "elvish"],
   },
-  options: globalOptions,
 };
 
 const denoCoverage: Fig.Subcommand = {
   name: "coverage",
   description: "Print coverage reports from coverage profiles",
   options: [
-    ...globalOptions,
     {
       name: "--ignore",
       insertValue: "--ignore=",
@@ -1028,7 +1081,6 @@ const denoInfo: Fig.Subcommand = {
   name: "info",
   description: "Show info about the cache or info related to a source file",
   options: [
-    ...globalOptions,
     reloadOption,
     caFileOption,
     importMapOption,
@@ -1057,7 +1109,6 @@ const denoRepl: Fig.Subcommand = {
   name: "repl",
   description: "Open an interactive read-eval-print loop",
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: false, inspector: true }),
     {
       name: "--eval",
@@ -1088,7 +1139,6 @@ const denoCompile: Fig.Subcommand = {
     },
   ],
   options: [
-    ...globalOptions,
     ...runtimeOptions({ perms: true, inspector: false }),
     {
       name: ["-o", "--output"],
@@ -1125,7 +1175,7 @@ const denoCache: Fig.Subcommand = {
     generators: generateRunnableFiles,
     isVariadic: true,
   },
-  options: [...globalOptions, ...compileOptions],
+  options: compileOptions,
 };
 
 const denoBundle: Fig.Subcommand = {
@@ -1144,7 +1194,7 @@ const denoBundle: Fig.Subcommand = {
       isOptional: true,
     },
   ],
-  options: [...globalOptions, ...compileOptions],
+  options: compileOptions,
 };
 
 const subcommands: Fig.Subcommand[] = [
@@ -1185,7 +1235,32 @@ const completionSpec: Fig.Spec = {
     },
   ],
   options: [
-    ...globalOptions,
+    {
+      name: ["-h", "--help"],
+      description: "Prints help information",
+      isPersistent: true,
+      priority: 40,
+    },
+    {
+      name: ["-L", "--log-level"],
+      description: "Set log level",
+      isPersistent: true,
+      priority: 40,
+      args: {
+        suggestions: ["info", "debug"],
+      },
+    },
+    {
+      name: ["-q", "--quiet"],
+      description:
+        "Suppress diagnostic output (restrict stderr messages to errors)",
+      isPersistent: true,
+    },
+    {
+      name: "--unstable",
+      description: "Enable unstable features and APIs",
+      isPersistent: true,
+    },
     {
       name: "--version",
       description: "Prints version information, including TypeScript and V8",
