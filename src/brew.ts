@@ -1294,6 +1294,11 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
+          name: "--overwrite",
+          description:
+            "Delete files that already exist in the prefix while linking",
+        },
+        {
           name: ["-n", "--dry-run"],
           description:
             "List files which would be linked or deleted by brew link --overwrite without actually linking or deleting any files",
@@ -1306,6 +1311,23 @@ const completionSpec: Fig.Spec = {
           name: "--HEAD",
           description:
             "Link the HEAD version of the formula if it is installed",
+        },
+      ],
+    },
+    {
+      name: "unlink",
+      description: "Remove symlinks for formula from Homebrew's prefix",
+      args: {
+        isOptional: true,
+        isVariadic: true,
+        name: "formula",
+        generators: generators.formulaeGenerator,
+      },
+      options: [
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "List files which would be unlinked without actually unlinking or deleting any files",
         },
       ],
     },
