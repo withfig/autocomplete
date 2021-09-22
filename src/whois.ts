@@ -25,6 +25,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Equivalent to '-h TLD.whois-servers.net', where 'TLD' is this option's argument",
       args: { name: "TLD" },
+      exclusiveOn: ["-h"],
     },
     {
       name: "-f",
@@ -40,6 +41,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Use the specified host instead of the default (host name or IP)",
       args: { name: "hostname" },
+      exclusiveOn: ["-c"],
     },
     {
       name: "-i",
