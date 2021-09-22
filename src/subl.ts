@@ -55,10 +55,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-n", "--new-window"],
       description: "Open a new window",
+      exclusiveOn: ["-a"],
     },
     {
       name: ["-a", "--add"],
       description: "Add folders to the current window",
+      exclusiveOn: ["-n"],
     },
     {
       name: "--launch-or-new-window",
