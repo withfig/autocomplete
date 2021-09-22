@@ -2,16 +2,27 @@ const generateProjects: Fig.Generator = {
   template: "filepaths",
   filterTemplateSuggestions: (suggestions) => {
     const out: Fig.Suggestion[] = [];
+
+    // This is a combined filter/map that also mutates suggestion objects.
     for (const suggestion of suggestions) {
+      // Folders should always be emitted regardless of their name.
       if (suggestion.type === "folder") {
         out.push(suggestion);
         continue;
       }
-      if (/^\.sublime-(project|workspace)$/.test(suggestion.name)) {
-        suggestion.priority = 75;
+
+      // With the filepaths template, if it wasn't a folder, it's a file.
+      // Files should only be emitted if they're a sublime project/workspace.
+      // These should appear before folders, so their priority is increased.
+      if (
+        suggestion.name === ".sublime-project" ||
+        suggestion.name === ".sublime-workspace"
+      ) {
+        suggestion.priority = 76;
         out.push(suggestion);
       }
     }
+
     return out;
   },
 };
