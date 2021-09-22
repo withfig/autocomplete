@@ -1,26 +1,25 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "1.34.1",
+  "version": "2.3.0",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "browserslist": [
     "safari >=11"
   ],
   "scripts": {
-    "dev": "\"$npm_execpath\" run build && source scripts/dev.sh",
-    "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
-    "copy": "func() { mkdir -p ~/.fig/autocomplete/$(dirname ${1}.js); cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/${1}.js; }; func",
-    "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
-    "create-boilerplate": "./scripts/create-boilerplate.sh",
-    "create-example": "./scripts/create-example.sh",
-    "build": "ts-node-script scripts/compiler.ts",
+    "dev": "npx @withfig/autocomplete-tools dev",
+    "create-spec": "npx @withfig/autocomplete-tools create-spec",
+    "build": "npx @withfig/autocomplete-tools compile",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
+    "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
+    "copy": "func() { mkdir -p ~/.fig/autocomplete/$(dirname ${1}.js); cp \"$(pwd)\"/build/${1}.js ~/.fig/autocomplete/${1}.js; }; func",
+    "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/build/ ~/.fig/autocomplete/",
     "prepare": "husky install"
   },
   "fig": {
     "dev": {
-      "description": "Watching and compile .ts files in ./dev",
+      "description": "Watching and compile .ts files in ./src",
       "icon": "fig://template?badge=🛠",
       "priority": 100
     },
@@ -31,16 +30,16 @@
       "description": "Create an example completion spec"
     },
     "test": {
-      "description": "Typecheck all .ts files in /dev"
+      "description": "Typecheck all .ts files in /src"
     },
     "copy": {
       "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
     },
     "copy:all": {
-      "description": "Copy all files from /specs to ~/.fig/autocomplete"
+      "description": "Copy all files from /build to ~/.fig/autocomplete"
     },
     "build": {
-      "description": "Compile all files in /dev"
+      "description": "Compile all files in /src"
     },
     "lint": {
       "description": "Check for linting issues"
@@ -63,7 +62,7 @@
     ]
   },
   "files": [
-    "specs/**/*.js"
+    "build/**/*.js"
   ],
   "author": "",
   "license": "ISC",
@@ -80,7 +79,6 @@
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-compat": "^3.13.0",
-    "eslint-plugin-fig-linter": "file:scripts/eslint-plugin-fig-linter",
     "eslint-plugin-prettier": "^3.3.1",
     "fast-glob": "^3.2.7",
     "husky": "^6.0.0",
@@ -89,6 +87,8 @@
     "pretty-quick": "^3.1.0",
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "@withfig/eslint-plugin-fig-linter": "^1.0.0",
+    "@withfig/autocomplete-tools": "^1.0.0"
   }
 }

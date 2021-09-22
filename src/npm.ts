@@ -533,7 +533,11 @@ const completionSpec: Fig.Spec = {
     },
     { name: "install-test", description: "Install package(s) and run tests" },
     { name: "it", description: "Install package(s) and run tests" },
-    { name: "link", description: "Symlink a package folder" },
+    {
+      name: "link",
+      description: "Symlink a package folder",
+      args: { name: "path", template: "filepaths" },
+    },
     {
       name: "list",
       description: "List installed packages",

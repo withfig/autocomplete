@@ -1897,6 +1897,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Fetch the remote’s copy of current branch and rebases it into the local copy",
           args: {
+            isOptional: true,
             name: "remote",
             generators: gitGenerators.remotes,
             suggestions: ["false", "true", "merges", "preserve", "interactive"],
@@ -5303,7 +5304,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-C", "--force-create"],
           description:
-            "Similar to --create except that if <new-branch> already exists, it will be reset to <start-point>",
+            "Similar to --create except that if <new-branch> already exists it will be reset to <start-point>",
           args: [
             {
               name: "new branch",

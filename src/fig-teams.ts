@@ -1,5 +1,5 @@
 const getTeamsGenerator: Fig.Generator = {
-  script: "fig-teams teams get --raw",
+  script: "fig-teams teams ls --json",
   postProcess: (output) => {
     try {
       const teams = JSON.parse(output) as Array<string>;
@@ -20,7 +20,7 @@ const getUsersGenerator: Fig.Generator = {
     // try getting the value of the team option
     if (teamOption !== -1 && context[teamOption + 1] !== undefined) {
       const teamName = context[teamOption + 1];
-      return `fig-teams users get -t ${teamName} --raw`;
+      return `fig-teams users get -t ${teamName} --json`;
     }
     return "";
   },
@@ -40,8 +40,6 @@ const getUsersGenerator: Fig.Generator = {
   },
 };
 
-const ROLES = ["user", "admin"];
-
 const teamOption: Fig.Option = {
   name: ["-t", "--team"],
   description: "Team to use",
@@ -51,8 +49,8 @@ const teamOption: Fig.Option = {
   },
 };
 
-const rawOption: Fig.Option = {
-  name: "--raw",
+const jsonOption: Fig.Option = {
+  name: "--json",
   description: "Output as JSON",
 };
 
@@ -64,9 +62,9 @@ const completionSpec: Fig.Spec = {
       name: "teams",
       subcommands: [
         {
-          name: "get",
+          name: "ls",
           description: "Get all available teams for the current user",
-          options: [rawOption],
+          options: [jsonOption],
         },
         {
           name: "create",
@@ -75,60 +73,18 @@ const completionSpec: Fig.Spec = {
             name: "name",
           },
         },
-      ],
-    },
-    {
-      name: "clis",
-      description: "Manage internal completion specs",
-      subcommands: [
         {
-          name: "get",
-          description: "Get all available clis for the given team",
-          options: [teamOption, rawOption],
+          name: "ls:user",
+          description: "Get all users for a given team",
+          options: [teamOption, jsonOption],
         },
         {
-          name: "create",
-          description: "Create a new cli for the given team",
-          args: {
-            name: "name",
-          },
+          name: "add:user",
+          description: "Add a new user to a team",
           options: [teamOption],
         },
         {
-          name: "push",
-          description: "Push the cli to the fig servers",
-          args: {
-            name: "cli path",
-            template: "folders",
-          },
-        },
-      ],
-    },
-    {
-      name: "users",
-      description: "Manage users",
-      subcommands: [
-        {
-          name: "get",
-          description: "Get all users for a given team",
-          options: [teamOption, rawOption],
-        },
-        {
-          name: "add",
-          description: "Add a new user to a team",
-          options: [
-            teamOption,
-            {
-              name: ["-a", "--as-admin"],
-            },
-          ],
-          args: {
-            name: "email",
-            generators: getUsersGenerator,
-          },
-        },
-        {
-          name: "remove",
+          name: "remove:user",
           description: "Remove a user from a team",
           options: [teamOption],
           args: {
@@ -136,26 +92,15 @@ const completionSpec: Fig.Spec = {
             generators: getUsersGenerator,
           },
         },
-        {
-          name: "change-role",
-          description: "Change the role of a user in a team",
-          options: [
-            teamOption,
-            {
-              name: ["-r", "--role"],
-              description: "The new role",
-              args: {
-                name: "role",
-                suggestions: ROLES,
-              },
-            },
-          ],
-          args: {
-            name: "email",
-            generators: getUsersGenerator,
-          },
-        },
       ],
+    },
+    {
+      name: "deploy",
+      description: "Push the cli to the fig servers",
+    },
+    {
+      name: "manifest",
+      description: "Update or create config for fig",
     },
   ],
 };
