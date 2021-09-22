@@ -25,27 +25,23 @@ const completionSpec: Fig.Spec = {
           {
             name: "port",
             description: "E.g. serve --listen 1234",
-            type: "arg",
             insertValue: "1234",
             priority: 100,
           },
           {
             name: "host/port",
             description: "E.g. serve --listen tcp://hostname:1234",
-            type: "arg",
             insertValue: "tcp://hostname:1234",
             priority: 76,
           },
           {
             name: "unix domain",
             description: "E.g. serve --listen unix:/path/to/socket.sock",
-            type: "arg",
             insertValue: "unix:/path/to/socket.sock",
           },
           {
             name: "windows pipe",
             description: "E.g. serve -l pipe:\\.pipePipeName",
-            type: "arg",
             insertValue: "pipe:\\.pipePipeName",
           },
         ],
