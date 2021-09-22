@@ -2346,65 +2346,72 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--keep",
-          insertValue: "--keep {cursor}",
           description:
             "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
-          args: {
-            isVariadic: true,
-            suggestions: headSuggestions,
-            generators: gitGenerators.commits,
-          },
         },
         {
           name: "--soft",
-          insertValue: "--soft {cursor}",
           description:
             "Remove the last commit from the current branch, but the file changes will stay in your working tree",
-          args: {
-            suggestions: headSuggestions,
-            generators: gitGenerators.commits,
-          },
         },
         {
           name: "--hard",
-          insertValue: "--hard {cursor}",
           description:
             "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
-          args: {
-            isVariadic: true,
-            suggestions: headSuggestions,
-            generators: gitGenerators.commits,
-          },
         },
         {
           name: "--mixed",
-          insertValue: "--mixed {cursor}",
           description:
             "Keep the changes in your working tree but not on the index",
-          args: {
-            isVariadic: true,
-            suggestions: headSuggestions,
-            generators: gitGenerators.commits,
-          },
+        },
+        {
+          name: "-N",
+          description: "Mark removed paths as intent-to-add",
+          dependsOn: ["--mixed"],
         },
         {
           name: "--merge",
-          insertValue: "--merge {cursor}",
           description:
             "Resets the index and updates the files in the working tree that are different" +
             " between 'commit' and HEAD",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Be quiet, only report errors",
+          exclusiveOn: ["--no-quiet"],
+        },
+        {
+          name: "--no-quiet",
+          description: "Inverse of --quiet",
+          exclusiveOn: ["-q", "--quiet"],
+        },
+        {
+          name: "--pathspec-from-file",
+          insertValue: "--pathspec-from-file={cursor}",
+          description:
+            "Pathspec is passed in file <file> instead of commandline args",
           args: {
-            isVariadic: true,
-            suggestions: headSuggestions,
-            generators: gitGenerators.commits,
+            name: "file",
+            template: ["folders", "filepaths"],
+            suggestions: ["-"],
           },
+        },
+        {
+          name: "--pathspec-file-nul",
+          description: "Pathspec elements are separated with NUL character",
+          dependsOn: ["--pathspec-from-file"],
+        },
+        {
+          name: ["-p", "--patch"],
+          description:
+            "Interactively select hunks in the difference between the index and <tree-ish>",
         },
       ],
       args: {
         isOptional: true,
         isVariadic: true,
-        suggestions: [],
-        generators: gitGenerators.treeish,
+        suggestions: headSuggestions,
+        generators: [gitGenerators.treeish, gitGenerators.commits],
       },
     },
     {
