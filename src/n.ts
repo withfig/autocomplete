@@ -1,7 +1,7 @@
 import node from "./node";
 
 const nodeSpec = (version?: string) =>
-  typeof nodeSpec === "function" ? nodeSpec(version) : nodeSpec;
+  typeof nodeSpec === "function" ? nodeSpec(version) : node;
 
 const versionArg: Fig.Arg = {
   name: "version",
