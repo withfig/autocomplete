@@ -1,5 +1,5 @@
 const getTeamsGenerator: Fig.Generator = {
-  script: "fig-teams teams ls --json",
+  script: "npx -y fig-teams@latest teams ls --json",
   postProcess: (output) => {
     try {
       const teams = JSON.parse(output) as Array<string>;
@@ -20,7 +20,7 @@ const getUsersGenerator: Fig.Generator = {
     // try getting the value of the team option
     if (teamOption !== -1 && context[teamOption + 1] !== undefined) {
       const teamName = context[teamOption + 1];
-      return `fig-teams users get -t ${teamName} --json`;
+      return `npx -y fig-teams@latest users get -t ${teamName} --json`;
     }
     return "";
   },
@@ -56,7 +56,7 @@ const jsonOption: Fig.Option = {
 
 const completionSpec: Fig.Spec = {
   name: "fig-teams",
-  description: "Interact with fig for teams",
+  description: "Fig for teams",
   subcommands: [
     {
       name: "teams",
@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description: "Create a new team",
           args: {
-            name: "name",
+            name: "team_name",
           },
         },
         {
@@ -82,6 +82,10 @@ const completionSpec: Fig.Spec = {
           name: "add:user",
           description: "Add a new user to a team",
           options: [teamOption],
+          args: {
+            name: "email",
+            generators: getUsersGenerator,
+          },
         },
         {
           name: "remove:user",
@@ -96,11 +100,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "deploy",
-      description: "Push the cli to the fig servers",
+      description:
+        "Push your locally compiled completion specs to Fig's server based on the mapping defined in the .fig/manifest file",
     },
     {
       name: "manifest",
-      description: "Update or create config for fig",
+      description:
+        "Create or update the .fig/manifest file. Use this command to link your locally created completion specs to your team",
+    },
+    {
+      name: "whoami",
+      description:
+        "Get information about the current user and their associated teams",
     },
   ],
 };
