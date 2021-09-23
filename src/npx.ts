@@ -45,8 +45,12 @@ const suggestions: Fig.Suggestion[] = [
     name: "typeorm",
     icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4",
   },
+  // {
+  //   name: "fig-teams",
+  //   icon: "https://fig.io/icons/fig-light.png",
+  // },
   {
-    name: "fig-teams",
+    name: "fig-teams@latest",
     icon: "https://fig.io/icons/fig-light.png",
   },
   {
@@ -102,6 +106,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--always-spawn",
       description: "Always spawn a child process to execute the command",
+    },
+    {
+      name: "-y",
+      description: "Execute npx command without prompting for confirmation",
     },
     {
       description: "Skip installation if a package is missing",
