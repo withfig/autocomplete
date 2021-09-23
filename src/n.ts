@@ -1,7 +1,7 @@
-import node from "./node";
+import nodeSpec from "./node";
 
-const nodeSpec = (version?: string) =>
-  typeof nodeSpec === "function" ? nodeSpec(version) : node;
+const node = (version?: string) =>
+  typeof nodeSpec === "function" ? nodeSpec(version) : nodeSpec;
 
 const versionArg: Fig.Arg = {
   name: "version",
@@ -104,9 +104,9 @@ const completionSpec: Fig.Spec = (version?: string) => ({
     {
       name: ["run", "use", "as"],
       description: "Execute downloaded Node.js version with args",
-      args: [versionArg, ...[nodeSpec(version).args].flat()],
-      subcommands: nodeSpec(version).subcommands,
-      options: nodeSpec(version).options,
+      args: [versionArg, ...[node(version).args].flat()],
+      subcommands: node(version).subcommands,
+      options: node(version).options,
     },
     {
       name: "exec",
