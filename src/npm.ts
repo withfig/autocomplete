@@ -177,7 +177,7 @@ const completionSpec: Fig.Spec = {
   description: "Node package manager",
   subcommands: [
     {
-      name: "install",
+      name: ["install", "add"],
       description: "Install a package and its dependencies",
       args: {
         name: "package",
