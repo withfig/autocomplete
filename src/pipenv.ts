@@ -703,7 +703,7 @@ const completionSpec: Fig.Spec = {
 
     {
       name: "--support",
-      description: "View diagnostic information for use in Github issues",
+      description: "View diagnostic information for use in GitHub issues",
     },
 
     {
