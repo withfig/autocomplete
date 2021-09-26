@@ -196,7 +196,7 @@ const completionSpec: Fig.Spec = {
     { name: "diagnostic", description: "Display diagnostic information" },
     {
       name: "issue",
-      description: "Create a new Github issue in withfig/fig",
+      description: "Create a new GitHub issue in withfig/fig",
       icon: "fig://icon?type=github",
     },
 

@@ -831,10 +831,10 @@ const pluginCommand: Fig.Subcommand = {
         {
           name: "--username",
           description:
-            "Specifies the Github username, which will be used to build the URLs in the plugin's package.json file",
+            "Specifies the GitHub username, which will be used to build the URLs in the plugin's package.json file",
           args: {
             name: "username",
-            description: "Github username",
+            description: "GitHub username",
           },
         },
         {
