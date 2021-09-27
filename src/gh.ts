@@ -38,7 +38,7 @@ const ghOptions: Record<string, Fig.Option> = {
 
 const completionSpec: Fig.Spec = {
   name: "gh",
-  description: "Github's CLI tool",
+  description: "GitHub's CLI tool",
   subcommands: [
     {
       name: "alias",

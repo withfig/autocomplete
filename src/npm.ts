@@ -177,7 +177,7 @@ const completionSpec: Fig.Spec = {
   description: "Node package manager",
   subcommands: [
     {
-      name: ["install", "add"],
+      name: ["install", "i", "add"],
       description: "Install a package and its dependencies",
       args: {
         name: "package",
@@ -516,17 +516,6 @@ const completionSpec: Fig.Spec = {
     { name: "help", description: "Search npm help documentation" },
     { name: "help-search", description: "Get help on npm" },
     { name: "hook", description: "Manage registry hooks" },
-    {
-      name: "i",
-      description: "Install a package and its dependencies",
-      args: {
-        name: "package",
-        isOptional: true,
-        generators: searchGenerator,
-        debounce: true,
-        isVariadic: true,
-      },
-    },
     {
       name: "install-ci-test",
       description: "Install a project with a clean slate and run tests",
