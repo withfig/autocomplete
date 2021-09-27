@@ -33,6 +33,7 @@ const completionSpec: Fig.Spec = {
       description: "Highlight new and old processes",
       args: {
         name: "delay",
+        description: "Delay between updates of highlights, in tenths of sec",
         isOptional: true,
       },
     },
