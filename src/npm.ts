@@ -230,6 +230,11 @@ const completionSpec: Fig.Spec = {
             "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package",
         },
         {
+          name: "--legacy-peer-deps",
+          description:
+            "Bypass peerDependency auto-installation. Emulate install behavior of NPM v4 through v6",
+        },
+        {
           name: "--strict-peer-deps",
           description:
             "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure",
