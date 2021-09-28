@@ -112,6 +112,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: ["--output", "-o"],
                 description: "Name for the built library",
+                requiresEquals: true,
                 args: {
                   name: "LIB",
                   description: "Full name for the built library",
@@ -253,6 +254,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--data-compress",
                 description: "Compression to be used for lazy-loading of data",
+                requiresEquals: true,
                 args: {
                   name: "compression",
                   description:
@@ -329,6 +331,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--configure-args",
                 description: "Set arguments for the configure scripts",
+                requiresEquals: true,
                 args: {
                   name: "ARGS",
                   description: "Arguments for the configure script",
@@ -338,6 +341,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--configure-vars",
                 description: "Set variables for the configure scripts",
+                requiresEquals: true,
                 args: {
                   name: "ARGS",
                   description: "Variables for the configure scripts",
@@ -361,6 +365,7 @@ const completionSpec: Fig.Spec = {
                 name: "--built-timestamp",
                 description:
                   "Set timestamp for 'Built' entry in DESCRIPTION (Unix only)",
+                requiresEquals: true,
                 args: {
                   name: "STAMP",
                   description: "A timestamp for the build (Unix only)",
@@ -402,6 +407,29 @@ const completionSpec: Fig.Spec = {
               },
             },
           },
+        },
+        {
+          name: "REMOVE",
+          description: "Remove add-on packages",
+          args: {
+            name: "packages",
+            description: "Packages to remove",
+            isOptional: false,
+            isDangerous: true,
+            isVariadic: true,
+          },
+          options: helpAndVersionOptions.concat([
+            {
+              name: ["--library", "-l"],
+              description: "The library tree to remove from",
+              requiresEquals: true,
+              args: {
+                name: "LIB",
+                description: "Library tree",
+                isOptional: false,
+              },
+            },
+          ]),
         },
       ],
     },
