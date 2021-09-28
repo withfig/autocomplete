@@ -39,6 +39,53 @@ const binList: Fig.Generator = {
   },
 };
 
+const searchGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = context[context.length - 1];
+    return `cargo search "${searchTerm}" | grep -E "^\\w"`;
+  },
+  postProcess: function (out) {
+    return out.split("\n").map((line) => {
+      const regex = /([a-zA-Z0-9-_]+)\s=\s"(.*)"\s+#\s(.*)/;
+      const matches = regex.exec(line);
+      return {
+        name: matches[1],
+        description: `v${matches[2]} - ${matches[3]}`,
+      };
+    });
+  },
+};
+
+const rustEditions: Fig.Suggestion[] = [
+  { name: "2015" },
+  { name: "2018" },
+  { name: "2021" },
+];
+
+const vcsOptions: Fig.Suggestion[] = [
+  {
+    name: "git",
+    description: "Initalize with Git",
+  },
+  {
+    name: "hg",
+    description: "Initalize with Mercurial",
+  },
+  {
+    name: "pijul",
+    description: "Initalize with Pijul",
+  },
+  {
+    name: "fossil",
+    description: "Initalize with Fossil",
+  },
+  {
+    name: "none",
+    description: "Initalize with no VCS",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "cargo",
   icon: "📦",
@@ -46,52 +93,248 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: ["build", "b"],
-      description: "Compile local package and dependencies",
       icon: "📦",
+      description: "Compile local package and dependencies",
       options: [
         {
-          name: ["-h", "--help"],
-          description: "Output usage info",
+          name: ["-p", "--package"],
+          description: "Package to build (see `cargo help pkgid`)",
+          args: { name: "SPEC" },
+        },
+        {
+          name: "--all",
+          description: "Alias for workspace (deprecated)",
+          hidden: true,
+        },
+        {
+          name: "--workspace",
+          description: "Build all packages in workspace",
+        },
+        {
+          name: "--exclude",
+          description: "Exclude packages from the build",
+          args: { name: "SPEC" },
+        },
+        {
+          name: ["-j", "--jobs"],
+          description: "Number of parallel jobs, defaults to # of CPUs",
+          args: { name: "N" },
+        },
+        {
+          name: "--lib",
+          description: "Build only this package's library",
+        },
+        {
+          name: "--bin",
+          description: "Build only the specified binary",
+          args: {
+            name: "NAME",
+            generators: binList,
+          },
         },
         {
           name: "--bins",
           description: "Build all binaries",
         },
         {
-          name: "--bin",
+          name: "--example",
+          description: "Build only the specified example",
+          args: { name: "NAME" },
+        },
+        {
+          name: "--examples",
+          description: "Build all examples",
+        },
+        {
+          name: "--test",
+          description: "Build only the specified test target",
           args: {
-            name: "bin",
-            generators: binList,
+            name: "NAME",
+            generators: testList,
           },
+        },
+        {
+          name: "--tests",
+          description: "Build all tests",
+        },
+        {
+          name: "--bench",
+          description: "Build only the specified bench target",
+          args: { name: "NAME" },
+        },
+        {
+          name: "--benches",
+          description: "Build all benches",
         },
         {
           name: "--all-targets",
           description: "Activate all available features",
         },
         {
-          name: "--all",
-          description: "Alias for workspace",
-        },
-        {
           name: "--release",
           description: "Build in release mode, with optimizations",
         },
         {
-          name: ["-j", "--jobs"],
-          description: "Number of CPUs",
-          insertValue: "-j {cursor}",
+          name: "--profile",
+          description: "Build artifacts with the specified profile",
+          args: { name: "PROFILE-NAME" },
+        },
+        {
+          name: "--all-features",
+          description: "Activate all available features",
+        },
+        {
+          name: "--no-default-features",
+          description: "Do not activate the `default` feature",
+        },
+        {
+          name: "--ignore-rust-version",
+          description:
+            "Ignore `rust-version` specification in packages (unstable)",
+        },
+        {
+          name: "--build-plan",
+          description: "Output the build plan in JSON (unstable)",
+        },
+        {
+          name: "--unit-graph",
+          description: "Output build graph in JSON (unstable)",
+        },
+        {
+          name: "--future-incompat-report",
+          description:
+            "Outputs a future incompatibility report at the end of the build (unstable)",
         },
       ],
     },
     {
-      name: ["run", "r"],
-      description: "Run a binary or example of the local package",
-      icon: "📦",
+      name: ["check", "c"],
+      icon: "🛠",
+      description:
+        "Analyze the current package and report errors, but don't build object files",
+    },
+    {
+      name: "clean",
+      icon: "🛠",
+      description: "Remove the target directory",
+    },
+    {
+      name: ["doc", "d"],
+      icon: "📄",
+      description: "Build this package's and its dependencies' documentation",
       options: [
         {
-          name: ["-h", "--help"],
-          description: "Output usage info",
+          name: "--open",
+          description: "Opens the docs in a browser after the operation",
         },
+      ],
+    },
+    {
+      name: "new",
+      icon: "📦",
+      description: "Create a new cargo package",
+      args: {
+        name: "path",
+        template: "folders",
+      },
+      options: [
+        {
+          name: "--registry",
+          description: "Registry to use",
+          args: { name: "REGISTRY" },
+        },
+        {
+          name: "--vcs",
+          description:
+            "Initialize a new repository for the given version control system",
+          args: {
+            name: "VCS",
+            suggestions: vcsOptions,
+          },
+        },
+        {
+          name: "--bin",
+          description: "Use a binary (application) template [default]",
+          exclusiveOn: ["--lib"],
+        },
+        {
+          name: "--lib",
+          description: "Use a library template",
+          exclusiveOn: ["--bin"],
+        },
+        {
+          name: "--edition",
+          description: "Edition to set for the crate generated",
+          args: {
+            name: "YEAR",
+            suggestions: rustEditions,
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "Set the resulting package name, defaults to the directory name",
+          args: { name: "NAME" },
+        },
+      ],
+    },
+    {
+      name: "init",
+      icon: "📦",
+      description: "Creates new cargo pkg in directory",
+      options: [
+        {
+          name: "--registry",
+          description: "Registry to use",
+          args: { name: "REGISTRY" },
+        },
+        {
+          name: "--vcs",
+          description:
+            "Initialize a new repository for the given version control system",
+          args: {
+            name: "VCS",
+            suggestions: vcsOptions,
+          },
+        },
+        {
+          name: "--bin",
+          description: "Use a binary (application) template [default]",
+          exclusiveOn: ["--lib"],
+        },
+        {
+          name: "--lib",
+          description: "Use a library template",
+          exclusiveOn: ["--bin"],
+        },
+        {
+          name: "--edition",
+          description: "Edition to set for the crate generated",
+          args: {
+            name: "YEAR",
+            suggestions: rustEditions,
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "Set the resulting package name, defaults to the directory name",
+          args: { name: "NAME" },
+        },
+        {
+          name: "--",
+          description: "Last option before path",
+        },
+      ],
+      args: {
+        template: "folders",
+      },
+    },
+    {
+      name: ["run", "r"],
+      icon: "📦",
+      description: "Run a binary or example of the local package",
+      options: [
         {
           name: "--bin",
           args: {
@@ -100,37 +343,52 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "--example",
+          description: "Build only the specified example",
+          args: { name: "NAME" },
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to build (see `cargo help pkgid`)",
+          args: { name: "SPEC" },
+        },
+        {
+          name: ["-j", "--jobs"],
+          description: "Number of parallel jobs, defaults to # of CPUs",
+          args: { name: "N" },
+        },
+        {
           name: "--release",
           description: "Run in release mode, with optimizations",
         },
+        {
+          name: "--profile",
+          description: "Build artifacts with the specified profile",
+          args: { name: "PROFILE-NAME" },
+        },
+        {
+          name: "--all-features",
+          description: "Activate all available features",
+        },
+        {
+          name: "--no-default-features",
+          description: "Do not activate the `default` feature",
+        },
+        {
+          name: "--ignore-rust-version",
+          description:
+            "Ignore `rust-version` specification in packages (unstable)",
+        },
+        {
+          name: "--unit-graph",
+          description: "Output build graph in JSON (unstable)",
+        },
       ],
-    },
-    {
-      name: "init",
-      description: "Creates new cargo pkg in directory",
-      icon: "📦",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Output usage info",
-        },
-        {
-          name: "--bin",
-          description: "Use a binary (application) template [default]",
-        },
-        {
-          name: "--offline",
-          description: "Run without network",
-        },
-      ],
-      args: {
-        template: "filepaths",
-      },
     },
     {
       name: ["test", "t"],
-      description: "Run tests",
       icon: "📦",
+      description: "Run tests",
       args: {
         name: "test name",
         generators: testList,
@@ -143,6 +401,240 @@ const completionSpec: Fig.Spec = {
         {
           name: "--release",
           description: "Test in release mode, with optimizations",
+        },
+      ],
+    },
+    {
+      name: "bench",
+      icon: "📈",
+      description: "Run the benchmarks",
+    },
+    {
+      name: "update",
+      icon: "📦",
+      description: "Update dependencies listed in Cargo.lock",
+      options: [
+        {
+          name: ["-w", "--workspace"],
+          description: "Only update the workspace packages",
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to update",
+          args: { name: "SPEC" },
+        },
+        {
+          name: "--aggressive",
+          description:
+            "Force updating all dependencies of SPEC as well when used with -p",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the lockfile",
+        },
+      ],
+    },
+    {
+      name: "search",
+      icon: "🔎",
+      description: "Search registry for crates",
+      args: {
+        name: "query",
+        isOptional: true,
+        isVariadic: true,
+      },
+      options: [
+        {
+          name: "--index",
+          description: "Registry index URL to upload the package to",
+          args: { name: "INDEX" },
+        },
+        {
+          name: "--limit",
+          description: "Limit the number of results (default: 10, max: 100)",
+          args: { name: "LIMIT" },
+        },
+        {
+          name: "--registry",
+          description: "Registry to",
+          args: { name: "REGISTRY" },
+        },
+        {
+          name: "--",
+          description: "Last option before query",
+        },
+      ],
+    },
+    {
+      name: "install",
+      icon: "📦",
+      description: "Install a Rust binary",
+      args: {
+        name: "package",
+        isOptional: true,
+        generators: searchGenerator,
+        debounce: true,
+        isVariadic: true,
+      },
+      options: [
+        {
+          name: "--version",
+          description: "Specify a version to install",
+          args: { name: "VERSION" },
+        },
+        {
+          name: "--git",
+          description: "Git URL to install the specified crate from",
+          args: { name: "URL" },
+        },
+        {
+          name: "--branch",
+          description: "Branch to use when installing from git",
+          args: { name: "BRANCH" },
+        },
+        {
+          name: "--tag",
+          description: "Tag to use when installing from git",
+          args: { name: "TAG" },
+        },
+        {
+          name: "--rev",
+          description: "Specific commit to use when installing from git",
+          args: { name: "SHA" },
+        },
+        {
+          name: "--path",
+          description: "Filesystem path to local crate to install",
+          args: {
+            name: "PATH",
+            template: "folders",
+          },
+        },
+        {
+          name: "--list",
+          description: "List all installed packages and their versions",
+        },
+        {
+          name: ["-j", "--jobs"],
+          description: "Number of parallel jobs, defaults to # of CPUs",
+          args: { name: "N" },
+        },
+        {
+          name: ["-f", "--force"],
+          description: "Force overwriting existing crates or binaries",
+        },
+        {
+          name: "--no-track",
+          description: "Do not save tracking",
+        },
+        {
+          name: "--features",
+          description: "Space or comma separated list of features to activate",
+          args: { name: "FEATURES" },
+        },
+        {
+          name: "--all-features",
+          description: "Activate all available features",
+        },
+        {
+          name: "--no-default-features",
+          description: "Do not activate the `default` feature",
+        },
+        {
+          name: "--profile",
+          description: "Install artifacts with the specified profile",
+          args: { name: "PROFILE-NAME" },
+        },
+        {
+          name: "--debug",
+          description: "Build in debug mode instead of release mode",
+        },
+        {
+          name: "--bin",
+          description: "Install only the specified binary",
+          args: { name: "NAME" },
+        },
+        {
+          name: "--bins",
+          description: "Install all binaries",
+        },
+        {
+          name: "--example",
+          description: "Install only the specified example",
+          args: { name: "NAME" },
+        },
+        {
+          name: "--examples",
+          description: "Install all examples",
+        },
+        {
+          name: "--target",
+          description: "Build for the target triple",
+          args: { name: "TRIPLE" },
+        },
+        {
+          name: "--target-dir",
+          description: "Directory for all generated artifacts",
+          args: {
+            name: "DIRECTORY",
+            template: "folders",
+          },
+        },
+        {
+          name: "--root",
+          description: "Directory to install packages into",
+          args: {
+            name: "DIR",
+            template: "folders",
+          },
+        },
+        {
+          name: "--index",
+          description: "Registry index to install from",
+          args: { name: "INDEX" },
+        },
+        {
+          name: "--",
+          description: "Last option before crates",
+        },
+      ],
+    },
+    {
+      name: "uninstall",
+      icon: "📦",
+      description: "Uninstall a Rust binary",
+      args: {
+        name: "package",
+        isOptional: true,
+        generators: {
+          script:
+            "cargo install --list | grep -E \"^[a-zA-Z\\-]+\\sv\" | cut -d ' ' -f 1",
+          splitOn: "\n",
+        },
+        isVariadic: true,
+      },
+      options: [
+        {
+          name: ["-p", "--package"],
+          description: "Package to uninstall",
+          args: { name: "SPEC" },
+        },
+        {
+          name: "--bin",
+          description: "Only uninstall the binary NAME",
+          args: { name: "NAME" },
+        },
+        {
+          name: "--root",
+          description: "Directory to uninstall packages from",
+          args: {
+            name: "DIR",
+            template: "folders",
+          },
+        },
+        {
+          name: "--",
+          description: "Last option before crates",
         },
       ],
     },
@@ -286,7 +778,7 @@ const completionSpec: Fig.Spec = {
               description: "Specify the edition to use",
               args: {
                 name: "edition",
-                suggestions: ["2015", "2018", "2021"],
+                suggestions: rustEditions,
               },
             },
             {
@@ -526,10 +1018,6 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["-q", "--quiet"],
-          description: "No output",
-        },
-        {
           name: ["-p", "--package"],
           description: "Package to build",
           args: {
@@ -687,61 +1175,76 @@ const completionSpec: Fig.Spec = {
           description: "Ignores `rust-version` specification in packages",
         },
         {
-          name: ["-v", "--verbose"],
-          description: "Use verbose output",
-        },
-        {
-          name: "-vv",
-          description: "Very verbose, aka build.rs output",
-        },
-        {
           name: "--future-incompat-report",
           description:
             "Ouputs a future incompatibility report at the end of the build",
-        },
-        {
-          name: "--color",
-          description: "Coloring",
-          args: {
-            name: "When",
-            suggestions: ["auto", "always", "never"],
-          },
-        },
-        {
-          name: "--frozen",
-          description: "Require Cargo.lock and cache are up to date",
-        },
-        {
-          name: "--locked",
-          description: "Require Cargo.lock is up to date",
-        },
-        {
-          name: "--offline",
-          description: "Run without accessing the network",
-        },
-        {
-          name: "--Z",
-          description: "Unstable (nightly-only) flags to Cargo",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
         },
       ],
     },
   ],
   options: [
     {
-      name: ["-h", "--help"],
-      description: "Overview of CLI",
-    },
-    {
       name: ["-V", "--version"],
       description: "The current version",
     },
     {
+      name: "--list",
+      description: "List installed commands",
+    },
+    {
+      name: ["-h", "--help"],
+      description: "Prints help information",
+      isPersistent: true,
+    },
+    {
       name: ["-q", "--quiet"],
-      description: "No output",
+      description: "No output printed to stdout",
+      isPersistent: true,
+    },
+    {
+      name: ["-v", "--verbose"],
+      description: "Use verbose output (-vv very verbose/build.rs output)",
+      isRepeatable: 2,
+      isPersistent: true,
+    },
+    {
+      name: "--color",
+      description: "Coloring: auto, always, never",
+      args: {
+        name: "WHEN",
+        suggestions: ["auto", "always", "never"],
+      },
+      isPersistent: true,
+    },
+    {
+      name: "--frozen",
+      description: "Require Cargo.lock and cache are up to date",
+      isPersistent: true,
+    },
+    {
+      name: "--locked",
+      description: "Require Cargo.lock is up to date",
+      isPersistent: true,
+    },
+    {
+      name: "--offline",
+      description: "Run without accessing the network",
+      isPersistent: true,
+    },
+    {
+      name: "--config",
+      description: "Override a configuration value (unstable)",
+      args: { name: "KEY=VALUE" },
+      isRepeatable: true,
+      isPersistent: true,
+    },
+    {
+      name: "-Z",
+      description:
+        "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details",
+      args: { name: "FLAG" },
+      isRepeatable: true,
+      isPersistent: true,
     },
   ],
 };
