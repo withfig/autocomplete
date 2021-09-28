@@ -209,18 +209,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["check", "c"],
-      icon: "📦",
+      icon: "🛠",
       description:
         "Analyze the current package and report errors, but don't build object files",
     },
     {
       name: "clean",
-      icon: "📦",
+      icon: "🛠",
       description: "Remove the target directory",
     },
     {
       name: ["doc", "d"],
-      icon: "📦",
+      icon: "📄",
       description: "Build this package's and its dependencies' documentation",
       options: [
         {
@@ -406,7 +406,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "bench",
-      icon: "📦",
+      icon: "📈",
       description: "Run the benchmarks",
     },
     {
@@ -436,7 +436,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "search",
-      icon: "📦",
+      icon: "🔎",
       description: "Search registry for crates",
       args: {
         name: "query",
