@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "htop",
   description: "Improved top (interactive process viewer)",
-
   options: [
     {
       name: ["--help", "-h"],
@@ -16,8 +15,7 @@ const completionSpec: Fig.Spec = {
       description: "Delay between updates, in tenths of sec",
       args: {
         name: "delay",
-        suggestions: ["10"],
-        isOptional: false,
+        suggestions: ["10", "1", "60"],
       },
     },
     {
@@ -25,7 +23,6 @@ const completionSpec: Fig.Spec = {
       description: "Filter commands",
       args: {
         name: "filter",
-        isOptional: false,
       },
     },
     {
@@ -34,6 +31,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "delay",
         description: "Delay between updates of highlights, in tenths of sec",
+        suggestions: ["10", "1", "60"],
         isOptional: true,
       },
     },
@@ -46,7 +44,6 @@ const completionSpec: Fig.Spec = {
       description: "Show only the given PIDs",
       args: {
         name: "PID",
-        isOptional: false,
         isVariadic: true,
       },
     },
@@ -55,7 +52,6 @@ const completionSpec: Fig.Spec = {
       description: "Sort by COLUMN in list view",
       args: {
         name: "column",
-        isOptional: false,
       },
     },
     {
