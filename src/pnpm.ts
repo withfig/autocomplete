@@ -1,70 +1,11 @@
-const clis = [
-  "vue",
-  "nuxt",
-  "expo",
-  "jest",
-  "next",
-  "electron",
-  "prisma",
-  "eslint",
-  "prettier",
-  "tsc",
-  "typeorm",
-  "babel",
-];
-
 // GENERATORS
-const searchGenerator: Fig.Generator = {
-  script: function (context) {
-    if (context[context.length - 1] === "") return "";
-    const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
-  },
-  postProcess: function (out) {
-    try {
-      return JSON.parse(out).results.map(
-        (item) =>
-          ({
-            name: item.package.name,
-            description: item.package.description,
-          } as Fig.Suggestion)
-      ) as Fig.Suggestion[];
-    } catch (e) {
-      return [];
-    }
-  },
-};
 
-/** Used for getting list of installed deps of nearest package.json up to root */
-const dependenciesGenerator: Fig.Generator = {
-  script: `until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json`,
-  postProcess: function (out, context) {
-    if (out.trim() === "") {
-      return [];
-    }
-    try {
-      const packageContent = JSON.parse(out);
-      const pickDeps = ["dependencies", "devDependencies"];
-      const suggestions: Fig.Suggestion[] = pickDeps.flatMap((depsKey) => {
-        const deps = packageContent[depsKey] ?? {};
-        return Object.keys(deps)
-          .filter((dep) => {
-            const isListed = context.some((current) => current === dep);
-            return !isListed;
-          })
-          .map(
-            (dep): Fig.Suggestion => ({
-              name: dep,
-              icon: `📦`,
-              description: depsKey.slice(0, -3) + "y",
-            })
-          );
-      });
-      return suggestions;
-    } catch {}
-    return [];
-  },
-};
+import {
+  dependenciesGenerator,
+  npmScriptsGenerator,
+  npmSearchGenerator,
+} from "./npm";
+import { nodeClis } from "./yarn";
 
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
@@ -104,29 +45,6 @@ const searchBranches: Fig.Generator = {
         icon: "fig://icon?type=git",
       };
     });
-  },
-};
-
-const searchScriptsGenerator: Fig.Generator = {
-  script: `until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json`,
-  postProcess: function (out) {
-    if (out.trim() === "") {
-      return [];
-    }
-    try {
-      const packageContent = JSON.parse(out);
-      const { scripts } = packageContent;
-      if (scripts) {
-        return Object.entries(scripts).map(([name, content]) => {
-          return {
-            name,
-            icon: `fig://icon?type=npm`,
-            description: content as string,
-          };
-        });
-      }
-    } catch (e) {}
-    return [];
   },
 };
 
@@ -259,7 +177,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     description: `Installs a package and any packages that it depends on. By default, any new package is installed as a production dependency.`,
     args: {
       name: "package",
-      generators: searchGenerator,
+      generators: npmSearchGenerator,
       debounce: true,
       isVariadic: true,
     },
@@ -274,7 +192,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: {
       name: "package",
       isOptional: true,
-      generators: searchGenerator,
+      generators: npmSearchGenerator,
       debounce: true,
       isVariadic: true,
     },
@@ -477,7 +395,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     description: "Runs a script defined in the package's manifest file",
     args: {
       name: "Scripts",
-      generators: searchScriptsGenerator,
+      generators: npmScriptsGenerator,
       isVariadic: true,
     },
     options: [
@@ -930,8 +848,28 @@ const completionSpec: Fig.Spec = {
   description: "Fast, disk space efficient package manager",
   args: {
     name: "Scripts",
-    generators: searchScriptsGenerator,
+    generators: npmScriptsGenerator,
     isVariadic: true,
+  },
+  generateSpec: async (_tokens, executeShellCommand) => {
+    const { script, postProcess } = dependenciesGenerator;
+
+    const packages = postProcess(
+      await executeShellCommand(script as string)
+    ).map(({ name }) => name as string);
+
+    const subcommands = packages
+      .filter((name) => nodeClis.includes(name))
+      .map((name) => ({
+        name,
+        loadSpec: name,
+        icon: "fig://icon?type=package",
+      }));
+
+    return {
+      name: "pnpm",
+      subcommands,
+    } as Fig.Spec;
   },
   subcommands,
 };
