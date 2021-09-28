@@ -33,6 +33,10 @@ const compileFiles: Fig.Generator = {
   },
 };
 
+const folders: Fig.Generator = {
+  template: "folders",
+};
+
 const helpAndVersionOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
@@ -426,8 +430,81 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "LIB",
                 description: "Library tree",
-                isOptional: false,
               },
+            },
+          ]),
+        },
+        {
+          name: "build",
+          description: "Build R packages from package sources",
+          args: {
+            name: "pakgdirs",
+            description: "Package directories",
+            isVariadic: true,
+            generators: folders,
+          },
+          options: helpAndVersionOptions.concat([
+            {
+              name: "--force",
+              description: "Force removal of INDEX file",
+            },
+            {
+              name: "--keep-empty-dirs",
+              description: "Do not remove empty dirs",
+            },
+            {
+              name: "--no-build-vignettes",
+              description: "Do not (re)build package vignettes",
+            },
+            {
+              name: "--no-manual",
+              description: "Do not build the PDF manual",
+            },
+            {
+              name: "--resave-data",
+              description: "Re-save data files as compactly as possible",
+              requiresEquals: true,
+              args: {
+                name: "Compression method",
+                isOptional: true,
+                default: "best",
+                suggestions: ["best", "gzip", "no"],
+              },
+            },
+            {
+              name: "--no-resave-data",
+              description: "Do not save data",
+            },
+            {
+              name: "--compact-vignettes",
+              description: "Try to compact PDF files under 'inst/doc'",
+              requiresEquals: true,
+              args: {
+                name: "Compression method",
+                isOptional: true,
+                default: "no",
+                suggestions: ["no", "qpdf", "gs", "gs+qpdf", "both"],
+              },
+            },
+            {
+              name: "--compression",
+              description: "Type of compression to be used on tarball",
+              requiresEquals: true,
+              args: {
+                name: "Compression method",
+                isOptional: true,
+                default: "gzip",
+                suggestions: ["gzip", "none", "bzip2", "xz"],
+              },
+            },
+            {
+              name: "--md5",
+              description: "Add MD5 sums",
+            },
+            {
+              name: "--log",
+              description:
+                "Log to file 'pkg-00build.log' when processing the pkgdir with basename 'pkg'",
             },
           ]),
         },
