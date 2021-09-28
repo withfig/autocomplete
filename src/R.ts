@@ -132,7 +132,7 @@ const completionSpec: Fig.Spec = {
               },
               {
                 name: ["--debug", "-d"],
-                description: "Build a debug DLL (Windows only",
+                description: "Build a debug DLL (Windows only)",
               },
             ]),
           args: {
@@ -325,6 +325,57 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--no-use-LTO",
                 description: "Do not use Link-Time Optimization",
+              },
+              {
+                name: "--configure-args",
+                description: "Set arguments for the configure scripts",
+                args: {
+                  name: "ARGS",
+                  description: "Arguments for the configure script",
+                  isOptional: false,
+                },
+              },
+              {
+                name: "--configure-vars",
+                description: "Set variables for the configure scripts",
+                args: {
+                  name: "ARGS",
+                  description: "Variables for the configure scripts",
+                  isOptional: false,
+                },
+              },
+              {
+                name: "--strip",
+                description: "Strip shared object(s) (Unix only)",
+              },
+              {
+                name: "--strip-lib",
+                description:
+                  "Strip static/dynamic libraries under 'lib/' (Unix only)",
+              },
+              {
+                name: "--dsym",
+                description: "Generate dSYM directory (macOS only)",
+              },
+              {
+                name: "--built-timestamp",
+                description:
+                  "Set timestamp for 'Built' entry in DESCRIPTION (Unix only)",
+                args: {
+                  name: "STAMP",
+                  description: "A timestamp for the build (Unix only)",
+                  isOptional: false,
+                },
+              },
+              {
+                name: "--force-biarch",
+                description:
+                  "Attempt to build both architectures (Windows only)",
+              },
+              {
+                name: "--compile-both",
+                description:
+                  "Compile both architectures on 32-bit Windows (Windows only)",
               },
             ]),
           args: {
