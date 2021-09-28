@@ -86,7 +86,6 @@ const completionSpec: Fig.Spec = {
               name: "outfile",
               description:
                 "A file to which to write output. If not given, the name used is that of infile, with a possible .R extension stripped, and .Rout appended",
-              isOptional: true,
             },
           ],
         },

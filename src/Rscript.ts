@@ -71,7 +71,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "file",
       description: "R script to run",
-      isOptional: true,
       isScript: true,
       generators: {
         template: "filepaths",
@@ -94,7 +93,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "args",
       description: "Arguments to pass to the script",
-      isOptional: true,
     },
   ],
 };
