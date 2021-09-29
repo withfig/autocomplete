@@ -2,7 +2,7 @@ const completionSpec: Fig.Spec = {
   name: "please",
   description: "Statamic Please command",
   generateSpec: async (tokens, executeShellCommand) => {
-    var out = await executeShellCommand("php please list --format=json");
+    const out = await executeShellCommand("php please list --format=json");
     const subcommands = [];
 
     try {
@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
         });
       });
     } catch (err) {
-      //
+      console.error(err);
     }
 
     return {
