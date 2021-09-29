@@ -670,6 +670,15 @@ const completionSpec: Fig.Spec = {
             generators: rPackages,
           },
         },
+        {
+          name: "LINK",
+          description: "Perform the specified linkcmd",
+          options: helpAndVersionOptions,
+          args: {
+            name: "linkcmd",
+            description: "Command for linkcmd",
+          },
+        },
       ],
     },
   ],
