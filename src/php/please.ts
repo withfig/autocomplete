@@ -13,17 +13,14 @@ const completionSpec: Fig.Spec = {
           name: command.name,
           description: command.description,
 
-          args: Object.keys(command.definition.arguments).map((argumentKey) => {
-            const argument = command.definition.arguments[argumentKey];
-
+          args: Object.values(command.definition.arguments).map((argument) => {
             return {
               name: argument.name,
               description: argument.description,
               isOptional: !argument.is_required,
             };
           }),
-          options: Object.keys(command.definition.options).map((optionKey) => {
-            const option = command.definition.options[optionKey];
+          options: Object.values(command.definition.options).map((option) => {
             const names = [option.name];
 
             if (option.shortcut !== "") {
