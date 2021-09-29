@@ -12,29 +12,43 @@ const compileFiles: Fig.Generator = {
       ".f90",
       ".f95",
     ];
-    return paths
-      .filter((file) => {
-        for (let idx = 0; idx < possibleSuffixes.length; idx++) {
-          const element = possibleSuffixes[idx];
-          if (file.name.endsWith(element)) {
-            return true;
-          }
+    return paths.filter((file) => {
+      for (let idx = 0; idx < possibleSuffixes.length; idx++) {
+        const element = possibleSuffixes[idx];
+        if (file.name.endsWith(element)) {
+          return true;
         }
-        return false;
-      })
-      .map((file) => {
-        const isRFile = file.name.endsWith(".R");
-
-        return {
-          ...file,
-          priority: isRFile && 76,
-        };
-      });
+      }
+      return false;
+    });
   },
 };
 
 const folders: Fig.Generator = {
   template: "folders",
+};
+
+const rPackages: Fig.Generator = {
+  template: "filepaths",
+  filterTemplateSuggestions: function (paths) {
+    const possibleSuffixes: string[] = [
+      ".tar",
+      ".tar.gz",
+      ".tzr.bz2",
+      ".tar.xz",
+      ".tgz",
+      "/",
+    ];
+    return paths.filter((file) => {
+      for (let idx = 0; idx < possibleSuffixes.length; idx++) {
+        const element = possibleSuffixes[idx];
+        if (file.name.endsWith(element)) {
+          return true;
+        }
+      }
+      return false;
+    });
+  },
 };
 
 const helpAndVersionOptions: Fig.Option[] = [
@@ -507,6 +521,154 @@ const completionSpec: Fig.Spec = {
                 "Log to file 'pkg-00build.log' when processing the pkgdir with basename 'pkg'",
             },
           ]),
+        },
+        {
+          name: "check",
+          description: "Check R packages from package sources",
+          options: helpAndVersionOptions.concat([
+            {
+              name: ["--library", "-lib"],
+              description: "Library used for test installation of packages",
+              args: {
+                name: "LIB",
+                description: "Library tree",
+                default: ".",
+                generators: folders,
+              },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "Directory for output",
+              requiresEquals: true,
+              args: {
+                name: "directory",
+                description: "Directory for output",
+                default: ".",
+                generators: folders,
+              },
+            },
+            {
+              name: "--no-clean",
+              description: "Do not clean 'outdir' before using it",
+            },
+            {
+              name: "--no-codoc",
+              description: "Do not check for code/documentation mismatches",
+            },
+            {
+              name: "--no-examples",
+              description: "Do not run the examples in the Rd files",
+            },
+            {
+              name: "--no-install",
+              description: "Skip installation and associated tests",
+            },
+            {
+              name: "--no-tests",
+              description: "Do not run code in 'tests' subdirectory",
+            },
+            {
+              name: "--no-manual",
+              description: "Do not produce the PDF manual",
+            },
+            {
+              name: "--no-vignettes",
+              description: "Do not run R code in vignettes nor build outputs",
+            },
+            {
+              name: "--no-build-vignettes",
+              description: "Do not build vignette outputs",
+            },
+            {
+              name: "--ignore-vignettes",
+              description: "Skip all tests on vignettes",
+            },
+            {
+              name: "--run-dontrun",
+              description: "Do run `dontrun{}` sections in the Rd files",
+            },
+            {
+              name: "--run-donttest",
+              description: "Do run `donttest{}` sections in the Rd files",
+            },
+            {
+              name: "--use-gct",
+              description: "Use `gctorture(TRUE)` when running examples, tests",
+            },
+            {
+              name: "--use-valgrind",
+              description:
+                "Use `valgrind` when running examples, tests, vignettes",
+            },
+            {
+              name: "--timings",
+              description: "Record timings for examples",
+            },
+            {
+              name: "--install-args",
+              description: "Command-line args to be passed to INSTALL",
+              requiresEquals: true,
+              args: {
+                name: "args",
+                description: "Command-line args to be passed to INSTALL",
+              },
+            },
+            {
+              name: "--test-dir",
+              description: "Look in this subdirectory for test scripts",
+              requiresEquals: true,
+              args: {
+                name: "directory",
+                description: "Directory with the tests directory",
+                default: "tests",
+                generators: folders,
+              },
+            },
+            {
+              name: "--no-stop-on-test-error",
+              description: "Do not stop running tests after first error",
+            },
+            {
+              name: "--check-subdirs",
+              description: "Run checks on the package subdirectories",
+              requiresEquals: true,
+              args: {
+                name: "yes-or-no",
+                description: "Run checks on subdirectories?",
+                default: "default",
+                suggestions: ["default", "yes", "no"],
+              },
+            },
+            {
+              name: "--as-cran",
+              description:
+                "Select customizations similar to those used by CRAN",
+            },
+            {
+              name: "--extra-arch",
+              description:
+                "Do only runtime tests needed for an additional sub-architecture",
+            },
+            {
+              name: "--multiarch",
+              description: "Do runtime tests on all installed sub-archs",
+            },
+            {
+              name: "--no-multiarch",
+              description: "Do runtime tests only on the main sub-architecture",
+            },
+            {
+              name: "--force-multiarch",
+              description:
+                "Run tests on all sub-archs even for packages with no compiled code",
+            },
+          ]),
+          args: {
+            name: "packages",
+            description: "Packages to check",
+            isVariadic: true,
+            generators: rPackages,
+          },
         },
       ],
     },

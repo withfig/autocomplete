@@ -81,7 +81,6 @@ const completionSpec: Fig.Spec = {
             })
             .map((file) => {
               const isRFile = file.name.endsWith(".R");
-
               return {
                 ...file,
                 priority: isRFile && 76,
