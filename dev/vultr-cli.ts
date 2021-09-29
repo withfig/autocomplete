@@ -1,7 +1,6 @@
 const bareMetalIdArg: Fig.Arg = {
   name: "bareMetalId",
   description: "Bare Metal ID",
-  // TODO: suggestions
 };
 const backupIdArg: Fig.Arg = {
   name: "backupId",
@@ -28,12 +27,15 @@ const createOptions: Fig.Option[] = [
     description:
       "ID of the operating system that will be installed on the server",
     isRequired: true,
-    args: {},
+    args: {
+      name: "osId",
+    },
   },
   {
     name: ["--persistent_pxe", "-x"],
     description: "Enable persistent_pxe",
     args: {
+      name: "persistent",
       suggestions: ["true", "false"],
     },
   },
@@ -41,13 +43,17 @@ const createOptions: Fig.Option[] = [
     name: ["--plan", "-p"],
     description: "ID of the plan that the server will subscribe to",
     isRequired: true,
-    args: {},
+    args: {
+      name: "planId",
+    },
   },
   {
     name: ["--region", "-r"],
     description: "ID of the region where the server will be created",
     isRequired: true,
-    args: {},
+    args: {
+      name: "regionId",
+    },
   },
 ];
 const completionSpec: Fig.Spec = {
