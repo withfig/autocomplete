@@ -1,28 +1,28 @@
-const generators: Record<string, Fig.Generator> = {
-  servicesgenerators: {
-    script: "brew services list | sed -e 's/ .*//' | tail -n +2",
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .filter((line) => !line.includes("unbound"))
-        .map((line) => ({
-          name: line,
-          type: "option",
-        }));
-    },
+const servicesGenerator = (action: string): Fig.Generator => ({
+  script: "brew services list | sed -e 's/ .*//' | tail -n +2",
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .filter((line) => !line.includes("unbound"))
+      .map((line) => ({
+        name: line,
+        icon: "fig://icon?type=package",
+        description: `${action} ${line}`,
+      }));
   },
-  formulaeGenerator: {
-    script: "brew list -1",
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .filter((line) => !line.includes("="))
-        .map((formula) => ({
-          name: formula,
-          icon: "🍺",
-          description: "Installed formula",
-        }));
-    },
+});
+
+const formulaeGenerator: Fig.Generator = {
+  script: "brew list -1",
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .filter((line) => !line.includes("="))
+      .map((formula) => ({
+        name: formula,
+        icon: "🍺",
+        description: "Installed formula",
+      }));
   },
 };
 
@@ -229,7 +229,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
     },
     {
@@ -300,7 +300,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
     },
     {
@@ -419,7 +419,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
     },
     {
@@ -429,7 +429,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
     },
     {
@@ -1031,7 +1031,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
     },
     {
@@ -1118,7 +1118,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         isVariadic: true,
-        generators: generators.servicesGenerator,
+        generators: servicesGenerator("Cleanup"),
       },
     },
     {
@@ -1168,7 +1168,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             isVariadic: true,
-            generators: generators.servicesGenerator,
+            generators: servicesGenerator("Run"),
           },
         },
         {
@@ -1183,7 +1183,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             isVariadic: true,
-            generators: generators.servicesGenerator,
+            generators: servicesGenerator("Start"),
           },
         },
         {
@@ -1199,7 +1199,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             isVariadic: true,
-            generators: generators.servicesGenerator,
+            generators: servicesGenerator("Stop"),
           },
         },
         {
@@ -1215,7 +1215,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             isVariadic: true,
-            generators: generators.servicesGenerator,
+            generators: servicesGenerator("Restart"),
           },
         },
       ],
@@ -1290,7 +1290,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
       options: [
         {
@@ -1321,7 +1321,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isVariadic: true,
         name: "formula",
-        generators: generators.formulaeGenerator,
+        generators: formulaeGenerator,
       },
       options: [
         {
