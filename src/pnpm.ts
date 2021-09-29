@@ -189,6 +189,20 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       In a CI environment, installation fails if a lockfile is present but needs an update.
       Inside a workspace, pnpm install installs all dependencies in all the projects.
       If you want to disable this behavior, set the recursive-install setting to false.`,
+    async generateSpec(tokens) {
+      // `pnpm i` with args is an `pnpm add` alias
+      const hasArgs =
+        tokens.filter((token) => token.trim() !== "" && !token.startsWith("-"))
+          .length > 2;
+
+      return {
+        name: "install",
+        options: [
+          ...INSTALL_BASE_OPTIONS,
+          ...(hasArgs ? INSTALL_PACKAGE_OPTIONS : INSTALL_OPTIONS),
+        ],
+      };
+    },
     args: {
       name: "package",
       isOptional: true,
@@ -196,11 +210,6 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       debounce: true,
       isVariadic: true,
     },
-    options: [
-      ...INSTALL_BASE_OPTIONS,
-      ...INSTALL_OPTIONS,
-      ...INSTALL_PACKAGE_OPTIONS,
-    ],
   },
   {
     name: ["install-test", "it"],
