@@ -1,6 +1,12 @@
+import {
+  dependenciesGenerator,
+  npmScriptsGenerator,
+  npmSearchGenerator,
+} from "./npm";
+
 const createCLIs = ["create-next-app", "create-react-native-app"];
 
-const clis = [
+export const nodeClis = [
   "vue",
   "nuxt",
   "expo",
@@ -21,88 +27,6 @@ type SearchResult = {
     description: string;
   };
   searchScore: number;
-};
-
-const searchGenerator: Fig.Generator = {
-  script: function (context) {
-    if (context[context.length - 1] === "") return "";
-    const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
-  },
-  postProcess: function (out) {
-    try {
-      const results: SearchResult[] = JSON.parse(out).results;
-      return results.map((item) => ({
-        name: item.package.name,
-        description: item.package.description,
-      })) as Fig.Suggestion[];
-    } catch (e) {
-      return [];
-    }
-  },
-};
-
-const getScriptsGenerator: Fig.Generator = {
-  script:
-    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
-  postProcess: function (out) {
-    if (out.trim() == "") {
-      return [];
-    }
-
-    try {
-      const packageContent = JSON.parse(out);
-      const scripts = packageContent["scripts"];
-      const figCompletions = packageContent["fig"] || {};
-
-      if (scripts) {
-        return Object.keys(scripts).map((key) => {
-          const icon = "fig://icon?type=yarn";
-          const customScripts: Fig.Suggestion = figCompletions[key];
-          return {
-            name: key,
-            icon,
-            /**
-             * If there are custom definitions for the scripts
-             * we want to overide the default values
-             * */
-            ...(customScripts !== undefined && customScripts),
-          };
-        });
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    return [];
-  },
-};
-
-// generate package list from package.json file
-const packageList: Fig.Generator = {
-  script: "cat package.json",
-  postProcess: function (out) {
-    if (out.trim() == "") {
-      return [];
-    }
-
-    try {
-      const packageContent = JSON.parse(out);
-      const dependencyScripts = packageContent["dependencies"] || {};
-      const devDependencyScripts = packageContent["devDependencies"] || {};
-      return [
-        ...Object.keys(dependencyScripts),
-        ...Object.keys(devDependencyScripts),
-      ].map((dependencyName) => ({
-        name: dependencyName,
-        icon: "📦",
-      }));
-    } catch (e) {
-      console.log(e);
-    }
-
-    return [];
-  },
 };
 
 // generate global package list from global package.json file
@@ -364,13 +288,14 @@ const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
   generateSpec: async (_tokens, executeShellCommand) => {
-    const { script, postProcess } = packageList;
+    const { script, postProcess } = dependenciesGenerator;
+
     const packages = postProcess(
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
     const subcommands = packages
-      .filter((name) => clis.includes(name))
+      .filter((name) => nodeClis.includes(name))
       .map((name) => ({
         name,
         loadSpec: name,
@@ -383,7 +308,7 @@ const completionSpec: Fig.Spec = {
     } as Fig.Spec;
   },
   args: {
-    generators: getScriptsGenerator,
+    generators: npmScriptsGenerator,
     isOptional: true,
   },
   options: [
@@ -618,7 +543,7 @@ const completionSpec: Fig.Spec = {
       description: "Installs a package and any packages that it depends on",
       args: {
         name: "package",
-        generators: searchGenerator,
+        generators: npmSearchGenerator,
         debounce: true,
         isVariadic: true,
       },
@@ -867,7 +792,7 @@ const completionSpec: Fig.Spec = {
           description: "Install globally packages on your operating system",
           args: {
             name: "package",
-            generators: searchGenerator,
+            generators: npmSearchGenerator,
             debounce: true,
             isVariadic: true,
           },
@@ -1209,7 +1134,7 @@ const completionSpec: Fig.Spec = {
       name: "remove",
       description: "Remove installed package",
       args: {
-        generators: packageList,
+        generators: dependenciesGenerator,
         isVariadic: true,
       },
       options: [
@@ -1248,7 +1173,7 @@ const completionSpec: Fig.Spec = {
         //           }
         //     },
         {
-          generators: getScriptsGenerator,
+          generators: npmScriptsGenerator,
         },
         {
           name: "env",
@@ -1279,7 +1204,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Upgrades packages to their latest version based on the specified range",
       args: {
-        generators: packageList,
+        generators: dependenciesGenerator,
         isVariadic: true,
       },
     },
