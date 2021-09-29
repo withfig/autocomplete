@@ -23,20 +23,8 @@
       "icon": "fig://template?badge=🛠",
       "priority": 100
     },
-    "create-boilerplate": {
+    "create-spec": {
       "description": "Create a new completion spec"
-    },
-    "create-example": {
-      "description": "Create an example completion spec"
-    },
-    "test": {
-      "description": "Typecheck all .ts files in /src"
-    },
-    "copy": {
-      "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
-    },
-    "copy:all": {
-      "description": "Copy all files from /build to ~/.fig/autocomplete"
     },
     "build": {
       "description": "Compile all files in /src"
@@ -46,6 +34,15 @@
     },
     "lint:fix": {
       "description": "Fix linting issues"
+    },
+    "test": {
+      "description": "Typecheck all .ts files in /src"
+    },
+    "copy": {
+      "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
+    },
+    "copy:all": {
+      "description": "Copy all files from /build to ~/.fig/autocomplete"
     },
     "prepare": {
       "description": "Install husky"
