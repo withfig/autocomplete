@@ -1294,6 +1294,10 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Run a command in a new container",
     options: [
       {
+        name: ["-d", "--detach"],
+        description: "Run container in background and print container ID",
+      },
+      {
         name: ["-i", "--interactive"],
         description: "Keep STDIN open even if not attached",
       },
