@@ -61,7 +61,7 @@ git remote add upstream https://github.com/withfig/autocomplete.git
 npm install
 
 # Create an example spec (call it "abc")
-npm run create-example
+npm run create-spec abc
 
 # Turn on "dev mode"
 npm run dev
@@ -80,9 +80,6 @@ npm run dev
 ## 📦 Other available package.json commands
 
 ```bash
-
-# Create a new spec from a boilerplate template
-npm run create-boilerplate
 
 # Typecheck all specs in the src/ folder
 npm test
