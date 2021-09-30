@@ -11796,7 +11796,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--customer-id",
-              description: "C",
+              description: "Alphanumeric string identifying the customer",
               args: {
                 name: "customer-id",
               },
