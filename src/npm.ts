@@ -67,7 +67,6 @@ const workspaceGenerator: Fig.Generator = {
 export const dependenciesGenerator: Fig.Generator = {
   trigger: (newToken) => newToken === "-g" || newToken === "--global",
   custom: async function (tokens, executeShellCommand) {
-    console.error(tokens);
     if (!tokens.includes("-g") && !tokens.includes("--global")) {
       const out = await executeShellCommand(
         "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json"
