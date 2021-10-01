@@ -118,9 +118,9 @@ schedule(async () => {
   // Get all changed and added files
   const updatedFiles = danger.git.modified_files
     .concat(danger.git.created_files)
-    .filter((file) => file.includes("dev/"));
+    .filter((file) => file.includes("src/"));
 
-  // console.log(fs.readdirSync("dev/", { encoding: "utf-8" }));
+  // console.log(fs.readdirSync("src/", { encoding: "utf-8" }));
   let message = "<!-- id: review-bot --> \n";
   let comment = "";
 

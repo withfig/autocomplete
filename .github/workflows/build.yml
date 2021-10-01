@@ -3,7 +3,7 @@ name: Build and release specs
 on:
   push:
     paths:
-      - "dev/**/*.ts"
+      - "src/**/*.ts"
       - "!package.json"
     branches:
       # We only want to create a new release when
@@ -21,13 +21,16 @@ jobs:
           token: ${{ secrets.ACTION_GITHUB_TOKEN }}
         # Install all dependencies
       - name: install
-        run: npm ci
+        run: npm install
         # Transpile all specs from ts to js
       - name: build
         run: npm run build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
-        run: zip -r specs.zip specs/
+        run: |
+          mv build/ specs/
+          zip -r specs.zip specs/
+          mv specs/ build/
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version
@@ -54,7 +57,7 @@ jobs:
           path: backend
       - name: Add @latest to cache
         run: |
-          cp ./specs.zip ./backend/public/specs.zip
+          cp ./specs.zip ./backend/src/public/specs.zip
           cd backend
           git config user.name "Build Action"
           git config user.email "noreply@fig.io"
