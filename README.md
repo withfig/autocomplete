@@ -132,7 +132,7 @@ Get in touch at hello@fig.io or chat with us in [Discord](https://fig.io/communi
 
 <br/>
 
-## ✨ Contributors
+## ✨ Contributors.
 
 <a href="https://github.com/withfig/autocomplete/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=withfig/autocomplete" />
