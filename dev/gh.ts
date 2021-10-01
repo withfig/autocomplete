@@ -41,6 +41,20 @@ const ghOptions: Record<string, Fig.Option> = {
       name: "[HOST/]OWNER/REPO",
     },
   },
+  env: {
+    name: ["-e", "--env"],
+    description: "List secrets for an environment",
+    args: {
+      name: "string",
+    },
+  },
+  org: {
+    name: ["-o", "--org"],
+    description: "List secrets for an environment",
+    args: {
+      name: "string",
+    },
+  },
 };
 
 const completionSpec: Fig.Spec = {
@@ -227,7 +241,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "upgrade",
-          description: "Remove an installed extension",
+          description: "Upgrade installed extensions",
           options: [
             { name: "--help", description: "Show help for command" },
             { name: "--all", description: "Upgrade all extensions" },
@@ -1222,10 +1236,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-L", "--limit"],
               description: "Maximum number of runs to fetch (default 20)",
+              args: {
+                name: "int",
+              },
             },
             {
               name: ["-w", "--workflow"],
               description: "Filter runs by workflow",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -1248,8 +1268,11 @@ const completionSpec: Fig.Spec = {
               description: "Exit with non-zero status if run failed",
             },
             {
-              name: ["-j", "--job-string"],
+              name: ["-j", "--job"],
               description: "View a specific job ID from a run",
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--log",
@@ -1284,8 +1307,11 @@ const completionSpec: Fig.Spec = {
               description: "Exit with non-zero status if run fails",
             },
             {
-              name: ["-i", "--interval int"],
+              name: ["-i", "--interval"],
               description: "Refresh interval in seconds (default 3)",
+              args: {
+                name: "int",
+              },
             },
           ],
         },
@@ -1325,20 +1351,8 @@ const completionSpec: Fig.Spec = {
           options: [
             ghOptions.help,
             ghOptions.all,
-            {
-              name: ["-e", "--env"],
-              description: "List secrets for an environment",
-              args: {
-                name: "string",
-              },
-            },
-            {
-              name: ["-o", "--org"],
-              description: "List secrets for an organization",
-              args: {
-                name: "string",
-              },
-            },
+            ghOptions.env,
+            ghOptions.org,
           ],
         },
         {
@@ -1347,20 +1361,8 @@ const completionSpec: Fig.Spec = {
           options: [
             ghOptions.help,
             ghOptions.all,
-            {
-              name: ["-e", "--env"],
-              description: "List secrets for an environment",
-              args: {
-                name: "string",
-              },
-            },
-            {
-              name: ["-o", "--org"],
-              description: "List secrets for an organization",
-              args: {
-                name: "string",
-              },
-            },
+            ghOptions.env,
+            ghOptions.org,
             {
               name: ["-b", "--body"],
               description:
