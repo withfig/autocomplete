@@ -1,3 +1,15 @@
+function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
+  return {
+    name: named,
+    description: "Uninstall a package",
+    args: {
+      name: "package",
+      generators: dependenciesGenerator,
+      isVariadic: true,
+    },
+    options: npmInstallOptions,
+  };
+}
 // GENERATORS
 export const npmSearchGenerator: Fig.Generator = {
   script: function (context) {
@@ -53,14 +65,12 @@ const workspaceGenerator: Fig.Generator = {
 
 /** Generator that lists package.json dependencies */
 export const dependenciesGenerator: Fig.Generator = {
-  script:
-    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
-  postProcess: function (out, context = []) {
-    if (out.trim() === "") {
-      return [];
-    }
-
-    try {
+  trigger: (newToken) => newToken === "-g" || newToken === "--global",
+  custom: async function (tokens, executeShellCommand) {
+    if (!tokens.includes("-g") && !tokens.includes("--global")) {
+      const out = await executeShellCommand(
+        "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json"
+      );
       const packageContent = JSON.parse(out);
       const dependencies = packageContent["dependencies"] ?? {};
       const devDependencies = packageContent["devDependencies"];
@@ -69,7 +79,7 @@ export const dependenciesGenerator: Fig.Generator = {
 
       return Object.keys(dependencies)
         .filter((pkgName) => {
-          const isListed = context.some((current) => current === pkgName);
+          const isListed = tokens.some((current) => current === pkgName);
           return !isListed;
         })
         .map((pkgName) => ({
@@ -81,9 +91,13 @@ export const dependenciesGenerator: Fig.Generator = {
             ? "optionalDependency"
             : "devDependency",
         }));
-    } catch (e) {
-      console.error(e);
-      return [];
+    } else {
+      const out = await executeShellCommand("ls -1 `npm root -g`");
+      return out.split("\n").map((name) => ({
+        name,
+        icon: "📦",
+        description: "Global dependency",
+      }));
     }
   },
 };
@@ -735,56 +749,12 @@ const completionSpec: Fig.Spec = {
     },
     { name: "token", description: "Manage your authentication tokens" },
     { name: "tst", description: "Test a package" },
-    {
-      name: "uninstall",
-      description: "Uninstall a package",
-      args: {
-        name: "package",
-        generators: dependenciesGenerator,
-        isVariadic: true,
-      },
-      options: npmInstallOptions,
-    },
-    {
-      name: "remove",
-      description: "Uninstall a package",
-      args: {
-        name: "package",
-        generators: dependenciesGenerator,
-        isVariadic: true,
-      },
-      options: npmInstallOptions,
-    },
-    {
-      name: ["r", "rm"],
-      description: "Uninstall a package",
-      args: {
-        name: "package",
-        generators: dependenciesGenerator,
-        isVariadic: true,
-      },
-      options: npmInstallOptions,
-    },
-    {
-      name: "un",
-      description: "Uninstall a package",
-      args: {
-        name: "package",
-        generators: dependenciesGenerator,
-        isVariadic: true,
-      },
-      options: npmInstallOptions,
-    },
-    {
-      name: "unlink",
-      description: "Uninstall a package",
-      args: {
-        name: "package",
-        generators: dependenciesGenerator,
-        isVariadic: true,
-      },
-      options: npmInstallOptions,
-    },
+    uninstallSubcommand("uninstall"),
+    uninstallSubcommand("remove"),
+    uninstallSubcommand(["r", "rm"]),
+    uninstallSubcommand("un"),
+    uninstallSubcommand("remove"),
+    uninstallSubcommand("unlink"),
     { name: "unpublish", description: "Remove a package from the registry" },
     { name: "unstar", description: "Unmark your package" },
     { name: "up", description: "Check the latest version of dependencies" },
