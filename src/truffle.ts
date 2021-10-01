@@ -209,9 +209,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "script.js",
         description: "JavaScript file to be executed. Can include path information if the script does not exist in the current directory. (required)",
-        generators: {
-          template: "filepaths"
-        }
+        template: "filepaths"
       },
       options: [
         {
@@ -320,9 +318,7 @@ const completionSpec: Fig.Spec = {
       description: "Save data to decentralized storage platforms like IPFS and Filecoin.",
       args: {
         name: "path",
-        generators: {
-          template: "filepaths"
-        }
+        template: "filepaths"
       },
       options: [
         {
@@ -443,9 +439,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "test_file",
         description: "Name of the test file to be run. Can include path information if the file does not exist in the current directory.",
-        generators: {
-          template: "filepaths"
-        }
+        template: "filepaths"
       },
       options: [
         {
