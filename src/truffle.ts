@@ -110,6 +110,7 @@ const completionSpec: Fig.Spec = {
             name: "file",
             description:
               'The default export must be an object with named keys that will be used to populate the console environment. For example, if your JavaScript is module.exports = { desert: "yes please!" } then breakfast will be available in the console with the value "yes please!."',
+            template: "filepaths",
           },
         },
         {
@@ -214,6 +215,7 @@ const completionSpec: Fig.Spec = {
             name: "file",
             description:
               'The default export must be an object with named keys that will be used to populate the console environment. For example, if your JavaScript is module.exports = { desert: "yes please!" } then breakfast will be available in the console with the value "yes please!."',
+            template: "filepaths",
           },
         },
         {
