@@ -51,7 +51,6 @@ const completionSpec: Fig.Spec = {
           description: "Get a Truffle configuration option value.",
           args: {
             name: "key",
-            isOptional: false
           }
         },
         {
@@ -60,11 +59,9 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "key",
-              isOptional: false
             },
             {
               name: "value-for-set",
-              isOptional: false
             }
           ]
         }
@@ -119,7 +116,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "artifact_type",
           description: "Create a new artifact where artifact_type is one of the following: contract, migration, test or all. The new artifact is created along with one(or all) of the followingfiles: `contracts/ArtifactName.sol`, `migrations/####_artifact_name.js` or`tests/artifact_name.js`. (required)",
-          isOptional: false,
           suggestions: [
             {
               name: "contract"
@@ -138,7 +134,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "ArtifactName",
           description: "Name of new artifact. (required)",
-          isOptional: false
         }
       ],
     },
@@ -214,7 +209,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "script.js",
         description: "JavaScript file to be executed. Can include path information if the script does not exist in the current directory. (required)",
-        isOptional: false,
         generators: {
           template: "filepaths"
         }
@@ -240,7 +234,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         description: "Display usage information about the specified command.",
-        isOptional: false
       }
     },
     {
@@ -261,7 +254,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "package_name",
           description: "Name of the package as listed in the Ethereum Package Registry. (required)",
-          isOptional: false
         },
         {
           name: "@version",
@@ -299,7 +291,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "contract_name",
         description: "Name of the contract to print opcodes for. Must be a contract name, not a file name. (required)",
-        isOptional: false
       }
     },
     {
@@ -313,7 +304,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "command",
           description: "Name of a command defined by an installed plugin. (required)",
-          isOptional: false
         }
       ]
     },
@@ -330,7 +320,6 @@ const completionSpec: Fig.Spec = {
       description: "Save data to decentralized storage platforms like IPFS and Filecoin.",
       args: {
         name: "path",
-        isOptional: false,
         generators: {
           template: "filepaths"
         }
@@ -380,7 +369,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "number",
             description: "The number refers to the prefix of the migration file.",
-            isOptional: false
           },
         },
         {
@@ -389,7 +377,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "number",
             description: "The number refers to the prefix of the migration file.",
-            isOptional: false
           }
         },
         {
@@ -398,7 +385,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Network name must exist in the configuration.",
-            isOptional: false
           }
         },
         {
@@ -434,7 +420,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "box_name",
           description: "Name of the Truffle Box. (required)",
-          isOptional: false
         },
         {
           name: "path",
@@ -496,7 +481,6 @@ const completionSpec: Fig.Spec = {
           description: "Allows one to rename the debug() function to something else.",
           args: {
             name: "identifier",
-            isOptional: false
           }
         },
         {
