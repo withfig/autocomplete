@@ -328,7 +328,6 @@ const completionSpec: Fig.Spec = {
             name: "name",
             default: "development"
           },
-          isRequired: false
         },
         {
           name: "--ipfs",
