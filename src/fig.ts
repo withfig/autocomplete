@@ -104,7 +104,7 @@ const completionSpec: Fig.Spec = {
       description: "Update preferences",
       generateSpec: async (_, executeShellCommand) => {
         const settings: Settings[] = JSON.parse(
-          await executeShellCommand(`cat ${SETTINGS_PATH}`)
+          await executeShellCommand(`\cat ${SETTINGS_PATH}`)
         );
 
         return {
