@@ -1,3 +1,75 @@
+const truffleCommands = [
+  {
+    name: "build",
+  },
+  {
+    name: "compile",
+  },
+  {
+    name: "config"
+  },
+  {
+    name: "console"
+  },
+  {
+    name: "create"
+  },
+  {
+    name: "debug"
+  },
+  {
+    name: "deploy"
+  },
+  {
+    name: "develop"
+  },
+  {
+    name: "exec"
+  },
+  {
+    name: "help"
+  },
+  {
+    name: "init"
+  },
+  {
+    name: "install"
+  },
+  {
+    name: "networks"
+  },
+  {
+    name: "obtain"
+  },
+  {
+    name: "opcode"
+  },
+  {
+    name: "publish"
+  },
+  {
+    name: "run"
+  },
+  {
+    name: "version"
+  },
+  {
+    name: "watch"
+  },
+  {
+    name: "preserve"
+  },
+  {
+    name: "migrate"
+  },
+  {
+    name: "unbox"
+  },
+  {
+    name: "test"
+  }
+]
+
 const completionSpec: Fig.Spec = {
   name: "truffle",
   description:
@@ -257,6 +329,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         description: "Display usage information about the specified command",
+        suggestions: truffleCommands
       },
     },
     {
