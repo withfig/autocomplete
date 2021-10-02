@@ -28,6 +28,10 @@ const folders: Fig.Generator = {
   template: "folders",
 };
 
+const filepaths: Fig.Generator = {
+  template: "filepaths",
+};
+
 const rPackages: Fig.Generator = {
   template: "filepaths",
   filterTemplateSuggestions: function (paths) {
@@ -1017,6 +1021,82 @@ const completionSpec: Fig.Spec = {
             name: "file",
             description: "File to process",
             generators: folders,
+          },
+        },
+        {
+          name: "Sweave",
+          description: "A front-end for Sweave and other vignette engines",
+          options: helpAndVersionOptions.concat([
+            {
+              name: "--driver",
+              description: "Use named Sweave driver",
+              requiresEquals: true,
+              args: {
+                name: "driver",
+                description: "Sweave driver",
+              },
+            },
+            {
+              name: "--engine",
+              description: "Use named vignette engine",
+              requiresEquals: true,
+              args: {
+                name: "pkg::engine",
+                description: "Vignette engine",
+              },
+            },
+            {
+              name: "--encoding=enc",
+              description: "Default encoding 'enc' for file",
+              requiresEquals: true,
+              args: {
+                name: "enc",
+                description: "File encoding",
+                default: "UTF-8",
+              },
+            },
+            {
+              name: "--clean",
+              description: "Clean with default settings",
+            },
+            {
+              name: "--clean",
+              description: "Remove some of the created files",
+              requiresEquals: true,
+              args: {
+                name: "method",
+                description: "How to clean the results",
+                default: "default",
+                suggestions: ["default", "keepOuts"],
+              },
+            },
+            {
+              name: "--options",
+              description: "Comma-separated list of Sweave/engine options",
+              requiresEquals: true,
+              args: {
+                name: "options",
+                description: "Options for Sweave/engine",
+              },
+            },
+            { name: "--pdf", description: "Convert to PDF document" },
+            {
+              name: "--compact",
+              description: "Try to compact PDF document",
+              requiresEquals: true,
+              args: {
+                name: "Compacting method",
+                description: "How to compact the PDF doc",
+                isOptional: true,
+                default: "qpdf",
+                suggestions: ["no", "qpdf", "gs", "gs+qpdf", "both"],
+              },
+            },
+          ]),
+          args: {
+            name: "file",
+            description: "Vignette to build",
+            generators: filepaths,
           },
         },
       ],
