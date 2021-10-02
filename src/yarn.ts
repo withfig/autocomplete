@@ -63,7 +63,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
 // generate workspace argument completion
 const scriptList: Fig.Generator = {
   script: function (context) {
-    return `cat ${context[context.length - 2]}/package.json`;
+    return `\cat ${context[context.length - 2]}/package.json`;
   },
   postProcess: function (out) {
     if (out.trim() == "") {
@@ -1265,7 +1265,7 @@ const completionSpec: Fig.Spec = {
             for (const workspace of workspaces) {
               if (workspace.includes("*")) {
                 const out = await executeShellCommand(
-                  `ls ${workspace.slice(0, -1)}`
+                  `\ls ${workspace.slice(0, -1)}`
                 );
                 const workspaceList = out.split("\n");
 
@@ -1276,7 +1276,7 @@ const completionSpec: Fig.Spec = {
                     args: {
                       name: "script",
                       generators: {
-                        script: `cat ${workspace.slice(
+                        script: `\cat ${workspace.slice(
                           0,
                           -1
                         )}/${space}/package.json`,
@@ -1292,7 +1292,7 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "script",
                     generators: {
-                      script: `cat ${workspace}/package.json`,
+                      script: `\cat ${workspace}/package.json`,
                       postProcess,
                     },
                   },
