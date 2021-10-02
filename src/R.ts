@@ -1210,6 +1210,37 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
+        {
+          name: "javareconf",
+          description:
+            "Detect current Java setup and update the corresponding configuration in R",
+          options: helpAndVersionOptions.concat([
+            {
+              name: ["-n", "--dry-run"],
+              description:
+                "Perform Java detection, but don't touch any configuration files",
+            },
+            {
+              name: "-e",
+              description:
+                "Same as -n but exports all detected variables and runs '<prog>'",
+              args: {
+                name: "program",
+                description: "Program to run or '' to use shell",
+              },
+            },
+          ]),
+          args: {
+            name: "expression",
+            description: "Evaluate the corresponding expression",
+            isOptional: true,
+            suggestions: [
+              "JAVA_HOME=/usr/lib/java",
+              "JAVAC=/usr/bin/javac",
+              "JAR=/usr/bin/jar",
+            ],
+          },
+        },
       ],
     },
   ],
