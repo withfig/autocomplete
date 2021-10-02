@@ -112,17 +112,57 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List installed and available targets",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
         },
         {
           name: "add",
           description: "Add a target to a Rust toolchain",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
         },
         {
           name: "remove",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Remove a target from a Rust toolchain",
         },
         {
           name: "help",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description:
             "Prints this message or the help of the given subcommand(s)",
           args: {
@@ -144,22 +184,72 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "List installed toolchains",
         },
         {
           name: "install",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Install or update a given toolchain",
         },
         {
           name: "uninstall",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Uninstall a toolchain",
         },
         {
           name: "link",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Create a custom toolchain by symlinking to a directory",
         },
         {
           name: "help",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description:
             "Prints this message or the help of the given subcommand(s)",
           args: {
@@ -181,14 +271,44 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "List installed and available components",
         },
         {
           name: "add",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Add a component to a Rust toolchain",
         },
         {
           name: "remove",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Remove a component from a Rust toolchain",
         },
         {
@@ -214,14 +334,44 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "List directory toolchain overrides",
         },
         {
           name: "set",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Set the override toolchain for a directory",
         },
         {
           name: "unset",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
           description: "Remove the override toolchain for a directory",
         },
         {
@@ -390,6 +540,146 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+    },
+    {
+      name: "self",
+      description: "Modify the rustup installation",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      subcommands: [
+        {
+          name: "update",
+          description: "Download and install updates to rustup",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          description: "Uninstall rustup",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
+        },
+        {
+          name: "updrade-data",
+          description: "Upgrade the internal data format",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Prints this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand(s)",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "set",
+      description: "Alter rustup settings",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      subcommands: [
+        {
+          name: "auto-self-update",
+          description: "The rustup auto self update mode",
+          args: {
+            name: "<auto-self-update-mode>",
+            default: "enable",
+            isOptional: true,
+            suggestions: ["enable", "disable", "check-only"],
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
+        },
+        {
+          name: "default-host",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Prints help information",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Prints version information",
+            },
+          ],
+          args: {
+            name: "<host_triple>",
+          },
+        },
+      ],
+    },
+    {
+      name: "completions",
+      description: "Generate tab-completion scripts for your shell",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      args: [
+        {
+          name: "<shell>",
+          suggestions: ["zsh", "bash", "fish", "powershell", "elvish"],
+        },
+        {
+          name: "<command>",
+          suggestions: ["rustup", "cargo"],
+        },
+      ],
+    },
+    {
+      name: "help",
+      description: "Prints this message or the help of the given subcommand(s)",
+      args: {
+        name: "<subcommand>",
+        isVariadic: true,
+        isOptional: true,
+      },
     },
   ],
   options: [
