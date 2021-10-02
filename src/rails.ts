@@ -613,7 +613,7 @@ const completionSpec: Fig.Spec = {
   description: "Ruby on Rails CLI",
   async generateSpec(_, executeShellCommand) {
     const gemfileMatch = await executeShellCommand(
-      `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | grep "gem 'rails'"; else echo ""; fi`
+      `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \grep "gem 'rails'"; else echo ""; fi`
     );
     const isRails = !!gemfileMatch;
 
