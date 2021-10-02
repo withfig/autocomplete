@@ -1,4 +1,4 @@
-const truffleCommands = [
+const truffleCommands: Fig.Suggestion[] = [
   {
     name: "build",
   },
