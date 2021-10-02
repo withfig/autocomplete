@@ -716,6 +716,90 @@ const completionSpec: Fig.Spec = {
             generators: { template: "filepaths" },
           },
         },
+        {
+          name: "Rdconv",
+          description: "Convert R documentation to other formats",
+          options: helpAndVersionOptions.concat([
+            {
+              name: ["--type", "-t"],
+              description: "Output format type",
+              requiresEquals: true,
+              isRequired: true,
+              args: {
+                name: "type",
+                description: "Output format type",
+                suggestions: ["txt", "html", "latex", "example"],
+              },
+            },
+            {
+              name: "--encoding",
+              description: "Encoding of the output",
+              requiresEquals: true,
+              args: {
+                name: "enc",
+                description: "Output encoding",
+                default: "UTF-8",
+              },
+            },
+            {
+              name: "--package",
+              description: "Package name",
+              requiresEquals: true,
+              args: {
+                name: "package",
+                description: "Package name",
+              },
+            },
+            {
+              name: ["--output", "-o"],
+              description: "The output file",
+              requiresEquals: true,
+              args: {
+                name: "output file",
+                description:
+                  "Name of the output file, '\"\"' to use the input file without '.Rd'",
+                default: '""',
+                suggestions: ['""', "-"],
+                isOptional: false,
+              },
+            },
+            {
+              name: ["--os", "--OS"],
+              description: "Set name of OS ('unix' or 'windows')",
+              requiresEquals: true,
+              args: {
+                name: "OS",
+                description: "Name of the OS",
+                suggestions: ["unix", "windows"],
+              },
+            },
+            {
+              name: "--RdMacros",
+              description: "Packages from which to get Rd macros",
+              requiresEquals: true,
+              args: {
+                name: "package list",
+                description: "List of packages",
+              },
+            },
+          ]),
+          args: {
+            name: "file",
+            description: "R doc file to convert",
+            generators: {
+              template: "filepaths",
+              filterTemplateSuggestions: function (paths) {
+                return paths.map((file) => {
+                  const isRFile = file.name.endsWith(".Rd");
+                  return {
+                    ...file,
+                    priority: isRFile && 76,
+                  };
+                });
+              },
+            },
+          },
+        },
       ],
     },
   ],
@@ -730,3 +814,6 @@ const completionSpec: Fig.Spec = {
 };
 
 export default completionSpec;
+
+// TODO: finish Rdconv
+// TODO: at end, add icons where appropriate
