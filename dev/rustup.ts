@@ -72,6 +72,103 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     },
+    {
+      name: "check",
+      description: "Check for updates to Rust toolchains and rustup",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      args: {
+        name: "toolchain",
+        description:
+          "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`",
+        isOptional: true,
+      },
+    },
+    {
+      name: "default",
+      description:
+        "Sets the default toolchain to the one specified. If the toolchain is not already installed then it is installed first.",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+    },
+    {
+      name: "target",
+      description: "Modify a toolchain's supported targets",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      subcommands: [
+        {
+          name: "list",
+          description: "List installed and available targets",
+        },
+        {
+          name: "add",
+          description: "Add a target to a Rust toolchain",
+        },
+        {
+          name: "remove",
+          description: "Remove a target from a Rust toolchain",
+        },
+        {
+          name: "help",
+          description:
+            "Prints this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "toolchain",
+      description: "Modify or query the installed toolchains",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      subcommands: [
+        {
+          name: "list",
+          description: "List installed toolchains",
+        },
+        {
+          name: "install",
+          description: "Install or update a given toolchain",
+        },
+        {
+          name: "uninstall",
+          description: "Uninstall a toolchain",
+        },
+        {
+          name: "link",
+          description: "Create a custom toolchain by symlinking to a directory",
+        },
+        {
+          name: "help",
+          description:
+            "Prints this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+    },
   ],
   options: [
     {
