@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "default",
       description:
-        "Sets the default toolchain to the one specified. If the toolchain is not already installed then it is installed first.",
+        "Sets the default toolchain to the one specified. If the toolchain is not already installed then it is installed first",
       options: [
         {
           name: ["-h", "--help"],
@@ -253,7 +253,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "<toolchain>",
           description:
-            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'",
         },
         {
           name: "<command>",
@@ -272,11 +272,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--toolchain",
           description:
-            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'",
           args: {
             name: "<toolchain>",
             description:
-              "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+              "Toolchain name, such as 'stable', 'nightly', or '1.8.0'",
           },
         },
       ],
@@ -359,7 +359,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--toolchain",
           description:
-            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'",
           args: {
             name: "<toolchain>",
           },
@@ -368,7 +368,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<topic>",
         description:
-          "Topic such as 'core', 'fn', 'usize', 'eprintln!', 'core::arch', 'alloc::format!', 'std::fs', 'std::fs::read_dir', 'std::io::Bytes', 'std::iter::Sum', 'std::io::error::Result' etc...",
+          "Topic such as 'core', 'fn', 'usize', 'eprintln!', 'core::arch', 'alloc::format!', 'std::fs', 'std::fs::read_dir', 'std::io::Bytes', 'std::iter::Sum', 'std::io::error::Result' etc",
       },
     },
     {
@@ -382,9 +382,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--toolchain",
           description:
-            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'",
           args: {
             name: "<toolchain>",
+            description:
+              "Toolchain name, such as 'stable', 'nightly', or '1.8.0'",
           },
         },
       ],
@@ -411,7 +413,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "toolchain",
     description:
-      "release channel (e.g. +stable) or custom toolchain to set override",
+      "Release channel (e.g. +stable) or custom toolchain to set override",
     isOptional: true,
   },
 };
