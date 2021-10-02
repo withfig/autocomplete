@@ -81,14 +81,31 @@ const RFileGenerator: Fig.Generator = {
   },
 };
 
+const RLibGenerator: Fig.Generator = {
+  script: "Rscript -e '.libPaths()'",
+  postProcess: (output) => {
+    if (output.includes("not found")) {
+      return [];
+    }
+    return output.split("\n").map((lib) => {
+      return {
+        name: lib.replace(/\d+/, "").replace("[]", "").trim(),
+        description: "Library",
+      };
+    });
+  },
+};
+
 const helpAndVersionOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
     description: "Print help message and exit",
+    icon: "❔",
   },
   {
     name: ["--version", "-v"],
     description: "Print version info and exit",
+    icon: "📣",
   },
 ];
 
@@ -106,6 +123,7 @@ const cleanAndPrecleanOptions: Fig.Option[] = [
 const completionSpec: Fig.Spec = {
   name: "R",
   description: "Start R or invoke an R tool using CMD",
+  icon: "https://www.r-project.org/favicon-32x32.png",
   subcommands: [
     {
       name: "RHOME",
@@ -133,6 +151,7 @@ const completionSpec: Fig.Spec = {
               name: "infile",
               description: "A file with R code to be executed",
               isOptional: false,
+              generators: RFileGenerator,
             },
             {
               name: "outfile",
@@ -178,14 +197,17 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--use-LTO",
                 description: "Use Link-Time Optimization",
+                exclusiveOn: ["--no-use-LTO"],
               },
               {
                 name: "--no-use-LTO",
                 description: "Do not use Link-Time Optimization",
+                exclusiveOn: ["--use-LTO"],
               },
               {
                 name: ["--debug", "-d"],
                 description: "Build a debug DLL (Windows only)",
+                icon: "🪲",
               },
             ]),
           args: {
@@ -206,6 +228,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: ["--debug", "-d"],
                 description: "Turn on debugging messages",
+                icon: "🪲",
               },
               {
                 name: ["--library", "-l"],
@@ -215,6 +238,7 @@ const completionSpec: Fig.Spec = {
                   name: "LIB",
                   description: "Path to the R library tree to install to",
                   isOptional: false,
+                  generators: RLibGenerator,
                 },
               },
               {
@@ -228,10 +252,12 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--html",
                 description: "Build HTML help",
+                exclusiveOn: ["--no-html"],
               },
               {
                 name: "--no-html",
                 description: "Do not build HTML help",
+                exclusiveOn: ["--html"],
               },
               {
                 name: "--latex",
@@ -249,19 +275,23 @@ const completionSpec: Fig.Spec = {
                 name: "--no-lock",
                 description:
                   "Install on top of any existing installation without using a lock directory",
+                exclusiveOn: ["--lock", "--pkglock"],
               },
               {
                 name: "--lock",
                 description: "Use a per-library lock directory (default)",
+                exclusiveOn: ["--no-lock", "--pkglock"],
               },
               {
                 name: "--pkglock",
                 description:
                   "Use a per-package lock directory (default for a single package)",
+                exclusiveOn: ["--no-lock", "--lock"],
               },
               {
                 name: "--build",
                 description: "Build binaries of the installed package(s)",
+                icon: "🛠",
               },
               {
                 name: "--install-tests",
@@ -309,9 +339,9 @@ const completionSpec: Fig.Spec = {
                 requiresEquals: true,
                 args: {
                   name: "compression",
-                  description:
-                    "Compression method: 'gzip' (default), 'none', 'bzip2' 'xz'",
+                  description: "Compression method",
                   default: "gzip",
+                  suggestions: ["gzip", "none", "bzip2", "xz"],
                 },
               },
               {
@@ -325,35 +355,43 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--with-keep.source",
                 description: "'keep.source' for R code",
+                exclusiveOn: ["--without-keep.source"],
               },
               {
                 name: "--without-keep.source",
                 description: "Do not use 'keep.source' for R code",
+                exclusiveOn: ["--with-keep.source"],
               },
               {
                 name: "--with-keep.parse.data",
                 description: "Use 'keep.parse.data' for R code",
+                exclusiveOn: ["--without-keep.parse.data"],
               },
               {
                 name: "--without-keep.parse.data",
                 description: "Do not 'keep.parse.data' for R code",
+                exclusiveOn: ["--with-keep.parse.data"],
               },
               {
                 name: "--byte-compile",
                 description: "Byte-compile R code",
+                exclusiveOn: ["--no-byte-compile"],
               },
               {
                 name: "--no-byte-compile",
                 description: "Do not byte-compile R code",
+                exclusiveOn: ["--byte-compile"],
               },
               {
                 name: "--staged-install",
                 description:
                   "Install to a temporary directory and then move to the target directory (default)",
+                exclusiveOn: ["--staged-install"],
               },
               {
                 name: "--no-staged-install",
                 description: "Install directly to the target directory",
+                exclusiveOn: ["--no-staged-install"],
               },
               {
                 name: "--no-test-load",
@@ -375,10 +413,12 @@ const completionSpec: Fig.Spec = {
               {
                 name: "--use-LTO",
                 description: "Use Link-Time Optimization",
+                exclusiveOn: ["--no-use-LTO"],
               },
               {
                 name: "--no-use-LTO",
                 description: "Do not use Link-Time Optimization",
+                exclusiveOn: ["--use-LTO"],
               },
               {
                 name: "--configure-args",
@@ -463,6 +503,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "REMOVE",
           description: "Remove add-on packages",
+          icon: "🗑",
           args: {
             name: "packages",
             description: "Packages to remove",
@@ -478,6 +519,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "LIB",
                 description: "Library tree",
+                generators: RLibGenerator,
               },
             },
           ]),
@@ -485,6 +527,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "build",
           description: "Build R packages from package sources",
+          icon: "🛠",
           args: {
             name: "pakgdirs",
             description: "Package directories",
@@ -495,6 +538,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--force",
               description: "Force removal of INDEX file",
+              isDangerous: true,
             },
             {
               name: "--keep-empty-dirs",
@@ -518,10 +562,12 @@ const completionSpec: Fig.Spec = {
                 default: "best",
                 suggestions: ["best", "gzip", "no"],
               },
+              exclusiveOn: ["--no-resave-data"],
             },
             {
               name: "--no-resave-data",
               description: "Do not save data",
+              exclusiveOn: ["--resave-data"],
             },
             {
               name: "--compact-vignettes",
@@ -559,6 +605,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "check",
           description: "Check R packages from package sources",
+          icon: "✅",
           options: helpAndVersionOptions.concat([
             {
               name: ["--library", "-lib"],
@@ -637,6 +684,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--timings",
               description: "Record timings for examples",
+              icon: "⏱",
             },
             {
               name: "--install-args",
@@ -677,6 +725,7 @@ const completionSpec: Fig.Spec = {
               name: "--as-cran",
               description:
                 "Select customizations similar to those used by CRAN",
+              icon: "https://www.r-project.org/favicon-32x32.png",
             },
             {
               name: "--extra-arch",
@@ -686,15 +735,18 @@ const completionSpec: Fig.Spec = {
             {
               name: "--multiarch",
               description: "Do runtime tests on all installed sub-archs",
+              exclusiveOn: ["--no-multiarch"],
             },
             {
               name: "--no-multiarch",
               description: "Do runtime tests only on the main sub-architecture",
+              exclusiveOn: ["--multiarch"],
             },
             {
               name: "--force-multiarch",
               description:
                 "Run tests on all sub-archs even for packages with no compiled code",
+              exclusiveOn: ["--no-multiarch"],
             },
           ]),
           args: {
@@ -707,6 +759,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "LINK",
           description: "Perform the specified linkcmd",
+          icon: "🔗",
           options: helpAndVersionOptions,
           args: {
             name: "linkcmd",
@@ -716,6 +769,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "Rprof",
           description: "Post-process profiling information from `Rprof()`",
+          icon: "⏱",
           options: helpAndVersionOptions.concat([
             { name: "--lines", description: "Print line information" },
             { name: "--total", description: "Print only by total" },
@@ -866,7 +920,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["-o", "--output"],
+              name: ["--output", "-o"],
               description: "Write output to a file",
               requiresEquals: true,
               args: {
@@ -877,6 +931,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--force",
               description: "Overwrite output file if it exists",
+              isDangerous: true,
             },
             {
               name: "--title",
@@ -955,6 +1010,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--package",
               description: "Package name",
+              icon: "📦",
               requiresEquals: true,
               args: {
                 name: "package",
@@ -1074,15 +1130,13 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--clean",
-              description: "Clean with default settings",
-            },
-            {
-              name: "--clean",
               description: "Remove some of the created files",
+              icon: "🧹",
               requiresEquals: true,
               args: {
                 name: "method",
                 description: "How to clean the results",
+                isOptional: true,
                 default: "default",
                 suggestions: ["default", "keepOuts"],
               },
@@ -1319,10 +1373,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--save",
       description: "Save workspace at the end of the session",
+      exclusiveOn: ["--no-save", "--vanilla"],
     },
     {
       name: "--no-save",
       description: "Do not save workspace at the end of the session",
+      exclusiveOn: ["--save"],
     },
     {
       name: "--no-environ",
@@ -1339,10 +1395,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--restore",
       description: "Do restore previously saved objects at startup",
+      exclusiveOn: ["--no-restore-data", "--vanilla"],
     },
     {
       name: "--no-restore-data",
       description: "Do not restore previously saved objects",
+      exclusiveOn: ["--restore"],
     },
     {
       name: "--no-restore-history",
@@ -1356,6 +1414,7 @@ const completionSpec: Fig.Spec = {
       name: "--vanilla",
       description:
         "Combine --no-save, --no-restore, --no-site-file, --no-init-file and --no-environ",
+      exclusiveOn: ["--save", "--restore"],
     },
     {
       name: "--no-readline",
@@ -1391,6 +1450,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--quiet", "--silent", "-q"],
       description: "Do not print startup message",
+      exclusiveOn: ["--verbose"],
     },
     {
       name: ["--no-echo", "-s"],
@@ -1403,10 +1463,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--verbose",
       description: "Print more information about progress",
+      icon: "📣",
+      exclusiveOn: ["--quiet", "--silent", "-q", "--no-echo", "-s"],
     },
     {
       name: ["--debugger", "-d"],
       description: "Run R through a debugger",
+      icon: "🪲",
       requiresEquals: true,
       args: {
         name: "debugger",
@@ -1466,8 +1529,6 @@ const completionSpec: Fig.Spec = {
       },
     },
   ]),
-  // Only uncomment if R takes an argument
-  // args: {}
 };
 
 export default completionSpec;

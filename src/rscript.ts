@@ -1,18 +1,21 @@
 const completionSpec: Fig.Spec = {
   name: "Rscript",
   description: "Scripting Front-End for R",
-
+  icon: "https://www.r-project.org/favicon-32x32.png",
   options: [
     {
       name: "-e",
       description: "R expression to run",
-      icon: "https://www.r-project.org/favicon-32x32.png",
       isRepeatable: true,
-      args: {},
+      args: {
+        name: "expression",
+        description: "R expression",
+      },
     },
     {
       name: "--help",
       description: "Print usage and exit",
+      icon: "❔",
     },
     {
       name: "--version",
@@ -21,10 +24,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--verbose",
       description: "Print information on progress",
+      icon: "📣",
     },
     {
       name: "--no-echo",
       description: "Run as quietly as possible",
+      icon: "🙊",
     },
     {
       name: "--no-restore",
@@ -33,6 +38,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--save",
       description: "Do save workspace at the end of the session",
+      icon: "💾",
     },
     {
       name: "--no-environ",
@@ -63,7 +69,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "packages",
         description: "A comma-separated set of package names, or 'NULL'",
-        isOptional: false,
       },
     },
   ],
@@ -92,6 +97,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "args",
       description: "Arguments to pass to the script",
+      isVariadic: true,
     },
   ],
 };
