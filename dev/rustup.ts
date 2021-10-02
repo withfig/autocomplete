@@ -169,6 +169,226 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "component",
+      description: "Modify a toolchain's installed components",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      subcommands: [
+        {
+          name: "list",
+          description: "List installed and available components",
+        },
+        {
+          name: "add",
+          description: "Add a component to a Rust toolchain",
+        },
+        {
+          name: "remove",
+          description: "Remove a component from a Rust toolchain",
+        },
+        {
+          name: "help",
+          description:
+            "Prints this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand(s)",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "override",
+      description: "Modify directory toolchain overrides",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+      ],
+      subcommands: [
+        {
+          name: "list",
+          description: "List directory toolchain overrides",
+        },
+        {
+          name: "set",
+          description: "Set the override toolchain for a directory",
+        },
+        {
+          name: "unset",
+          description: "Remove the override toolchain for a directory",
+        },
+        {
+          name: "help",
+          description:
+            "Prints this message or the help of the given subcommand(s)",
+          args: {
+            name: "subcommand(s)",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "run",
+      description:
+        "Run a command with an environment configured for a given toolchain",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+        {
+          name: "--install",
+          description: "Install the requested toolchain if needed",
+        },
+      ],
+      args: [
+        {
+          name: "<toolchain>",
+          description:
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+        },
+        {
+          name: "<command>",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: "which",
+      description: "Display which binary will be run for a given command",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+        {
+          name: "--toolchain",
+          description:
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+          args: {
+            name: "<toolchain>",
+            description:
+              "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+          },
+        },
+      ],
+    },
+    {
+      name: "doc",
+      description: "Open the documentation for the current toolchain",
+      options: [
+        {
+          name: "--alloc",
+          description: "The Rust core allocation and collections library",
+        },
+        {
+          name: "--book",
+          description: "The Rust Programming Language book",
+        },
+        {
+          name: "--cargo",
+          description: "The Cargo Book",
+        },
+        {
+          name: "--core",
+          description: "The Rust Core Library",
+        },
+        {
+          name: "--edition-guide",
+          description: "The Rust Edition Guide",
+        },
+        {
+          name: "--embedded-book",
+          description: "The Embedded Rust Book",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+        {
+          name: "--nomicon",
+          description: "The Dark Arts of Advanced and Unsafe Rust Programming",
+        },
+        {
+          name: "--path",
+          description: "Only print the path tp the documentation",
+        },
+        {
+          name: "--proc_macro",
+          description:
+            "A support library for macro authors when defining new macros",
+        },
+        {
+          name: "--reference",
+          description: "The Rust Reference",
+        },
+        {
+          name: "--rust-by-example",
+          description:
+            "A collection of runnable examples that illustrate various Rust concepts and standard libraries",
+        },
+        {
+          name: "--rustc",
+          description: "The compiler for the Rust programming language",
+        },
+        {
+          name: "--rustdoc",
+          description: "Generate documentation for Rust projects",
+        },
+        {
+          name: "--std",
+          description: "Standard library API documentation",
+        },
+        {
+          name: "--test",
+          description:
+            "Support code for rustc's built in unit-test and micro-benchmarking framework",
+        },
+        {
+          name: "--unstable-book",
+          description: "--unstable-book",
+        },
+        {
+          name: "--toolchain",
+          description:
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+          args: {
+            name: "<toolchain>",
+          },
+        },
+      ],
+      args: {
+        name: "<topic>",
+        description:
+          "Topic such as 'core', 'fn', 'usize', 'eprintln!', 'core::arch', 'alloc::format!', 'std::fs', 'std::fs::read_dir', 'std::io::Bytes', 'std::iter::Sum', 'std::io::error::Result' etc...",
+      },
+    },
+    {
+      name: "man",
+      description: "View the man page for a given command",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+        {
+          name: "--toolchain",
+          description:
+            "Toolchain name, such as 'stable', 'nightly', or '1.8.0'.",
+          args: {
+            name: "<toolchain>",
+          },
+        },
+      ],
+    },
   ],
   options: [
     {
