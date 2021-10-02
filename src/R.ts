@@ -1241,6 +1241,51 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
+        {
+          name: "rtags",
+          description: "Tag C, R, and Rd files under a directory",
+          options: helpAndVersionOptions.concat([
+            {
+              name: ["--output", "-o"],
+              description: "Write output to a file",
+              args: {
+                name: "file",
+                description: "Output file name",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--no-c",
+              description: "Do not tag C (.c, .h) files",
+            },
+            {
+              name: "--no-R",
+              description: "Do not tag R (.R, .r, .S, .s) files",
+            },
+            {
+              name: "--no-Rd",
+              description: "Do not tag Rd (.Rd) files",
+            },
+            {
+              name: "--ctags",
+              description: "Write Ctags format (default is Etags)",
+            },
+            {
+              name: ["--append", "-a"],
+              description: "Append to output file (overwrites by default)",
+            },
+            {
+              name: ["--verbose", "-V"],
+              description: "Echo the name of files processed",
+            },
+          ]),
+          args: {
+            name: "path",
+            description: "Directory in which files will be tagged",
+            isOptional: true,
+            default: ".",
+          },
+        },
       ],
     },
   ],
