@@ -8,7 +8,7 @@ const envNameGenerator: Fig.Generator = {
   },
 };
 
-const amplifyCategories = [
+const amplifyCategories: Fig.Subcommand[] = [
   {
     name: "notifications",
   },
@@ -41,7 +41,7 @@ const amplifyCategories = [
   },
 ];
 
-const categoryCommands = [
+const categoryCommands: Fig.Subcommand[] = [
   {
     name: "add",
     description:
