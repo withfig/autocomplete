@@ -447,14 +447,6 @@ const completionSpec: Fig.Spec = {
           name: "--buckets",
           description: "Preserve to Textile Buckets",
         },
-        {
-          name: "--",
-          description:
-            "Preserve files using an installed plugin with the specified recipe tag",
-          args: {
-            name: "recipe",
-          },
-        },
       ],
     },
     {
