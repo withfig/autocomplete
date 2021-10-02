@@ -68,6 +68,19 @@ const RDocGenerator: Fig.Generator = {
   },
 };
 
+const RFileGenerator: Fig.Generator = {
+  template: "filepaths",
+  filterTemplateSuggestions: function (paths) {
+    return paths.map((file) => {
+      const isRFile = file.name.endsWith(".R");
+      return {
+        ...file,
+        priority: isRFile && 76,
+      };
+    });
+  },
+};
+
 const helpAndVersionOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
@@ -92,8 +105,12 @@ const cleanAndPrecleanOptions: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "R",
-  description: "Start R or invoke an R tool",
+  description: "Start R or invoke an R tool using CMD",
   subcommands: [
+    {
+      name: "RHOME",
+      description: "Print path to R home directory and exit",
+    },
     {
       name: "CMD",
       description: "Invoke an R tool",
@@ -1289,12 +1306,166 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
-  options: [
+  options: helpAndVersionOptions.concat([
     {
-      name: ["--help", "-h"],
-      description: "Show help for R",
+      name: "--encoding",
+      description: "Specify encoding to be used for stdin",
+      requiresEquals: true,
+      args: {
+        name: "encoding",
+        suggestions: ["UTF-8"],
+      },
     },
-  ],
+    {
+      name: "--save",
+      description: "Save workspace at the end of the session",
+    },
+    {
+      name: "--no-save",
+      description: "Do not save workspace at the end of the session",
+    },
+    {
+      name: "--no-environ",
+      description: "Do not read the site and user environment files",
+    },
+    {
+      name: "--no-site-file",
+      description: "Do not read the site-wide Rprofile",
+    },
+    {
+      name: "--no-init-file",
+      description: "Do not read the user R profile",
+    },
+    {
+      name: "--restore",
+      description: "Do restore previously saved objects at startup",
+    },
+    {
+      name: "--no-restore-data",
+      description: "Do not restore previously saved objects",
+    },
+    {
+      name: "--no-restore-history",
+      description: "Do not restore the R history file",
+    },
+    {
+      name: "--no-restore",
+      description: "Do not restore anything",
+    },
+    {
+      name: "--vanilla",
+      description:
+        "Combine --no-save, --no-restore, --no-site-file, --no-init-file and --no-environ",
+    },
+    {
+      name: "--no-readline",
+      description: "Do not use readline for command-line editing",
+    },
+    {
+      name: "--max-ppsize",
+      description: "Set max size of protect stack",
+      requiresEquals: true,
+      args: {
+        name: "max size",
+        description: "Max size of protect stack",
+      },
+    },
+    {
+      name: "--min-nsize",
+      description: "Set min number of fixed size obj's ('cons cells')",
+      requiresEquals: true,
+      args: {
+        name: "min size",
+        description: "Minimum nubmer of fixed size objects",
+      },
+    },
+    {
+      name: "--min-vsize",
+      description: "Set vector heap minimum (in bytes or '4M' = 4 MegaB)",
+      requiresEquals: true,
+      args: {
+        name: "min vsize",
+        description: "Minimum vector heap size",
+      },
+    },
+    {
+      name: ["--quiet", "--silent", "-q"],
+      description: "Do not print startup message",
+    },
+    {
+      name: ["--no-echo", "-s"],
+      description: "Make R run as quietly as possible",
+    },
+    {
+      name: "--interactive",
+      description: "Force an interactive session",
+    },
+    {
+      name: "--verbose",
+      description: "Print more information about progress",
+    },
+    {
+      name: ["--debugger", "-d"],
+      description: "Run R through a debugger",
+      requiresEquals: true,
+      args: {
+        name: "debugger",
+        description: "Debugger to use",
+      },
+    },
+    {
+      name: "--debugger-args",
+      description: "Pass arguments to the debugger",
+      requiresEquals: true,
+      args: {
+        name: "args",
+        description: "Arguments for the debugger",
+      },
+    },
+    {
+      name: ["--gui", "-g"],
+      description: "Type of GUI to use",
+      requiresEquals: true,
+      args: {
+        name: "gui",
+        description: "Type of GUI",
+        suggestions: ["X11", "Tk"],
+        default: "X11",
+      },
+    },
+    {
+      name: "--arch",
+      description: "Specify a sub-architecture",
+      requiresEquals: true,
+      args: {
+        name: "arch",
+        description: "Sub-architecture",
+      },
+    },
+    {
+      name: "--args",
+      description: "Skip the rest of the command line",
+    },
+    {
+      name: ["--file", "-f"],
+      description: "Take input from a file",
+      requiresEquals: true,
+      args: {
+        name: "file",
+        description: "File to run",
+        generators: RFileGenerator,
+      },
+    },
+    {
+      name: "-e",
+      description: "Execute and R expression and exit",
+      requiresEquals: true,
+      args: {
+        name: "expr",
+        description: "Expression to evaluate",
+      },
+    },
+  ]),
   // Only uncomment if R takes an argument
   // args: {}
 };
