@@ -1099,6 +1099,23 @@ const completionSpec: Fig.Spec = {
             generators: filepaths,
           },
         },
+        {
+          name: "Rdiff",
+          description: "Diff R output files, discarding the R startup message",
+          options: helpAndVersionOptions,
+          args: [
+            {
+              name: "from",
+              description: "'From' R output file (or '-' for stdin)",
+              generators: filepaths,
+            },
+            {
+              name: "to",
+              description: "'To' R output file",
+              generators: filepaths,
+            },
+          ],
+        },
       ],
     },
   ],
