@@ -51,6 +51,19 @@ const rPackages: Fig.Generator = {
   },
 };
 
+const RDocGenerator: Fig.Generator = {
+  template: "filepaths",
+  filterTemplateSuggestions: function (paths) {
+    return paths.map((file) => {
+      const isRFile = file.name.endsWith(".Rd");
+      return {
+        ...file,
+        priority: isRFile && 76,
+      };
+    });
+  },
+};
+
 const helpAndVersionOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
@@ -760,7 +773,6 @@ const completionSpec: Fig.Spec = {
                   "Name of the output file, '\"\"' to use the input file without '.Rd'",
                 default: '""',
                 suggestions: ['""', "-"],
-                isOptional: false,
               },
             },
             {
@@ -786,18 +798,111 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file",
             description: "R doc file to convert",
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: function (paths) {
-                return paths.map((file) => {
-                  const isRFile = file.name.endsWith(".Rd");
-                  return {
-                    ...file,
-                    priority: isRFile && 76,
-                  };
-                });
+            generators: RDocGenerator,
+          },
+        },
+        {
+          name: "Rd2pdf",
+          description: "Generate PDF output from R documentation files",
+          options: helpAndVersionOptions.concat([
+            { name: "--batch", description: "No interaction between files" },
+            {
+              name: "--no-clean",
+              description: "Do not remove created temporary files",
+            },
+            {
+              name: "--no-preview",
+              description: "Do not preview generated PDF file",
+            },
+            {
+              name: "--encoding",
+              description: "Set the default input encoding",
+              requiresEquals: true,
+              args: {
+                name: "enc",
+                description: "Output encoding",
+                default: "UTF-8",
               },
             },
+            {
+              name: "--outputEncoding",
+              description: "Set the default output encoding",
+              requiresEquals: true,
+              args: {
+                name: "enc",
+                description: "Output encoding",
+                default: "UTF-8",
+              },
+            },
+            {
+              name: ["--os", "--OS"],
+              description: "Set name of OS ('unix' or 'windows')",
+              requiresEquals: true,
+              args: {
+                name: "OS",
+                description: "Name of the OS",
+                suggestions: ["unix", "windows"],
+              },
+            },
+            {
+              name: ["-o", "--output"],
+              description: "Write output to a file",
+              requiresEquals: true,
+              args: {
+                name: "file",
+                description: "Name of output file",
+              },
+            },
+            {
+              name: "--force",
+              description: "Overwrite output file if it exists",
+            },
+            {
+              name: "--title",
+              description: "Set the title of the document",
+              requiresEquals: true,
+              args: {
+                name: "title",
+                description: "Title of the document",
+              },
+            },
+            {
+              name: "--no-index",
+              description: "Do not index output",
+            },
+            {
+              name: "--no-description",
+              description: "Do not typeset the description of a package",
+            },
+            {
+              name: "--internals",
+              description: "Typeset 'internal' documentation (usually skipped)",
+            },
+            {
+              name: "--build_dir",
+              description: "Set the working directory",
+              requiresEquals: true,
+              args: {
+                name: "working dir",
+                description: "Working directory for the build",
+                generators: folders,
+              },
+            },
+            {
+              name: "--RdMacros",
+              description: "Packages from which to get Rd macros",
+              requiresEquals: true,
+              args: {
+                name: "package list",
+                description: "List of packages",
+              },
+            },
+          ]),
+          args: {
+            name: "files or pkgs",
+            description:
+              "Rd files, or a directory with the sources of a pkg, or an installed pkg",
+            generators: folders,
           },
         },
       ],
@@ -815,5 +920,4 @@ const completionSpec: Fig.Spec = {
 
 export default completionSpec;
 
-// TODO: finish Rdconv
 // TODO: at end, add icons where appropriate
