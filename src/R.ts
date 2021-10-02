@@ -978,6 +978,47 @@ const completionSpec: Fig.Spec = {
             generators: RDocGenerator,
           },
         },
+        {
+          name: "Stangle",
+          description: "A front-end for Stangle and other vignette engines",
+          options: helpAndVersionOptions.concat([
+            {
+              name: "--engine",
+              description: "Use named vignette engine",
+              requiresEquals: true,
+              args: {
+                name: "pkg::engine",
+                description: "Vignette engine",
+                suggestions: ["Stangle", "knitr::knit", "utils::Sweave"],
+                default: "Stangle",
+              },
+            },
+            {
+              name: "--encoding",
+              description: "Set the encoding for file",
+              requiresEquals: true,
+              args: {
+                name: "enc",
+                description: "File encoding",
+                default: "UTF-8",
+              },
+            },
+            {
+              name: "--options",
+              description: "Comma-separated list of Stangle options",
+              requiresEquals: true,
+              args: {
+                name: "options",
+                description: "Options for Stangle",
+              },
+            },
+          ]),
+          args: {
+            name: "file",
+            description: "File to process",
+            generators: folders,
+          },
+        },
       ],
     },
   ],
