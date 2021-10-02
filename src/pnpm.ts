@@ -1,72 +1,11 @@
-const FILTER_OPTION: Fig.Option = {
-  name: "--filter",
-  args: {
-    template: "filepaths",
-    name: "Filepath / Package",
-    description:
-      "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
-  },
-  description: `Filtering allows you to restrict commands to specific subsets of packages.
-     pnpm supports a rich selector syntax for picking packages by name or by relation.
-     More details: https://pnpm.io/filtering`,
-};
-
 // GENERATORS
-const searchGenerator: Fig.Generator = {
-  script: function (context) {
-    if (context[context.length - 1] === "") return "";
-    const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
-  },
-  postProcess: function (out) {
-    try {
-      return JSON.parse(out).results.map(
-        (item) =>
-          ({
-            name: item.package.name,
-            description: item.package.description,
-          } as Fig.Suggestion)
-      ) as Fig.Suggestion[];
-    } catch (e) {
-      return [];
-    }
-  },
-};
 
-const searchDependenciesGenerator: Fig.Generator = {
-  script: () =>
-    `until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json`,
-  postProcess: function (out) {
-    if (out.trim() === "") {
-      return [];
-    }
-    try {
-      const packageContent = JSON.parse(out);
-      const dependencies = packageContent["dependencies"];
-      const devDependencies = packageContent["devDependencies"];
-      const allDependencies = { ...dependencies, ...devDependencies };
-      if (allDependencies) {
-        const dps = Object.keys(allDependencies);
-        return dps.map((pkg) => {
-          const scope = pkg.indexOf("/") + 1;
-          if (scope !== -1) {
-            pkg = pkg.substring(scope);
-          }
-          const version = pkg.indexOf("@");
-          if (version !== -1) {
-            pkg = pkg.substring(version);
-          }
-          return {
-            name: pkg,
-            icon: `fig://icon?type=npm`,
-            description: "Dependency file",
-          };
-        });
-      }
-    } catch (e) {}
-    return [];
-  },
-};
+import {
+  dependenciesGenerator,
+  npmScriptsGenerator,
+  npmSearchGenerator,
+} from "./npm";
+import { nodeClis } from "./yarn";
 
 const filterMessages = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
@@ -109,29 +48,127 @@ const searchBranches: Fig.Generator = {
   },
 };
 
-const searchScriptsGenerator: Fig.Generator = {
-  script: () => `cat package.json`,
-  postProcess: function (out) {
-    if (out.trim() === "") {
-      return [];
-    }
-    try {
-      const packageContent = JSON.parse(out);
-      const scripts = packageContent["scripts"];
-      if (scripts) {
-        const scs = Object.keys(scripts);
-        return scs.map((script) => {
-          return {
-            name: script,
-            icon: `fig://icon?type=npm`,
-            description: scripts[script],
-          };
-        });
-      }
-    } catch (e) {}
-    return [];
+const FILTER_OPTION: Fig.Option = {
+  name: "--filter",
+  args: {
+    template: "filepaths",
+    name: "Filepath / Package",
+    description:
+      "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
   },
+  description: `Filtering allows you to restrict commands to specific subsets of packages.
+     pnpm supports a rich selector syntax for picking packages by name or by relation.
+     More details: https://pnpm.io/filtering`,
 };
+
+/** Options that being appended for `pnpm i` and `add` */
+const INSTALL_BASE_OPTIONS: Fig.Option[] = [
+  {
+    name: "--offline",
+    description:
+      "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail",
+  },
+  {
+    name: "--prefer-offline",
+    description:
+      "If true, staleness checks for cached data will be bypassed, but missing data will be requested from the server. To force full offline mode, use --offline",
+  },
+  {
+    name: "--ignore-scripts",
+    description:
+      "Do not execute any scripts defined in the project package.json and its dependencies",
+  },
+  {
+    name: "--reporter",
+    description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress.`,
+    args: {
+      name: "Reporter Type",
+      suggestions: ["silent", "default", "append-only", "ndjson"],
+    },
+  },
+];
+
+/** Base options for pnpm i when run without any arguments */
+const INSTALL_OPTIONS: Fig.Option[] = [
+  {
+    name: ["-P", "--save-prod"],
+    description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production.
+             Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
+  },
+  {
+    name: ["-D", "--save-dev"],
+    description:
+      "Only devDependencies are installed regardless of the NODE_ENV",
+  },
+  {
+    name: "--no-optional",
+    description: "OptionalDependencies are not installed",
+  },
+  {
+    name: "--lockfile-only",
+    description:
+      "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies",
+  },
+  {
+    name: "--frozen-lockfile",
+    description:
+      "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present",
+  },
+  {
+    name: "--use-store-server",
+    description:
+      "Starts a store server in the background. The store server will keep running after installation is done. To stop the store server, run pnpm server stop",
+  },
+  {
+    name: "--shamefully-hoist",
+    description:
+      "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged",
+  },
+];
+
+/** Base options for pnpm add */
+const INSTALL_PACKAGE_OPTIONS: Fig.Option[] = [
+  {
+    name: ["-P", "--save-prod"],
+    description: "Install the specified packages as regular dependencies",
+  },
+  {
+    name: ["-D", "--save-dev"],
+    description: "Install the specified packages as devDependencies",
+  },
+  {
+    name: ["-O", "--save-optional"],
+    description: "Install the specified packages as optionalDependencies",
+  },
+  {
+    name: "--no-save",
+    description: "Prevents saving to `dependencies`",
+  },
+  {
+    name: ["-E", "--save-exact"],
+    description:
+      "Saved dependencies will be configured with an exact version rather than using pnpm's default semver range operator",
+  },
+  {
+    name: "--save-peer",
+    description:
+      "Using --save-peer will add one or more packages to peerDependencies and install them as dev dependencies",
+  },
+  {
+    name: ["--ignore-workspace-root-check", "-W#"],
+    description: `Adding a new dependency to the root workspace package fails, unless the --ignore-workspace-root-check or -W flag is used.
+        For instance, pnpm add debug -W.`,
+  },
+  {
+    name: ["--global", "-g"],
+    description: `Install a package globally`,
+  },
+  {
+    name: "--workspace",
+    description: `Only adds the new dependency if it is found in the workspace.`,
+  },
+  FILTER_OPTION,
+];
 
 // SUBCOMMANDS
 const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
@@ -139,204 +176,55 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     name: "add",
     description: `Installs a package and any packages that it depends on. By default, any new package is installed as a production dependency.`,
     args: {
-      name: "Package",
+      name: "package",
+      generators: npmSearchGenerator,
       debounce: true,
-      generators: searchGenerator,
+      isVariadic: true,
     },
-    options: [
-      {
-        name: ["-P", "--save-prod"],
-        description: "Install the specified packages as regular dependencies",
-      },
-      {
-        name: ["-D", "--save-dev"],
-        description: "Install the specified packages as devDependencies",
-      },
-      {
-        name: ["-O", "--save-optional"],
-        description: "Install the specified packages as optionalDependencies",
-      },
-      {
-        name: "--no-save",
-        description: "Prevents saving to `dependencies`",
-      },
-      {
-        name: ["-E", "--save-exact"],
-        description:
-          "Saved dependencies will be configured with an exact version rather than using pnpm's default semver range operator",
-      },
-      {
-        name: "--save-peer",
-        description:
-          "Using --save-peer will add one or more packages to peerDependencies and install them as dev dependencies",
-      },
-      {
-        name: ["--ignore-workspace-root-check", "-W#"],
-        description: `Adding a new dependency to the root workspace package fails, unless the --ignore-workspace-root-check or -W flag is used. 
-        For instance, pnpm add debug -W.`,
-      },
-      {
-        name: ["--global", "-g"],
-        description: `Install a package globally`,
-      },
-      {
-        name: "--workspace",
-        description: `Only adds the new dependency if it is found in the workspace.`,
-      },
-      FILTER_OPTION,
-    ],
+    options: [...INSTALL_BASE_OPTIONS, ...INSTALL_PACKAGE_OPTIONS],
   },
   {
     name: ["install", "i"],
-    description: `pnpm install is used to install all dependencies for a project. 
-      In a CI environment, installation fails if a lockfile is present but needs an update. 
-      Inside a workspace, pnpm install installs all dependencies in all the projects. 
+    description: `pnpm install is used to install all dependencies for a project.
+      In a CI environment, installation fails if a lockfile is present but needs an update.
+      Inside a workspace, pnpm install installs all dependencies in all the projects.
       If you want to disable this behavior, set the recursive-install setting to false.`,
-    options: [
-      {
-        name: "--offline",
-        description:
-          "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail",
-      },
-      {
-        name: "--prefer-offline",
-        description:
-          "If true, staleness checks for cached data will be bypassed, but missing data will be requested from the server. To force full offline mode, use --offline",
-      },
-      {
-        name: "--ignore-scripts",
-        description:
-          "Do not execute any scripts defined in the project package.json and its dependencies",
-      },
-      {
-        name: ["-P", "--save-prod"],
-        description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production.
-          Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
-      },
-      {
-        name: ["-D", "--save-dev"],
-        description:
-          "Only devDependencies are installed regardless of the NODE_ENV",
-      },
-      {
-        name: "--no-optional",
-        description: "OptionalDependencies are not installed",
-      },
-      {
-        name: "--lockfile-only",
-        description:
-          "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies",
-      },
-      {
-        name: "--frozen-lockfile",
-        description:
-          "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present",
-      },
-      {
-        name: "--reporter",
-        description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress.`,
-        args: {
-          name: "Reporter Type",
-          suggestions: ["silent", "default", "append-only", "ndjson"],
-        },
-      },
-      {
-        name: "--use-store-server",
-        description:
-          "Starts a store server in the background. The store server will keep running after installation is done. To stop the store server, run pnpm server stop",
-      },
-      {
-        name: "--shamefully-hoist",
-        description:
-          "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged",
-      },
-      {
-        name: "--filter",
-        args: {
-          template: "filepaths",
-          name: "Filepath / Package",
-          description:
-            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
-        },
-        description: `Filtering allows you to restrict commands to specific subsets of packages.
-           pnpm supports a rich selector syntax for picking packages by name or by relation.
-           More details: https://pnpm.io/filtering`,
-      },
-    ],
+    async generateSpec(tokens) {
+      // `pnpm i` with args is an `pnpm add` alias
+      const hasArgs =
+        tokens.filter((token) => token.trim() !== "" && !token.startsWith("-"))
+          .length > 2;
+
+      return {
+        name: "install",
+        options: [
+          ...INSTALL_BASE_OPTIONS,
+          ...(hasArgs ? INSTALL_PACKAGE_OPTIONS : INSTALL_OPTIONS),
+        ],
+      };
+    },
+    args: {
+      name: "package",
+      isOptional: true,
+      generators: npmSearchGenerator,
+      debounce: true,
+      isVariadic: true,
+    },
   },
   {
     name: ["install-test", "it"],
     description:
       "Runs pnpm install followed immediately by pnpm test. It takes exactly the same arguments as pnpm install",
-    options: [
-      {
-        name: "--offline",
-        description:
-          "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail",
-      },
-      {
-        name: "--prefer-offline",
-        description:
-          "If true, staleness checks for cached data will be bypassed, but missing data will be requested from the server. To force full offline mode, use --offline",
-      },
-      {
-        name: "--ignore-scripts",
-        description:
-          "Do not execute any scripts defined in the project package.json and its dependencies",
-      },
-      {
-        name: ["-P", "--save-prod"],
-        description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production. 
-             Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
-      },
-      {
-        name: ["-D", "--save-dev"],
-        description:
-          "Only devDependencies are installed regardless of the NODE_ENV",
-      },
-      {
-        name: "--no-optional",
-        description: "OptionalDependencies are not installed",
-      },
-      {
-        name: "--lockfile-only",
-        description:
-          "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies",
-      },
-      {
-        name: "--frozen-lockfile",
-        description:
-          "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present",
-      },
-      {
-        name: "--reporter",
-        description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress.`,
-        args: {
-          name: "Reporter Type",
-          suggestions: ["silent", "default", "append-only", "ndjson"],
-        },
-      },
-      {
-        name: "--use-store-server",
-        description:
-          "Starts a store server in the background. The store server will keep running after installation is done. To stop the store server, run pnpm server stop",
-      },
-      {
-        name: "--shamefully-hoist",
-        description:
-          "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged",
-      },
-      FILTER_OPTION,
-    ],
+    options: [...INSTALL_BASE_OPTIONS, ...INSTALL_OPTIONS],
   },
   {
-    name: ["update", "up"],
+    name: ["update", "upgrade", "up"],
     description: `pnpm update updates packages to their latest version based on the specified range.
       When used without arguments, updates all dependencies. You can use patterns to update specific dependencies.`,
     args: {
       name: "Package",
       isOptional: true,
-      generators: searchDependenciesGenerator,
+      generators: dependenciesGenerator,
       isVariadic: true,
     },
     options: [
@@ -376,18 +264,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
         description: `Tries to link all packages from the workspace. Versions are updated to match the versions of packages inside the workspace.
           If specific packages are updated, the command will fail if any of the updated dependencies are not found inside the workspace. For instance, the following command fails if express is not a workspace package: pnpm up -r --workspace express`,
       },
-      {
-        name: "--filter",
-        args: {
-          template: "filepaths",
-          name: "Filepath / Package",
-          description:
-            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
-        },
-        description: `Filtering allows you to restrict commands to specific subsets of packages.
-             pnpm supports a rich selector syntax for picking packages by name or by relation.
-             More details: https://pnpm.io/filtering`,
-      },
+      FILTER_OPTION,
     ],
   },
   {
@@ -395,7 +272,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     description: `Removes packages from node_modules and from the project's package.json.`,
     args: {
       name: "Package",
-      generators: searchDependenciesGenerator,
+      generators: dependenciesGenerator,
       isVariadic: true,
     },
     options: [
@@ -429,7 +306,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: [
       {
         name: "Package",
-        generators: searchDependenciesGenerator,
+        generators: dependenciesGenerator,
         isVariadic: true,
       },
       { template: "filepaths" },
@@ -454,7 +331,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: [
       {
         name: "Package",
-        generators: searchDependenciesGenerator,
+        generators: dependenciesGenerator,
         isVariadic: true,
       },
       { template: "filepaths" },
@@ -478,7 +355,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: [
       {
         name: "Package",
-        generators: searchDependenciesGenerator,
+        generators: dependenciesGenerator,
         isVariadic: true,
       },
       { template: "filepaths" },
@@ -527,7 +404,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     description: "Runs a script defined in the package's manifest file",
     args: {
       name: "Scripts",
-      generators: searchScriptsGenerator,
+      generators: npmScriptsGenerator,
       isVariadic: true,
     },
     options: [
@@ -559,7 +436,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
       node_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies.`,
     args: {
       name: "Scripts",
-      generators: searchDependenciesGenerator,
+      generators: dependenciesGenerator,
       isVariadic: true,
     },
     options: [
@@ -592,9 +469,9 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
   {
     name: "audit",
     description: `Checks for known security issues with the installed packages.
-      If security issues are found, try to update your dependencies via pnpm update. 
-      If a simple update does not fix all the issues, use overrides to force versions that are not vulnerable. 
-      For instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0. 
+      If security issues are found, try to update your dependencies via pnpm update.
+      If a simple update does not fix all the issues, use overrides to force versions that are not vulnerable.
+      For instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0.
       Details at: https://pnpm.io/cli/audit`,
     options: [
       {
@@ -716,7 +593,7 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
     description: `Shows all packages that depend on the specified package.`,
     args: {
       name: "Scripts",
-      generators: searchDependenciesGenerator,
+      generators: dependenciesGenerator,
       isVariadic: true,
     },
     options: [
@@ -771,6 +648,18 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
         args: {
           name: "<tag>",
         },
+      },
+      {
+        name: "--dry-run",
+        description: `Does everything a publish would do except actually publishing to the registry.`,
+      },
+      {
+        name: "--ignore-scripts",
+        description: `Ignores any publish related lifecycle scripts (prepublishOnly, postpublish, and the like).`,
+      },
+      {
+        name: "--no-git-checks",
+        description: `Don't check if current branch is your publish branch, clean, and up-to-date.`,
       },
       {
         name: "--access",
@@ -908,13 +797,13 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       },
       {
         name: "add",
-        description: `Functionally equivalent to pnpm add, 
+        description: `Functionally equivalent to pnpm add,
           except this adds new packages to the store directly without modifying any projects or files outside of the store.`,
       },
       {
         name: "prune",
         description: `Removes orphan packages from the store.
-          Pruning the store will save disk space, however may slow down future installations involving pruned packages. 
+          Pruning the store will save disk space, however may slow down future installations involving pruned packages.
           Ultimately, it is a safe operation, however not recommended if you have orphaned packages from a package you intend to reinstall.
           Please read the FAQ for more information on unreferenced packages and best practices.
           Please note that this is prohibited when a store server is running.`,
@@ -968,8 +857,28 @@ const completionSpec: Fig.Spec = {
   description: "Fast, disk space efficient package manager",
   args: {
     name: "Scripts",
-    generators: searchScriptsGenerator,
+    generators: npmScriptsGenerator,
     isVariadic: true,
+  },
+  generateSpec: async (_tokens, executeShellCommand) => {
+    const { script, postProcess } = dependenciesGenerator;
+
+    const packages = postProcess(
+      await executeShellCommand(script as string)
+    ).map(({ name }) => name as string);
+
+    const subcommands = packages
+      .filter((name) => nodeClis.includes(name))
+      .map((name) => ({
+        name,
+        loadSpec: name,
+        icon: "fig://icon?type=package",
+      }));
+
+    return {
+      name: "pnpm",
+      subcommands,
+    } as Fig.Spec;
   },
   subcommands,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.7.0",
+  "version": "2.10.0",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "browserslist": [
@@ -23,20 +23,8 @@
       "icon": "fig://template?badge=🛠",
       "priority": 100
     },
-    "create-boilerplate": {
+    "create-spec": {
       "description": "Create a new completion spec"
-    },
-    "create-example": {
-      "description": "Create an example completion spec"
-    },
-    "test": {
-      "description": "Typecheck all .ts files in /src"
-    },
-    "copy": {
-      "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
-    },
-    "copy:all": {
-      "description": "Copy all files from /build to ~/.fig/autocomplete"
     },
     "build": {
       "description": "Compile all files in /src"
@@ -46,6 +34,15 @@
     },
     "lint:fix": {
       "description": "Fix linting issues"
+    },
+    "test": {
+      "description": "Typecheck all .ts files in /src"
+    },
+    "copy": {
+      "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
+    },
+    "copy:all": {
+      "description": "Copy all files from /build to ~/.fig/autocomplete"
     },
     "prepare": {
       "description": "Install husky"
@@ -72,6 +69,8 @@
     "@types/progress": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
+    "@withfig/autocomplete-tools": "^1.0.0",
+    "@withfig/eslint-plugin-fig-linter": "^1.0.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
@@ -87,8 +86,6 @@
     "pretty-quick": "^3.1.0",
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.3",
-    "@withfig/eslint-plugin-fig-linter": "^1.0.0",
-    "@withfig/autocomplete-tools": "^1.0.0"
+    "typescript": "^4.2.3"
   }
 }

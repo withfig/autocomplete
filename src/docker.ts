@@ -1271,16 +1271,6 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     args: {
       isVariadic: true,
       name: "containers",
-      suggestions: [
-        {
-          name: "$(docker ps -aq)",
-          description: "All containers, running and exited",
-        },
-        {
-          name: "$(docker ps -q)",
-          description: "All running containers",
-        },
-      ],
       generators: dockerGenerators.allDockerContainers,
     },
     options: [
@@ -1304,13 +1294,16 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Run a command in a new container",
     options: [
       {
+        name: ["-d", "--detach"],
+        description: "Run container in background and print container ID",
+      },
+      {
         name: ["-i", "--interactive"],
         description: "Keep STDIN open even if not attached",
       },
       { name: ["-t", "--tty"], description: "Allocate a pseudo-TTY" },
       {
         name: "-it",
-
         description: "Launch an interactive session",
         icon: "fig://icon?type=commandkey",
       },
