@@ -604,7 +604,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--stacktrace-extra",
-          description: "--stacktrace --compile-all-debug",
+          description: "Shortcut for --stacktrace --compile-all-debug",
         },
       ],
     },
