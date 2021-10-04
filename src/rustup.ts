@@ -1,6 +1,3 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
-
-// The below is a dummy example for git. Make sure to change the file name!
 const completionSpec: Fig.Spec = {
   name: "rustup",
   description: "The Rust toolchain installer",
@@ -31,9 +28,6 @@ const completionSpec: Fig.Spec = {
             "Prints this message or the help of the given subcommand(s)",
         },
       ],
-
-      // If a subcommand or option takes an argument, you must include the args prop, even if it's an empty object (like below)
-      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/concepts/dynamic-suggestions
       options: [
         {
           name: ["-h", "--help"],
