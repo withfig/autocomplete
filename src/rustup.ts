@@ -463,7 +463,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--path",
-          description: "Only print the path tp the documentation",
+          description: "Only print the path to the documentation",
         },
         {
           name: "--proc_macro",
