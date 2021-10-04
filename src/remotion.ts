@@ -10,7 +10,6 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "entry",
-          isOptional: false,
           template: ["filepaths"],
         },
         {
@@ -53,7 +52,14 @@ const completionSpec: Fig.Spec = {
           name: "--image-format",
           description: 'Format to render the frames in, "jpeg" or "png"',
           args: {
-            template: ["filepaths"],
+            suggestions: [
+              {
+                name: "jpeg",
+              },
+              {
+                name: "png",
+              },
+            ],
           },
         },
         {
@@ -83,6 +89,11 @@ const completionSpec: Fig.Spec = {
           description: "Quality for rendered frames, JPEG only, 0-100",
           args: {
             default: "80",
+            suggestions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
+              (e) => ({
+                name: e.toString(),
+              })
+            ),
           },
         },
         {
@@ -126,6 +137,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--frames",
           description: "Render a portion or a still of a video, 0-9, 50",
+          args: {
+            name: "frames",
+          },
         },
         {
           name: "--bundle-cache",
@@ -148,6 +162,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description: "Custom port to use for the HTTP server",
+          args: {
+            name: "port",
+            default: "3333",
+          },
         },
         {
           name: "--env-file",
@@ -188,7 +206,11 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [
-        { name: "--frame", description: "Which frame to render (default 0)" },
+        {
+          name: "--frame",
+          description: "Which frame to render (default 0)",
+          args: { name: "frame", default: "0" },
+        },
         {
           name: "--image-format",
           description: 'Format to render the frames in, "jpeg" or "png"',
@@ -255,6 +277,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description: "Custom port to use for the HTTP server",
+          args: {
+            name: "port",
+            default: "3333",
+          },
         },
         {
           name: "--env-file",
