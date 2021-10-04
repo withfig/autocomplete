@@ -43,7 +43,7 @@ const searchGenerator: Fig.Generator = {
   script: function (context) {
     if (context[context.length - 1] === "") return "";
     const searchTerm = context[context.length - 1];
-    return `cargo search "${searchTerm}" | grep -E "^\\w"`;
+    return `cargo search "${searchTerm}" | \grep -E "^\\w"`;
   },
   postProcess: function (out) {
     return out.split("\n").map((line) => {

@@ -1,5 +1,5 @@
 const appGenerator = (path: string): Fig.Generator => ({
-  script: `ls -1 ${path}`,
+  script: `\ls -1 ${path}`,
   postProcess: (out) => {
     return out.split("\n").map((line) => ({
       name: line,
