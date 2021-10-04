@@ -767,7 +767,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "Rprof",
+          name: "rprof",
           description: "Post-process profiling information from `Rprof()`",
           icon: "⏱",
           options: helpAndVersionOptions.concat([
