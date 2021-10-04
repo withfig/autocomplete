@@ -3,7 +3,6 @@ import { dependenciesGenerator } from "./npm";
 const completionSpec: Fig.Spec = {
   name: "ts-node",
   description: "Run the TypeScript interpreter for Node.JS",
-
   options: [
     {
       name: ["--help", "-h"],
@@ -14,21 +13,23 @@ const completionSpec: Fig.Spec = {
       description: "Print version information of the ts-node module",
     },
     {
-      name: ["-e", "--eval=..."],
+      name: ["-e", "--eval"],
       insertValue: "-e '{cursor}'",
       description: "Evaluate script",
-      args: {},
+      args: {
+        name: "script",
+      },
     },
     {
       name: ["-p", "--print"],
       description: "Evaluate script and print result",
     },
     {
-      name: ["-r", "--require=..."],
-      insertValue: "-r {cursor}",
+      name: ["-r", "--require"],
       isRepeatable: true,
       description: "Require module before executing",
       args: {
+        name: "module",
         generators: dependenciesGenerator,
       },
     },
@@ -54,28 +55,27 @@ const completionSpec: Fig.Spec = {
       description: "Use the Typescript compiler host API",
     },
     {
-      name: ["-I", "--ignore=..."],
-      insertValue: "-I {cursor}",
+      name: ["-I", "--ignore"],
       description: "Ignore patterns from Typescript compilation",
-      args: {},
+      args: {
+        name: "pattern",
+      },
     },
     {
-      name: ["-P", "--project=..."],
-      insertValue: "-P {cursor}",
+      name: ["-P", "--project"],
       description: "Specify TypeScript project location",
       args: {
+        name: "project",
         generators: {
           template: "filepaths",
           filterTemplateSuggestions: function (paths) {
             return paths
               .filter((file) => {
-                return (
-                  file.name.match(/.*\.json?$/g) || file.name.endsWith("/")
-                );
+                return file.name.match(/.*\.json$/g) || file.name.endsWith("/");
               })
               .map((file) => {
                 const isJsFile = file.name.match(/.*\.json?$/g);
-                const isTsConfig = file.name.match(/tsconfig.json?$/g);
+                const isTsConfig = file.name.match(/tsconfig.json$/g);
 
                 return {
                   ...file,
@@ -87,34 +87,39 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-C", "--compiler=..."],
-      insertValue: "-C {cursor}",
+      name: ["-C", "--compiler"],
       description: "Use a custom compiler",
-      args: {},
+      args: {
+        name: "compiler",
+      },
     },
     {
-      name: "--transpiler=...",
-      insertValue: "--transpiler={cursor}",
+      name: "--transpiler",
       description: "Use a custom transpiler",
-      args: {},
+      args: {
+        name: "transpiler",
+      },
     },
     {
-      name: ["-D", "--ignore-diagnostics=..."],
-      insertValue: "-D {cursor}",
-      description: "Specify typescript diagnostic code to ignore",
-      args: {},
+      name: ["-D", "--ignore-diagnostics"],
+      description: "Specify Typescript diagnostic code to ignore",
+      args: {
+        name: "code",
+      },
     },
     {
-      name: ["-O", "--compiler-options=..."],
+      name: ["-O", "--compiler-options"],
       insertValue: "-O '{cursor}'",
       description: "JSON object that will be merged with the compiler options",
-      args: {},
+      args: {
+        name: "options",
+      },
     },
     {
-      name: "--cwd=...",
-      insertValue: "--cwd {cursor}",
+      name: "--cwd",
       description: "Specify working directory",
       args: {
+        name: "cwd",
         generators: {
           template: "folders",
         },
@@ -138,10 +143,10 @@ const completionSpec: Fig.Spec = {
       description: "Scope compilation to scope directory specified",
     },
     {
-      name: "--scope-dir=...",
+      name: "--scope-dir",
       description: "Directory for scope parameter",
-      insertValue: "--scope-dir {cursor}",
       args: {
+        name: "directory",
         generators: {
           template: "folders",
         },
