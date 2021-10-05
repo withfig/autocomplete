@@ -4,7 +4,11 @@ import {
   npmSearchGenerator,
 } from "./npm";
 
-const createCLIs = ["create-next-app", "create-react-native-app"];
+const createCLIs = [
+  "create-next-app",
+  "create-react-native-app",
+  "create-video",
+];
 
 export const nodeClis = [
   "vue",
@@ -19,6 +23,7 @@ export const nodeClis = [
   "tsc",
   "typeorm",
   "babel",
+  "remotion",
 ];
 
 type SearchResult = {

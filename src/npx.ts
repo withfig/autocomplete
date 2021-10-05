@@ -57,6 +57,16 @@ const suggestions: Fig.Suggestion[] = [
     name: "create-next-app",
     icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   },
+  {
+    name: "create-video",
+    icon:
+      "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
+  },
+  {
+    name: "remotion",
+    icon:
+      "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
