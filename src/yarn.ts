@@ -1332,6 +1332,61 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "set",
+      description: "Set global Yarn options",
+      subcommands: [
+        {
+          name: "resolution",
+          description: "Enforce a package resolution",
+          args: [
+            {
+              name: "descriptor",
+              description:
+                "A descriptor for the package, in the form of 'lodash@npm:^1.2.3'",
+            },
+            {
+              name: "resolution",
+              description: "The version of the package to resolve",
+            },
+          ],
+          options: [
+            {
+              name: ["-s", "--save"],
+              description:
+                "Persist the resolution inside the top-level manifest",
+            },
+          ],
+        },
+        {
+          name: "version",
+          description: "Lock the Yarn version used by the project",
+          args: {
+            name: "version",
+            description:
+              "Use the specified version, which can also be a Yarn 2 build (e.g 2.0.0-rc.30) or a Yarn 1 build (e.g 1.22.1)",
+            template: "filepaths",
+            suggestions: [
+              {
+                name: "from-sources",
+                insertValue: "from sources",
+              },
+              "latest",
+              "canary",
+              "classic",
+              "self",
+            ],
+          },
+          options: [
+            {
+              name: "--only-if-needed",
+              description:
+                "Only lock the Yarn version if it isn't already locked",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
