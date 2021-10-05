@@ -578,7 +578,10 @@ const completionSpec: Fig.Spec = {
         name: "<topic>",
         description:
           "Topic such as 'core', 'fn', 'usize', 'eprintln!', 'core::arch', 'alloc::format!', 'std::fs', 'std::fs::read_dir', 'std::io::Bytes', 'std::iter::Sum', 'std::io::error::Result' etc",
-        suggestions: [
+        generators: {
+          script: `find $(rustup docs --path | sed -e "s|index\\.html|std|") $(rustup docs --path | sed -e "s|index\\.html|alloc|") $(rustup docs --path | sed -e "s|index\\.html|core|") | grep "\\.html" | sed -E -e "s|^(.*)/html/||" -e "s|\\.html||" -e "s|/|::|g" -e "s/constant\\.|trait\\.|struct\\.|macro\\.|fn\\.|keyword\\.|primitive\\.|type\\.|enum\\.|union\\.|traitalias\\.|::index$|^(.*)::all$//" -e "/^$/d"`,
+          splitOn: "\n"
+        },
           "std::prim_bool",
           "std::try",
           "std::all",
