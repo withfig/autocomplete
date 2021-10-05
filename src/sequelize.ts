@@ -7,27 +7,27 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--config",
     description: "The path to the config file",
-    args: { template: "filepaths" },
+    args: { name: "file path", template: "filepaths" },
   },
   {
     name: "--options-path",
     description: "The path to a JSON file with additional options",
-    args: { template: "filepaths" },
+    args: { name: "file path", template: "filepaths" },
   },
   {
     name: "--migrations-path",
     description: "The path to the migrations folder",
-    args: { template: "folders" },
+    args: { name: "folder path", template: "folders" },
   },
   {
     name: "--seeders-path",
     description: "The path to the seeders folder",
-    args: { template: "folders" },
+    args: { name: "folder path", template: "folders" },
   },
   {
     name: "--models-path",
     description: "The path to the models folder",
-    args: { template: "folders" },
+    args: { name: "folder path", template: "folders" },
   },
   {
     name: "--url",
@@ -101,7 +101,7 @@ const seedOneOptions: Fig.Option[] = [
   {
     name: "--seed",
     description: "List of seed files",
-    args: { template: "filepaths", isVariadic: true },
+    args: { name: "file path", template: "filepaths", isVariadic: true },
   },
 ];
 
