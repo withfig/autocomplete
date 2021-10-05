@@ -2330,7 +2330,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "updrade-data",
+          name: "upgrade-data",
           description: "Upgrade the internal data format",
           options: [
             {
