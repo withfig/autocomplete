@@ -1,7 +1,3 @@
-const exts = "*.3d;*.3ds;*.3mf;*.ac;*.ac3d;*.acc;*.amf;*.ase;*.ask;*.assbin;*.b3d;*.blend;*.bvh;*.cob;*.csm;*.dae;*.dxf;*.enff;*.fbx;*.glb;*.gltf;*.hmp;*.ifc;*.ifczip;*.irr;*.irrmesh;*.lwo;*.lws;*.lxo;*.md2;*.md3;*.md5anim;*.md5camera;*.md5mesh;*.mdc;*.mdl;*.mesh;*.mesh.xml;*.mot;*.ms3d;*.ndo;*.nff;*.obj;*.off;*.ogex;*.pk3;*.ply;*.pmx;*.prj;*.q3o;*.q3s;*.raw;*.scn;*.sib;*.smd;*.stl;*.stp;*.ter;*.uc;*.vta;*.x;*.x3d;*.x3db;*.xgl;*.xml;*.zae;*.zgl".split(
-  ";"
-);
-
 const helpOptions: Fig.Option[] = [
   {
     name: ["-h", "--help"],
@@ -24,9 +20,17 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
-const suggistionExts: Fig.Suggestion[] = exts.map((ext) => ({
-  name: ext,
-}));
+const suggistionGenerator: Fig.Generator = {
+  script: "assimp listext",
+  postProcess: function (out) {
+    return out.split(";").map((ext) => {
+      return {
+        name: ext,
+        description: "Extensions",
+      };
+    });
+  },
+};
 
 const completionSpec: Fig.Spec = {
   name: "assimp",
@@ -92,7 +96,7 @@ const completionSpec: Fig.Spec = {
           description: "No postprocessing, do a raw import",
           args: {
             name: "format",
-            suggestions: [...suggistionExts],
+            generators: suggistionGenerator,
           },
         },
         ...helpOptions,
@@ -136,8 +140,8 @@ const completionSpec: Fig.Spec = {
           name: ["-t", "--texture"],
           description: "Zero-based index of the texture to be extracted",
           args: {
-            name: "n",
-            suggestions: [...suggistionExts],
+            name: "index",
+            generators: suggistionGenerator,
           },
         },
         {
@@ -145,7 +149,7 @@ const completionSpec: Fig.Spec = {
           description: "No postprocessing, do a raw import",
           args: {
             name: "format",
-            suggestions: [...suggistionExts],
+            generators: suggistionGenerator,
           },
         },
         ...commonOptions,
