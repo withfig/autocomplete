@@ -181,7 +181,7 @@ const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start tunnels by name from the configuration file",
       args: {
-        name: "...tunnels",
+        name: "tunnels",
         isVariadic: true,
         suggestions: ["dev", "web", "blog"],
       },
