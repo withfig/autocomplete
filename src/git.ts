@@ -894,19 +894,26 @@ const completionSpec: Fig.Spec = {
           name: "--global",
           description:
             "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
-          args: {
-            isVariadic: true,
-            suggestions: [
-              {
-                name: "user.name",
-                description: "Config for username",
-              },
-              {
-                name: "user.email",
-                description: "Config for email",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+              isVariadic: true,
+              suggestions: [
+                {
+                  name: "user.name",
+                  description: "Config for username",
+                },
+                {
+                  name: "user.email",
+                  description: "Config for email",
+                },
+              ],
+            },
+            {
+              name: "value",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--replace-all",
