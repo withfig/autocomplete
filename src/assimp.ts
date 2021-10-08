@@ -26,7 +26,7 @@ const suggistionGenerator: Fig.Generator = {
     return out.split(";").map((ext) => {
       return {
         name: ext,
-        description: "Extensions",
+        description: "Extension",
       };
     });
   },
@@ -42,7 +42,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "file",
         description: "Print basic structure of a 3D model",
-        isOptional: false,
         isVariadic: true,
       },
       options: [
@@ -71,7 +70,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "extension",
         description: "Check whether a particular file extension is known by us",
-        isOptional: false,
       },
     },
     {
@@ -81,7 +79,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "modal",
           description: "Relative or absolute path to the input model",
-          isOptional: false,
         },
         {
           name: "out",
@@ -112,7 +109,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "extension",
         description: "Specific file extension",
-        isOptional: false,
       },
     },
     {
@@ -122,7 +118,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "modal",
           description: "Relative or absolute path to the input model",
-          isOptional: false,
         },
         {
           name: "out",
@@ -163,7 +158,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "modal",
           description: "Relative or absolute path to the input model",
-          isOptional: false,
         },
         {
           name: "out",
@@ -196,12 +190,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "actual",
           description: "Mini dump now",
-          isOptional: false,
         },
         {
           name: "expected",
           description: "Archived dump from some point in the past",
-          isOptional: false,
         },
       ],
       options: [...helpOptions],
