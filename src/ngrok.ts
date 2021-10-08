@@ -2,64 +2,25 @@ const defaultNgrokOptions: Array<Fig.Option> = [
   {
     description: "Path to log file, 'stdout', 'stderr' or 'false'",
     name: ["--log", "-log"],
-    insertValue: "--log={cursor}",
     args: {
       name: "value",
       template: "filepaths",
-      suggestions: [
-        {
-          name: "stdout",
-        },
-        {
-          name: "stderr",
-        },
-        {
-          name: "false",
-        },
-      ],
+      suggestions: ["stdout", "stderr", "false"],
     },
   },
   {
     description: "Log record format: 'term', 'logfmt', 'json'",
     name: ["--log-format", "-log-format"],
-    insertValue: "--log-format={cursor}",
     args: {
-      suggestions: [
-        {
-          name: "term",
-        },
-        {
-          name: "logfmt",
-        },
-        {
-          name: "json",
-        },
-      ],
+      suggestions: ["term", "logfmt", "json"],
     },
   },
   {
     description: "Logging level",
     name: ["--log-level", "-log-level"],
-    insertValue: "--log-level={cursor}",
     args: {
       name: "level",
-      suggestions: [
-        {
-          name: "crit",
-        },
-        {
-          name: "warn",
-        },
-        {
-          name: "error",
-        },
-        {
-          name: "info",
-        },
-        {
-          name: "debug",
-        },
-      ],
+      suggestions: ["crit", "warn", "error", "info", "debug"],
     },
   },
 ];
@@ -67,44 +28,21 @@ const defaultNgrokOptions: Array<Fig.Option> = [
 const authTokenOption: Fig.Option = {
   description: "Ngrok.com authtoken identifying a user",
   name: ["--authtoken", "-authtoken"],
-  insertValue: "--authtoken={cursor}",
-  args: {},
+  args: {
+    name: "authtoken",
+  },
 };
 
 const regionOption: Fig.Option = {
   description: "Ngrok server region [us, eu, au, ap, sa, jp, in] (default: us)",
   name: ["--region", "-region"],
-  insertValue: "--region={cursor}",
   args: {
-    suggestions: [
-      {
-        name: "us",
-      },
-      {
-        name: "eu",
-      },
-      {
-        name: "au",
-      },
-      {
-        name: "ap",
-      },
-      {
-        name: "sa",
-      },
-      {
-        name: "jp",
-      },
-      {
-        name: "in",
-      },
-    ],
+    suggestions: ["us", "eu", "au", "ap", "sa", "jp", "in"],
   },
 };
 const configOptions: Fig.Option = {
   description: "Path to config files; they are merged if multiple",
   name: ["--config", "-config"],
-  insertValue: "--config={cursor}",
   args: {
     name: "config file",
     template: "filepaths",
@@ -114,15 +52,17 @@ const configOptions: Fig.Option = {
 const subdomainOption: Fig.Option = {
   description: "Host tunnel on a custom subdomain",
   name: ["--subdomain", "-subdomain"],
-  insertValue: "--subdomain={cursor}",
-  args: {},
+  args: {
+    name: "subdomain",
+  },
 };
 
 const hostOption: Fig.Option = {
   description: "Host tunnel on custom hostname (requires DNS CNAME)",
   name: ["--hostname", "-hostname"],
-  insertValue: "--hostname={cursor}",
-  args: {},
+  args: {
+    name: "hostname",
+  },
 };
 
 const completionSpec: Fig.Spec = {
@@ -196,61 +136,40 @@ const completionSpec: Fig.Spec = {
         {
           description: "Enforce basic auth on tunnel endpoint, 'user:password'",
           name: ["--auth", "-auth"],
-          args: {},
-          insertValue: "--auth={cursor}",
+          args: {
+            name: "user:password",
+          },
         },
         {
           description: "Listen for http, https or both: true/false/both",
           name: ["--bind-tls", "-bind-tls"],
-          insertValue: "--bind-tls={cursor}",
           args: {
             name: "true/false/both",
-            suggestions: [
-              {
-                name: "true",
-              },
-              {
-                name: "false",
-              },
-              {
-                name: "both",
-              },
-            ],
+            suggestions: ["true", "false", "both"],
           },
         },
         {
           description:
             "Set Host header; if 'rewrite' use local address hostname",
           name: ["--host-header", "-host-header"],
-          insertValue: "--host-header={cursor}",
           args: {
-            suggestions: [
-              {
-                name: "rewrite",
-              },
-            ],
+            suggestions: ["rewrite"],
           },
         },
         {
           description: "Enable/disable http introspection",
           name: ["--introspection", "-introspection"],
-          insertValue: "--inspect={cursor}",
           args: {
-            suggestions: [
-              {
-                name: "true",
-              },
-              {
-                name: "false",
-              },
-            ],
+            suggestions: ["true", "false"],
           },
         },
       ],
     },
     {
       name: "authtoken",
-      args: {},
+      args: {
+        name: "authtoken",
+      },
       description: "Save authtoken to configuration file",
       options: [...defaultNgrokOptions, configOptions],
     },
@@ -264,17 +183,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "...tunnels",
         isVariadic: true,
-        suggestions: [
-          {
-            name: "dev",
-          },
-          {
-            name: "web",
-          },
-          {
-            name: "blog",
-          },
-        ],
+        suggestions: ["dev", "web", "blog"],
       },
       options: [
         ...defaultNgrokOptions,
@@ -298,11 +207,7 @@ const completionSpec: Fig.Spec = {
       description: "Start a TCP tunnel",
       args: {
         name: "port",
-        suggestions: [
-          {
-            name: "22",
-          },
-        ],
+        suggestions: ["22"],
       },
       options: [
         ...defaultNgrokOptions,
@@ -312,7 +217,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--remote-addr", "-remote-addr"],
           description: "Bind remote address (requires you reserve an address)",
-          args: {},
+          args: {
+            name: "remote address",
+          },
         },
       ],
     },
@@ -331,7 +238,6 @@ const completionSpec: Fig.Spec = {
         subdomainOption,
         {
           name: ["--client-cas", "-client-cas"],
-          insertValue: "--client-cas={cursor}",
           args: {
             name: "certificate",
             template: "filepaths",
@@ -339,7 +245,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--crt", "-crt"],
-          insertValue: "--crt={cursor}",
           args: {
             name: "certificate",
             template: "filepaths",
@@ -347,7 +252,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--key", "-key"],
-          insertValue: "--key={cursor}",
           args: {
             name: "certificate",
             template: "filepaths",
@@ -365,14 +269,7 @@ const completionSpec: Fig.Spec = {
           description: "Update channel (stable, beta)",
           args: {
             name: "channel",
-            suggestions: [
-              {
-                name: "stable",
-              },
-              {
-                name: "beta",
-              },
-            ],
+            suggestions: ["stable", "beta"],
           },
         },
       ],
