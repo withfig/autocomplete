@@ -25,7 +25,6 @@ const addonAuth: Fig.Subcommand = {
   args: {
     name: "name",
     description: "Add-on slug",
-    isOptional: false,
   },
   options: [...debugProxyOptions],
 };
@@ -36,7 +35,6 @@ const addonConfig: Fig.Subcommand = {
   args: {
     name: "name",
     description: "Add-on namespace",
-    isOptional: false,
   },
   options: [...debugProxyOptions],
 };
@@ -47,7 +45,6 @@ const addonCreate: Fig.Subcommand = {
   args: {
     name: "name",
     description: "Add-on namespace",
-    isOptional: false,
   },
   options: [...debugProxyOptions],
 };
@@ -58,7 +55,6 @@ const addonDelete: Fig.Subcommand = {
   args: {
     name: "name",
     description: "Add-on namespace",
-    isOptional: false,
   },
   options: [
     {
@@ -92,6 +88,9 @@ const api: Fig.Subcommand = {
     {
       name: ["-d", "--data"],
       description: "Data to use",
+      args: {
+        name: "data",
+      },
     },
     {
       name: "--list",
@@ -130,8 +129,12 @@ const completion: Fig.Subcommand = {
   options: [
     {
       name: ["-s", "--shell"],
-      description: "(required) Name of shell [bash|fish|zsh]",
+      description: "Name of shell (bash|fish|zsh)",
       isRequired: true,
+      args: {
+        name: "shell",
+        suggestions: ["bash", "fish", "zsh"],
+      },
     },
   ],
 };
@@ -265,6 +268,7 @@ const dev: Fig.Subcommand = {
       description: "Command to run",
       args: {
         name: "command",
+        isCommand: true,
       },
     },
     {
@@ -272,6 +276,7 @@ const dev: Fig.Subcommand = {
       description: "Dir with static files",
       args: {
         name: "dir",
+        template: "filepaths",
       },
     },
     {
@@ -279,6 +284,7 @@ const dev: Fig.Subcommand = {
       description: "Specify a functions folder to serve",
       args: {
         name: "functions",
+        template: "filepaths",
       },
     },
     {
@@ -357,6 +363,7 @@ const devTrace: Fig.Subcommand = {
       description: "Path to the publish directory",
       args: {
         name: "watch",
+        template: "filepaths",
       },
     },
     {
@@ -385,6 +392,7 @@ const envImport: Fig.Subcommand = {
   args: {
     name: "filename",
     description: ".env file to import",
+    template: "filepaths",
   },
   options: [
     {
@@ -574,6 +582,7 @@ const functionsServe: Fig.Subcommand = {
       description: "Specify a functions folder to deploy",
       args: {
         name: "functions",
+        template: "folders",
       },
     },
     {
@@ -665,6 +674,7 @@ const lmInstall: Fig.Subcommand = {
     {
       name: ["-f", "--force"],
       description: "Force the credentials helper installation",
+      isDangerous: true,
     },
   ],
 };
@@ -887,10 +897,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--telemetry-disable",
       description: "Opt out of sharing usage data",
+      exclusiveOn: ["--telemetry-enable"],
     },
     {
       name: "--telemetry-enable",
       description: "Allow your usage to help shape development",
+      exclusiveOn: ["--telemetry-disable"],
     },
   ],
 };
