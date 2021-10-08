@@ -892,24 +892,28 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--global",
-          insertValue: "--global {cursor}",
           description:
             "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
-          args: {
-            isVariadic: true,
-            suggestions: [
-              {
-                name: "user.name",
-                description: "Set config for username",
-                insertValue: "user.name '{cursor}'",
-              },
-              {
-                name: "user.email",
-                description: "Set config for email",
-                insertValue: "user.email '{cursor}'",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+              isVariadic: true,
+              suggestions: [
+                {
+                  name: "user.name",
+                  description: "Config for username",
+                },
+                {
+                  name: "user.email",
+                  description: "Config for email",
+                },
+              ],
+            },
+            {
+              name: "value",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--replace-all",
