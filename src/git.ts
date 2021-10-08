@@ -892,7 +892,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--global",
-          insertValue: "--global {cursor}",
           description:
             "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
           args: {
@@ -900,13 +899,11 @@ const completionSpec: Fig.Spec = {
             suggestions: [
               {
                 name: "user.name",
-                description: "Set config for username",
-                insertValue: "user.name '{cursor}'",
+                description: "Config for username",
               },
               {
                 name: "user.email",
-                description: "Set config for email",
-                insertValue: "user.email '{cursor}'",
+                description: "Config for email",
               },
             ],
           },
