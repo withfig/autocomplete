@@ -60,6 +60,7 @@ const addonDelete: Fig.Subcommand = {
     {
       name: ["-f", "--force"],
       description: "Delete without prompting (useful for CI)",
+      isDangerous: true,
     },
     ...debugProxyOptions,
   ],
@@ -195,7 +196,7 @@ const deploy: Fig.Subcommand = {
       description: "Specify a functions folder to deploy",
       args: {
         name: "functions",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -286,7 +287,7 @@ const dev: Fig.Subcommand = {
       description: "Specify a functions folder to serve",
       args: {
         name: "functions",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -448,7 +449,7 @@ const functionsBuild: Fig.Subcommand = {
       description: "Specify a functions directory to build to",
       args: {
         name: "functions",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -504,7 +505,7 @@ const functionsInvoke: Fig.Subcommand = {
         "Specify a functions folder to parse, overriding netlify.toml",
       args: {
         name: "functions",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -561,7 +562,7 @@ const functionsList: Fig.Subcommand = {
       description: "Specify a functions directory to list",
       args: {
         name: "functions",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -588,7 +589,7 @@ const functionsServe: Fig.Subcommand = {
       description: "Specify a functions folder to deploy",
       args: {
         name: "functions",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -680,7 +681,6 @@ const lmInstall: Fig.Subcommand = {
     {
       name: ["-f", "--force"],
       description: "Force the credentials helper installation",
-      isDangerous: true,
     },
   ],
 };
@@ -792,6 +792,7 @@ const sitesDelete: Fig.Subcommand = {
     {
       name: ["-f", "--force"],
       description: "Delete without prompting (useful for CI)",
+      isDangerous: true,
     },
     ...debugProxyOptions,
   ],
@@ -843,6 +844,7 @@ const subcommands: Fig.Subcommand[] = [
   addonAuth,
   addonConfig,
   addonCreate,
+  addonDelete,
   addonList,
   api,
   build,
