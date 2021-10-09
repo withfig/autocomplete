@@ -20,7 +20,7 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
-const suggistionGenerator: Fig.Generator = {
+const suggestionGenerator: Fig.Generator = {
   script: "assimp listext",
   postProcess: function (out) {
     return out.split(";").map((ext) => {
@@ -77,7 +77,7 @@ const completionSpec: Fig.Spec = {
       description: "Export a file to one of the supported output formats",
       args: [
         {
-          name: "modal",
+          name: "model",
           description: "Relative or absolute path to the input model",
         },
         {
@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
           description: "No postprocessing, do a raw import",
           args: {
             name: "format",
-            generators: suggistionGenerator,
+            generators: suggestionGenerator,
           },
         },
         ...helpOptions,
@@ -116,7 +116,7 @@ const completionSpec: Fig.Spec = {
       description: "Extract embedded texture images",
       args: [
         {
-          name: "modal",
+          name: "model",
           description: "Relative or absolute path to the input model",
         },
         {
@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
           description: "Zero-based index of the texture to be extracted",
           args: {
             name: "index",
-            generators: suggistionGenerator,
+            generators: suggestionGenerator,
           },
         },
         {
@@ -144,7 +144,7 @@ const completionSpec: Fig.Spec = {
           description: "No postprocessing, do a raw import",
           args: {
             name: "format",
-            generators: suggistionGenerator,
+            generators: suggestionGenerator,
           },
         },
         ...commonOptions,
@@ -156,7 +156,7 @@ const completionSpec: Fig.Spec = {
       description: "Convert models to a binary or textual dump (ASSBIN/ASSXML)",
       args: [
         {
-          name: "modal",
+          name: "model",
           description: "Relative or absolute path to the input model",
         },
         {
