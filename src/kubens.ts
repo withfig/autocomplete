@@ -1,7 +1,17 @@
 const completionSpec: Fig.Spec = {
   name: "kubens",
   description: "Switch between Kubernetes-namespaces",
-
+  additionalSuggestions: [
+    {
+      name: "-",
+      priority: 85,
+      description: "Switch to previous namespace within the current context",
+      icon: "fig://icon?type=asterisk",
+    },
+  ],
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   options: [
     {
       name: ["--help", "-h"],
@@ -14,13 +24,9 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "namespace",
-
     generators: [
       {
-        script: function (context) {
-          // Script that removes the current namespace from the output, so it can be added in another generator
-          return `kubens | grep -v $(kubens -c)`;
-        },
+        script: "kubens | grep -v $(kubens -c)",
         postProcess: (out) =>
           out.split("\n").map((item) => ({
             name: item,
@@ -29,28 +35,17 @@ const completionSpec: Fig.Spec = {
           })) as Fig.Suggestion[],
       },
       {
-        script: function (context) {
-          return `kubens -c`;
-        },
+        script: "kubens -c",
         postProcess: (out) => {
-          const options: Fig.Suggestion[] = [
-            {
-              name: "-",
-              priority: 85,
-              description: "Switch to previous namespace in current context",
-              icon: "fig://icon?type=asterisk",
-            },
-          ];
-
-          if (!!out) {
-            options.push({
-              name: out,
-              priority: 100,
-              icon: "⭐️",
-            });
-          }
-
-          return options;
+          return !out
+            ? []
+            : [
+                {
+                  name: out,
+                  priority: 100,
+                  icon: "⭐️",
+                },
+              ];
         },
       },
     ],
