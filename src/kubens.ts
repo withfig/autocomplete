@@ -1,5 +1,3 @@
-const activeNamespace = " (active)";
-
 const completionSpec: Fig.Spec = {
   name: "kubens",
   description: "Switch between Kubernetes-namespaces",
