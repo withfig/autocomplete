@@ -12,7 +12,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "shell",
         description: "The shell to generate completions for",
-        isOptional: false,
         suggestions: ["bash", "zsh", "fish", "powershell"],
       },
     },
@@ -156,7 +155,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "variable",
             description: "The name of the variable you want to delete",
-            isOptional: false,
           },
         },
         {
@@ -165,7 +163,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "variable",
             description: "The name of the variable you want to get",
-            isOptional: false,
           },
         },
         {
@@ -175,12 +172,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "variable",
               description: "The name of the variable you want to set",
-              isOptional: false,
             },
             {
               name: "value",
               description: "Value of the variable",
-              isOptional: false,
             },
           ],
         },
