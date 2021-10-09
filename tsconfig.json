@@ -8,13 +8,7 @@
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "paths": {
-      "*": ["*", "node_modules/@withfig/autocomplete-tools/@types/*"]
-    },
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@withfig/autocomplete-tools/@types"
-    ]
+    "types": ["@withfig/autocomplete-types"]
   },
   "include": ["./src/**/*", "dangerfile.ts"]
 }
