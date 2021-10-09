@@ -1,4 +1,4 @@
-const debugProxyOptions = [
+const debugProxyOptions: Fig.Option[] = [
   {
     name: "--debug",
     description: "Print debugging information",
@@ -187,6 +187,7 @@ const deploy: Fig.Subcommand = {
       description: "Specify a folder to deploy",
       args: {
         name: "dir",
+        template: "folders",
       },
     },
     {
@@ -194,6 +195,7 @@ const deploy: Fig.Subcommand = {
       description: "Specify a functions folder to deploy",
       args: {
         name: "functions",
+        template: "filepaths",
       },
     },
     {
@@ -446,6 +448,7 @@ const functionsBuild: Fig.Subcommand = {
       description: "Specify a functions directory to build to",
       args: {
         name: "functions",
+        template: "filepaths",
       },
     },
     {
@@ -501,6 +504,7 @@ const functionsInvoke: Fig.Subcommand = {
         "Specify a functions folder to parse, overriding netlify.toml",
       args: {
         name: "functions",
+        template: "filepaths",
       },
     },
     {
@@ -516,6 +520,7 @@ const functionsInvoke: Fig.Subcommand = {
         "Supply POST payload in stringified json, or a path to a json file",
       args: {
         name: "payload",
+        template: "filepaths",
       },
     },
     {
@@ -556,6 +561,7 @@ const functionsList: Fig.Subcommand = {
       description: "Specify a functions directory to list",
       args: {
         name: "functions",
+        template: "filepaths",
       },
     },
     {
@@ -582,7 +588,7 @@ const functionsServe: Fig.Subcommand = {
       description: "Specify a functions folder to deploy",
       args: {
         name: "functions",
-        template: "folders",
+        template: "filepaths",
       },
     },
     {
