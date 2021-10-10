@@ -1,3 +1,7 @@
+import prismaSpec from "./prisma";
+
+const prismaCommands = (prismaSpec as Fig.Subcommand).subcommands;
+
 const commonOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
@@ -229,6 +233,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["prisma", "p"],
       description: "Loads env variables then proxies all args to Prisma CLI",
+      subcommands: prismaCommands,
     },
     {
       name: ["routes", "r"],
