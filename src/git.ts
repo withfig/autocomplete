@@ -3943,7 +3943,8 @@ const completionSpec: Fig.Spec = {
           description: "Prints the name of the current branch",
         },
         {
-          name: ["-v", "-vv", "--verbose"],
+          name: ["-v", "--verbose"],
+          isRepeatable: 2,
           description:
             "Shows sha1 and commit subject line for each head, along with relationship to upstream branch when in list mode. If given twice, prints the path of the linked worktree and the name of the upstream branch",
         },
