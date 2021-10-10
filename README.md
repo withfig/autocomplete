@@ -25,7 +25,8 @@ Want to add autocomplete to a CLI tool (or make changes to an existing autocompl
 
 Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from information in the spec or can be generated dynamically by running shell commands or reading local files.
 
-**For documentation and tutorials**, visit [fig.io/docs](https://fig.io/docs)
+**For documentation and tutorials**, visit
+[fig.io/docs](https://fig.io/docs).
 
 **To request autocomplete for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
