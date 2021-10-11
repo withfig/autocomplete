@@ -892,24 +892,28 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--global",
-          insertValue: "--global {cursor}",
           description:
             "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
-          args: {
-            isVariadic: true,
-            suggestions: [
-              {
-                name: "user.name",
-                description: "Set config for username",
-                insertValue: "user.name '{cursor}'",
-              },
-              {
-                name: "user.email",
-                description: "Set config for email",
-                insertValue: "user.email '{cursor}'",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+              isVariadic: true,
+              suggestions: [
+                {
+                  name: "user.name",
+                  description: "Config for username",
+                },
+                {
+                  name: "user.email",
+                  description: "Config for email",
+                },
+              ],
+            },
+            {
+              name: "value",
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--replace-all",
@@ -3939,7 +3943,8 @@ const completionSpec: Fig.Spec = {
           description: "Prints the name of the current branch",
         },
         {
-          name: ["-v", "-vv", "--verbose"],
+          name: ["-v", "--verbose"],
+          isRepeatable: 2,
           description:
             "Shows sha1 and commit subject line for each head, along with relationship to upstream branch when in list mode. If given twice, prints the path of the linked worktree and the name of the upstream branch",
         },
