@@ -123,7 +123,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--format"],
-          description: "Optional. No postprocessing, do a raw import",
+          description: "Optional. Export file formats supported by Assimp",
           args: {
             name: "format",
             generators: exportExtGenerator,
