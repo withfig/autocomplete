@@ -374,7 +374,7 @@ const completionSpec: Fig.Spec = {
             const out = await executeShellCommand(
               "cat $(npm prefix)/package.json"
             );
-            const script = JSON.parse(out).scripts?.[token];
+            const script: string = JSON.parse(out).scripts?.[token];
             if (!script) {
               throw new Error("Alias not found");
             }
