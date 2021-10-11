@@ -42,6 +42,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "file",
         description: "Print basic structure of a 3D model",
+        template: "filepaths",
         isVariadic: true,
       },
       options: [
@@ -79,11 +80,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "model",
           description: "Relative or absolute path to the input model",
+          template: "filepaths",
         },
         {
           name: "out",
           description:
             "Relative or absolute path to write the output export to",
+          template: "folders",
           isOptional: true,
         },
       ],
@@ -118,11 +121,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "model",
           description: "Relative or absolute path to the input model",
+          template: "filepaths",
         },
         {
           name: "out",
           description:
             "Relative or absolute path to write the output images to",
+          template: "folders",
           isOptional: true,
         },
       ],
@@ -158,11 +163,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "model",
           description: "Relative or absolute path to the input model",
+          template: "filepaths",
         },
         {
           name: "out",
           description:
             "Relative or absolute path to write the output dump to. If it is omitted, the dump is written to '<model>-dump.txt'",
+          template: "folders",
           isOptional: true,
         },
       ],
@@ -190,10 +197,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "actual",
           description: "Mini dump now",
+          template: "filepaths",
         },
         {
           name: "expected",
           description: "Archived dump from some point in the past",
+          template: "filepaths",
         },
       ],
       options: [...helpOptions],
