@@ -1,24 +1,22 @@
 const helpOptions: Fig.Option[] = [
   {
     name: ["-h", "--help"],
-    description: "Optional. Detailed help on a command",
+    description: "Detailed help on a command",
   },
 ];
 
 const commonOptions: Fig.Option[] = [
   {
     name: "-cfast",
-    description:
-      "Optional. Fast post processing preset, runs just a few important steps",
+    description: "Fast post processing preset, runs just a few important steps",
   },
   {
     name: "-cdefault",
-    description:
-      "Optional. Default post processing: runs all recommended steps",
+    description: "Default post processing: runs all recommended steps",
   },
   {
     name: "-cfull",
-    description: "Optional. Fires almost all post processing steps",
+    description: "Fires almost all post processing steps",
   },
 ];
 
@@ -63,8 +61,7 @@ const completionSpec: Fig.Spec = {
       description: "List all known file extensions available for import",
       args: {
         name: "extension",
-        description:
-          "Required. Check whether a particular file extension is known by us",
+        description: "Check whether a particular file extension is known by us",
         generators: importExtGenerator,
       },
     },
@@ -73,7 +70,7 @@ const completionSpec: Fig.Spec = {
       description: "Show basic information on a specific export format",
       args: {
         name: "extension",
-        description: "Required. Specific file extension",
+        description: "Specific file extension",
         generators: exportExtGenerator,
       },
     },
@@ -83,23 +80,22 @@ const completionSpec: Fig.Spec = {
         "Load a model file and print basic statistics. Full postprocessing is applied unless the `-r` switch is specified",
       args: {
         name: "file",
-        description: "Required. Print basic structure of a 3D model",
+        description: "Print basic structure of a 3D model",
         template: "filepaths",
         isVariadic: true,
       },
       options: [
         {
           name: ["-r", "--raw"],
-          description: "Optional. No postprocessing, do a raw import",
+          description: "No postprocessing, do a raw import",
         },
         {
           name: ["-v", "--verbose"],
-          description:
-            "Optional. Print verbose info such as node transform data",
+          description: "Print verbose info such as node transform data",
         },
         {
           name: ["-s", "--silent"],
-          description: "Optional. Print only minimal info",
+          description: "Print only minimal info",
         },
         ...helpOptions,
       ],
@@ -116,14 +112,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "out",
           description:
-            "Optional. Relative or absolute path to write the output export to",
+            "Relative or absolute path to write the output export to",
           template: "folders",
         },
       ],
       options: [
         {
           name: ["-f", "--format"],
-          description: "Optional. Export file formats supported by Assimp",
+          description: "Export file formats supported by Assimp",
           args: {
             name: "format",
             generators: exportExtGenerator,
@@ -144,7 +140,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "out",
           description:
-            "Optional. Relative or absolute path to write the output images to",
+            "Relative or absolute path to write the output images to",
           template: "folders",
           isOptional: true,
         },
@@ -160,12 +156,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-ba", "–-bmp-with-alpha"],
           description:
-            "Optional. Specifies whether output BMPs contain an alpha channel or not",
+            "Specifies whether output BMPs contain an alpha channel or not",
         },
         {
           name: ["-f", "--format"],
           description:
-            "Optional. Specifies the output file format. Supported formats are BMP and TGA. The default value is BMP (if a full output filename is specified, the output file format is taken from its extension)",
+            "Specifies the output file format. Supported formats are BMP and TGA. The default value is BMP (if a full output filename is specified, the output file format is taken from its extension)",
           args: {
             name: "format",
             suggestions: ["bmp", "tga"],
@@ -174,7 +170,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-s", "–-nosuffix"],
           description:
-            "Optional. Prevents the tool from adding the _img<n> suffix to all filenames. This option must be specified together with -t to ensure that just one image is written",
+            "Prevents the tool from adding the _img<n> suffix to all filenames. This option must be specified together with -t to ensure that just one image is written",
         },
         ...commonOptions,
         ...helpOptions,
@@ -186,13 +182,13 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "model",
-          description: "Required. Relative or absolute path to the input model",
+          description: "Relative or absolute path to the input model",
           template: "filepaths",
         },
         {
           name: "out",
           description:
-            "Optional. Relative or absolute path to write the output dump to. If it is omitted, the dump is written to '<model>-dump.txt'",
+            "Relative or absolute path to write the output dump to. If it is omitted, the dump is written to '<model>-dump.txt'",
           template: "folders",
           isOptional: true,
         },
@@ -200,17 +196,16 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-b", "--binary"],
-          description:
-            "Optional. If true, the dump is written in binary format",
+          description: "If true, the dump is written in binary format",
         },
         {
           name: ["-s", "--short"],
           description:
-            "Optional. If true, the dump is shortened to include only min/max values for all vertex components and animation channels",
+            "If true, the dump is shortened to include only min/max values for all vertex components and animation channels",
         },
         {
           name: ["-z", "--compressed"],
-          description: "Optional. If true, Compressed",
+          description: "If true, Compressed",
         },
         ...commonOptions,
         ...helpOptions,
@@ -222,12 +217,12 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "actual",
-          description: "Required. Mini dump now",
+          description: "Mini dump now",
           template: "filepaths",
         },
         {
           name: "expected",
-          description: "Required. Archived dump from some point in the past",
+          description: "Archived dump from some point in the past",
           template: "filepaths",
         },
       ],
