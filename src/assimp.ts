@@ -226,7 +226,7 @@ const completionSpec: Fig.Spec = {
           template: "filepaths",
         },
       ],
-      options: [...helpOptions],
+      options: helpOptions,
     },
     {
       name: "version",
