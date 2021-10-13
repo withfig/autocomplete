@@ -106,11 +106,24 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // user aliases
   aliases: {
-    script: "git --no-optional-locks config --get-regexp '^alias' |cut -d. -f2",
-    postProcess: function (out) {
-      return out.split("\n").map((aliasLine) => {
-        const splitted = aliasLine.match(/^(\S+)\s(.*)/);
-        return { name: splitted[1], description: splitted[2] };
+    script: "git --no-optional-locks config --get-regexp '^alias.'",
+    postProcess: (out) => {
+      const suggestions = out.split("\n").map((aliasLine) => {
+        const [name, ...parts] = aliasLine.slice("alias.".length).split(" ");
+        const value = parts.join(" ");
+        return {
+          name,
+          description: `Alias for '${value}'`,
+          icon: "fig://icon?type=commandkey",
+        };
+      });
+      const names = {};
+      return suggestions.filter((suggestion) => {
+        if (names[suggestion.name]) {
+          return false;
+        }
+        names[suggestion.name] = true;
+        return true;
       });
     },
   },
@@ -487,6 +500,21 @@ const headSuggestions = [
 const completionSpec: Fig.Spec = {
   name: "git",
   description: "The stupid content tracker",
+  args: {
+    name: "alias",
+    description: "Custom user defined git alias",
+    parserDirectives: {
+      alias: async (token, exec) => {
+        const result = await exec(`git config --get alias.${token}`);
+        if (!result) {
+          throw new Error("Failed parsing alias");
+        }
+        return result;
+      },
+    },
+    isOptional: true,
+    generators: gitGenerators.aliases,
+  },
   options: [
     {
       name: "--version",

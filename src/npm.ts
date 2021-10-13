@@ -371,6 +371,19 @@ const completionSpec: Fig.Spec = {
         name: "script",
         description: "Run scripts from you package.json",
         generators: npmScriptsGenerator,
+        parserDirectives: {
+          alias: async (token, executeShellCommand) => {
+            const out = await executeShellCommand(
+              "cat $(npm prefix)/package.json"
+            );
+            const script: string = JSON.parse(out).scripts?.[token];
+            if (!script) {
+              throw new Error("Alias not found");
+            }
+            return script;
+          },
+        },
+        isCommand: true,
       },
     },
     {
