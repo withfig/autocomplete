@@ -368,6 +368,8 @@ const completionSpec: Fig.Spec = {
         },
       ],
       args: {
+        name: "script",
+        description: "Run scripts from you package.json",
         generators: npmScriptsGenerator,
       },
     },
