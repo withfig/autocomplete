@@ -12,7 +12,7 @@ const authOptions: Fig.Option[] = [
 const databaseOption: Fig.Option = {
   name: "--database",
   description: "The database this project is using",
-  args: {},
+  args: { name: "string" },
 };
 
 const forceOption: (arg0: string) => Fig.Option = (target: string) => {
@@ -31,19 +31,19 @@ const localAddrOption: Fig.Option = {
   name: "--local-addr",
   description:
     "Local address to bind and listen for connections. By default the proxy binds to 127.0.0.1 with a random port",
-  args: {},
+  args: { name: "string" },
 };
 
 const orgOption: Fig.Option = {
   name: "--org",
   description: "The organization for the current user",
-  args: {},
+  args: { name: "string" },
 };
 
 const portOption: Fig.Option = {
   name: "--port",
   description: 'Local port to bind and listen for connections (default "3306")',
-  args: {},
+  args: { name: "string" },
 };
 
 const regionOption: Fig.Option = {
@@ -55,7 +55,7 @@ const remoteAddrOption: Fig.Option = {
   name: "--remote-addr",
   description:
     "PlanetScale Database remote network address. By default the remote address is populated automatically from the PlanetScale API",
-  args: {},
+  args: { name: "string" },
 };
 
 const webOption: Fig.Option = {
@@ -69,19 +69,19 @@ const globalOptions: Fig.Option[] = [
     name: "--api-token",
     description:
       "The API token to use for authenticating against the PlanetScale API",
-    args: {},
+    args: { name: "string" },
   },
   {
     name: "--api-url",
     description:
       'The base URL for the PlanetScale API. (default "https://api.planetscale.com/")',
-    args: {},
+    args: { name: "string" },
   },
   {
     name: "--config",
     description:
       "Config file (default is $HOME/.config/planetscale/pscale.yml)",
-    args: {},
+    args: { name: "string" },
   },
   {
     name: "--debug",
@@ -91,7 +91,7 @@ const globalOptions: Fig.Option[] = [
     name: ["--format", "-f"],
     description:
       'Show output in a specific format. Possible values: [human, json, csv] (default "human")',
-    args: {},
+    args: { name: "string" },
   },
   {
     name: "--no-color",
@@ -100,12 +100,12 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--service-token",
     description: "Service Token for authenticating",
-    args: {},
+    args: { name: "string" },
   },
   {
     name: "--service-token-name",
     description: "The Service Token name for authenticating",
-    args: {},
+    args: { name: "string" },
   },
 ];
 
@@ -151,31 +151,31 @@ const completionSpec: Fig.Spec = {
           name: ["create", "b"],
           description: "Backup a branch's data and schema",
           options: [...globalOptions],
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "branch" }],
         },
         {
           name: ["delete", "rm"],
           description: "Delete a branch backup",
           options: [...globalOptions],
-          args: [{}, {}, {}],
+          args: [{ name: "database" }, { name: "branch" }, { name: "backup" }],
         },
         {
           name: ["list", "ls"],
           description: "List all backups of a branch",
           options: [...globalOptions],
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "branch" }],
         },
         {
           name: "restore",
           description: "Restore a backup to a new branch",
           options: [...globalOptions],
-          args: [{}, {}, {}],
+          args: [{ name: "database" }, { name: "branch" }, { name: "backup" }],
         },
         {
           name: "show",
           description: "Show a specific backup of a branch",
           options: [...globalOptions],
-          args: [{}, {}, {}],
+          args: [{ name: "database" }, { name: "branch" }, { name: "backup" }],
         },
       ],
     },
@@ -200,19 +200,19 @@ const completionSpec: Fig.Spec = {
               description: "Create a branch in your web browser",
             },
           ],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: ["delete", "rm"],
           description: "Delete a branch from a database",
           options: [...globalOptions, forceOption("branch")],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: "diff",
           description: "Show the diff of a branch",
           options: [...globalOptions, webOption],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: ["list", "ls"],
@@ -221,36 +221,37 @@ const completionSpec: Fig.Spec = {
             ...globalOptions,
             { name: "--web", description: "List branches in your web browser" },
           ],
-          args: {},
+          args: { name: "database" },
         },
         {
           name: ["promote", "p"],
           description: "Promote a new branch from a database",
           options: [...globalOptions],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: "refresh-schema",
           description: "Refresh the schema for a database branch",
           options: [...globalOptions],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: "schema",
           description: "Show the schema of a branch",
           options: [...globalOptions, webOption],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: "show",
           description: "Show a specific branch of a database",
           options: [...globalOptions, webOption],
-          args: [{}, {}],
+          args: [{ name: "source-database" }, { name: "branch" }],
         },
         {
           name: "switch",
           description:
             "Switches the current project to use the specified branch",
+          args: { name: "branch" },
           options: [
             ...globalOptions,
             {
@@ -263,7 +264,7 @@ const completionSpec: Fig.Spec = {
               name: "--parent-branch",
               description:
                 'Parent branch to inherit from if a new branch is being created (default "main")',
-              args: {},
+              args: { name: "string " },
             },
           ],
         },
@@ -278,32 +279,32 @@ const completionSpec: Fig.Spec = {
       name: "connect",
       description:
         "Create a secure connection to a database and branch for a local client",
-      args: [{}, {}],
+      args: [{ name: "mydatabase" }, { name: "mybranch" }],
       options: [
         helpOption,
         {
           name: "--execute",
           description:
             "Run this command after successfully connecting to the database",
-          args: {},
+          args: { name: "string" },
         },
         {
           name: "--execute-env-url",
           description:
             'Environment variable name that contains the exposed Database URL. (default "DATABASE_URL")',
-          args: {},
+          args: { name: "string" },
         },
         {
           name: "--execute-protocol",
           description:
             'Protocol for the exposed URL (by default DATABASE_URL) value in execute (default "mysql2")',
-          args: {},
+          args: { name: "string" },
         },
         {
           name: "--host",
           description:
             'Local host to bind and listen for connections (default "127.0.0.1")',
-          args: {},
+          args: { name: "string" },
         },
         orgOption,
         portOption,
@@ -323,24 +324,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "--notes",
               description: "Notes for the database",
-              args: {},
+              args: { name: "string" },
             },
             regionOption,
             webOption,
             ...globalOptions,
           ],
-          args: {},
+          args: { name: "database" },
         },
         {
           name: ["delete", "rm"],
           description: "Delete a database instance",
           options: [forceOption("database"), ...globalOptions],
-          args: {},
+          args: { name: "database" },
         },
         {
           name: "dump",
           description: "Backup and dump your database",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "branch" }],
           options: [
             ...globalOptions,
             localAddrOption,
@@ -348,13 +349,13 @@ const completionSpec: Fig.Spec = {
               name: "--output",
               description:
                 "Output director of the dump. By default the dump is stored to a folder in the current directory",
-              args: {},
+              args: { name: "string" },
             },
             {
               name: "--tables",
               description:
                 "Comma separated string of tables to dump. By default all tables are dumped",
-              args: {},
+              args: { name: "string" },
             },
           ],
         },
@@ -366,13 +367,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "restore-dump",
           description: "Restore your database from a local dump directory",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "branch" }],
           options: [
             {
               name: "--dir",
               description:
                 "Directory that contains the files to be used for restoration (required)",
-              args: {},
+              args: { name: "string" },
             },
             localAddrOption,
             ...globalOptions,
@@ -381,7 +382,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "show",
           description: "Retrieve information about a database",
-          args: {},
+          args: { name: "database" },
           options: [...globalOptions, webOption],
         },
       ],
@@ -393,19 +394,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "close",
           description: "Close a deploy request",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "number" }],
           options: [...globalOptions],
         },
         {
           name: "create",
           description: "Create a deploy request from a branch",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "branch" }],
           options: [
             {
               name: "--deploy-to",
               description:
                 "Branch to deploy the branch. By default it's set to 'main' (default \"main\")",
-              args: {},
+              args: { name: "string" },
             },
             ...globalOptions,
           ],
@@ -413,25 +414,25 @@ const completionSpec: Fig.Spec = {
         {
           name: "deploy",
           description: "Deploy a specific deploy request",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "branch" }],
           options: [...globalOptions],
         },
         {
           name: "diff",
           description: "Show the diff of a deploy request",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "number" }],
           options: [webOption, ...globalOptions],
         },
         {
           name: ["list", "ls"],
           description: "List all deploy requests for a database",
-          args: {},
+          args: { name: "database" },
           options: [webOption, ...globalOptions],
         },
         {
           name: "review",
           description: "Review a deploy request (approve, comment, etc...)",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "number" }],
           options: [
             {
               name: "--approve",
@@ -440,7 +441,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--comment",
               description: "Comment on a deploy request",
-              args: {},
+              args: { name: "string" },
             },
             ...globalOptions,
           ],
@@ -448,7 +449,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "show",
           description: "Show a specific deploy request",
-          args: [{}, {}],
+          args: [{ name: "database" }, { name: "number" }],
           options: [webOption, ...globalOptions],
         },
       ],
@@ -470,19 +471,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "show",
           description: "Display the currently active organization",
-          args: {},
           options: [...globalOptions],
         },
         {
           name: "switch",
           description: "Switch the currently active organization",
-          args: {},
+          args: { name: "organization" },
           options: [
             {
               name: "--save-config",
               description:
                 "Path to store the organization. By default the configuration is deducted automatically based on where pscale is executed",
-              args: {},
+              args: { name: "string" },
             },
             ...globalOptions,
           ],
@@ -498,19 +498,23 @@ const completionSpec: Fig.Spec = {
         {
           name: ["create", "p"],
           description: "Create password to access a branch's data",
-          args: [{}, {}, {}],
+          args: [{ name: "database" }, { name: "branch" }, { name: "name" }],
           options: [...globalOptions],
         },
         {
           name: ["delete", "rm"],
           description: "Delete a branch password",
-          args: [{}, {}],
+          args: [
+            { name: "database" },
+            { name: "branch" },
+            { name: "password" },
+          ],
           options: [forceOption("password"), ...globalOptions],
         },
         {
           name: ["list", "ls"],
           description: "List all passwords of a database",
-          args: {},
+          args: { name: "database" },
           options: [webOption, ...globalOptions],
         },
       ],
@@ -535,7 +539,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-access",
           description: "Ddd access to a service token in the organization",
-          args: [{}, {}, {}],
+          args: [{ name: "token" }, { name: "access" }, { name: "access" }],
           options: [databaseOption, ...globalOptions],
         },
         {
@@ -546,14 +550,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an entire service token in an organization",
-          args: {},
+          args: { name: "token" },
           options: [...globalOptions],
         },
         {
           name: "delete-access",
           description:
             "Delete access granted to a service token in the organization",
-          args: [{}, {}, {}],
+          args: [{ name: "token" }, { name: "access" }, { name: "access" }],
           options: [databaseOption, ...globalOptions],
         },
         {
@@ -564,7 +568,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "show-access",
           description: "Fetch a service token and it's accesses",
-          args: {},
+          args: { name: "name" },
           options: [...globalOptions],
         },
       ],
@@ -572,7 +576,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "shell",
       description: "Open a MySQL shell instance to a database and branch",
-      args: [{}, {}],
+      args: [{ name: "mydatabase" }, { name: "mybranch" }],
       options: [
         ...globalOptions,
         portOption,
