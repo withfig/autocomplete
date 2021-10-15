@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "outDir": "./specs",
-    "target": "es5",
+    "outDir": "./build",
+    "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext"],
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "types": ["@withfig/autocomplete-types"]
   },
-  "include": ["./dev/**/*", "dangerfile.ts"],
-  "files": ["./schemas/fig.d.ts"]
+  "include": ["./src/**/*", "dangerfile.ts"]
 }

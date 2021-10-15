@@ -1,13 +1,18 @@
 .DS_Store
 building_scripts/
 node_modules
-.idea
 dist
 build
 npm-debug.log
 .env
 
-.idea/
+.idea
 .vscode
 specs
-.idea/
+
+# we don't have any dependencies which are bundled with
+# the specs so we can safely ignore lockfiles
+# to make everyones life easier
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

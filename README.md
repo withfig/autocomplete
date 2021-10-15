@@ -25,7 +25,8 @@ Want to add autocomplete to a CLI tool (or make changes to an existing autocompl
 
 Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from information in the spec or can be generated dynamically by running shell commands or reading local files.
 
-**For documentation and tutorials**, visit [fig.io/docs](https://fig.io/docs)
+**For documentation and tutorials**, visit
+[fig.io/docs](https://fig.io/docs).
 
 **To request autocomplete for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
@@ -33,10 +34,19 @@ Completion specs are defined in a _declarative_ schema that specifies `subcomman
 
 ## 😎 Get Started
 
-Build your first spec in < 3 min: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
+Build your first spec in 3 min or less: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
 
-1. Fork this repo
-   [![GitHub forks](https://img.shields.io/github/forks/withfig/autocomplete.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/withfig/autocomplete/fork/)
+**Prerequisites:**
+
+- Early access to the Fig macOS app.
+  > If you don't have access yet, sign up for the [waitlist](https://fig.io) and say you're interested in building completions!
+- Node and NPM (or Yarn).
+
+<br/>
+
+**Setup:**
+
+1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
 
 2. Clone your forked repo and create an example spec
 
@@ -52,7 +62,7 @@ git remote add upstream https://github.com/withfig/autocomplete.git
 npm install
 
 # Create an example spec (call it "abc")
-npm run create-example
+npm run create-spec abc
 
 # Turn on "dev mode"
 npm run dev
@@ -62,9 +72,9 @@ npm run dev
 
 #### Other things to know
 
-- Edit your spec in typescript in the `dev/` folder
-- On save, specs are compiled to the `specs/` folder
-- In **dev mode** specs are read from the `specs` folders. Otherwise they are read from `~/.fig/autocomplete`
+- Edit your spec in typescript in the `src/` folder
+- On save, specs are compiled to the `build/` folder
+- In **dev mode** specs are read from the `build` folders. Otherwise they are read from `~/.fig/autocomplete`
 
 <br/>
 
@@ -72,21 +82,28 @@ npm run dev
 
 ```bash
 
-# Create a new spec from a boilerplate template
-npm run create-boilerplate
-
-# Typecheck all specs in the dev/ folder
+# Typecheck all specs in the src/ folder
 npm test
 
-# Compile typescripts specs from dev/ folder to specs/ folder
+# Compile typescripts specs from src/ folder to build/ folder
 npm run build
 
-# Copy all specs from the specs/ folder to the ~/.fig/autocomplete folder
+# Copy all specs from the build/ folder to the ~/.fig/autocomplete folder
 npm run copy:all
 
-# Copy an individual spec from the specs/ folder to the ~/.fig/autocomplete folder
+# Copy an individual spec from the build/ folder to the ~/.fig/autocomplete folder
 npm run copy <spec-name>
 ```
+
+## 🎃 Hacktoberfest
+Yes! We are participating in Hacktoberfest and would love your contributions! You can build your first spec in < 3 minutes with our [Getting Started Guide](https://fig.io/docs/getting-started).
+
+**We would love contributions for**
+* solutions to these [Hacktoberfest-specific issues](https://github.com/withfig/autocomplete/issues?q=is%3Aissue+is%3Aopen+label%3Ahacktoberfest)
+* any other completion spec for CLI tools you use regularly
+* generators for existing specs
+
+Never submitted a PR before? Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 100+ contributors made their first open source contribution to Fig too!
 
 ## 😊 Need Help?
 
@@ -122,7 +139,7 @@ Yes! Check out our guide on how to [get started building autocomplete specs](htt
 
 #### Did we miss something?
 
-Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/community).
+Get in touch at hello@fig.io or chat with us in [Discord](https://fig.io/community).
 
 <br/>
 
