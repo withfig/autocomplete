@@ -243,7 +243,7 @@ const completionSpec: Fig.Spec = {
             "List only formulae, or treat all named arguments as formulae",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "List only casks, or treat all named arguments as casks",
         },
         {
@@ -528,7 +528,7 @@ const completionSpec: Fig.Spec = {
             "Print install times for each formula at the end of the run",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "--casks Treat all named arguments as casks",
         },
         {
@@ -702,7 +702,7 @@ const completionSpec: Fig.Spec = {
           description: "Search online and locally for formulae",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "Search online and locally for casks",
         },
         {
@@ -840,7 +840,7 @@ const completionSpec: Fig.Spec = {
             "Print install times for each formula at the end of the run",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "--casks Treat all named arguments as casks",
         },
         {
@@ -1068,7 +1068,7 @@ const completionSpec: Fig.Spec = {
               description: "Treat all named arguments as formulae",
             },
             {
-              name: "--cask,",
+              name: "--cask",
               description: "Treat all named arguments as casks",
             },
           ],
