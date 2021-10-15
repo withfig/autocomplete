@@ -103,7 +103,7 @@ Yes! We are participating in Hacktoberfest and would love your contributions! Yo
 * any other completion spec for CLI tools you use regularly
 * generators for existing specs
 
-Never submitted a PR before? Check out our [How to Contribute](https://fig.io/docs/tutorials/contributing-to-public-specs) guide. Many of Fig's 100+ contributors made their first open source contribution to Fig too!
+Never submitted a PR before? Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 100+ contributors made their first open source contribution to Fig too!
 
 ## 😊 Need Help?
 
