@@ -263,7 +263,7 @@ export const completion: Fig.Spec = {
       options: [
         ...commonOptions,
         {
-          name: ["--all"],
+          name: "--all",
           description: "Displays all commands available in the CLI",
           priority: 1,
         },
@@ -445,7 +445,7 @@ export const completion: Fig.Spec = {
           priority: 5,
         },
         {
-          name: ["--no-watch"],
+          name: "--no-watch",
           description: "Doesn't watch for file changes after the initial link",
           priority: 6,
         },
@@ -654,22 +654,22 @@ export const completion: Fig.Spec = {
           priority: 1,
         },
         {
-          name: ["--all"],
+          name: "--all",
           description: "Sets up all available typings, configs, and tools",
           priority: 2,
         },
         {
-          name: ["--tooling"],
+          name: "--tooling",
           description: "Sets up Prettier, Husky, and ESLint",
           priority: 3,
         },
         {
-          name: ["--tsconfig"],
+          name: "--tsconfig",
           description: "Sets up React and Node TSconfig, if applicable",
           priority: 4,
         },
         {
-          name: ["--typings"],
+          name: "--typings",
           description: "Sets up GraphQL and React typings",
           priority: 5,
         },
