@@ -8,7 +8,8 @@ const commonOptions: Fig.Option[] = [
 
 export const completion: Fig.Spec = {
   name: "vtex",
-  description: "Fig autocomplete for VTEX.io",
+  description:
+    "Fig autocomplete for VTEX IO's CLI - VTEX IO's CLI allows you to perform any action necessary to your development process, such as linking local files to the VTEX platform, managing workspaces, and releasing new app versions.",
   subcommands: [
     {
       name: "add",
@@ -18,7 +19,6 @@ export const completion: Fig.Spec = {
           name: "APPID",
           description:
             "Name and version ({vendor}.{appname}@{x.x.x}) of the dependency to include in the manifest.json file.",
-          isOptional: false,
         },
         {
           name: "ITHAPPID",
@@ -34,7 +34,7 @@ export const completion: Fig.Spec = {
       description: "Automatically updates VTEX IO's CLI.",
       args: {
         name: "CHANNEL",
-        description: ".",
+        description: "Channel to automatically updates",
         isOptional: true,
       },
       options: [...commonOptions],
@@ -59,45 +59,49 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: "config get",
-      description: "Prints the value of the requested configuration key.",
-      args: [
+      name: "config ",
+      description: "Env Configuration",
+      options: [...commonOptions],
+      subcommands: [
         {
-          name: "CONFIGNAME",
-          description: "Configuration to retrieve the value from.",
-          isOptional: false,
+          name: "get",
+          description: "Prints the value of the requested configuration key.",
+          args: [
+            {
+              name: "CONFIGNAME",
+              description: "Configuration to retrieve the value from.",
+            },
+          ],
+          options: [...commonOptions],
+        },
+        {
+          name: "reset",
+          description:
+            "Resets the specified configuration to its default value.",
+          args: [
+            {
+              name: "CONFIGNAME",
+              description: "Name of the configuration to reset.",
+            },
+          ],
+          options: [...commonOptions],
+        },
+        {
+          name: "set",
+          description: "Sets the value of a configuration key.",
+          args: [
+            {
+              name: "CONFIGNAME",
+              description: "Name of the configuration to reset.",
+            },
+            {
+              name: "VALUE",
+              description: "New value of the specified configuration.",
+            },
+          ],
+          options: [...commonOptions],
         },
       ],
-      options: [...commonOptions],
-    },
-    {
-      name: "config reset",
-      description: "Resets the specified configuration to its default value.",
-      args: [
-        {
-          name: "CONFIGNAME",
-          description: "Name of the configuration to reset.",
-          isOptional: false,
-        },
-      ],
-      options: [...commonOptions],
-    },
-    {
-      name: "config set",
-      description: "Sets the value of a configuration key.",
-      args: [
-        {
-          name: "CONFIGNAME",
-          description: "Name of the configuration.",
-          isOptional: false,
-        },
-        {
-          name: "VALUE",
-          description: "New value of the specified configuration.",
-          isOptional: false,
-        },
-      ],
-      options: [...commonOptions],
     },
     {
       name: "debug dotnet",
@@ -106,7 +110,6 @@ export const completion: Fig.Spec = {
         {
           name: "DEBUGINST",
           description: "Name of the .NET application to debug.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -131,6 +134,7 @@ export const completion: Fig.Spec = {
         },
         {
           name: ["--force", "-f"],
+          isDangerous: true,
           description:
             "(Use with caution.) Ignores the testing period of 7 minutes after publishing an app.",
           priority: 2,
@@ -165,65 +169,74 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: "deps diff",
+      name: "deps",
       description:
         "Displays the differences between the dependencies of two distinct workspaces. If a single parameter is passed, the specified workspace's dependencies are compared with the master's. If no parameter is passed, the diff is made between the current workspace and master.",
-      args: [
+      subcommands: [
         {
-          name: "WORKSPACE1",
-          description: "First workspace for comparison.",
-          isOptional: true,
-        },
-        {
-          name: "WORKSPACE2",
-          description: "[default: master] Second workspace for comparison.",
-          isOptional: true,
-        },
-      ],
-      options: [...commonOptions],
-    },
-    {
-      name: "deps list",
-      description:
-        "Displays the complete dependency tree of the current workspace.",
-      options: [
-        ...commonOptions,
-        {
-          name: ["--keys", "-k"],
-          description: "Shows only key dependencies.",
-          priority: 1,
-        },
-        {
-          name: ["--npm", "-n"],
-          description: "Includes dependencies from the npm registry.",
-          priority: 2,
-        },
-      ],
-    },
-    {
-      name: "deps update",
-      description:
-        "Updates a dependency of the current workspace. If not specified which dependency, it updates all of them.",
-      args: [
-        {
-          name: "APPID",
+          name: "diff",
           description:
-            "Name and version of the app ({vendor}.{appname}@{x.x.x}) to update.",
-          isOptional: true,
+            "Displays the differences between the dependencies of two distinct workspaces. If a single parameter is passed, the specified workspace's dependencies are compared with the master's. If no parameter is passed, the diff is made between the current workspace and master.",
+          args: [
+            {
+              name: "WORKSPACE1",
+              description: "First workspace for comparison.",
+              isOptional: true,
+            },
+            {
+              name: "WORKSPACE2",
+              description: "[default: master] Second workspace for comparison.",
+              isOptional: true,
+            },
+          ],
+          options: [...commonOptions],
         },
         {
-          name: "ITHAPPID",
+          name: "list",
           description:
-            "Names and versions of the multiple apps ({vendor}.{appname}@{x.x.x}) to update.",
-          isOptional: true,
+            "Displays the complete dependency tree of the current workspace.",
+          args: [{}],
+          options: [
+            ...commonOptions,
+            {
+              name: ["--keys", "-k"],
+              description: "Shows only key dependencies.",
+              priority: 1,
+            },
+            {
+              name: ["--npm", "-n"],
+              description: "Includes dependencies from the npm registry.",
+              priority: 2,
+            },
+          ],
+        },
+        {
+          name: "update",
+          description:
+            "Updates a dependency of the current workspace. If not specified which dependency, it updates all of them.",
+          args: [
+            {
+              name: "APPID",
+              description:
+                "Name and version of the app ({vendor}.{appname}@{x.x.x}) to update.",
+              isOptional: true,
+            },
+            {
+              name: "ITHAPPID",
+              description:
+                "Names and versions of the multiple apps ({vendor}.{appname}@{x.x.x}) to update.",
+              isOptional: true,
+            },
+          ],
+          options: [...commonOptions],
         },
       ],
-      options: [...commonOptions],
     },
     {
       name: "edition get",
       description:
         "Displays the Edition App version installed on the current account.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -233,7 +246,6 @@ export const completion: Fig.Spec = {
         {
           name: "EDITION",
           description: "Name of the Edition App to install.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -265,7 +277,6 @@ export const completion: Fig.Spec = {
           name: "SERVICEID",
           description:
             "Name and version of the service ({vendor}.{servicename}@{x.x.x}) to install.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -297,12 +308,14 @@ export const completion: Fig.Spec = {
     {
       name: "infra update",
       description: "Updates all installed infra services.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "init",
       description:
         "Copies starting files and folders from VTEX boilerplates into your local directories.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -327,6 +340,7 @@ export const completion: Fig.Spec = {
         ...commonOptions,
         {
           name: ["--force", "-f"],
+          isDangerous: true,
           description:
             "Installs the specified app without checking for route conflicts.",
           priority: 1,
@@ -340,7 +354,6 @@ export const completion: Fig.Spec = {
         {
           name: "URL",
           description: "URL to audit.",
-          isOptional: false,
         },
       ],
       options: [
@@ -359,7 +372,6 @@ export const completion: Fig.Spec = {
         {
           name: "URL",
           description: "URL to audit.",
-          isOptional: false,
         },
       ],
       options: [
@@ -375,6 +387,7 @@ export const completion: Fig.Spec = {
       name: "lighthouse show",
       description:
         "Shows a previous audit report, filtering by app and/or URL.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -393,6 +406,7 @@ export const completion: Fig.Spec = {
       name: "lh audit",
       description:
         "Shows a previous audit report, filtering by app and/or URL.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -411,6 +425,7 @@ export const completion: Fig.Spec = {
       name: "link",
       description:
         "Syncs the app in the current directory with the development workspace in use.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -452,12 +467,14 @@ export const completion: Fig.Spec = {
       name: "list",
       description:
         "Lists the apps installed on the current workspace and account.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "local token",
       description:
         "Prints the user's auth token and copies it to the clipboard.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -482,6 +499,7 @@ export const completion: Fig.Spec = {
     {
       name: "logout",
       description: "Logs out of the current VTEX account.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -513,10 +531,12 @@ export const completion: Fig.Spec = {
       name: "publish",
       description:
         "Publishes the app in the current directory as a release candidate version.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
           name: ["--force", "-f"],
+          isDangerous: true,
           description: "Publishes the app independently of SemVer rules.",
           priority: 1,
         },
@@ -544,7 +564,6 @@ export const completion: Fig.Spec = {
         {
           name: "CSVPATH",
           description: "CSV file containing the URL paths to be deleted.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -557,7 +576,6 @@ export const completion: Fig.Spec = {
         {
           name: "CSVPATH",
           description: "Name of the CSV file.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -566,6 +584,7 @@ export const completion: Fig.Spec = {
       name: "redirects import",
       description:
         "Imports redirects from a CSV file to the current account and workspace.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -600,7 +619,6 @@ export const completion: Fig.Spec = {
         {
           name: "APNAME",
           description: "Name of the app to check the available settings.",
-          isOptional: false,
         },
         {
           name: "FIELD",
@@ -617,17 +635,14 @@ export const completion: Fig.Spec = {
         {
           name: "APPNAME",
           description: "Name of the app.",
-          isOptional: false,
         },
         {
           name: "FIELD",
           description: "Name of the setting.",
-          isOptional: false,
         },
         {
           name: "VALUE",
           description: "Value of the setting.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -639,12 +654,10 @@ export const completion: Fig.Spec = {
         {
           name: "APPNAME",
           description: "Name of the app.",
-          isOptional: false,
         },
         {
           name: "FIELD",
           description: "Name of the setting.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -653,6 +666,7 @@ export const completion: Fig.Spec = {
       name: "setup",
       description:
         "Sets up typings and tools for the current development environment.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -703,7 +717,6 @@ export const completion: Fig.Spec = {
         {
           name: "ACCOUNT",
           description: "Name of the account to give support.",
-          isOptional: false,
         },
       ],
       options: [...commonOptions],
@@ -715,7 +728,6 @@ export const completion: Fig.Spec = {
         {
           name: "ACCOUNT",
           description: "Account name to log in.",
-          isOptional: false,
         },
       ],
       options: [
@@ -731,6 +743,7 @@ export const completion: Fig.Spec = {
       name: "test e2e",
       description:
         "Runs E2E integration tests for the app in the current directory.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -756,6 +769,7 @@ export const completion: Fig.Spec = {
     {
       name: "test unit",
       description: "Runs unit tests for the app in the current directory.",
+      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -850,32 +864,38 @@ export const completion: Fig.Spec = {
       name: "update",
       description:
         "Updates all installed apps to the latest (minor or patch) version. Does not upgrade to another major version.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "url",
       description: "Prints base URL for the current account and workspace.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "whoami",
       description:
         "Prints the current account, workspace, environment, and login details.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace abtest finish",
       description: "Stops all A/B tests from running on the current account.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace abtest start",
       description: "Starts a new A/B test on the current workspace.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace abtest status",
       description: "Displays the results of the active A/B tests.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -885,7 +905,6 @@ export const completion: Fig.Spec = {
         {
           name: "WORKSPACE1",
           description: "Name of the workspace to delete.",
-          isOptional: false,
         },
         {
           name: "ITHWORKSPACE",
@@ -897,6 +916,7 @@ export const completion: Fig.Spec = {
         ...commonOptions,
         {
           name: ["--force", "-f"],
+          isDangerous: true,
           description:
             "Deletes the specified workspace even if it is currently in use.",
           priority: 1,
@@ -911,12 +931,14 @@ export const completion: Fig.Spec = {
     {
       name: "workspace list",
       description: "Lists all workspaces of the current account.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace promote",
       description:
         "Promotes the current workspace to master. Only works for production workspaces.",
+      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -964,7 +986,6 @@ export const completion: Fig.Spec = {
         {
           name: "WORKSPACE",
           description: "Name of the workspace to use.",
-          isOptional: false,
         },
       ],
       options: [
