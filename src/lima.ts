@@ -7,7 +7,6 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     isCommand: true,
   },
-
   options: [
     {
       name: ["-h", "--help"],

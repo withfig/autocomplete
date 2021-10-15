@@ -1,60 +1,45 @@
 const PRIORITY_TOP_THRESHOLD = 76;
 
-const generateGlobalFlags = (subcommandName: string): Fig.Option[] => {
-  return [
-    {
-      name: ["-h", "--help"],
-      description: `Help for ${subcommandName}`,
-    },
-    {
-      name: "--debug",
-      description: "Debug mode",
-    },
-  ];
-};
+const generateGlobalFlags = (subcommandName: string): Fig.Option[] => [
+  {
+    name: ["-h", "--help"],
+    description: `Help for ${subcommandName}`,
+  },
+  {
+    name: "--debug",
+    description: "Debug mode",
+  },
+];
 
 const instanceNameGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
-): Fig.Generator => {
-  return {
-    script: "limactl list --quiet",
-    postProcess: (output) => {
-      return output.split("\n").map((instanceName) => {
-        return {
-          name: `${instanceName}`,
-          description: "Instance name",
-          priority: PRIORITY_TOP_THRESHOLD,
-          insertValue: `${instanceName}${suggestOptions?.insertValue}`,
-          ...suggestOptions,
-        };
-      });
-    },
-  };
-};
+): Fig.Generator => ({
+  script: "limactl list --quiet",
+  postProcess: (output) =>
+    output.split("\n").map((instanceName) => ({
+      name: `${instanceName}`,
+      description: "Instance name",
+      priority: PRIORITY_TOP_THRESHOLD,
+      ...suggestOptions,
+    })),
+});
 
 const yamlFilepathsGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
-): Fig.Generator => {
-  return {
-    template: "filepaths",
-    filterTemplateSuggestions: (paths) => {
-      const isYaml = (fileName: string) => {
-        return fileName.endsWith(".yaml") || fileName.endsWith(".yml");
-      };
-      return paths
-        .filter((file) => {
-          return isYaml(file.name) || file.name.endsWith("/");
-        })
-        .map((file) => {
-          return {
-            ...file,
-            priority: isYaml(file.name) && PRIORITY_TOP_THRESHOLD,
-            ...suggestOptions,
-          };
-        });
-    },
-  };
-};
+): Fig.Generator => ({
+  template: "filepaths",
+  filterTemplateSuggestions: (paths) => {
+    const isYaml = (fileName: string) =>
+      fileName.endsWith(".yaml") || fileName.endsWith(".yml");
+    return paths
+      .filter((file) => isYaml(file.name) || file.name.endsWith("/"))
+      .map((file) => ({
+        ...file,
+        priority: isYaml(file.name) && PRIORITY_TOP_THRESHOLD,
+        ...suggestOptions,
+      }));
+  },
+});
 
 const completionSpec: Fig.Spec = {
   name: "limactl",
@@ -64,19 +49,17 @@ const completionSpec: Fig.Spec = {
       name: "completion",
       description: "Generate the autocompletion script for the specified shell",
       subcommands: ["bash", "fish", "powershell", "zsh"].map(
-        (subcommandName) => {
-          return {
-            name: subcommandName,
-            description: `Generate the autocompletion script for ${subcommandName}`,
-            options: [
-              ...generateGlobalFlags(subcommandName),
-              {
-                name: "--no-descriptions",
-                description: "Disable completion descriptions",
-              },
-            ],
-          };
-        }
+        (subcommandName) => ({
+          name: subcommandName,
+          description: `Generate the autocompletion script for ${subcommandName}`,
+          options: [
+            ...generateGlobalFlags(subcommandName),
+            {
+              name: "--no-descriptions",
+              description: "Disable completion descriptions",
+            },
+          ],
+        })
       ),
       options: [...generateGlobalFlags("completion")],
     },
@@ -88,7 +71,7 @@ const completionSpec: Fig.Spec = {
           name: "SOURCE",
           isVariadic: true,
           generators: [
-            instanceNameGenerator({ insertValue: ":" }),
+            instanceNameGenerator({ isDangerous: true }),
             { template: "filepaths" },
           ],
         },
@@ -96,7 +79,6 @@ const completionSpec: Fig.Spec = {
           name: "TARGET",
           generators: [instanceNameGenerator(), { template: "filepaths" }],
         },
-        { template: "filepaths" },
       ],
       options: [
         ...generateGlobalFlags("copy"),
@@ -119,6 +101,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description: "Forcibly kill the processes",
+          isDangerous: true,
         },
       ],
     },
@@ -205,6 +188,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description: "Force stop the instance",
+          isDangerous: true,
         },
       ],
     },
@@ -215,6 +199,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "SUDORSFILE",
         isOptional: true,
+        template: "filepaths",
       },
       options: [
         ...generateGlobalFlags("sudoers"),
@@ -255,13 +240,11 @@ completionSpec.subcommands.push({
     isOptional: true,
     suggestions: [
       ...completionSpec.subcommands.map(
-        (subcommand): Fig.Suggestion => {
-          return {
-            name: subcommand.name,
-            description: subcommand.description,
-            type: "subcommand",
-          };
-        }
+        (subcommand): Fig.Suggestion => ({
+          name: subcommand.name,
+          description: subcommand.description,
+          type: "subcommand",
+        })
       ),
       {
         name: "help",
