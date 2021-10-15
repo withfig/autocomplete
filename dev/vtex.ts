@@ -186,7 +186,6 @@ export const completion: Fig.Spec = {
       name: "deps list",
       description:
         "Displays the complete dependency tree of the current workspace.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -225,7 +224,6 @@ export const completion: Fig.Spec = {
       name: "edition get",
       description:
         "Displays the Edition App version installed on the current account.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -299,14 +297,12 @@ export const completion: Fig.Spec = {
     {
       name: "infra update",
       description: "Updates all installed infra services.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "init",
       description:
         "Copies starting files and folders from VTEX boilerplates into your local directories.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -379,7 +375,6 @@ export const completion: Fig.Spec = {
       name: "lighthouse show",
       description:
         "Shows a previous audit report, filtering by app and/or URL.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -398,7 +393,6 @@ export const completion: Fig.Spec = {
       name: "lh audit",
       description:
         "Shows a previous audit report, filtering by app and/or URL.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -417,7 +411,6 @@ export const completion: Fig.Spec = {
       name: "link",
       description:
         "Syncs the app in the current directory with the development workspace in use.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -459,14 +452,12 @@ export const completion: Fig.Spec = {
       name: "list",
       description:
         "Lists the apps installed on the current workspace and account.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "local token",
       description:
         "Prints the user's auth token and copies it to the clipboard.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -491,7 +482,6 @@ export const completion: Fig.Spec = {
     {
       name: "logout",
       description: "Logs out of the current VTEX account.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -523,7 +513,6 @@ export const completion: Fig.Spec = {
       name: "publish",
       description:
         "Publishes the app in the current directory as a release candidate version.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -577,7 +566,6 @@ export const completion: Fig.Spec = {
       name: "redirects import",
       description:
         "Imports redirects from a CSV file to the current account and workspace.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -665,7 +653,6 @@ export const completion: Fig.Spec = {
       name: "setup",
       description:
         "Sets up typings and tools for the current development environment.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -744,7 +731,6 @@ export const completion: Fig.Spec = {
       name: "test e2e",
       description:
         "Runs E2E integration tests for the app in the current directory.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -770,7 +756,6 @@ export const completion: Fig.Spec = {
     {
       name: "test unit",
       description: "Runs unit tests for the app in the current directory.",
-      args: [{}],
       options: [
         ...commonOptions,
         {
@@ -865,38 +850,32 @@ export const completion: Fig.Spec = {
       name: "update",
       description:
         "Updates all installed apps to the latest (minor or patch) version. Does not upgrade to another major version.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "url",
       description: "Prints base URL for the current account and workspace.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "whoami",
       description:
         "Prints the current account, workspace, environment, and login details.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace abtest finish",
       description: "Stops all A/B tests from running on the current account.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace abtest start",
       description: "Starts a new A/B test on the current workspace.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace abtest status",
       description: "Displays the results of the active A/B tests.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
@@ -932,14 +911,12 @@ export const completion: Fig.Spec = {
     {
       name: "workspace list",
       description: "Lists all workspaces of the current account.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
       name: "workspace promote",
       description:
         "Promotes the current workspace to master. Only works for production workspaces.",
-      args: [{}],
       options: [...commonOptions],
     },
     {
