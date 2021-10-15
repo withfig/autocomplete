@@ -19,6 +19,7 @@ const forceOption: (arg0: string) => Fig.Option = (target: string) => {
   return {
     name: "--force",
     description: `Delete a ${target} without confirmation`,
+    isDangerous: true,
   };
 };
 
@@ -81,7 +82,7 @@ const globalOptions: Fig.Option[] = [
     name: "--config",
     description:
       "Config file (default is $HOME/.config/planetscale/pscale.yml)",
-    args: { name: "string" },
+    args: { name: "string", template: "filepaths" },
   },
   {
     name: "--debug",
@@ -91,7 +92,7 @@ const globalOptions: Fig.Option[] = [
     name: ["--format", "-f"],
     description:
       'Show output in a specific format. Possible values: [human, json, csv] (default "human")',
-    args: { name: "string" },
+    args: { name: "string", suggestions: ["human", "json", "csv"] },
   },
   {
     name: "--no-color",
@@ -158,6 +159,7 @@ const completionSpec: Fig.Spec = {
           description: "Delete a branch backup",
           options: [...globalOptions],
           args: [{ name: "database" }, { name: "branch" }, { name: "backup" }],
+          isDangerous: true,
         },
         {
           name: ["list", "ls"],
@@ -207,6 +209,7 @@ const completionSpec: Fig.Spec = {
           description: "Delete a branch from a database",
           options: [...globalOptions, forceOption("branch")],
           args: [{ name: "source-database" }, { name: "branch" }],
+          isDangerous: true,
         },
         {
           name: "diff",
@@ -337,6 +340,7 @@ const completionSpec: Fig.Spec = {
           description: "Delete a database instance",
           options: [forceOption("database"), ...globalOptions],
           args: { name: "database" },
+          isDangerous: true,
         },
         {
           name: "dump",
@@ -405,7 +409,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--deploy-to",
               description:
-                "Branch to deploy the branch. By default it's set to 'main' (default \"main\")",
+                "Branch to deploy the branch. By default it's set to 'main'",
               args: { name: "string" },
             },
             ...globalOptions,
@@ -510,6 +514,7 @@ const completionSpec: Fig.Spec = {
             { name: "password" },
           ],
           options: [forceOption("password"), ...globalOptions],
+          isDangerous: true,
         },
         {
           name: ["list", "ls"],
@@ -552,6 +557,7 @@ const completionSpec: Fig.Spec = {
           description: "Delete an entire service token in an organization",
           args: { name: "token" },
           options: [...globalOptions],
+          isDangerous: true,
         },
         {
           name: "delete-access",
@@ -559,6 +565,7 @@ const completionSpec: Fig.Spec = {
             "Delete access granted to a service token in the organization",
           args: [{ name: "token" }, { name: "access" }, { name: "access" }],
           options: [databaseOption, ...globalOptions],
+          isDangerous: true,
         },
         {
           name: "list",
