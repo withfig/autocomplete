@@ -2,6 +2,9 @@ name: Build and release specs
 
 on:
   push:
+    paths:
+      - "src/**/*.ts"
+      - "!package.json"
     branches:
       # We only want to create a new release when
       # - a pr is merged to master
@@ -14,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACTION_GITHUB_TOKEN }}
         # Install all dependencies
       - name: install
         run: npm install
@@ -22,7 +27,10 @@ jobs:
         run: npm run build
         # Zip the transpiled files into the specs.zip file
       - name: bundle files
-        run: zip -r specs.zip specs/
+        run: |
+          mv build/ specs/
+          zip -r specs.zip specs/
+          mv specs/ build/
         # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version
@@ -34,9 +42,36 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@59c3b4891632ff9a897f99a91d7bc557467a3a22
         with:
           files: specs.zip
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout Cache
+        uses: actions/checkout@v2
+        with:
+          repository: "withfig/core-backend"
+          token: ${{ secrets.CACHE_SPECS_TOKEN }}
+          ref: master
+          path: backend
+      - name: Add @latest to cache
+        run: |
+          cp ./specs.zip ./backend/src/public/specs.zip
+          cd backend
+          git config user.name "Build Action"
+          git config user.email "noreply@fig.io"
+          git add .
+          git commit -m "Updates specs to latest"
+          git push origin master
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_GITHUB_TOKEN }}
+        with:
+          skip-tag: "true"
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
