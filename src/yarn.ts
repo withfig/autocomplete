@@ -1,8 +1,4 @@
-import {
-  dependenciesGenerator,
-  npmScriptsGenerator,
-  npmSearchGenerator,
-} from "./npm";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
 const createCLIs = [
   "create-next-app",
@@ -109,6 +105,42 @@ const configList: Fig.Generator = {
     } catch (e) {}
 
     return [];
+  },
+};
+
+export const dependenciesGenerator: Fig.Generator = {
+  script:
+    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  postProcess: function (out, context = []) {
+    if (out.trim() === "") {
+      return [];
+    }
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent["dependencies"] ?? {};
+      const devDependencies = packageContent["devDependencies"];
+      const optionalDependencies = packageContent["optionalDependencies"] ?? {};
+      Object.assign(dependencies, devDependencies, optionalDependencies);
+
+      return Object.keys(dependencies)
+        .filter((pkgName) => {
+          const isListed = context.some((current) => current === pkgName);
+          return !isListed;
+        })
+        .map((pkgName) => ({
+          name: pkgName,
+          icon: "📦",
+          description: dependencies[pkgName]
+            ? "dependency"
+            : optionalDependencies[pkgName]
+            ? "optionalDependency"
+            : "devDependency",
+        }));
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
   },
 };
 
@@ -1266,17 +1298,29 @@ const completionSpec: Fig.Spec = {
           const packageContent = JSON.parse(out);
           const workspaces = packageContent["workspaces"];
 
+          const getPackageName = async (workspace: string): Promise<string> => {
+            const workspacePackage = await executeShellCommand(
+              `\cat ${workspace}/package.json`
+            );
+
+            try {
+              return JSON.parse(workspacePackage)["name"] || workspace;
+            } catch (e) {
+              console.error(e);
+              return workspace;
+            }
+          };
+
           if (workspaces) {
             for (const workspace of workspaces) {
               if (workspace.includes("*")) {
-                const out = await executeShellCommand(
-                  `\ls ${workspace.slice(0, -1)}`
-                );
+                const workspacePath = workspace.slice(0, -1);
+                const out = await executeShellCommand(`\ls ${workspacePath}`);
                 const workspaceList = out.split("\n");
 
                 for (const space of workspaceList) {
                   subcommands.push({
-                    name: space,
+                    name: await getPackageName(workspacePath + space),
                     description: "Workspaces",
                     args: {
                       name: "script",
@@ -1292,7 +1336,7 @@ const completionSpec: Fig.Spec = {
                 }
               } else {
                 subcommands.push({
-                  name: workspace,
+                  name: await getPackageName(workspace),
                   description: "Workspaces",
                   args: {
                     name: "script",
@@ -1306,6 +1350,7 @@ const completionSpec: Fig.Spec = {
             }
           }
         } catch (e) {
+          console.error(e);
           return { name: "workspaces" };
         }
 
