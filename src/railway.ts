@@ -198,7 +198,5 @@ const completionSpec: Fig.Spec = {
     },
     { name: ["--version", "-v"], description: "Show railway version" },
   ],
-  // Only uncomment if railway takes an argument
-  // args: {}
 };
 export default completionSpec;
