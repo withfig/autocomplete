@@ -5510,6 +5510,9 @@ const completionSpec: Fig.Spec = {
               name: ["-b", "-B"],
               description:
                 "With add, create a new branch named <new-branch> starting at <commit-ish>, and check out <new-branch> into the new working tree. If <commit-ish> is omitted, it defaults to HEAD. By default, -b refuses to create a new branch if it already exists. -B overrides this safeguard, resetting <new-branch> to <commit-ish>",
+              args: {
+                name: "new-branch",
+              },
             },
           ],
         },
@@ -5531,6 +5534,9 @@ const completionSpec: Fig.Spec = {
               name: "--expire",
               description:
                 "With list, annotate missing working trees as prunable if they are older than <time>",
+              args: {
+                name: "time",
+              },
             },
           ],
         },
@@ -5547,7 +5553,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--reason",
               description:
-                "With lock or with add --lock, an explanation why the working tree is locked",
+                "With lock or with add --lock, an explanation <reason> why the working tree is locked",
+              args: {
+                name: "reason",
+              },
             },
           ],
         },
@@ -5562,6 +5571,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "new-path",
+              template: "filepaths",
             },
           ],
           options: [
@@ -5589,6 +5599,9 @@ const completionSpec: Fig.Spec = {
               name: "--expire",
               description:
                 "With prune, only expire unused working trees older than <time>",
+              args: {
+                name: "time",
+              },
             },
           ],
         },
@@ -5614,6 +5627,7 @@ const completionSpec: Fig.Spec = {
             "Repair working tree administrative files, if possible, if they have become corrupted or outdated due to external factors",
           args: {
             name: "path",
+            template: "filepaths",
           },
         },
         {
