@@ -139,6 +139,7 @@ const completionSpec: Fig.Spec = {
         name: "path",
         description: "Path to deploy to",
         isOptional: true,
+        template: "folders"
       },
       options: [
         { name: ["-d", "--detach"], description: "Detach from build logs" },
