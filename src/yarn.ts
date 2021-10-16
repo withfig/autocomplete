@@ -1,8 +1,4 @@
-import {
-  dependenciesGenerator,
-  npmScriptsGenerator,
-  npmSearchGenerator,
-} from "./npm";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
 const createCLIs = [
   "create-next-app",
@@ -109,6 +105,42 @@ const configList: Fig.Generator = {
     } catch (e) {}
 
     return [];
+  },
+};
+
+export const dependenciesGenerator: Fig.Generator = {
+  script:
+    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  postProcess: function (out, context = []) {
+    if (out.trim() === "") {
+      return [];
+    }
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent["dependencies"] ?? {};
+      const devDependencies = packageContent["devDependencies"];
+      const optionalDependencies = packageContent["optionalDependencies"] ?? {};
+      Object.assign(dependencies, devDependencies, optionalDependencies);
+
+      return Object.keys(dependencies)
+        .filter((pkgName) => {
+          const isListed = context.some((current) => current === pkgName);
+          return !isListed;
+        })
+        .map((pkgName) => ({
+          name: pkgName,
+          icon: "📦",
+          description: dependencies[pkgName]
+            ? "dependency"
+            : optionalDependencies[pkgName]
+            ? "optionalDependency"
+            : "devDependency",
+        }));
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
   },
 };
 
@@ -295,10 +327,9 @@ const completionSpec: Fig.Spec = {
   generateSpec: async (_tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
-    // const packages = postProcess(
-    //   await executeShellCommand(script as string)
-    // ).map(({ name }) => name as string);
-    const packages = [];
+    const packages = postProcess(
+      await executeShellCommand(script as string)
+    ).map(({ name }) => name as string);
 
     const subcommands = packages
       .filter((name) => nodeClis.includes(name))
