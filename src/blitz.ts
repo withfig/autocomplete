@@ -21,25 +21,25 @@ const completionSpec: Fig.Spec = {
       name: ["build", "b"],
       description: "Creates a production build",
       icon,
-      options: [...commonOptions],
+      options: commonOptions,
     },
     {
       name: ["codegen", "cg"],
       description: "Generates Routes Manifest",
       icon,
-      options: [...commonOptions],
+      options: commonOptions,
     },
     {
       name: ["console", "c"],
       description: "Run the Blitz console REPL",
       icon,
-      options: [...commonOptions],
+      options: commonOptions,
     },
     {
       name: "db",
       description: "Run database commands",
       icon,
-      options: [...commonOptions],
+      options: commonOptions,
       args: {
         name: "command",
         description: "Run specific db command",
@@ -172,7 +172,7 @@ const completionSpec: Fig.Spec = {
       name: ["install", "i"],
       description: "Install a Recipe into your Blitz app",
       icon,
-      options: [...commonOptions],
+      options: commonOptions,
       args: [
         {
           name: "recipe",
@@ -196,12 +196,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--npm",
           description: "Use npm as the package manager",
-          isDangerous: true,
         },
         {
           name: "--yarn",
           description: "Use yarn as the package manager",
-          isDangerous: true,
         },
         {
           name: "--form",
@@ -239,7 +237,7 @@ const completionSpec: Fig.Spec = {
       name: ["routes", "r"],
       description: "Display all Blitz URL Routes",
       icon,
-      options: [...commonOptions],
+      options: commonOptions,
     },
     {
       name: ["start", "s"],
@@ -280,6 +278,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "shell",
         description: "Shell type",
+        suggestions: ["zsh", "bash"],
         isOptional: true,
       },
     },
