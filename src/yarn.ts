@@ -295,9 +295,10 @@ const completionSpec: Fig.Spec = {
   generateSpec: async (_tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
-    const packages = postProcess(
-      await executeShellCommand(script as string)
-    ).map(({ name }) => name as string);
+    // const packages = postProcess(
+    //   await executeShellCommand(script as string)
+    // ).map(({ name }) => name as string);
+    const packages = [];
 
     const subcommands = packages
       .filter((name) => nodeClis.includes(name))
@@ -1266,17 +1267,29 @@ const completionSpec: Fig.Spec = {
           const packageContent = JSON.parse(out);
           const workspaces = packageContent["workspaces"];
 
+          const getPackageName = async (workspace: string): Promise<string> => {
+            const workspacePackage = await executeShellCommand(
+              `\cat ${workspace}/package.json`
+            );
+
+            try {
+              return JSON.parse(workspacePackage)["name"] || workspace;
+            } catch (e) {
+              console.error(e);
+              return workspace;
+            }
+          };
+
           if (workspaces) {
             for (const workspace of workspaces) {
               if (workspace.includes("*")) {
-                const out = await executeShellCommand(
-                  `\ls ${workspace.slice(0, -1)}`
-                );
+                const workspacePath = workspace.slice(0, -1);
+                const out = await executeShellCommand(`\ls ${workspacePath}`);
                 const workspaceList = out.split("\n");
 
                 for (const space of workspaceList) {
                   subcommands.push({
-                    name: space,
+                    name: await getPackageName(workspacePath + space),
                     description: "Workspaces",
                     args: {
                       name: "script",
@@ -1292,7 +1305,7 @@ const completionSpec: Fig.Spec = {
                 }
               } else {
                 subcommands.push({
-                  name: workspace,
+                  name: await getPackageName(workspace),
                   description: "Workspaces",
                   args: {
                     name: "script",
@@ -1306,6 +1319,7 @@ const completionSpec: Fig.Spec = {
             }
           }
         } catch (e) {
+          console.error(e);
           return { name: "workspaces" };
         }
 
