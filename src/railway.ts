@@ -95,6 +95,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-n", "--lines"],
           description: "Output a specific number of lines",
+          args: {}
         },
       ],
     },
@@ -121,7 +122,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Run a local command using variables from the active environment",
       options: [
-        { name: ["-e", "--environment"], description: "Environment to run in" },
+        { name: ["-e", "--environment"], description: "Environment to run in", args: {} },
       ],
     },
     {
