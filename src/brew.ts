@@ -54,19 +54,16 @@ const brewInfo = (name: string): Fig.Subcommand => ({
     generators: {
       script:
         "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
-      postProcess: function (out) {
-        return out.split("\n").map((formula) => {
-          return {
-            name: formula.replace(".rb", ""),
-            description: "Formula",
-            icon: "🍺",
-            priority:
-              (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
-                ? 0
-                : 51,
-          };
-        });
-      },
+      postProcess: (out) =>
+        [...new Set(out.split("\n"))].map((formula) => ({
+          name: formula.replace(".rb", ""),
+          description: "Formula",
+          icon: "🍺",
+          priority:
+            (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
+              ? 0
+              : 51,
+        })),
     },
   },
   options: [
