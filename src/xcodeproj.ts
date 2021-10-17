@@ -50,11 +50,17 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "PROJECT1",
-          template: "filepaths",
+          generators: {
+            template: "folders",
+            filterTemplateSuggestions: getProjectsAndFolders,
+          },
         },
         {
           name: "PROJECT2",
-          template: "filepaths",
+          generators: {
+            template: "folders",
+            filterTemplateSuggestions: getProjectsAndFolders,
+          },
         },
       ],
     },
@@ -75,7 +81,10 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROJECT",
         isOptional: true,
-        template: "filepaths",
+        generators: {
+          template: "folders",
+          filterTemplateSuggestions: getProjectsAndFolders,
+        },
       },
     },
     {
@@ -95,7 +104,10 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "PROJECT",
-        template: "filepaths",
+        generators: {
+          template: "folders",
+          filterTemplateSuggestions: getProjectsAndFolders,
+        },
         isOptional: true,
       },
     },
@@ -108,7 +120,10 @@ const completionSpec: Fig.Spec = {
           description: "The Xcode project document to use",
           args: {
             name: "PATH",
-            template: "filepaths",
+            generators: {
+              template: "folders",
+              filterTemplateSuggestions: getProjectsAndFolders,
+            },
           },
         },
       ],
