@@ -95,7 +95,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-n", "--lines"],
           description: "Output a specific number of lines",
-          args: {}
+          args: {
+            name: "Number of lines",
+            description: "The number of lines to output"
+          }
         },
       ],
     },
