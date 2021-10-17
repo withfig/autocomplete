@@ -1,6 +1,16 @@
+const getProjectsAndFolders = (paths) => {
+  return paths.map((file) => {
+    const isXcodeProjFolder = file.name.endsWith(".xcodeproj/");
+    return {
+      ...file,
+      priority: isXcodeProjFolder && 76,
+    };
+  });
+};
+
 const completionSpec: Fig.Spec = {
   name: "xcodeproj",
-  description: "Xcodeproj lets you create and modify Xcode projects from Ruby",
+  description: "Xcodeproj lets you create and modify Xcode projects",
   subcommands: [
     {
       description:
@@ -10,7 +20,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "PROJECT",
           isOptional: true,
-          template: "filepaths",
+          generators: {
+            template: "folders",
+            filterTemplateSuggestions: getProjectsAndFolders,
+          },
         },
         {
           name: "OUTPUT",
