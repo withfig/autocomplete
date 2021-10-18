@@ -59,7 +59,7 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "config ",
+      name: "config",
       description: "Env Configuration",
       options: [...commonOptions],
       subcommands: [
@@ -268,7 +268,7 @@ const completion: Fig.Spec = {
       description: "Infra service",
       subcommands: [
         {
-          name: "infra install",
+          name: "install",
           description: "Installs an infra service",
           args: {
             name: "SERVICEID",
@@ -278,7 +278,7 @@ const completion: Fig.Spec = {
           options: [...commonOptions],
         },
         {
-          name: "infra list",
+          name: "list",
           description: "Lists installed infra services",
           args: {
             name: "NAME",
@@ -300,7 +300,7 @@ const completion: Fig.Spec = {
           ],
         },
         {
-          name: "infra update",
+          name: "update",
           description: "Updates all installed infra services",
 
           options: [...commonOptions],
@@ -344,53 +344,86 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "lighthouse audit",
+      name: "lighthouse",
       description: "Runs a Lighthouse audit over the specified URL",
-      args: {
-        name: "URL",
-        description: "URL to audit",
-      },
-      options: [
-        ...commonOptions,
+      subcommands: [
         {
-          name: ["--json", "-j"],
-          description: "Returns the report as a json on stdout",
-          priority: 1,
+          name: "audit",
+          description: "Runs a Lighthouse audit over the specified URL",
+          args: {
+            name: "URL",
+            description: "URL to audit",
+          },
+          options: [
+            ...commonOptions,
+            {
+              name: ["--json", "-j"],
+              description: "Returns the report as a json on stdout",
+              priority: 1,
+            },
+          ],
+        },
+        {
+          name: "show",
+          description:
+            "Shows a previous audit report, filtering by app and/or URL",
+          options: [
+            ...commonOptions,
+            {
+              name: ["--app=app", "-a"],
+              description: "Filters by app name",
+              priority: 1,
+            },
+            {
+              name: ["--url=url", "-u"],
+              description: "Filters by URL",
+              priority: 2,
+            },
+          ],
         },
       ],
+      options: [...commonOptions],
     },
     {
-      name: "lh audit",
+      name: "lh",
       description: "Runs a Lighthouse audit over the specified URL",
-      args: {
-        name: "URL",
-        description: "URL to audit",
-      },
-      options: [
-        ...commonOptions,
+      subcommands: [
         {
-          name: ["--json", "-j"],
-          description: "Returns the report as a json on stdout",
-          priority: 1,
+          name: "audit",
+          description: "Runs a Lighthouse audit over the specified URL",
+          args: {
+            name: "URL",
+            description: "URL to audit",
+          },
+          options: [
+            ...commonOptions,
+            {
+              name: ["--json", "-j"],
+              description: "Returns the report as a json on stdout",
+              priority: 1,
+            },
+          ],
+        },
+        {
+          name: "show",
+          description:
+            "Shows a previous audit report, filtering by app and/or URL",
+          options: [
+            ...commonOptions,
+            {
+              name: ["--app=app", "-a"],
+              description: "Filters by app name",
+              priority: 1,
+            },
+            {
+              name: ["--url=url", "-u"],
+              description: "Filters by URL",
+              priority: 2,
+            },
+          ],
         },
       ],
-    },
-    {
-      name: "lighthouse show",
-      description: "Shows a previous audit report, filtering by app and/or URL",
-      options: [
-        ...commonOptions,
-        {
-          name: ["--app=app", "-a"],
-          description: "Filters by app name",
-          priority: 1,
-        },
-        {
-          name: ["--url=url", "-u"],
-          description: "Filters by URL",
-          priority: 2,
-        },
-      ],
+      options: [...commonOptions],
     },
     {
       name: "link",
@@ -520,36 +553,44 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "redirects delete",
-      description: "Deletes redirects from the current account and workspace",
-      args: {
-        name: "CSVPATH",
-        description: "CSV file containing the URL paths to be deleted",
-      },
-      options: [...commonOptions],
-    },
-    {
-      name: "redirects export",
-      description:
-        "Exports all redirects defined in the current account and workspace to a CSV file",
-      args: {
-        name: "CSVPATH",
-        description: "Name of the CSV file",
-      },
-      options: [...commonOptions],
-    },
-    {
-      name: "redirects import",
-      description:
-        "Imports redirects from a CSV file to the current account and workspace",
-      options: [
-        ...commonOptions,
+      name: "redirects",
+      description: "Redirects from the current account and workspace",
+      subcommands: [
         {
-          name: ["--reset", "-r"],
-          description: "Removes all redirects previously defined",
-          priority: 1,
+          name: "delete",
+          description:
+            "Deletes redirects from the current account and workspace",
+          args: {
+            name: "CSVPATH",
+            description: "CSV file containing the URL paths to be deleted",
+          },
+          options: [...commonOptions],
+        },
+        {
+          name: "export",
+          description:
+            "Exports all redirects defined in the current account and workspace to a CSV file",
+          args: {
+            name: "CSVPATH",
+            description: "Name of the CSV file",
+          },
+          options: [...commonOptions],
+        },
+        {
+          name: "import",
+          description:
+            "Imports redirects from a CSV file to the current account and workspace",
+          options: [
+            ...commonOptions,
+            {
+              name: ["--reset", "-r"],
+              description: "Removes all redirects previously defined",
+              priority: 1,
+            },
+          ],
         },
       ],
+      options: [...commonOptions],
     },
     {
       name: "release",
@@ -570,51 +611,58 @@ const completion: Fig.Spec = {
       options: [...commonOptions],
     },
     {
-      name: "settings get",
-      description: "",
-      args: [
+      name: "settings",
+      description: "VTEX CLI Settings",
+      subcommands: [
         {
-          name: "APNAME",
-          description: "Name of the app to check the available settings",
+          name: "get",
+          description: "",
+          args: [
+            {
+              name: "APNAME",
+              description: "Name of the app to check the available settings",
+            },
+            {
+              name: "FIELD",
+              description: "Name of the setting",
+              isOptional: true,
+            },
+          ],
+          options: [...commonOptions],
         },
         {
-          name: "FIELD",
-          description: "Name of the setting",
-          isOptional: true,
-        },
-      ],
-      options: [...commonOptions],
-    },
-    {
-      name: "settings set",
-      description: "Sets value to the specified setting of an app",
-      args: [
-        {
-          name: "APPNAME",
-          description: "Name of the app",
-        },
-        {
-          name: "FIELD",
-          description: "Name of the setting",
-        },
-        {
-          name: "VALUE",
-          description: "Value of the setting",
-        },
-      ],
-      options: [...commonOptions],
-    },
-    {
-      name: "settings unset",
-      description: "Disables the specified setting of an app",
-      args: [
-        {
-          name: "APPNAME",
-          description: "Name of the app",
+          name: "set",
+          description: "Sets value to the specified setting of an app",
+          args: [
+            {
+              name: "APPNAME",
+              description: "Name of the app",
+            },
+            {
+              name: "FIELD",
+              description: "Name of the setting",
+            },
+            {
+              name: "VALUE",
+              description: "Value of the setting",
+            },
+          ],
+          options: [...commonOptions],
         },
         {
-          name: "FIELD",
-          description: "Name of the setting",
+          name: "unset",
+          description: "Disables the specified setting of an app",
+          args: [
+            {
+              name: "APPNAME",
+              description: "Name of the app",
+            },
+            {
+              name: "FIELD",
+              description: "Name of the setting",
+            },
+          ],
+          options: [...commonOptions],
         },
       ],
       options: [...commonOptions],
@@ -690,42 +738,49 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "test e2e",
-      description:
-        "Runs E2E integration tests for the app in the current directory",
-      options: [
-        ...commonOptions,
-        {
-          name: ["--report=report", "-r"],
-          description:
-            "Displays the results and state of the specified test ID",
-          priority: 1,
-        },
-        {
-          name: ["--token", "-t"],
-          description:
-            "(Not recommended.) Sends your personal authorization token to your testing session, making it available during the tests. It can be dangerous since it exposes your token via the 'authToken' environment variable",
-          priority: 2,
-        },
-        {
-          name: ["--workspace", "-w"],
-          description:
-            "Runs tests for the apps installed on the specified workspace",
-          priority: 3,
-        },
-      ],
-    },
-    {
-      name: "test unit",
+      name: "test",
       description: "Runs unit tests for the app in the current directory",
-      options: [
-        ...commonOptions,
+      subcommands: [
         {
-          name: ["--unsafe", "-u"],
-          description: "Ignores Typescript errors",
-          priority: 1,
+          name: "e2e",
+          description:
+            "Runs E2E integration tests for the app in the current directory",
+          options: [
+            ...commonOptions,
+            {
+              name: ["--report=report", "-r"],
+              description:
+                "Displays the results and state of the specified test ID",
+              priority: 1,
+            },
+            {
+              name: ["--token", "-t"],
+              description:
+                "(Not recommended.) Sends your personal authorization token to your testing session, making it available during the tests. It can be dangerous since it exposes your token via the 'authToken' environment variable",
+              priority: 2,
+            },
+            {
+              name: ["--workspace", "-w"],
+              description:
+                "Runs tests for the apps installed on the specified workspace",
+              priority: 3,
+            },
+          ],
+        },
+        {
+          name: "unit",
+          description: "Runs unit tests for the app in the current directory",
+          options: [
+            ...commonOptions,
+            {
+              name: ["--unsafe", "-u"],
+              description: "Ignores Typescript errors",
+              priority: 1,
+            },
+          ],
         },
       ],
+      options: [...commonOptions],
     },
     {
       name: "undeprecate",
@@ -826,115 +881,131 @@ const completion: Fig.Spec = {
       options: [...commonOptions],
     },
     {
-      name: "workspace abtest finish",
-      description: "Stops all A/B tests from running on the current account",
-      options: [...commonOptions],
-    },
-    {
-      name: "workspace abtest start",
-      description: "Starts a new A/B test on the current workspace",
-      options: [...commonOptions],
-    },
-    {
-      name: "workspace abtest status",
-      description: "Displays the results of the active A/B tests",
-      options: [...commonOptions],
-    },
-    {
-      name: "workspace delete",
-      description: "Deletes one or many workspaces from the current account",
-      args: [
+      name: "workspace",
+      description: "Workspace from the current account",
+      subcommands: [
         {
-          name: "WORKSPACE1",
-          description: "Name of the workspace to delete",
+          name: "abtest",
+          description: "A/B tests from running on the current account",
+          subcommands: [
+            {
+              name: "finish",
+              description:
+                "Stops all A/B tests from running on the current account",
+              options: [...commonOptions],
+            },
+            {
+              name: "start",
+              description: "Starts a new A/B test on the current workspace",
+              options: [...commonOptions],
+            },
+            {
+              name: "status",
+              description: "Displays the results of the active A/B tests",
+              options: [...commonOptions],
+            },
+          ],
+          options: [...commonOptions],
         },
         {
-          name: "ITHWORKSPACE",
-          description: "Name of the multiple workspaces to delete",
-          isOptional: true,
-        },
-      ],
-      options: [
-        ...commonOptions,
-        {
-          name: ["--force", "-f"],
-          isDangerous: true,
+          name: "delete",
           description:
-            "Deletes the specified workspace even if it is currently in use",
-          priority: 1,
+            "Deletes one or many workspaces from the current account",
+          args: [
+            {
+              name: "WORKSPACE1",
+              description: "Name of the workspace to delete",
+            },
+            {
+              name: "ITHWORKSPACE",
+              description: "Name of the multiple workspaces to delete",
+              isOptional: true,
+            },
+          ],
+          options: [
+            ...commonOptions,
+            {
+              name: ["--force", "-f"],
+              isDangerous: true,
+              description:
+                "Deletes the specified workspace even if it is currently in use",
+              priority: 1,
+            },
+            {
+              name: ["--yes", "-y"],
+              description: "Answers yes to all prompts",
+              priority: 2,
+            },
+          ],
         },
         {
-          name: ["--yes", "-y"],
-          description: "Answers yes to all prompts",
-          priority: 2,
+          name: "list",
+          description: "Lists all workspaces of the current account",
+          options: [...commonOptions],
+        },
+        {
+          name: "promote",
+          description:
+            "Promotes the current workspace to master. Only works for production workspaces",
+          options: [...commonOptions],
+        },
+        {
+          name: "reset",
+          description:
+            "Cleans all configurations of the specified workspace and recreates it with the configurations from master",
+          args: {
+            name: "WORKSPACENAME",
+            description: "Name of the workspace to reset",
+            isOptional: true,
+          },
+          options: [
+            ...commonOptions,
+            {
+              name: ["--production", "-p"],
+              description: "Recreates the workspace as a production one",
+              priority: 1,
+            },
+            {
+              name: ["--yes", "-y"],
+              description: "Answers yes to all prompts",
+              priority: 2,
+            },
+          ],
+        },
+        {
+          name: "status",
+          description: "Displays information about the specified workspace",
+          args: {
+            name: "WORKSPACENAME",
+            description: "Name of the workspace",
+            isOptional: true,
+          },
+          options: [...commonOptions],
+        },
+        {
+          name: "use",
+          description:
+            "Creates and switches to a new workspace or simply switches to an existing one",
+          args: {
+            name: "WORKSPACE",
+            description: "Name of the workspace to use",
+          },
+          options: [
+            ...commonOptions,
+            {
+              name: ["--production", "-p"],
+              description: "Creates and/or switches to a production workspace",
+              priority: 1,
+            },
+            {
+              name: ["--reset", "-r"],
+              description: "Resets the workspace before switching to it",
+              priority: 2,
+            },
+          ],
         },
       ],
-    },
-    {
-      name: "workspace list",
-      description: "Lists all workspaces of the current account",
       options: [...commonOptions],
-    },
-    {
-      name: "workspace promote",
-      description:
-        "Promotes the current workspace to master. Only works for production workspaces",
-      options: [...commonOptions],
-    },
-    {
-      name: "workspace reset",
-      description:
-        "Cleans all configurations of the specified workspace and recreates it with the configurations from master",
-      args: {
-        name: "WORKSPACENAME",
-        description: "Name of the workspace to reset",
-        isOptional: true,
-      },
-      options: [
-        ...commonOptions,
-        {
-          name: ["--production", "-p"],
-          description: "Recreates the workspace as a production one",
-          priority: 1,
-        },
-        {
-          name: ["--yes", "-y"],
-          description: "Answers yes to all prompts",
-          priority: 2,
-        },
-      ],
-    },
-    {
-      name: "workspace status",
-      description: "Displays information about the specified workspace",
-      args: {
-        name: "WORKSPACENAME",
-        description: "Name of the workspace",
-        isOptional: true,
-      },
-      options: [...commonOptions],
-    },
-    {
-      name: "workspace use",
-      description:
-        "Creates and switches to a new workspace or simply switches to an existing one",
-      args: {
-        name: "WORKSPACE",
-        description: "Name of the workspace to use",
-      },
-      options: [
-        ...commonOptions,
-        {
-          name: ["--production", "-p"],
-          description: "Creates and/or switches to a production workspace",
-          priority: 1,
-        },
-        {
-          name: ["--reset", "-r"],
-          description: "Resets the workspace before switching to it",
-          priority: 2,
-        },
-      ],
     },
   ],
   options: [...commonOptions],
