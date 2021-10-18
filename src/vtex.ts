@@ -6,7 +6,7 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+const completion: Fig.Spec = {
   name: "vtex",
   description:
     "Fig autocomplete for VTEX IO's CLI - VTEX IO's CLI allows you to perform any action necessary to your development process, such as linking local files to the VTEX platform, managing workspaces, and releasing new app versions",
@@ -66,24 +66,20 @@ export const completion: Fig.Spec = {
         {
           name: "get",
           description: "Prints the value of the requested configuration key",
-          args: [
-            {
-              name: "CONFIGNAME",
-              description: "Configuration to retrieve the value from",
-            },
-          ],
+          args: {
+            name: "CONFIGNAME",
+            description: "Configuration to retrieve the value from",
+          },
           options: [...commonOptions],
         },
         {
           name: "reset",
           description:
             "Resets the specified configuration to its default value",
-          args: [
-            {
-              name: "CONFIGNAME",
-              description: "Name of the configuration to reset",
-            },
-          ],
+          args: {
+            name: "CONFIGNAME",
+            description: "Name of the configuration to reset",
+          },
           options: [...commonOptions],
         },
         {
@@ -241,12 +237,10 @@ export const completion: Fig.Spec = {
         {
           name: "set",
           description: "Sets the Edition App version for the current account",
-          args: [
-            {
-              name: "EDITION",
-              description: "Name of the Edition App to install",
-            },
-          ],
+          args: {
+            name: "EDITION",
+            description: "Name of the Edition App to install",
+          },
           options: [...commonOptions],
         },
       ],
@@ -270,41 +264,48 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: "infra install",
-      description: "Installs an infra service",
-      args: {
-        name: "SERVICEID",
-        description:
-          "Name and version of the service ({vendor}.{servicename}@{x.x.x}) to install",
-      },
-      options: [...commonOptions],
-    },
-    {
-      name: "infra list",
-      description: "Lists installed infra services",
-      args: {
-        name: "NAME",
-        description: "Service name",
-        isOptional: true,
-      },
-      options: [
-        ...commonOptions,
+      name: "infra",
+      description: "Infra service",
+      subcommands: [
         {
-          name: ["--available", "-a"],
-          description: "Lists services that are available to install",
-          priority: 1,
+          name: "infra install",
+          description: "Installs an infra service",
+          args: {
+            name: "SERVICEID",
+            description:
+              "Name and version of the service ({vendor}.{servicename}@{x.x.x}) to install",
+          },
+          options: [...commonOptions],
         },
         {
-          name: ["--filter=filter", "-f"],
-          description: "Lists services that contain the specified word",
-          priority: 2,
+          name: "infra list",
+          description: "Lists installed infra services",
+          args: {
+            name: "NAME",
+            description: "Service name",
+            isOptional: true,
+          },
+          options: [
+            ...commonOptions,
+            {
+              name: ["--available", "-a"],
+              description: "Lists services that are available to install",
+              priority: 1,
+            },
+            {
+              name: ["--filter=filter", "-f"],
+              description: "Lists services that contain the specified word",
+              priority: 2,
+            },
+          ],
+        },
+        {
+          name: "infra update",
+          description: "Updates all installed infra services",
+
+          options: [...commonOptions],
         },
       ],
-    },
-    {
-      name: "infra update",
-      description: "Updates all installed infra services",
-
       options: [...commonOptions],
     },
     {
@@ -345,12 +346,10 @@ export const completion: Fig.Spec = {
     {
       name: "lighthouse audit",
       description: "Runs a Lighthouse audit over the specified URL",
-      args: [
-        {
-          name: "URL",
-          description: "URL to audit",
-        },
-      ],
+      args: {
+        name: "URL",
+        description: "URL to audit",
+      },
       options: [
         ...commonOptions,
         {
@@ -378,23 +377,6 @@ export const completion: Fig.Spec = {
     },
     {
       name: "lighthouse show",
-      description: "Shows a previous audit report, filtering by app and/or URL",
-      options: [
-        ...commonOptions,
-        {
-          name: ["--app=app", "-a"],
-          description: "Filters by app name",
-          priority: 1,
-        },
-        {
-          name: ["--url=url", "-u"],
-          description: "Filters by URL",
-          priority: 2,
-        },
-      ],
-    },
-    {
-      name: "lh audit",
       description: "Shows a previous audit report, filtering by app and/or URL",
       options: [
         ...commonOptions,
@@ -466,13 +448,11 @@ export const completion: Fig.Spec = {
     {
       name: "login",
       description: "Login to a VTEX account",
-      args: [
-        {
-          name: "ACCOUNT",
-          description: "Account name to log in",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "ACCOUNT",
+        description: "Account name to log in",
+        isOptional: true,
+      },
       options: [
         ...commonOptions,
         {
@@ -490,13 +470,11 @@ export const completion: Fig.Spec = {
     {
       name: "logs",
       description: "Shows logs of an app. (Only apps in production.)",
-      args: [
-        {
-          name: "APP",
-          description: "Name of the app to show logs",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "APP",
+        description: "Name of the app to show logs",
+        isOptional: true,
+      },
       options: [
         ...commonOptions,
         {
@@ -961,3 +939,5 @@ export const completion: Fig.Spec = {
   ],
   options: [...commonOptions],
 };
+
+export default completion;
