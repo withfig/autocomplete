@@ -15,7 +15,8 @@ const icon =
 
 const completionSpec: Fig.Spec = {
   name: "blitz",
-  description: "",
+  description:
+    "Blitz.js CLI is your single access point for interacting with your app, from database management to code generation",
   subcommands: [
     {
       name: ["build", "b"],
