@@ -1,4 +1,7 @@
-const getProjectsAndFolders = (paths) => {
+const getProjectsAndFolders: Fig.Function<
+  Fig.Modify<Fig.Suggestion, { name?: string }>[],
+  Fig.Suggestion[]
+> = (paths) => {
   return paths.map((file) => {
     const isXcodeProjFolder = file.name.endsWith(".xcodeproj/");
     return {
