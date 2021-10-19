@@ -97,8 +97,8 @@ const completionSpec: Fig.Spec = {
           description: "Output a specific number of lines",
           args: {
             name: "Number of lines",
-            description: "The number of lines to output"
-          }
+            description: "The number of lines to output",
+          },
         },
       ],
     },
@@ -125,7 +125,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Run a local command using variables from the active environment",
       options: [
-        { name: ["-e", "--environment"], description: "Environment to run in", args: {} },
+        {
+          name: ["-e", "--environment"],
+          description: "Environment to run in",
+          args: {},
+        },
       ],
     },
     {
@@ -143,7 +147,7 @@ const completionSpec: Fig.Spec = {
         name: "path",
         description: "Path to deploy to",
         isOptional: true,
-        template: "folders"
+        template: "folders",
       },
       options: [
         { name: ["-d", "--detach"], description: "Detach from build logs" },
