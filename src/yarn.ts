@@ -1018,6 +1018,7 @@ const completionSpec: Fig.Spec = {
       name: "link",
       description: "Symlink a package folder during development",
       args: {
+        isOptional: true,
         name: "package",
       },
       options: [
