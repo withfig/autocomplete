@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
             .map((host) => {
               return {
                 name: host.split(" ").slice(-1)[0],
-                description: "Ssh host",
+                description: "SSH host",
                 priority: 90,
               };
             });
