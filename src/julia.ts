@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
       name: "--project",
       description: "Set given directory as the home project/environment",
       args: {
-        name: "project",
+        name: "project folder",
         description: "Julia project/environment",
         isOptional: true,
         generators: {
@@ -345,6 +345,7 @@ const completionSpec: Fig.Spec = {
     isScript: true,
     isOptional: true,
     generators: {
+      template: "filepaths",
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((path) => {
