@@ -24,6 +24,7 @@ const completionSpec: Fig.Spec = {
       name: "--help-hidden",
       description: "Uncommon options not shown by `-h`",
     },
+    // startup options
     {
       name: "--project",
       description: "Set given directory as the home project/environment",
@@ -102,6 +103,7 @@ const completionSpec: Fig.Spec = {
         suggestions: [{ name: "yes" }, { name: "no" }],
       },
     },
+    // actions
     {
       name: ["-e", "--eval"],
       insertValue: "-e '{cursor}'",
@@ -140,6 +142,7 @@ const completionSpec: Fig.Spec = {
         },
       },
     },
+    // parallel options
     {
       name: ["-t", "--threads"],
       description:
@@ -165,6 +168,7 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
       },
     },
+    // interactive options
     {
       name: "-i",
       description: "Interactive mode; REPL runs and isinteractive() is true",
@@ -194,6 +198,7 @@ const completionSpec: Fig.Spec = {
         suggestions: [{ name: "yes" }, { name: "no" }],
       },
     },
+    // error and warning options
     {
       name: "--depwarn",
       description:
@@ -216,6 +221,7 @@ const completionSpec: Fig.Spec = {
         suggestions: [{ name: "yes" }, { name: "no" }],
       },
     },
+    // code generation options
     {
       name: ["-C", "--cpu-target"],
       description:
@@ -266,6 +272,7 @@ const completionSpec: Fig.Spec = {
         suggestions: [{ name: "ieee" }, { name: "fast" }],
       },
     },
+    // instrumentation options
     {
       name: "--code-coverage",
       description:
@@ -290,6 +297,7 @@ const completionSpec: Fig.Spec = {
         "Launch a bug report session. It can be used to start a REPL, run a script, or evaluate  expressions. It first tries to use BugReporting.jl installed in current environment and fallbacks to the latest compatible BugReporting.jl if not. For more information, see --bug-report=help",
       args: { name: "KIND" },
     },
+    // code generation options
     {
       name: "--compile",
       description:
@@ -303,6 +311,7 @@ const completionSpec: Fig.Spec = {
         ],
       },
     },
+    // compiler output options
     {
       name: "--output-o",
       description: "Generate an object file (including system image data)",
@@ -313,6 +322,7 @@ const completionSpec: Fig.Spec = {
       description: "Generate a system image data file (.ji)",
       args: { name: "name", template: "filepaths" },
     },
+    // compiler debugging
     {
       name: "--output-unopt-bc",
       description: "Generate unoptimized LLVM bitcode (.bc)",
