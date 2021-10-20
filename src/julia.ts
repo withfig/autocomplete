@@ -240,8 +240,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-g",
-      description:
-        "Enable / Set the level of debug info generation (default level is 1 if unspecified or 2 if used without a level)",
+      description: "Enable / Set the level of debug info generation",
       args: {
         name: "level",
         description: "Level of debug info generation",
