@@ -264,6 +264,14 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--polly",
+      description:
+        "Enable or disable the polyhedral optimizer Polly (overrides @polly declaration)",
+      args: {
+        suggestions: [{ name: "yes" }, { name: "no" }],
+      },
+    },
+    {
       name: "--math-mode",
       description:
         "Disallow or enable unsafe floating point optimizations (overrides @fastmath declaration)",
