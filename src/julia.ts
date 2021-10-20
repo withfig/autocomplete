@@ -285,6 +285,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--bug-report",
+      description:
+        "Launch a bug report session. It can be used to start a REPL, run a script, or evaluate  expressions. It first tries to use BugReporting.jl installed in current environment and fallbacks to the latest compatible BugReporting.jl if not. For more information, see --bug-report=help",
+      args: { name: "KIND" },
+    },
+    {
       name: "--compile",
       description:
         "Enable or disable JIT compiler, or request exhaustive or minimal compilation",
