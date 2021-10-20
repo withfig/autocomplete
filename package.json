@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.11.0",
+  "version": "2.29.1",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "browserslist": [
@@ -69,7 +69,8 @@
     "@types/progress": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
-    "@withfig/autocomplete-tools": "^1.0.0",
+    "@withfig/autocomplete-tools": "^2.0.1",
+    "@withfig/autocomplete-types": "^1.5.0",
     "@withfig/eslint-plugin-fig-linter": "^1.0.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",

@@ -54,19 +54,16 @@ const brewInfo = (name: string): Fig.Subcommand => ({
     generators: {
       script:
         "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
-      postProcess: function (out) {
-        return out.split("\n").map((formula) => {
-          return {
-            name: formula.replace(".rb", ""),
-            description: "Formula",
-            icon: "🍺",
-            priority:
-              (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
-                ? 0
-                : 51,
-          };
-        });
-      },
+      postProcess: (out) =>
+        [...new Set(out.split("\n"))].map((formula) => ({
+          name: formula.replace(".rb", ""),
+          description: "Formula",
+          icon: "🍺",
+          priority:
+            (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
+              ? 0
+              : 51,
+        })),
     },
   },
   options: [
@@ -243,7 +240,7 @@ const completionSpec: Fig.Spec = {
             "List only formulae, or treat all named arguments as formulae",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "List only casks, or treat all named arguments as casks",
         },
         {
@@ -528,7 +525,7 @@ const completionSpec: Fig.Spec = {
             "Print install times for each formula at the end of the run",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "--casks Treat all named arguments as casks",
         },
         {
@@ -702,7 +699,7 @@ const completionSpec: Fig.Spec = {
           description: "Search online and locally for formulae",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "Search online and locally for casks",
         },
         {
@@ -840,7 +837,7 @@ const completionSpec: Fig.Spec = {
             "Print install times for each formula at the end of the run",
         },
         {
-          name: "--cask,",
+          name: "--cask",
           description: "--casks Treat all named arguments as casks",
         },
         {
@@ -1068,7 +1065,7 @@ const completionSpec: Fig.Spec = {
               description: "Treat all named arguments as formulae",
             },
             {
-              name: "--cask,",
+              name: "--cask",
               description: "Treat all named arguments as casks",
             },
           ],

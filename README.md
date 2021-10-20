@@ -25,7 +25,8 @@ Want to add autocomplete to a CLI tool (or make changes to an existing autocompl
 
 Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from information in the spec or can be generated dynamically by running shell commands or reading local files.
 
-**For documentation and tutorials**, visit [fig.io/docs](https://fig.io/docs)
+**For documentation and tutorials**, visit
+[fig.io/docs](https://fig.io/docs).
 
 **To request autocomplete for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
@@ -93,6 +94,16 @@ npm run copy:all
 # Copy an individual spec from the build/ folder to the ~/.fig/autocomplete folder
 npm run copy <spec-name>
 ```
+
+## 🎃 Hacktoberfest
+Yes! We are participating in Hacktoberfest and would love your contributions! You can build your first spec in < 3 minutes with our [Getting Started Guide](https://fig.io/docs/getting-started).
+
+**We would love contributions for**
+* solutions to these [Hacktoberfest-specific issues](https://github.com/withfig/autocomplete/issues?q=is%3Aissue+is%3Aopen+label%3Ahacktoberfest)
+* any other completion spec for CLI tools you use regularly
+* generators for existing specs
+
+Never submitted a PR before? Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 100+ contributors made their first open source contribution to Fig too!
 
 ## 😊 Need Help?
 

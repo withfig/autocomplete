@@ -1,10 +1,10 @@
-import {
-  dependenciesGenerator,
-  npmScriptsGenerator,
-  npmSearchGenerator,
-} from "./npm";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
-const createCLIs = ["create-next-app", "create-react-native-app"];
+const createCLIs = [
+  "create-next-app",
+  "create-react-native-app",
+  "create-video",
+];
 
 export const nodeClis = [
   "vue",
@@ -19,6 +19,7 @@ export const nodeClis = [
   "tsc",
   "typeorm",
   "babel",
+  "remotion",
 ];
 
 type SearchResult = {
@@ -104,6 +105,42 @@ const configList: Fig.Generator = {
     } catch (e) {}
 
     return [];
+  },
+};
+
+export const dependenciesGenerator: Fig.Generator = {
+  script:
+    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  postProcess: function (out, context = []) {
+    if (out.trim() === "") {
+      return [];
+    }
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent["dependencies"] ?? {};
+      const devDependencies = packageContent["devDependencies"];
+      const optionalDependencies = packageContent["optionalDependencies"] ?? {};
+      Object.assign(dependencies, devDependencies, optionalDependencies);
+
+      return Object.keys(dependencies)
+        .filter((pkgName) => {
+          const isListed = context.some((current) => current === pkgName);
+          return !isListed;
+        })
+        .map((pkgName) => ({
+          name: pkgName,
+          icon: "📦",
+          description: dependencies[pkgName]
+            ? "dependency"
+            : optionalDependencies[pkgName]
+            ? "optionalDependency"
+            : "devDependency",
+        }));
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
   },
 };
 
@@ -981,6 +1018,7 @@ const completionSpec: Fig.Spec = {
       name: "link",
       description: "Symlink a package folder during development",
       args: {
+        isOptional: true,
         name: "package",
       },
       options: [
@@ -1261,17 +1299,29 @@ const completionSpec: Fig.Spec = {
           const packageContent = JSON.parse(out);
           const workspaces = packageContent["workspaces"];
 
+          const getPackageName = async (workspace: string): Promise<string> => {
+            const workspacePackage = await executeShellCommand(
+              `\cat ${workspace}/package.json`
+            );
+
+            try {
+              return JSON.parse(workspacePackage)["name"] || workspace;
+            } catch (e) {
+              console.error(e);
+              return workspace;
+            }
+          };
+
           if (workspaces) {
             for (const workspace of workspaces) {
               if (workspace.includes("*")) {
-                const out = await executeShellCommand(
-                  `\ls ${workspace.slice(0, -1)}`
-                );
+                const workspacePath = workspace.slice(0, -1);
+                const out = await executeShellCommand(`\ls ${workspacePath}`);
                 const workspaceList = out.split("\n");
 
                 for (const space of workspaceList) {
                   subcommands.push({
-                    name: space,
+                    name: await getPackageName(workspacePath + space),
                     description: "Workspaces",
                     args: {
                       name: "script",
@@ -1287,7 +1337,7 @@ const completionSpec: Fig.Spec = {
                 }
               } else {
                 subcommands.push({
-                  name: workspace,
+                  name: await getPackageName(workspace),
                   description: "Workspaces",
                   args: {
                     name: "script",
@@ -1301,6 +1351,7 @@ const completionSpec: Fig.Spec = {
             }
           }
         } catch (e) {
+          console.error(e);
           return { name: "workspaces" };
         }
 
@@ -1324,6 +1375,61 @@ const completionSpec: Fig.Spec = {
         {
           name: "flags",
           description: "",
+        },
+      ],
+    },
+    {
+      name: "set",
+      description: "Set global Yarn options",
+      subcommands: [
+        {
+          name: "resolution",
+          description: "Enforce a package resolution",
+          args: [
+            {
+              name: "descriptor",
+              description:
+                "A descriptor for the package, in the form of 'lodash@npm:^1.2.3'",
+            },
+            {
+              name: "resolution",
+              description: "The version of the package to resolve",
+            },
+          ],
+          options: [
+            {
+              name: ["-s", "--save"],
+              description:
+                "Persist the resolution inside the top-level manifest",
+            },
+          ],
+        },
+        {
+          name: "version",
+          description: "Lock the Yarn version used by the project",
+          args: {
+            name: "version",
+            description:
+              "Use the specified version, which can also be a Yarn 2 build (e.g 2.0.0-rc.30) or a Yarn 1 build (e.g 1.22.1)",
+            template: "filepaths",
+            suggestions: [
+              {
+                name: "from-sources",
+                insertValue: "from sources",
+              },
+              "latest",
+              "canary",
+              "classic",
+              "self",
+            ],
+          },
+          options: [
+            {
+              name: "--only-if-needed",
+              description:
+                "Only lock the Yarn version if it isn't already locked",
+            },
+          ],
         },
       ],
     },
