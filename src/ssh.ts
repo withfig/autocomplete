@@ -21,29 +21,45 @@ const pastConnections: Fig.Generator = {
   },
 };
 
+const knownHosts: Fig.Generator = {
+  script: "cat ~/.ssh/known_hosts",
+  postProcess: function (out) {
+    const re = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/;
+    return out.split("\n").map((line) => {
+      return {
+        name: re.exec(line),
+        description: `SSH host`,
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "ssh",
   description: "Log into a remote machine",
   args: {
     name: "user@hostname",
     description: "Address of remote machine to log into",
-    generators: {
-      script: "cat ~/.ssh/config",
-      postProcess: function (out) {
-        return out
-          .split("\n")
-          .filter((line) => {
-            return line.trim().startsWith("Host ") && !line.includes("*");
-          })
-          .map((host) => {
-            return {
-              name: host.split(" ").slice(-1)[0],
-              description: "Ssh host",
-              priority: 90,
-            };
-          });
+    generators: [
+      {
+        script: "cat ~/.ssh/config",
+        postProcess: function (out) {
+          return out
+            .split("\n")
+            .filter((line) => {
+              return line.trim().startsWith("Host ") && !line.includes("*");
+            })
+            .map((host) => {
+              return {
+                name: host.split(" ").slice(-1)[0],
+                description: "Ssh host",
+                priority: 90,
+              };
+            });
+        },
       },
-    },
+      knownHosts,
+    ],
   },
   options: [
     {
