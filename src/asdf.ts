@@ -41,7 +41,6 @@ const installedPluginVersionsGenerator = (
 ): Fig.Generator => ({
   script: (context) => {
     const pluginName = context[context.length - 2];
-    console.log(JSON.stringify(context, null, 2));
     return `asdf list ${pluginName}`;
   },
   postProcess: (output) =>
@@ -64,7 +63,6 @@ const allPluginVersionsGenerator = (
 ): Fig.Generator => ({
   script: (context) => {
     const pluginName = context[context.length - 2];
-    console.log(JSON.stringify(context, null, 2));
     return `asdf list-all ${pluginName}`;
   },
   cache: {
@@ -102,7 +100,7 @@ const shimNamesGenerator = (
 /*
  *  Reusable specs
  */
-const pluginAddSpec: Partial<Fig.Subcommand> = {
+const pluginAddSpec: Omit<Fig.Subcommand, "name"> = {
   description:
     "Add a plugin from the plugin repo OR, add a Git repo as a plugin by specifying the name and repo url",
   args: [
@@ -117,11 +115,11 @@ const pluginAddSpec: Partial<Fig.Subcommand> = {
   ],
 };
 
-const pluginListAllSpec: Partial<Fig.Subcommand> = {
+const pluginListAllSpec: Omit<Fig.Subcommand, "name"> = {
   description: "List plugins registered on asdf-plugins repository with URLs",
 };
 
-const pluginListSpec: Partial<Fig.Subcommand> = {
+const pluginListSpec: Omit<Fig.Subcommand, "name"> = {
   description: "List installed plugins. Optionally show git urls and git-ref",
   options: [
     {
@@ -141,7 +139,7 @@ const pluginListSpec: Partial<Fig.Subcommand> = {
   ],
 };
 
-const pluginRemoveSpec: Partial<Fig.Subcommand> = {
+const pluginRemoveSpec: Omit<Fig.Subcommand, "name"> = {
   description: "Remove plugin and package versions",
   args: {
     name: "name",
@@ -149,7 +147,7 @@ const pluginRemoveSpec: Partial<Fig.Subcommand> = {
   },
 };
 
-const pluginUpdateSpec: Partial<Fig.Subcommand> = {
+const pluginUpdateSpec: Omit<Fig.Subcommand, "name"> = {
   description:
     "Update a plugin to latest commit on default branch or a particular git-ref",
   args: [
@@ -173,7 +171,7 @@ const pluginUpdateSpec: Partial<Fig.Subcommand> = {
   ],
 };
 
-const listAllSpec: Partial<Fig.Subcommand> = {
+const listAllSpec: Omit<Fig.Subcommand, "name"> = {
   description: "List all available (remote) versions of a package",
   args: [
     {
@@ -188,7 +186,7 @@ const listAllSpec: Partial<Fig.Subcommand> = {
   ],
 };
 
-const shimVersionsSpec: Partial<Fig.Subcommand> = {
+const shimVersionsSpec: Omit<Fig.Subcommand, "name"> = {
   description: "List for given command which plugins and versions provide it",
   args: {
     name: "command",
@@ -264,17 +262,14 @@ const completionSpec: Fig.Spec = {
               isDangerous: true,
             },
           ],
-          generators: allPluginVersionsGenerator(
-            {},
-            {
-              getQueryTerm: (token) => {
-                if (token.includes("latest")) {
-                  return token.slice(token.indexOf(":") + 1);
-                }
-                return token;
-              },
-            }
-          ),
+          generators: allPluginVersionsGenerator(undefined, {
+            getQueryTerm: (token) => {
+              if (token.includes("latest")) {
+                return token.slice(token.indexOf(":") + 1);
+              }
+              return token;
+            },
+          }),
           isOptional: true,
         },
       ],
