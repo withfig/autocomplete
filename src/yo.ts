@@ -1,5 +1,10 @@
 function toTitleCase(str: string): string {
-  return str.trim().replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
+  return str
+    .trim()
+    .replace(
+      /\w\S*/g,
+      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    );
 }
 
 const suggestions: Fig.Suggestion[] = [
