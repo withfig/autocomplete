@@ -1,7 +1,5 @@
 function toTitleCase(str: string): string {
-  return str.trim().replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
+  return str.trim().replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
 }
 
 const suggestions: Fig.Suggestion[] = [
@@ -42,6 +40,7 @@ const yeomanGeneratorList: Fig.Generator = {
             } as Fig.Suggestion)
         ) as Fig.Suggestion[];
     } catch (e) {
+      console.error(e);
       return [];
     }
   },
@@ -65,6 +64,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-f", "--force"],
       description: "Overwrite files that already exist",
+      isDangerous: true,
     },
     {
       name: "--version",
