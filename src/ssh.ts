@@ -26,12 +26,10 @@ const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/;
 const knownHosts: Fig.Generator = {
   script: "cat ~/.ssh/known_hosts",
   postProcess: function (out) {
-    return out.split("\n").map((line) => {
-      return {
-        name: knownHostRegex.exec(line),
-        description: `SSH host`,
-      };
-    });
+    return out.split("\n").map((line) => ({
+      name: knownHostRegex.exec(line),
+      description: "SSH host",
+    }));
   },
 };
 
@@ -47,16 +45,14 @@ const completionSpec: Fig.Spec = {
         postProcess: function (out) {
           return out
             .split("\n")
-            .filter((line) => {
-              return line.trim().startsWith("Host ") && !line.includes("*");
-            })
-            .map((host) => {
-              return {
-                name: host.split(" ").slice(-1)[0],
-                description: "SSH host",
-                priority: 90,
-              };
-            });
+            .filter(
+              (line) => line.trim().startsWith("Host ") && !line.includes("*")
+            )
+            .map((host) => ({
+              name: host.split(" ").slice(-1)[0],
+              description: "SSH host",
+              priority: 90,
+            }));
         },
       },
       knownHosts,
