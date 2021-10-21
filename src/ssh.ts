@@ -1,33 +1,34 @@
-const pastConnections: Fig.Generator = {
-  script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
-  postProcess: function (out) {
-    return out.split("\n").map((line) => {
-      const parts = line.split("/[ ,]+/");
-      let address;
-      for (let i = 0; i < parts.length; i++) {
-        if (parts[i].includes("@")) {
-          //found address
-          address = parts[i];
-        }
-      }
-      if (address) {
-        return {
-          name: "root",
-          icon: "🔗",
-          description: `connect to ${address}`,
-        };
-      }
-    });
-  },
-};
+// const pastConnections: Fig.Generator = {
+//   script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
+//   postProcess: function (out) {
+//     return out.split("\n").map((line) => {
+//       const parts = line.split("/[ ,]+/");
+//       let address;
+//       for (let i = 0; i < parts.length; i++) {
+//         if (parts[i].includes("@")) {
+//           //found address
+//           address = parts[i];
+//         }
+//       }
+//       if (address) {
+//         return {
+//           name: "root",
+//           icon: "🔗",
+//           description: `connect to ${address}`,
+//         };
+//       }
+//     });
+//   },
+// };
+
+const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/;
 
 const knownHosts: Fig.Generator = {
   script: "cat ~/.ssh/known_hosts",
   postProcess: function (out) {
-    const re = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/;
     return out.split("\n").map((line) => {
       return {
-        name: re.exec(line),
+        name: knownHostRegex.exec(line),
         description: `SSH host`,
       };
     });
