@@ -30,14 +30,7 @@ const completion: Fig.Spec = {
           description: "Application to import from",
           args: {
             name: "from",
-            suggestions: [
-              {
-                name: "autojump",
-              },
-              {
-                name: "z",
-              },
-            ]
+            suggestions: ["autojump", "z"],
           },
         },
         {
@@ -72,21 +65,12 @@ const completion: Fig.Spec = {
         },
         {
           name: "--hook",
-          description: "Chooses event upon which an entry is added to the database",
+          description:
+            "Chooses event upon which an entry is added to the database",
           args: {
             name: "hook",
             isOptional: true,
-            suggestions: [
-              {
-                name: "none",
-              },
-              {
-                name: "prompt",
-              },
-              {
-                name: "pwd",
-              },
-            ]
+            suggestions: ["none", "prompt", "pwd"],
           },
         },
         {
@@ -105,31 +89,15 @@ const completion: Fig.Spec = {
       args: {
         name: "shell",
         suggestions: [
-          {
-            name: "bash",
-          },
-          {
-            name: "elvish",
-          },
-          {
-            name: "fish",
-          },
-          {
-            name: "nushell",
-          },
-          {
-            name: "posix",
-          },
-          {
-            name: "powershell",
-          },
-          {
-            name: "xonsh",
-          },
-          {
-            name: "zsh",
-          },
-        ]
+          "bash",
+          "elvish",
+          "fish",
+          "nushell",
+          "posix",
+          "powershell",
+          "xonsh",
+          "zsh",
+        ],
       },
     },
     {
