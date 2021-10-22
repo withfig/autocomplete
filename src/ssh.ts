@@ -21,7 +21,7 @@
 //   },
 // };
 
-const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/;
+const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numerical IPs as well as domains/subdomains
 
 const knownHosts: Fig.Generator = {
   script: "cat ~/.ssh/known_hosts",
@@ -30,7 +30,7 @@ const knownHosts: Fig.Generator = {
       const knownHost = knownHostRegex.exec(line);
       if (knownHost != null) {
         return {
-          name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost,
+          name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
           description: "SSH host",
         };
       }
@@ -55,7 +55,7 @@ const completionSpec: Fig.Spec = {
               (line) => line.trim().startsWith("Host ") && !line.includes("*")
             )
             .map((host) => ({
-              name: host.split(" ").slice(-1)[0],
+              name: host.split(" ")[1],
               description: "SSH host",
               priority: 90,
             }));
