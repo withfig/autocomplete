@@ -66,10 +66,65 @@ const completionSpec: Fig.Spec = {
           name: "build",
           description:
             "Compile project from Typescript to Javascript. Also compiles the frontend assets if using webpack encore",
+          options: [
+            {
+              name: ["-prod", "--production"],
+              description: "Build for production",
+            },
+            {
+              name: "--assets",
+              description:
+                "Build frontend assets when webpack encore is installed",
+            },
+            {
+              name: "--no-assets",
+              description: "Disable building assets",
+            },
+            {
+              name: "--ignore-ts-errors",
+              description:
+                "Ignore typescript errors and complete the build process",
+            },
+            {
+              name: "--tsconfig",
+              description: "Path to the TypeScript project configuration file",
+            },
+            {
+              name: " --encore-args",
+              description: "CLI options to pass to the encore command line",
+            },
+            {
+              name: "--client",
+              description:
+                "Select the package manager to decide which lock file to copy to the build folder",
+            },
+          ],
         },
         {
           name: ["configure", "invoke"],
           description: "Configure a given AdonisJS package",
+          args: {
+            name: "name",
+            description: "Name of the package you want to configure",
+          },
+          subcommands: [
+            {
+              name: "@adonisjs/auth",
+              description: "Trigger auto configuring auth package",
+            },
+            {
+              name: "@adonisjs/shield",
+              description: "Trigger auto configuring shield package",
+            },
+            {
+              name: "@adonisjs/redis",
+              description: "Trigger auto configuring redis package",
+            },
+            {
+              name: "@adonisjs/mail",
+              description: "Trigger auto configuring mail package",
+            },
+          ],
         },
         {
           name: "repl",
@@ -79,10 +134,60 @@ const completionSpec: Fig.Spec = {
           name: "serve",
           description:
             "Start the AdonisJS HTTP server, along with the file watcher. Also starts the webpack dev server when webpack encore is installed",
+          options: [
+            {
+              name: "--assets",
+              description: "Start webpack dev server when encore is installed",
+            },
+            {
+              name: "--no-assets",
+              description: "Disable webpack dev server",
+            },
+            {
+              name: ["-w", "--watch "],
+              description:
+                "Watch for file changes and re-start the HTTP server on change",
+            },
+            {
+              name: ["-p", "--poll"],
+              description:
+                "Detect file changes by polling files instead of listening to filesystem events",
+            },
+            {
+              name: "--node-args",
+              description: "CLI options to pass to the node command line",
+            },
+            {
+              name: "--encore-args",
+              description: "CLI options to pass to the encore command line",
+            },
+          ],
         },
         {
           name: "db:seed",
           description: "Execute database seeder files",
+          options: [
+            {
+              name: ["-c", "--connection"],
+              description:
+                "Define a custom database connection for the seeders",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: ["-i", "--interactive"],
+              description: "Run seeders in interactive mode",
+            },
+            {
+              name: ["-f", "--files"],
+              args: {
+                name: "file1, file2",
+              },
+              description:
+                "String[] - Define a custom set of seeders files names to run",
+            },
+          ],
         },
         {
           name: "dump:rcfile",
@@ -109,6 +214,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "make:controller",
           description: "Make a new HTTP controller",
+          args: {
+            name: "name",
+            description: "Name of the controller class",
+            isOptional: false,
+          },
+          options: [
+            {
+              name: ["-r", "--resource"],
+              description: "Add resourceful methods to the controller class",
+            },
+            {
+              name: ["-e", "--exact"],
+              description:
+                "Create the controller with the exact name as provided",
+            },
+          ],
         },
         {
           name: "make:exception",
@@ -121,18 +242,69 @@ const completionSpec: Fig.Spec = {
         {
           name: "make:middleware",
           description: "Make a new middleware",
+          args: {
+            name: "name",
+            description: "Middleware class name",
+            isOptional: false,
+          },
         },
         {
           name: "make:migration",
           description: "Make a new migration file",
+          args: {
+            name: "name",
+            description: "Name of the migration file",
+            isOptional: false,
+          },
+          options: [
+            {
+              name: "--connection",
+              description:
+                "The connection flag is used to lookup the directory for the migration file",
+            },
+            {
+              name: "--folder",
+              description: "Pre-select a migration directory",
+            },
+            {
+              name: "--create",
+              description: "Define the table name for creating a new table",
+            },
+            {
+              name: "--table",
+              description:
+                "Define the table name for altering an existing table",
+            },
+          ],
         },
         {
           name: "make:model",
           description: "Make a new Lucid model",
+          args: {
+            name: "name",
+            description: "Name of the model class",
+            isOptional: false,
+          },
+          options: [
+            {
+              name: ["-m", "--migration"],
+              description: "Generate the migration for the model",
+            },
+            {
+              name: ["-c", "--controller"],
+              description: "Generate the controller for the model",
+            },
+          ],
         },
         {
           name: "make:prldfile",
           description: "Make a new preload file",
+          subcommands: [
+            {
+              name: "events",
+              description: "Make events preload file",
+            },
+          ],
         },
         {
           name: "make:provider",
@@ -141,22 +313,86 @@ const completionSpec: Fig.Spec = {
         {
           name: "make:seeder",
           description: "Make a new Seeder file",
+          args: {
+            name: "name",
+            description: "Name of the seeder class",
+          },
         },
         {
           name: "make:validator",
           description: "Make a new validator",
+          args: {
+            name: "name",
+            description: "Name of the validator class",
+          },
+          options: [
+            {
+              name: ["-e", "--exact"],
+              description:
+                "Create the validator with the exact name as provided",
+            },
+          ],
         },
         {
           name: "make:view",
           description: "Make a new view template",
+          args: {
+            name: "name",
+            description: "Name of the view",
+          },
+          options: [
+            {
+              name: ["-e", "--exact"],
+              description:
+                "Create the template file with the exact name as provided",
+            },
+          ],
         },
         {
           name: "migration:rollback",
           description: "Rollback migrations to a given batch number",
+          options: [
+            {
+              name: ["-c", "--connection"],
+              description: "Define a custom database connection",
+            },
+            {
+              name: "--force",
+              description: "Explicitly force to run migrations in production",
+            },
+            {
+              name: "--dry-run",
+              description:
+                "Print SQL queries, instead of running the migrations",
+            },
+            {
+              name: "--batch",
+              args: {
+                name: "number",
+                description: "Use 0 to rollback to initial state",
+              },
+              description: "Define custom batch number for rollback",
+            },
+          ],
         },
         {
           name: "migration:run",
           description: "Run pending migrations",
+          options: [
+            {
+              name: ["-c", "--connection"],
+              description: "Define a custom database connection",
+            },
+            {
+              name: "--force",
+              description: "Explicitly force to run migrations in production",
+            },
+            {
+              name: "--dry-run",
+              description:
+                "Print SQL queries, instead of running the migrations",
+            },
+          ],
         },
         {
           name: "migration:status",
