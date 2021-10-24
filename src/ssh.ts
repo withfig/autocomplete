@@ -1,26 +1,3 @@
-// const pastConnections: Fig.Generator = {
-//   script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
-//   postProcess: function (out) {
-//     return out.split("\n").map((line) => {
-//       const parts = line.split("/[ ,]+/");
-//       let address;
-//       for (let i = 0; i < parts.length; i++) {
-//         if (parts[i].includes("@")) {
-//           //found address
-//           address = parts[i];
-//         }
-//       }
-//       if (address) {
-//         return {
-//           name: "root",
-//           icon: "🔗",
-//           description: `connect to ${address}`,
-//         };
-//       }
-//     });
-//   },
-// };
-
 const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numerical IPs as well as domains/subdomains
 
 const knownHosts: Fig.Generator = {
