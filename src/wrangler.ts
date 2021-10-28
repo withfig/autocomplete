@@ -344,6 +344,7 @@ const completionSpec: Fig.Spec = {
         name: "output",
         suggestions: ["json"],
         description: "[possible values: json]",
+        isOptional: true,
       },
       options: [
         OPTION_CONFIG,
