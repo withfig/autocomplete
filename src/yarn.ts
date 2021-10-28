@@ -20,6 +20,7 @@ export const nodeClis = [
   "typeorm",
   "babel",
   "remotion",
+  "@withfig/autocomplete-tools",
 ];
 
 type SearchResult = {
