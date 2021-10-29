@@ -1,28 +1,26 @@
-const ICONS = {
-  npm: "fig://icon?type=npm",
-  yarn: "fig://icon?type=yarn",
-  pnpm: "https://pnpm.io/img/favicon.png",
-  true: "✅",
-  false: "❌",
-  ng: "https://angular.io/assets/images/logos/angular/angular.svg",
-  nx: "https://github.com/nrwl/nx/raw/master/images/nx-logo.png",
-  option: "fig://icon?type=option",
-  react: "https://reactjs.org/favicon.ico",
-  webComponents: "https://web-components-resources.appspot.com/static/logo.svg",
-  next: "https://nextjs.org/static/favicon/favicon.ico",
-  gatsby:
-    "https://www.gatsbyjs.com/favicon-32x32.png?v=3ad5294f3fa6c06e2d07ab07c76df2cf",
-  nest: "https://nestjs.com/favicon.264d6486.ico",
-  express: "https://expressjs.com/images/favicon.png",
-  css: "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
-  scss: "https://sass-lang.com/favicon.ico",
-  less: "https://lesscss.org/public/ico/favicon.ico",
-  stylus: "https://stylus-lang.com/favicon.ico",
-  emotion: "https://emotion.sh/favicons/favicon.ico",
-  styled: "https://styled-components.com/favicon.png",
-  vercel:
-    "https://assets.vercel.com/image/upload/q_auto/front/favicon/vercel/favicon.ico",
-};
+enum ICONS {
+  npm = "fig://icon?type=npm",
+  yarn = "fig://icon?type=yarn",
+  pnpm = "https://pnpm.io/img/favicon.png",
+  true = "✅",
+  false = "❌",
+  ng = "https://angular.io/assets/images/logos/angular/angular.svg",
+  nx = "https://github.com/nrwl/nx/raw/master/images/nx-logo.png",
+  option = "fig://icon?type=option",
+  react = "https://reactjs.org/favicon.ico",
+  webComponents = "https://web-components-resources.appspot.com/static/logo.svg",
+  next = "https://nextjs.org/static/favicon/favicon.ico",
+  gatsby = "https://www.gatsbyjs.com/favicon-32x32.png?v=3ad5294f3fa6c06e2d07ab07c76df2cf",
+  nest = "https://nestjs.com/favicon.264d6486.ico",
+  express = "https://expressjs.com/images/favicon.png",
+  css = "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
+  scss = "https://sass-lang.com/favicon.ico",
+  less = "https://lesscss.org/public/ico/favicon.ico",
+  stylus = "https://stylus-lang.com/favicon.ico",
+  emotion = "https://emotion.sh/favicons/favicon.ico",
+  styled = "https://styled-components.com/favicon.png",
+  vercel = "https://assets.vercel.com/image/upload/q_auto/front/favicon/vercel/favicon.ico",
+}
 
 const boolArg: (name: string, isOptional: boolean) => Fig.Arg = (
   name,
@@ -42,6 +40,11 @@ const boolArg: (name: string, isOptional: boolean) => Fig.Arg = (
   ],
 });
 
+const workspaceNameArg: Fig.Arg = {
+  name: "workspace",
+  description: "The name of the workspace",
+};
+
 const completionSpec: Fig.Spec = {
   name: "create-nx-workspace",
   description: "Create a new Nx workspace",
@@ -49,6 +52,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--name",
       description: "Workspace name (e.g., org name)",
+      args: workspaceNameArg,
     },
     {
       name: "--preset",
@@ -231,9 +235,7 @@ const completionSpec: Fig.Spec = {
       description: "Show help for create-nx-workspace",
     },
   ],
-  args: {
-    description: "Workspace name (e.g., org name)",
-    name: "name",
-  },
+  args: workspaceNameArg,
 };
+
 export default completionSpec;
