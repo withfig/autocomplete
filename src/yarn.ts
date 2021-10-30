@@ -4,6 +4,7 @@ const createCLIs = [
   "create-next-app",
   "create-react-native-app",
   "create-video",
+  "create-redwood-app",
 ];
 
 export const nodeClis = [
