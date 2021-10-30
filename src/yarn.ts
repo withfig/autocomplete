@@ -21,6 +21,7 @@ export const nodeClis = [
   "babel",
   "remotion",
   "@withfig/autocomplete-tools",
+  "@redwoodjs/core",
 ];
 
 type SearchResult = {
@@ -334,11 +335,19 @@ const completionSpec: Fig.Spec = {
 
     const subcommands = packages
       .filter((name) => nodeClis.includes(name))
-      .map((name) => ({
-        name,
-        loadSpec: name,
-        icon: "fig://icon?type=package",
-      }));
+      .map((name) =>
+        name == "@redwoodjs/core"
+          ? {
+              name: ["redwood", "rw"],
+              loadSpec: "redwood",
+              icon: "fig://icon?type=package",
+            }
+          : {
+              name,
+              loadSpec: name,
+              icon: "fig://icon?type=package",
+            }
+      );
 
     return {
       name: "yarn",
