@@ -36,7 +36,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "options",
             description: "Options to pass to Webpack Dev Server",
-            isOptional: false,
           },
         },
       ],
@@ -106,7 +105,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "side",
             description: "Select side to build",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "api",
@@ -164,7 +163,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the cell component",
-            isOptional: false,
           },
         },
         {
@@ -173,7 +171,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the component",
-            isOptional: false,
           },
         },
         {
@@ -182,7 +179,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the Function",
-            isOptional: false,
           },
         },
         {
@@ -191,7 +187,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the layout component",
-            isOptional: false,
           },
         },
         {
@@ -201,7 +196,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "name",
               description: "Name of the page",
-              isOptional: false,
             },
             {
               name: "path",
@@ -217,7 +211,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the scaffold",
-            isOptional: false,
           },
         },
         {
@@ -227,7 +220,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the sdl",
-            isOptional: false,
           },
         },
         {
@@ -236,7 +228,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the service",
-            isOptional: false,
           },
         },
       ],
@@ -252,7 +243,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the cell component",
-            isOptional: false,
           },
           options: [
             {
@@ -285,7 +275,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the component",
-            isOptional: false,
           },
           options: [
             {
@@ -313,7 +302,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the component",
-            isOptional: false,
           },
         },
         {
@@ -322,7 +310,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the directive",
-            isOptional: false,
           },
           options: [
             {
@@ -347,7 +334,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the Function",
-            isOptional: false,
           },
           options: [
             {
@@ -367,7 +353,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the layout component",
-            isOptional: false,
           },
           options: [
             {
@@ -401,7 +386,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "name",
               description: "Name of the page",
-              isOptional: false,
             },
             {
               name: "path",
@@ -437,7 +421,6 @@ const completionSpec: Fig.Spec = {
             name: "model",
             description:
               "Model to scaffold. You can also use <path/model> to nest files by type at the given path directory (or directories). For example, redwood g scaffold admin/post",
-            isOptional: false,
           },
           options: [
             {
@@ -457,7 +440,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "model",
             description: "Model to generate the sdl for",
-            isOptional: false,
           },
           options: [
             {
@@ -481,7 +463,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the service",
-            isOptional: false,
           },
           options: [
             {
@@ -514,7 +495,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "Name of the service",
-            isOptional: false,
           },
           options: [
             {
@@ -534,7 +514,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "script",
         description: "Name of the script to execute",
-        isOptional: false,
       },
     },
     {
@@ -882,7 +861,7 @@ const completionSpec: Fig.Spec = {
       description: "Data migration tools",
       args: {
         name: "command",
-        isOptional: false,
+
         suggestions: [
           {
             name: "install",
