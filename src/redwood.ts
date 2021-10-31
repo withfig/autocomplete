@@ -585,6 +585,19 @@ const completionSpec: Fig.Spec = {
           name: ["--tag", "-t"],
           description:
             'Choices are "canary", "rc", or a specific version (e.g. "0.19.3"). WARNING: Unstable releases in the case of "canary" and "rc", which will force upgrade packages to the most recent release of the specified tag',
+          args: {
+            name: "tag",
+            description: "Tag to use for upgrade",
+            suggestions: [
+              {
+                name: "canary",
+                description: "Upgrade to the latest canary release",
+              },
+              {
+                name: "rc",
+              },
+            ],
+          },
         },
         {
           name: "--pr",
