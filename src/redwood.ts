@@ -52,11 +52,7 @@ const completionSpec: Fig.Spec = {
             name: "provider",
             description: "AWS Deploy provider to configure",
             isOptional: true,
-            suggestions: [
-              {
-                name: "serverless",
-              },
-            ],
+            suggestions: ["serverless"],
           },
           options: [
             {
@@ -106,14 +102,7 @@ const completionSpec: Fig.Spec = {
             name: "side",
             description: "Select side to build",
 
-            suggestions: [
-              {
-                name: "api",
-              },
-              {
-                name: "web",
-              },
-            ],
+            suggestions: ["api", "web"],
           },
           options: [
             {
@@ -595,6 +584,7 @@ const completionSpec: Fig.Spec = {
               },
               {
                 name: "rc",
+                description: "Upgrade to the latest RC release",
               },
             ],
           },
@@ -692,10 +682,7 @@ const completionSpec: Fig.Spec = {
         description:
           "Which side(s) to test, and/or a regular expression to match against your test files to filter by",
         isOptional: true,
-        suggestions: [
-           "api",
-          "web",
-        ],
+        suggestions: ["api", "web"],
       },
       options: [
         {
@@ -783,21 +770,11 @@ const completionSpec: Fig.Spec = {
             name: "provider",
             description: "Auth provider to configure",
             suggestions: [
-              {
-                name: "auth0",
-              },
-              {
-                name: "firebase",
-              },
-              {
-                name: "goTrue",
-              },
-              {
-                name: "magicLink",
-              },
-              {
-                name: "netlify",
-              },
+              "auth0",
+              "firebase",
+              "goTrue",
+              "magicLink",
+              "netlify",
             ],
           },
           options: [
@@ -854,20 +831,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "provider",
             description: "Auth provider to configure",
-            suggestions: [
-              {
-                name: "aws-serverless",
-              },
-              {
-                name: "netlify",
-              },
-              {
-                name: "render",
-              },
-              {
-                name: "vercel",
-              },
-            ],
+            suggestions: ["aws-serverless", "netlify", "render", "vercel"],
           },
           options: [
             {
@@ -877,17 +841,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "database",
                 isOptional: true,
-                suggestions: [
-                  {
-                    name: "none",
-                  },
-                  {
-                    name: "postgresql",
-                  },
-                  {
-                    name: "sqlite",
-                  },
-                ],
+                suggestions: ["none", "postgresql", "sqlite"],
               },
             },
             {
