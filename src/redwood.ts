@@ -247,6 +247,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -279,6 +280,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -314,6 +316,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -338,6 +341,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -357,6 +361,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -396,6 +401,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -425,6 +431,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -444,6 +451,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -467,6 +475,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing filess",
             },
             {
@@ -764,6 +773,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing files",
             },
           ],
@@ -775,6 +785,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing files",
             },
           ],
@@ -791,6 +802,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing copied template files",
             },
           ],
@@ -801,6 +813,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing files",
             },
           ],
@@ -849,6 +862,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--force", "-f"],
+              isDangerous: true,
               description: "Overwrite existing files",
             },
           ],
