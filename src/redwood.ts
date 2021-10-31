@@ -693,12 +693,8 @@ const completionSpec: Fig.Spec = {
           "Which side(s) to test, and/or a regular expression to match against your test files to filter by",
         isOptional: true,
         suggestions: [
-          {
-            name: "api",
-          },
-          {
-            name: "web",
-          },
+           "api",
+          "web",
         ],
       },
       options: [
