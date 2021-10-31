@@ -653,6 +653,73 @@ const completionSpec: Fig.Spec = {
       name: "whoami",
       description: "Shows the username of the currently logged in user",
     },
+    {
+      name: "alias",
+      description:
+        "Apply custom domains based on git branches, or other heuristics",
+      subcommands: [
+        {
+          name: "set",
+          description: "Assign a custom domain to a deployment",
+          args: [
+            {
+              name: "deployment url",
+            },
+            {
+              name: "custom domain",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove a custom domain from a deployment",
+          args: {
+            name: "custom domain",
+          },
+        },
+        {
+          name: "ls",
+          description: "List custom domains that were assigned to deployments",
+        },
+      ],
+    },
+    {
+      name: "link",
+      description: "Links your local directory to a Project",
+      args: {
+        isOptional: true,
+        name: "path to directory",
+        template: "folders",
+      },
+    },
+    {
+      name: "billing",
+      description: "Manage payment methods",
+      subcommands: [
+        {
+          name: "ls",
+          description: "List all the payment methods of the active account",
+        },
+        {
+          name: "add",
+          description: "Interactively add a new credit card",
+        },
+        {
+          name: "rm",
+          description: "Remove a credit card by ID",
+          args: {
+            name: "card id",
+          },
+        },
+        {
+          name: "set-default",
+          description: "Select which credit card should be default",
+          args: {
+            name: "card id",
+          },
+        },
+      ],
+    },
   ],
 };
 
