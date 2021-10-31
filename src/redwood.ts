@@ -615,6 +615,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description: "What port should the server run on [default: 8911]",
+          args: {
+            name: "port",
+            description: "Port to run the server on",
+          },
         },
         {
           name: "--socket",
@@ -722,6 +726,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description: "Which port to run Storybook on (defaults to 7910)",
+          args: {
+            name: "port",
+            description: "Port to run Storybook on",
+          },
         },
       ],
     },
