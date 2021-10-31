@@ -648,6 +648,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "apiRootPath",
             description: "Root path for the api",
+            template: "folders",
           },
         },
         {
