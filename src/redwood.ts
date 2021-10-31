@@ -637,15 +637,27 @@ const completionSpec: Fig.Spec = {
           name: "--socket",
           description:
             "The socket the server should run. This takes precedence over port",
+          args: {
+            name: "socket",
+            description: "Socket to run the server on",
+          },
         },
         {
           name: "--apiRootPath",
           description: "The root path where your api functions are served",
+          args: {
+            name: "apiRootPath",
+            description: "Root path for the api",
+          },
         },
         {
           name: "--apiHost",
           description:
             "Forwards requests from the apiProxyPath (defined in redwood.toml) to the specified host",
+          args: {
+            name: "apiHost",
+            description: "Host to forward requests to",
+          },
         },
       ],
     },
