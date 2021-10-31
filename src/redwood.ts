@@ -196,7 +196,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "page",
-          description: "Destroy a  page and route component",
+          description: "Destroy a page and route component",
           args: [
             {
               name: "name",
