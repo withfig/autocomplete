@@ -336,19 +336,11 @@ const completionSpec: Fig.Spec = {
 
     const subcommands = packages
       .filter((name) => nodeClis.includes(name))
-      .map((name) =>
-        name == "@redwoodjs/core"
-          ? {
-              name: ["redwood", "rw"],
-              loadSpec: "redwood",
-              icon: "fig://icon?type=package",
-            }
-          : {
-              name,
-              loadSpec: name,
-              icon: "fig://icon?type=package",
-            }
-      );
+      .map((name) => ({
+        name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
+        loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
+        icon: "fig://icon?type=package",
+      }));
 
     return {
       name: "yarn",
