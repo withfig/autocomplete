@@ -1,7 +1,5 @@
 import prismaSpec from "./prisma";
 
-const prismaCommands = (prismaSpec as Fig.Subcommand).subcommands;
-
 const icon = "https://avatars.githubusercontent.com/u/45050444?s=200&v=4";
 
 const completionSpec: Fig.Spec = {
@@ -878,7 +876,7 @@ const completionSpec: Fig.Spec = {
       icon:
         "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
       description: "Prisma commands",
-      subcommands: prismaCommands,
+      subcommands: (prismaSpec as Fig.Subcommand).subcommands,
     },
   ],
   options: [
