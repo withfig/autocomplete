@@ -4,6 +4,7 @@ const createCLIs = [
   "create-next-app",
   "create-react-native-app",
   "create-video",
+  "create-redwood-app",
 ];
 
 export const nodeClis = [
@@ -21,6 +22,7 @@ export const nodeClis = [
   "babel",
   "remotion",
   "@withfig/autocomplete-tools",
+  "@redwoodjs/core",
 ];
 
 type SearchResult = {
@@ -335,8 +337,8 @@ const completionSpec: Fig.Spec = {
     const subcommands = packages
       .filter((name) => nodeClis.includes(name))
       .map((name) => ({
-        name,
-        loadSpec: name,
+        name: name === "@redwoodjs/core" ? ["redwood", "rw"] : name,
+        loadSpec: name === "@redwoodjs/core" ? "redwood" : name,
         icon: "fig://icon?type=package",
       }));
 
