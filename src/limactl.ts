@@ -159,6 +159,38 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "show-ssh",
+      description: "Show the ssh command line",
+      args: {
+        name: "INSTANCE",
+        generators: instanceNameGenerator(),
+      },
+      options: [
+        ...generateGlobalFlags("show-ssh"),
+        {
+          name: ["-f", "--format"],
+          description: 'Format: cmd, args, options, config (default "cmd")',
+          args: {
+            name: "string",
+            default: "cmd",
+            suggestions: [
+              {
+                name: "cmd",
+                description: "Full ssh command line",
+              },
+              {
+                name: "args",
+                description:
+                  'Similar to the cmd format but omits "ssh" and the destination address',
+              },
+              { name: "options", description: "Ssh option key value pairs" },
+              { name: "config", description: "~/.ssh/config format" },
+            ],
+          },
+        },
+      ],
+    },
+    {
       name: "start",
       description:
         'Start an instance of Lima. If the instance does not exist, open an editor for creating new one, with name "default"',
