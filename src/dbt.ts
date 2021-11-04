@@ -3,9 +3,111 @@ const completionSpec: Fig.Spec = {
   description: "",
   subcommands: [
     {
-      name: "debug",
-      description: "Debugs dbt connections and projects",
-      options: [{ name: "--config-dir" }],
+      name: "build",
+      description: "Run models, test tests, snapshot snapshots, and seed seeds",
+      options: [
+        {
+          name: "--full-refresh",
+          description: "Treat incremental models as table models",
+        },
+        {
+          name: ["-x", "--fail-fast"],
+          description: "Exit immediately if a single model fails to build",
+        },
+        {
+          name: "--profiles-dir",
+          description: "",
+          args: {
+            name: "profiles directory",
+            description: "Directory containing profiles.yml",
+            template: "folders",
+            suggestions: ["profiles"],
+          },
+        },
+        {
+          name: "--profile",
+          description: "",
+          args: {
+            name: "Profile name",
+            description: "Name of profile to use when running dbt project",
+            suggestions: ["default"],
+          },
+        },
+        {
+          name: "--target",
+          description: "Target profile configuration i.e. prod/dev",
+          args: {
+            name: "Target profile",
+            description: "Target profile configuration (dev/prod)",
+            suggestions: ["dev", "prod"],
+          },
+        },
+        {
+          name: "--vars",
+          description: "Variable values to override dbt_project.yml",
+          args: {
+            name: "Variable values",
+            description: "A short YAML string eg. '{my_variable: my_value}'",
+          },
+        },
+        {
+          name: "--threads",
+          description: "Number of concurrent database jobs",
+          args: { name: "THREADS", description: "" },
+        },
+        {
+          name: "--select",
+          description: "Select subset of models",
+          args: {
+            name: "Select subset",
+            description: "Select subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        {
+          name: "--exclude",
+          description: "Exclude subset of models",
+          args: {
+            name: "Exclude subset",
+            description: "Exclude subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        {
+          name: "--bypass-cache",
+          description: "",
+        },
+        {
+          name: ["-m", "--models"],
+          description: "Subset of models",
+          args: {
+            name: "Model inclusions subset",
+            description: "Subset of models to include",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+      ],
     },
     {
       name: "run",
@@ -123,6 +225,11 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "debug",
+      description: "Debugs dbt connections and projects",
+      options: [{ name: "--config-dir" }],
+    },
+    {
       name: "init",
       description: "Initializes a new dbt project",
       args: {
@@ -216,7 +323,12 @@ const completionSpec: Fig.Spec = {
         { name: "--bypass-cache", description: "" },
         {
           name: "--selector",
-          description: "Choose predefined selector to use",
+          description:
+            "This flag specifies one or more named selectors, defined in a <selector name>.yml file",
+          args: {
+            name: "YAML selector file name",
+            isVariadic: true,
+          },
         },
         { name: "--defer", description: "" },
       ],
@@ -239,6 +351,29 @@ const completionSpec: Fig.Spec = {
               "test_type:",
               "test_name:",
             ],
+          },
+        },
+        {
+          name: ["-x", "--fail-fast"],
+          description: "Exit immediately if a single model fails to build",
+        },
+        {
+          name: "--profiles-dir",
+          description: "",
+          args: {
+            name: "profiles directory",
+            description: "Directory containing profiles.yml",
+            template: "folders",
+            suggestions: ["profiles"],
+          },
+        },
+        {
+          name: "--profile",
+          description: "",
+          args: {
+            name: "Profile name",
+            description: "Name of profile to use when running dbt project",
+            suggestions: ["default"],
           },
         },
         {
@@ -284,7 +419,12 @@ const completionSpec: Fig.Spec = {
         { name: "--bypass-cache", description: "" },
         {
           name: "--selector",
-          description: "Choose predefined selector to use",
+          description:
+            "This flag specifies one or more named selectors, defined in a <selector name>.yml file",
+          args: {
+            name: "YAML selector file name",
+            isVariadic: true,
+          },
         },
         { name: "--defer", description: "" },
       ],
@@ -303,6 +443,10 @@ const completionSpec: Fig.Spec = {
             template: "folders",
             suggestions: ["profiles"],
           },
+        },
+        {
+          name: ["-x", "--fail-fast"],
+          description: "Exit immediately if a single model fails to build",
         },
         {
           name: "--profile",
@@ -379,6 +523,29 @@ const completionSpec: Fig.Spec = {
       description: "Loads CSV files into the database",
       options: [
         {
+          name: "--profiles-dir",
+          description: "",
+          args: {
+            name: "profiles directory",
+            description: "Directory containing profiles.yml",
+            template: "folders",
+            suggestions: ["profiles"],
+          },
+        },
+        {
+          name: "--profile",
+          description: "",
+          args: {
+            name: "Profile name",
+            description: "Name of profile to use when running dbt project",
+            suggestions: ["default"],
+          },
+        },
+        {
+          name: ["-x", "--fail-fast"],
+          description: "Exit immediately if a single model fails to build",
+        },
+        {
           name: "--select",
           description: "Run specific seeds",
           args: {
@@ -412,7 +579,12 @@ const completionSpec: Fig.Spec = {
         { name: "--bypass-cache", description: "" },
         {
           name: "--selector",
-          description: "Choose predefined selector to use",
+          description:
+            "This flag specifies one or more named selectors, defined in a <selector name>.yml file",
+          args: {
+            name: "YAML selector file name",
+            isVariadic: true,
+          },
         },
       ],
     },
@@ -619,9 +791,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--selector",
           description:
-            "This flag specifies one or more named selectors, defined in a selectors.yml file",
+            "This flag specifies one or more named selectors, defined in a <selector name>.yml file",
           args: {
-            name: "YML_SELECTOR_NAME",
+            name: "YAML selector file name",
             isVariadic: true,
           },
         },
@@ -636,6 +808,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+    },
+    {
+      name: "parse",
+      description: "Parse dbt project and write detailed timing information",
     },
   ],
   options: [
@@ -681,6 +857,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-partial-parse",
       description: "Turn off partial parsing for your project",
+    },
+    {
+      name: "--use-colors",
+      description: "Default value -- colorize run logs",
+    },
+    {
+      name: "--no-use-colors",
+      description: "Disable log colorizing",
     },
   ],
   // Only uncomment if dbt takes an argument
