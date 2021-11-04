@@ -16,8 +16,109 @@ const completionSpec: Fig.Spec = {
           description: "Treat incremental models as table models",
         },
         {
-          name: ["-X", "--fail-fast"],
+          name: ["-x", "--fail-fast"],
           description: "Exit immediately if a single model fails to build",
+        },
+        {
+          name: "--use-colors",
+          description: "Default value -- colorize run logs",
+        },
+        {
+          name: "--no-use-colors",
+          description: "Disable log colorizing",
+        },
+        {
+          name: "--profiles-dir",
+          description: "",
+          args: {
+            name: "profiles directory",
+            description: "Directory containing profiles.yml",
+            template: "folders",
+            suggestions: ["profiles"],
+          },
+        },
+        {
+          name: "--profile",
+          description: "",
+          args: {
+            name: "Profile name",
+            description: "Name of profile to use when running dbt project",
+            suggestions: ["default"],
+          },
+        },
+        {
+          name: "--target",
+          description: "",
+          args: {
+            name: "Target profile",
+            description: "Target profile configuration (dev/prod)",
+            suggestions: ["dev", "prod"],
+          },
+        },
+        {
+          name: "--vars",
+          description: "Variable values to override dbt_project.yml",
+          args: {
+            name: "Variable values",
+            description: "A short YAML string eg. '{my_variable: my_value}'",
+          },
+        },
+        {
+          name: "--threads",
+          description: "Number of concurrent database jobs",
+          args: { name: "THREADS", description: "" },
+        },
+        {
+          name: "--select",
+          description: "Select subset of models",
+          args: {
+            name: "Select subset",
+            description: "Select subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        {
+          name: "--exclude",
+          description: "Exclude subset of models",
+          args: {
+            name: "Exclude subset",
+            description: "Exclude subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        {
+          name: "--bypass-cache",
+          description: "",
+        },
+        {
+          name: ["-m", "--models"],
+          description: "Subset of models",
+          args: {
+            name: "Model inclusions subset",
+            description: "Subset of models to include",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
         },
       ],
     },
@@ -38,18 +139,106 @@ const completionSpec: Fig.Spec = {
     {
       name: "compile",
       description: "Compiles (but does not run) the models in a project",
+      options: [
+        {
+          name: "--profiles-dir",
+          description: "",
+          args: {
+            name: "profiles directory",
+            description: "Directory containing profiles.yml",
+            template: "folders",
+            suggestions: ["profiles"],
+          },
+        },
+        {
+          name: "--profile",
+          description: "",
+          args: {
+            name: "Profile name",
+            description: "Name of profile to use when running dbt project",
+            suggestions: ["default"],
+          },
+        },
+        {
+          name: "--target",
+          description: "",
+          args: {
+            name: "Target profile",
+            description: "Target profile configuration (dev/prod)",
+            suggestions: ["dev", "prod"],
+          },
+        },
+        {
+          name: "--vars",
+          description: "Variable values to override dbt_project.yml",
+          args: {
+            name: "Variable values",
+            description: "A short YAML string eg. '{my_variable: my_value}'",
+          },
+        },
+        {
+          name: "--threads",
+          description: "Number of concurrent database jobs",
+          args: { name: "THREADS", description: "" },
+        },
+        {
+          name: "--select",
+          description: "Select subset of models",
+          args: {
+            name: "Select subset",
+            description: "Select subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        {
+          name: "--exclude",
+          description: "Exclude subset of models",
+          args: {
+            name: "Exclude subset",
+            description: "Exclude subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        { name: "--bypass-cache", description: "" },
+        {
+          name: "--selector",
+          description: "Choose predefined selector to use",
+        },
+        { name: "--defer", description: "" },
+      ],
     },
     {
       name: "test",
       description: "Executes tests defined in a project",
       options: [
         {
-          name: "--models",
-          description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
+          name: ["-m", "--models"],
+          description: "Subset of models to include",
           args: {
-            name: "SELECTOR",
+            name: "Model inclusions subset",
+            description: "Subset of models to include",
             isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
           },
         },
         {
@@ -60,6 +249,44 @@ const completionSpec: Fig.Spec = {
           name: "--schema",
           description: "Run only schema tests",
         },
+        {
+          name: "--select",
+          description: "Select subset of models",
+          args: {
+            name: "Select subset",
+            description: "",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        {
+          name: "--exclude",
+          description: "Exclude subset of models",
+          args: {
+            name: "Exclude subset",
+            description: "",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        { name: "--bypass-cache", description: "" },
+        {
+          name: "--selector",
+          description: "Choose predefined selector to use",
+        },
+        { name: "--defer", description: "" },
       ],
     },
     { name: "deps", description: "Downloads dependencies for a project" },
@@ -70,37 +297,75 @@ const completionSpec: Fig.Spec = {
         {
           name: "--profiles-dir",
           description: "",
-          args: { name: "PROFILES_DIR", description: "", template: "folders" },
+          args: {
+            name: "profiles directory",
+            description: "Directory containing profiles.yml",
+            template: "folders",
+            suggestions: ["profiles"],
+          },
         },
         {
           name: "--profile",
           description: "",
-          args: { name: "PROFILE ", description: "" },
+          args: {
+            name: "Profile name",
+            description: "Name of profile to use when running dbt project",
+            suggestions: ["default"],
+          },
         },
         {
           name: "--target",
           description: "",
-          args: { name: "TARGET", description: "" },
+          args: {
+            name: "Target profile",
+            description: "Target profile configuration (dev/prod)",
+            suggestions: ["dev", "prod"],
+          },
         },
         {
           name: "--vars",
-          description: "",
-          args: { name: "VARS ", description: "" },
+          description: "Variable values to override dbt_project.yml",
+          args: {
+            name: "Variable values",
+            description: "A short YAML string eg. '{my_variable: my_value}'",
+          },
         },
         {
           name: "--threads",
-          description: "",
+          description: "Number of concurrent database jobs",
           args: { name: "THREADS", description: "" },
         },
         {
           name: "--select",
-          description: "",
-          args: { name: "SELECTOR", description: "", isVariadic: true },
+          description: "Select subset of models",
+          args: {
+            name: "Select subset",
+            description: "",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
         },
         {
           name: "--exclude",
-          description: "",
-          args: { name: "EXCLUDE", description: "", isVariadic: true },
+          description: "Exclude subset of models",
+          args: {
+            name: "Exclude subset",
+            description: "",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
         },
         { name: "--bypass-cache", description: "" },
       ],
@@ -117,9 +382,37 @@ const completionSpec: Fig.Spec = {
           name: "--select",
           description: "Run specific seeds",
           args: {
-            name: "SEED",
+            name: "Select subset",
             description: "E.g. country_codes",
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
           },
+        },
+        {
+          name: "--exclude",
+          description: "Exclude subset of models",
+          args: {
+            name: "Exclude subset",
+            description: "Exclude subset of models",
+            isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
+          },
+        },
+        { name: "--bypass-cache", description: "" },
+        {
+          name: "--selector",
+          description: "Choose predefined selector to use",
         },
       ],
     },
@@ -157,9 +450,11 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--target",
-              description: "Choose a target",
+              description: "",
               args: {
-                name: "TARGET NAME",
+                name: "Target profile",
+                description: "Target profile configuration (dev/prod)",
+                suggestions: ["dev", "prod"],
               },
             },
             {
@@ -195,8 +490,15 @@ const completionSpec: Fig.Spec = {
               description:
                 "This flag specifies one or more selection-type arguments used to filter the nodes returned by the dbt ls command",
               args: {
-                name: "SELECTION_ARG",
+                name: "Select subset",
                 isVariadic: true,
+                suggestions: [
+                  "path:",
+                  "tag:",
+                  "config:",
+                  "test_type:",
+                  "test_name:",
+                ],
               },
             },
           ],
@@ -273,15 +575,29 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SELECTION_ARG",
             isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
           },
         },
         {
-          name: "--models",
+          name: ["-m", "--models"],
           description:
             "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
           args: {
             name: "SELECTOR",
             isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
           },
         },
         {
@@ -291,6 +607,13 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SELECTOR",
             isVariadic: true,
+            suggestions: [
+              "path:",
+              "tag:",
+              "config:",
+              "test_type:",
+              "test_name:",
+            ],
           },
         },
         {
@@ -358,14 +681,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-partial-parse",
       description: "Turn off partial parsing for your project",
-    },
-    {
-      name: "--use-colors",
-      description: "Enable log colorizing",
-    },
-    {
-      name: "--no-use-colors",
-      description: "Disable log colorizing",
     },
   ],
   // Only uncomment if dbt takes an argument
