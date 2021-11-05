@@ -663,10 +663,12 @@ const completionSpec: Fig.Spec = {
           description: "Assign a custom domain to a deployment",
           args: [
             {
-              name: "deployment url",
+              name: "url",
+              description: "The URL of the deployment to assign to a domain",
             },
             {
-              name: "custom domain",
+              name: "domain",
+              description: "The domain you want to assign to",
             },
           ],
         },
@@ -674,7 +676,8 @@ const completionSpec: Fig.Spec = {
           name: "rm",
           description: "Remove a custom domain from a deployment",
           args: {
-            name: "custom domain",
+            name: "domain",
+            description: "The domain to remove",
           },
         },
         {
@@ -688,7 +691,7 @@ const completionSpec: Fig.Spec = {
       description: "Links your local directory to a Project",
       args: {
         isOptional: true,
-        name: "path to directory",
+        name: "directory",
         template: "folders",
       },
     },
@@ -708,14 +711,16 @@ const completionSpec: Fig.Spec = {
           name: "rm",
           description: "Remove a credit card by ID",
           args: {
-            name: "card id",
+            name: "id",
+            description: "The id of the card to remove",
           },
         },
         {
           name: "set-default",
           description: "Select which credit card should be default",
           args: {
-            name: "card id",
+            name: "id",
+            description: "The id of the card to set default",
           },
         },
       ],
