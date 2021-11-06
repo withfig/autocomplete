@@ -5,38 +5,38 @@ const args: Fig.SingleOrArray<Fig.Arg> = {
 const options: Fig.Option[] = [
   {
     name: ["-q", "--query"],
-    insertValue: "{HOST}",
     description: "Host name or IP address to query",
+    args: { name: "HOST" },
   },
   {
     name: ["-t", "--type"],
-    insertValue: "{TYPE}",
     description: "Type of the DNS record being queried (A, MX, NS...)",
+    args: { name: "TYPE" },
   },
   {
     name: ["-n", "--nameserver"],
-    insertValue: "{ADDR}",
     description: "Address of the nameserver to send packets to",
+    args: { name: "ADDR" },
   },
   {
     name: "-class",
-    insertValue: "{CLASS}",
     description: "Network class of the DNS record being queried (IN, CH, HS)",
+    args: { name: "CLASS" },
   },
   {
     name: "--edns",
-    insertValue: "{NUMBER}",
     description: "Whether to OPT in to EDNS (disable, hide, show)",
+    args: { name: "NUMBER" },
   },
   {
     name: "--txid",
-    insertValue: "{CLASS}",
     description: "Set the transaction ID to a specific value",
+    args: { name: "CLASS" },
   },
   {
     name: "-Z",
-    insertValue: "{TWEAKS}",
     description: "Set uncommon protocol-level tweaks",
+    args: { name: "TWEAKS" },
   },
   {
     name: ["-U", "--udp"],
@@ -64,9 +64,8 @@ const options: Fig.Option[] = [
   },
   {
     name: "--color",
-    insertValue: "{WHEN}",
     description: "When to colourise the output (always, automatic, never)",
-    args,
+    args: [args, { name: "WHEN" }],
   },
   {
     name: "--seconds",
