@@ -32,17 +32,16 @@ const completionSpec: Fig.Spec = {
         name: "project folder",
         description: "Julia project/environment",
         isOptional: true,
+        suggestions: [
+          {
+            name: "@.",
+            priority: 75,
+            description:
+              "Search through parent directories until a Project.toml or JuliaProject.toml file is found",
+          },
+        ],
         generators: {
           template: "folders",
-          filterTemplateSuggestions: function (suggestions) {
-            suggestions.push({
-              name: "@.",
-              priority: 75,
-              description:
-                "Search through parent directories until a Project.toml or JuliaProject.toml file is found",
-            });
-            return suggestions;
-          },
         },
       },
     },
