@@ -13,7 +13,7 @@ const fallbackOption: Fig.Option = {
   name: "f",
   description:
     "Path to the fallback file. encrypted secrets are written to this file after each successful fetch. secrets will be read from this file if subsequent connections are unsuccessful",
-  args: { name: "string" },
+  args: { name: "string", template: "filepaths" },
 };
 
 const fallbackOnlyOption: Fig.Option = {
@@ -39,7 +39,10 @@ const formatOption: Fig.Option = {
   name: "--format",
   description:
     'Output format. one of json, env, yaml, docker, env-no-quotes (default "json")',
-  args: { name: "string" },
+  args: {
+    name: "string",
+    suggestions: ["json", "env", "yaml", "docker", "env-no-quotes"],
+  },
 };
 
 const noCacheOption: Fig.Option = {
@@ -98,7 +101,7 @@ const globalOptions: Fig.Option[] = [
     name: "--api-host",
     description:
       'The host address for the Doppler API (default "https://api.doppler.com")',
-    args: { name: "string", template: "filepaths" },
+    args: { name: "string" },
   },
   {
     name: "--configuration",
@@ -637,7 +640,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--command",
           description: 'Command to execute (e.g. "echo hi")',
-          args: { name: "string" },
+          args: { name: "string", isCommand: true },
         },
         {
           name: "--forward-signals",
