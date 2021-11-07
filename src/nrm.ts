@@ -7,19 +7,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "-g",
       description:
-        "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
+        "Operates in 'global' mode, so that packages are removed from the prefix folder instead of the current working directory",
     },
     {
       name: "-D",
-      description: "Package will appear in your `devDependencies`",
+      description: "Package will be removed from your `devDependencies`",
     },
     {
       name: "-P",
-      description: "Save package to your `peerDependencies`",
+      description: "Remove package from your `peerDependencies`",
     },
     {
       name: "-O",
-      description: "Save package to your `optionalDependencies`",
+      description: "Remove package from your `optionalDependencies`",
     },
     {
       name: "--frozen",
