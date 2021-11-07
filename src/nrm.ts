@@ -25,6 +25,10 @@ const completionSpec: Fig.Spec = {
       name: "--frozen",
       description: "Don't generate a lockfile and fail if an update is needed",
     },
+    {
+      name: ["-h", "--help"],
+      description: "Output usage information",
+    },
   ],
   args: {
     name: "package",

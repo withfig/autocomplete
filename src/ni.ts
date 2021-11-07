@@ -41,6 +41,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: ["-h", "--help"],
+      description: "Output usage information",
+    },
   ],
   args: {
     name: "package",

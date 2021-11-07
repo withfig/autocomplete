@@ -5,8 +5,8 @@ const completionSpec: Fig.Spec = {
   description: "Use the right package manager - run",
   options: [
     {
-      name: ["--help", "-h"],
-      description: "Show help for nr",
+      name: ["-h", "--help"],
+      description: "Output usage information",
     },
   ],
   args: {

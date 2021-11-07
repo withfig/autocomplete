@@ -7,6 +7,10 @@ const completionSpec: Fig.Spec = {
       description:
         "Display the outdated packages before performing any upgrade",
     },
+    {
+      name: ["-h", "--help"],
+      description: "Output usage information",
+    },
   ],
 };
 export default completionSpec;
