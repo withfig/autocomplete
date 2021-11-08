@@ -5478,6 +5478,170 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "worktree",
+      description: "Manage multiple working trees",
+      subcommands: [
+        {
+          name: "add",
+          description: "Create <path> and checkout <commit-ish> into it",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "By default, add refuses to create a new working tree when <commit-ish> is a branch name and is already checked out by another working tree, or if <path> is already assigned to some working tree but is missing (for instance, if <path> was deleted manually). This option overrides these safeguards. To add a missing but locked working tree path, specify --force twice",
+            },
+            {
+              name: ["-d", "--detach"],
+              description:
+                'With add, detach HEAD in the new working tree. See "DETACHED HEAD" in git-checkout[1]',
+            },
+            {
+              name: "--checkout",
+              description:
+                'By default, add checks out <commit-ish>, however, --no-checkout can be used to suppress checkout in order to make customizations, such as configuring sparse-checkout. See "Sparse checkout" in git-read-tree[1]',
+            },
+            {
+              name: "--lock",
+              description:
+                "Keep the working tree locked after creation. This is the equivalent of git worktree lock after git worktree add, but without a race condition",
+            },
+            {
+              name: ["-b", "-B"],
+              description:
+                "With add, create a new branch named <new-branch> starting at <commit-ish>, and check out <new-branch> into the new working tree. If <commit-ish> is omitted, it defaults to HEAD. By default, -b refuses to create a new branch if it already exists. -B overrides this safeguard, resetting <new-branch> to <commit-ish>",
+              args: {
+                name: "new-branch",
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List details of each working tree",
+          options: [
+            {
+              name: "--porcelain",
+              description:
+                "With list, output in an easy-to-parse format for scripts. This format will remain stable across Git versions and regardless of user configuration. See below for details",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description:
+                "With list, output additional information about worktrees (see below)",
+            },
+            {
+              name: "--expire",
+              description:
+                "With list, annotate missing working trees as prunable if they are older than <time>",
+              args: {
+                name: "time",
+              },
+            },
+          ],
+        },
+        {
+          name: "lock",
+          description:
+            "If a working tree is on a portable device or network share which is not always mounted, lock it to prevent its administrative files from being pruned automatically",
+          args: {
+            name: "worktree",
+            description:
+              "Working trees can be identified by path, either relative or absolute",
+          },
+          options: [
+            {
+              name: "--reason",
+              description:
+                "With lock or with add --lock, an explanation <reason> why the working tree is locked",
+              args: {
+                name: "reason",
+              },
+            },
+          ],
+        },
+        {
+          name: "move",
+          description: "Move a working tree to a new location",
+          args: [
+            {
+              name: "worktree",
+              description:
+                "Working trees can be identified by path, either relative or absolute",
+            },
+            {
+              name: "new-path",
+              template: "filepaths",
+            },
+          ],
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "Move refuses to move a locked working tree unless --force is specified twice. If the destination is already assigned to some other working tree but is missing (for instance, if <new-path> was deleted manually), then --force allows the move to proceed; use --force twice if the destination is locked",
+            },
+          ],
+        },
+        {
+          name: "prune",
+          description: "Prune working tree information in $GIT_DIR/worktrees",
+          options: [
+            {
+              name: ["-n", "--dry-run"],
+              description:
+                "With prune, do not remove anything; just report what it would remove",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "With prune, report all removals",
+            },
+            {
+              name: "--expire",
+              description:
+                "With prune, only expire unused working trees older than <time>",
+              args: {
+                name: "time",
+              },
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a working tree",
+          args: {
+            name: "worktree",
+            description:
+              "Working trees can be identified by path, either relative or absolute",
+          },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "Remove refuses to remove an unclean working tree unless --force is used. To remove a locked working tree, specify --force twice",
+            },
+          ],
+        },
+        {
+          name: "repair",
+          description:
+            "Repair working tree administrative files, if possible, if they have become corrupted or outdated due to external factors",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "unlock",
+          description:
+            "Unlock a working tree, allowing it to be pruned, moved or deleted",
+          args: {
+            name: "worktree",
+            description:
+              "Working trees can be identified by path, either relative or absolute",
+          },
+        },
+      ],
+    },
   ],
   additionalSuggestions: [
     {

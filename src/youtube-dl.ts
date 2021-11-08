@@ -76,7 +76,7 @@ const completionSpec: Fig.Spec = {
         "Continue on download errors, for example to skip unavailable videos in a playlist",
     },
     {
-      name: "--abort-on-error ",
+      name: "--abort-on-error",
       description:
         "Abort downloading of further videos (in the playlist or the command line) if an error occurs",
     },

@@ -50,6 +50,10 @@ const suggestions: Fig.Suggestion[] = [
   //   icon: "https://fig.io/icons/fig-light.png",
   // },
   {
+    name: "@withfig/autocomplete-tools",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
+  {
     name: "fig-teams@latest",
     icon: "https://fig.io/icons/fig-light.png",
   },

@@ -608,14 +608,53 @@ const defaultCommands: Fig.Subcommand[] = [
   newCommand,
 ];
 
+const checkRailsInstalled = async (
+  executeShellCommand: Fig.ExecuteShellCommandFunction
+): Promise<boolean> => {
+  const gemfileMatch = await executeShellCommand(
+    `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \grep "gem 'rails'"; else echo ""; fi`
+  );
+  const isRails = !!gemfileMatch;
+
+  return isRails;
+};
+
+// Generator that searches asynchronously for more Rails commands through the help command
+export const railsCommandsGenerator: Fig.Generator = {
+  custom: async (_, executeShellCommand) => {
+    const isRails = await checkRailsInstalled(executeShellCommand);
+
+    if (!isRails) {
+      return [];
+    }
+
+    // parse help text to find more commands
+    let commands: Fig.Subcommand[] = [];
+    try {
+      const helpText = await executeShellCommand("rails --tasks");
+
+      const defaultCommandNames = defaultCommands.map((c) => c.name);
+      const matches = Array.from(helpText.matchAll(/rails ([^ ]+)/g));
+      commands = matches
+        .map((match) => ({ name: match[1] }))
+        .filter((cmd) => !defaultCommandNames.includes(cmd.name));
+    } catch (e) {
+      console.log("ERROR", e);
+    }
+
+    return commands;
+  },
+  cache: {
+    ttl: 1000 * 60 * 60 * 24 * 3, // 3 days
+    cacheByDirectory: true,
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "rails",
   description: "Ruby on Rails CLI",
-  async generateSpec(_, executeShellCommand) {
-    const gemfileMatch = await executeShellCommand(
-      `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \grep "gem 'rails'"; else echo ""; fi`
-    );
-    const isRails = !!gemfileMatch;
+  generateSpec: async (_, executeShellCommand) => {
+    const isRails = await checkRailsInstalled(executeShellCommand);
 
     if (!isRails) {
       return {
@@ -624,17 +663,14 @@ const completionSpec: Fig.Spec = {
       };
     }
 
-    const helpText = await executeShellCommand("rails -T");
-    const defaultCommandNames = defaultCommands.map((c) => c.name);
-    const matches = Array.from(helpText.matchAll(/rails ([^ ]+)/g));
-    const commands: Fig.Subcommand[] = matches
-      .map((match) => ({ name: match[1] }))
-      .filter((cmd) => !defaultCommandNames.includes(cmd.name));
-
     return {
       name: "rails",
-      subcommands: [...defaultCommands, ...commands],
+      subcommands: defaultCommands,
     };
+  },
+  args: {
+    generators: railsCommandsGenerator,
+    isOptional: true,
   },
 };
 

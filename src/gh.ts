@@ -816,9 +816,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a pull request",
-          args: {
-            name: "number> | <url> | <branch",
-          },
           options: [
             {
               name: ["-a", "--assignee"],
