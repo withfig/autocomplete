@@ -300,7 +300,7 @@ const reloadOption: Fig.Option = {
   // },
 };
 
-const seedArg: Fig.Option = {
+const seedOption: Fig.Option = {
   name: "--seed",
   description: "Seed Math.random()",
   args: {
@@ -329,6 +329,12 @@ function watchOption(options: ExclusiveOn = {}): Fig.Option {
     exclusiveOn: options.exclusiveOn,
   };
 }
+
+const compatOption: Fig.Option = {
+  name: "--compat",
+  description:
+    "Node compatibility mode. Currently only enables builtin modules like 'fs'",
+};
 
 const locationOption: Fig.Option = {
   name: "--location",
@@ -378,7 +384,13 @@ function runtimeOptions(init: {
     });
     options.push(...inspector);
   }
-  options.push(cachedOnlyOption, locationOption, v8FlagsOption, seedArg);
+  options.push(
+    cachedOnlyOption,
+    locationOption,
+    v8FlagsOption,
+    seedOption,
+    compatOption
+  );
   return options;
 }
 
@@ -647,6 +659,7 @@ const denoLint: Fig.Subcommand = {
         generators: generateLintRules,
       },
     },
+    watchOption(),
   ],
 };
 
@@ -947,6 +960,28 @@ const denoInstall: Fig.Subcommand = {
   ],
 };
 
+const denoUninstall: Fig.Subcommand = {
+  name: "uninstall",
+  description:
+    "Uninstalls an executable script in the installation root's bin directory",
+  args: {
+    name: "name",
+    description: "Arguments that will be provided automatically when run",
+    isVariadic: true,
+  },
+  options: [
+    {
+      name: "--root",
+      description: "The installation root",
+      args: {
+        name: "directory",
+        description: "The directory that the script will be uninstalled from",
+        template: "folders",
+      },
+    },
+  ],
+};
+
 const denoLsp: Fig.Subcommand = {
   name: "lsp",
   description: "Start the language server",
@@ -1208,6 +1243,7 @@ const subcommands: Fig.Subcommand[] = [
   denoFmt,
   denoInfo,
   denoInstall,
+  denoUninstall,
   denoLint,
   denoLsp,
   denoRepl,
