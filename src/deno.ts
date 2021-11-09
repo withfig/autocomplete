@@ -4,9 +4,6 @@
 // All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
 // TODO: When fig supports this option (or something like it), uncomment the arguments.
 
-const CPU_ICON =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVNSURBVHgBrVdLbxtVFP7unTt+pHaah/qigEIVUFsF1ZRHC9k4QkhtF8hIbOim6j/ooixaNpUQ6qKbbqqyq9iUBUKUTUAC1YkURLIg8SJBlSJEiojapE3iJI4f8+ScO5nUSTxxHnzS9YztM+f77rnnnjlXoAE+vZXJKtO8JJTI0tcuIQAe/ur/AtHwN974KHiOX7Ad+8fvrxYebLRf5yt3M9MVT6p7ZsLIGqaEVIKIacg69nVU4sVVYL1C3w++0pUEwKl5sCrOlFVz+x5cK0xtEpD76t1MMoV8LKXaVExqUk0eMXMfmyPhN7DhD5/FeIGI6opd9EpO33dfFAprPvXME2os0WoSuQFpCLiWj6d/1PBs3EJt0cNu0HLQwD4aRz9IIN4q4bk++XVRXrKL1qLz1oMbhSnFhoYU+ViLajOU1OTPJyw8zlfgVH3sBeVZV4/5SRsvk4jDb8fg09LGiYuW5R6Z9Incl5lcolX9kEib4NDPFGw8fljRDkrLK5h9MoNKpQrXdbFTpFL70N7Zrgfj2PkWdJ5QFAVaiiUb1WWnTwlD5AzT0GtuLfmY/q2qjWeIOKbiuH//W/T09GD//v3YKfr7+3H9+nXt69CRQ3pi7cfSIE4YvNTSuSSlgVNSBsn27+9VShQfC3MLmnxwcBC9vb27ImdcuHBB+2BfpdIKXPL9dLSmuYRBBlJkFWVpBjJ4oDIbJBsLuHv3a008OTmJkZERWJaFnSCVSuH06dPo7u7GnTt3cPHiZ0i9cYzyy8aR92LhDutS4RZmrDwL1pnVsnrG2NiYXoKOjg4kk0kopfTDG8FbjeE4DuVMBXNzcxgeHtYC+HnOI0ZtKZikdkEfKvgWPZNSqYR0Oq3JtxIQirBtW185AmHUOJJRSaywDZimqYl5xGKxhjYsyvOC2XEU+JmtsBowFtCozG52LqXUI1g7serEX3ffyCbCI8K/ZVP2yBn460g2Em4t4AWnRH0WRqCRM/4tTLwogdvBniLQ6D5EsyUIsa0kbEaw1baM8Lh2JwNj7Akhmb8LRzoCQjQn4MHbLIqkXkQ4msMPBDSz5X3NBYbrAMMwjDWC+vCHhYjtm7499eNcCbchtFqtrpFzgWlWCcvlsi7HTfnJXumJ+FtHgctx6DwsxeE2rBfDS8SzZ8EsIpJ8lZOH4l5Nh7NOAId4cXFR13AuvQsLC7qux+PxtUhEZT6HngWwaH4fRCkIeLUA6F6Nf+C+jd9WyWQC4+Pjuhc4e/YsRkdHMT09jZ2AhZ85c0bfc2MSikkekJqY+ZhXfHzj1N8t7WZXLKkwM2bjyYilX8dO1cHAwMCum5EQHMlsNgtPevRKb6eWzMQr2RissotK0SpI1/EHuV12HQ8H3jRhxIXu5Wp2TT/I6ndLPDQ0pH2wLyZn34ffMeHZ3KK7dF5AQZy72pONtxp5asmh4rT2f7n452FNO5mfX0DxeVGv507BecT9w8EjB5FK79O/He2NofOkgk3k3JRaJe8TnUnnr/Xkk61m1qRl4M54bsLBzKite7j/Azzzl9430dYddMRWmbqmZWvqp5sTrwWFqOJctiTG6LbN9yTajxtofZVa9FEynKcWem53BxMzLdHxuoHOHqWbULvq6tDXyk7R990+tlnbSx99fjJjmjJPydhmUBT4kMIPidWOOazXYhvE+lS4WluCbKedRjmmZ191i7bl9v1y68/CJn/nrhzvopNLnnKhi5dCGnxGDKzEdpjrRYQFjgRQosO1PR4DqLmXf779aCq0a+j2wysnchSBHPGf8oXISIkdof5QSh9TdBkg8m9+vf1oYKPtf7NIvBdpvFmHAAAAAElFTkSuQmCC";
-
 /**
  * Equivalent to the `"filepaths"` template, but boosts the priority of files
  * that match one of the names provided.
@@ -120,22 +117,33 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-env",
     description: "Allow environment access",
-    // requiresEquals: true,
-    // args: {
-    //   name: "variable",
-    //   description: "Comma-separated list of environment variables to allow",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "variable",
+      description: "Comma-separated list of environment variables to allow",
+      isOptional: true,
+      // Generate environment variables
+      generators: {
+        script: "env",
+        getQueryTerm: ",",
+        postProcess: (out) =>
+          out
+            .split("\n")
+            .map((line) => line.split("=")[0])
+            .filter((name) => !name.startsWith("_"))
+            .map((name) => ({ name })),
+      },
+    },
   },
   {
     name: "--allow-ffi",
     description: "Allow loading dynamic libraries",
-    // requiresEquals: true,
-    // args: {
-    //   name: "library",
-    //   description: "The path of the dynamic library to allow",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "library",
+      description: "The path of the dynamic library to allow",
+      isOptional: true,
+    },
   },
   {
     name: "--allow-hrtime",
@@ -144,39 +152,48 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-net",
     description: "Allow network access",
-    // requiresEquals: true,
-    // args: {
-    //   name: "hosts",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "hosts",
+      isOptional: true,
+    },
   },
   {
     name: "--allow-read",
     description: "Allow file system read access",
-    // requiresEquals: true,
-    // args: {
-    //   name: "paths",
-    //   template: "filepaths",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "paths",
+      generators: {
+        getQueryTerm: ",",
+        trigger: ",",
+        template: "filepaths",
+      },
+      isOptional: true,
+    },
   },
   {
     name: "--allow-run",
     description: "Allow running subprocesses",
-    // requiresEquals: true,
-    // args: {
-    //   name: "executables",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "executables",
+      isOptional: true,
+    },
   },
   {
     name: "--allow-write",
     description: "Allow file system write access",
-    // requiresEquals: true,
-    // args: {
-    //   name: "paths",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "paths",
+      isOptional: true,
+      generators: {
+        getQueryTerm: ",",
+        trigger: ",",
+        template: "filepaths",
+      },
+    },
   },
   {
     name: "--prompt",
@@ -186,12 +203,12 @@ const permissionOptions: Fig.Option[] = [
     name: "--unsafely-ignore-certificate-errors",
     description: "DANGER: Disables verification of TLS certificates",
     isDangerous: true,
-    // requiresEquals: true,
-    // args: {
-    //   name: "host names",
-    //   description: "Scope ignoring certificate errors to these hosts",
-    //   isOptional: true,
-    // },
+    requiresEquals: true,
+    args: {
+      name: "host names",
+      description: "Scope ignoring certificate errors to these hosts",
+      isOptional: true,
+    },
   },
 ];
 
@@ -200,24 +217,24 @@ function inspectorOptions(options: ExclusiveOn = {}): Fig.Option[] {
     {
       name: "--inspect",
       description: "Activate inspector on host:port (default: 127.0.0.1:9229)",
-      // requiresEquals: true,
-      // args: {
-      //   name: "host:port",
-      //   description: "The host:port to activate the inspector on",
-      //   isOptional: true,
-      // },
+      requiresEquals: true,
+      args: {
+        name: "host:port",
+        description: "The host:port to activate the inspector on",
+        isOptional: true,
+      },
       exclusiveOn: options.exclusiveOn,
     },
     {
       name: "--inspect-brk",
       description:
         "Activate inspector on host:port and break at the start of user script (default: 127.0.0.1:9229)",
-      // requiresEquals: true,
-      // args: {
-      //   name: "host:port",
-      //   description: "The host:port to activate the inspector on",
-      //   isOptional: true,
-      // },
+      requiresEquals: true,
+      args: {
+        name: "host:port",
+        description: "The host:port to activate the inspector on",
+        isOptional: true,
+      },
       exclusiveOn: options.exclusiveOn,
     },
   ];
@@ -292,12 +309,12 @@ const reloadOption: Fig.Option = {
   name: ["-r", "--reload"],
   description:
     "Reload source code cache (recompile TypeScript, download dependencies)",
-  // requiresEquals: true,
-  // args: {
-  //   name: "cache blocklist",
-  //   description: "A comma-separated list of URLs to block from the cache",
-  //   isOptional: true,
-  // },
+  requiresEquals: true,
+  args: {
+    name: "cache blocklist",
+    description: "A comma-separated list of URLs to block from the cache",
+    isOptional: true,
+  },
 };
 
 const seedOption: Fig.Option = {
@@ -313,7 +330,7 @@ const v8FlagsOption: Fig.Option = {
   name: "--v8-flags",
   insertValue: "--v8-flags=",
   description: "Set V8 command line options (for help: --v8-flags=--help",
-  // requiresEquals: true,
+  requiresEquals: true,
   args: {
     name: "V8 flags",
     description: "Flags to pass to V8",
@@ -332,6 +349,7 @@ function watchOption(options: ExclusiveOn = {}): Fig.Option {
 
 const compatOption: Fig.Option = {
   name: "--compat",
+  dependsOn: ["--unstable"],
   description:
     "Node compatibility mode. Currently only enables builtin modules like 'fs'",
 };
@@ -433,7 +451,7 @@ const denoTest: Fig.Subcommand = {
       name: "--ignore",
       insertValue: "--ignore=",
       description: "Ignore files",
-      // requiresEquals: true,
+      requiresEquals: true,
       args: {
         name: "Files to ignore",
         description: "Files matching this pattern will be ignored",
@@ -453,11 +471,11 @@ const denoTest: Fig.Subcommand = {
       name: "--fail-fast",
       description:
         "Stop after N errors (defaults to stopping after the first error)",
-      // requiresEquals: true,
-      // args: {
-      //   name: "number",
-      //   isOptional: true,
-      // },
+      requiresEquals: true,
+      args: {
+        name: "number",
+        isOptional: true,
+      },
     },
     {
       name: "--allow-none",
@@ -474,17 +492,17 @@ const denoTest: Fig.Subcommand = {
     {
       name: "--shuffle",
       description: "UNSTABLE: Shuffle the order in which tests are run",
-      // requiresEquals: true,
-      // args: {
-      //   name: "number",
-      //   isOptional: true,
-      // },
+      requiresEquals: true,
+      args: {
+        name: "number",
+        isOptional: true,
+      },
     },
     {
       name: "--coverage",
       insertValue: "--coverage=",
       description: "UNSTABLE: Collect coverage profile data into the directory",
-      // requiresEquals: true,
+      requiresEquals: true,
       args: {
         name: "directory",
         description: "The directory to use for coverage data",
@@ -540,7 +558,7 @@ const denoFmt: Fig.Subcommand = {
       name: "--ignore",
       insertValue: "--ignore=",
       description: "Ignore formatting particular source files",
-      // requiresEquals: true,
+      requiresEquals: true,
       args: {
         name: "Files to ignore",
         template: "filepaths",
@@ -618,12 +636,13 @@ const denoLint: Fig.Subcommand = {
     {
       name: "--ignore",
       description: "Ignore linting particular source files",
-      // requiresEquals: true,
-      // args: {
-      //   name: "files",
-      //   description: "The files to ignore",
-      //   isOptional: true,
-      // },
+      requiresEquals: true,
+      args: {
+        name: "files",
+        template: "filepaths",
+        description: "The files to ignore",
+        isOptional: true,
+      },
     },
     {
       name: "--json",
@@ -631,7 +650,6 @@ const denoLint: Fig.Subcommand = {
     },
     {
       name: "--rules-tags",
-      insertValue: "--rules-tags=",
       description: "Use a set of rules with a tag",
       exclusiveOn: ["--rules"],
       args: {
@@ -641,7 +659,6 @@ const denoLint: Fig.Subcommand = {
     },
     {
       name: "--rules-include",
-      insertValue: "--rules-include=",
       description: "Include lint rules",
       exclusiveOn: ["--rules"],
       args: {
@@ -651,7 +668,6 @@ const denoLint: Fig.Subcommand = {
     },
     {
       name: "--rules-exclude",
-      insertValue: "--rules-exclude=",
       description: "Exclude lint rules",
       exclusiveOn: ["--rules"],
       args: {
@@ -760,7 +776,7 @@ const denoDoc: Fig.Subcommand = {
       description: "The scope to get documentation for",
       // From the user's perspective, --builtin is a flag that means "show me
       // documentation for built-in symbols", but it's actually more like a
-      // file that just happens to always be equivalent to be Deno's types.
+      // file that just happens to always be equivalent to Deno's types.
       suggestions: [
         {
           name: "--builtin",
@@ -824,7 +840,6 @@ const denoDoc: Fig.Subcommand = {
               throw new Error(`Output data was JSON, but was not an array`);
             }
           } catch (err) {
-            console.error("Returning early due to error:", err);
             return [];
           }
 
@@ -1069,7 +1084,7 @@ const denoCoverage: Fig.Subcommand = {
       name: "--ignore",
       insertValue: "--ignore=",
       description: "Ignore coverage files",
-      // requiresEquals: true,
+      requiresEquals: true,
       args: {
         name: "pattern",
         description: "Ignore files matching this regex pattern",
@@ -1081,7 +1096,7 @@ const denoCoverage: Fig.Subcommand = {
       insertValue: "--include=",
       description: "Include source files in the report",
       isRepeatable: true,
-      // requiresEquals: true,
+      requiresEquals: true,
       args: {
         name: "pattern",
         description: "Include files matching this regex pattern",
@@ -1093,7 +1108,7 @@ const denoCoverage: Fig.Subcommand = {
       insertValue: "--exclude=",
       description: "Exclude source files from the report",
       isRepeatable: true,
-      // requiresEquals: true,
+      requiresEquals: true,
       args: {
         name: "pattern",
         description: "Exclude files matching this regex pattern",
@@ -1191,10 +1206,10 @@ const denoCompile: Fig.Subcommand = {
       args: {
         name: "arch",
         suggestions: [
-          { name: "x86_64-unknown-linux-gnu", icon: CPU_ICON },
-          { name: "x86_64-pc-windows-msvc", icon: CPU_ICON },
-          { name: "x86_64-apple-darwin", icon: CPU_ICON },
-          { name: "aarch64-apple-darwin", icon: CPU_ICON },
+          { name: "x86_64-unknown-linux-gnu", icon: "fig://icon?type=cpu" },
+          { name: "x86_64-pc-windows-msvc", icon: "fig://icon?type=cpu" },
+          { name: "x86_64-apple-darwin", icon: "fig://icon?type=cpu" },
+          { name: "aarch64-apple-darwin", icon: "fig://icon?type=cpu" },
         ],
       },
     },
