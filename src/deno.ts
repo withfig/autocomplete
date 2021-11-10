@@ -122,17 +122,6 @@ const permissionOptions: Fig.Option[] = [
       name: "variable",
       description: "Comma-separated list of environment variables to allow",
       isOptional: true,
-      // Generate environment variables
-      generators: {
-        script: "env",
-        getQueryTerm: ",",
-        postProcess: (out) =>
-          out
-            .split("\n")
-            .map((line) => line.split("=")[0])
-            .filter((name) => !name.startsWith("_"))
-            .map((name) => ({ name })),
-      },
     },
   },
   {
