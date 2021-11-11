@@ -39,6 +39,7 @@ const completionSpec: Fig.Spec = {
         },
       },
       knownHosts,
+      { template: "history" },
     ],
   },
   options: [

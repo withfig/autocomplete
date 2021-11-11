@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "curl",
   description: "Transfer a URL",
-  args: { name: "URL" },
+  args: { name: "URL", template: "history" },
   options: [
     {
       name: ["-a", "--append"],
