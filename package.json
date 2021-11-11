@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "npx @withfig/autocomplete-tools dev",
     "create-spec": "npx @withfig/autocomplete-tools create-spec",
-    "build": "npx @withfig/autocomplete-tools compile && npx ts-node generate-index",
+    "build": "npx @withfig/autocomplete-tools compile; npx ts-node generate-index",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
