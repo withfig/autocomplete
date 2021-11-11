@@ -1,8 +1,9 @@
 // This file largely follows the same structure (not order) as deno/cli/flags.rs:
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
-// All objects marked with '// requiresEquals: true' are Clap args with '.require_equals(true)'
-// TODO: When fig supports this option (or something like it), uncomment the arguments.
+// Fig doesn't automatically insert an '=' where an option's argument requires
+// an equals and the argument isn't optional. That's why you'll see a lot of
+// `insertValue: "--name="` in this spec.
 
 /**
  * Equivalent to the `"filepaths"` template, but boosts the priority of files
@@ -65,24 +66,10 @@ type VersionsJSON = {
   versions: string[];
 };
 
-/**
- * Generates a list of Deno versions and caches that list for one day.
- */
-const generateDenoVersions: Fig.Generator = {
-  script: `curl -sL 'https://cdn.deno.land/deno/meta/versions.json'`,
-  cache: { ttl: 1000 * 60 * 60 * 24 },
-  postProcess: (out) => {
-    const data = JSON.parse(out) as VersionsJSON;
-    return data.versions.map((version) => ({
-      name: version.startsWith("v") ? version.slice(1) : version,
-    }));
-  },
-};
-
 // The Deno core team is looking at adding runnable metadata JSON file, so
 // ".json" will have to be added to this eventually.
 const generateRunnableFiles = generateFilepathsMatch({
-  match: /\.(mjs|jsx?|tsx?)$/i,
+  match: /\.(m?(j|t)sx?)$/i,
 });
 
 type DenoLintRulesJSON = {
@@ -431,7 +418,7 @@ const denoTest: Fig.Subcommand = {
     isVariadic: true,
     generators: generateFilepathsMatch({
       // Any files with a test suffix should be suggested
-      match: /(\.|_)?test\.(tsx?|jsx?)$/,
+      match: /(\.|_)?test\.(m?(j|t)sx?)$/,
     }),
   },
   options: [
@@ -829,6 +816,7 @@ const denoDoc: Fig.Subcommand = {
               throw new Error(`Output data was JSON, but was not an array`);
             }
           } catch (err) {
+            console.error("Returning early due to error:", err);
             return [];
           }
 
@@ -1005,7 +993,16 @@ const denoUpgrade: Fig.Subcommand = {
       description: "The version to upgrade to",
       args: {
         name: "version",
-        generators: generateDenoVersions,
+        generators: {
+          script: `curl -sL 'https://cdn.deno.land/deno/meta/versions.json'`,
+          cache: { ttl: 1000 * 60 * 60 * 24 }, // 24 hours, in milliseconds
+          postProcess: (out) => {
+            const data = JSON.parse(out) as VersionsJSON;
+            return data.versions.map((version) => ({
+              name: version.startsWith("v") ? version.slice(1) : version,
+            }));
+          },
+        },
       },
     },
     {
