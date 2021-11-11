@@ -4,4 +4,7 @@ import * as glob from "glob";
 const files = glob
   .sync("**/*.ts", { cwd: `${process.cwd()}/src` })
   .map((x) => `"${x.slice(0, -3)}"`);
-fs.writeFileSync("build/index.js", `module.exports=[${files.join(",")}]`);
+fs.writeFileSync(
+  "build/index.js",
+  `var e=[${files.join(",")}];export{e as default};`
+);

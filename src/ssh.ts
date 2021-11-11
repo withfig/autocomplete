@@ -38,8 +38,8 @@ const completionSpec: Fig.Spec = {
             }));
         },
       },
-      { template: "history" },
       knownHosts,
+      { template: "history" },
     ],
   },
   options: [
