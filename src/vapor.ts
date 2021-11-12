@@ -1,25 +1,10 @@
 const vaporCommands: Fig.Suggestion[] = [
-  {
-    name: "build",
-  },
-  {
-    name: "clean",
-  },
-  {
-    name: "heroku",
-  },
-  {
-    name: "new",
-  },
-  {
-    name: "run",
-  },
-  {
-    name: "supervisor",
-  },
-  {
-    name: "xcode",
-  },
+  "clean",
+  "heroku",
+  "new",
+  "run",
+  "supervisor",
+  "xcode",
 ];
 
 const completionSpec: Fig.Spec = {
