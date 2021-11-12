@@ -1,4 +1,4 @@
-const vaporCommands: Fig.Suggestion[] = [
+const vaporCommands = [
   "clean",
   "heroku",
   "new",
