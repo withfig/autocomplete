@@ -1,11 +1,4 @@
-const vaporCommands = [
-  "clean",
-  "heroku",
-  "new",
-  "run",
-  "supervisor",
-  "xcode",
-];
+const vaporCommands = ["clean", "heroku", "new", "run", "supervisor", "xcode"];
 
 const completionSpec: Fig.Spec = {
   name: "vapor",
