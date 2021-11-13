@@ -65,7 +65,5 @@ const completionSpec: Fig.Spec = {
       },
     },
   ],
-  // Only uncomment if vapor takes an argument
-  // args: {}
 };
 export default completionSpec;
