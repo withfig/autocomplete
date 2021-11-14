@@ -1,5 +1,6 @@
 const args: Fig.SingleOrArray<Fig.Arg> = {
   name: "arguments",
+  description: "Human-readable host names, nameservers, types, or classes",
 };
 
 const options: Fig.Option[] = [
@@ -80,7 +81,7 @@ const options: Fig.Option[] = [
 const completionSpec: Fig.Spec = {
   name: "dog",
   description: "A command-line DNS client",
-  args: {},
+  args,
   options,
   subcommands: [
     {
