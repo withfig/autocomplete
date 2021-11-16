@@ -202,16 +202,6 @@ const completionSpec: Fig.Spec = {
     },
 
     { name: "quit", description: "Quit the Fig application" },
-
-    {
-      name: "team:upload",
-      description: "Share an completion spec with your team",
-      args: {
-        name: "spec",
-        template: "filepaths",
-      },
-    },
-    { name: "team:download", description: "Download your team's spec" },
     {
       name: "integrations:iterm",
       description: "Install the iTerm tab integration",
