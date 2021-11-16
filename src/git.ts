@@ -525,6 +525,10 @@ const completionSpec: Fig.Spec = {
       description: "Output help",
     },
     {
+      name: "-",
+      description: "Check out the previous branch",
+    },
+    {
       name: "-C",
 
       args: {
