@@ -1115,6 +1115,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         isVariadic: true,
+        isOptional: true,
         generators: servicesGenerator("Cleanup"),
       },
     },
