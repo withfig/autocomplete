@@ -29,7 +29,7 @@ const disableForCommandsGenerator: Fig.Generator = {
     const existing = out.split("\n").filter((item) => item.length > 0);
 
     const append: Fig.Suggestion = {
-      name: "Disable...",
+      name: "Disable new CLI...",
       icon: "fig://icon?type=box",
       insertValue: JSON.stringify(existing.concat(["{cursor}"])),
     };
@@ -37,7 +37,7 @@ const disableForCommandsGenerator: Fig.Generator = {
     const enabledAll: Fig.Suggestion = {
       name: "Enable all commands",
       icon: "fig://icon?type=box",
-      insertValue: "[]",
+      insertValue: "'[]'",
     };
 
     return [append, enabledAll].concat(
