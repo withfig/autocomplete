@@ -30,6 +30,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 
     const append: Fig.Suggestion = {
       name: "Disable new CLI...",
+      description: `You must pass a valid JSON array of CLI tools contained within single quotes. e.g. '["npm","cd","ls"]'`,
       icon: "fig://icon?type=box",
       insertValue: JSON.stringify(existing.concat(["{cursor}"])),
     };
@@ -124,8 +125,8 @@ const completionSpec: Fig.Spec = {
                       name: option["name"] || option,
                       description: option["description"] || "",
                     }));
-              const insertValue =
-                type === "multiselect" ? `${name} '{cursor}'` : undefined;
+              // const insertValue =
+              // type === "multiselect" ? `${name} '{cursor}'` : undefined;
 
               const generators = SETTINGS_GENERATOR[name];
 
@@ -133,7 +134,7 @@ const completionSpec: Fig.Spec = {
                 name,
                 description,
                 icon: "fig://icon?type=commandkey",
-                insertValue,
+                // insertValue,
                 args: {
                   name: type,
                   default: defaultValue,
