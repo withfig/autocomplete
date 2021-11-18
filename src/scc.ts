@@ -1,5 +1,25 @@
 /**
- * Create a generator where `postProcess` will be given a record of file
+ * The signature of the `postProcess` function in a `languagesGenerator`.
+ *
+ * `langs` is a record of file extension to the kind of file it is recognised
+ * as.
+ */
+type LanguageProcessor = (langs: Record<string, string>) => Fig.Suggestion[];
+
+/**
+ * A standard `Fig.Generator`, without the "script" and "postProcess"
+ * properties.
+ */
+type NoScriptGen = Omit<Fig.Generator, "script" | "postProcess">;
+
+/**
+ * A `Fig.Generator` without the script property and a `LanguageProcessor` for
+ * its `postProcess`.
+ */
+type LanguagesGenerator = NoScriptGen & { postProcess: LanguageProcessor };
+
+/**
+ * Create a `Fig.Generator` where `postProcess` will be given a record of file
  * extension to language name instead of the output of running `script`.
  *
  * Use it in place of an object literal.
@@ -14,11 +34,7 @@
  * });
  * ```
  */
-function languagesGenerator(
-  init: Omit<Fig.Generator, "script" | "postProcess"> & {
-    postProcess: (languages: Record<string, string>) => Fig.Suggestion[];
-  }
-): Fig.Generator {
+function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
   return {
     ...init,
     // Every line follows the pattern of `Language Name (ext1[,ext2,ext3])`
