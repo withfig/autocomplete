@@ -1,24 +1,19 @@
-const pastConnections: Fig.Generator = {
-  script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
-  postProcess: function (out) {
+const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numerical IPs as well as domains/subdomains
+
+const knownHosts: Fig.Generator = {
+  script: "cat ~/.ssh/known_hosts",
+  postProcess: function (out, tokens) {
     return out.split("\n").map((line) => {
-      const parts = line.split("/[ ,]+/");
-      let address;
-      for (let i = 0; i < parts.length; i++) {
-        if (parts[i].includes("@")) {
-          //found address
-          address = parts[i];
-        }
-      }
-      if (address) {
+      const knownHost = knownHostRegex.exec(line);
+      if (knownHost != null) {
         return {
-          name: "root",
-          icon: "🔗",
-          description: `connect to ${address}`,
+          name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
+          description: "SSH host",
         };
       }
     });
   },
+  trigger: "@",
 };
 
 const completionSpec: Fig.Spec = {
@@ -27,23 +22,25 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "user@hostname",
     description: "Address of remote machine to log into",
-    generators: {
-      script: "cat ~/.ssh/config",
-      postProcess: function (out) {
-        return out
-          .split("\n")
-          .filter((line) => {
-            return line.trim().startsWith("Host ") && !line.includes("*");
-          })
-          .map((host) => {
-            return {
-              name: host.split(" ").slice(-1)[0],
-              description: "Ssh host",
+    generators: [
+      {
+        script: "cat ~/.ssh/config",
+        postProcess: function (out) {
+          return out
+            .split("\n")
+            .filter(
+              (line) => line.trim().startsWith("Host ") && !line.includes("*")
+            )
+            .map((host) => ({
+              name: host.split(" ")[1],
+              description: "SSH host",
               priority: 90,
-            };
-          });
+            }));
+        },
       },
-    },
+      knownHosts,
+      { template: "history" },
+    ],
   },
   options: [
     {

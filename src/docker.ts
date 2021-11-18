@@ -5344,7 +5344,7 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name: "-f, --force",
+              name: ["-f", "--force"],
               description: "Force the removal of one or more volumes",
             },
           ],

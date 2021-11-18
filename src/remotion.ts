@@ -300,7 +300,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "--propss",
+          name: "--props",
           description: "Pass input props as filename or as JSON",
           args: {
             template: ["filepaths"],

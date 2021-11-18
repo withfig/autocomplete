@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.33.1",
+  "version": "2.46.8",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "browserslist": [
@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "npx @withfig/autocomplete-tools dev",
     "create-spec": "npx @withfig/autocomplete-tools create-spec",
-    "build": "npx @withfig/autocomplete-tools compile",
+    "build": "npx @withfig/autocomplete-tools compile; npx ts-node generate-index",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
@@ -88,5 +88,10 @@
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@types/glob": "^7.2.0",
+    "fs": "^0.0.1-security",
+    "glob": "^7.2.0"
   }
 }
