@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Only run plays and tasks whose tags do not match these values",
       args: {
-        name: "Tags",
+        name: "tags",
       },
     },
     {
@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Start the playbook at the task matching this name one-step-at-a-time",
       args: {
-        name: "Task name",
+        name: "task name",
       },
     },
     {
@@ -61,14 +61,14 @@ const completionSpec: Fig.Spec = {
       name: "--vault-id",
       description: "Specify the vault identity to use",
       args: {
-        name: "Vault ID",
+        name: "vault ID",
       },
     },
     {
       name: "--vault-password-file",
       description: "Specify a vault password file",
       args: {
-        name: "Vault password file",
+        name: "vault password file",
       },
     },
     {
@@ -90,7 +90,7 @@ const completionSpec: Fig.Spec = {
       name: ["--module-path", "-M"],
       description: "Prepend colon-separated path(s) to module library",
       args: {
-        name: "Module path",
+        name: "module path",
       },
     },
     {
@@ -98,14 +98,14 @@ const completionSpec: Fig.Spec = {
       description:
         "Set additional variables as key=value or YAML/JSON, if filename prepend with @",
       args: {
-        name: "Extra vars",
+        name: "extra vars",
       },
     },
     {
       name: ["--forks", "-f"],
       description: "Specify number of parallel processes to use",
       args: {
-        name: "Forks",
+        name: "forks",
       },
     },
     {
@@ -116,21 +116,21 @@ const completionSpec: Fig.Spec = {
       name: ["--inventory", "-i"],
       description: "Specify inventory host path or comma separated host list",
       args: {
-        name: "Inventory",
+        name: "inventory",
       },
     },
     {
       name: ["--limit", "-l"],
       description: "Limit selected hosts to an additional pattern",
       args: {
-        name: "Subset",
+        name: "subset",
       },
     },
     {
       name: ["--tags", "-t"],
       description: "Only run plays and tasks tagged with these values",
       args: {
-        name: "Tags",
+        name: "tags",
       },
     },
     {
@@ -149,14 +149,14 @@ const completionSpec: Fig.Spec = {
       name: "--become-method",
       description: "Privilege escalation method to use",
       args: {
-        name: "Become method",
+        name: "become method",
       },
     },
     {
       name: "--become-user",
       description: "Privilege escalation user to use",
       args: {
-        name: "Become user",
+        name: "become user",
       },
     },
     {
@@ -171,7 +171,7 @@ const completionSpec: Fig.Spec = {
       name: ["--private-key", "--key-file"],
       description: "Use this fole to authenticate the connection",
       args: {
-        name: "Private key",
+        name: "private key",
       },
     },
     {
@@ -206,14 +206,14 @@ const completionSpec: Fig.Spec = {
       name: ["--timeout", "-T"],
       description: "Override the connection timeout in seconds",
       args: {
-        name: "Timeout",
+        name: "timeout",
       },
     },
     {
       name: ["--connection", "-c"],
       description: "Connection type to use",
       args: {
-        name: "Connection type",
+        name: "connection type",
       },
     },
     {
@@ -224,7 +224,7 @@ const completionSpec: Fig.Spec = {
       name: ["--user", "-u"],
       description: "Connect as this user",
       args: {
-        name: "User",
+        name: "user",
       },
     },
   ],
