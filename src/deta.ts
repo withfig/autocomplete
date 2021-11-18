@@ -5,6 +5,20 @@
 // Deta CLI version: v1.3.0-beta
 // https://docs.deta.sh/docs/cli/releases#v130-beta
 
+// Fig generator for runtime options. Manually coded from 
+// https://docs.deta.sh/docs/cli/commands#deta-new
+const runtimes: Fig.Generator = {
+  script: "echo node12, node14, python3.7, python3.9",
+  postProcess: (output) => {
+    return output.split(",").map((runtime) => {
+      return { 
+        name: runtime, 
+        description: "runtime",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "deta",
   description: "Deta CLI for managing Deta Micros",
@@ -29,7 +43,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h"],
-              description: "Show help for version upgrade",
+              description: "Show help for upgrade",
             },
             {
               name: ["-v"],
@@ -100,7 +114,8 @@ const completionSpec: Fig.Spec = {
           description: "Create a micro with a specified runtime",
           args: {
             name: "runtime",
-            description: "The selected runtime: python3.7, python3.9, node12, node14",
+            description: "The selected runtime",
+            generators: runtimes
           },
         },
       ],
@@ -307,7 +322,8 @@ const completionSpec: Fig.Spec = {
           description: "The new runtime of the micro",
           args: {
             name: "runtime",
-            description: "New runtime for the micro: python3.7, python3.9, node12, node14"
+            description: "New runtime for the micro",
+            generators: runtimes
           }
         },
         {
