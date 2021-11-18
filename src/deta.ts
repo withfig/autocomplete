@@ -1,4 +1,3 @@
-
 // This spec is following the references
 // and descriptions from the Deta CLI Docs
 // https://docs.deta.sh/docs/cli/commands
@@ -30,7 +29,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h"],
-              description: "Show help for upgrade",
+              description: "Show help for version upgrade",
             },
             {
               name: ["-v"],
