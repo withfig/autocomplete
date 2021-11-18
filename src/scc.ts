@@ -132,7 +132,8 @@ const completionSpec: Fig.Spec = {
       name: "--format-multi",
       description:
         "Have multiple format output overriding --format [e.g. tabular:stdout,csv:file.csv,json:file.json]",
-      // TODO: contextual suggestions, this will use `languagesGenerator`
+      // TODO: contextual suggestions.
+      // suggest formats immediately, then files on `:`, then reset to formats on `,`
       args: {
         name: "string",
       },
