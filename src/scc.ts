@@ -4,7 +4,10 @@
  * `langs` is a record of file extension to the kind of file it is recognised
  * as.
  */
-type LanguageProcessor = (langs: Record<string, string>) => Fig.Suggestion[];
+type LanguageProcessor = (
+  languages: Record<string, string>,
+  tokens?: string[]
+) => Fig.Suggestion[];
 
 /**
  * A standard `Fig.Generator`, without the "script" and "postProcess"
@@ -39,7 +42,7 @@ function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
     ...init,
     // Every line follows the pattern of `Language Name (ext1[,ext2,ext3])`
     script: "scc --languages",
-    postProcess: (out: string) => {
+    postProcess: (out, tokens) => {
       const lines = out.split("\n");
       const languages: Record<string, string> = {};
       for (const line of lines) {
@@ -50,7 +53,7 @@ function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
           languages[ext] = lang;
         }
       }
-      return init.postProcess(languages);
+      return init.postProcess(languages, tokens);
     },
   };
 }
