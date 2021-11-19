@@ -525,10 +525,6 @@ const completionSpec: Fig.Spec = {
       description: "Output help",
     },
     {
-      name: "-",
-      description: "Check out the previous branch",
-    },
-    {
       name: "-C",
 
       args: {
@@ -1711,6 +1707,10 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: gitGenerators.commits,
       },
+    },
+    {
+      name: "ls-remote",
+      description: "List references in a remote repository",
     },
     {
       name: "push",

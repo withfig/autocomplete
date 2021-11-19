@@ -23,8 +23,8 @@ Hello @${danger.github.pr.user.login},
 thank you very much for creating a Pull Request!
 Here is a small checklist to get this PR merged as quickly as possible:
 
-- [ ] Do all subcommands / options which take arguments have the arg property (\`arg: {}\`)?
-- [ ] Are all options modular? E.g. \`a\` \`-u\` \`-x\` instead of \`-aux\`
+- [ ] Do all subcommands / options which take arguments include the \`args\` property (\`args: {}\`)?
+- [ ] Are all options modular? E.g. \`-a\` \`-u\` \`-x\` instead of \`-aux\`
 - [ ] Have all other checks passed?
 
 Please add a 👍  as a reaction to this comment to show that you read this.`,
