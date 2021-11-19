@@ -40,7 +40,6 @@ const completionSpec: Fig.Spec = {
             "Path to an alternate JS interpreter, such as Node or Deno",
           args: {
             name: "interpreter",
-            isOptional: false,
           },
         },
         {
@@ -59,7 +58,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "port",
             description: "The port number",
-            isOptional: false,
           },
         },
         {
@@ -74,7 +72,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         description: "The name of the package to install",
-        isOptional: false,
         debounce: true,
         isVariadic: false,
         generators: packageList,
@@ -93,7 +90,6 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
         name: "source files",
         description: "The source files to compile",
-        isOptional: false,
       },
       options: [
         {
@@ -114,7 +110,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "output file",
             description: "Name and location of output",
-            isOptional: false,
           },
         },
         {
@@ -123,7 +118,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "output json",
             description: "Name and location of output",
-            isOptional: false,
           },
         },
       ],
