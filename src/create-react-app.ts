@@ -49,7 +49,6 @@ const completionSpec: Fig.Spec = {
         'Specify a template for the created project (a custom template on npm (search for "cra-template-*"), a relative path, or an archive (.tgz or .tar.gz))',
       args: {
         name: "name or url",
-        isOptional: false,
       },
       icon: ICONS.path,
       priority: 76,
@@ -75,7 +74,6 @@ const completionSpec: Fig.Spec = {
         "Use a non-standard version of react-scripts (a specific npm version or npm tag, a custom fork published on npm, a relative path, or an archive (.tgz or .tar.gz))",
       args: {
         name: "alternative package",
-        isOptional: false,
       },
       priority: 74,
     },
