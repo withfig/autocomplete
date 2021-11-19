@@ -105,6 +105,10 @@ const completionSpec: Fig.Spec = {
       name: "--rules",
       description:
         "Run with a subsection of the rules in the configuration. Specify them by their name, and separate them by commas",
+      args: {
+        name: "<rule1,rule2,...>",
+        description: "Run with a subsection of the rules in the configuration",
+      },
     },
     {
       name: "--watch",
@@ -147,7 +151,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "--version",
+      name: ["--version", "-v"],
       description: "Print the version of the elm-review CLI",
     },
     {
