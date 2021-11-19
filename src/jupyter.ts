@@ -10,12 +10,17 @@ const logConfigOptions: Fig.Option[] = [
   {
     name: "--log-level",
     description: "Set the log level by value or name",
-    args: {},
+    args: {
+      name: "level",
+    },
   },
   {
     name: "--config",
     description: "Choose a config file",
-    args: {},
+    args: {
+      name: "config",
+      template: "filepaths",
+    },
   },
 ];
 
@@ -46,6 +51,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--user",
           description: "Apply the operation only for the given user",
+          args: {
+            name: "user",
+          },
         },
         {
           name: "--system",
@@ -76,9 +84,6 @@ const completionSpec: Fig.Spec = {
           args: { name: "KernelManager.ip" },
         },
       ],
-      args: {
-        isVariadic: true,
-      },
     },
     {
       name: "kernelspec",
@@ -97,17 +102,23 @@ const completionSpec: Fig.Spec = {
           name: "install",
           description: "Install a kernel specification directory",
           options: [...logConfigOptions, ...commonOptions],
-          args: {},
+          args: {
+            name: "kernel",
+          },
         },
         {
           name: "uninstall",
           description: "Alias for remove",
-          args: {},
+          args: {
+            name: "kernel",
+          },
         },
         {
           name: "remove",
           description: "Remove one or more Jupyter kernelspecs by name",
-          args: {},
+          args: {
+            name: "kernel",
+          },
         },
       ],
     },
@@ -133,7 +144,10 @@ const completionSpec: Fig.Spec = {
       description:
         "This application is used to convert notebook files (*.ipynb) to various other formats",
       options: [...commonOptions, ...logConfigOptions],
-      args: {},
+      args: {
+        name: "file",
+        template: "filepaths",
+      },
     },
     {
       name: "nbextension",
@@ -143,22 +157,30 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description: "Install an nbextension",
-          args: {},
+          args: {
+            name: "extension",
+          },
         },
         {
           name: "uninstall",
           description: "Uninstall an nbextension",
-          args: {},
+          args: {
+            name: "extension",
+          },
         },
         {
           name: "enable",
           description: "Enable an nbextension",
-          args: {},
+          args: {
+            name: "extension",
+          },
         },
         {
           name: "disable",
           description: "Disable an nbextension",
-          args: {},
+          args: {
+            name: "extension",
+          },
         },
         {
           name: "list",
@@ -184,16 +206,15 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [...commonOptions, ...logConfigOptions],
-      args: {},
     },
     {
       name: "run",
-      description: "",
+      description: "Run a notebook",
       options: [...commonOptions, ...logConfigOptions],
     },
     {
       name: "serverextension",
-      description: "",
+      description: "Manage server extensions",
       options: [...commonOptions, ...logConfigOptions],
     },
     {
@@ -202,9 +223,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "trust",
-      description: "",
+      description: "Manage trust",
       options: [...commonOptions, ...logConfigOptions],
-      args: {},
     },
   ],
   options: [
