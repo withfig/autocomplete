@@ -1709,6 +1709,10 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "ls-remote",
+      description: "List references in a remote repository",
+    },
+    {
       name: "push",
       description: "Update remote refs",
       options: [
