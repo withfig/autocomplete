@@ -5,15 +5,15 @@
 // Deta CLI version: v1.3.0-beta
 // https://docs.deta.sh/docs/cli/releases#v130-beta
 
-// Fig generator for runtime options. Manually coded from 
+// Fig generator for runtime options. Manually coded from
 // https://docs.deta.sh/docs/cli/commands#deta-new
 const runtimes: Fig.Generator = {
   script: "echo node12, node14, python3.7, python3.9",
   postProcess: (output) => {
     return output.split(",").map((runtime) => {
-      return { 
-        name: runtime, 
-        description: "runtime",
+      return {
+        name: runtime,
+        description: "Runtime",
       };
     });
   },
@@ -28,7 +28,7 @@ const completionSpec: Fig.Spec = {
       description: "Trigger the login process for the Deta CLI",
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for login",
         },
       ],
@@ -42,11 +42,11 @@ const completionSpec: Fig.Spec = {
           description: "Upgrade Deta CLI version",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for upgrade",
             },
             {
-              name: ["-v"],
+              name: "-v",
               description: "Upgrade CLI to specific version",
               args: {
                 name: "Version number",
@@ -57,7 +57,7 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for version",
         },
       ],
@@ -67,14 +67,14 @@ const completionSpec: Fig.Spec = {
       description: "List Deta projects",
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for projects",
         },
       ],
-    },    
+    },
     {
       name: "new",
-      description: " Create a new Deta Micro",
+      description: "Create a new Deta Micro",
       args: {
         name: "path",
         description: "Path to new directory for the micro",
@@ -82,19 +82,19 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for new",
         },
         {
-          name: ["-n"],
+          name: "-n",
           description: "Create a micro with Node (node14.x) runtime",
         },
         {
-          name: ["-p"],
+          name: "-p",
           description: "Create a micro with Python (python 3.9) runtime",
         },
         {
-          name: ["--name"],
+          name: "--name",
           description: "Set the name of the new micro",
           args: {
             name: "name",
@@ -102,7 +102,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--project"],
+          name: "--project",
           description: "Set the project under which the micro is created",
           args: {
             name: "project",
@@ -110,12 +110,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--runtime"],
+          name: "--runtime",
           description: "Create a micro with a specified runtime",
           args: {
             name: "runtime",
             description: "The selected runtime",
-            generators: runtimes
+            generators: runtimes,
           },
         },
       ],
@@ -131,7 +131,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for deploy",
         },
       ],
@@ -147,14 +147,15 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for details",
         },
       ],
     },
     {
       name: "watch",
-      description: "Auto-deploy locally saved changes in real time to your Deta micro",
+      description:
+        "Auto-deploy locally saved changes in real time to your Deta micro",
       args: {
         name: "path",
         description: "Path to project directory",
@@ -163,7 +164,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for watch",
         },
       ],
@@ -171,13 +172,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "auth",
       description: "Change auth settings for a Deta Micro",
-      subcommands:[
+      subcommands: [
         {
           name: "disable",
           description: "Disable HTTP Auth for a Deta Micro",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for auth disable",
             },
           ],
@@ -187,7 +188,7 @@ const completionSpec: Fig.Spec = {
           description: "Enable HTTP Auth for a Deta Micro",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for auth enable",
             },
           ],
@@ -197,34 +198,34 @@ const completionSpec: Fig.Spec = {
           description: "Create an API key for a Deta Micro",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for auth create-api-key",
             },
             {
-              name: ["-d"],
+              name: "-d",
               description: "Set the api-key description",
               args: {
                 name: "description",
-                description: "The api-key description"
-              }
+                description: "The api-key description",
+              },
             },
             {
-              name: ["-n"],
+              name: "-n",
               description: "Set the api-key name",
               isRequired: true,
               args: {
                 name: "name",
                 description: "The api-key name",
-              }
+              },
             },
             {
-              name: ["-o"],
+              name: "-o",
               description: "Set the api-key output file",
               args: {
                 name: "outfile",
                 description: "The api-key output file",
-                template: "filepaths"
-              }
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -233,38 +234,39 @@ const completionSpec: Fig.Spec = {
           description: "Delete an API key for a Deta Micro",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for auth delete-api-key",
             },
             {
-              name: ["-n"],
+              name: "-n",
               description: "Set the api-key name",
               isRequired: true,
               args: {
                 name: "name",
                 description: "The api-key name",
-              }
+              },
             },
           ],
         },
       ],
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for auth",
         },
       ],
     },
     {
       name: "pull",
-      description: "Pull the latest deployed code of a Deta Micro to your local machine",
+      description:
+        "Pull the latest deployed code of a Deta Micro to your local machine",
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for pull",
         },
         {
-          name: ["-f"],
+          name: "-f",
           description: "Force the overwrite of existing files",
         },
       ],
@@ -279,25 +281,25 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for clone",
         },
         {
-          name: ["-n"],
+          name: "-n",
           description: "The name of the micro to be cloned",
           isRequired: true,
           args: {
             name: "name",
             description: "Name of the micro",
-          }
+          },
         },
         {
-          name: ["-p"],
+          name: "-p",
           description: "The name of the project with the micro to be cloned",
           args: {
             name: "project",
             description: "Name of the project",
-          }
+          },
         },
       ],
     },
@@ -306,47 +308,47 @@ const completionSpec: Fig.Spec = {
       description: "Update a Deta Micro's name or environment variables",
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for pull",
         },
         {
-          name: ["-n"],
+          name: "-n",
           description: "The new name of the micro",
           args: {
             name: "name",
-            description: "New name for the micro"
-          }
+            description: "New name for the micro",
+          },
         },
         {
-          name: ["-r"],
+          name: "-r",
           description: "The new runtime of the micro",
           args: {
             name: "runtime",
             description: "New runtime for the micro",
-            generators: runtimes
-          }
+            generators: runtimes,
+          },
         },
         {
-          name: ["-e"],
+          name: "-e",
           description: "The new env file of the micro",
           args: {
             name: "env",
             description: "Path to env file",
-            template: "filepaths"
-          }
+            template: "filepaths",
+          },
         },
       ],
     },
     {
       name: "visor",
       description: "Change the Visor settings for a Deta Micro",
-      subcommands:[
+      subcommands: [
         {
           name: "open",
           description: "Open Micro's visor page in the browser",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for visor open",
             },
           ],
@@ -356,7 +358,7 @@ const completionSpec: Fig.Spec = {
           description: "Enable Visor for a Deta Micro",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for visor enable",
             },
           ],
@@ -366,7 +368,7 @@ const completionSpec: Fig.Spec = {
           description: "Disable Visor for a Deta Micro",
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for visor disable",
             },
           ],
@@ -374,7 +376,7 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for visor",
         },
       ],
@@ -384,15 +386,16 @@ const completionSpec: Fig.Spec = {
       description: "Run a Deta Micro from the CLI",
       args: {
         name: "action",
-        description: "The action to be performed on the micro. See docs for full examples and details"
+        description:
+          "The action to be performed on the micro. See docs for full examples and details",
       },
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for run",
         },
         {
-          name: ["-l"],
+          name: "-l",
           description: "Show the micro logs",
         },
       ],
@@ -400,17 +403,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "cron",
       description: "Change cron settings for a Deta Micro",
-      subcommands:[
+      subcommands: [
         {
           name: "set",
           description: "Set Deta Micro to run on a schedule",
           args: {
             name: "expression",
-            description: "The cron expression to be set"
+            description: "The cron expression to be set",
           },
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for cron set",
             },
           ],
@@ -420,11 +423,11 @@ const completionSpec: Fig.Spec = {
           description: "Remove a schedule from a Deta Micro",
           args: {
             name: "expression",
-            description: "The cron expression to be removed"
+            description: "The cron expression to be removed",
           },
           options: [
             {
-              name: ["-h"],
+              name: "-h",
               description: "Show help for cron remove",
             },
           ],
@@ -432,7 +435,7 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["-h"],
+          name: "-h",
           description: "Show help for cron",
         },
       ],
@@ -440,7 +443,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["-h"],
+      name: "-h",
       description: "Show help for deta",
     },
   ],
