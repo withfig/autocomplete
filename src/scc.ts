@@ -1,64 +1,28 @@
-/**
- * The signature of the `postProcess` function in a `languagesGenerator`.
- *
- * `langs` is a record of file extension to the kind of file it is recognised
- * as.
- */
-type LanguageProcessor = (
-  languages: Record<string, string>,
-  names: string[],
-  tokens?: string[]
-) => Fig.Suggestion[];
+/** The output of processing `scc --languages` */
+interface SccLanguages {
+  /** A map of file extension to language name. */
+  files: Record<string, string>;
+  /** An array of language names. */
+  langs: string[];
+}
 
-/**
- * A standard `Fig.Generator`, without the "script" and "postProcess"
- * properties.
- */
-type NoScriptGen = Omit<Fig.Generator, "script" | "postProcess">;
-
-/**
- * A `Fig.Generator` without the script property and a `LanguageProcessor` for
- * its `postProcess`.
- */
-type LanguagesGenerator = NoScriptGen & { postProcess: LanguageProcessor };
-
-/**
- * Create a `Fig.Generator` where `postProcess` will be given a record of file
- * extension to language name instead of the output of running `script`.
- *
- * Use it in place of an object literal.
- *
- * @example
- * ```typescript
- * // suggests only file extensions
- * const gen: Fig.Generator = languagesGenerator({
- *   postProcess: (languages) => {
- *     return Object.keys(languages).map((key) => ({ name: key }));
- *   },
- * });
- * ```
- */
-function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
-  return {
-    ...init,
-    // Every line follows the pattern of `Language Name (ext1[,ext2,ext3])`
-    script: "scc --languages",
-    postProcess: (out, tokens) => {
-      const lines = out.split("\n");
-      const languages: Record<string, string> = {};
-      const names = [];
-      for (const line of lines) {
-        const match = line.match(/(.*) \((.*)\)/);
-        const name = match[1];
-        names.push(name);
-        const exts = match[2].split(",");
-        for (const ext of exts) {
-          languages[ext] = name;
-        }
-      }
-      return init.postProcess(languages, names, tokens);
-    },
+/** Process the output of `scc --languages`. */
+function processSccLanguages(out: string): SccLanguages {
+  const languages: SccLanguages = {
+    files: {},
+    langs: [],
   };
+  // All lines are in the form of 'Languages (ext1,ext2,...)'
+  const matches = out.matchAll(/^(.*) \((.*)\)$/gm);
+  for (const match of matches) {
+    const name = match[1];
+    languages.langs.push(name);
+    const exts = match[2].split(",");
+    for (const ext of exts) {
+      languages.files[ext] = name;
+    }
+  }
+  return languages;
 }
 
 /** Get the index of the last `:` or `,` in a string */
@@ -105,19 +69,23 @@ function finalTermIsKey(token: string) {
  * `strings.Split` on the input.
  * https://github.com/boyter/scc/blob/cb04a8d/processor/workers.go#L500-L501
  */
-const remapGenerator = languagesGenerator({
+const remapGenerator: Fig.Generator = {
   trigger: triggerColonComma,
   getQueryTerm: getQueryTermColonComma,
-  postProcess: (_, names, tokens) => {
+  script: "scc --languages",
+  postProcess: (out, tokens) => {
+    const { langs } = processSccLanguages(out);
     const lastToken = tokens[tokens.length - 1];
+
     // If we're writing a string, suggest nothing
     if (finalTermIsKey(lastToken)) {
       return [];
     }
+
     // We're writing a language name, suggest names
-    return names.map((lang) => ({ name: lang }));
+    return langs.map((lang) => ({ name: lang }));
   },
-});
+};
 
 /** The formats that SCC can output. */
 const formats = [
@@ -189,22 +157,26 @@ const completionSpec: Fig.Spec = {
         "Count a file extension as a language (comma-separated key:value list, eg. jst:js,tpl:Markdown)",
       args: {
         name: "string",
-        generators: languagesGenerator({
+        generators: {
           trigger: triggerColonComma,
           getQueryTerm: getQueryTermColonComma,
-          postProcess: (languages, names, tokens) => {
+          script: "scc --languages",
+          postProcess: (out, tokens) => {
+            const { files, langs } = processSccLanguages(out);
             const lastToken = tokens[tokens.length - 1];
+
             // If we're writing a file extension, suggest known extensions
             if (finalTermIsKey(lastToken)) {
-              return Object.entries(languages).map(([ext, name]) => ({
+              return Object.entries(files).map(([ext, name]) => ({
                 name: ext,
                 description: name,
               }));
             }
+
             // We're writing a language name
-            return names.map((name) => ({ name: name }));
+            return langs.map((lang) => ({ name: lang }));
           },
-        }),
+        },
       },
     },
     {
@@ -250,13 +222,15 @@ const completionSpec: Fig.Spec = {
           getQueryTerm: getQueryTermColonComma,
           custom: async (tokens, executeShellCommand) => {
             const lastToken = tokens[tokens.length - 1];
+
             // If we're writing a format, suggest supported formats
             if (finalTermIsKey(lastToken)) {
               return formats;
             }
+
             // We're writing an output, suggest stdout
-            const files = await executeShellCommand("ls -lAF1");
-            const suggestions: Fig.Suggestion[] = files
+            const out = await executeShellCommand("ls -lAF1");
+            const suggestions: Fig.Suggestion[] = out
               .split("\n")
               .map((file) => ({
                 name: file.slice(file.lastIndexOf("/") + 1),
@@ -291,15 +265,18 @@ const completionSpec: Fig.Spec = {
       description: "Limit to these file extensions (comma-separated list)",
       args: {
         name: "strings",
-        generators: languagesGenerator({
+        generators: {
           getQueryTerm: ",",
-          postProcess: (languages) =>
-            Object.entries(languages).map(([extension, language]) => ({
-              name: extension,
-              description: language,
+          script: "scc --languages",
+          postProcess: (out) => {
+            const { files } = processSccLanguages(out);
+            return Object.entries(files).map(([ext, lang]) => ({
+              name: ext,
+              description: lang,
               icon: "fig://icon?type=string",
-            })),
-        }),
+            }));
+          },
+        },
       },
     },
     {
