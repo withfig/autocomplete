@@ -369,7 +369,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "script",
-        description: "Run scripts from you package.json",
+        description: "Run scripts from your package.json",
         generators: npmScriptsGenerator,
         parserDirectives: {
           alias: async (token, executeShellCommand) => {
