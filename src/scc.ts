@@ -440,7 +440,7 @@ const completionSpec: Fig.Spec = {
           {
             name: "mixed",
             icon: "fig://icon?type=string",
-            description: "1,024,000 bytes",
+            description: "1,024,000 bytes (Binary kilobytes, SI megabytes)",
           },
           {
             name: "xkcd-kb",
