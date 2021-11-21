@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "pattern",
     description: "Host pattern",
-    isOptional: false,
   },
   options: [
     {
@@ -69,6 +68,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify a vault password file",
       args: {
         name: "vault password file",
+        template: ["filepaths"],
       },
     },
     {
@@ -91,6 +91,7 @@ const completionSpec: Fig.Spec = {
       description: "Prepend colon-separated path(s) to module library",
       args: {
         name: "module path",
+        template: ["folders"],
       },
     },
     {
@@ -150,6 +151,17 @@ const completionSpec: Fig.Spec = {
       description: "Privilege escalation method to use",
       args: {
         name: "become method",
+        suggestions: [
+          "sudo",
+          "su",
+          "pbrun",
+          "pfexec",
+          "doas",
+          "dzdo",
+          "ksu",
+          "runas",
+          "machinectl",
+        ],
       },
     },
     {
@@ -172,6 +184,7 @@ const completionSpec: Fig.Spec = {
       description: "Use this fole to authenticate the connection",
       args: {
         name: "private key",
+        template: ["filepaths"],
       },
     },
     {
