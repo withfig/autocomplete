@@ -58,6 +58,83 @@ function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
   };
 }
 
+/** Get the index of the last `:` or `,` in a string */
+function lastColonOrComma(token: string) {
+  const colonIdx = token.lastIndexOf(":");
+  const commaIdx = token.lastIndexOf(",");
+  const lastPunctuationIdx = Math.max(colonIdx, commaIdx);
+  return lastPunctuationIdx;
+}
+
+/** Trigger when the index of the last colon or comma has changed. */
+const triggerColonComma: Fig.Generator["trigger"] = (newToken, oldToken) => {
+  const newTokenIdx = lastColonOrComma(newToken);
+  const oldTokenIdx = lastColonOrComma(oldToken);
+  return newTokenIdx !== oldTokenIdx;
+};
+
+/** Make the query term everything after the last colon or comma. */
+const getQueryTermColonComma: Fig.Generator["getQueryTerm"] = (token) => {
+  const lastPunctuationIdx = lastColonOrComma(token);
+  return token.slice(lastPunctuationIdx + 1);
+};
+
+/**
+ * In a `key:value,key:value` string, check if the final term (the part the
+ * user is writing) is a key.
+ */
+function finalTermIsKey(token: string) {
+  const lastPunctuationIdx = lastColonOrComma(token);
+  const lastPunctuation = token[lastPunctuationIdx];
+  // If we're writing a file extension, suggest known extensions
+  return lastPunctuationIdx === -1 || lastPunctuation === ",";
+}
+
+/**
+ * Used for --remap-all and --remap-unknown. This is factored out into its
+ * own value because it is shared by two options.
+ *
+ * Suggests nothing while the user is entering the string, and suggests
+ * language names when required.
+ *
+ * Even though the user is entering an arbitrary string, it's okay
+ * to be dumb about parsing colons and commas because SCC just calls
+ * `string.Split` on the input.
+ * https://github.com/boyter/scc/blob/cb04a8d/processor/workers.go#L500-L501
+ */
+const remapGenerator = languagesGenerator({
+  trigger: triggerColonComma,
+  getQueryTerm: getQueryTermColonComma,
+  postProcess: (languages, tokens) => {
+    const lastToken = tokens[tokens.length - 1];
+    // If we're writing a string, suggest nothing
+    if (finalTermIsKey(lastToken)) {
+      return [];
+    }
+    // We're writing a language name, suggest names. If we're not in a
+    // quote, wrap spacey suggestions in quotes.
+    const inQuote = lastToken[0] === "'" || lastToken[0] === '"';
+    return [...new Set(Object.values(languages))].map((lang) => ({
+      name: lang,
+      insertValue: inQuote && lang.includes(" ") ? `"${lang}"` : lang,
+    }));
+  },
+});
+
+/** The formats that SCC can output. */
+const formats = [
+  { name: "tabular", icon: "fig://icon?type=string" },
+  { name: "wide", icon: "fig://icon?type=string" },
+  { name: "json", icon: "fig://icon?type=string" },
+  { name: "csv", icon: "fig://icon?type=string" },
+  { name: "csv-stream", icon: "fig://icon?type=string" },
+  { name: "cloc-yaml", icon: "fig://icon?type=string" },
+  { name: "html", icon: "fig://icon?type=string" },
+  { name: "html-table", icon: "fig://icon?type=string" },
+  { name: "sql", icon: "fig://icon?type=string" },
+  { name: "sql-insert", icon: "fig://icon?type=string" },
+] as Fig.Suggestion[];
+
 const completionSpec: Fig.Spec = {
   name: "scc",
   description:
@@ -101,13 +178,32 @@ const completionSpec: Fig.Spec = {
       name: "--count-as",
       description:
         'Count extension as language [e.g. jsp:htm,chead:"C Header" maps extension jsp to html and chead to C Header]',
-      // TODO: contextual suggestions (this will use `languagesGenerator`)
-      //       (trigger on ':', remove on ',')
       args: {
         name: "string",
+        generators: languagesGenerator({
+          trigger: triggerColonComma,
+          getQueryTerm: getQueryTermColonComma,
+          postProcess: (languages, tokens) => {
+            const lastToken = tokens[tokens.length - 1];
+            // If we're writing a file extension, suggest known extensions
+            if (finalTermIsKey(lastToken)) {
+              return Object.keys(languages).map((ext) => ({ name: ext }));
+            }
+            // We're writing a language name. If we're not in a quote, surround
+            // spacey suggestions with quotes.
+            const inQuote = lastToken[0] === "'" || lastToken[0] === '"';
+            return [...new Set(Object.values(languages))].map((lang) => ({
+              name: lang,
+              insertValue: inQuote && lang.includes(" ") ? `"${lang}"` : lang,
+            }));
+          },
+        }),
       },
     },
-    { name: "--debug", description: "Enable debug output" },
+    {
+      name: "--debug",
+      description: "Enable debug output",
+    },
     {
       name: "--exclude-dir",
       description: "Directories to exclude",
@@ -133,28 +229,36 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         default: "tabular",
-        suggestions: [
-          { name: "tabular", icon: "fig://icon?type=string" },
-          { name: "wide", icon: "fig://icon?type=string" },
-          { name: "json", icon: "fig://icon?type=string" },
-          { name: "csv", icon: "fig://icon?type=string" },
-          { name: "csv-stream", icon: "fig://icon?type=string" },
-          { name: "cloc-yaml", icon: "fig://icon?type=string" },
-          { name: "html", icon: "fig://icon?type=string" },
-          { name: "html-table", icon: "fig://icon?type=string" },
-          { name: "sql", icon: "fig://icon?type=string" },
-          { name: "sql-insert", icon: "fig://icon?type=string" },
-        ],
+        suggestions: formats,
       },
     },
     {
       name: "--format-multi",
       description:
         "Have multiple format output overriding --format [e.g. tabular:stdout,csv:file.csv,json:file.json]",
-      // TODO: contextual suggestions.
-      // suggest formats immediately, then files on `:`, then reset to formats on `,`
       args: {
         name: "string",
+        generators: {
+          trigger: triggerColonComma,
+          getQueryTerm: getQueryTermColonComma,
+          custom: async (tokens, executeShellCommand) => {
+            const lastToken = tokens[tokens.length - 1];
+            // If we're writing a format, suggest supported formats
+            if (finalTermIsKey(lastToken)) {
+              return formats;
+            }
+            // We're writing an output, suggest stdout
+            const files = await executeShellCommand("ls -lAF1");
+            const suggestions: Fig.Suggestion[] = files
+              .split("\n")
+              .map((file) => ({
+                name: file.slice(file.lastIndexOf("/") + 1),
+                icon: `fig://${file}`,
+              }));
+            suggestions.push({ name: "stdout", priority: 51 });
+            return suggestions;
+          },
+        },
       },
     },
     {
@@ -163,6 +267,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--generated-markers",
+      insertValue: "--generated-markers '{cursor}'",
       description: "String markers in head of generated files",
       args: {
         name: "strings",
@@ -215,7 +320,10 @@ const completionSpec: Fig.Spec = {
         default: "40000",
       },
     },
-    { name: "--min", description: "Identify minified files" },
+    {
+      name: "--min",
+      description: "Identify minified files",
+    },
     {
       name: ["-z", "--min-gen"],
       description: "Identify minified or generated files",
@@ -290,18 +398,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "--remap-all",
       description:
-        'Inspect every file and remap by checking for a string and remapping the language [e.g. "-*- C++ -*-":",C Header"]',
+        'Inspect every file and remap by checking for a string and remapping the language [e.g. "-*- C++ -*-":"C Header"]',
       args: {
         name: "string",
+        generators: remapGenerator,
       },
     },
     {
       name: "--remap-unknown",
-      insertValue: "--remap-unknown '{cursor}'",
       description:
         'Inspect files of unknown type and remap by checking for a string and remapping the language [e.g. "-*- C++ -*-":"C Header"]',
       args: {
         name: "string",
+        generators: remapGenerator,
       },
     },
     {
