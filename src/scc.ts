@@ -525,6 +525,7 @@ const completionSpec: Fig.Spec = {
     name: "files or directories",
     template: ["filepaths", "folders"],
     isOptional: true,
+    isVariadic: true,
   },
 };
 
