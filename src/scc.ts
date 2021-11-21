@@ -115,10 +115,7 @@ const remapGenerator = languagesGenerator({
       return [];
     }
     // We're writing a language name, suggest names
-    return names.map((lang) => ({
-      name: lang,
-      insertValue: lang.includes(" ") ? `'${lang}'` : lang,
-    }));
+    return names.map((lang) => ({ name: lang }));
   },
 });
 
@@ -205,10 +202,7 @@ const completionSpec: Fig.Spec = {
               }));
             }
             // We're writing a language name
-            return names.map((name) => ({
-              name: name,
-              insertValue: name.includes(" ") ? `'${name}'` : name,
-            }));
+            return names.map((name) => ({ name: name }));
           },
         }),
       },
