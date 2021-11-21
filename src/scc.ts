@@ -257,7 +257,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-h,", "--help"],
+      name: ["-h", "--help"],
       description: "Help for scc",
     },
     {
