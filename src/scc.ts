@@ -6,6 +6,7 @@
  */
 type LanguageProcessor = (
   languages: Record<string, string>,
+  names: string[],
   tokens?: string[]
 ) => Fig.Suggestion[];
 
@@ -45,15 +46,17 @@ function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
     postProcess: (out, tokens) => {
       const lines = out.split("\n");
       const languages: Record<string, string> = {};
+      const names = [];
       for (const line of lines) {
         const match = line.match(/(.*) \((.*)\)/);
-        const lang = match[1];
+        const name = match[1];
+        names.push(name);
         const exts = match[2].split(",");
         for (const ext of exts) {
-          languages[ext] = lang;
+          languages[ext] = name;
         }
       }
-      return init.postProcess(languages, tokens);
+      return init.postProcess(languages, names, tokens);
     },
   };
 }
@@ -105,18 +108,16 @@ function finalTermIsKey(token: string) {
 const remapGenerator = languagesGenerator({
   trigger: triggerColonComma,
   getQueryTerm: getQueryTermColonComma,
-  postProcess: (languages, tokens) => {
+  postProcess: (_, names, tokens) => {
     const lastToken = tokens[tokens.length - 1];
     // If we're writing a string, suggest nothing
     if (finalTermIsKey(lastToken)) {
       return [];
     }
-    // We're writing a language name, suggest names. If we're not in a
-    // quote, wrap spacey suggestions in quotes.
-    const inQuote = lastToken[0] === "'" || lastToken[0] === '"';
-    return [...new Set(Object.values(languages))].map((lang) => ({
+    // We're writing a language name, suggest names
+    return names.map((lang) => ({
       name: lang,
-      insertValue: inQuote && lang.includes(" ") ? `"${lang}"` : lang,
+      insertValue: lang.includes(" ") ? `'${lang}'` : lang,
     }));
   },
 });
@@ -194,18 +195,19 @@ const completionSpec: Fig.Spec = {
         generators: languagesGenerator({
           trigger: triggerColonComma,
           getQueryTerm: getQueryTermColonComma,
-          postProcess: (languages, tokens) => {
+          postProcess: (languages, names, tokens) => {
             const lastToken = tokens[tokens.length - 1];
             // If we're writing a file extension, suggest known extensions
             if (finalTermIsKey(lastToken)) {
-              return Object.keys(languages).map((ext) => ({ name: ext }));
+              return Object.entries(languages).map(([ext, name]) => ({
+                name: ext,
+                description: name,
+              }));
             }
-            // We're writing a language name. If we're not in a quote, surround
-            // spacey suggestions with quotes.
-            const inQuote = lastToken[0] === "'" || lastToken[0] === '"';
-            return [...new Set(Object.values(languages))].map((lang) => ({
-              name: lang,
-              insertValue: inQuote && lang.includes(" ") ? `"${lang}"` : lang,
+            // We're writing a language name
+            return names.map((name) => ({
+              name: name,
+              insertValue: name.includes(" ") ? `'${name}'` : name,
             }));
           },
         }),
