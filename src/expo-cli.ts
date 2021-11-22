@@ -68,7 +68,7 @@ const _gen: Record<string, Fig.Generator> = {
 };
 
 const completionSpec: Fig.Spec = {
-  name: "expo",
+  name: "expo-cli",
   icon:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
   description:
