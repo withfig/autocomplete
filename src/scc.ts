@@ -8,68 +8,74 @@ interface SccLanguages {
 
 /** Process the output of `scc --languages`. */
 function processSccLanguages(out: string): SccLanguages {
-  const languages: SccLanguages = {
-    files: {},
-    langs: [],
-  };
+  const files: Record<string, string> = {};
+  const langs: string[] = [];
+
   // All lines are in the form of 'Languages (ext1,ext2,...)'
   const matches = out.matchAll(/^(.*) \((.*)\)$/gm);
+
   for (const match of matches) {
     const name = match[1];
-    languages.langs.push(name);
+    langs.push(name);
+
     const exts = match[2].split(",");
     for (const ext of exts) {
-      languages.files[ext] = name;
+      files[ext] = name;
     }
   }
-  return languages;
+  return { files, langs };
 }
 
-/** Get the index of the last `:` or `,` in a string */
-function lastColonOrComma(token: string) {
-  const colonIdx = token.lastIndexOf(":");
-  const commaIdx = token.lastIndexOf(",");
-  const lastPunctuationIdx = Math.max(colonIdx, commaIdx);
-  return lastPunctuationIdx;
+/** Get the index of the last `:` or `,` in a string, or -1 if not found. */
+function lastColonOrCommaIndex(token: string): number {
+  const colon = token.lastIndexOf(":");
+  const comma = token.lastIndexOf(",");
+  return Math.max(colon, comma);
 }
 
 /** Trigger when the index of the last colon or comma has changed. */
 const triggerColonComma: Fig.Generator["trigger"] = (newToken, oldToken) => {
-  const newTokenIdx = lastColonOrComma(newToken);
-  const oldTokenIdx = lastColonOrComma(oldToken);
+  const newTokenIdx = lastColonOrCommaIndex(newToken);
+  const oldTokenIdx = lastColonOrCommaIndex(oldToken);
   return newTokenIdx !== oldTokenIdx;
 };
 
 /** Make the query term everything after the last colon or comma. */
 const getQueryTermColonComma: Fig.Generator["getQueryTerm"] = (token) => {
-  const lastPunctuationIdx = lastColonOrComma(token);
+  const lastPunctuationIdx = lastColonOrCommaIndex(token);
   return token.slice(lastPunctuationIdx + 1);
 };
 
 /**
- * In a comma-separated key:value string, check if the final term (the part the
- * user is writing) is a key.
+ * In a comma-separated key:value string, check if the user is writing a key.
+ *
+ * Some test cases:
+ * ```javascript
+ * isWritingKey("") === true;
+ * isWritingKey("key") === true;
+ * isWritingKey("key:") === false;
+ * isWritingKey("key:value") === false;
+ * isWritingKey("key:value,") === true;
+ * ```
  */
-function finalTermIsKey(token: string) {
-  const lastPunctuationIdx = lastColonOrComma(token);
-  const lastPunctuation = token[lastPunctuationIdx];
-  // If we're writing a file extension, suggest known extensions
-  return lastPunctuationIdx === -1 || lastPunctuation === ",";
+function isWritingKey(token: string) {
+  const idx = lastColonOrCommaIndex(token);
+  return idx === -1 || token[idx] === ",";
 }
 
 /**
- * Used for --remap-all and --remap-unknown. This is factored out into its
- * own value because it is shared by two options.
+ * Generate suggestions for a comma-separated key:value list where the keys
+ * are arbitrary strings and the values are language names.
  *
- * Suggests nothing while the user is entering the string, and suggests
- * language names when required.
+ * Used for --remap-all and --remap-unknown. This is factored out into its
+ * own value because it is shared by those two options.
  *
  * Even though the user is entering an arbitrary string, it's okay
  * to be dumb about parsing colons and commas because SCC just calls
  * `strings.Split` on the input.
  * https://github.com/boyter/scc/blob/cb04a8d/processor/workers.go#L500-L501
  */
-const remapGenerator: Fig.Generator = {
+const generateStringToLanguage: Fig.Generator = {
   trigger: triggerColonComma,
   getQueryTerm: getQueryTermColonComma,
   script: "scc --languages",
@@ -78,7 +84,7 @@ const remapGenerator: Fig.Generator = {
     const lastToken = tokens[tokens.length - 1];
 
     // If we're writing a string, suggest nothing
-    if (finalTermIsKey(lastToken)) {
+    if (isWritingKey(lastToken)) {
       return [];
     }
 
@@ -88,7 +94,7 @@ const remapGenerator: Fig.Generator = {
 };
 
 /** The formats that SCC can output. */
-const formats = [
+const suggestOutputFormats: Fig.Suggestion[] = [
   { name: "tabular", icon: "fig://icon?type=string" },
   { name: "wide", icon: "fig://icon?type=string" },
   { name: "json", icon: "fig://icon?type=string" },
@@ -99,18 +105,28 @@ const formats = [
   { name: "html-table", icon: "fig://icon?type=string" },
   { name: "sql", icon: "fig://icon?type=string" },
   { name: "sql-insert", icon: "fig://icon?type=string" },
-] as Fig.Suggestion[];
+];
 
 /**
- * Size of the Drivemaker's Kilobyte. Starting at 908 bytes 2013,
- * shrinking by 4 each year for marketing reasons.
+ * Get the size of the Drivemaker's Kilobyte. It shrinks by 4 bytes each year,
+ * for marketing reasons.
  *
  * @see https://xkcd.com/394
  *
- * Adapted from SCC source:
- * https://github.com/boyter/scc/blob/9f2bb6b/processor/formatters.go#L1057-L1063
+ * Test cases:
+ * ```
+ * getDriveKB(1984) === 1024;
+ * getDriveKB(2013) === 908;
+ * ```
  */
-const xkcdDrive = 908 - (new Date().getFullYear() - 2013) * 4;
+function getDriveKB(year: number): number {
+  // What's the significance of 1984? That's Randall's birth year. Possibly a
+  // coincidence, but he does love hiding little easter eggs in his comics.
+  return 1024 - (year - 1984) * 4;
+}
+
+/** The current size of the Drivemaker's Kilobyte */
+const driveKB = getDriveKB(new Date().getFullYear());
 
 const completionSpec: Fig.Spec = {
   name: "scc",
@@ -166,7 +182,7 @@ const completionSpec: Fig.Spec = {
             const lastToken = tokens[tokens.length - 1];
 
             // If we're writing a file extension, suggest known extensions
-            if (finalTermIsKey(lastToken)) {
+            if (isWritingKey(lastToken)) {
               return Object.entries(files).map(([ext, name]) => ({
                 name: ext,
                 description: name,
@@ -208,7 +224,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         default: "tabular",
-        suggestions: formats,
+        suggestions: suggestOutputFormats,
       },
     },
     {
@@ -224,8 +240,8 @@ const completionSpec: Fig.Spec = {
             const lastToken = tokens[tokens.length - 1];
 
             // If we're writing a format, suggest supported formats
-            if (finalTermIsKey(lastToken)) {
-              return formats;
+            if (isWritingKey(lastToken)) {
+              return suggestOutputFormats;
             }
 
             // We're writing an output, suggest stdout
@@ -384,7 +400,7 @@ const completionSpec: Fig.Spec = {
         'Inspect every file and set its type by checking for a string (comma-separated key:value list, eg. "-*- C++ -*-":"C Header")',
       args: {
         name: "string",
-        generators: remapGenerator,
+        generators: generateStringToLanguage,
       },
     },
     {
@@ -393,7 +409,7 @@ const completionSpec: Fig.Spec = {
         'Inspect files of unknown type and set its type by checking for a string (comma-separated key:value list, eg. "-*- C++ -*-":"C Header")',
       args: {
         name: "string",
-        generators: remapGenerator,
+        generators: generateStringToLanguage,
       },
     },
     {
@@ -443,7 +459,7 @@ const completionSpec: Fig.Spec = {
           {
             name: "xkcd-drive",
             icon: "fig://icon?type=string",
-            description: `Currently ${xkcdDrive} bytes (shrinks by 4 each year for marketing reasons)`,
+            description: `Currently ${driveKB} bytes (shrinks by 4 each year for marketing reasons)`,
           },
           {
             name: "xkcd-bakers",
