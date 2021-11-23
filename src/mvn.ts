@@ -1,19 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "mvn",
   description: "Maven - a Java based project management and comprehension tool",
-  subcommands: [
-    {
-      name: "my_subcommand",
-      description: "Example subcommand",
-      subcommands: [
-        {
-          name: "my_nested_subcommand",
-          description:
-            "Nested subcommand, example usage: 'mvn my_subcommand my_nested_subcommand'",
-        },
-      ],
-    },
-  ],
   options: [
     {
       name: ["--also-make", "-am"],
@@ -229,7 +216,9 @@ const completionSpec: Fig.Spec = {
       description: "Produce execution debug output",
     },
   ],
-  // Only uncomment if mvn takes an argument
-  // args: {}
+  args: {
+    name: "goal/phase",
+    isVariadic: true,
+  },
 };
 export default completionSpec;
