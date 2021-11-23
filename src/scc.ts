@@ -1,29 +1,29 @@
 /** The output of processing `scc --languages` */
 interface SccLanguages {
   /** A map of file extension to language name. */
-  files: Record<string, string>;
+  extensions: Record<string, string>;
   /** An array of language names. */
-  langs: string[];
+  languages: string[];
 }
 
 /** Process the output of `scc --languages`. */
 function processSccLanguages(out: string): SccLanguages {
-  const files: Record<string, string> = {};
-  const langs: string[] = [];
+  const extensions: Record<string, string> = {};
+  const languages: string[] = [];
 
   // All lines are in the form of 'Languages (ext1,ext2,...)'
   const matches = out.matchAll(/^(.*) \((.*)\)$/gm);
 
   for (const match of matches) {
-    const name = match[1];
-    langs.push(name);
+    const language = match[1];
+    languages.push(language);
 
-    const exts = match[2].split(",");
-    for (const ext of exts) {
-      files[ext] = name;
+    const extensions = match[2].split(",");
+    for (const extension of extensions) {
+      extensions[extension] = language;
     }
   }
-  return { files, langs };
+  return { extensions, languages };
 }
 
 /** Get the index of the last `:` or `,` in a string, or -1 if not found. */
@@ -80,7 +80,7 @@ const generateStringToLanguage: Fig.Generator = {
   getQueryTerm: getQueryTermColonComma,
   script: "scc --languages",
   postProcess: (out, tokens) => {
-    const { langs } = processSccLanguages(out);
+    const { languages } = processSccLanguages(out);
     const lastToken = tokens[tokens.length - 1];
 
     // If we're writing a string, suggest nothing
@@ -89,7 +89,7 @@ const generateStringToLanguage: Fig.Generator = {
     }
 
     // We're writing a language name, suggest names
-    return langs.map((lang) => ({ name: lang }));
+    return languages.map((language) => ({ name: language }));
   },
 };
 
@@ -178,19 +178,21 @@ const completionSpec: Fig.Spec = {
           getQueryTerm: getQueryTermColonComma,
           script: "scc --languages",
           postProcess: (out, tokens) => {
-            const { files, langs } = processSccLanguages(out);
+            const { extensions, languages } = processSccLanguages(out);
             const lastToken = tokens[tokens.length - 1];
 
             // If we're writing a file extension, suggest known extensions
             if (isWritingKey(lastToken)) {
-              return Object.entries(files).map(([ext, name]) => ({
-                name: ext,
-                description: name,
-              }));
+              return Object.entries(extensions).map(
+                ([extension, language]) => ({
+                  name: extension,
+                  description: language,
+                })
+              );
             }
 
             // We're writing a language name
-            return langs.map((lang) => ({ name: lang }));
+            return languages.map((language) => ({ name: language }));
           },
         },
       },
@@ -248,11 +250,11 @@ const completionSpec: Fig.Spec = {
             const out = await executeShellCommand("ls -lAF1");
             const suggestions: Fig.Suggestion[] = out
               .split("\n")
-              .map((file) => ({
-                name: file.slice(file.lastIndexOf("/") + 1),
-                icon: `fig://${file}`,
+              .map((path) => ({
+                name: path.slice(path.lastIndexOf("/") + 1),
+                icon: `fig://${path}`,
               }));
-            suggestions.push({ name: "stdout", priority: 51 });
+            suggestions.push({ name: "stdout", priority: 75 });
             return suggestions;
           },
         },
@@ -285,10 +287,10 @@ const completionSpec: Fig.Spec = {
           getQueryTerm: ",",
           script: "scc --languages",
           postProcess: (out) => {
-            const { files } = processSccLanguages(out);
-            return Object.entries(files).map(([ext, lang]) => ({
-              name: ext,
-              description: lang,
+            const { extensions } = processSccLanguages(out);
+            return Object.entries(extensions).map(([extension, language]) => ({
+              name: extension,
+              description: language,
               icon: "fig://icon?type=string",
             }));
           },
