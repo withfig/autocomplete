@@ -5,16 +5,17 @@ const knownHosts: Fig.Generator = {
   postProcess: function (out, tokens) {
     return out
       .split("\n")
-      .map((line) => String(knownHostRegex.exec(line)))
-      .filter((value, index, self) => value && self.indexOf(value) === index)
-      .map((knownHost) => {
-        if (knownHost != null) {
-          return {
-            name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
-            description: "SSH host",
-          };
+      .map((line) => {
+        const match = knownHostRegex.exec(line);
+        if (match) {
+          return String(match);
         }
-      });
+      })
+      .filter((value, index, self) => value && self.indexOf(value) === index)
+      .map((knownHost) => ({
+        name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
+        description: "SSH host",
+      }));
   },
   trigger: "@",
 };
