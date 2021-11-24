@@ -16019,6 +16019,10 @@ export const packageList: Array<Fig.Suggestion> = [
     name: "pytest-replay",
     icon: "📦",
   },
+  {
+    name: "prisma",
+    icon: "📦",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
