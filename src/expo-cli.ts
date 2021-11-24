@@ -211,7 +211,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear all credentials stored on Expo servers",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -221,7 +232,18 @@ const completionSpec: Fig.Spec = {
           description: "Remove Distribution Certificate stored on Expo servers",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -231,7 +253,18 @@ const completionSpec: Fig.Spec = {
           description: "Remove Push Notifications Key stored on Expo servers",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -242,7 +275,18 @@ const completionSpec: Fig.Spec = {
             "Remove Push Notifications Certificate stored on Expo servers. Use of Push Notifications Certificates is deprecated",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -252,7 +296,18 @@ const completionSpec: Fig.Spec = {
           description: "Remove Provisioning Profile stored on Expo servers",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -263,7 +318,18 @@ const completionSpec: Fig.Spec = {
             "Revoke credentials on developer.apple.com, select appropriate using --clear-* options",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -314,7 +380,18 @@ const completionSpec: Fig.Spec = {
           description: "Disable automatic publishing before building",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -324,7 +401,18 @@ const completionSpec: Fig.Spec = {
           description: "Exit immediately after scheduling build",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -334,7 +422,18 @@ const completionSpec: Fig.Spec = {
           description: "Apple Team ID",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -356,7 +455,18 @@ const completionSpec: Fig.Spec = {
           description: "Push Key ID (ex: 123AB4C56D)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -399,7 +509,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip checking credentials",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -410,7 +531,18 @@ const completionSpec: Fig.Spec = {
             "Skip warning about build service bare workflow limitations",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -456,7 +588,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear stored credentials",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -476,7 +619,18 @@ const completionSpec: Fig.Spec = {
           description: "Disable automatic publishing before building",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -486,7 +640,18 @@ const completionSpec: Fig.Spec = {
           description: "Exit immediately after triggering build",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -517,7 +682,18 @@ const completionSpec: Fig.Spec = {
           description: "[deprecated] Generate Keystore if one does not exist",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
@@ -539,7 +715,18 @@ const completionSpec: Fig.Spec = {
             "Skip warning about build service bare workflow limitations",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -549,7 +736,18 @@ const completionSpec: Fig.Spec = {
           description: "Type of build: [app-bundle|apk]",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -594,7 +792,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear all cached build files and assets",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -605,7 +814,18 @@ const completionSpec: Fig.Spec = {
             "Prevent webpack from generating the manifest.json and injecting meta into the index.html head",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -615,7 +835,18 @@ const completionSpec: Fig.Spec = {
           description: "Turns dev flag on before bundling",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -748,7 +979,18 @@ const completionSpec: Fig.Spec = {
             "Install the latest version of Expo Go, ignoring the current project version",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
@@ -787,7 +1029,18 @@ const completionSpec: Fig.Spec = {
             "Install the latest version of Expo Go, ignore the current project version",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
@@ -876,7 +1129,18 @@ const completionSpec: Fig.Spec = {
           description: "Allows replacing existing files",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/force.png",
@@ -886,7 +1150,18 @@ const completionSpec: Fig.Spec = {
           description: "Allows this command to run while offline",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
@@ -932,7 +1207,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip installing npm packages and CocoaPods",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -943,7 +1229,18 @@ const completionSpec: Fig.Spec = {
             "Use npm to install dependencies. (default when Yarn is not installed)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=npm",
         },
@@ -1013,7 +1310,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip installing npm packages and CocoaPods",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -1024,7 +1332,18 @@ const completionSpec: Fig.Spec = {
             "Delete the native folders and regenerate them before applying changes",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -1035,7 +1354,18 @@ const completionSpec: Fig.Spec = {
             "Use npm to install dependencies. (default when Yarn is not installed)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=npm",
         },
@@ -1294,7 +1624,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear the Metro bundler cache",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -1326,7 +1667,18 @@ const completionSpec: Fig.Spec = {
           description: "Dump the asset map for further processing",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
@@ -1337,7 +1689,18 @@ const completionSpec: Fig.Spec = {
             "Configure static files for developing locally using a non-https server",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -1347,7 +1710,18 @@ const completionSpec: Fig.Spec = {
           description: "Dump the source map for debugging the JS bundle",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
@@ -1357,7 +1731,18 @@ const completionSpec: Fig.Spec = {
           description: "Suppress verbose output",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/quiet.png",
@@ -1418,7 +1803,18 @@ const completionSpec: Fig.Spec = {
           description: "Export bundles for use with EAS updates",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -1625,7 +2021,18 @@ const completionSpec: Fig.Spec = {
           description: "Include all project config data",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -1741,7 +2148,18 @@ const completionSpec: Fig.Spec = {
             "Use npm to install dependencies. (default when package-lock.json exists)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=npm",
         },
@@ -1751,7 +2169,18 @@ const completionSpec: Fig.Spec = {
             "Use Yarn to install dependencies. (default when yarn.lock exists)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=yarn",
         },
@@ -1793,7 +2222,18 @@ const completionSpec: Fig.Spec = {
             "Use npm to install dependencies. (default when Yarn is not installed)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=npm",
         },
@@ -1803,7 +2243,18 @@ const completionSpec: Fig.Spec = {
             "Use Yarn to install dependencies. (default when Yarn is installed)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=yarn",
         },
@@ -1812,7 +2263,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip installing npm packages or CocoaPods",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -1833,7 +2295,18 @@ const completionSpec: Fig.Spec = {
             'Use default options. Same as "expo init . --template blank',
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
@@ -1868,7 +2341,18 @@ const completionSpec: Fig.Spec = {
             "Use npm to install dependencies. (default when package-lock.json exists)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=npm",
         },
@@ -1878,7 +2362,18 @@ const completionSpec: Fig.Spec = {
             "Use Yarn to install dependencies. (default when yarn.lock exists)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon: "fig://icon?type=yarn",
         },
@@ -1908,7 +2403,18 @@ const completionSpec: Fig.Spec = {
           description: "Suppress verbose output from the Metro bundler",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/quiet.png",
@@ -1928,7 +2434,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear the Metro bundler cache",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -2026,7 +2543,18 @@ const completionSpec: Fig.Spec = {
             "The id of the published release to serve from the channel. (Required)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2071,7 +2599,18 @@ const completionSpec: Fig.Spec = {
           description: "This flag is deprecated",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2169,7 +2708,18 @@ const completionSpec: Fig.Spec = {
           description: "Number of logs to view, maximum 100, default 5",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -2212,7 +2762,18 @@ const completionSpec: Fig.Spec = {
           description: "Produce some raw output",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2257,7 +2818,18 @@ const completionSpec: Fig.Spec = {
           description: "Publication id. (Required)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2267,7 +2839,18 @@ const completionSpec: Fig.Spec = {
           description: "Produce some raw output",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2312,7 +2895,18 @@ const completionSpec: Fig.Spec = {
           description: "Server API key for FCM",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
@@ -2428,7 +3022,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip starting the Metro bundler",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/metro.png",
@@ -2503,7 +3108,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear the native derived data before building",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -2513,7 +3129,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip installing dependencies",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -2523,7 +3150,18 @@ const completionSpec: Fig.Spec = {
           description: "Skip starting the Metro bundler",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/metro.png",
@@ -2623,7 +3261,18 @@ const completionSpec: Fig.Spec = {
             "Experimental: Starts the bundler for use with the expo-development-client",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -2644,7 +3293,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go on a connected Android device",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
@@ -2655,7 +3315,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go in a currently running iOS simulator on your computer",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -2665,7 +3336,18 @@ const completionSpec: Fig.Spec = {
           description: "Opens your app in a web browser",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
@@ -2686,7 +3368,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host tunnel",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
@@ -2696,7 +3389,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host lan",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
@@ -2706,7 +3410,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host localhost",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
@@ -2761,7 +3476,18 @@ const completionSpec: Fig.Spec = {
           description: "Clear the Metro bundler cache",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
@@ -2782,7 +3508,18 @@ const completionSpec: Fig.Spec = {
           description: "Turn development mode on",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -2792,7 +3529,18 @@ const completionSpec: Fig.Spec = {
           description: "Turn development mode off",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -2802,7 +3550,18 @@ const completionSpec: Fig.Spec = {
           description: "Minify code",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/minify.png",
@@ -2812,7 +3571,18 @@ const completionSpec: Fig.Spec = {
           description: "Do not minify code",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -2822,7 +3592,18 @@ const completionSpec: Fig.Spec = {
           description: "To start webpack with https protocol",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
@@ -2832,7 +3613,18 @@ const completionSpec: Fig.Spec = {
           description: "Override auto detection of manifest type",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2853,7 +3645,18 @@ const completionSpec: Fig.Spec = {
           description: "To start webpack with http protocol",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -2864,7 +3667,18 @@ const completionSpec: Fig.Spec = {
             "Experimental: Starts the bundler for use with the expo-development-client",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -2885,7 +3699,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go on a connected Android device",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
@@ -2896,7 +3721,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go in a currently running iOS simulator on your computer",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -2906,7 +3742,18 @@ const completionSpec: Fig.Spec = {
           description: "Opens your app in a web browser",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
@@ -2927,7 +3774,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host tunnel",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
@@ -2937,7 +3795,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host lan",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
@@ -2947,7 +3816,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host localhost",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
@@ -2957,7 +3837,18 @@ const completionSpec: Fig.Spec = {
           description: "Allows this command to run while offline",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
@@ -3002,7 +3893,18 @@ const completionSpec: Fig.Spec = {
           description: "Turn development mode on",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -3012,7 +3914,18 @@ const completionSpec: Fig.Spec = {
           description: "Turn development mode off",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -3022,7 +3935,18 @@ const completionSpec: Fig.Spec = {
           description: "Minify code",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/minify.png",
@@ -3032,7 +3956,18 @@ const completionSpec: Fig.Spec = {
           description: "Do not minify code",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -3042,7 +3977,18 @@ const completionSpec: Fig.Spec = {
           description: "To start webpack with https protocol",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
@@ -3052,7 +3998,18 @@ const completionSpec: Fig.Spec = {
           description: "To start webpack with http protocol",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -3062,7 +4019,18 @@ const completionSpec: Fig.Spec = {
           description: "Override auto detection of manifest type",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3093,7 +4061,18 @@ const completionSpec: Fig.Spec = {
             "Experimental: Starts the bundler for use with the expo-development-client",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -3114,7 +4093,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go on a connected Android device",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
@@ -3125,7 +4115,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go in a currently running iOS simulator on your computer",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -3135,7 +4136,18 @@ const completionSpec: Fig.Spec = {
           description: "Opens your app in a web browser",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
@@ -3156,7 +4168,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host tunnel",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
@@ -3166,7 +4189,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host lan",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
@@ -3176,7 +4210,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host localhost",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
@@ -3186,7 +4231,18 @@ const completionSpec: Fig.Spec = {
           description: "Allows this command to run while offline",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
@@ -3231,7 +4287,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --verbose",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/verbose.png",
@@ -3241,7 +4308,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --latest",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
@@ -3283,7 +4361,18 @@ const completionSpec: Fig.Spec = {
             "Migrate to eas submit (android-package is auto inferred)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
@@ -3293,7 +4382,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit (type is auto inferred)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3323,7 +4423,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's releaseStatus property",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3368,7 +4479,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --verbose",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/verbose.png",
@@ -3378,7 +4500,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --latest",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
@@ -3419,7 +4552,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's appleId property",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -3429,7 +4573,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's appleTeamId property",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3439,7 +4594,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's appName property",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3449,7 +4615,18 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's companyName property",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3515,7 +4692,18 @@ const completionSpec: Fig.Spec = {
             "Experimental: Starts the bundler for use with the expo-development-client",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
@@ -3536,7 +4724,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go on a connected Android device",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
@@ -3547,7 +4746,18 @@ const completionSpec: Fig.Spec = {
             "Opens your app in Expo Go in a currently running iOS simulator on your computer",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -3557,7 +4767,18 @@ const completionSpec: Fig.Spec = {
           description: "Opens your app in a web browser",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
@@ -3578,7 +4799,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host tunnel",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
@@ -3588,7 +4820,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host lan",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
@@ -3598,7 +4841,18 @@ const completionSpec: Fig.Spec = {
           description: "Same as --host localhost",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
@@ -3608,7 +4862,18 @@ const completionSpec: Fig.Spec = {
           description: "Allows this command to run while offline",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
@@ -3791,7 +5056,18 @@ const completionSpec: Fig.Spec = {
             "Event type that triggers the webhook. [build] (Required)",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3912,7 +5188,18 @@ const completionSpec: Fig.Spec = {
           description: "Event type that triggers the webhook. [build]",
           args: {
             name: "boolean",
-            suggestions: [],
+            suggestions: [
+              {
+                name: "true",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+              },
+              {
+                name: "false",
+                icon:
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
+              },
+            ],
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
