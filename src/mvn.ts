@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
         "Force the use of an alternate POM file (or directory with pom.xml)",
       args: {
         name: "path",
-        suggestions: ["filepaths", "folders"],
+        template: ["filepaths", "folders"],
       },
     },
     {
@@ -94,7 +94,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the global settings file to use",
       args: {
         name: "path",
-        suggestions: ["filepaths"],
+        template: ["filepaths"],
       },
     },
     {
@@ -102,7 +102,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the global toolchains file to use",
       args: {
         name: "path",
-        suggestions: ["filepaths"],
+        template: ["filepaths"],
       },
     },
     {
@@ -114,7 +114,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the file to log to",
       args: {
         name: "path",
-        suggestions: ["filepaths"],
+        template: ["filepaths"],
       },
     },
     {
@@ -176,7 +176,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the user settings file to use",
       args: {
         name: "path",
-        suggestions: ["filepaths"],
+        template: ["filepaths"],
       },
     },
     {
@@ -184,7 +184,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the toolchains file to use",
       args: {
         name: "path",
-        suggestions: ["filepaths"],
+        template: ["filepaths"],
       },
     },
     {
