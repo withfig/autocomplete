@@ -218,6 +218,7 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "goal/phase",
+    description: "Goal or phase to execute",
     isVariadic: true,
     suggestions: [
       // clean lifecycle
