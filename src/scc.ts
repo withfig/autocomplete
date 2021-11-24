@@ -1,62 +1,132 @@
-/**
- * The signature of the `postProcess` function in a `languagesGenerator`.
- *
- * `langs` is a record of file extension to the kind of file it is recognised
- * as.
- */
-type LanguageProcessor = (
-  languages: Record<string, string>,
-  tokens?: string[]
-) => Fig.Suggestion[];
+/** The output of processing `scc --languages` */
+interface SccLanguages {
+  /** A map of file extension to language name. */
+  extensions: Record<string, string>;
+  /** An array of language names. */
+  languages: string[];
+}
+
+/** Process the output of `scc --languages`. */
+function processSccLanguages(out: string): SccLanguages {
+  const extensions: Record<string, string> = {};
+  const languages: string[] = [];
+
+  // All lines are in the form of 'Languages (ext1,ext2,...)'
+  const matches = out.matchAll(/^(.*) \((.*)\)$/gm);
+
+  for (const match of matches) {
+    const language = match[1];
+    languages.push(language);
+
+    const extensions = match[2].split(",");
+    for (const extension of extensions) {
+      extensions[extension] = language;
+    }
+  }
+  return { extensions, languages };
+}
+
+/** Get the index of the last `:` or `,` in a string, or -1 if not found. */
+function lastColonOrCommaIndex(token: string): number {
+  const colon = token.lastIndexOf(":");
+  const comma = token.lastIndexOf(",");
+  return Math.max(colon, comma);
+}
+
+/** Trigger when the index of the last colon or comma has changed. */
+const triggerColonComma: Fig.Generator["trigger"] = (newToken, oldToken) => {
+  const newTokenIdx = lastColonOrCommaIndex(newToken);
+  const oldTokenIdx = lastColonOrCommaIndex(oldToken);
+  return newTokenIdx !== oldTokenIdx;
+};
+
+/** Make the query term everything after the last colon or comma. */
+const getQueryTermColonComma: Fig.Generator["getQueryTerm"] = (token) => {
+  const lastPunctuationIdx = lastColonOrCommaIndex(token);
+  return token.slice(lastPunctuationIdx + 1);
+};
 
 /**
- * A standard `Fig.Generator`, without the "script" and "postProcess"
- * properties.
- */
-type NoScriptGen = Omit<Fig.Generator, "script" | "postProcess">;
-
-/**
- * A `Fig.Generator` without the script property and a `LanguageProcessor` for
- * its `postProcess`.
- */
-type LanguagesGenerator = NoScriptGen & { postProcess: LanguageProcessor };
-
-/**
- * Create a `Fig.Generator` where `postProcess` will be given a record of file
- * extension to language name instead of the output of running `script`.
+ * In a comma-separated key:value string, check if the user is writing a key.
  *
- * Use it in place of an object literal.
- *
- * @example
- * ```typescript
- * // suggests only file extensions
- * const gen: Fig.Generator = languagesGenerator({
- *   postProcess: (languages) => {
- *     return Object.keys(languages).map((key) => ({ name: key }));
- *   },
- * });
+ * Some test cases:
+ * ```javascript
+ * isWritingKey("") === true;
+ * isWritingKey("key") === true;
+ * isWritingKey("key:") === false;
+ * isWritingKey("key:value") === false;
+ * isWritingKey("key:value,") === true;
  * ```
  */
-function languagesGenerator(init: LanguagesGenerator): Fig.Generator {
-  return {
-    ...init,
-    // Every line follows the pattern of `Language Name (ext1[,ext2,ext3])`
-    script: "scc --languages",
-    postProcess: (out, tokens) => {
-      const lines = out.split("\n");
-      const languages: Record<string, string> = {};
-      for (const line of lines) {
-        const match = line.match(/(.*) \((.*)\)/);
-        const lang = match[1];
-        const exts = match[2].split(",");
-        for (const ext of exts) {
-          languages[ext] = lang;
-        }
-      }
-      return init.postProcess(languages, tokens);
-    },
-  };
+function isWritingKey(token: string) {
+  const idx = lastColonOrCommaIndex(token);
+  return idx === -1 || token[idx] === ",";
 }
+
+/**
+ * Generate suggestions for a comma-separated key:value list where the keys
+ * are arbitrary strings and the values are language names.
+ *
+ * Used for --remap-all and --remap-unknown. This is factored out into its
+ * own value because it is shared by those two options.
+ *
+ * Even though the user is entering an arbitrary string, it's okay
+ * to be dumb about parsing colons and commas because SCC just calls
+ * `strings.Split` on the input.
+ * https://github.com/boyter/scc/blob/cb04a8d/processor/workers.go#L500-L501
+ */
+const generateStringToLanguage: Fig.Generator = {
+  trigger: triggerColonComma,
+  getQueryTerm: getQueryTermColonComma,
+  script: "scc --languages",
+  postProcess: (out, tokens) => {
+    const { languages } = processSccLanguages(out);
+    const lastToken = tokens[tokens.length - 1];
+
+    // If we're writing a string, suggest nothing
+    if (isWritingKey(lastToken)) {
+      return [];
+    }
+
+    // We're writing a language name, suggest names
+    return languages.map((language) => ({ name: language }));
+  },
+};
+
+/** The formats that SCC can output. */
+const suggestOutputFormats: Fig.Suggestion[] = [
+  { name: "tabular", icon: "fig://icon?type=string" },
+  { name: "wide", icon: "fig://icon?type=string" },
+  { name: "json", icon: "fig://icon?type=string" },
+  { name: "csv", icon: "fig://icon?type=string" },
+  { name: "csv-stream", icon: "fig://icon?type=string" },
+  { name: "cloc-yaml", icon: "fig://icon?type=string" },
+  { name: "html", icon: "fig://icon?type=string" },
+  { name: "html-table", icon: "fig://icon?type=string" },
+  { name: "sql", icon: "fig://icon?type=string" },
+  { name: "sql-insert", icon: "fig://icon?type=string" },
+];
+
+/**
+ * Get the size of the Drivemaker's Kilobyte. It shrinks by 4 bytes each year,
+ * for marketing reasons.
+ *
+ * @see https://xkcd.com/394
+ *
+ * Test cases:
+ * ```
+ * getDriveKB(1984) === 1024;
+ * getDriveKB(2013) === 908;
+ * ```
+ */
+function getDriveKB(year: number): number {
+  // What's the significance of 1984? That's Randall's birth year. Possibly a
+  // coincidence, but he does love hiding little easter eggs in his comics.
+  return 1024 - (year - 1984) * 4;
+}
+
+/** The current size of the Drivemaker's Kilobyte */
+const driveKB = getDriveKB(new Date().getFullYear());
 
 const completionSpec: Fig.Spec = {
   name: "scc",
@@ -65,7 +135,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "--avg-wage",
-      description: "Average salary value used for basic COCOMO calculation",
+      description: "Average salary value used for COCOMO calculations",
       args: {
         name: "int",
         default: "56286",
@@ -86,7 +156,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--cocomo-project-type",
       description:
-        'Change COCOMO model type (allows custom models, eg. "name,1,1,1,1")',
+        'Change the COCOMO model type (allows custom models, eg. "name,1,1,1,1")',
       args: {
         name: "string",
         default: "organic",
@@ -100,14 +170,37 @@ const completionSpec: Fig.Spec = {
     {
       name: "--count-as",
       description:
-        'Count extension as language [e.g. jsp:htm,chead:"C Header" maps extension jsp to html and chead to C Header]',
-      // TODO: contextual suggestions (this will use `languagesGenerator`)
-      //       (trigger on ':', remove on ',')
+        "Count a file extension as a language (comma-separated key:value list, eg. jst:js,tpl:Markdown)",
       args: {
         name: "string",
+        generators: {
+          trigger: triggerColonComma,
+          getQueryTerm: getQueryTermColonComma,
+          script: "scc --languages",
+          postProcess: (out, tokens) => {
+            const { extensions, languages } = processSccLanguages(out);
+            const lastToken = tokens[tokens.length - 1];
+
+            // If we're writing a file extension, suggest known extensions
+            if (isWritingKey(lastToken)) {
+              return Object.entries(extensions).map(
+                ([extension, language]) => ({
+                  name: extension,
+                  description: language,
+                })
+              );
+            }
+
+            // We're writing a language name
+            return languages.map((language) => ({ name: language }));
+          },
+        },
       },
     },
-    { name: "--debug", description: "Enable debug output" },
+    {
+      name: "--debug",
+      description: "Enable debug output",
+    },
     {
       name: "--exclude-dir",
       description: "Directories to exclude",
@@ -133,28 +226,38 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         default: "tabular",
-        suggestions: [
-          { name: "tabular", icon: "fig://icon?type=string" },
-          { name: "wide", icon: "fig://icon?type=string" },
-          { name: "json", icon: "fig://icon?type=string" },
-          { name: "csv", icon: "fig://icon?type=string" },
-          { name: "csv-stream", icon: "fig://icon?type=string" },
-          { name: "cloc-yaml", icon: "fig://icon?type=string" },
-          { name: "html", icon: "fig://icon?type=string" },
-          { name: "html-table", icon: "fig://icon?type=string" },
-          { name: "sql", icon: "fig://icon?type=string" },
-          { name: "sql-insert", icon: "fig://icon?type=string" },
-        ],
+        suggestions: suggestOutputFormats,
       },
     },
     {
       name: "--format-multi",
       description:
-        "Have multiple format output overriding --format [e.g. tabular:stdout,csv:file.csv,json:file.json]",
-      // TODO: contextual suggestions.
-      // suggest formats immediately, then files on `:`, then reset to formats on `,`
+        "Multiple outputs with different formats (comma-separated key:value list, eg. tabular:stdout,csv:scc.csv)",
       args: {
         name: "string",
+        generators: {
+          trigger: triggerColonComma,
+          getQueryTerm: getQueryTermColonComma,
+          custom: async (tokens, executeShellCommand) => {
+            const lastToken = tokens[tokens.length - 1];
+
+            // If we're writing a format, suggest supported formats
+            if (isWritingKey(lastToken)) {
+              return suggestOutputFormats;
+            }
+
+            // We're writing an output, suggest stdout
+            const out = await executeShellCommand("ls -lAF1");
+            const suggestions: Fig.Suggestion[] = out
+              .split("\n")
+              .map((path) => ({
+                name: path.slice(path.lastIndexOf("/") + 1),
+                icon: `fig://${path}`,
+              }));
+            suggestions.push({ name: "stdout", priority: 75 });
+            return suggestions;
+          },
+        },
       },
     },
     {
@@ -163,14 +266,16 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--generated-markers",
-      description: "String markers in head of generated files",
+      insertValue: "--generated-markers '{cursor}'",
+      description:
+        "Identify generated files by the presence of a string (comma-separated list)",
       args: {
         name: "strings",
         default: "do not edit,<auto-generated />",
       },
     },
     {
-      name: ["-h,", "--help"],
+      name: ["-h", "--help"],
       description: "Help for scc",
     },
     {
@@ -178,20 +283,23 @@ const completionSpec: Fig.Spec = {
       description: "Limit to these file extensions (comma-separated list)",
       args: {
         name: "strings",
-        generators: languagesGenerator({
+        generators: {
           getQueryTerm: ",",
-          postProcess: (languages) =>
-            Object.entries(languages).map(([extension, language]) => ({
+          script: "scc --languages",
+          postProcess: (out) => {
+            const { extensions } = processSccLanguages(out);
+            return Object.entries(extensions).map(([extension, language]) => ({
               name: extension,
               description: language,
               icon: "fig://icon?type=string",
-            })),
-        }),
+            }));
+          },
+        },
       },
     },
     {
       name: "--include-symlinks",
-      description: "If set will count symlink files",
+      description: "Count symbolic links",
     },
     {
       name: ["-l", "--languages"],
@@ -199,8 +307,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--large-byte-count",
-      description:
-        "Number of bytes a file can contain before being removed from output",
+      description: "Number of bytes a file can contain before being omitted",
       args: {
         name: "int",
         default: "1000000",
@@ -208,14 +315,16 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--large-line-count",
-      description:
-        "Number of lines a file can contain before being removed from output",
+      description: "Number of lines a file can contain before being omitted",
       args: {
         name: "int",
         default: "40000",
       },
     },
-    { name: "--min", description: "Identify minified files" },
+    {
+      name: "--min",
+      description: "Identify minified files",
+    },
     {
       name: ["-z", "--min-gen"],
       description: "Identify minified or generated files",
@@ -231,11 +340,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--no-cocomo",
-      description: "Remove COCOMO calculation output",
+      description: "Skip COCOMO calculation",
     },
     {
       name: ["-c", "--no-complexity"],
-      description: "Skip calculation of code complexity",
+      description: "Skip code complexity calculation",
     },
     {
       name: ["-d", "--no-duplicates"],
@@ -256,7 +365,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-large",
       description:
-        "Ignore files over certain byte and line size set by max-line-count and max-byte-count",
+        "Ignore files over certain byte and line size set by --max-line-count and --max-byte-count",
     },
     {
       name: "--no-min",
@@ -290,36 +399,76 @@ const completionSpec: Fig.Spec = {
     {
       name: "--remap-all",
       description:
-        'Inspect every file and remap by checking for a string and remapping the language [e.g. "-*- C++ -*-":",C Header"]',
+        'Inspect every file and set its type by checking for a string (comma-separated key:value list, eg. "-*- C++ -*-":"C Header")',
       args: {
         name: "string",
+        generators: generateStringToLanguage,
       },
     },
     {
       name: "--remap-unknown",
-      insertValue: "--remap-unknown '{cursor}'",
       description:
-        'Inspect files of unknown type and remap by checking for a string and remapping the language [e.g. "-*- C++ -*-":"C Header"]',
+        'Inspect files of unknown type and set its type by checking for a string (comma-separated key:value list, eg. "-*- C++ -*-":"C Header")',
       args: {
         name: "string",
+        generators: generateStringToLanguage,
       },
     },
     {
       name: "--size-unit",
-      description: "Set size unit",
+      description: "Set the unit used for file size output",
       args: {
         name: "string",
+        description: "See https://xkcd.com/394/",
         default: "si",
         suggestions: [
-          { name: "si", icon: "fig://icon?type=string" },
-          { name: "binary", icon: "fig://icon?type=string" },
-          { name: "mixed", icon: "fig://icon?type=string" },
-          { name: "xkcd-kb", icon: "fig://icon?type=string" },
-          { name: "xkcd-kelly", icon: "fig://icon?type=string" },
-          { name: "xkcd-imaginary", icon: "fig://icon?type=string" },
-          { name: "xkcd-intel", icon: "fig://icon?type=string" },
-          { name: "xkcd-drive", icon: "fig://icon?type=string" },
-          { name: "xkcd-bakers", icon: "fig://icon?type=string" },
+          {
+            name: "si",
+            icon: "fig://icon?type=string",
+            description: "1000^2 bytes",
+          },
+          {
+            name: "binary",
+            icon: "fig://icon?type=string",
+            description: "1024^2 bytes",
+          },
+          {
+            name: "mixed",
+            icon: "fig://icon?type=string",
+            description: "1,024,000 bytes (Binary kilobytes, SI megabytes)",
+          },
+          {
+            name: "xkcd-kb",
+            icon: "fig://icon?type=string",
+            description: "1000 bytes during leap years, 1024 otherwise",
+          },
+          {
+            name: "xkcd-kelly",
+            icon: "fig://icon?type=string",
+            description:
+              "1012 bytes (a compromise between 1000 and 1024 bytes)",
+          },
+          {
+            name: "xkcd-imaginary",
+            icon: "fig://icon?type=string",
+            description: "1024*sqrt(-1) bytes (used in quantum computing)",
+          },
+          {
+            name: "xkcd-intel",
+            icon: "fig://icon?type=string",
+            description: "1023.937528 bytes (calculated on Pentium FPU)",
+          },
+          {
+            name: "xkcd-drive",
+            icon: "fig://icon?type=string",
+            description: `Currently ${driveKB} bytes (shrinks by 4 each year for marketing reasons)`,
+          },
+          {
+            name: "xkcd-bakers",
+            icon: "fig://icon?type=string",
+            description:
+              "1152 bytes (9 bits per byte, because you're such a good customer)",
+          },
         ],
       },
     },
@@ -343,7 +492,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--sql-project",
       description:
-        "Use supplied name as the project identifier for the current run. Only valid with the --format sql or sql-insert option",
+        "Use supplied name as the project identifier for the current run. Only valid with the '--format sql' or '--format sql-insert' option",
       args: {
         name: "string",
       },
@@ -370,6 +519,8 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "files or directories",
     template: ["filepaths", "folders"],
+    isOptional: true,
+    isVariadic: true,
   },
 };
 
