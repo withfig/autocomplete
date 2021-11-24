@@ -3,15 +3,18 @@ const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numeric
 const knownHosts: Fig.Generator = {
   script: "cat ~/.ssh/known_hosts",
   postProcess: function (out, tokens) {
-    return out.split("\n").map((line) => {
-      const knownHost = knownHostRegex.exec(line);
-      if (knownHost != null) {
-        return {
-          name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
-          description: "SSH host",
-        };
-      }
-    });
+    return out
+      .split("\n")
+      .map((line) => String(knownHostRegex.exec(line)))
+      .filter((value, index, self) => value && self.indexOf(value) === index)
+      .map((knownHost) => {
+        if (knownHost != null) {
+          return {
+            name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
+            description: "SSH host",
+          };
+        }
+      });
   },
   trigger: "@",
 };
