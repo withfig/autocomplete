@@ -2,6 +2,29 @@ import prismaSpec from "./prisma";
 
 const icon = "https://avatars.githubusercontent.com/u/45050444?s=200&v=4";
 
+const scripts: Fig.Generator = {
+  script:
+    "until [[ -f redwood.toml ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1p scripts/",
+  postProcess: (output) => {
+    if (output.trim() === "") {
+      return [];
+    }
+    return output
+      .split("\n")
+      .filter(
+        (fileOrFolder) =>
+          fileOrFolder.endsWith(".js") || fileOrFolder.endsWith(".ts")
+      )
+      .map((script) => {
+        return {
+          name: script.trim().replace(/\.[^.]+$/, ""),
+          description: "Script",
+          icon,
+        };
+      });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "redwood",
   description:
@@ -510,6 +533,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "script",
         description: "Name of the script to execute",
+        generators: scripts,
       },
     },
     {
