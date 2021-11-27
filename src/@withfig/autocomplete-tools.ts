@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
           description: "Use the preset of a given integration tool",
           args: {
             name: "name",
-            suggestions: ["commander", "oclif", "cobra", "clap"],
+            suggestions: ["commander", "oclif", "cobra", "clap", "swift-argument-parser"],
           },
           priority: 76,
           exclusiveOn: [
