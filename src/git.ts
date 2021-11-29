@@ -4853,7 +4853,7 @@ const completionSpec: Fig.Spec = {
       description: "Join two or more development histories together",
       args: {
         name: "branch",
-        generators: gitGenerators.localBranches,
+        generators: gitGenerators.remoteLocalBranches,
         isVariadic: true,
         isOptional: true,
         // A single dash can be used as arg to merge as short hand for the previous branch
