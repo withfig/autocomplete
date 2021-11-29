@@ -29,12 +29,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for create",
-          displayName: "help",
         },
       ],
       args: [
@@ -45,6 +43,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "folder",
           description: "Folder where the project will be created",
+          template: "folders",
         },
       ],
     },
@@ -59,12 +58,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--verbose",
               description: "Increases output verbosity",
-              displayName: "verbose",
             },
             {
               name: ["--help", "-h"],
               description: "Help for destroy",
-              displayName: "help",
             },
           ],
         },
@@ -76,18 +73,15 @@ const completionSpec: Fig.Spec = {
             {
               name: "--verbose",
               description: "Increases output verbosity",
-              displayName: "verbose",
             },
             {
               name: ["--container", "-c"],
               description: "Container target",
-              displayName: "container",
               args: { name: "container", default: "default" },
             },
             {
               name: ["--help", "-h"],
               description: "Help for exec",
-              displayName: "help",
             },
           ],
         },
@@ -99,30 +93,25 @@ const completionSpec: Fig.Spec = {
             {
               name: "--verbose",
               description: "Increases output verbosity",
-              displayName: "verbose",
             },
             {
               name: ["--container", "-c"],
               description: "Container target",
-              displayName: "container",
               args: { name: "container", default: "default" },
             },
             {
               name: ["--follow", "-f"],
               description: "Follow log output",
-              displayName: "follow",
             },
             {
               name: ["--tail", "-t"],
               description:
                 "Number of lines to show from the end of the logs for each container. A value equal to 0 will show all lines",
-              displayName: "tail",
               args: { name: "tail", default: "25" },
             },
             {
               name: ["--help", "-h"],
               description: "Help for logs",
-              displayName: "help",
             },
           ],
         },
@@ -131,12 +120,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for deploy",
-          displayName: "help",
         },
       ],
     },
@@ -147,40 +134,34 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--env", "-e"],
           description: "Environment variables",
           isRepeatable: true,
-          displayName: "env",
           args: { name: "env" },
         },
         {
           name: ["--network", "-n"],
           description: "Connect a container to a network",
           isRepeatable: true,
-          displayName: "network",
           args: { name: "network" },
         },
         {
           name: ["--publish", "-p"],
           description: "Publish a container's port(s) to the host",
           isRepeatable: true,
-          displayName: "publish",
           args: { name: "publish" },
         },
         {
           name: ["--volume", "-v"],
           description: "Bind mount a volume",
           isRepeatable: true,
-          displayName: "volume",
           args: { name: "volume" },
         },
         {
           name: ["--help", "-h"],
           description: "Help for docker",
-          displayName: "help",
         },
       ],
       args: [
@@ -203,24 +184,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--detach", "-d"],
           description: "Detached mode: Run command in the background",
-          displayName: "detach",
         },
         {
           name: ["--env", "-e"],
           description: "Environment variables",
           isRepeatable: true,
-          displayName: "env",
           args: { name: "env" },
         },
         {
           name: ["--help", "-h"],
           description: "Help for exec",
-          displayName: "help",
         },
       ],
       args: [
@@ -242,12 +219,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for info",
-          displayName: "help",
         },
       ],
     },
@@ -258,24 +233,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--follow", "-f"],
           description: "Follow log output",
-          displayName: "follow",
         },
         {
           name: ["--tail", "-t"],
           description:
             "Number of lines to show from the end of the logs for each container. A value equal to 0 will show all lines",
-          displayName: "tail",
           args: { name: "tail", default: "25" },
         },
         {
           name: ["--help", "-h"],
           description: "Help for logs",
-          displayName: "help",
         },
       ],
       args: {
@@ -293,12 +264,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for preset",
-          displayName: "help",
         },
       ],
       args: {
@@ -314,12 +283,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for recipe",
-          displayName: "help",
         },
       ],
       args: {
@@ -335,23 +302,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: "--purge",
           description:
             "Remove all persistent data from volume mounts on containers",
-          displayName: "purge",
         },
         {
           name: "--rebuild",
           description: "Updates and builds service's images",
-          displayName: "rebuild",
         },
         {
           name: ["--help", "-h"],
           description: "Help for restart",
-          displayName: "help",
         },
       ],
       args: {
@@ -369,19 +332,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--env", "-e"],
           description: "Environment variables",
           isRepeatable: true,
-          displayName: "env",
           args: { name: "env" },
         },
         {
           name: ["--help", "-h"],
           description: "Help for run",
-          displayName: "help",
         },
       ],
       args: {
@@ -397,12 +357,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for self-update",
-          displayName: "help",
         },
       ],
     },
@@ -414,33 +372,28 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: "--port",
           description:
             "The port from the target service that should be shared. If not provided, it will default to port 80",
-          displayName: "port",
           args: { name: "port", default: "0" },
         },
         {
           name: "--service",
           description:
             "The name of the local service container you want to share",
-          displayName: "service",
           args: { name: "service", default: "app" },
         },
         {
           name: "--subdomain",
           description:
             "The subdomain used to generate your public https://subdomain.kool.live URL",
-          displayName: "subdomain",
           args: { name: "subdomain" },
         },
         {
           name: ["--help", "-h"],
           description: "Help for share",
-          displayName: "help",
         },
       ],
     },
@@ -451,28 +404,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--foreground", "-f"],
           description: "Start containers in foreground mode",
-          displayName: "foreground",
         },
         {
           name: "--profile",
           description: "Specify a profile to enable",
-          displayName: "profile",
           args: { name: "profile" },
         },
         {
           name: ["--rebuild", "-b"],
           description: "Updates and builds service's images",
-          displayName: "rebuild",
         },
         {
           name: ["--help", "-h"],
           description: "Help for start",
-          displayName: "help",
         },
       ],
       args: {
@@ -490,12 +438,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: ["--help", "-h"],
           description: "Help for status",
-          displayName: "help",
         },
       ],
     },
@@ -506,18 +452,15 @@ const completionSpec: Fig.Spec = {
         {
           name: "--verbose",
           description: "Increases output verbosity",
-          displayName: "verbose",
         },
         {
           name: "--purge",
           description:
             "Remove all persistent data from volume mounts on containers",
-          displayName: "purge",
         },
         {
           name: ["--help", "-h"],
           description: "Help for stop",
-          displayName: "help",
         },
       ],
       args: {
@@ -533,12 +476,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--verbose",
       description: "Increases output verbosity",
-      displayName: "verbose",
     },
     {
       name: ["--help", "-h"],
       description: "Help for kool",
-      displayName: "help",
     },
   ],
 };
