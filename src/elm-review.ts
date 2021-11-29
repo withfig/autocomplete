@@ -18,7 +18,7 @@ const reportType: Fig.Generator = {
 };
 
 /**
- * Based on the [elm-review](https://github.com/jfmengels/node-elm-review) cli tool for reviewing Elm code.
+ * Based on the [elm-review](https://github.com/jfmengels/node-elm-review), version 2.6.1, cli tool for reviewing Elm code.
  */
 const completionSpec: Fig.Spec = {
   name: "elm-review",
