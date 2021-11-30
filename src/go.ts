@@ -226,6 +226,7 @@ const packagesArg: Fig.Arg = {
   name: "packages",
   isVariadic: true,
   isOptional: true,
+  template: ["filepaths"],
 };
 
 const completionSpec: Fig.Spec = {
