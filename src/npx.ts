@@ -71,6 +71,10 @@ const suggestions: Fig.Suggestion[] = [
     icon:
       "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
+  {
+    name: "remix",
+    icon: "https://remix.run/favicon-light.1.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
