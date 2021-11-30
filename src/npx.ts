@@ -72,6 +72,10 @@ const suggestions: Fig.Suggestion[] = [
       "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
   {
+    name: "create-remix",
+    icon: "https://remix.run/favicon-light.1.png",
+  },
+  {
     name: "remix",
     icon: "https://remix.run/favicon-light.1.png",
   },
