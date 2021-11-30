@@ -5,7 +5,7 @@
 ---
 
 ![os](https://img.shields.io/badge/os-%20macOS-light)
-[![Signup](https://img.shields.io/badge/signup-private%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
+[![Signup](https://img.shields.io/badge/signup-public%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
 [![Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/)
 [![All-Contributors](https://img.shields.io/github/contributors/withfig/autocomplete)](#Contributors)
 ![Discord](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)
