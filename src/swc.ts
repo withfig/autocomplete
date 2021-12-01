@@ -7,6 +7,11 @@ const completionSpec: Fig.Spec = {
       name: ["--filename", "-f"],
       description:
         "Filename to use when reading from stdin. This will be used in source maps and errors",
+      args: {
+        name: "FILE",
+        description: "Path to the file",
+        template: ["filepaths"],
+      },
     },
     {
       name: "--config-file",
@@ -21,6 +26,11 @@ const completionSpec: Fig.Spec = {
       name: "--env-name",
       description:
         "The name of the 'env' to use when loading configs and plugins. Defaults to the value of SWC_ENV, or else NODE_ENV, or else development",
+      args: {
+        name: "ENV_NAME",
+        description:
+          "The name of the 'env' to use when loading configs and plugins. Defaults to the value of SWC_ENV, or else NODE_ENV, or else development",
+      },
     },
     {
       name: "--no-swcrc",
@@ -54,7 +64,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--source-maps", "-s"],
-      description: "Values: true|false|inline|both",
+      description: "Generate source maps",
+      args: {
+        name: "SOURCE_MAP",
+        description: "Source map type",
+        suggestions: ["true", "false", "inline", "both"],
+      },
     },
     {
       name: "--source-map-target",
