@@ -28,6 +28,7 @@ const completionSpec: Fig.Spec = {
         "The name of the 'env' to use when loading configs and plugins. Defaults to the value of SWC_ENV, or else NODE_ENV, or else development",
       args: {
         name: "ENV_NAME",
+        suggestions: ["production", "development", "test"],
         description:
           "The name of the 'env' to use when loading configs and plugins. Defaults to the value of SWC_ENV, or else NODE_ENV, or else development",
       },
