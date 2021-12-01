@@ -213,6 +213,8 @@ const upDestroyOptions: Fig.Option[] = [
   },
 ];
 
+const icon = "https://www.pulumi.com/logos/brand/avatar-on-white.svg";
+
 const completionSpec: Fig.Spec = {
   name: "pulumi",
   description: "",
@@ -220,6 +222,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "about",
       description: "Print information about the Pulumi environment",
+      icon,
       subcommands: [
         ...inheritedOptions,
         jsonOption,
@@ -1392,6 +1395,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "state",
       description: "Edit the current stack’s state",
+      icon,
       subcommands: [
         ...inheritedOptions,
         {
