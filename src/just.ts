@@ -1,15 +1,4 @@
-function getJustfilePath(tokens: string[]) {
-  const justfileFlags = ["-f", "--justfile"];
-  for (const flag of justfileFlags) {
-    const index = tokens.indexOf(flag);
-    if (index !== -1) {
-      return tokens[index + 1];
-    }
-  }
-  return "justfile";
-}
-
-type JustfileJSON = {
+type JustfileData = {
   aliases: {
     [name: string]: {
       name: string;
@@ -25,26 +14,109 @@ type JustfileJSON = {
   }[];
   first: string;
   recipes: {
-    [name: string]: {
-      name: string;
-      doc: string | null;
-      body: unknown;
-      dependencies: string[];
-      parameters: {
-        default: unknown;
-        export: boolean;
-        kind: "singular" | "plus" | "star";
-        name: string;
-      }[];
-      priors: number;
-      private: boolean;
-      quiet: boolean;
-      shebang: boolean;
-    };
+    [name: string]: RecipeData;
   };
   settings: unknown;
   warnings: unknown;
 };
+
+type RecipeData = {
+  name: string;
+  doc: string | null;
+  body: unknown;
+  dependencies: string[];
+  parameters: {
+    default: unknown;
+    export: boolean;
+    kind: "singular" | "plus" | "star";
+    name: string;
+  }[];
+  priors: number;
+  private: boolean;
+  quiet: boolean;
+  shebang: boolean;
+};
+
+/**
+ * Get the path of the justfile from an array of tokens.
+ *
+ * If no overriding flag is provided, the default file name is is "justfile".
+ * Flags can be provided in this format:
+ * - `-f name`
+ * - `-f=name`
+ * - `--justfile name`
+ * - `--justfile=name`
+ */
+function getJustfilePath(tokens: string[]): string {
+  // Only need to check if the token starts with this string
+  const flagRe = /^(?:-f|--justfile)/;
+  for (const [index, token] of tokens.entries()) {
+    if (!flagRe.test(token)) {
+      continue;
+    }
+    // If there's an equals in the flag, everything after it is the justfile.
+    // Otherwise, the next token is the justfile.
+    const equals = token.indexOf("=");
+    if (equals !== -1) {
+      return token.slice(equals + 1);
+    }
+    return tokens[index + 1];
+  }
+  return "justfile";
+}
+
+/**
+ * Get a `Fig.Suggestion[]` containing a suggestion for each recipe and alias.
+ *
+ * If the optional `showRecipeParameters` prop is `true`, the recipe display
+ * names will include additional text describing the recipe's parameters, in
+ * the same style as Fig's autocomplete. (eg. `name <arg>` instead of `name`)
+ */
+function getRecipeSuggestions(
+  justfile: JustfileData,
+  { showRecipeParameters = false } = {}
+): Fig.Suggestion[] {
+  const suggestions: Fig.Suggestion[] = [];
+
+  for (const [name, recipe] of Object.entries(justfile.recipes)) {
+    suggestions.push({
+      name,
+      displayName: showRecipeParameters
+        ? getRecipeNameWithParams(recipe)
+        : name,
+      description: recipe.doc ?? "recipe",
+      icon: "fig://icon?type=command",
+    });
+  }
+
+  // Now the aliases. Like the git aliases, these don't list their usage
+  for (const [name, alias] of Object.entries(justfile.aliases)) {
+    suggestions.push({
+      name,
+      description: `Alias for '${alias.target}'`,
+      icon: "fig://icon?type=commandkey",
+    });
+  }
+
+  return suggestions;
+}
+
+function getRecipeNameWithParams(recipe: RecipeData) {
+  const parts = [recipe.name];
+  for (const parameter of recipe.parameters) {
+    // Fig sanitizes things like "<NAME>" so this has to be encoded
+    if (parameter.kind === "singular") {
+      parts.push(`&lt;${parameter.name}&gt;`);
+    } else if (parameter.kind === "plus") {
+      parts.push(`&lt;${parameter.name}&gt;...`);
+    } else if (parameter.kind === "star") {
+      parts.push(`[${parameter.name}]...`);
+    } else {
+      console.error(`Unreachable: unknown kind '${parameter.kind}'`);
+    }
+  }
+  return parts.join(" ");
+}
 
 const completionSpec: Fig.Spec = {
   name: "just",
@@ -215,7 +287,7 @@ const completionSpec: Fig.Spec = {
               const out = await executeShellCommand(
                 `just --unstable --dump --dump-format json --justfile '${justfile}'`
               );
-              let json: JustfileJSON;
+              let json: JustfileData;
               try {
                 json = JSON.parse(out);
               } catch (e) {
@@ -229,7 +301,9 @@ const completionSpec: Fig.Spec = {
             },
           },
         },
-        { name: "value" },
+        {
+          name: "value",
+        },
       ],
     },
     {
@@ -237,6 +311,7 @@ const completionSpec: Fig.Spec = {
       description: "Invoke this shell to run recipes",
       args: {
         name: "shell",
+        default: "sh",
       },
     },
     {
@@ -244,6 +319,7 @@ const completionSpec: Fig.Spec = {
       description: "Invoke the shell with this as an argument",
       args: {
         name: "argument",
+        default: "-cu",
       },
     },
     {
@@ -262,29 +338,14 @@ const completionSpec: Fig.Spec = {
             const out = await executeShellCommand(
               `just --unstable --dump --dump-format json --justfile '${justfile}'`
             );
-            let json: JustfileJSON;
+            let json: JustfileData;
             try {
               json = JSON.parse(out);
             } catch (e) {
               console.error(e);
               return [];
             }
-            const suggestions: Fig.Suggestion[] = [];
-            for (const [name, recipe] of Object.entries(json.recipes)) {
-              suggestions.push({
-                name,
-                description: recipe.doc ?? "",
-                icon: "fig://icon?type=string",
-              });
-            }
-            for (const [name, { target }] of Object.entries(json.aliases)) {
-              suggestions.push({
-                name,
-                description: `Alias for '${target}'`,
-                icon: "fig://icon?type=string",
-              });
-            }
-            return suggestions;
+            return getRecipeSuggestions(json);
           },
         },
       },
@@ -348,7 +409,7 @@ const completionSpec: Fig.Spec = {
         const out = await executeShellCommand(
           `just --unstable --dump --dump-format json --justfile '${justfile}'`
         );
-        let json: JustfileJSON;
+        let json: JustfileData;
         try {
           json = JSON.parse(out);
         } catch (e) {
@@ -375,19 +436,22 @@ const completionSpec: Fig.Spec = {
           }
           recipeArity.set(name, number);
         }
-        // Since we know that
-        for (const [name, { target }] of Object.entries(json.aliases)) {
-          recipeArity.set(name, recipeArity.get(target));
+        // Since we know that the target of the alias is in the map, it's safe
+        // to pull out its arity and assign that to the alias.
+        for (const [name, alias] of Object.entries(json.aliases)) {
+          const arity = recipeArity.get(alias.target);
+          recipeArity.set(name, arity);
         }
         console.log(recipeArity);
 
-        // This can also be optimized: say we know that the greatest number
-        // of arguments a recipe takes is 2, we only need to check 2 indices.
+        // Say we know that the greatest number of arguments a recipe takes is
+        // 2, then only 2 indices need to be checked.
         const maxArity = Math.max(...recipeArity.values());
 
         // Recipes that take a variadic argument get assigned Infinity, so we
         // need to limit that to the length of the array. Why 2 instead of 1?
-        // Because the first item in the tokens array is always "just".
+        // Because the first item in the tokens array is always "just", so it
+        // never needs to be checked.
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
         // Great, so we know how many spots to check now. Let's loop over
@@ -399,9 +463,6 @@ const completionSpec: Fig.Spec = {
           // Given tokens of ["just", "-f", "just", "takes1arg", ""], we only
           // need to check starting from the second last item (because we're
           // trying to figure out what to suggest *for* the final item).
-
-          // tokens.length - 2 - 0 === tokens.length - 2
-          //                       === tokens.at(-2)
           const index = tokens.length - 2 - i;
           const token = tokens[index];
           const arity = recipeArity.get(token);
@@ -433,38 +494,9 @@ const completionSpec: Fig.Spec = {
         // It's nice to be able to see the arguments in the suggestions.
         // Because the name "args" can't be changed, the best option is to
         // add recipe arguments to the displayName of the suggestion.
-        const suggestions: Fig.Suggestion[] = [];
-        for (const [name, recipe] of Object.entries(json.recipes)) {
-          // Build the displayName out of multiple parts, concatenated by " "
-          const parts = [name];
-          for (const parameter of recipe.parameters) {
-            // Fig sanitizes things like "<NAME>" so this has to be encoded
-            if (parameter.kind === "singular") {
-              parts.push(`&lt;${parameter.name}&gt;`);
-            } else if (parameter.kind === "plus") {
-              parts.push(`&lt;${parameter.name}&gt;...`);
-            } else if (parameter.kind === "star") {
-              parts.push(`[${parameter.name}]...`);
-            } else {
-              console.error(`Unreachable: unknown kind '${parameter.kind}'`);
-            }
-          }
-          suggestions.push({
-            name,
-            displayName: parts.join(" "),
-            description: recipe.doc ?? "recipe",
-            icon: "fig://icon?type=command",
-          });
-        }
-        // Now the aliases. Like the git aliases, these don't list their usage
-        for (const [name, { target }] of Object.entries(json.aliases)) {
-          suggestions.push({
-            name,
-            description: `Alias for '${target}'`,
-            icon: "fig://icon?type=commandkey",
-          });
-        }
-        return suggestions;
+        return getRecipeSuggestions(json, {
+          showRecipeParameters: true,
+        });
       },
     },
   },
