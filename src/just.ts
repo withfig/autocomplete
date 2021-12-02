@@ -433,7 +433,6 @@ const completionSpec: Fig.Spec = {
         // It's nice to be able to see the arguments in the suggestions.
         // Because the name "args" can't be changed, the best option is to
         // add recipe arguments to the displayName of the suggestion.
-        // TODO: Suggest aliases
         const suggestions: Fig.Suggestion[] = [];
         for (const [name, recipe] of Object.entries(json.recipes)) {
           // Build the displayName out of multiple parts, concatenated by " "
@@ -455,6 +454,14 @@ const completionSpec: Fig.Spec = {
             displayName: parts.join(" "),
             description: recipe.doc ?? "recipe",
             icon: "fig://icon?type=command",
+          });
+        }
+        // Now the aliases. Like the git aliases, these don't list their usage
+        for (const [name, { target }] of Object.entries(json.aliases)) {
+          suggestions.push({
+            name,
+            description: `Alias for '${target}'`,
+            icon: "fig://icon?type=commandkey",
           });
         }
         return suggestions;
