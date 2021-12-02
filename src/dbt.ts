@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "dbt",
-  description: "",
+  description: "CLI for DBT - Data Build Tool",
   subcommands: [
     {
       name: "build",
@@ -16,9 +16,9 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profiles-dir",
-          description: "",
+          description: "Set the profiles directory",
           args: {
-            name: "profiles directory",
+            name: "directory",
             description: "Directory containing profiles.yml",
             template: "folders",
             suggestions: ["profiles"],
@@ -26,9 +26,9 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          description: "",
+          description: "Use the selected profile",
           args: {
-            name: "Profile name",
+            name: "name",
             description: "Name of profile to use when running dbt project",
             suggestions: ["default"],
           },
@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
           name: "--target",
           description: "Target profile configuration i.e. prod/dev",
           args: {
-            name: "Target profile",
+            name: "profile",
             description: "Target profile configuration (dev/prod)",
             suggestions: ["dev", "prod"],
           },
@@ -46,20 +46,20 @@ const completionSpec: Fig.Spec = {
           name: "--vars",
           description: "Variable values to override dbt_project.yml",
           args: {
-            name: "Variable values",
+            name: "variables",
             description: "A short YAML string eg. '{my_variable: my_value}'",
           },
         },
         {
           name: "--threads",
           description: "Number of concurrent database jobs",
-          args: { name: "THREADS", description: "" },
+          args: { name: "THREADS" },
         },
         {
           name: "--select",
           description: "Select subset of models",
           args: {
-            name: "Select subset",
+            name: "subset",
             description: "Select subset of models",
             isVariadic: true,
             suggestions: [
@@ -75,7 +75,7 @@ const completionSpec: Fig.Spec = {
           name: "--exclude",
           description: "Exclude subset of models",
           args: {
-            name: "Exclude subset",
+            name: "subset",
             description: "Exclude subset of models",
             isVariadic: true,
             suggestions: [
@@ -89,7 +89,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--bypass-cache",
-          description: "",
+          description: "Bypass the cache",
         },
         {
           name: ["-m", "--models"],
@@ -131,9 +131,9 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profiles-dir",
-          description: "",
+          description: "Set the profiles directory",
           args: {
-            name: "profiles directory",
+            name: "directory",
             description: "Directory containing profiles.yml",
             template: "folders",
             suggestions: ["profiles"],
@@ -141,16 +141,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          description: "",
+          description: "Select the profile to use",
           args: {
-            name: "Profile name",
+            name: "name",
             description: "Name of profile to use when running dbt project",
             suggestions: ["default"],
           },
         },
         {
           name: "--target",
-          description: "",
+          description: "The target profile",
           args: {
             name: "Target profile",
             description: "Target profile configuration (dev/prod)",
@@ -161,20 +161,20 @@ const completionSpec: Fig.Spec = {
           name: "--vars",
           description: "Variable values to override dbt_project.yml",
           args: {
-            name: "Variable values",
+            name: "variables",
             description: "A short YAML string eg. '{my_variable: my_value}'",
           },
         },
         {
           name: "--threads",
           description: "Number of concurrent database jobs",
-          args: { name: "THREADS", description: "" },
+          args: { name: "threads" },
         },
         {
           name: "--select",
           description: "Select subset of models",
           args: {
-            name: "Select subset",
+            name: "subset",
             description: "Select subset of models",
             isVariadic: true,
             suggestions: [
@@ -190,7 +190,7 @@ const completionSpec: Fig.Spec = {
           name: "--exclude",
           description: "Exclude subset of models",
           args: {
-            name: "Exclude subset",
+            name: "subset",
             description: "Exclude subset of models",
             isVariadic: true,
             suggestions: [
@@ -204,7 +204,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--bypass-cache",
-          description: "",
+          description: "Bypass the cache",
         },
         {
           name: ["-m", "--models"],
@@ -233,13 +233,13 @@ const completionSpec: Fig.Spec = {
       name: "init",
       description: "Initializes a new dbt project",
       args: {
-        name: "YOUR PROJECT NAME",
+        name: "name",
       },
       options: [
         {
           name: "--adapter",
           description: "Add an adapter",
-          args: { name: "ADAPTER NAME", description: "E.g. big query" },
+          args: { name: "adapter", description: "E.g. big query" },
         },
       ],
     },
@@ -249,9 +249,9 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--profiles-dir",
-          description: "",
+          description: "Set the profiles directory",
           args: {
-            name: "profiles directory",
+            name: "directory",
             description: "Directory containing profiles.yml",
             template: "folders",
             suggestions: ["profiles"],
@@ -259,16 +259,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          description: "",
+          description: "Select the profile to use",
           args: {
-            name: "Profile name",
+            name: "name",
             description: "Name of profile to use when running dbt project",
             suggestions: ["default"],
           },
         },
         {
           name: "--target",
-          description: "",
+          description: "The target profile",
           args: {
             name: "Target profile",
             description: "Target profile configuration (dev/prod)",
@@ -286,7 +286,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--threads",
           description: "Number of concurrent database jobs",
-          args: { name: "THREADS", description: "" },
+          args: { name: "THREADS" },
         },
         {
           name: "--select",
@@ -320,7 +320,7 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-        { name: "--bypass-cache", description: "" },
+        { name: "--bypass-cache", description: "Bypass the cache" },
         {
           name: "--selector",
           description:
@@ -330,7 +330,7 @@ const completionSpec: Fig.Spec = {
             isVariadic: true,
           },
         },
-        { name: "--defer", description: "" },
+        { name: "--defer", description: "Defer" },
       ],
     },
     {
@@ -359,9 +359,9 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profiles-dir",
-          description: "",
+          description: "Set the profiles directory",
           args: {
-            name: "profiles directory",
+            name: "directory",
             description: "Directory containing profiles.yml",
             template: "folders",
             suggestions: ["profiles"],
@@ -369,9 +369,9 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          description: "",
+          description: "Select the profile to use",
           args: {
-            name: "Profile name",
+            name: "name",
             description: "Name of profile to use when running dbt project",
             suggestions: ["default"],
           },
@@ -388,8 +388,7 @@ const completionSpec: Fig.Spec = {
           name: "--select",
           description: "Select subset of models",
           args: {
-            name: "Select subset",
-            description: "",
+            name: "subset",
             isVariadic: true,
             suggestions: [
               "path:",
@@ -404,8 +403,7 @@ const completionSpec: Fig.Spec = {
           name: "--exclude",
           description: "Exclude subset of models",
           args: {
-            name: "Exclude subset",
-            description: "",
+            name: "subset",
             isVariadic: true,
             suggestions: [
               "path:",
@@ -416,7 +414,7 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-        { name: "--bypass-cache", description: "" },
+        { name: "--bypass-cache", description: "Bypass the cache" },
         {
           name: "--selector",
           description:
@@ -426,7 +424,7 @@ const completionSpec: Fig.Spec = {
             isVariadic: true,
           },
         },
-        { name: "--defer", description: "" },
+        { name: "--defer", description: "Defer" },
       ],
     },
     { name: "deps", description: "Downloads dependencies for a project" },
@@ -436,7 +434,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--profiles-dir",
-          description: "",
+          description: "Set the profiles directory",
           args: {
             name: "profiles directory",
             description: "Directory containing profiles.yml",
@@ -450,7 +448,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          description: "",
+          description: "Select the profile to use",
           args: {
             name: "Profile name",
             description: "Name of profile to use when running dbt project",
@@ -459,7 +457,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--target",
-          description: "",
+          description: "The target profile",
           args: {
             name: "Target profile",
             description: "Target profile configuration (dev/prod)",
@@ -477,14 +475,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--threads",
           description: "Number of concurrent database jobs",
-          args: { name: "THREADS", description: "" },
+          args: { name: "thread" },
         },
         {
           name: "--select",
           description: "Select subset of models",
           args: {
-            name: "Select subset",
-            description: "",
+            name: "subset",
             isVariadic: true,
             suggestions: [
               "path:",
@@ -500,7 +497,6 @@ const completionSpec: Fig.Spec = {
           description: "Exclude subset of models",
           args: {
             name: "Exclude subset",
-            description: "",
             isVariadic: true,
             suggestions: [
               "path:",
@@ -511,7 +507,7 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-        { name: "--bypass-cache", description: "" },
+        { name: "--bypass-cache", description: "Bypass the cache" },
       ],
     },
     {
@@ -524,7 +520,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--profiles-dir",
-          description: "",
+          description: "Set the profiles directory",
           args: {
             name: "profiles directory",
             description: "Directory containing profiles.yml",
@@ -534,7 +530,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          description: "",
+          description: "Select the profile to use",
           args: {
             name: "Profile name",
             description: "Name of profile to use when running dbt project",
@@ -576,7 +572,7 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-        { name: "--bypass-cache", description: "" },
+        { name: "--bypass-cache", description: "Bypass the cache" },
         {
           name: "--selector",
           description:
@@ -622,7 +618,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--target",
-              description: "",
+              description: "The target profile",
               args: {
                 name: "Target profile",
                 description: "Target profile configuration (dev/prod)",
@@ -710,7 +706,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          description: "",
+          description: "The port to use",
           args: {
             name: "PORT",
             description: "Default: 8580",
