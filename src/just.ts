@@ -118,6 +118,33 @@ function getRecipeNameWithParams(recipe: RecipeData) {
   return parts.join(" ");
 }
 
+/**
+ * Get a `Map` of recipe name to its arity, where variadic recipes are set
+ * to `Infinity`.
+ */
+function getRecipeArityMap(json: JustfileData): Map<string, number> {
+  const recipeArity = new Map<string, number>();
+  for (const [name, recipe] of Object.entries(json.recipes)) {
+    let number = 0;
+    for (const parameter of recipe.parameters) {
+      if (parameter.kind === "singular") {
+        number++;
+      } else {
+        number = Infinity;
+        break;
+      }
+    }
+    recipeArity.set(name, number);
+  }
+  // Since we know that the target of the alias is in the map, it's safe
+  // to pull out its arity and assign that to the alias.
+  for (const [name, alias] of Object.entries(json.aliases)) {
+    const arity = recipeArity.get(alias.target);
+    recipeArity.set(name, arity);
+  }
+  return recipeArity;
+}
+
 const completionSpec: Fig.Spec = {
   name: "just",
   description: "",
@@ -232,6 +259,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--highlight",
       description: "Highlight echoed recipe lines in bold",
+      exclusiveOn: ["--no-highlight"],
     },
     {
       name: "--init",
@@ -270,6 +298,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-highlight",
       description: "Don't highlight echoed recipe lines",
+      exclusiveOn: ["--highlight"],
     },
     {
       name: ["-q", "--quiet"],
@@ -283,18 +312,18 @@ const completionSpec: Fig.Spec = {
           name: "variable",
           generators: {
             custom: async (tokens, executeShellCommand) => {
-              const justfile = getJustfilePath(tokens);
+              const path = getJustfilePath(tokens);
               const out = await executeShellCommand(
-                `just --unstable --dump --dump-format json --justfile '${justfile}'`
+                `just --unstable --dump --dump-format json --justfile '${path}'`
               );
-              let json: JustfileData;
+              let justfile: JustfileData;
               try {
-                json = JSON.parse(out);
+                justfile = JSON.parse(out);
               } catch (e) {
                 console.error(e);
                 return [];
               }
-              return Object.keys(json.assignments).map((name) => ({
+              return Object.keys(justfile.assignments).map((name) => ({
                 name,
                 icon: "fig://icon?type=string",
               }));
@@ -334,18 +363,18 @@ const completionSpec: Fig.Spec = {
         name: "recipe",
         generators: {
           custom: async (tokens, executeShellCommand) => {
-            const justfile = getJustfilePath(tokens);
+            const path = getJustfilePath(tokens);
             const out = await executeShellCommand(
-              `just --unstable --dump --dump-format json --justfile '${justfile}'`
+              `just --unstable --dump --dump-format json --justfile '${path}'`
             );
-            let json: JustfileData;
+            let justfile: JustfileData;
             try {
-              json = JSON.parse(out);
+              justfile = JSON.parse(out);
             } catch (e) {
               console.error(e);
               return [];
             }
-            return getRecipeSuggestions(json);
+            return getRecipeSuggestions(justfile);
           },
         },
       },
@@ -402,87 +431,34 @@ const completionSpec: Fig.Spec = {
       // 3. Suggest recipes
       custom: async (tokens, executeShellCommand) => {
         // 📍 1. Get the justfile as JSON
-        // This is pretty standard: get the name of the justfile, use `just` to
-        // dump it as JSON, and parse that. If parsing fails, log the error and
-        // return no suggestions.
-        const justfile = getJustfilePath(tokens);
+        const path = getJustfilePath(tokens);
         const out = await executeShellCommand(
-          `just --unstable --dump --dump-format json --justfile '${justfile}'`
+          `just --unstable --dump --dump-format json --justfile '${path}'`
         );
-        let json: JustfileData;
+        let justfile: JustfileData;
         try {
-          json = JSON.parse(out);
+          justfile = JSON.parse(out);
         } catch (e) {
           console.error(e);
           return [];
         }
 
         // 📍 2. Exit early if we're in a recipe's argument
-        // Some recipes take arguments. For those that do, if we're in the
-        // position of one of those arguments, nothing should be suggested.
-        // We'll determine that by going in reverse: if we know the names of
-        // all the recipes that can take arguments, then if we find one and
-        // we're in the position of one of its arguments, suggest nothing.
-        const recipeArity = new Map<string, number>();
-        for (const [name, recipe] of Object.entries(json.recipes)) {
-          let number = 0;
-          for (const parameter of recipe.parameters) {
-            if (parameter.kind === "singular") {
-              number++;
-            } else {
-              number = Infinity;
-              break;
-            }
-          }
-          recipeArity.set(name, number);
-        }
-        // Since we know that the target of the alias is in the map, it's safe
-        // to pull out its arity and assign that to the alias.
-        for (const [name, alias] of Object.entries(json.aliases)) {
-          const arity = recipeArity.get(alias.target);
-          recipeArity.set(name, arity);
-        }
-        console.log(recipeArity);
-
-        // Say we know that the greatest number of arguments a recipe takes is
-        // 2, then only 2 indices need to be checked.
+        const recipeArity = getRecipeArityMap(justfile);
         const maxArity = Math.max(...recipeArity.values());
-
-        // Recipes that take a variadic argument get assigned Infinity, so we
-        // need to limit that to the length of the array. Why 2 instead of 1?
-        // Because the first item in the tokens array is always "just", so it
-        // never needs to be checked.
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
-        // Great, so we know how many spots to check now. Let's loop over
-        // the tokens in reverse to see if we hit a recipe name. If that
-        // recipe has a greater arity than the number of tokens we've checked
-        // so far, then the current argument is one of that recipe's args.
-        // This loop will always exit as soon as a recipe name is found.
         for (let i = 0; i < indicesToCheck; i++) {
-          // Given tokens of ["just", "-f", "just", "takes1arg", ""], we only
-          // need to check starting from the second last item (because we're
-          // trying to figure out what to suggest *for* the final item).
           const index = tokens.length - 2 - i;
           const token = tokens[index];
           const arity = recipeArity.get(token);
 
-          // The argument wasn't a recipe, keep looking.
           if (arity === undefined) {
             continue;
           }
-
-          // If the arity is zero, then we know it doesn't take any arguments.
-          // That means that we should definitely suggest a recipe.
           if (arity === 0) {
             break;
           }
-
-          // If the arity is less than the number of spots from the end,
-          // then it already has its arguments and we can exit the loop
-          // to suggest recipes again.
-          // If the arity is greater than the number of spots from the end,
-          // then we're in an argument to the recipe.
           if (arity > i) {
             return [];
           } else {
@@ -491,10 +467,7 @@ const completionSpec: Fig.Spec = {
         }
 
         // 📍 3. Suggest recipes
-        // It's nice to be able to see the arguments in the suggestions.
-        // Because the name "args" can't be changed, the best option is to
-        // add recipe arguments to the displayName of the suggestion.
-        return getRecipeSuggestions(json, {
+        return getRecipeSuggestions(justfile, {
           showRecipeParameters: true,
         });
       },
