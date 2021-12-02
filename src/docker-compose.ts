@@ -153,11 +153,15 @@ const completionSpec: Fig.Spec = {
         generators: {
           template: "filepaths",
           filterTemplateSuggestions: function (paths) {
-            const suffix = ".yml";
+            const suffixes = [".yml", ".yaml"];
             return paths.filter((file) => {
-              return (
-                file.name.indexOf(suffix, this.length - suffix.length) >= 0
-              );
+              return suffixes.reduce((hasSuffix, suffix) => {
+                if (hasSuffix) {
+                  return true;
+                } else {
+                  return file.name.endsWith(suffix);
+                }
+              }, false);
             });
           },
         },
