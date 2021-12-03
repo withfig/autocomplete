@@ -89,6 +89,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "namespace",
       description: "Operate on namespaces",
+      options: [
+        {
+          name: "create",
+          description: "Create a namespace",
+        },
+      ],
     },
     {
       name: "open",
