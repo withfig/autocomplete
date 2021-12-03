@@ -236,7 +236,7 @@ const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
   return final_array;
 };
 
-const generators: Record<string, Fig.Generator> = {
+const generators = {
   listFiles: {
     script: (tokens) => {
       return appendFolderPath(tokens, _prefixFile);
@@ -556,7 +556,7 @@ const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster on which to run your service. If you do not specify a cluster, the default cluster is assumed",
           args: {
             name: "string",
-            generators: generators.listlistClusters,
+            generators: generators.listClusters,
           },
         },
         {
@@ -2210,7 +2210,7 @@ const completionSpec: Fig.Spec = {
             name: "string",
             generators: [
               generators.listTasks,
-              generators.ListTaskDefinitions,
+              generators.listTaskDefinitions,
               generators.listClusters,
               generators.listServices,
               generators.listContainerInstances,
@@ -3149,7 +3149,7 @@ const completionSpec: Fig.Spec = {
             "An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the startedBy parameter. You can then identify which tasks belong to that job by filtering the results of a ListTasks call with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed. If a task is started by an Amazon ECS service, then the startedBy parameter contains the deployment ID of the service that starts it",
           args: {
             name: "string",
-            generators: generators.startedBy,
+            generators: generators.listStartedBy,
           },
         },
         {
@@ -3637,7 +3637,7 @@ const completionSpec: Fig.Spec = {
             name: "string",
             generators: [
               generators.listTasks,
-              generators.ListTaskDefinitions,
+              generators.listTaskDefinitions,
               generators.listClusters,
               generators.listServices,
               generators.listContainerInstances,
@@ -3686,7 +3686,7 @@ const completionSpec: Fig.Spec = {
             name: "string",
             generators: [
               generators.listTasks,
-              generators.ListTaskDefinitions,
+              generators.listTaskDefinitions,
               generators.listClusters,
               generators.listServices,
               generators.listContainerInstances,
