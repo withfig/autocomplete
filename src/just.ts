@@ -49,7 +49,7 @@ type RecipeData = {
  */
 function getJustfilePath(tokens: string[]): string {
   // Only need to check if the token starts with this string
-  const flagRe = /^(?:-f|--justfile)/;
+  const flagRe = /^(?:-f|--justfile)\b/;
   for (const [index, token] of tokens.entries()) {
     if (!flagRe.test(token)) {
       continue;
@@ -81,7 +81,7 @@ function getRecipeSuggestions(
   for (const [name, recipe] of Object.entries(justfile.recipes)) {
     suggestions.push({
       name,
-      displayName: showRecipeParameters ? formatPrettyRecipeName(recipe) : name,
+      displayName: showRecipeParameters ? getRecipeUsage(recipe) : name,
       description: recipe.doc ?? "Recipe",
       icon: "fig://icon?type=command",
     });
@@ -100,7 +100,13 @@ function getRecipeSuggestions(
   return suggestions;
 }
 
-function formatPrettyRecipeName(recipe: RecipeData) {
+/**
+ * Get a string that is the usage of a recipe, in the same style as Fig's
+ * options and arguments.
+ *
+ * For example, `test <FILTER>`, , `echo [ARGS...]`
+ */
+function getRecipeUsage(recipe: RecipeData) {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
     // Fig sanitizes things like "<NAME>", so this has to be encoded
@@ -238,8 +244,15 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "format",
         suggestions: [
-          { name: "just", icon: "fig://icon?type=string" },
-          { name: "json", icon: "fig://icon?type=string" },
+          {
+            name: "just",
+            icon: "fig://icon?type=string",
+          },
+          {
+            name: "json",
+            icon: "fig://icon?type=string",
+            description: "This value requires --unstable",
+          },
         ],
       },
     },
@@ -255,6 +268,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--fmt",
       description: "Format and overwrite the justfile",
+      dependsOn: ["--unstable"],
     },
     {
       name: "--highlight",
@@ -413,9 +427,8 @@ const completionSpec: Fig.Spec = {
       },
     },
   ],
-  // Only uncomment if just takes an argument
   args: {
-    // this would normally say "recipes" but because this is also used
+    // This would normally say "recipes" but because this is also used
     // for the recipes' arguments it needs to be more generic.
     name: "args",
     isVariadic: true,
@@ -426,7 +439,7 @@ const completionSpec: Fig.Spec = {
       trigger: " ",
 
       // This is another multi-step generator, because it has to do all the
-      // heavy lifting of supporting arguments with arguments.
+      // heavy lifting of supporting arguments with arguments. withfig/fig#638
       // 1. Get the justfile as JSON
       // 2. Exit early if we're in a recipe's argument
       // 3. Suggest recipes
