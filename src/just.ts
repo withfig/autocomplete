@@ -55,7 +55,7 @@ type Binding = {
  * - `--justfile name`
  * - `--justfile=name`
  */
-function getJustfilePath(tokens: string[]): string {
+function getJustfilePath(tokens: string[]): string | null {
   // Only need to check if the token starts with this string
   const flagRe = /^(?:-f|--justfile)\b/;
   for (const [index, token] of tokens.entries()) {
@@ -70,7 +70,17 @@ function getJustfilePath(tokens: string[]): string {
     }
     return tokens[index + 1];
   }
-  return "justfile";
+  return null;
+}
+
+/**
+ * Get the command to dump the justfile at the given path, or let `just` handle
+ * searching for the file if the path is null.
+ */
+function getJustfileDumpCommand(justfilePath: string | null): string {
+  return justfilePath
+    ? `just --unstable --dump --dump-format json --justfile '${justfilePath}'`
+    : `just --unstable --dump --dump-format json`;
 }
 
 /**
@@ -177,11 +187,6 @@ function getRecipeArityMap(justfile: Justfile): RecipeArityMapping {
 
   console.log(recipeArity);
   return { recipeArity, maxArity };
-}
-
-/** Get the final item of an array. */
-function finalItem<T>(array: readonly T[]): T | undefined {
-  return array[array.length - 1] as T | undefined;
 }
 
 const completionSpec: Fig.Spec = {
@@ -360,9 +365,8 @@ const completionSpec: Fig.Spec = {
           generators: {
             custom: async (tokens, executeShellCommand) => {
               const path = getJustfilePath(tokens);
-              const out = await executeShellCommand(
-                `just --unstable --dump --dump-format json --justfile '${path}'`
-              );
+              const command = getJustfileDumpCommand(path);
+              const out = await executeShellCommand(command);
               let justfile: Justfile;
               try {
                 justfile = JSON.parse(out);
@@ -412,9 +416,8 @@ const completionSpec: Fig.Spec = {
         generators: {
           custom: async (tokens, executeShellCommand) => {
             const path = getJustfilePath(tokens);
-            const out = await executeShellCommand(
-              `just --unstable --dump --dump-format json --justfile '${path}'`
-            );
+            const command = getJustfileDumpCommand(path);
+            const out = await executeShellCommand(command);
             let justfile: Justfile;
             try {
               justfile = JSON.parse(out);
@@ -479,9 +482,8 @@ const completionSpec: Fig.Spec = {
       custom: async (tokens, executeShellCommand) => {
         // 📍 1. Get the justfile as JSON
         const path = getJustfilePath(tokens);
-        const out = await executeShellCommand(
-          `just --unstable --dump --dump-format json --justfile '${path}'`
-        );
+        const command = getJustfileDumpCommand(path);
+        const out = await executeShellCommand(command);
         let justfile: Justfile;
         try {
           justfile = JSON.parse(out);
