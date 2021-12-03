@@ -161,6 +161,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "runner",
       description: "Operate on runners",
+      options: [
+        {
+          name: "instance",
+          description: "Operate on runner instances",
+        },
+        {
+          name: "resource-class",
+          description: "Operate on runner resource-classes",
+        },
+        {
+          name: "token",
+          description: "Operate on runner tokens",
+        },
+      ],
     },
     {
       name: "setup",
