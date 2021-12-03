@@ -103,6 +103,60 @@ const completionSpec: Fig.Spec = {
     {
       name: "orb",
       description: "Operate on orbs",
+      options: [
+        {
+          name: "add-to-category",
+          description: "Add an orb to a category",
+        },
+        {
+          name: "create",
+          description: "Create an orb in a namespace",
+        },
+        {
+          name: "info",
+          description: "Show metadata of an orb",
+        },
+        {
+          name: "init",
+          description: "Initialize a new orb",
+        },
+        {
+          name: "list",
+          description: "List orbs",
+        },
+        {
+          name: "list-categories",
+          description: "List orb categories",
+        },
+        {
+          name: "pack",
+          description: "Pack an orb with local scripts",
+        },
+        {
+          name: "process",
+          description: "Validate an orb and print its form",
+        },
+        {
+          name: "publish",
+          description: "Publish an orb to the registry",
+        },
+        {
+          name: "remove-from-category",
+          description: "Remove an orb from a category",
+        },
+        {
+          name: "source",
+          description: "Show source code of an orb",
+        },
+        {
+          name: "unlist",
+          description: "Disable/enable an orb's listing in the registry",
+        },
+        {
+          name: "validate",
+          description: "Validate an orb.yml",
+        },
+      ],
     },
     {
       name: "runner",
