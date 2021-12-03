@@ -19,6 +19,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Operate on build config files",
+      options: [
+        {
+          name: "pack",
+          description: "Pack CircleCI config files into a single file",
+        },
+        {
+          name: "process",
+          description: "Validate and display extended config",
+        },
+        {
+          name: "validate",
+          description: "Checks that config is valid",
+        },
+      ],
     },
     {
       name: "context",
