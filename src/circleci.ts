@@ -79,6 +79,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "local",
       description: "Debug jobs on the local machine",
+      options: [
+        {
+          name: "execute",
+          description: "Run a job in a container on the local machine",
+        },
+      ],
     },
     {
       name: "namespace",
