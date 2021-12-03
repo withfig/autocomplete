@@ -5,6 +5,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "completion",
       description: "Generate shell completion scripts",
+      options: [
+        {
+          name: "bash",
+          description: "Generate bash completion scripts",
+        },
+        {
+          name: "zsh",
+          description: "Generate zsh completion scripts",
+        },
+      ],
     },
     {
       name: "config",
@@ -63,6 +73,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for CircleCI",
+    },
+    {
+      name: "--skip-update-check",
+      description: "Skip update check before every command",
     },
   ],
 };
