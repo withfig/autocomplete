@@ -81,15 +81,14 @@ function getRecipeSuggestions(
   for (const [name, recipe] of Object.entries(justfile.recipes)) {
     suggestions.push({
       name,
-      displayName: showRecipeParameters
-        ? getRecipeNameWithParams(recipe)
-        : name,
-      description: recipe.doc ?? "recipe",
+      displayName: showRecipeParameters ? formatPrettyRecipeName(recipe) : name,
+      description: recipe.doc ?? "Recipe",
       icon: "fig://icon?type=command",
     });
   }
 
-  // Now the aliases. Like the git aliases, these don't list their usage
+  // Now the aliases. Like the git aliases, these don't list their usage.
+  // Also like with the git spec, these use the commandkey icon.
   for (const [name, alias] of Object.entries(justfile.aliases)) {
     suggestions.push({
       name,
@@ -101,16 +100,16 @@ function getRecipeSuggestions(
   return suggestions;
 }
 
-function getRecipeNameWithParams(recipe: RecipeData) {
+function formatPrettyRecipeName(recipe: RecipeData) {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
-    // Fig sanitizes things like "<NAME>" so this has to be encoded
+    // Fig sanitizes things like "<NAME>", so this has to be encoded
     if (parameter.kind === "singular") {
       parts.push(`&lt;${parameter.name}&gt;`);
     } else if (parameter.kind === "plus") {
-      parts.push(`&lt;${parameter.name}&gt;...`);
+      parts.push(`&lt;${parameter.name}...&gt;`);
     } else if (parameter.kind === "star") {
-      parts.push(`[${parameter.name}]...`);
+      parts.push(`[${parameter.name}...]`);
     } else {
       console.error(`Unreachable: unknown kind '${parameter.kind}'`);
     }
@@ -126,6 +125,7 @@ function getRecipeArityMap(json: JustfileData): Map<string, number> {
   const recipeArity = new Map<string, number>();
   for (const [name, recipe] of Object.entries(json.recipes)) {
     let number = 0;
+    // `just` has three kinds of parameters: "singular", "plus", and "star".
     for (const parameter of recipe.parameters) {
       if (parameter.kind === "singular") {
         number++;
@@ -147,7 +147,7 @@ function getRecipeArityMap(json: JustfileData): Map<string, number> {
 
 const completionSpec: Fig.Spec = {
   name: "just",
-  description: "",
+  description: "Just a command runner",
   options: [
     {
       name: ["--help", "-h"],
@@ -332,6 +332,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "value",
+          description: "The string value the variable will be set to",
         },
       ],
     },
@@ -444,22 +445,37 @@ const completionSpec: Fig.Spec = {
         }
 
         // 📍 2. Exit early if we're in a recipe's argument
+        // First, a minor optimization: if we know the maximum arity of all
+        // the recipes, we only have to check that many indices.
         const recipeArity = getRecipeArityMap(justfile);
         const maxArity = Math.max(...recipeArity.values());
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
-        for (let i = 0; i < indicesToCheck; i++) {
-          const index = tokens.length - 2 - i;
+        // The final token doesn't need to be checked because that's the one
+        // we're generating suggestions for. Tokens are checked from the second
+        // last, moving through the array in reverse. This is an intentionally
+        // naive approach, but in practice it's *way better* than good enough!
+        //
+        // We're in the position of a recipe's argument if all of these
+        // conditions are true for a visited token:
+        //   1: It's a recipe name
+        //   2: It takes more than 0 arguments
+        //   3: It takes more args than the number of tokens we've visited
+        //
+        // If the token is not a recipe name, then move back by 1 token and
+        // repeat this process.
+        //
+        // If the token is a recipe name, but that recipe takes fewer arguments
+        // than the number of tokens checked, then suggest recipe names instead.
+        for (let checked = 0; checked < indicesToCheck; checked++) {
+          const index = tokens.length - 2 - checked;
           const token = tokens[index];
           const arity = recipeArity.get(token);
 
           if (arity === undefined) {
             continue;
           }
-          if (arity === 0) {
-            break;
-          }
-          if (arity > i) {
+          if (arity > checked) {
             return [];
           } else {
             break;
