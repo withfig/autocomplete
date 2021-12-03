@@ -37,6 +37,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "context",
       description: "Secure and share environment variables across projects",
+      options: [
+        {
+          name: "create",
+          description: "Create a new context",
+        },
+        {
+          name: "delete",
+          description: "Delete the named context",
+        },
+        {
+          name: "list",
+          description: "List all contexts",
+        },
+        {
+          name: "remove-secret",
+          description: "Remove environment variable from a context",
+        },
+        {
+          name: "show",
+          description: "Show a context",
+        },
+        {
+          name: "store-secret",
+          description: "Store environment variables",
+        },
+      ],
     },
     {
       name: "diagnostic",
