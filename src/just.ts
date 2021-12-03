@@ -1,40 +1,48 @@
-type JustfileData = {
-  aliases: {
-    [name: string]: {
-      name: string;
-      target: string;
-    };
-  };
-  assignments: {
-    [name: string]: {
-      name: string;
-      export: boolean;
-      value: unknown;
-    };
-  }[];
-  first: string;
-  recipes: {
-    [name: string]: RecipeData;
-  };
-  settings: unknown;
-  warnings: unknown;
+// This is not exhaustive, only the properties that this spec needs to care
+// about are typed. There's a lot of properties where it's difficult to tell
+// exactly how it'll be serialized without having too many unnecessary test
+// cases.
+type Justfile = {
+  aliases: Record<string, Alias>;
+  assignments: Record<string, Binding>;
+  recipes: Record<string, Recipe>;
 };
 
-type RecipeData = {
+type Alias = {
+  name: string;
+  target: string;
+};
+
+type Recipe = {
   name: string;
   doc: string | null;
-  body: unknown;
-  dependencies: string[];
-  parameters: {
-    default: unknown;
-    export: boolean;
-    kind: "singular" | "plus" | "star";
-    name: string;
-  }[];
+  body: unknown[];
+  dependencies: Dependency[];
+  parameters: Parameter[];
   priors: number;
   private: boolean;
   quiet: boolean;
   shebang: boolean;
+};
+
+type Dependency = {
+  arguments: unknown[];
+  recipe: string;
+};
+
+type Parameter = {
+  default: unknown;
+  export: boolean;
+  kind: ParameterKind;
+  name: string;
+};
+
+type ParameterKind = "singular" | "plus" | "star";
+
+type Binding = {
+  name: string;
+  export: boolean;
+  value: unknown;
 };
 
 /**
@@ -73,12 +81,16 @@ function getJustfilePath(tokens: string[]): string {
  * the same style as Fig's autocomplete. (eg. `name <arg>` instead of `name`)
  */
 function getRecipeSuggestions(
-  justfile: JustfileData,
+  justfile: Justfile,
   { showRecipeParameters = false } = {}
 ): Fig.Suggestion[] {
   const suggestions: Fig.Suggestion[] = [];
 
   for (const [name, recipe] of Object.entries(justfile.recipes)) {
+    if (recipe.private) {
+      continue;
+    }
+
     suggestions.push({
       name,
       displayName: showRecipeParameters ? getRecipeUsage(recipe) : name,
@@ -106,7 +118,7 @@ function getRecipeSuggestions(
  *
  * For example, `test <FILTER>`, , `echo [ARGS...]`
  */
-function getRecipeUsage(recipe: RecipeData) {
+function getRecipeUsage(recipe: Recipe) {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
     // Fig sanitizes things like "<NAME>", so this has to be encoded
@@ -123,32 +135,53 @@ function getRecipeUsage(recipe: RecipeData) {
   return parts.join(" ");
 }
 
+interface RecipeArityMapping {
+  recipeArity: Map<string, number>;
+  maxArity: number;
+}
+
 /**
  * Get a `Map` of recipe name to its arity, where variadic recipes are set
  * to `Infinity`.
  */
-function getRecipeArityMap(json: JustfileData): Map<string, number> {
+function getRecipeArityMap(justfile: Justfile): RecipeArityMapping {
   const recipeArity = new Map<string, number>();
-  for (const [name, recipe] of Object.entries(json.recipes)) {
-    let number = 0;
-    // `just` has three kinds of parameters: "singular", "plus", and "star".
-    for (const parameter of recipe.parameters) {
-      if (parameter.kind === "singular") {
-        number++;
-      } else {
-        number = Infinity;
-        break;
-      }
+
+  // Keep a running maximum
+  let maxArity = 0;
+
+  for (const [name, recipe] of Object.entries(justfile.recipes)) {
+    const parameters = recipe.parameters;
+    let arity: number;
+
+    // Conditional access is necessary, could be undefined if length is 0
+    if (parameters[parameters.length - 1]?.kind !== "singular") {
+      arity = Infinity;
+    } else {
+      arity = parameters.length;
     }
-    recipeArity.set(name, number);
-  }
-  // Since we know that the target of the alias is in the map, it's safe
-  // to pull out its arity and assign that to the alias.
-  for (const [name, alias] of Object.entries(json.aliases)) {
-    const arity = recipeArity.get(alias.target);
+
+    if (maxArity < arity) {
+      maxArity = arity;
+    }
+
     recipeArity.set(name, arity);
   }
-  return recipeArity;
+
+  for (const [name, alias] of Object.entries(justfile.aliases)) {
+    // Since we know that the target of the alias is in the map, it's safe
+    // to pull out its arity and assign that to the alias without checking.
+    const arity = recipeArity.get(alias.target) as number;
+    recipeArity.set(name, arity);
+  }
+
+  console.log(recipeArity);
+  return { recipeArity, maxArity };
+}
+
+/** Get the final item of an array. */
+function finalItem<T>(array: readonly T[]): T | undefined {
+  return array[array.length - 1] as T | undefined;
 }
 
 const completionSpec: Fig.Spec = {
@@ -330,7 +363,7 @@ const completionSpec: Fig.Spec = {
               const out = await executeShellCommand(
                 `just --unstable --dump --dump-format json --justfile '${path}'`
               );
-              let justfile: JustfileData;
+              let justfile: Justfile;
               try {
                 justfile = JSON.parse(out);
               } catch (e) {
@@ -382,7 +415,7 @@ const completionSpec: Fig.Spec = {
             const out = await executeShellCommand(
               `just --unstable --dump --dump-format json --justfile '${path}'`
             );
-            let justfile: JustfileData;
+            let justfile: Justfile;
             try {
               justfile = JSON.parse(out);
             } catch (e) {
@@ -449,7 +482,7 @@ const completionSpec: Fig.Spec = {
         const out = await executeShellCommand(
           `just --unstable --dump --dump-format json --justfile '${path}'`
         );
-        let justfile: JustfileData;
+        let justfile: Justfile;
         try {
           justfile = JSON.parse(out);
         } catch (e) {
@@ -460,8 +493,7 @@ const completionSpec: Fig.Spec = {
         // 📍 2. Exit early if we're in a recipe's argument
         // First, a minor optimization: if we know the maximum arity of all
         // the recipes, we only have to check that many indices.
-        const recipeArity = getRecipeArityMap(justfile);
-        const maxArity = Math.max(...recipeArity.values());
+        const { recipeArity, maxArity } = getRecipeArityMap(justfile);
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
         // The final token doesn't need to be checked because that's the one
