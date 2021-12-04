@@ -185,7 +185,6 @@ function getRecipeArityMap(justfile: Justfile): RecipeArityMapping {
     recipeArity.set(name, arity);
   }
 
-  console.log(recipeArity);
   return { recipeArity, maxArity };
 }
 
