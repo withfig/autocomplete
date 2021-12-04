@@ -11,7 +11,7 @@
     "outDir": "./build",
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
