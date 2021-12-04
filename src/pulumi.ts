@@ -11,6 +11,7 @@ const yesOption: Fig.Option = {
   name: ["-y", "--yes"],
   description:
     "Skip confirmation prompts, and proceed with cancellation anyway",
+  isDangerous: true,
 };
 
 const jsonOption: Fig.Option = {
@@ -24,6 +25,7 @@ const configFileOption: Fig.Option = {
     "Use the configuration values in the specified file rather than detecting the file name",
   args: {
     name: "file",
+    template: ["filepaths", "folders"],
   },
 };
 
@@ -71,6 +73,17 @@ const targetOption: Fig.Option = {
   args: { name: "stringArray" },
 };
 
+const pathOption: Fig.Option = {
+  name: "--path",
+  description: "The key contains a path to a property in a map or list to set",
+};
+
+const pathsOption: Fig.Option = {
+  name: "--path",
+  description:
+    "Parse the keys as paths in a map or list rather than raw strings",
+};
+
 const suppressPermalinkOption: Fig.Option = {
   name: "--suppress-permalink",
   description: "Suppress display of the state permalink",
@@ -115,7 +128,7 @@ const inheritedOptions: Fig.Option[] = [
     description: "Run pulumi as if it had been started in another directory",
     args: {
       name: "path",
-      default: "./",
+      template: ["folders"],
     },
   },
   {
@@ -217,7 +230,8 @@ const icon = "https://www.pulumi.com/logos/brand/avatar-on-white.svg";
 
 const completionSpec: Fig.Spec = {
   name: "pulumi",
-  description: "",
+  description:
+    "Pulumi's open source infrastructure as code SDK enables you to create, deploy, and manage infrastructure on any cloud, using your favorite languages",
   subcommands: [
     {
       name: "about",
@@ -271,6 +285,7 @@ const completionSpec: Fig.Spec = {
           description: "Copy config to another stack",
           subcommands: [
             ...inheritedOptions,
+            pathOption,
             {
               name: ["-d", "--dest"],
               description: "The name of the new stack to copy the config to",
@@ -281,11 +296,6 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-h", "--help"],
               description: "Help for cp",
-            },
-            {
-              name: "--path",
-              description:
-                "The key contains a path to a property in a map or list to set",
             },
           ],
         },
@@ -320,18 +330,17 @@ const completionSpec: Fig.Spec = {
               description: "Help for rm",
             },
             {
-              name: "--path",
+              name: ["-f", "--force"],
               description:
-                "The key contains a path to a property in a map or list to remove",
+                "Overwrite configuration file, if it exists, without creating a backup",
+              isDangerous: true,
             },
           ],
         },
         {
           name: "rm",
           description: "Remove configuration value",
-          args: {
-            name: "key",
-          },
+          args: { name: "key" },
           subcommands: [
             ...inheritedOptions,
             {
@@ -339,9 +348,9 @@ const completionSpec: Fig.Spec = {
               description: "Help for refresh",
             },
             {
-              name: "path",
+              name: "--path",
               description:
-                "Overwrite configuration file, if it exists, without creating a backup",
+                "The key contains a path to a property in a map or list to remove",
             },
           ],
         },
@@ -353,14 +362,10 @@ const completionSpec: Fig.Spec = {
           },
           subcommands: [
             ...inheritedOptions,
+            pathsOption,
             {
               name: ["-h", "--help"],
               description: "Help for rm-all",
-            },
-            {
-              name: "--path",
-              description:
-                "Parse the keys as paths in a map or list rather than raw strings",
             },
           ],
         },
@@ -372,14 +377,10 @@ const completionSpec: Fig.Spec = {
           },
           subcommands: [
             ...inheritedOptions,
+            pathOption,
             {
               name: ["-h", "--help"],
               description: "Help for set",
-            },
-            {
-              name: "--path",
-              description:
-                "The key contains a path to a property in a map or list to set",
             },
             {
               name: "--plaintext",
@@ -400,14 +401,10 @@ const completionSpec: Fig.Spec = {
           },
           subcommands: [
             ...inheritedOptions,
+            pathsOption,
             {
               name: ["-h", "--help"],
               description: "Help for set-all",
-            },
-            {
-              name: "--path",
-              description:
-                "Parse the keys as paths in a map or list rather than raw strings",
             },
             {
               name: "--plaintext",
@@ -476,7 +473,7 @@ const completionSpec: Fig.Spec = {
           name: ["-f", "--file"],
           description:
             "The path to a JSON-encoded file containing a list of resources to import",
-          args: { name: "file" },
+          args: { name: "file", template: ["filepaths"] },
         },
         {
           name: ["-o", "--out"],
@@ -511,7 +508,7 @@ const completionSpec: Fig.Spec = {
           description: "Help for import",
         },
       ],
-      args: { name: "[type] [name] [id]" },
+      args: [{ name: "type" }, { name: "name" }, { name: "id" }],
     },
     {
       name: "login",
@@ -621,10 +618,11 @@ const completionSpec: Fig.Spec = {
           name: "--dir",
           description:
             "The location to place the generated project; if not specified, the current directory is used",
-          args: { name: "location" },
+          args: { name: "location", template: ["folders"] },
         },
         {
           name: ["-f", "--force"],
+          isDangerous: true,
           description:
             "Forces content to be generated even if it would change existing files",
         },
@@ -709,7 +707,7 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--file"],
               description:
                 "Install a plugin from a tarball file, instead of downloading it",
-              args: { name: "file" },
+              args: { name: "file", template: ["filepaths"] },
             },
             {
               name: "--reinstall",
@@ -856,6 +854,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-f", "--force"],
+              isDangerous: true,
               description:
                 "Forces content to be generated even if it would change existing files",
             },
@@ -863,7 +862,7 @@ const completionSpec: Fig.Spec = {
               name: "--dir",
               description:
                 "The location to place the generated Policy Pack; if not specified, the current directory is used",
-              args: { name: "location" },
+              args: { name: "location", template: ["folders"] },
             },
             {
               name: ["-h", "--help"],
@@ -1187,11 +1186,12 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--force"],
               description:
                 "Force the import to occur, even if apparent errors are discovered beforehand (not recommended)",
+              isDangerous: true,
             },
             {
               name: "--file",
               description: "A filename to read stack input from",
-              args: { name: "file" },
+              args: { name: "file", template: ["filepaths"] },
             },
           ],
         },
@@ -1294,6 +1294,7 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--force"],
               description:
                 "Forces deletion of the stack, leaving behind any resources managed by the stack",
+              isDangerous: true,
             },
             {
               name: "--preserve-config",
@@ -1597,8 +1598,6 @@ const completionSpec: Fig.Spec = {
       description: "Help for pulumi",
     },
   ],
-  // Only uncomment if pulumi takes an argument
-  // args: {}
 };
 
 export default completionSpec;
