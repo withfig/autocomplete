@@ -129,7 +129,7 @@ export const npmScriptsGenerator: Fig.Generator = {
             description: scriptContents as string,
             /**
              * If there are custom definitions for the scripts
-             * we want to overide the default values
+             * we want to override the default values
              * */
             ...customScripts,
           };
