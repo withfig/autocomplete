@@ -499,7 +499,6 @@ const completionSpec: Fig.Spec = {
         // First, a minor optimization: if we know the maximum arity of all
         // the recipes, we only have to check that many indices.
         const { recipeArity, maxArity } = getRecipeArityMap(justfile);
-        console.log(recipeArity, maxArity);
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
         // The final token doesn't need to be checked because that's the one
@@ -519,11 +518,9 @@ const completionSpec: Fig.Spec = {
         // If the token is a recipe name, but that recipe takes fewer arguments
         // than the number of tokens checked, then suggest recipe names instead.
         for (let checked = 0; checked < indicesToCheck; checked++) {
-          console.log(checked, indicesToCheck);
           const index = tokens.length - 2 - checked;
           const token = tokens[index];
           const arity = recipeArity.get(token);
-          console.log(token, arity);
 
           if (arity === undefined) {
             continue;
