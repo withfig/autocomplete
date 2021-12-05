@@ -1,7 +1,11 @@
-// This is not exhaustive, only the properties that this spec needs to care
-// about are typed. There's a lot of properties where it's difficult to tell
-// exactly how it'll be serialized without having too many unnecessary test
-// cases.
+/**
+ * The structure of the JSON data returned from dumping a justfile.
+ *
+ * This is not exhaustive; only the properties that this spec needs to care
+ * about are typed. There's a lot of properties where it's difficult to tell
+ * exactly how it'll be serialized without having too many unnecessary test
+ * cases.
+ */
 type Justfile = {
   aliases: Record<string, Alias>;
   assignments: Record<string, Binding>;
@@ -157,20 +161,20 @@ interface RecipeArityMapping {
 function getRecipeArityMap(justfile: Justfile): RecipeArityMapping {
   const recipeArity = new Map<string, number>();
 
-  // Keep a running maximum
+  // Will be updated as the recipes are added to the map
   let maxArity = 0;
 
   for (const [name, recipe] of Object.entries(justfile.recipes)) {
-    const parameters = recipe.parameters;
-    let arity: number;
+    const params = recipe.parameters;
+    let arity = params.length;
 
-    // Conditional access is necessary, could be undefined if length is 0
-    if (parameters[parameters.length - 1]?.kind !== "singular") {
+    // A recipe can only be variadic if it takes at least one parameter, and
+    // the final parameter is not "singular" (must be "star" or "plus")
+    if (arity > 0 && params[params.length - 1].kind !== "singular") {
       arity = Infinity;
-    } else {
-      arity = parameters.length;
     }
 
+    // The arity has been calculated, update the running maximum too!
     if (maxArity < arity) {
       maxArity = arity;
     }
@@ -178,9 +182,9 @@ function getRecipeArityMap(justfile: Justfile): RecipeArityMapping {
     recipeArity.set(name, arity);
   }
 
+  // The recipes are in the map, now add the aliases. Since the target recipe
+  // added, it's safe to pull out its arity and assign that without checking.
   for (const [name, alias] of Object.entries(justfile.aliases)) {
-    // Since we know that the target of the alias is in the map, it's safe
-    // to pull out its arity and assign that to the alias without checking.
     const arity = recipeArity.get(alias.target) as number;
     recipeArity.set(name, arity);
   }
@@ -194,7 +198,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--help", "-h"],
-      description: "Show help for just",
+      description: "Print help information",
     },
     {
       name: "--changelog",
@@ -495,6 +499,7 @@ const completionSpec: Fig.Spec = {
         // First, a minor optimization: if we know the maximum arity of all
         // the recipes, we only have to check that many indices.
         const { recipeArity, maxArity } = getRecipeArityMap(justfile);
+        console.log(recipeArity, maxArity);
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
         // The final token doesn't need to be checked because that's the one
@@ -514,9 +519,11 @@ const completionSpec: Fig.Spec = {
         // If the token is a recipe name, but that recipe takes fewer arguments
         // than the number of tokens checked, then suggest recipe names instead.
         for (let checked = 0; checked < indicesToCheck; checked++) {
+          console.log(checked, indicesToCheck);
           const index = tokens.length - 2 - checked;
           const token = tokens[index];
           const arity = recipeArity.get(token);
+          console.log(token, arity);
 
           if (arity === undefined) {
             continue;
