@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "completion",
       description: "Generate shell completion scripts",
-      options: [
+      subcommands: [
         {
           name: "bash",
           description: "Generate bash completion scripts",
@@ -19,7 +19,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Operate on build config files",
-      options: [
+      subcommands: [
         {
           name: "pack",
           description: "Pack CircleCI config files into a single file",
@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "context",
       description: "Secure and share environment variables across projects",
-      options: [
+      subcommands: [
         {
           name: "create",
           description: "Create a new context",
@@ -79,7 +79,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "local",
       description: "Debug jobs on the local machine",
-      options: [
+      subcommands: [
         {
           name: "execute",
           description: "Run a job in a container on the local machine",
@@ -89,7 +89,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "namespace",
       description: "Operate on namespaces",
-      options: [
+      subcommands: [
         {
           name: "create",
           description: "Create a namespace",
@@ -103,7 +103,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "orb",
       description: "Operate on orbs",
-      options: [
+      subcommands: [
         {
           name: "add-to-category",
           description: "Add an orb to a category",
@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "runner",
       description: "Operate on runners",
-      options: [
+      subcommands: [
         {
           name: "instance",
           description: "Operate on runner instances",
