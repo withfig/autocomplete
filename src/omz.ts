@@ -93,6 +93,10 @@ const completionSpec: Fig.Spec = {
       name: "update",
       description: "Update Oh My Zsh",
     },
+    {
+      name: "version",
+      description: "Show the version",
+    },
   ],
 };
 
