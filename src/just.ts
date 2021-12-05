@@ -474,9 +474,6 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     optionsCanBreakVariadicArg: false,
     generators: {
-      // TODO: Check if this is necessary
-      trigger: " ",
-
       // This is another multi-step generator, because it has to do all the
       // heavy lifting of supporting arguments with arguments. withfig/fig#638
       // 1. Get the justfile as JSON
