@@ -11,13 +11,22 @@
 ![Discord](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)
 [![Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
+**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.** 
 
 As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
+
 
 ![Fig Visual Autocomplete For Your Terminal Demo](https://fig.io/gifs/demo-with-header.gif)
 
 <br/>
+
+## ⚡️ Installation
+##### With [Homebrew](https://brew.sh): 
+```
+brew install fig
+```
+##### Manually: 
+Download the macOS app at [fig.io/download](https://fig.io/download).
 
 ## 👋 Add a completion spec for a CLI tool
 
@@ -127,7 +136,7 @@ Currently, Fig is only available on MacOS.
 
 #### How can I get access?
 
-Sign up for the waitlist at [fig.io](https://fig.io?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week.
+Fig is currently in a _public_ beta. You can install Fig by running `brew install fig` or by downloading the app at [fig.io/download](https://fig.io/download).
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 
