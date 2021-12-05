@@ -96,6 +96,18 @@ type ExclusiveOn = {
   exclusiveOn?: string[];
 };
 
+const unsafelyIgnoreCertificateErrorsOption = {
+  name: "--unsafely-ignore-certificate-errors",
+  description: "DANGER: Disables verification of TLS certificates",
+  isDangerous: true,
+  requiresEquals: true,
+  args: {
+    name: "host names",
+    description: "Scope ignoring certificate errors to these hosts",
+    isOptional: true,
+  },
+};
+
 const permissionOptions: Fig.Option[] = [
   {
     name: ["-A", "--allow-all"],
@@ -175,17 +187,7 @@ const permissionOptions: Fig.Option[] = [
     name: "--prompt",
     description: "Fallback to prompt if required permission wasn't passed",
   },
-  {
-    name: "--unsafely-ignore-certificate-errors",
-    description: "DANGER: Disables verification of TLS certificates",
-    isDangerous: true,
-    requiresEquals: true,
-    args: {
-      name: "host names",
-      description: "Scope ignoring certificate errors to these hosts",
-      isOptional: true,
-    },
-  },
+  unsafelyIgnoreCertificateErrorsOption,
 ];
 
 function inspectorOptions(options: ExclusiveOn = {}): Fig.Option[] {
@@ -274,6 +276,19 @@ const lockWriteOption: Fig.Option = {
 const noCheckOption: Fig.Option = {
   name: "--no-check",
   description: "Skip type checking modules",
+  requiresEquals: true,
+  args: {
+    name: "type",
+    description: "Specify the kind of modules to skip type checking",
+    isOptional: true,
+    suggestions: [
+      {
+        name: "remote",
+        description: "Don't check remote modules",
+        icon: "fig://icon?type=string",
+      },
+    ],
+  },
 };
 
 const noRemoteOption: Fig.Option = {
@@ -314,12 +329,23 @@ const v8FlagsOption: Fig.Option = {
   },
 };
 
-function watchOption(options: ExclusiveOn = {}): Fig.Option {
+function watchOption(options: ExclusiveOn & { files: boolean }): Fig.Option {
   return {
     name: "--watch",
     description:
       "UNSTABLE: Watch for file changes and restart process automatically",
     exclusiveOn: options.exclusiveOn,
+    requiresEquals: options.files ? true : undefined,
+    args: options.files
+      ? {
+          name: "files",
+          isOptional: true,
+          generators: {
+            template: "filepaths",
+            getQueryTerm: ",",
+          },
+        }
+      : undefined,
   };
 }
 
@@ -403,6 +429,7 @@ const denoRun: Fig.Subcommand = {
       inspectorExclusiveOn: ["--watch"],
     }),
     watchOption({
+      files: true,
       exclusiveOn: ["--inspect", "--inspect-brk"],
     }),
   ],
@@ -498,6 +525,7 @@ const denoTest: Fig.Subcommand = {
       },
     },
     watchOption({
+      files: false,
       exclusiveOn: ["--no-run", "--coverage"],
     }),
   ],
@@ -540,7 +568,7 @@ const denoFmt: Fig.Subcommand = {
         template: "filepaths",
       },
     },
-    watchOption(),
+    watchOption({ files: false }),
     {
       name: "--options-use-tabs",
       description: "Use tabs instead of spaces",
@@ -651,7 +679,7 @@ const denoLint: Fig.Subcommand = {
         generators: generateLintRules,
       },
     },
-    watchOption(),
+    watchOption({ files: false }),
   ],
 };
 
@@ -1146,6 +1174,7 @@ const denoRepl: Fig.Subcommand = {
   description: "Open an interactive read-eval-print loop",
   options: [
     ...runtimeOptions({ perms: false, inspector: true }),
+    unsafelyIgnoreCertificateErrorsOption,
     {
       name: "--eval",
       insertValue: "--eval '{cursor}'",
