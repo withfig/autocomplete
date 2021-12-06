@@ -6,18 +6,18 @@
  * exactly how it'll be serialized without having too many unnecessary test
  * cases.
  */
-type Justfile = {
+interface Justfile {
   aliases: Record<string, Alias>;
   assignments: Record<string, Binding>;
   recipes: Record<string, Recipe>;
-};
+}
 
-type Alias = {
+interface Alias {
   name: string;
   target: string;
-};
+}
 
-type Recipe = {
+interface Recipe {
   name: string;
   doc: string | null;
   body: unknown[];
@@ -27,27 +27,27 @@ type Recipe = {
   private: boolean;
   quiet: boolean;
   shebang: boolean;
-};
+}
 
-type Dependency = {
+interface Dependency {
   arguments: unknown[];
   recipe: string;
-};
+}
 
-type Parameter = {
+interface Parameter {
   default: unknown;
   export: boolean;
   kind: ParameterKind;
   name: string;
-};
+}
 
 type ParameterKind = "singular" | "plus" | "star";
 
-type Binding = {
+interface Binding {
   name: string;
   export: boolean;
   value: unknown;
-};
+}
 
 /**
  * Get the path of the justfile from an array of tokens.
@@ -233,11 +233,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-c", "--command"],
-      insertValue: "--command '{cursor}'",
       description:
         "Run an arbitrary command with the working directory, .env, overrides, and exports",
       args: {
         name: "command",
+        isCommand: true,
       },
     },
     {
