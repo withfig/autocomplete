@@ -52,27 +52,31 @@ interface Binding {
 /**
  * Get the path of the justfile from an array of tokens.
  *
- * If no overriding flag is provided, the default file name is is "justfile".
- * Flags can be provided in this format:
+ * If no overriding flag is provided, `null` will be returned.
+ *
+ * Flags can be provided in any of these forms, and the regex to match this is
+ * about as ugly as you'd expect.
  * - `-f name`
+ * - `-fname`
+ * - `-XYZfname` (short options before `f`, where `XYZ` are any non-f letters)
  * - `-f=name`
  * - `--justfile name`
  * - `--justfile=name`
  */
 function getJustfilePath(tokens: string[]): string | null {
-  // Only need to check if the token starts with this string
-  const flagRe = /^(?:-f|--justfile)\b/;
+  const flagRe = /^(-[A-Za-eg-z]*?f=?|--justfile(?:=|\b))/;
   for (const [index, token] of tokens.entries()) {
-    if (!flagRe.test(token)) {
+    const match = token.match(flagRe);
+    if (match === null) {
       continue;
     }
-    // If there's an equals in the flag, everything after it is the justfile.
-    // Otherwise, the next token is the justfile.
-    const equals = token.indexOf("=");
-    if (equals !== -1) {
-      return token.slice(equals + 1);
+    // Group 1 is the flag, up to and including the `=`. Everything after
+    // that is the path. If the path is "", then it's the next token.
+    const withoutOption = token.slice(match[1].length);
+    if (withoutOption === "") {
+      return tokens[index + 1];
     }
-    return tokens[index + 1];
+    return withoutOption;
   }
   return null;
 }
@@ -132,7 +136,7 @@ function getRecipeSuggestions(
  *
  * For example, `test <FILTER>`, , `echo [ARGS...]`
  */
-function getRecipeUsage(recipe: Recipe) {
+function getRecipeUsage(recipe: Recipe): string {
   const parts = [recipe.name];
   for (const parameter of recipe.parameters) {
     // Fig sanitizes things like "<NAME>", so this has to be encoded
@@ -190,6 +194,30 @@ function getRecipeArityMap(justfile: Justfile): RecipeArityMapping {
   }
 
   return { recipeArity, maxArity };
+}
+
+/**
+ * Generator script to dump the current justfile as JSON.
+ *
+ * If the user has provided -f/--justfile, that file will be used. Otherwise,
+ * `just` will handle searching for it.
+ */
+const dumpJustfile: Fig.Generator["script"] = (tokens) => {
+  const path = getJustfilePath(tokens);
+  return getJustfileDumpCommand(path);
+};
+
+/**
+ * Process the output of dumping a justfile as JSON. If JSON parsing
+ * failed, for any reason, `null` is returned and the error is logged.
+ */
+function processJustfileDump(out: string): Justfile | null {
+  try {
+    return JSON.parse(out) as Justfile;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }
 
 const completionSpec: Fig.Spec = {
@@ -366,15 +394,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "variable",
           generators: {
-            custom: async (tokens, executeShellCommand) => {
-              const path = getJustfilePath(tokens);
-              const command = getJustfileDumpCommand(path);
-              const out = await executeShellCommand(command);
-              let justfile: Justfile;
-              try {
-                justfile = JSON.parse(out);
-              } catch (e) {
-                console.error(e);
+            script: dumpJustfile,
+            postProcess: (out) => {
+              const justfile = processJustfileDump(out);
+              if (justfile === null) {
                 return [];
               }
               return Object.keys(justfile.assignments).map((name) => ({
@@ -417,15 +440,10 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "recipe",
         generators: {
-          custom: async (tokens, executeShellCommand) => {
-            const path = getJustfilePath(tokens);
-            const command = getJustfileDumpCommand(path);
-            const out = await executeShellCommand(command);
-            let justfile: Justfile;
-            try {
-              justfile = JSON.parse(out);
-            } catch (e) {
-              console.error(e);
+          script: dumpJustfile,
+          postProcess: (out) => {
+            const justfile = processJustfileDump(out);
+            if (justfile === null) {
               return [];
             }
             return getRecipeSuggestions(justfile);
@@ -474,54 +492,31 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     optionsCanBreakVariadicArg: false,
     generators: {
-      // This is another multi-step generator, because it has to do all the
-      // heavy lifting of supporting arguments with arguments. withfig/fig#638
-      // 1. Get the justfile as JSON
-      // 2. Exit early if we're in a recipe's argument
-      // 3. Suggest recipes
-      custom: async (tokens, executeShellCommand) => {
-        // 📍 1. Get the justfile as JSON
-        const path = getJustfilePath(tokens);
-        const command = getJustfileDumpCommand(path);
-        const out = await executeShellCommand(command);
-        let justfile: Justfile;
-        try {
-          justfile = JSON.parse(out);
-        } catch (e) {
-          console.error(e);
+      script: dumpJustfile,
+      postProcess: (out, tokens) => {
+        const justfile = processJustfileDump(out);
+        if (justfile === null) {
           return [];
         }
 
-        // 📍 2. Exit early if we're in a recipe's argument
-        // First, a minor optimization: if we know the maximum arity of all
-        // the recipes, we only have to check that many indices.
         const { recipeArity, maxArity } = getRecipeArityMap(justfile);
         const indicesToCheck = Math.min(maxArity, tokens.length - 2);
 
-        // The final token doesn't need to be checked because that's the one
-        // we're generating suggestions for. Tokens are checked from the second
-        // last, moving through the array in reverse. This is an intentionally
-        // naive approach, but in practice it's *way better* than good enough!
-        //
-        // We're in the position of a recipe's argument if all of these
-        // conditions are true for a visited token:
-        //   1: It's a recipe name
-        //   2: It takes more than 0 arguments
-        //   3: It takes more args than the number of tokens we've visited
-        //
-        // If the token is not a recipe name, then move back by 1 token and
-        // repeat this process.
-        //
-        // If the token is a recipe name, but that recipe takes fewer arguments
-        // than the number of tokens checked, then suggest recipe names instead.
+        // Loop backwards over the tokens until you find a recipe name. If the
+        // recipe takes more arguments than the number of tokens that have been
+        // checked, then the final token is one of its arguments.
         for (let checked = 0; checked < indicesToCheck; checked++) {
           const index = tokens.length - 2 - checked;
           const token = tokens[index];
           const arity = recipeArity.get(token);
 
+          // Not a recipe, keep going...
           if (arity === undefined) {
             continue;
           }
+
+          // Found a recipe. If it takes more args than the number of tokens
+          // that have been checked, then we're in one of its arguments.
           if (arity > checked) {
             return [];
           } else {
@@ -529,7 +524,6 @@ const completionSpec: Fig.Spec = {
           }
         }
 
-        // 📍 3. Suggest recipes
         return getRecipeSuggestions(justfile, {
           showRecipeParameters: true,
         });
