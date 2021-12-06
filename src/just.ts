@@ -64,7 +64,7 @@ interface Binding {
  * - `--justfile=name`
  */
 function getJustfilePath(tokens: string[]): string | null {
-  const flagRe = /^(-[A-Za-eg-z]*?f=?|--justfile(?:=|\b))/;
+  const flagRe = /^(-[A-Za-eg-z]*f=?|--justfile(?:=|$))/;
   for (const [index, token] of tokens.entries()) {
     const match = token.match(flagRe);
     if (match === null) {
