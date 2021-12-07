@@ -50,6 +50,15 @@ const platformGenerator: Fig.Generator = {
   },
 };
 
+const pluginGenerator: Fig.Generator = {
+  script: "cordova plugin list",
+  postProcess: (out: string) =>
+    out.split("\n").map((pluginName) => ({
+      name: pluginName,
+      icon: "fig://icon?type=string",
+    })),
+};
+
 const completionSpec: Fig.Spec = {
   name: "cordova",
   description: "Manage your Cordova application",
@@ -286,32 +295,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "plugin",
             isVariadic: true,
-            generators: {
-              script: "cat package.json",
-              postProcess: function (out: string) {
-                const suggestions = [];
-                try {
-                  if (out.trim() == "") {
-                    return suggestions;
-                  }
-
-                  const packageJSON = JSON.parse(out);
-                  const plugins = packageJSON["cordova"]["plugins"];
-
-                  if (plugins) {
-                    for (const plugin in plugins) {
-                      suggestions.push({
-                        name: plugin,
-                        description: "Plugin",
-                      });
-                    }
-                  }
-                } catch (error) {
-                  console.log(error);
-                }
-                return suggestions;
-              },
-            },
+            generators: pluginGenerator,
           },
         },
         {
