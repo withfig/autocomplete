@@ -135,12 +135,16 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "ls",
+          description: "Lists contents of config file",
         },
         {
           name: "edit",
+          description: "Opens the config file in an editor",
         },
         {
           name: "set",
+          description:
+            'Sets the config key to the value. If value is omitted, then it sets it to "true"',
           args: [
             {
               name: "key",
@@ -152,12 +156,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "get",
+          description: "Echo the config value to stdout",
           args: {
             name: "key",
           },
         },
         {
           name: "delete",
+          description: "Deletes the key from all configuration files",
           args: {
             name: "key",
           },
@@ -338,7 +344,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--buildConfig",
-          description: "",
+          description:
+            "Use the specified build configuration file. build.json file is used to specify paramaters to customize the app build process especially related to signing the package",
           args: {
             template: ["filepaths", "folders"],
           },
@@ -377,7 +384,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--buildConfig",
-          description: "",
+          description:
+            "Use the specified build configuration file. build.json file is used to specify paramaters to customize the app build process especially related to signing the package",
           args: {
             template: ["filepaths", "folders"],
           },
@@ -470,7 +478,5 @@ const completionSpec: Fig.Spec = {
     },
   ],
   options: commonOptions,
-  // Only uncomment if cordova takes an argument
-  // args: {}
 };
 export default completionSpec;
