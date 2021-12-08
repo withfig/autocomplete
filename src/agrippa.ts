@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--typescript", "--ts"],
           description:
-            "Whether to generate Typescript components. Defaults to `true` if the CLI manages to find a `tsconfig.json` file, false otherwise",
+            "Option to generate TypeScript components, defaults to `true` if the CLI manages to find a `tsconfig.json` file, false otherwise",
           args: {
             suggestions: [
               {
