@@ -176,7 +176,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   treeish: {
     script: "git --no-optional-locks diff --cached --name-only",
-    postProcess: function (out) {
+    postProcess: function (out, tokens) {
       const output = filterMessages(out);
 
       if (output.startsWith("fatal:")) {
@@ -186,7 +186,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
       return output.split("\n").map((file) => {
         return {
           name: file,
-          insertValue: "-- " + file,
+          insertValue: !tokens.includes("--") ? "-- " : "" + file,
           icon: `fig://icon?type=file`,
           description: "Staged file",
         };
