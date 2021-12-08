@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "ts",
                 description:
-                  "Generate a Typescript interface for props (this requires the typescript option to be true)",
+                  "Generate a TypeScript interface for props (this requires the typescript option to be true)",
               },
               {
                 name: "jsdoc",
