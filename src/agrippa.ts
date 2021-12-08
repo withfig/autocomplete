@@ -80,7 +80,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--import-react",
           description:
-            "Whether to import React at the top of the component. Default to `true` if the CLI manages to find a `tsconfig.json` file and it has a `jsx` field under `compilerOptions` with `react-jsx` or `react-jsxdev` as the value, `false` otherwise",
+            "Option to import React at the top of the component. Defaults to `true` if the CLI manages to find a `tsconfig.json` file and it has a `jsx` field under `compilerOptions` with `react-jsx` or `react-jsxdev` as the value, `false` otherwise",
           args: {
             suggestions: [
               {
