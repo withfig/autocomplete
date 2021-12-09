@@ -11,6 +11,14 @@ const completionSpec: Fig.Spec = {
         description: "Command name for which to display help",
       },
     },
+    {
+      name: "login",
+      description: "Login to StepZen",
+    },
+    {
+      name: "logout",
+      description: "Logout of StepZen",
+    },
   ],
   // Only uncomment if stepzen takes an argument
   // args: {}
