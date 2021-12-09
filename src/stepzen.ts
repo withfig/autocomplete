@@ -37,6 +37,20 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "import",
+      description: "Import pre-configured schemas to Your API",
+      args: {
+        name: "name",
+        description: "The name of the generator to import",
+      },
+      options: [
+        {
+          name: "--dir",
+          description: "The directory to which the schema will be imported",
+        },
+      ],
+    },
   ],
   // Only uncomment if stepzen takes an argument
   // args: {}
