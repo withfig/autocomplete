@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "ts",
                 description:
-                  "Generate a Typescript interface for props (this requires the typescript option to be true)",
+                  "Generate a TypeScript interface for props (this requires the typescript option to be true)",
               },
               {
                 name: "jsdoc",
@@ -51,13 +51,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--typescript", "--ts"],
           description:
-            "Whether to generate Typescript components. Defaults to `true` if the CLI manages to find a `tsconfig.json` file, false otherwise",
+            "Option to generate Typescript components, defaults to `true` if the CLI manages to find a `tsconfig.json` file, false otherwise",
           args: {},
         },
         {
           name: "--import-react",
           description:
-            "Whether to import React at the top of the component. Default to `true` if the CLI manages to find a `tsconfig.json` file and it has a `jsx` field under `compilerOptions` with `react-jsx` or `react-jsxdev` as the value, `false` otherwise",
+            "Option to import React at the top of the component. Defaults to `true` if the CLI manages to find a `tsconfig.json` file and it has a `jsx` field under `compilerOptions` with `react-jsx` or `react-jsxdev` as the value, `false` otherwise",
           args: {},
         },
         {
