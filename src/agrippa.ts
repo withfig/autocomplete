@@ -46,51 +46,19 @@ const completionSpec: Fig.Spec = {
           name: "--children",
           description:
             "Whether the component is meant to have children or not. Defaults to `false`",
-          args: {
-            suggestions: [
-              {
-                name: "true",
-                description:
-                  "The children prop is included in the function params and the template JSX",
-              },
-              {
-                name: "false",
-                description: "No children for the component",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: ["--typescript", "--ts"],
           description:
             "Whether to generate Typescript components. Defaults to `true` if the CLI manages to find a `tsconfig.json` file, false otherwise",
-          args: {
-            suggestions: [
-              {
-                name: "true",
-                description:
-                  "Unless explicitly set otherwise, this option sets `props` to `ts`",
-              },
-              {
-                name: "false",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--import-react",
           description:
             "Whether to import React at the top of the component. Default to `true` if the CLI manages to find a `tsconfig.json` file and it has a `jsx` field under `compilerOptions` with `react-jsx` or `react-jsxdev` as the value, `false` otherwise",
-          args: {
-            suggestions: [
-              {
-                name: "true",
-              },
-              {
-                name: "false",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--export-type",
@@ -126,35 +94,13 @@ const completionSpec: Fig.Spec = {
           name: "--memo",
           description:
             "Generates a component as a memo component. Defaults to `false`",
-          args: {
-            suggestions: [
-              {
-                name: "true",
-                description:
-                  "Note that setting memo to true overrides the `declaration` option to `const`",
-              },
-              {
-                name: "false",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--react-native",
           description:
             "Generates a React Native component. Defaults to `true` if `react-native` is a dependency in the project's `package.json`, `false` otherwise",
-          args: {
-            suggestions: [
-              {
-                name: "false",
-              },
-              {
-                name: "true",
-                description:
-                  "Note that this flag requires the `styling` flag to be either `react-native` or `none`",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--styling",
@@ -194,18 +140,7 @@ const completionSpec: Fig.Spec = {
           name: "--styling-module",
           description:
             "Whether to generate a scoped `module` stylesheet. This option is only relevant for `css` or `scss` styling, and will be ignored for other values. Defaults to `true`",
-          args: {
-            suggestions: [
-              {
-                name: "true",
-                description:
-                  "If you're using CSS or SCSS, and there's no explicit requirement not to use modules, This is highly recommended!",
-              },
-              {
-                name: "false",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--base-dir",
@@ -245,35 +180,13 @@ const completionSpec: Fig.Spec = {
           name: "--flat",
           description:
             "By default, Agrippa generates a dedicated directory for the generated component; this directory has the same name as the component, and will contain the component file (as `index.tsx` or `index.jsx`), and the style file (if one is generated). Defaults to `false`",
-          args: {
-            suggestions: [
-              {
-                name: "false",
-              },
-              {
-                name: "true",
-                description:
-                  "The `flat` option tells Agrippa to not generate a dedicated directory, and instead generate the component files directly at the resolved path. In this case, the component file will have the same name as the component; the style file, if generated, will have the same name",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--separate-index",
           description:
             "In the `separateIndex` generation scheme, Agrippa creates one file for the component's code, and one `index` file, whose purpose is to allow importing exports from the component's directory elegantly (the import path can then be `<path>/<to>/<directory>/Component` instead of `<path>/<to>/<directory>/Component/Component`). Defaults to `true`",
-          args: {
-            suggestions: [
-              {
-                name: "true",
-              },
-              {
-                name: "false",
-                description:
-                  "Places the component's code directly in the `index` file",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: ["--post-command", "--postCommand"],
@@ -287,31 +200,13 @@ const completionSpec: Fig.Spec = {
           name: "--overwrite",
           description:
             "By default, Agrippa prevents the generation of a component over an existing components, to prevent a loss of code. `--overwrite` tells Agrippa to replace existing files, if any are found. Defaults to `false`",
-          args: {
-            suggestions: [
-              {
-                name: "false",
-              },
-              {
-                name: "true",
-              },
-            ],
-          },
+          args: {},
         },
         {
           name: "--debug",
           description:
             "The `debug` flag makes Agrippa print out additional debug information. It's quite useful when debugging. Defaults to `false`",
-          args: {
-            suggestions: [
-              {
-                name: "false",
-              },
-              {
-                name: "true",
-              },
-            ],
-          },
+          args: {},
         },
       ],
     },
