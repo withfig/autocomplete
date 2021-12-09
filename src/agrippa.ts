@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "styling",
+          name: "--styling",
           description: "Which styling solution to generate. Defaults to `none`",
           args: {
             suggestions: [
