@@ -9,6 +9,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "wrapped",
+      icon: "🎁",
       description: "See your #FigWrapped",
       priority: 100,
     },
