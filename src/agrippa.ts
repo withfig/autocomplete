@@ -12,7 +12,7 @@ const completionSpec: Fig.Spec = {
       description:
         "This is the core of the CLI - this command generates a new React component, based on the name and options passed to it",
       args: {
-        name: "directory",
+        name: "component",
       },
       options: [
         {
