@@ -51,6 +51,16 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "list",
+      description:
+        "List the assets of a specified type that are linked to the StepZen account",
+      args: {
+        name: "type",
+        description: "Yhe type of asset to list (schemas or configurationsets)",
+        suggestions: ["schemas", "configurationsets"],
+      },
+    },
   ],
   // Only uncomment if stepzen takes an argument
   // args: {}
