@@ -19,6 +19,24 @@ const completionSpec: Fig.Spec = {
       name: "logout",
       description: "Logout of StepZen",
     },
+    {
+      name: "start",
+      description: "Deploy, watch and develop your API",
+      options: [
+        {
+          name: "--dir",
+          description: "The working directory for StepZen assets",
+        },
+        {
+          name: "--endpoint",
+          description: "The folder/endpoint to deploy to",
+        },
+        {
+          name: "--port",
+          description: "The port number to use for the GraphiQL explorer",
+        },
+      ],
+    },
   ],
   // Only uncomment if stepzen takes an argument
   // args: {}
