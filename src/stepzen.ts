@@ -26,6 +26,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dir",
           description: "The working directory for StepZen assets",
+          requiresEquals: true,
           args: {
             name: "path",
             description: "Path to StepZen directory",
@@ -35,6 +36,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--endpoint",
           description: "The folder/endpoint to deploy to",
+          requiresEquals: true,
           args: {
             name: "endpoint",
             description: "The StepZen endpoint",
@@ -43,6 +45,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--port",
           description: "The port number to use for the GraphiQL explorer",
+          requiresEquals: true,
           args: {
             name: "port",
             description: "A port to run on",
@@ -61,6 +64,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dir",
           description: "The directory to which the schema will be imported",
+          requiresEquals: true,
           args: {
             name: "path",
             description: "Path to directory",
