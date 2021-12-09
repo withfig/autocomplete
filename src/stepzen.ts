@@ -9,8 +9,8 @@ const endpointsGenerator: Fig.Generator = {
       return {
         name: endpoint,
         description: "StepZen endpoint",
-      };
-    });
+      } as Fig.Suggestion;
+    }) as Fig.Suggestion[];
   },
 };
 
@@ -26,8 +26,8 @@ const importSchemasGenerator: Fig.Generator = {
           name: repo.name,
           description: "Stepzen schema",
           icon: "📦",
-        };
-      });
+        } as Fig.Suggestion;
+      }) as Fig.Suggestion[];
   },
 };
 
