@@ -2,6 +2,18 @@
 // Manually coded from https://stepzen.com/docs/cli/cli-commands
 // Coded on stepzen/0.9.33 CLI version
 
+const endpointsGenerator: Fig.Generator = {
+  script: "stepzen list schemas",
+  postProcess: (output) => {
+    return JSON.parse(output).map((endpoint: string) => {
+      return {
+        name: endpoint,
+        description: "StepZen endpoint",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "StepZen",
   description:
@@ -44,6 +56,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "endpoint",
             description: "The StepZen endpoint",
+            generators: endpointsGenerator,
           },
         },
         {
