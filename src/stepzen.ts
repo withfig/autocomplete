@@ -26,14 +26,27 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dir",
           description: "The working directory for StepZen assets",
+          args: {
+            name: "path",
+            description: "Path to StepZen directory",
+            template: "folders",
+          },
         },
         {
           name: "--endpoint",
           description: "The folder/endpoint to deploy to",
+          args: {
+            name: "endpoint",
+            description: "The StepZen endpoint",
+          },
         },
         {
           name: "--port",
           description: "The port number to use for the GraphiQL explorer",
+          args: {
+            name: "port",
+            description: "A port to run on",
+          },
         },
       ],
     },
@@ -48,6 +61,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dir",
           description: "The directory to which the schema will be imported",
+          args: {
+            name: "path",
+            description: "Path to directory",
+            template: "folders",
+          },
         },
       ],
     },
@@ -57,7 +75,7 @@ const completionSpec: Fig.Spec = {
         "List the assets of a specified type that are linked to the StepZen account",
       args: {
         name: "type",
-        description: "Yhe type of asset to list (schemas or configurationsets)",
+        description: "The type of asset to list (schemas or configurationsets)",
         suggestions: ["schemas", "configurationsets"],
       },
     },
