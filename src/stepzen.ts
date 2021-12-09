@@ -1,3 +1,7 @@
+// Fig completion specs for StepZen CLI
+// Manually coded from https://stepzen.com/docs/cli/cli-commands
+// Coded on stepzen/0.9.33 CLI version
+
 const completionSpec: Fig.Spec = {
   name: "StepZen",
   description:
