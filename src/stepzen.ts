@@ -5,29 +5,37 @@
 const endpointsGenerator: Fig.Generator = {
   script: "stepzen list schemas",
   postProcess: (output) => {
-    return JSON.parse(output).map((endpoint: string) => {
-      return {
-        name: endpoint,
-        description: "StepZen endpoint",
-      } as Fig.Suggestion;
-    }) as Fig.Suggestion[];
+    try {
+      return JSON.parse(output).map((endpoint: string) => {
+        return {
+          name: endpoint,
+          description: "StepZen endpoint",
+        } as Fig.Suggestion;
+      }) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
   },
 };
 
 const importSchemasGenerator: Fig.Generator = {
   script: "curl https://api.github.com/repos/steprz/stepzen-schemas/contents",
   postProcess: (output) => {
-    return JSON.parse(output)
-      .filter((repo: { name: string; type: string }) => {
-        return repo.type == "dir" && !repo.name.startsWith(".");
-      })
-      .map((repo: { name: string }) => {
-        return {
-          name: repo.name,
-          description: "Stepzen schema",
-          icon: "📦",
-        } as Fig.Suggestion;
-      }) as Fig.Suggestion[];
+    try {
+      return JSON.parse(output)
+        .filter((repo: { name: string; type: string }) => {
+          return repo.type == "dir" && !repo.name.startsWith(".");
+        })
+        .map((repo: { name: string }) => {
+          return {
+            name: repo.name,
+            description: "Stepzen schema",
+            icon: "📦",
+          } as Fig.Suggestion;
+        }) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
   },
 };
 
