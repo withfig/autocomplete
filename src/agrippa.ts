@@ -242,7 +242,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "flat",
+          name: "--flat",
           description:
             "By default, Agrippa generates a dedicated directory for the generated component; this directory has the same name as the component, and will contain the component file (as `index.tsx` or `index.jsx`), and the style file (if one is generated). Defaults to `false`",
           args: {
