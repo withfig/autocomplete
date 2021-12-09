@@ -276,9 +276,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--post-command",
+          name: ["--post-command", "--postCommand"],
           description:
             "Allows a custom command to be run after having generated a component. This allows for some cool functionality, such as opening an IDE at the newly generated files automatically or linting them. Defaults to `none`",
+          args: {
+            isCommand: true,
+          },
         },
         {
           name: "--overwrite",
