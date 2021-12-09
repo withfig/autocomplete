@@ -14,6 +14,23 @@ const endpointsGenerator: Fig.Generator = {
   },
 };
 
+const importSchemasGenerator: Fig.Generator = {
+  script: "curl https://api.github.com/repos/steprz/stepzen-schemas/contents",
+  postProcess: (output) => {
+    return JSON.parse(output)
+      .filter((repo: { name: string; type: string }) => {
+        return repo.type == "dir" && !repo.name.startsWith(".");
+      })
+      .map((repo: { name: string }) => {
+        return {
+          name: repo.name,
+          description: "Stepzen schema",
+          icon: "📦",
+        };
+      });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "StepZen",
   description:
@@ -76,6 +93,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "name",
         description: "The name of the generator to import",
+        generators: importSchemasGenerator,
       },
       options: [
         {
