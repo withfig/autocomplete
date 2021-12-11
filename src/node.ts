@@ -264,6 +264,14 @@ const completionSpec: Fig.Spec = {
                 description: "Make a new event listener class",
               },
               {
+                name: "make:mailer",
+                description: "Make a new mailer class",
+                args: {
+                  name: "name",
+                  description: "Mailer class name",
+                },
+              },
+              {
                 name: "make:middleware",
                 description: "Make a new middleware",
                 args: {
