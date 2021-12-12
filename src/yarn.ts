@@ -56,9 +56,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
         name: dependencyName,
         icon: "📦",
       }));
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
 
     return [];
   },
@@ -79,6 +77,24 @@ const scriptList: Fig.Generator = {
       if (scripts) {
         return Object.keys(scripts).map((script) => ({ name: script }));
       }
+    } catch (e) {}
+    return [];
+  },
+};
+
+// generate package list of direct and indirect dependencies
+const allDependenciesGenerator: Fig.Generator = {
+  script: "yarn list --depth=0 --json",
+  postProcess: (out) => {
+    if (out.trim() == "") return [];
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent.data.trees;
+      return dependencies.map((dependency: { name: string }) => ({
+        name: dependency.name.split("@")[0],
+        icon: "📦",
+      }));
     } catch (e) {}
     return [];
   },
@@ -1285,6 +1301,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "why",
       description: "Show information about why a package is installed",
+      args: {
+        name: "package",
+        generators: allDependenciesGenerator,
+      },
+      options: [
+        ...commonOptions,
+        {
+          name: ["-h", "--help"],
+          description: "Output usage information",
+        },
+      ],
     },
     {
       name: "workspace",
