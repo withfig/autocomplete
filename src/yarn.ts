@@ -1244,6 +1244,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Upgrades packages to their latest version based on the specified range",
       args: {
+        name: "package",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
