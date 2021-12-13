@@ -18,7 +18,7 @@ const reportType: Fig.Generator = {
 };
 
 /**
- * Based on the [elm-review](https://github.com/jfmengels/node-elm-review), version 2.6.1, cli tool for reviewing Elm code.
+ * Based on the [elm-review](https://github.com/jfmengels/node-elm-review), version 2.7.0, cli tool for reviewing Elm code.
  */
 const completionSpec: Fig.Spec = {
   name: "elm-review",
@@ -56,6 +56,35 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "<path-to-elm>",
             template: "filepaths",
+          },
+        },
+      ],
+    },
+    {
+      name: "suppress",
+      description:
+        "Generate suppression files for rules that report many errors",
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Show help for elm-review suppress",
+        },
+        {
+          name: "--check-after-tests",
+          description: "Checks whether there are uncommitted suppression files",
+        },
+        {
+          name: "--unsuppress",
+          description:
+            "Include suppressed errors in the error report for all rules",
+        },
+        {
+          name: "--unsuppress-rules",
+          description:
+            "Include suppressed errors in the error report for all rules",
+          args: {
+            name: "<rule1,rule2,...>",
+            isVariadic: true,
           },
         },
       ],
@@ -102,12 +131,18 @@ const completionSpec: Fig.Spec = {
       description: "Show help for elm-review",
     },
     {
+      name: "--unsuppress",
+      description:
+        "Include suppressed errors in the error report for all rules",
+    },
+    {
       name: "--rules",
       description:
         "Run with a subsection of the rules in the configuration. Specify them by their name, and separate them by commas",
       args: {
         name: "<rule1,rule2,...>",
         description: "Run with a subsection of the rules in the configuration",
+        isVariadic: true,
       },
     },
     {
@@ -179,6 +214,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<dir1,dir2,...>",
         template: "folders",
+        isVariadic: true,
       },
     },
     {
@@ -187,6 +223,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "<file1,file2,...>",
         template: "filepaths",
+        isVariadic: true,
       },
     },
     {
