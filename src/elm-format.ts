@@ -49,9 +49,10 @@ const completionSpec: Fig.Spec = {
       name: "--elm-version",
       description: "The Elm version of the source files being formatted",
       args: {
-        name: "FILE",
-        description: "Name and location of output file",
+        name: "VERSION",
+        description: "Valid values: 0.18, 0.19. Default: auto",
         generators: supportedElmVersions,
+        isOptional: true,
       },
     },
   ],
