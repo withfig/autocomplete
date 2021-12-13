@@ -608,6 +608,151 @@ const completionSpec: Fig.Spec = {
   ],
   subcommands: [
     {
+      name: "blame",
+      args: {
+        name: "file",
+        template: "filepaths",
+      },
+      options: [
+        {
+          name: "--incremental",
+          description: "Show blame entries as we find them, incrementally",
+        },
+        {
+          name: "-b",
+          description:
+            "Do not show object names of boundary commits (Default: off)",
+        },
+        {
+          name: "--root",
+          description: "Do not treat root commits as boundaries (Default: off)",
+        },
+        {
+          name: "--show-stats",
+          description: "Show work cost statistics",
+        },
+        {
+          name: "--progress",
+          description: "Force progress reporting",
+        },
+        {
+          name: "--score-debug",
+          description: "Show output score for blame entries",
+        },
+        {
+          name: ["-f", "--show-name"],
+          description: "Show original filename (Default: auto)",
+        },
+        {
+          name: ["-n,", "--show-number"],
+          description: "Show original linenumber (Default: off)",
+        },
+        {
+          name: ["-p", "--porcelain"],
+          description: "Show in a format designed for machine consumption",
+        },
+        {
+          name: "--line-porcelain",
+          description: "Show porcelain format with per-line commit information",
+        },
+        {
+          name: "-c",
+          description:
+            "Use the same output mode as git-annotate (Default: off)",
+        },
+        {
+          name: "-t",
+          description: "Show raw timestamp (Default: off)",
+        },
+        {
+          name: "-l",
+          description: "Show long commit SHA1 (Default: off)",
+        },
+        {
+          name: "-s",
+          description: "Suppress author name and timestamp (Default: off)",
+        },
+        {
+          name: ["-e", "--show-email"],
+          description: "Show author email instead of name (Default: off)",
+        },
+        {
+          name: "-w",
+          description: "Ignore whitespace differences",
+        },
+        {
+          name: "--ignore-rev",
+          description: "Ignore <rev> when blaming",
+          args: {
+            name: "rev",
+            generators: gitGenerators.revs,
+          },
+        },
+        {
+          name: "--ignore-revs-file",
+          description: "Ignore revisions from <file>",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--color-lines",
+          description:
+            "Color redundant metadata from previous line differently",
+        },
+        { name: "--color-by-age", description: "Color lines by age" },
+        {
+          name: "--minimal",
+          description: "Spend extra cycles to find better match",
+        },
+        {
+          name: "-S",
+          description:
+            "Use revisions from <file> instead of calling git-rev-list",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--contents",
+          description: "Use <file>'s contents as the final image",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "-C",
+          insertValue: "-C{cursor}",
+          description: "Find line copies within and across files",
+        },
+        {
+          name: "-M",
+          insertValue: "-M{cursor}",
+          description: "Find line movements within and across files",
+        },
+        {
+          name: "-L",
+          description:
+            "Process only line range <start>,<end> or function :<funcname>",
+          args: {
+            name: "start,end",
+          },
+        },
+        {
+          name: "--abbrev",
+          insertValue: "--abbrev=",
+          description: "Use <n> digits to display object names",
+          args: {
+            name: "n",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
       name: "commit",
       description: "Record changes to the repository",
       args: {
