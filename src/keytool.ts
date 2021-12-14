@@ -12,6 +12,9 @@ const commonOptions: Fig.Option[] = [
 const completionSpec: Fig.Spec = {
   name: "keytool",
   description: "Key and Certificate Management Tool",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   options: [
     {
       name: ["-h", "-?", "--help", "-help"],
