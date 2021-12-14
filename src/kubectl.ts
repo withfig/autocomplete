@@ -3748,12 +3748,10 @@ const completionSpec: Fig.Spec = {
           name: "--client",
           description:
             "If true, shows client version only (no server required)",
-          args: {},
         },
         {
           name: "--short",
           description: "If true, print just the version number",
-          args: {},
         },
       ],
     },
