@@ -18,6 +18,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "init",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Initialize a new Elm project",
       options: [
         {
@@ -28,6 +29,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "repl",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Start an Elm repl",
       options: [
         {
@@ -68,6 +70,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "install",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Install an Elm dependency",
       args: {
         name: "package",
@@ -156,6 +159,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "publish",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Elm_logo.svg/1200px-Elm_logo.svg.png",
       description: "Publish your package",
       options: [
         {
