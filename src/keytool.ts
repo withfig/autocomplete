@@ -983,7 +983,134 @@ const completionSpec: Fig.Spec = {
     {
       name: "-importkeystore",
       description: "Imports one or all entries from another keystore",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        {
+          name: "-srckeystore",
+          description: "Source keystore name",
+          args: {
+            name: "keystore",
+          },
+        },
+        {
+          name: "-destkeystore",
+          description: "Destination keystore name",
+          args: {
+            name: "keystore",
+          },
+        },
+        {
+          name: "-srcstoretype",
+          description: "Source keystore type",
+          args: {
+            name: "type",
+          },
+        },
+        {
+          name: "-deststoretype",
+          description: "Destination keystore type",
+          args: {
+            name: "type",
+          },
+        },
+        {
+          name: "-srcstorepass",
+          description: "Source keystore password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-deststorepass",
+          description: "Destination keystore password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-srcprotected",
+          description: "Source keystore password protected",
+        },
+        {
+          name: "-destprotected",
+          description: "Destination keystore password protected",
+        },
+        {
+          name: "-srcprovidername",
+          description: "Source keystore provider name",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-destprovidername",
+          description: "Destination keystore provider name",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-srcalias",
+          description: "Source alias",
+          args: {
+            name: "alias",
+          },
+        },
+        {
+          name: "-destalias",
+          description: "Destination alias",
+          args: {
+            name: "alias",
+          },
+        },
+        {
+          name: "-srckeypass",
+          description: "Source key password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-destkeypass",
+          description: "Destination key password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-noprompt",
+          description: "Do not prompt",
+        },
+        {
+          name: "-addprovider",
+          description: "Add security provider by name (e.g. SunPKCS11)",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-providerclass",
+          description: "Add security provider by fully-qualified class name",
+          args: {
+            name: "class",
+          },
+        },
+        {
+          name: "-providerarg",
+          description: "Configure argument for -addprovider or -providerclass",
+          args: {
+            name: "arg",
+          },
+          dependsOn: ["-addprovider", "-providerclass"],
+        },
+        {
+          name: "-providerpath",
+          description: "Provider classpath",
+          args: {
+            name: "list",
+          },
+        },
+      ],
     },
     {
       name: "-keypasswd",
