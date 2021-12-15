@@ -655,7 +655,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "-printcertreq",
       description: "Prints the content of a certificate request",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        {
+          name: "-file",
+          description: "Input file name",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+      ],
     },
     {
       name: "-printcrl",
