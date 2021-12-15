@@ -784,7 +784,104 @@ const completionSpec: Fig.Spec = {
     {
       name: "-importcert",
       description: "Imports a certificate or a certificate chain",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        {
+          name: "-noprompt",
+          description: "Do not prompt",
+        },
+        {
+          name: "-trustcacerts",
+          description: "Trust certificates from cacerts",
+        },
+        {
+          name: "-alias",
+          description: "Alias name of the entry to process",
+          args: {
+            name: "alias",
+          },
+        },
+        {
+          name: "-file",
+          description: "Output file name",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "-keypass",
+          description: "Key password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-keystore",
+          description: "Keystore name",
+          args: {
+            name: "keystore",
+          },
+        },
+        {
+          name: "-cacerts",
+          description: "Access the cacerts keystore",
+        },
+        {
+          name: "-storepass",
+          description: "Keystore password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-storetype",
+          description: "Keystore type",
+          args: {
+            name: "type",
+          },
+        },
+        {
+          name: "-providername",
+          description: "Provider name",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-addprovider",
+          description: "Add security provider by name (e.g. SunPKCS11)",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-providerclass",
+          description: "Add security provider by fully-qualified class name",
+          args: {
+            name: "class",
+          },
+        },
+        {
+          name: "-providerarg",
+          description: "Configure argument for -addprovider or -providerclass",
+          args: {
+            name: "arg",
+          },
+          dependsOn: ["-addprovider", "-providerclass"],
+        },
+        {
+          name: "-providerpath",
+          description: "Provider classpath",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "-protected",
+          description: "Password through protected mechanism",
+        },
+      ],
     },
     {
       name: "-importpass",
