@@ -670,7 +670,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "-printcrl",
       description: "Prints the content of a CRL file",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        {
+          name: "-file",
+          description: "Input file name",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+      ],
     },
     {
       name: "-storepasswd",
