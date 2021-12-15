@@ -186,7 +186,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
       return output.split("\n").map((file) => {
         return {
           name: file,
-          insertValue: !tokens.includes("--") ? "-- " : "" + file,
+          insertValue: (!tokens.includes("--") ? "-- " : "") + file,
           icon: `fig://icon?type=file`,
           description: "Staged file",
         };
