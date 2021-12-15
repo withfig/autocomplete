@@ -9,6 +9,77 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
+const repeatedOptions: Fig.Option[] = [
+  {
+    name: "-alias",
+    description: "Alias name of the entry to process",
+    args: {
+      name: "alias",
+    },
+  },
+  {
+    name: "-keystore",
+    description: "Keystore name",
+    args: {
+      name: "keystore",
+    },
+  },
+  {
+    name: "-storepass",
+    description: "Keystore password",
+    args: {
+      name: "arg",
+    },
+  },
+  {
+    name: "-storetype",
+    description: "Keystore type",
+    args: {
+      name: "type",
+    },
+  },
+  {
+    name: "-providername",
+    description: "Provider name",
+    args: {
+      name: "name",
+    },
+  },
+  {
+    name: "-addprovider",
+    description: "Add security provider by name (e.g. SunPKCS11)",
+    args: {
+      name: "name",
+    },
+  },
+  {
+    name: "-providerclass",
+    description: "Add security provider by fully-qualified class name",
+    args: {
+      name: "class",
+    },
+  },
+  {
+    name: "-providerarg",
+    description: "Configure argument for -addprovider or -providerclass",
+    args: {
+      name: "arg",
+    },
+    dependsOn: ["-addprovider", "-providerclass"],
+  },
+  {
+    name: "-providerpath",
+    description: "Provider classpath",
+    args: {
+      name: "list",
+    },
+  },
+  {
+    name: "-protected",
+    description: "Password through protected mechanism",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "keytool",
   description: "Key and Certificate Management Tool",
@@ -34,13 +105,7 @@ const completionSpec: Fig.Spec = {
       description: "Generates a certificate request",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
+        ...repeatedOptions,
         {
           name: "-sigalg",
           description: "Signature algorithm name",
@@ -64,13 +129,6 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
           name: "-dname",
           description: "Distinguished name",
           args: {
@@ -84,60 +142,6 @@ const completionSpec: Fig.Spec = {
             name: "value",
           },
         },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
-        },
       ],
     },
     {
@@ -145,13 +149,7 @@ const completionSpec: Fig.Spec = {
       description: "Changes an entry's alias",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
+        ...repeatedOptions,
         {
           name: "-destalias",
           description: "Destination alias",
@@ -167,69 +165,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
           name: "-cacerts",
           description: "Access the cacerts keystore",
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
         },
       ],
     },
@@ -238,77 +175,10 @@ const completionSpec: Fig.Spec = {
       description: "Deletes an entry",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
+        ...repeatedOptions,
         {
           name: "-cacerts",
           description: "Access the cacerts keystore",
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
         },
       ],
     },
@@ -317,16 +187,10 @@ const completionSpec: Fig.Spec = {
       description: "Exports certificate",
       options: [
         ...commonOptions,
+        ...repeatedOptions,
         {
           name: "-rfc",
           description: "Output in RFC style",
-        },
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
         },
         {
           name: "-file",
@@ -337,69 +201,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
           name: "-cacerts",
           description: "Access the cacerts keystore",
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
         },
       ],
     },
@@ -408,13 +211,7 @@ const completionSpec: Fig.Spec = {
       description: "Generate a key pair",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
+        ...repeatedOptions,
         {
           name: "-keyalg",
           description: "Key algorithm name",
@@ -485,67 +282,6 @@ const completionSpec: Fig.Spec = {
             name: "arg",
           },
         },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
-        },
       ],
     },
     {
@@ -553,13 +289,7 @@ const completionSpec: Fig.Spec = {
       description: "Generates a secret key",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
+        ...repeatedOptions,
         {
           name: "-keypass",
           description: "Key password",
@@ -581,67 +311,6 @@ const completionSpec: Fig.Spec = {
             name: "size",
           },
         },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
-        },
       ],
     },
     {
@@ -649,6 +318,7 @@ const completionSpec: Fig.Spec = {
       description: "Generates certificate from a certificate request",
       options: [
         ...commonOptions,
+        ...repeatedOptions,
         {
           name: "-rfc",
           description: "Output in RFC style",
@@ -667,13 +337,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-          },
-        },
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
           },
         },
         {
@@ -718,67 +381,6 @@ const completionSpec: Fig.Spec = {
             name: "arg",
           },
         },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
-        },
       ],
     },
     {
@@ -786,6 +388,7 @@ const completionSpec: Fig.Spec = {
       description: "Imports a certificate or a certificate chain",
       options: [
         ...commonOptions,
+        ...repeatedOptions,
         {
           name: "-noprompt",
           description: "Do not prompt",
@@ -793,13 +396,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "-trustcacerts",
           description: "Trust certificates from cacerts",
-        },
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
         },
         {
           name: "-file",
@@ -817,69 +413,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
           name: "-cacerts",
           description: "Access the cacerts keystore",
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
         },
       ],
     },
@@ -888,13 +423,7 @@ const completionSpec: Fig.Spec = {
       description: "Imports a password",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
+        ...repeatedOptions,
         {
           name: "-keypass",
           description: "Key password",
@@ -915,67 +444,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "size",
           },
-        },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
         },
       ],
     },
@@ -1116,13 +584,8 @@ const completionSpec: Fig.Spec = {
       description: "Changes the key password of an entry",
       options: [
         ...commonOptions,
-        {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
+        // except for -protected
+        ...repeatedOptions.filter((opt) => opt.name !== "-protected"),
         {
           name: "-keypass",
           description: "Key password",
@@ -1137,63 +600,6 @@ const completionSpec: Fig.Spec = {
             name: "arg",
           },
         },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
       ],
     },
     {
@@ -1201,81 +607,14 @@ const completionSpec: Fig.Spec = {
       description: "Lists entries in a keystore",
       options: [
         ...commonOptions,
+        ...repeatedOptions,
         {
           name: "-rfc",
           description: "Output in RFC style",
         },
         {
-          name: "-alias",
-          description: "Alias name of the entry to process",
-          args: {
-            name: "alias",
-          },
-        },
-        {
-          name: "-keystore",
-          description: "Keystore name",
-          args: {
-            name: "keystore",
-          },
-        },
-        {
           name: "-cacerts",
           description: "Access the cacerts keystore",
-        },
-        {
-          name: "-storepass",
-          description: "Keystore password",
-          args: {
-            name: "arg",
-          },
-        },
-        {
-          name: "-storetype",
-          description: "Keystore type",
-          args: {
-            name: "type",
-          },
-        },
-        {
-          name: "-providername",
-          description: "Provider name",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-addprovider",
-          description: "Add security provider by name (e.g. SunPKCS11)",
-          args: {
-            name: "name",
-          },
-        },
-        {
-          name: "-providerclass",
-          description: "Add security provider by fully-qualified class name",
-          args: {
-            name: "class",
-          },
-        },
-        {
-          name: "-providerarg",
-          description: "Configure argument for -addprovider or -providerclass",
-          args: {
-            name: "arg",
-          },
-          dependsOn: ["-addprovider", "-providerclass"],
-        },
-        {
-          name: "-providerpath",
-          description: "Provider classpath",
-          args: {
-            name: "list",
-          },
-        },
-        {
-          name: "-protected",
-          description: "Password through protected mechanism",
         },
       ],
     },
