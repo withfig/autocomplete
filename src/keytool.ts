@@ -621,7 +621,36 @@ const completionSpec: Fig.Spec = {
     {
       name: "-printcert",
       description: "Prints the content of a certificate",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        {
+          name: "-rfc",
+          description: "Output in RFC style",
+        },
+        {
+          name: "-file",
+          description: "Input file name",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "-sslserver",
+          description: "SSL server host and port",
+          args: {
+            name: "server:[port]",
+          },
+        },
+        {
+          name: "-jarfile",
+          description: "Signed jar file",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+      ],
     },
     {
       name: "-printcertreq",
