@@ -1,3 +1,4 @@
+// TODO: add alias, keystore, storetype, storepass, providername, providerclass, providerarg, addprovider & protected
 const commonOptions: Fig.Option[] = [
   {
     name: ["-h", "-?", "--help", "-help"],
@@ -886,7 +887,98 @@ const completionSpec: Fig.Spec = {
     {
       name: "-importpass",
       description: "Imports a password",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        {
+          name: "-alias",
+          description: "Alias name of the entry to process",
+          args: {
+            name: "alias",
+          },
+        },
+        {
+          name: "-keypass",
+          description: "Key password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-keyalg",
+          description: "Key algorithm name",
+          args: {
+            name: "alg",
+          },
+        },
+        {
+          name: "-keysize",
+          description: "Key bit size",
+          args: {
+            name: "size",
+          },
+        },
+        {
+          name: "-keystore",
+          description: "Keystore name",
+          args: {
+            name: "keystore",
+          },
+        },
+        {
+          name: "-storepass",
+          description: "Keystore password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-storetype",
+          description: "Keystore type",
+          args: {
+            name: "type",
+          },
+        },
+        {
+          name: "-providername",
+          description: "Provider name",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-addprovider",
+          description: "Add security provider by name (e.g. SunPKCS11)",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-providerclass",
+          description: "Add security provider by fully-qualified class name",
+          args: {
+            name: "class",
+          },
+        },
+        {
+          name: "-providerarg",
+          description: "Configure argument for -addprovider or -providerclass",
+          args: {
+            name: "arg",
+          },
+          dependsOn: ["-addprovider", "-providerclass"],
+        },
+        {
+          name: "-providerpath",
+          description: "Provider classpath",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "-protected",
+          description: "Password through protected mechanism",
+        },
+      ],
     },
     {
       name: "-importkeystore",
