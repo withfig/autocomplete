@@ -917,7 +917,6 @@ const completionSpec: Fig.Spec = {
               description: "Run vulnerability audit on installed packages",
             },
             { name: ["-h", "--help"], description: "Output usage information" },
-            { name: "--help", description: "Output usage information" },
           ],
         },
         {
@@ -1245,9 +1244,50 @@ const completionSpec: Fig.Spec = {
       description:
         "Upgrades packages to their latest version based on the specified range",
       args: {
+        name: "package",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
+      options: [
+        ...commonOptions,
+        {
+          name: ["-S", "--scope"],
+          description: "Upgrade packages under the specified scope",
+          args: { name: "scope" },
+        },
+        {
+          name: ["-L", "--latest"],
+          description: "List the latest version of packages",
+        },
+        {
+          name: ["-E", "--exact"],
+          description:
+            "Install exact version. Only used when --latest is specified",
+          dependsOn: ["--latest"],
+        },
+        {
+          name: ["-P", "--pattern"],
+          description: "Upgrade packages that match pattern",
+          args: { name: "pattern" },
+        },
+        {
+          name: ["-T", "--tilde"],
+          description:
+            "Install most recent release with the same minor version. Only used when --latest is specified",
+        },
+        {
+          name: ["-C", "--caret"],
+          description:
+            "Install most recent release with the same major version. Only used when --latest is specified",
+          dependsOn: ["--latest"],
+        },
+
+        {
+          name: ["-A", "--audit"],
+          description: "Run vulnerability audit on installed packages",
+        },
+        { name: ["-h", "--help"], description: "Output usage information" },
+      ],
     },
     {
       name: "upgrade-interactive",
