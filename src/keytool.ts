@@ -685,7 +685,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "-storepasswd",
       description: "Changes the store password of a keystore",
-      options: [...commonOptions],
+      options: [
+        ...commonOptions,
+        // except for -protected
+        ...repeatedOptions.filter((opt) => opt.name !== "-protected"),
+        {
+          name: "-new",
+          description: "New password",
+          args: {
+            name: "arg",
+          },
+        },
+        {
+          name: "-cacerts",
+          description: "Access the cacerts keystore",
+        },
+      ],
     },
   ],
 };
