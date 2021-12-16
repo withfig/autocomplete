@@ -1,3 +1,41 @@
+const propertySuggestions: (string | Fig.Suggestion)[] = [
+  "all",
+  "allxml",
+  "dpiHeight",
+  "dpiWidth",
+  "pixelHeight",
+  "pixelWidth",
+  "typeIdentifier",
+  "format",
+  "formatOptions",
+  "space",
+  "samplesPerPixel",
+  "bitsPerSample",
+  "creation",
+  "make",
+  "model",
+  "software",
+  "description",
+  "copyright",
+  "artist",
+  "profile",
+  "hasAlpha",
+  "size",
+  "cmm",
+  "version",
+  "class",
+  "pcs",
+  "platform",
+  "quality",
+  "deviceManufacturer",
+  "deviceModel",
+  "deviceAttributes0",
+  "deviceAttributes1",
+  "renderingIntent",
+  "creator",
+  "md5",
+];
+
 const completionSpec: Fig.Spec = {
   name: "sips",
   description: "Scriptable image processing system",
@@ -6,6 +44,35 @@ const completionSpec: Fig.Spec = {
     template: "filepaths",
   },
   options: [
+    {
+      name: ["-g", "--getProperty"],
+      description: "Output the property value for key to stdout",
+      args: {
+        name: "key",
+        suggestions: propertySuggestions,
+      },
+    },
+    {
+      name: ["-s", "--setProperty"],
+      description: "Set a property value for key to value",
+      args: [
+        {
+          name: "key",
+          suggestions: propertySuggestions,
+        },
+        {
+          name: "value",
+        },
+      ],
+    },
+    {
+      name: ["-d", "--deleteProperty"],
+      description: "Remove a property value for key",
+      args: {
+        name: "key",
+        suggestions: propertySuggestions,
+      },
+    },
     {
       name: "--debug",
       description: "Enable debugging output",
