@@ -74,6 +74,18 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: ["-X", "--extractTag"],
+      description: "Extract a profile tag element to tagFile",
+      args: [
+        {
+          name: "tag",
+        },
+        {
+          name: "tagFile",
+        },
+      ],
+    },
+    {
       name: "--debug",
       description: "Enable debugging output",
     },
