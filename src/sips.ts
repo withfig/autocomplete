@@ -129,6 +129,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "--repair",
+      description: "Repair any profile problems and log output to stdout",
+    },
+    {
       name: "--debug",
       description: "Enable debugging output",
     },
