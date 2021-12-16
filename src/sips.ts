@@ -98,6 +98,37 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--deleteTag",
+      args: { name: "tag" },
+      description: "Remove the tag element from a profile",
+    },
+    {
+      name: "--copyTag",
+      description: "Copy the srcTag element of a profile to dstTag",
+      args: [
+        {
+          name: "srcTag",
+        },
+        {
+          name: "dstTag",
+        },
+      ],
+    },
+    {
+      name: "--loadTag",
+      description:
+        "Set the tag element of a profile to the contents of tagFile",
+      args: [
+        {
+          name: "tag",
+        },
+        {
+          name: "tagFile",
+          template: "filepaths",
+        },
+      ],
+    },
+    {
       name: "--debug",
       description: "Enable debugging output",
     },
