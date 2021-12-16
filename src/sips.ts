@@ -90,6 +90,14 @@ const completionSpec: Fig.Spec = {
       description: "Verify any profile problems and log output to stdout",
     },
     {
+      name: ["-x", "--extractProfile"],
+      description:
+        "Get the embedded profile from image and write it to profile",
+      args: {
+        name: "profile",
+      },
+    },
+    {
       name: "--debug",
       description: "Enable debugging output",
     },
