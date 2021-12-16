@@ -86,6 +86,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "--verify",
+      description: "Verify any profile problems and log output to stdout",
+    },
+    {
       name: "--debug",
       description: "Enable debugging output",
     },
