@@ -50,9 +50,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "generator",
           generators: generatorsGenerator,
+          isOptional: true,
         },
         {
           name: "name",
+          isOptional: true,
         },
       ],
       options: [
