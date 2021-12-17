@@ -4,6 +4,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "string",
     isVariadic: true,
+    optionsCanBreakVariadicArg: false,
   },
   options: [
     {
