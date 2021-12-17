@@ -79,6 +79,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "remix",
     icon: "https://remix.run/favicon-light.1.png",
   },
+  {
+    name: "ignite-cli",
+    icon: "🔥",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
