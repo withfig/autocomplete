@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
                     description: "Disable webpack dev server",
                   },
                   {
-                    name: ["-w", "--watch "],
+                    name: ["-w", "--watch"],
                     description:
                       "Watch for file changes and re-start the HTTP server on change",
                   },
