@@ -136,6 +136,16 @@ const completionSpec: Fig.Spec = {
       name: "versions",
       description:
         "Lists all Python versions known to pyenv, and shows an asterisk next to the currently active version",
+      options: [
+        {
+          name: "--bare",
+          description: "Print only the version names, one per line",
+        },
+        {
+          name: "--skip-aliases",
+          description: "Skip printing aliases",
+        },
+      ],
     },
     {
       name: "which",
