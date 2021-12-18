@@ -1,3 +1,5 @@
+import { filepaths } from "src/_common/generators";
+
 type SearchResultData = {
   id: string;
   title: string;
@@ -42,22 +44,7 @@ const versionSearchGenerator: Fig.Generator = {
   },
 };
 
-const configFileGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const expected = "nuget.config";
-
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
-
-        return fileName === expected;
-      }
-
-      return false;
-    });
-  },
-};
+const configFileGenerator = filepaths({ equals: "nuget.config" });
 
 const toolListGenerator: Fig.Generator = {
   trigger: () => true,

@@ -1,13 +1,7 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const generators: Record<string, Fig.Generator> = {
-  jsonFileGenerator: {
-    template: "filepaths",
-    filterTemplateSuggestions: function (paths) {
-      const suffix = ".json";
-      return paths.filter((file) => {
-        return file.name.endsWith(suffix);
-      });
-    },
-  },
+  jsonFileGenerator: filepaths({ extensions: ["json"] }),
 };
 
 const appArg: Fig.Arg = {

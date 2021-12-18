@@ -1,3 +1,5 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "python",
   description: "Run the python interpreter",
@@ -17,23 +19,10 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "python script",
     isScript: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions: function (paths) {
-        return paths
-          .filter((file) => {
-            return file.name.endsWith(".py") || file.name.endsWith("/");
-          })
-          .map((file) => {
-            const isPyFile = file.name.endsWith(".py");
-
-            return {
-              ...file,
-              priority: isPyFile && 76,
-            };
-          });
-      },
-    },
+    generators: filepaths({
+      extensions: ["py"],
+      editFileSuggestions: { priority: 76 },
+    }),
   },
   options: [
     {

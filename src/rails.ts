@@ -1,3 +1,5 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const RB_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_ruby.svg";
 
@@ -573,20 +575,10 @@ const defaultCommands: Fig.Subcommand[] = [
     description: "Run your test suite",
     args: {
       name: "files or directories",
-      generators: {
-        template: ["filepaths", "folders"],
-        filterTemplateSuggestions: (paths) => {
-          return paths
-            .filter((file) => {
-              const name = file.name as string;
-              return name.endsWith(".rb") || name.endsWith("/");
-            })
-            .map((file) => ({
-              ...file,
-              icon: file.type === "file" ? RB_ICON : file.icon,
-            }));
-        },
-      },
+      generators: filepaths({
+        extensions: ["rb"],
+        editFileSuggestions: { icon: RB_ICON },
+      }),
       isOptional: true,
     },
     async generateSpec(_, executeShellCommand) {

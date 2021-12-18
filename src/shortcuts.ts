@@ -1,3 +1,5 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const shortcut: Fig.Arg = {
   generators: {
     script: "shortcuts list",
@@ -119,15 +121,9 @@ const subcommands: Fig.Subcommand[] = [
         description: "The shortcut file to sign",
         args: {
           name: "input",
-          generators: {
-            template: "filepaths",
-            filterTemplateSuggestions: (suggestions) =>
-              suggestions.filter(
-                (suggestion) =>
-                  suggestion.type === "folder" ||
-                  suggestion.name.endsWith(".shortcut")
-              ),
-          },
+          generators: filepaths({
+            extensions: ["shortcut"],
+          }),
         },
       },
       {

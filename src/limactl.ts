@@ -1,3 +1,5 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const PRIORITY_TOP_THRESHOLD = 76;
 
 const generateGlobalFlags = (subcommandName: string): Fig.Option[] => [
@@ -24,21 +26,9 @@ const instanceNameGenerator = (
     })),
 });
 
-const yamlFilepathsGenerator = (
-  suggestOptions?: Partial<Fig.Suggestion>
-): Fig.Generator => ({
-  template: "filepaths",
-  filterTemplateSuggestions: (paths) => {
-    const isYaml = (fileName: string) =>
-      fileName.endsWith(".yaml") || fileName.endsWith(".yml");
-    return paths
-      .filter((file) => isYaml(file.name) || file.name.endsWith("/"))
-      .map((file) => ({
-        ...file,
-        priority: isYaml(file.name) && PRIORITY_TOP_THRESHOLD,
-        ...suggestOptions,
-      }));
-  },
+const yamlFilepathsGenerator = filepaths({
+  extensions: ["yaml", "yml"],
+  editFileSuggestions: { priority: PRIORITY_TOP_THRESHOLD },
 });
 
 const completionSpec: Fig.Spec = {
@@ -196,7 +186,7 @@ const completionSpec: Fig.Spec = {
         'Start an instance of Lima. If the instance does not exist, open an editor for creating new one, with name "default"',
       args: {
         name: "NAME|FILE.yaml|URL",
-        generators: [instanceNameGenerator(), yamlFilepathsGenerator()],
+        generators: [instanceNameGenerator(), yamlFilepathsGenerator],
       },
       options: [
         ...generateGlobalFlags("start"),
@@ -248,7 +238,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "FILE.yaml",
         isVariadic: true,
-        generators: yamlFilepathsGenerator(),
+        generators: yamlFilepathsGenerator,
       },
       options: [...generateGlobalFlags("validate")],
     },

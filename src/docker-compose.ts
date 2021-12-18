@@ -1,3 +1,5 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "docker-compose",
   description: "Define and run multi-container applications with Docker",
@@ -150,17 +152,7 @@ const completionSpec: Fig.Spec = {
     {
       args: {
         name: "Docker Compose File",
-        generators: {
-          template: "filepaths",
-          filterTemplateSuggestions: function (paths) {
-            const validExtensions = [".yml", ".yaml"];
-            return paths.filter((file) => {
-              return validExtensions.reduce((hasExtension, extension) => {
-                return hasExtension ? true : file.name.endsWith(extension);
-              }, false);
-            });
-          },
-        },
+        generators: filepaths({ extensions: ["yml", "yaml"] }),
       },
       description: "Specify an alternate compose file",
       name: ["-f", "--file"],

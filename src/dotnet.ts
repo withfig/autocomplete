@@ -1,3 +1,5 @@
+import { filepaths } from "@withfig/autocomplete-generators";
+
 const DOTNET_ICON =
   "https://upload.wikimedia.org/wikipedia/commons/a/a3/.NET_Logo.svg";
 
@@ -106,20 +108,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "command",
     isOptional: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions(param) {
-        const suffix = ".dll";
-
-        return param.filter((file) => {
-          if (typeof file.name === "string") {
-            return file.name.endsWith(suffix);
-          }
-
-          return false;
-        });
-      },
-    },
+    generators: filepaths({ extensions: ["dll"] }),
   },
   options: [
     {
