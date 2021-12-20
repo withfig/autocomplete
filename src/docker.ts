@@ -1294,18 +1294,658 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Run a command in a new container",
     options: [
       {
+        name: "-it",
+        description: "Launch an interactive session",
+        icon: "fig://icon?type=commandkey",
+      },
+      {
+        name: "--add-host",
+        description: "Add a custom host-to-IP mapping (host:ip)",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: ["-a", "--attach"],
+        description: "Attach to STDIN, STDOUT or STDERR",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--blkio-weight",
+        description:
+          "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+        args: {
+          name: "uint16",
+        },
+      },
+      {
+        name: "--blkio-weight-device",
+        description: "Block IO weight (relative device weight) (default [])",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--cap-add",
+        description: "Add Linux capabilities",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--cap-drop",
+        description: "Drop Linux capabilities",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--cgroup-parent",
+        description: "Optional parent cgroup for the container",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--cgroupns",
+        description: `Cgroup namespace to use (host|private)
+'host':    Run the container in the Docker host's cgroup namespace
+'private': Run the container in its own private cgroup namespace
+'':        Use the cgroup namespace as configured by the
+default-cgroupns-mode option on the daemon (default)`,
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--cidfile",
+        description: "Write the container ID to the file",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--cpu-period",
+        description: "Limit CPU CFS (Completely Fair Scheduler) period",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--cpu-quota",
+        description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--cpu-rt-period",
+        description: "Limit CPU real-time period in microseconds",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--cpu-rt-runtime",
+        description: "Limit CPU real-time runtime in microseconds",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: ["-c", "--cpu-shares"],
+        description: "CPU shares (relative weight)",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--cpus",
+        description: "Number of CPUs",
+        args: {
+          name: "decimal",
+        },
+      },
+      {
+        name: "--cpuset-cpus",
+        description: "CPUs in which to allow execution (0-3, 0,1)",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--cpuset-mems",
+        description: "MEMs in which to allow execution (0-3, 0,1)",
+        args: {
+          name: "string",
+        },
+      },
+      {
         name: ["-d", "--detach"],
         description: "Run container in background and print container ID",
+      },
+      {
+        name: "--detach-keys",
+        description: "Override the key sequence for detaching a container",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--device",
+        description: "Add a host device to the container",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--device-cgroup-rule",
+        description: "Add a rule to the cgroup allowed devices list",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--device-read-bps",
+        description:
+          "Limit read rate (bytes per second) from a device (default [])",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--device-read-iops",
+        description:
+          "Limit read rate (IO per second) from a device (default [])",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--device-write-bps",
+        description:
+          "Limit write rate (bytes per second) to a device (default [])",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--device-write-iops",
+        description:
+          "Limit write rate (IO per second) to a device (default [])",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--disable-content-trust",
+        description: "Skip image verification (default true)",
+      },
+      {
+        name: "--dns",
+        description: "Set custom DNS servers",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--dns-option",
+        description: "Set DNS options",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--dns-search",
+        description: "Set custom DNS search domains",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--domainname",
+        description: "Container NIS domain name",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--entrypoint",
+        description: "Overwrite the default ENTRYPOINT of the image",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: ["-e", "--env"],
+        description: "Set environment variables",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--env-file",
+        description: "Read in a file of environment variables",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--expose",
+        description: "Expose a port or a range of ports",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--gpus",
+        description:
+          "GPU devices to add to the container ('all' to pass all GPUs)",
+        args: {
+          name: "gpu-request",
+        },
+      },
+      {
+        name: "--group-add",
+        description: "Add additional groups to join",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--health-cmd",
+        description: "Command to run to check health",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--health-interval",
+        description: "Time between running the check (ms|s|m|h) (default 0s)",
+        args: {
+          name: "duration",
+        },
+      },
+      {
+        name: "--health-retries",
+        description: "Consecutive failures needed to report unhealthy",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--health-start-period",
+        description:
+          "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
+        args: {
+          name: "duration",
+        },
+      },
+      {
+        name: "--health-timeout",
+        description:
+          "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
+        args: {
+          name: "duration",
+        },
+      },
+      {
+        name: "--help",
+        description: "Print usage",
+      },
+      {
+        name: ["-h", "--hostname"],
+        description: "Container host name",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--init",
+        description:
+          "Run an init inside the container that forwards signals and reaps processes",
       },
       {
         name: ["-i", "--interactive"],
         description: "Keep STDIN open even if not attached",
       },
-      { name: ["-t", "--tty"], description: "Allocate a pseudo-TTY" },
       {
-        name: "-it",
-        description: "Launch an interactive session",
-        icon: "fig://icon?type=commandkey",
+        name: "--ip",
+        description: "IPv4 address (e.g., 172.30.100.104)",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--ip6",
+        description: "IPv6 address (e.g., 2001:db8::33)",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--ipc",
+        description: "IPC mode to use",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--isolation",
+        description: "Container isolation technology",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--kernel-memory",
+        description: "Kernel memory limit",
+        args: {
+          name: "bytes",
+        },
+      },
+      {
+        name: ["-l", "--label"],
+        description: "Set meta data on a container",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--label-file",
+        description: "Read in a line delimited file of labels",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--link",
+        description: "Add link to another container",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--link-local-ip",
+        description: "Container IPv4/IPv6 link-local addresses",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--log-driver",
+        description: "Logging driver for the container",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--log-opt",
+        description: "Log driver options",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--mac-address",
+        description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: ["-m", "--memory"],
+        description: "Memory limit",
+        args: {
+          name: "bytes",
+        },
+      },
+      {
+        name: "--memory-reservation",
+        description: "Memory soft limit",
+        args: {
+          name: "bytes",
+        },
+      },
+      {
+        name: "--memory-swap",
+        description:
+          "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+        args: {
+          name: "bytes",
+        },
+      },
+      {
+        name: "--memory-swappiness",
+        description: "Tune container memory swappiness (0 to 100) (default -1)",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--mount",
+        description: "Attach a filesystem mount to the container",
+        args: {
+          name: "mount",
+        },
+      },
+      {
+        name: "--name",
+        description: "Assign a name to the container",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--network",
+        description: "Connect a container to a network",
+        args: {
+          name: "network",
+        },
+      },
+      {
+        name: "--network-alias",
+        description: "Add network-scoped alias for the container",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--no-healthcheck",
+        description: "Disable any container-specified HEALTHCHECK",
+      },
+      {
+        name: "--oom-kill-disable",
+        description: "Disable OOM Killer",
+      },
+      {
+        name: "--oom-score-adj",
+        description: "Tune host's OOM preferences (-1000 to 1000)",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--pid",
+        description: "PID namespace to use",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--pids-limit",
+        description: "Tune container pids limit (set -1 for unlimited)",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--platform",
+        description: "Set platform if server is multi-platform capable",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--privileged",
+        description: "Give extended privileges to this container",
+      },
+      {
+        name: ["-p", "--publish"],
+        description: "Publish a container's port(s) to the host",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: ["-P", "--publish-all"],
+        description: "Publish all exposed ports to random ports",
+      },
+      {
+        name: "--pull",
+        description:
+          "Pull image before running ('always'|'missing'|'never') (default 'missing')",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--read-only",
+        description: "Mount the container's root filesystem as read only",
+      },
+      {
+        name: "--restart",
+        description:
+          "Restart policy to apply when a container exits (default 'no')",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--rm",
+        description: "Automatically remove the container when it exits",
+      },
+      {
+        name: "--runtime",
+        description: "Runtime to use for this container",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--security-opt",
+        description: "Security Options",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--shm-size",
+        description: "Size of /dev/shm",
+        args: {
+          name: "bytes",
+        },
+      },
+      {
+        name: "--sig-proxy",
+        description: "Proxy received signals to the process (default true)",
+      },
+      {
+        name: "--stop-signal",
+        description: "Signal to stop a container (default 'SIGTERM')",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--stop-timeout",
+        description: "Timeout (in seconds) to stop a container",
+        args: {
+          name: "int",
+        },
+      },
+      {
+        name: "--storage-opt",
+        description: "Storage driver options for the container",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--sysctl",
+        description: "Sysctl options (default map[])",
+        args: {
+          name: "map",
+        },
+      },
+      {
+        name: "--tmpfs",
+        description: "Mount a tmpfs directory",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: ["-t", "--tty"],
+        description: "Allocate a pseudo-TTY",
+      },
+      {
+        name: "--ulimit",
+        description: "Ulimit options (default [])",
+        args: {
+          name: "ulimit",
+        },
+      },
+      {
+        name: ["-u", "--user"],
+        description: "Username or UID (format: <name|uid>[:<group|gid>])",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--userns",
+        description: "User namespace to use",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--uts",
+        description: "UTS namespace to use",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: ["-v", "--volume"],
+        description: "Bind mount a volume",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: "--volume-driver",
+        description: "Optional volume driver for the container",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--volumes-from",
+        description: "Mount volumes from the specified container(s)",
+        args: {
+          name: "list",
+        },
+      },
+      {
+        name: ["-w", "--workdir"],
+        description: "Working directory inside the container",
+        args: {
+          name: "string",
+        },
       },
     ],
     args: [
