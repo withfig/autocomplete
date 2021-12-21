@@ -30,6 +30,7 @@ const config: Fig.Option = {
   description: "Path to alternate config file",
   args: {
     name: "CONFIG",
+    template: "filepaths",
   },
 };
 
