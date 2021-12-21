@@ -165,7 +165,7 @@ const completionSpec: Fig.Spec = {
   description: "Pre-commit",
   args: {},
   options: [
-    globalOptions[0], // top level only takes `help`
+    help,
     {
       name: ["-V", "--version"],
       description: "Show program's version number and exit",
