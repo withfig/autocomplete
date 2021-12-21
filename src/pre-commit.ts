@@ -1,14 +1,29 @@
+import YAML from "yaml";
 import { gitGenerators } from "./git";
 
 const hooksInConfig: Fig.Generator = {
-  // TODO: replace with a YAML parser when it's available
-  // See: https://github.com/withfig/fig/issues/733
-  script:
-    'sed -nE "s/[[:space:]]+-[[:space:]]+id:[[:space:]](.*)$/\\1/p" .pre-commit-config.yaml',
-  postProcess: (output) =>
-    output.split("\n").map((hookId) => ({
-      name: `${hookId}`,
-    })),
+  script: "cat .pre-commit-config.yaml",
+  postProcess: (output) => {
+    const suggestions: Fig.Suggestion[] = [];
+
+    try {
+      const repos = YAML.parse(output).repos;
+
+      if (repos) {
+        repos.forEach((repo) => {
+          repo.hooks.forEach((hookId) => {
+            suggestions.push({
+              name: `${hookId.id}`,
+            }) as Fig.Suggestion;
+          });
+        });
+      }
+
+      return suggestions;
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 
 const help: Fig.Option = {
