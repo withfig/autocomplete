@@ -92,6 +92,7 @@
   "dependencies": {
     "@types/glob": "^7.2.0",
     "fs": "^0.0.1-security",
-    "glob": "^7.2.0"
+    "glob": "^7.2.0",
+    "yaml": "^1.10.2"
   }
 }
