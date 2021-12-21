@@ -96,7 +96,7 @@ type ExclusiveOn = {
   exclusiveOn?: string[];
 };
 
-const unsafelyIgnoreCertificateErrorsOption = {
+const unsafelyIgnoreCertificateErrorsOption: Fig.Option = {
   name: "--unsafely-ignore-certificate-errors",
   description: "DANGER: Disables verification of TLS certificates",
   isDangerous: true,
