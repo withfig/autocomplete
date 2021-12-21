@@ -83,7 +83,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
   });
 };
 
-const gitGenerators: Record<string, Fig.Generator> = {
+export const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
     script: "git --no-optional-locks log --oneline",

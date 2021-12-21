@@ -1,3 +1,5 @@
+import { gitGenerators } from "./git";
+
 const hooksInConfig: Fig.Generator = {
   // TODO: replace with a YAML parser when it's available
   // See: https://github.com/withfig/fig/issues/733
@@ -87,7 +89,7 @@ const commonRepoOptions: Fig.Option[] = [
     description: "Remote branch ref used by `git push`",
     args: {
       name: "REMOTE_BRANCH",
-      // TODO: am I allowed to import a generator for `git.ts`?
+      generators: gitGenerators.remoteLocalBranches,
     },
   },
   {
@@ -95,6 +97,7 @@ const commonRepoOptions: Fig.Option[] = [
     description: "Local branch ref used by `git push`",
     args: {
       name: "LOCAL_BRANCH",
+      generators: gitGenerators.localBranches,
     },
   },
   {
@@ -103,6 +106,7 @@ const commonRepoOptions: Fig.Option[] = [
       "Represents the original ref in a `from_ref...to_ref` diff expression. For `pre-push` hooks, this represents the branch you are pushing to. For `post-checkout` hooks, this represents the branch that was previously checked out",
     args: {
       name: "FROM_REF",
+      generators: gitGenerators.revs,
     },
   },
   {
@@ -111,6 +115,7 @@ const commonRepoOptions: Fig.Option[] = [
       "Represents the destination ref in a `from_ref...to_ref` diff expression. For `pre-push` hooks, this represents the branch being pushed. For `post-checkout` hooks, this represents the branch that is now checked out",
     args: {
       name: "TO_REF",
+      generators: gitGenerators.revs,
     },
   },
   {
@@ -125,6 +130,7 @@ const commonRepoOptions: Fig.Option[] = [
     description: "Remote name used by `git push`",
     args: {
       name: "REMOTE_NAME",
+      generators: gitGenerators.remotes,
     },
   },
   {
