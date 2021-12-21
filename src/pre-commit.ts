@@ -208,12 +208,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "clean",
       description: "Clean out pre-commit files",
-      options: [...globalOptions],
+      options: globalOptions,
     },
     {
       name: "gc",
       description: "Clean unused cached repos",
-      options: [...globalOptions],
+      options: globalOptions,
     },
     {
       name: "init-templatedir",
@@ -253,7 +253,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "migrate-config",
       description: "Migrate list configuration to new map configuration",
-      options: [...globalOptions],
+      options: globalOptions,
     },
     {
       name: "run",
@@ -269,7 +269,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "sample-config",
       description: "Produce a sample .pre-commit-config.yaml file",
-      options: [...globalOptions],
+      options: globalOptions,
     },
     {
       name: "try-repo",
@@ -308,7 +308,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Show help for a specific command",
-      options: [...globalOptions],
+      options: globalOptions,
     },
   ],
 };
