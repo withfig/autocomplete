@@ -1679,6 +1679,18 @@ default-cgroupns-mode option on the daemon (default)`,
         description: "Logging driver for the container",
         args: {
           name: "string",
+          suggestions: [
+            "json-file",
+            "syslog",
+            "journald",
+            "gelf",
+            "fluentd",
+            "awslogs",
+            "splunk",
+            "etwlogs",
+            "gcplogs",
+            "none",
+          ],
         },
       },
       {
