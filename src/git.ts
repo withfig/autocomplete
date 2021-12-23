@@ -196,12 +196,13 @@ export const gitGenerators: Record<string, Fig.Generator> = {
 
   // All branches
   remoteLocalBranches: {
-    script: "git --no-optional-locks branch -a --no-color",
+    script:
+      "git --no-optional-locks branch -a --no-color --sort=-committerdate",
     postProcess: postProcessBranches,
   },
 
   localBranches: {
-    script: "git --no-optional-locks branch --no-color",
+    script: "git --no-optional-locks branch --no-color --sort=-committerdate",
     postProcess: postProcessBranches,
   },
 
@@ -212,12 +213,14 @@ export const gitGenerators: Record<string, Fig.Generator> = {
       if (tokens.includes("-r")) {
         return postProcessBranches(
           await executeShellCommand(
-            "git --no-optional-locks branch -r --no-color"
+            "git --no-optional-locks branch -r --no-color --sort=-committerdate"
           )
         );
       } else {
         return postProcessBranches(
-          await executeShellCommand("git --no-optional-locks branch --no-color")
+          await executeShellCommand(
+            "git --no-optional-locks branch --no-color --sort=-committerdate"
+          )
         );
       }
     },
@@ -260,7 +263,7 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   tags: {
-    script: "git --no-optional-locks tag --list",
+    script: "git --no-optional-locks tag --list --sort=-committerdate",
     postProcess: function (output) {
       return output.split("\n").map((tag) => ({
         name: tag,
