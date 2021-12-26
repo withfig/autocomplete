@@ -3,6 +3,7 @@
   "version": "2.64.4",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
+  "main": "./build/index",
   "browserslist": [
     "safari >=11"
   ],
