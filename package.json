@@ -1,9 +1,10 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.64.4",
+  "version": "2.70.0",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "main": "./build/index",
+  "types": "./build/index.d.ts",
   "browserslist": [
     "safari >=11"
   ],
@@ -71,7 +72,6 @@
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@withfig/autocomplete-tools": "^2.0.1",
-    "@withfig/autocomplete-types": "^1.5.0",
     "@withfig/eslint-plugin-fig-linter": "^1.0.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
@@ -93,6 +93,8 @@
   "dependencies": {
     "@types/glob": "^7.2.0",
     "fs": "^0.0.1-security",
-    "glob": "^7.2.0"
+    "glob": "^7.2.0",
+    "yaml": "^1.10.2",
+    "@withfig/autocomplete-types": "^1.5.0"
   }
 }

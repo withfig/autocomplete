@@ -25,10 +25,26 @@ const files = glob
 
 const commands = glob
   .sync("*.ts", { cwd: `${process.cwd()}/src` })
-  .map((x) => x.slice(0, -3))
-  .map((x) => `export { default as ${normalize(x)} } from "./${x}";`);
+  .map((x) => x.slice(0, -3));
+
+const commandExports = commands
+  .map((x) => `export { default as ${normalize(x)} } from "./${x}";`)
+  .join("");
 
 fs.writeFileSync(
   "build/index.js",
-  `var e=[${files.join(",")}];export{e as default};${commands.join("")}`
+  `var e=[${files.join(",")}];export{e as default};${commandExports}`
+);
+
+const commandTypeDeclarations = commands
+  .map((x) => `export declare const ${normalize(x)}: Fig.Spec`)
+  .join("\n");
+
+fs.writeFileSync(
+  "build/index.d.ts",
+  `${commandTypeDeclarations}
+
+const completions: string[]
+export default completions
+`
 );
