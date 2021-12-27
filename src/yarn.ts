@@ -1,12 +1,5 @@
 import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
 
-const createCLIs = [
-  "create-next-app",
-  "create-react-native-app",
-  "create-video",
-  "create-redwood-app",
-];
-
 export const nodeClis = [
   "vue",
   "nuxt",
@@ -339,6 +332,30 @@ const commonOptions: Fig.Option[] = [
     args: { name: "otpcode" },
   },
 ];
+
+export const createCLIsGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = "create-" + context[context.length - 1];
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+  },
+  cache: {
+    ttl: 100 * 24 * 60 * 60 * 3, // 3 days
+  },
+  postProcess: function (out) {
+    try {
+      return JSON.parse(out).results.map(
+        (item) =>
+          ({
+            name: item.package.name.substring(7),
+            description: item.package.description,
+          } as Fig.Suggestion)
+      ) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
+  },
+};
 
 const completionSpec: Fig.Spec = {
   name: "yarn",
@@ -787,14 +804,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Creates new projects from any create-* starter kits",
-      generateSpec: async () => {
-        return {
-          name: "create",
-          subcommands: createCLIs.map((name) => ({
-            name: name.slice(7),
-            loadSpec: name,
-          })),
-        };
+      args: {
+        name: "cli",
+        generators: createCLIsGenerator,
+        loadSpec: async (token) => ({
+          name: "create-" + token,
+          type: "global",
+        }),
+        isCommand: true,
       },
       options: [
         ...commonOptions,
