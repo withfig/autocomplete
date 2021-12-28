@@ -1,3 +1,30 @@
+import YAML from "yaml";
+
+const applicationName: Fig.Generator = {
+  script: "cat copilot/.workspace",
+  // TODO: I feel like there's a better way to do this.
+  // There's only ever expected to be one `application` key.
+  postProcess: (output) => {
+    if (output.trim() == "") {
+      return [];
+    }
+
+    const suggestions: Fig.Suggestion[] = [];
+
+    try {
+      const application = YAML.parse(output).application;
+      suggestions.push({
+        name: `${application}`,
+        icon: "fig://icon?type=aws",
+      }) as Fig.Suggestion;
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
+    return suggestions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "copilot",
   description: "👩‍✈️ Launch and manage containerized applications on AWS",
@@ -192,7 +219,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--aws-access-key-id",
@@ -287,7 +314,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -306,7 +333,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--name", "-n"],
@@ -330,7 +357,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -371,7 +398,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--dockerfile", "-d"],
@@ -426,7 +453,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -449,7 +476,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -485,7 +512,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -526,7 +553,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -555,7 +582,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -583,7 +610,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -612,7 +639,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--end-time",
@@ -680,7 +707,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--command", "-c"],
@@ -727,7 +754,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -756,7 +783,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -794,7 +821,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--dockerfile", "-d"],
@@ -850,7 +877,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -873,7 +900,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -909,7 +936,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -945,7 +972,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--env", "-e"],
@@ -1143,7 +1170,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--command", "-c"],
@@ -1190,7 +1217,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--default",
@@ -1322,7 +1349,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--cli-input-yaml",
@@ -1392,7 +1419,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: ["--environments", "-e"],
@@ -1434,7 +1461,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--yes",
@@ -1453,7 +1480,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--delete-secret",
@@ -1478,7 +1505,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -1506,7 +1533,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -1530,7 +1557,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Name of the application",
-              args: { name: "app" },
+              args: { name: "app", generators: applicationName },
             },
             {
               name: "--json",
@@ -1557,7 +1584,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Name of the application",
-          args: { name: "app" },
+          args: { name: "app", generators: applicationName },
         },
         {
           name: ["--env", "-e"],
@@ -1726,7 +1753,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--aws-access-key-id",
@@ -1822,7 +1849,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -1841,7 +1868,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--name", "-n"],
@@ -1865,7 +1892,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -1907,7 +1934,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--dockerfile", "-d"],
@@ -1962,7 +1989,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -1986,7 +2013,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2022,7 +2049,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2063,7 +2090,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2093,7 +2120,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -2121,7 +2148,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2150,7 +2177,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--end-time",
@@ -2221,7 +2248,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--command", "-c"],
@@ -2268,7 +2295,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2297,7 +2324,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2335,7 +2362,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--dockerfile", "-d"],
@@ -2391,7 +2418,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -2414,7 +2441,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2450,7 +2477,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2486,7 +2513,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--env", "-e"],
@@ -2686,7 +2713,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--command", "-c"],
@@ -2733,7 +2760,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--default",
@@ -2865,7 +2892,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--cli-input-yaml",
@@ -2937,7 +2964,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: ["--environments", "-e"],
@@ -2981,7 +3008,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--yes",
@@ -3001,7 +3028,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--delete-secret",
@@ -3026,7 +3053,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -3054,7 +3081,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
@@ -3078,7 +3105,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "Name of the application",
-                  args: { name: "app" },
+                  args: { name: "app", generators: applicationName },
                 },
                 {
                   name: "--json",
