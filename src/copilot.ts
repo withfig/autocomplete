@@ -39,6 +39,14 @@ const envNameOptionGenerated: Fig.Option = {
   args: { name: "name" },
 };
 
+const svcNameOptionGenerated: Fig.Option = {
+  name: ["--name", "-n"],
+  description: "Name of the service",
+  // TODO: Add generator for service names.
+  // Run `copilot svc ls --json` and parse the output for the `applicationName`
+  args: { name: "name" },
+};
+
 const helpOption: Fig.Option = {
   name: ["--help", "-h"],
   description: "Help for command",
@@ -364,11 +372,7 @@ const completionSpec: Fig.Spec = {
               args: { name: "image" },
               exclusiveOn: ["--dockerfile", "-d"],
             },
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--no-subscribe",
               description:
@@ -421,11 +425,7 @@ const completionSpec: Fig.Spec = {
           options: [
             appOptionGenerated,
             envNameOptionGenerated,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--output-dir",
               description:
@@ -451,11 +451,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Optional. Force a new service deployment using the existing image",
             },
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--resource-tags",
               description:
@@ -476,11 +472,7 @@ const completionSpec: Fig.Spec = {
           options: [
             appOptionGenerated,
             envNameOptionGenerated,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--yes",
               description: "Skips confirmation prompt",
@@ -494,11 +486,7 @@ const completionSpec: Fig.Spec = {
           options: [
             appOptionGenerated,
             jsonOption,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--resources",
               description: "Optional. Show the resources in your service",
@@ -513,11 +501,7 @@ const completionSpec: Fig.Spec = {
             appOptionGenerated,
             envNameOptionGenerated,
             jsonOption,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             helpOption,
           ],
         },
@@ -551,11 +535,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. Only return logs from specific log group",
               args: { name: "log-group" },
             },
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--since",
               description:
@@ -621,11 +601,7 @@ const completionSpec: Fig.Spec = {
           options: [
             appOptionGenerated,
             envNameOptionGenerated,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--yes",
               description: "Skips confirmation prompt",
@@ -639,11 +615,7 @@ const completionSpec: Fig.Spec = {
           options: [
             appOptionGenerated,
             envNameOptionGenerated,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             helpOption,
           ],
         },
@@ -998,11 +970,7 @@ const completionSpec: Fig.Spec = {
               exclusiveOn: ["--app", "--env"],
             },
             envNameOptionGenerated,
-            {
-              name: ["--name", "-n"],
-              description: "Name of the service",
-              args: { name: "name" },
-            },
+            svcNameOptionGenerated,
             {
               name: "--yes",
               description: "Skips confirmation prompt",
@@ -1528,11 +1496,7 @@ const completionSpec: Fig.Spec = {
                   args: { name: "image" },
                   exclusiveOn: ["--dockerfile", "-d"],
                 },
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--no-subscribe",
                   description:
@@ -1586,11 +1550,7 @@ const completionSpec: Fig.Spec = {
               options: [
                 appOptionGenerated,
                 envNameOptionGenerated,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--output-dir",
                   description:
@@ -1616,11 +1576,7 @@ const completionSpec: Fig.Spec = {
                   description:
                     "Optional. Force a new service deployment using the existing image",
                 },
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--resource-tags",
                   description:
@@ -1641,11 +1597,7 @@ const completionSpec: Fig.Spec = {
               options: [
                 appOptionGenerated,
                 envNameOptionGenerated,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--yes",
                   description: "Skips confirmation prompt",
@@ -1660,11 +1612,7 @@ const completionSpec: Fig.Spec = {
               options: [
                 appOptionGenerated,
                 jsonOption,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--resources",
                   description: "Optional. Show the resources in your service",
@@ -1679,11 +1627,7 @@ const completionSpec: Fig.Spec = {
                 appOptionGenerated,
                 envNameOptionGenerated,
                 jsonOption,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 helpOption,
               ],
             },
@@ -1719,11 +1663,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. Only return logs from specific log group",
                   args: { name: "log-group" },
                 },
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--since",
                   description:
@@ -1790,11 +1730,7 @@ const completionSpec: Fig.Spec = {
               options: [
                 appOptionGenerated,
                 envNameOptionGenerated,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--yes",
                   description: "Skips confirmation prompt",
@@ -1808,11 +1744,7 @@ const completionSpec: Fig.Spec = {
               options: [
                 appOptionGenerated,
                 envNameOptionGenerated,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 helpOption,
               ],
             },
@@ -2169,11 +2101,7 @@ const completionSpec: Fig.Spec = {
                   exclusiveOn: ["--app", "--env"],
                 },
                 envNameOptionGenerated,
-                {
-                  name: ["--name", "-n"],
-                  description: "Name of the service",
-                  args: { name: "name" },
-                },
+                svcNameOptionGenerated,
                 {
                   name: "--yes",
                   description: "Skips confirmation prompt",
