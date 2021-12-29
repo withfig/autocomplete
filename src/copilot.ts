@@ -31,6 +31,14 @@ const appOptionGenerated: Fig.Option = {
   args: { name: "name", generators: applicationName },
 };
 
+const envNameOptionGenerated: Fig.Option = {
+  name: ["--name", "-n"],
+  description: "Name of the environment",
+  // TODO: Add generator for environment names.
+  // Run `copilot env ls --json` and parse the output for the `applicationName`
+  args: { name: "name" },
+};
+
 const helpOption: Fig.Option = {
   name: ["--help", "-h"],
   description: "Help for command",
@@ -412,11 +420,7 @@ const completionSpec: Fig.Spec = {
           description: "Prints the AWS CloudFormation template of a service",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -441,11 +445,7 @@ const completionSpec: Fig.Spec = {
           description: "Deploys a service to an environment",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: "--force",
               description:
@@ -475,11 +475,7 @@ const completionSpec: Fig.Spec = {
           description: "Deletes a service from an application",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -515,11 +511,7 @@ const completionSpec: Fig.Spec = {
           description: "Shows status of a deployed service",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             jsonOption,
             {
               name: ["--name", "-n"],
@@ -541,11 +533,7 @@ const completionSpec: Fig.Spec = {
               args: { name: "end-time" },
               exclusiveOn: ["--follow"],
             },
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: "--follow",
               description: "Optional. Specifies if the logs should be streamed",
@@ -608,11 +596,7 @@ const completionSpec: Fig.Spec = {
                 "Optional. The specific container you want to exec in. By default the first essential container will be used",
               args: { name: "container" },
             },
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service, job, or task group",
@@ -636,11 +620,7 @@ const completionSpec: Fig.Spec = {
           description: "Pause running App Runner service",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -658,11 +638,7 @@ const completionSpec: Fig.Spec = {
           description: "Resumes a paused service",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -745,11 +721,7 @@ const completionSpec: Fig.Spec = {
           description: "Prints the AWS CloudFormation template of a job",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the job",
@@ -774,11 +746,7 @@ const completionSpec: Fig.Spec = {
           description: "Deploys a job to an environment",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the job",
@@ -803,11 +771,7 @@ const completionSpec: Fig.Spec = {
           description: "Deletes a job from an application",
           options: [
             appOptionGenerated,
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the job",
@@ -1002,11 +966,7 @@ const completionSpec: Fig.Spec = {
                 "Optional. Execute commands in running tasks in default cluster and default subnets",
               exclusiveOn: ["--app", "--env"],
             },
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service, job, or task group",
@@ -1037,11 +997,7 @@ const completionSpec: Fig.Spec = {
                 "Optional. Delete a task which was launched in the default cluster and subnets",
               exclusiveOn: ["--app", "--env"],
             },
-            {
-              name: ["--env", "-e"],
-              description: "Name of the environment",
-              args: { name: "env" },
-            },
+            envNameOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -1299,11 +1255,7 @@ const completionSpec: Fig.Spec = {
       description: "Deploy a Copilot job or service",
       options: [
         appOptionGenerated,
-        {
-          name: ["--env", "-e"],
-          description: "Name of the environment",
-          args: { name: "env" },
-        },
+        envNameOptionGenerated,
         {
           name: "--force",
           description:
@@ -1633,11 +1585,7 @@ const completionSpec: Fig.Spec = {
                 "Prints the AWS CloudFormation template of a service",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
@@ -1662,11 +1610,7 @@ const completionSpec: Fig.Spec = {
               description: "Deploys a service to an environment",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: "--force",
                   description:
@@ -1696,11 +1640,7 @@ const completionSpec: Fig.Spec = {
               description: "Deletes a service from an application",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
@@ -1737,11 +1677,7 @@ const completionSpec: Fig.Spec = {
               description: "Shows status of a deployed service",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 jsonOption,
                 {
                   name: ["--name", "-n"],
@@ -1763,11 +1699,7 @@ const completionSpec: Fig.Spec = {
                   args: { name: "end-time" },
                   exclusiveOn: ["--follow"],
                 },
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: "--follow",
                   description:
@@ -1833,11 +1765,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. The specific container you want to exec in. By default the first essential container will be used",
                   args: { name: "container" },
                 },
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service, job, or task group",
@@ -1861,11 +1789,7 @@ const completionSpec: Fig.Spec = {
               description: "Pause running App Runner service",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
@@ -1883,11 +1807,7 @@ const completionSpec: Fig.Spec = {
               description: "Resumes a paused service",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
@@ -1970,11 +1890,7 @@ const completionSpec: Fig.Spec = {
               description: "Prints the AWS CloudFormation template of a job",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the job",
@@ -1999,11 +1915,7 @@ const completionSpec: Fig.Spec = {
               description: "Deploys a job to an environment",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the job",
@@ -2028,11 +1940,7 @@ const completionSpec: Fig.Spec = {
               description: "Deletes a job from an application",
               options: [
                 appOptionGenerated,
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the job",
@@ -2229,11 +2137,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. Execute commands in running tasks in default cluster and default subnets",
                   exclusiveOn: ["--app", "--env"],
                 },
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service, job, or task group",
@@ -2264,11 +2168,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. Delete a task which was launched in the default cluster and subnets",
                   exclusiveOn: ["--app", "--env"],
                 },
-                {
-                  name: ["--env", "-e"],
-                  description: "Name of the environment",
-                  args: { name: "env" },
-                },
+                envNameOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
