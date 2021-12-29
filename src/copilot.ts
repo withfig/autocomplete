@@ -57,6 +57,11 @@ const jsonOption: Fig.Option = {
   description: "Outputs in JSON format",
 };
 
+const yesOption: Fig.Option = {
+  name: "--yes",
+  description: "Skips confirmation prompt",
+};
+
 const completionSpec: Fig.Spec = {
   name: "copilot",
   description: "👩‍✈️ Launch and manage containerized applications on AWS",
@@ -191,10 +196,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the application",
               args: { name: "name" },
             },
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -322,10 +324,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the environment",
               args: { name: "name" },
             },
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -473,10 +472,7 @@ const completionSpec: Fig.Spec = {
             appOptionGenerated,
             envNameOptionGenerated,
             svcNameOptionGenerated,
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -602,10 +598,7 @@ const completionSpec: Fig.Spec = {
             appOptionGenerated,
             envNameOptionGenerated,
             svcNameOptionGenerated,
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -749,10 +742,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the job",
               args: { name: "name" },
             },
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -971,10 +961,7 @@ const completionSpec: Fig.Spec = {
             },
             envNameOptionGenerated,
             svcNameOptionGenerated,
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -1151,14 +1138,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Deploys a pipeline for the services in your workspace",
-          options: [
-            appOptionGenerated,
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
-            helpOption,
-          ],
+          options: [appOptionGenerated, yesOption, helpOption],
         },
         {
           name: "delete",
@@ -1170,10 +1150,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Deletes AWS Secrets Manager secret associated with a pipeline source repository",
             },
-            {
-              name: "--yes",
-              description: "Skips confirmation prompt",
-            },
+            yesOption,
             helpOption,
           ],
         },
@@ -1313,10 +1290,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the application",
                   args: { name: "name" },
                 },
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
@@ -1445,10 +1419,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the environment",
                   args: { name: "name" },
                 },
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
@@ -1598,10 +1569,7 @@ const completionSpec: Fig.Spec = {
                 appOptionGenerated,
                 envNameOptionGenerated,
                 svcNameOptionGenerated,
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
@@ -1731,10 +1699,7 @@ const completionSpec: Fig.Spec = {
                 appOptionGenerated,
                 envNameOptionGenerated,
                 svcNameOptionGenerated,
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
@@ -1878,10 +1843,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the job",
                   args: { name: "name" },
                 },
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
@@ -2102,10 +2064,7 @@ const completionSpec: Fig.Spec = {
                 },
                 envNameOptionGenerated,
                 svcNameOptionGenerated,
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
@@ -2287,14 +2246,7 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Deploys a pipeline for the services in your workspace",
-              options: [
-                appOptionGenerated,
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
-                helpOption,
-              ],
+              options: [appOptionGenerated, yesOption, helpOption],
             },
             {
               name: "delete",
@@ -2307,10 +2259,7 @@ const completionSpec: Fig.Spec = {
                   description:
                     "Deletes AWS Secrets Manager secret associated with a pipeline source repository",
                 },
-                {
-                  name: "--yes",
-                  description: "Skips confirmation prompt",
-                },
+                yesOption,
                 helpOption,
               ],
             },
