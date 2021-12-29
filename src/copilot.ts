@@ -31,6 +31,11 @@ const appOptionGenerated: Fig.Option = {
   args: { name: "name", generators: applicationName },
 };
 
+const helpOption: Fig.Option = {
+  name: ["--help", "-h"],
+  description: "Help for command",
+};
+
 const completionSpec: Fig.Spec = {
   name: "copilot",
   description: "👩‍✈️ Launch and manage containerized applications on AWS",
@@ -99,21 +104,13 @@ const completionSpec: Fig.Spec = {
             'Type of job or svc to create. Must be one of: "Request-Driven Web Service", "Load Balanced Web Service", "Backend Service", "Worker Service", "Scheduled Job"',
           args: { name: "type" },
         },
-        {
-          name: ["--help", "-h"],
-          description: "Help for init",
-        },
+        helpOption,
       ],
     },
     {
       name: "docs",
       description: "Open the copilot docs",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for docs",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "app",
@@ -135,21 +132,13 @@ const completionSpec: Fig.Spec = {
                 "Optional. Labels with a key and value separated by commas. Allows you to categorize resources",
               args: { name: "resource-tags" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
         {
           name: "ls",
           description: "Lists all the applications in your account",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for ls",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "show",
@@ -164,10 +153,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the application",
               args: { name: "name" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for show",
-            },
+            helpOption,
           ],
         },
         {
@@ -183,10 +169,7 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
-            },
+            helpOption,
           ],
         },
         {
@@ -199,19 +182,11 @@ const completionSpec: Fig.Spec = {
               description: "Name of the application",
               args: { name: "name" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for upgrade",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for app",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "env",
@@ -303,10 +278,7 @@ const completionSpec: Fig.Spec = {
                 "Optional. An AWS region where the environment will be created",
               args: { name: "region" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
         {
@@ -318,10 +290,7 @@ const completionSpec: Fig.Spec = {
               name: "--json",
               description: "Optional. Outputs in JSON format",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for ls",
-            },
+            helpOption,
           ],
         },
         {
@@ -338,10 +307,7 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
-            },
+            helpOption,
           ],
         },
         {
@@ -362,19 +328,11 @@ const completionSpec: Fig.Spec = {
               name: "--resources",
               description: "Optional. Show the resources in your environment",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for show",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for env",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "svc",
@@ -426,10 +384,7 @@ const completionSpec: Fig.Spec = {
                 'Type of service to create. Must be one of: "Request-Driven Web Service", "Load Balanced Web Service", "Backend Service", "Worker Service"',
               args: { name: "svc-type" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
         {
@@ -445,10 +400,7 @@ const completionSpec: Fig.Spec = {
               name: "--local",
               description: "Only show services in the workspace",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for ls",
-            },
+            helpOption,
           ],
         },
         {
@@ -477,10 +429,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. The container image tag",
               args: { name: "tag" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for package",
-            },
+            helpOption,
           ],
         },
         {
@@ -514,10 +463,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. The container image tag",
               args: { name: "tag" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for deploy",
-            },
+            helpOption,
           ],
         },
         {
@@ -539,10 +485,7 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
-            },
+            helpOption,
           ],
         },
         {
@@ -563,10 +506,7 @@ const completionSpec: Fig.Spec = {
               name: "--resources",
               description: "Optional. Show the resources in your service",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for show",
-            },
+            helpOption,
           ],
         },
         {
@@ -588,10 +528,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the service",
               args: { name: "name" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for status",
-            },
+            helpOption,
           ],
         },
         {
@@ -651,10 +588,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. Only return logs from specific task IDs",
               args: { name: "tasks" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for logs",
-            },
+            helpOption,
           ],
         },
         {
@@ -695,10 +629,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Optional. Whether to update the Session Manager Plugin",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for exec",
-            },
+            helpOption,
           ],
         },
         {
@@ -720,10 +651,7 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for pause",
-            },
+            helpOption,
           ],
         },
         {
@@ -741,19 +669,11 @@ const completionSpec: Fig.Spec = {
               description: "Name of the service",
               args: { name: "name" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for resume",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for svc",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "job",
@@ -806,10 +726,7 @@ const completionSpec: Fig.Spec = {
                 'Optional. The total execution time for the task, including retries. Accepts valid Go duration strings. For example: "2h", "1h30m", "900s"',
               args: { name: "timeout" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
         {
@@ -825,10 +742,7 @@ const completionSpec: Fig.Spec = {
               name: "--local",
               description: "Only show jobs in the workspace",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for ls",
-            },
+            helpOption,
           ],
         },
         {
@@ -857,10 +771,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. The container image tag",
               args: { name: "tag" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for package",
-            },
+            helpOption,
           ],
         },
         {
@@ -889,10 +800,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. The container image tag",
               args: { name: "tag" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for deploy",
-            },
+            helpOption,
           ],
         },
         {
@@ -914,19 +822,11 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for job",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "task",
@@ -1082,10 +982,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. The ARN of the role for the task to use",
               args: { name: "task-role" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for run",
-            },
+            helpOption,
           ],
         },
         {
@@ -1125,10 +1022,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Optional. Whether to update the Session Manager Plugin",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for exec",
-            },
+            helpOption,
           ],
         },
         {
@@ -1156,19 +1050,11 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for task",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "storage",
@@ -1241,19 +1127,11 @@ const completionSpec: Fig.Spec = {
                 "Name of the service or job to associate with storage",
               args: { name: "workload" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for storage",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "secret",
@@ -1287,39 +1165,21 @@ const completionSpec: Fig.Spec = {
                 "Values of the secret in each environment. Specified as <environment>=<value> separated by commas. Mutually exclusive with the --cli-input-yaml flag",
               args: { name: "values" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for secret",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "version",
       description: "Print the version number",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for version",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "completion",
       description: "Output shell completion code",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for completion",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "pipeline",
@@ -1358,10 +1218,7 @@ const completionSpec: Fig.Spec = {
                 "The repository URL to trigger your pipeline. Supported providers are: GitHub, CodeCommit, Bitbucket",
               args: { name: "url" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
+            helpOption,
           ],
         },
         {
@@ -1373,10 +1230,7 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for update",
-            },
+            helpOption,
           ],
         },
         {
@@ -1393,10 +1247,7 @@ const completionSpec: Fig.Spec = {
               name: "--yes",
               description: "Skips confirmation prompt",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for delete",
-            },
+            helpOption,
           ],
         },
         {
@@ -1418,10 +1269,7 @@ const completionSpec: Fig.Spec = {
               name: "--resources",
               description: "Optional. Show the resources in your pipeline",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for show",
-            },
+            helpOption,
           ],
         },
         {
@@ -1438,10 +1286,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the pipeline",
               args: { name: "name" },
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for status",
-            },
+            helpOption,
           ],
         },
         {
@@ -1453,19 +1298,11 @@ const completionSpec: Fig.Spec = {
               name: "--json",
               description: "Optional. Outputs in JSON format",
             },
-            {
-              name: ["--help", "-h"],
-              description: "Help for ls",
-            },
+            helpOption,
           ],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for pipeline",
-        },
-      ],
+      options: [helpOption],
     },
     {
       name: "deploy",
@@ -1498,10 +1335,7 @@ const completionSpec: Fig.Spec = {
           description: "Optional. The container image tag",
           args: { name: "tag" },
         },
-        {
-          name: ["--help", "-h"],
-          description: "Help for deploy",
-        },
+        helpOption,
       ],
     },
     {
@@ -1511,22 +1345,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "init",
           description: "Create a new ECS or App Runner application",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for init",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "docs",
           description: "Open the copilot docs",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for docs",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "app",
@@ -1548,21 +1372,13 @@ const completionSpec: Fig.Spec = {
                     "Optional. Labels with a key and value separated by commas. Allows you to categorize resources",
                   args: { name: "resource-tags" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
             {
               name: "ls",
               description: "Lists all the applications in your account",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ls",
-                },
-              ],
+              options: [helpOption],
             },
             {
               name: "show",
@@ -1577,10 +1393,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the application",
                   args: { name: "name" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for show",
-                },
+                helpOption,
               ],
             },
             {
@@ -1597,10 +1410,7 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for delete",
-                },
+                helpOption,
               ],
             },
             {
@@ -1613,19 +1423,11 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the application",
                   args: { name: "name" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for upgrade",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for app",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "env",
@@ -1718,10 +1520,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. An AWS region where the environment will be created",
                   args: { name: "region" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
             {
@@ -1733,10 +1532,7 @@ const completionSpec: Fig.Spec = {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ls",
-                },
+                helpOption,
               ],
             },
             {
@@ -1753,10 +1549,7 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for delete",
-                },
+                helpOption,
               ],
             },
             {
@@ -1778,19 +1571,11 @@ const completionSpec: Fig.Spec = {
                   description:
                     "Optional. Show the resources in your environment",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for show",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for env",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "svc",
@@ -1842,10 +1627,7 @@ const completionSpec: Fig.Spec = {
                     'Type of service to create. Must be one of: "Request-Driven Web Service", "Load Balanced Web Service", "Backend Service", "Worker Service"',
                   args: { name: "svc-type" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
             {
@@ -1861,10 +1643,7 @@ const completionSpec: Fig.Spec = {
                   name: "--local",
                   description: "Only show services in the workspace",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ls",
-                },
+                helpOption,
               ],
             },
             {
@@ -1894,10 +1673,7 @@ const completionSpec: Fig.Spec = {
                   description: "Optional. The container image tag",
                   args: { name: "tag" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for package",
-                },
+                helpOption,
               ],
             },
             {
@@ -1931,10 +1707,7 @@ const completionSpec: Fig.Spec = {
                   description: "Optional. The container image tag",
                   args: { name: "tag" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for deploy",
-                },
+                helpOption,
               ],
             },
             {
@@ -1956,10 +1729,7 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for delete",
-                },
+                helpOption,
               ],
             },
             {
@@ -1981,10 +1751,7 @@ const completionSpec: Fig.Spec = {
                   name: "--resources",
                   description: "Optional. Show the resources in your service",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for show",
-                },
+                helpOption,
               ],
             },
             {
@@ -2006,10 +1773,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the service",
                   args: { name: "name" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for status",
-                },
+                helpOption,
               ],
             },
             {
@@ -2072,10 +1836,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. Only return logs from specific task IDs",
                   args: { name: "tasks" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for logs",
-                },
+                helpOption,
               ],
             },
             {
@@ -2116,10 +1877,7 @@ const completionSpec: Fig.Spec = {
                   description:
                     "Optional. Whether to update the Session Manager Plugin",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for exec",
-                },
+                helpOption,
               ],
             },
             {
@@ -2141,10 +1899,7 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for pause",
-                },
+                helpOption,
               ],
             },
             {
@@ -2162,19 +1917,11 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the service",
                   args: { name: "name" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for resume",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for svc",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "job",
@@ -2227,10 +1974,7 @@ const completionSpec: Fig.Spec = {
                     'Optional. The total execution time for the task, including retries. Accepts valid Go duration strings. For example: "2h", "1h30m", "900s"',
                   args: { name: "timeout" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
             {
@@ -2246,10 +1990,7 @@ const completionSpec: Fig.Spec = {
                   name: "--local",
                   description: "Only show jobs in the workspace",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ls",
-                },
+                helpOption,
               ],
             },
             {
@@ -2278,10 +2019,7 @@ const completionSpec: Fig.Spec = {
                   description: "Optional. The container image tag",
                   args: { name: "tag" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for package",
-                },
+                helpOption,
               ],
             },
             {
@@ -2310,10 +2048,7 @@ const completionSpec: Fig.Spec = {
                   description: "Optional. The container image tag",
                   args: { name: "tag" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for deploy",
-                },
+                helpOption,
               ],
             },
             {
@@ -2335,19 +2070,11 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for delete",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for job",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "task",
@@ -2505,10 +2232,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. The ARN of the role for the task to use",
                   args: { name: "task-role" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for run",
-                },
+                helpOption,
               ],
             },
             {
@@ -2548,10 +2272,7 @@ const completionSpec: Fig.Spec = {
                   description:
                     "Optional. Whether to update the Session Manager Plugin",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for exec",
-                },
+                helpOption,
               ],
             },
             {
@@ -2579,19 +2300,11 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for delete",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for task",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "storage",
@@ -2664,19 +2377,11 @@ const completionSpec: Fig.Spec = {
                     "Name of the service or job to associate with storage",
                   args: { name: "workload" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for storage",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "secret",
@@ -2711,39 +2416,21 @@ const completionSpec: Fig.Spec = {
                     "Values of the secret in each environment. Specified as <environment>=<value> separated by commas. Mutually exclusive with the --cli-input-yaml flag",
                   args: { name: "values" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for secret",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "version",
           description: "Print the version number",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for version",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "completion",
           description: "Output shell completion code",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for completion",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "pipeline",
@@ -2784,10 +2471,7 @@ const completionSpec: Fig.Spec = {
                     "The repository URL to trigger your pipeline. Supported providers are: GitHub, CodeCommit, Bitbucket",
                   args: { name: "url" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for init",
-                },
+                helpOption,
               ],
             },
             {
@@ -2800,10 +2484,7 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for update",
-                },
+                helpOption,
               ],
             },
             {
@@ -2821,10 +2502,7 @@ const completionSpec: Fig.Spec = {
                   name: "--yes",
                   description: "Skips confirmation prompt",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for delete",
-                },
+                helpOption,
               ],
             },
             {
@@ -2846,10 +2524,7 @@ const completionSpec: Fig.Spec = {
                   name: "--resources",
                   description: "Optional. Show the resources in your pipeline",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for show",
-                },
+                helpOption,
               ],
             },
             {
@@ -2866,10 +2541,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the pipeline",
                   args: { name: "name" },
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for status",
-                },
+                helpOption,
               ],
             },
             {
@@ -2881,44 +2553,21 @@ const completionSpec: Fig.Spec = {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
                 },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ls",
-                },
+                helpOption,
               ],
             },
           ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for pipeline",
-            },
-          ],
+          options: [helpOption],
         },
         {
           name: "deploy",
           description: "Deploy a Copilot job or service",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for deploy",
-            },
-          ],
+          options: [helpOption],
         },
       ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for help",
-        },
-      ],
+      options: [helpOption],
     },
   ],
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Help for copilot",
-    },
-  ],
+  options: [helpOption],
 };
 export default completionSpec;
