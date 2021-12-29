@@ -25,6 +25,12 @@ const applicationName: Fig.Generator = {
   },
 };
 
+const appOptionGenerated: Fig.Option = {
+  name: ["--app", "-a"],
+  description: "Name of the application",
+  args: { name: "name", generators: applicationName },
+};
+
 const completionSpec: Fig.Spec = {
   name: "copilot",
   description: "👩‍✈️ Launch and manage containerized applications on AWS",
@@ -36,7 +42,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Name of the application",
-          args: { name: "app" },
+          args: { name: "app" }, // can't be generated, new app name
         },
         {
           name: "--deploy",
@@ -216,11 +222,7 @@ const completionSpec: Fig.Spec = {
           name: "init",
           description: "Creates a new environment in your application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--aws-access-key-id",
               description: "Optional. An AWS access key",
@@ -311,11 +313,7 @@ const completionSpec: Fig.Spec = {
           name: "ls",
           description: "Lists all the environments in an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -330,11 +328,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Deletes an environment from your application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--name", "-n"],
               description: "Name of the environment",
@@ -354,11 +348,7 @@ const completionSpec: Fig.Spec = {
           name: "show",
           description: "Shows info about a deployed environment",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -395,11 +385,7 @@ const completionSpec: Fig.Spec = {
           name: "init",
           description: "Creates a new service in an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--dockerfile", "-d"],
               description:
@@ -450,11 +436,7 @@ const completionSpec: Fig.Spec = {
           name: "ls",
           description: "Lists all the services in an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -473,11 +455,7 @@ const completionSpec: Fig.Spec = {
           name: "package",
           description: "Prints the AWS CloudFormation template of a service",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -509,11 +487,7 @@ const completionSpec: Fig.Spec = {
           name: "deploy",
           description: "Deploys a service to an environment",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -550,11 +524,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Deletes a service from an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -579,11 +549,7 @@ const completionSpec: Fig.Spec = {
           name: "show",
           description: "Shows info about a deployed service per environment",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -607,11 +573,7 @@ const completionSpec: Fig.Spec = {
           name: "status",
           description: "Shows status of a deployed service",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -636,11 +598,7 @@ const completionSpec: Fig.Spec = {
           name: "logs",
           description: "Displays logs of a deployed service",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--end-time",
               description:
@@ -704,11 +662,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Execute a command in a running container part of a service",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--command", "-c"],
               description:
@@ -751,11 +705,7 @@ const completionSpec: Fig.Spec = {
           name: "pause",
           description: "Pause running App Runner service",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -780,11 +730,7 @@ const completionSpec: Fig.Spec = {
           name: "resume",
           description: "Resumes a paused service",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -818,11 +764,7 @@ const completionSpec: Fig.Spec = {
           name: "init",
           description: "Creates a new scheduled job in an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--dockerfile", "-d"],
               description:
@@ -874,11 +816,7 @@ const completionSpec: Fig.Spec = {
           name: "ls",
           description: "Lists all the jobs in an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -897,11 +835,7 @@ const completionSpec: Fig.Spec = {
           name: "package",
           description: "Prints the AWS CloudFormation template of a job",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -933,11 +867,7 @@ const completionSpec: Fig.Spec = {
           name: "deploy",
           description: "Deploys a job to an environment",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -969,11 +899,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Deletes a job from an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--env", "-e"],
               description: "Name of the environment",
@@ -1167,11 +1093,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Execute a command in a running container part of a task",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--command", "-c"],
               description:
@@ -1214,11 +1136,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Deletes a one-off task from an application or default cluster",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--default",
               description:
@@ -1346,11 +1264,7 @@ const completionSpec: Fig.Spec = {
           name: "init",
           description: "Create or update secrets in SSM Parameter Store",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--cli-input-yaml",
               description:
@@ -1416,11 +1330,7 @@ const completionSpec: Fig.Spec = {
           name: "init",
           description: "Creates a pipeline for the services in your workspace",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: ["--environments", "-e"],
               description: "Environments to add to the pipeline",
@@ -1458,11 +1368,7 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description: "Deploys a pipeline for the services in your workspace",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--yes",
               description: "Skips confirmation prompt",
@@ -1477,11 +1383,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Deletes the pipeline associated with your workspace",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--delete-secret",
               description:
@@ -1502,11 +1404,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Shows info about a deployed pipeline for an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -1530,11 +1428,7 @@ const completionSpec: Fig.Spec = {
           name: "status",
           description: "Shows the status of a pipeline",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -1554,11 +1448,7 @@ const completionSpec: Fig.Spec = {
           name: "ls",
           description: "Lists all the deployed pipelines in an application",
           options: [
-            {
-              name: ["--app", "-a"],
-              description: "Name of the application",
-              args: { name: "app", generators: applicationName },
-            },
+            appOptionGenerated,
             {
               name: "--json",
               description: "Optional. Outputs in JSON format",
@@ -1581,11 +1471,7 @@ const completionSpec: Fig.Spec = {
       name: "deploy",
       description: "Deploy a Copilot job or service",
       options: [
-        {
-          name: ["--app", "-a"],
-          description: "Name of the application",
-          args: { name: "app", generators: applicationName },
-        },
+        appOptionGenerated,
         {
           name: ["--env", "-e"],
           description: "Name of the environment",
@@ -1750,11 +1636,7 @@ const completionSpec: Fig.Spec = {
               name: "init",
               description: "Creates a new environment in your application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--aws-access-key-id",
                   description: "Optional. An AWS access key",
@@ -1846,11 +1728,7 @@ const completionSpec: Fig.Spec = {
               name: "ls",
               description: "Lists all the environments in an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -1865,11 +1743,7 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description: "Deletes an environment from your application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the environment",
@@ -1889,11 +1763,7 @@ const completionSpec: Fig.Spec = {
               name: "show",
               description: "Shows info about a deployed environment",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -1931,11 +1801,7 @@ const completionSpec: Fig.Spec = {
               name: "init",
               description: "Creates a new service in an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--dockerfile", "-d"],
                   description:
@@ -1986,11 +1852,7 @@ const completionSpec: Fig.Spec = {
               name: "ls",
               description: "Lists all the services in an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -2010,11 +1872,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Prints the AWS CloudFormation template of a service",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2046,11 +1904,7 @@ const completionSpec: Fig.Spec = {
               name: "deploy",
               description: "Deploys a service to an environment",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2087,11 +1941,7 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description: "Deletes a service from an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2117,11 +1967,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Shows info about a deployed service per environment",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -2145,11 +1991,7 @@ const completionSpec: Fig.Spec = {
               name: "status",
               description: "Shows status of a deployed service",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2174,11 +2016,7 @@ const completionSpec: Fig.Spec = {
               name: "logs",
               description: "Displays logs of a deployed service",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--end-time",
                   description:
@@ -2245,11 +2083,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Execute a command in a running container part of a service",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--command", "-c"],
                   description:
@@ -2292,11 +2126,7 @@ const completionSpec: Fig.Spec = {
               name: "pause",
               description: "Pause running App Runner service",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2321,11 +2151,7 @@ const completionSpec: Fig.Spec = {
               name: "resume",
               description: "Resumes a paused service",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2359,11 +2185,7 @@ const completionSpec: Fig.Spec = {
               name: "init",
               description: "Creates a new scheduled job in an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--dockerfile", "-d"],
                   description:
@@ -2415,11 +2237,7 @@ const completionSpec: Fig.Spec = {
               name: "ls",
               description: "Lists all the jobs in an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -2438,11 +2256,7 @@ const completionSpec: Fig.Spec = {
               name: "package",
               description: "Prints the AWS CloudFormation template of a job",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2474,11 +2288,7 @@ const completionSpec: Fig.Spec = {
               name: "deploy",
               description: "Deploys a job to an environment",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2510,11 +2320,7 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description: "Deletes a job from an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--env", "-e"],
                   description: "Name of the environment",
@@ -2710,11 +2516,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Execute a command in a running container part of a task",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--command", "-c"],
                   description:
@@ -2757,11 +2559,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Deletes a one-off task from an application or default cluster",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--default",
                   description:
@@ -2889,11 +2687,7 @@ const completionSpec: Fig.Spec = {
               name: "init",
               description: "Create or update secrets in SSM Parameter Store",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--cli-input-yaml",
                   description:
@@ -2961,11 +2755,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Creates a pipeline for the services in your workspace",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: ["--environments", "-e"],
                   description: "Environments to add to the pipeline",
@@ -3005,11 +2795,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Deploys a pipeline for the services in your workspace",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--yes",
                   description: "Skips confirmation prompt",
@@ -3025,11 +2811,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Deletes the pipeline associated with your workspace",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--delete-secret",
                   description:
@@ -3050,11 +2832,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Shows info about a deployed pipeline for an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -3078,11 +2856,7 @@ const completionSpec: Fig.Spec = {
               name: "status",
               description: "Shows the status of a pipeline",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
@@ -3102,11 +2876,7 @@ const completionSpec: Fig.Spec = {
               name: "ls",
               description: "Lists all the deployed pipelines in an application",
               options: [
-                {
-                  name: ["--app", "-a"],
-                  description: "Name of the application",
-                  args: { name: "app", generators: applicationName },
-                },
+                appOptionGenerated,
                 {
                   name: "--json",
                   description: "Optional. Outputs in JSON format",
