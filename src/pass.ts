@@ -1,0 +1,269 @@
+const listPasswords: Fig.Generator = {
+  script: function() {
+    return `grep -r -l '' $HOME/.password-store --exclude-dir=.git | sed "s|$HOME/.password-store/||g"`;
+  },
+  postProcess: (output) => {
+    return output.split("\n").map((password) => ({
+      name: password.replace('.gpg', '')
+    }));
+  },
+};
+
+const listDirectories: Fig.Generator = {
+  script: function() {
+    return `ls -dR1a $HOME/.password-store/*/ | sed "s|$HOME/.password-store/||g"`;
+  },
+  postProcess: (output) => {
+    return output.split("\n").map((dir) => ({
+      name: dir
+    }));
+  },
+};
+
+const listGpgIds: Fig.Generator = {
+  script: function() {
+    return `gpg --list-keys --with-colons --with-fingerprint | awk -F: '/^uid:/ { print $10 }`
+  },
+  postProcess: (output) => {
+    return output.split("\n").map((id) => ({
+      name: id
+    }));
+  },
+};
+
+const completionSpec: Fig.Spec = {
+  name: "pass",
+  description: "pass - stores, retrieves, generates, and synchronizes passwords securely.",
+  subcommands: [
+    {
+      name: "init",
+      description: "Initialize new password storage and use gpg-id for encryption.",
+      args: {
+        name: "gpg-id",
+        description: "The gpg-id you want to use to encrypt your password store.",
+        isOptional: false,
+        generators: listGpgIds,
+      },
+      options: [
+        {
+          name: ['--path=sub-folder', '-p sub-folder'],
+          description: "A specific gpg-id or set of gpg-ids is assigned for that specific sub folder of the password store.",
+          args: {
+            name: "sub-folder",
+            template: "folders"
+          }
+        }
+      ]
+    },
+    {
+      name: "insert",
+      description: "Insert a new password into the password store called pass-name.",
+      args: {
+        name: "pass-name",
+        description: "The password name",
+        isOptional: false,
+      },
+      options: [
+        {
+          name: ['--echo', '-e'],
+          description: "Disable keyboard echo when the password is entered and confirm the password by asking for it twice."
+        },
+        {
+          name: ['--multi-line', '-m'],
+          description: "Lines will be read until EOF or Ctrl+D is reached. Otherwise, only a single line from standard in is read."
+        },
+        {
+          name: ['--force', '-f'],
+          description: "Don't prompt before overwriting an existing password."
+        }
+      ]
+    },
+    {
+      name: "git",
+      description: "Password store git functions.",
+      args: [
+        {
+          name: "git-command-arguments",
+          description: "Git comamnd arguments."
+        }
+      ]
+    },
+    {
+      name: "version",
+      description: "Show version information."
+    },
+    {
+      name: "help",
+      description: "Show usage message"
+    },
+    {
+      name: "cp",
+      description: "Copies the password or directory named old-path to new-path.",
+      args: [
+        {
+          name: "old-path",
+          description: "The old password name or directory.",
+          isOptional: false
+        },
+        {
+          name: "new-path",
+          description: "The new password name or directory.",
+          isOptional: false
+        },
+      ],
+      options: [
+        {
+          name: ['--force', '-f'],
+          description: "Do not interactively prompt before moving."
+        }
+      ]
+    },
+    {
+      name: "mv",
+      description: "Renames the password or directory named old-path to new-path.",
+      args: [
+        {
+          name: "old-path",
+          description: "The old password name or directory.",
+          isOptional: false
+        },
+        {
+          name: "new-path",
+          description: "The new password name or directory.",
+          isOptional: false
+        },
+      ],
+      options: [
+        {
+          name: ['--force', '-f'],
+          description: "Do not interactively prompt before moving."
+        }
+      ]
+    },
+    {
+      name: "rm",
+      description: "Remove the password named pass-name from the password store.",
+      args: {
+        name: "pass-name",
+        description: "The password name.",
+        isOptional: false
+      },
+      options: [
+        {
+          name: ['--recursive', '-r'],
+          description: "Delete pass-name recursively if it is a directory."
+        },
+        {
+          name: ['--force', '-f'],
+          description: "Do not interactively prompt before removal."
+        }
+      ]
+    },
+    {
+      name: "generate",
+      description: "Generate a new password of length pass-length and insert into pass-name",
+      args: [
+        {
+          name: "pass-name",
+          description: "The password name.",
+          isOptional: false,
+        }, {
+          name: "pass-length",
+          description: "The length of the password.",
+          isOptional: true
+        }
+      ],
+      options: [
+        {
+          name: ['--no-symbols', '-n'],
+          description: "Do not use any non-alphanumeric characters in the generated password."
+        },
+        {
+          name: ['--clip', '-c'],
+          description: "Do not print the password but instead copy it to the clipboard."
+        }, 
+        {
+          name: ['--in-place', '-i'],
+          description: "Do not interactively prompt, and only replace the first line of the password file with the new generated password, keeping the remainder of the file intact."
+        },
+        {
+          name: ['--force', '-f'],
+          description: "Overwrite the existing password."
+        }
+      ]
+    },
+    {
+      name: ['ls', 'list'],
+      description: "List names of passwords inside the tree at subfolder by using the tree.",
+      args: {
+        name: "password sub-directory",
+        description: "The password sub directory you want to list.",
+        isOptional: true,
+        generators: listDirectories,
+      }
+    },
+    {
+      name: "find",
+      description: "List names of passwords inside the tree that match pass-names.",
+      args: {
+        name: "pass-name",
+        description: "The password name you want to search for.",
+        isOptional: false
+      }
+    },
+    {
+      name: "show",
+      description: "Decrypt and print a password.",
+      args: {
+        name: "pass-name",
+        description: "The password you want to show.",
+        generators: listPasswords,
+        isOptional: false
+      },
+      options: [
+        {
+          name: ['--clip', '-c'],
+          description: "Copy the password to the clipboard",
+        },
+        {
+          name: ['--qrcode', '-q'],
+          description: "Display a QRcode of the password"
+        }
+      ]
+    },
+    {
+      name: "edit",
+      description: "Insert a new password or edit an existing password using the default text editor specified by the environment.",
+      args: {
+        name: "pass-name",
+        description: "The password you want to edit",
+        isOptional: false,
+        generators: listPasswords
+      }
+    },
+    {
+      name: "grep",
+      description: "Searches inside each decrypted password file for search-string. Grep options can be used.",
+      args: {
+        name: "pass-name",
+        description: "The password name you want to grep for.",
+        isOptional: false
+      },
+      options: [
+        {
+          name: ["-e", "--regexp"],
+          description:
+            "Use PATTERN as the pattern. This can be used to specify multiple search patterns, or to protect a pattern beginning with a hyphen (-). (-e is specified by POSIX.)",
+          args: {
+            name: "pattern",
+          },
+        }
+      ]
+    }
+  ],
+  options: [{
+    name: ["--help", "-h"],
+    description: "Show help for pass",
+  }],
+};
+export default completionSpec;
