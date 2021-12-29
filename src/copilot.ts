@@ -55,15 +55,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--dockerfile", "-d"],
-          description:
-            "Path to the Dockerfile. Mutually exclusive with -i, --image",
+          description: "Path to the Dockerfile",
           args: { name: "dockerfile" },
+          exclusiveOn: ["--image", "-i"],
         },
         {
           name: ["--image", "-i"],
-          description:
-            "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+          description: "The location of an existing Docker image",
           args: { name: "image" },
+          exclusiveOn: ["--dockerfile", "-d"],
         },
         {
           name: ["--name", "-n"],
@@ -346,15 +346,15 @@ const completionSpec: Fig.Spec = {
             appOptionGenerated,
             {
               name: ["--dockerfile", "-d"],
-              description:
-                "Path to the Dockerfile. Mutually exclusive with -i, --image",
+              description: "Path to the Dockerfile",
               args: { name: "dockerfile" },
+              exclusiveOn: ["--image", "-i"],
             },
             {
               name: ["--image", "-i"],
-              description:
-                "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+              description: "The location of an existing Docker image",
               args: { name: "image" },
+              exclusiveOn: ["--dockerfile", "-d"],
             },
             {
               name: ["--name", "-n"],
@@ -539,8 +539,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--end-time",
               description:
-                "Optional. Only return logs before a specific date (RFC3339). Defaults to all logs. Only one of end-time / follow may be used",
+                "Optional. Only return logs before a specific date (RFC3339). Defaults to all logs",
               args: { name: "end-time" },
+              exclusiveOn: ["--follow"],
             },
             {
               name: ["--env", "-e"],
@@ -550,6 +551,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--follow",
               description: "Optional. Specifies if the logs should be streamed",
+              exclusiveOn: ["--end-time"],
             },
             {
               name: "--json",
@@ -574,14 +576,16 @@ const completionSpec: Fig.Spec = {
             {
               name: "--since",
               description:
-                "Optional. Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one of start-time / since may be used",
+                "Optional. Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs",
               args: { name: "since", default: "0s" },
+              exclusiveOn: ["--start-time"],
             },
             {
               name: "--start-time",
               description:
-                "Optional. Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of start-time / since may be used",
+                "Optional. Only return logs after a specific date (RFC3339). Defaults to all logs",
               args: { name: "start-time" },
+              exclusiveOn: ["--since"],
             },
             {
               name: "--tasks",
@@ -687,15 +691,15 @@ const completionSpec: Fig.Spec = {
             appOptionGenerated,
             {
               name: ["--dockerfile", "-d"],
-              description:
-                "Path to the Dockerfile. Mutually exclusive with -i, --image",
+              description: "Path to the Dockerfile",
               args: { name: "dockerfile" },
+              exclusiveOn: ["--image", "-i"],
             },
             {
               name: ["--image", "-i"],
-              description:
-                "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+              description: "The location of an existing Docker image",
               args: { name: "image" },
+              exclusiveOn: ["--dockerfile", "-d"],
             },
             {
               name: ["--job-type", "-t"],
@@ -839,21 +843,22 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--app",
-              description:
-                "Optional. Name of the application. Cannot be specified with 'default', 'subnets' or 'security-groups'",
-              args: { name: "app" },
+              description: "Optional. Name of the application",
+              args: { name: "app", generators: applicationName },
+              exclusiveOn: ["--default", "--subnets", "--security-groups"],
             },
             {
               name: "--build-context",
-              description:
-                "Path to the Docker build context. Mutually exclusive with -i, --image",
+              description: "Path to the Docker build context",
               args: { name: "build-context" },
+              exclusiveOn: ["--image", "-i"],
             },
             {
               name: "--cluster",
               description:
-                "Optional. The short name or full ARN of the cluster to run the task in.  Cannot be specified with 'app', 'env' or 'default'",
+                "Optional. The short name or full ARN of the cluster to run the task in",
               args: { name: "cluster" },
+              exclusiveOn: ["--app", "--env", "--default"],
             },
             {
               name: "--command",
@@ -875,13 +880,14 @@ const completionSpec: Fig.Spec = {
             {
               name: "--default",
               description:
-                "Optional. Run tasks in default cluster and default subnets.  Cannot be specified with 'app', 'env' or 'subnets'",
+                "Optional. Run tasks in default cluster and default subnets",
+              exclusiveOn: ["--app", "--env", "--subnets"],
             },
             {
               name: "--dockerfile",
-              description:
-                "Path to the Dockerfile. Mutually exclusive with -i, --image",
+              description: "Path to the Dockerfile",
               args: { name: "dockerfile", default: "Dockerfile" },
+              exclusiveOn: ["--image", "-i"],
             },
             {
               name: "--entrypoint",
@@ -891,9 +897,9 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--env",
-              description:
-                "Optional. Name of the environment. Cannot be specified with 'default', 'subnets' or 'security-groups'",
+              description: "Optional. Name of the environment",
               args: { name: "env" },
+              exclusiveOn: ["--default", "--subnets", "--security-groups"],
             },
             {
               name: "--env-vars",
@@ -919,9 +925,9 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--image", "-i"],
-              description:
-                "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+              description: "The location of an existing Docker image",
               args: { name: "image" },
+              exclusiveOn: ["--dockerfile", "-d"],
             },
             {
               name: "--memory",
@@ -956,14 +962,16 @@ const completionSpec: Fig.Spec = {
             {
               name: "--security-groups",
               description:
-                "Optional. The security group IDs for the task to use. Can be specified multiple times. Cannot be specified with 'app' or 'env'",
+                "Optional. The security group IDs for the task to use. Can be specified multiple times",
               args: { name: "security-groups" },
+              exclusiveOn: ["--app", "--env"],
             },
             {
               name: "--subnets",
               description:
-                "Optional. The subnet IDs for the task to use. Can be specified multiple times. Cannot be specified with 'app', 'env' or 'default'",
+                "Optional. The subnet IDs for the task to use. Can be specified multiple times",
               args: { name: "subnets" },
+              exclusiveOn: ["--app", "--env", "--default"],
             },
             {
               name: "--tag",
@@ -1000,7 +1008,8 @@ const completionSpec: Fig.Spec = {
             {
               name: "--default",
               description:
-                "Optional. Execute commands in running tasks in default cluster and default subnets.  Cannot be specified with 'app' or 'env'",
+                "Optional. Execute commands in running tasks in default cluster and default subnets",
+              exclusiveOn: ["--app", "--env"],
             },
             {
               name: ["--env", "-e"],
@@ -1034,7 +1043,8 @@ const completionSpec: Fig.Spec = {
             {
               name: "--default",
               description:
-                "Optional. Delete a task which was launched in the default cluster and subnets. Cannot be specified with 'app' or 'env'",
+                "Optional. Delete a task which was launched in the default cluster and subnets",
+              exclusiveOn: ["--app", "--env"],
             },
             {
               name: ["--env", "-e"],
@@ -1146,14 +1156,15 @@ const completionSpec: Fig.Spec = {
             {
               name: "--cli-input-yaml",
               description:
-                "Optional. A YAML file in which the secret values are specified. Mutually exclusive with the -n ,--name and --values flags",
+                "Optional. A YAML file in which the secret values are specified",
               args: { name: "cli-input-yaml" },
+              exclusiveOn: ["-n", "--name", "--values"],
             },
             {
               name: ["--name", "-n"],
-              description:
-                "The name of the secret. Mutually exclusive with the --cli-input-yaml flag",
+              description: "The name of the secret",
               args: { name: "name" },
+              exclusiveOn: ["--cli-input-yaml"],
             },
             {
               name: "--overwrite",
@@ -1162,8 +1173,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--values",
               description:
-                "Values of the secret in each environment. Specified as <environment>=<value> separated by commas. Mutually exclusive with the --cli-input-yaml flag",
+                "Values of the secret in each environment. Specified as <environment>=<value> separated by commas",
               args: { name: "values" },
+              exclusiveOn: ["--cli-input-yaml"],
             },
             helpOption,
           ],
@@ -1589,15 +1601,15 @@ const completionSpec: Fig.Spec = {
                 appOptionGenerated,
                 {
                   name: ["--dockerfile", "-d"],
-                  description:
-                    "Path to the Dockerfile. Mutually exclusive with -i, --image",
+                  description: "Path to the Dockerfile",
                   args: { name: "dockerfile" },
+                  exclusiveOn: ["--image", "-i"],
                 },
                 {
                   name: ["--image", "-i"],
-                  description:
-                    "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+                  description: "The location of an existing Docker image",
                   args: { name: "image" },
+                  exclusiveOn: ["--dockerfile", "-d"],
                 },
                 {
                   name: ["--name", "-n"],
@@ -1784,8 +1796,9 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--end-time",
                   description:
-                    "Optional. Only return logs before a specific date (RFC3339). Defaults to all logs. Only one of end-time / follow may be used",
+                    "Optional. Only return logs before a specific date (RFC3339). Defaults to all logs",
                   args: { name: "end-time" },
+                  exclusiveOn: ["--follow"],
                 },
                 {
                   name: ["--env", "-e"],
@@ -1796,6 +1809,7 @@ const completionSpec: Fig.Spec = {
                   name: "--follow",
                   description:
                     "Optional. Specifies if the logs should be streamed",
+                  exclusiveOn: ["--end-time"],
                 },
                 {
                   name: "--json",
@@ -1821,14 +1835,16 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--since",
                   description:
-                    "Optional. Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one of start-time / since may be used",
+                    "Optional. Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs",
                   args: { name: "since", default: "0s" },
+                  exclusiveOn: ["--start-time"],
                 },
                 {
                   name: "--start-time",
                   description:
-                    "Optional. Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of start-time / since may be used",
+                    "Optional. Only return logs after a specific date (RFC3339). Defaults to all logs",
                   args: { name: "start-time" },
+                  exclusiveOn: ["--since"],
                 },
                 {
                   name: "--tasks",
@@ -1935,15 +1951,15 @@ const completionSpec: Fig.Spec = {
                 appOptionGenerated,
                 {
                   name: ["--dockerfile", "-d"],
-                  description:
-                    "Path to the Dockerfile. Mutually exclusive with -i, --image",
+                  description: "Path to the Dockerfile",
                   args: { name: "dockerfile" },
+                  exclusiveOn: ["--image", "-i"],
                 },
                 {
                   name: ["--image", "-i"],
-                  description:
-                    "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+                  description: "The location of an existing Docker image",
                   args: { name: "image" },
+                  exclusiveOn: ["--dockerfile", "-d"],
                 },
                 {
                   name: ["--job-type", "-t"],
@@ -2087,21 +2103,22 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--app",
-                  description:
-                    "Optional. Name of the application. Cannot be specified with 'default', 'subnets' or 'security-groups'",
-                  args: { name: "app" },
+                  description: "Optional. Name of the application",
+                  args: { name: "app", generators: applicationName },
+                  exclusiveOn: ["--default", "--subnets", "--security-groups"],
                 },
                 {
                   name: "--build-context",
-                  description:
-                    "Path to the Docker build context. Mutually exclusive with -i, --image",
+                  description: "Path to the Docker build context",
                   args: { name: "build-context" },
+                  exclusiveOn: ["--image", "-i"],
                 },
                 {
                   name: "--cluster",
                   description:
-                    "Optional. The short name or full ARN of the cluster to run the task in.  Cannot be specified with 'app', 'env' or 'default'",
+                    "Optional. The short name or full ARN of the cluster to run the task in",
                   args: { name: "cluster" },
+                  exclusiveOn: ["--app", "--env", "--default"],
                 },
                 {
                   name: "--command",
@@ -2123,13 +2140,14 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--default",
                   description:
-                    "Optional. Run tasks in default cluster and default subnets.  Cannot be specified with 'app', 'env' or 'subnets'",
+                    "Optional. Run tasks in default cluster and default subnets",
+                  exclusiveOn: ["--app", "--env", "--subnets"],
                 },
                 {
                   name: "--dockerfile",
-                  description:
-                    "Path to the Dockerfile. Mutually exclusive with -i, --image",
+                  description: "Path to the Dockerfile",
                   args: { name: "dockerfile", default: "Dockerfile" },
+                  exclusiveOn: ["--image", "-i"],
                 },
                 {
                   name: "--entrypoint",
@@ -2139,9 +2157,9 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--env",
-                  description:
-                    "Optional. Name of the environment. Cannot be specified with 'default', 'subnets' or 'security-groups'",
+                  description: "Optional. Name of the environment",
                   args: { name: "env" },
+                  exclusiveOn: ["--default", "--subnets", "--security-groups"],
                 },
                 {
                   name: "--env-vars",
@@ -2168,9 +2186,9 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: ["--image", "-i"],
-                  description:
-                    "The location of an existing Docker image. Mutually exclusive with -d, --dockerfile",
+                  description: "The location of an existing Docker image",
                   args: { name: "image" },
+                  exclusiveOn: ["--dockerfile", "-d"],
                 },
                 {
                   name: "--memory",
@@ -2205,14 +2223,16 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--security-groups",
                   description:
-                    "Optional. The security group IDs for the task to use. Can be specified multiple times. Cannot be specified with 'app' or 'env'",
+                    "Optional. The security group IDs for the task to use. Can be specified multiple times",
                   args: { name: "security-groups" },
+                  exclusiveOn: ["--app", "--env"],
                 },
                 {
                   name: "--subnets",
                   description:
-                    "Optional. The subnet IDs for the task to use. Can be specified multiple times. Cannot be specified with 'app', 'env' or 'default'",
+                    "Optional. The subnet IDs for the task to use. Can be specified multiple times",
                   args: { name: "subnets" },
+                  exclusiveOn: ["--app", "--env", "--default"],
                 },
                 {
                   name: "--tag",
@@ -2250,7 +2270,8 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--default",
                   description:
-                    "Optional. Execute commands in running tasks in default cluster and default subnets.  Cannot be specified with 'app' or 'env'",
+                    "Optional. Execute commands in running tasks in default cluster and default subnets",
+                  exclusiveOn: ["--app", "--env"],
                 },
                 {
                   name: ["--env", "-e"],
@@ -2284,7 +2305,8 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--default",
                   description:
-                    "Optional. Delete a task which was launched in the default cluster and subnets. Cannot be specified with 'app' or 'env'",
+                    "Optional. Delete a task which was launched in the default cluster and subnets",
+                  exclusiveOn: ["--app", "--env"],
                 },
                 {
                   name: ["--env", "-e"],
@@ -2396,14 +2418,15 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--cli-input-yaml",
                   description:
-                    "Optional. A YAML file in which the secret values are specified. Mutually exclusive with the -n ,--name and --values flags",
+                    "Optional. A YAML file in which the secret values are specified",
                   args: { name: "cli-input-yaml" },
+                  exclusiveOn: ["-n", "--name", "--values"],
                 },
                 {
                   name: ["--name", "-n"],
-                  description:
-                    "The name of the secret. Mutually exclusive with the --cli-input-yaml flag",
+                  description: "The name of the secret",
                   args: { name: "name" },
+                  exclusiveOn: ["--cli-input-yaml"],
                 },
                 {
                   name: "--overwrite",
@@ -2413,8 +2436,9 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--values",
                   description:
-                    "Values of the secret in each environment. Specified as <environment>=<value> separated by commas. Mutually exclusive with the --cli-input-yaml flag",
+                    "Values of the secret in each environment. Specified as <environment>=<value> separated by commas",
                   args: { name: "values" },
+                  exclusiveOn: ["--cli-input-yaml"],
                 },
                 helpOption,
               ],
@@ -2464,6 +2488,7 @@ const completionSpec: Fig.Spec = {
                   description:
                     "(Deprecated.) Use --url instead. Repository URL to trigger your pipeline",
                   args: { name: "github-url" },
+                  deprecated: true,
                 },
                 {
                   name: ["--url", "-u"],
