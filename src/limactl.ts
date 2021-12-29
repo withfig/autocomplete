@@ -1,4 +1,4 @@
-import { filepaths } from "@withfig/autocomplete-generators";
+import { filepaths } from "@fig/autocomplete-generators";
 
 const PRIORITY_TOP_THRESHOLD = 76;
 

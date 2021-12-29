@@ -1,4 +1,4 @@
-import { filepaths } from "src/_common/generators";
+import { filepaths } from "@fig/autocomplete-generators";
 
 const slnGenerator = filepaths({ extensions: ["sln"] });
 

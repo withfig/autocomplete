@@ -1,4 +1,4 @@
-import { filepaths } from "@withfig/autocomplete-generators";
+import { filepaths } from "@fig/autocomplete-generators";
 
 const DOTNET_ICON =
   "https://upload.wikimedia.org/wikipedia/commons/a/a3/.NET_Logo.svg";

@@ -1,7 +1,7 @@
 // This file largely follows the same structure (not order) as deno/cli/flags.rs:
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
-import { filepaths } from "@withfig/autocomplete-generators";
+import { filepaths } from "@fig/autocomplete-generators";
 
 // Fig doesn't automatically insert an '=' where an option's argument requires
 // an equals and the argument isn't optional. That's why you'll see a lot of

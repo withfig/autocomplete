@@ -1,4 +1,4 @@
-import { filepaths } from "@withfig/autocomplete-generators";
+import { filepaths } from "@fig/autocomplete-generators";
 
 const JS_ICON =
   "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_js.svg";

@@ -1,4 +1,4 @@
-import { filepaths } from "@withfig/autocomplete-generators";
+import { filepaths } from "@fig/autocomplete-generators";
 
 const compileFiles = filepaths({
   extensions: ["c", "cc", "cpp", "m", "mm", "M", "f", "f90", "f95"],
