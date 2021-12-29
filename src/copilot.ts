@@ -36,6 +36,11 @@ const helpOption: Fig.Option = {
   description: "Help for command",
 };
 
+const jsonOption: Fig.Option = {
+  name: "--json",
+  description: "Outputs in JSON format",
+};
+
 const completionSpec: Fig.Spec = {
   name: "copilot",
   description: "👩‍✈️ Launch and manage containerized applications on AWS",
@@ -152,10 +157,7 @@ const completionSpec: Fig.Spec = {
           name: "show",
           description: "Shows info about an application",
           options: [
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: ["--name", "-n"],
               description: "Name of the application",
@@ -292,14 +294,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           description: "Lists all the environments in an application",
-          options: [
-            appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
-            helpOption,
-          ],
+          options: [appOptionGenerated, jsonOption, helpOption],
         },
         {
           name: "delete",
@@ -323,10 +318,7 @@ const completionSpec: Fig.Spec = {
           description: "Shows info about a deployed environment",
           options: [
             appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: ["--name", "-n"],
               description: "Name of the environment",
@@ -407,10 +399,7 @@ const completionSpec: Fig.Spec = {
           description: "Lists all the services in an application",
           options: [
             appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: "--local",
               description: "Only show services in the workspace",
@@ -508,10 +497,7 @@ const completionSpec: Fig.Spec = {
           description: "Shows info about a deployed service per environment",
           options: [
             appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -534,10 +520,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of the environment",
               args: { name: "env" },
             },
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: ["--name", "-n"],
               description: "Name of the service",
@@ -568,10 +551,7 @@ const completionSpec: Fig.Spec = {
               description: "Optional. Specifies if the logs should be streamed",
               exclusiveOn: ["--end-time"],
             },
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: "--limit",
               description:
@@ -752,10 +732,7 @@ const completionSpec: Fig.Spec = {
           description: "Lists all the jobs in an application",
           options: [
             appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: "--local",
               description: "Only show jobs in the workspace",
@@ -1282,10 +1259,7 @@ const completionSpec: Fig.Spec = {
             "Shows info about a deployed pipeline for an application",
           options: [
             appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: ["--name", "-n"],
               description: "Name of the pipeline",
@@ -1303,10 +1277,7 @@ const completionSpec: Fig.Spec = {
           description: "Shows the status of a pipeline",
           options: [
             appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
+            jsonOption,
             {
               name: ["--name", "-n"],
               description: "Name of the pipeline",
@@ -1318,14 +1289,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           description: "Lists all the deployed pipelines in an application",
-          options: [
-            appOptionGenerated,
-            {
-              name: "--json",
-              description: "Optional. Outputs in JSON format",
-            },
-            helpOption,
-          ],
+          options: [appOptionGenerated, jsonOption, helpOption],
         },
       ],
       options: [helpOption],
@@ -1410,10 +1374,7 @@ const completionSpec: Fig.Spec = {
               name: "show",
               description: "Shows info about an application",
               options: [
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the application",
@@ -1552,14 +1513,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "ls",
               description: "Lists all the environments in an application",
-              options: [
-                appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
-                helpOption,
-              ],
+              options: [appOptionGenerated, jsonOption, helpOption],
             },
             {
               name: "delete",
@@ -1583,10 +1537,7 @@ const completionSpec: Fig.Spec = {
               description: "Shows info about a deployed environment",
               options: [
                 appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the environment",
@@ -1668,10 +1619,7 @@ const completionSpec: Fig.Spec = {
               description: "Lists all the services in an application",
               options: [
                 appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: "--local",
                   description: "Only show services in the workspace",
@@ -1771,10 +1719,7 @@ const completionSpec: Fig.Spec = {
                 "Shows info about a deployed service per environment",
               options: [
                 appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
@@ -1797,10 +1742,7 @@ const completionSpec: Fig.Spec = {
                   description: "Name of the environment",
                   args: { name: "env" },
                 },
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the service",
@@ -1832,10 +1774,7 @@ const completionSpec: Fig.Spec = {
                     "Optional. Specifies if the logs should be streamed",
                   exclusiveOn: ["--end-time"],
                 },
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: "--limit",
                   description:
@@ -2018,10 +1957,7 @@ const completionSpec: Fig.Spec = {
               description: "Lists all the jobs in an application",
               options: [
                 appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: "--local",
                   description: "Only show jobs in the workspace",
@@ -2556,10 +2492,7 @@ const completionSpec: Fig.Spec = {
                 "Shows info about a deployed pipeline for an application",
               options: [
                 appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the pipeline",
@@ -2577,10 +2510,7 @@ const completionSpec: Fig.Spec = {
               description: "Shows the status of a pipeline",
               options: [
                 appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
+                jsonOption,
                 {
                   name: ["--name", "-n"],
                   description: "Name of the pipeline",
@@ -2592,14 +2522,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "ls",
               description: "Lists all the deployed pipelines in an application",
-              options: [
-                appOptionGenerated,
-                {
-                  name: "--json",
-                  description: "Optional. Outputs in JSON format",
-                },
-                helpOption,
-              ],
+              options: [appOptionGenerated, jsonOption, helpOption],
             },
           ],
           options: [helpOption],
