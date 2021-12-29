@@ -100,9 +100,17 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--type", "-t"],
-          description:
-            'Type of job or svc to create. Must be one of: "Request-Driven Web Service", "Load Balanced Web Service", "Backend Service", "Worker Service", "Scheduled Job"',
-          args: { name: "type" },
+          description: "Type of job or svc to create",
+          args: {
+            name: "type",
+            suggestions: [
+              "Request-Driven Web Service",
+              "Load Balanced Web Service",
+              "Backend Service",
+              "Worker Service",
+              "Scheduled Job",
+            ],
+          },
         },
         helpOption,
       ],
@@ -380,9 +388,16 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--svc-type", "-t"],
-              description:
-                'Type of service to create. Must be one of: "Request-Driven Web Service", "Load Balanced Web Service", "Backend Service", "Worker Service"',
-              args: { name: "svc-type" },
+              description: "Type of service to create",
+              args: {
+                name: "svc-type",
+                suggestions: [
+                  "Request-Driven Web Service",
+                  "Load Balanced Web Service",
+                  "Backend Service",
+                  "Worker Service",
+                ],
+              },
             },
             helpOption,
           ],
@@ -703,9 +718,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["--job-type", "-t"],
-              description:
-                'Type of job to create. Must be one of: "Scheduled Job"',
-              args: { name: "job-type" },
+              description: "Type of job to create",
+              args: { name: "job-type", suggestions: ["Scheduled Job"] },
             },
             {
               name: ["--name", "-n"],
@@ -1635,9 +1649,16 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: ["--svc-type", "-t"],
-                  description:
-                    'Type of service to create. Must be one of: "Request-Driven Web Service", "Load Balanced Web Service", "Backend Service", "Worker Service"',
-                  args: { name: "svc-type" },
+                  description: "Type of service to create",
+                  args: {
+                    name: "svc-type",
+                    suggestions: [
+                      "Request-Driven Web Service",
+                      "Load Balanced Web Service",
+                      "Backend Service",
+                      "Worker Service",
+                    ],
+                  },
                 },
                 helpOption,
               ],
@@ -1963,9 +1984,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: ["--job-type", "-t"],
-                  description:
-                    'Type of job to create. Must be one of: "Scheduled Job"',
-                  args: { name: "job-type" },
+                  description: "Type of job to create",
+                  args: { name: "job-type", suggestions: ["Scheduled Job"] },
                 },
                 {
                   name: ["--name", "-n"],
