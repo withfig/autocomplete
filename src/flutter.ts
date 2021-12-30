@@ -1,5 +1,7 @@
 // Flutter version 2.0.1
 
+import { filepaths } from "@fig/autocomplete-generators";
+
 const flutterGenerators: Record<string, Fig.Generator> = {
   emulators: {
     script: "flutter emulators",
@@ -16,15 +18,7 @@ const flutterGenerators: Record<string, Fig.Generator> = {
         }));
     },
   },
-  dartFiles: {
-    template: "filepaths",
-    filterTemplateSuggestions: function (suggestions) {
-      return suggestions.filter(
-        (suggestion) =>
-          suggestion.type === "folder" || suggestion.name.endsWith(".dart")
-      );
-    },
-  },
+  dartFiles: filepaths({ extensions: ["dart"] }),
 };
 
 const help = {

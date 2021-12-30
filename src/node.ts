@@ -1,26 +1,15 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "node",
   description: "Run the node interpreter",
   args: {
     name: "node script",
     isScript: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions: function (paths) {
-        return paths
-          .filter((file) => {
-            return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
-          })
-          .map((file) => {
-            const isJsFile = file.name.match(/.*\.m?js/g);
-
-            return {
-              ...file,
-              priority: isJsFile && 76,
-            };
-          });
-      },
-    },
+    generators: filepaths({
+      extensions: ["mjs", "js"],
+      editFileSuggestions: { priority: 76 },
+    }),
   },
   options: [
     {

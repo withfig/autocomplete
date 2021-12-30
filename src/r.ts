@@ -1,85 +1,22 @@
-const compileFiles: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    const possibleSuffixes: string[] = [
-      ".c",
-      ".cc",
-      ".cpp",
-      ".m",
-      ".mm",
-      ".M",
-      ".f",
-      ".f90",
-      ".f95",
-    ];
-    return paths.filter((file) => {
-      for (let idx = 0; idx < possibleSuffixes.length; idx++) {
-        const element = possibleSuffixes[idx];
-        if (file.name.endsWith(element)) {
-          return true;
-        }
-      }
-      return false;
-    });
-  },
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
-const folders: Fig.Generator = {
-  template: "folders",
-};
+const compileFiles = filepaths({
+  extensions: ["c", "cc", "cpp", "m", "mm", "M", "f", "f90", "f95"],
+});
 
-const filepaths: Fig.Generator = {
-  template: "filepaths",
-};
+const rPackages = filepaths({
+  extensions: ["tar", "tar.gz", "tzr.bz2", "tar.xz", "tgz"],
+});
 
-const rPackages: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    const possibleSuffixes: string[] = [
-      ".tar",
-      ".tar.gz",
-      ".tzr.bz2",
-      ".tar.xz",
-      ".tgz",
-      "/",
-    ];
-    return paths.filter((file) => {
-      for (let idx = 0; idx < possibleSuffixes.length; idx++) {
-        const element = possibleSuffixes[idx];
-        if (file.name.endsWith(element)) {
-          return true;
-        }
-      }
-      return false;
-    });
-  },
-};
+const RDocGenerator = filepaths({
+  extensions: ["Rd"],
+  editFileSuggestions: { priority: 76 },
+});
 
-const RDocGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    return paths.map((file) => {
-      const isRFile = file.name.endsWith(".Rd");
-      return {
-        ...file,
-        priority: isRFile && 76,
-      };
-    });
-  },
-};
-
-const RFileGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions: function (paths) {
-    return paths.map((file) => {
-      const isRFile = file.name.endsWith(".R");
-      return {
-        ...file,
-        priority: isRFile && 76,
-      };
-    });
-  },
-};
+const RFileGenerator = filepaths({
+  extensions: ["R"],
+  editFileSuggestions: { priority: 76 },
+});
 
 const RLibGenerator: Fig.Generator = {
   script: "Rscript -e '.libPaths()'",
@@ -478,25 +415,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "packages",
             description: "Directories with the package sources",
-            isOptional: false,
             generators: {
-              template: "filepaths",
-              filterTemplateSuggestions: function (paths) {
-                return paths
-                  .filter((file) => {
-                    return (
-                      file.name.endsWith(".tar.gz") || file.name.endsWith("/")
-                    );
-                  })
-                  .map((file) => {
-                    const isRFile = file.name.endsWith(".R");
-
-                    return {
-                      ...file,
-                      priority: isRFile && 76,
-                    };
-                  });
-              },
+              template: "folders",
             },
           },
         },
@@ -532,7 +452,9 @@ const completionSpec: Fig.Spec = {
             name: "pakgdirs",
             description: "Package directories",
             isVariadic: true,
-            generators: folders,
+            generators: {
+              template: "folders",
+            },
           },
           options: helpAndVersionOptions.concat([
             {
@@ -614,7 +536,9 @@ const completionSpec: Fig.Spec = {
                 name: "LIB",
                 description: "Library tree",
                 default: ".",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
@@ -625,7 +549,9 @@ const completionSpec: Fig.Spec = {
                 name: "directory",
                 description: "Directory for output",
                 default: ".",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
@@ -703,7 +629,9 @@ const completionSpec: Fig.Spec = {
                 name: "directory",
                 description: "Directory with the tests directory",
                 default: "tests",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
@@ -961,7 +889,9 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "working dir",
                 description: "Working directory for the build",
-                generators: folders,
+                generators: {
+                  template: "folders",
+                },
               },
             },
             {
@@ -978,7 +908,9 @@ const completionSpec: Fig.Spec = {
             name: "files or pkgs",
             description:
               "Rd files, or a directory with the sources of a pkg, or an installed pkg",
-            generators: folders,
+            generators: {
+              template: "folders",
+            },
           },
         },
         {
@@ -1093,7 +1025,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file",
             description: "File to process",
-            generators: folders,
+            generators: {
+              template: "folders",
+            },
           },
         },
         {
@@ -1167,7 +1101,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file",
             description: "Vignette to build",
-            generators: filepaths,
+            generators: {
+              template: "filepaths",
+            },
           },
         },
         {
@@ -1178,12 +1114,16 @@ const completionSpec: Fig.Spec = {
             {
               name: "from",
               description: "'From' R output file (or '-' for stdin)",
-              generators: filepaths,
+              generators: {
+                template: "filepaths",
+              },
             },
             {
               name: "to",
               description: "'To' R output file",
-              generators: filepaths,
+              generators: {
+                template: "filepaths",
+              },
             },
           ],
         },

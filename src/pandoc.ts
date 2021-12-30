@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const pandocGenerators: Record<string, Fig.Generator> = {
   inputFormats: {
     script: "pandoc --list-input-formats",
@@ -27,23 +29,8 @@ const pandocGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
-  yamlFiles: {
-    template: "filepaths",
-    filterTemplateSuggestions: function (paths) {
-      const suffix = ".yaml";
-      return paths.filter((file) => {
-        return file.name.endsWith(suffix);
-      });
-    },
-  },
-  yamlJSONFiles: {
-    template: "filepaths",
-    filterTemplateSuggestions: function (paths) {
-      return paths.filter((file) => {
-        return file.name.endsWith(".yaml") || file.name.endsWith(".json");
-      });
-    },
-  },
+  yamlFiles: filepaths({ extensions: ["yaml"] }),
+  yamlJSONFiles: filepaths({ extensions: ["yaml", "json"] }),
 };
 
 const styleFileArg: Fig.Arg = {

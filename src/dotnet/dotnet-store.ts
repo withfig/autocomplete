@@ -1,17 +1,4 @@
-const projectGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const suffix = ".csproj";
-
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        return file.name.endsWith(suffix);
-      }
-
-      return false;
-    });
-  },
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
 const completionSpec: Fig.Spec = {
   name: "store",
@@ -35,7 +22,7 @@ const completionSpec: Fig.Spec = {
       isRepeatable: true,
       args: {
         name: "manifest",
-        generators: projectGenerator,
+        generators: filepaths({ extensions: ["csproj"] }),
       },
     },
     {

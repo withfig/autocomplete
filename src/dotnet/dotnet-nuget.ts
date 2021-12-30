@@ -1,36 +1,8 @@
-const configFileGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const expected = "nuget.config";
+import { filepaths } from "@fig/autocomplete-generators";
 
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
+const configFileGenerator = filepaths({ equals: "nuget.config" });
 
-        return fileName === expected;
-      }
-
-      return false;
-    });
-  },
-};
-
-const nupkgGenerator: Fig.Generator = {
-  template: "filepaths",
-  filterTemplateSuggestions(param) {
-    const suffix = ".nupkg";
-
-    return param.filter((file) => {
-      if (typeof file.name === "string") {
-        const fileName = file.name;
-
-        return fileName.endsWith(suffix);
-      }
-
-      return false;
-    });
-  },
-};
+const nupkgGenerator = filepaths({ extensions: ["nupkg"] });
 
 const sourceCommonOptions: Fig.Option[] = [
   {
@@ -583,22 +555,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the file path to the certificate to be used in signing the package",
           args: {
             name: "path",
-            generators: {
-              template: "filepaths",
-              filterTemplateSuggestions(param) {
-                const suffix = ".pfx";
-
-                return param.filter((file) => {
-                  if (typeof file.name === "string") {
-                    const fileName = file.name;
-
-                    return fileName.endsWith(suffix);
-                  }
-
-                  return false;
-                });
-              },
-            },
+            generators: filepaths({ extensions: ["pfx"] }),
           },
         },
         {

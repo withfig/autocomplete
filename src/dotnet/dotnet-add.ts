@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 type PackageSearchResultData = {
   id: string;
   title: string;
@@ -48,20 +50,7 @@ const completionSpec: Fig.Spec = {
     description:
       "Specifies the project file. If not specified, the command searches the current directory for one",
     isOptional: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions(param) {
-        const suffix = ".csproj";
-
-        return param.filter((file) => {
-          if (typeof file.name === "string") {
-            return file.name.endsWith(suffix);
-          }
-
-          return false;
-        });
-      },
-    },
+    generators: filepaths({ extensions: ["csproj"] }),
   },
   subcommands: [
     {
@@ -128,20 +117,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         isVariadic: true,
-        generators: {
-          template: "filepaths",
-          filterTemplateSuggestions(param) {
-            const suffix = ".csproj";
-
-            return param.filter((file) => {
-              if (typeof file.name === "string") {
-                return file.name.endsWith(suffix);
-              }
-
-              return false;
-            });
-          },
-        },
+        generators: filepaths({ extensions: ["csproj"] }),
       },
       options: [
         {

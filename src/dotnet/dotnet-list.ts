@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "list",
   args: {
@@ -5,22 +7,7 @@ const completionSpec: Fig.Spec = {
     description:
       "The project or solution file to operate on. If not specified, the command searches the current directory for one. If more than one solution or project is found, an error is thrown",
     isOptional: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions(param) {
-        const suffixes = [".csproj", ".sln"];
-
-        return param.filter((file) => {
-          if (typeof file.name === "string") {
-            const fileName = file.name;
-
-            return suffixes.some((suffix) => fileName.endsWith(suffix));
-          }
-
-          return false;
-        });
-      },
-    },
+    generators: filepaths({ extensions: ["csproj", "sln"] }),
   },
   subcommands: [
     {
