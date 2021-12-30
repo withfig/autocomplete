@@ -108,10 +108,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "git",
       description: "Password store git functions",
-      args: {
-        name: "git-command-arguments",
-        description: "Git command arguments",
-      },
+      loadSpec: true,
     },
     {
       name: "version",
@@ -284,21 +281,12 @@ const completionSpec: Fig.Spec = {
       name: "grep",
       description:
         "Searches inside each decrypted password file for search-string. Grep options can be used",
+      loadSpec: true,
       args: {
         name: "pass-name",
         description: "The password name you want to grep for",
         isOptional: false,
       },
-      options: [
-        {
-          name: ["-e", "--regexp"],
-          description:
-            "Use PATTERN as the pattern. This can be used to specify multiple search patterns, or to protect a pattern beginning with a hyphen (-). (-e is specified by POSIX.)",
-          args: {
-            name: "pattern",
-          },
-        },
-      ],
     },
   ],
 };
