@@ -146,7 +146,8 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password name.",
-        isOptional: false
+        isOptional: false,
+        generators: listPasswords
       },
       options: [
         {
