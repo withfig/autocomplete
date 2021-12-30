@@ -1,32 +1,21 @@
 const listPasswords: Fig.Generator = {
   script: function () {
-    return `grep -r -l '' $HOME/.password-store --exclude-dir=.git | sed "s|$HOME/.password-store/||g"`;
+    return `grep -r -l '' $HOME/.password-store --exclude-dir=.git`;
   },
   postProcess: (output) => {
     return output.split("\n").map((password) => ({
-      name: password.replace(".gpg", ""),
+      name: password.split(".password-store/").pop().replace(".gpg", ""),
     }));
   },
 };
 
 const listDirectories: Fig.Generator = {
   script: function () {
-    return `ls -dR1a $HOME/.password-store/*/ | sed "s|$HOME/.password-store/||g"`;
+    return `ls -dR1a $HOME/.password-store/*/`;
   },
   postProcess: (output) => {
     return output.split("\n").map((dir) => ({
-      name: dir,
-    }));
-  },
-};
-
-const listGpgIds: Fig.Generator = {
-  script: function () {
-    return `gpg --list-keys --with-colons --with-fingerprint | awk -F: '/^uid:/ { print $10 }`;
-  },
-  postProcess: (output) => {
-    return output.split("\n").map((id) => ({
-      name: id,
+      name: dir.split(".password-store/").pop(),
     }));
   },
 };
@@ -65,7 +54,6 @@ const completionSpec: Fig.Spec = {
         description:
           "The gpg-id you want to use to encrypt your password store",
         isOptional: false,
-        generators: listGpgIds,
       },
       options: [
         {
