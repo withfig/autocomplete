@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "tsc",
   description: "CLI tool for TypeScript compiler",
@@ -718,22 +720,11 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "tsc script",
     isScript: true,
-    generators: {
-      template: "filepaths",
-      filterTemplateSuggestions: function (paths) {
-        return paths
-          .filter((file) => {
-            return file.name.endsWith(".ts") || file.name.endsWith("/");
-          })
-          .map((file) => {
-            const isTsFile = file.name.endsWith(".ts");
-            return {
-              ...file,
-              priority: isTsFile ? 76 : 70,
-            };
-          });
-      },
-    },
+    generators: filepaths({
+      extensions: ["ts"],
+      editFileSuggestions: { priority: 76 },
+      editFolderSuggestions: { priority: 70 },
+    }),
   },
 };
 
