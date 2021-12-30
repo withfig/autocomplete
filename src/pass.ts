@@ -108,7 +108,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "git",
       description: "Password store git functions",
-      loadSpec: true,
+      loadSpec: "git",
     },
     {
       name: "version",
@@ -281,7 +281,7 @@ const completionSpec: Fig.Spec = {
       name: "grep",
       description:
         "Searches inside each decrypted password file for search-string. Grep options can be used",
-      loadSpec: true,
+      loadSpec: "grep",
       args: {
         name: "pass-name",
         description: "The password name you want to grep for",
