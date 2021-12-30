@@ -5,6 +5,7 @@ const listPasswords: Fig.Generator = {
   postProcess: (output) => {
     return output.split("\n").map((password) => ({
       name: password.split(".password-store/").pop().replace(".gpg", ""),
+      icon: "🔐",
     }));
   },
 };
@@ -16,6 +17,7 @@ const listDirectories: Fig.Generator = {
   postProcess: (output) => {
     return output.split("\n").map((dir) => ({
       name: dir.split(".password-store/").pop(),
+      icon: "📁",
     }));
   },
 };
