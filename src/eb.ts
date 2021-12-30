@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
           description: "List of child directories to initialize",
         },
         {
-          name: ["-p", "--plataform"],
+          name: ["-p", "--platform"],
           description: "The platform version to use",
           args: {
             name: "plataform-version",
