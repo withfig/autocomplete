@@ -1,4 +1,8 @@
-import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
+import {
+  npmParserDirectives,
+  npmScriptsGenerator,
+  npmSearchGenerator,
+} from "./npm";
 
 export const nodeClis = [
   "vue",
@@ -382,6 +386,7 @@ const completionSpec: Fig.Spec = {
   },
   args: {
     generators: npmScriptsGenerator,
+    parserDirectives: npmParserDirectives,
     isOptional: true,
   },
   options: [
@@ -1230,28 +1235,17 @@ const completionSpec: Fig.Spec = {
         { name: ["-h", "--help"], description: "Output usage information" },
       ],
       args: [
-        // TODO get this generator to work and combine the logic of both of these
-        //     {
-        //         generators: {
-        //            script: "ls -1 $(yarn bin)", // ISSUE: this runs in /bin/sh, yarn may not be defined in sh PATH
-        //            splitOn: "\n",
-        //            postProcess: function (out) {
-        //                try {
-        //                    if (out) {
-        //                        return out
-        //                    }
-        //                } catch(e) { }
-        //                return []
-        //            }
-        //           }
-        //     },
         {
+          name: "script",
+          description: "Script to run from your package.json",
           generators: npmScriptsGenerator,
+          parserDirectives: npmParserDirectives,
+          isCommand: true,
         },
         {
           name: "env",
           suggestions: ["env"],
-          description: "Lists enviornment variables available to scripts",
+          description: "Lists environment variables available to scripts",
           isOptional: true,
         },
       ],
