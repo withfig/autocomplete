@@ -35,6 +35,26 @@ const completionSpec: Fig.Spec = {
   name: "pass",
   description:
     "Pass - stores, retrieves, generates, and synchronizes passwords securely",
+  args: {
+    name: "pass-name",
+    description: "The password you want to show",
+    generators: listPasswords,
+    isOptional: false,
+  },
+  options: [
+    {
+      name: ["--clip", "-c"],
+      description: "Copy the password to the clipboard",
+    },
+    {
+      name: ["--qrcode", "-q"],
+      description: "Display a QRcode of the password",
+    },
+    {
+      name: "--help",
+      description: "Show help for pass",
+    },
+  ],
   subcommands: [
     {
       name: "init",
@@ -277,12 +297,6 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-    },
-  ],
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help for pass",
     },
   ],
 };
