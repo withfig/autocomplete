@@ -110,7 +110,7 @@ const completionSpec: Fig.Spec = {
       description: "Password store git functions",
       args: {
         name: "git-command-arguments",
-        description: "Git comamnd arguments",
+        description: "Git command arguments",
       },
     },
     {
@@ -130,6 +130,7 @@ const completionSpec: Fig.Spec = {
           name: "old-path",
           description: "The old password name or directory",
           isOptional: false,
+          generators: listPasswords,
         },
         {
           name: "new-path",
@@ -153,6 +154,7 @@ const completionSpec: Fig.Spec = {
           name: "old-path",
           description: "The old password name or directory",
           isOptional: false,
+          generators: listPasswords,
         },
         {
           name: "new-path",
