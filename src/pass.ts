@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ['--path=sub-folder', '-p sub-folder'],
+          name: ['--path', '-p'],
           description: "A specific gpg-id or set of gpg-ids is assigned for that specific sub folder of the password store.",
           args: {
             name: "sub-folder",
