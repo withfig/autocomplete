@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "migrate",
   args: {
@@ -5,23 +7,10 @@ const completionSpec: Fig.Spec = {
     description:
       "The project or solution file to operate on. If not specified, the command searches the current directory for one. If more than one solution or project is found, an error is thrown",
     isOptional: true,
-    generators: {
-      template: ["filepaths", "folders"],
-      filterTemplateSuggestions(param) {
-        const suffix = ".sln";
-        const fileNames = ["project.json", "global.json"];
-
-        return param.filter((file) => {
-          if (typeof file.name === "string") {
-            const fileName = file.name;
-
-            return fileName.endsWith(suffix) || fileNames.includes(fileName);
-          }
-
-          return false;
-        });
-      },
-    },
+    generators: filepaths({
+      extensions: ["sln"],
+      equals: ["project.json", "global.json"],
+    }),
   },
   options: [
     {
@@ -63,22 +52,7 @@ const completionSpec: Fig.Spec = {
         "Template csproj file to use for migration. By default, the same template as the one dropped by dotnet new console is used",
       args: {
         name: "file",
-        generators: {
-          template: "filepaths",
-          filterTemplateSuggestions(param) {
-            const suffix = ".csproj";
-
-            return param.filter((file) => {
-              if (typeof file.name === "string") {
-                const fileName = file.name;
-
-                return fileName.endsWith(suffix);
-              }
-
-              return false;
-            });
-          },
-        },
+        generators: filepaths({ extensions: ["csproj"] }),
       },
     },
     {

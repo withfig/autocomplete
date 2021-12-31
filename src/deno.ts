@@ -1,6 +1,8 @@
 // This file largely follows the same structure (not order) as deno/cli/flags.rs:
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
+import { filepaths } from "@fig/autocomplete-generators";
+
 // Fig doesn't automatically insert an '=' where an option's argument requires
 // an equals and the argument isn't optional. That's why you'll see a lot of
 // `insertValue: "--name="` in this spec.
@@ -30,47 +32,17 @@ function generatePreferredFilepaths(init: {
   };
 }
 
-/**
- * Equivalent to the `"filepaths"` template, but removes files that don't
- * end with one of the given endings. Files are given a priority of 75, so
- * they should always appear first.
- */
-function generateFilepathsMatch(init: {
-  match: RegExp;
-  filePriority?: number;
-}): Fig.Generator {
-  const { match, filePriority = 75 } = init;
-  return {
-    template: "filepaths",
-    filterTemplateSuggestions: (paths) => {
-      const out: Fig.Suggestion[] = [];
-      // This is basically a longer form of Array.filter, because the HOF
-      // version became too long to read easily. It's clearer imperatively.
-      for (const path of paths) {
-        if (path.type === "folder") {
-          out.push(path);
-          continue;
-        }
-        if (match.test(path.name)) {
-          path.priority = filePriority;
-          out.push(path);
-        }
-      }
-      return out;
-    },
-  };
-}
+// The Deno core team is looking at adding runnable metadata JSON file, so
+// ".json" will have to be added to this eventually.
+const generateRunnableFiles = filepaths({
+  matches: /\.(m?(j|t)sx?)$/i,
+  editFileSuggestions: { priority: 75 },
+});
 
 type VersionsJSON = {
   latest: string;
   versions: string[];
 };
-
-// The Deno core team is looking at adding runnable metadata JSON file, so
-// ".json" will have to be added to this eventually.
-const generateRunnableFiles = generateFilepathsMatch({
-  match: /\.(m?(j|t)sx?)$/i,
-});
 
 type DenoLintRulesJSON = {
   code: string;
@@ -94,6 +66,18 @@ const generateLintRules: Fig.Generator = {
 
 type ExclusiveOn = {
   exclusiveOn?: string[];
+};
+
+const unsafelyIgnoreCertificateErrorsOption: Fig.Option = {
+  name: "--unsafely-ignore-certificate-errors",
+  description: "DANGER: Disables verification of TLS certificates",
+  isDangerous: true,
+  requiresEquals: true,
+  args: {
+    name: "host names",
+    description: "Scope ignoring certificate errors to these hosts",
+    isOptional: true,
+  },
 };
 
 const permissionOptions: Fig.Option[] = [
@@ -175,17 +159,7 @@ const permissionOptions: Fig.Option[] = [
     name: "--prompt",
     description: "Fallback to prompt if required permission wasn't passed",
   },
-  {
-    name: "--unsafely-ignore-certificate-errors",
-    description: "DANGER: Disables verification of TLS certificates",
-    isDangerous: true,
-    requiresEquals: true,
-    args: {
-      name: "host names",
-      description: "Scope ignoring certificate errors to these hosts",
-      isOptional: true,
-    },
-  },
+  unsafelyIgnoreCertificateErrorsOption,
 ];
 
 function inspectorOptions(options: ExclusiveOn = {}): Fig.Option[] {
@@ -274,6 +248,19 @@ const lockWriteOption: Fig.Option = {
 const noCheckOption: Fig.Option = {
   name: "--no-check",
   description: "Skip type checking modules",
+  requiresEquals: true,
+  args: {
+    name: "type",
+    description: "Specify the kind of modules to skip type checking",
+    isOptional: true,
+    suggestions: [
+      {
+        name: "remote",
+        description: "Don't check remote modules",
+        icon: "fig://icon?type=string",
+      },
+    ],
+  },
 };
 
 const noRemoteOption: Fig.Option = {
@@ -314,12 +301,23 @@ const v8FlagsOption: Fig.Option = {
   },
 };
 
-function watchOption(options: ExclusiveOn = {}): Fig.Option {
+function watchOption(options: ExclusiveOn & { files: boolean }): Fig.Option {
   return {
     name: "--watch",
     description:
       "UNSTABLE: Watch for file changes and restart process automatically",
     exclusiveOn: options.exclusiveOn,
+    requiresEquals: options.files ? true : undefined,
+    args: options.files
+      ? {
+          name: "files",
+          isOptional: true,
+          generators: {
+            template: "filepaths",
+            getQueryTerm: ",",
+          },
+        }
+      : undefined,
   };
 }
 
@@ -403,6 +401,7 @@ const denoRun: Fig.Subcommand = {
       inspectorExclusiveOn: ["--watch"],
     }),
     watchOption({
+      files: true,
       exclusiveOn: ["--inspect", "--inspect-brk"],
     }),
   ],
@@ -416,9 +415,9 @@ const denoTest: Fig.Subcommand = {
     description: "The paths of tests to run",
     isOptional: true,
     isVariadic: true,
-    generators: generateFilepathsMatch({
-      // Any files with a test suffix should be suggested
-      match: /(\.|_)?test\.(m?(j|t)sx?)$/,
+    generators: filepaths({
+      matches: /(\.|_)?test\.(m?(j|t)sx?)$/,
+      editFileSuggestions: { priority: 75 },
     }),
   },
   options: [
@@ -498,6 +497,7 @@ const denoTest: Fig.Subcommand = {
       },
     },
     watchOption({
+      files: false,
       exclusiveOn: ["--no-run", "--coverage"],
     }),
   ],
@@ -511,8 +511,9 @@ const denoFmt: Fig.Subcommand = {
     description: "Files to format",
     isOptional: true,
     isVariadic: true,
-    generators: generateFilepathsMatch({
-      match: /\.(mjs|jsx?|tsx?|jsonc?|md)$/i,
+    generators: filepaths({
+      matches: /\.(mjs|jsx?|tsx?|jsonc?|md)$/i,
+      editFileSuggestions: { priority: 75 },
     }),
   },
   options: [
@@ -540,7 +541,7 @@ const denoFmt: Fig.Subcommand = {
         template: "filepaths",
       },
     },
-    watchOption(),
+    watchOption({ files: false }),
     {
       name: "--options-use-tabs",
       description: "Use tabs instead of spaces",
@@ -651,7 +652,7 @@ const denoLint: Fig.Subcommand = {
         generators: generateLintRules,
       },
     },
-    watchOption(),
+    watchOption({ files: false }),
   ],
 };
 
@@ -1146,6 +1147,7 @@ const denoRepl: Fig.Subcommand = {
   description: "Open an interactive read-eval-print loop",
   options: [
     ...runtimeOptions({ perms: false, inspector: true }),
+    unsafelyIgnoreCertificateErrorsOption,
     {
       name: "--eval",
       insertValue: "--eval '{cursor}'",

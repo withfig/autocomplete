@@ -1,11 +1,8 @@
-import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
-
-const createCLIs = [
-  "create-next-app",
-  "create-react-native-app",
-  "create-video",
-  "create-redwood-app",
-];
+import {
+  npmParserDirectives,
+  npmScriptsGenerator,
+  npmSearchGenerator,
+} from "./npm";
 
 export const nodeClis = [
   "vue",
@@ -56,9 +53,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
         name: dependencyName,
         icon: "📦",
       }));
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
 
     return [];
   },
@@ -79,6 +74,24 @@ const scriptList: Fig.Generator = {
       if (scripts) {
         return Object.keys(scripts).map((script) => ({ name: script }));
       }
+    } catch (e) {}
+    return [];
+  },
+};
+
+// generate package list of direct and indirect dependencies
+const allDependenciesGenerator: Fig.Generator = {
+  script: "yarn list --depth=0 --json",
+  postProcess: (out) => {
+    if (out.trim() == "") return [];
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent.data.trees;
+      return dependencies.map((dependency: { name: string }) => ({
+        name: dependency.name.split("@")[0],
+        icon: "📦",
+      }));
     } catch (e) {}
     return [];
   },
@@ -324,6 +337,30 @@ const commonOptions: Fig.Option[] = [
   },
 ];
 
+export const createCLIsGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = "create-" + context[context.length - 1];
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+  },
+  cache: {
+    ttl: 100 * 24 * 60 * 60 * 3, // 3 days
+  },
+  postProcess: function (out) {
+    try {
+      return JSON.parse(out).results.map(
+        (item) =>
+          ({
+            name: item.package.name.substring(7),
+            description: item.package.description,
+          } as Fig.Suggestion)
+      ) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
@@ -349,6 +386,7 @@ const completionSpec: Fig.Spec = {
   },
   args: {
     generators: npmScriptsGenerator,
+    parserDirectives: npmParserDirectives,
     isOptional: true,
   },
   options: [
@@ -771,14 +809,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Creates new projects from any create-* starter kits",
-      generateSpec: async () => {
-        return {
-          name: "create",
-          subcommands: createCLIs.map((name) => ({
-            name: name.slice(7),
-            loadSpec: name,
-          })),
-        };
+      args: {
+        name: "cli",
+        generators: createCLIsGenerator,
+        loadSpec: async (token) => ({
+          name: "create-" + token,
+          type: "global",
+        }),
+        isCommand: true,
       },
       options: [
         ...commonOptions,
@@ -1197,28 +1235,17 @@ const completionSpec: Fig.Spec = {
         { name: ["-h", "--help"], description: "Output usage information" },
       ],
       args: [
-        // TODO get this generator to work and combine the logic of both of these
-        //     {
-        //         generators: {
-        //            script: "ls -1 $(yarn bin)", // ISSUE: this runs in /bin/sh, yarn may not be defined in sh PATH
-        //            splitOn: "\n",
-        //            postProcess: function (out) {
-        //                try {
-        //                    if (out) {
-        //                        return out
-        //                    }
-        //                } catch(e) { }
-        //                return []
-        //            }
-        //           }
-        //     },
         {
+          name: "script",
+          description: "Script to run from your package.json",
           generators: npmScriptsGenerator,
+          parserDirectives: npmParserDirectives,
+          isCommand: true,
         },
         {
           name: "env",
           suggestions: ["env"],
-          description: "Lists enviornment variables available to scripts",
+          description: "Lists environment variables available to scripts",
           isOptional: true,
         },
       ],
@@ -1325,6 +1352,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "why",
       description: "Show information about why a package is installed",
+      args: {
+        name: "package",
+        generators: allDependenciesGenerator,
+      },
+      options: [
+        ...commonOptions,
+        {
+          name: ["-h", "--help"],
+          description: "Output usage information",
+        },
+      ],
     },
     {
       name: "workspace",

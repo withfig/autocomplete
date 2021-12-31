@@ -143,6 +143,17 @@ export const npmScriptsGenerator: Fig.Generator = {
   },
 };
 
+export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
+  alias: async (token, executeShellCommand) => {
+    const out = await executeShellCommand("cat $(npm prefix)/package.json");
+    const script: string = JSON.parse(out).scripts?.[token];
+    if (!script) {
+      throw new Error(`Script not found: '${token}'`);
+    }
+    return script;
+  },
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: "-wl--workspace",
@@ -369,20 +380,9 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "script",
-        description: "Run scripts from your package.json",
+        description: "Script to run from your package.json",
         generators: npmScriptsGenerator,
-        parserDirectives: {
-          alias: async (token, executeShellCommand) => {
-            const out = await executeShellCommand(
-              "cat $(npm prefix)/package.json"
-            );
-            const script: string = JSON.parse(out).scripts?.[token];
-            if (!script) {
-              throw new Error("Alias not found");
-            }
-            return script;
-          },
-        },
+        parserDirectives: npmParserDirectives,
         isCommand: true,
       },
     },
