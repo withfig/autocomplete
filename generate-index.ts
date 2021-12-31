@@ -42,9 +42,11 @@ const commandTypeDeclarations = commands
 
 fs.writeFileSync(
   "build/index.d.ts",
-  `${commandTypeDeclarations}
+  `import "@withfig/autocomplete-types"
+  
+${commandTypeDeclarations}
 
-const completions: string[]
-export default completions
+declare const completions: string[]
+export { completions as default }
 `
 );
