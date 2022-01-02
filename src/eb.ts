@@ -108,6 +108,14 @@ const completionSpec: Fig.Spec = {
             description: "Minutes before timout",
           },
         },
+        {
+          name: "--version",
+          description: "An existing application version to deploy",
+          args: {
+            name: "version-label",
+            description: "Label of the existing version to deploy",
+          },
+        },
       ],
     },
   ],
