@@ -46,6 +46,17 @@ const completionSpec: Fig.Spec = {
       name: "deploy",
       description:
         "Deploys the application source bundle from the initialized project directory to the running application",
+      options: [
+        {
+          name: ["-l", "--label"],
+          description:
+            "Specify a label to use for the version that the EB CLI creates",
+          args: {
+            name: "version-label",
+            description: "The label to use for the version",
+          },
+        },
+      ],
     },
   ],
 };
