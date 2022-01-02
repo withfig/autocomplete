@@ -95,6 +95,11 @@ const completionSpec: Fig.Spec = {
             description: "The name of the CodeCommit repository and branch",
           },
         },
+        {
+          name: "--staged",
+          description:
+            "Deploy files staged in the git index instead of the HEAD commit",
+        },
       ],
     },
   ],
