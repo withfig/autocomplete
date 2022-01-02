@@ -42,6 +42,11 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "deploy",
+      description:
+        "Deploys the application source bundle from the initialized project directory to the running application",
+    },
   ],
 };
 
