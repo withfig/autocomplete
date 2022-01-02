@@ -56,6 +56,14 @@ const completionSpec: Fig.Spec = {
             description: "The label to use for the version",
           },
         },
+        {
+          name: "--env-group-suffix",
+          description: "Group name to append to the environment name",
+          args: {
+            name: "groupname",
+            description: "The group name to append to the environment name",
+          },
+        },
       ],
     },
   ],
