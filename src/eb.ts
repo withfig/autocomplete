@@ -64,6 +64,15 @@ const completionSpec: Fig.Spec = {
             description: "The group name to append to the environment name",
           },
         },
+        {
+          name: ["-m", "--message"],
+          description:
+            "The description for the application version, enclosed in double quotation marks",
+          args: {
+            name: "version-description",
+            description: "Description for the application version",
+          },
+        },
       ],
     },
   ],
