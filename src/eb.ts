@@ -100,6 +100,14 @@ const completionSpec: Fig.Spec = {
           description:
             "Deploy files staged in the git index instead of the HEAD commit",
         },
+        {
+          name: "--timeout",
+          description: "The number of minutes before the command times out",
+          args: {
+            name: "minutes",
+            description: "Minutes before timout",
+          },
+        },
       ],
     },
   ],
