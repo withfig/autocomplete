@@ -118,6 +118,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "abort",
+      description: "Abort the current running process",
+    },
   ],
 };
 
