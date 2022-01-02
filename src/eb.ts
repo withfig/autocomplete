@@ -73,6 +73,15 @@ const completionSpec: Fig.Spec = {
             description: "Description for the application version",
           },
         },
+        {
+          name: "--modules",
+          description:
+            "List of components to update. Only for Compose Environments",
+          args: {
+            name: "component",
+            description: "Component to update",
+          },
+        },
       ],
     },
   ],
