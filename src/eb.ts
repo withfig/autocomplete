@@ -82,6 +82,19 @@ const completionSpec: Fig.Spec = {
             description: "Component to update",
           },
         },
+        {
+          name: ["-p", "--platform"],
+          description:
+            "Preprocess and validate the environment manifest and configuration files in the source bundle",
+        },
+        {
+          name: "--source codecommit/",
+          description: "CodeCommit repository and branch",
+          args: {
+            name: "repository-name/repository-branch",
+            description: "The name of the CodeCommit repository and branch",
+          },
+        },
       ],
     },
   ],
