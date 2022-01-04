@@ -1,3 +1,5 @@
+import { gitGenerators } from "./git";
+
 const completionSpec: Fig.Spec = {
   name: "vsce",
   description: "The Visual Studio Code Extension Manager",
@@ -43,6 +45,127 @@ const completionSpec: Fig.Spec = {
     {
       name: "package",
       description: "Packages an extension",
+      options: [
+        {
+          name: ["-o", "--out"],
+          description:
+            "Output .vsix extension file to <path> location (defaults to <name>-<version>.vsix)",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-t", "--target"],
+          description: "Target architecture",
+          args: {
+            name: "target",
+            isVariadic: true,
+            suggestions: [
+              "win32-x64",
+              "win32-ia32",
+              "win32-arm64",
+              "linux-x64",
+              "linux-arm64",
+              "linux-armhf",
+              "alpine-x64",
+              "alpine-arm64",
+              "darwin-x64",
+              "darwin-arm64",
+            ],
+          },
+        },
+        {
+          name: ["-m", "--message"],
+          description: "Commit message used when calling `npm version`",
+          args: {
+            name: "commit message",
+          },
+        },
+        {
+          name: "--no-git-tag-version",
+          description:
+            "Do not create a version commit and tag when calling `npm version`. Valid only when [version] is provided",
+        },
+        {
+          name: "--no-update-package-json",
+          description:
+            "Do not update `package.json`. Valid only when [version] is provided",
+        },
+        {
+          name: "--githubBranch",
+          description:
+            "The GitHub branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+          args: {
+            name: "branch",
+            generators: gitGenerators.remoteLocalBranches,
+          },
+        },
+        {
+          name: "--gitlabBranch",
+          description:
+            "The GitLab branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+          args: {
+            name: "branch",
+            generators: gitGenerators.remoteLocalBranches,
+          },
+        },
+        {
+          name: "--no-rewrite-relative-links",
+          description: "Skip rewriting relative links",
+        },
+        {
+          name: "--baseContentUrl",
+          description: "Prepend all relative links in README.md with this url",
+          args: {
+            name: "url",
+          },
+        },
+        {
+          name: "--baseImagesUrl",
+          description:
+            "Prepend all relative image links in README.md with this url",
+          args: {
+            name: "url",
+          },
+        },
+        {
+          name: "--yarn",
+          description:
+            "Use yarn instead of npm (default inferred from presence of yarn.lock or .yarnrc)",
+        },
+        {
+          name: "--no-yarn",
+          description:
+            "Use npm instead of yarn (default inferred from lack of yarn.lock or .yarnrc)",
+        },
+        {
+          name: "--ignoreFile",
+          description: "Indicate alternative .vscodeignore",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--no-gitHubIssueLinking",
+          description:
+            "Disable automatic expansion of GitHub-style issue syntax into links",
+        },
+        {
+          name: "--no-gitLabIssueLinking",
+          description:
+            "Disable automatic expansion of GitLab-style issue syntax into links",
+        },
+        {
+          name: "--no-dependencies",
+          description: "Disable dependency detection via npm or yarn",
+        },
+        {
+          name: "--pre-release",
+          description: "Mark this package as a pre-release",
+        },
+      ],
     },
     {
       name: "publish",
