@@ -1,4 +1,18 @@
+import { filepaths } from "@fig/autocomplete-generators";
 import { gitGenerators } from "./git";
+
+const targetSuggestions: string[] = [
+  "win32-x64",
+  "win32-ia32",
+  "win32-arm64",
+  "linux-x64",
+  "linux-arm64",
+  "linux-armhf",
+  "alpine-x64",
+  "alpine-arm64",
+  "darwin-x64",
+  "darwin-arm64",
+];
 
 const completionSpec: Fig.Spec = {
   name: "vsce",
@@ -23,7 +37,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Select packages that should be published only (includes dependencies)",
           args: {
-            name: "path",
+            name: "paths",
             template: "filepaths",
             isVariadic: true,
           },
@@ -52,7 +66,7 @@ const completionSpec: Fig.Spec = {
             "Output .vsix extension file to <path> location (defaults to <name>-<version>.vsix)",
           args: {
             name: "path",
-            template: "filepaths",
+            generators: filepaths({ extensions: ["vsix"] }),
           },
         },
         {
@@ -61,18 +75,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "target",
             isVariadic: true,
-            suggestions: [
-              "win32-x64",
-              "win32-ia32",
-              "win32-arm64",
-              "linux-x64",
-              "linux-arm64",
-              "linux-armhf",
-              "alpine-x64",
-              "alpine-arm64",
-              "darwin-x64",
-              "darwin-arm64",
-            ],
+            suggestions: targetSuggestions,
           },
         },
         {
@@ -170,6 +173,113 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish",
       description: "Publishes an extension",
+      options: [
+        {
+          name: ["-p", "--pat"],
+          description:
+            "Personal Access Token (defaults to VSCE_PAT environment variable)",
+          args: {
+            name: "token",
+          },
+        },
+        {
+          name: ["-t", "--target"],
+          description: "Target architecture",
+          args: {
+            name: "target",
+            isVariadic: true,
+            suggestions: targetSuggestions,
+          },
+        },
+        {
+          name: ["-m", "--message"],
+          description: "Commit message used when calling `npm version`",
+          args: {
+            name: "commit message",
+          },
+        },
+        {
+          name: "--no-git-tag-version",
+          description:
+            "Do not create a version commit and tag when calling `npm version`. Valid only when [version] is provided",
+        },
+        {
+          name: "--no-update-package-json",
+          description:
+            "Do not update `package.json`. Valid only when [version] is provided",
+        },
+        {
+          name: ["-i", "--packagePath"],
+          description: "Publish the provided VSIX packages",
+          args: {
+            name: "paths",
+            isVariadic: true,
+            generators: filepaths({ extensions: ["vsix"] }),
+          },
+        },
+        {
+          name: "--githubBranch",
+          description:
+            "The GitHub branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+          args: {
+            name: "branch",
+            generators: gitGenerators.remoteLocalBranches,
+          },
+        },
+        {
+          name: "--gitlabBranch",
+          description:
+            "The GitLab branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+          args: {
+            name: "branch",
+            generators: gitGenerators.remoteLocalBranches,
+          },
+        },
+        {
+          name: "--baseContentUrl",
+          description: "Prepend all relative links in README.md with this url",
+          args: {
+            name: "url",
+          },
+        },
+        {
+          name: "--baseImagesUrl",
+          description:
+            "Prepend all relative image links in README.md with this url",
+          args: {
+            name: "url",
+          },
+        },
+        {
+          name: "--yarn",
+          description:
+            "Use yarn instead of npm (default inferred from presence of yarn.lock or .yarnrc)",
+        },
+        {
+          name: "--no-yarn",
+          description:
+            "Use npm instead of yarn (default inferred from lack of yarn.lock or .yarnrc)",
+        },
+        {
+          name: "--noVerify",
+        },
+        {
+          name: "--ignoreFile",
+          description: "Indicate alternative .vscodeignore",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--no-dependencies",
+          description: "Disable dependency detection via npm or yarn",
+        },
+        {
+          name: "--pre-release",
+          description: "Mark this package as a pre-release",
+        },
+      ],
     },
     {
       name: "unpublish",
