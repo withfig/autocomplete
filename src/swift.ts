@@ -13,9 +13,652 @@ const completionSpec: Fig.Spec = {
   name: "swift",
   description: "Swift compiler",
   options: [
+    ...commonOptions,
     {
-      name: ["--help", "-h", "-help"],
-      description: "Show help information",
+      name: "-access-notes-path",
+      description:
+        "Specify YAML file to override attributes on Swift declarations in this module",
+      args: {
+        name: "path",
+        description:
+          "Specify YAML file to override attributes on Swift declarations in this module",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-assert-config",
+      description: "Specify the assert_configuration replacement",
+      args: {
+        name: "configuration",
+        description: "The assert_configuration replacement",
+        isOptional: false,
+        suggestions: ["Debug", "Release", "Unchecked", "DisableReplacement"],
+      },
+    },
+    {
+      name: "-clang-target",
+      description:
+        "Separately set the target we should use for internal Clang instance",
+      args: {
+        name: "target",
+        description: "The target we should use for internal Clang instance",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-color-diagnostics",
+      description: "Print diagnostics in color",
+    },
+    {
+      name: "-continue-building-after-errors",
+      description: "Continue building, even after errors are encountered",
+    },
+    {
+      name: "-coverage-prefix-map",
+      description: "Remap source paths in coverage info",
+      args: {
+        name: "prefix",
+        description: "Remap source paths in coverage info",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-debug-info-format",
+      description: "Specify the debug info format type",
+      args: {
+        name: "type",
+        description: "The debug info format type",
+        isOptional: false,
+        suggestions: ["dwarf", "codeview"],
+      },
+    },
+    {
+      name: "-debug-info-store-invocation",
+      description: "Emit the compiler invocation in the debug info",
+    },
+    {
+      name: "-debug-prefix-map",
+      description: "Remap source paths in debug info",
+      args: {
+        name: "prefix",
+        description: "Remap source paths in debug info",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-diagnostic-style",
+      description: "The formatting style used when printing diagnostics",
+      args: {
+        name: "prefix",
+        description: "The formatting style used when printing diagnostics",
+        isOptional: false,
+        suggestions: ["swift", "llvm"],
+      },
+    },
+    {
+      name: "-disable-autolinking-runtime-compatibility-concurrency",
+      description:
+        "Do not use autolinking for the concurrency runtime compatibility library",
+    },
+    {
+      name: "-disable-autolinking-runtime-compatibility-dynamic-replacements",
+      description:
+        "Do not use autolinking for the dynamic replacement runtime compatibility library",
+    },
+    {
+      name: "-disable-autolinking-runtime-compatibility",
+      description: "Do not use autolinking for runtime compatibility libraries",
+    },
+    {
+      name: "-disable-clang-target",
+      description:
+        "Disable a separately specified target triple for Clang instance to use",
+    },
+    {
+      name: "-disable-incremental-imports",
+      description:
+        "Disable cross-module incremental build metadata and driver scheduling for Swift modules",
+    },
+    {
+      name: "-disable-only-one-dependency-file",
+      description:
+        "Disables incremental build optimization that only produces one dependencies file",
+    },
+    {
+      name: "-disallow-use-new-driver",
+      description: "Disable using new swift-driver",
+    },
+    {
+      name: "-D",
+      description: "Marks a conditional compilation flag as true",
+      args: {
+        name: "flag",
+        description: "The conditional compilation flag to mark as true",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-embed-tbd-for-module",
+      description: "Embed symbols from the module in the emitted tbd file",
+      args: {
+        name: "module",
+        description: "Embed symbols from the module in the emitted tbd file",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-enable-experimental-additive-arithmetic-derivation",
+      description:
+        "Enable experimental 'AdditiveArithmetic' derived conformances",
+    },
+    {
+      name: "-enable-experimental-concise-pound-file",
+      description: "Enable experimental concise '#file' identifier",
+    },
+    {
+      name: "-enable-experimental-cxx-interop",
+      description:
+        "Allow importing C++ modules into Swift (experimental feature)",
+    },
+    {
+      name: "-enable-experimental-forward-mode-differentiation",
+      description: "Enable experimental forward mode differentiation",
+    },
+    {
+      name: "-enable-incremental-imports",
+      description:
+        "Enable cross-module incremental build metadata and driver scheduling for Swift modules",
+    },
+    {
+      name: "-enable-library-evolution",
+      description:
+        "Build the module to allow binary-compatible library evolution",
+    },
+    {
+      name: "-enable-only-one-dependency-file",
+      description:
+        "Enables incremental build optimization that only produces one dependencies file",
+    },
+    {
+      name: "-enforce-exclusivity",
+      description: "Enforce law of exclusivity",
+      args: {
+        name: "enforcement",
+        description: "Enforce law of exclusivity",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-experimental-cxx-stdlib",
+      description:
+        "C++ standard library to use; forwarded to Clang's -std lib flag",
+      args: {
+        name: "stdlib",
+        description:
+          "C++ standard library to use; forwarded to Clang's -std lib flag",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-framework",
+      description: "Specifies a framework which should be linked against",
+      args: {
+        name: "framework",
+        description: "The framework which should be linked against",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-Fsystem",
+      description: "Add directory to system framework search path",
+      args: {
+        name: "directory",
+        description: "The directory to add to the system framework search path",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-F",
+      description: "Add directory to framework search path",
+      args: {
+        name: "directory",
+        description: "The directory to add to the framework search path",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-gdwarf-types",
+      description: "Emit full DWARF type info",
+    },
+    {
+      name: "-gline-tables-only",
+      description: "Emit minimal debug info for backtraces only",
+    },
+    {
+      name: "-gnone",
+      description: "Don't emit debug info",
+    },
+    {
+      name: "-g",
+      description:
+        "Emit debug info. This is the preferred setting for debugging with LLDB",
+    },
+    {
+      name: "-index-store-path",
+      description: "Store indexing data to path",
+      args: {
+        name: "path",
+        description: "The path to store indexing data to",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-index-unit-output-path",
+      description:
+        "Use the specified path as the output path in the produced index data",
+      args: {
+        name: "path",
+        description:
+          "The specified path as the output path in the produced index data",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-I",
+      description: "Add directory to the import search path",
+      args: {
+        name: "directory",
+        description: "The directory to add to the import search path",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-j",
+      description: "Number of commands to execute in parallel",
+      args: {
+        name: "value",
+        description: "The number of commands to execute in parallel",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-libc",
+      description: "The libc runtime library to use",
+      args: {
+        name: "runtime",
+        description: "The libc runtime library to use",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-locale",
+      description: "Choose a language for diagnostic messages",
+      args: {
+        name: "code",
+        description: "The locale code",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-localization-path",
+      description: "Path to localized diagnostic messages directory",
+      args: {
+        name: "path",
+        description: "The path to localized diagnostic messages directory",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-L",
+      description: "Add directory to library link search path",
+      args: {
+        name: "directory",
+        description: "The directory to add to the library link search path",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-l",
+      description: "Specifies a library which should be linked against",
+      args: {
+        name: "path",
+        description: "Specifies a library which should be linked against",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-module-abi-name",
+      description: "ABI name to use for the contents of this module",
+      args: {
+        name: "name",
+        description: "The ABI name to use for the contents of this module",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-module-cache-path",
+      description: "Specifies the Clang module cache path",
+      args: {
+        name: "path",
+        description: "Specifies the Clang module cache path",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-module-link-name",
+      description: "Library to link against when using this module",
+      args: {
+        name: "name",
+        description: "Library to link against when using this module",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-module-name",
+      description: "Name of the module to build",
+      args: {
+        name: "name",
+        description: "Name of the module to build",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-no-color-diagnostics",
+      description: "Do not print diagnostics in color",
+    },
+    {
+      name: "-no-warnings-as-errors",
+      description: "Don't treat warnings as error",
+    },
+    {
+      name: "-nostdimport",
+      description: "Don't search the standard library import path for modules",
+    },
+    {
+      name: "-num-threads",
+      description: "Enable multi-threading and specify number of threads",
+      args: {
+        name: "value",
+        description: "The number of threads",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-Onone",
+      description: "Compile without any optimization",
+    },
+    {
+      name: "-Osize",
+      description: "Compile with optimizations and target small code size",
+    },
+    {
+      name: "-Ounchecked",
+      description:
+        "Compile with optimizations and remove runtime safety checks",
+    },
+    {
+      name: "-O",
+      description: "Compile with optimizations",
+    },
+    {
+      name: "-pretty-print",
+      description: "Pretty-print the output JSON",
+    },
+    {
+      name: "-print-educational-notes",
+      description:
+        "Include educational notes in printed diagnostic output, if available",
+    },
+    {
+      name: "-print-target-info",
+      description:
+        "Print target information for the given target <triple>, such as x86_64-apple-macos10.9",
+    },
+    {
+      name: "-Rcross-import",
+      description: "Emit a remark if a cross-import of a module is triggered",
+    },
+    {
+      name: "-remove-runtime-asserts",
+      description: "Remove runtime safety checks",
+    },
+    {
+      name: "-Rmodule-loading",
+      description: "Emit a remark and file path of each loaded module",
+    },
+    {
+      name: "-Rpass-missed",
+      description:
+        "Report missed transformations by optimization passes whose name matches the given POSIX regular expression",
+      args: {
+        name: "regex",
+        description: "Regex to match missed transformations",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-Rpass",
+      description:
+        "Report performed transformations by optimization passes whose name matches the given POSIX regular expression",
+      args: {
+        name: "regex",
+        description: "Regex to match performed transformations",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-runtime-compatibility-version",
+      description:
+        "Link compatibility library for Swift runtime version, or 'none'",
+      args: {
+        name: "version",
+        description: "Swift runtime version, or 'none'",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-save-optimization-record-passes",
+      description:
+        "Only include passes which match a specified regular expression in the generated optimization record (by default, include all passes)",
+      args: {
+        name: "regex",
+        description:
+          "Regex to specify passes to be included in the optimization record",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-save-optimization-record-path",
+      description: "Specify the file name of any generated optimization record",
+      args: {
+        name: "filename",
+        description: "The file name of any generated optimization record",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-save-optimization-record",
+      description: "Generate an optimization record file in a specific format",
+      args: {
+        name: "format",
+        description: "The format",
+        isOptional: false,
+        default: "YAML",
+      },
+    },
+    {
+      name: "-save-optimization-record",
+      description: "Generate a YAML optimization record file",
+    },
+    {
+      name: "-sdk",
+      description: "Compile against a specific SDK",
+      args: {
+        name: "sdk",
+        description: "The SDK to compile against",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-serialize-diagnostics-path",
+      description: "Emit a serialized diagnostics file",
+      args: {
+        name: "path",
+        description: "The path to write the file to",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-static-executable",
+      description: "Statically link the executable",
+    },
+    {
+      name: "-static-stdlib",
+      description: "Statically link the Swift standard library",
+    },
+    {
+      name: "-suppress-warnings",
+      description: "Suppress all warnings",
+    },
+    {
+      name: "-swift-isa-ptrauth-mode",
+      description: "Mode for staging isa/super signing",
+      args: {
+        name: "mode",
+        description: "Mode for staging isa/super signing",
+        isOptional: false,
+        suggestions: ["LegacyAndStrip", "NewAndStrip", "NewAndAuth"],
+      },
+    },
+    {
+      name: "-swift-ptrauth-mode",
+      description: "Mode for staging pointer authentication",
+      args: {
+        name: "mode",
+        description: "Mode for staging pointer authentication",
+        isOptional: false,
+        suggestions: ["LegacyAndStrip", "NewAndStrip", "NewAndAuth"],
+      },
+    },
+    {
+      name: "-swift-version",
+      description:
+        "Interpret input according to a specific Swift language version number",
+      args: {
+        name: "version",
+        description: "Swift language version number",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-target-cpu",
+      description: "Generate code for a particular CPU variant",
+      args: {
+        name: "cpu",
+        description: "The CPU variant",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-target-variant",
+      description:
+        "Generate 'zippered' code for macCatalyst that can run on the specified variant target triple in addition to the main -target triple",
+      args: {
+        name: "variant",
+        description: "The target variant",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-target",
+      description:
+        "Generate code for the given target <triple>, such as x86_64-apple-macos10.9",
+      args: {
+        name: "triple",
+        description: "The target triple",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-use-ld",
+      description: "Specifies the linker to be used",
+      args: {
+        name: "linker",
+        description: "The linker to be used",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-user-module-version",
+      description: "Module version specified from Swift module authors",
+      args: {
+        name: "module",
+        description: "The module version",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-vfsoverlay",
+      description: "Add directory to VFS overlay file",
+      args: {
+        name: "directory",
+        description: "The directory to the VFS overlay file",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-v",
+      description: "Show commands to run and use verbose output",
+    },
+    {
+      name: "-warn-concurrency",
+      description:
+        "Warn about code that is unsafe according to the Swift Concurrency model and will become ill-formed in a future language version",
+    },
+    {
+      name: "-warn-implicit-overrides",
+      description: "Warn about implicit overrides of protocol members",
+    },
+    {
+      name: "-warn-swift3-objc-inference-complete",
+      description:
+        "Warn about deprecated @objc inference in Swift 3 for every declaration that will no longer be inferred as @objc in Swift 4",
+    },
+    {
+      name: "-warn-swift3-objc-inference-minimal",
+      description:
+        "Warn about deprecated @objc inference in Swift 3 based on direct uses of the Objective-C entrypoint",
+    },
+    {
+      name: "-warnings-as-errors",
+      description: "Treat warnings as errors",
+    },
+    {
+      name: "-working-directory",
+      description: "Resolve file paths relative to the specified directory",
+      args: {
+        name: "directory",
+        description: "Resolve file paths relative to the specified directory",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-Xcc",
+      description: "Pass <arg> to the C/C++/Objective-C compiler",
+      args: {
+        name: "arg",
+        description: "Argument to pass to the C/C++/Objective-C compiler",
+        isOptional: false,
+      },
+    },
+    {
+      name: "-Xlinker",
+      description: "Specifies an option which should be passed to the linker",
+      args: {
+        name: "arg",
+        description: "Option to be passed to the linker",
+        isOptional: false,
+      },
     },
   ],
   subcommands: [
