@@ -5,6 +5,40 @@ const completionSpec: Fig.Spec = {
     {
       name: "ls",
       description: "Lists all the files that will be published",
+      options: [
+        {
+          name: "--yarn",
+          description:
+            "Use yarn instead of npm (default inferred from presence of yarn.lock or .yarnrc)",
+        },
+        {
+          name: "--no-yarn",
+          description:
+            "Use npm instead of yarn (default inferred from lack of yarn.lock or .yarnrc)",
+        },
+        {
+          name: "--packagedDependencies",
+          description:
+            "Select packages that should be published only (includes dependencies)",
+          args: {
+            name: "path",
+            template: "filepaths",
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--ignoreFile",
+          description: "Indicate alternative .vscodeignore",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--no-dependencies",
+          description: "Disable dependency detection via npm or yarn",
+        },
+      ],
     },
     {
       name: "package",
@@ -57,6 +91,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-h", "--help"],
       description: "Display help for command",
+      isPersistent: true,
     },
     {
       name: ["-V", "--version"],
