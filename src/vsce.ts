@@ -285,6 +285,19 @@ const completionSpec: Fig.Spec = {
       name: "unpublish",
       description:
         "Unpublishes an extension. Example extension id: microsoft.csharp",
+      options: [
+        {
+          name: ["-p", "--pat"],
+          description: "Personal Access Token",
+          args: {
+            name: "token",
+          },
+        },
+        {
+          name: ["-f", "--force"],
+          description: "Forces Unpublished Extension",
+        },
+      ],
     },
     {
       name: "ls-publishers",
