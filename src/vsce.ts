@@ -358,10 +358,28 @@ const completionSpec: Fig.Spec = {
     {
       name: "show",
       description: "Show extension metadata",
+      args: {
+        name: "extensionid",
+      },
+      options: [
+        {
+          name: "--json",
+          description: "Output data in json format (default: false)",
+        },
+      ],
     },
     {
       name: "search",
       description: "Search extension gallery",
+      args: {
+        name: "text",
+      },
+      options: [
+        {
+          name: "--json",
+          description: "Output data in json format (default: false)",
+        },
+      ],
     },
     {
       name: "help",
