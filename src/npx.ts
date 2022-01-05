@@ -83,6 +83,9 @@ const suggestions: Fig.Suggestion[] = [
     name: "ignite-cli",
     icon: "🔥",
   },
+  {
+    name: "vsce",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
