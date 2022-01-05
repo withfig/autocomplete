@@ -384,6 +384,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Display help for command",
+      args: {
+        name: "command",
+        suggestions: [
+          "ls",
+          "package",
+          "publish",
+          "unpublish",
+          "ls-publishers",
+          "delete-publishers",
+          "login",
+          "logout",
+          "verify-pat",
+          "show",
+          "search",
+        ],
+      },
     },
   ],
   options: [
