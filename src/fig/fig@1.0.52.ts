@@ -8,12 +8,6 @@ const completionSpec: Fig.Spec = {
   description: "CLI to interact with Fig",
   subcommands: [
     {
-      name: "wrapped",
-      icon: "fig://template?badge=🎁",
-      description: "See your #FigWrapped",
-      priority: 100,
-    },
-    {
       name: "app",
       description: "Interact with the macOS app",
       subcommands: [
