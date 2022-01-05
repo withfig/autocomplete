@@ -72,6 +72,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "package",
       description: "Packages an extension",
+      icon: "📦",
       options: [
         {
           name: ["-o", "--out"],
@@ -326,6 +327,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "login",
       description: "Add a publisher to the known publishers list",
+      icon: "🚪",
       args: {
         name: "publisher",
       },
@@ -371,6 +373,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "search",
       description: "Search extension gallery",
+      icon: "🔍",
       args: {
         name: "text",
       },
@@ -384,6 +387,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Display help for command",
+      icon: "❔",
       args: {
         name: "command",
         suggestions: [
