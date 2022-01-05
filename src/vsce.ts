@@ -14,6 +14,19 @@ const targetSuggestions: string[] = [
   "darwin-arm64",
 ];
 
+// NOTE: Running `vsce ls-publishers` requires access to keychain of `vscode-vsce`
+// which distracts the completion and needs to "Allow always" the access of it to work well.
+// const publishersGenerator: Fig.Generator = {
+//   script: "vsce ls-publishers",
+//   postProcess: (out) => {
+//     if (out.trim() === "") return [];
+//     return out.split("\n").map((publisher) => ({
+//       name: publisher,
+//       icon: "👤",
+//     }));
+//   },
+// };
+
 const completionSpec: Fig.Spec = {
   name: "vsce",
   description: "The Visual Studio Code Extension Manager",
@@ -306,19 +319,41 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-publisher",
       description: "Deletes a publisher",
+      args: {
+        name: "publisher",
+      },
     },
     {
       name: "login",
       description: "Add a publisher to the known publishers list",
+      args: {
+        name: "publisher",
+      },
     },
     {
       name: "logout",
       description: "Remove a publisher from the known publishers list",
+      args: {
+        name: "publisher",
+      },
     },
     {
       name: "verify-pat",
       description:
         "Verify if the Personal Access Token has publish rights for the publisher",
+      args: {
+        name: "publisher",
+      },
+      options: [
+        {
+          name: ["-p", "--pat"],
+          description:
+            "Personal Access Token (defaults to VSCE_PAT environment variable)",
+          args: {
+            name: "token",
+          },
+        },
+      ],
     },
     {
       name: "show",
