@@ -500,6 +500,361 @@ const headSuggestions = [
   },
 ];
 
+const gitMojies = [
+  {
+    code: ":art:",
+    emoji: "🎨",
+    description: "Improve structure / format of the code",
+  },
+  {
+    code: ":zap:",
+    emoji: "⚡️",
+    description: "Improve performance",
+  },
+  {
+    code: ":fire:",
+    emoji: "🔥",
+    description: "Remove code or files",
+  },
+  {
+    code: ":bug:",
+    emoji: "🐛",
+    description: "Fix a bug",
+  },
+  {
+    code: ":ambulance:",
+    emoji: "🚑️",
+    description: "Critical hotfix",
+  },
+  {
+    code: ":sparkles:",
+    emoji: "✨",
+    description: "Introduce new features",
+  },
+  {
+    code: ":memo:",
+    emoji: "📝",
+    description: "Add or update documentation",
+  },
+  {
+    code: ":rocket:",
+    emoji: "🚀",
+    description: "Deploy stuff",
+  },
+  {
+    code: ":lipstick:",
+    emoji: "💄",
+    description: "Add or update the UI and style files",
+  },
+  {
+    code: ":tada:",
+    emoji: "🎉",
+    description: "Begin a project",
+  },
+  {
+    code: ":white_check_mark:",
+    emoji: "✅",
+    description: "Add, update, or pass tests",
+  },
+  {
+    code: ":lock:",
+    emoji: "🔒️",
+    description: "Fix security issues",
+  },
+  {
+    code: ":bookmark:",
+    emoji: "🔖",
+    description: "Release / Version tags",
+  },
+  {
+    code: ":rotating_light:",
+    emoji: "🚨",
+    description: "Fix compiler / linter warnings",
+  },
+  {
+    code: ":construction:",
+    emoji: "🚧",
+    description: "Work in progress",
+  },
+  {
+    code: ":green_heart:",
+    emoji: "💚",
+    description: "Fix CI Build",
+  },
+  {
+    code: ":arrow_down:",
+    emoji: "⬇️",
+    description: "Downgrade dependencies",
+  },
+  {
+    code: ":arrow_up:",
+    emoji: "⬆️",
+    description: "Upgrade dependencies",
+  },
+  {
+    code: ":pushpin:",
+    emoji: "📌",
+    description: "Pin dependencies to specific versions",
+  },
+  {
+    code: ":construction_worker:",
+    emoji: "👷",
+    description: "Add or update CI build system",
+  },
+  {
+    code: ":chart_with_upwards_trend:",
+    emoji: "📈",
+    description: "Add or update analytics or track code",
+  },
+  {
+    code: ":recycle:",
+    emoji: "♻️",
+    description: "Refactor code",
+  },
+  {
+    code: ":heavy_plus_sign:",
+    emoji: "➕",
+    description: "Add a dependency",
+  },
+  {
+    code: ":heavy_minus_sign:",
+    emoji: "➖",
+    description: "Remove a dependency",
+  },
+  {
+    code: ":wrench:",
+    emoji: "🔧",
+    description: "Add or update configuration files",
+  },
+  {
+    code: ":hammer:",
+    emoji: "🔨",
+    description: "Add or update development scripts",
+  },
+  {
+    code: ":globe_with_meridians:",
+    emoji: "🌐",
+    description: "Internationalization and localization",
+  },
+  {
+    code: ":pencil2:",
+    emoji: "✏️",
+    description: "Fix typos",
+  },
+  {
+    code: ":poop:",
+    emoji: "💩",
+    description: "Write bad code that needs to be improved",
+  },
+  {
+    code: ":rewind:",
+    emoji: "⏪️",
+    description: "Revert changes",
+  },
+  {
+    code: ":twisted_rightwards_arrows:",
+    emoji: "🔀",
+    description: "Merge branches",
+  },
+  {
+    code: ":package:",
+    emoji: "📦️",
+    description: "Add or update compiled files or packages",
+  },
+  {
+    code: ":alien:",
+    emoji: "👽️",
+    description: "Update code due to external API changes",
+  },
+  {
+    code: ":truck:",
+    emoji: "🚚",
+    description: "Move or rename resources (e.g.: files, paths, routes)",
+  },
+  {
+    code: ":page_facing_up:",
+    emoji: "📄",
+    description: "Add or update license",
+  },
+  {
+    code: ":boom:",
+    emoji: "💥",
+    description: "Introduce breaking changes",
+  },
+  {
+    code: ":bento:",
+    emoji: "🍱",
+    description: "Add or update assets",
+  },
+  {
+    code: ":wheelchair:",
+    emoji: "♿️",
+    description: "Improve accessibility",
+  },
+  {
+    code: ":bulb:",
+    emoji: "💡",
+    description: "Add or update comments in source code",
+  },
+  {
+    code: ":beers:",
+    emoji: "🍻",
+    description: "Write code drunkenly",
+  },
+  {
+    code: ":speech_balloon:",
+    emoji: "💬",
+    description: "Add or update text and literals",
+  },
+  {
+    code: ":card_file_box:",
+    emoji: "🗃️",
+    description: "Perform database related changes",
+  },
+  {
+    code: ":loud_sound:",
+    emoji: "🔊",
+    description: "Add or update logs",
+  },
+  {
+    code: ":mute:",
+    emoji: "🔇",
+    description: "Remove logs",
+  },
+  {
+    code: ":busts_in_silhouette:",
+    emoji: "👥",
+    description: "Add or update contributor(s)",
+  },
+  {
+    code: ":children_crossing:",
+    emoji: "🚸",
+    description: "Improve user experience / usability",
+  },
+  {
+    code: ":building_construction:",
+    emoji: "🏗️",
+    description: "Make architectural changes",
+  },
+  {
+    code: ":iphone:",
+    emoji: "📱",
+    description: "Work on responsive design",
+  },
+  {
+    code: ":clown_face:",
+    emoji: "🤡",
+    description: "Mock things",
+  },
+  {
+    code: ":egg:",
+    emoji: "🥚",
+    description: "Add or update an easter egg",
+  },
+  {
+    code: ":see_no_evil:",
+    emoji: "🙈",
+    description: "Add or update a .gitignore file",
+  },
+  {
+    code: ":camera_flash:",
+    emoji: "📸",
+    description: "Add or update snapshots",
+  },
+  {
+    code: ":alembic:",
+    emoji: "⚗️",
+    description: "Perform experiments",
+  },
+  {
+    code: ":mag:",
+    emoji: "🔍️",
+    description: "Improve SEO",
+  },
+  {
+    code: ":label:",
+    emoji: "🏷️",
+    description: "Add or update types",
+  },
+  {
+    code: ":seedling:",
+    emoji: "🌱",
+    description: "Add or update seed files",
+  },
+  {
+    code: ":triangular_flag_on_post:",
+    emoji: "🚩",
+    description: "Add, update, or remove feature flags",
+  },
+  {
+    code: ":goal_net:",
+    emoji: "🥅",
+    description: "Catch errors",
+  },
+  {
+    code: ":dizzy:",
+    emoji: "💫",
+    description: "Add or update animations and transitions",
+  },
+  {
+    code: ":wastebasket:",
+    emoji: "🗑️",
+    description: "Deprecate code that needs to be cleaned up",
+  },
+  {
+    code: ":passport_control:",
+    emoji: "🛂",
+    description: "Work on code related to authorization, roles and permissions",
+  },
+  {
+    code: ":adhesive_bandage:",
+    emoji: "🩹",
+    description: "Simple fix for a non-critical issue",
+  },
+  {
+    code: ":monocle_face:",
+    emoji: "🧐",
+    description: "Data exploration/inspection",
+  },
+  {
+    code: ":coffin:",
+    emoji: "⚰️",
+    description: "Remove dead code",
+  },
+  {
+    code: ":test_tube:",
+    emoji: "🧪",
+    description: "Add a failing test",
+  },
+  {
+    code: ":necktie:",
+    emoji: "👔",
+    description: "Add or update business logic",
+  },
+  {
+    code: ":stethoscope:",
+    emoji: "🩺",
+    description: "Add or update healthcheck",
+  },
+  {
+    code: ":bricks:",
+    emoji: "🧱",
+    description: "Infrastructure related changes",
+  },
+  {
+    code: ":technologist:",
+    emoji: "🧑‍💻",
+    description: "Improve developer experience",
+  },
+];
+
+const gitmojiSuggestions = (): Fig.Suggestion[] =>
+  gitMojies.map((gitmoji) => ({
+    name: gitmoji.description,
+    insertValue: `${gitmoji.code} {cursor}`,
+    icon: gitmoji.emoji,
+  }));
+
 const completionSpec: Fig.Spec = {
   name: "git",
   description: "The stupid content tracker",
@@ -771,6 +1126,7 @@ const completionSpec: Fig.Spec = {
           description: "Use the given message as the commit message",
           args: {
             name: "message",
+            suggestions: gitmojiSuggestions(),
           },
         },
         {
@@ -783,6 +1139,7 @@ const completionSpec: Fig.Spec = {
           description: "Stage all and use given text as commit message",
           args: {
             name: "message",
+            suggestions: gitmojiSuggestions(),
           },
         },
         {
