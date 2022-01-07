@@ -98,6 +98,5 @@
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
     "yaml": "^1.10.2",
-    "@withfig/autocomplete-types": "^1.5.0"
   }
 }
