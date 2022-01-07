@@ -12,6 +12,9 @@ const commonOptions: Fig.Option[] = [
 const completionSpec: Fig.Spec = {
   name: "swift",
   description: "Swift compiler",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   options: [
     ...commonOptions,
     {
