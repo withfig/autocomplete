@@ -33,6 +33,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for xed",
+      exclusiveOn: ["-x", "-c", "-w", "-l", "-b", "-v"],
     },
     {
       name: ["--version", "-v"],
