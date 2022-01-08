@@ -611,6 +611,86 @@ const completionSpec: Fig.Spec = {
   ],
   subcommands: [
     {
+      name: "archive",
+      description: "Create an archive of files from a named tree",
+      args: [
+        {
+          name: "tree-ish",
+          generators: gitGenerators.treeish,
+        },
+        {
+          name: "path",
+          template: "filepaths",
+          isVariadic: true,
+          isOptional: true,
+        },
+      ],
+      options: [
+        {
+          name: "--format",
+          description: "Archive format",
+          args: {
+            name: "fmt",
+            suggestions: ["tar", "zip"],
+          },
+        },
+        {
+          name: "--prefix",
+          description: "Prepend prefix to each pathname in the archive",
+          args: {
+            name: "prefix",
+          },
+        },
+        {
+          name: "--add-file",
+          description: "Add untracked file to archive",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["-o", "--output"],
+          description: "Write the archive to this file",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--worktree-attributes",
+          description: "Read .gitattributes in working directory",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Report archived files on stderr",
+        },
+        {
+          name: "-NUM",
+          insertValue: "-",
+          description: "Set compression level",
+        },
+        {
+          name: ["-l", "--list"],
+          description: "List supported archive formats",
+        },
+        {
+          name: "--remote",
+          description: "Retrieve the archive from remote repository <repo>",
+          args: {
+            name: "repo",
+          },
+        },
+        {
+          name: "--exec",
+          description: "Path to the remote git-upload-archive command",
+          args: {
+            name: "command",
+          },
+        },
+      ],
+    },
+    {
       name: "blame",
       args: {
         name: "file",
