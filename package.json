@@ -5,7 +5,6 @@
   "schemaVersion": "v7",
   "main": "./build/index",
   "types": "./build/index.d.ts",
-  "type": "module",
   "browserslist": [
     "safari >=11"
   ],
