@@ -37,16 +37,16 @@ fs.writeFileSync(
 );
 
 const commandTypeDeclarations = commands
-  .map((x) => `export declare const ${normalize(x)}: Fig.Spec`)
+  .map((x) => `export declare const ${normalize(x)}: Fig.Spec;`)
   .join("\n");
 
 fs.writeFileSync(
   "build/index.d.ts",
-  `import "@withfig/autocomplete-types"
-  
+  `import "@withfig/autocomplete-types";
+
 ${commandTypeDeclarations}
 
-declare const completions: string[]
-export { completions as default }
+declare const completions: string[];
+export { completions as default };
 `
 );
