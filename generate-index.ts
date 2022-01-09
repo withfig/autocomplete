@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as glob from "glob";
 
-const normalize = (name) => {
+const normalize = (name: string) => {
   let capitalizeNext = false;
   const excluded = "-@";
   return name.split("").reduce((out, char) => {
