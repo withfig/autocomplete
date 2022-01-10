@@ -1,4 +1,4 @@
-const completionSpec: Fig.Spec = {
+const DigitalOceanCTLCompletionSpec: Fig.Spec = {
   name: "doctl",
   description: "The official DigitalOcean command line interface (CLI)",
   subcommands: [
@@ -510,4 +510,4 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
-export default completionSpec;
+export default DigitalOceanCTLCompletionSpec;
