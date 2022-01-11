@@ -6,7 +6,10 @@ const DigitalOceanCTLCompletionSpec: Fig.Spec = {
       name: "completion",
       description:
         "Configure your terminal's shell so that doctl commands autocomplete when you press the TAB key",
-      additionalSuggestions: ["bash", "zsh", "fish"],
+      args: {
+        name: "shell",
+        suggestions: ["bash", "zsh", "fish"],
+      },
     },
     {
       name: "help",
@@ -425,7 +428,7 @@ const DigitalOceanCTLCompletionSpec: Fig.Spec = {
         },
         {
           name: "kubernetes-manifest",
-          description: "Generate a Kubernetes secret manifest for a registry.",
+          description: "Generate a Kubernetes secret manifest for a registry",
         },
         {
           name: "login",
@@ -488,7 +491,7 @@ const DigitalOceanCTLCompletionSpec: Fig.Spec = {
       description: 'Desired output format [text|json] (default "text")',
     },
     {
-      name: ["--trace"],
+      name: "--trace",
       description: "Show a log of network activity while performing a command",
     },
     {
@@ -504,7 +507,7 @@ const DigitalOceanCTLCompletionSpec: Fig.Spec = {
       description: "API V2 access token",
     },
     {
-      name: ["version"],
+      name: "version",
       description: "Show the current version",
     },
   ],
