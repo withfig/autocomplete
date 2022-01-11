@@ -1,10 +1,3 @@
-const helpOption: Fig.Option[] = [
-  {
-    name: ["-h", "--help"],
-    description: "More information about command",
-  },
-];
-
 const completionSpec: Fig.Spec = {
   name: "exercism",
   description: "Solve coding exercises in your chosen programming languages",
@@ -13,7 +6,6 @@ const completionSpec: Fig.Spec = {
       name: ["configure", "c"],
       description: "Configure the command-line client",
       options: [
-        ...helpOption,
         {
           name: ["-a", "--api"],
           description: "API base url",
@@ -53,7 +45,6 @@ const completionSpec: Fig.Spec = {
       name: ["download", "d"],
       description: "Download an exercise",
       options: [
-        ...helpOption,
         {
           name: ["-e", "--exercise"],
           description: "The exercise slug",
@@ -91,12 +82,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Help about any command",
-      options: [...helpOption],
     },
     {
       name: ["open", "o"],
       description: "Open an exercise on the website",
-      options: [...helpOption],
       args: {
         name: "path",
         template: "folders",
@@ -106,7 +95,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["prepare", "p"],
       description: "Prepare does setup for Exercism and its tracks",
-      options: [...helpOption],
     },
     {
       name: ["submit", "s"],
@@ -118,13 +106,11 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         isVariadic: true,
       },
-      options: [...helpOption],
     },
     {
       name: ["troubleshoot", "t", "debug"],
       description: "Troubleshoot does a diagnostic self-check",
       options: [
-        ...helpOption,
         {
           name: ["-f", "--full-api-key"],
           description: "Display the user's full API key",
@@ -134,27 +120,26 @@ const completionSpec: Fig.Spec = {
     {
       name: ["upgrade", "u"],
       description: "Upgrade to the latest version of the CLI",
-      options: [...helpOption],
     },
     {
       name: ["version", "v"],
       description: "Version outputs the version of CLI",
-      options: [...helpOption],
     },
     {
       name: ["workspace", "w"],
       description: "Print out the path to your Exercism workspace",
-      options: [...helpOption],
     },
   ],
   options: [
     {
       name: ["--help", "-h"],
-      description: "Show help for exercism",
+      description: "Help for this command",
+      isPersistent: true,
     },
     {
       name: "--timeout",
       description: "Override the default HTTP timeout",
+      isPersistent: true,
       args: {
         name: "value",
         isOptional: false,
@@ -163,11 +148,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "--unmask-token",
       description: "Will unmask the API during a request/response dump",
+      isPersistent: true,
     },
     {
       name: ["--verbose", "-v"],
       description: "Verbose output",
+      isPersistent: true,
     },
   ],
 };
+
 export default completionSpec;
