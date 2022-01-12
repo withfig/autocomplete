@@ -208,6 +208,7 @@ const completionSpec: Fig.Spec = {
       name: "--create-baseline",
       description:
         "Save all current results to a '.checkov.baseline' file so future runs will only flag new findings. Works only with `--directory` flag",
+      dependsOn: ["--directory"],
     },
     {
       name: "--baseline",
