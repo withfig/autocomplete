@@ -75,6 +75,34 @@ const completionSpec: Fig.Spec = {
           },
           options: [ghOptions.help],
         },
+        {
+          name: "list",
+          description: "List avaible aliases",
+          options: [ghOptions.help],
+        },
+        {
+          name: "set",
+          description: "Set an alias for a gh command",
+          args: [
+            {
+              name: "alias",
+              description: "A word that will expand to the gh command",
+            },
+            {
+              name: "expansion",
+              description:
+                "The gh command to be invoked, more info with --help",
+            },
+          ],
+          options: [
+            ghOptions.help,
+            {
+              name: ["-s", "--shell"],
+              description:
+                "Declare an alias to be passed through a shell interpreter",
+            },
+          ],
+        },
       ],
     },
     { name: "api", description: "Make an authenticated GitHub API request" },
