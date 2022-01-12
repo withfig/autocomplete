@@ -166,6 +166,15 @@ const completionSpec: Fig.Spec = {
             description: "Number of instances",
           },
         },
+        {
+          name: "--tags",
+          description:
+            "Tags for the resources in your environment in a comma-separated list with the format name=value",
+          args: {
+            name: "name=value",
+            description: "Tags for the resources in your environment",
+          },
+        },
       ],
     },
     {
