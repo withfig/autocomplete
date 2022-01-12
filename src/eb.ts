@@ -147,6 +147,11 @@ const completionSpec: Fig.Spec = {
             description: "CNAME prefix",
           },
         },
+        {
+          name: "--envvars",
+          description:
+            "Environment properties in a comma-separated list with the format name=value",
+        },
       ],
     },
     {
