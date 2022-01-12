@@ -157,6 +157,15 @@ const completionSpec: Fig.Spec = {
           description:
             "Prevents Elastic Beanstalk from updating the solution stack version for the new clone environment to the most recent version available",
         },
+        {
+          name: "--scale",
+          description:
+            "The number of instances to run in the clone environment when it is launched",
+          args: {
+            name: "number",
+            description: "Number of instances",
+          },
+        },
       ],
     },
     {
