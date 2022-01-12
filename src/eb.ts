@@ -122,6 +122,15 @@ const completionSpec: Fig.Spec = {
       name: "abort",
       description: "Abort the current running process",
     },
+    {
+      name: "clone",
+      description:
+        "Clones an environment to a new environment so that both have identical environment settings",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to clone",
+      },
+    },
   ],
 };
 
