@@ -131,6 +131,15 @@ const completionSpec: Fig.Spec = {
         description: "The name of the environment to clone",
       },
     },
+    {
+      name: "open",
+      description:
+        "Opens the public URL of your website in the default browser",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to open",
+      },
+    },
   ],
 };
 
