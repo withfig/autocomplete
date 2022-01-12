@@ -152,6 +152,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Environment properties in a comma-separated list with the format name=value",
         },
+        {
+          name: "--exact",
+          description:
+            "Prevents Elastic Beanstalk from updating the solution stack version for the new clone environment to the most recent version available",
+        },
       ],
     },
     {
