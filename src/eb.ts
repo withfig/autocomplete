@@ -130,6 +130,24 @@ const completionSpec: Fig.Spec = {
         name: "environment-name",
         description: "The name of the environment to clone",
       },
+      options: [
+        {
+          name: ["-n", "--clone_name"],
+          description: "Desired name for the cloned environment",
+          args: {
+            name: "string",
+            description: "The name for the cloned environment",
+          },
+        },
+        {
+          name: ["-c", "--cname"],
+          description: "Desired CNAME prefix for the cloned environment",
+          args: {
+            name: "cname",
+            description: "CNAME prefix",
+          },
+        },
+      ],
     },
     {
       name: "open",
