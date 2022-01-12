@@ -48,10 +48,6 @@ const DigitalOceanCTLCompletionSpec: Fig.Spec = {
       description: "Display commands for working with apps",
       subcommands: [
         {
-          name: "",
-          description: "",
-        },
-        {
           name: "create",
           description: "Create an app",
         },
@@ -487,8 +483,12 @@ const DigitalOceanCTLCompletionSpec: Fig.Spec = {
     },
     {
       name: ["-o", "--output"],
-      insertValue: "json",
-      description: 'Desired output format [text|json] (default "text")',
+      args: {
+        name: "format",
+        suggestions: ["text", "json"],
+        default: "text",
+      },
+      description: "Desired output format",
     },
     {
       name: "--trace",
