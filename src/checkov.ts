@@ -12,7 +12,8 @@ const branches: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "checkov",
-  description: "",
+  description:
+    "Checkov scans cloud infrastructure configurations to find misconfigurations before they're deployed",
   options: [
     {
       name: ["--help", "-h"],
@@ -20,7 +21,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--directory", "-d"],
-      description: "Show the version of checkov",
+      description: "IaC root directory (can not be used together with --file)",
+      exclusiveOn: ["--file"],
       args: {
         name: "Directory",
         template: "folders",
@@ -33,6 +35,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--file", "-f"],
       description: "IaC file(can not be used together with --directory)",
+      exclusiveOn: ["--directory"],
       args: {
         name: "FILE",
         template: "filepaths",
@@ -42,9 +45,11 @@ const completionSpec: Fig.Spec = {
       name: "--skip-path",
       description:
         "Path (file or directory) to skip, using regular expression logic, relative to current working directory. Word boundaries are not implicit; i.e., specifying 'dir1' will skip any directory or subdirectory named 'dir1'. Ignored with -f. Can be specified multiple times",
+      exclusiveOn: ["--file"],
       args: {
         name: "SKIP_PATH",
         template: "filepaths",
+        isVariadic: true,
       },
     },
     {
@@ -64,7 +69,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "----run-all-external-checks",
+      name: "--run-all-external-checks",
       description:
         "Run all external checks (loaded via --external-checks options) even if the checks are not present in the --check list. This allows you to always ensure that new checks present in the external source are used. If an external check is included in --skip-check, it will still be skipped",
     },
@@ -80,6 +85,7 @@ const completionSpec: Fig.Spec = {
       name: "--docker-image",
       description:
         "Scan docker images by name or ID. Only works with --bc-api-key flag",
+      dependsOn: ["--bc_api_key"],
       args: {
         name: "DOCKER_IMAGE",
       },
@@ -103,6 +109,7 @@ const completionSpec: Fig.Spec = {
       name: ["--branch", "-b"],
       description:
         "Selected branch of the persisted repository. Only has effect when using the --bc-api-key flag",
+      dependsOn: ["--bc_api_key"],
       args: {
         name: "BRANCH",
         generators: branches,
@@ -112,16 +119,19 @@ const completionSpec: Fig.Spec = {
       name: "--skip-fixes",
       description:
         "Do not download fixed resource templates from Bridgecrew. Only has an effect when using the --bc-api-key flag",
+      dependsOn: ["--bc_api_key"],
     },
     {
       name: "--skip-suppressions",
       description:
         "Do not download preconfigured suppressions from the Bridgecrew platform. Code comment suppressions will still be honored. Only has an effect when using the --bc-api-key flag",
+      dependsOn: ["--bc_api_key"],
     },
     {
       name: "--skip-policy-download",
       description:
         "Do not download custom policies configured in the Bridgecrew platform. Only has an effect when using the --bc-api-key flag",
+      dependsOn: ["--bc_api_key"],
     },
     {
       name: "--download-external-modules",
@@ -135,6 +145,8 @@ const completionSpec: Fig.Spec = {
       name: "--var-file",
       description:
         "Variable files to load in addition to the default files (see https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files). Currently only supported for source Terraform (.tf file), and Helm chart scans. Requires using --directory, NOT --file",
+      dependsOn: ["--directory"],
+      exclusiveOn: ["--file"],
       args: {
         name: "VAR_FILE",
       },
@@ -166,6 +178,7 @@ const completionSpec: Fig.Spec = {
       name: "--repo-root-for-plan-enrichment",
       description:
         "Directory containing the hcl code used to generate a given plan file. Use with -f FILE",
+      dependsOn: ["--file"],
       args: {
         name: "REPO_ROOT_FOR_PLAN_ENRICHMENT",
       },
@@ -181,6 +194,7 @@ const completionSpec: Fig.Spec = {
       name: "--create-config",
       description:
         "Takes the current command line args and writes them out to a config file at the given path",
+      dependsOn: ["--directory"],
       args: {
         name: "CONFIG_FILE",
       },
