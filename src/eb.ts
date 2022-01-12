@@ -175,6 +175,10 @@ const completionSpec: Fig.Spec = {
             description: "Tags for the resources in your environment",
           },
         },
+        {
+          name: "--timeout",
+          description: "The number of minutes before the command times out",
+        },
       ],
     },
     {
