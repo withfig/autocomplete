@@ -122,6 +122,74 @@ const completionSpec: Fig.Spec = {
       name: "abort",
       description: "Abort the current running process",
     },
+    {
+      name: "clone",
+      description:
+        "Clones an environment to a new environment so that both have identical environment settings",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to clone",
+      },
+      options: [
+        {
+          name: ["-n", "--clone_name"],
+          description: "Desired name for the cloned environment",
+          args: {
+            name: "string",
+            description: "The name for the cloned environment",
+          },
+        },
+        {
+          name: ["-c", "--cname"],
+          description: "Desired CNAME prefix for the cloned environment",
+          args: {
+            name: "cname",
+            description: "CNAME prefix",
+          },
+        },
+        {
+          name: "--envvars",
+          description:
+            "Environment properties in a comma-separated list with the format name=value",
+        },
+        {
+          name: "--exact",
+          description:
+            "Prevents Elastic Beanstalk from updating the solution stack version for the new clone environment to the most recent version available",
+        },
+        {
+          name: "--scale",
+          description:
+            "The number of instances to run in the clone environment when it is launched",
+          args: {
+            name: "number",
+            description: "Number of instances",
+          },
+        },
+        {
+          name: "--tags",
+          description:
+            "Tags for the resources in your environment in a comma-separated list with the format name=value",
+          args: {
+            name: "name=value",
+            description: "Tags for the resources in your environment",
+          },
+        },
+        {
+          name: "--timeout",
+          description: "The number of minutes before the command times out",
+        },
+      ],
+    },
+    {
+      name: "open",
+      description:
+        "Opens the public URL of your website in the default browser",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to open",
+      },
+    },
   ],
 };
 
