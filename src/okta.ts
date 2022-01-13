@@ -72,7 +72,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "appIds",
             description: "List of application IDs to be deleted",
-            isOptional: false,
           },
           options: [
             {
