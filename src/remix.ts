@@ -1,4 +1,4 @@
-const icon = "https://remix.run/favicon-light.1.png";
+const icon = "https://remix.run/favicon-dark.1.png";
 
 const dirArgument: Fig.Arg = {
   name: "dir",
