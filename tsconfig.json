@@ -9,7 +9,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "outDir": "./build",
-    "target": "ESNext",
+    "target": "ES6",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "noImplicitAny": false,
