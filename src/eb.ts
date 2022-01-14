@@ -190,6 +190,30 @@ const completionSpec: Fig.Spec = {
         description: "The name of the environment to open",
       },
     },
+    {
+      name: "list",
+      description: "List environments",
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "List all environments from all applications",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description:
+            "Provides more detailed information about all environments, including instances",
+        },
+      ],
+    },
+    {
+      name: "printenv",
+      description:
+        "Prints all the environment properties in the command window",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to print",
+      },
+    },
   ],
 };
 
