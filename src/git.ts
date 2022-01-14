@@ -61,7 +61,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
         if (elm.includes("HEAD detached")) {
           return {};
         }
-        // Current branch.
+        // Current branch
         return {
           name: elm.replace("*", "").trim(),
           description: "Current branch",
