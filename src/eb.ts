@@ -205,6 +205,15 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "printenv",
+      description:
+        "Prints all the environment properties in the command window",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to print",
+      },
+    },
   ],
 };
 
