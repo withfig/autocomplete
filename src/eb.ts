@@ -193,6 +193,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List environments",
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "List all environments from all applications",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description:
+            "Provides more detailed information about all environments, including instances",
+        },
+      ],
     },
   ],
 };
