@@ -257,6 +257,7 @@ const completionSpec: Fig.Spec = {
       name: "--exclude-dir",
       description:
         "If -R is specified, only directories matching the given filename pattern are searched.  Note that --exclude-dir patterns take priority over --include-dir patterns",
+      isRepeatable: true,
       args: {
         name: "dir",
         template: "folders",
