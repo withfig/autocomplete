@@ -115,8 +115,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--env",
-      description:
-        "Environment, default is process.env.NODE_ENV || development",
+      description: "Environment, default: process.env.NODE_ENV || development",
       args: {
         name: "environment",
       },
