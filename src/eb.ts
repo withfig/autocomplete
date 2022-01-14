@@ -190,6 +190,10 @@ const completionSpec: Fig.Spec = {
         description: "The name of the environment to open",
       },
     },
+    {
+      name: "list",
+      description: "List environments",
+    },
   ],
 };
 
