@@ -33,7 +33,7 @@ const commandExports = commands
 
 fs.writeFileSync(
   "build/index.js",
-  `var e=[${files.join(",")}];export{e as default};${commandExports}`
+  `var e=[${files.join(",")}];export{e as default};`
 );
 
 const commandTypeDeclarations = commands
@@ -42,10 +42,7 @@ const commandTypeDeclarations = commands
 
 fs.writeFileSync(
   "build/index.d.ts",
-  `import "@withfig/autocomplete-types"
-  
-${commandTypeDeclarations}
-
+  `
 declare const completions: string[]
 export { completions as default }
 `
