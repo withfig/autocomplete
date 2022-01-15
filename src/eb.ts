@@ -214,6 +214,15 @@ const completionSpec: Fig.Spec = {
         description: "The name of the environment to print",
       },
     },
+    {
+      name: "ssh",
+      description:
+        "Connect to a Linux Amazon EC2 instance in your environment using Secure Shell",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to connect to",
+      },
+    },
   ],
 };
 
