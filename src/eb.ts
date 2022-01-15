@@ -231,6 +231,11 @@ const completionSpec: Fig.Spec = {
           name: ["-n", "--number"],
           description: "The number of the instance to connect to by number",
         },
+        {
+          name: ["-o", "--keep_open"],
+          description:
+            "Leave port 22 open on the security group after the SSH session ends",
+        },
       ],
     },
   ],
