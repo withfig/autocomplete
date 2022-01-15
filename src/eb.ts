@@ -273,6 +273,16 @@ const completionSpec: Fig.Spec = {
         name: "environment-name",
         description: "The name of the environment to use",
       },
+      options: [
+        {
+          name: ["-r", "--region"],
+          description: "Change the region in which you create environments",
+          args: {
+            name: "region",
+            description: "The region to use",
+          },
+        },
+      ],
     },
   ],
 };
