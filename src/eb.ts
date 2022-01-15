@@ -241,6 +241,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Execute a shell command on the specified instance instead of starting an SSH session",
         },
+        {
+          name: "--custom",
+          description:
+            "Specify an SSH command to use instead of 'ssh -i keyfile'. Do not include the remote user and hostname",
+        },
       ],
     },
   ],
