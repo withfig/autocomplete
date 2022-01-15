@@ -227,6 +227,10 @@ const completionSpec: Fig.Spec = {
           name: ["-i", "--instance"],
           description: "The ID of the instance to connect to",
         },
+        {
+          name: ["-n", "--number"],
+          description: "The number of the instance to connect to by number",
+        },
       ],
     },
   ],
