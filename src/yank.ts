@@ -16,7 +16,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "delim",
         description: "Custom delimiters",
-        isOptional: false,
       },
     },
     {
@@ -25,7 +24,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pattern",
         description: "Pattern to recognize fields",
-        isOptional: false,
       },
     },
     {
@@ -34,7 +32,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         description: "Command to use as the yank command",
-        isOptional: false,
         isVariadic: true,
       },
     },
