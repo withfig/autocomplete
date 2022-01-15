@@ -282,6 +282,14 @@ const completionSpec: Fig.Spec = {
             description: "The region to use",
           },
         },
+        {
+          name: "--source codecommit/",
+          description: "CodeCommit repository and branch",
+          args: {
+            name: "repository-name/repository-branch",
+            description: "The name of the CodeCommit repository and branch",
+          },
+        },
       ],
     },
   ],
