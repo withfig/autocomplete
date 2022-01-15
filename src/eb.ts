@@ -246,6 +246,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Specify an SSH command to use instead of 'ssh -i keyfile'. Do not include the remote user and hostname",
         },
+        {
+          name: "--setup",
+          description:
+            "Change the key pair assigned to the environment's instances",
+        },
       ],
     },
   ],
