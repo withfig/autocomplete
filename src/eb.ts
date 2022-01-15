@@ -236,6 +236,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Leave port 22 open on the security group after the SSH session ends",
         },
+        {
+          name: "--command",
+          description:
+            "Execute a shell command on the specified instance instead of starting an SSH session",
+        },
       ],
     },
   ],
