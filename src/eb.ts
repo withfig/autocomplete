@@ -256,6 +256,14 @@ const completionSpec: Fig.Spec = {
           description:
             "Open port 22 to incoming traffic from 0.0.0.0/0 in the environment's security group, even if the security group is already configured for SSH",
         },
+        {
+          name: "--timeout",
+          description: "Set number of minutes before the command times out",
+          args: {
+            name: "minutes",
+            description: "Number of minutes before timout",
+          },
+        },
       ],
     },
   ],
