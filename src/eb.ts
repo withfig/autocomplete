@@ -222,6 +222,12 @@ const completionSpec: Fig.Spec = {
         name: "environment-name",
         description: "The name of the environment to connect to",
       },
+      options: [
+        {
+          name: ["-i", "--instance"],
+          description: "The ID of the instance to connect to",
+        },
+      ],
     },
   ],
 };
