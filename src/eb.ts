@@ -251,6 +251,11 @@ const completionSpec: Fig.Spec = {
           description:
             "Change the key pair assigned to the environment's instances",
         },
+        {
+          name: "--force",
+          description:
+            "Open port 22 to incoming traffic from 0.0.0.0/0 in the environment's security group, even if the security group is already configured for SSH",
+        },
       ],
     },
   ],
