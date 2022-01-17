@@ -214,6 +214,58 @@ const completionSpec: Fig.Spec = {
         description: "The name of the environment to print",
       },
     },
+    {
+      name: "ssh",
+      description:
+        "Connect to a Linux Amazon EC2 instance in your environment using Secure Shell",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to connect to",
+      },
+      options: [
+        {
+          name: ["-i", "--instance"],
+          description: "The ID of the instance to connect to",
+        },
+        {
+          name: ["-n", "--number"],
+          description: "The number of the instance to connect to by number",
+        },
+        {
+          name: ["-o", "--keep_open"],
+          description:
+            "Leave port 22 open on the security group after the SSH session ends",
+        },
+        {
+          name: "--command",
+          description:
+            "Execute a shell command on the specified instance instead of starting an SSH session",
+        },
+        {
+          name: "--custom",
+          description:
+            "Specify an SSH command to use instead of 'ssh -i keyfile'. Do not include the remote user and hostname",
+        },
+        {
+          name: "--setup",
+          description:
+            "Change the key pair assigned to the environment's instances",
+        },
+        {
+          name: "--force",
+          description:
+            "Open port 22 to incoming traffic from 0.0.0.0/0 in the environment's security group, even if the security group is already configured for SSH",
+        },
+        {
+          name: "--timeout",
+          description: "Set number of minutes before the command times out",
+          args: {
+            name: "minutes",
+            description: "Number of minutes before timout",
+          },
+        },
+      ],
+    },
   ],
 };
 
