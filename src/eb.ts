@@ -266,6 +266,32 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "use",
+      description: "Sets the specified environment as the default environment",
+      args: {
+        name: "environment-name",
+        description: "The name of the environment to use",
+      },
+      options: [
+        {
+          name: ["-r", "--region"],
+          description: "Change the region in which you create environments",
+          args: {
+            name: "region",
+            description: "The region to use",
+          },
+        },
+        {
+          name: "--source",
+          description: "CodeCommit repository and branch",
+          args: {
+            name: "codecommit/repository-name/repository-branch",
+            description: "The name of the CodeCommit repository and branch",
+          },
+        },
+      ],
+    },
   ],
 };
 
