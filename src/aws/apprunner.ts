@@ -31,6 +31,14 @@ const completionSpec: Fig.Spec = {
             description: "A key-value pair",
           },
         },
+        {
+          name: "--cli-input-json",
+          description: "Reads arguments from the JSON string provided",
+        },
+        {
+          name: "--cli-input-yaml",
+          description: "Reads arguments from the YAML string provided",
+        },
       ],
     },
   ],
