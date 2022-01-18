@@ -39,6 +39,11 @@ const completionSpec: Fig.Spec = {
           name: "--cli-input-yaml",
           description: "Reads arguments from the YAML string provided",
         },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request",
+        },
       ],
     },
   ],
