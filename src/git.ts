@@ -3509,7 +3509,11 @@ const completionSpec: Fig.Spec = {
       name: "clone",
       description: "Clone a repository into a new directory",
       args: [
-        { name: "repository", description: "Git library to be cloned" },
+        {
+          name: "repository",
+          description: "Git library to be cloned",
+          isOptional: false,
+        },
         {
           name: "directory",
           description: "Specify the new directory name or target folder",
