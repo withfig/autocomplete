@@ -22,6 +22,15 @@ const completionSpec: Fig.Spec = {
             description: "Repository provider",
           },
         },
+        {
+          name: "--tags",
+          description:
+            "A list of metadata items that you can associate with your connection resource. A tag is a key-value pair",
+          args: {
+            name: "key=value",
+            description: "A key-value pair",
+          },
+        },
       ],
     },
   ],
