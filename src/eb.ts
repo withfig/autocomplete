@@ -283,10 +283,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--source codecommit/",
+          name: "--source",
           description: "CodeCommit repository and branch",
           args: {
-            name: "repository-name/repository-branch",
+            name: "codecommit/repository-name/repository-branch",
             description: "The name of the CodeCommit repository and branch",
           },
         },
