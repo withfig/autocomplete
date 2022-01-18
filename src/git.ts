@@ -2593,6 +2593,29 @@ const completionSpec: Fig.Spec = {
           name: "--cached",
           description: "Show difference between staged changes and last commit",
         },
+        {
+          name: "--help",
+          description: "Shows different options",
+        },
+        {
+          name: "--numstat",
+          description:
+            "Shows number of added and deleted lines in decimal notation",
+        },
+        {
+          name: "--shortstat",
+          description:
+            "Output only the last line of the --stat format containing total number of modified files",
+        },
+        {
+          name: "--stat",
+          description: "Generate a diffstat",
+          requiresEquals: true,
+          args: {
+            isOptional: true,
+            name: "[=< width >[,< name-width >[,< count >]]]",
+          },
+        },
       ],
       args: {
         name: "commit or file",
