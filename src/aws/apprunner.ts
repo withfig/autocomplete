@@ -14,6 +14,14 @@ const completionSpec: Fig.Spec = {
             description: "Name of the connection to be created",
           },
         },
+        {
+          name: "--provider-type",
+          description: "The source repository provider",
+          args: {
+            name: "provider",
+            description: "Repository provider",
+          },
+        },
       ],
     },
   ],
