@@ -3,6 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "Make directories",
   args: {
     name: "directory name",
+    template: "folders",
   },
   options: [
     {
