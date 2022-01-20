@@ -50,7 +50,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-I",
       description:
-        "Use ICMP ECHO instead of UDP datagrams.  (A synonym for `-P icmp`)",
+        "Use ICMP ECHO instead of UDP datagrams. (A synonym for `-P icmp`)",
     },
     {
       name: "-M",
