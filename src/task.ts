@@ -1,5 +1,35 @@
-// build out the project suggestions
-const handleProjectFilters = (tasks) => {
+const RECURRING_STRINGS = [
+  "daily",
+  "day",
+  "1da",
+  "2da",
+  "weekdays",
+  "weekly",
+  "1wk",
+  "2wk",
+  "biweekly",
+  "fortnight",
+  "monthly",
+  "month",
+  "1mo",
+  "2mo",
+  "quarterly",
+  "1qtr",
+  "3qtr",
+  "semiannual",
+  "annual",
+  "yearly",
+  "1yr",
+  "2yrs",
+];
+
+// build out the available recurring strings
+const buildRecurringSuggestions = () => {
+  return RECURRING_STRINGS.map((recur) => `recur:${recur}`);
+};
+
+// build out the available project suggestions
+const buildProjectSuggestions = (tasks) => {
   const projects = tasks
     .filter((task) => task.status !== "completed")
     .reduce((acc, task) => {
@@ -55,8 +85,19 @@ const DEFAULT_TAGS = [
   "WEEK",
 ];
 
-// build the tag suggestions
-const handleTagFilters = (tasks) => {
+// build out list of the default tags for the filters
+const buildDefaultTagSuggestions = () => {
+  return DEFAULT_TAGS.map((tag) => {
+    return {
+      name: `+${tag}`,
+      displayName: `Tag: ${tag}`,
+      icon: "🏷",
+    };
+  });
+};
+
+// build the available tag suggestions
+const buildTagSuggestions = (tasks) => {
   const tags = [
     ...new Set(
       tasks
@@ -66,7 +107,7 @@ const handleTagFilters = (tasks) => {
     ),
   ];
 
-  return [...DEFAULT_TAGS, ...tags].map((tag) => {
+  return tags.map((tag) => {
     return {
       name: `+${tag}`,
       displayName: `Tag: ${tag}`,
@@ -75,8 +116,28 @@ const handleTagFilters = (tasks) => {
   });
 };
 
+// build the available untag suggestions
+const buildUnTagSuggestions = (tasks) => {
+  const tags = [
+    ...new Set(
+      tasks
+        .filter((task) => task.hasOwnProperty("tags"))
+        .map((task) => task.tags)
+        .flat()
+    ),
+  ];
+
+  return tags.map((tag) => {
+    return {
+      name: `-${tag}`,
+      displayName: `Untag: ${tag}`,
+      icon: "❌",
+    };
+  });
+};
+
 // build out the task suggestions
-const handleIdFilters = (tasks) => {
+const buildTaskSuggestions = (tasks) => {
   return tasks
     .filter((task) => task.status !== "completed")
     .map((task) => {
@@ -89,7 +150,8 @@ const handleIdFilters = (tasks) => {
     });
 };
 
-const DATES = [
+// taskwarrior default date strings
+const DATE_STRINGS = [
   "now",
   "today",
   "sod",
@@ -130,24 +192,40 @@ const DATES = [
   "eoww",
 ];
 
-// build the due type filters
-const dueArray = () => {
+// build the date suggestion attributes
+const buildDateSuggestions = () => {
   return [
-    ...DATES.map((date) => `due:${date}`),
-    ...DATES.map((date) => `due.by:${date}`),
-    ...DATES.map((date) => `due.before:${date}`),
-    ...DATES.map((date) => `due.after:${date}`),
+    ...DATE_STRINGS.map((date) => `due:${date}`),
+    ...DATE_STRINGS.map((date) => `due.by:${date}`),
+    ...DATE_STRINGS.map((date) => `due.before:${date}`),
+    ...DATE_STRINGS.map((date) => `due.after:${date}`),
+    ...DATE_STRINGS.map((date) => `scheduled:${date}`),
+    ...DATE_STRINGS.map((date) => `scheduled.by:${date}`),
+    ...DATE_STRINGS.map((date) => `scheduled.before:${date}`),
+    ...DATE_STRINGS.map((date) => `scheduled.after:${date}`),
+    ...DATE_STRINGS.map((date) => `until:${date}`),
+    ...DATE_STRINGS.map((date) => `until.by:${date}`),
+    ...DATE_STRINGS.map((date) => `until.before:${date}`),
+    ...DATE_STRINGS.map((date) => `until.after:${date}`),
+    ...DATE_STRINGS.map((date) => `wait:${date}`),
+    ...DATE_STRINGS.map((date) => `wait.by:${date}`),
+    ...DATE_STRINGS.map((date) => `wait.before:${date}`),
+    ...DATE_STRINGS.map((date) => `wait.after:${date}`),
+    ...DATE_STRINGS.map((date) => `entry:${date}`),
+    ...DATE_STRINGS.map((date) => `entry.by:${date}`),
+    ...DATE_STRINGS.map((date) => `entry.before:${date}`),
+    ...DATE_STRINGS.map((date) => `entry.after:${date}`),
   ];
 };
 
-const PRIORITES = ["H", "M", "L"];
+const PRIORITIES = ["H", "M", "L"];
 
 // build the avilable priorites
-const prioritesArray = () => {
+const buildPrioritiesSuggestions = () => {
   return [
-    ...PRIORITES.map((pr) => `priority:${pr}`),
-    ...PRIORITES.map((pr) => `priority.is:${pr}`),
-    ...PRIORITES.map((pr) => `priority.not:${pr}`),
+    ...PRIORITIES.map((pr) => `priority:${pr}`),
+    ...PRIORITIES.map((pr) => `priority.is:${pr}`),
+    ...PRIORITIES.map((pr) => `priority.not:${pr}`),
     "priority.none:",
   ];
 };
@@ -160,11 +238,12 @@ const filtersWithTasks: Fig.Generator = {
   postProcess: (output) => {
     const tasks = JSON.parse(output);
     const filters = [
-      ...handleIdFilters(tasks),
-      ...handleProjectFilters(tasks),
-      ...handleTagFilters(tasks),
-      ...prioritesArray(),
-      ...dueArray(),
+      ...buildTaskSuggestions(tasks),
+      ...buildProjectSuggestions(tasks),
+      ...buildTagSuggestions(tasks),
+      ...buildDefaultTagSuggestions(),
+      ...buildPrioritiesSuggestions(),
+      ...buildDateSuggestions(),
     ];
     return filters;
   },
@@ -177,10 +256,11 @@ const listTasks: Fig.Generator = {
   },
   postProcess: (output) => {
     const tasks = JSON.parse(output);
-    return handleIdFilters(tasks);
+    return buildTaskSuggestions(tasks);
   },
 };
 
+// build filter suggestions
 const filters: Fig.Generator = {
   script: function (context) {
     return `task export`;
@@ -188,8 +268,31 @@ const filters: Fig.Generator = {
   postProcess: (output) => {
     const tasks = JSON.parse(output);
     const filters = [
-      ...handleProjectFilters(tasks),
-      ...handleTagFilters(tasks),
+      ...buildProjectSuggestions(tasks),
+      ...buildTagSuggestions(tasks),
+      ...buildDefaultTagSuggestions(),
+      ...buildPrioritiesSuggestions(),
+      ...buildDateSuggestions(),
+    ];
+    return filters;
+  },
+};
+
+// build modifications suggestions
+const modifications: Fig.Generator = {
+  script: function (context) {
+    return `task export`;
+  },
+  postProcess: (output) => {
+    const tasks = JSON.parse(output);
+    const filters = [
+      ...buildProjectSuggestions(tasks),
+      ...buildTagSuggestions(tasks),
+      ...buildUnTagSuggestions(tasks),
+      ...buildDefaultTagSuggestions(),
+      ...buildPrioritiesSuggestions(),
+      ...buildDateSuggestions(),
+      ...buildRecurringSuggestions(),
     ];
     return filters;
   },
@@ -202,6 +305,7 @@ const completionSpec: Fig.Spec = {
     name: "filters",
     description: "Search criteria that select tasks",
     isOptional: true,
+    isVariadic: true,
     generators: filtersWithTasks,
   },
   subcommands: [
@@ -213,6 +317,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -224,6 +329,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -235,6 +341,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -246,6 +353,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -257,6 +365,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -268,6 +377,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -279,6 +389,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -290,16 +401,19 @@ const completionSpec: Fig.Spec = {
           name: "year",
           description: "The year number",
           isOptional: true,
+          isVariadic: true,
         },
         {
           name: "month",
           description: "The year number",
           isOptional: true,
+          isVariadic: true,
         },
         {
           name: "due",
           description: "Show tasks that are due",
           isOptional: true,
+          isVariadic: true,
         },
       ],
     },
@@ -333,6 +447,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -344,6 +459,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -354,6 +470,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -364,6 +481,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -374,6 +492,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -384,6 +503,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -394,6 +514,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -408,6 +529,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -418,6 +540,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -428,6 +551,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -438,6 +562,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -449,6 +574,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -460,6 +586,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -475,6 +602,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -486,6 +614,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -496,6 +625,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -506,6 +636,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -516,6 +647,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -527,6 +659,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -538,6 +671,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -548,6 +682,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -559,6 +694,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -570,6 +706,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -580,6 +717,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -591,6 +729,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -601,6 +740,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -611,7 +751,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filters,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -621,7 +762,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filters,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -631,7 +773,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filters,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -641,7 +784,8 @@ const completionSpec: Fig.Spec = {
         name: "Task",
         description: "The task to delete",
         isOptional: false,
-        generators: listTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -651,7 +795,7 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filtersWithTasks,
+        generators: modifications,
       },
     },
     {
@@ -661,7 +805,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filtersWithTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -671,7 +816,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filtersWithTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -693,7 +839,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filters,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -703,7 +850,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filtersWithTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -713,7 +861,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: listTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -724,7 +873,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: filters,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -734,7 +884,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: listTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -744,7 +895,8 @@ const completionSpec: Fig.Spec = {
         name: "mods",
         description: "Changes to apply to the selected tasks",
         isOptional: true,
-        generators: listTasks,
+        isVariadic: true,
+        generators: modifications,
       },
     },
     {
@@ -757,6 +909,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             isOptional: false,
+            isVariadic: true,
           },
         },
         {
@@ -767,11 +920,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "name",
               isOptional: false,
+              isVariadic: true,
             },
             {
               name: "mods",
               description: "Changes to apply to the selected tasks",
               isOptional: true,
+              isVariadic: true,
               generators: filters,
             },
           ],
@@ -794,6 +949,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "name",
         isOptional: false,
+        isVariadic: true,
       },
     },
     {
@@ -803,6 +959,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -813,6 +970,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -823,6 +981,7 @@ const completionSpec: Fig.Spec = {
         name: "filters",
         description: "Task search criteria",
         isOptional: true,
+        isVariadic: true,
         generators: filters,
       },
     },
@@ -832,6 +991,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "weeks",
         isOptional: true,
+        isVariadic: true,
       },
     },
     {
