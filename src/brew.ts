@@ -742,6 +742,31 @@ const completionSpec: Fig.Spec = {
       description: "Show Homebrew and system configuration info",
     },
     {
+      name: "postinstall",
+      description: "Postinstall <formula>",
+      options: [
+        {
+          name: ["-d", "--debug"],
+          description: "Display any debugging information",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Make some output more verbose",
+        },
+
+        {
+          name: ["-q", "--quiet"],
+          description: "Make some output more quiet",
+        },
+        { name: ["-h", "--help"], description: "Show this message" },
+      ],
+      args: {
+        isVariadic: true,
+        name: "formula",
+        generators: formulaeGenerator,
+      },
+    },
+    {
       name: "install",
       description: "Install <formula>",
       options: [
