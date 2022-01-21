@@ -6,6 +6,9 @@ const completionSpec: Fig.Spec = {
     isVariadic: true,
     template: "filepaths",
   },
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   options: [
     {
       name: "-###",
