@@ -743,7 +743,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "postinstall",
-      description: "Postinstall <formula>",
+      description: "Rerun the post install step for formula",
       options: [
         {
           name: ["-d", "--debug"],
