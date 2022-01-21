@@ -202,6 +202,7 @@ const completionSpec: Fig.Spec = {
       description: "Link the current working directory to Valet",
       args: {
         name: "name",
+        isOptional: true,
       },
       options: [
         global_option_secure,
