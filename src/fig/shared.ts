@@ -60,6 +60,11 @@ export const themesGenerator: Fig.Generator = {
   postProcess: (output) => {
     const builtinThemes = [
       {
+        name: "system",
+        icon: "💻",
+        priority: 51,
+      },
+      {
         name: "light",
         icon: "fig://template?color=ffffff&badge=☀️",
         priority: 51,
