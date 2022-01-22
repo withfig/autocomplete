@@ -17,5 +17,6 @@
     "baseUrl": "./",
     "types": ["@withfig/autocomplete-types"]
   },
+  "exclude": ["node_modules/"],
   "include": ["./src/**/*", "dangerfile.ts"]
 }
