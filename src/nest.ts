@@ -19,10 +19,12 @@ const options: Fig.Option[] = [
   {
     name: "--spec",
     description: "Enforce spec files generation (default: true)",
+    exclusiveOn: ["--no-spec"],
   },
   {
     name: "--no-spec",
     description: "Disable spec files generation",
+    exclusiveOn: ["--spec"],
   },
   {
     name: ["-c", "--collection"],
@@ -36,7 +38,7 @@ const options: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "nest",
-  description: "",
+  description: "Nest CLI",
   subcommands: [
     {
       name: ["new", "n"],
