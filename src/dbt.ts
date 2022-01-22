@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "dbt",
-  description: "CLI for DBT - Data Build Tool",
+  description: "CLI for dbt - Data Build Tool",
   subcommands: [
     {
       name: "build",
