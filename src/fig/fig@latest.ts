@@ -8,6 +8,30 @@ const completionSpec: Fig.Spec = {
   description: "CLI to interact with Fig",
   subcommands: [
     {
+      name: "alpha",
+      description: "Open dotfiles",
+      subcommands: [
+        {
+          name: "source",
+          description: "Source dotfiles",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for source",
+              displayName: "help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for alpha",
+          displayName: "help",
+        },
+      ],
+    },
+    {
       name: "app",
       description: "Interact with the macOS app",
       subcommands: [
@@ -235,6 +259,17 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "ime",
+          description: "Input Method",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for ime",
+              displayName: "help",
+            },
+          ],
+        },
+        {
           name: "logs",
           description: "Debug fig logs",
           options: [
@@ -252,6 +287,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--help", "-h"],
               description: "Help for perfs",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: "prompt-accessibility",
+          description: "Prompt accessibility",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for prompt-accessibility",
               displayName: "help",
             },
           ],
@@ -371,6 +417,11 @@ const completionSpec: Fig.Spec = {
       description: "Check Fig is properly configured",
       options: [
         {
+          name: ["--verbose", "-v"],
+          description: "Show verbose output",
+          displayName: "verbose",
+        },
+        {
           name: ["--help", "-h"],
           description: "Help for doctor",
           displayName: "help",
@@ -413,12 +464,34 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "launch",
+      description: "Launch Fig",
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for launch",
+          displayName: "help",
+        },
+      ],
+    },
+    {
       name: "logout",
       description: "Logout of Fig",
       options: [
         {
           name: ["--help", "-h"],
           description: "Help for logout",
+          displayName: "help",
+        },
+      ],
+    },
+    {
+      name: "onboarding",
+      description: "Run through onboarding process",
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for onboarding",
           displayName: "help",
         },
       ],
@@ -548,6 +621,41 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "tips",
+      description: "Enable/Disable Fig tips",
+      subcommands: [
+        {
+          name: "disable",
+          description: "Disable Fig Tips",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for disable",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: "enable",
+          description: "Enable Fig Tips",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for enable",
+              displayName: "help",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["--help", "-h"],
+          description: "Help for tips",
+          displayName: "help",
+        },
+      ],
+    },
+    {
       name: "tweet",
       description: "Tweet about Fig",
       icon: "fig://icon?type=twitter",
@@ -563,6 +671,11 @@ const completionSpec: Fig.Spec = {
       name: "update",
       description: "Update Fig",
       options: [
+        {
+          name: ["--force", "-f"],
+          description: "Force update",
+          displayName: "force",
+        },
         {
           name: ["--help", "-h"],
           description: "Help for update",
@@ -609,6 +722,30 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description: "Help about any command",
       subcommands: [
+        {
+          name: "alpha",
+          description: "Open dotfiles",
+          subcommands: [
+            {
+              name: "source",
+              description: "Source dotfiles",
+              options: [
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for source",
+                  displayName: "help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for alpha",
+              displayName: "help",
+            },
+          ],
+        },
         {
           name: "app",
           description: "Interact with the macOS app",
@@ -838,6 +975,17 @@ const completionSpec: Fig.Spec = {
               ],
             },
             {
+              name: "ime",
+              description: "Input Method",
+              options: [
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for ime",
+                  displayName: "help",
+                },
+              ],
+            },
+            {
               name: "logs",
               description: "Debug fig logs",
               icon: "🪵",
@@ -862,6 +1010,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--help", "-h"],
                   description: "Help for perfs",
+                  displayName: "help",
+                },
+              ],
+            },
+            {
+              name: "prompt-accessibility",
+              description: "Prompt accessibility",
+              options: [
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for prompt-accessibility",
                   displayName: "help",
                 },
               ],
@@ -1022,12 +1181,34 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "launch",
+          description: "Launch Fig",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for launch",
+              displayName: "help",
+            },
+          ],
+        },
+        {
           name: "logout",
           description: "Logout of Fig",
           options: [
             {
               name: ["--help", "-h"],
               description: "Help for logout",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: "onboarding",
+          description: "Run through onboarding process",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for onboarding",
               displayName: "help",
             },
           ],
@@ -1142,6 +1323,41 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--help", "-h"],
               description: "Help for theme",
+              displayName: "help",
+            },
+          ],
+        },
+        {
+          name: "tips",
+          description: "Enable/Disable Fig tips",
+          subcommands: [
+            {
+              name: "disable",
+              description: "Disable Fig Tips",
+              options: [
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for disable",
+                  displayName: "help",
+                },
+              ],
+            },
+            {
+              name: "enable",
+              description: "Enable Fig Tips",
+              options: [
+                {
+                  name: ["--help", "-h"],
+                  description: "Help for enable",
+                  displayName: "help",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Help for tips",
               displayName: "help",
             },
           ],
