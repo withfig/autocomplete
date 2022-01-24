@@ -55,10 +55,7 @@ const completionSpec: Fig.Spec = {
       description: "Read/process named file",
       args: {
         name: "FILENAME",
-        generators: [
-          dbFilepath,
-          { custom: async (tokens) => [{ name: tokens[tokens.length - 1] }] },
-        ],
+        generators: dbFilepath,
       },
     },
     {
