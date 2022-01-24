@@ -13,14 +13,35 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 // GENERATORS
 export const npmSearchGenerator: Fig.Generator = {
   script: function (context) {
+  getQueryTerm: '@', 
+  custom: async (context, executeShellCommand) => {
     if (context[context.length - 1] === "") return "";
+
     const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
-  },
-  cache: {
-    ttl: 100 * 24 * 60 * 60 * 3, // 3 days
-  },
-  postProcess: function (out) {
+    const lastChar = searchTerm.length > 1 && searchTerm[searchTerm.length - 1];
+
+    let out;
+    if (lastChar === "@") {
+      out = await executeShellCommand(`curl -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
+        0,
+        -1
+      )}`);
+    } else {
+    out = await executeShellCommand(`curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`);
+    }
+
+    const getVersion =
+      searchTerm.length > 1 && searchTerm[searchTerm.length - 1] === "@";
+
+    if (getVersion) {
+      try {
+        const versions = Object.keys(JSON.parse(out).versions);
+        return versions.map((name) => ({ name }));
+      } catch (e) {
+        return [];
+      }
+    }
+
     try {
       return JSON.parse(out).results.map(
         (item) =>
