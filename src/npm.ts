@@ -29,8 +29,8 @@ export const npmSearchGenerator: Fig.Generator = {
   },
   getQueryTerm: "@",
   cache: {
-     ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
-   },
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
+  },
   custom: async (context, executeShellCommand) => {
     const searchTerm = context[context.length - 1];
     if (searchTerm === "") {
