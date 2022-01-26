@@ -217,6 +217,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "build",
           description: "Switch build",
+          args: {
+            name: "build",
+            suggestions: ["prod", "staging", "dev"],
+          },
           options: [
             {
               name: ["--help", "-h"],
