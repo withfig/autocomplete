@@ -10,26 +10,80 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
     options: npmInstallOptions,
   };
 }
+
+const atsInStr = (s: string) => (s.match(/@/g) || []).length;
 // GENERATORS
 export const npmSearchGenerator: Fig.Generator = {
-  script: function (context) {
-    if (context[context.length - 1] === "") return "";
-    const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+  trigger: (newToken, oldToken) => {
+    // If the package name starts with '@', we want to trigger when
+    // the 2nd '@' is typed because we'll need to generate version
+    // suggetsions
+    // e.g. @typescript-eslint/types
+    if (oldToken.startsWith("@")) {
+      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
+    }
+
+    // If the package name doesn't start with '@', then trigger when
+    // we see the first '@' so we can generate version suggestions
+    return !(oldToken.includes("@") && newToken.includes("@"));
   },
+  getQueryTerm: "@",
   cache: {
-    ttl: 100 * 24 * 60 * 60 * 3, // 3 days
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
   },
-  postProcess: function (out) {
+  custom: async (context, executeShellCommand) => {
+    const searchTerm = context[context.length - 1];
+    if (searchTerm === "") {
+      return [];
+    }
+
+    // Query the API with the package name
+    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}"`;
+    // We need to remove the '@' at the end of the searchTerm before querying versions
+    const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
+      0,
+      -1
+    )}`;
+
+    // If the end of our token is '@', then we want to generate version suggestions
+    // Otherwise, we want packages
+    const out = (query: string) =>
+      query[query.length - 1] === "@"
+        ? executeShellCommand(queryVersions)
+        : executeShellCommand(queryPackages);
+
+    // If our token starts with '@', then a 2nd '@' tells us we want
+    // versions.
+    // Otherwise, '@' anywhere else in the string will indicate the same.
+    const shouldGetVersion = searchTerm.startsWith("@")
+      ? atsInStr(searchTerm) > 1
+      : searchTerm.includes("@");
+
     try {
-      return JSON.parse(out).results.map(
-        (item) =>
-          ({
-            name: item.package.name,
-            description: item.package.description,
-          } as Fig.Suggestion)
-      ) as Fig.Suggestion[];
-    } catch (e) {
+      const data = JSON.parse(await out(searchTerm));
+      if (shouldGetVersion) {
+        // create dist tags suggestions
+        const versions = Object.entries(data["dist-tags"] || {}).map(
+          ([key, value]) => ({
+            name: key,
+            description: value,
+          })
+        ) as Fig.Suggestion[];
+        // create versions
+        versions.push(
+          ...Object.keys(data.versions)
+            .map((version) => ({ name: version } as Fig.Suggestion))
+            .reverse()
+        );
+        return versions;
+      }
+
+      return data.results.map((item) => ({
+        name: item.package.name,
+        description: item.package.description,
+      })) as Fig.Suggestion[];
+    } catch (error) {
+      console.error({ error });
       return [];
     }
   },
