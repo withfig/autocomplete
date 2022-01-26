@@ -23,6 +23,8 @@ const RECURRING_STRINGS = [
   "2yrs",
 ];
 
+const icon = "https://f-droid.org/repo/icons-640/kvj.taskw.3.png";
+
 // build out the available recurring strings
 const buildRecurringSuggestions = () => {
   return RECURRING_STRINGS.map((recur) => `recur:${recur}`);
@@ -746,6 +748,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "add",
+      icon,
       description: "Adds a new pending task to the task list",
       args: {
         name: "mods",
@@ -879,6 +882,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "start",
+      icon,
       description: "Marks the specified tasks as started",
       args: {
         name: "mods",
@@ -890,6 +894,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stop",
+      icon,
       description: "Removes the start time from the specified task",
       args: {
         name: "mods",

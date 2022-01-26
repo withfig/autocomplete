@@ -124,6 +124,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "generate-completion",
+      hidden: true,
       description: "Generate bash/zsh completion script for Okta",
     },
   ],
