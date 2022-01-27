@@ -1394,42 +1394,55 @@ const completionSpec: Fig.Spec = {
           };
 
           if (workspaces) {
-            for (const workspace of workspaces) {
-              if (workspace.includes("*")) {
-                const workspacePath = workspace.slice(0, -1);
-                const out = await executeShellCommand(`\ls ${workspacePath}`);
-                const workspaceList = out.split("\n");
+            // TODO: come up with a better variable name than `workplace`
+            const recurseWorkspace = async (workplace: any) => {
+              if (workplace instanceof Array) {
+                for (const workspace of workplace) {
+                  if (workspace.includes("*")) {
+                    const workspacePath = workspace.slice(0, -1);
+                    const out = await executeShellCommand(
+                      `\ls ${workspacePath}`
+                    );
+                    const workspaceList = out.split("\n");
 
-                for (const space of workspaceList) {
-                  subcommands.push({
-                    name: await getPackageName(workspacePath + space),
-                    description: "Workspaces",
-                    args: {
-                      name: "script",
-                      generators: {
-                        script: `\cat ${workspace.slice(
-                          0,
-                          -1
-                        )}/${space}/package.json`,
-                        postProcess,
+                    for (const space of workspaceList) {
+                      subcommands.push({
+                        name: await getPackageName(workspacePath + space),
+                        description: "Workspaces",
+                        args: {
+                          name: "script",
+                          generators: {
+                            script: `\cat ${workspace.slice(
+                              0,
+                              -1
+                            )}/${space}/package.json`,
+                            postProcess,
+                          },
+                        },
+                      });
+                    }
+                  } else {
+                    subcommands.push({
+                      name: await getPackageName(workspace),
+                      description: "Workspaces",
+                      args: {
+                        name: "script",
+                        generators: {
+                          script: `\cat ${workspace}/package.json`,
+                          postProcess,
+                        },
                       },
-                    },
-                  });
+                    });
+                  }
                 }
               } else {
-                subcommands.push({
-                  name: await getPackageName(workspace),
-                  description: "Workspaces",
-                  args: {
-                    name: "script",
-                    generators: {
-                      script: `\cat ${workspace}/package.json`,
-                      postProcess,
-                    },
-                  },
-                });
+                for (const workspace in workplace) {
+                  await recurseWorkspace(workplace[workspace]);
+                }
               }
-            }
+            };
+
+            await recurseWorkspace(workspaces);
           }
         } catch (e) {
           console.error(e);
