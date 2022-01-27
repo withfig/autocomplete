@@ -175,10 +175,15 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         suggestions: [
-          { name: "POST" },
           { name: "GET" },
+          { name: "HEAD" },
+          { name: "POST" },
+          { name: "PUT" },
+          { name: "DELETE" },
+          { name: "CONNECT" },
+          { name: "OPTIONS" },
+          { name: "TRACE" },
           { name: "PATCH" },
-          { name: "UPDATE" },
         ],
       },
     },
