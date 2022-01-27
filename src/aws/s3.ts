@@ -409,6 +409,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "paths",
         generators: generators.listRemoteFilesGenerator,
+        isOptional: true,
       },
     },
     {
