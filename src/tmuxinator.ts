@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "tmuxinator",
-  description: "tmuxinator is a ruby gem that allows you to easily manage tmux sessions by using yaml files to describe the layout of a tmux session, and open up that session with a single command",
+  description: "Tmuxinator is a ruby gem that allows you to easily manage tmux sessions by using yaml files to describe the layout of a tmux session, and open up that session with a single command",
   subcommands: [
     {
       name: "commands",
@@ -68,12 +68,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Describe available commands or one specific command",
-      args: [{
+      args: {
         name: "COMMAND",
         description: "Command name you need help for",
         isOptional: true,
       },
-      ],
     },
     {
       name: "implode",
@@ -108,7 +107,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start",
       description:
-        "Start a tmux session using a project's name (with an optional [ALIAS] for project reuse) or a path to a project config file ...",
+        "Start a tmux session using a project's name (with an optional [ALIAS] for project reuse) or a path to a project config file",
       args: [{
         name: "PROJECT",
         description: "Project name 1",
