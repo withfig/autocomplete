@@ -66,6 +66,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "reload",
+      description: "Reload the current zsh session",
+    },
+    {
       name: "theme",
       description: "Manage themes",
       subcommands: [
