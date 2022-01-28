@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const testList: Fig.Generator = {
   script: function (context) {
     const base = context[context.length - 1];
@@ -54,6 +56,29 @@ const searchGenerator: Fig.Generator = {
         description: `v${matches[2]} - ${matches[3]}`,
       };
     });
+  },
+};
+
+const featuresGenerator: Fig.Generator = {
+  script: "cargo read-manifest",
+  postProcess: function (data: string) {
+    const manifest = JSON.parse(data);
+    return Object.keys(manifest.features || {}).map((name) => ({
+      name,
+      description: `Features: [${manifest.features[name].join(", ")}]`,
+    }));
+  },
+};
+
+const targetGenerator: Fig.Generator = {
+  script: "rustc --print target-list",
+  postProcess: function (data: string) {
+    return data
+      .split("\n")
+      .filter((line) => line.trim() !== "")
+      .map((name) => ({
+        name,
+      }));
   },
 };
 
@@ -530,7 +555,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--features",
           description: "Space or comma separated list of features to activate",
-          args: { name: "FEATURES" },
+          args: {
+            name: "FEATURES",
+            generators: featuresGenerator,
+            isVariadic: true,
+          },
         },
         {
           name: "--all-features",
@@ -570,7 +599,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--target",
           description: "Build for the target triple",
-          args: { name: "TRIPLE" },
+          args: { name: "TRIPLE", generators: targetGenerator },
         },
         {
           name: "--target-dir",
@@ -635,6 +664,123 @@ const completionSpec: Fig.Spec = {
         {
           name: "--",
           description: "Last option before crates",
+        },
+      ],
+    },
+    {
+      name: "tree",
+      icon: "📦",
+      description: "Display a tree visualization of a dependency graph",
+      options: [
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+          args: {
+            generators: filepaths({ equals: "Cargo.toml" }),
+          },
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to be used as the root of the tree",
+          args: { name: "SPEC" },
+        },
+        {
+          name: "--workspace",
+          description: "Display the tree for all packages in the workspace",
+        },
+        {
+          name: "--exclude",
+          description: "Exclude specific workspace members",
+          args: { name: "SPEC" },
+        },
+        {
+          name: "--features",
+          description: "Space or comma separated list of features to activate",
+          args: {
+            name: "FEATURES",
+            generators: featuresGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--all-features",
+          description: "Activate all available features",
+        },
+        {
+          name: "--no-default-features",
+          description: "Do not activate the `default` feature",
+        },
+        {
+          name: "--target",
+          description:
+            "Filter dependencies matching the given target-triple (default host platform)",
+          args: {
+            name: "TRIPLE",
+            suggestions: ["all"],
+            generators: targetGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: ["-e", "--edges"],
+          description: "The kinds of dependencies to display",
+          args: {
+            name: "KINDS",
+            suggestions: [
+              "features",
+              "normal",
+              "build",
+              "dev",
+              "all",
+              "no-normal",
+              "no-build",
+              "no-dev",
+              "no-proc-macro",
+            ],
+            isVariadic: true,
+          },
+        },
+        {
+          name: ["-i", "--invert"],
+          description:
+            "Invert the tree direction and focus on the given package",
+          args: { name: "SPEC", isVariadic: true },
+        },
+        {
+          name: "--prune",
+          description:
+            "Prune the given package from the display of the dependency tree",
+          args: { name: "SPEC", isVariadic: true },
+        },
+        {
+          name: "--depth",
+          description: "Maximum display depth of the dependency tree",
+          args: { name: "DEPTH", isVariadic: true },
+        },
+        {
+          name: "--prefix",
+          description:
+            "Change the prefix (indentation) of how each entry is displayed",
+          args: { name: "PREFIX", suggestions: ["depth", "indent", "none"] },
+        },
+        {
+          name: "--no-dedupe",
+          description: "Do not de-duplicate (repeats all shared dependencies)",
+        },
+        {
+          name: ["-d", "--duplicates"],
+          description:
+            "Show only dependencies which come in multiple versions (implies -i)",
+        },
+        {
+          name: "--charset",
+          description: "Character set to use in output",
+          args: { name: "CHARSET", suggestions: ["utf8", "ascii"] },
+        },
+        {
+          name: ["-f", "--format"],
+          description: "Format string used for printing dependencies",
+          args: { name: "FORMAT" },
         },
       ],
     },
@@ -1103,6 +1249,7 @@ const completionSpec: Fig.Spec = {
           description: "Target triple which compiles will be for",
           args: {
             name: "Triple",
+            generators: targetGenerator,
           },
         },
         {
@@ -1182,6 +1329,289 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
+  generateSpec: async (_tokens, executeShellCommand) => {
+    const subcommands: Fig.Subcommand[] = [];
+
+    const commands = (await executeShellCommand("cargo --list"))
+      .split("\n")
+      .filter((_, i) => i != 0)
+      .map((line) => line.trim().split(/\s+/, 1)[0]);
+
+    const fmt: Fig.Subcommand = {
+      name: "fmt",
+      icon: "🛠",
+      description:
+        "This utility formats all bin and lib files of the current crate using rustfmt",
+      subcommands: [
+        {
+          name: "--",
+          description: "All other arguments are passed to rustfmt",
+          args: {
+            generators: filepaths({
+              extensions: ["rs"],
+            }),
+          },
+          options: [
+            {
+              name: "--check",
+              description:
+                "Run in 'check' mode. Exits with 0 if input is formatted correctly. Exits with 1 and prints a diff if formatting is required",
+            },
+            {
+              name: "--emit",
+              description: "What data to emit and how",
+              args: {
+                suggestions: ["files", "stdout"],
+              },
+            },
+            {
+              name: "--backup",
+              description: "Backup any modified files",
+            },
+            {
+              name: "--config-path",
+              description: "Path for the configuration file",
+              args: {
+                generators: filepaths({
+                  equals: ["rustfmt.toml"],
+                }),
+              },
+            },
+            {
+              name: "--edition",
+              description: "Rust edition to use",
+              args: {
+                suggestions: rustEditions,
+              },
+            },
+            {
+              name: "--print-config",
+              description: "Dumps a default or minimal config to PATH",
+              args: [
+                {
+                  name: "verbosity",
+                  suggestions: ["default", "minimal", "current"],
+                },
+                {
+                  name: "PATH",
+                  template: "filepaths",
+                },
+              ],
+            },
+            {
+              name: ["-l", "--files-with-diff"],
+              description:
+                "Prints the names of mismatched files that were formatted",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--check",
+          description: "Run rustfmt in check mode",
+        },
+        {
+          name: "--all",
+          description:
+            "Format all packages, and also their local path-based dependencies",
+        },
+        {
+          name: "--quiet",
+        },
+      ],
+    };
+
+    if (commands.includes("fmt")) {
+      subcommands.push(fmt);
+    }
+
+    const clippy: Fig.Subcommand = {
+      name: "clippy",
+      icon: "📎",
+      description: "Runs the Clippy linter",
+      subcommands: [
+        {
+          name: "--",
+          description: "All other arguments are passed to clippy",
+          options: [
+            {
+              name: ["-W", "--warn"],
+              description: "Set lint warnings",
+              args: {},
+            },
+            {
+              name: ["-A", "--allow"],
+              description: "Set lint allowed",
+              args: {},
+            },
+            {
+              name: ["-D", "--deny"],
+              description: "Set lint denied",
+              args: {},
+            },
+            {
+              name: ["-F", "--forbid"],
+              description: "Set lint forbidden",
+              args: {},
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--no-deps",
+          description:
+            "Run Clippy only on the given crate, without linting the dependencies",
+        },
+        {
+          name: "--fix",
+          description:
+            "Automatically apply lint suggestions. This flag implies `--no-deps`",
+        },
+        {
+          name: "--allow-dirty",
+          description:
+            "Allow fix to apply even if the working directory is dirty",
+          dependsOn: ["--fix"],
+        },
+        {
+          name: "--allow-staged",
+          description:
+            "Allow fix to apply even if the working directory has staged changes",
+          dependsOn: ["--fix"],
+        },
+      ],
+    };
+
+    if (commands.includes("clippy")) {
+      subcommands.push(clippy);
+    }
+
+    const flamegraph: Fig.Subcommand = {
+      name: "flamegraph",
+      icon: "🔥",
+      description: "Generates a flamegraph of the current crate",
+      options: [
+        {
+          name: "--deterministic",
+          description:
+            "Colors are selected such that the color of a function does not change between runs",
+        },
+        {
+          name: "--dev",
+          description: "Build with the dev profile",
+        },
+        {
+          name: ["-i", "--inverted"],
+          description: "Plot the flame graph up-side-down",
+        },
+        {
+          name: "--no-default-features",
+          description: "Disable default features",
+        },
+        {
+          name: "--open",
+          description: "Open the output .svg file with default program",
+        },
+        {
+          name: "--reverse",
+          description: "Generate stack-reversed flame graph",
+        },
+        {
+          name: "--root",
+          description: "Run with root privileges (using `sudo`)",
+        },
+        {
+          name: "--no-inline",
+          description:
+            "Disable inlining for perf script because of performance issues",
+        },
+      ],
+    };
+
+    if (commands.includes("flamegraph")) {
+      subcommands.push(flamegraph);
+    }
+
+    const audit: Fig.Subcommand = {
+      name: "audit",
+      icon: "📚",
+      description: "Runs the cargo audit tool",
+      options: [
+        {
+          name: ["-d", "--db"],
+          description: "Advisory database git repo path",
+          args: {
+            name: "DB",
+            template: "folders",
+          },
+        },
+        {
+          name: ["-D", "--deny"],
+          description: "Exit with an error on the argument",
+          args: {
+            isVariadic: true,
+            suggestions: [
+              { name: "warnings", description: "Warnings (any)" },
+              { name: "unmaintained", description: "Unmaintained crates" },
+              { name: "unsound", description: "Unsound Rust code" },
+              { name: "yanked", description: "Yanked crates" },
+            ],
+          },
+        },
+        {
+          name: ["-f", "--file"],
+          description: "Cargo lockfile to inspect",
+          args: {
+            suggestions: [{ name: "-", description: "Stdin" }],
+            generators: filepaths({
+              equals: ["Cargo.lock"],
+            }),
+          },
+        },
+        {
+          name: ["-n", "--no-fetch"],
+          description: "Do not perform a git fetch on the advisory DB",
+        },
+        {
+          name: "--stale",
+          description: "Allow stale database",
+        },
+        {
+          name: "--target-arch",
+          description: "Filter vulnerabilities by CPU",
+          args: {},
+        },
+        {
+          name: "--target-os",
+          description: "Filter vulnerabilities by OS",
+          args: {},
+        },
+        {
+          name: ["-u", "--url"],
+          description: "URL for advisory database git repo",
+        },
+        {
+          name: "--json",
+          description: "Output report in JSON format",
+        },
+        {
+          name: "--no-local-crates",
+          description: "Vulnerability querying does not consider local crates",
+        },
+      ],
+    };
+
+    if (commands.includes("audit")) {
+      subcommands.push(audit);
+    }
+
+    return {
+      name: "cargo",
+      subcommands,
+    };
+  },
   options: [
     {
       name: ["-V", "--version"],
