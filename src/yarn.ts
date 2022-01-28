@@ -1372,77 +1372,27 @@ const completionSpec: Fig.Spec = {
         const subcommands = [];
 
         try {
-          const out = await executeShellCommand("cat package.json");
+          const out = await executeShellCommand(
+            "yarn workspaces --silent info"
+          );
 
-          if (out.trim() == "") {
+          if (out.trim() == "{}") {
             return { name: "workspaces" };
           }
           const packageContent = JSON.parse(out);
-          const workspaces = packageContent["workspaces"];
 
-          const getPackageName = async (workspace: string): Promise<string> => {
-            const workspacePackage = await executeShellCommand(
-              `\cat ${workspace}/package.json`
-            );
-
-            try {
-              return JSON.parse(workspacePackage)["name"] || workspace;
-            } catch (e) {
-              console.error(e);
-              return workspace;
-            }
-          };
-
-          if (workspaces) {
-            // TODO: come up with a better variable name than `workplace`
-            const recurseWorkspace = async (workplace: any) => {
-              if (workplace instanceof Array) {
-                for (const workspace of workplace) {
-                  if (workspace.includes("*")) {
-                    const workspacePath = workspace.slice(0, -1);
-                    const out = await executeShellCommand(
-                      `\ls ${workspacePath}`
-                    );
-                    const workspaceList = out.split("\n");
-
-                    for (const space of workspaceList) {
-                      subcommands.push({
-                        name: await getPackageName(workspacePath + space),
-                        description: "Workspaces",
-                        args: {
-                          name: "script",
-                          generators: {
-                            script: `\cat ${workspace.slice(
-                              0,
-                              -1
-                            )}/${space}/package.json`,
-                            postProcess,
-                          },
-                        },
-                      });
-                    }
-                  } else {
-                    subcommands.push({
-                      name: await getPackageName(workspace),
-                      description: "Workspaces",
-                      args: {
-                        name: "script",
-                        generators: {
-                          script: `\cat ${workspace}/package.json`,
-                          postProcess,
-                        },
-                      },
-                    });
-                  }
-                }
-              } else {
-                for (const workspace in workplace) {
-                  await recurseWorkspace(workplace[workspace]);
-                }
-              }
-            };
-
-            await recurseWorkspace(workspaces);
+          for (const workspace of packageContent) {
+            subcommands.push({
+              name: workspace,
+              description: "Workspaces",
+              args: {
+                name: "script",
+                generators: {
+                  script: `\cat ${packageContent[workspace]["location"]}/package.json`,
+                  postProcess,
+                },
+              },
+            });
           }
         } catch (e) {
           console.error(e);
