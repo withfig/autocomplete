@@ -92,7 +92,7 @@ const completionSpec: Fig.Spec = {
         "Recover crashed session if filename is specified, otherwise list swap files and exit",
       args: {
         name: "filename",
-        isOptional: false,
+        isOptional: true,
         template: "filepaths",
       },
     },
