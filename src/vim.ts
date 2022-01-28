@@ -88,11 +88,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-r",
-      description: "List swap files and exit",
-    },
-    {
-      name: "-r (with file)",
-      description: "Recover crashed session",
+      description:
+        "Recover crashed session if filename is specified, otherwise list swap files and exit",
       args: {
         name: "filename",
         isOptional: false,
@@ -179,6 +176,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         isOptional: false,
+        isCommand: true,
       },
     },
     {
@@ -244,6 +242,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "viminfo",
         isOptional: false,
+        template: "filepaths",
       },
     },
     {
