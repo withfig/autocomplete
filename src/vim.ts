@@ -66,6 +66,17 @@ const completionSpec: Fig.Spec = {
       {
           name: "-V[N][fname]",
           description: "Be verbose [level N] [log messages to fname]",
+          args: [
+              {
+                  name: "N",
+                  isOptional: false,
+              },
+              {
+                  name: "fname",
+                  template: "filepaths",
+                  isOptional: false,
+              },
+          ],
       },
       {
           name: "-D",
@@ -82,14 +93,28 @@ const completionSpec: Fig.Spec = {
       {
           name: "-r (with file name)",
           description: "Recover crashed session",
+          args: {
+              name: "filename",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-L",
           description: "Same as -r",
+          args: {
+              name: "filename",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-T <terminal>",
           description: "Set terminal type to <terminal>",
+          args: {
+              name: "terminal",
+              isOptional: false,
+          },
       },
       {
           name: "--not-a-term",
@@ -102,6 +127,11 @@ const completionSpec: Fig.Spec = {
       {
           name: "-u <vimrc>",
           description: "Use <vimrc> instead of any .vimrc",
+          args: {
+              name: "vimrc",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "--noplugin",
@@ -110,14 +140,26 @@ const completionSpec: Fig.Spec = {
       {
           name: "-p[N]",
           description: "Open N tab pages (default: one for each file)",
+          args: {
+              name: "N",
+              isOptional: true,
+          },
       },
       {
           name: "-o[N]",
           description: "Open N windows (default: one for each file)",
+          args: {
+              name: "N",
+              isOptional: true,
+          },
       },
       {
           name: "-O[N]",
           description: "Like -o but split vertically",
+          args: {
+              name: "N",
+              isOptional: true,
+          },
       },
       {
           name: "+",
@@ -126,30 +168,62 @@ const completionSpec: Fig.Spec = {
       {
           name: "+<lnum>",
           description: "Start at line <lnum>",
+          args: {
+              name: "lnum",
+              isOptional: true,
+          },
       },
       {
           name: "--cmd <command>",
           description: "Execute <command> before loading any vimrc file",
+          args: {
+              name: "command",
+              isOptional: false,
+          },
       },
       {
           name: "-c <command>",
           description: "Execute <command> after loading the first file",
+          args: {
+              name: "command",
+              isOptional: false,
+          },
       },
       {
           name: "-S <session>",
           description: "Source file <session> after loading the first file",
+          args: {
+              name: "session",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-s <scriptin>",
           description: "Read Normal mode commands from file <scriptin>",
+          args: {
+              name: "scriptin",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-w <scriptout>",
           description: "Append all typed commands to file <scriptout>",
+          args: {
+              name: "scriptout",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-W <scriptout>",
           description: "Write all typed commands to file <scriptout>",
+          args: {
+              name: "scriptout",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-x",
@@ -158,10 +232,19 @@ const completionSpec: Fig.Spec = {
       {
           name: "--startuptime <file>",
           description: "Write startup timing messages to <file>",
+          args: {
+              name: "file",
+              isOptional: false,
+              template: "filepaths",
+          },
       },
       {
           name: "-i <viminfo>",
           description: "Use <viminfo> instead of .viminfo",
+          args: {
+              name: "viminfo",
+              isOptional: false,
+          },
       },
       {
           name: "--clean",
