@@ -193,6 +193,23 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "gpg-key",
+      description: "Manage GPG keys registered with your GitHub account",
+      options: [ghOptions.help],
+      subcommands: [
+        {
+          name: "add",
+          description: "Add a GPG key to your GitHub account",
+          options: [ghOptions.help],
+        },
+        {
+          name: "list",
+          description: "Lists GPG keys in your GitHub account",
+          options: [ghOptions.help],
+        },
+      ],
+    },
+    {
       name: "completion",
       description: "Generate shell completion scripts",
       options: [
