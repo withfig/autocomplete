@@ -86,6 +86,11 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
 const ghOptions: Record<string, Fig.Option> = {
   help: { name: "--help", description: "Show help for command" },
+  clone: { name: "--clone", description: "Clone the fork {true|false}" },
+  confirm: {
+    name: ["-y", "--confirm"],
+    description: "Skip the confirmation prompt",
+  },
   all: {
     name: ["--repo", "-R"],
     description: "Select another repository",
@@ -340,7 +345,7 @@ const completionSpec: Fig.Spec = {
           name: "upgrade",
           description: "Upgrade installed extensions",
           options: [
-            { name: "--help", description: "Show help for command" },
+            ghOptions.help,
             { name: "--all", description: "Upgrade all extensions" },
             { name: "--force", description: "Force upgrade extensions" },
           ],
@@ -1170,30 +1175,51 @@ const completionSpec: Fig.Spec = {
     { name: "release", description: "Manage GitHub releases" },
     {
       name: "repo",
-      description: "Create, clone, fork, list, and view repositories",
+      description: "Work with GitHub repositories",
       subcommands: [
         {
-          name: "clone",
-          description: "Clone a repository locally",
+          name: "archive",
+          description: `Archive a GitHub repository.
+          With no argument, archives the current repository.`,
+          isDangerous: true,
           args: {
-            name: "string",
+            name: "repository",
+            isOptional: true,
           },
-          options: [
-            { name: ["-h", "--help"], description: "Show help for command" },
+          options: [ghOptions.help, ghOptions.confirm],
+        },
+        {
+          name: "clone",
+          description: `Clone a GitHub repository locally.
+          If the "OWNER/" portion of the "OWNER/REPO" repository argument is omitted, it
+          defaults to the name of the authenticating user.
+          Pass additional 'git clone' flags by listing them after '--'.`,
+          args: [
+            {
+              name: "repository",
+            },
+            {
+              name: "directory",
+              isOptional: true,
+            },
           ],
+          options: [ghOptions.help],
         },
         {
           name: "create",
-          description: "Create a new GitHub repository",
+          description: `Create a new GitHub repository.
+          To create a repository interactively, use 'gh repo create' with no arguments.
+          To create a remote repository non-interactively, supply the repository name and one of '--public', '--private', or '--internal'.
+          Pass '--clone' to clone the new repository locally.
+          To create a remote repository from an existing local repository, specify the source directory with '--source'. 
+          By default, the remote repository name will be the name of the source directory. 
+          Pass '--push' to push any local commits to the new repository.`,
           args: {
-            name: "string",
+            name: "name",
           },
           options: [
-            { name: "--help", description: "Show help for command" },
-            {
-              name: ["-y", "--confirm"],
-              description: "Skip the confirmation prompt",
-            },
+            ghOptions.help,
+            ghOptions.confirm,
             {
               name: ["-d", "--description"],
               description: "Description of the repository",
@@ -1225,14 +1251,113 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: "fork",
-          description: "Create a fork of a repository",
+          name: "delete",
+          description: `Delete a GitHub repository.
+          With no argument, deletes the current repository. Otherwise, deletes the specified repository.
+          Deletion requires authorization with the "delete_repo" scope. 
+          To authorize, run "gh auth refresh -s delete_repo"`,
+          isDangerous: true,
           args: {
-            name: "string",
+            name: "repository",
+            isOptional: true,
+          },
+          options: [ghOptions.help, ghOptions.confirm],
+        },
+        {
+          name: "edit",
+          description: "Edit repository settings",
+          args: [
+            {
+              name: "repository",
+              isOptional: true,
+            },
+          ],
+          options: [
+            ghOptions.help,
+            ghOptions.clone,
+            {
+              name: "--add-topic strings",
+              description: "Add repository topic",
+            },
+            {
+              name: "--allow-forking",
+              description: "Allow forking of an organization repository",
+            },
+            {
+              name: "--default-branch name",
+              description: "Set the default branch name for the repository",
+            },
+            {
+              name: "--delete-branch-on-merge",
+              description: "Delete head branch when pull requests are merged",
+            },
+            {
+              name: ["-d", "--description string"],
+              description: "Description of the repository",
+            },
+            {
+              name: "--enable-auto-merge",
+              description: "Enable auto-merge functionality",
+            },
+            {
+              name: "--enable-issues",
+              description: "Enable issues in the repository",
+            },
+            {
+              name: "--enable-merge-commit",
+              description: "Enable merging pull requests via merge commit",
+            },
+            {
+              name: "--enable-projects",
+              description: "Enable projects in the repository",
+            },
+            {
+              name: "--enable-rebase-merge",
+              description: "Enable merging pull requests via rebase",
+            },
+            {
+              name: "--enable-squash-merge",
+              description: "Enable merging pull requests via squashed commit",
+            },
+            {
+              name: "--enable-wiki",
+              description: "Enable wiki in the repository",
+            },
+            {
+              name: ["-h", "--homepage URL"],
+              description: "Repository home page URL",
+            },
+            {
+              name: "--remove-topic strings",
+              description: "Remove repository topic",
+            },
+            {
+              name: "--template",
+              description:
+                "Make the repository available as a template repository",
+            },
+            {
+              name: "--visibility string",
+              description:
+                " Change the visibility of the repository to {public,private,internal}",
+            },
+          ],
+        },
+        {
+          name: "fork",
+          description: `Create a fork of a repository.
+          With no argument, creates a fork of the current repository. Otherwise, forks
+          the specified repository.
+          By default, the new fork is set to be your 'origin' remote and any existing
+          origin remote is renamed to 'upstream'. To alter this behavior, you can set
+          a name for the new fork's remote with --remote-name.
+          Additional 'git clone' flags can be passed in by listing them after '--'.`,
+          args: {
+            name: "repository",
           },
           options: [
-            { name: ["-h", "--help"], description: "Show help for command" },
-            { name: "--clone", description: "Clone the fork {true|false}" },
+            ghOptions.help,
+            ghOptions.clone,
             {
               name: "--remote",
               description: "Add remote for fork {true|false}",
@@ -1249,12 +1374,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "List repositories owned by user or organization",
+          description: `List repositories owned by user or organization.
+          For more information about output formatting flags, see 'gh help formatting'.`,
           args: {
-            name: "string",
+            name: "owner",
+            isOptional: true,
           },
           options: [
-            { name: ["-h", "--help"], description: "Show help for command" },
+            ghOptions.help,
             {
               name: "--archived",
               description: "Show only archived repositories",
@@ -1285,16 +1412,79 @@ const completionSpec: Fig.Spec = {
               description: "Show only public repositories",
             },
             { name: "--source", description: "Show only non-forks" },
+
+            {
+              name: ["-q, --jq"],
+              description: "Filter JSON output using a jq expression",
+            },
+            {
+              name: "--json",
+              description: "Output JSON with the specified fields",
+            },
+            {
+              name: ["-t, --template"],
+              description: "Format JSON output using a Go template",
+            },
+          ],
+        },
+        {
+          name: "rename",
+          description: `Rename a GitHub repository.
+          By default, this renames the current repository; otherwise renames the specified repository.`,
+          args: {
+            name: "new-name",
+            isOptional: true,
+          },
+          options: [ghOptions.help, ghOptions.confirm, ghOptions.all],
+        },
+        {
+          name: "sync",
+          description: `Sync destination repository from source repository. Syncing uses the main branch
+          of the source repository to update the matching branch on the destination
+          repository so they are equal. A fast forward update will be used execept when the
+          '--force' flag is specified, then the two branches will
+          by synced using a hard reset.
+          
+          Without an argument, the local repository is selected as the destination repository.
+          
+          The source repository is the parent of the destination repository by default.
+          This can be overridden with the '--source' flag.`,
+          args: {
+            name: "destination-repository",
+            isOptional: true,
+          },
+          options: [
+            ghOptions.help,
+
+            {
+              name: ["-b", "--branch string"],
+              description: "Branch to sync (default: main branch)",
+            },
+            {
+              name: "--force",
+              description:
+                "Hard reset the branch of the destination repository to match the source repository",
+            },
+            {
+              name: ["-s", "--source string"],
+              description: "Source repository",
+            },
           ],
         },
         {
           name: "view",
-          description: "View a repository",
+          description: `Display the description and the README of a GitHub repository.
+          With no argument, the repository for the current directory is displayed.
+          With '--web', open the repository in a web browser instead.
+          With '--branch', view a specific branch of the repository.
+          For more information about output formatting flags, see 'gh help formatting'.
+          `,
           args: {
-            name: "string",
+            name: "repository",
+            isOptional: true,
           },
           options: [
-            { name: ["-h", "--help"], description: "Show help for command" },
+            ghOptions.help,
             {
               name: ["-b", "--branch"],
               description: "View a specific branch of the repository",
