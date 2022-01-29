@@ -10,19 +10,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "alpha",
       description: "Open dotfiles",
-      subcommands: [
-        {
-          name: "source",
-          description: "Source dotfiles",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for source",
-              displayName: "help",
-            },
-          ],
-        },
-      ],
       options: [
         {
           name: ["--help", "-h"],
@@ -217,6 +204,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "build",
           description: "Switch build",
+          args: {
+            name: "build",
+            suggestions: ["prod", "staging", "dev"],
+          },
           options: [
             {
               name: ["--help", "-h"],

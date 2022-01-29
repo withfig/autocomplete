@@ -24,7 +24,7 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 ## ⚡️ Installation
 ##### With [Homebrew](https://brew.sh): 
 ```
-brew install fig
+brew install --cask fig
 ```
 ##### Manually: 
 Download the macOS app at [fig.io/download](https://fig.io/download).

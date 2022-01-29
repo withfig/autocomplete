@@ -1,3 +1,49 @@
+const filterMessages = (out: string): string => {
+  return out.startsWith("warning:") || out.startsWith("error:")
+    ? out.split("\n").slice(1).join("\n")
+    : out;
+};
+
+const postProcessRemoteBranches: Fig.Generator["postProcess"] = (out) => {
+  const output = filterMessages(out);
+
+  if (output.startsWith("fatal:")) {
+    return [];
+  }
+
+  return output.split("\n").map((elm) => {
+    // Trim and remove the remote part of the branch name (origin/, fork/...)
+    let name = elm.trim().replace(/\w+\//, "");
+
+    const parts = elm.match(/\S+/g);
+    if (parts.length > 1) {
+      if (parts[0] === "*") {
+        // We are in a detached HEAD state
+        if (elm.includes("HEAD detached")) {
+          return {};
+        }
+        // Current branch
+        return {
+          name: elm.replace("*", "").trim(),
+          description: "Current branch",
+          priority: 100,
+          icon: "⭐️",
+        };
+      } else if (parts[0] === "+") {
+        // Branch checked out in another worktree.
+        name = elm.replace("+", "").trim();
+      }
+    }
+
+    return {
+      name,
+      description: "Branch",
+      icon: "fig://icon?type=git",
+      priority: 75,
+    };
+  });
+};
+
 const ghGenerators: Record<string, Fig.Generator> = {
   listPR: {
     script: "gh pr list",
@@ -29,6 +75,12 @@ const ghGenerators: Record<string, Fig.Generator> = {
         icon: "fig://icon?type=command",
       }));
     },
+  },
+
+  remoteBranches: {
+    script:
+      "git --no-optional-locks branch -r --no-color --sort=-committerdate",
+    postProcess: postProcessRemoteBranches,
   },
 };
 
@@ -857,6 +909,7 @@ const completionSpec: Fig.Spec = {
               description: "The branch into which you want your code merged",
               args: {
                 name: "branch",
+                generators: ghGenerators.remoteBranches,
               },
             },
             {
