@@ -1179,7 +1179,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "archive",
-          description: 
+          description:
             "Archive a GitHub repository. With no argument, archives the current repository",
           isDangerous: true,
           args: {
@@ -1277,7 +1277,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
               name: "--add-topic",
               description: "Add repository topic",
               args: {
-                name: 'topic name',
+                name: "topic name",
               },
             },
             {
@@ -1299,7 +1299,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
               name: ["-d", "--description"],
               description: "Description of the repository",
               args: {
-                name: 'description',
+                name: "description",
               },
             },
             {
@@ -1341,7 +1341,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
               name: "--remove-topic",
               description: "Remove repository topic",
               args: {
-                name: 'topic name',
+                name: "topic name",
               },
             },
             {
