@@ -1,3 +1,33 @@
+const contexts: Fig.Generator = {
+  script: "okteto context list",
+  postProcess: (output) => {
+    return output.split("\n").map((context, ind) => {
+      if (ind == 0) return;
+      context = context.split(" ")[0];
+      return {
+        name: context.replace("*", "").trim(),
+        description: "Context",
+        icon: "fig://icon?type=okteto",
+      };
+    });
+  },
+};
+
+const namespaces: Fig.Generator = {
+  script: "okteto namespace list",
+  postProcess: (output) => {
+    return output.split("\n").map((namespace, ind) => {
+      if (ind == 0) return;
+      namespace = namespace.split(" ")[0];
+      return {
+        name: namespace.replace("*", "").trim(),
+        description: "Namespace",
+        icon: "fig://icon?type=okteto",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "okteto",
   description: "Okteto - Remote Development Environments powered by Kubernetes",
@@ -263,6 +293,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a context",
+          args: {
+            generators: contexts,
+          },
           options: [
             {
               name: ["--loglevel", "-l"],
@@ -335,6 +368,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "use",
           description: "Set the default context",
+          args: {
+            generators: contexts,
+          },
           options: [
             {
               name: ["--loglevel", "-l"],
@@ -666,6 +702,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a namespace",
+          args: {
+            generators: namespaces,
+          },
           options: [
             {
               name: ["--loglevel", "-l"],
@@ -715,6 +754,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["ns", "use"],
           description: "Configure the current namespace of the okteto context",
+          args: {
+            generators: namespaces,
+          },
           options: [
             {
               name: ["--loglevel", "-l"],
