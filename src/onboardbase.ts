@@ -2,6 +2,7 @@
 
 const completionSpec: Fig.Spec = {
   name: "onboardbase",
+  description:  "Onboardbase manages app secrets and credentials securely with team work and contractors in mind",
   description:
     "Onboardbase manages app secrets and credentials securely with team work and contractors in mind",
   subcommands: [
