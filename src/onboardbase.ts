@@ -2,34 +2,42 @@
 
 const completionSpec: Fig.Spec = {
   name: "onboardbase",
+  description:
+    "Onboardbase manages app secrets and credentials securely with team work and contractors in mind",
   subcommands: [
     {
       name: "build",
       description: "Run a command with secrets injected into the environment",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        {
+          name: ["-p", "--project"],
+          description: "Name of project",
+          args: { name: "project name" },
+        },
         {
           name: ["-e", "--environment"],
           description: "Environment to run by default",
-          args: {},
+          args: {
+            name: "environment",
+          },
         },
         { name: ["-c", "--command"], description: "Command to run", args: {} },
         { name: ["-k", "--prefix"], description: "Prefix", args: {} },
         { name: ["-s", "--passphrase"], description: "Passphrase", args: {} },
       ],
-      args: [{ name: "command" }],
+      args: { name: "command" },
     },
     {
       name: "config:get-token",
       description: "Get all tokens",
-      options: [{ name: ["-S", "--scope"], description: "scope", args: {} }],
+      options: [{ name: ["-S", "--scope"], description: "Scope", args: {} }],
     },
     {
       name: "config:set",
       description: "Update your onboardbase config",
       options: [
-        { name: ["-s", "--scope"], description: "scope", args: {} },
+        { name: ["-s", "--scope"], description: "Scope", args: {} },
         { name: ["-t", "--token"], description: "Auth Token", args: {} },
         { name: ["-A", "--api-host"], description: "API Host", args: {} },
         {
@@ -45,24 +53,24 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-S", "--scope"],
-          description: "scope",
+          description: "Scope",
           args: {},
           isRequired: true,
         },
       ],
-      args: [{ name: "token" }],
+      args: { name: "token" },
     },
     {
       name: "destroy",
       description:
-        "cleanup Onboardbase artifacts including backup and authentication",
+        "Cleanup Onboardbase artifacts including backup and authentication",
     },
     {
       name: "environment:create",
       description: "Create an environment under a project",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-p", "--project"], description: "Name of project", args: {} },
         {
           name: ["-e", "--environment"],
           description: "Environment Title",
@@ -73,7 +81,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "login",
-      description: "describe the command here",
+      description: "Describe the command here",
       options: [{ name: "--overwrite" }],
     },
     { name: "logout", description: "Log out of the CLI" },
@@ -81,8 +89,8 @@ const completionSpec: Fig.Spec = {
       name: "project:create",
       description: "Create a project",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-t", "--title"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-t", "--title"], description: "Name of project", args: {} },
         {
           name: ["-d", "--description"],
           description: "Project description",
@@ -99,18 +107,18 @@ const completionSpec: Fig.Spec = {
       name: "recommendation:create",
       description: "Create a recommendation",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-p", "--project"], description: "Name of project", args: {} },
         { name: ["-n", "--note"], description: "Note", args: {} },
       ],
-      args: [{ name: "secrets" }],
+      args: { name: "secrets" },
     },
     {
       name: "secrets",
       description: "Log secrets in JSON file",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-p", "--project"], description: "Name of project", args: {} },
         {
           name: ["-e", "--environment"],
           description: "Environment to run by default",
@@ -123,43 +131,43 @@ const completionSpec: Fig.Spec = {
       name: "secrets:delete",
       description: "Update secrets on Onboardbase",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-p", "--project"], description: "Name of project", args: {} },
         {
           name: ["-e", "--environment"],
           description: "Environment to run by default",
           args: {},
         },
       ],
-      args: [{ name: "secrets" }],
+      args: { name: "secrets" },
     },
     {
       name: "secrets:update",
       description: "Update secrets on Onboardbase",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-p", "--project"], description: "Name of project", args: {} },
         {
           name: ["-e", "--environment"],
           description: "Environment to run by default",
           args: {},
         },
       ],
-      args: [{ name: "secrets" }],
+      args: { name: "secrets" },
     },
     {
       name: "secrets:upload",
       description: "Upload secrets",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
-        { name: ["-p", "--project"], description: "name of project", args: {} },
+        { name: ["-h", "--help"], description: "Show CLI help" },
+        { name: ["-p", "--project"], description: "Name of project", args: {} },
         {
           name: ["-e", "--environment"],
           description: "Environment to run by default",
           args: {},
         },
       ],
-      args: [{ name: "secrets" }],
+      args: { name: "secrets" },
     },
     {
       name: "setup",
@@ -169,21 +177,19 @@ const completionSpec: Fig.Spec = {
       name: "share",
       description: "Share your local onboardbase.yaml secrets with a teammate",
       options: [
-        { name: ["-h", "--help"], description: "show CLI help" },
+        { name: ["-h", "--help"], description: "Show CLI help" },
         { name: ["-p", "--project"], description: "Project name", args: {} },
       ],
     },
     {
       name: "help",
-      description: "display help for <%= config.bin %>",
-      options: [{ name: "--all", description: "see all commands in CLI" }],
-      args: [
-        {
-          name: "command",
-          description: "command to show help for",
-          isOptional: true,
-        },
-      ],
+      description: "Display help for <%= config.bin %>",
+      options: [{ name: "--all", description: "See all commands in CLI" }],
+      args: {
+        name: "command",
+        description: "Command to show help for",
+        isOptional: true,
+      },
     },
   ],
 };
