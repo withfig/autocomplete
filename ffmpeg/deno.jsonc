@@ -1,7 +1,0 @@
-{
-  "lint": {
-    "files": {
-      "exclude": ["./ffmpeg.ts"]
-    }
-  }
-}
