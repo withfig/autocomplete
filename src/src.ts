@@ -123,6 +123,37 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "batch",
+      description:
+        "'src login' helps you authenticate 'src' to access a Sourcegraph instance with your user credentials",
+      subcommands: [
+        {
+          name: "apply",
+          description: "",
+        },
+        {
+          name: "exec",
+          description: "",
+        },
+        {
+          name: "new",
+          description: "",
+        },
+        {
+          name: "preview",
+          description: "",
+        },
+        {
+          name: "repositories",
+          description: "",
+        },
+        {
+          name: "validate",
+          description: "",
+        },
+      ],
+    },
   ],
   options: [
     {
