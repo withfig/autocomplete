@@ -93,6 +93,36 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "login",
+      description:
+        "'src login' helps you authenticate 'src' to access a Sourcegraph instance with your user credentials",
+      subcommands: [
+        {
+          name: "-dump-requests",
+          description: "Log GraphQL requests and responses to stdout",
+        },
+        {
+          name: "-get-curl",
+          description:
+            "Print the curl command for executing this query and exit (WARNING: includes printing your access token!)",
+        },
+        {
+          name: "-insecure-skip-verify",
+          description:
+            "Skip validation of TLS certificates against trusted chains",
+        },
+        {
+          name: "-trace",
+          description: "Log the trace ID for requests",
+        },
+        {
+          name: "-user-agent-telemetry",
+          description:
+            "Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph",
+        },
+      ],
+    },
   ],
   options: [
     {
