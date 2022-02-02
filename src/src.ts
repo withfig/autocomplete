@@ -7,9 +7,50 @@ const completionSpec: Fig.Spec = {
       description: "Run a code search",
       subcommands: [
         {
-          name: "my_nested_subcommand",
+          name: "-display",
           description:
-            "Nested subcommand, example usage: 'src my_subcommand my_nested_subcommand'",
+            "Limit the number of results that are displayed. Only supported together with stream flag. Statistics continue to report all results",
+        },
+        {
+          name: "-dump-requests",
+          description: "Log GraphQL requests and responses to stdout",
+        },
+        {
+          name: "-explain-json",
+          description: "Explain the JSON output schema and exit",
+        },
+        {
+          name: "-get-curl",
+          description:
+            "Print the curl command for executing this query and exit. (WARNING: Includes printing your access token!)",
+        },
+        {
+          name: "-insecure-skip-verify",
+          description:
+            "Skip validation of TLD certificates against trusted chains",
+        },
+        {
+          name: "-json",
+          description: "Whether or not to output results as JSON",
+        },
+        {
+          name: "-less",
+          description:
+            "Pipe output to `less -R` (only if stdout is terminal, and not json flag)",
+        },
+        {
+          name: "-stream",
+          description:
+            "Consume results as stream. Streaming search only supports a subset of flags and parameters: trace, insecure-skip-verify, display, json.	",
+        },
+        {
+          name: "-trace",
+          description: "Log the trace ID for requests",
+        },
+        {
+          name: "-user-agent-telemetry",
+          description:
+            "Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph",
         },
       ],
     },
@@ -38,8 +79,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-trace",
-          description:
-            "Log the trace ID for requests See https://docs.sourcegraph.com/admin/observability/tracing",
+          description: "Log the trace ID for requests",
         },
         {
           name: "-user-agent-telemetry",
