@@ -224,6 +224,24 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "repos",
+      description: "View or delete organizations",
+      subcommands: [
+        {
+          name: "delete",
+          description: "",
+        },
+        {
+          name: "get",
+          description: "",
+        },
+        {
+          name: "list",
+          description: "",
+        },
+      ],
+    },
   ],
   options: [
     {
