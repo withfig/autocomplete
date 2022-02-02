@@ -283,6 +283,46 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "validate",
+      description:
+        "EXPERIMENTAL: Instance validation provides a quick way to check that a Sourcegraph instance functions properly after a fresh install or an update",
+      subcommands: [
+        {
+          name: "-context",
+          description:
+            "Comma-separated list of key=value pairs to add to the script execution context",
+        },
+        {
+          name: "-dump-requests",
+          description: "Log GraphQL requests and responses to stdout",
+        },
+        {
+          name: "-get-curl",
+          description:
+            "Print the curl command for executing this query and exit (WARNING: includes printing your access token!)",
+        },
+        {
+          name: "-insecure-skip-verify",
+          description:
+            "Skip validation of TLS certificates against trusted chains",
+        },
+        {
+          name: "-secrets",
+          description:
+            "Path to a file containing key=value lines. The key value pairs will be added to the script context",
+        },
+        {
+          name: "-trace",
+          description: "Log the trace ID for requests",
+        },
+        {
+          name: "-user-agent-telemetry",
+          description:
+            "Include the operating system and architecture in the User-Agent sent with requests to Sourcegraph",
+        },
+      ],
+    },
   ],
   options: [
     {
