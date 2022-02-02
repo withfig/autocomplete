@@ -154,6 +154,24 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "config",
+      description: "'src config' helps you configure 'src'",
+      subcommands: [
+        {
+          name: "edit",
+          description: "",
+        },
+        {
+          name: "get",
+          description: "",
+        },
+        {
+          name: "list",
+          description: "",
+        },
+      ],
+    },
   ],
   options: [
     {
