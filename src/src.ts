@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "src",
-  description: "",
+  description: "Interact with Sourcegraph from the command line",
   subcommands: [
     {
       name: "search",
