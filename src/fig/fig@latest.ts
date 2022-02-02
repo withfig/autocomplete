@@ -499,17 +499,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "report",
-      description: "Open the report window",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for report",
-          displayName: "help",
-        },
-      ],
-    },
-    {
       name: "restart",
       description: "Restart Fig",
       options: [
@@ -1211,17 +1200,6 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--help", "-h"],
               description: "Help for quit",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "report",
-          description: "Open the report window",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for report",
               displayName: "help",
             },
           ],
