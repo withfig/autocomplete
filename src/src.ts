@@ -257,6 +257,32 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "users",
+      description: "Create, edit, view, tag, or delete users",
+      subcommands: [
+        {
+          name: "create",
+          description: "",
+        },
+        {
+          name: "delete",
+          description: "",
+        },
+        {
+          name: "get",
+          description: "",
+        },
+        {
+          name: "list",
+          description: "",
+        },
+        {
+          name: "tag",
+          description: "",
+        },
+      ],
+    },
   ],
   options: [
     {
