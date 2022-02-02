@@ -241,6 +241,22 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "serve-git",
+      description:
+        "By default 'src serve-git' will recursively serve your current directory on the address ':3434'",
+      subcommands: [
+        {
+          name: "-addr",
+          description:
+            "Address on which to server (end with : for unused port)",
+        },
+        {
+          name: "-list",
+          description: "List found repository names",
+        },
+      ],
+    },
   ],
   options: [
     {
