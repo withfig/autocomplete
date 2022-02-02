@@ -172,6 +172,21 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "extsvc",
+      description:
+        "Edit or view external service configuration on the Sourcegraph instance",
+      subcommands: [
+        {
+          name: "edit",
+          description: "",
+        },
+        {
+          name: "list",
+          description: "",
+        },
+      ],
+    },
   ],
   options: [
     {
