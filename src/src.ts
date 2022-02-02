@@ -197,6 +197,33 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "orgs",
+      description:
+        "Edit or view external service configuration on the Sourcegraph instance",
+      subcommands: [
+        {
+          name: "create",
+          description: "",
+        },
+        {
+          name: "delete",
+          description: "",
+        },
+        {
+          name: "get",
+          description: "",
+        },
+        {
+          name: "list",
+          description: "",
+        },
+        {
+          name: "members",
+          description: "",
+        },
+      ],
+    },
   ],
   options: [
     {
