@@ -20,6 +20,12 @@ const completionSpec: Fig.Spec = {
       description: "Input file",
 
       isRequired: true,
+
+      args: {
+        name: "infile",
+
+        template: "filepaths",
+      },
     },
     {
       name: "-L",
