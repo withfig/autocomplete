@@ -222,7 +222,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-max_error_rate",
       description:
-        "Ratio of decoding errors (0.0: no errors, 1.0: 100% errors) above which ffmpeg returns an error instead of success",
+        "Ratio of errors (0.0: no errors, 1.0: 100% errors) above which ffmpeg returns an error instead of success",
 
       args: {
         name: "maximum error rate",
@@ -286,7 +286,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-timelimit",
-      description: "Set max runtime in seconds in CPU user time",
+      description: "Set max runtime in seconds",
 
       args: {
         name: "limit",
@@ -393,19 +393,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-auto_conversion_filters",
-      description: "Enable automatic conversion filters globally",
-    },
-    {
-      name: "-stats_period",
-      description:
-        "Set the period at which ffmpeg updates stats and -progress output",
-
-      args: {
-        name: "time",
-      },
-    },
-    {
       name: "-debug_ts",
       description: "Print timestamp debugging info",
     },
@@ -452,9 +439,6 @@ const completionSpec: Fig.Spec = {
       description: "Show QP histogram",
     },
     {
-      name: "-videotoolbox_pixfmt",
-    },
-    {
       name: "-vc",
       description: "Deprecated, use -channel",
       deprecated: true,
@@ -483,6 +467,27 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "file",
+      },
+    },
+    {
+      name: "-vaapi_device",
+      description: "Set VAAPI hardware device (DRM path or X11 display name)",
+
+      args: {
+        name: "device",
+
+        generators: {
+          script: "ffmpeg -devices",
+          postProcess: (out) => {
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({ name: k }));
+          },
+        },
       },
     },
     {
@@ -703,8 +708,7 @@ const completionSpec: Fig.Spec = {
       description: "Set input stream mapping",
 
       args: {
-        name:
-          "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_specifier]]",
+        name: "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_s",
       },
     },
     {
@@ -841,11 +845,6 @@ const completionSpec: Fig.Spec = {
       description: "Automatically insert correct rotate filters",
     },
     {
-      name: "-autoscale",
-      description:
-        "Automatically insert a scale filter at the end of the filter graph",
-    },
-    {
       name: "-muxdelay",
       description: "Set the maximum demux-decode delay",
 
@@ -905,15 +904,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-muxing_queue_data_threshold",
-      description:
-        "Set the threshold after which max_muxing_queue_size is taken into account",
-
-      args: {
-        name: "bytes",
-      },
-    },
-    {
       name: "-dcodec",
       description: "Force data codec ('copy' to copy stream)",
 
@@ -945,14 +935,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-r",
       description: "Set frame rate (Hz value, fraction or abbreviation)",
-
-      args: {
-        name: "rate",
-      },
-    },
-    {
-      name: "-fpsmax",
-      description: "Set max frame rate (Hz value, fraction or abbreviation)",
 
       args: {
         name: "rate",
