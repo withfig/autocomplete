@@ -900,7 +900,7 @@ const completionSpec: Fig.Spec = {
           description: `Edit a pull request.
 Without an argument, the pull request that belongs to the current branch is selected.`,
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
