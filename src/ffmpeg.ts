@@ -410,6 +410,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-intra",
       description: "Deprecated use -g 1",
+      deprecated: true,
     },
     {
       name: "-sameq",
@@ -422,6 +423,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-deinterlace",
       description: "This option is deprecated, use the yadif filter instead",
+      deprecated: true,
     },
     {
       name: "-psnr",
@@ -453,6 +455,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vc",
       description: "Deprecated, use -channel",
+      deprecated: true,
 
       args: {
         name: "channel",
@@ -461,6 +464,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-tvstd",
       description: "Deprecated, use -standard",
+      deprecated: true,
 
       args: {
         name: "standard",
@@ -469,6 +473,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-isync",
       description: "This option is deprecated and does nothing",
+      deprecated: true,
     },
     {
       name: "-sdp_file",
@@ -1144,6 +1149,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vbsf",
       description: "Deprecated",
+      deprecated: true,
 
       args: {
         name: "video bitstream_filters",
@@ -1254,6 +1260,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-absf",
       description: "Deprecated",
+      deprecated: true,
 
       args: {
         name: "audio bitstream_filters",
