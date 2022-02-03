@@ -857,7 +857,7 @@ const completionSpec: Fig.Spec = {
           name: "checkout",
           description: "Check out a pull request in git",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -871,7 +871,7 @@ const completionSpec: Fig.Spec = {
           name: "checks",
           description: "Show CI status for a single pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -885,7 +885,7 @@ const completionSpec: Fig.Spec = {
           name: "close",
           description: "Close a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1004,7 +1004,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "comment",
           description: "Create a new pr comment",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1123,7 +1123,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "diff",
           description: "View changes in a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1188,7 +1188,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "merge",
           description: "Merge a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1215,7 +1215,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "ready",
           description: "Mark a pull request as ready for review",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
         },
@@ -1223,7 +1223,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "reopen",
           description: "Reopen a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
         },
@@ -1231,7 +1231,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "review",
           description: "Add a review to a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1261,7 +1261,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           name: "view",
           description: "View a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
