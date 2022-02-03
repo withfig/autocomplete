@@ -15,8 +15,7 @@ const contexts: Fig.Generator = {
 const namespaces: Fig.Generator = {
   script: "okteto namespace list",
   postProcess: (output) => {
-    return output.split("\n").map((namespace, ind) => {
-      if (ind == 0) return;
+    return output.split("\n").slice(1).map((namespace, ind) => {
       namespace = namespace.split(" ")[0];
       return {
         name: namespace.replace("*", "").trim(),
