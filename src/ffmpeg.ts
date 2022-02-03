@@ -18,6 +18,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-i",
       description: "Input file",
+
+      isRequired: true,
     },
     {
       name: "-L",
