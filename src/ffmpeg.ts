@@ -1,5 +1,10 @@
 /* eslint-disable @withfig/fig-linter/no-useless-arrays */
 
+/*
+This Fig completion spec for `ffmpeg` is generated automatically!
+See [the source code](https://github.com/ryanccn/ffmpeg-fig).
+*/
+
 const completionSpec: Fig.Spec = {
   name: "ffmpeg",
   description: "Play, record, convert, and stream audio and video",
