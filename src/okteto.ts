@@ -1,8 +1,7 @@
 const contexts: Fig.Generator = {
   script: "okteto context list",
   postProcess: (output) => {
-    return output.split("\n").map((context, ind) => {
-      if (ind == 0) return;
+    return output.split("\n").slice(1).map((context, ind) => {
       context = context.split(" ")[0];
       return {
         name: context.replace("*", "").trim(),
