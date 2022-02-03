@@ -905,69 +905,96 @@ Without an argument, the pull request that belongs to the current branch is sele
           },
           options: [
             {
-              name: "--add-assignee", description: `Add assigned users by their login. Use "@me" to assign yourself.`, args: {
-                name: "login"
-              }
+              name: "--add-assignee",
+              description: `Add assigned users by their login. Use "@me" to assign yourself.`,
+              args: {
+                name: "login",
+              },
             },
             {
-              name: "--add-label", description: "Add labels by name", args: {
-                name: "name"
-              }
+              name: "--add-label",
+              description: "Add labels by name",
+              args: {
+                name: "name",
+              },
             },
             {
-              name: "--add-project", description: "Add the pull request to projects by name", args: {
-                name: "name"
-              }
+              name: "--add-project",
+              description: "Add the pull request to projects by name",
+              args: {
+                name: "name",
+              },
             },
             {
-              name: "--add-reviewer", description: "Add reviewers by their login.", args: {
-                name: "login"
-              }
+              name: "--add-reviewer",
+              description: "Add reviewers by their login",
+              args: {
+                name: "login",
+              },
             },
             {
-              name: ["-B", "--base"], description: "Change the base branch for this pull request", args: {
-                name: "branch"
-              }
+              name: ["-B", "--base"],
+              description: "Change the base branch for this pull request",
+              args: {
+                name: "branch",
+              },
             },
             {
-              name: ["-b", "--body"], description: "Set the new body.", args: {
-                name: "string"
-              }
+              name: ["-b", "--body"],
+              description: "Set the new body",
+              args: {
+                name: "string",
+              },
             },
             {
-              name: ["-F", "--body-file"], description: `Read body text from file (use "-" to read from standard input)`, args: {
-                name: "file"
-              }
+              name: ["-F", "--body-file"],
+              description: `Read body text from file (use "-" to read from standard input)`,
+              args: {
+                name: "file",
+              },
             },
             {
-              name: ["-m", "--milestone"], description: "Edit the milestone the pull request belongs to by name", args: {
-                name: "name"
-              }
+              name: ["-m", "--milestone"],
+              description:
+                "Edit the milestone the pull request belongs to by name",
+              args: {
+                name: "name",
+              },
             },
             {
-              name: "--remove-assignee", description: `Remove assigned users by their login. Use "@me" to unassign yourself.`, args: {
-                name: "login"
-              }
+              name: "--remove-assignee",
+              description: `Remove assigned users by their login. Use "@me" to unassign yourself.`,
+              args: {
+                name: "login",
+              },
             },
             {
-              name: "--remove-label", description: "Remove labels by name", args: {
-                name: "name"
-              }
+              name: "--remove-label",
+              description: "Remove labels by name",
+              args: {
+                name: "name",
+              },
             },
             {
-              name: "--remove-project", description: "Remove the pull request from projects by name", args: {
-                name: "name"
-              }
+              name: "--remove-project",
+              description: "Remove the pull request from projects by name",
+              args: {
+                name: "name",
+              },
             },
             {
-              name: "--remove-reviewer", description: "Remove reviewers by their login.", args: {
-                name: "login"
-              }
+              name: "--remove-reviewer",
+              description: "Remove reviewers by their login",
+              args: {
+                name: "login",
+              },
             },
             {
-              name: ["-t", "--title"], description: "Set the new title.", args: {
-                name: "string"
-              }
+              name: ["-t", "--title"],
+              description: "Set the new title",
+              args: {
+                name: "string",
+              },
             },
             ghOptions.help,
             ghOptions.all,
