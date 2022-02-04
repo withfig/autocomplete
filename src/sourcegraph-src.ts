@@ -127,7 +127,7 @@ const completionSpec: Fig.Spec = {
       name: "batch",
       description:
         "'src login' helps you authenticate 'src' to access a Sourcegraph instance with your user credentials",
-      subcommands: [
+      args: [
         {
           name: "apply",
           description: "",
@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "'src config' helps you configure 'src'",
-      subcommands: [
+      args: [
         {
           name: "edit",
           description: "",
@@ -176,7 +176,7 @@ const completionSpec: Fig.Spec = {
       name: "extsvc",
       description:
         "Edit or view external service configuration on the Sourcegraph instance",
-      subcommands: [
+      args: [
         {
           name: "edit",
           description: "",
@@ -190,12 +190,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "lsif",
       description: "Upload an LSIF dumps",
-      subcommands: [
-        {
-          name: "upload",
-          description: "",
-        },
-      ],
+      args: {
+        name: "upload",
+        description: "",
+      },
     },
     {
       name: "orgs",
