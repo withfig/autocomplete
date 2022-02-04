@@ -206,7 +206,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "platform",
         description: "One of android, ios or mac",
-        suggestions: ["ios", "android"],
+        suggestions: ["ios", "android", "mac"],
       },
     },
     {
