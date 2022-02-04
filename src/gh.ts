@@ -897,8 +897,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "edit",
-          description: `Edit a pull request.
-Without an argument, the pull request that belongs to the current branch is selected.`,
+          description: 'Edit a pull request. Without an argument, the pull request that belongs to the current branch is selected.',
           args: {
             name: "number | url | branch",
             generators: ghGenerators.listPR,
@@ -906,7 +905,7 @@ Without an argument, the pull request that belongs to the current branch is sele
           options: [
             {
               name: "--add-assignee",
-              description: `Add assigned users by their login. Use "@me" to assign yourself.`,
+              description: 'Add assigned users by their login. Use "@me" to assign yourself.',
               args: {
                 name: "login",
               },
@@ -948,7 +947,7 @@ Without an argument, the pull request that belongs to the current branch is sele
             },
             {
               name: ["-F", "--body-file"],
-              description: `Read body text from file (use "-" to read from standard input)`,
+              description: 'Read body text from file (use "-" to read from standard input)',
               args: {
                 name: "file",
               },
@@ -963,7 +962,7 @@ Without an argument, the pull request that belongs to the current branch is sele
             },
             {
               name: "--remove-assignee",
-              description: `Remove assigned users by their login. Use "@me" to unassign yourself.`,
+              description: 'Remove assigned users by their login. Use "@me" to unassign yourself.',
               args: {
                 name: "login",
               },
