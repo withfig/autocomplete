@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "search",
       description: "Run a code search",
-      subcommands: [
+      options: [
         {
           name: "-display",
           description:
@@ -57,7 +57,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "api",
       description: "Sourcegraph API Access",
-      subcommands: [
+      options: [
         {
           name: "-get-curl",
           description:
@@ -97,7 +97,7 @@ const completionSpec: Fig.Spec = {
       name: "login",
       description:
         "'src login' helps you authenticate 'src' to access a Sourcegraph instance with your user credentials",
-      subcommands: [
+      options: [
         {
           name: "-dump-requests",
           description: "Log GraphQL requests and responses to stdout",
@@ -245,7 +245,7 @@ const completionSpec: Fig.Spec = {
       name: "serve-git",
       description:
         "By default 'src serve-git' will recursively serve your current directory on the address ':3434'",
-      subcommands: [
+      options: [
         {
           name: "-addr",
           description:
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
       name: "validate",
       description:
         "EXPERIMENTAL: Instance validation provides a quick way to check that a Sourcegraph instance functions properly after a fresh install or an update",
-      subcommands: [
+      options: [
         {
           name: "-context",
           description:
