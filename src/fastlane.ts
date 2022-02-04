@@ -1,15 +1,3 @@
-const actionGenerators: Fig.Generator = {
-  script: "fastlane actions",
-  postProcess: (out, tokens) => {
-    console.log(out);
-    return [
-      {
-        name: "soosos",
-      },
-    ];
-  },
-};
-
 const completionSpec: Fig.Spec = {
   name: "fastlane",
   description:
@@ -41,7 +29,6 @@ const completionSpec: Fig.Spec = {
       description: "Shows more information for a specific command",
       args: {
         name: "tool_name",
-        generators: actionGenerators,
       },
     },
     {
