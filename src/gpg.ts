@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--options",
       description: "Read options from file",
-      exclusiveOn: "--no-options",
+      exclusiveOn: ["--no-options"],
       args: { name: "file", template: "filepaths" },
     },
     { name: ["-a", "--armour"], description: "Create ASCII armored output" },
@@ -86,18 +86,18 @@ const completionSpec: Fig.Spec = {
       name: "--encrypt-to",
       description:
         "Same as --recipient but this one is intended for in the options file",
-      exclusiveOn: "--no-encrypt-to",
+      exclusiveOn: ["--no-encrypt-to"],
       args: { name: "name" },
     },
     {
       name: "--no-encrypt-to",
       description: "Disable the use of all --encrypt-to keys",
-      exclusiveOn: "--encrypt-to",
+      exclusiveOn: ["--encrypt-to"],
     },
     {
       name: ["-v", "--verbose"],
       description: "Give more information during processing",
-      exclusiveOn: "--no-verbose",
+      exclusiveOn: ["--no-verbose"],
     },
     { name: ["-q", "--quiet"], description: "Try to be as quiet as possible" },
     {
@@ -118,7 +118,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--batch",
       description: "Use batch mode",
-      exclusiveOn: "--no-batch",
+      exclusiveOn: ["--no-batch"],
     },
     {
       name: "--no-tty",
@@ -127,17 +127,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-batch",
       description: "Disable batch mode",
-      exclusiveOn: "--batch",
+      exclusiveOn: ["--batch"],
     },
     {
       name: "--yes",
       description: 'Assume "yes" on most questions',
-      exclusiveOn: "--no",
+      exclusiveOn: ["--no"],
     },
     {
       name: "--no",
       description: 'Assume "no" on most questions',
-      exclusiveOn: "--yes",
+      exclusiveOn: ["--yes"],
     },
     { name: "--always-trust", description: "Skip key validation" },
     {
@@ -181,16 +181,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "--utf8-strings",
       description: "Assume that the arguments are already given as UTF8",
-      exclusiveOn: "--no-utf8-strings",
+      exclusiveOn: ["--no-utf8-strings"],
     },
     {
       name: "--no-utf8-strings",
-      exclusiveOn: "--utf8-strings",
+      exclusiveOn: ["--utf8-strings"],
     },
     {
       name: "--no-options",
       description: 'Shortcut for "--options /dev/null"',
-      exclusiveOn: "--options",
+      exclusiveOn: ["--options"],
     },
     {
       name: "--load-extension",
@@ -422,7 +422,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-verbose",
       description: "Reset verbose level to 0",
-      exclusiveOn: "--verbose",
+      exclusiveOn: ["--verbose"],
     },
     {
       name: "--no-greeting",
