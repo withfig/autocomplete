@@ -906,7 +906,8 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--add-assignee",
-              description: `Add assigned users by their login. Use "@me" to assign yourself`,
+              description:
+                'Add assigned users by their login. Use "@me" to assign yourself',
               args: {
                 name: "login",
               },
@@ -948,7 +949,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-F", "--body-file"],
-              description: `Read body text from file (use "-" to read from standard input)`,
+              description:
+                'Read body text from file (use "-" to read from standard input)',
               args: {
                 name: "file",
               },
@@ -963,7 +965,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--remove-assignee",
-              description: `Remove assigned users by their login. Use "@me" to unassign yourself`,
+              description:
+                'Remove assigned users by their login. Use "@me" to unassign yourself',
               args: {
                 name: "login",
               },
