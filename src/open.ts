@@ -85,7 +85,6 @@ const completionSpec: Fig.Spec = {
         "For -h, the SDK to use; if supplied, only SDKs whose names contain the argument value are searched",
       args: {
         name: "partial SDK name",
-        
       },
     },
     {
@@ -97,7 +96,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-i", "--stdin"],
-      description: "Launches the application with stdin connected to PATH; defaults to /dev/null",
+      description:
+        "Launches the application with stdin connected to PATH; defaults to /dev/null",
       args: {
         name: "PATH",
         template: "filepaths",
@@ -106,7 +106,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-o", "--stdout"],
-      description: "Launches the application with /dev/stdout connected to PATH",
+      description:
+        "Launches the application with /dev/stdout connected to PATH",
       args: {
         name: "PATH",
         template: "filepaths",
@@ -115,7 +116,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--stderr",
-      description: "Launches the application with /dev/stderr connected to PATH",
+      description:
+        "Launches the application with /dev/stderr connected to PATH",
       args: {
         name: "PATH",
         template: "filepaths",
@@ -124,7 +126,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--env",
-      description: "Add an enviroment variable to the launched process, where VAR is formatted AAA=foo",
+      description:
+        "Add an enviroment variable to the launched process, where VAR is formatted AAA=foo",
       isRepeatable: true,
       args: {
         name: "VAR",
