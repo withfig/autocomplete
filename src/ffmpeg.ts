@@ -1,7 +1,4 @@
-/*
-This Fig completion spec for `ffmpeg` is generated automatically!
-See [the source code](https://github.com/ryanccn/ffmpeg-fig).
-*/
+/* eslint-disable @withfig/fig-linter/no-useless-arrays */
 
 const completionSpec: Fig.Spec = {
   name: "ffmpeg",
@@ -21,6 +18,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "-i",
       description: "Input file",
+
+      isRequired: true,
+
+      args: {
+        name: "infile",
+
+        template: "filepaths",
+      },
     },
     {
       name: "-L",
@@ -223,7 +228,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-max_error_rate",
       description:
-        "Ratio of decoding errors (0.0: no errors, 1.0: 100% errors) above which ffmpeg returns an error instead of success",
+        "Ratio of errors (0.0: no errors, 1.0: 100% errors) above which ffmpeg returns an error instead of success",
 
       args: {
         name: "maximum error rate",
@@ -287,7 +292,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-timelimit",
-      description: "Set max runtime in seconds in CPU user time",
+      description: "Set max runtime in seconds",
 
       args: {
         name: "limit",
@@ -394,25 +399,13 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-auto_conversion_filters",
-      description: "Enable automatic conversion filters globally",
-    },
-    {
-      name: "-stats_period",
-      description:
-        "Set the period at which ffmpeg updates stats and -progress output",
-
-      args: {
-        name: "time",
-      },
-    },
-    {
       name: "-debug_ts",
       description: "Print timestamp debugging info",
     },
     {
       name: "-intra",
       description: "Deprecated use -g 1",
+      deprecated: true,
     },
     {
       name: "-sameq",
@@ -425,6 +418,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-deinterlace",
       description: "This option is deprecated, use the yadif filter instead",
+      deprecated: true,
     },
     {
       name: "-psnr",
@@ -451,11 +445,9 @@ const completionSpec: Fig.Spec = {
       description: "Show QP histogram",
     },
     {
-      name: "-videotoolbox_pixfmt",
-    },
-    {
       name: "-vc",
       description: "Deprecated, use -channel",
+      deprecated: true,
 
       args: {
         name: "channel",
@@ -464,6 +456,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-tvstd",
       description: "Deprecated, use -standard",
+      deprecated: true,
 
       args: {
         name: "standard",
@@ -472,6 +465,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-isync",
       description: "This option is deprecated and does nothing",
+      deprecated: true,
     },
     {
       name: "-sdp_file",
@@ -479,6 +473,27 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "file",
+      },
+    },
+    {
+      name: "-vaapi_device",
+      description: "Set VAAPI hardware device (DRM path or X11 display name)",
+
+      args: {
+        name: "device",
+
+        generators: {
+          script: "ffmpeg -devices",
+          postProcess: (out) => {
+            return out
+              .split("\n")
+              .filter(Boolean)
+              .map((k) => k.split(" ").filter(Boolean)[1])
+              .filter(Boolean)
+              .filter((k) => k !== "=")
+              .map((k) => ({ name: k }));
+          },
+        },
       },
     },
     {
@@ -699,8 +714,7 @@ const completionSpec: Fig.Spec = {
       description: "Set input stream mapping",
 
       args: {
-        name:
-          "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_specifier]]",
+        name: "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_s",
       },
     },
     {
@@ -837,11 +851,6 @@ const completionSpec: Fig.Spec = {
       description: "Automatically insert correct rotate filters",
     },
     {
-      name: "-autoscale",
-      description:
-        "Automatically insert a scale filter at the end of the filter graph",
-    },
-    {
       name: "-muxdelay",
       description: "Set the maximum demux-decode delay",
 
@@ -901,15 +910,6 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-muxing_queue_data_threshold",
-      description:
-        "Set the threshold after which max_muxing_queue_size is taken into account",
-
-      args: {
-        name: "bytes",
-      },
-    },
-    {
       name: "-dcodec",
       description: "Force data codec ('copy' to copy stream)",
 
@@ -941,14 +941,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-r",
       description: "Set frame rate (Hz value, fraction or abbreviation)",
-
-      args: {
-        name: "rate",
-      },
-    },
-    {
-      name: "-fpsmax",
-      description: "Set max frame rate (Hz value, fraction or abbreviation)",
 
       args: {
         name: "rate",
@@ -1147,6 +1139,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vbsf",
       description: "Deprecated",
+      deprecated: true,
 
       args: {
         name: "video bitstream_filters",
@@ -1257,6 +1250,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-absf",
       description: "Deprecated",
+      deprecated: true,
 
       args: {
         name: "audio bitstream_filters",
