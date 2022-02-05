@@ -857,7 +857,7 @@ const completionSpec: Fig.Spec = {
           name: "checkout",
           description: "Check out a pull request in git",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -871,7 +871,7 @@ const completionSpec: Fig.Spec = {
           name: "checks",
           description: "Show CI status for a single pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -885,7 +885,7 @@ const completionSpec: Fig.Spec = {
           name: "close",
           description: "Close a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -896,10 +896,118 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "edit",
+          description:
+            "Edit a pull request. Without an argument, the pull request that belongs to the current branch is selected",
+          args: {
+            name: "number | url | branch",
+            generators: ghGenerators.listPR,
+          },
+          options: [
+            {
+              name: "--add-assignee",
+              description:
+                'Add assigned users by their login. Use "@me" to assign yourself',
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: "--add-label",
+              description: "Add labels by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--add-project",
+              description: "Add the pull request to projects by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--add-reviewer",
+              description: "Add reviewers by their login",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-B", "--base"],
+              description: "Change the base branch for this pull request",
+              args: {
+                name: "branch",
+              },
+            },
+            {
+              name: ["-b", "--body"],
+              description: "Set the new body",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-F", "--body-file"],
+              description:
+                'Read body text from file (use "-" to read from standard input)',
+              args: {
+                name: "file",
+              },
+            },
+            {
+              name: ["-m", "--milestone"],
+              description:
+                "Edit the milestone the pull request belongs to by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--remove-assignee",
+              description:
+                'Remove assigned users by their login. Use "@me" to unassign yourself',
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: "--remove-label",
+              description: "Remove labels by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--remove-project",
+              description: "Remove the pull request from projects by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--remove-reviewer",
+              description: "Remove reviewers by their login",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-t", "--title"],
+              description: "Set the new title",
+              args: {
+                name: "string",
+              },
+            },
+            ghOptions.help,
+            ghOptions.all,
+          ],
+        },
+        {
           name: "comment",
           description: "Create a new pr comment",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1018,7 +1126,7 @@ const completionSpec: Fig.Spec = {
           name: "diff",
           description: "View changes in a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1083,7 +1191,7 @@ const completionSpec: Fig.Spec = {
           name: "merge",
           description: "Merge a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1110,7 +1218,7 @@ const completionSpec: Fig.Spec = {
           name: "ready",
           description: "Mark a pull request as ready for review",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
         },
@@ -1118,7 +1226,7 @@ const completionSpec: Fig.Spec = {
           name: "reopen",
           description: "Reopen a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
         },
@@ -1126,7 +1234,7 @@ const completionSpec: Fig.Spec = {
           name: "review",
           description: "Add a review to a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1156,7 +1264,7 @@ const completionSpec: Fig.Spec = {
           name: "view",
           description: "View a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
