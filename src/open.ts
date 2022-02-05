@@ -50,30 +50,85 @@ const completionSpec: Fig.Spec = {
         "Read input from standard input and open the results in the default text editor",
     },
     {
-      name: "-F",
+      name: ["-F", "--fresh"],
       description: "Opens the application without restoring windows",
     },
     {
-      name: "-W",
+      name: ["-W", "--wait-apps"],
       description: "Waits until the applications exit",
     },
     {
-      name: "-R",
+      name: ["-R", "--reveal"],
       description: "Reveals the file(s) in the Finder instead of opening them",
     },
     {
-      name: "-n",
+      name: ["-n", "--new"],
       description:
         "Open a new instance of the application(s) even if one is already running",
     },
     {
-      name: "-g",
+      name: ["-j", "--hide"],
+      description: "Launches the app hidden",
+    },
+    {
+      name: ["-g", "--background"],
       description: "Do not bring the application to the foreground",
     },
     {
-      name: "-h",
+      name: ["-h", "--header"],
       description:
         "Searches header locations for a header whose name matches the given string and then opens it",
+    },
+    {
+      name: "-s",
+      description:
+        "For -h, the SDK to use; if supplied, only SDKs whose names contain the argument value are searched",
+      args: {
+        name: "partial SDK name",
+        
+      },
+    },
+    {
+      name: ["-u", "--url"],
+      description: "Open this URL, even if it matches exactly a filepath",
+      args: {
+        name: "URL",
+      },
+    },
+    {
+      name: ["-i", "--stdin"],
+      description: "Launches the application with stdin connected to PATH; defaults to /dev/null",
+      args: {
+        name: "PATH",
+        template: "filepaths",
+        default: "/dev/null",
+      },
+    },
+    {
+      name: ["-o", "--stdout"],
+      description: "Launches the application with /dev/stdout connected to PATH",
+      args: {
+        name: "PATH",
+        template: "filepaths",
+        default: "/dev/null",
+      },
+    },
+    {
+      name: "--stderr",
+      description: "Launches the application with /dev/stderr connected to PATH",
+      args: {
+        name: "PATH",
+        template: "filepaths",
+        default: "/dev/null",
+      },
+    },
+    {
+      name: "--env",
+      description: "Add an enviroment variable to the launched process, where VAR is formatted AAA=foo",
+      isRepeatable: true,
+      args: {
+        name: "VAR",
+      },
     },
     {
       name: "--args",
