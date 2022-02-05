@@ -2616,10 +2616,21 @@ const completionSpec: Fig.Spec = {
             name: "[=< width >[,< name-width >[,< count >]]]",
           },
         },
+        {
+          name: "--",
+          description: "Separates paths from options for disambiguation purposes",
+          args: {
+            isVariadic: true,
+            optionsCanBreakVariadicArg: false,
+            template: "filepaths",
+            name: "[< path >...]",
+          },
+        },
       ],
       args: {
         name: "commit or file",
         isOptional: true,
+        isVariadic: true,
         suggestions: headSuggestions,
         generators: [
           gitGenerators.commits,
