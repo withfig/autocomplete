@@ -1,3 +1,4 @@
+// https://github.com/hnarayanan/shpotify
 const completionSpec: Fig.Spec = {
   name: "spotify",
   description: "CLI to use Spotify from the terminal",
@@ -7,7 +8,7 @@ const completionSpec: Fig.Spec = {
       description: "Resumes playback where Spotify last left off",
       args: {
         name: "song name",
-        description: "Finds a song by name and plays it",
+        description: "The name of the song to start playing",
         isOptional: true,
       },
       subcommands: [
@@ -17,7 +18,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "album name",
             description: "The album name you want to play",
-            isOptional: false,
           },
         },
         {
@@ -26,7 +26,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "artist name",
             description: "The artist name you want to play",
-            isOptional: false,
           },
         },
         {
@@ -35,16 +34,14 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "playlist name",
             description: "The playlist name you want to play",
-            isOptional: false,
           },
         },
         {
           name: "uri",
-          description: "Plau songs from specific uri",
+          description: "Play songs from specific uri",
           args: {
             name: "uri",
             description: "The uri of the song you want to play",
-            isOptional: false,
           },
         },
       ],
@@ -67,7 +64,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "time",
         description: "Exact time in secs to jump in",
-        isOptional: false,
       },
     },
     {
@@ -90,11 +86,11 @@ const completionSpec: Fig.Spec = {
         name: "amount",
         description: "Sets the volume to an amount between 0 and 100",
         isOptional: true,
+        suggestions: [
+          { name: "up", description: "Increases the volume by 10%" },
+          { name: "down", description: "Decreases the volume by 10%" },
+        ],
       },
-      subcommands: [
-        { name: "up", description: "Increases the volume by 10%" },
-        { name: "down", description: "Decreases the volume by 10%" },
-      ],
     },
     {
       name: "status",
