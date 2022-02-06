@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "play",
-      description: "Resumes playback where Spotify last left off",
+      description: "Resume playback where Spotify last left off",
       args: {
         name: "song name",
         description: "The name of the song to start playing",
@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "album",
-          description: "Finds an album by name and plays it",
+          description: "Find an album by name and play it",
           args: {
             name: "album name",
             description: "The album name you want to play",
@@ -22,7 +22,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "artist",
-          description: "Finds an artist by name and plays it",
+          description: "Find an artist by name and play it",
           args: {
             name: "artist name",
             description: "The artist name you want to play",
@@ -30,7 +30,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "Finds a playlist by name and plays it",
+          description: "Find a playlist by name and plays it",
           args: {
             name: "playlist name",
             description: "The playlist name you want to play",
@@ -48,19 +48,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "next",
-      description: "Skips to the next song in a playlist",
+      description: "Skip to the next song in a playlist",
     },
     {
       name: "prev",
-      description: "Returns to the previous song in a playlist",
+      description: "Return to the previous song in a playlist",
     },
     {
       name: "replay",
-      description: "Replays the current track from the beginning",
+      description: "Replay the current track from the beginning",
     },
     {
       name: "pos",
-      description: "Jumps to a time (in secs) in the current song",
+      description: "Jump to a time (in secs) in the current song",
       args: {
         name: "time",
         description: "Exact time in secs to jump in",
@@ -68,60 +68,60 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "pause",
-      description: "Pauses (or resumes) Spotify playback",
+      description: "Pause (or resume) Spotify playback",
     },
     {
       name: "stop",
-      description: "Stops playback",
+      description: "Stop playback",
     },
     {
       name: "quit",
-      description: "Stops playback and quits Spotify",
+      description: "Stop playback and quit Spotify",
     },
     {
       name: "vol",
-      description: "Shows the current Spotify volume",
+      description: "Show the current Spotify volume",
 
       args: {
         name: "amount",
-        description: "Sets the volume to an amount between 0 and 100",
+        description: "Set the volume to an amount between 0 and 100",
         isOptional: true,
         suggestions: [
-          { name: "up", description: "Increases the volume by 10%" },
-          { name: "down", description: "Decreases the volume by 10%" },
+          { name: "up", description: "Increase the volume by 10%" },
+          { name: "down", description: "Decrease the volume by 10%" },
         ],
       },
     },
     {
       name: "status",
-      description: "Shows the current player status",
+      description: "Show the current player status",
       subcommands: [
-        { name: "artist", description: "Shows the currently playing artist" },
-        { name: "album", description: "Shows the currently playing album" },
-        { name: "track", description: "Shows the currently playing track" },
+        { name: "artist", description: "Show the currently playing artist" },
+        { name: "album", description: "Show the currently playing album" },
+        { name: "track", description: "Show the currently playing track" },
       ],
     },
     {
       name: "share",
-      description: "Displays the current song's Spotify URL and URI",
+      description: "Display the current song's Spotify URL and URI",
       subcommands: [
         {
           name: "url",
           description:
-            "Displays the current song's Spotify URL and copies it to the clipboard",
+            "Display the current song's Spotify URL and copies it to the clipboard",
         },
         {
           name: "uri",
           description:
-            "Displays the current song's Spotify URI and copies it to the clipboard",
+            "Display the current song's Spotify URI and copies it to the clipboard",
         },
       ],
     },
     {
       name: "toggle",
       subcommands: [
-        { name: "shuffle", description: "Toggles shuffle playback mode" },
-        { name: "repeat", description: "Toggles repeat playback mode" },
+        { name: "shuffle", description: "Toggle shuffle playback mode" },
+        { name: "repeat", description: "Toggle repeat playback mode" },
       ],
     },
   ],
