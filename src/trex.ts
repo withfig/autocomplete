@@ -1,7 +1,7 @@
 const dependenciesGenerator: Fig.Generator = {
   script: "cat import_map.json",
   postProcess: function (out) {
-    if (out && out !== "") {
+    if (out) {
       const deps = JSON.parse(out);
 
       if (deps.imports) {
