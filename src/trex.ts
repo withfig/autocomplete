@@ -104,7 +104,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete",
       description: "Delete a package",
-      options: [trexOptions.help],
       args: {
         name: "package name",
         generators: dependenciesGenerator,
@@ -123,7 +122,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "tree",
       description: "View dependency tree",
-      options: [trexOptions.help],
     },
     {
       name: "run",
@@ -146,7 +144,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "purge",
       description: "Remove a package or url from cache",
-      options: [trexOptions.help],
       args: {
         name: "package | url",
         generators: dependenciesGenerator,
@@ -155,7 +152,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "ls",
       description: "Shows the list of installed packages",
-      options: [trexOptions.help],
     },
     {
       name: "exec",
@@ -187,6 +183,7 @@ const completionSpec: Fig.Spec = {
       description: "Print help info",
       isPersistent: true,
     },
+
     trexOptions.version,
     trexOptions.custom,
   ],
