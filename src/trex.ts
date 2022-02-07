@@ -172,7 +172,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--fix"],
-          description: "Update outdate dependencies",
+          description: "Update outdated dependencies",
         },
       ],
     },
