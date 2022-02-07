@@ -20,7 +20,7 @@ const completionSpec: Fig.Spec = {
   description: "Python code formatter",
   args: {
     name: "file or directory",
-    template: ["filepaths", "folders"],
+    template: "filepaths",
     isVariadic: true,
   },
   options: [
