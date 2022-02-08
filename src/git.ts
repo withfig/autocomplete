@@ -2618,7 +2618,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--",
-          description: "Separates paths from options for disambiguation purposes",
+          description:
+            "Separates paths from options for disambiguation purposes",
           args: {
             isVariadic: true,
             optionsCanBreakVariadicArg: false,
