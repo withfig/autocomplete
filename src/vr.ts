@@ -3,23 +3,19 @@ const SCRIPT_KEYWORD = "    • ";
 const scriptGenerator: Fig.Generator = {
   script: "NO_COLOR=1 vr",
   postProcess: (out) => {
-    let suggestions: Fig.Suggestion[] = [];
+    const suggestions: Fig.Suggestion[] = [];
 
     try {
       const lines = out.split("\n").filter(Boolean);
 
-      for (const line of lines) {
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
         if (!line.startsWith(SCRIPT_KEYWORD)) continue;
 
-        const idx = lines.findIndex((k) => k === line);
-
-        suggestions = [
-          ...suggestions,
-          {
-            name: line.replace(SCRIPT_KEYWORD, ""),
-            description: lines[idx + 1] ? lines[idx + 1].trim() : null,
-          },
-        ];
+        suggestions.push({
+          name: line.replace(SCRIPT_KEYWORD, ""),
+          ...(lines[i + 1] && { description: lines[i + 1].trim() }),
+        });
       }
     } catch (error) {
       console.error(error);
@@ -41,7 +37,6 @@ const completionSpec: Fig.Spec = {
         name: "script",
         generators: scriptGenerator,
       },
-      options: [{ name: ["-h", "--help"], description: "Show help" }],
     },
     {
       name: "export",
@@ -51,7 +46,6 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: scriptGenerator,
       },
-      options: [{ name: ["-h", "--help"], description: "Show help" }],
     },
     {
       name: "upgrade",
@@ -62,7 +56,6 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
       options: [
-        { name: ["-h", "--help"], description: "Show help" },
         {
           name: ["-o", "--out-dir"],
           description: "The folder where the scripts will be exported",
@@ -78,6 +71,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for Velociraptor",
+      isPersistent: true,
     },
     {
       name: ["-V", "--version"],
