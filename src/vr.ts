@@ -37,7 +37,6 @@ const completionSpec: Fig.Spec = {
         name: "script",
         generators: scriptGenerator,
       },
-      options: [{ name: ["-h", "--help"], description: "Show help" }],
     },
     {
       name: "export",
@@ -47,7 +46,6 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: scriptGenerator,
       },
-      options: [{ name: ["-h", "--help"], description: "Show help" }],
     },
     {
       name: "upgrade",
@@ -58,7 +56,6 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
       options: [
-        { name: ["-h", "--help"], description: "Show help" },
         {
           name: ["-o", "--out-dir"],
           description: "The folder where the scripts will be exported",
@@ -74,6 +71,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for Velociraptor",
+      isPersistent: true,
     },
     {
       name: ["-V", "--version"],
