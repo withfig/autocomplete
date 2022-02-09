@@ -1,44 +1,33 @@
-// const SCRIPT_KEYWORD = "    • ";
-// const scriptGenerator: Fig.Generator = {
-//   script: "vr",
-//   postProcess: (out) => {
-//     let suggestions: Fig.Suggestion[] = [];
+const SCRIPT_KEYWORD = "    • ";
 
-//     try {
-//       const lines = out
-//         .split("\n")
-//         .filter(Boolean)
-//         .map((k) => {
-//           return k.replace(/\u001\[[0-9;]*m/g, "");
-//         });
+const scriptGenerator: Fig.Generator = {
+  script: "NO_COLOR=1 vr",
+  postProcess: (out) => {
+    let suggestions: Fig.Suggestion[] = [];
 
-//       for (const idx_ in lines) {
-//         const idx = (idx_ as unknown) as number;
+    try {
+      const lines = out.split("\n").filter(Boolean);
 
-//         if (idx >= lines.length - 2) continue;
+      for (const line of lines) {
+        if (!line.startsWith(SCRIPT_KEYWORD)) continue;
 
-//         const line = lines[idx];
+        const idx = lines.findIndex((k) => k === line);
 
-//         if (line.search(SCRIPT_KEYWORD) === -1) continue;
+        suggestions = [
+          ...suggestions,
+          {
+            name: line.replace(SCRIPT_KEYWORD, ""),
+            description: lines[idx + 1] ? lines[idx + 1].trim() : null,
+          },
+        ];
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
-//         const scriptName = line.substring(SCRIPT_KEYWORD.length);
-//         const description = lines[idx + 1].substring(SCRIPT_KEYWORD.length - 2);
-
-//         suggestions = [
-//           ...suggestions,
-//           {
-//             name: scriptName,
-//             description,
-//           },
-//         ];
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     }
-
-//     return suggestions;
-//   },
-// };
+    return suggestions;
+  },
+};
 
 const completionSpec: Fig.Spec = {
   name: "vr",
@@ -50,7 +39,7 @@ const completionSpec: Fig.Spec = {
       description: "Run a script",
       args: {
         name: "script",
-        // generators: scriptGenerator,
+        generators: scriptGenerator,
       },
       options: [{ name: ["-h", "--help"], description: "Show help" }],
     },
@@ -60,7 +49,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "script",
         isVariadic: true,
-        // generators: scriptGenerator,
+        generators: scriptGenerator,
       },
       options: [{ name: ["-h", "--help"], description: "Show help" }],
     },
@@ -98,7 +87,8 @@ const completionSpec: Fig.Spec = {
 
   args: {
     name: "script",
-    // generators: scriptGenerator,
+    generators: scriptGenerator,
   },
 };
+
 export default completionSpec;
