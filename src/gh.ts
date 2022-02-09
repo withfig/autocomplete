@@ -77,10 +77,28 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
 
+  listRepo: {
+    script: "gh repo list --json nameWithOwner,description",
+    postProcess: (out) => {
+      const data: { nameWithOwner: string; description: string }[] = JSON.parse(
+        out
+      );
+
+      return data.map((k) => ({
+        name: k.nameWithOwner,
+        description: k.description,
+      }));
+    },
+  },
+
   remoteBranches: {
     script:
       "git --no-optional-locks branch -r --no-color --sort=-committerdate",
     postProcess: postProcessRemoteBranches,
+  },
+
+  remoteTags: {
+    script: "git --no-optional-locks tag -l --no-color --sort=-committerdate",
   },
 };
 
@@ -96,6 +114,7 @@ const ghOptions: Record<string, Fig.Option> = {
     description: "Select another repository",
     args: {
       name: "[HOST/]OWNER/REPO",
+      generators: ghGenerators.listRepo,
     },
   },
   env: {
@@ -677,7 +696,10 @@ const completionSpec: Fig.Spec = {
               insertValue: "-R '{cursor}'",
               description:
                 "Select another repository using the [HOST/]OWNER/REPO format",
-              args: { name: "repo" },
+              args: {
+                name: "repo",
+                generators: ghGenerators.listRepo,
+              },
             },
             {
               name: ["-a", "--assignee"],
@@ -1280,7 +1302,209 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "release", description: "Manage GitHub releases" },
+    {
+      name: "release",
+      description: "Manage GitHub releases",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a release",
+          args: { name: "tag", isOptional: true },
+          options: [
+            ghOptions.help,
+            ghOptions.all,
+
+            {
+              name: "--discussion-category",
+              description: "Start a discussion of the specified category",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-d", "--draft"],
+              description:
+                "Save the release as a draft instead of publishing it",
+            },
+            {
+              name: "--generate-notes",
+              description:
+                "Automatically generate title and notes for the release",
+            },
+            {
+              name: ["-n", "--notes"],
+              description: "Release notes",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-F", "--notes-file"],
+              description:
+                'Read release notes from file (use "-" to read from standard input)',
+              args: {
+                name: "file",
+                template: "filepaths",
+              },
+            },
+            {
+              name: ["-p", "--prerelease"],
+              description: "Mark the release as a prerelease",
+            },
+            {
+              name: "--target",
+              description:
+                "Target branch or full commit SHA (default: main branch)",
+              args: {
+                name: "branch",
+                generators: ghGenerators.removeBranches,
+                default: "main",
+              },
+            },
+            {
+              name: ["-t", "--title"],
+              description: "Release title",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a release",
+          args: {
+            name: "tag",
+            generators: ghGenerators.remoteTags,
+          },
+          options: [ghOptions.help, ghOptions.all, ghOptions.confirm],
+        },
+        {
+          name: "delete-asset",
+          description: "Delete an asset from a release",
+          args: [
+            {
+              name: "tag",
+              generators: ghGenerators.remoteTags,
+            },
+            {
+              name: "asset-name",
+            },
+          ],
+          options: [ghOptions.all, ghOptions.help, ghOptions.confirm],
+        },
+        {
+          name: "download",
+          description: "Download release assets",
+          args: {
+            name: "tag",
+            generators: ghGenerators.remoteTags,
+            isOptional: true,
+          },
+          options: [
+            ghOptions.all,
+            ghOptions.help,
+            {
+              name: ["-A", "--archive"],
+              description:
+                "Download the source code archive in the specified format (zip or tar.gz)",
+              args: {
+                name: "format",
+                suggestions: ["zip", "tar.gz"],
+              },
+            },
+            {
+              name: ["-D", "--dir"],
+              description: 'The directory to download files into (default ".")',
+              args: {
+                name: "string",
+                default: ".",
+              },
+            },
+            {
+              name: ["-p", "--pattern"],
+              description: "Download only assets that match a glob pattern",
+              isRepeatable: true,
+              args: {
+                name: "stringArray",
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List releases in a repository",
+          options: [
+            ghOptions.all,
+            ghOptions.help,
+            {
+              name: ["-L", "--limit"],
+              description: "Maximum number of items to fetch (default 30)",
+              args: {
+                name: "int",
+                default: "30",
+              },
+            },
+          ],
+        },
+        {
+          name: "upload",
+          description: "Upload assets to a release",
+          args: [
+            { name: "tag", generators: ghGenerators.remoteTags },
+            { name: "files", template: "filepaths" },
+          ],
+          options: [
+            ghOptions.all,
+            ghOptions.help,
+            {
+              name: "--clobber",
+              description: "Overwrite existing assets of the same name",
+            },
+          ],
+        },
+        {
+          name: "view",
+          description: "View information about a release",
+          args: {
+            name: "tag",
+            generators: ghGenerators.remoteTags,
+          },
+          options: [
+            ghOptions.all,
+            ghOptions.help,
+            {
+              name: ["-q", "--jq"],
+              description: "Filter JSON output using a jq expression",
+
+              args: {
+                name: "expression",
+              },
+            },
+            {
+              name: "--json",
+              description: "Output JSON with the specified fields",
+
+              args: {
+                name: "fields",
+              },
+            },
+            {
+              name: ["-t", "--template"],
+              description: "Format JSON output using a Go template",
+
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-w", "--web"],
+              description: "Open the release in the browser",
+            },
+          ],
+        },
+      ],
+    },
     {
       name: "repo",
       description: "Work with GitHub repositories",
