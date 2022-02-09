@@ -8,18 +8,14 @@ const scriptGenerator: Fig.Generator = {
     try {
       const lines = out.split("\n").filter(Boolean);
 
-      for (const line of lines) {
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
         if (!line.startsWith(SCRIPT_KEYWORD)) continue;
 
-        const idx = lines.findIndex((k) => k === line);
-
-        suggestions = [
-          ...suggestions,
-          {
-            name: line.replace(SCRIPT_KEYWORD, ""),
-            description: lines[idx + 1] ? lines[idx + 1].trim() : null,
-          },
-        ];
+        suggestions.push({
+          name: line.replace(SCRIPT_KEYWORD, ""),
+          ...(lines[i + 1] && { description: lines[i + 1].trim() }),
+        }),
       }
     } catch (error) {
       console.error(error);
