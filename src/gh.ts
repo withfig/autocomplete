@@ -80,14 +80,19 @@ const ghGenerators: Record<string, Fig.Generator> = {
   listRepo: {
     script: "gh repo list --json nameWithOwner,description",
     postProcess: (out) => {
-      const data: { nameWithOwner: string; description: string }[] = JSON.parse(
-        out
-      );
+      if (!out) return [];
+    	try {
+    	  const data: { nameWithOwner: string; description: string }[] = JSON.parse(
+          out.trim()
+        );
 
-      return data.map((k) => ({
-        name: k.nameWithOwner,
-        description: k.description,
-      }));
+      	return data.map((k) => ({
+        	name: k.nameWithOwner,
+        	description: k.description,
+      	}));
+    	} catch {
+    	  return [];
+    	}
     },
   },
 
