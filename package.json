@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.114.2",
+  "version": "2.114.3",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "main": "./build/index",
