@@ -77,6 +77,8 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "program",
     template: "filepaths",
+    isCommand: true,
+    isVariadic: true,
   },
 };
 export default completionSpec;
