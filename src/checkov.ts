@@ -79,6 +79,7 @@ const completionSpec: Fig.Spec = {
       description: "IaC frameworks to include checks for",
       args: {
         name: "FRAMEWORKS",
+        isVariadic: true,
         suggestions: [
           "arm",
           "cloudformation",
@@ -103,6 +104,7 @@ const completionSpec: Fig.Spec = {
       description: "IaC frameworks to exclude checks for",
       args: {
         name: "FRAMEWORKS",
+        isVariadic: true,
         suggestions: [
           "arm",
           "cloudformation",
