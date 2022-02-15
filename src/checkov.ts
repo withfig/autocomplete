@@ -61,9 +61,9 @@ const completionSpec: Fig.Spec = {
       name: ["--output", "-o"],
       description:
         "Report output format. Add multiple outputs by using the flag multiple times (-o sarif -o cli)",
+      isRepeatable: true,
       args: {
         name: "FORMAT",
-        isVariadic: true,
         suggestions: [
           "cli",
           "cyclonedx",
@@ -140,10 +140,10 @@ const completionSpec: Fig.Spec = {
       description:
         "Path (file or directory) to skip, using regular expression logic, relative to current working directory. Word boundaries are not implicit; i.e., specifying 'dir1' will skip any directory or subdirectory named 'dir1'. Ignored with -f. Can be specified multiple times",
       exclusiveOn: ["--file"],
+      isRepeatable: true,
       args: {
         name: "SKIP_PATH",
         template: "filepaths",
-        isVariadic: true,
       },
     },
     {
@@ -170,9 +170,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "--external-checks-dir",
       description: "Directory for custom checks to be loaded. Can be repeated",
+      isRepeatable: true,
       args: {
         name: "EXTERNAL_CHECKS_DIR",
-        isVariadic: true,
       },
     },
     {
@@ -353,9 +353,9 @@ const completionSpec: Fig.Spec = {
       name: "--skip-cve-package",
       description:
         "Ignore specific open source package when SCA scanning for CVEs in package dependencies. Can be used multiple times to skip multiple packages",
+      isRepeatable: true,
       args: {
         name: "SKIP_CVE_PACKAGE",
-        isVariadic: true,
       },
     },
   ],
