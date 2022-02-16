@@ -40,6 +40,10 @@ const completionSpec: Fig.Spec = {
       name: "-A",
       description: "Enable a full detection",
     },
+    {
+      name: "-V",
+      description: "Print version number",
+    },
   ],
   // Only uncomment if nmap takes an argument
   // args: {}
