@@ -9,7 +9,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "outDir": "./build",
-    "target": "ESNext",
+    "target": "ES6",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "noImplicitAny": false,
@@ -17,5 +17,6 @@
     "baseUrl": "./",
     "types": ["@withfig/autocomplete-types"]
   },
+  "exclude": ["node_modules/"],
   "include": ["./src/**/*", "dangerfile.ts"]
 }
