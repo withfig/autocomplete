@@ -21,6 +21,10 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
+      name: "-p",
+      description: "Scan specified ports",
+    },
+    {
       name: ["--help", "-h"],
       description: "Show help for nmap",
     },
