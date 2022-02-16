@@ -1,23 +1,32 @@
 const completionSpec: Fig.Spec = {
   name: "nmap",
-  description: "",
+  description: "Network exploration tool and security / port scanner",
   subcommands: [
     {
-      name: "my_subcommand",
-      description: "Example subcommand",
-      subcommands: [
-        {
-          name: "my_nested_subcommand",
-          description:
-            "Nested subcommand, example usage: 'nmap my_subcommand my_nested_subcommand'",
-        },
-      ],
+      name: "-sS",
+      description: "TCP SYN scan",
+    },
+    {
+      name: "-sT",
+      description: "TCP scan",
+    },
+    {
+      name: "-sU",
+      description: "UDP scan",
+    },
+    {
+      name: "-sP",
+      description: "Ping scan",
     },
   ],
   options: [
     {
       name: ["--help", "-h"],
       description: "Show help for nmap",
+    },
+    {
+      name: "-v",
+      description: "Increase verbosity level",
     },
   ],
   // Only uncomment if nmap takes an argument
