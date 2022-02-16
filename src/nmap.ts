@@ -25,8 +25,16 @@ const completionSpec: Fig.Spec = {
       description: "Show help for nmap",
     },
     {
-      name: "-v",
+      name: ["-v", "-vv"],
       description: "Increase verbosity level",
+    },
+    {
+      name: "-O",
+      description: "Enable OS detection",
+    },
+    {
+      name: "-A",
+      description: "Enable a full detection",
     },
   ],
   // Only uncomment if nmap takes an argument
