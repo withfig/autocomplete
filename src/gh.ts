@@ -45,6 +45,61 @@ const postProcessRemoteBranches: Fig.Generator["postProcess"] = (out) => {
 };
 
 const ghGenerators: Record<string, Fig.Generator> = {
+  listRepositories: {
+    /*
+     * based on the gh api (use this instead as it also returns repos in the orgs that the user is part of)
+     * https://cli.github.com/manual/gh_api
+     */
+    script:
+      "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}'",
+    postProcess: (out) => {
+      interface RepoDataType {
+        isPrivate: boolean;
+        nameWithOwner: string;
+        description: string | null;
+      }
+
+      interface PageInfo {
+        hasNextPage: boolean;
+        endCursor: string;
+      }
+
+      interface Repositories {
+        nodes: RepoDataType[];
+        pageInfo: PageInfo;
+      }
+
+      interface Viewer {
+        repositories: Repositories;
+      }
+
+      interface Data {
+        viewer: Viewer;
+      }
+
+      interface ResObject {
+        data: Data;
+      }
+
+      if (out) {
+        try {
+          const fixedOut = out.trim();
+
+          const data: ResObject = JSON.parse(fixedOut);
+
+          return data.data.viewer.repositories.nodes.map((repo) => ({
+            name: repo.nameWithOwner,
+            description: repo.description,
+            //be able to see if the repo is private at a glance
+            icon: repo.isPrivate ? "🔒" : "👀",
+          }));
+        } catch {
+          return [];
+        }
+      }
+      return [];
+    },
+  },
   listPR: {
     script: "gh pr list",
     postProcess: (out) =>
@@ -1292,6 +1347,7 @@ const completionSpec: Fig.Spec = {
           isDangerous: true,
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
             isOptional: true,
           },
           options: [ghOptions.help, ghOptions.confirm],
@@ -1305,6 +1361,7 @@ Pass additional 'git clone' flags by listing them after '--'`,
           args: [
             {
               name: "repository",
+              generators: ghGenerators.listRepositories,
             },
             {
               name: "directory",
@@ -1367,6 +1424,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
           isDangerous: true,
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
             isOptional: true,
           },
           options: [ghOptions.help, ghOptions.confirm],
@@ -1376,6 +1434,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
           description: "Edit repository settings",
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
             isOptional: true,
           },
           options: [
@@ -1475,6 +1534,7 @@ a name for the new fork's remote with --remote-name.
 Additional 'git clone' flags can be passed in by listing them after '--'`,
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
           },
           options: [
             ghOptions.help,
@@ -1606,6 +1666,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
           args: {
             name: "repository",
             isOptional: true,
+            generators: ghGenerators.listRepositories,
           },
           options: [
             ghOptions.help,
