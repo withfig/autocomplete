@@ -58,12 +58,17 @@ const categoryCommands: Fig.Subcommand[] = [
       "Removes a resource for an Amplify category in your local backend",
   },
   {
+    name: "console",
+    description:
+      "Opens the web console for the category",
+  },
+  {
     name: "push",
     description:
       "Provisions cloud resources with the latest local developments",
     subcommands: [
       {
-        name: "--y",
+        name: "-y",
         description: "Respond 'y' to all options",
       },
     ],
@@ -91,7 +96,7 @@ const completionSpec: Fig.Spec = {
         "Provisions cloud resources with the latest local developments",
       subcommands: [
         {
-          name: "--y",
+          name: "-y",
           description: "Respond 'y' to all options",
         },
         ...amplifyCategories,
@@ -158,7 +163,29 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "api",
-      subcommands: categoryCommands,
+      subcommands: [
+        {
+          name: "gql-compile",
+          description:
+            "Compiles your GraphQL schema and generates a corresponding cloudformation template",
+        },
+        {
+          name: "migrate",
+          description:
+            "Migrates GraphQL schemas to the latest GraphQL transformer version",
+        },
+        {
+          name: "override",
+          description:
+            "Generates overrides file to apply custom modifications to CloudFormation",
+        },
+        {
+          name: "rebuild",
+          description:
+            "Removes and recreates all DynamoDB tables backing a GraphQL API. Useful for resetting test data during the development phase of an app",
+        },
+        ...categoryCommands,
+      ],
     },
     {
       name: "auth",
@@ -166,7 +193,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "function",
-      subcommands: categoryCommands,
+      subcommands: [
+        {
+          name: "build",
+          description:
+            "Builds all the functions in the project (does an npm install on the functions src directory)",
+        },
+        ...categoryCommands,
+      ],
     },
     {
       name: "hosting",
