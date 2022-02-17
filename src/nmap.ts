@@ -25,6 +25,7 @@ const completionSpec: Fig.Spec = {
       //END TARGET SPECIFICATION:
     },
     {
+      //BEGIN SCAN TECHNIQUES:
       name: "-sS",
       description: "TCP SYN scan",
     },
@@ -65,28 +66,49 @@ const completionSpec: Fig.Spec = {
       description: "Xmas scan",
     },
     {
-      name: "-p",
-      description: "Scan specified ports",
+      name: "-sO",
+      description: "IP protocol scan",
+      //END SCAN TECHNIQUES:
     },
     {
-      name: ["--help", "-h"],
-      description: "Show help for nmap",
+      name: "-p",
+      description: "Scan specified ports",
     },
     {
       name: ["-v", "-vv"],
       description: "Increase verbosity level",
     },
     {
+      //BEGIN OS DETECTION
       name: "-O",
       description: "Enable OS detection",
     },
     {
+      name: "--osscan-limit",
+      description: "Limit OS detection to promising targets",
+    },
+    {
+      name: "---osscan-guess",
+      description: "Guess OS more aggressively",
+      //END OS DETECTION
+    },
+    {
+      //BEGIN MISC
       name: "-A",
+      description: "Enable a full detection",
+    },
+    {
+      name: "-6",
       description: "Enable a full detection",
     },
     {
       name: "-V",
       description: "Print version number",
+    },
+    {
+      name: ["--help", "-h"],
+      description: "Show help for nmap",
+      //END MISC
     },
   ],
   // Only uncomment if nmap takes an argument
