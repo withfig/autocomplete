@@ -1,7 +1,11 @@
 const completionSpec: Fig.Spec = {
   name: "nmap",
   description: "Network exploration tool and security / port scanner",
-  subcommands: [
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+    optionsMustPrecedeArguments: false,
+  },
+  options: [
     {
       name: "-sS",
       description: "TCP SYN scan",
@@ -18,8 +22,6 @@ const completionSpec: Fig.Spec = {
       name: "-sP",
       description: "Ping scan",
     },
-  ],
-  options: [
     {
       name: "-p",
       description: "Scan specified ports",
