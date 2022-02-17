@@ -33,12 +33,36 @@ const completionSpec: Fig.Spec = {
       description: "TCP scan",
     },
     {
+      name: "-sA",
+      description: "TCP ACK scan",
+    },
+    {
+      name: "-sW",
+      description: "TCP Window scan",
+    },
+    {
+      name: "-sM",
+      description: "TCP Maimon scan",
+    },
+    {
       name: "-sU",
       description: "UDP scan",
     },
     {
       name: "-sP",
       description: "Ping scan",
+    },
+    {
+      name: "-sN",
+      description: "TCP Null scan",
+    },
+    {
+      name: "-sF",
+      description: "FIN scan",
+    },
+    {
+      name: "-sX",
+      description: "Xmas scan",
     },
     {
       name: "-p",
