@@ -99,11 +99,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-6",
-      description: "Enable a full detection",
+      description: "Enable IPV6 scanning",
     },
     {
       name: "-V",
       description: "Print version number",
+    },
+    {
+      name: "-privileged",
+      description: "Assume that user is fully privileges",
+    },
+    {
+      name: "-unprivileged",
+      description: "Assume that user lacks raw socket privileges",
     },
     {
       name: ["--help", "-h"],
