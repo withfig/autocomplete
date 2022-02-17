@@ -46,6 +46,24 @@ const completionSpec: Fig.Spec = {
       name: "-V",
       description: "Print version number",
     },
+    {
+      //BEGIN TARGET SPECIFICATION:
+      name: "-iL",
+      description: "Input from list of hosts/networks",
+    },
+    {
+      name: "-iR",
+      description: "Choose random targets",
+    },
+    {
+      name: "--exclude",
+      description: "Excluide hosts/networks",
+    },
+    {
+      name: "--excludefile",
+      description: "Exclude list from file",
+      //END TARGET SPECIFICATION:
+    },
   ],
   // Only uncomment if nmap takes an argument
   // args: {}
