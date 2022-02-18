@@ -388,6 +388,7 @@ const completionSpec: Fig.Spec = {
     generators: npmScriptsGenerator,
     parserDirectives: npmParserDirectives,
     isOptional: true,
+    isCommand: true,
   },
   options: [
     {
