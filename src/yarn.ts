@@ -7,6 +7,7 @@ import {
 export const nodeClis = [
   "vue",
   "nuxt",
+  "react-native",
   "expo",
   "jest",
   "next",
