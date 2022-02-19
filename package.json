@@ -82,7 +82,7 @@
     "esbuild": "^0.12.15",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-compat": "^3.13.0",
+    "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-prettier": "^3.3.1",
     "fast-glob": "^3.2.7",
     "husky": "^6.0.0",
