@@ -4,6 +4,8 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "file",
     isVariadic: true,
+    template: "folders",
+    suggestCurrentToken: true,
   },
   options: [
     {
