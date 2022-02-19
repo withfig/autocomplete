@@ -1,3 +1,5 @@
+// Linux incompatible
+
 const signals = [
   "hup",
   "int",
@@ -35,7 +37,7 @@ const signals = [
 
 const completionSpec: Fig.Spec = {
   name: "killall",
-  description: "",
+  description: "Kill processes by name",
   args: {
     name: "process_name",
     isVariadic: true,
@@ -55,7 +57,10 @@ const completionSpec: Fig.Spec = {
             return {
               name,
               description: path,
-              priority: !badChars.some((char) => nameChars.has(char)) ? 51 : 40,
+              priority:
+                !badChars.some((char) => nameChars.has(char)) && isApp
+                  ? 51
+                  : 40,
               icon: isApp
                 ? "fig://" + path.slice(0, appExtIndex + 4)
                 : "fig://icon?type=gear",
