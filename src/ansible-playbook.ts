@@ -3,7 +3,7 @@ import { filepaths } from "@fig/autocomplete-generators";
 const completionSpec: Fig.Spec = {
   name: "ansible-playbook",
   description:
-    "Tuns Ansible playbooks, executing the defined tasks on the targeted hosts",
+    "Runs Ansible playbooks, executing the defined tasks on the targeted hosts",
   args: {
     name: "playbook",
     description: "Playbook(s)",
