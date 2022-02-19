@@ -1,3 +1,5 @@
+import { npmSearchGenerator } from "./npm";
+
 /** Base options for selecting subsets of projects */
 const PROJECT_SELECTION_OPTIONS: Fig.Option[] = [
   {
@@ -71,6 +73,8 @@ const completionSpec: Fig.Spec = {
           isRepeatable: true,
           args: {
             name: "PACKAGE",
+            generators: npmSearchGenerator,
+            debounce: true,
           },
         },
         {
