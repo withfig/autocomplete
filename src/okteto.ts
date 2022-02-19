@@ -1,5 +1,8 @@
 const contexts: Fig.Generator = {
   script: "okteto context list",
+  cache: {
+    ttl: 1000 * 60 * 30, // 30 minutes
+  },
   postProcess: (output) => {
     return output.split("\n").slice(1).map((context, ind) => {
       context = context.split(" ")[0];
@@ -14,6 +17,9 @@ const contexts: Fig.Generator = {
 
 const namespaces: Fig.Generator = {
   script: "okteto namespace list",
+  cache: {
+    ttl: 1000 * 60 * 30, // 30 minutes
+  },
   postProcess: (output) => {
     return output.split("\n").slice(1).map((namespace, ind) => {
       namespace = namespace.split(" ")[0];
