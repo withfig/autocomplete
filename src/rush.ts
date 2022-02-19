@@ -829,6 +829,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-h", "--help"],
       description: "Show this help message and exit",
+      isPersistent: true,
     },
     {
       name: ["-d", "--debug"],
