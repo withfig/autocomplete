@@ -4,14 +4,17 @@ const contexts: Fig.Generator = {
     ttl: 1000 * 60 * 30, // 30 minutes
   },
   postProcess: (output) => {
-    return output.split("\n").slice(1).map((context, ind) => {
-      context = context.split(" ")[0];
-      return {
-        name: context.replace("*", "").trim(),
-        description: "Context",
-        icon: "fig://icon?type=okteto",
-      };
-    });
+    return output
+      .split("\n")
+      .slice(1)
+      .map((context, ind) => {
+        context = context.split(" ")[0];
+        return {
+          name: context.replace("*", "").trim(),
+          description: "Context",
+          icon: "fig://icon?type=okteto",
+        };
+      });
   },
 };
 
@@ -21,14 +24,17 @@ const namespaces: Fig.Generator = {
     ttl: 1000 * 60 * 30, // 30 minutes
   },
   postProcess: (output) => {
-    return output.split("\n").slice(1).map((namespace, ind) => {
-      namespace = namespace.split(" ")[0];
-      return {
-        name: namespace.replace("*", "").trim(),
-        description: "Namespace",
-        icon: "fig://icon?type=okteto",
-      };
-    });
+    return output
+      .split("\n")
+      .slice(1)
+      .map((namespace, ind) => {
+        namespace = namespace.split(" ")[0];
+        return {
+          name: namespace.replace("*", "").trim(),
+          description: "Namespace",
+          icon: "fig://icon?type=okteto",
+        };
+      });
   },
 };
 
