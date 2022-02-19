@@ -5,7 +5,7 @@ import { filepaths } from "@fig/autocomplete-generators";
 
 // Fig doesn't automatically insert an '=' where an option's argument requires
 // an equals and the argument isn't optional. That's why you'll see a lot of
-// `insertValue: "--name="` in this spec.
+// `insertValue: "--name={cursor}"` in this spec.
 
 /**
  * Equivalent to the `"filepaths"` template, but boosts the priority of files
@@ -156,8 +156,8 @@ const permissionOptions: Fig.Option[] = [
     },
   },
   {
-    name: "--prompt",
-    description: "Fallback to prompt if required permission wasn't passed",
+    name: "--no-prompt",
+    description: "Always throw if the permission wasn't passed",
   },
   unsafelyIgnoreCertificateErrorsOption,
 ];
@@ -291,7 +291,7 @@ const seedOption: Fig.Option = {
 
 const v8FlagsOption: Fig.Option = {
   name: "--v8-flags",
-  insertValue: "--v8-flags=",
+  insertValue: "--v8-flags={cursor}",
   description: "Set V8 command line options (for help: --v8-flags=--help",
   requiresEquals: true,
   args: {
@@ -320,6 +320,12 @@ function watchOption(options: ExclusiveOn & { files: boolean }): Fig.Option {
       : undefined,
   };
 }
+
+const noClearScreenOption: Fig.Option = {
+  name: "--no-clear-screen",
+  description: "Do not clear terminal screen when under watch mode",
+  dependsOn: ["--watch"],
+};
 
 const compatOption: Fig.Option = {
   name: "--compat",
@@ -394,6 +400,9 @@ const denoRun: Fig.Subcommand = {
     description: "The JavaScript or TypeScript file to run",
     generators: generateRunnableFiles,
   },
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     ...runtimeOptions({
       perms: true,
@@ -404,6 +413,7 @@ const denoRun: Fig.Subcommand = {
       files: true,
       exclusiveOn: ["--inspect", "--inspect-brk"],
     }),
+    noClearScreenOption,
   ],
 };
 
@@ -424,7 +434,7 @@ const denoTest: Fig.Subcommand = {
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: "--ignore",
-      insertValue: "--ignore=",
+      insertValue: "--ignore={cursor}",
       description: "Ignore files",
       requiresEquals: true,
       args: {
@@ -475,7 +485,7 @@ const denoTest: Fig.Subcommand = {
     },
     {
       name: "--coverage",
-      insertValue: "--coverage=",
+      insertValue: "--coverage={cursor}",
       description: "UNSTABLE: Collect coverage profile data into the directory",
       requiresEquals: true,
       args: {
@@ -500,6 +510,7 @@ const denoTest: Fig.Subcommand = {
       files: false,
       exclusiveOn: ["--no-run", "--coverage"],
     }),
+    noClearScreenOption,
   ],
 };
 
@@ -533,7 +544,7 @@ const denoFmt: Fig.Subcommand = {
     },
     {
       name: "--ignore",
-      insertValue: "--ignore=",
+      insertValue: "--ignore={cursor}",
       description: "Ignore formatting particular source files",
       requiresEquals: true,
       args: {
@@ -542,6 +553,7 @@ const denoFmt: Fig.Subcommand = {
       },
     },
     watchOption({ files: false }),
+    noClearScreenOption,
     {
       name: "--options-use-tabs",
       description: "Use tabs instead of spaces",
@@ -653,6 +665,7 @@ const denoLint: Fig.Subcommand = {
       },
     },
     watchOption({ files: false }),
+    noClearScreenOption,
   ],
 };
 
@@ -914,6 +927,9 @@ const denoDoc: Fig.Subcommand = {
 const denoInstall: Fig.Subcommand = {
   name: "install",
   description: "Install a script as an executable",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   args: [
     {
       name: "source",
@@ -1059,7 +1075,13 @@ const denoCompletions: Fig.Subcommand = {
   args: {
     name: "shell",
     description: "Generate completions for this shell",
-    suggestions: ["zsh", "bash", "fish", "powershell", "elvish"],
+    suggestions: [
+      { name: "zsh", icon: "fig://icon?type=string" },
+      { name: "bash", icon: "fig://icon?type=string" },
+      { name: "fish", icon: "fig://icon?type=string" },
+      { name: "powershell", icon: "fig://icon?type=string" },
+      { name: "fig", icon: "fig://icon?type=string" },
+    ],
   },
 };
 
@@ -1069,7 +1091,7 @@ const denoCoverage: Fig.Subcommand = {
   options: [
     {
       name: "--ignore",
-      insertValue: "--ignore=",
+      insertValue: "--ignore={cursor}",
       description: "Ignore coverage files",
       requiresEquals: true,
       args: {
@@ -1080,7 +1102,7 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--include",
-      insertValue: "--include=",
+      insertValue: "--include={cursor}",
       description: "Include source files in the report",
       isRepeatable: true,
       requiresEquals: true,
@@ -1092,7 +1114,7 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--exclude",
-      insertValue: "--exclude=",
+      insertValue: "--exclude={cursor}",
       description: "Exclude source files from the report",
       isRepeatable: true,
       requiresEquals: true,
@@ -1105,6 +1127,18 @@ const denoCoverage: Fig.Subcommand = {
     {
       name: "--lcov",
       description: "Output coverage in the lcov format",
+    },
+    {
+      name: "--output",
+      insertValue: "--output={cursor}",
+      description: "Output file (defaults to stdout) for lcov",
+      dependsOn: ["--lcov"],
+      requiresEquals: true,
+      args: {
+        name: "outfile",
+        template: "filepaths",
+        suggestCurrentToken: true,
+      },
     },
   ],
   args: {
@@ -1235,6 +1269,37 @@ const denoBundle: Fig.Subcommand = {
   options: compileOptions,
 };
 
+const denoVendor: Fig.Subcommand = {
+  name: "vendor",
+  description: "Vendor remote modules into a local directory",
+  args: {
+    name: "specifiers",
+    isVariadic: true,
+    generators: generateRunnableFiles,
+  },
+  options: [
+    {
+      name: "--output",
+      description: "The directory to output the vendored modules to",
+      args: {
+        name: "destination",
+        template: "folders",
+        suggestCurrentToken: true,
+      },
+    },
+    {
+      name: ["-f", "--force"],
+      description:
+        "Forcefully overwrite existing files in the output directory",
+    },
+    configOption,
+    importMapOption,
+    lockOption,
+    reloadOption,
+    caFileOption,
+  ],
+};
+
 const subcommands: Fig.Subcommand[] = [
   denoBundle,
   denoCache,
@@ -1254,6 +1319,7 @@ const subcommands: Fig.Subcommand[] = [
   denoTest,
   denoTypes,
   denoUpgrade,
+  denoVendor,
 ];
 
 const completionSpec: Fig.Spec = {
@@ -1268,8 +1334,12 @@ const completionSpec: Fig.Spec = {
         name: "subcommand",
         description: "The subcommand to get help with",
         isOptional: true,
-        // Fig.Subcommand can be assigned to Fig.Suggestion
-        suggestions: subcommands,
+        suggestions: subcommands.map(
+          (subcommand): Fig.Suggestion => ({
+            ...subcommand,
+            type: "subcommand",
+          })
+        ),
       },
     },
   ],
@@ -1286,6 +1356,7 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       priority: 40,
       args: {
+        name: "level",
         suggestions: ["info", "debug"],
       },
     },
