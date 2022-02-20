@@ -59,17 +59,16 @@ const categoryCommands: Fig.Subcommand[] = [
   },
   {
     name: "console",
-    description:
-      "Opens the web console for the category",
+    description: "Opens the web console for the category",
   },
   {
     name: "push",
     description:
       "Provisions cloud resources with the latest local developments",
-    subcommands: [
+    options: [
       {
-        name: "-y",
-        description: "Respond 'y' to all options",
+        name: ["-y"],
+        description: "Answer all question as 'Yes'",
       },
     ],
   },
@@ -94,13 +93,13 @@ const completionSpec: Fig.Spec = {
       name: "push",
       description:
         "Provisions cloud resources with the latest local developments",
-      subcommands: [
+      options: [
         {
-          name: "-y",
-          description: "Respond 'y' to all options",
+          name: ["-y"],
+          description: "Answer all question as 'Yes'",
         },
-        ...amplifyCategories,
       ],
+      subcommands: [...amplifyCategories],
     },
     {
       name: "pull",
