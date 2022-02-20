@@ -1,3 +1,13 @@
+// Compatibility: macOS
+
+function processIcon(path: string): string {
+  const idx = path.indexOf(".app/");
+  if (idx === -1) {
+    return "fig://icon?type=gear";
+  }
+  return "fig://" + path.slice(0, idx + 4);
+}
+
 const completionSpec: Fig.Spec = {
   name: "kill",
   description: "Terminate or signal a process",
@@ -5,12 +15,16 @@ const completionSpec: Fig.Spec = {
     name: "pid",
     isVariadic: true,
     generators: {
-      script: "ps aux | sed 1d",
+      script: "ps axo pid,comm | sed 1d",
       postProcess: (result: string) => {
         return result.split("\n").map((line) => {
-          const [, pid] = line.split(/\s+/);
+          const [pid, path] = line.trim().split(/\s+/);
+          const name = path.slice(path.lastIndexOf("/") + 1);
           return {
             name: pid,
+            description: path,
+            displayName: `${pid} (${name})`,
+            icon: processIcon(path),
           };
         });
       },
@@ -23,8 +37,14 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "signal_name",
         generators: {
-          script: "kill -l",
-          splitOn: " ",
+          // Bash's `kill` builtin has different output to /bin/kill
+          script: "env kill -l",
+          postProcess: (out) =>
+            out.match(/\w+/g).map((name) => ({
+              name,
+              description: `Send ${name} instead of TERM`,
+              icon: "fig://icon?type=string",
+            })),
         },
       },
     },
