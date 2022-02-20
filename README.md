@@ -125,7 +125,7 @@ Never submitted a PR before? Check out our [How to Contribute](https://fig.io/do
 
 #### What terminals does Fig work with?
 
-Fig works with [iTerm](https://iterm2.com/), [Tabby](https://tabby.sh), the native MacOS Terminal app, Hyper and the [integrated terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal).
+Fig works with the native MacOS Terminal app, [iTerm](https://iterm2.com/), [Tabby](https://tabby.sh), [Hyper](https://hyper.is) and the [integrated terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
 #### How does Fig work?
 
