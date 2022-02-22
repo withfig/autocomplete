@@ -11,17 +11,14 @@ const sections = {
 
 const sectionIcon = "📑";
 
-const sectionsSet = new Set(Object.keys(sections));
+const sectionNames = new Set(Object.keys(sections));
 
 const generateManualPages: Fig.Generator = {
   script: (tokens) => {
-    // Show sections 1 and 8 by default
-    let sectionGlob = "[18]";
-    // If the previous token was a section number, use that instead
-    if (sectionsSet.has(tokens[tokens.length - 2])) {
-      sectionGlob = tokens[tokens.length - 2];
-    }
-    return `ls -1 $(man -w | sed 's#:#/man${sectionGlob} #g') | cut -f 1 -d . | sort | uniq`;
+    // If the previous token was a section, we want to search for it
+    const maybeSection = tokens[tokens.length - 2];
+    const sectionGlob = sectionNames.has(maybeSection) ? maybeSection : "[18]";
+    return `ls -1 $(man -w | sed 's#:#/man${sectionGlob} #g') 2>/dev/null | cut -f 1 -d . | sort | uniq`;
   },
   postProcess: (out) => {
     return out
@@ -42,17 +39,22 @@ const generateManualPages: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "man",
   description: "Format and display the on-line manual pages",
-  args: {
+  args: [
     // No `name` or `description` because the popup stays open
-    isVariadic: true,
-    generators: generateManualPages,
-    suggestions: Object.entries(sections).map(([number, topic]) => ({
-      name: number,
-      insertValue: `${number} {cursor}`,
-      description: `Section ${number}: ${topic}`,
-      icon: sectionIcon,
-    })),
-  },
+    {
+      generators: generateManualPages,
+      suggestions: Object.entries(sections).map(([number, topic]) => ({
+        name: number,
+        insertValue: `${number} {cursor}`,
+        description: `Section ${number}: ${topic}`,
+        priority: 49,
+        icon: sectionIcon,
+      })),
+    },
+    {
+      generators: generateManualPages,
+    },
+  ],
   options: [
     {
       name: "-C",
