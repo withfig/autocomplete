@@ -67,7 +67,7 @@ const categoryCommands: Fig.Subcommand[] = [
       "Provisions cloud resources with the latest local developments",
     options: [
       {
-        name: ["-y"],
+        name: "-y",
         description: "Answer all question as 'Yes'",
       },
     ],
@@ -95,7 +95,7 @@ const completionSpec: Fig.Spec = {
         "Provisions cloud resources with the latest local developments",
       options: [
         {
-          name: ["-y"],
+          name: "-y",
           description: "Answer all question as 'Yes'",
         },
       ],
