@@ -14,12 +14,12 @@ const projectGenerator: Fig.Generator = {
     const suggestions = [];
 
     try {
-      if (out.trim() == "") {
+      if (!out) {
         return suggestions;
       }
 
       const rushConfigurationJson: IRushConfigurationJson = JSON.parse(
-        stripJsonComments(out)
+        stripJsonComments(out.trim())
       );
 
       for (const project of rushConfigurationJson.projects) {
