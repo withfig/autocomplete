@@ -53,6 +53,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       generators: generateManualPages,
+      isOptional: true,
     },
   ],
   options: [
