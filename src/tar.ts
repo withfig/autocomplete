@@ -1,3 +1,14 @@
+const sizeSuffixes: Fig.Suggestion[] = [
+  { name: "Blocks", insertValue: "{cursor}b" },
+  { name: "Bytes", insertValue: "{cursor}c" },
+  { name: "Gigabytes", insertValue: "{cursor}G" },
+  { name: "Kilobytes", insertValue: "{cursor}K" },
+  { name: "Megabytes", insertValue: "{cursor}M" },
+  { name: "Petabytes", insertValue: "{cursor}P" },
+  { name: "Terabytes", insertValue: "{cursor}T" },
+  { name: "Words", insertValue: "{cursor}w" },
+];
+
 const fileOptions: Fig.Option[] = [
   {
     name: ["f", "-f", "--file"],
@@ -139,7 +150,7 @@ const compressionOptions: Fig.Option[] = [
   {
     name: "--checkpoint",
     description: "Display progress messages every Nth record",
-    args: { name: "N", isOptional: true, default: 10 },
+    args: { name: "N", isOptional: true, default: "10" },
   },
   {
     name: "--checkpoint-action",
@@ -256,7 +267,6 @@ const dumpOptions: Fig.Option[] = [
       suggestions: ["none", "name", "inode"],
     },
   },
-  ...compressionOptions,
   {
     name: "--add-file",
     description: "Add FILE to the archive",
@@ -292,14 +302,14 @@ const dumpOptions: Fig.Option[] = [
     name: "--exclude-ignore",
     description:
       "Read exclusion patterns from FILE in directory before dumping",
-    exclusiveOn: "--exclude-ignore-recursive",
+    exclusiveOn: ["--exclude-ignore-recursive"],
     args: { name: "FILE" },
   },
   {
     name: "--exclude-ignore-recursive",
     description:
       "Same  as --exclude-ignore, except that patterns from FILE affect both the directory and all its subdirectories",
-    exclusiveOn: "--exclude-ignore",
+    exclusiveOn: ["--exclude-ignore"],
     args: { name: "FILE" },
   },
   {
@@ -324,13 +334,13 @@ const dumpOptions: Fig.Option[] = [
   {
     name: "--exclude-vcs",
     description: "Exclude version control system directories",
-    exclusiveOn: "--exclude-vcs-ignores",
+    exclusiveOn: ["--exclude-vcs-ignores"],
   },
   {
     name: "--exclude-vcs-ignores",
     description:
       "Exclude files that match patterns read from VCS-specific ignore files",
-    excludeOn: "--exclude-vcs",
+    exclusiveOn: ["--exclude-vcs"],
   },
   {
     name: ["h", "-h", "--dereference"],
@@ -360,32 +370,32 @@ const dumpOptions: Fig.Option[] = [
   {
     name: "--anchored",
     description: "Patterns match file name start",
-    dependsOn: "--exclude",
-    exclusiveOn: "--no-anchored",
+    dependsOn: ["--exclude"],
+    exclusiveOn: ["--no-anchored"],
   },
   {
     name: "--ignore-case",
     description: "Ignore case",
-    dependsOn: "--exclude",
-    exclusiveOn: "--no-ignore-case",
+    dependsOn: ["--exclude"],
+    exclusiveOn: ["--no-ignore-case"],
   },
   {
     name: "--no-anchored",
     description: "Patterns match after any /",
-    dependsOn: "--exclude",
-    exclusiveOn: "--anchored",
+    dependsOn: ["--exclude"],
+    exclusiveOn: ["--anchored"],
   },
   {
     name: "--no-ignore-case",
     description: "Case sensitive matching",
-    dependsOn: "--exclude",
-    exclusiveOn: "--ignore-case",
+    dependsOn: ["--exclude"],
+    exclusiveOn: ["--ignore-case"],
   },
   {
     name: "--no-wildcards",
     description: "Verbatim string matching",
-    dependsOn: "--exclude",
-    exclusiveOn: "--wildcards",
+    dependsOn: ["--exclude"],
+    exclusiveOn: ["--wildcards"],
   },
   {
     name: "--no-wildcards-match-slash",
@@ -396,8 +406,8 @@ const dumpOptions: Fig.Option[] = [
   {
     name: "--wildcards",
     description: "Use wildcards",
-    dependsOn: "--exclude",
-    exclusiveOn: "--no-wildcards",
+    dependsOn: ["--exclude"],
+    exclusiveOn: ["--no-wildcards"],
   },
   {
     name: "--wildcards-match-slash",
@@ -409,12 +419,13 @@ const dumpOptions: Fig.Option[] = [
     name: "--clamp-mtime",
     description:
       "Only set time when the file is more recent than what was given with --mtime",
-    dependsOn: "--mtime",
+    dependsOn: ["--mtime"],
   },
   {
     name: ["l", "-l", "--check-links"],
     description: "Print a message if not all links are dumped",
   },
+  ...compressionOptions,
 ];
 
 // --delete && --diff && --extract && --list
@@ -433,7 +444,7 @@ const readOptions: Fig.Option[] = [
   {
     name: ["n", "-n", "--seek"],
     description: "Assume the archive is seekable",
-    exclusiveOn: "--no-seek",
+    exclusiveOn: ["--no-seek"],
   },
   {
     name: "--no-seek",
@@ -465,17 +476,6 @@ const readOptions: Fig.Option[] = [
     name: "--show-omitted-dirs",
     description: "List each directory that does not match search criteria",
   },
-];
-
-const sizeSuffixes: Fig.Suggestion[] = [
-  { name: "Blocks", insertValue: "{cursor}b" },
-  { name: "Bytes", insertValue: "{cursor}c" },
-  { name: "Gigabytes", insertValue: "{cursor}G" },
-  { name: "Kilobytes", insertValue: "{cursor}K" },
-  { name: "Megabytes", insertValue: "{cursor}M" },
-  { name: "Petabytes", insertValue: "{cursor}P" },
-  { name: "Terabytes", insertValue: "{cursor}T" },
-  { name: "Words", insertValue: "{cursor}w" },
 ];
 
 const warningSuggestions: Fig.Suggestion[] = [
@@ -578,13 +578,13 @@ const completionSpec: Fig.Spec = {
       name: "--ignore-command-error",
       description: "Ignore subprocess exit codes",
       isPersistent: true,
-      excusiveOn: "--no-ignore-command-error",
+      exclusiveOn: ["--no-ignore-command-error"],
     },
     {
       name: "--no-ignore-command-error",
       description: "Treat non-zero exit codes of children as error",
       isPersistent: true,
-      exclusiveOn: "--ignore-command-error",
+      exclusiveOn: ["--ignore-command-error"],
     },
     // Handling of file attributes
     {
@@ -596,31 +596,31 @@ const completionSpec: Fig.Spec = {
     {
       name: "--acls",
       description: "Enable POSIX ACLs support",
-      exclusveOn: "--no-acls",
+      exclusiveOn: ["--no-acls"],
       isPersistent: true,
     },
     {
       name: "--no-acls",
       description: "Disable POSIX ACLs support",
-      exclusiveOn: "--acls",
+      exclusiveOn: ["--acls"],
       isPersistent: true,
     },
     {
       name: "--selinux",
       description: "Enable SELinux context support",
-      exclusiveOn: "--no-selinux",
+      exclusiveOn: ["--no-selinux"],
       isPersistent: true,
     },
     {
       name: "--no-selinux",
       description: "Disable SELinux context support",
-      exclusiveOn: "--selinux",
+      exclusiveOn: ["--selinux"],
       isPersistent: true,
     },
     {
       name: "--xattrs",
       description: "Enable extended attributes support",
-      exclusiveOn: "--no-xattrs",
+      exclusiveOn: ["--no-xattrs"],
       isPersistent: true,
     },
     {
@@ -632,7 +632,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--xattrs-exclude",
       description: "Specify the exclude pattern for xattr keys",
-      excludeOn: "--no-xattrs",
+      exclusiveOn: ["--no-xattrs"],
       isPersistent: true,
       args: { name: "PATTERN", description: "A POSIX regular expression" },
     },
@@ -691,13 +691,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-recursion",
       description: "Avoid descending automatically in directories",
-      exclusiveOn: "--recursion",
+      exclusiveOn: ["--recursion"],
       isPersistent: true,
     },
     {
       name: "--no-unquote",
       description: "Do not unquote input file or member names",
-      exclusiveOn: "--unquote",
+      exclusiveOn: ["--unquote"],
       isPersistent: true,
     },
     {
@@ -718,13 +718,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--recursion",
       description: "Recurse into directories",
-      exclusiveOn: "--no-recursion",
+      exclusiveOn: ["--no-recursion"],
       isPersistent: true,
     },
     {
       name: "--suffix",
       description: "Backup before removal, override usual suffix",
-      dependsOn: "--backup",
+      dependsOn: ["--backup"],
       isPersistent: true,
       args: { name: "STRING", default: "~" },
     },
@@ -738,7 +738,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--unquote",
       description: "Unquote file or member names",
-      exclusiveOn: "--no-unquote",
+      exclusiveOn: ["--no-unquote"],
       isPersistent: true,
     },
     {
@@ -846,25 +846,24 @@ const completionSpec: Fig.Spec = {
       name: ["c", "-c", "--create"],
       description: "Create a new archive",
       options: [
-        ...fileOptions,
         {
           name: "--check-device",
           description:
             "Check device numbers when creating incremental archives",
-          exclusiveOn: "--no-check-device",
+          exclusiveOn: ["--no-check-device"],
           dependsOn: ["g", "-g", "--listed-incremental"],
         },
         {
           name: ["--level", "--level="],
           description: "Set dump level for created listed-incremental archive",
-          args: { name: "NUMBER", default: 0 },
+          args: { name: "NUMBER", default: "0" },
           dependsOn: ["g", "-g", "--listed-incremental"],
         },
         {
           name: "--no-check-device",
           description:
             "Do not check device numbers when creating incremental archives",
-          exclusiveOn: "--check-device",
+          exclusiveOn: ["--check-device"],
           dependsOn: ["g", "-g", "--listed-incremental"],
         },
         ...dumpOptions,
@@ -1056,6 +1055,7 @@ const completionSpec: Fig.Spec = {
             "-o",
           ],
         },
+        ...fileOptions,
       ],
       args: {
         name: "FILE",
@@ -1190,7 +1190,7 @@ const completionSpec: Fig.Spec = {
           name: "--delay-directory-restore",
           description:
             "Delay setting modification times and permissions of extracted directories until the end of extraction",
-          exclusiveOn: "--no-delay-directory-restore",
+          exclusiveOn: ["--no-delay-directory-restore"],
         },
         {
           name: ["m", "-m", "--touch"],
@@ -1200,12 +1200,12 @@ const completionSpec: Fig.Spec = {
           name: "--no-delay-directory-restore",
           description:
             "Cancel the effect of the prior --delay-directory-restore option",
-          exclusiveOn: "--delay-directory-restore",
+          exclusiveOn: ["--delay-directory-restore"],
         },
         {
           name: "--no-same-owner",
           description: "Extract files as yourself",
-          exclusiveOn: "--same-owner",
+          exclusiveOn: ["--same-owner"],
         },
         {
           name: "--no-same-permissions",
@@ -1221,14 +1221,14 @@ const completionSpec: Fig.Spec = {
         {
           name: ["p", "-p", "--preserve-permissions", "--same-permissions"],
           description: "Extract information about file permissions",
-          exclusiveOn: "--no-same-permissions",
+          exclusiveOn: ["--no-same-permissions"],
         },
         { name: "--preserve", description: "Same as both -p and -s" },
         {
           name: "--same-owner",
           description:
             "Try extracting files with the same ownership as exists in the archive",
-          exclusiveOn: "--no-same-owner",
+          exclusiveOn: ["--no-same-owner"],
         },
         {
           name: ["s", "-s", "--preserve-order", "--same-order"],
