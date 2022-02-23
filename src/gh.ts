@@ -126,12 +126,11 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
       return aliases.map(({ name, content }) => ({
         name,
-        description: content,
-        icon: "fig://icon?type=command",
+        description: `Alias for '${content}'`,
+        icon: "fig://icon?type=commandkey",
       }));
     },
   },
-
   remoteBranches: {
     script:
       "git --no-optional-locks branch -r --no-color --sort=-committerdate",
@@ -172,6 +171,12 @@ const ghOptions: Record<string, Fig.Option> = {
 const completionSpec: Fig.Spec = {
   name: "gh",
   description: "GitHub's CLI tool",
+  args: {
+    name: "alias",
+    description: "Custom user defined gh alias",
+    isOptional: true,
+    generators: ghGenerators.listAlias,
+  },
   subcommands: [
     {
       name: "alias",
