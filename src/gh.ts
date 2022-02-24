@@ -59,6 +59,7 @@ const listRepoMapFunction = (repo: RepoDataType) => ({
 
 const ghGenerators: Record<string, Fig.Generator> = {
   listCustomRepositories: {
+    trigger: "/",
     //execute is script then postProcess
     custom: async (tokens, execute) => {
       //get the last command token
