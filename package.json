@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.95.0",
+  "version": "2.126.0",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -67,22 +67,22 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@fig/autocomplete-generators": "^1.0.0",
     "@types/inquirer": "^7.3.1",
     "@types/node": "^14.14.33",
     "@types/progress": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "@fig/autocomplete-generators": "^1.0.0",
-    "@withfig/autocomplete-tools": "^2.3.0",
-    "@withfig/autocomplete-types": "^1.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "@withfig/autocomplete-tools": "^2.4.0",
+    "@withfig/autocomplete-types": "^1.10.0",
     "@withfig/eslint-plugin-fig-linter": "^1.0.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
     "esbuild": "^0.12.15",
-    "eslint": "^7.22.0",
+    "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-compat": "^3.13.0",
+    "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-prettier": "^3.3.1",
     "fast-glob": "^3.2.7",
     "husky": "^6.0.0",
@@ -91,12 +91,13 @@
     "pretty-quick": "^3.1.0",
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "@types/glob": "^7.2.0",
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
+    "strip-json-comments": "^4.0.0",
     "yaml": "^1.10.2"
   }
 }

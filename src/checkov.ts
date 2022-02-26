@@ -20,12 +20,108 @@ const completionSpec: Fig.Spec = {
       description: "Show help for checkov",
     },
     {
+      name: ["--version", "-v"],
+      description: "Show the version of checkov",
+    },
+    {
+      name: "--quiet",
+      description: "CLI output, display only failed checks",
+    },
+    {
+      name: "--compact",
+      description: "CLI output, do not display code blocks",
+    },
+    {
+      name: ["--list", "-l"],
+      description: "List checks",
+    },
+    {
+      name: "--no-guide",
+      description:
+        "Do not fetch Bridgecrew platform IDs and guidelines for the checkov output report. Note: this prevents Bridgecrew platform check IDs from being used anywhere in the CLI",
+      dependsOn: ["--bc_api_key"],
+    },
+    {
+      name: "--output-bc-ids",
+      description:
+        "Print Bridgecrew platform IDs (BC...) instead of Checkov IDs (CKV...), if the check exists in the platform",
+      dependsOn: ["--bc_api_key"],
+      exclusiveOn: ["--no-guide"],
+    },
+    {
       name: ["--directory", "-d"],
       description: "IaC root directory (can not be used together with --file)",
       exclusiveOn: ["--file"],
       args: {
         name: "Directory",
         template: "folders",
+      },
+    },
+    {
+      name: ["--output", "-o"],
+      description:
+        "Report output format. Add multiple outputs by using the flag multiple times (-o sarif -o cli)",
+      isRepeatable: true,
+      args: {
+        name: "FORMAT",
+        suggestions: [
+          "cli",
+          "cyclonedx",
+          "json",
+          "junitxml",
+          "github_failed_only",
+          "sarif",
+        ],
+      },
+    },
+    {
+      name: "--framework",
+      description: "IaC frameworks to include checks for",
+      args: {
+        name: "FRAMEWORKS",
+        isVariadic: true,
+        suggestions: [
+          "arm",
+          "cloudformation",
+          "dockerfile",
+          "github_configuration",
+          "gitlab_configuration",
+          "helm",
+          "json",
+          "kubernetes",
+          "kustomize",
+          "sca_package",
+          "secrets",
+          "serverless",
+          "terraform",
+          "terraform_plan",
+          "all",
+        ],
+      },
+    },
+    {
+      name: "--skip-framework",
+      description: "IaC frameworks to exclude checks for",
+      args: {
+        name: "FRAMEWORKS",
+        isVariadic: true,
+        suggestions: [
+          "arm",
+          "cloudformation",
+          "dockerfile",
+          "github_configuration",
+          "gitlab_configuration",
+          "helm",
+          "json",
+          "kubernetes",
+          "kustomize",
+          "sca_package",
+          "secrets",
+          "serverless",
+          "terraform",
+          "terraform_plan",
+          "all",
+        ],
       },
     },
     {
@@ -46,10 +142,10 @@ const completionSpec: Fig.Spec = {
       description:
         "Path (file or directory) to skip, using regular expression logic, relative to current working directory. Word boundaries are not implicit; i.e., specifying 'dir1' will skip any directory or subdirectory named 'dir1'. Ignored with -f. Can be specified multiple times",
       exclusiveOn: ["--file"],
+      isRepeatable: true,
       args: {
         name: "SKIP_PATH",
         template: "filepaths",
-        isVariadic: true,
       },
     },
     {
@@ -72,6 +168,14 @@ const completionSpec: Fig.Spec = {
       name: "--run-all-external-checks",
       description:
         "Run all external checks (loaded via --external-checks options) even if the checks are not present in the --check list. This allows you to always ensure that new checks present in the external source are used. If an external check is included in --skip-check, it will still be skipped",
+    },
+    {
+      name: "--external-checks-dir",
+      description: "Directory for custom checks to be loaded. Can be repeated",
+      isRepeatable: true,
+      args: {
+        name: "EXTERNAL_CHECKS_DIR",
+      },
     },
     {
       name: "--bc_api_key",
@@ -188,6 +292,7 @@ const completionSpec: Fig.Spec = {
       description: "Path to the Checkov configuration YAML file",
       args: {
         name: "CONFIG_FILE",
+        template: "filepaths",
       },
     },
     {
@@ -236,6 +341,23 @@ const completionSpec: Fig.Spec = {
         "Exits with a non-zero exit code for specified checks. You can specify multiple checks separated by comma delimiter",
       args: {
         name: "CHECKS",
+      },
+    },
+    {
+      name: "--min-cve-severity",
+      description: "Set minimum severity to return a non-zero exit code",
+      args: {
+        name: "MIN_SEVERITY",
+        suggestions: ["critical", "high", "medium", "low", "none"],
+      },
+    },
+    {
+      name: "--skip-cve-package",
+      description:
+        "Ignore specific open source package when SCA scanning for CVEs in package dependencies. Can be used multiple times to skip multiple packages",
+      isRepeatable: true,
+      args: {
+        name: "SKIP_CVE_PACKAGE",
       },
     },
   ],
