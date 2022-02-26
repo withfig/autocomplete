@@ -10,19 +10,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "alpha",
       description: "Open dotfiles",
-      subcommands: [
-        {
-          name: "source",
-          description: "Source dotfiles",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for source",
-              displayName: "help",
-            },
-          ],
-        },
-      ],
       options: [
         {
           name: ["--help", "-h"],
@@ -507,17 +494,6 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--help", "-h"],
           description: "Help for quit",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "report",
-      description: "Open the report window",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for report",
           displayName: "help",
         },
       ],
@@ -1224,17 +1200,6 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--help", "-h"],
               description: "Help for quit",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "report",
-          description: "Open the report window",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for report",
               displayName: "help",
             },
           ],

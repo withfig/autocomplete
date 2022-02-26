@@ -7,6 +7,7 @@ import {
 export const nodeClis = [
   "vue",
   "nuxt",
+  "react-native",
   "expo",
   "jest",
   "next",
@@ -388,6 +389,7 @@ const completionSpec: Fig.Spec = {
     generators: npmScriptsGenerator,
     parserDirectives: npmParserDirectives,
     isOptional: true,
+    isCommand: true,
   },
   options: [
     {

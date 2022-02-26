@@ -604,7 +604,7 @@ const checkRailsInstalled = async (
   executeShellCommand: Fig.ExecuteShellCommandFunction
 ): Promise<boolean> => {
   const gemfileMatch = await executeShellCommand(
-    `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \grep "gem 'rails'"; else echo ""; fi`
+    `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \grep "gem ['\"]rails['\"]"; else echo ""; fi`
   );
   const isRails = !!gemfileMatch;
 
