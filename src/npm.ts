@@ -889,7 +889,6 @@ const completionSpec: Fig.Spec = {
         ...workSpaceOptions,
       ],
     },
-    { name: "v", description: "Check that you have node and npm installed" },
     {
       name: "version",
       description: "Bump a package version",
@@ -899,7 +898,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "view",
+      name: ["view", "v", "info", "show"],
       description: "View registry info",
       options: [
         ...workSpaceOptions,
