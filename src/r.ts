@@ -1375,7 +1375,7 @@ const completionSpec: Fig.Spec = {
       requiresEquals: true,
       args: {
         name: "min size",
-        description: "Minimum nubmer of fixed size objects",
+        description: "Minimum number of fixed size objects",
       },
     },
     {

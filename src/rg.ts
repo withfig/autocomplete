@@ -207,7 +207,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-g", "--glob"],
       description:
-        "Includes or excludes files and directories for searching thtat match the given glob",
+        "Includes or excludes files and directories for searching that match the given glob",
       args: {
         name: "GLOB",
         isVariadic: true,
@@ -240,7 +240,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ignore-file",
       description:
-        "Specifies a paht to one or more .gitignore format rules files",
+        "Specifies a path to one or more .gitignore format rules files",
       args: {
         name: "Path",
         template: "filepaths",
@@ -262,7 +262,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--json",
-      description: "Enables printing resuts in a JSON Lines format",
+      description: "Enables printing results in a JSON Lines format",
     },
     {
       name: "--no-json",
@@ -428,7 +428,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-o", "--only-matching"],
       description:
-        "Prints only the matched (non-empty) parts of a matching line, with each such part on a sepearate output line",
+        "Prints only the matched (non-empty) parts of a matching line, with each such part on a separate output line",
     },
     {
       name: "--passthru",
@@ -525,7 +525,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--stats",
-      description: "Prints aggregate statistics about thsi ripgrep search",
+      description: "Prints aggregate statistics about this ripgrep search",
     },
     {
       name: ["-a", "--text"],

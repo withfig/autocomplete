@@ -5100,7 +5100,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "value",
               description:
-                "The value of the option to add. If ommited, the value is read from STDIN",
+                "The value of the option to add. If omitted, the value is read from STDIN",
             },
           ],
           options: [
@@ -5327,7 +5327,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "value",
               description:
-                "The new value. If ommited, the value is read from STDIN",
+                "The new value. If omitted, the value is read from STDIN",
             },
           ],
           options: [
@@ -8633,7 +8633,7 @@ const completionSpec: Fig.Spec = {
               name: "--email",
               insertValue: "--email=",
               description:
-                "Email for Admin user. User will be created if none exists. Assignement to Super Admin if not included",
+                "Email for Admin user. User will be created if none exists. Assignment to Super Admin if not included",
               args: { name: "email" },
             },
             {
@@ -9047,7 +9047,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "value",
                   description:
-                    "The value of the site option to add. If ommited, the value is read from STDIN",
+                    "The value of the site option to add. If omitted, the value is read from STDIN",
                 },
               ],
               options: [
@@ -9221,7 +9221,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "key-path",
                   description:
-                    "The new value. If ommited, the value is read from STDIN",
+                    "The new value. If omitted, the value is read from STDIN",
                 },
               ],
               options: [
@@ -10876,7 +10876,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "role",
                 suggestions: [
-                  { name: "adminstrator" },
+                  { name: "administrator" },
                   { name: "editor" },
                   { name: "author" },
                   { name: "contributor" },

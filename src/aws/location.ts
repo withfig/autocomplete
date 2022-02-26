@@ -1473,7 +1473,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "An optional paramer. The maximum number of results returned per request.  Default value: 50",
+            "An optional parameter. The maximum number of results returned per request.  Default value: 50",
           args: {
             name: "integer",
           },

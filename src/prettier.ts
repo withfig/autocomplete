@@ -278,7 +278,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-u", "--ignore-unkown"],
+      name: ["-u", "--ignore-unknown"],
       description: "Ignore unknown files",
     },
     {

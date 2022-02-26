@@ -479,7 +479,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--show-occurrences-from",
                   description:
-                    "The number of the most recent images for which to summarize Occurences",
+                    "The number of the most recent images for which to summarize Occurrences",
                   args: {
                     name: "SHOW_OCCURRENCES_FROM",
                     description: "Int",

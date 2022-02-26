@@ -112,7 +112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--githubBranch",
           description:
-            "The GitHub branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+            "The GitHub branch used to infer relative links in README.md. Can be overridden by --baseContentUrl and --baseImagesUrl",
           args: {
             name: "branch",
             generators: gitGenerators.remoteLocalBranches,
@@ -121,7 +121,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gitlabBranch",
           description:
-            "The GitLab branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+            "The GitLab branch used to infer relative links in README.md. Can be overridden by --baseContentUrl and --baseImagesUrl",
           args: {
             name: "branch",
             generators: gitGenerators.remoteLocalBranches,
@@ -234,7 +234,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--githubBranch",
           description:
-            "The GitHub branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+            "The GitHub branch used to infer relative links in README.md. Can be overridden by --baseContentUrl and --baseImagesUrl",
           args: {
             name: "branch",
             generators: gitGenerators.remoteLocalBranches,
@@ -243,7 +243,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--gitlabBranch",
           description:
-            "The GitLab branch used to infer relative links in README.md. Can be overriden by --baseContentUrl and --baseImagesUrl",
+            "The GitLab branch used to infer relative links in README.md. Can be overridden by --baseContentUrl and --baseImagesUrl",
           args: {
             name: "branch",
             generators: gitGenerators.remoteLocalBranches,

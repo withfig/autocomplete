@@ -2036,7 +2036,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-publishing-destinations",
       description:
-        "Returns a list of publishing destinations associated with the specified dectectorId",
+        "Returns a list of publishing destinations associated with the specified detectorId",
       options: [
         {
           name: "--detector-id",

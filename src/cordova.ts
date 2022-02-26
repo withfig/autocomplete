@@ -345,7 +345,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--buildConfig",
           description:
-            "Use the specified build configuration file. build.json file is used to specify paramaters to customize the app build process especially related to signing the package",
+            "Use the specified build configuration file. build.json file is used to specify parameters to customize the app build process especially related to signing the package",
           args: {
             template: ["filepaths", "folders"],
           },
@@ -385,7 +385,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--buildConfig",
           description:
-            "Use the specified build configuration file. build.json file is used to specify paramaters to customize the app build process especially related to signing the package",
+            "Use the specified build configuration file. build.json file is used to specify parameters to customize the app build process especially related to signing the package",
           args: {
             template: ["filepaths", "folders"],
           },
@@ -459,7 +459,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--buildConfig",
           description:
-            "Use the specified build configuration file. build.json file is used to specify paramaters to customize the app build process especially related to signing the package",
+            "Use the specified build configuration file. build.json file is used to specify parameters to customize the app build process especially related to signing the package",
           args: {
             name: "configFile",
             template: "filepaths",

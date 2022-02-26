@@ -1729,7 +1729,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-results",
           description:
-            "The maxiumum number of results to return from the ListImagePackages request",
+            "The maximum number of results to return from the ListImagePackages request",
           args: {
             name: "integer",
           },

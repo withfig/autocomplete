@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
       {
         name: "mongodb://localhost:27017",
         description:
-          "Default Connection String; Equivalant to running mongosh without any commands",
+          "Default Connection String; Equivalent to running mongosh without any commands",
       },
       {
         name: "mongodb+srv://cluster0.example.mongodb.net/sample_geospatial",

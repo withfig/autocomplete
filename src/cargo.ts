@@ -66,23 +66,23 @@ const rustEditions: Fig.Suggestion[] = [
 const vcsOptions: Fig.Suggestion[] = [
   {
     name: "git",
-    description: "Initalize with Git",
+    description: "Initialize with Git",
   },
   {
     name: "hg",
-    description: "Initalize with Mercurial",
+    description: "Initialize with Mercurial",
   },
   {
     name: "pijul",
-    description: "Initalize with Pijul",
+    description: "Initialize with Pijul",
   },
   {
     name: "fossil",
-    description: "Initalize with Fossil",
+    description: "Initialize with Fossil",
   },
   {
     name: "none",
-    description: "Initalize with no VCS",
+    description: "Initialize with no VCS",
   },
 ];
 
@@ -1177,7 +1177,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--future-incompat-report",
           description:
-            "Ouputs a future incompatibility report at the end of the build",
+            "Outputs a future incompatibility report at the end of the build",
         },
       ],
     },

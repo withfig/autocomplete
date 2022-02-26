@@ -77,7 +77,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "List avaible aliases",
+          description: "List available aliases",
           options: [ghOptions.help],
         },
         {
@@ -1397,7 +1397,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["-v", "--visibilty"],
+              name: ["-v", "--visibility"],
               description:
                 "Set visibility for an organization secret: all, `private`, or `selected` (default 'private')",
               args: {

@@ -798,7 +798,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--only",
           description:
-            'Only show logs of specified, comma-seperated functions (e.g. "funcA,funcB")',
+            'Only show logs of specified, comma-separated functions (e.g. "funcA,funcB")',
           args: {},
         },
         {

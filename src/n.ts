@@ -31,9 +31,9 @@ const versionArg: Fig.Arg = {
       const versions = out.split("\n").slice(1);
       for (const version of versions) {
         set.add(version); // 16.1.2
-        const splitted = version.split(".");
-        set.add(splitted[0] + "." + splitted[1]); // 16.1
-        set.add(splitted[0]); // 16
+        const split = version.split(".");
+        set.add(split[0] + "." + split[1]); // 16.1
+        set.add(split[0]); // 16
       }
       return Array.from(set).map((version) => {
         return {
