@@ -297,6 +297,12 @@ const npmListOptions: Fig.Option[] = [
   ...workSpaceOptions,
 ];
 
+const registryOption: Fig.Option = {
+  name: "--registry",
+  description: "The base URL of the npm registry",
+  args: { name: "registry" },
+};
+
 const completionSpec: Fig.Spec = {
   name: "npm",
   parserDirectives: {
@@ -595,13 +601,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "deprecate",
       description: "Deprecate a version of a package",
-      options: [
-        {
-          name: "--registry",
-          description: "The base URL of the npm registry",
-          args: { name: "registry" },
-        },
-      ],
+      options: [registryOption],
     },
     { name: "dist-tag", description: "Modify package distribution tags" },
     { name: "docs", description: "Docs for a package in a web browser maybe" },
@@ -669,7 +669,11 @@ const completionSpec: Fig.Spec = {
     },
     { name: "owner", description: "Manage package owners" },
     { name: "pack", description: "Create a tarball from a package" },
-    { name: "ping", description: "Ping npm registry" },
+    {
+      name: "ping",
+      description: "Ping npm registry",
+      options: [registryOption],
+    },
     {
       name: "prefix",
       description: "Display prefix",
@@ -894,9 +898,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "whoami",
       description: "Display npm username",
-      options: [
-        { name: "--registry", description: "The base URL of the npm registry" },
-      ],
+      options: [registryOption],
     },
   ],
 };
