@@ -783,26 +783,11 @@ const completionSpec: Fig.Spec = {
     },
     { name: "stop", description: "Stop a package" },
     {
-      name: "t",
-      description: "Test a package",
-      options: [
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
-        {
-          name: "--script-shell",
-          args: { name: "shell" },
-        },
-      ],
-    },
-    {
       name: "team",
       description: "Manage organization teams and team memberships",
     },
     {
-      name: "test",
+      name: ["test", "tst", "t"],
       description: "Test a package",
       options: [
         {
@@ -812,12 +797,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--script-shell",
+          description:
+            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
           args: { name: "shell" },
         },
       ],
     },
     { name: "token", description: "Manage your authentication tokens" },
-    { name: "tst", description: "Test a package" },
     uninstallSubcommand("uninstall"),
     uninstallSubcommand("remove"),
     uninstallSubcommand(["r", "rm"]),
