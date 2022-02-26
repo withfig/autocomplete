@@ -495,7 +495,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-f", "--force"],
-          description: "Skips confirmation. Useful for running programmatically",
+          description:
+            "Skips confirmation. Useful for running programmatically",
           isDangerous: true,
         },
         debugFlag,
