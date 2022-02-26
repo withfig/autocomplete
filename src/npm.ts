@@ -905,7 +905,13 @@ const completionSpec: Fig.Spec = {
         { name: "--json", description: "Show output in json format" },
       ],
     },
-    { name: "whoami", description: "Display npm username" },
+    {
+      name: "whoami",
+      description: "Display npm username",
+      options: [
+        { name: "--registry", description: "The base URL of the npm registry" },
+      ],
+    },
   ],
 };
 
