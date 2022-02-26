@@ -826,9 +826,8 @@ const completionSpec: Fig.Spec = {
     uninstallSubcommand("unlink"),
     { name: "unpublish", description: "Remove a package from the registry" },
     { name: "unstar", description: "Unmark your package" },
-    { name: "up", description: "Check the latest version of dependencies" },
     {
-      name: "update",
+      name: ["update", "upgrade", "up"],
       description: "Update a package",
       options: [
         { name: "-g", description: "Update global package" },
@@ -894,6 +893,7 @@ const completionSpec: Fig.Spec = {
       description: "Bump a package version",
       options: [
         ...workSpaceOptions,
+        { name: "--json", description: "Show output in json format" },
         { name: "--json", description: "Show output in json format" },
       ],
     },
