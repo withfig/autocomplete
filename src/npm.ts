@@ -210,7 +210,7 @@ export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
 
 const workSpaceOptions: Fig.Option[] = [
   {
-    name: "-wl--workspace",
+    name: ["-w", "--workspace"],
     description:
       "Enable running a command in the context of the configured workspaces of the current project",
     args: {
@@ -220,7 +220,7 @@ const workSpaceOptions: Fig.Option[] = [
     },
   },
   {
-    name: "-wsl--workspaces",
+    name: ["-ws", "--workspaces"],
     description:
       "Enable running a command in the context of all the configured workspaces",
   },
