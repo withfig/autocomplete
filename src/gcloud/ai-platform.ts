@@ -246,7 +246,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--summarize",
               description:
-                "Summarize job output in a set of human readable tables instead of\nrendering the entire resource as json or yaml. The tables currently rendered\nare:\n+\n* `Job Overview`: Overview of job including, jobId, status and create time.\n* `Training Input Summary`: Summary of input for a training job including\n   region, main training python module and scale tier.\n* `Training Output Summary`: Summary of output for a training job including\n   the amount of ML units consumed by the job.\n* `Training Output Trials`: Summary of hyperparameter trials run for a\n   hyperparameter tuning training job.\n* `Predict Input Summary`: Summary of input for a prediction job including\n   region, model verion and output path.\n* `Predict Output Summary`: Summary of output for a prediction job including\n   prediction count and output path.\n+\nThis flag overrides the `--format` flag. If\nboth are present on the command line, a warning is displayed",
+                "Summarize job output in a set of human readable tables instead of\nrendering the entire resource as json or yaml. The tables currently rendered\nare:\n+\n* `Job Overview`: Overview of job including, jobId, status and create time.\n* `Training Input Summary`: Summary of input for a training job including\n   region, main training python module and scale tier.\n* `Training Output Summary`: Summary of output for a training job including\n   the amount of ML units consumed by the job.\n* `Training Output Trials`: Summary of hyperparameter trials run for a\n   hyperparameter tuning training job.\n* `Predict Input Summary`: Summary of input for a prediction job including\n   region, model version and output path.\n* `Predict Output Summary`: Summary of output for a prediction job including\n   prediction count and output path.\n+\nThis flag overrides the `--format` flag. If\nboth are present on the command line, a warning is displayed",
             },
             {
               name: "--trace-token",
@@ -1206,7 +1206,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--service-account",
                   description:
-                    "The email address of a service account to use when running the\ntraining appplication. You must have the `iam.serviceAccounts.actAs`\npermission for the specified service account. In addition, the AI Platform\nTraining Google-managed service account must have the\n`roles/iam.serviceAccountAdmin` role for the specified service account.\n[Learn more about configuring a service\naccount.](/ai-platform/training/docs/custom-service-account)\nIf not specified, the AI Platform Training Google-managed service account\nis used by default",
+                    "The email address of a service account to use when running the\ntraining application. You must have the `iam.serviceAccounts.actAs`\npermission for the specified service account. In addition, the AI Platform\nTraining Google-managed service account must have the\n`roles/iam.serviceAccountAdmin` role for the specified service account.\n[Learn more about configuring a service\naccount.](/ai-platform/training/docs/custom-service-account)\nIf not specified, the AI Platform Training Google-managed service account\nis used by default",
                   args: {
                     name: "SERVICE_ACCOUNT",
                     description: "Googlecloudsdk.calliope.arg_parsers:Parse",

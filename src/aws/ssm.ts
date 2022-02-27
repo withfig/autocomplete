@@ -4847,7 +4847,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--path",
           description:
-            "The hierarchy for the parameter. Hierarchies start with a forward slash (/). The hierachy is the parameter name except the last part of the parameter. For the API call to succeeed, the last part of the parameter name cannot be in the path. A parameter name hierarchy can have a maximum of 15 levels. Here is an example of a hierarchy: /Finance/Prod/IAD/WinServ2016/license33",
+            "The hierarchy for the parameter. Hierarchies start with a forward slash (/). The hierarchy is the parameter name except the last part of the parameter. For the API call to succeed, the last part of the parameter name cannot be in the path. A parameter name hierarchy can have a maximum of 15 levels. Here is an example of a hierarchy: /Finance/Prod/IAD/WinServ2016/license33",
           args: {
             name: "string",
           },
@@ -8367,7 +8367,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ops-metadata-arn",
           description:
-            "The Amazon Resoure Name (ARN) of the OpsMetadata Object to update",
+            "The Amazon Resource Name (ARN) of the OpsMetadata Object to update",
           args: {
             name: "string",
           },

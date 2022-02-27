@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--severity",
       description:
-        "The minumum severity of diagnostics to fix. Allowed values are info, warn, and error. The default value is warn",
+        "The minimum severity of diagnostics to fix. Allowed values are info, warn, and error. The default value is warn",
       args: {
         name: "severity",
         isOptional: true,

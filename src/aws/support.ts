@@ -300,12 +300,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--include-communications",
           description:
-            "Specifies whether to include communications in the DescribeCases response. By default, communications are incuded",
+            "Specifies whether to include communications in the DescribeCases response. By default, communications are included",
         },
         {
           name: "--no-include-communications",
           description:
-            "Specifies whether to include communications in the DescribeCases response. By default, communications are incuded",
+            "Specifies whether to include communications in the DescribeCases response. By default, communications are included",
         },
         {
           name: "--cli-input-json",

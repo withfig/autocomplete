@@ -353,7 +353,7 @@ const completionSpec: Fig.Spec = {
         ...globalOptions,
         {
           name: "--flatten",
-          description: "Fla thte git history of the repository to import",
+          description: "Flatten the git history of the repository to import",
         },
         {
           name: "--dest",
@@ -504,7 +504,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--create-release",
           description:
-            "Create an official release based on the changes pacakges",
+            "Create an official release based on the changes packages",
           args: {
             name: "type",
             suggestions: [
@@ -583,7 +583,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-commit-hooks",
-          description: "Disable runing git commit hooks",
+          description: "Disable running git commit hooks",
         },
         {
           name: "--no-git-tag-version",

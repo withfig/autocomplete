@@ -3659,7 +3659,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TABLES",
             description:
-              "The table names or name patterns to delete, where `?` matches any character and ```*``` matches any string of zero or more characters. If omitted then the entired cache is deleted",
+              "The table names or name patterns to delete, where `?` matches any character and ```*``` matches any string of zero or more characters. If omitted then the entire cache is deleted",
             isVariadic: false,
           },
         },
@@ -5378,7 +5378,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--completions",
           description:
-            "Write the static TAB completion data on the standard output. The\ndata is a shell script containing variable definitons of the\nform ```_SC_{COMMAND.PATH}``` for each dotted command path",
+            "Write the static TAB completion data on the standard output. The\ndata is a shell script containing variable definitions of the\nform ```_SC_{COMMAND.PATH}``` for each dotted command path",
         },
         {
           name: "--configuration",

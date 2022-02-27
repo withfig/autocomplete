@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
       description: "Whitelist only certain template types",
       name: "--formats",
       args: {
-        name: "Template Names Seperated by ,",
+        name: "Template Names Separated by ,",
         suggestions: ["md", "html", "ejs"],
       },
     },

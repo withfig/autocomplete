@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--num-results",
-          description: "The number of recommendations to retreive",
+          description: "The number of recommendations to retrieve",
           args: {
             name: "integer",
           },

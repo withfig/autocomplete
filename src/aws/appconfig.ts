@@ -729,7 +729,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--environment-id",
-          description: "The ID of the environment you wnat to get",
+          description: "The ID of the environment you want to get",
           args: {
             name: "string",
           },

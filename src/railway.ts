@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "link",
-      description: "Connect to an exisiting railway project",
+      description: "Connect to an existing railway project",
       args: {
         name: "project-id",
         description: "The project to link to",

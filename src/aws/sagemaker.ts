@@ -2318,7 +2318,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-monitoring-schedule",
       description:
-        "Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor the data captured for an Amazon SageMaker Endoint",
+        "Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor the data captured for an Amazon SageMaker Endpoint",
       options: [
         {
           name: "--monitoring-schedule-name",
@@ -4722,7 +4722,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete-workforce",
       description:
-        "Use this operation to delete a workforce. If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.  If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will recieve a ResourceInUse error",
+        "Use this operation to delete a workforce. If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.  If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will receive a ResourceInUse error",
       options: [
         {
           name: "--workforce-name",
@@ -12247,7 +12247,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-model-package-group-policy",
       description:
-        "Adds a resouce policy to control access to a model group. For information about resoure policies, see Identity-based policies and resource-based policies in the AWS Identity and Access Management User Guide",
+        "Adds a resource policy to control access to a model group. For information about resource policies, see Identity-based policies and resource-based policies in the AWS Identity and Access Management User Guide",
       options: [
         {
           name: "--model-package-group-name",

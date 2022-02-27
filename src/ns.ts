@@ -89,7 +89,7 @@ const helpOption = (label: string): Fig.Option => {
 };
 
 /**
- * Plaform options used across many commands of the CLI
+ * Platform options used across many commands of the CLI
  */
 const androidGeneralOptions: Fig.Option[] = [
   {

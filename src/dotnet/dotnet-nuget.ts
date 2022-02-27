@@ -627,7 +627,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Hash algorithm to be used by the RFC 3161 timestamp server. Defaults to SHA256",
           args: {
-            name: "algoritm",
+            name: "algorithm",
             suggestions: ["SHA256"],
           },
         },
