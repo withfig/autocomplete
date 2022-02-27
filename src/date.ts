@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
         "Print the date and time represented by the specified number of seconds since the Epoch",
       args: {
         name: "seconds",
-        descrption:
+        description:
           "Number of seconds since the Epoch (00:00:00 UTC, January 1, 1970).",
       },
     },
@@ -65,7 +65,7 @@ const completionSpec: Fig.Spec = {
         "Adjust and print (but don't set) the second, minute, hour, month day, week day, month, or year according to val",
       args: {
         name: "val",
-        descrption: "[+|-]val[ymwdHMS]",
+        description: "[+|-]val[ymwdHMS]",
       },
     },
   ],
