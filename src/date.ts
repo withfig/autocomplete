@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "seconds",
         description:
-          "Number of seconds since the Epoch (00:00:00 UTC, January 1, 1970).",
+          "Number of seconds since the Epoch (00:00:00 UTC, January 1, 1970)",
       },
     },
     {
