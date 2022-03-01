@@ -17,7 +17,7 @@ const completionSpec: Fig.Spec = {
   description: "A modern and intuitive terminal-based text editor",
   subcommands: [
     {
-      name: "-plugin",
+      name: "--plugin",
       description: "Manage plugins",
       options: [
         {
