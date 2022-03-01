@@ -1,13 +1,13 @@
 const boolArgDefaultFalse: Fig.Arg = {
   name: "bool",
-  description: "True/false",
+  description: "true/false",
   default: "false",
   suggestions: ["true", "false"],
 };
 
 const boolArgDefaultTrue: Fig.Arg = {
   name: "bool",
-  description: "True/false",
+  description: "true/false",
   default: "true",
   suggestions: ["true", "false"],
 };
@@ -42,7 +42,6 @@ const completionSpec: Fig.Spec = {
           description: "Search for a plugin",
           args: {
             name: "plugin",
-            isVariadic: false,
           },
         },
         {
@@ -66,7 +65,6 @@ const completionSpec: Fig.Spec = {
       description: "Specify a custom location for the configuration directory",
       args: {
         name: "dir",
-        isVariadic: false,
       },
     },
     {
