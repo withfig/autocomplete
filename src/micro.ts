@@ -1,13 +1,13 @@
 const boolArgDefaultFalse: Fig.Arg = {
   name: "bool",
-  description: "true/false",
+  description: "True/false",
   default: "false",
   suggestions: ["true", "false"],
 };
 
 const boolArgDefaultTrue: Fig.Arg = {
   name: "bool",
-  description: "true/false",
+  description: "True/false",
   default: "true",
   suggestions: ["true", "false"],
 };
