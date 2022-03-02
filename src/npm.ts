@@ -657,7 +657,16 @@ const completionSpec: Fig.Spec = {
       description: "Check your environment",
       options: [registryOption],
     },
-    { name: "edit", description: "Edit an installed package" },
+    {
+      name: "edit",
+      description: "Edit an installed package",
+      options: [
+        {
+          name: "--editor",
+          description: "The command to run for npm edit or npm config edit",
+        },
+      ],
+    },
     {
       name: "explore",
       description: "Browse an installed package",
