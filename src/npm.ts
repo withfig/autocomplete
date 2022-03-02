@@ -542,7 +542,16 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "add",
-          args: { name: "Add the specified packages to the local cache" },
+          description: "Add the specified packages to the local cache",
+        },
+        {
+          name: "clean",
+          description: "Delete all data out of the cache folder",
+        },
+        {
+          name: "verify",
+          description:
+            "Verify the contents of the cache folder, garbage collecting any unneeded data, and verifying the integrity of the cache index and all cached data",
         },
       ],
       options: [
