@@ -303,6 +303,12 @@ const registryOption: Fig.Option = {
   args: { name: "registry" },
 };
 
+const ignoreScriptsOption: Fig.Option = {
+  name: "--ignore-scripts",
+  description:
+    "If true, npm does not run scripts specified in package.json files",
+};
+
 const completionSpec: Fig.Spec = {
   name: "npm",
   parserDirectives: {
@@ -387,11 +393,7 @@ const completionSpec: Fig.Spec = {
             suggestions: ["dev", "optional", "peer"],
           },
         },
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--no-audit",
           description:
@@ -429,10 +431,7 @@ const completionSpec: Fig.Spec = {
           name: "--silent",
           description: "",
         },
-        {
-          name: "--ignore-scripts",
-          description: "",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
           args: { name: "shell" },
@@ -580,11 +579,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Do not submit audit reports alongside the current npm command",
         },
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
           description:
@@ -824,11 +819,7 @@ const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start a package",
       options: [
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
           args: { name: "shell" },
@@ -844,11 +835,7 @@ const completionSpec: Fig.Spec = {
       name: ["test", "tst", "t"],
       description: "Test a package",
       options: [
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
           description:
@@ -900,11 +887,7 @@ const completionSpec: Fig.Spec = {
             suggestions: ["dev", "optional", "peer"],
           },
         },
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--no-audit",
           description:
