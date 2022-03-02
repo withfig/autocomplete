@@ -1,3 +1,21 @@
+const smartFolderGenerator: Fig.Generator = {
+  // `mdfind -s` only accepts smart folders in ~/Library/Saved\ Searches/
+  script: `ls -1A ~/Library/Saved\\ Searches/*.savedSearch | xargs -I '{}' echo {}`,
+  postProcess: function (files) {
+    return files.split("\n").map((path) => {
+      const components = path.split("/");
+      const filename = components[components.length - 1];
+      return {
+        name: filename.substring(0, filename.indexOf(".")), // .savedSearch automatically added to the query, so remove it
+        displayName: filename,
+        icon: "fig://" + path,
+        description: "Smart folder",
+      };
+    });
+  },
+  trigger: "/",
+};
+
 const completionSpec: Fig.Spec = {
   name: "mdfind",
   description: "Finds files matching a given query",
@@ -45,11 +63,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-s",
-      description: "Show contents of smart folder <folder>",
+      description:
+        "Show contents of smart folder ~/Library/Saved Searches/<folder>.savedSearch",
       args: {
         name: "folder",
-        description: "Smart folder",
-        template: "folders", // should ideally be a generator that only shows smart folders
+        description: "Smart folder in  ~/Library/Saved Searches",
+        generators: smartFolderGenerator,
       },
     },
     {
