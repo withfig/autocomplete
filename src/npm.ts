@@ -208,6 +208,12 @@ export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
   },
 };
 
+const globalOption: Fig.Option = {
+  name: ["-g", "--global"],
+  description:
+    "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: ["-w", "--workspace"],
@@ -280,11 +286,7 @@ const npmListOptions: Fig.Option[] = [
     name: "--no-unicode",
     description: "Uses unicode characters in the tree output",
   },
-  {
-    name: ["-g", "--global"],
-    description:
-      "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
-  },
+  globalOption,
   {
     name: "--omit",
     description: "Dependency types to omit from the installation tree on disk",
@@ -354,11 +356,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Saved dependencies will also be added to your bundleDependencies list",
         },
-        {
-          name: ["-g", "--global"],
-          description:
-            "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
-        },
+        globalOption,
         {
           name: "--global-style",
           description:
@@ -518,13 +516,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "bin",
       description: "Print the folder where npm will install executables",
-      options: [
-        {
-          name: ["-g", "--global"],
-          description:
-            'Operates in "global" mode, so that packages are installed into the prefix folder instead of the current working directory',
-        },
-      ],
+      options: [globalOption],
     },
     {
       name: ["bugs", "issues"],
