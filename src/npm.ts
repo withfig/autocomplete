@@ -516,8 +516,25 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "bugs",
-      description: "Show the bugs that might exist for a package",
+      name: ["bugs", "issues"],
+      description: "Report bugs for a package in a web browser",
+      args: {
+        name: "pkgname",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "--no-browser",
+          description: "Display in command line instead of browser",
+        },
+        {
+          name: "--browser",
+          description:
+            "The browser that is called by the npm bugs command to open websites",
+          args: { name: "browser" },
+        },
+        registryOption,
+      ],
     },
     { name: "c", description: "Manage the npm configuration files" },
     {
