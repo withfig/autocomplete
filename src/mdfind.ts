@@ -1,6 +1,6 @@
 const smartFolderGenerator: Fig.Generator = {
   // `mdfind -s` only accepts smart folders in ~/Library/Saved\ Searches/
-  script: `ls -1A ~/Library/Saved\\ Searches/*.savedSearch | xargs -I '{}' echo {}`,
+  script: `ls -1A ~/Library/Saved\\ Searches/*.savedSearch`,
   postProcess: function (files) {
     return files.split("\n").map((path) => {
       const components = path.split("/");
