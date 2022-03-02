@@ -467,6 +467,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "audit",
       description: "Run a security audit",
+      args: {
+        name: "fix",
+        description:
+          "If the fix argument is provided, then remediations will be applied to the package tree",
+        suggestions: [
+          {
+            name: "fix",
+            description:
+              "If the fix argument is provided, then remediations will be applied to the package tree",
+          },
+        ],
+      },
       options: [
         ...workSpaceOptions,
         {
