@@ -536,7 +536,6 @@ const completionSpec: Fig.Spec = {
         registryOption,
       ],
     },
-    { name: "c", description: "Manage the npm configuration files" },
     {
       name: "cache",
       description: "Manipulates packages cache",
@@ -569,7 +568,7 @@ const completionSpec: Fig.Spec = {
     },
     { name: "completion", description: "Tab completion for npm" },
     {
-      name: "config",
+      name: ["config", "c"],
       description: "Manage the npm configuration files",
       subcommands: [
         {
