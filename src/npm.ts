@@ -506,12 +506,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "bin",
-      description: "Display npm bin folder",
+      description: "Print the folder where npm will install executables",
       options: [
         {
-          name: "-g",
+          name: ["-g", "--global"],
           description:
-            "Print the global folder where npm will install executables",
+            'Operates in "global" mode, so that packages are installed into the prefix folder instead of the current working directory',
         },
       ],
     },
