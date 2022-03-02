@@ -89,7 +89,7 @@ export const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
 };
 
 export const subsystemsGenerator: Fig.Generator = {
-  script: "ls ~/.fig/logs",
+  script: "\\ls ~/.fig/logs",
   trigger: (curr, prev) => {
     // trigger on new token
     return curr.length == 0 && prev.length > 0;
@@ -99,16 +99,17 @@ export const subsystemsGenerator: Fig.Generator = {
     const insertedLogFiles = tokens.slice(pivot);
     return out
       .split("\n")
-      .map((log) => {
-        return { name: log.replace(".log", "") };
-      })
+      .map((log) => ({
+        name: log.replace(".log", ""),
+        icon: "🪵",
+      }))
       .filter((suggestion) => !insertedLogFiles.includes(suggestion.name));
   },
 };
 
 export const settingsSpecGenerator = async (_, executeShellCommand) => {
   const settings: Settings[] = JSON.parse(
-    await executeShellCommand(`\cat ${SETTINGS_PATH}`)
+    await executeShellCommand(`\\cat ${SETTINGS_PATH}`)
   );
 
   return {

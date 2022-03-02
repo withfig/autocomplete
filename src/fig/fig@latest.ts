@@ -3,525 +3,657 @@ import {
   subsystemsGenerator,
   themesGenerator,
 } from "./shared";
-const completionSpec: Fig.Spec = {
+const completion: Fig.Spec = {
   name: "fig",
-  description: "CLI to interact with Fig",
+  description: "The CLI for Fig",
   subcommands: [
     {
-      name: "alpha",
-      description: "Open dotfiles",
+      name: "install",
+      description: "Install dotfiles",
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for alpha",
-          displayName: "help",
+          name: "--daemon",
+          description: "Install only the daemon",
+        },
+        {
+          name: "--dotfiles",
+          description: "Install only the dotfiles",
+        },
+        {
+          name: "--no-confirm",
+          description: "Don't confirm automatic installation",
+        },
+        {
+          name: "--force",
+          description: "Force installation of the dotfiles",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
       name: "app",
-      description: "Interact with the macOS app",
+      description: "Interact with the desktop app",
       subcommands: [
         {
           name: "install",
-          description: "Install and upgrade fig",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for install",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "onboarding",
-          description: "Run through onboarding process",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for onboarding",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "running",
-          description: "Gets the status if Fig is running",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for running",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "launch",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "restart",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "quit",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "set-path",
-          description: "Set the path to the fig executable",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for set-path",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "uninstall",
-          description: "Uninstall Fig",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for uninstall",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
+        {
+          name: "prompts",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
       ],
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for app",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
-      name: "community",
-      description: "Join the Fig community",
-      icon: "fig://icon?type=discord",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for community",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "completion",
-      description: "Generate the autocompletion script for the specified shell",
+      name: "hook",
+      description: "Hook commands",
       subcommands: [
         {
-          name: "bash",
-          description: "Generate the autocompletion script for bash",
+          name: "editbuffer",
           options: [
             {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-              displayName: "no-descriptions",
+              name: "--version",
+              description: "Print version information",
             },
             {
-              name: ["--help", "-h"],
-              description: "Help for bash",
-              displayName: "help",
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "session-id",
+            },
+            {
+              name: "integration",
+            },
+            {
+              name: "tty",
+            },
+            {
+              name: "pid",
+            },
+            {
+              name: "histno",
+            },
+            {
+              name: "cursor",
+            },
+            {
+              name: "text",
             },
           ],
         },
         {
-          name: "fish",
-          description: "Generate the autocompletion script for fish",
+          name: "event",
           options: [
             {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-              displayName: "no-descriptions",
+              name: "--version",
+              description: "Print version information",
             },
             {
-              name: ["--help", "-h"],
-              description: "Help for fish",
-              displayName: "help",
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "event-name",
+          },
+        },
+        {
+          name: "hide",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
-          name: "powershell",
-          description: "Generate the autocompletion script for powershell",
+          name: "init",
           options: [
             {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-              displayName: "no-descriptions",
+              name: "--version",
+              description: "Print version information",
             },
             {
-              name: ["--help", "-h"],
-              description: "Help for powershell",
-              displayName: "help",
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "pid",
+            },
+            {
+              name: "tty",
             },
           ],
         },
         {
-          name: "zsh",
-          description: "Generate the autocompletion script for zsh",
+          name: "integration-ready",
           options: [
             {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-              displayName: "no-descriptions",
+              name: "--version",
+              description: "Print version information",
             },
             {
-              name: ["--help", "-h"],
-              description: "Help for zsh",
-              displayName: "help",
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
+          args: {
+            name: "integration",
+          },
+        },
+        {
+          name: "keyboard-focus-changed",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "app-identifier",
+            },
+            {
+              name: "focused-session-id",
+            },
+          ],
+        },
+        {
+          name: "pre-exec",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "pid",
+            },
+            {
+              name: "tty",
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "pid",
+            },
+            {
+              name: "tty",
+            },
+          ],
+        },
+        {
+          name: "ssh",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: "--prompt",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "pid",
+            },
+            {
+              name: "tty",
+            },
+            {
+              name: "control-path",
+            },
+            {
+              name: "remote-dest",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
         },
       ],
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for completion",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "contributors",
-      description: "Contribute to Fig CLI",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for contributors",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
       name: "debug",
-      description: "Debug",
+      description: "Debug Fig",
       subcommands: [
         {
           name: "app",
           description: "Debug fig app",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for app",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "build",
           description: "Switch build",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
           args: {
             name: "build",
-            suggestions: ["prod", "staging", "dev"],
+            suggestions: [
+              {
+                name: "dev",
+              },
+              {
+                name: "prod",
+              },
+              {
+                name: "staging",
+              },
+            ],
           },
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for build",
-              displayName: "help",
-            },
-          ],
         },
         {
-          name: "debug-mode",
-          description: "Toggle/set debug mode",
+          name: "autocomplete-window",
+          description: "Toggle/set autocomplete window debug mode",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for debug-mode",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
             },
-          ],
-        },
-        {
-          name: "diagnostic",
-          description: "Run diagnostic tests",
-          options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for diagnostic",
-              displayName: "help",
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
-        },
-        {
-          name: "dotfiles",
-          description: "Debug dotfiles",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for dotfiles",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "ime",
-          description: "Input Method",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for ime",
-              displayName: "help",
-            },
-          ],
+          args: {
+            name: "mode",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "on",
+              },
+              {
+                name: "off",
+              },
+            ],
+          },
         },
         {
           name: "logs",
-          description: "Debug fig logs",
+          description: "Show fig debug logs",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for logs",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
+          args: {
+            name: "files",
+            isOptional: true,
+            generators: subsystemsGenerator,
+          },
         },
         {
-          name: "perfs",
-          description: "Debug perfs",
+          name: "ime",
+          description: "Fig input method editor",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for perfs",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
+          args: {
+            name: "command",
+            suggestions: [
+              {
+                name: "install",
+              },
+              {
+                name: "uninstall",
+              },
+              {
+                name: "select",
+              },
+              {
+                name: "deselect",
+              },
+              {
+                name: "enable",
+              },
+              {
+                name: "disable",
+              },
+              {
+                name: "status",
+              },
+              {
+                name: "register",
+              },
+            ],
+          },
         },
         {
           name: "prompt-accessibility",
           description: "Prompt accessibility",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for prompt-accessibility",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "sample",
-          description: "Sample fig",
+          description: "Sample fig process",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for sample",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
             },
-          ],
-        },
-        {
-          name: "ssh",
-          description: "Debug ssh",
-          options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for ssh",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "terminal",
-          description: "Debug terminal",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for terminal",
-              displayName: "help",
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "unix-socket",
-          description: "Debug unix socket",
+          description: "Debug fig unix sockets",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for unix-socket",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
           name: "verify-codesign",
-          description: "Debug fig verify-codesign",
+          description: "Debug fig codesign verification",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for verify-codesign",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
-      ],
-      options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for debug",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "dev",
-      description: "Dev commands",
-      subcommands: [
-        {
-          name: "docs",
-          description: "Documentation for building completion specs",
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for docs",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
         },
       ],
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for dev",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
-    },
-    {
-      name: "diagnostic",
-      description: "Run diagnostic tests",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for diagnostic",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "docs",
-      description: "Documentation for building completion specs",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for docs",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "doctor",
-      description: "Check Fig is properly configured",
-      options: [
-        {
-          name: ["--verbose", "-v"],
-          description: "Show verbose output",
-          displayName: "verbose",
-        },
-        {
-          name: ["--help", "-h"],
-          description: "Help for doctor",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "integrations",
-      description: "Manage integrations",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for integrations",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "invite",
-      description: "Invite friends to Fig",
-      icon: "fig://icon?type=invite",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for invite",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "issue",
-      description: "Create a new GitHub issue",
-      icon: "fig://icon?type=github",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for issue",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "launch",
-      description: "Launch Fig",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for launch",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "logout",
-      description: "Logout of Fig",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for logout",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "onboarding",
-      description: "Run through onboarding process",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for onboarding",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "quit",
-      description: "Quit Fig",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for quit",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "restart",
-      description: "Restart Fig",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for restart",
-          displayName: "help",
-        },
-      ],
+      icon: "fig://template?badge=🐞",
     },
     {
       name: "settings",
       description: "Customize appearance & behavior",
-      generateSpec: settingsSpecGenerator,
       subcommands: [
+        {
+          name: "init",
+          description: "Reload the settings listener",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
         {
           name: "docs",
           description: "Get the settings documentation",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for docs",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
@@ -530,881 +662,645 @@ const completionSpec: Fig.Spec = {
           description: "Open the settings file",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for open",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
-      ],
-      options: [
         {
-          name: ["--delete", "-d"],
-          description: "Delete the key",
-          displayName: "delete",
-        },
-        {
-          name: ["--help", "-h"],
-          description: "Help for settings",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "source",
-      description: "Link with terminal session",
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for source",
-          displayName: "help",
-        },
-      ],
-    },
-    {
-      name: "specs",
-      description: "Manage your specs",
-      subcommands: [
-        {
-          name: "list",
-          description: "List autcomplete specs",
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for list",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
         },
       ],
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for specs",
-          displayName: "help",
+          name: ["-d", "--delete"],
+          description: "Delete",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: [
+        {
+          name: "key",
+          isOptional: true,
+        },
+        {
+          name: "value",
+          isOptional: true,
+        },
+      ],
+      generateSpec: settingsSpecGenerator,
+    },
+    {
+      name: "tips",
+      description: "Enable/disable fig tips",
+      subcommands: [
+        {
+          name: "enable",
+          description: "Enable fig tips",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          description: "Disable fig tips",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "uninstall",
+      description: "Uninstall dotfiles",
+      options: [
+        {
+          name: "--daemon",
+          description: "Uninstall only the daemon",
+        },
+        {
+          name: "--dotfiles",
+          description: "Uninstall only the dotfiles",
+        },
+        {
+          name: "--no-confirm",
+          description: "Don't confirm automatic removal",
+        },
+        {
+          name: "--binary",
+          description: "Uninstall only the binary",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "update",
+      description: "Update dotfiles",
+      options: [
+        {
+          name: ["-y", "--no-confirm"],
+          description: "Force update",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "daemon",
+      description: "Run the daemon",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "diagnostic",
+      description: "Run diagnostic tests",
+      options: [
+        {
+          name: ["-f", "--format"],
+          args: {
+            name: "format",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "plain",
+              },
+              {
+                name: "json",
+              },
+            ],
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "init",
+      description: "Generate the dotfiles for the given shell",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: [
+        {
+          name: "shell",
+          suggestions: [
+            {
+              name: "bash",
+              description: "Bash shell",
+            },
+            {
+              name: "zsh",
+              description: "Zsh shell",
+            },
+            {
+              name: "fish",
+              description: "Fish shell",
+            },
+          ],
+        },
+        {
+          name: "when",
+          suggestions: [
+            {
+              name: "pre",
+            },
+            {
+              name: "post",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "sync",
+      description: "Sync your latest dotfiles",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
       name: "theme",
-      description: "Get/Set theme",
+      description: "Get or set theme",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
       args: {
         name: "theme",
+        isOptional: true,
         generators: themesGenerator,
       },
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Help for theme",
-          displayName: "help",
-        },
-      ],
     },
     {
-      name: "tips",
-      description: "Enable/Disable Fig tips",
-      subcommands: [
-        {
-          name: "disable",
-          description: "Disable Fig Tips",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for disable",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "enable",
-          description: "Enable Fig Tips",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for enable",
-              displayName: "help",
-            },
-          ],
-        },
-      ],
+      name: "invite",
+      description: "Invite friends to Fig",
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for tips",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
       name: "tweet",
       description: "Tweet about Fig",
-      icon: "fig://icon?type=twitter",
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for tweet",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      icon: "fig://icon?type=twitter",
+    },
+    {
+      name: "issue",
+      description: "Create a new Github issue",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "description",
+        isOptional: true,
+      },
+      icon: "fig://icon?type=github",
+    },
+    {
+      name: "login",
+      description: "Login to dotfiles",
+      options: [
+        {
+          name: ["-r", "--refresh"],
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
-      name: "update",
-      description: "Update Fig",
+      name: "logout",
+      description: "Logout of dotfiles",
       options: [
         {
-          name: ["--force", "-f"],
-          description: "Force update",
-          displayName: "force",
-        },
-        {
-          name: ["--help", "-h"],
-          description: "Help for update",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
       name: "user",
-      description: "User commands",
-      subcommands: [
-        {
-          name: "logout",
-          description: "Logout of Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for logout",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "whoami",
-          description: "Get currently logged in user",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for whoami",
-              displayName: "help",
-            },
-          ],
-        },
-      ],
+      description: "Details about the current user",
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for user",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
     },
     {
-      name: "help",
-      description: "Help about any command",
+      name: "doctor",
+      description: "Check Fig is properly configured",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "plugins",
+      description: "Plugins management",
       subcommands: [
         {
-          name: "alpha",
-          description: "Open dotfiles",
-          subcommands: [
-            {
-              name: "source",
-              description: "Source dotfiles",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for source",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
+          name: "info",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for alpha",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-v", "--verbose"],
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Quiet",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin-file",
+          },
+        },
+        {
+          name: "add",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-l", "--local"],
+            },
+            {
+              name: ["-f", "--force"],
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+          },
+        },
+        {
+          name: "remove",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+          },
+        },
+        {
+          name: "list",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
-          name: "app",
-          description: "Interact with the macOS app",
-          subcommands: [
-            {
-              name: "install",
-              description: "Install and upgrade fig",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for install",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "onboarding",
-              description: "Run through onboarding process",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for onboarding",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "running",
-              description: "Gets the status if Fig is running",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for running",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "set-path",
-              description: "Set the path to the fig executable",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for set-path",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "uninstall",
-              description: "Uninstall Fig",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for uninstall",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
+          name: "test",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for app",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
         },
         {
-          name: "community",
-          description: "Join the Fig community",
-          icon: "fig://icon?type=discord",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for community",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "completion",
+          name: "help",
           description:
-            "Generate the autocompletion script for the specified shell",
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "generate-fig-spec",
+      description: "Generate the completion spec for Fig",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      hidden: true,
+    },
+    {
+      name: "internal",
+      subcommands: [
+        {
+          name: "prompt-dotfiles-changed",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "local-state",
           subcommands: [
             {
-              name: "bash",
-              description: "Generate the autocompletion script for bash",
+              name: "init",
+              description: "Reload the state listener",
               options: [
                 {
-                  name: "--no-descriptions",
-                  description: "Disable completion descriptions",
-                  displayName: "no-descriptions",
+                  name: "--help",
+                  description: "Print help information",
                 },
                 {
-                  name: ["--help", "-h"],
-                  description: "Help for bash",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "fish",
-              description: "Generate the autocompletion script for fish",
-              options: [
-                {
-                  name: "--no-descriptions",
-                  description: "Disable completion descriptions",
-                  displayName: "no-descriptions",
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for fish",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "powershell",
-              description: "Generate the autocompletion script for powershell",
-              options: [
-                {
-                  name: "--no-descriptions",
-                  description: "Disable completion descriptions",
-                  displayName: "no-descriptions",
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for powershell",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "zsh",
-              description: "Generate the autocompletion script for zsh",
-              options: [
-                {
-                  name: "--no-descriptions",
-                  description: "Disable completion descriptions",
-                  displayName: "no-descriptions",
-                },
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for zsh",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for completion",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "contributors",
-          description: "Contribute to Fig CLI",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for contributors",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "debug",
-          description: "Debug",
-          subcommands: [
-            {
-              name: "app",
-              description: "Debug fig app",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for app",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "build",
-              description: "Switch build",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for build",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "debug-mode",
-              description: "Toggle/set debug mode",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for debug-mode",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "diagnostic",
-              description: "Run diagnostic tests",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for diagnostic",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "dotfiles",
-              description: "Debug dotfiles",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for dotfiles",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "ime",
-              description: "Input Method",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ime",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "logs",
-              description: "Debug fig logs",
-              icon: "🪵",
-              args: {
-                name: "subsystem",
-                isOptional: true,
-                isVariadic: true,
-                generators: subsystemsGenerator,
-              },
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for logs",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "perfs",
-              description: "Debug perfs",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for perfs",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "prompt-accessibility",
-              description: "Prompt accessibility",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for prompt-accessibility",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "sample",
-              description: "Sample fig",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for sample",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "ssh",
-              description: "Debug ssh",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for ssh",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "terminal",
-              description: "Debug terminal",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for terminal",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "unix-socket",
-              description: "Debug unix socket",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for unix-socket",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "verify-codesign",
-              description: "Debug fig verify-codesign",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for verify-codesign",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for debug",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "dev",
-          description: "Dev commands",
-          subcommands: [
-            {
-              name: "docs",
-              description: "Documentation for building completion specs",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for docs",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for dev",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "diagnostic",
-          description: "Run diagnostic tests",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for diagnostic",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "docs",
-          description: "Documentation for building completion specs",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for docs",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "doctor",
-          description: "Check Fig is properly configured",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for doctor",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "integrations",
-          description: "Manage integrations",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for integrations",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "invite",
-          description: "Invite friends to Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for invite",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "issue",
-          description: "Create a new GitHub issue",
-          icon: "fig://icon?type=github",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for issue",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "launch",
-          description: "Launch Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for launch",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "logout",
-          description: "Logout of Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for logout",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "onboarding",
-          description: "Run through onboarding process",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for onboarding",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "quit",
-          description: "Quit Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for quit",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "restart",
-          description: "Restart Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for restart",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "settings",
-          description: "Customize appearance & behavior",
-          subcommands: [
-            {
-              name: "docs",
-              description: "Get the settings documentation",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for docs",
-                  displayName: "help",
+                  name: "--version",
+                  description: "Print version information",
                 },
               ],
             },
             {
               name: "open",
-              description: "Open the settings file",
+              description: "Open the state file",
               options: [
                 {
-                  name: ["--help", "-h"],
-                  description: "Help for open",
-                  displayName: "help",
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
                 },
               ],
             },
           ],
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for settings",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-d", "--delete"],
+              description: "Delete",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "key",
+              isOptional: true,
+            },
+            {
+              name: "value",
+              isOptional: true,
             },
           ],
         },
         {
-          name: "source",
-          description: "Link with terminal session",
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
           options: [
             {
-              name: ["--help", "-h"],
-              description: "Help for source",
-              displayName: "help",
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
             },
           ],
-        },
-        {
-          name: "specs",
-          description: "Manage your specs",
-          subcommands: [
-            {
-              name: "list",
-              description: "List autcomplete specs",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for list",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for specs",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "theme",
-          description: "Get/Set theme",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for theme",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "tips",
-          description: "Enable/Disable Fig tips",
-          subcommands: [
-            {
-              name: "disable",
-              description: "Disable Fig Tips",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for disable",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "enable",
-              description: "Enable Fig Tips",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for enable",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for tips",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "tweet",
-          description: "Tweet about Fig",
-          icon: "fig://icon?type=twitter",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for tweet",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "update",
-          description: "Update Fig",
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for update",
-              displayName: "help",
-            },
-          ],
-        },
-        {
-          name: "user",
-          description: "User commands",
-          subcommands: [
-            {
-              name: "logout",
-              description: "Logout of Fig",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for logout",
-                  displayName: "help",
-                },
-              ],
-            },
-            {
-              name: "whoami",
-              description: "Get currently logged in user",
-              options: [
-                {
-                  name: ["--help", "-h"],
-                  description: "Help for whoami",
-                  displayName: "help",
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: ["--help", "-h"],
-              description: "Help for user",
-              displayName: "help",
-            },
-          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
         },
       ],
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Help for help",
-          displayName: "help",
+          name: ["-h", "--help"],
+          description: "Print help information",
         },
       ],
+    },
+    {
+      name: "launch",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "quit",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "restart",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "alpha",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "help",
+      description: "Print this message or the help of the given subcommand(s)",
+
+      args: {
+        name: "subcommand",
+        isOptional: true,
+      },
     },
   ],
   options: [
     {
-      name: ["--help", "-h"],
-      description: "Help for fig",
-      displayName: "help",
+      name: ["-h", "--help"],
+      description: "Print help information",
+    },
+    {
+      name: ["-V", "--version"],
+      description: "Print version information",
     },
   ],
 };
-export default completionSpec;
+export default completion;
