@@ -1,7 +1,8 @@
 const completionSpec: Fig.Spec = {
   name: "cf",
   description: "",
-  subcommands: [{
+  subcommands: [
+  {
     name: "app",
     description: "Display health and status for app",
     args: {
@@ -77,6 +78,43 @@ const completionSpec: Fig.Spec = {
   {
     name: "login",
     description: "Log user in",
+    options: [
+      {
+        name: "-a",
+        description: "API endpoint (e.g. https://api.example.com)",
+        args: {
+          name: "API endpoint"
+        }
+      },
+      {
+        name: "-o",
+        description: "Org",
+        args: {
+          name: "Org"
+        }
+      },
+      {
+        name: "-s",
+        description: "Space",
+        args: {
+          name: "Space"
+        }
+      },
+      {
+        name: "-p",
+        description: "Password",
+        args: {
+          name: "Password"
+        }
+      },
+      {
+        name: "-u",
+        description: "Username",
+        args: {
+          name: "Username"
+        }
+      },
+    ]
   },
   {
     name: "logout",
@@ -89,6 +127,22 @@ const completionSpec: Fig.Spec = {
   {
     name: "target",
     description: "Set or view the targeted org or space",
+    options: [
+      {
+        name: "-o",
+        description: "Org",
+        args: {
+          name: "Org"
+        }
+      },
+      {
+        name: "-s",
+        description: "Space",
+        args: {
+          name: "Space",
+        }
+      },
+    ]
   },
   {
     name: "api",
@@ -105,6 +159,72 @@ const completionSpec: Fig.Spec = {
   {
     name: "push",
     description: "Push a new app or sync changes to an existing app",
+    options: [
+      {
+        name: "-b",
+        description: "Custom buildpack by name or git url",
+        args: {
+          name: "Buildpack"
+        }
+      },
+      {
+        name: "-c",
+        description: "Startup command, set to null to reset to default start command",
+        args: {
+          name: "Command",
+          isOptional: true,
+        }
+      },
+      {
+        name: "-d",
+        description: "Domain",
+        args: {
+          name: "Domain",
+        }
+      },
+      {
+        name: ["-o", "--docker-image"],
+        description: "Docker image",
+        args: {
+          name: "Docker image",
+        }
+      },
+      {
+        name: "-f",
+        description: "Path to manifest",
+        args: {
+          name: "Path to manifest",
+        }
+      },
+      {
+        name: ["-n", "--host-name"],
+        description: "Hostname",
+        args: {
+          name: "Hostname",
+        }
+      },
+      {
+        name: "-i",
+        description: "Number of instances",
+        args: {
+          name: "Number of instances",
+        }
+      },
+      {
+        name: "-k",
+        description: "Disk limit",
+        args: {
+          name: "Disk limit",
+        }
+      },
+      {
+        name: "-m",
+        description: "Memory limit",
+        args: {
+          name: "Memory limit",
+        }
+      },
+    ]
   },
   {
     name: "scale",
