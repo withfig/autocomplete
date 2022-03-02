@@ -18,6 +18,7 @@ const completionSpec: Fig.Spec = {
         generators: {
           script: "bat --list-languages",
           postProcess: function (out) {
+            // unpack 2-dimension array
             return out
               .split("\n")
               .map((outLine) => {
