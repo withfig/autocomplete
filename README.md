@@ -22,39 +22,31 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 <br/>
 
 ## ⚡️ Installation
-##### With [Homebrew](https://brew.sh): 
-```
-brew install --cask fig
-```
-##### Manually: 
-Download the macOS app at [fig.io/download](https://fig.io/download).
 
-## 👋 Add a completion spec for a CLI tool
+* **[Homebrew](https://brew.sh)**: `brew install fig`
+* **Manual**: Download the macOS app at [fig.io](https://fig.io/download)
+<br/>
 
-Want to add autocomplete to a CLI tool (or make changes to an existing autocomplete spec)? We welcome contributions!
+## 👋 What are "completion specs"?
 
-Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from information in the spec or can be generated dynamically by running shell commands or reading local files.
+A completion spec is a _declarative_ schema that specifies the `subcommands`, `options` and `arguments` for a CLI tool. We use these schemas to generate suggestions. 
 
-**For documentation and tutorials**, visit
-[fig.io/docs](https://fig.io/docs).
-
-**To request autocomplete for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
 <br/>
 
-## 😎 Get Started
 
-Build your first spec in 3 min or less: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
+## 😎 Contribute your first spec in < 3 minutes
+
+Use the steps below or follow our getting started guide: [fig.io/docs](https://fig.io/docs)
 
 **Prerequisites:**
 
-- Early access to the Fig macOS app.
-  > If you don't have access yet, sign up for the [waitlist](https://fig.io) and say you're interested in building completions!
+- Download Fig for macOS
 - Node and NPM (or Yarn).
 
 <br/>
 
-**Setup:**
+**Steps**
 
 1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo.
 
@@ -84,7 +76,7 @@ npm run dev
 
 - Edit your spec in typescript in the `src/` folder
 - On save, specs are compiled to the `build/` folder
-- In **dev mode** specs are read from the `build` folders. Otherwise they are read from `~/.fig/autocomplete`
+- In **dev mode** specs are read from the `build` folders. 
 
 <br/>
 
@@ -105,11 +97,16 @@ npm run copy:all
 npm run copy <spec-name>
 ```
 
-**We would love contributions for**
-* any other completion spec for CLI tools you use regularly
-* generators for existing specs
+## 🔥 Contributions
+We would love contributions for:
+* new completion specs 
+* errors with existing completion specs (e.g. missing subcomannds, options, or arguments)
+* [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
+* better descriptions, icons etc
+* [themes](https://github.com/withfig/theme)!
 
-Never submitted a PR before? Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 100+ contributors made their first open source contribution to Fig too!
+If you aren't able to contribute, please feel free to open an [issue](https://github.com/withfig/autocomplete/issues/new/choose). Most people think that contributing will be too hard, but you'd be surprised, we have deliberately made contributing very very easy. Give it a go! 
+
 
 ## 😊 Need Help?
 
@@ -125,7 +122,7 @@ Never submitted a PR before? Check out our [How to Contribute](https://fig.io/do
 
 #### What terminals does Fig work with?
 
-Fig works with the native MacOS Terminal app, [iTerm](https://iterm2.com/), [Tabby](https://tabby.sh), [Hyper](https://hyper.is) and the [integrated terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal).
+Fig works with the native MacOS Terminal app, [iTerm](https://iterm2.com/), [Tabby](https://tabby.sh), [Hyper](https://hyper.is) and the [integrated terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal). We are adding support for Alacritty, Kitty, and the integrated terminals in JetBrains very soon. 
 
 #### How does Fig work?
 
@@ -135,13 +132,16 @@ Fig uses the Accessibility API on Mac to position the window, insert text on you
 
 Currently, Fig is only available on MacOS.
 
-#### How can I get access?
+#### How can I download Fig?
 
-Fig is currently in a _public_ beta. You can install Fig by running `brew install fig` or by downloading the app at [fig.io/download](https://fig.io/download).
+Run `brew install fig` or by downloading the app at [fig.io/download](https://fig.io/download).
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 
 Yes! Check out our guide on how to [get started building autocomplete specs](https://fig.io/docs/getting-started).
+
+#### How do I submit a PR?
+Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 150+ contributors made their first open source contribution to Fig!
 
 #### Did we miss something?
 
