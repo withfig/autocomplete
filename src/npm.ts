@@ -641,8 +641,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "create", description: "Create a package.json file" },
-    { name: "ddp", description: "Reduce duplication" },
-    { name: "dedupe", description: "Reduce duplication" },
+    {
+      name: ["dedupe", "ddp"],
+      description: "Reduce duplication in the package tree",
+    },
     {
       name: "deprecate",
       description: "Deprecate a version of a package",
