@@ -562,14 +562,39 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "ci", description: "Install a project with a clean slate" },
+    {
+      name: ["ci", "clean-install", "install-clean"],
+      description: "Install a project with a clean slate",
+      options: [
+        {
+          name: "--audit",
+          description:
+            'When "true" submit audit reports alongside the current npm command to the default registry and all registries configured for scopes',
+          args: {
+            name: "audit",
+            suggestions: ["true", "false"],
+          },
+        },
+        {
+          name: "--no-audit",
+          description:
+            "Do not submit audit reports alongside the current npm command",
+        },
+        {
+          name: "--ignore-scripts",
+          description:
+            "If true, npm does not run scripts specified in package.json files",
+        },
+        {
+          name: "--script-shell",
+          description:
+            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
+        },
+      ],
+    },
     {
       name: "cit",
       description: "Install a project with a clean slate and run tests",
-    },
-    {
-      name: "clean-install",
-      description: "Install a project with a clean slate",
     },
     {
       name: "clean-install-test",
