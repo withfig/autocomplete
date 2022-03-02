@@ -1,5 +1,3 @@
-import { Script } from "vm";
-
 const completionSpec: Fig.Spec = {
   name: "bat",
   description: "A cat(1) clone with syntax highlighting and Git integration",
@@ -20,8 +18,9 @@ const completionSpec: Fig.Spec = {
         generators: {
           script: "bat --list-languages",
           postProcess: function (out) {
-            return [].concat(
-              ...out.split("\n").map((outLine) => {
+            return out
+              .split("\n")
+              .map((outLine) => {
                 const langLine = outLine.split(":");
                 const descriptionString = langLine[0].trim();
                 return outLine
@@ -34,7 +33,7 @@ const completionSpec: Fig.Spec = {
                     };
                   });
               })
-            );
+              .flat(2);
           },
         },
       },
