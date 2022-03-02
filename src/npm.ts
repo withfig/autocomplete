@@ -652,7 +652,11 @@ const completionSpec: Fig.Spec = {
     },
     { name: "dist-tag", description: "Modify package distribution tags" },
     { name: "docs", description: "Docs for a package in a web browser maybe" },
-    { name: "doctor", description: "Check your environments" },
+    {
+      name: "doctor",
+      description: "Check your environment",
+      options: [registryOption],
+    },
     { name: "edit", description: "Edit an installed package" },
     {
       name: "explore",
