@@ -936,7 +936,6 @@ const completionSpec: Fig.Spec = {
       options: [
         ...workSpaceOptions,
         { name: "--json", description: "Show output in json format" },
-        { name: "--json", description: "Show output in json format" },
       ],
     },
     {
