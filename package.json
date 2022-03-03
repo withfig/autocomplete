@@ -66,6 +66,7 @@
   ],
   "author": "",
   "license": "ISC",
+  "bugs": "https://github.com/withfig/autocomplete/issues",
   "devDependencies": {
     "@fig/autocomplete-generators": "^1.0.0",
     "@types/inquirer": "^7.3.1",
