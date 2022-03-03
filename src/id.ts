@@ -21,11 +21,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Display the different group IDs (effective, real and supplementary) as white-space separated numbers, in no particular order",
       exclusiveOn: exclusiveOptions,
-      args: {
-        name: "-n",
-        description:
-          "Display the name of the user or group ID for the -G, -g and -u options instead of the number.  If any of the ID numbers cannot be mapped into names the number will be displayed as usual",
-      },
     },
     {
       name: "-M",
@@ -41,16 +36,13 @@ const completionSpec: Fig.Spec = {
       name: "-g",
       description: "Display the effective group ID as a number",
       exclusiveOn: exclusiveOptions,
-      args: {
-        name: "-nr",
-        description:
-          "Display the name of the user or group ID for the -G, -g and -u options instead of the number.  If any of the ID numbers cannot be mapped into names the number will be displayed as usual",
-      },
     },
     {
       name: "-n",
       description:
         "Display the name of the user or group ID for the -G, -g and -u options instead of the number.  If any of the ID numbers cannot be mapped into names the number will be displayed as usual",
+      dependsOn: ["-G", "-g", "-u"],
+      exclusiveOn: exclusiveOptions,
     },
     {
       name: "-p",
@@ -61,17 +53,22 @@ const completionSpec: Fig.Spec = {
       name: "-u",
       description: "Display the effective user ID as a number",
       exclusiveOn: exclusiveOptions,
-      args: {
-        name: "-nr",
-        description:
-          "Display the name of the user or group ID for the -G, -g and -u options instead of the number.  If any of the ID numbers cannot be mapped into names the number will be displayed as usual",
-      },
     },
   ],
-  // Only uncomment if id takes an argument
   args: {
     name: "user",
     isOptional: true,
+    generators: {
+      script: "dscl . -list /Users | grep -v '^_'",
+      postProcess: (out) =>
+        out
+          .trim()
+          .split("\n")
+          .map((username) => ({
+            name: username,
+            icon: "fig://template?badge=👤",
+          })),
+    },
   },
 };
 export default completionSpec;
