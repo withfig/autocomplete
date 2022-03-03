@@ -103,7 +103,7 @@ We would love contributions for:
 * errors with existing completion specs (e.g. missing subcomannds, options, or arguments)
 * [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
 * better descriptions, icons etc
-* [themes](https://github.com/withfig/theme)!
+* [themes](https://github.com/withfig/themes)!
 
 If you aren't able to contribute, please feel free to open an [issue](https://github.com/withfig/autocomplete/issues/new/choose). Most people think that contributing will be too hard, but you'd be surprised, we have deliberately made contributing very very easy. Give it a go! 
 
