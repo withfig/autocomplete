@@ -229,50 +229,190 @@ const completionSpec: Fig.Spec = {
   {
     name: "scale",
     description: "Change or view the instance count, disk space limit, and memory limit for an app",
+    options: [
+      {
+        name: "-f",
+        description: "Force restart of app without prompt",
+      },
+      {
+        name: "-i",
+        description: "Number of instances",
+        args: {
+          name: "Number of instances",
+        }
+      },
+      {
+        name: "-k",
+        description: "Disk limit",
+        args: {
+          name: "Disk limit",
+        }
+      },
+      {
+        name: "-m",
+        description: "Memory limit",
+        args: {
+          name: "Memory limit",
+        }
+      },
+    ]
   },
   {
     name: "delete",
     description: "Delete an app",
+    isDangerous: true,
+    args: 
+    {
+      name: "APP_NAME",
+      generators: {
+          script: `cf apps | cut -d " " -f1`,
+          postProcess: function(out) {
+            return out.split('\n').map(APP_NAME => {
+              return { name: APP_NAME, description: "APP_NAME"}
+            })
+          }
+        },
+      description: "The app you want to get health and status for",
+      isOptional: false,
+    },
+    options:[
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+        isDangerous: true,
+      },
+      {
+        name: "-r",
+        description: "Also delete any mapped routes",
+      },
+    ]
   },
   {
     name: "rename",
     description: "Rename an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "new app name",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "start",
     description: "Start an app",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "stop",
     description: "Stop an app",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "restart",
     description: "Stop all instances of the app, then start them again. This may cause downtime",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "restage",
     description: "Recreate the app's executable artifact using the latest pushed app files and the latest environment (variables, service bindings, buildpack, stack, etc.)",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "restart-app-instance",
     description: "Terminate the running application Instance at the given index and instantiate a new instance of the application with the same index",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "index",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "run-task",
     description: "Run a one-off task on an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "command",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-k",
+        description: "Disk limit",
+        args: {
+          name: "Disk limit",
+        }
+      },
+      {
+        name: "-m",
+        description: "Memory limit",
+        args: {
+          name: "Memory limit",
+        }
+      },
+      {
+        name: "--name",
+        description: "Name for task",
+        args: {
+          name: "Name for task",
+        }
+      },
+    ],
   },
   {
     name: "tasks",
     description: "List tasks of an app",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "terminate-task",
     description: "Terminate a running task of an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "task id",
+        isOptional: false,
+      },
+    ]
   },
   {
     name: "events",
     description: "Show recent app events",
+    args: {
+      name: "app name",
+      isOptional: false,
+    }
   },
   {
     name: "files",
@@ -281,14 +421,48 @@ const completionSpec: Fig.Spec = {
   {
     name: "logs",
     description: "Trail or show recent logs for an app",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "--recent",
+        description: "Dump recent logs instead of tailing",
+      },
+    ],
   },
   {
     name: "set-env",
     description: "Set an environment variable for an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "env var name",
+        isOptional: false,
+      },
+      {
+        name: "env var value",
+        isOptional: false,
+      },
+    ]
   },
   {
     name: "unset-env",
     description: "Remove an environment variable",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "env var name",
+        isOptional: false,
+      },
+    ]
   },
   {
     name: "stacks",
@@ -301,26 +475,66 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-app-manifest",
     description: "Create an app manifest for an app that has been pushed successfully",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-p",
+        description: "Path for file creation",
+        args: {
+          name: "path",
+        },
+      },
+    ],
   },
   {
     name: "get-health-check",
     description: "Show the type of health check performed on an app",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "set-health-check",
     description: "Change type of health check performed on an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "type of health check",
+        description: "Process, port or http",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "enable-ssh",
     description: "Enable ssh for the application",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "disable-ssh",
     description: "Disable ssh for the application",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "ssh-enabled",
     description: "Reports whether SSH is enabled on an application container instance",
+    args: {
+      name: "app name",
+      isOptional: false,
+    },
   },
   {
     name: "marketplace",
