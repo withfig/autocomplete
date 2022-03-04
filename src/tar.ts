@@ -1417,7 +1417,7 @@ const completionSpec: Fig.Spec = {
   ],
   parserDirectives: {
     flagsArePosixNoncompliant: true,
-  }
+  },
 };
 
 export default completionSpec;
