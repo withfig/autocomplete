@@ -1415,6 +1415,9 @@ const completionSpec: Fig.Spec = {
       description: "Print program version and copyright information and exit",
     },
   ],
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  }
 };
 
 export default completionSpec;
