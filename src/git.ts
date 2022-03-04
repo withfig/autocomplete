@@ -5454,6 +5454,15 @@ const completionSpec: Fig.Spec = {
           description: "Tag message",
           args: { name: "message" },
         },
+        {
+          name: "--points-at",
+          description: "List tags of the given object",
+          args: {
+            name: "object",
+            generators: gitGenerators.commits,
+            suggestions: headSuggestions,
+          },
+        },
       ],
       args: {
         name: "tagname",
