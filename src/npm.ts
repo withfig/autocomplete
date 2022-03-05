@@ -308,14 +308,12 @@ const registryOption: Fig.Option = {
   name: "--registry",
   description: "The base URL of the npm registry",
   args: { name: "registry" },
-  isPersistent: true,
 };
 
 const otpOption: Fig.Option = {
   name: "--otp",
   description: "One-time password from a two-factor authenticator",
   args: { name: "otp" },
-  isPersistent: true,
 };
 
 const ignoreScriptsOption: Fig.Option = {
@@ -744,7 +742,33 @@ const completionSpec: Fig.Spec = {
         ...workSpaceOptions,
       ],
     },
-    { name: "owner", description: "Manage package owners" },
+    {
+      name: ["owner", "author"],
+      description: "Manage package owners",
+      subcommands: [
+        {
+          name: "ls",
+          description:
+            "List all the users who have access to modify a package and push new versions. Handy when you need to know who to bug for help",
+          args: { name: "[@scope/]pkg" },
+          options: [registryOption],
+        },
+        {
+          name: "add",
+          description:
+            "Add a new user as a maintainer of a package. This user is enabled to modify metadata, publish new versions, and add other owners",
+          args: [{ name: "user" }, { name: "[@scope/]pkg" }],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "rm",
+          description:
+            "Remove a user from the package owner list. This immediately revokes their privileges",
+          args: [{ name: "user" }, { name: "[@scope/]pkg" }],
+          options: [registryOption, otpOption],
+        },
+      ],
+    },
     { name: "pack", description: "Create a tarball from a package" },
     {
       name: "ping",
