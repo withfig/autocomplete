@@ -706,18 +706,14 @@ const completionSpec: Fig.Spec = {
       description: "Symlink a package folder",
       args: { name: "path", template: "filepaths" },
     },
-    {
-      name: "list",
-      description: "List installed packages",
-      options: npmListOptions,
-    },
     { name: "ln", description: "Symlink a package folder" },
     { name: "login", description: "Log in of the registry" },
     { name: "logout", description: "Log out of the registry" },
     {
-      name: "ls",
+      name: ["ls", "list"],
       description: "List installed packages",
       options: npmListOptions,
+      args: { name: "[@scope]/pkg", isVariadic: true },
     },
     { name: "org", description: "Manage orgs" },
     {
