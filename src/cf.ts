@@ -539,6 +539,15 @@ const completionSpec: Fig.Spec = {
   {
     name: "marketplace",
     description: "List available offerings in the marketplace",
+    options: [
+      {
+        name: "-s",
+        description: "Show plan details for a particular service offering",
+        args: {
+          name: "service",
+        },
+      },
+    ],
   },
   {
     name: "services",
@@ -547,18 +556,95 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-service",
     description: "Create a service instance",
+    args: [
+      {
+        name: "service",
+        isOptional: false,
+      },
+      {
+        name: "plan",
+        isOptional: false,
+      },
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-c",
+        description: "Valid JSON object containing service-specific configuration parameters, provided either in-line or in a file",
+        args: {
+          name: "JSON object",
+        },
+      },
+      {
+        name: "-t",
+        description: "User provided tags",
+        args: {
+          name: "tags",
+        },
+      },
+    ],
   },
   {
     name: "update-service",
     description: "Update a service instance",
+    args: {
+      name: "service",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-c",
+        description: "Valid JSON object containing service-specific configuration parameters, provided either in-line or in a file",
+        args: {
+          name: "JSON object",
+        },
+      },
+      {
+        name: "-p",
+        description: "Change service plan for a service instance",
+        args: {
+          name: "new plan",
+        },
+      },
+      {
+        name: "-t",
+        description: "User provided tags",
+        args: {
+          name: "tags",
+        },
+      },
+    ],
   },
   {
     name: "delete-service",
-    description: "Update a service instance",
+    description: "Delete a service instance",
+    args: {
+      name: "service instance",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "rename-service",
     description: "Rename a service instance",
+    args: [
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+      {
+        name: "new service instance",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "create-service-key",
@@ -787,6 +873,44 @@ const completionSpec: Fig.Spec = {
   {
     name: "curl",
     description: "Executes a request to the targeted API endpoint",
+    args: {
+      name: "path",
+      description: "Path to curl",
+    },
+    options: [
+      {
+        name: "-H",
+        description: "Custom headers to include in the request, flag can be specified multiple times",
+        args: {
+          name: "headers",
+        },
+      },
+      {
+        name: "-X",
+        description: "HTTP method (GET,POST,PUT,DELETE,etc)",
+        args: {
+          name: "HTTP method",
+        },
+      },
+      {
+        name: "-d",
+        description: "HTTP data to include in the request body, or '@' followed by a file name to read the data from",
+        args: {
+          name: "data",
+        },
+      },
+      {
+        name: "--output",
+        description: "Write curl body to FILE instead of stdout",
+        args: {
+          name: "path to file",
+        },
+      },
+      {
+        name: "-i",
+        description: "Include response headers in the output",
+      },
+    ],
   },
   {
     name: "oauth-token",
@@ -823,6 +947,10 @@ const completionSpec: Fig.Spec = {
   {
     name: "uninstall-plugin",
     description: "Uninstall the plugin defined in command argument",
+    args: {
+      name: "plugin name",
+      isOptional: false,
+    },
   },
 ],
   options: [
