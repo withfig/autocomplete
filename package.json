@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.130.0",
+  "version": "2.136.0",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -16,8 +16,6 @@
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
-    "copy": "func() { mkdir -p ~/.fig/autocomplete/build/$(dirname ${1}.js); cp \"$(pwd)\"/build/${1}.js ~/.fig/autocomplete/build/${1}.js; }; func",
-    "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/build/ ~/.fig/autocomplete/build",
     "prepare": "husky install"
   },
   "fig": {
@@ -41,12 +39,6 @@
     "test": {
       "description": "Typecheck all .ts files in /src"
     },
-    "copy": {
-      "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
-    },
-    "copy:all": {
-      "description": "Copy all files from /build to ~/.fig/autocomplete"
-    },
     "prepare": {
       "description": "Install husky"
     }
@@ -66,6 +58,7 @@
   ],
   "author": "",
   "license": "ISC",
+  "bugs": "https://github.com/withfig/autocomplete/issues",
   "devDependencies": {
     "@fig/autocomplete-generators": "^1.0.0",
     "@types/inquirer": "^7.3.1",
