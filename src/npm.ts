@@ -470,18 +470,27 @@ const completionSpec: Fig.Spec = {
     {
       name: "audit",
       description: "Run a security audit",
-      args: {
-        name: "fix",
-        description:
-          "If the fix argument is provided, then remediations will be applied to the package tree",
-        suggestions: [
-          {
-            name: "fix",
-            description:
-              "If the fix argument is provided, then remediations will be applied to the package tree",
-          },
-        ],
-      },
+      subcommands: [
+        {
+          name: "fix",
+          description:
+            "If the fix argument is provided, then remediations will be applied to the package tree",
+          options: [
+            {
+              name: "--dry-run",
+              description:
+                "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
+            },
+            {
+              name: ["-f", "--force"],
+              description:
+                "Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input",
+              isDangerous: true,
+            },
+            ...workSpaceOptions,
+          ],
+        },
+      ],
       options: [
         ...workSpaceOptions,
         {
