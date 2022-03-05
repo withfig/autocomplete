@@ -7,7 +7,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
       generators: dependenciesGenerator,
       isVariadic: true,
     },
-    options: npmInstallOptions,
+    options: npmUninstallOptions,
   };
 }
 
@@ -208,6 +208,28 @@ export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
   },
 };
 
+const globalOption: Fig.Option = {
+  name: ["-g", "--global"],
+  description:
+    "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
+};
+
+const jsonOption: Fig.Option = {
+  name: "--json",
+  description: "Show output in json format",
+};
+
+const omitOption: Fig.Option = {
+  name: "--omit",
+  description: "Dependency types to omit from the installation tree on disk",
+  args: {
+    name: "Package type",
+    default: "dev",
+    suggestions: ["dev", "optional", "peer"],
+  },
+  isRepeatable: 3,
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: ["-w", "--workspace"],
@@ -226,7 +248,7 @@ const workSpaceOptions: Fig.Option[] = [
   },
 ];
 
-const npmInstallOptions: Fig.Option[] = [
+const npmUninstallOptions: Fig.Option[] = [
   {
     name: ["-S", "--save"],
     description: "Package will be removed from your dependencies",
@@ -255,7 +277,7 @@ const npmListOptions: Fig.Option[] = [
     name: ["-a", "-all"],
     description: "Show all outdated or installed packages",
   },
-  { name: "--json", description: "Show output in json format" },
+  jsonOption,
   { name: ["-l", "--long"], description: "Show extended information" },
   {
     name: ["-p", "--parseable"],
@@ -280,22 +302,28 @@ const npmListOptions: Fig.Option[] = [
     name: "--no-unicode",
     description: "Uses unicode characters in the tree output",
   },
-  {
-    name: ["-g", "--global"],
-    description:
-      "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
-  },
-  {
-    name: "--omit",
-    description: "Dependency types to omit from the installation tree on disk",
-    args: {
-      name: "Package type",
-      default: "dev",
-      suggestions: ["dev", "optional", "peer"],
-    },
-  },
+  globalOption,
+  omitOption,
   ...workSpaceOptions,
 ];
+
+const registryOption: Fig.Option = {
+  name: "--registry",
+  description: "The base URL of the npm registry",
+  args: { name: "registry" },
+};
+
+const otpOption: Fig.Option = {
+  name: "--otp",
+  description: "One-time password from a two-factor authenticator",
+  args: { name: "otp" },
+};
+
+const ignoreScriptsOption: Fig.Option = {
+  name: "--ignore-scripts",
+  description:
+    "If true, npm does not run scripts specified in package.json files",
+};
 
 const completionSpec: Fig.Spec = {
   name: "npm",
@@ -342,11 +370,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Saved dependencies will also be added to your bundleDependencies list",
         },
-        {
-          name: ["-g", "--global"],
-          description:
-            "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
-        },
+        globalOption,
         {
           name: "--global-style",
           description:
@@ -371,21 +395,8 @@ const completionSpec: Fig.Spec = {
           name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing",
         },
-        {
-          name: "--omit",
-          description:
-            "Dependency types to omit from the installation tree on disk",
-          args: {
-            name: "Package type",
-            default: "dev",
-            suggestions: ["dev", "optional", "peer"],
-          },
-        },
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        omitOption,
+        ignoreScriptsOption,
         {
           name: "--no-audit",
           description:
@@ -423,10 +434,7 @@ const completionSpec: Fig.Spec = {
           name: "--silent",
           description: "",
         },
-        {
-          name: "--ignore-scripts",
-          description: "",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
           args: { name: "shell" },
@@ -462,6 +470,27 @@ const completionSpec: Fig.Spec = {
     {
       name: "audit",
       description: "Run a security audit",
+      subcommands: [
+        {
+          name: "fix",
+          description:
+            "If the fix argument is provided, then remediations will be applied to the package tree",
+          options: [
+            {
+              name: "--dry-run",
+              description:
+                "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
+            },
+            {
+              name: ["-f", "--force"],
+              description:
+                "Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input",
+              isDangerous: true,
+            },
+            ...workSpaceOptions,
+          ],
+        },
+      ],
       options: [
         ...workSpaceOptions,
         {
@@ -485,42 +514,54 @@ const completionSpec: Fig.Spec = {
           description:
             "Current operation will only use the package-lock.json, ignoring node_modules",
         },
-        { name: "--json", description: "Shows settings in json format" },
-        {
-          name: "--omit",
-          description:
-            "Dependency types to omit from the installation tree on disk",
-          args: {
-            name: "Package type",
-            default: "dev",
-            suggestions: ["dev", "optional", "peer"],
-          },
-        },
+        jsonOption,
+        omitOption,
       ],
     },
     {
       name: "bin",
-      description: "Display npm bin folder",
-      options: [
-        {
-          name: "-g",
-          description:
-            "Print the global folder where npm will install executables",
-        },
-      ],
+      description: "Print the folder where npm will install executables",
+      options: [globalOption],
     },
     {
-      name: "bugs",
-      description: "Show the bugs that might exist for a package",
+      name: ["bugs", "issues"],
+      description: "Report bugs for a package in a web browser",
+      args: {
+        name: "pkgname",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "--no-browser",
+          description: "Display in command line instead of browser",
+          exclusiveOn: ["--browser"],
+        },
+        {
+          name: "--browser",
+          description:
+            "The browser that is called by the npm bugs command to open websites",
+          args: { name: "browser" },
+          exclusiveOn: ["--no-browser"],
+        },
+        registryOption,
+      ],
     },
-    { name: "c", description: "Manage the npm configuration files" },
     {
       name: "cache",
       description: "Manipulates packages cache",
       subcommands: [
         {
           name: "add",
-          args: { name: "Add the specified packages to the local cache" },
+          description: "Add the specified packages to the local cache",
+        },
+        {
+          name: "clean",
+          description: "Delete all data out of the cache folder",
+        },
+        {
+          name: "verify",
+          description:
+            "Verify the contents of the cache folder, garbage collecting any unneeded data, and verifying the integrity of the cache index and all cached data",
         },
       ],
       options: [
@@ -531,14 +572,37 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "ci", description: "Install a project with a clean slate" },
+    {
+      name: ["ci", "clean-install", "install-clean"],
+      description: "Install a project with a clean slate",
+      options: [
+        {
+          name: "--audit",
+          description:
+            'When "true" submit audit reports alongside the current npm command to the default registry and all registries configured for scopes',
+          args: {
+            name: "audit",
+            suggestions: ["true", "false"],
+          },
+          exclusiveOn: ["--no-audit"],
+        },
+        {
+          name: "--no-audit",
+          description:
+            "Do not submit audit reports alongside the current npm command",
+          exclusiveOn: ["--audit"],
+        },
+        ignoreScriptsOption,
+        {
+          name: "--script-shell",
+          description:
+            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
+        },
+      ],
+    },
     {
       name: "cit",
       description: "Install a project with a clean slate and run tests",
-    },
-    {
-      name: "clean-install",
-      description: "Install a project with a clean slate",
     },
     {
       name: "clean-install-test",
@@ -546,7 +610,7 @@ const completionSpec: Fig.Spec = {
     },
     { name: "completion", description: "Tab completion for npm" },
     {
-      name: "config",
+      name: ["config", "c"],
       description: "Manage the npm configuration files",
       subcommands: [
         {
@@ -568,7 +632,7 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: "-g", description: "Lists globally installed packages" },
             { name: "-l", description: "Also shows defaults" },
-            { name: "--json", description: "Shows settings in json format" },
+            jsonOption,
           ],
         },
         {
@@ -590,23 +654,32 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "create", description: "Create a package.json file" },
-    { name: "ddp", description: "Reduce duplication" },
-    { name: "dedupe", description: "Reduce duplication" },
+    {
+      name: ["dedupe", "ddp"],
+      description: "Reduce duplication in the package tree",
+    },
     {
       name: "deprecate",
       description: "Deprecate a version of a package",
-      options: [
-        {
-          name: "--registry",
-          description: "The base URL of the npm registry",
-          args: { name: "registry" },
-        },
-      ],
+      options: [registryOption],
     },
     { name: "dist-tag", description: "Modify package distribution tags" },
     { name: "docs", description: "Docs for a package in a web browser maybe" },
-    { name: "doctor", description: "Check your environments" },
-    { name: "edit", description: "Edit an installed package" },
+    {
+      name: "doctor",
+      description: "Check your environment",
+      options: [registryOption],
+    },
+    {
+      name: "edit",
+      description: "Edit an installed package",
+      options: [
+        {
+          name: "--editor",
+          description: "The command to run for npm edit or npm config edit",
+        },
+      ],
+    },
     {
       name: "explore",
       description: "Browse an installed package",
@@ -631,18 +704,14 @@ const completionSpec: Fig.Spec = {
       description: "Symlink a package folder",
       args: { name: "path", template: "filepaths" },
     },
-    {
-      name: "list",
-      description: "List installed packages",
-      options: npmListOptions,
-    },
     { name: "ln", description: "Symlink a package folder" },
     { name: "login", description: "Log in of the registry" },
     { name: "logout", description: "Log out of the registry" },
     {
-      name: "ls",
+      name: ["ls", "list"],
       description: "List installed packages",
       options: npmListOptions,
+      args: { name: "[@scope]/pkg", isVariadic: true },
     },
     { name: "org", description: "Manage orgs" },
     {
@@ -653,7 +722,7 @@ const completionSpec: Fig.Spec = {
           name: ["-a", "-all"],
           description: "Show all outdated or installed packages",
         },
-        { name: "--json", description: "Show output in json format" },
+        jsonOption,
         { name: ["-l", "--long"], description: "Show extended information" },
         {
           name: ["-p", "--parseable"],
@@ -667,9 +736,39 @@ const completionSpec: Fig.Spec = {
         ...workSpaceOptions,
       ],
     },
-    { name: "owner", description: "Manage package owners" },
+    {
+      name: ["owner", "author"],
+      description: "Manage package owners",
+      subcommands: [
+        {
+          name: "ls",
+          description:
+            "List all the users who have access to modify a package and push new versions. Handy when you need to know who to bug for help",
+          args: { name: "[@scope/]pkg" },
+          options: [registryOption],
+        },
+        {
+          name: "add",
+          description:
+            "Add a new user as a maintainer of a package. This user is enabled to modify metadata, publish new versions, and add other owners",
+          args: [{ name: "user" }, { name: "[@scope/]pkg" }],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "rm",
+          description:
+            "Remove a user from the package owner list. This immediately revokes their privileges",
+          args: [{ name: "user" }, { name: "[@scope/]pkg" }],
+          options: [registryOption, otpOption],
+        },
+      ],
+    },
     { name: "pack", description: "Create a tarball from a package" },
-    { name: "ping", description: "Ping npm registry" },
+    {
+      name: "ping",
+      description: "Ping npm registry",
+      options: [registryOption],
+    },
     {
       name: "prefix",
       description: "Display prefix",
@@ -693,7 +792,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
-        { name: "--json", description: "Show output in json format" },
+        jsonOption,
         {
           name: "--production",
           description: "Remove the packages specified in your devDependencies",
@@ -724,11 +823,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
-        {
-          name: "--otp",
-          description: "One-time password from a two-factor authenticator",
-          args: { name: "otp" },
-        },
+        otpOption,
       ],
     },
     { name: "rb", description: "Rebuild a package" },
@@ -770,11 +865,7 @@ const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start a package",
       options: [
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
           args: { name: "shell" },
@@ -783,41 +874,67 @@ const completionSpec: Fig.Spec = {
     },
     { name: "stop", description: "Stop a package" },
     {
-      name: "t",
-      description: "Test a package",
-      options: [
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
-        {
-          name: "--script-shell",
-          args: { name: "shell" },
-        },
-      ],
-    },
-    {
       name: "team",
       description: "Manage organization teams and team memberships",
     },
     {
-      name: "test",
+      name: ["test", "tst", "t"],
       description: "Test a package",
       options: [
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        ignoreScriptsOption,
         {
           name: "--script-shell",
+          description:
+            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
           args: { name: "shell" },
         },
       ],
     },
-    { name: "token", description: "Manage your authentication tokens" },
-    { name: "tst", description: "Test a package" },
+    {
+      name: "token",
+      description: "Manage your authentication tokens",
+      subcommands: [
+        {
+          name: "list",
+          description: "Shows a table of all active authentication tokens",
+          options: [
+            jsonOption,
+            {
+              name: ["-p", "--parseable"],
+              description:
+                "Output parseable results from commands that write to standard output",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a new authentication token",
+          options: [
+            {
+              name: "--read-only",
+              description:
+                "This is used to mark a token as unable to publish when configuring limited access tokens with the npm token create command",
+            },
+            {
+              name: "--cidr",
+              description:
+                "This is a list of CIDR address to be used when configuring limited access tokens with the npm token create command",
+              isRepeatable: true,
+              args: {
+                name: "cidr",
+              },
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description:
+            "Immediately removes an authentication token from the registry. You will no longer be able to use it",
+          args: { name: "idtoken" },
+        },
+      ],
+      options: [registryOption, otpOption],
+    },
     uninstallSubcommand("uninstall"),
     uninstallSubcommand("remove"),
     uninstallSubcommand(["r", "rm"]),
@@ -826,9 +943,8 @@ const completionSpec: Fig.Spec = {
     uninstallSubcommand("unlink"),
     { name: "unpublish", description: "Remove a package from the registry" },
     { name: "unstar", description: "Unmark your package" },
-    { name: "up", description: "Check the latest version of dependencies" },
     {
-      name: "update",
+      name: ["update", "upgrade", "up"],
       description: "Update a package",
       options: [
         { name: "-g", description: "Update global package" },
@@ -851,21 +967,8 @@ const completionSpec: Fig.Spec = {
           name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing",
         },
-        {
-          name: "--omit",
-          description:
-            "Dependency types to omit from the installation tree on disk",
-          args: {
-            name: "Package type",
-            default: "dev",
-            suggestions: ["dev", "optional", "peer"],
-          },
-        },
-        {
-          name: "--ignore-scripts",
-          description:
-            "If true, npm does not run scripts specified in package.json files",
-        },
+        omitOption,
+        ignoreScriptsOption,
         {
           name: "--no-audit",
           description:
@@ -889,24 +992,21 @@ const completionSpec: Fig.Spec = {
         ...workSpaceOptions,
       ],
     },
-    { name: "v", description: "Check that you have node and npm installed" },
     {
       name: "version",
       description: "Bump a package version",
-      options: [
-        ...workSpaceOptions,
-        { name: "--json", description: "Show output in json format" },
-      ],
+      options: [...workSpaceOptions, jsonOption],
     },
     {
-      name: "view",
+      name: ["view", "v", "info", "show"],
       description: "View registry info",
-      options: [
-        ...workSpaceOptions,
-        { name: "--json", description: "Show output in json format" },
-      ],
+      options: [...workSpaceOptions, jsonOption],
     },
-    { name: "whoami", description: "Display npm username" },
+    {
+      name: "whoami",
+      description: "Display npm username",
+      options: [registryOption],
+    },
   ],
 };
 
