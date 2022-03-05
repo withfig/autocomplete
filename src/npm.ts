@@ -219,6 +219,17 @@ const jsonOption: Fig.Option = {
   description: "Show output in json format",
 };
 
+const omitOption: Fig.Option = {
+  name: "--omit",
+  description: "Dependency types to omit from the installation tree on disk",
+  args: {
+    name: "Package type",
+    default: "dev",
+    suggestions: ["dev", "optional", "peer"],
+  },
+  isRepeatable: 3,
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: ["-w", "--workspace"],
@@ -292,15 +303,7 @@ const npmListOptions: Fig.Option[] = [
     description: "Uses unicode characters in the tree output",
   },
   globalOption,
-  {
-    name: "--omit",
-    description: "Dependency types to omit from the installation tree on disk",
-    args: {
-      name: "Package type",
-      default: "dev",
-      suggestions: ["dev", "optional", "peer"],
-    },
-  },
+  omitOption,
   ...workSpaceOptions,
 ];
 
@@ -392,16 +395,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing",
         },
-        {
-          name: "--omit",
-          description:
-            "Dependency types to omit from the installation tree on disk",
-          args: {
-            name: "Package type",
-            default: "dev",
-            suggestions: ["dev", "optional", "peer"],
-          },
-        },
+        omitOption,
         ignoreScriptsOption,
         {
           name: "--no-audit",
@@ -512,16 +506,7 @@ const completionSpec: Fig.Spec = {
             "Current operation will only use the package-lock.json, ignoring node_modules",
         },
         jsonOption,
-        {
-          name: "--omit",
-          description:
-            "Dependency types to omit from the installation tree on disk",
-          args: {
-            name: "Package type",
-            default: "dev",
-            suggestions: ["dev", "optional", "peer"],
-          },
-        },
+        omitOption,
       ],
     },
     {
@@ -969,16 +954,7 @@ const completionSpec: Fig.Spec = {
           name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing",
         },
-        {
-          name: "--omit",
-          description:
-            "Dependency types to omit from the installation tree on disk",
-          args: {
-            name: "Package type",
-            default: "dev",
-            suggestions: ["dev", "optional", "peer"],
-          },
-        },
+        omitOption,
         ignoreScriptsOption,
         {
           name: "--no-audit",
