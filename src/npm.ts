@@ -7,7 +7,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
       generators: dependenciesGenerator,
       isVariadic: true,
     },
-    options: npmInstallOptions,
+    options: npmUninstallOptions,
   };
 }
 
@@ -248,7 +248,7 @@ const workSpaceOptions: Fig.Option[] = [
   },
 ];
 
-const npmInstallOptions: Fig.Option[] = [
+const npmUninstallOptions: Fig.Option[] = [
   {
     name: ["-S", "--save"],
     description: "Package will be removed from your dependencies",
