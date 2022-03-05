@@ -525,12 +525,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-browser",
           description: "Display in command line instead of browser",
+          exclusiveOn: ["--browser"],
         },
         {
           name: "--browser",
           description:
             "The browser that is called by the npm bugs command to open websites",
           args: { name: "browser" },
+          exclusiveOn: ["--no-browser"],
         },
         registryOption,
       ],
@@ -573,11 +575,13 @@ const completionSpec: Fig.Spec = {
             name: "audit",
             suggestions: ["true", "false"],
           },
+          exclusiveOn: ["--no-audit"],
         },
         {
           name: "--no-audit",
           description:
             "Do not submit audit reports alongside the current npm command",
+          exclusiveOn: ["--audit"],
         },
         ignoreScriptsOption,
         {
