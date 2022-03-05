@@ -214,6 +214,11 @@ const globalOption: Fig.Option = {
     "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
 };
 
+const jsonOption: Fig.Option = {
+  name: "--json",
+  description: "Show output in json format",
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: ["-w", "--workspace"],
@@ -261,7 +266,7 @@ const npmListOptions: Fig.Option[] = [
     name: ["-a", "-all"],
     description: "Show all outdated or installed packages",
   },
-  { name: "--json", description: "Show output in json format" },
+  jsonOption,
   { name: ["-l", "--long"], description: "Show extended information" },
   {
     name: ["-p", "--parseable"],
@@ -303,6 +308,14 @@ const registryOption: Fig.Option = {
   name: "--registry",
   description: "The base URL of the npm registry",
   args: { name: "registry" },
+  isPersistent: true,
+};
+
+const otpOption: Fig.Option = {
+  name: "--otp",
+  description: "One-time password from a two-factor authenticator",
+  args: { name: "otp" },
+  isPersistent: true,
 };
 
 const ignoreScriptsOption: Fig.Option = {
@@ -500,7 +513,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Current operation will only use the package-lock.json, ignoring node_modules",
         },
-        { name: "--json", description: "Shows settings in json format" },
+        jsonOption,
         {
           name: "--omit",
           description:
@@ -623,7 +636,7 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: "-g", description: "Lists globally installed packages" },
             { name: "-l", description: "Also shows defaults" },
-            { name: "--json", description: "Shows settings in json format" },
+            jsonOption,
           ],
         },
         {
@@ -717,7 +730,7 @@ const completionSpec: Fig.Spec = {
           name: ["-a", "-all"],
           description: "Show all outdated or installed packages",
         },
-        { name: "--json", description: "Show output in json format" },
+        jsonOption,
         { name: ["-l", "--long"], description: "Show extended information" },
         {
           name: ["-p", "--parseable"],
@@ -761,7 +774,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
-        { name: "--json", description: "Show output in json format" },
+        jsonOption,
         {
           name: "--production",
           description: "Remove the packages specified in your devDependencies",
@@ -792,11 +805,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
-        {
-          name: "--otp",
-          description: "One-time password from a two-factor authenticator",
-          args: { name: "otp" },
-        },
+        otpOption,
       ],
     },
     { name: "rb", description: "Rebuild a package" },
@@ -863,7 +872,51 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "token", description: "Manage your authentication tokens" },
+    {
+      name: "token",
+      description: "Manage your authentication tokens",
+      subcommands: [
+        {
+          name: "list",
+          description: "Shows a table of all active authentication tokens",
+          options: [
+            jsonOption,
+            {
+              name: ["-p", "--parseable"],
+              description:
+                "Output parseable results from commands that write to standard output",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a new authentication token",
+          options: [
+            {
+              name: "--read-only",
+              description:
+                "This is used to mark a token as unable to publish when configuring limited access tokens with the npm token create command",
+            },
+            {
+              name: "--cidr",
+              description:
+                "This is a list of CIDR address to be used when configuring limited access tokens with the npm token create command",
+              isRepeatable: true,
+              args: {
+                name: "cidr",
+              },
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description:
+            "Immediately removes an authentication token from the registry. You will no longer be able to use it",
+          args: { name: "idtoken" },
+        },
+      ],
+      options: [registryOption, otpOption],
+    },
     uninstallSubcommand("uninstall"),
     uninstallSubcommand("remove"),
     uninstallSubcommand(["r", "rm"]),
@@ -933,18 +986,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description: "Bump a package version",
-      options: [
-        ...workSpaceOptions,
-        { name: "--json", description: "Show output in json format" },
-      ],
+      options: [...workSpaceOptions, jsonOption],
     },
     {
       name: ["view", "v", "info", "show"],
       description: "View registry info",
-      options: [
-        ...workSpaceOptions,
-        { name: "--json", description: "Show output in json format" },
-      ],
+      options: [...workSpaceOptions, jsonOption],
     },
     {
       name: "whoami",
