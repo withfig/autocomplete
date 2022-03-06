@@ -24,6 +24,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--all"],
           description: "All appropriate updates",
+          exclusiveOn: ["-r", "--recommended"],
         },
         {
           name: ["-R", "--restart"],
@@ -33,6 +34,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-r", "--recommended"],
           description: "Only recommended updates",
+          exclusiveOn: ["-a", "--all"],
         },
       ],
     },
