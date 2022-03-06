@@ -1265,14 +1265,136 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-quota",
     description: "Define a new resource quota",
+    args: {
+      name: "quota",
+    },
+    options: [
+      {
+        name: "-a",
+        description: "Total number of application instances",
+        args: {
+          name: "number of application instances",
+        },
+      },
+      {
+        name: "-i",
+        description: "Maximum amount of memory an application instance can have",
+        args: {
+          name: "instance memory",
+        },
+      },
+      {
+        name: "-m",
+        description: "Total amount of memory a space can have",
+        args: {
+          name: "total memory",
+        },
+      },
+      {
+        name: "--reserved-route-ports",
+        description: "Maximum number of routes that may be created with reserved ports (Default: 0)",
+        args: {
+          name: "reserved route ports",
+        },
+      },
+      {
+        name: "-s",
+        description: "Total number of service instances",
+        args: {
+          name: "service instances",
+        },
+      },
+      {
+        name: "-r",
+        description: "Total number of routes",
+        args: {
+          name: "routes",
+        },
+      },
+      {
+        name: "--allow-paid-service-plans",
+        description: "Can provision instances of paid service plans",
+      },
+    ],
   },
   {
     name: "delete-quota",
     description: "Delete a quota",
+    args: {
+      name: "quota",
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "update-quota",
     description: "Update an existing resource quota",
+    args: {
+      name: "quota",
+    },
+    options: [
+      {
+        name: "-a",
+        description: "Total number of application instances",
+        args: {
+          name: "number of application instances",
+        },
+      },
+      {
+        name: "-i",
+        description: "Maximum amount of memory an application instance can have",
+        args: {
+          name: "instance memory",
+        },
+      },
+      {
+        name: "-m",
+        description: "Total amount of memory a space can have",
+        args: {
+          name: "total memory",
+        },
+      },
+      {
+        name: "--reserved-route-ports",
+        description: "Maximum number of routes that may be created with reserved ports (Default: 0)",
+        args: {
+          name: "reserved route ports",
+        },
+      },
+      {
+        name: "-s",
+        description: "Total number of service instances",
+        args: {
+          name: "service instances",
+        },
+      },
+      {
+        name: "-r",
+        description: "Total number of routes",
+        args: {
+          name: "routes",
+        },
+      },
+      {
+        name: "-n",
+        description: "New name",
+        args: {
+          name: "name",
+        },
+      },
+      {
+        name: "--allow-paid-service-plans",
+        description: "Can provision instances of paid service plans",
+      },
+      {
+        name: "--disallow-paid-service-plans",
+        description: "Cannot provision instances of paid service plans",
+      },
+    ],
   },
   {
     name: "space-quotas",
