@@ -74,10 +74,13 @@ const completionSpec: Fig.Spec = {
       name: "--history",
       description:
         "Show the install history.  By default, only displays updates installed by softwareupdate",
-    },
-    {
-      name: "--all",
-      description: "Include all processes in history (including App installs)",
+      options: [
+        {
+          name: "--all",
+          description:
+            "Include all processes in history (including App installs)",
+        },
+      ],
     },
   ],
   options: [
