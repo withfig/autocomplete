@@ -965,26 +965,82 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-space",
     description: "Create a space",
+    args: {
+      name: "space",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-o",
+        description: "Org",
+        args: {
+          name: "org",
+        },
+      },
+      {
+        name: "-p",
+        description: "Quota to assign to the newly created space",
+        args: {
+          name: "quota",
+        },
+      },
+    ],
   },
   {
     name: "delete-space",
     description: "Delete a space",
+    args: {
+      name: "space",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-o",
+        description: "Delete space within specified org",
+        args: {
+          name: "org",
+        },
+      },
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "rename-space",
     description: "Rename a space",
+    args: [
+      {
+        name: "space",
+        isOptional: false,
+      },
+      {
+        name: "new space",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "allow-space-ssh",
     description: "Allow SSH access for the space",
+    args: {
+      name: "space",
+    },
   },
   {
     name: "disallow-space-ssh",
     description: "Disallow SSH access for the space",
+    args: {
+      name: "space",
+    },
   },
   {
     name: "space-ssh-allowed",
     description: "Reports whether SSH is allowed in a space",
+    args: {
+      name: "space",
+    },
   },
   {
     name: "domains",
@@ -993,18 +1049,58 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-domain",
     description: "Create a domain in an org for later use",
+    args: [
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "domain",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "delete-domain",
     description: "Delete a domain",
+    args: {
+      name: "space",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "create-shared-domain",
     description: "Create a domain that can be used by all orgs (admin-only)",
+    args: {
+      name: "domain",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "--router-group",
+        description: "Routes for this domain will be configured only on the specified router group",
+      },
+    ],
   },
   {
     name: "delete-shared-domain",
     description: "Delete a shared domain",
+    args: {
+      name: "domain",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "router-groups",
@@ -1013,6 +1109,12 @@ const completionSpec: Fig.Spec = {
   {
     name: "routes",
     description: "List all routes in the current space or the current organization",
+    options: [
+      {
+        name: "--orglevel",
+        description: "List all the routes for all spaces of current organization",
+      },
+    ],
   },
   {
     name: "create-route",
@@ -1053,10 +1155,38 @@ const completionSpec: Fig.Spec = {
   {
     name: "set-org-role",
     description: "Assign an org role to a user",
+    args: [
+      {
+        name: "username",
+        isOptional: false,
+      },
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "role",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "unset-org-role",
     description: "Remove an org role from a user",
+    args: [
+      {
+        name: "username",
+        isOptional: false,
+      },
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "role",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "space-users",
@@ -1065,10 +1195,46 @@ const completionSpec: Fig.Spec = {
   {
     name: "set-space-role",
     description: "Assign a space role to a user",
+    args: [
+      {
+        name: "username",
+        isOptional: false,
+      },
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "space",
+        isOptional: false,
+      },
+      {
+        name: "role",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "unset-space-role",
     description: "Remove a space role from a user",
+    args: [
+      {
+        name: "username",
+        isOptional: false,
+      },
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "space",
+        isOptional: false,
+      },
+      {
+        name: "role",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "quotas",
@@ -1077,10 +1243,24 @@ const completionSpec: Fig.Spec = {
   {
     name: "quota",
     description: "Show quota info",
+    args: {
+      name: "quota",
+      isOptional: false,
+    },
   },
   {
     name: "set-quota",
     description: "Assign a quota to an org",
+    args: [
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "quota",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "create-quota",
