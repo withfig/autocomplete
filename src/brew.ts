@@ -26,6 +26,17 @@ const formulaeGenerator: Fig.Generator = {
   },
 };
 
+const outdatedformulaeGenerator: Fig.Generator = {
+  script: "brew outdated -q",
+  postProcess: function (out) {
+    return out.split("\n").map((formula) => ({
+      name: formula,
+      icon: "🍺",
+      description: "Outdated formula",
+    }));
+  },
+};
+
 const commonOptions: Fig.Option[] = [
   {
     name: ["-d", "--debug"],
@@ -431,16 +442,27 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "upgrade",
-      description: "Upgrade outdated casks and outdated",
+      description:
+        "Upgrade outdated casks and outdated, unpinned formulae using the same options they were originally installed with, plus any appended brew formula options",
       options: [
+        {
+          name: ["-d", "--debug"],
+          description:
+            "If brewing fails, open an interactive debugging session with access to IRB or a shell inside the temporary build directory",
+        },
         {
           name: ["-f", "--force"],
           description:
-            "Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks",
+            "Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks, overwrite existing files (binaries and symlinks are excluded, unless originally from the same cask)",
         },
         {
           name: ["-v", "--verbose"],
           description: "Print the verification and postinstall steps",
+        },
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "Show what would be upgraded, but do not actually upgrade anything",
         },
         {
           name: ["-s", "--build-from-source"],
@@ -449,7 +471,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-i", "--interactive"],
-          description: "Download and patch formula",
+          description: "Download and patch formula, then open a shell",
         },
         { name: ["-g", "--git"], description: "Create a Git repository" },
         {
@@ -458,8 +480,9 @@ const completionSpec: Fig.Spec = {
         },
         { name: ["-h", "--help"], description: "Show this message" },
         {
-          name: "--formula,",
-          description: "Treat all named arguments as formulae",
+          name: ["--formula", "--formulae"],
+          description:
+            "Treat all named arguments as formulae. If no named arguments are specified, upgrade only outdated formulae",
         },
         {
           name: "--env",
@@ -484,7 +507,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["gcc-7", "llvm_clang", "clang"],
           },
         },
-
         {
           name: "--force-bottle",
           description:
@@ -506,6 +528,11 @@ const completionSpec: Fig.Spec = {
             "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated. Otherwise, the repository's HEAD will only be checked for updates when a new stable or development version has been released",
         },
         {
+          name: "--ignore-pinned",
+          description:
+            "Set a successful exit status even if pinned formulae are not upgraded",
+        },
+        {
           name: "--keep-tmp",
           description: "Retain the temporary files created during installation",
         },
@@ -525,18 +552,21 @@ const completionSpec: Fig.Spec = {
             "Print install times for each formula at the end of the run",
         },
         {
-          name: "--cask",
-          description: "--casks Treat all named arguments as casks",
+          name: ["--cask", "--casks"],
+          description:
+            "Treat all named arguments as casks. If no named arguments are specified, upgrade only outdated casks",
         },
         {
           name: "--binaries",
           description:
             "Disable/enable linking of helper executables (default: enabled)",
+          exclusiveOn: ["--no-binaries"],
         },
         {
           name: "--no-binaries",
           description:
             "Disable/enable linking of helper executables (default: enabled)",
+          exclusiveOn: ["--binaries"],
         },
         {
           name: "--require-sha",
@@ -546,15 +576,31 @@ const completionSpec: Fig.Spec = {
           name: "--quarantine",
           description:
             "Disable/enable quarantining of downloads (default: enabled)",
+          exclusiveOn: ["--no-quarantine"],
         },
         {
           name: "--no-quarantine",
           description:
             "Disable/enable quarantining of downloads (default: enabled)",
+          exclusiveOn: ["--quarantine"],
         },
         {
           name: "--skip-cask-deps",
           description: "Skip installing cask dependencies",
+        },
+        {
+          name: "--greedy",
+          description:
+            "Also include casks with auto_updates true or version :latest",
+          exclusiveOn: ["--greedy-latest", "--greedy-auto-updates"],
+        },
+        {
+          name: "--greedy-latest",
+          description: "Also include casks with version :latest",
+        },
+        {
+          name: "--greedy-auto-updates",
+          description: "Also include casks with auto_updates true",
         },
         {
           name: "--appdir",
@@ -687,6 +733,11 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of language codes to prefer for cask installation. The first matching language is used, otherwise it reverts to the cask's default language. The default value is the language of your system",
         },
       ],
+      args: {
+        isVariadic: true,
+        name: "outdated_formula|outdated_cask",
+        generators: outdatedformulaeGenerator,
+      },
     },
     {
       name: "search",
