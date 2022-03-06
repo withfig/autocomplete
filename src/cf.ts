@@ -649,58 +649,296 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-service-key",
     description: "Create key for a service instance",
+    args: [
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+      {
+        name: "service key",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-c",
+        description: "Valid JSON object containing service-specific configuration parameters, provided either in-line or in a file",
+        args: {
+          name: "JSON object",
+        },
+      },
+    ],
   },
   {
     name: "service-keys",
     description: "List keys for a service instance",
+    args: {
+      name: "service instance",
+      isOptional: false,
+    }
   },
   {
     name: "service-key",
     description: "Show service key info",
+    args: [
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+      {
+        name: "service key",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "delete-service-key",
     description: "Delete a service key",
+    args: [
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+      {
+        name: "service key",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "bind-service",
     description: "Bind a service instance to an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-c",
+        description: "Valid JSON object containing service-specific configuration parameters, provided either in-line or in a file",
+        args: {
+          name: "JSON object",
+        },
+      },
+    ],
   },
   {
     name: "unbind-service",
     description: "Unbind a service instance from an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "bind-route-service",
     description: "Bind a service instance to an HTTP route",
+    args: [
+      {
+        name: "domain",
+        isOptional: false,
+      },
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-c",
+        description: "Valid JSON object containing service-specific configuration parameters, provided either in-line or in a file",
+        args: {
+          name: "JSON object",
+        },
+      },
+      {
+        name: ["-n", "--hostname"],
+        description: "Hostname used in combination with DOMAIN to specify the route to bind",
+        args: {
+          name: "hostname",
+        },
+      },
+      {
+        name: "--path",
+        description: "Path used in combination with HOSTNAME and DOMAIN to specify the route to bind",
+        args: {
+          name: "path",
+        },
+      },
+    ],
   },
   {
     name: "unbind-route-service",
     description: "Unbind a service instance from an HTTP route",
+    args: [
+      {
+        name: "domain",
+        isOptional: false,
+      },
+      {
+        name: "service instance",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-f",
+        description: "Force unbinding without confirmation",
+      },
+      {
+        name: ["-n", "--hostname"],
+        description: "Hostname used in combination with DOMAIN to specify the route to bind",
+        args: {
+          name: "hostname",
+        },
+      },
+      {
+        name: "--path",
+        description: "Path used in combination with HOSTNAME and DOMAIN to specify the route to bind",
+        args: {
+          name: "path",
+        },
+      },
+    ],
   },
   {
     name: "create-user-provided-service",
     description: "Make a user-provided service instance available to CF apps",
+    args: {
+      name: "service instance",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-p",
+        description: "Credentials, provided inline or in a file, to be exposed in the VCAP_SERVICES environment variable for bound applications",
+        args: {
+          name: "credentials",
+        }
+      },
+      {
+        name: "-l",
+        description: "URL to which logs for bound applications will be streamed",
+        args: {
+          name: "sys log drain url",
+        },
+      },
+      {
+        name: "-r",
+        description: "URL to which requests for bound routes will be forwarded. Scheme for this URL must be https",
+        args: {
+          name: "serice url",
+        },
+      },
+    ],
   },
   {
     name: "update-user-provided-service",
     description: "Update user-provided service instance",
+    args: {
+      name: "service instance",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-p",
+        description: "Credentials, provided inline or in a file, to be exposed in the VCAP_SERVICES environment variable for bound applications",
+        args: {
+          name: "credentials",
+        }
+      },
+      {
+        name: "-l",
+        description: "URL to which logs for bound applications will be streamed",
+        args: {
+          name: "sys log drain url",
+        },
+      },
+      {
+        name: "-r",
+        description: "URL to which requests for bound routes will be forwarded. Scheme for this URL must be https",
+        args: {
+          name: "serice url",
+        },
+      },
+    ],
   },
   {
     name: "org",
     description: "Show org info",
+    args: {
+      name: "org",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "--guid",
+        description: "Retrieve and display the given org's guid.  All other output for the org is suppressed",
+      },
+    ],
   },
   {
     name: "create-org",
     description: "Create an org",
+    args: {
+      name: "org",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-p",
+        description: "Quota to assign to the newly created org (excluding this option results in assignment of default quota)",
+        args: {
+          name: "quota",
+        }
+      },
+    ],
   },
   {
     name: "delete-org",
     description: "Delete an org",
+    args: {
+      name: "org",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "rename-org",
     description: "Rename an org",
+    args: [
+      {
+        name: "org",
+        isOptional: false,
+      },
+      {
+        name: "new org",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "spaces",
@@ -709,6 +947,20 @@ const completionSpec: Fig.Spec = {
   {
     name: "space",
     description: "Show space info",
+    args: {
+      name: "space",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: "--guid",
+        description: "Retrieve and display the given org's guid.  All other output for the org is suppressed",
+      },
+      {
+        name: "--security-group-rules",
+        description: "Retrieve the rules for all the security groups associated with the space's guid.  All other output for the org is suppressed",
+      },
+    ],
   },
   {
     name: "create-space",
