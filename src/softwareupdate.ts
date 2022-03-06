@@ -24,18 +24,15 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--all"],
           description: "All appropriate updates",
-          dependsOn: ["-i", "--install"],
         },
         {
           name: ["-R", "--restart"],
           description:
             "Automatically restart (or shut down) if required to complete installation",
-          dependsOn: ["-i", "--install"],
         },
         {
           name: ["-r", "--recommended"],
           description: "Only recommended updates",
-          dependsOn: ["-i", "--install"],
         },
       ],
     },
