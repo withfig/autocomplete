@@ -72,7 +72,7 @@ const completionSpec: Fig.Spec = {
     description: "List all orgs",
   },
   {
-    name: "version",
+    name: ["version", "-v", "--version"],
     description: "Print the version of cf",
   },
   {
@@ -147,10 +147,35 @@ const completionSpec: Fig.Spec = {
   {
     name: "api",
     description: "Set or view target api url",
+    args: {
+      name: "url",
+      description: "API endpoint",
+      isOptional: true,
+    },
+    options: [
+      {
+        name: "--skip-ssl-validation",
+        description: "Skip verification of the API endpoint. Not recommended!",
+      },
+      {
+        name: "--unset",
+        description: "Remove all api endpoint targeting",
+      },
+    ],
   },
   {
     name: "auth",
     description: "Auth user non-interactively",
+    args: [
+      {
+        name: "username",
+        isOptional: false,
+      },
+      {
+        name: "password",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "apps",
@@ -417,6 +442,25 @@ const completionSpec: Fig.Spec = {
   {
     name: "files",
     description: "Print out a list of files in a directory or the contents of a specific file of an app running on the DEA backend",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "path",
+        isOptional: true,
+      },
+    ],
+    options: [
+      {
+        name: "-i",
+        description: "Instance",
+        args: {
+          name: "instance",
+        },
+      },
+    ],
   },
   {
     name: "logs",
@@ -471,6 +515,36 @@ const completionSpec: Fig.Spec = {
   {
     name: "copy-source",
     description: "Copies the source code of an application to another existing application (and restarts that application)",
+    args: [
+      {
+        name: "source app",
+        isOptional: false,
+      },
+      {
+        name: "target app",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "-s",
+        description: "Space that contains the target application",
+        args: {
+          name: "space",
+        },
+      },
+      {
+        name: "-o",
+        description: "Org that contains the target application",
+        args: {
+          name: "org",
+        },
+      },
+      {
+        name: "--no-restart",
+        description: "Override restart of the application in target environment after copy-source completes",
+      },
+    ],
   },
   {
     name: "create-app-manifest",
@@ -550,7 +624,7 @@ const completionSpec: Fig.Spec = {
     ],
   },
   {
-    name: "services",
+    name: ["services", "s"],
     description: "List all service instances in the target space",
   },
   {
@@ -1119,38 +1193,237 @@ const completionSpec: Fig.Spec = {
   {
     name: "create-route",
     description: "Create a url route in a space for later use",
+    args: [
+      {
+        name: "space name",
+        isOptional: false,
+      },
+      {
+        name: "domain",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: ["--hostname", "-n"],
+        description: "Hostname for the HTTP route (required for shared domains)",
+        args: {
+          name: "hostname",
+        },
+      },
+      {
+        name: "--path",
+        description: "Path for the HTTP route",
+        args: {
+          name: "path",
+        },
+      },
+      {
+        name: "--port",
+        description: "Port for the TCP route",
+        args: {
+          name: "port",
+        },
+      },
+      {
+        name: "--random-port",
+        description: "Create a random port for the TCP route",
+      },
+    ],
   },
   {
     name: "check-route",
     description: "Perform a simple check to determine whether a route currently exists or not",
+    args: [
+      {
+        name: "host",
+        isOptional: false,
+      },
+      {
+        name: "domain",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: "--path",
+        description: "Path for the route",
+        args: {
+          name: "path",
+        },
+      },
+    ],
   },
   {
     name: "map-route",
     description: "Add a url route to an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "domain",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: ["--hostname", "-n"],
+        description: "Hostname for the HTTP route (required for shared domains)",
+        args: {
+          name: "hostname",
+        },
+      },
+      {
+        name: "--path",
+        description: "Path for the HTTP route",
+        args: {
+          name: "path",
+        },
+      },
+      {
+        name: "--port",
+        description: "Port for the TCP route",
+        args: {
+          name: "port",
+        },
+      },
+      {
+        name: "--random-port",
+        description: "Create a random port for the TCP route",
+      },
+    ],
   },
   {
     name: "unmap-route",
     description: "Remove a url route from an app",
+    args: [
+      {
+        name: "app name",
+        isOptional: false,
+      },
+      {
+        name: "domain",
+        isOptional: false,
+      },
+    ],
+    options: [
+      {
+        name: ["--hostname", "-n"],
+        description: "Hostname used to identify the HTTP route",
+        args: {
+          name: "hostname",
+        },
+      },
+      {
+        name: "--path",
+        description: "Path used to identify the HTTP route",
+        args: {
+          name: "path",
+        },
+      },
+      {
+        name: "--port",
+        description: "Port used to identify the TCP route",
+        args: {
+          name: "port",
+        },
+      },
+    ],
   },
   {
     name: "delete-route",
     description: "Delete a route",
+    args: {
+      name: "domain",
+      isOptional: false,
+    },
+    options: [
+      {
+        name: ["--hostname", "-n"],
+        description: "Hostname used to identify the HTTP route",
+        args: {
+          name: "hostname",
+        },
+      },
+      {
+        name: "--path",
+        description: "Path used to identify the HTTP route",
+        args: {
+          name: "path",
+        },
+      },
+      {
+        name: "--port",
+        description: "Port used to identify the TCP route",
+        args: {
+          name: "port",
+        },
+      },
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "delete-orphaned-routes",
     description: "Delete all orphaned routes (i.e. those that are not mapped to an app)",
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "create-user",
     description: "Create a new user",
+    args: [
+      {
+        name: "username",
+        isOptional: false,
+      },
+      {
+        name: "password",
+      },
+    ],
+    options: [
+      {
+        name: "--origin",
+        description: "Origin for mapping a user account to a user in an external identity provider",
+        args: {
+          name: "provider",
+        },
+      },
+    ],
   },
   {
     name: "delete-user",
     description: "Delete a user",
+    args: {
+      name: "username",
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "org-users",
     description: "Show org users by role",
+    args: {
+      name: "org",
+    },
+    options: [
+      {
+        name: "-a",
+        description: "List all users in the org",
+      },
+    ],
   },
   {
     name: "set-org-role",
@@ -1403,26 +1676,171 @@ const completionSpec: Fig.Spec = {
   {
     name: "space-quota",
     description: "Show space quota info",
+    args: {
+      name: "space quota",
+    },
   },
   {
     name: "create-space-quota",
     description: "Define a new space resource quota",
+    args: {
+      name: "quota",
+    },
+    options: [
+      {
+        name: "-a",
+        description: "Total number of application instances",
+        args: {
+          name: "number of application instances",
+        },
+      },
+      {
+        name: "-i",
+        description: "Maximum amount of memory an application instance can have",
+        args: {
+          name: "instance memory",
+        },
+      },
+      {
+        name: "-m",
+        description: "Total amount of memory a space can have",
+        args: {
+          name: "total memory",
+        },
+      },
+      {
+        name: "--reserved-route-ports",
+        description: "Maximum number of routes that may be created with reserved ports (Default: 0)",
+        args: {
+          name: "reserved route ports",
+        },
+      },
+      {
+        name: "-s",
+        description: "Total number of service instances",
+        args: {
+          name: "service instances",
+        },
+      },
+      {
+        name: "-r",
+        description: "Total number of routes",
+        args: {
+          name: "routes",
+        },
+      },
+      {
+        name: "--allow-paid-service-plans",
+        description: "Can provision instances of paid service plans",
+      },
+    ],
   },
   {
     name: "update-space-quota",
     description: "Update an existing space quota",
+    args: {
+      name: "space quota",
+    },
+    options: [
+      {
+        name: "-a",
+        description: "Total number of application instances",
+        args: {
+          name: "number of application instances",
+        },
+      },
+      {
+        name: "-i",
+        description: "Maximum amount of memory an application instance can have",
+        args: {
+          name: "instance memory",
+        },
+      },
+      {
+        name: "-m",
+        description: "Total amount of memory a space can have",
+        args: {
+          name: "total memory",
+        },
+      },
+      {
+        name: "--reserved-route-ports",
+        description: "Maximum number of routes that may be created with reserved ports (Default: 0)",
+        args: {
+          name: "reserved route ports",
+        },
+      },
+      {
+        name: "-s",
+        description: "Total number of service instances",
+        args: {
+          name: "service instances",
+        },
+      },
+      {
+        name: "-r",
+        description: "Total number of routes",
+        args: {
+          name: "routes",
+        },
+      },
+      {
+        name: "-n",
+        description: "New name",
+        args: {
+          name: "name",
+        },
+      },
+      {
+        name: "--allow-paid-service-plans",
+        description: "Can provision instances of paid service plans",
+      },
+      {
+        name: "--disallow-paid-service-plans",
+        description: "Cannot provision instances of paid service plans",
+      },
+    ],
   },
   {
     name: "delete-space-quota",
     description: "Delete a space quota definition and unassign the space quota from all spaces",
+    args: {
+      name: "space quota",
+    },
+    options: [
+      {
+        name: "-f",
+        description: "Force deletion without confirmation",
+      },
+    ],
   },
   {
     name: "set-space-quota",
     description: "Assign a space quota definition to a space",
+    args: [
+      {
+        name: "space",
+        isOptional: false,
+      },
+      {
+        name: "quota",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "unset-space-quota",
     description: "Unassign a quota from a space",
+    args: [
+      {
+        name: "space",
+        isOptional: false,
+      },
+      {
+        name: "quota",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "curl",
@@ -1477,10 +1895,24 @@ const completionSpec: Fig.Spec = {
   {
     name: "add-plugin-repo",
     description: "Add a new plugin repository",
+    args: [
+      {
+        name: "repo name",
+        isOptional: false,
+      },
+      {
+        name: "url",
+        isOptional: false,
+      },
+    ],
   },
   {
     name: "remove-plugin-repo",
     description: "Remove a plugin repository",
+    args: {
+      name: "repo name",
+      isOptional: false,
+    }
   },
   {
     name: "list-plugin-repos",
@@ -1489,14 +1921,58 @@ const completionSpec: Fig.Spec = {
   {
     name: "repo-plugins",
     description: "List all available plugins in specified repository or in all added repositories",
+    options: [
+      {
+        name: "-r",
+        description: "Name of a registered repository",
+        args: {
+          name: "repo",
+          isOptional: false,
+        },
+      },
+    ],
   },
   {
     name: "plugins",
     description: "List all available plugin commands",
+    options: [
+      {
+        name: "--checksum",
+        description: "Compute and show the sha1 value of the plugin binary file",
+      },
+    ],
   },
   {
     name: "install-plugin",
     description: "Install CLI plugin",
+    args: [
+      {
+        name: "path",
+        description: "Local path to plugin",
+      },
+      {
+        name: "url",
+        description: "URL for plugin", 
+      },
+    ],
+    options: [
+      {
+        name: "-r",
+        description: "Name of a registered repository where the specified plugin is located",
+        args: [
+          {
+            name: "repo name",
+          },
+          {
+            name: "plugin name",
+          },
+        ],
+      },
+      {
+        name: "-f",
+        description: "Force install of plugin without confirmation",
+      },
+    ],
   },
   {
     name: "uninstall-plugin",
