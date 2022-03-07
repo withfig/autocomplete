@@ -20,7 +20,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to show info",
-          isOptional: false,
       },
     },
     {
@@ -29,7 +28,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to Install",
-          isOptional: false,
       },
     },
     {
@@ -42,7 +40,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to Install",
-          isOptional: false,
       },
     },  
     {
@@ -51,7 +48,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to Open",
-          isOptional: false,
       },
     }, 
     {
@@ -64,7 +60,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to purchase",
-          isOptional: false,
       },
     }, 
     {
@@ -77,7 +72,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to Search",
-          isOptional: false,
       },
     }, 
     {
@@ -94,7 +88,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
           description: "The application you want to uninstall",
-          isOptional: false,
       },
     }, 
     {
@@ -107,7 +100,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "App ID",
           description: "The application you want to open vendor's app",
-          isOptional: false,
       },
     }, 
     {
