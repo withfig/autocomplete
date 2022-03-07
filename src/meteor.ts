@@ -2,7 +2,7 @@ import npm from "./npm";
 
 const completionSpec: Fig.Spec = {
   name: "meteor",
-  description: "",
+  description: "`meteor` command-line tool",
   subcommands: [npm],
   options: [
     {
