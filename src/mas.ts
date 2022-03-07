@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "mas",
-  description: "A simple command line interface for the Mac App Store.",
+  description: "A simple command line interface for the Mac App Store",
   subcommands: [
     {
       name: "account",
@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
       description: "Install an application",
       args: {
         name: "Application",
-          description: "The application you want to Install.",
+          description: "The application you want to Install",
           isOptional: false,
       },
     },
@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
       description: "Install the first result from the Mac App Store",
       args: {
         name: "Application",
-          description: "The application you want to Install.",
+          description: "The application you want to Install",
           isOptional: false,
       },
     },  
@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
       description: "Opens app page in AppStore.app",
       args: {
         name: "Application",
-          description: "The application you want to Open.",
+          description: "The application you want to Open",
           isOptional: false,
       },
     }, 
@@ -71,7 +71,7 @@ const completionSpec: Fig.Spec = {
       description: "Search for apps from the Mac App Store",
       args: {
         name: "Application",
-          description: "The application you want to Search.",
+          description: "The application you want to Search",
           isOptional: false,
       },
     }, 
@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
       description: "Uninstall app installed from the Mac App Store",
       args: {
         name: "Application",
-          description: "The application you want to uninstall.",
+          description: "The application you want to uninstall",
           isOptional: false,
       },
     }, 
@@ -101,7 +101,7 @@ const completionSpec: Fig.Spec = {
       description: "Opens vendor's app page in a browser",
       args: {
         name: "App ID",
-          description: "The application you want to open vendor's app.",
+          description: "The application you want to open vendor's app",
           isOptional: false,
       },
     }, 
