@@ -58,7 +58,7 @@ const completionSpec: Fig.Spec = {
       description: "Purchase and download free apps from the Mac App Store",
       args: {
         name: "Application",
-          description: "The application you want to purchase.",
+          description: "The application you want to purchase",
           isOptional: false,
       },
     }, 
