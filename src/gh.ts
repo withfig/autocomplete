@@ -76,11 +76,23 @@ const ghGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
-
   remoteBranches: {
     script:
       "git --no-optional-locks branch -r --no-color --sort=-committerdate",
     postProcess: postProcessRemoteBranches,
+  },
+  repos: {
+    script: (context) =>
+      `gh repo list ${context[context.length - 1].split("/", 1)[0]}`,
+    postProcess: (out) =>
+      out.split("\n").map((line) => {
+        const split = line.split("\t");
+        return {
+          name: split[0],
+          description: split[1],
+          icon: "fig://icon?type=git",
+        };
+      }),
   },
 };
 
@@ -1185,6 +1197,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "repository",
             isOptional: true,
+            generators: ghGenerators.listRepos,
           },
           options: [ghOptions.help, ghOptions.confirm],
         },
@@ -1197,6 +1210,7 @@ Pass additional 'git clone' flags by listing them after '--'`,
           args: [
             {
               name: "repository",
+              generators: ghGenerators.repos,
             },
             {
               name: "directory",
@@ -1260,6 +1274,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
           args: {
             name: "repository",
             isOptional: true,
+            generators: ghGenerators.repos,
           },
           options: [ghOptions.help, ghOptions.confirm],
         },
@@ -1269,6 +1284,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
           args: {
             name: "repository",
             isOptional: true,
+            generators: ghGenerators.repos,
           },
           options: [
             ghOptions.help,
@@ -1367,6 +1383,7 @@ a name for the new fork's remote with --remote-name.
 Additional 'git clone' flags can be passed in by listing them after '--'`,
           args: {
             name: "repository",
+            generators: ghGenerators.repos,
           },
           options: [
             ghOptions.help,
@@ -1498,6 +1515,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
           args: {
             name: "repository",
             isOptional: true,
+            generators: ghGenerators.repos,
           },
           options: [
             ghOptions.help,
