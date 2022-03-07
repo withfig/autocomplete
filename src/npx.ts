@@ -80,6 +80,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://remix.run/favicon-light.1.png",
   },
   {
+    name: "playwright",
+    icon: "https://playwright.dev/img/playwright-logo.svg",
+  },
+  {
     name: "ignite-cli",
     icon: "🔥",
   },
