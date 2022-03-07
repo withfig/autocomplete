@@ -1,4 +1,5 @@
 import {
+  override,
   settingsSpecGenerator,
   subsystemsGenerator,
   themesGenerator,
@@ -7,32 +8,6 @@ const completion: Fig.Spec = {
   name: "fig",
   description: "The CLI for Fig",
   subcommands: [
-    {
-      name: "install",
-      description: "Install dotfiles",
-      options: [
-        {
-          name: "--daemon",
-          description: "Install only the daemon",
-        },
-        {
-          name: "--dotfiles",
-          description: "Install only the dotfiles",
-        },
-        {
-          name: "--no-confirm",
-          description: "Don't confirm automatic installation",
-        },
-        {
-          name: "--force",
-          description: "Force installation of the dotfiles",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-    },
     {
       name: "app",
       description: "Interact with the desktop app",
@@ -623,7 +598,6 @@ const completion: Fig.Spec = {
           description: "Print help information",
         },
       ],
-      icon: "fig://template?badge=🐞",
     },
     {
       name: "settings",
@@ -799,25 +773,35 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "uninstall",
-      description: "Uninstall dotfiles",
+      name: "install",
+      description: "Install fig cli comoponents",
       options: [
         {
           name: "--daemon",
-          description: "Uninstall only the daemon",
+          description: "Install only the daemon",
         },
         {
           name: "--dotfiles",
-          description: "Uninstall only the dotfiles",
+          description: "Install only the shell integrations",
         },
         {
           name: "--no-confirm",
-          description: "Don't confirm automatic removal",
+          description: "Don't confirm automatic installation",
         },
         {
-          name: "--binary",
-          description: "Uninstall only the binary",
+          name: "--force",
+          description: "Force installation of fig",
         },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "uninstall",
+      description: "Uninstall fig",
+      options: [
         {
           name: ["-h", "--help"],
           description: "Print help information",
@@ -914,7 +898,7 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "sync",
+      name: "source",
       description: "Sync your latest dotfiles",
       options: [
         {
@@ -1011,6 +995,12 @@ const completion: Fig.Spec = {
       name: "doctor",
       description: "Check Fig is properly configured",
       options: [
+        {
+          name: "--verbose",
+        },
+        {
+          name: "--strict",
+        },
         {
           name: ["-h", "--help"],
           description: "Print help information",
@@ -1220,6 +1210,101 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "callback",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "handler-id",
+            },
+            {
+              name: "filename",
+              isOptional: true,
+            },
+            {
+              name: "exit-code",
+              isOptional: true,
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Install fig cli",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: "--daemon",
+              description: "Install only the daemon",
+            },
+            {
+              name: "--dotfiles",
+              description: "Install only the shell integrations",
+            },
+            {
+              name: "--no-confirm",
+              description: "Don't confirm automatic installation",
+            },
+            {
+              name: "--force",
+              description: "Force installation of fig",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          description: "Uninstall fig cli",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: "--daemon",
+              description: "Uninstall only the daemon",
+            },
+            {
+              name: "--dotfiles",
+              description: "Uninstall only the shell integrations",
+            },
+            {
+              name: "--binary",
+              description: "Uninstall only the binary",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "warn-user-when-uninstalling-incorrectly",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -1304,3 +1389,18 @@ const completion: Fig.Spec = {
   ],
 };
 export default completion;
+// Automatic merge overrides these properties - will be fixed in an update to
+// the clap integration. Until then, the modifications are hardcoded.
+override(completion, {
+  internal: (internal) => {
+    internal.hidden = true;
+    internal.name = ["internal", "_"];
+  },
+  debug: (debug) => {
+    override(debug.args, {
+      files: (files) => {
+        files.isVariadic = true;
+      },
+    });
+  },
+});
