@@ -17,6 +17,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "info",
       description: "Display app information from the Mac App Store",
+      args: {
+        name: "Application",
+          description: "The application you want to show info",
+          isOptional: false,
+      },
     },
     {
       name: "install",
