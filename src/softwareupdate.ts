@@ -1,3 +1,16 @@
+const updatesGenerator: Fig.Generator = {
+  script: "softwareupdate -l",
+  postProcess: (out) => {
+    return out
+      .split("\n")
+      .filter((line) => line.startsWith("* Label: "))
+      .map((line) => ({
+        name: '"' + line.substring(9) + '"',
+        description: "Available update",
+      }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "softwareupdate",
   description:
@@ -19,6 +32,7 @@ const completionSpec: Fig.Spec = {
         name: "label",
         isVariadic: true,
         isOptional: true,
+        generators: updatesGenerator,
       },
       options: [
         {
