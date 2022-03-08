@@ -854,7 +854,7 @@ const completionSpec: Fig.Spec = {
           dependsOn: ["g", "-g", "--listed-incremental"],
         },
         {
-          name: ["--level", "--level="],
+          name: ["--level", "--level={cursor}"],
           description: "Set dump level for created listed-incremental archive",
           args: { name: "NUMBER", default: "0" },
           dependsOn: ["g", "-g", "--listed-incremental"],

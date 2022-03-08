@@ -17,7 +17,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-I", "--libdir"],
-      insertValue: "--libdir=",
+      insertValue: "--libdir={cursor}",
       description: "Include LIBDIR in the search path for required modules",
       args: {
         name: "LIBDIR",
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-f", "--rakefile"],
-      insertValue: "--rakeFile=",
+      insertValue: "--rakeFile={cursor}",
       description: "Use FILE as the rakefile",
       args: {
         name: "FILE",
@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-r", "--require"],
-      insertValue: "--require=",
+      insertValue: "--require={cursor}",
       description: "Require MODULE before executing rakefile",
       args: {
         name: "MODULE",
