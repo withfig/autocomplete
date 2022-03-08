@@ -66,7 +66,6 @@ const completionSpec: Fig.Spec = {
           description: "Run the test with the title",
           args: {
             name: "title",
-            isOptional: false,
           },
         },
         {
