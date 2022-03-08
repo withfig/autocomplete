@@ -9,7 +9,7 @@ const updatesGenerator: Fig.Generator = {
         description: "Available update",
       }));
   },
-  scriptTimeout: 15000,
+  scriptTimeout: 20000,
   cache: {
     ttl: 300000,
   },
