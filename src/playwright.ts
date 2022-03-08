@@ -5,7 +5,7 @@ const testsGenerator: Fig.Generator = {
   },
 };
 
-const browserSuggestions: Fig.Arg["suggestions"] = [
+const browserSuggestions: Fig.Suggestion[] = [
   {
     name: "chromium",
     displayName: "Chromium",
