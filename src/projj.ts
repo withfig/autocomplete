@@ -9,6 +9,18 @@ const repoGenerator: Fig.Generator = {
   },
 };
 
+const hookGenerator: Fig.Generator = {
+  script: "cat ~/.projj/config.json",
+  postProcess: function (out) {
+    const cache = JSON.parse(out);
+    const hooks = cache.hooks;
+    return Object.keys(hooks).map((key) => ({
+      name: key,
+      description: hooks[key],
+    }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "projj",
   description: "Manage repository easily",
@@ -35,6 +47,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "import",
       description: "Import repositories from existing directory",
+      args: {
+        name: "directory",
+        template: "folders",
+      },
     },
     {
       name: "init",
@@ -43,18 +59,34 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "Remove repository",
+      args: {
+        name: "repository name",
+        generators: repoGenerator,
+      },
     },
     {
       name: "run",
       description: "Run hook in current directory",
+      args: {
+        name: "hook name",
+        generators: hookGenerator,
+      },
     },
     {
       name: "runall",
       description: "Run hook in every repository",
+      args: {
+        name: "hook name",
+        generators: hookGenerator,
+      },
     },
     {
       name: "sync",
       description: "Sync data from directory",
+      args: {
+        name: "directory",
+        template: "folders",
+      },
     },
   ],
   options: [
