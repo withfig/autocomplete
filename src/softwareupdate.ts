@@ -1,5 +1,5 @@
 const updatesGenerator: Fig.Generator = {
-  script: "softwareupdate -l",
+  script: "softwareupdate --list",
   postProcess: (out) => {
     return out
       .split("\n")
@@ -8,6 +8,10 @@ const updatesGenerator: Fig.Generator = {
         name: '"' + line.substring(9) + '"',
         description: "Available update",
       }));
+  },
+  scriptTimeout: 15000,
+  cache: {
+    ttl: 300000,
   },
 };
 
