@@ -77,7 +77,6 @@ const global_parameter_skip_plugins2: Fig.Option = {
   insertValue: "--skip-plugins={cursor}",
   requiresEquals: true,
   displayName: "--skip-plugins={cursor}",
-  requiresEquals: true,
   description:
     "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded",
   args: {
@@ -94,8 +93,7 @@ const global_parameter_skip_themes2: Fig.Option = {
   name: "--skip-themes",
   insertValue: "--skip-themes={cursor}",
   requiresEquals: true,
-  displayName: "--skip-themes={cursor}",
-  requiresEquals: true,
+  displayName: "--skip-themes=",
   description: "Skip loading all themes, or a comma-separated list of themes",
   args: {
     name: "themes",
@@ -150,7 +148,6 @@ const global_parameter_debug2: Fig.Option = {
   displayName: "--debug={cursor}",
   requiresEquals: true,
   insertValue: "--debug={cursor}",
-  requiresEquals: true,
   description:
     "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help",
   args: {
@@ -169,7 +166,6 @@ const global_parameter_prompt2: Fig.Option = {
   insertValue: "--prompt={cursor}",
   requiresEquals: true,
   displayName: "--prompt={cursor}",
-  requiresEquals: true,
   description:
     "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values",
   args: {
@@ -8841,7 +8837,6 @@ const completionSpec: Fig.Spec = {
           displayName: "--log={cursor}",
           requiresEquals: true,
           insertValue: "--log={cursor}",
-          requiresEquals: true,
           description:
             "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex",
           args: { name: "file", isOptional: true },
