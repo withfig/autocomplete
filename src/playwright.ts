@@ -43,7 +43,7 @@ const browserSuggestions: Fig.Suggestion[] = [
 const helpOption: Fig.Option = {
   name: ["--help", "-h"],
   description: "Display help for command",
-  priority: -1,
+  priority: 1,
 };
 
 const completionSpec: Fig.Spec = {
