@@ -76,7 +76,7 @@ const global_parameter_skip_plugins2: Fig.Option = {
   name: "--skip-plugins",
   insertValue: "--skip-plugins={cursor}",
   requiresEquals: true,
-  displayName: "--skip-plugins={cursor}",
+  displayName: "--skip-plugins=",
   description:
     "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded",
   args: {
@@ -145,7 +145,7 @@ const global_parameter_debug1: Fig.Option = {
 
 const global_parameter_debug2: Fig.Option = {
   name: "--debug",
-  displayName: "--debug={cursor}",
+  displayName: "--debug=",
   requiresEquals: true,
   insertValue: "--debug={cursor}",
   description:
@@ -165,7 +165,7 @@ const global_parameter_prompt2: Fig.Option = {
   name: "--prompt",
   insertValue: "--prompt={cursor}",
   requiresEquals: true,
-  displayName: "--prompt={cursor}",
+  displayName: "--prompt=",
   description:
     "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values",
   args: {
@@ -8834,7 +8834,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--log",
-          displayName: "--log={cursor}",
+          displayName: "--log=",
           requiresEquals: true,
           insertValue: "--log={cursor}",
           description:
