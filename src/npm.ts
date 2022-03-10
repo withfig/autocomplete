@@ -839,7 +839,23 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: npmSearchGenerator,
         debounce: true,
+        isVariadic: true,
       },
+      options: [
+        ...workSpaceOptions,
+        {
+          name: "--no-browser",
+          description: "Display in command line instead of browser",
+          exclusiveOn: ["--browser"],
+        },
+        {
+          name: "--browser",
+          description:
+            "The browser that is called by the npm repo command to open websites",
+          args: { name: "browser" },
+          exclusiveOn: ["--no-browser"],
+        },
+      ],
     },
     {
       name: "restart",
