@@ -841,7 +841,21 @@ const completionSpec: Fig.Spec = {
         debounce: true,
       },
     },
-    { name: "restart", description: "Restart a package" },
+    {
+      name: "restart",
+      description: "Restart a package",
+      options: [
+        ignoreScriptsOption,
+        scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "arg",
+            description: "Arguments to be passed to the restart script",
+          },
+        },
+      ],
+    },
     {
       name: "root",
       description: "Display npm root",
