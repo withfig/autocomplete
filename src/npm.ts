@@ -435,7 +435,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "run",
+      name: ["run", "run-script"],
       description: "Run arbitrary package scripts",
       options: [
         ...workSpaceOptions,
@@ -853,7 +853,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "run-script", description: "Run arbitrary package scripts" },
     {
       name: ["search", "s", "se", "find"],
       description: "Search for packages",
