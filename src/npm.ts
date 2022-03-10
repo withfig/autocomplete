@@ -847,7 +847,7 @@ const completionSpec: Fig.Spec = {
       description: "Display npm root",
       options: [
         {
-          name: "-g",
+          name: ["-g", "--global"],
           description:
             "Print the effective global node_modules folder to standard out",
         },
