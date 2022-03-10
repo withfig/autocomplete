@@ -859,7 +859,21 @@ const completionSpec: Fig.Spec = {
       name: "shrinkwrap",
       description: "Lock down dependency versions for publication",
     },
-    { name: "star", description: "Mark your favorite packages" },
+    {
+      name: "star",
+      description: "Mark your favorite packages",
+      args: {
+        name: "pkg",
+        description: "Package to mark as favorite",
+      },
+      options: [
+        registryOption,
+        {
+          name: "--no-unicode",
+          description: "Do not use unicode characters in the tree output",
+        },
+      ],
+    },
     {
       name: "stars",
       description: "View packages marked as favorites",
@@ -1018,6 +1032,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "unstar",
       description: "Remove an item from your favorite packages",
+      args: {
+        name: "pkg",
+        description: "Package to unmark as favorite",
+      },
       options: [
         registryOption,
         otpOption,
