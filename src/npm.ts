@@ -325,6 +325,13 @@ const ignoreScriptsOption: Fig.Option = {
     "If true, npm does not run scripts specified in package.json files",
 };
 
+const scriptShellOption: Fig.Option = {
+  name: "--script-shell",
+  description:
+    "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
+  args: { name: "script-shell" },
+};
+
 const completionSpec: Fig.Spec = {
   name: "npm",
   parserDirectives: {
@@ -435,10 +442,7 @@ const completionSpec: Fig.Spec = {
           description: "",
         },
         ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          args: { name: "shell" },
-        },
+        scriptShellOption,
       ],
       args: {
         name: "script",
@@ -593,11 +597,7 @@ const completionSpec: Fig.Spec = {
           exclusiveOn: ["--audit"],
         },
         ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          description:
-            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
-        },
+        scriptShellOption,
       ],
     },
     {
@@ -864,13 +864,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "start",
       description: "Start a package",
-      options: [
-        ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          args: { name: "shell" },
-        },
-      ],
+      options: [ignoreScriptsOption, scriptShellOption],
     },
     { name: "stop", description: "Stop a package" },
     {
@@ -915,15 +909,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["test", "tst", "t"],
       description: "Test a package",
-      options: [
-        ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          description:
-            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
-          args: { name: "shell" },
-        },
-      ],
+      options: [ignoreScriptsOption, scriptShellOption],
     },
     {
       name: "token",
