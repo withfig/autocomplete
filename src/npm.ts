@@ -936,7 +936,6 @@ const completionSpec: Fig.Spec = {
       options: [registryOption, otpOption],
     },
     uninstallSubcommand("uninstall"),
-    uninstallSubcommand("remove"),
     uninstallSubcommand(["r", "rm"]),
     uninstallSubcommand("un"),
     uninstallSubcommand("remove"),
