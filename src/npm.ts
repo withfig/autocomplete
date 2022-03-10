@@ -339,6 +339,12 @@ const scriptShellOption: Fig.Option = {
   args: { name: "script-shell" },
 };
 
+const dryRunOption: Fig.Option = {
+  name: "--dry-run",
+  description:
+    "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
+};
+
 const completionSpec: Fig.Spec = {
   name: "npm",
   parserDirectives: {
@@ -426,11 +432,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
         },
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         ...workSpaceOptions,
       ],
     },
@@ -487,11 +489,7 @@ const completionSpec: Fig.Spec = {
           description:
             "If the fix argument is provided, then remediations will be applied to the package tree",
           options: [
-            {
-              name: "--dry-run",
-              description:
-                "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-            },
+            dryRunOption,
             {
               name: ["-f", "--force"],
               description:
@@ -790,11 +788,7 @@ const completionSpec: Fig.Spec = {
       name: "prune",
       description: "Remove extraneous packages",
       options: [
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         jsonOption,
         {
           name: "--production",
@@ -826,11 +820,7 @@ const completionSpec: Fig.Spec = {
             suggestions: ["restricted", "public"],
           },
         },
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         otpOption,
       ],
     },
@@ -1132,11 +1122,7 @@ const completionSpec: Fig.Spec = {
         name: "[<@scope>/]<pkg>[@<version>]",
       },
       options: [
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         {
           name: ["-f", "--force"],
           description:
@@ -1203,11 +1189,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
         },
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         ...workSpaceOptions,
       ],
     },
