@@ -829,8 +829,23 @@ const completionSpec: Fig.Spec = {
         otpOption,
       ],
     },
-    { name: "rb", description: "Rebuild a package" },
-    { name: "rebuild", description: "Rebuild a package" },
+    {
+      name: ["rebuild", "rb"],
+      description: "Rebuild a package",
+      args: {
+        name: "[<@scope>/]<pkg>[@<version>]",
+      },
+      options: [
+        globalOption,
+        ...workSpaceOptions,
+        ignoreScriptsOption,
+        {
+          name: "--no-bin-links",
+          description:
+            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables",
+        },
+      ],
+    },
     {
       name: "repo",
       description: "Open package repository page in the browser",
