@@ -790,13 +790,19 @@ const completionSpec: Fig.Spec = {
     {
       name: "prune",
       description: "Remove extraneous packages",
+      args: {
+        name: "[<@scope>/]<pkg>",
+        isOptional: true,
+      },
       options: [
+        omitOption,
         dryRunOption,
         jsonOption,
         {
           name: "--production",
           description: "Remove the packages specified in your devDependencies",
         },
+        ...workSpaceOptions,
       ],
     },
     {
