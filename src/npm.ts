@@ -856,6 +856,22 @@ const completionSpec: Fig.Spec = {
     { name: "search", description: "Search for packages" },
     { name: "set", description: "Sets the config key to the value" },
     {
+      name: "set-script",
+      description: "Set tasks in the scripts section of package.json",
+      args: [
+        {
+          name: "script",
+          description:
+            "Name of the task to be added to the scripts section of package.json",
+        },
+        {
+          name: "command",
+          description: "Command to run when script is called",
+        },
+      ],
+      options: workSpaceOptions,
+    },
+    {
       name: "shrinkwrap",
       description: "Lock down dependency versions for publication",
     },
