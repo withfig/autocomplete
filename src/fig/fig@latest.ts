@@ -948,6 +948,10 @@ const completion: Fig.Spec = {
       description: "Create a new Github issue",
       options: [
         {
+          name: ["-f", "--force"],
+          description: "Force issue creation",
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help information",
         },
@@ -1002,6 +1006,9 @@ const completion: Fig.Spec = {
           name: "--strict",
         },
         {
+          name: "--no-early-exit",
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help information",
         },
@@ -1011,67 +1018,6 @@ const completion: Fig.Spec = {
       name: "plugins",
       description: "Plugins management",
       subcommands: [
-        {
-          name: "info",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-v", "--verbose"],
-            },
-            {
-              name: ["-q", "--quiet"],
-              description: "Quiet",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "plugin-file",
-          },
-        },
-        {
-          name: "add",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-l", "--local"],
-            },
-            {
-              name: ["-f", "--force"],
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "plugin",
-          },
-        },
-        {
-          name: "remove",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "plugin",
-          },
-        },
         {
           name: "list",
           options: [
@@ -1360,6 +1306,15 @@ const completion: Fig.Spec = {
     },
     {
       name: "alpha",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "onboarding",
       options: [
         {
           name: ["-h", "--help"],
