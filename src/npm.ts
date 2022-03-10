@@ -536,8 +536,11 @@ const completionSpec: Fig.Spec = {
       name: ["bugs", "issues"],
       description: "Report bugs for a package in a web browser",
       args: {
-        name: "pkgname",
+        name: "package",
         isOptional: true,
+        generators: npmSearchGenerator,
+        debounce: true,
+        isVariadic: true,
       },
       options: [
         {
