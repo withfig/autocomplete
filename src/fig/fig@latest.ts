@@ -1352,9 +1352,13 @@ override(completion, {
     internal.name = ["internal", "_"];
   },
   debug: (debug) => {
-    override(debug.args, {
-      files: (files) => {
-        files.isVariadic = true;
+    override(debug.subcommands, {
+      logs: (logs) => {
+        override(logs.args, {
+          files: (files) => {
+            files.isVariadic = true;
+          },
+        });
       },
     });
   },
