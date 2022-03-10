@@ -941,7 +941,27 @@ const completionSpec: Fig.Spec = {
     uninstallSubcommand("un"),
     uninstallSubcommand("remove"),
     uninstallSubcommand("unlink"),
-    { name: "unpublish", description: "Remove a package from the registry" },
+    {
+      name: "unpublish",
+      description: "Remove a package from the registry",
+      args: {
+        name: "[<@scope>/]<pkg>[@<version>]",
+      },
+      options: [
+        {
+          name: "--dry-run",
+          description:
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
+        },
+        {
+          name: ["-f", "--force"],
+          description:
+            "Allow unpublishing all versions of a published package. Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input",
+          isDangerous: true,
+        },
+        ...workSpaceOptions,
+      ],
+    },
     {
       name: "unstar",
       description: "Remove an item from your favorite packages",
