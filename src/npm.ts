@@ -942,7 +942,18 @@ const completionSpec: Fig.Spec = {
     uninstallSubcommand("remove"),
     uninstallSubcommand("unlink"),
     { name: "unpublish", description: "Remove a package from the registry" },
-    { name: "unstar", description: "Unmark your package" },
+    {
+      name: "unstar",
+      description: "Remove an item from your favorite packages",
+      options: [
+        registryOption,
+        otpOption,
+        {
+          name: "--no-unicode",
+          description: "Do not use unicode characters in the tree output",
+        },
+      ],
+    },
     {
       name: ["update", "upgrade", "up"],
       description: "Update a package",
