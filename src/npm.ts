@@ -866,7 +866,21 @@ const completionSpec: Fig.Spec = {
       description: "Start a package",
       options: [ignoreScriptsOption, scriptShellOption],
     },
-    { name: "stop", description: "Stop a package" },
+    {
+      name: "stop",
+      description: "Stop a package",
+      options: [
+        ignoreScriptsOption,
+        scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "arg",
+            description: "Arguments to be passed to the stop script",
+          },
+        },
+      ],
+    },
     {
       name: "team",
       description: "Manage organization teams and team memberships",
