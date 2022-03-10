@@ -995,7 +995,38 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description: "Bump a package version",
-      options: [...workSpaceOptions, jsonOption],
+      options: [
+        ...workSpaceOptions,
+        jsonOption,
+        {
+          name: "--allow-same-version",
+          description:
+            "Prevents throwing an error when npm version is used to set the new version to the same value as the current version",
+        },
+        {
+          name: "--no-commit-hooks",
+          description:
+            "Do not run git commit hooks when using the npm version command",
+        },
+        {
+          name: "--no-git-tag-version",
+          description:
+            "Do not tag the commit when using the npm version command",
+        },
+        {
+          name: "--preid",
+          description:
+            'The "prerelease identifier" to use as a prefix for the "prerelease" part of a semver. Like the rc in 1.2.0-rc.8',
+          args: {
+            name: "prerelease-id",
+          },
+        },
+        {
+          name: "--sign-git-tag",
+          description:
+            "If set to true, then the npm version command will tag the version using -s to add a signature",
+        },
+      ],
     },
     {
       name: ["view", "v", "info", "show"],
