@@ -860,7 +860,16 @@ const completionSpec: Fig.Spec = {
       description: "Lock down dependency versions for publication",
     },
     { name: "star", description: "Mark your favorite packages" },
-    { name: "stars", description: "View packages marked as favorites" },
+    {
+      name: "stars",
+      description: "View packages marked as favorites",
+      args: {
+        name: "user",
+        isOptional: true,
+        description: "View packages marked as favorites by <user>",
+      },
+      options: [registryOption],
+    },
     {
       name: "start",
       description: "Start a package",
