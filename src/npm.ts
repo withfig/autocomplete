@@ -876,6 +876,41 @@ const completionSpec: Fig.Spec = {
     {
       name: "team",
       description: "Manage organization teams and team memberships",
+      subcommands: [
+        {
+          name: "create",
+          args: { name: "scope:team" },
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "destroy",
+          args: { name: "scope:team" },
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "add",
+          args: [{ name: "scope:team" }, { name: "user" }],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "rm",
+          args: [{ name: "scope:team" }, { name: "user" }],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "ls",
+          args: { name: "scope|scope:team" },
+          options: [
+            registryOption,
+            jsonOption,
+            {
+              name: ["-p", "--parseable"],
+              description:
+                "Output parseable results from commands that write to standard output",
+            },
+          ],
+        },
+      ],
     },
     {
       name: ["test", "tst", "t"],
