@@ -230,6 +230,17 @@ const omitOption: Fig.Option = {
   isRepeatable: 3,
 };
 
+const parseableOption: Fig.Option = {
+  name: ["-p", "--parseable"],
+  description:
+    "Output parseable results from commands that write to standard output",
+};
+
+const longOption: Fig.Option = {
+  name: ["-l", "--long"],
+  description: "Show extended information",
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: ["-w", "--workspace"],
@@ -278,12 +289,8 @@ const npmListOptions: Fig.Option[] = [
     description: "Show all outdated or installed packages",
   },
   jsonOption,
-  { name: ["-l", "--long"], description: "Show extended information" },
-  {
-    name: ["-p", "--parseable"],
-    description:
-      "Output parseable results from commands that write to standard output",
-  },
+  longOption,
+  parseableOption,
   {
     name: "--depth",
     description: "The depth to go when recursing packages",
@@ -723,12 +730,8 @@ const completionSpec: Fig.Spec = {
           description: "Show all outdated or installed packages",
         },
         jsonOption,
-        { name: ["-l", "--long"], description: "Show extended information" },
-        {
-          name: ["-p", "--parseable"],
-          description:
-            "Output parseable results from commands that write to standard output",
-        },
+        longOption,
+        parseableOption,
         {
           name: "-g",
           description: "Checks globally",
@@ -851,9 +854,73 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "run-script", description: "Run arbitrary package scripts" },
-    { name: "s", description: "Search for packages" },
-    { name: "se", description: "Search for packages" },
-    { name: "search", description: "Search for packages" },
+    {
+      name: ["search", "s", "se", "find"],
+      description: "Search for packages",
+      args: {
+        name: "search terms",
+        isVariadic: true,
+      },
+      options: [
+        longOption,
+        jsonOption,
+        {
+          name: "--color",
+          description: "Show colors",
+          args: {
+            name: "always",
+            suggestions: ["always"],
+            description: "Always show colors",
+          },
+          exclusiveOn: ["--no-color"],
+        },
+        {
+          name: "--no-color",
+          description: "Do not show colors",
+          exclusiveOn: ["--color"],
+        },
+        parseableOption,
+        {
+          name: "--no-description",
+          description: "Do not show descriptions",
+        },
+        {
+          name: "--searchopts",
+          description:
+            "Space-separated options that are always passed to search",
+          args: {
+            name: "searchopts",
+          },
+        },
+        {
+          name: "--searchexclude",
+          description:
+            "Space-separated options that limit the results from search",
+          args: {
+            name: "searchexclude",
+          },
+        },
+        registryOption,
+        {
+          name: "--prefer-online",
+          description:
+            "If true, staleness checks for cached data will be forced, making the CLI look for updates immediately even for fresh package data",
+          exclusiveOn: ["--prefer-offline", "--offline"],
+        },
+        {
+          name: "--prefer-offline",
+          description:
+            "If true, staleness checks for cached data will be bypassed, but missing data will be requested from the server",
+          exclusiveOn: ["--prefer-online", "--offline"],
+        },
+        {
+          name: "--offline",
+          description:
+            "Force offline mode: no network requests will be done during install",
+          exclusiveOn: ["--prefer-online", "--prefer-offline"],
+        },
+      ],
+    },
     { name: "set", description: "Sets the config key to the value" },
     {
       name: "set-script",
@@ -957,15 +1024,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           args: { name: "scope|scope:team" },
-          options: [
-            registryOption,
-            jsonOption,
-            {
-              name: ["-p", "--parseable"],
-              description:
-                "Output parseable results from commands that write to standard output",
-            },
-          ],
+          options: [registryOption, jsonOption, parseableOption],
         },
       ],
     },
@@ -981,14 +1040,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Shows a table of all active authentication tokens",
-          options: [
-            jsonOption,
-            {
-              name: ["-p", "--parseable"],
-              description:
-                "Output parseable results from commands that write to standard output",
-            },
-          ],
+          options: [jsonOption, parseableOption],
         },
         {
           name: "create",
