@@ -44,7 +44,62 @@ const postProcessRemoteBranches: Fig.Generator["postProcess"] = (out) => {
   });
 };
 
+interface RepoDataType {
+  isPrivate: boolean;
+  nameWithOwner: string;
+  description: string | null;
+}
+
+const listRepoMapFunction = (repo: RepoDataType) => ({
+  name: repo.nameWithOwner,
+  description: repo.description,
+  //be able to see if the repo is private at a glance
+  icon: repo.isPrivate ? "🔒" : "👀",
+});
+
 const ghGenerators: Record<string, Fig.Generator> = {
+  listCustomRepositories: {
+    trigger: "/",
+    //execute is script then postProcess
+    custom: async (tokens, execute) => {
+      //get the last command token
+      const last = tokens.pop();
+
+      //gatekeeper
+      if (!last) return [];
+
+      /**
+       * this turns this input:
+       * `withfig/autocomplete`
+       *
+       * into:
+       * ["withfig", "autocomplete"]
+       */
+      const userRepoSplit = last.split("/");
+
+      // make sure it has some length.
+      if (userRepoSplit.length === 0) return [];
+
+      //get first element of arr
+      const userOrOrg = userRepoSplit.shift();
+
+      // make sure it has some existence.
+      if (!userOrOrg) return [];
+
+      //run `gh repo list` cmd
+      const res = await execute(
+        `gh repo list ${userOrOrg} --json "nameWithOwner,description,isPrivate" `
+      );
+
+      // make sure it has some existence.
+      if (!res) return [];
+
+      //parse the JSON string output of the command
+      const repoArr: RepoDataType[] = JSON.parse(res);
+
+      return repoArr.map(listRepoMapFunction);
+    },
+  },
   listRepositories: {
     /*
      * based on the gh api (use this instead as it also returns repos in the orgs that the user is part of)
@@ -53,12 +108,6 @@ const ghGenerators: Record<string, Fig.Generator> = {
     script:
       "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}'",
     postProcess: (out) => {
-      interface RepoDataType {
-        isPrivate: boolean;
-        nameWithOwner: string;
-        description: string | null;
-      }
-
       interface PageInfo {
         hasNextPage: boolean;
         endCursor: string;
@@ -87,12 +136,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
           const data: ResObject = JSON.parse(fixedOut);
 
-          return data.data.viewer.repositories.nodes.map((repo) => ({
-            name: repo.nameWithOwner,
-            description: repo.description,
-            //be able to see if the repo is private at a glance
-            icon: repo.isPrivate ? "🔒" : "👀",
-          }));
+          return data.data.viewer.repositories.nodes.map(listRepoMapFunction);
         } catch {
           return [];
         }
@@ -126,12 +170,11 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
       return aliases.map(({ name, content }) => ({
         name,
-        description: content,
-        icon: "fig://icon?type=command",
+        description: `Alias for '${content}'`,
+        icon: "fig://icon?type=commandkey",
       }));
     },
   },
-
   remoteBranches: {
     script:
       "git --no-optional-locks branch -r --no-color --sort=-committerdate",
@@ -172,6 +215,12 @@ const ghOptions: Record<string, Fig.Option> = {
 const completionSpec: Fig.Spec = {
   name: "gh",
   description: "GitHub's CLI tool",
+  args: {
+    name: "alias",
+    description: "Custom user defined gh alias",
+    isOptional: true,
+    generators: ghGenerators.listAlias,
+  },
   subcommands: [
     {
       name: "alias",
@@ -189,7 +238,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "List avaible aliases",
+          description: "List available aliases",
           options: [ghOptions.help],
         },
         {
@@ -242,6 +291,68 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-w", "--web"],
               description: "Open a browser to authenticate",
+            },
+            {
+              name: "--with-token",
+              description: "Read token from standard input",
+              args: { name: "token" },
+            },
+          ],
+        },
+        {
+          name: "logout",
+          description: "Log out of a GitHub host",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
+            },
+          ],
+        },
+        {
+          name: "refresh",
+          description: "Refresh stored authentication credentials",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
+            },
+            {
+              name: ["-s", "--scopes"],
+              description: "Additional authentication scopes for gh to have",
+              args: { name: "scopes" },
+            },
+          ],
+        },
+        {
+          name: "setup-git",
+          description: "Configure git to use GitHub CLI as a credential helper",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
+            },
+          ],
+        },
+        {
+          name: "status",
+          description: "View authentication status",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
             },
             {
               name: "--with-token",
@@ -1361,7 +1472,10 @@ Pass additional 'git clone' flags by listing them after '--'`,
           args: [
             {
               name: "repository",
-              generators: ghGenerators.listRepositories,
+              generators: [
+                ghGenerators.listRepositories,
+                ghGenerators.listCustomRepositories,
+              ],
             },
             {
               name: "directory",
@@ -1534,7 +1648,10 @@ a name for the new fork's remote with --remote-name.
 Additional 'git clone' flags can be passed in by listing them after '--'`,
           args: {
             name: "repository",
-            generators: ghGenerators.listRepositories,
+            generators: [
+              ghGenerators.listRepositories,
+              ghGenerators.listCustomRepositories,
+            ],
           },
           options: [
             ghOptions.help,
@@ -1666,7 +1783,10 @@ For more information about output formatting flags, see 'gh help formatting'`,
           args: {
             name: "repository",
             isOptional: true,
-            generators: ghGenerators.listRepositories,
+            generators: [
+              ghGenerators.listRepositories,
+              ghGenerators.listCustomRepositories,
+            ],
           },
           options: [
             ghOptions.help,
@@ -1842,7 +1962,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
               },
             },
             {
-              name: ["-v", "--visibilty"],
+              name: ["-v", "--visibility"],
               description:
                 "Set visibility for an organization secret: all, `private`, or `selected` (default 'private')",
               args: {

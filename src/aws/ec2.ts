@@ -47,7 +47,7 @@ const awsGenerators: Record<string, Fig.Generator> = {
   },
   transit_gateway_attachment_id: {
     script:
-      "aws ec2 describe-transit-gateway-attachments --query 'TransitGatewayAttachments[*].TransitGatewayAttachementId'",
+      "aws ec2 describe-transit-gateway-attachments --query 'TransitGatewayAttachments[*].TransitGatewayAttachmentId'",
     postProcess: postProcessAWS,
   },
   vpc_id: {

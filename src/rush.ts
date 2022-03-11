@@ -1,40 +1,75 @@
+import stripJsonComments from "strip-json-comments";
 import { npmSearchGenerator } from "./npm";
+
+interface IRushConfigurationProjectJson {
+  packageName: string;
+}
+interface IRushConfigurationJson {
+  projects: IRushConfigurationProjectJson[];
+}
+const projectGenerator: Fig.Generator = {
+  script:
+    "until [[ -f rush.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat rush.json",
+  postProcess: function (out: string) {
+    const suggestions = [];
+
+    try {
+      if (!out) {
+        return suggestions;
+      }
+
+      const rushConfigurationJson: IRushConfigurationJson = JSON.parse(
+        stripJsonComments(out.trim())
+      );
+
+      for (const project of rushConfigurationJson.projects) {
+        suggestions.push({
+          name: project.packageName,
+          description: "Projects",
+        });
+      }
+    } catch (e: unknown) {
+      console.log("generate project suggestion fail: ", e);
+    }
+    return suggestions;
+  },
+};
 
 /** Base options for selecting subsets of projects */
 const PROJECT_SELECTION_OPTIONS: Fig.Option[] = [
   {
     name: ["-t", "--to"],
-    args: { name: "PROJECT" },
+    args: { name: "PROJECT", generators: projectGenerator },
     description:
       'Normally all projects in the monorepo will be processed; adding this parameter will instead select a subset of projects. Each "--to" parameter expands this selection to include PROJECT and all its dependencies. "." can be used as shorthand for the project in the current working directory. For details, refer to the website article "Selecting subsets of projects"',
   },
   {
     name: ["-T", "--to-except"],
-    args: { name: "PROJECT" },
+    args: { name: "PROJECT", generators: projectGenerator },
     description:
       'Normally all projects in the monorepo will be processed; adding this parameter will instead select a subset of projects. Each "--to-except" parameter expands this selection to include all dependencies of PROJECT, but not PROJECT itself. "." can be used as shorthand for the project in the current working directory. For details, refer to the website article "Selecting subsets of projects"',
   },
   {
     name: ["-f", "--from"],
-    args: { name: "PROJECT" },
+    args: { name: "PROJECT", generators: projectGenerator },
     description:
       'Normally all projects in the monorepo will be processed; adding this parameter will instead select a subset of projects. Each "--from" parameter expands this selection to include PROJECT and all projects that depend on it, plus all dependencies of this set.  "." can be used as shorthand for the project in the current working directory. For details, refer to the website article "Selecting subsets of projects"',
   },
   {
     name: ["-o", "--only"],
-    args: { name: "PROJECT" },
+    args: { name: "PROJECT", generators: projectGenerator },
     description:
       'Normally all projects in the monorepo will be processed; adding this parameter will instead select a subset of projects. Each "--only" parameter expands this selection to include PROJECT; its dependencies are not added. "." can be used as shorthand for the project in the current working directory. Note that this parameter is "unsafe" as it may produce a selection that excludes some dependencies. For details, refer to the website article "Selecting subsets of projects"',
   },
   {
     name: ["-i", "--impacted-by"],
-    args: { name: "PROJECT" },
+    args: { name: "PROJECT", generators: projectGenerator },
     description:
       'Normally all projects in the monorepo will be processed; adding this parameter will instead select a subset of projects. Each "--impacted-by" parameter expands this selection to include PROJECT and any projects that depend on PROJECT (and thus might be broken by changes to PROJECT). "." can be used as shorthand for the project in the current working directory. Note that this parameter is "unsafe" as it may produce a selection that excludes some dependencies. For details, refer to the website article "Selecting subsets of projects"',
   },
   {
     name: ["-I", "--impacted-by-except"],
-    args: { name: "PROJECT" },
+    args: { name: "PROJECT", generators: projectGenerator },
     description:
       'Normally all projects in the monorepo will be processed; adding this parameter will instead select a subset of projects. Each "--impacted-by-except" parameter works the same as "--impacted-by" except that PROJECT itself is not added to the selection. "." can be used as shorthand for the project in the current working directory. Note that this parameter is "unsafe" as it may produce a selection that excludes some dependencies. For details, refer to the website article "Selecting subsets of projects"',
   },

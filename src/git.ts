@@ -5454,6 +5454,15 @@ const completionSpec: Fig.Spec = {
           description: "Tag message",
           args: { name: "message" },
         },
+        {
+          name: "--points-at",
+          description: "List tags of the given object",
+          args: {
+            name: "object",
+            generators: gitGenerators.commits,
+            suggestions: headSuggestions,
+          },
+        },
       ],
       args: {
         name: "tagname",
@@ -5912,6 +5921,179 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+    },
+    {
+      name: "apply",
+      description: "Apply a patch to files and/or to the index",
+      options: [
+        {
+          name: "--exclude",
+          description: "Don't apply changes matching the given path",
+          args: {
+            name: "path",
+          },
+        },
+        {
+          name: "--include",
+          description: "Apply changes matching the given path",
+          args: {
+            name: "path",
+          },
+        },
+        {
+          name: "-p",
+          description:
+            "Remove <num> leading slashes from traditional diff paths",
+          args: {
+            name: "num",
+          },
+        },
+        {
+          name: "--no-add",
+          description: "Ignore additions made by the patch",
+        },
+        {
+          name: "--stat",
+          description:
+            "Instead of applying the patch, output diffstat for the input",
+        },
+        {
+          name: "--numstat",
+          description:
+            "Show number of added and deleted lines in decimal notation",
+        },
+        {
+          name: "--summary",
+          description:
+            "Instead of applying the patch, output a summary for the input",
+        },
+        {
+          name: "--check",
+          description:
+            "Instead of applying the patch, see if the patch is applicable",
+        },
+        {
+          name: "--index",
+          description: "Make sure the patch is applicable to the current index",
+        },
+        {
+          name: ["-N", "--intent-to-add"],
+          description: "Mark new files with `git add --intent-to-add`",
+        },
+        {
+          name: "--cached",
+          description: "Apply a patch without touching the working tree",
+        },
+        {
+          name: "--unsafe-paths",
+          description: "Accept a patch that touches outside the working area",
+        },
+        {
+          name: "--apply",
+          description:
+            "Also apply the patch (use with --stat/--summary/--check)",
+        },
+        {
+          name: ["-3", "--3way"],
+          description: "Attempt three-way merge if a patch does not apply",
+        },
+        {
+          name: "--build-fake-ancestor",
+          description:
+            "Build a temporary index based on embedded index information",
+          args: {
+            name: "file",
+          },
+        },
+        {
+          name: "-z",
+          description: "Paths are separated with NUL character",
+        },
+        {
+          name: "-C",
+          description: "Ensure at least <n> lines of context match",
+          args: {
+            name: "n",
+          },
+        },
+        {
+          name: "--whitespace",
+          description:
+            "Detect new or modified lines that have whitespace errors",
+          args: {
+            name: "action",
+            suggestions: [
+              {
+                name: "nowarn",
+                description: "Turns off the trailing whitespace warning",
+              },
+              {
+                name: "warn",
+                description:
+                  "Outputs warnings for a few such errors, but applies the patch as-is (default)",
+              },
+              {
+                name: "fix",
+                description:
+                  "Outputs warnings for a few such errors, and applies the patch after fixing them",
+              },
+              {
+                name: "error",
+                description:
+                  "Outputs warnings for a few such errors, and refuses to apply the patch",
+              },
+              {
+                name: "error-all",
+                description: "Similar to `error` but shows all errors",
+              },
+            ],
+          },
+        },
+        {
+          name: ["--ignore-space-change", "--ignore-whitespace"],
+          description: "Ignore changes in whitespace when finding context",
+        },
+        {
+          name: ["-R", "--reverse"],
+          description: "Apply the patch in reverse",
+        },
+        {
+          name: "--unidiff-zero",
+          description: "Don't expect at least one line of context",
+        },
+        {
+          name: "--reject",
+          description: "Leave the rejected hunks in corresponding *.rej files",
+        },
+        {
+          name: "--allow-overlap",
+          description: "Allow overlapping hunks",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Be verbose",
+        },
+        {
+          name: "--inaccurate-eof",
+          description:
+            "Tolerate incorrectly detected missing new-line at the end of file",
+        },
+        {
+          name: "--recount",
+          description: "Do not trust the line counts in the hunk headers",
+        },
+        {
+          name: "--directory",
+          description: "Prepend <root> to all filenames",
+          args: {
+            name: "root",
+          },
+        },
+      ],
+      args: {
+        name: "patch",
+        isVariadic: true,
+      },
     },
   ],
   additionalSuggestions: [

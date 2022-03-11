@@ -799,7 +799,7 @@ const completionSpec: Fig.Spec = {
               name: "--namespaces",
               description: "A comma separated list of namespaces to dump",
               args: {
-                name: "Namespaces (Comma seperated)",
+                name: "Namespaces (Comma separated)",
               },
             },
             {
@@ -3431,7 +3431,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--current-replicas",
-          insertValue: "--currrent-replicas=",
+          insertValue: "--current-replicas=",
           description:
             "Precondition for current size. Requires that the current size of the resource match this value in order to scale",
           args: {},

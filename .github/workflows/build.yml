@@ -48,22 +48,6 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Checkout Cache
-        uses: actions/checkout@v2
-        with:
-          repository: "withfig/core-backend"
-          token: ${{ secrets.CACHE_SPECS_TOKEN }}
-          ref: master
-          path: backend
-      - name: Add @latest to cache
-        run: |
-          cp ./specs.zip ./backend/src/public/specs.zip
-          cd backend
-          git config user.name "Build Action"
-          git config user.email "noreply@fig.io"
-          git add .
-          git commit -m "Updates specs to latest"
-          git push origin master
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
         env:

@@ -18,11 +18,11 @@ const completionSpec: Fig.Spec = {
         name: "delimit-method",
         default: "none",
         isOptional: true,
-        suggestions: ["none", "prepend", "seperate"],
+        suggestions: ["none", "prepend", "separate"],
       },
     },
     {
-      name: ["-f", "--skip-fileds"],
+      name: ["-f", "--skip-fields"],
       description: "Avoid comparing the first N fields",
       args: {
         name: "number",

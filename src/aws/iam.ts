@@ -685,7 +685,7 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
-  listAcessKeyIds: {
+  listAccessKeyIds: {
     script: "aws iam list-access-keys --page-size 100",
     postProcess: function (out) {
       return postPrecessGenerator(out, "AccessKeyMetadata", "AccessKeyId");
@@ -2051,7 +2051,7 @@ const completionSpec: Fig.Spec = {
             "The access key ID for the access key ID and secret access key you want to delete. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
-            generators: generators.listAcessKeyIds,
+            generators: generators.listAccessKeyIds,
           },
         },
         {
@@ -3198,7 +3198,7 @@ const completionSpec: Fig.Spec = {
             "The identifier of an access key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
-            generators: generators.listAcessKeyIds,
+            generators: generators.listAccessKeyIds,
           },
         },
         {
@@ -7852,7 +7852,7 @@ const completionSpec: Fig.Spec = {
             "The access key ID of the secret access key you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit",
           args: {
             name: "string",
-            generators: generators.listAcessKeyIds,
+            generators: generators.listAccessKeyIds,
           },
         },
         {

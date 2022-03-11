@@ -173,7 +173,7 @@ const generators: Record<string, Fig.Generator> = {
 
     getQueryTerm: (token) => {
       // if token is either s3:// or any substr permutation (e.g: "s", "s3", "s3:/")
-      // simly return token
+      // simply return token
       if (!token.startsWith(_prefixS3) && _prefixS3.startsWith(token)) {
         return token;
       }
@@ -263,7 +263,7 @@ const generators: Record<string, Fig.Generator> = {
         let s3Path = parts[parts.length - 1];
 
         // Parsing S3 CLI Output here
-        // Do this in a try block beacuse of the indexing magic
+        // Do this in a try block because of the indexing magic
         try {
           //Example Output:
           //                             PRE charts/

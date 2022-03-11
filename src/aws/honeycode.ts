@@ -289,7 +289,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--app-id",
-          description: "The ID of the app that contains the screem",
+          description: "The ID of the app that contains the screen",
           args: {
             name: "string",
           },

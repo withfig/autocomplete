@@ -2122,7 +2122,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-p", "--plan"],
           description:
-            "Generate mulitple sobject tree files and a plan definition file for aggregated import",
+            "Generate multiple sobject tree files and a plan definition file for aggregated import",
         },
         {
           name: ["-x", "--prefix"],

@@ -1054,7 +1054,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--metadata-from-title",
       description:
-        "Parse additional metadata like song title / artist from teh video title. The format syntax is the same as --output. Regular expressions with named capture groups may also be used. The parsed parameters replace existing values",
+        "Parse additional metadata like song title / artist from the video title. The format syntax is the same as --output. Regular expressions with named capture groups may also be used. The parsed parameters replace existing values",
       args: {
         name: "FORMAT",
       },

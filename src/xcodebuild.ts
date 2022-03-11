@@ -364,7 +364,7 @@ const completionSpec: Fig.Spec = {
       description:
         "Specifies multiple optional ISO 639-1 languages included in a localization export",
       args: {
-        name: "lanugages",
+        name: "languages",
         isVariadic: true,
       },
     },

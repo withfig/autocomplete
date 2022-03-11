@@ -92,24 +92,24 @@ const vcsOptions: Fig.Suggestion[] = [
   {
     name: "git",
     icon: "fig://icon?type=git",
-    description: "Initalize with Git",
+    description: "Initialize with Git",
   },
   {
     name: "hg",
-    description: "Initalize with Mercurial",
+    description: "Initialize with Mercurial",
   },
   {
     name: "pijul",
-    description: "Initalize with Pijul",
+    description: "Initialize with Pijul",
   },
   {
     name: "fossil",
     icon: "fig://template?color=818181&badge=🦴",
-    description: "Initalize with Fossil",
+    description: "Initialize with Fossil",
   },
   {
     name: "none",
-    description: "Initalize with no VCS",
+    description: "Initialize with no VCS",
   },
 ];
 

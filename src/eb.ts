@@ -105,7 +105,7 @@ const completionSpec: Fig.Spec = {
           description: "The number of minutes before the command times out",
           args: {
             name: "minutes",
-            description: "Minutes before timout",
+            description: "Minutes before timeout",
           },
         },
         {
@@ -261,7 +261,7 @@ const completionSpec: Fig.Spec = {
           description: "Set number of minutes before the command times out",
           args: {
             name: "minutes",
-            description: "Number of minutes before timout",
+            description: "Number of minutes before timeout",
           },
         },
       ],
