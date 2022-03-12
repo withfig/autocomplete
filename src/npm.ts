@@ -479,7 +479,22 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "access", description: "Set access controls on private packages" },
-    { name: "adduser", description: "Add a registry user account" },
+    {
+      name: ["adduser", "login"],
+      description: "Add a registry user account",
+      options: [
+        registryOption,
+        {
+          name: "--scope",
+          description:
+            "Associate an operation with a scope for a scoped registry",
+          args: {
+            name: "scope",
+            description: "Scope name",
+          },
+        },
+      ],
+    },
     {
       name: "audit",
       description: "Run a security audit",
@@ -672,10 +687,36 @@ const completionSpec: Fig.Spec = {
       options: [registryOption],
     },
     { name: "dist-tag", description: "Modify package distribution tags" },
-    { name: "docs", description: "Docs for a package in a web browser maybe" },
+    {
+      name: ["docs", "home"],
+      description: "Open documentation for a package in a web browser",
+      args: {
+        name: "package",
+        isOptional: true,
+        generators: npmSearchGenerator,
+        debounce: true,
+        isVariadic: true,
+      },
+      options: [
+        ...workSpaceOptions,
+        registryOption,
+        {
+          name: "--no-browser",
+          description: "Display in command line instead of browser",
+          exclusiveOn: ["--browser"],
+        },
+        {
+          name: "--browser",
+          description:
+            "The browser that is called by the npm docs command to open websites",
+          args: { name: "browser" },
+          exclusiveOn: ["--no-browser"],
+        },
+      ],
+    },
     {
       name: "doctor",
-      description: "Check your environment",
+      description: "Check your npm environment",
       options: [registryOption],
     },
     {
@@ -698,8 +739,33 @@ const completionSpec: Fig.Spec = {
     },
     { name: "fund", description: "Retrieve funding information" },
     { name: "get", description: "Echo the config value to stdout" },
-    { name: "help", description: "Search npm help documentation" },
-    { name: "help-search", description: "Get help on npm" },
+    {
+      name: "help",
+      description: "Get help on npm",
+      args: {
+        name: "term",
+        isVariadic: true,
+        description: "Terms to search for",
+      },
+      options: [
+        {
+          name: "--viewer",
+          description: "The program to use to view help content",
+          args: {
+            name: "viewer",
+          },
+        },
+      ],
+    },
+    {
+      name: "help-search",
+      description: "Search npm help documentation",
+      args: {
+        name: "text",
+        description: "Text to search for",
+      },
+      options: [longOption],
+    },
     { name: "hook", description: "Manage registry hooks" },
     {
       name: "install-ci-test",
@@ -713,18 +779,94 @@ const completionSpec: Fig.Spec = {
       args: { name: "path", template: "filepaths" },
     },
     { name: "ln", description: "Symlink a package folder" },
-    { name: "login", description: "Log in of the registry" },
-    { name: "logout", description: "Log out of the registry" },
+    {
+      name: "logout",
+      description: "Log out of the registry",
+      options: [
+        registryOption,
+        {
+          name: "--scope",
+          description:
+            "Associate an operation with a scope for a scoped registry",
+          args: {
+            name: "scope",
+            description: "Scope name",
+          },
+        },
+      ],
+    },
     {
       name: ["ls", "list"],
       description: "List installed packages",
       options: npmListOptions,
       args: { name: "[@scope]/pkg", isVariadic: true },
     },
-    { name: "org", description: "Manage orgs" },
+    {
+      name: "org",
+      description: "Manage orgs",
+      subcommands: [
+        {
+          name: "set",
+          description: "Add a user to an org or manage roles",
+          args: [
+            {
+              name: "orgname",
+              description: "Organization name",
+            },
+            {
+              name: "username",
+              description: "User name",
+            },
+            {
+              name: "role",
+              isOptional: true,
+              suggestions: ["developer", "admin", "owner"],
+            },
+          ],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "rm",
+          description: "Remove a user from an org",
+          args: [
+            {
+              name: "orgname",
+              description: "Organization name",
+            },
+            {
+              name: "username",
+              description: "User name",
+            },
+          ],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "ls",
+          description:
+            "List users in an org or see what roles a particular user has in an org",
+          args: [
+            {
+              name: "orgname",
+              description: "Organization name",
+            },
+            {
+              name: "username",
+              description: "User name",
+              isOptional: true,
+            },
+          ],
+          options: [registryOption, otpOption, jsonOption, parseableOption],
+        },
+      ],
+    },
     {
       name: "outdated",
       description: "Check for outdated packages",
+      args: {
+        name: "[<@scope>/]<pkg>",
+        isVariadic: true,
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "-all"],
@@ -767,18 +909,96 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "pack", description: "Create a tarball from a package" },
+    {
+      name: "pack",
+      description: "Create a tarball from a package",
+      args: {
+        name: "[<@scope>/]<pkg>",
+      },
+      options: [
+        jsonOption,
+        dryRunOption,
+        ...workSpaceOptions,
+        {
+          name: "--pack-destination",
+          description: "Directory in which npm pack will save tarballs",
+          args: {
+            name: "pack-destination",
+            template: ["folders"],
+          },
+        },
+      ],
+    },
     {
       name: "ping",
       description: "Ping npm registry",
       options: [registryOption],
     },
     {
+      name: "pkg",
+      description: "Manages your package.json",
+      subcommands: [
+        {
+          name: "get",
+          description:
+            "Retrieves a value key, defined in your package.json file. It is possible to get multiple values and values for child fields",
+          args: {
+            name: "field",
+            description:
+              "Name of the field to get. You can view child fields by separating them with a period",
+            isVariadic: true,
+          },
+          options: [jsonOption, ...workSpaceOptions],
+        },
+        {
+          name: "set",
+          description:
+            "Sets a value in your package.json based on the field value. It is possible to set multiple values and values for child fields",
+          args: {
+            // Format is <field>=<value>. How to achieve this?
+            name: "field",
+            description:
+              "Name of the field to set. You can set child fields by separating them with a period",
+            isVariadic: true,
+          },
+          options: [
+            jsonOption,
+            ...workSpaceOptions,
+            {
+              name: ["-f", "--force"],
+              description:
+                "Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input. Allow clobbering existing values in npm pkg",
+              isDangerous: true,
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes a key from your package.json",
+          args: {
+            name: "key",
+            description:
+              "Name of the key to delete. You can delete child fields by separating them with a period",
+            isVariadic: true,
+          },
+          options: [
+            ...workSpaceOptions,
+            {
+              name: ["-f", "--force"],
+              description:
+                "Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input. Allow clobbering existing values in npm pkg",
+              isDangerous: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "prefix",
       description: "Display prefix",
       options: [
         {
-          name: "-g",
+          name: ["-g", "--global"],
           description: "Print the global prefix to standard out",
         },
       ],
@@ -786,6 +1006,77 @@ const completionSpec: Fig.Spec = {
     {
       name: "profile",
       description: "Change settings on your registry profile",
+      subcommands: [
+        {
+          name: "get",
+          description:
+            "Display all of the properties of your profile, or one or more specific properties",
+          args: {
+            name: "property",
+            isOptional: true,
+            description: "Property name",
+          },
+          options: [registryOption, jsonOption, parseableOption, otpOption],
+        },
+        {
+          name: "set",
+          description: "Set the value of a profile property",
+          args: [
+            {
+              name: "property",
+              description: "Property name",
+              suggestions: [
+                "email",
+                "fullname",
+                "homepage",
+                "freenode",
+                "twitter",
+                "github",
+              ],
+            },
+            {
+              name: "value",
+              description: "Property value",
+            },
+          ],
+          options: [registryOption, jsonOption, parseableOption, otpOption],
+          subcommands: [
+            {
+              name: "password",
+              description:
+                "Change your password. This is interactive, you'll be prompted for your current password and a new password",
+            },
+          ],
+        },
+        {
+          name: "enable-2fa",
+          description: "Enables two-factor authentication",
+          args: {
+            name: "mode",
+            description:
+              "Mode for two-factor authentication. Defaults to auth-and-writes mode",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "auth-only",
+                description:
+                  "Require an OTP when logging in or making changes to your account's authentication",
+              },
+              {
+                name: "auth-and-writes",
+                description:
+                  "Requires an OTP at all the times auth-only does, and also requires one when publishing a module, setting the latest dist-tag, or changing access via npm access and npm owner",
+              },
+            ],
+          },
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "disable-2fa",
+          description: "Disables two-factor authentication",
+          options: [registryOption, otpOption],
+        },
+      ],
     },
     {
       name: "prune",
