@@ -721,7 +721,64 @@ const completionSpec: Fig.Spec = {
       options: npmListOptions,
       args: { name: "[@scope]/pkg", isVariadic: true },
     },
-    { name: "org", description: "Manage orgs" },
+    {
+      name: "org",
+      description: "Manage orgs",
+      subcommands: [
+        {
+          name: "set",
+          description: "Add a user to an org or manage roles",
+          args: [
+            {
+              name: "orgname",
+              description: "Organization name",
+            },
+            {
+              name: "username",
+              description: "User name",
+            },
+            {
+              name: "role",
+              isOptional: true,
+              suggestions: ["developer", "admin", "owner"],
+            },
+          ],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "rm",
+          description: "Remove a user from an org",
+          args: [
+            {
+              name: "orgname",
+              description: "Organization name",
+            },
+            {
+              name: "username",
+              description: "User name",
+            },
+          ],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "ls",
+          description:
+            "List users in an org or see what roles a particular user has in an org",
+          args: [
+            {
+              name: "orgname",
+              description: "Organization name",
+            },
+            {
+              name: "username",
+              description: "User name",
+              isOptional: true,
+            },
+          ],
+          options: [registryOption, otpOption, jsonOption, parseableOption],
+        },
+      ],
+    },
     {
       name: "outdated",
       description: "Check for outdated packages",
