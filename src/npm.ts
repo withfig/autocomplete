@@ -725,6 +725,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "outdated",
       description: "Check for outdated packages",
+      args: {
+        name: "[<@scope>/]<pkg>",
+        isVariadic: true,
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "-all"],
