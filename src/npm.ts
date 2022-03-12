@@ -778,7 +778,7 @@ const completionSpec: Fig.Spec = {
       description: "Display prefix",
       options: [
         {
-          name: "-g",
+          name: ["-g", "--global"],
           description: "Print the global prefix to standard out",
         },
       ],
