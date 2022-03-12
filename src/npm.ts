@@ -767,7 +767,26 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "pack", description: "Create a tarball from a package" },
+    {
+      name: "pack",
+      description: "Create a tarball from a package",
+      args: {
+        name: "[<@scope>/]<pkg>",
+      },
+      options: [
+        jsonOption,
+        dryRunOption,
+        ...workSpaceOptions,
+        {
+          name: "--pack-destination",
+          description: "Directory in which npm pack will save tarballs",
+          args: {
+            name: "pack-destination",
+            template: ["folders"],
+          },
+        },
+      ],
+    },
     {
       name: "ping",
       description: "Ping npm registry",
