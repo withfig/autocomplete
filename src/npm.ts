@@ -786,6 +786,77 @@ const completionSpec: Fig.Spec = {
     {
       name: "profile",
       description: "Change settings on your registry profile",
+      subcommands: [
+        {
+          name: "get",
+          description:
+            "Display all of the properties of your profile, or one or more specific properties",
+          args: {
+            name: "property",
+            isOptional: true,
+            description: "Property name",
+          },
+          options: [registryOption, jsonOption, parseableOption, otpOption],
+        },
+        {
+          name: "set",
+          description: "Set the value of a profile property",
+          args: [
+            {
+              name: "property",
+              description: "Property name",
+              suggestions: [
+                "email",
+                "fullname",
+                "homepage",
+                "freenode",
+                "twitter",
+                "github",
+              ],
+            },
+            {
+              name: "value",
+              description: "Property value",
+            },
+          ],
+          options: [registryOption, jsonOption, parseableOption, otpOption],
+          subcommands: [
+            {
+              name: "password",
+              description:
+                "Change your password. This is interactive, you'll be prompted for your current password and a new password",
+            },
+          ],
+        },
+        {
+          name: "enable-2fa",
+          description: "Enables two-factor authentication",
+          args: {
+            name: "mode",
+            description:
+              "Mode for two-factor authentication. Defaults to auth-and-writes mode",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "auth-only",
+                description:
+                  "Require an OTP when logging in or making changes to your account's authentication",
+              },
+              {
+                name: "auth-and-writes",
+                description:
+                  "Requires an OTP at all the times auth-only does, and also requires one when publishing a module, setting the latest dist-tag, or changing access via npm access and npm owner",
+              },
+            ],
+          },
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "disable-2fa",
+          description: "Disables two-factor authentication",
+          options: [registryOption, otpOption],
+        },
+      ],
     },
     {
       name: "prune",
