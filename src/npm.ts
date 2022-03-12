@@ -230,6 +230,17 @@ const omitOption: Fig.Option = {
   isRepeatable: 3,
 };
 
+const parseableOption: Fig.Option = {
+  name: ["-p", "--parseable"],
+  description:
+    "Output parseable results from commands that write to standard output",
+};
+
+const longOption: Fig.Option = {
+  name: ["-l", "--long"],
+  description: "Show extended information",
+};
+
 const workSpaceOptions: Fig.Option[] = [
   {
     name: ["-w", "--workspace"],
@@ -278,12 +289,8 @@ const npmListOptions: Fig.Option[] = [
     description: "Show all outdated or installed packages",
   },
   jsonOption,
-  { name: ["-l", "--long"], description: "Show extended information" },
-  {
-    name: ["-p", "--parseable"],
-    description:
-      "Output parseable results from commands that write to standard output",
-  },
+  longOption,
+  parseableOption,
   {
     name: "--depth",
     description: "The depth to go when recursing packages",
@@ -323,6 +330,19 @@ const ignoreScriptsOption: Fig.Option = {
   name: "--ignore-scripts",
   description:
     "If true, npm does not run scripts specified in package.json files",
+};
+
+const scriptShellOption: Fig.Option = {
+  name: "--script-shell",
+  description:
+    "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
+  args: { name: "script-shell" },
+};
+
+const dryRunOption: Fig.Option = {
+  name: "--dry-run",
+  description:
+    "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
 };
 
 const completionSpec: Fig.Spec = {
@@ -412,16 +432,12 @@ const completionSpec: Fig.Spec = {
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
         },
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         ...workSpaceOptions,
       ],
     },
     {
-      name: "run",
+      name: ["run", "run-script"],
       description: "Run arbitrary package scripts",
       options: [
         ...workSpaceOptions,
@@ -435,10 +451,7 @@ const completionSpec: Fig.Spec = {
           description: "",
         },
         ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          args: { name: "shell" },
-        },
+        scriptShellOption,
       ],
       args: {
         name: "script",
@@ -476,11 +489,7 @@ const completionSpec: Fig.Spec = {
           description:
             "If the fix argument is provided, then remediations will be applied to the package tree",
           options: [
-            {
-              name: "--dry-run",
-              description:
-                "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-            },
+            dryRunOption,
             {
               name: ["-f", "--force"],
               description:
@@ -527,8 +536,11 @@ const completionSpec: Fig.Spec = {
       name: ["bugs", "issues"],
       description: "Report bugs for a package in a web browser",
       args: {
-        name: "pkgname",
+        name: "package",
         isOptional: true,
+        generators: npmSearchGenerator,
+        debounce: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -593,11 +605,7 @@ const completionSpec: Fig.Spec = {
           exclusiveOn: ["--audit"],
         },
         ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          description:
-            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
-        },
+        scriptShellOption,
       ],
     },
     {
@@ -723,12 +731,8 @@ const completionSpec: Fig.Spec = {
           description: "Show all outdated or installed packages",
         },
         jsonOption,
-        { name: ["-l", "--long"], description: "Show extended information" },
-        {
-          name: ["-p", "--parseable"],
-          description:
-            "Output parseable results from commands that write to standard output",
-        },
+        longOption,
+        parseableOption,
         {
           name: "-g",
           description: "Checks globally",
@@ -786,22 +790,31 @@ const completionSpec: Fig.Spec = {
     {
       name: "prune",
       description: "Remove extraneous packages",
+      args: {
+        name: "[<@scope>/]<pkg>",
+        isOptional: true,
+      },
       options: [
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        omitOption,
+        dryRunOption,
         jsonOption,
         {
           name: "--production",
           description: "Remove the packages specified in your devDependencies",
         },
+        ...workSpaceOptions,
       ],
     },
     {
       name: "publish",
       description: "Publish a package",
+      args: {
+        name: "tarball|folder",
+        isOptional: true,
+        description:
+          "A url or file path to a gzipped tar archive containing a single folder with a package.json file inside | A folder containing a package.json file",
+        template: ["folders"],
+      },
       options: [
         {
           name: "--tag",
@@ -818,16 +831,27 @@ const completionSpec: Fig.Spec = {
             suggestions: ["restricted", "public"],
           },
         },
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         otpOption,
       ],
     },
-    { name: "rb", description: "Rebuild a package" },
-    { name: "rebuild", description: "Rebuild a package" },
+    {
+      name: ["rebuild", "rb"],
+      description: "Rebuild a package",
+      args: {
+        name: "[<@scope>/]<pkg>[@<version>]",
+      },
+      options: [
+        globalOption,
+        ...workSpaceOptions,
+        ignoreScriptsOption,
+        {
+          name: "--no-bin-links",
+          description:
+            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables",
+        },
+      ],
+    },
     {
       name: "repo",
       description: "Open package repository page in the browser",
@@ -836,59 +860,228 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: npmSearchGenerator,
         debounce: true,
+        isVariadic: true,
       },
+      options: [
+        ...workSpaceOptions,
+        {
+          name: "--no-browser",
+          description: "Display in command line instead of browser",
+          exclusiveOn: ["--browser"],
+        },
+        {
+          name: "--browser",
+          description:
+            "The browser that is called by the npm repo command to open websites",
+          args: { name: "browser" },
+          exclusiveOn: ["--no-browser"],
+        },
+      ],
     },
-    { name: "restart", description: "Restart a package" },
+    {
+      name: "restart",
+      description: "Restart a package",
+      options: [
+        ignoreScriptsOption,
+        scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "arg",
+            description: "Arguments to be passed to the restart script",
+          },
+        },
+      ],
+    },
     {
       name: "root",
       description: "Display npm root",
       options: [
         {
-          name: "-g",
+          name: ["-g", "--global"],
           description:
             "Print the effective global node_modules folder to standard out",
         },
       ],
     },
-    { name: "run-script", description: "Run arbitrary package scripts" },
-    { name: "s", description: "Search for packages" },
-    { name: "se", description: "Search for packages" },
-    { name: "search", description: "Search for packages" },
+    {
+      name: ["search", "s", "se", "find"],
+      description: "Search for packages",
+      args: {
+        name: "search terms",
+        isVariadic: true,
+      },
+      options: [
+        longOption,
+        jsonOption,
+        {
+          name: "--color",
+          description: "Show colors",
+          args: {
+            name: "always",
+            suggestions: ["always"],
+            description: "Always show colors",
+          },
+          exclusiveOn: ["--no-color"],
+        },
+        {
+          name: "--no-color",
+          description: "Do not show colors",
+          exclusiveOn: ["--color"],
+        },
+        parseableOption,
+        {
+          name: "--no-description",
+          description: "Do not show descriptions",
+        },
+        {
+          name: "--searchopts",
+          description:
+            "Space-separated options that are always passed to search",
+          args: {
+            name: "searchopts",
+          },
+        },
+        {
+          name: "--searchexclude",
+          description:
+            "Space-separated options that limit the results from search",
+          args: {
+            name: "searchexclude",
+          },
+        },
+        registryOption,
+        {
+          name: "--prefer-online",
+          description:
+            "If true, staleness checks for cached data will be forced, making the CLI look for updates immediately even for fresh package data",
+          exclusiveOn: ["--prefer-offline", "--offline"],
+        },
+        {
+          name: "--prefer-offline",
+          description:
+            "If true, staleness checks for cached data will be bypassed, but missing data will be requested from the server",
+          exclusiveOn: ["--prefer-online", "--offline"],
+        },
+        {
+          name: "--offline",
+          description:
+            "Force offline mode: no network requests will be done during install",
+          exclusiveOn: ["--prefer-online", "--prefer-offline"],
+        },
+      ],
+    },
     { name: "set", description: "Sets the config key to the value" },
+    {
+      name: "set-script",
+      description: "Set tasks in the scripts section of package.json",
+      args: [
+        {
+          name: "script",
+          description:
+            "Name of the task to be added to the scripts section of package.json",
+        },
+        {
+          name: "command",
+          description: "Command to run when script is called",
+        },
+      ],
+      options: workSpaceOptions,
+    },
     {
       name: "shrinkwrap",
       description: "Lock down dependency versions for publication",
     },
-    { name: "star", description: "Mark your favorite packages" },
-    { name: "stars", description: "View packages marked as favorites" },
+    {
+      name: "star",
+      description: "Mark your favorite packages",
+      args: {
+        name: "pkg",
+        description: "Package to mark as favorite",
+      },
+      options: [
+        registryOption,
+        {
+          name: "--no-unicode",
+          description: "Do not use unicode characters in the tree output",
+        },
+      ],
+    },
+    {
+      name: "stars",
+      description: "View packages marked as favorites",
+      args: {
+        name: "user",
+        isOptional: true,
+        description: "View packages marked as favorites by <user>",
+      },
+      options: [registryOption],
+    },
     {
       name: "start",
       description: "Start a package",
       options: [
         ignoreScriptsOption,
+        scriptShellOption,
         {
-          name: "--script-shell",
-          args: { name: "shell" },
+          name: "--",
+          args: {
+            name: "arg",
+            description: "Arguments to be passed to the start script",
+          },
         },
       ],
     },
-    { name: "stop", description: "Stop a package" },
+    {
+      name: "stop",
+      description: "Stop a package",
+      options: [
+        ignoreScriptsOption,
+        scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "arg",
+            description: "Arguments to be passed to the stop script",
+          },
+        },
+      ],
+    },
     {
       name: "team",
       description: "Manage organization teams and team memberships",
+      subcommands: [
+        {
+          name: "create",
+          args: { name: "scope:team" },
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "destroy",
+          args: { name: "scope:team" },
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "add",
+          args: [{ name: "scope:team" }, { name: "user" }],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "rm",
+          args: [{ name: "scope:team" }, { name: "user" }],
+          options: [registryOption, otpOption],
+        },
+        {
+          name: "ls",
+          args: { name: "scope|scope:team" },
+          options: [registryOption, jsonOption, parseableOption],
+        },
+      ],
     },
     {
       name: ["test", "tst", "t"],
       description: "Test a package",
-      options: [
-        ignoreScriptsOption,
-        {
-          name: "--script-shell",
-          description:
-            "The shell to use for scripts run with the npm exec, npm run and npm init <pkg> commands",
-          args: { name: "shell" },
-        },
-      ],
+      options: [ignoreScriptsOption, scriptShellOption],
     },
     {
       name: "token",
@@ -897,14 +1090,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Shows a table of all active authentication tokens",
-          options: [
-            jsonOption,
-            {
-              name: ["-p", "--parseable"],
-              description:
-                "Output parseable results from commands that write to standard output",
-            },
-          ],
+          options: [jsonOption, parseableOption],
         },
         {
           name: "create",
@@ -936,13 +1122,43 @@ const completionSpec: Fig.Spec = {
       options: [registryOption, otpOption],
     },
     uninstallSubcommand("uninstall"),
-    uninstallSubcommand("remove"),
     uninstallSubcommand(["r", "rm"]),
     uninstallSubcommand("un"),
     uninstallSubcommand("remove"),
     uninstallSubcommand("unlink"),
-    { name: "unpublish", description: "Remove a package from the registry" },
-    { name: "unstar", description: "Unmark your package" },
+    {
+      name: "unpublish",
+      description: "Remove a package from the registry",
+      args: {
+        name: "[<@scope>/]<pkg>[@<version>]",
+      },
+      options: [
+        dryRunOption,
+        {
+          name: ["-f", "--force"],
+          description:
+            "Allow unpublishing all versions of a published package. Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input",
+          isDangerous: true,
+        },
+        ...workSpaceOptions,
+      ],
+    },
+    {
+      name: "unstar",
+      description: "Remove an item from your favorite packages",
+      args: {
+        name: "pkg",
+        description: "Package to unmark as favorite",
+      },
+      options: [
+        registryOption,
+        otpOption,
+        {
+          name: "--no-unicode",
+          description: "Do not use unicode characters in the tree output",
+        },
+      ],
+    },
     {
       name: ["update", "upgrade", "up"],
       description: "Update a package",
@@ -984,18 +1200,45 @@ const completionSpec: Fig.Spec = {
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
         },
-        {
-          name: "--dry-run",
-          description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
-        },
+        dryRunOption,
         ...workSpaceOptions,
       ],
     },
     {
       name: "version",
       description: "Bump a package version",
-      options: [...workSpaceOptions, jsonOption],
+      options: [
+        ...workSpaceOptions,
+        jsonOption,
+        {
+          name: "--allow-same-version",
+          description:
+            "Prevents throwing an error when npm version is used to set the new version to the same value as the current version",
+        },
+        {
+          name: "--no-commit-hooks",
+          description:
+            "Do not run git commit hooks when using the npm version command",
+        },
+        {
+          name: "--no-git-tag-version",
+          description:
+            "Do not tag the commit when using the npm version command",
+        },
+        {
+          name: "--preid",
+          description:
+            'The "prerelease identifier" to use as a prefix for the "prerelease" part of a semver. Like the rc in 1.2.0-rc.8',
+          args: {
+            name: "prerelease-id",
+          },
+        },
+        {
+          name: "--sign-git-tag",
+          description:
+            "If set to true, then the npm version command will tag the version using -s to add a signature",
+        },
+      ],
     },
     {
       name: ["view", "v", "info", "show"],
