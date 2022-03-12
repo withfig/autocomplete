@@ -774,6 +774,65 @@ const completionSpec: Fig.Spec = {
       options: [registryOption],
     },
     {
+      name: "pkg",
+      description: "Manages your package.json",
+      subcommands: [
+        {
+          name: "get",
+          description:
+            "Retrieves a value key, defined in your package.json file. It is possible to get multiple values and values for child fields",
+          args: {
+            name: "field",
+            description:
+              "Name of the field to get. You can view child fields by separating them with a period",
+            isVariadic: true,
+          },
+          options: [jsonOption, ...workSpaceOptions],
+        },
+        {
+          name: "set",
+          description:
+            "Sets a value in your package.json based on the field value. It is possible to set multiple values and values for child fields",
+          args: {
+            // Format is <field>=<value>. How to achieve this?
+            name: "field",
+            description:
+              "Name of the field to set. You can set child fields by separating them with a period",
+            isVariadic: true,
+          },
+          options: [
+            jsonOption,
+            ...workSpaceOptions,
+            {
+              name: ["-f", "--force"],
+              description:
+                "Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input. Allow clobbering existing values in npm pkg",
+              isDangerous: true,
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes a key from your package.json",
+          args: {
+            name: "key",
+            description:
+              "Name of the key to delete. You can delete child fields by separating them with a period",
+            isVariadic: true,
+          },
+          options: [
+            ...workSpaceOptions,
+            {
+              name: ["-f", "--force"],
+              description:
+                "Removes various protections against unfortunate side effects, common mistakes, unnecessary performance degradation, and malicious input. Allow clobbering existing values in npm pkg",
+              isDangerous: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "prefix",
       description: "Display prefix",
       options: [
