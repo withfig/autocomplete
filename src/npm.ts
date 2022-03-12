@@ -739,8 +739,33 @@ const completionSpec: Fig.Spec = {
     },
     { name: "fund", description: "Retrieve funding information" },
     { name: "get", description: "Echo the config value to stdout" },
-    { name: "help", description: "Search npm help documentation" },
-    { name: "help-search", description: "Get help on npm" },
+    {
+      name: "help",
+      description: "Get help on npm",
+      args: {
+        name: "term",
+        isVariadic: true,
+        description: "Terms to search for",
+      },
+      options: [
+        {
+          name: "--viewer",
+          description: "The program to use to view help content",
+          args: {
+            name: "viewer",
+          },
+        },
+      ],
+    },
+    {
+      name: "help-search",
+      description: "Search npm help documentation",
+      args: {
+        name: "text",
+        description: "Text to search for",
+      },
+      options: [longOption],
+    },
     { name: "hook", description: "Manage registry hooks" },
     {
       name: "install-ci-test",
