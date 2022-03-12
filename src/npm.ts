@@ -716,7 +716,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "doctor",
-      description: "Check your environment",
+      description: "Check your npm environment",
       options: [registryOption],
     },
     {
