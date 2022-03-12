@@ -687,7 +687,33 @@ const completionSpec: Fig.Spec = {
       options: [registryOption],
     },
     { name: "dist-tag", description: "Modify package distribution tags" },
-    { name: "docs", description: "Docs for a package in a web browser maybe" },
+    {
+      name: ["docs", "home"],
+      description: "Open documentation for a package in a web browser",
+      args: {
+        name: "package",
+        isOptional: true,
+        generators: npmSearchGenerator,
+        debounce: true,
+        isVariadic: true,
+      },
+      options: [
+        ...workSpaceOptions,
+        registryOption,
+        {
+          name: "--no-browser",
+          description: "Display in command line instead of browser",
+          exclusiveOn: ["--browser"],
+        },
+        {
+          name: "--browser",
+          description:
+            "The browser that is called by the npm docs command to open websites",
+          args: { name: "browser" },
+          exclusiveOn: ["--no-browser"],
+        },
+      ],
+    },
     {
       name: "doctor",
       description: "Check your environment",
