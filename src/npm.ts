@@ -810,8 +810,10 @@ const completionSpec: Fig.Spec = {
       description: "Publish a package",
       args: {
         name: "tarball|folder",
+        isOptional: true,
         description:
           "A url or file path to a gzipped tar archive containing a single folder with a package.json file inside | A folder containing a package.json file",
+        template: ["folders"],
       },
       options: [
         {
