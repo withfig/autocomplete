@@ -479,7 +479,22 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "access", description: "Set access controls on private packages" },
-    { name: "adduser", description: "Add a registry user account" },
+    {
+      name: ["adduser", "login"],
+      description: "Add a registry user account",
+      options: [
+        registryOption,
+        {
+          name: "--scope",
+          description:
+            "Associate an operation with a scope for a scoped registry",
+          args: {
+            name: "scope",
+            description: "Scope name",
+          },
+        },
+      ],
+    },
     {
       name: "audit",
       description: "Run a security audit",
@@ -713,7 +728,6 @@ const completionSpec: Fig.Spec = {
       args: { name: "path", template: "filepaths" },
     },
     { name: "ln", description: "Symlink a package folder" },
-    { name: "login", description: "Log in of the registry" },
     {
       name: "logout",
       description: "Log out of the registry",
