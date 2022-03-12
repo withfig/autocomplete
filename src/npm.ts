@@ -714,7 +714,22 @@ const completionSpec: Fig.Spec = {
     },
     { name: "ln", description: "Symlink a package folder" },
     { name: "login", description: "Log in of the registry" },
-    { name: "logout", description: "Log out of the registry" },
+    {
+      name: "logout",
+      description: "Log out of the registry",
+      options: [
+        registryOption,
+        {
+          name: "--scope",
+          description:
+            "Associate an operation with a scope for a scoped registry",
+          args: {
+            name: "scope",
+            description: "Scope name",
+          },
+        },
+      ],
+    },
     {
       name: ["ls", "list"],
       description: "List installed packages",
