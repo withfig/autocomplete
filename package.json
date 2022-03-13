@@ -72,7 +72,7 @@
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
     "esbuild": "^0.12.15",
-    "eslint": "^8.9.0",
+    "eslint": "^8.11.0",
     "fast-glob": "^3.2.7",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
