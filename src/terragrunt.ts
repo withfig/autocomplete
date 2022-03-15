@@ -1,47 +1,4 @@
-const generalSubCommandOptions: Fig.Option[] = [
-  {
-    name: "-lock",
-    insertValue: "-lock=",
-    description:
-      "Lock the state file when locking is supported. Defaults to true",
-    args: {
-      name: "true or false",
-      suggestions: ["true", "false"],
-    },
-  },
-  {
-    name: "-force",
-    insertValue: "-force=",
-    description:
-      "Delete the workspace even if its state is not empty. Defaults to false",
-    args: {
-      name: "true or false",
-      suggestions: ["true", "false"],
-    },
-  },
-  {
-    name: "-lock-timeout",
-    insertValue: "-lock-timeout=",
-    description: "Duration to retry a state lock. Default 0s",
-    args: {
-      name: "seconds",
-      default: "0",
-    },
-  },
-  {
-    name: "-input",
-    insertValue: "-input=",
-    description: "Ask for input for variables if not directly set",
-    args: {
-      name: "true or false",
-      suggestions: ["true", "false"],
-    },
-  },
-  {
-    name: "-no-color",
-    description: "Disables output with coloring",
-  },
-];
+import terraform from "./terraform";
 
 const globalOptions: Fig.Option[] = [
   {
@@ -226,116 +183,6 @@ const globalOptions: Fig.Option[] = [
 
 const mainCommands: Fig.Subcommand[] = [
   {
-    name: "init",
-    description: "Prepare your working directory for other commands",
-    options: [
-      {
-        name: "-upgrade",
-        description:
-          "Opt to upgrade modules and plugins as part of their respective installation steps",
-      },
-      ...generalSubCommandOptions,
-    ],
-  },
-  {
-    name: "validate",
-    description: "Check whether the configuration is valid",
-  },
-  {
-    name: "plan",
-    description: "Show changes required by the current configuration",
-    options: [
-      {
-        name: "-compact-warnings",
-        description:
-          "If terragrunt produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages",
-      },
-      {
-        name: "-destroy",
-        description:
-          "If set, generates a plan to destroy all the known resources",
-      },
-      {
-        name: "-detailed-exitcode",
-        description: "Return a detailed exit code when the command exits",
-      },
-      {
-        name: "-out",
-        insertValue: "-out=",
-        description: "The path to save the generated execution plan",
-        args: {
-          template: "filepaths",
-          suggestCurrentToken: true,
-        },
-      },
-      {
-        name: "-parallelism",
-        description:
-          "Limit the number of concurrent operation as terragrunt walks the graph. Defaults to 10",
-        args: {
-          name: "number",
-          default: "10",
-        },
-      },
-      {
-        name: "-refresh",
-        insertValue: "-refresh=",
-        description: "Update the state prior to checking for differences",
-        args: {
-          name: "true or false",
-          suggestions: ["true", "false"],
-        },
-      },
-      {
-        name: "-state",
-        insertValue: "-state=",
-        description:
-          "Path to the state file. Defaults to 'terragrunt.tfstate'. Ignored when remote state is used",
-        args: {
-          template: "filepaths",
-        },
-      },
-      {
-        name: "-target",
-        displayName: "-target=",
-        description:
-          "A Resource Address to target. This flag can be used multiple times",
-        isRepeatable: true,
-        args: {
-          name: "resource",
-        },
-      },
-      {
-        name: "-var",
-        description:
-          "Set a variable in the terragrunt configuration. This flag can be set multiple times",
-        isRepeatable: true,
-        args: {
-          name: "foo=bar",
-        },
-      },
-
-      {
-        name: "-var-file",
-        insertValue: "-var-file=",
-        description:
-          "Set variables in the terragrunt configuration from a variable file",
-        args: {
-          template: "filepaths",
-        },
-      },
-      ...generalSubCommandOptions,
-    ],
-  },
-  {
-    name: "apply",
-    description: "Create or update infrastructure",
-  },
-  {
-    name: "destroy",
-    description: "Destroy previously-created infrastructure",
-  },
-  {
     name: "run-all",
     description:
       "Run a terraform command against a 'stack' by running the specified command in each subfolder. E.g., to run 'terragrunt apply' in each subfolder, use 'terragrunt run-all apply",
@@ -416,7 +263,11 @@ const completionSpec: Fig.Spec = {
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
-  subcommands: [...mainCommands, ...otherCommands],
+  subcommands: [
+    ...(terraform as Fig.Subcommand).subcommands,
+    ...mainCommands,
+    ...otherCommands,
+  ],
 };
 
 export default completionSpec;
