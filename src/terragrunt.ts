@@ -25,6 +25,7 @@ const generalSubCommandOptions: Fig.Option[] = [
     description: "Duration to retry a state lock. Default 0s",
     args: {
       name: "seconds",
+      default: "0",
     },
   },
   {
@@ -47,6 +48,7 @@ const globalOptions: Fig.Option[] = [
     name: "-help",
     description:
       "Show this help output, or the help for a specified subcommand",
+    isPersistent: true,
   },
   {
     name: "-chdir",
@@ -56,109 +58,147 @@ const globalOptions: Fig.Option[] = [
     args: {
       template: "filepaths",
     },
+    isPersistent: true,
   },
   {
     name: "-version",
     description: "Show the current terragrunt version",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-config",
     description:
       "Path to the Terragrunt config file. Default is terragrunt.hcl",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-tfpath",
     description: "Path to the Terraform binary. Default is terraform (on PATH)",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-no-auto-init",
     description:
       "Don't automatically run 'terraform init' during other terragrunt commands. You must run 'terragrunt init' manually",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-non-interactive",
     description: "Assume 'yes' for all prompts",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-working-dir",
     description:
       "The path to the Terraform templates. Default is current directory",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-download-dir",
     description:
       "The path where to download Terraform code. Default is .terragrunt-cache in the working directory",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-source",
     description:
       "Download Terraform configurations from the specified source into a temporary folder, and run Terraform in that temporary folder",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-source-update",
     description:
       "Delete the contents of the temporary folder to clear out any old, cached source code before downloading new source code into it",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-iam-role",
     description:
       "Assume the specified IAM role before executing Terraform. Can also be set via the TERRAGRUNT_IAM_ROLE environment variable",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-ignore-dependency-errors",
     description:
       "*-all commands continue processing components even if a dependency fails",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-ignore-dependency-order",
     description: "*-all commands will be run disregarding the dependencie",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-ignore-external-dependencies",
     description:
       "*-all commands will not attempt to include external dependencies",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-include-external-dependencies",
     description: "*-all commands will include external dependencies",
+    isPersistent: true,
   },
   {
-    name: "--terragrunt-parallelism <N>",
+    name: "--terragrunt-parallelism",
     description: "*-all commands parallelism set to at most N module",
+    args: {
+      name: "modules",
+    },
+    isPersistent: true,
   },
   {
     name: "--terragrunt-exclude-dir",
     description:
       "Unix-style glob of directories to exclude when running *-all commands",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-include-dir",
     description:
       "Unix-style glob of directories to include when running *-all command",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-check",
     description: "Enable check mode in the hclfmt command",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-hclfmt-file",
     description:
       "The path to a single terragrunt.hcl file that the hclfmt command should run on",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-override-attr",
     description:
       "A key=value attribute to override in a provider block as part of the aws-provider-patch command. May be specified multiple times",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-debug",
     description:
       "Write terragrunt-debug.tfvars to working folder to help root-cause issues",
+    isPersistent: true,
   },
   {
     name: "--terragrunt-log-level",
-    description:
-      "Sets the logging level for Terragrunt. Supported levels: panic, fatal, error, warn (default), info, debug, trace",
+    description: "Sets the logging level for Terragrunt",
+    args: {
+      name: "level",
+      suggestions: [
+        "panic",
+        "fatal",
+        "error",
+        "warn",
+        "info",
+        "debug",
+        "trace",
+      ],
+      default: "warn",
+    },
+    isPersistent: true,
   },
 ];
 
@@ -173,13 +213,11 @@ const mainCommands: Fig.Subcommand[] = [
           "Opt to upgrade modules and plugins as part of their respective installation steps",
       },
       ...generalSubCommandOptions,
-      ...globalOptions,
     ],
   },
   {
     name: "validate",
     description: "Check whether the configuration is valid",
-    options: [...globalOptions],
   },
   {
     name: "plan",
@@ -203,6 +241,10 @@ const mainCommands: Fig.Subcommand[] = [
         name: "-out",
         insertValue: "-out=",
         description: "The path to save the generated execution plan",
+        args: {
+          template: "filepaths",
+          suggestCurrentToken: true,
+        },
       },
       {
         name: "-parallelism",
@@ -210,6 +252,7 @@ const mainCommands: Fig.Subcommand[] = [
           "Limit the number of concurrent operation as terragrunt walks the graph. Defaults to 10",
         args: {
           name: "number",
+          default: "10",
         },
       },
       {
@@ -232,14 +275,16 @@ const mainCommands: Fig.Subcommand[] = [
       },
       {
         name: "-target",
-        displayName: "-target=resource",
+        displayName: "-target=",
         description:
           "A Resource Address to target. This flag can be used multiple times",
         isRepeatable: true,
+        args: {
+          name: "resource",
+        },
       },
       {
         name: "-var",
-        insertValue: "-var {cursor}",
         description:
           "Set a variable in the terragrunt configuration. This flag can be set multiple times",
         isRepeatable: true,
@@ -258,18 +303,15 @@ const mainCommands: Fig.Subcommand[] = [
         },
       },
       ...generalSubCommandOptions,
-      ...globalOptions,
     ],
   },
   {
     name: "apply",
     description: "Create or update infrastructure",
-    options: [...globalOptions],
   },
   {
     name: "destroy",
     description: "Destroy previously-created infrastructure",
-    options: [...globalOptions],
   },
   {
     name: "run-all",
@@ -280,34 +322,28 @@ const mainCommands: Fig.Subcommand[] = [
         name: "plan",
         description:
           "Display the plans of a ‘stack’ by running ‘terragrunt plan’ in each subfolder",
-        options: [...globalOptions],
       },
       {
         name: "apply",
         description:
           "Apply a ‘stack’ by running ‘terragrunt apply’ in each subfolder",
-        options: [...globalOptions],
       },
       {
         name: "output",
         description:
           "Display the outputs of a ‘stack’ by running ‘terragrunt output’ in each subfolder",
-        options: [...globalOptions],
       },
       {
         name: "destroy",
         description:
           "Destroy a ‘stack’ by running ‘terragrunt destroy’ in each subfolder",
-        options: [...globalOptions],
       },
       {
         name: "validate",
         description:
           "Validate a ‘stack’ by running ‘terragrunt destroy’ in each subfolder",
-        options: [...globalOptions],
       },
     ],
-    options: [...globalOptions],
   },
 ];
 
