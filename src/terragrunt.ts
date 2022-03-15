@@ -51,16 +51,6 @@ const globalOptions: Fig.Option[] = [
     isPersistent: true,
   },
   {
-    name: "-chdir",
-    description:
-      "Switch to a different working directory before executing the given subcommand",
-    insertValue: "-chdir=",
-    args: {
-      template: "filepaths",
-    },
-    isPersistent: true,
-  },
-  {
     name: "-version",
     description: "Show the current terragrunt version",
     isPersistent: true,
@@ -69,11 +59,17 @@ const globalOptions: Fig.Option[] = [
     name: "--terragrunt-config",
     description:
       "Path to the Terragrunt config file. Default is terragrunt.hcl",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
     name: "--terragrunt-tfpath",
     description: "Path to the Terraform binary. Default is terraform (on PATH)",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
@@ -91,18 +87,27 @@ const globalOptions: Fig.Option[] = [
     name: "--terragrunt-working-dir",
     description:
       "The path to the Terraform templates. Default is current directory",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
     name: "--terragrunt-download-dir",
     description:
       "The path where to download Terraform code. Default is .terragrunt-cache in the working directory",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
     name: "--terragrunt-source",
     description:
       "Download Terraform configurations from the specified source into a temporary folder, and run Terraform in that temporary folder",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
@@ -115,6 +120,10 @@ const globalOptions: Fig.Option[] = [
     name: "--terragrunt-iam-role",
     description:
       "Assume the specified IAM role before executing Terraform. Can also be set via the TERRAGRUNT_IAM_ROLE environment variable",
+    args: {
+      name: "iam-role-arn",
+      description: "AWS IAM role ARN",
+    },
     isPersistent: true,
   },
   {
@@ -151,12 +160,18 @@ const globalOptions: Fig.Option[] = [
     name: "--terragrunt-exclude-dir",
     description:
       "Unix-style glob of directories to exclude when running *-all commands",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
     name: "--terragrunt-include-dir",
     description:
       "Unix-style glob of directories to include when running *-all command",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
@@ -168,12 +183,19 @@ const globalOptions: Fig.Option[] = [
     name: "--terragrunt-hclfmt-file",
     description:
       "The path to a single terragrunt.hcl file that the hclfmt command should run on",
+    args: {
+      template: "filepaths",
+    },
     isPersistent: true,
   },
   {
     name: "--terragrunt-override-attr",
     description:
       "A key=value attribute to override in a provider block as part of the aws-provider-patch command. May be specified multiple times",
+    args: {
+      name: "attr=value",
+      description: "ATTR=VALUE",
+    },
     isPersistent: true,
   },
   {
