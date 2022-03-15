@@ -444,6 +444,9 @@ const completionSpec: Fig.Spec = {
           name: "--port",
           description:
             "Exposed port of the proxyfied dashboard. Set to 0 to pick a random port",
+          args: {
+            name: "int",
+          },
         },
         {
           name: "--url",
