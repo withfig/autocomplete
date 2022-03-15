@@ -2,17 +2,23 @@ const generators: Record<string, Fig.Generator> = {
   installedVersions: {
     script: "tgenv list",
     postProcess: function (out) {
-      return out.split("\n").map((tfversion) => {
-        return { name: tfversion, description: "Version" };
-      });
+      return out
+        .trim()
+        .split("\n")
+        .map((tfversion) => {
+          return { name: tfversion, description: "Version" };
+        });
     },
   },
   allVersions: {
     script: "tgenv list-remote",
     postProcess: function (out) {
-      return out.split("\n").map(function (line) {
-        return { name: line, type: "option" };
-      });
+      return out
+        .trim()
+        .split("\n")
+        .map(function (line) {
+          return { name: line, type: "option" };
+        });
     },
   },
 };
