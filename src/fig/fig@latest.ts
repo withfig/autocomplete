@@ -1088,6 +1088,7 @@ const completion: Fig.Spec = {
           description: "Print help information",
         },
       ],
+      hidden: true,
     },
     {
       name: "internal",
