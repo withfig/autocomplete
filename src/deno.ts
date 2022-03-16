@@ -399,6 +399,7 @@ const denoRun: Fig.Subcommand = {
     name: "script",
     description: "The JavaScript or TypeScript file to run",
     generators: generateRunnableFiles,
+    isScript: true,
   },
   parserDirectives: {
     optionsMustPrecedeArguments: true,
