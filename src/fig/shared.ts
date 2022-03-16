@@ -95,15 +95,13 @@ export const subsystemsGenerator: Fig.Generator = {
     return curr.length == 0 && prev.length > 0;
   },
   postProcess: (out, tokens) => {
-    const pivot = tokens.indexOf("logs");
-    const insertedLogFiles = tokens.slice(pivot);
+    const insertedLogFiles = new Set(tokens.slice(0, -1));
     return out
       .split("\n")
-      .map((log) => ({
-        name: log.replace(".log", ""),
-        icon: "🪵",
-      }))
-      .filter((suggestion) => !insertedLogFiles.includes(suggestion.name));
+      .map((name) => name.replace(".log", ""))
+      .concat("figterm")
+      .map((name) => ({ name, icon: "🪵" }))
+      .filter((suggestion) => !insertedLogFiles.has(suggestion.name));
   },
 };
 
@@ -152,9 +150,9 @@ export const settingsSpecGenerator = async (_, executeShellCommand) => {
 };
 export default {};
 
-type Thing = { name?: string | string[] | undefined };
-type Things<T> = T | T[] | undefined;
-type Editor<T> = (things: T) => void;
+type FigBaseObject = { name?: string | string[] | undefined };
+type MaybeObject<T> = T | T[] | undefined;
+type Editor<T> = ((things: T) => void) | Partial<T>;
 
 function toArray<T>(arr: T | T[]): T[] {
   return Array.isArray(arr) ? arr : [arr];
@@ -162,33 +160,21 @@ function toArray<T>(arr: T | T[]): T[] {
 
 /** Edit an object by looking up the name */
 export function edit<T extends { name?: string | string[] | undefined }>(
-  things: T | T[] | undefined,
-  editors: Record<string, (things: T) => void>
+  objects: MaybeObject<T>,
+  editors: Record<string, Editor<T>>
 ) {
-  if (things === undefined) return;
-  for (const object of toArray(things)) {
+  if (objects === undefined) return;
+  for (const object of toArray(objects)) {
     if (object.name === undefined) continue;
     for (const name of toArray(object.name)) {
       if (name in editors) {
-        editors[name](object);
+        const editor = editors[name];
+        if (typeof editor === "function") {
+          editor(object);
+        } else {
+          Object.assign(object, editor);
+        }
       }
     }
   }
-}
-
-/**
- * Sugar for `edit` to play nicely with Prettier when nested.
- *
- * ```
- * // Originally:
- * (object) => edit(object.prop, { ... })
- * // Now:
- * editor((object) => object.prop, { ... })
- * ```
- */
-export function editor<T extends Thing, U extends Thing>(
-  getThing: (thing: T) => Things<U>,
-  editors: Record<string, Editor<U>>
-): Editor<T> {
-  return (o) => edit(getThing(o), editors);
 }

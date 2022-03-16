@@ -1,6 +1,5 @@
 import {
   edit,
-  editor,
   settingsSpecGenerator,
   subsystemsGenerator,
   themesGenerator,
@@ -1409,15 +1408,17 @@ export default completion;
 // Automatic merge overrides these properties - will be fixed in an update to
 // the clap integration. Until then, the modifications are hardcoded.
 edit(completion.subcommands, {
-  internal: (internal) => {
-    internal.name = ["internal", "_"];
-    internal.description = "Internal plumbing commands";
+  internal: {
+    name: ["internal", "_"],
+    description: "Internal plumbing commands",
   },
-  debug: editor((debug) => debug.subcommands, {
-    logs: editor((logs) => logs.args, {
-      files: (files) => {
-        files.isVariadic = true;
-      },
+  debug: (debug) =>
+    edit(debug.subcommands, {
+      logs: (logs) =>
+        edit(logs.args, {
+          files: {
+            isVariadic: true,
+          },
+        }),
     }),
-  }),
 });
