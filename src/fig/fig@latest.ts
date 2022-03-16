@@ -1287,7 +1287,6 @@ const completion: Fig.Spec = {
                   description: "Fish shell",
                 },
               ],
-              isRequired: true,
             },
             {
               name: "when",
@@ -1299,7 +1298,6 @@ const completion: Fig.Spec = {
                   name: "post",
                 },
               ],
-              isRequired: true,
             },
           ],
         },
