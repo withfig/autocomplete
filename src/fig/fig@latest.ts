@@ -1,5 +1,6 @@
 import {
-  override,
+  edit,
+  editor,
   settingsSpecGenerator,
   subsystemsGenerator,
   themesGenerator,
@@ -1006,9 +1007,6 @@ const completion: Fig.Spec = {
           name: "--strict",
         },
         {
-          name: "--no-early-exit",
-        },
-        {
           name: ["-h", "--help"],
           description: "Print help information",
         },
@@ -1081,6 +1079,15 @@ const completion: Fig.Spec = {
         },
       ],
       hidden: true,
+    },
+    {
+      name: "compleation",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
     },
     {
       name: "internal",
@@ -1251,6 +1258,51 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "init",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: [
+            {
+              name: "shell",
+              suggestions: [
+                {
+                  name: "bash",
+                  description: "Bash shell",
+                },
+                {
+                  name: "zsh",
+                  description: "Zsh shell",
+                },
+                {
+                  name: "fish",
+                  description: "Fish shell",
+                },
+              ],
+              isRequired: true,
+            },
+            {
+              name: "when",
+              suggestions: [
+                {
+                  name: "pre",
+                },
+                {
+                  name: "post",
+                },
+              ],
+              isRequired: true,
+            },
+          ],
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -1276,6 +1328,7 @@ const completion: Fig.Spec = {
           description: "Print help information",
         },
       ],
+      hidden: true,
     },
     {
       name: "launch",
@@ -1323,6 +1376,16 @@ const completion: Fig.Spec = {
       ],
     },
     {
+      name: "app:running",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      hidden: true,
+    },
+    {
       name: "help",
       description: "Print this message or the help of the given subcommand(s)",
 
@@ -1346,20 +1409,16 @@ const completion: Fig.Spec = {
 export default completion;
 // Automatic merge overrides these properties - will be fixed in an update to
 // the clap integration. Until then, the modifications are hardcoded.
-override(completion, {
+edit(completion.subcommands, {
   internal: (internal) => {
-    internal.hidden = true;
     internal.name = ["internal", "_"];
+    internal.description = "Internal plumbing commands";
   },
-  debug: (debug) => {
-    override(debug.subcommands, {
-      logs: (logs) => {
-        override(logs.args, {
-          files: (files) => {
-            files.isVariadic = true;
-          },
-        });
+  debug: editor((debug) => debug.subcommands, {
+    logs: editor((logs) => logs.args, {
+      files: (files) => {
+        files.isVariadic = true;
       },
-    });
-  },
+    }),
+  }),
 });

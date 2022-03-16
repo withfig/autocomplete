@@ -152,17 +152,21 @@ export const settingsSpecGenerator = async (_, executeShellCommand) => {
 };
 export default {};
 
+type Thing = { name?: string | string[] | undefined };
+type Things<T> = T | T[] | undefined;
+type Editor<T> = (things: T) => void;
+
 function toArray<T>(arr: T | T[]): T[] {
   return Array.isArray(arr) ? arr : [arr];
 }
 
 /** Edit an object by looking up the name */
-export function override<T extends { name?: string | string[] }>(
-  named: T | T[] | undefined,
-  editors: Record<string, (named: T) => void>
+export function edit<T extends { name?: string | string[] | undefined }>(
+  things: T | T[] | undefined,
+  editors: Record<string, (things: T) => void>
 ) {
-  if (named === undefined) return;
-  for (const object of toArray(named)) {
+  if (things === undefined) return;
+  for (const object of toArray(things)) {
     if (object.name === undefined) continue;
     for (const name of toArray(object.name)) {
       if (name in editors) {
@@ -170,4 +174,21 @@ export function override<T extends { name?: string | string[] }>(
       }
     }
   }
+}
+
+/**
+ * Sugar for `edit` to play nicely with Prettier when nested.
+ *
+ * ```
+ * // Originally:
+ * (object) => edit(object.prop, { ... })
+ * // Now:
+ * editor((object) => object.prop, { ... })
+ * ```
+ */
+export function editor<T extends Thing, U extends Thing>(
+  getThing: (thing: T) => Things<U>,
+  editors: Record<string, Editor<U>>
+): Editor<T> {
+  return (o) => edit(getThing(o), editors);
 }
