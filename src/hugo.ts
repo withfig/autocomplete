@@ -1,580 +1,258 @@
-const help = (name: string): Fig.Option => ({
-  name: ["-h", "--help"],
-  description: `help for ${name}`,
-});
-
-const globalOptions: Fig.Option[] = [
-  {
-    name: "--config",
-    description: "Config file (default is path/config.yaml|json|toml)",
-    priority: 50,
-    args: {
-      name: "file",
-      description: "Default is path/config.yaml|json|toml",
-      template: "filepaths",
-    },
-  },
-  {
-    name: "--configDir",
-    description: "Config dir (default 'config')",
-    priority: 50,
-    args: {
-      name: "directory path",
-      description: "Default is 'config'",
-      template: "folders",
-    },
-  },
-  {
-    name: "--debug",
-    description: "Debug output (default false)",
-    priority: 50,
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-e", "--environment"],
-    description: "Build environment",
-    priority: 50,
-    args: {
-      name: "environment",
-    },
-  },
-  {
-    name: "--ignoreVendor",
-    description: "Ignores any _vendor directory (default false)",
-    priority: 50,
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--ignoreVendorPaths",
-    description:
-      "Ignores any _vendor for module paths matching the given Glob pattern",
-    priority: 50,
-    args: {
-      name: "glob pattern",
-    },
-  },
-  {
-    name: "--log",
-    description: "Enable Logging (default false)",
-    priority: 50,
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--logFile",
-    description: "Log File path (if set, logging enabled automatically)",
-    priority: 50,
-    args: {
-      name: "file",
-      template: "filepaths",
-    },
-  },
-  {
-    name: "--quiet",
-    description: "Build in quiet mode (default false)",
-    priority: 50,
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-s", "--source"],
-    description: "Filesystem path to read files relative from",
-    priority: 50,
-    args: {
-      name: "file",
-      template: "filepaths",
-    },
-  },
-  {
-    name: "--themesDir",
-    description: "Filesystem path to themes directory",
-    priority: 50,
-    args: {
-      name: "file",
-      description: "Default is path/config.yaml|json|toml",
-      template: "filepaths",
-    },
-  },
-  {
-    name: "-v, --verbose",
-    description: "Verbose output (default false)",
-    priority: 50,
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--verboseLog",
-    description: "Verbose logging (default false)",
-    priority: 50,
-    args: {
-      name: "boolean",
-    },
-  },
-];
-
-// options common to 'hugo', 'hugo mod', 'hugo new', and 'hugo server' commands
-
-const commonOptions: Fig.Option[] = [
-  {
-    name: ["-b", "--baseURL"],
-    description: "Hostname (and path) to the root, e.g. http://spf13.com/",
-    args: {
-      name: "hostname and path",
-    },
-  },
-  {
-    name: ["-D", "--buildDrafts"],
-    description: "Include content marked as draft (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-E", "--buildExpired"],
-    description: "Include expired content (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-F", "--buildFuture"],
-    description:
-      "Include content with publishdate in the future (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--cacheDir",
-    description:
-      "Filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
-    args: {
-      name: "path",
-      template: "folders",
-    },
-  },
-  {
-    name: "--cleanDestinationDir",
-    description:
-      "Remove files from destination not found in static directories (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-c", "--contentDir"],
-    description: "Filesystem path to content directory",
-    args: {
-      name: "path",
-      template: "folders",
-    },
-  },
-  {
-    name: ["-d", "--destination"],
-    description: "Filesystem path to write files to",
-    args: {
-      name: "path",
-      template: "folders",
-    },
-  },
-  {
-    name: "--disableKinds",
-    description: "Disable different kind of pages (home, RSS etc.)",
-    args: {
-      name: "kind,kind",
-      suggestions: [
-        "page",
-        "home",
-        "section",
-        "taxonomy",
-        "term",
-        "RSS",
-        "sitemap",
-        "robotsTXT",
-        "404",
-      ],
-    },
-  },
-  {
-    name: "--enableGitInfo",
-    description:
-      "Add Git revision, date and author info to the pages (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--forceSyncStatic",
-    description: "Copy all files when static is changed (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--gc",
-    description:
-      "Enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--i18n-warnings",
-    description: "Print missing translations (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--ignoreCache",
-    description: "Ignores the cache directory (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-l", "--layoutDir"],
-    description: "Filesystem path to layout directory",
-    args: {
-      name: "path",
-      template: "folders",
-    },
-  },
-  {
-    name: "--minify",
-    description:
-      "Minify any supported output format (HTML, XML etc.) (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--noChmod",
-    description: "Don't sync permission mode of files (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--noTimes",
-    description: "Don't sync modification time of files (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--path-warnings",
-    description: "Print warnings on duplicate target paths etc (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--poll",
-    description:
-      "Set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
-    args: {
-      name: "milliseconds",
-    },
-  },
-  {
-    name: "--print-mem",
-    description: "Print memory usage to screen at intervals (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--templateMetrics",
-    description: "Display metrics about template executions (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: "--templateMetricsHints",
-    description:
-      "Calculate some improvement hints when combined with --templateMetrics (default false)",
-    args: {
-      name: "boolean",
-    },
-  },
-  {
-    name: ["-t", "--theme"],
-    description: "Themes to use (located in /themes/THEMENAME/)",
-    args: { name: "theme name" },
-  },
-  {
-    name: "--trace",
-    description: "Write trace to file (not useful in general)",
-    args: {
-      name: "file",
-      template: "filepaths",
-    },
-  },
-];
-
-// options common to 'hugo' and 'hugo server' commands
-
-const watch = {
-  name: ["-w", "--watch"],
-  description:
-    "Watch filesystem for changes and recreate as needed (default true)",
-  args: {
-    name: "boolean",
-  },
-};
-
-// options common to 'toJSON', 'toTOML', 'toYAML' commands
-
-const convertOptions: Fig.Option[] = [
-  {
-    name: ["-o", "--output"],
-    description: "Filesystem path to write files to",
-    args: {
-      name: "path",
-      template: "folders",
-    },
-  },
-  {
-    name: "--unsafe",
-    description: "Enable less safe operations, please backup first",
-    isDangerous: true,
-  },
-];
-
 const completionSpec: Fig.Spec = {
   name: "hugo",
   description: "Hugo builds your site",
   subcommands: [
     {
-      name: "check",
-      description: "Contains some verification checks",
-      args: {
-        name: "command",
-      },
+      name: "completion",
+      description: "Generate the autocompletion script for the specified shell",
       subcommands: [
         {
-          name: "ulimit",
-          description: "Check system ulimit settings",
-          options: [help("ulimit")],
+          name: "bash",
+          description: "Generate the autocompletion script for bash",
+          options: [
+            {
+              name: "--no-descriptions",
+              description: "Disable completion descriptions",
+            },
+          ],
+        },
+        {
+          name: "fish",
+          description: "Generate the autocompletion script for fish",
+          options: [
+            {
+              name: "--no-descriptions",
+              description: "Disable completion descriptions",
+            },
+          ],
+        },
+        {
+          name: "powershell",
+          description: "Generate the autocompletion script for powershell",
+          options: [
+            {
+              name: "--no-descriptions",
+              description: "Disable completion descriptions",
+            },
+          ],
+        },
+        {
+          name: "zsh",
+          description: "Generate the autocompletion script for zsh",
+          options: [
+            {
+              name: "--no-descriptions",
+              description: "Disable completion descriptions",
+            },
+          ],
         },
       ],
-      options: [help("check"), ...globalOptions],
     },
     {
       name: "config",
       description: "Print the site configuration",
       subcommands: [
+        { name: "mounts", description: "Print the configured file mounts" },
+      ],
+      options: [
         {
-          name: "mounts",
-          description: "Print the configured file mounts",
-          options: [help("mounts")],
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
+        },
+        {
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
+        },
+        {
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
+        },
+        {
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
         },
       ],
-      options: [help("config"), ...globalOptions],
     },
     {
       name: "convert",
       description: "Convert your content to different formats",
-      args: {
-        name: "command",
-      },
       subcommands: [
+        { name: "toJSON", description: "Convert front matter to JSON" },
+        { name: "toTOML", description: "Convert front matter to TOML" },
+        { name: "toYAML", description: "Convert front matter to YAML" },
+      ],
+      options: [
         {
-          name: "toJSON",
-          description: "Convert front matter to JSON",
-          isDangerous: true,
-          options: [help("toJSON"), ...convertOptions],
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
         },
         {
-          name: "toTOML",
-          description: "Convert front matter to TOML",
-          isDangerous: true,
-          options: [help("toTOML"), ...convertOptions],
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
         },
         {
-          name: "toYAML",
-          description: "Convert front matter to YAML",
-          isDangerous: true,
-          options: [help("toYAML"), ...convertOptions],
+          name: ["--output", "-o"],
+          description: "Filesystem path to write files to",
+          isPersistent: true,
+          args: { name: "output" },
+        },
+        {
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
+        },
+        {
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
+        },
+        {
+          name: "--unsafe",
+          description: "Enable less safe operations, please backup first",
+          isPersistent: true,
         },
       ],
-      options: [help("convert"), ...globalOptions],
     },
     {
       name: "deploy",
       description: "Deploy your site to a Cloud provider",
       options: [
-        help("deploy"),
-        ...globalOptions,
         {
           name: "--confirm",
           description:
             "Ask for confirmation before making changes to the target",
         },
-        {
-          name: "--dryRun",
-          description: "Dry run",
-        },
-        {
-          name: "--force",
-          description: "Force upload of all files",
-        },
+        { name: "--dryRun", description: "Dry run" },
+        { name: "--force", description: "Force upload of all files" },
         {
           name: "--invalidateCDN",
           description:
-            "Invalidate the CDN cache listed in the deployment target (default true)",
+            "Invalidate the CDN cache listed in the deployment target",
         },
         {
           name: "--maxDeletes",
-          description:
-            "Maximum # of files to delete, or -1 to disable (default 256)",
-          args: {
-            name: "int",
-          },
+          description: "Maximum # of files to delete, or -1 to disable",
+          args: { name: "maxDeletes", default: "256" },
         },
         {
           name: "--target",
           description:
             "Target deployment from deployments section in config file; defaults to the first one",
-          args: {
-            name: "target",
-          },
+          args: { name: "target" },
         },
-      ],
-    },
-    {
-      name: "env",
-      description: "Print Hugo version and environment info",
-      options: [
-        help("env"),
-        ...globalOptions,
         {
-          name: "-v",
-          description: "Get a full dependency list",
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
+        },
+        {
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
+        },
+        {
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
+        },
+        {
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
         },
       ],
     },
+    { name: "env", description: "Print Hugo version and environment info" },
     {
       name: "gen",
       description: "A collection of several useful generators",
-      args: {
-        name: "command",
-      },
       subcommands: [
-        {
-          name: "autocomplete",
-          description:
-            "Generate shell autocompletion script for Hugo (default outputs to stdout)",
-          options: [
-            help("autocomplete"),
-            {
-              name: ["-f", "--completionfile"],
-              description: "Autocompletion file, defaults to stdout",
-              args: {
-                name: "file",
-                template: "filepaths",
-              },
-            },
-            {
-              name: ["-t", "--type"],
-              description:
-                "Autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
-              args: {
-                name: "type",
-                default: "bash",
-                suggestions: [
-                  { name: "bash", description: "Default" },
-                  { name: "zsh" },
-                  { name: "fish" },
-                  { name: "powershell" },
-                ],
-              },
-            },
-          ],
-        },
         {
           name: "chromastyles",
           description:
-            "Generate CSS stylesheet for the Chroma code highlighter (default outputs to stdout)",
+            "Generate CSS stylesheet for the Chroma code highlighter",
           options: [
-            help("chromastyles"),
             {
               name: "--highlightStyle",
               description:
-                "Style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
-              args: {
-                name: "hex triplet",
-              },
+                "Style used for highlighting lines (see https://github.com/alecthomas/chroma)",
+              isPersistent: true,
+              args: { name: "highlightStyle", default: "bg:#ffffcc" },
             },
             {
               name: "--linesStyle",
               description:
                 "Style used for line numbers (see https://github.com/alecthomas/chroma)",
-              args: {
-                name: "hex triplet",
-              },
+              isPersistent: true,
+              args: { name: "linesStyle" },
             },
             {
               name: "--style",
               description:
-                "Highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
+                "Highlighter style (see https://xyproto.github.io/splash/docs/)",
+              isPersistent: true,
               args: {
-                name: "style name",
+                name: "style",
+                default: "friendly",
                 suggestions: [
-                  { name: "friendly", description: "Default" },
-                  { name: "abap" },
-                  { name: "algol" },
-                  { name: "algol_nu" },
-                  { name: "api" },
-                  { name: "arduino" },
-                  { name: "autumn" },
-                  { name: "base16-snazzy" },
-                  { name: "borland" },
-                  { name: "bw" },
-                  { name: "colorful" },
-                  { name: "doom-one" },
-                  { name: "doom-one2" },
-                  { name: "dracula" },
-                  { name: "emacs" },
-                  { name: "fruity" },
-                  { name: "github" },
-                  { name: "hr_dark" },
-                  { name: "hr_high_contrast" },
-                  { name: "igor" },
-                  { name: "lovelace" },
-                  { name: "manni" },
-                  { name: "monokai" },
-                  { name: "monokailight" },
-                  { name: "murphy" },
-                  { name: "native" },
-                  { name: "nord" },
-                  { name: "paraiso-dark" },
-                  { name: "paraiso-light" },
-                  { name: "pastie" },
-                  { name: "perldoc" },
-                  { name: "pygments" },
-                  { name: "rainbow_dash" },
-                  { name: "rrt" },
-                  { name: "solarized-dark" },
-                  { name: "solarized-dark256" },
-                  { name: "solarized-light" },
-                  { name: "swapoff" },
-                  { name: "tango" },
-                  { name: "trac" },
-                  { name: "vim" },
-                  { name: "vs" },
-                  { name: "vulcan" },
-                  { name: "xcode-dark" },
-                  { name: "xcode" },
+                  "abap",
+                  "algol",
+                  "algol_nu",
+                  "api",
+                  "arduino",
+                  "autumn",
+                  "borland",
+                  "bw",
+                  "colorful",
+                  "dracula",
+                  "emacs",
+                  "friendly",
+                  "fruity",
+                  "github",
+                  "igor",
+                  "lovelace",
+                  "manni",
+                  "monokai",
+                  "monokailight",
+                  "murphy",
+                  "native",
+                  "paraiso-dark",
+                  "paraiso-light",
+                  "pastie",
+                  "perldoc",
+                  "pygments",
+                  "rainbow_dash",
+                  "rrt",
+                  "solarized-dark",
+                  "solarized-dark256",
+                  "solarized-light",
+                  "swapoff",
+                  "tango",
+                  "trac",
+                  "vim",
+                  "vs",
+                  "xcode",
                 ],
               },
             },
@@ -582,203 +260,112 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "doc",
-          description:
-            "Generate Markdown documentation for the Hugo CLI (default '/tmp/hugodoc/')",
+          description: "Generate Markdown documentation for the Hugo CLI",
           options: [
-            help("doc"),
             {
               name: "--dir",
-              description:
-                "The directory to write the doc. (default '/tmp/hugodoc/')",
+              description: "The directory to write the doc",
+              isPersistent: true,
               args: {
-                name: "path",
-                template: "folders",
+                name: "dir",
+                default: "/tmp/hugodoc/",
+                template: ["folders"],
               },
             },
           ],
         },
         {
           name: "man",
-          description: "Generate man pages for the Hugo CLI (default 'man/')",
+          description: "Generate man pages for the Hugo CLI",
           options: [
-            help("man"),
             {
               name: "--dir",
-              description:
-                "The directory to write the man pages. (default 'man/')",
-              args: {
-                name: "path",
-                template: "folders",
-              },
+              description: "The directory to write the man pages",
+              isPersistent: true,
+              args: { name: "dir", default: "man/", template: ["folders"] },
             },
           ],
         },
       ],
-      options: [help("gen"), ...globalOptions],
-    },
-    {
-      name: "help",
-      description: "Help about any command",
-      args: {
-        name: "command",
-        suggestions: [
-          { name: "check" },
-          { name: "config" },
-          { name: "convert" },
-          { name: "deploy" },
-          { name: "env" },
-          { name: "gen" },
-          { name: "help" },
-          { name: "import" },
-          { name: "list" },
-          { name: "mod" },
-          { name: "new" },
-          { name: "server" },
-          { name: "version" },
-        ],
-      },
     },
     {
       name: "import",
       description: "Import your site from others",
-      args: {
-        name: "command",
-      },
       subcommands: [
         {
           name: "jekyll",
-          displayName: "jekyll",
-          description:
-            "Import from Jekyll requires two paths, e.g. ` + `hugo import jekyll jekyll_root_path target_path`",
-          args: [
-            {
-              name: "jekyll_root_path",
-              template: "folders",
-            },
-            {
-              name: "target_path",
-              template: "folders",
-            },
-          ],
+          description: "Hugo import from Jekyll",
           options: [
-            help("jekyll"),
             {
               name: "--force",
               description: "Allow import into non-empty target directory",
-              isDangerous: true,
             },
           ],
         },
       ],
-      options: [help("import"), ...globalOptions],
     },
     {
       name: "list",
       description: "Listing out various types of content",
-      args: {
-        name: "command",
-      },
       subcommands: [
+        { name: "all", description: "List all posts" },
+        { name: "drafts", description: "List all drafts" },
+        { name: "expired", description: "List all posts already expired" },
+        { name: "future", description: "List all posts dated in the future" },
+      ],
+      options: [
         {
-          name: "drafts",
-          description: "List all drafts",
-          options: [help("drafts")],
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
         },
         {
-          name: "future",
-          description: "List all posts dated in the future",
-          options: [help("future")],
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
         },
         {
-          name: "expired",
-          description: "List all posts already expired",
-          options: [help("expired")],
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
         },
         {
-          name: "all",
-          description: "List all posts",
-          options: [help("all")],
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
         },
       ],
-      options: [help("list"), ...globalOptions],
     },
     {
       name: "mod",
       description: "Various Hugo Modules helpers",
-      args: {
-        name: "command",
-      },
       subcommands: [
         {
           name: "clean",
           description: "Delete the Hugo Module cache for the current project",
           options: [
-            help("clean"),
-            {
-              name: "--all",
-              description: "Clean entire module cache",
-            },
+            { name: "--all", description: "Clean entire module cache" },
             {
               name: "--pattern",
               description:
-                'Pattern matching module paths to clean (all if not set)", "e.g. "**hugo*"',
-              args: {
-                name: "path",
-              },
+                'Pattern matching module paths to clean (all if not set), e.g. "**hugo*"',
+              args: { name: "pattern" },
             },
           ],
         },
         {
           name: "get",
           description: "Resolves dependencies in your current Hugo Project",
-          // Run `go help get` for more information. All flags available for `go get` are also relevant here.
-          options: [
-            help("get"),
-            {
-              name: "-d",
-              description: "Download packages only and do not install",
-            },
-            {
-              name: "-f",
-              description:
-                "Valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original",
-            },
-            {
-              name: "-fix",
-              description:
-                "Run the fix tool on downloaded packages before resolving dependencies or building the code",
-            },
-            {
-              name: "-insecure",
-              description:
-                "Permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution",
-            },
-            {
-              name: "-t",
-              description:
-                "Also download the packages required to build the tests for the specified packages",
-            },
-            {
-              name: "-u",
-              description:
-                "Recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages",
-            },
-            {
-              name: "-v",
-              description: "Enables verbose progress and debug output",
-            },
-          ],
         },
-        {
-          name: "graph",
-          description:
-            "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status",
-          options: [help("graph")],
-        },
+        { name: "graph", description: "Print a module dependency graph" },
         {
           name: "init",
           description: "Initialize this project as a Hugo Module",
-          options: [help("init")],
         },
         {
           name: "npm",
@@ -788,27 +375,22 @@ const completionSpec: Fig.Spec = {
               name: "pack",
               description:
                 "Experimental: Prepares and writes a composite package.json file for your project",
-              options: [help("pack")],
             },
           ],
-          options: [help("npm")],
         },
         {
           name: "tidy",
           description: "Remove unused entries in go.mod and go.sum",
-          options: [help("tidy")],
         },
         {
           name: "vendor",
           description:
             "Vendor all module dependencies into the _vendor directory",
-          options: [help("vendor")],
         },
         {
           name: "verify",
           description: "Verify dependencies",
           options: [
-            help("verify"),
             {
               name: "--clean",
               description:
@@ -817,203 +399,967 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [help("mod"), ...commonOptions, ...globalOptions],
+      options: [
+        {
+          name: ["--baseURL", "-b"],
+          description:
+            "Hostname (and path) to the root, e.g. http://spf13.com/",
+          args: { name: "baseURL" },
+        },
+        {
+          name: ["--buildDrafts", "-D"],
+          description: "Include content marked as draft",
+        },
+        {
+          name: ["--buildExpired", "-E"],
+          description: "Include expired content",
+        },
+        {
+          name: ["--buildFuture", "-F"],
+          description: "Include content with publishdate in the future",
+        },
+        {
+          name: "--cacheDir",
+          description:
+            "Filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+          args: { name: "cacheDir", template: ["folders"] },
+        },
+        {
+          name: "--cleanDestinationDir",
+          description:
+            "Remove files from destination not found in static directories",
+        },
+        {
+          name: ["--contentDir", "-c"],
+          description: "Filesystem path to content directory",
+          args: { name: "contentDir" },
+        },
+        {
+          name: ["--destination", "-d"],
+          description: "Filesystem path to write files to",
+          args: { name: "destination", template: ["folders"] },
+        },
+        {
+          name: "--disableKinds",
+          description: "Disable different kind of pages (home, RSS etc.)",
+          args: { name: "disableKinds" },
+        },
+        {
+          name: "--enableGitInfo",
+          description:
+            "Add Git revision, date, author, and CODEOWNERS info to the pages",
+        },
+        {
+          name: "--forceSyncStatic",
+          description: "Copy all files when static is changed",
+        },
+        {
+          name: "--gc",
+          description:
+            "Enable to run some cleanup tasks (remove unused cache files) after the build",
+        },
+        { name: "--ignoreCache", description: "Ignores the cache directory" },
+        {
+          name: ["--layoutDir", "-l"],
+          description: "Filesystem path to layout directory",
+          args: { name: "layoutDir" },
+        },
+        {
+          name: "--minify",
+          description: "Minify any supported output format (HTML, XML etc.)",
+        },
+        {
+          name: "--noChmod",
+          description: "Don't sync permission mode of files",
+        },
+        {
+          name: "--noTimes",
+          description: "Don't sync modification time of files",
+        },
+        { name: "--panicOnWarning", description: "Panic on first WARNING log" },
+        {
+          name: "--poll",
+          description:
+            "Set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+          args: { name: "poll" },
+        },
+        {
+          name: "--printI18nWarnings",
+          description: "Print missing translations",
+        },
+        {
+          name: "--printMemoryUsage",
+          description: "Print memory usage to screen at intervals",
+        },
+        {
+          name: "--printPathWarnings",
+          description: "Print warnings on duplicate target paths etc",
+        },
+        {
+          name: "--printUnusedTemplates",
+          description: "Print warnings on unused templates",
+        },
+        {
+          name: "--profile-cpu",
+          description: "Write cpu profile to `file`",
+          hidden: true,
+          args: { name: "profile-cpu" },
+        },
+        {
+          name: "--profile-mem",
+          description: "Write memory profile to `file`",
+          hidden: true,
+          args: { name: "profile-mem" },
+        },
+        {
+          name: "--profile-mutex",
+          description: "Write Mutex profile to `file`",
+          hidden: true,
+          args: { name: "profile-mutex" },
+        },
+        {
+          name: "--templateMetrics",
+          description: "Display metrics about template executions",
+        },
+        {
+          name: "--templateMetricsHints",
+          description:
+            "Calculate some improvement hints when combined with --templateMetrics",
+        },
+        {
+          name: ["--theme", "-t"],
+          description: "Themes to use (located in /themes/THEMENAME/)",
+          args: { name: "theme", template: ["folders"] },
+        },
+        {
+          name: "--trace",
+          description: "Write trace to `file` (not useful in general)",
+          args: { name: "trace" },
+        },
+        {
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
+        },
+        {
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
+        },
+        {
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
+        },
+        {
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
+        },
+      ],
     },
     {
       name: "new",
       description: "Create new content for your site",
-      args: {
-        name: "content-section/file-name.md",
-      },
       subcommands: [
         {
           name: "site",
           description: "Create a new site (skeleton)",
-          args: {
-            name: "path",
-            template: "folders",
-          },
           options: [
-            help("site"),
+            { name: "--force", description: "Init inside non-empty directory" },
             {
-              name: "--force",
-              description: "Init inside non-empty directory",
-              isDangerous: true,
+              name: ["--format", "-f"],
+              description: "Config file format",
+              args: { name: "format", default: "toml" },
             },
             {
-              name: ["-f", "--format"],
-              description: 'Config & frontmatter format (default "toml")',
-              args: {
-                name: "format",
-                suggestions: [
-                  { name: "toml", description: "Default" },
-                  { name: "yaml" },
-                  { name: "json" },
-                ],
-              },
+              name: ["--environment", "-e"],
+              description: "Build environment",
+              isPersistent: true,
+              args: { name: "environment" },
+            },
+            {
+              name: "--ignoreVendorPaths",
+              description:
+                "Ignores any _vendor for module paths matching the given Glob pattern",
+              isPersistent: true,
+              args: { name: "ignoreVendorPaths" },
+            },
+            {
+              name: ["--source", "-s"],
+              description: "Filesystem path to read files relative from",
+              isPersistent: true,
+              args: { name: "source", template: ["folders"] },
+            },
+            {
+              name: "--themesDir",
+              description: "Filesystem path to themes directory",
+              isPersistent: true,
+              args: { name: "themesDir" },
             },
           ],
         },
         {
           name: "theme",
           description: "Create a new theme",
-          args: {
-            name: "name",
-          },
-          options: [help("theme")],
+          options: [
+            {
+              name: ["--environment", "-e"],
+              description: "Build environment",
+              isPersistent: true,
+              args: { name: "environment" },
+            },
+            {
+              name: "--ignoreVendorPaths",
+              description:
+                "Ignores any _vendor for module paths matching the given Glob pattern",
+              isPersistent: true,
+              args: { name: "ignoreVendorPaths" },
+            },
+            {
+              name: ["--source", "-s"],
+              description: "Filesystem path to read files relative from",
+              isPersistent: true,
+              args: { name: "source", template: ["folders"] },
+            },
+            {
+              name: "--themesDir",
+              description: "Filesystem path to themes directory",
+              isPersistent: true,
+              args: { name: "themesDir" },
+            },
+          ],
         },
       ],
       options: [
-        help("new"),
-        ...commonOptions,
-        ...globalOptions,
         {
-          name: ["-k", "--kind"],
-          description: "Content type to create",
-          args: [
-            {
-              name: "archetype|default",
-              generators: {
-                script: "ls ./archetypes/",
-                postProcess: (output) =>
-                  output.split("\n").map((fileName) => ({
-                    name: fileName,
-                    icon: "fig://icon?type=string",
-                  })),
-              },
-            },
-            {
-              name: "content-section/file-name.md",
-            },
-          ],
+          name: ["--baseURL", "-b"],
+          description:
+            "Hostname (and path) to the root, e.g. http://spf13.com/",
+          args: { name: "baseURL" },
+        },
+        {
+          name: ["--buildDrafts", "-D"],
+          description: "Include content marked as draft",
+        },
+        {
+          name: ["--buildExpired", "-E"],
+          description: "Include expired content",
+        },
+        {
+          name: ["--buildFuture", "-F"],
+          description: "Include content with publishdate in the future",
+        },
+        {
+          name: "--cacheDir",
+          description:
+            "Filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+          args: { name: "cacheDir", template: ["folders"] },
+        },
+        {
+          name: "--cleanDestinationDir",
+          description:
+            "Remove files from destination not found in static directories",
+        },
+        {
+          name: ["--contentDir", "-c"],
+          description: "Filesystem path to content directory",
+          args: { name: "contentDir" },
+        },
+        {
+          name: ["--destination", "-d"],
+          description: "Filesystem path to write files to",
+          args: { name: "destination", template: ["folders"] },
+        },
+        {
+          name: "--disableKinds",
+          description: "Disable different kind of pages (home, RSS etc.)",
+          args: { name: "disableKinds" },
         },
         {
           name: "--editor",
           description: "Edit new content with this editor, if provided",
-          args: {
-            name: "editor",
-          },
+          args: { name: "editor" },
+        },
+        {
+          name: "--enableGitInfo",
+          description:
+            "Add Git revision, date, author, and CODEOWNERS info to the pages",
+        },
+        {
+          name: "--forceSyncStatic",
+          description: "Copy all files when static is changed",
+        },
+        {
+          name: "--gc",
+          description:
+            "Enable to run some cleanup tasks (remove unused cache files) after the build",
+        },
+        { name: "--ignoreCache", description: "Ignores the cache directory" },
+        {
+          name: ["--kind", "-k"],
+          description: "Content type to create",
+          args: { name: "kind" },
+        },
+        {
+          name: ["--layoutDir", "-l"],
+          description: "Filesystem path to layout directory",
+          args: { name: "layoutDir" },
+        },
+        {
+          name: "--minify",
+          description: "Minify any supported output format (HTML, XML etc.)",
+        },
+        {
+          name: "--noChmod",
+          description: "Don't sync permission mode of files",
+        },
+        {
+          name: "--noTimes",
+          description: "Don't sync modification time of files",
+        },
+        { name: "--panicOnWarning", description: "Panic on first WARNING log" },
+        {
+          name: "--poll",
+          description:
+            "Set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+          args: { name: "poll" },
+        },
+        {
+          name: "--printI18nWarnings",
+          description: "Print missing translations",
+        },
+        {
+          name: "--printMemoryUsage",
+          description: "Print memory usage to screen at intervals",
+        },
+        {
+          name: "--printPathWarnings",
+          description: "Print warnings on duplicate target paths etc",
+        },
+        {
+          name: "--printUnusedTemplates",
+          description: "Print warnings on unused templates",
+        },
+        {
+          name: "--profile-cpu",
+          description: "Write cpu profile to `file`",
+          hidden: true,
+          args: { name: "profile-cpu" },
+        },
+        {
+          name: "--profile-mem",
+          description: "Write memory profile to `file`",
+          hidden: true,
+          args: { name: "profile-mem" },
+        },
+        {
+          name: "--profile-mutex",
+          description: "Write Mutex profile to `file`",
+          hidden: true,
+          args: { name: "profile-mutex" },
+        },
+        {
+          name: "--templateMetrics",
+          description: "Display metrics about template executions",
+        },
+        {
+          name: "--templateMetricsHints",
+          description:
+            "Calculate some improvement hints when combined with --templateMetrics",
+        },
+        {
+          name: ["--theme", "-t"],
+          description: "Themes to use (located in /themes/THEMENAME/)",
+          args: { name: "theme", template: ["folders"] },
+        },
+        {
+          name: "--trace",
+          description: "Write trace to `file` (not useful in general)",
+          args: { name: "trace" },
+        },
+        {
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
+        },
+        {
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
+        },
+        {
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
+        },
+        {
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
         },
       ],
     },
     {
-      name: "server",
+      name: ["serve", "server"],
       description: "A high performance webserver",
       options: [
-        help("server"),
-        ...commonOptions,
-        ...globalOptions,
-        watch,
+        { name: "--appendPort", description: "Append port to baseURL" },
         {
-          name: "--appendPort",
-          description: "Append port to baseURL (default true)",
-          args: {
-            name: "boolean",
-          },
+          name: ["--baseURL", "-b"],
+          description:
+            "Hostname (and path) to the root, e.g. http://spf13.com/",
+          args: { name: "baseURL" },
         },
         {
           name: "--bind",
+          description: "Interface to which the server will bind",
+          args: { name: "bind", default: "127.0.0.1" },
+        },
+        {
+          name: ["--buildDrafts", "-D"],
+          description: "Include content marked as draft",
+        },
+        {
+          name: ["--buildExpired", "-E"],
+          description: "Include expired content",
+        },
+        {
+          name: ["--buildFuture", "-F"],
+          description: "Include content with publishdate in the future",
+        },
+        {
+          name: "--cacheDir",
           description:
-            "Interface to which the server will bind (default '127.0.0.1')",
-          args: {
-            name: "ip address",
-          },
+            "Filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+          args: { name: "cacheDir", template: ["folders"] },
+        },
+        {
+          name: "--cleanDestinationDir",
+          description:
+            "Remove files from destination not found in static directories",
+        },
+        {
+          name: ["--contentDir", "-c"],
+          description: "Filesystem path to content directory",
+          args: { name: "contentDir" },
+        },
+        {
+          name: ["--destination", "-d"],
+          description: "Filesystem path to write files to",
+          args: { name: "destination", template: ["folders"] },
         },
         {
           name: "--disableBrowserError",
-          description:
-            "Do not show build errors in the browser (default false)",
-          args: {
-            name: "boolean",
-          },
+          description: "Do not show build errors in the browser",
         },
         {
           name: "--disableFastRender",
-          description: "Enables full re-renders on changes (default false)",
-          args: {
-            name: "boolean",
-          },
+          description: "Enables full re-renders on changes",
+        },
+        {
+          name: "--disableKinds",
+          description: "Disable different kind of pages (home, RSS etc.)",
+          args: { name: "disableKinds" },
         },
         {
           name: "--disableLiveReload",
+          description: "Watch without enabling live browser reload on rebuild",
+        },
+        {
+          name: "--enableGitInfo",
           description:
-            "Watch without enabling live browser reload on rebuild (default false)",
-          args: {
-            name: "boolean",
-          },
+            "Add Git revision, date, author, and CODEOWNERS info to the pages",
+        },
+        {
+          name: "--forceSyncStatic",
+          description: "Copy all files when static is changed",
+        },
+        {
+          name: "--gc",
+          description:
+            "Enable to run some cleanup tasks (remove unused cache files) after the build",
+        },
+        { name: "--ignoreCache", description: "Ignores the cache directory" },
+        {
+          name: ["--layoutDir", "-l"],
+          description: "Filesystem path to layout directory",
+          args: { name: "layoutDir" },
         },
         {
           name: "--liveReloadPort",
           description:
-            "Port for live reloading (i.e. 443 in HTTPS proxy situations) (default -1)",
-          args: {
-            name: "port",
-          },
+            "Port for live reloading (i.e. 443 in HTTPS proxy situations)",
+          args: { name: "liveReloadPort", default: "-1" },
         },
         {
           name: "--meminterval",
           description:
-            "Interval to poll memory usage (requires --memstats), valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. (default '100ms')",
-          args: {
-            name: "time unit",
-          },
+            'Interval to poll memory usage (requires --memstats), valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h"',
+          args: { name: "meminterval", default: "100ms" },
         },
         {
           name: "--memstats",
           description: "Log memory usage to this file",
-          args: {
-            name: "file",
-            template: "filepaths",
-          },
+          args: { name: "memstats" },
+        },
+        {
+          name: "--minify",
+          description: "Minify any supported output format (HTML, XML etc.)",
         },
         {
           name: "--navigateToChanged",
           description:
-            "Navigate to changed content file on live browser reload (default false)",
-          args: {
-            name: "boolean",
-          },
+            "Navigate to changed content file on live browser reload",
         },
         {
-          name: "--noHTTPCache",
-          description: "Prevent HTTP caching (default false)",
-          args: {
-            name: "boolean",
-          },
+          name: "--noChmod",
+          description: "Don't sync permission mode of files",
+        },
+        { name: "--noHTTPCache", description: "Prevent HTTP caching" },
+        {
+          name: "--noTimes",
+          description: "Don't sync modification time of files",
+        },
+        { name: "--panicOnWarning", description: "Panic on first WARNING log" },
+        {
+          name: "--poll",
+          description:
+            "Set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+          args: { name: "poll" },
         },
         {
-          name: ["-p", "--port"],
-          description: "Port on which the server will listen (default 1313)",
-          args: {
-            name: "port",
-          },
+          name: ["--port", "-p"],
+          description: "Port on which the server will listen",
+          args: { name: "port", default: "1313" },
+        },
+        {
+          name: "--printI18nWarnings",
+          description: "Print missing translations",
+        },
+        {
+          name: "--printMemoryUsage",
+          description: "Print memory usage to screen at intervals",
+        },
+        {
+          name: "--printPathWarnings",
+          description: "Print warnings on duplicate target paths etc",
+        },
+        {
+          name: "--printUnusedTemplates",
+          description: "Print warnings on unused templates",
+        },
+        {
+          name: "--profile-cpu",
+          description: "Write cpu profile to `file`",
+          hidden: true,
+          args: { name: "profile-cpu" },
+        },
+        {
+          name: "--profile-mem",
+          description: "Write memory profile to `file`",
+          hidden: true,
+          args: { name: "profile-mem" },
+        },
+        {
+          name: "--profile-mutex",
+          description: "Write Mutex profile to `file`",
+          hidden: true,
+          args: { name: "profile-mutex" },
         },
         {
           name: "--renderToDisk",
           description:
-            "Render to Destination path (default is false: render to memory & serve from there)",
-          args: {
-            name: "boolean",
-          },
+            "Render to Destination path (default is render to memory & serve from there)",
+        },
+        {
+          name: "--templateMetrics",
+          description: "Display metrics about template executions",
+        },
+        {
+          name: "--templateMetricsHints",
+          description:
+            "Calculate some improvement hints when combined with --templateMetrics",
+        },
+        {
+          name: ["--theme", "-t"],
+          description: "Themes to use (located in /themes/THEMENAME/)",
+          args: { name: "theme", template: ["folders"] },
+        },
+        {
+          name: "--trace",
+          description: "Write trace to `file` (not useful in general)",
+          args: { name: "trace" },
+        },
+        {
+          name: ["--watch", "-w"],
+          description: "Watch filesystem for changes and recreate as needed",
+        },
+        {
+          name: ["--environment", "-e"],
+          description: "Build environment",
+          isPersistent: true,
+          args: { name: "environment" },
+        },
+        {
+          name: "--ignoreVendorPaths",
+          description:
+            "Ignores any _vendor for module paths matching the given Glob pattern",
+          isPersistent: true,
+          args: { name: "ignoreVendorPaths" },
+        },
+        {
+          name: ["--source", "-s"],
+          description: "Filesystem path to read files relative from",
+          isPersistent: true,
+          args: { name: "source", template: ["folders"] },
+        },
+        {
+          name: "--themesDir",
+          description: "Filesystem path to themes directory",
+          isPersistent: true,
+          args: { name: "themesDir" },
         },
       ],
     },
+    { name: "version", description: "Print the version number of Hugo" },
     {
-      name: "version",
-      description: "Print the version number of Hugo",
-      options: [help("version"), ...globalOptions],
+      name: "help",
+      description: "Help about any command",
+      subcommands: [
+        {
+          name: "completion",
+          description:
+            "Generate the autocompletion script for the specified shell",
+          subcommands: [
+            {
+              name: "bash",
+              description: "Generate the autocompletion script for bash",
+            },
+            {
+              name: "fish",
+              description: "Generate the autocompletion script for fish",
+            },
+            {
+              name: "powershell",
+              description: "Generate the autocompletion script for powershell",
+            },
+            {
+              name: "zsh",
+              description: "Generate the autocompletion script for zsh",
+            },
+          ],
+        },
+        {
+          name: "config",
+          description: "Print the site configuration",
+          subcommands: [
+            { name: "mounts", description: "Print the configured file mounts" },
+          ],
+        },
+        {
+          name: "convert",
+          description: "Convert your content to different formats",
+          subcommands: [
+            { name: "toJSON", description: "Convert front matter to JSON" },
+            { name: "toTOML", description: "Convert front matter to TOML" },
+            { name: "toYAML", description: "Convert front matter to YAML" },
+          ],
+        },
+        { name: "deploy", description: "Deploy your site to a Cloud provider" },
+        { name: "env", description: "Print Hugo version and environment info" },
+        {
+          name: "gen",
+          description: "A collection of several useful generators",
+          subcommands: [
+            {
+              name: "chromastyles",
+              description:
+                "Generate CSS stylesheet for the Chroma code highlighter",
+            },
+            {
+              name: "doc",
+              description: "Generate Markdown documentation for the Hugo CLI",
+            },
+            { name: "man", description: "Generate man pages for the Hugo CLI" },
+          ],
+        },
+        {
+          name: "import",
+          description: "Import your site from others",
+          subcommands: [
+            { name: "jekyll", description: "Hugo import from Jekyll" },
+          ],
+        },
+        {
+          name: "list",
+          description: "Listing out various types of content",
+          subcommands: [
+            { name: "all", description: "List all posts" },
+            { name: "drafts", description: "List all drafts" },
+            { name: "expired", description: "List all posts already expired" },
+            {
+              name: "future",
+              description: "List all posts dated in the future",
+            },
+          ],
+        },
+        {
+          name: "mod",
+          description: "Various Hugo Modules helpers",
+          subcommands: [
+            {
+              name: "clean",
+              description:
+                "Delete the Hugo Module cache for the current project",
+            },
+            {
+              name: "get",
+              description: "Resolves dependencies in your current Hugo Project",
+            },
+            { name: "graph", description: "Print a module dependency graph" },
+            {
+              name: "init",
+              description: "Initialize this project as a Hugo Module",
+            },
+            {
+              name: "npm",
+              description: "Various npm helpers",
+              subcommands: [
+                {
+                  name: "pack",
+                  description:
+                    "Experimental: Prepares and writes a composite package.json file for your project",
+                },
+              ],
+            },
+            {
+              name: "tidy",
+              description: "Remove unused entries in go.mod and go.sum",
+            },
+            {
+              name: "vendor",
+              description:
+                "Vendor all module dependencies into the _vendor directory",
+            },
+            { name: "verify", description: "Verify dependencies" },
+          ],
+        },
+        {
+          name: "new",
+          description: "Create new content for your site",
+          subcommands: [
+            { name: "site", description: "Create a new site (skeleton)" },
+            { name: "theme", description: "Create a new theme" },
+          ],
+        },
+        {
+          name: ["serve", "server"],
+          description: "A high performance webserver",
+        },
+        { name: "version", description: "Print the version number of Hugo" },
+      ],
     },
   ],
   options: [
-    help("hugo"),
-    ...commonOptions,
-    ...globalOptions,
-    watch,
+    {
+      name: ["--baseURL", "-b"],
+      description: "Hostname (and path) to the root, e.g. http://spf13.com/",
+      args: { name: "baseURL" },
+    },
+    {
+      name: ["--buildDrafts", "-D"],
+      description: "Include content marked as draft",
+    },
+    { name: ["--buildExpired", "-E"], description: "Include expired content" },
+    {
+      name: ["--buildFuture", "-F"],
+      description: "Include content with publishdate in the future",
+    },
+    {
+      name: "--cacheDir",
+      description:
+        "Filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+      args: { name: "cacheDir", template: ["folders"] },
+    },
+    {
+      name: "--cleanDestinationDir",
+      description:
+        "Remove files from destination not found in static directories",
+    },
+    {
+      name: ["--contentDir", "-c"],
+      description: "Filesystem path to content directory",
+      args: { name: "contentDir" },
+    },
+    {
+      name: ["--destination", "-d"],
+      description: "Filesystem path to write files to",
+      args: { name: "destination", template: ["folders"] },
+    },
+    {
+      name: "--disableKinds",
+      description: "Disable different kind of pages (home, RSS etc.)",
+      args: { name: "disableKinds" },
+    },
+    {
+      name: "--enableGitInfo",
+      description:
+        "Add Git revision, date, author, and CODEOWNERS info to the pages",
+    },
+    {
+      name: "--forceSyncStatic",
+      description: "Copy all files when static is changed",
+    },
+    {
+      name: "--gc",
+      description:
+        "Enable to run some cleanup tasks (remove unused cache files) after the build",
+    },
+    { name: "--ignoreCache", description: "Ignores the cache directory" },
+    {
+      name: ["--layoutDir", "-l"],
+      description: "Filesystem path to layout directory",
+      args: { name: "layoutDir" },
+    },
+    {
+      name: "--minify",
+      description: "Minify any supported output format (HTML, XML etc.)",
+    },
+    { name: "--noChmod", description: "Don't sync permission mode of files" },
+    { name: "--noTimes", description: "Don't sync modification time of files" },
+    { name: "--panicOnWarning", description: "Panic on first WARNING log" },
+    {
+      name: "--poll",
+      description:
+        "Set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+      args: { name: "poll" },
+    },
+    { name: "--printI18nWarnings", description: "Print missing translations" },
+    {
+      name: "--printMemoryUsage",
+      description: "Print memory usage to screen at intervals",
+    },
+    {
+      name: "--printPathWarnings",
+      description: "Print warnings on duplicate target paths etc",
+    },
+    {
+      name: "--printUnusedTemplates",
+      description: "Print warnings on unused templates",
+    },
+    {
+      name: "--profile-cpu",
+      description: "Write cpu profile to `file`",
+      hidden: true,
+      args: { name: "profile-cpu" },
+    },
+    {
+      name: "--profile-mem",
+      description: "Write memory profile to `file`",
+      hidden: true,
+      args: { name: "profile-mem" },
+    },
+    {
+      name: "--profile-mutex",
+      description: "Write Mutex profile to `file`",
+      hidden: true,
+      args: { name: "profile-mutex" },
+    },
     {
       name: "--renderToMemory",
       description: "Render to memory (only useful for benchmark testing)",
     },
+    {
+      name: "--templateMetrics",
+      description: "Display metrics about template executions",
+    },
+    {
+      name: "--templateMetricsHints",
+      description:
+        "Calculate some improvement hints when combined with --templateMetrics",
+    },
+    {
+      name: ["--theme", "-t"],
+      description: "Themes to use (located in /themes/THEMENAME/)",
+      args: { name: "theme", template: ["folders"] },
+    },
+    {
+      name: "--trace",
+      description: "Write trace to `file` (not useful in general)",
+      args: { name: "trace" },
+    },
+    {
+      name: ["--watch", "-w"],
+      description: "Watch filesystem for changes and recreate as needed",
+    },
+    {
+      name: "--config",
+      description: "Config file (default is path/config.yaml|json|toml)",
+      isPersistent: true,
+      args: { name: "config", template: ["filepaths"] },
+    },
+    {
+      name: "--configDir",
+      description: "Config dir",
+      isPersistent: true,
+      args: { name: "configDir", default: "config" },
+    },
+    { name: "--debug", description: "Debug output", isPersistent: true },
+    {
+      name: ["--environment", "-e"],
+      description: "Build environment",
+      isPersistent: true,
+      args: { name: "environment" },
+    },
+    {
+      name: "--ignoreVendorPaths",
+      description:
+        "Ignores any _vendor for module paths matching the given Glob pattern",
+      isPersistent: true,
+      args: { name: "ignoreVendorPaths" },
+    },
+    { name: "--log", description: "Enable Logging", isPersistent: true },
+    {
+      name: "--logFile",
+      description: "Log File path (if set, logging enabled automatically)",
+      isPersistent: true,
+      args: { name: "logFile", template: ["filepaths"] },
+    },
+    { name: "--quiet", description: "Build in quiet mode", isPersistent: true },
+    {
+      name: ["--source", "-s"],
+      description: "Filesystem path to read files relative from",
+      isPersistent: true,
+      args: { name: "source", template: ["folders"] },
+    },
+    {
+      name: "--themesDir",
+      description: "Filesystem path to themes directory",
+      isPersistent: true,
+      args: { name: "themesDir" },
+    },
+    {
+      name: ["--verbose", "-v"],
+      description: "Verbose output",
+      isPersistent: true,
+    },
+    {
+      name: "--verboseLog",
+      description: "Verbose logging",
+      isPersistent: true,
+    },
+    { name: ["--help", "-h"], description: "Display help", isPersistent: true },
   ],
 };
-
 export default completionSpec;
