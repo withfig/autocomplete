@@ -109,7 +109,7 @@ export interface Owner {
 
 const completionSpec: Fig.Spec = {
   name: "degit",
-  description: "",
+  description: "Straightforward project scaffolding",
   args: [
     {
       name: "user/repo",
