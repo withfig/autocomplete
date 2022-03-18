@@ -159,6 +159,7 @@ const completion: Fig.Spec = {
     {
       name: "hook",
       description: "Hook commands",
+      hidden: true,
       subcommands: [
         {
           name: "editbuffer",
@@ -415,17 +416,7 @@ const completion: Fig.Spec = {
           ],
           args: {
             name: "build",
-            suggestions: [
-              {
-                name: "dev",
-              },
-              {
-                name: "prod",
-              },
-              {
-                name: "staging",
-              },
-            ],
+            suggestions: ["dev", "prod", "staging"],
           },
         },
         {
@@ -444,14 +435,7 @@ const completion: Fig.Spec = {
           args: {
             name: "mode",
             isOptional: true,
-            suggestions: [
-              {
-                name: "on",
-              },
-              {
-                name: "off",
-              },
-            ],
+            suggestions: ["on", "off"],
           },
         },
         {
@@ -489,30 +473,14 @@ const completion: Fig.Spec = {
           args: {
             name: "command",
             suggestions: [
-              {
-                name: "install",
-              },
-              {
-                name: "uninstall",
-              },
-              {
-                name: "select",
-              },
-              {
-                name: "deselect",
-              },
-              {
-                name: "enable",
-              },
-              {
-                name: "disable",
-              },
-              {
-                name: "status",
-              },
-              {
-                name: "register",
-              },
+              "install",
+              "uninstall",
+              "select",
+              "deselect",
+              "enable",
+              "disable",
+              "status",
+              "register",
             ],
           },
         },
@@ -668,7 +636,7 @@ const completion: Fig.Spec = {
       options: [
         {
           name: ["-d", "--delete"],
-          description: "Delete",
+          description: "delete",
         },
         {
           name: ["-h", "--help"],
@@ -779,6 +747,7 @@ const completion: Fig.Spec = {
         {
           name: "--daemon",
           description: "Install only the daemon",
+          exclusiveOn: ["--dotfiles"],
         },
         {
           name: "--dotfiles",
@@ -825,6 +794,7 @@ const completion: Fig.Spec = {
     {
       name: "daemon",
       description: "Run the daemon",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -841,15 +811,12 @@ const completion: Fig.Spec = {
           args: {
             name: "format",
             isOptional: true,
-            suggestions: [
-              {
-                name: "plain",
-              },
-              {
-                name: "json",
-              },
-            ],
+            suggestions: ["plain", "json"],
           },
+        },
+        {
+          name: "--force",
+          description: "Force limited diagnostic output",
         },
         {
           name: ["-h", "--help"],
@@ -860,6 +827,7 @@ const completion: Fig.Spec = {
     {
       name: "init",
       description: "Generate the dotfiles for the given shell",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -886,14 +854,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "when",
-          suggestions: [
-            {
-              name: "pre",
-            },
-            {
-              name: "post",
-            },
-          ],
+          suggestions: ["pre", "post"],
         },
       ],
     },
@@ -1012,63 +973,6 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "plugins",
-      description: "Plugins management",
-      subcommands: [
-        {
-          name: "list",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "test",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "help",
-          description:
-            "Print this message or the help of the given subcommand(s)",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "subcommand",
-            isOptional: true,
-          },
-        },
-      ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-    },
-    {
       name: "generate-fig-spec",
       description: "Generate the completion spec for Fig",
       options: [
@@ -1080,17 +984,22 @@ const completion: Fig.Spec = {
       hidden: true,
     },
     {
-      name: "compleation",
+      name: "completion",
       options: [
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
       ],
-      hidden: true,
+      args: {
+        name: "shell",
+        isOptional: true,
+        suggestions: ["bash", "fish", "zsh", "fig"],
+      },
     },
     {
       name: "internal",
+      hidden: true,
       subcommands: [
         {
           name: "prompt-dotfiles-changed",
@@ -1144,7 +1053,7 @@ const completion: Fig.Spec = {
             },
             {
               name: ["-d", "--delete"],
-              description: "Delete",
+              description: "delete",
             },
             {
               name: ["-h", "--help"],
@@ -1199,6 +1108,7 @@ const completion: Fig.Spec = {
             {
               name: "--daemon",
               description: "Install only the daemon",
+              exclusiveOn: ["--dotfiles"],
             },
             {
               name: "--dotfiles",
@@ -1258,49 +1168,6 @@ const completion: Fig.Spec = {
           ],
         },
         {
-          name: "init",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: [
-            {
-              name: "shell",
-              suggestions: [
-                {
-                  name: "bash",
-                  description: "Bash shell",
-                },
-                {
-                  name: "zsh",
-                  description: "Zsh shell",
-                },
-                {
-                  name: "fish",
-                  description: "Fish shell",
-                },
-              ],
-            },
-            {
-              name: "when",
-              suggestions: [
-                {
-                  name: "pre",
-                },
-                {
-                  name: "post",
-                },
-              ],
-            },
-          ],
-        },
-        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -1326,7 +1193,6 @@ const completion: Fig.Spec = {
           description: "Print help information",
         },
       ],
-      hidden: true,
     },
     {
       name: "launch",
@@ -1386,7 +1252,6 @@ const completion: Fig.Spec = {
     {
       name: "help",
       description: "Print this message or the help of the given subcommand(s)",
-
       args: {
         name: "subcommand",
         isOptional: true,
