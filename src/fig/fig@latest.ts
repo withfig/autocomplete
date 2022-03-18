@@ -14,6 +14,7 @@ const completion: Fig.Spec = {
       subcommands: [
         {
           name: "install",
+          description: "Install the Fig app",
           options: [
             {
               name: "--version",
@@ -27,6 +28,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "onboarding",
+          description: "Run the Fig tutorial again",
           options: [
             {
               name: "--version",
@@ -40,6 +42,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "running",
+          description: "Check if Fig is running",
           options: [
             {
               name: "--version",
@@ -53,6 +56,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "launch",
+          description: "Launch th Fig desktop app",
           options: [
             {
               name: "--version",
@@ -66,6 +70,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "restart",
+          description: "Restart the Fig desktop app",
           options: [
             {
               name: "--version",
@@ -79,6 +84,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "quit",
+          description: "Quit the Fig desktop app",
           options: [
             {
               name: "--version",
@@ -92,6 +98,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "set-path",
+          description: "Set the internal psudo-terminal path",
           options: [
             {
               name: "--version",
@@ -105,6 +112,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "uninstall",
+          description: "Uninstall the Fig app",
           options: [
             {
               name: "--version",
@@ -118,6 +126,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "prompts",
+          description: "Prompts shown on terminal startup",
           options: [
             {
               name: "--version",
@@ -636,7 +645,7 @@ const completion: Fig.Spec = {
       options: [
         {
           name: ["-d", "--delete"],
-          description: "delete",
+          description: "Delete the state",
         },
         {
           name: ["-h", "--help"],
@@ -689,6 +698,8 @@ const completion: Fig.Spec = {
         },
         {
           name: "reset",
+          description: "Reset the tips to the default",
+          hidden: true,
           options: [
             {
               name: "--version",
@@ -702,6 +713,8 @@ const completion: Fig.Spec = {
         },
         {
           name: "prompt",
+          description: "Show the tips",
+          hidden: true,
           options: [
             {
               name: "--version",
@@ -770,6 +783,7 @@ const completion: Fig.Spec = {
     {
       name: "uninstall",
       description: "Uninstall fig",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -808,10 +822,20 @@ const completion: Fig.Spec = {
       options: [
         {
           name: ["-f", "--format"],
+          description: "The format of the output",
           args: {
             name: "format",
             isOptional: true,
-            suggestions: ["plain", "json"],
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+            ],
           },
         },
         {
@@ -827,7 +851,6 @@ const completion: Fig.Spec = {
     {
       name: "init",
       description: "Generate the dotfiles for the given shell",
-      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -857,6 +880,7 @@ const completion: Fig.Spec = {
           suggestions: ["pre", "post"],
         },
       ],
+      hidden: true,
     },
     {
       name: "source",
@@ -925,10 +949,11 @@ const completion: Fig.Spec = {
     },
     {
       name: "login",
-      description: "Login to dotfiles",
+      description: "Login to Fig",
       options: [
         {
           name: ["-r", "--refresh"],
+          description: "Manually refresh the auth token",
         },
         {
           name: ["-h", "--help"],
@@ -938,7 +963,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "logout",
-      description: "Logout of dotfiles",
+      description: "Logout of Fig",
       options: [
         {
           name: ["-h", "--help"],
@@ -962,29 +987,22 @@ const completion: Fig.Spec = {
       options: [
         {
           name: "--verbose",
+          description: "Run all doctor tests, with no fixes",
         },
         {
           name: "--strict",
+          description: "Error on warnings",
         },
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
       ],
-    },
-    {
-      name: "generate-fig-spec",
-      description: "Generate the completion spec for Fig",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-      hidden: true,
     },
     {
       name: "completion",
+      description: "Generate the completion spec for Fig",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -994,15 +1012,35 @@ const completion: Fig.Spec = {
       args: {
         name: "shell",
         isOptional: true,
-        suggestions: ["bash", "fish", "zsh", "fig"],
+        suggestions: [
+          {
+            name: "bash",
+            description: "Bash shell compleations",
+          },
+          {
+            name: "fish",
+            description: "Fish shell completions",
+          },
+          {
+            name: "zsh",
+            description: "Zsh shell completions",
+          },
+          {
+            name: "fig",
+            description: "Fig completion spec",
+          },
+        ],
       },
     },
     {
       name: "internal",
+      description: "Internal subcommands used for Fig",
       hidden: true,
       subcommands: [
         {
           name: "prompt-dotfiles-changed",
+          description:
+            "Prompt the user that the dotfiles have changes Also use for `fig source` internals",
           options: [
             {
               name: "--version",
@@ -1016,6 +1054,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "local-state",
+          description: "Change the local-state file",
           subcommands: [
             {
               name: "init",
@@ -1053,7 +1092,7 @@ const completion: Fig.Spec = {
             },
             {
               name: ["-d", "--delete"],
-              description: "delete",
+              description: "Delete the state",
             },
             {
               name: ["-h", "--help"],
@@ -1073,6 +1112,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "callback",
+          description: "Callback used for the internal psudoterminal",
           options: [
             {
               name: "--version",
@@ -1156,6 +1196,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "warn-user-when-uninstalling-incorrectly",
+          description: "Notify the user that they are uninstalling incorrectly",
           options: [
             {
               name: "--version",
@@ -1196,6 +1237,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "launch",
+      description: "Launch the Fig desktop app",
       options: [
         {
           name: ["-h", "--help"],
@@ -1205,6 +1247,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "quit",
+      description: "Quit the Fig desktop app",
       options: [
         {
           name: ["-h", "--help"],
@@ -1214,6 +1257,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "restart",
+      description: "Restart the Fig desktop app",
       options: [
         {
           name: ["-h", "--help"],
@@ -1223,6 +1267,8 @@ const completion: Fig.Spec = {
     },
     {
       name: "alpha",
+      description: "(LEGACY) Old way to launch mission control",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
@@ -1232,6 +1278,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "onboarding",
+      description: "Run the Fig tutorial",
       options: [
         {
           name: ["-h", "--help"],
@@ -1241,13 +1288,14 @@ const completion: Fig.Spec = {
     },
     {
       name: "app:running",
+      description: "(LEGACY) Old hook that was being used somewhere",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
           description: "Print help information",
         },
       ],
-      hidden: true,
     },
     {
       name: "help",
