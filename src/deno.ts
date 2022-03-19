@@ -1251,6 +1251,127 @@ const denoCache: Fig.Subcommand = {
   options: compileOptions,
 };
 
+const denoBench: Fig.Subcommand = {
+  name: "bench",
+  description: "Run benchmarks using Deno's built-in bench tool",
+  args: {
+    name: "files",
+    isVariadic: true,
+    isOptional: true,
+    generators: filepaths({
+      matches: /[_\.]bench\.m?[jt]sx?/,
+      suggestFolders: "always",
+    }),
+  },
+  options: [
+    ...runtimeOptions({ perms: true, inspector: false }),
+    {
+      name: "--ignore",
+      description: "Ignore files",
+      requiresEquals: true,
+      args: {
+        name: "files",
+        generators: {
+          getQueryTerm: ",",
+          template: "filepaths",
+        },
+      },
+    },
+    {
+      name: "--filter",
+      description: "Run benchmarks with this string or pattern in the name",
+      args: {
+        name: "filter",
+      },
+    },
+    watchOption({ files: false }),
+    noClearScreenOption,
+  ],
+};
+/**
+ * Get the path of the config file from an array of tokens.
+ *
+ * If no overriding flag is provided, `null` will be returned.
+ *
+ * Flags can be provided in any of these forms, and the regex to match this is
+ * about as ugly as you'd expect.
+ * - `-c name`
+ * - `-cname`
+ * - `-XYZcname` (short options before `f`, where `XYZ` are any non-f letters)
+ * - `-c=name`
+ * - `--config name`
+ * - `--config=name`
+ */
+function getConfigPath(tokens: string[]): string | null {
+  const flagRe = /^(-[A-Zabd-z]*c=?|--config(?:=|$))/;
+  for (const [index, token] of tokens.entries()) {
+    const match = token.match(flagRe);
+    if (match === null) {
+      continue;
+    }
+    // Group 1 is the flag, up to and including the `=`. Everything after
+    // that is the path. If the path is "", then it's the next token.
+    const withoutOption = token.slice(match[1].length);
+    if (withoutOption === "") {
+      return tokens[index + 1];
+    }
+    return withoutOption;
+  }
+  return null;
+}
+
+interface DenoConfig {
+  tasks: {
+    [key: string]: string;
+  };
+  fig: {
+    [key: string]: {
+      description?: string;
+      displayName?: string;
+      icon?: string;
+      priority?: number;
+    };
+  };
+}
+
+const denoTask: Fig.Subcommand = {
+  name: "task",
+  description: "Run a task defined in the configuration file",
+  args: [
+    {
+      name: "task",
+      generators: {
+        custom: async (tokens, executeShellCommand) => {
+          const configPath = getConfigPath(tokens);
+          let configString: string;
+          if (configPath) {
+            configString = await executeShellCommand(`\\cat '${configPath}'`);
+          } else {
+            configString = await executeShellCommand(
+              "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null"
+            );
+          }
+          const config = JSON.parse(configString) as DenoConfig;
+          return Object.entries(config.tasks).map(([name, command]) => ({
+            name,
+            displayName: config.fig?.[name]?.displayName || name,
+            description: config.fig?.[name]?.description || command,
+            icon: config.fig?.[name]?.icon || "⚙️",
+            priority: config.fig?.[name]?.priority,
+          }));
+        },
+      },
+    },
+    {
+      name: "args",
+      description: "Arguments to pass to the task",
+      isOptional: true,
+      isVariadic: true,
+    },
+  ],
+  options: [configOption],
+};
+
 const denoBundle: Fig.Subcommand = {
   name: "bundle",
   description: "Bundle module and dependencies into a single file",
@@ -1302,6 +1423,7 @@ const denoVendor: Fig.Subcommand = {
 };
 
 const subcommands: Fig.Subcommand[] = [
+  denoBench,
   denoBundle,
   denoCache,
   denoCompile,
@@ -1317,6 +1439,7 @@ const subcommands: Fig.Subcommand[] = [
   denoLsp,
   denoRepl,
   denoRun,
+  denoTask,
   denoTest,
   denoTypes,
   denoUpgrade,
