@@ -1,5 +1,6 @@
 const TASKS_PRIORITY = 80;
 const TASKFILE_FLAGS = ["-t", "--taskfile"];
+const DIRECTORY_FLAGS = ["-d", "--dir"];
 
 const tasksGenerator: Fig.Generator = {
   custom: async (tokens, exec) => {
@@ -8,19 +9,24 @@ const tasksGenerator: Fig.Generator = {
       return [];
     }
 
-    // Get the last taskfile path if mentioned in tokens
-    const taskfilePath =
-      tokens[
-        tokens.length -
-          tokens
-            .slice()
-            .reverse()
-            .findIndex((token) => TASKFILE_FLAGS.includes(token))
-      ];
+    let context = "";
+    const contextValueIndex =
+      tokens.length -
+      tokens
+        .slice()
+        .reverse()
+        .findIndex((token) =>
+          [...TASKFILE_FLAGS, ...DIRECTORY_FLAGS].includes(token)
+        );
 
-    const tasksListText = await exec(
-      `task ${taskfilePath ? `${TASKFILE_FLAGS[0]} ${taskfilePath}` : ""} -l`
-    );
+    // Add the last context flag if mentioned in tokens
+    if (contextValueIndex <= tokens.length) {
+      context = ` ${tokens[contextValueIndex - 1]} ${
+        tokens[contextValueIndex]
+      }`;
+    }
+
+    const tasksListText = await exec(`task${context} --list`);
 
     return tasksListText
       .split("\n* ")
@@ -39,6 +45,8 @@ const tasksGenerator: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "go-task",
+  description: "A task runner / simpler Make alternative written in Go",
+  icon: "https://taskfile.dev/favicon.ico",
   args: {
     generators: tasksGenerator,
     isVariadic: true,
@@ -49,6 +57,11 @@ const completionSpec: Fig.Spec = {
       name: ["-c", "--color"],
       description:
         "Colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable (default true)",
+      requiresEquals: true,
+      args: {
+        name: "color",
+        suggestions: ["true", "false"],
+      },
     },
     {
       name: ["-C", "--concurrency"],
@@ -58,8 +71,9 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-d", "--dir"],
+      name: DIRECTORY_FLAGS,
       description: "Sets directory of execution",
+      exclusiveOn: TASKFILE_FLAGS,
       args: {
         name: "path",
         template: ["folders"],
@@ -114,6 +128,7 @@ const completionSpec: Fig.Spec = {
     {
       name: TASKFILE_FLAGS,
       description: "Choose which Taskfile to run",
+      exclusiveOn: DIRECTORY_FLAGS,
       args: {
         name: "taskfile",
         default: "Taskfile.yml",
