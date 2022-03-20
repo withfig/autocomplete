@@ -687,18 +687,22 @@ type Node =
   | ClassMethodDef
   | ClassPropertyDef;
 
-function getUniqueValues<T, U>(input: readonly T[], fn: (item: T) => U): T[] {
-  const seen: Set<U> = new Set();
+/** Get unique values with a given selector function */
+function getUniqueNamed<T extends { name: string }>(input: readonly T[]): T[] {
+  const seen: Set<string> = new Set();
   const out: T[] = [];
   for (const item of input) {
-    const val = fn(item);
-    if (seen.has(val)) continue;
-    seen.add(val);
+    if (seen.has(item.name)) continue;
+    seen.add(item.name);
     out.push(item);
   }
   return out;
 }
 
+/**
+ * Get the children of the given node, if it has children. If it cannot have
+ * children, return an empty array.
+ */
 function getNodeChildren(node: Node): Node[] {
   if (!("kind" in node)) {
     return [];
@@ -715,7 +719,20 @@ function getNodeChildren(node: Node): Node[] {
   return [];
 }
 
-function findDocNodes(nodes: Node[], path: string[]): Node[] {
+/**
+ * Get the child nodes of a given lookup path. If multiple nodes have the
+ * same name, all their children will be returned.
+ *
+ * @example
+ * ```
+ * // Get child nodes of Deno.NetAddr
+ * findChildNodes(nodes, ["Deno", "NetAddr"])
+ * ```
+ */
+function findChildNodes(
+  nodes: readonly Node[],
+  path: readonly string[]
+): readonly Node[] {
   const [head, ...tail] = path;
   if (!head) {
     return nodes;
@@ -725,10 +742,15 @@ function findDocNodes(nodes: Node[], path: string[]): Node[] {
     return [];
   }
   return foundNodes.flatMap((node) =>
-    findDocNodes(getNodeChildren(node), tail)
+    findChildNodes(getNodeChildren(node), tail)
   );
 }
 
+/**
+ * Get the priority of a node based on its name. Values starting with upper-
+ * case letters should be prioritized, values starting with underscores should
+ * be below everything else.
+ */
 function getPriorityByNodeName(name: string): number {
   if (/^[A-Z]/.test(name)) {
     return 60;
@@ -739,6 +761,9 @@ function getPriorityByNodeName(name: string): number {
   return 50;
 }
 
+/**
+ * Get a human-readable short name for the kind of node
+ */
 function getNodeTypeName(node: Node): string {
   if ("kind" in node) {
     if (node.kind === "typeAlias") {
@@ -750,6 +775,34 @@ function getNodeTypeName(node: Node): string {
   return "Property";
 }
 
+/**
+ * Filter nodes from the input array based on whether they should be shown.
+ */
+function filterNodes(
+  nodes: readonly Node[],
+  init: {
+    showPrivateNodes: boolean;
+  }
+): Node[] {
+  const { showPrivateNodes } = init;
+  return nodes.filter((node) => {
+    // 1. Check if it's a node that can't be shown
+    if ("kind" in node) {
+      if (node.kind === "moduleDoc" || node.kind === "import") {
+        return false;
+      }
+    }
+    // 2. Check if the visibility preference filters out the node
+    if ("declarationKind" in node) {
+      if (!showPrivateNodes && node.declarationKind === "private") {
+        return false;
+      }
+    }
+    // All else failing, allow the node
+    return true;
+  });
+}
+
 function convertNodeToSuggestion(node: Node): Fig.Suggestion {
   return {
     name: node.name,
@@ -757,28 +810,6 @@ function convertNodeToSuggestion(node: Node): Fig.Suggestion {
     priority: getPriorityByNodeName(node.name),
     icon: "fig://icon?type=asterisk",
   };
-}
-
-function filterNodes(
-  nodes: Node[],
-  init: {
-    isPrivate: boolean;
-  }
-): Node[] {
-  const { isPrivate } = init;
-  return nodes.filter((node) => {
-    if ("kind" in node) {
-      if (node.kind === "moduleDoc" || node.kind === "import") {
-        return false;
-      }
-    }
-    if ("declarationKind" in node) {
-      if (!isPrivate && node.declarationKind === "private") {
-        return false;
-      }
-    }
-    return true;
-  });
 }
 
 const denoDoc: Fig.Subcommand = {
@@ -812,18 +843,27 @@ const denoDoc: Fig.Subcommand = {
         scriptTimeout: 1000,
 
         // Options can be provided in any order, so the second last element
-        // isn't guaranteed to be the scope. The solution is to modify the
-        // array of tokens to insert --json. However, since there can only be
-        // one occurrence of that flag, it has to be guarded.
+        // isn't guaranteed to be the scope. The solution is to reuse the
+        // user input, but filter out other options and everything that isn't
+        // likely to be an argument.
         script: (tokens) => {
-          // A filter can't be used with `--json`, so it has to be removed.
-          const command = tokens.slice(0, -1);
-          if (!command.includes("--json")) {
-            command.push("--json");
-          }
-          const script = command.join(" ");
-          console.log(script);
-          return script;
+          const allowedOptions = new Set([
+            "--private",
+            "--builtin",
+            "--unstable",
+          ]);
+          // Slice to the second last element: `--json` conflicts with `scope`
+          const command = tokens
+            .slice(0, -1)
+            .filter(
+              (token) =>
+                !(token.startsWith("-") && !allowedOptions.has(token)) &&
+                !token.startsWith("$") &&
+                !token.startsWith("(")
+            );
+          // --json was filtered out earlier, add it back
+          command.push("--json");
+          return command.join(" ");
         },
 
         trigger: ".",
@@ -832,15 +872,15 @@ const denoDoc: Fig.Subcommand = {
         postProcess: (out, tokens) => {
           const docNodes = JSON.parse(out) as DocNode[];
 
-          // Ignore the final element (that's what is being typed)
+          // The final segment is being typed, ignore it
           const finalToken = tokens[tokens.length - 1];
           const path = finalToken.split(".").slice(0, -1);
 
-          const nodes = findDocNodes(docNodes, path);
+          const nodes = findChildNodes(docNodes, path);
           const filtered = filterNodes(nodes, {
-            isPrivate: tokens.includes("--private"),
+            showPrivateNodes: tokens.includes("--private"),
           });
-          const unique = getUniqueValues(filtered, (node) => node.name);
+          const unique = getUniqueNamed(filtered);
           return unique.map((node) => convertNodeToSuggestion(node));
         },
       },
