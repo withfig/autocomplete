@@ -699,7 +699,7 @@ function getUniqueValues<T, U>(input: readonly T[], fn: (item: T) => U): T[] {
   return out;
 }
 
-function getDocNodeChildren(node: Node): Node[] {
+function getNodeChildren(node: Node): Node[] {
   if (!("kind" in node)) {
     return [];
   }
@@ -720,11 +720,13 @@ function findDocNodes(nodes: Node[], path: string[]): Node[] {
   if (!head) {
     return nodes;
   }
-  const foundNode = nodes.find((node) => node.name === head);
-  if (!foundNode) {
+  const foundNodes = nodes.filter((node) => node.name === head);
+  if (foundNodes.length === 0) {
     return [];
   }
-  return findDocNodes(getDocNodeChildren(foundNode), tail);
+  return foundNodes.flatMap((node) =>
+    findDocNodes(getNodeChildren(node), tail)
+  );
 }
 
 function getPriorityByNodeName(name: string): number {
