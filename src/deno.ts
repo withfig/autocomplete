@@ -2,6 +2,8 @@
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
 import { filepaths } from "@fig/autocomplete-generators";
+import stripJsonComments from "strip-json-comments";
+import { DenoConfigurationFileSchema } from "./deno/config_schema";
 
 // Fig doesn't automatically insert an '=' where an option's argument requires
 // an equals and the argument isn't optional. That's why you'll see a lot of
@@ -1288,6 +1290,19 @@ const denoBench: Fig.Subcommand = {
     noClearScreenOption,
   ],
 };
+
+type DenoConfigurationFile = DenoConfigurationFileSchema & {
+  fig: {
+    [key: string]: {
+      displayName?: string | undefined;
+      description?: string | undefined;
+      icon?: string | undefined;
+      priority?: number | undefined;
+      hidden?: boolean | undefined;
+    };
+  };
+};
+
 /**
  * Get the path of the config file from an array of tokens.
  *
@@ -1297,7 +1312,7 @@ const denoBench: Fig.Subcommand = {
  * about as ugly as you'd expect.
  * - `-c name`
  * - `-cname`
- * - `-XYZcname` (short options before `f`, where `XYZ` are any non-f letters)
+ * - `-XYZcname` (short options before `c`, where `XYZ` are any non-c letters)
  * - `-c=name`
  * - `--config name`
  * - `--config=name`
@@ -1320,18 +1335,26 @@ function getConfigPath(tokens: string[]): string | null {
   return null;
 }
 
-interface DenoConfig {
-  tasks: {
-    [key: string]: string;
-  };
-  fig: {
-    [key: string]: {
-      description?: string;
-      displayName?: string;
-      icon?: string;
-      priority?: number;
-    };
-  };
+async function getDenoConfig(
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction
+): Promise<DenoConfigurationFile | null> {
+  const configPath = getConfigPath(tokens);
+  let jsonString: string;
+  if (configPath) {
+    jsonString = await executeShellCommand(`\\cat '${configPath}'`);
+  } else {
+    // Move backwards through the directory heirarchy until we find a config file (or hit the root)
+    jsonString = await executeShellCommand(
+      "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null"
+    );
+  }
+  try {
+    return JSON.parse(stripJsonComments(jsonString));
+  } catch (e: unknown) {
+    console.error(`Error parsing config file: ${e}`);
+    return null;
+  }
 }
 
 const denoTask: Fig.Subcommand = {
@@ -1342,16 +1365,10 @@ const denoTask: Fig.Subcommand = {
       name: "task",
       generators: {
         custom: async (tokens, executeShellCommand) => {
-          const configPath = getConfigPath(tokens);
-          let configString: string;
-          if (configPath) {
-            configString = await executeShellCommand(`\\cat '${configPath}'`);
-          } else {
-            configString = await executeShellCommand(
-              "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null"
-            );
+          const config = await getDenoConfig(tokens, executeShellCommand);
+          if (config === null) {
+            return [];
           }
-          const config = JSON.parse(configString) as DenoConfig;
           return Object.entries(config.tasks).map(([name, command]) => ({
             name,
             displayName: config.fig?.[name]?.displayName || name,
