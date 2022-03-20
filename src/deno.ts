@@ -1223,7 +1223,7 @@ const denoBench: Fig.Subcommand = {
 };
 
 type DenoConfigurationFile = DenoConfigurationFileSchema & {
-  fig: {
+  fig?: {
     [key: string]: {
       displayName?: string | undefined;
       description?: string | undefined;
@@ -1300,13 +1300,17 @@ const denoTask: Fig.Subcommand = {
           if (config === null) {
             return [];
           }
-          return Object.entries(config.tasks).map(([name, command]) => ({
-            name,
-            displayName: config.fig?.[name]?.displayName || name,
-            description: config.fig?.[name]?.description || command,
-            icon: config.fig?.[name]?.icon || "⚙️",
-            priority: config.fig?.[name]?.priority,
-          }));
+          return Object.entries(config.tasks).map(([name, command]) => {
+            const fig = config.fig?.[name] || {};
+            return {
+              name,
+              displayName: fig.displayName,
+              description: fig.description || command,
+              icon: fig.icon || "⚙️",
+              priority: fig.priority,
+              hidden: fig.hidden,
+            };
+          });
         },
       },
     },
