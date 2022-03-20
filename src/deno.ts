@@ -4,6 +4,14 @@
 import { filepaths } from "@fig/autocomplete-generators";
 import stripJsonComments from "strip-json-comments";
 import { DenoConfigurationFileSchema } from "./deno/config_schema";
+import {
+  ClassMethodDef,
+  ClassPropertyDef,
+  DocNode,
+  DocNodeBase,
+  InterfaceMethodDef,
+  InterfacePropertyDef,
+} from "./deno/deno_doc";
 
 // Fig doesn't automatically insert an '=' where an option's argument requires
 // an equals and the argument isn't optional. That's why you'll see a lot of
@@ -672,82 +680,47 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
-//#region Documentation types
+// function getNamePriority(name: string): number {
+//   if (/^[A-Z]/.test(name)) {
+//     return 60;
+//   }
+//   if (name.startsWith("_")) {
+//     return 40;
+//   }
+//   return 50;
+// }
 
-// Everything has a name. Some things have a kind, but only a subset of those
-// have a kind that actually matters (hence the default of `string`)
-type Named = { name: string };
-type Kind<T extends string = string> = { kind: T };
+// function createFilterSuggestion(name: string): Fig.Suggestion {
+//   return {
+//     name: name,
+//     priority: getNamePriority(name),
+//     icon: "fig://icon?type=string",
+//   };
+// }
 
-// Type aliases to make records clearer
-type DocProperty = Named;
-type DocMethod = Named & Kind;
+type Node =
+  | DocNode
+  | InterfaceMethodDef
+  | InterfacePropertyDef
+  | ClassMethodDef
+  | ClassPropertyDef;
 
-type DocNodeModuleDoc = Named & Kind<"moduleDoc">;
-type DocNodeFunction = Named & Kind<"function">;
-type DocNodeVariable = Named & Kind<"variable">;
-type DocNodeEnum = Named & Kind<"enum">;
-type DocNodeClass = Named &
-  Kind<"class"> & {
-    classDef: {
-      properties: DocProperty[];
-      methods: DocMethod[];
-    };
-  };
-type DocNodeTypeAlias = Named & Kind<"typeAlias">;
-type DocNodeNamespace = Named &
-  Kind<"namespace"> & {
-    namespaceDef: {
-      elements: DocNode[];
-    };
-  };
-type DocNodeInterface = Named &
-  Kind<"interface"> & {
-    interfaceDef: {
-      properties: DocProperty[];
-      methods: DocMethod[];
-    };
-  };
-type DocNodeImport = Named & Kind<"import">;
-
-type DocNode =
-  | DocNodeModuleDoc
-  | DocNodeFunction
-  | DocNodeVariable
-  | DocNodeEnum
-  | DocNodeClass
-  | DocNodeTypeAlias
-  | DocNodeNamespace
-  | DocNodeInterface
-  | DocNodeImport;
-
-/** Any node is assignable to this type. */
-type AnyNode = {
-  name: string;
-  kind?: string;
-};
-
-//#endregion
-
-function getNamePriority(name: string): number {
-  if (/^[A-Z]/.test(name)) {
-    return 60;
+function unique<T, U>(input: readonly T[], selector: (item: T) => U): T[] {
+  const seen: Set<U> = new Set();
+  const out: T[] = [];
+  for (const item of input) {
+    const val = selector(item);
+    if (seen.has(val)) continue;
+    seen.add(val);
+    out.push(item);
   }
-  if (name.startsWith("_")) {
-    return 40;
-  }
-  return 50;
+  return out;
 }
 
-function createFilterSuggestion(name: string): Fig.Suggestion {
-  return {
-    name: name,
-    priority: getNamePriority(name),
-    icon: "fig://icon?type=string",
-  };
-}
-
-function getDocNodeChildren(node: DocNode) {
+function getDocNodeChildren(node: Node): Node[] {
+  if (!("kind" in node)) {
+    return [];
+  }
   if (node.kind === "namespace") {
     return node.namespaceDef.elements;
   }
@@ -759,6 +732,27 @@ function getDocNodeChildren(node: DocNode) {
   }
   return [];
 }
+
+function getDocNodes(nodes: Node[], path: string[]): Node[] {
+  const [head, ...tail] = path;
+  if (!head) {
+    return nodes;
+  }
+  const foundNode = nodes.find((node) => node.name === head);
+  if (!foundNode) {
+    return [];
+  }
+  return getDocNodes(getDocNodeChildren(foundNode), tail);
+}
+
+function convertNodeToSuggestion(node: Node): Fig.Suggestion {
+  return {
+    name: node.name,
+    icon: "fig://icon?type=asterisk",
+  };
+}
+
+const disallowedNodeKinds = new Set(["import", "moduleDoc"]);
 
 const denoDoc: Fig.Subcommand = {
   name: "doc",
@@ -798,20 +792,14 @@ const denoDoc: Fig.Subcommand = {
             command.push("--json");
           }
           const script = command.join(" ");
+          console.log(script);
           return script;
         },
 
         // Only the first period should trigger the script again.
-        trigger: (newToken, oldToken) => {
-          return newToken.indexOf(".") !== oldToken.indexOf(".");
-        },
+        trigger: ".",
 
-        // If there's not dot, the query term is the whole string. If there is
-        // a dot, the query term is everything after it. This intentionally
-        // uses indexOf returning -1, since -1 + 1 = 0 (correct index to slice)
-        getQueryTerm: (token) => {
-          return token.slice(token.indexOf(".") + 1);
-        },
+        getQueryTerm: ".",
 
         // This is quite a long function, but it's conceptually simple:
         // 1. There's an array that will be filled with doc nodes.
@@ -823,91 +811,23 @@ const denoDoc: Fig.Subcommand = {
         // 2. Those nodes are filtered, and their names are added to a set.
         // 3. Those names in that set are transformed into suggestions.
         postProcess: (out, tokens) => {
-          // The output for `deno doc --json` is `DocNode[]` - the types:
-          // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          let docNodes: DocNode[];
-          try {
-            docNodes = JSON.parse(out);
-            if (!Array.isArray(docNodes)) {
-              throw new Error(`Output data was JSON, but was not an array`);
-            }
-          } catch (err) {
-            console.error("Returning early due to error:", err);
-            return [];
-          }
+          const nodes = JSON.parse(out) as DocNode[];
+          const shownNodes = !tokens.includes("--private")
+            ? nodes.filter((node) => node.declarationKind !== "private")
+            : nodes;
 
-          const hidePrivateSymbols = !tokens.includes("--private");
+          const finalToken = tokens[tokens.length - 1];
+          // Ignore the final element since that's what we're searching for
+          const path = finalToken.split(".").slice(0, -1);
+          const found = getDocNodes(shownNodes, path);
+          const filtered = found.filter((node) =>
+            "kind" in node ? !disallowedNodeKinds.has(node.kind) : true
+          );
+          const items = unique(filtered, (node) => node.name);
 
-          if (docNodes.length === 0) {
-            return [];
-          }
-
-          // The final token has to be the filter, it's the only way this
-          // generator could have been invoked.
-          const filterToken = tokens[tokens.length - 1];
-          const firstDotIndex = filterToken.indexOf(".");
-
-          // If the user hasn't entered a dot, suggest top level nodes.
-          const suggestTopLevelNodes = firstDotIndex === -1;
-
-          // Based on whether the user has typed a period, this will be
-          // populated with either the top level nodes or the children of
-          // whatever node the user has searched for.
-          const suggestionNodes: AnyNode[] = [];
-
-          if (suggestTopLevelNodes) {
-            suggestionNodes.push(...docNodes);
-          } else {
-            const filterName = filterToken.slice(0, firstDotIndex);
-
-            // It's not uncommon that there'd be multiple occurrences of the
-            // same name with different values, eg. overloads and interface
-            // merging. Deno's builtin types actually do this with the `Deno`
-            // namespace. Typically, `found` will only be one or two nodes.
-            const found = docNodes.filter((node) => node.name === filterName);
-
-            // `deno doc` can only generate docs for these nodes' children
-            for (const node of found) {
-              suggestionNodes.push(...getDocNodeChildren(node));
-            }
-
-            // It's a common case to have no children, so it's worth checking.
-            if (suggestionNodes.length === 0) {
-              return [];
-            }
-          }
-
-          // The names are added to a set because duplicates are common.
-          const names = new Set<string>();
-
-          for (const node of suggestionNodes) {
-            // A module doc may not always be present, but if present it's
-            // always included in the JSON.
-            if (node.kind === "moduleDoc") {
-              continue;
-            }
-
-            // Imports are always emitted, even without --private
-            if (hidePrivateSymbols && node.kind === "import") {
-              continue;
-            }
-
-            names.add(node.name);
-          }
-
-          // Deno uses the name <TODO> when it gets confused, which is common in
-          // type-heavy projects. Fig renders this name as an empty string, and
-          // since you can't specify it as a filter, don't suggest it.
-          // Faster to do this once than check the name on each iteration.
-          names.delete("<TODO>");
-          names.delete("");
-
-          // Can't just .map() over a Set... (one day?)
-          const suggestions: Fig.Suggestion[] = [];
-          for (const name of names) {
-            suggestions.push(createFilterSuggestion(name));
-          }
+          const suggestions = items.map((node) =>
+            convertNodeToSuggestion(node)
+          );
           return suggestions;
         },
       },
