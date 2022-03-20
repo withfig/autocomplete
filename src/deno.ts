@@ -680,24 +680,6 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
-// function getNamePriority(name: string): number {
-//   if (/^[A-Z]/.test(name)) {
-//     return 60;
-//   }
-//   if (name.startsWith("_")) {
-//     return 40;
-//   }
-//   return 50;
-// }
-
-// function createFilterSuggestion(name: string): Fig.Suggestion {
-//   return {
-//     name: name,
-//     priority: getNamePriority(name),
-//     icon: "fig://icon?type=string",
-//   };
-// }
-
 type Node =
   | DocNode
   | InterfaceMethodDef
@@ -705,11 +687,11 @@ type Node =
   | ClassMethodDef
   | ClassPropertyDef;
 
-function unique<T, U>(input: readonly T[], selector: (item: T) => U): T[] {
+function getUniqueValues<T, U>(input: readonly T[], fn: (item: T) => U): T[] {
   const seen: Set<U> = new Set();
   const out: T[] = [];
   for (const item of input) {
-    const val = selector(item);
+    const val = fn(item);
     if (seen.has(val)) continue;
     seen.add(val);
     out.push(item);
@@ -733,7 +715,7 @@ function getDocNodeChildren(node: Node): Node[] {
   return [];
 }
 
-function getDocNodes(nodes: Node[], path: string[]): Node[] {
+function findDocNodes(nodes: Node[], path: string[]): Node[] {
   const [head, ...tail] = path;
   if (!head) {
     return nodes;
@@ -742,17 +724,60 @@ function getDocNodes(nodes: Node[], path: string[]): Node[] {
   if (!foundNode) {
     return [];
   }
-  return getDocNodes(getDocNodeChildren(foundNode), tail);
+  return findDocNodes(getDocNodeChildren(foundNode), tail);
+}
+
+function getPriorityByNodeName(name: string): number {
+  if (/^[A-Z]/.test(name)) {
+    return 60;
+  }
+  if (name.startsWith("_")) {
+    return 40;
+  }
+  return 50;
+}
+
+function getNodeTypeName(node: Node): string {
+  if ("kind" in node) {
+    if (node.kind === "typeAlias") {
+      return "Type";
+    }
+    const kind = node.kind;
+    return `${kind.charAt(0).toUpperCase()}${kind.slice(1)}`;
+  }
+  return "Property";
 }
 
 function convertNodeToSuggestion(node: Node): Fig.Suggestion {
   return {
     name: node.name,
+    description: getNodeTypeName(node),
+    priority: getPriorityByNodeName(node.name),
     icon: "fig://icon?type=asterisk",
   };
 }
 
-const disallowedNodeKinds = new Set(["import", "moduleDoc"]);
+function filterNodes(
+  nodes: Node[],
+  init: {
+    isPrivate: boolean;
+  }
+): Node[] {
+  const { isPrivate } = init;
+  return nodes.filter((node) => {
+    if ("kind" in node) {
+      if (node.kind === "moduleDoc" || node.kind === "import") {
+        return false;
+      }
+    }
+    if ("declarationKind" in node) {
+      if (!isPrivate && node.declarationKind === "private") {
+        return false;
+      }
+    }
+    return true;
+  });
+}
 
 const denoDoc: Fig.Subcommand = {
   name: "doc",
@@ -781,6 +806,9 @@ const denoDoc: Fig.Subcommand = {
       // This generator helps you construct a filter by suggesting top level
       // symbol from the provided scope, and more specific filter after "."
       generators: {
+        // This can cause dependencies to download, needs a longer timeout
+        scriptTimeout: 1000,
+
         // Options can be provided in any order, so the second last element
         // isn't guaranteed to be the scope. The solution is to modify the
         // array of tokens to insert --json. However, since there can only be
@@ -796,39 +824,22 @@ const denoDoc: Fig.Subcommand = {
           return script;
         },
 
-        // Only the first period should trigger the script again.
         trigger: ".",
-
         getQueryTerm: ".",
 
-        // This is quite a long function, but it's conceptually simple:
-        // 1. There's an array that will be filled with doc nodes.
-        //    a. If there is no dot in the filter token, that array will be
-        //       populated with the top level nodes.
-        //    b. If there is a dot, everything up to the dot becomes the name.
-        //       All nodes with that name are collected, and the array is
-        //       populated with their children.
-        // 2. Those nodes are filtered, and their names are added to a set.
-        // 3. Those names in that set are transformed into suggestions.
         postProcess: (out, tokens) => {
-          const nodes = JSON.parse(out) as DocNode[];
-          const shownNodes = !tokens.includes("--private")
-            ? nodes.filter((node) => node.declarationKind !== "private")
-            : nodes;
+          const docNodes = JSON.parse(out) as DocNode[];
 
+          // Ignore the final element (that's what is being typed)
           const finalToken = tokens[tokens.length - 1];
-          // Ignore the final element since that's what we're searching for
           const path = finalToken.split(".").slice(0, -1);
-          const found = getDocNodes(shownNodes, path);
-          const filtered = found.filter((node) =>
-            "kind" in node ? !disallowedNodeKinds.has(node.kind) : true
-          );
-          const items = unique(filtered, (node) => node.name);
 
-          const suggestions = items.map((node) =>
-            convertNodeToSuggestion(node)
-          );
-          return suggestions;
+          const nodes = findDocNodes(docNodes, path);
+          const filtered = filterNodes(nodes, {
+            isPrivate: tokens.includes("--private"),
+          });
+          const unique = getUniqueValues(filtered, (node) => node.name);
+          return unique.map((node) => convertNodeToSuggestion(node));
         },
       },
     },
