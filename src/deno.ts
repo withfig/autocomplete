@@ -2,6 +2,16 @@
 // https://github.com/denoland/deno/blob/main/cli/flags.rs
 
 import { filepaths } from "@fig/autocomplete-generators";
+import stripJsonComments from "strip-json-comments";
+import { DenoConfigurationFileSchema } from "./deno/config_schema";
+import {
+  ClassMethodDef,
+  ClassPropertyDef,
+  DocNode,
+  DocNodeBase,
+  InterfaceMethodDef,
+  InterfacePropertyDef,
+} from "./deno/deno_doc";
 
 // Fig doesn't automatically insert an '=' where an option's argument requires
 // an equals and the argument isn't optional. That's why you'll see a lot of
@@ -670,82 +680,33 @@ const denoLint: Fig.Subcommand = {
   ],
 };
 
-//#region Documentation types
+type Node =
+  | DocNode
+  | InterfaceMethodDef
+  | InterfacePropertyDef
+  | ClassMethodDef
+  | ClassPropertyDef;
 
-// Everything has a name. Some things have a kind, but only a subset of those
-// have a kind that actually matters (hence the default of `string`)
-type Named = { name: string };
-type Kind<T extends string = string> = { kind: T };
-
-// Type aliases to make records clearer
-type DocProperty = Named;
-type DocMethod = Named & Kind;
-
-type DocNodeModuleDoc = Named & Kind<"moduleDoc">;
-type DocNodeFunction = Named & Kind<"function">;
-type DocNodeVariable = Named & Kind<"variable">;
-type DocNodeEnum = Named & Kind<"enum">;
-type DocNodeClass = Named &
-  Kind<"class"> & {
-    classDef: {
-      properties: DocProperty[];
-      methods: DocMethod[];
-    };
-  };
-type DocNodeTypeAlias = Named & Kind<"typeAlias">;
-type DocNodeNamespace = Named &
-  Kind<"namespace"> & {
-    namespaceDef: {
-      elements: DocNode[];
-    };
-  };
-type DocNodeInterface = Named &
-  Kind<"interface"> & {
-    interfaceDef: {
-      properties: DocProperty[];
-      methods: DocMethod[];
-    };
-  };
-type DocNodeImport = Named & Kind<"import">;
-
-type DocNode =
-  | DocNodeModuleDoc
-  | DocNodeFunction
-  | DocNodeVariable
-  | DocNodeEnum
-  | DocNodeClass
-  | DocNodeTypeAlias
-  | DocNodeNamespace
-  | DocNodeInterface
-  | DocNodeImport;
-
-/** Any node is assignable to this type. */
-type AnyNode = {
-  name: string;
-  kind?: string;
-};
-
-//#endregion
-
-function getNamePriority(name: string): number {
-  if (/^[A-Z]/.test(name)) {
-    return 60;
+/** Get unique values with a given selector function */
+function getUniqueNamed<T extends { name: string }>(input: readonly T[]): T[] {
+  const seen: Set<string> = new Set();
+  const out: T[] = [];
+  for (const item of input) {
+    if (seen.has(item.name)) continue;
+    seen.add(item.name);
+    out.push(item);
   }
-  if (name.startsWith("_")) {
-    return 40;
-  }
-  return 50;
+  return out;
 }
 
-function createFilterSuggestion(name: string): Fig.Suggestion {
-  return {
-    name: name,
-    priority: getNamePriority(name),
-    icon: "fig://icon?type=string",
-  };
-}
-
-function getDocNodeChildren(node: DocNode) {
+/**
+ * Get the children of the given node, if it has children. If it cannot have
+ * children, return an empty array.
+ */
+function getNodeChildren(node: Node): Node[] {
+  if (!("kind" in node)) {
+    return [];
+  }
   if (node.kind === "namespace") {
     return node.namespaceDef.elements;
   }
@@ -756,6 +717,99 @@ function getDocNodeChildren(node: DocNode) {
     return [...node.classDef.methods, ...node.classDef.properties];
   }
   return [];
+}
+
+/**
+ * Get the child nodes of a given lookup path. If multiple nodes have the
+ * same name, all their children will be returned.
+ *
+ * @example
+ * ```
+ * // Get child nodes of Deno.NetAddr
+ * findChildNodes(nodes, ["Deno", "NetAddr"])
+ * ```
+ */
+function findChildNodes(
+  nodes: readonly Node[],
+  path: readonly string[]
+): readonly Node[] {
+  const [head, ...tail] = path;
+  if (!head) {
+    return nodes;
+  }
+  const foundNodes = nodes.filter((node) => node.name === head);
+  if (foundNodes.length === 0) {
+    return [];
+  }
+  return foundNodes.flatMap((node) =>
+    findChildNodes(getNodeChildren(node), tail)
+  );
+}
+
+/**
+ * Get the priority of a node based on its name. Values starting with upper-
+ * case letters should be prioritized, values starting with underscores should
+ * be below everything else.
+ */
+function getPriorityByNodeName(name: string): number {
+  if (/^[A-Z]/.test(name)) {
+    return 60;
+  }
+  if (name.startsWith("_")) {
+    return 40;
+  }
+  return 50;
+}
+
+/**
+ * Get a human-readable short name for the kind of node
+ */
+function getNodeTypeName(node: Node): string {
+  if ("kind" in node) {
+    if (node.kind === "typeAlias") {
+      return "Type";
+    }
+    const kind = node.kind;
+    return `${kind.charAt(0).toUpperCase()}${kind.slice(1)}`;
+  }
+  return "Property";
+}
+
+/**
+ * Filter nodes from the input array based on whether they should be shown.
+ */
+function filterNodes(
+  nodes: readonly Node[],
+  init: {
+    showPrivateNodes: boolean;
+  }
+): Node[] {
+  const { showPrivateNodes } = init;
+  return nodes.filter((node) => {
+    // 1. Check if it's a node that can't be shown
+    if ("kind" in node) {
+      if (node.kind === "moduleDoc" || node.kind === "import") {
+        return false;
+      }
+    }
+    // 2. Check if the visibility preference filters out the node
+    if ("declarationKind" in node) {
+      if (!showPrivateNodes && node.declarationKind === "private") {
+        return false;
+      }
+    }
+    // All else failing, allow the node
+    return true;
+  });
+}
+
+function convertNodeToSuggestion(node: Node): Fig.Suggestion {
+  return {
+    name: node.name,
+    description: getNodeTypeName(node),
+    priority: getPriorityByNodeName(node.name),
+    icon: "fig://icon?type=asterisk",
+  };
 }
 
 const denoDoc: Fig.Subcommand = {
@@ -785,128 +839,49 @@ const denoDoc: Fig.Subcommand = {
       // This generator helps you construct a filter by suggesting top level
       // symbol from the provided scope, and more specific filter after "."
       generators: {
+        // This can cause dependencies to download, needs a longer timeout
+        scriptTimeout: 1000,
+
         // Options can be provided in any order, so the second last element
-        // isn't guaranteed to be the scope. The solution is to modify the
-        // array of tokens to insert --json. However, since there can only be
-        // one occurrence of that flag, it has to be guarded.
+        // isn't guaranteed to be the scope. The solution is to reuse the
+        // user input, but filter out other options and everything that isn't
+        // likely to be an argument.
         script: (tokens) => {
-          // A filter can't be used with `--json`, so it has to be removed.
-          const command = tokens.slice(0, -1);
-          if (!command.includes("--json")) {
-            command.push("--json");
-          }
-          const script = command.join(" ");
-          return script;
+          const allowedOptions = new Set([
+            "--private",
+            "--builtin",
+            "--unstable",
+          ]);
+          // Slice to the second last element: `--json` conflicts with `scope`
+          const command = tokens
+            .slice(0, -1)
+            .filter(
+              (token) =>
+                !(token.startsWith("-") && !allowedOptions.has(token)) &&
+                !token.startsWith("$") &&
+                !token.startsWith("(")
+            );
+          // --json was filtered out earlier, add it back
+          command.push("--json");
+          return command.join(" ");
         },
 
-        // Only the first period should trigger the script again.
-        trigger: (newToken, oldToken) => {
-          return newToken.indexOf(".") !== oldToken.indexOf(".");
-        },
+        trigger: ".",
+        getQueryTerm: ".",
 
-        // If there's not dot, the query term is the whole string. If there is
-        // a dot, the query term is everything after it. This intentionally
-        // uses indexOf returning -1, since -1 + 1 = 0 (correct index to slice)
-        getQueryTerm: (token) => {
-          return token.slice(token.indexOf(".") + 1);
-        },
-
-        // This is quite a long function, but it's conceptually simple:
-        // 1. There's an array that will be filled with doc nodes.
-        //    a. If there is no dot in the filter token, that array will be
-        //       populated with the top level nodes.
-        //    b. If there is a dot, everything up to the dot becomes the name.
-        //       All nodes with that name are collected, and the array is
-        //       populated with their children.
-        // 2. Those nodes are filtered, and their names are added to a set.
-        // 3. Those names in that set are transformed into suggestions.
         postProcess: (out, tokens) => {
-          // The output for `deno doc --json` is `DocNode[]` - the types:
-          // https://github.com/denoland/deno_doc/blob/dbf9e21/lib/types.d.ts
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          let docNodes: DocNode[];
-          try {
-            docNodes = JSON.parse(out);
-            if (!Array.isArray(docNodes)) {
-              throw new Error(`Output data was JSON, but was not an array`);
-            }
-          } catch (err) {
-            console.error("Returning early due to error:", err);
-            return [];
-          }
+          const docNodes = JSON.parse(out) as DocNode[];
 
-          const hidePrivateSymbols = !tokens.includes("--private");
+          // The final segment is being typed, ignore it
+          const finalToken = tokens[tokens.length - 1];
+          const path = finalToken.split(".").slice(0, -1);
 
-          if (docNodes.length === 0) {
-            return [];
-          }
-
-          // The final token has to be the filter, it's the only way this
-          // generator could have been invoked.
-          const filterToken = tokens[tokens.length - 1];
-          const firstDotIndex = filterToken.indexOf(".");
-
-          // If the user hasn't entered a dot, suggest top level nodes.
-          const suggestTopLevelNodes = firstDotIndex === -1;
-
-          // Based on whether the user has typed a period, this will be
-          // populated with either the top level nodes or the children of
-          // whatever node the user has searched for.
-          const suggestionNodes: AnyNode[] = [];
-
-          if (suggestTopLevelNodes) {
-            suggestionNodes.push(...docNodes);
-          } else {
-            const filterName = filterToken.slice(0, firstDotIndex);
-
-            // It's not uncommon that there'd be multiple occurrences of the
-            // same name with different values, eg. overloads and interface
-            // merging. Deno's builtin types actually do this with the `Deno`
-            // namespace. Typically, `found` will only be one or two nodes.
-            const found = docNodes.filter((node) => node.name === filterName);
-
-            // `deno doc` can only generate docs for these nodes' children
-            for (const node of found) {
-              suggestionNodes.push(...getDocNodeChildren(node));
-            }
-
-            // It's a common case to have no children, so it's worth checking.
-            if (suggestionNodes.length === 0) {
-              return [];
-            }
-          }
-
-          // The names are added to a set because duplicates are common.
-          const names = new Set<string>();
-
-          for (const node of suggestionNodes) {
-            // A module doc may not always be present, but if present it's
-            // always included in the JSON.
-            if (node.kind === "moduleDoc") {
-              continue;
-            }
-
-            // Imports are always emitted, even without --private
-            if (hidePrivateSymbols && node.kind === "import") {
-              continue;
-            }
-
-            names.add(node.name);
-          }
-
-          // Deno uses the name <TODO> when it gets confused, which is common in
-          // type-heavy projects. Fig renders this name as an empty string, and
-          // since you can't specify it as a filter, don't suggest it.
-          // Faster to do this once than check the name on each iteration.
-          names.delete("<TODO>");
-          names.delete("");
-
-          // Can't just .map() over a Set... (one day?)
-          const suggestions: Fig.Suggestion[] = [];
-          for (const name of names) {
-            suggestions.push(createFilterSuggestion(name));
-          }
-          return suggestions;
+          const nodes = findChildNodes(docNodes, path);
+          const filtered = filterNodes(nodes, {
+            showPrivateNodes: tokens.includes("--private"),
+          });
+          const unique = getUniqueNamed(filtered);
+          return unique.map((node) => convertNodeToSuggestion(node));
         },
       },
     },
@@ -1251,6 +1226,146 @@ const denoCache: Fig.Subcommand = {
   options: compileOptions,
 };
 
+const denoBench: Fig.Subcommand = {
+  name: "bench",
+  description: "Run benchmarks using Deno's built-in bench tool",
+  args: {
+    name: "files",
+    isVariadic: true,
+    isOptional: true,
+    generators: filepaths({
+      matches: /[_\.]bench\.m?[jt]sx?/,
+      suggestFolders: "always",
+    }),
+  },
+  options: [
+    ...runtimeOptions({ perms: true, inspector: false }),
+    {
+      name: "--ignore",
+      description: "Ignore files",
+      requiresEquals: true,
+      args: {
+        name: "files",
+        generators: {
+          getQueryTerm: ",",
+          template: "filepaths",
+        },
+      },
+    },
+    {
+      name: "--filter",
+      description: "Run benchmarks with this string or pattern in the name",
+      args: {
+        name: "filter",
+      },
+    },
+    watchOption({ files: false }),
+    noClearScreenOption,
+  ],
+};
+
+type DenoConfigurationFile = DenoConfigurationFileSchema & {
+  fig?: {
+    [key: string]: {
+      displayName?: string | undefined;
+      description?: string | undefined;
+      icon?: string | undefined;
+      priority?: number | undefined;
+      hidden?: boolean | undefined;
+    };
+  };
+};
+
+/**
+ * Get the path of the config file from an array of tokens.
+ *
+ * If no overriding flag is provided, `null` will be returned.
+ *
+ * Flags can be provided in any of these forms, and the regex to match this is
+ * about as ugly as you'd expect.
+ * - `-c name`
+ * - `-cname`
+ * - `-XYZcname` (short options before `c`, where `XYZ` are any non-c letters)
+ * - `-c=name`
+ * - `--config name`
+ * - `--config=name`
+ */
+function getConfigPath(tokens: string[]): string | null {
+  const flagRe = /^(-[A-Zabd-z]*c=?|--config(?:=|$))/;
+  for (const [index, token] of tokens.entries()) {
+    const match = token.match(flagRe);
+    if (match === null) {
+      continue;
+    }
+    // Group 1 is the flag, up to and including the `=`. Everything after
+    // that is the path. If the path is "", then it's the next token.
+    const withoutOption = token.slice(match[1].length);
+    if (withoutOption === "") {
+      return tokens[index + 1];
+    }
+    return withoutOption;
+  }
+  return null;
+}
+
+async function getDenoConfig(
+  tokens: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction
+): Promise<DenoConfigurationFile | null> {
+  const configPath = getConfigPath(tokens);
+  let jsonString: string;
+  if (configPath) {
+    jsonString = await executeShellCommand(`\\cat '${configPath}'`);
+  } else {
+    // Move backwards through the directory heirarchy until we find a config file (or hit the root)
+    jsonString = await executeShellCommand(
+      "until [[ ( -f deno.json || -f deno.jsonc || $PWD = '/' ) ]]; do cd ..; done; \\cat deno.json 2>/dev/null || \\cat deno.jsonc 2>/dev/null"
+    );
+  }
+  try {
+    return JSON.parse(stripJsonComments(jsonString));
+  } catch (e: unknown) {
+    console.error(`Error parsing config file: ${e}`);
+    return null;
+  }
+}
+
+const denoTask: Fig.Subcommand = {
+  name: "task",
+  description: "Run a task defined in the configuration file",
+  args: [
+    {
+      name: "task",
+      generators: {
+        custom: async (tokens, executeShellCommand) => {
+          const config = await getDenoConfig(tokens, executeShellCommand);
+          if (config === null) {
+            return [];
+          }
+          return Object.entries(config.tasks).map(([name, command]) => {
+            const fig = config.fig?.[name] || {};
+            return {
+              name,
+              displayName: fig.displayName,
+              description: fig.description || command,
+              icon: fig.icon || "⚙️",
+              priority: fig.priority,
+              hidden: fig.hidden,
+            };
+          });
+        },
+      },
+    },
+    {
+      name: "args",
+      description: "Arguments to pass to the task",
+      isOptional: true,
+      isVariadic: true,
+    },
+  ],
+  options: [configOption],
+};
+
 const denoBundle: Fig.Subcommand = {
   name: "bundle",
   description: "Bundle module and dependencies into a single file",
@@ -1302,6 +1417,7 @@ const denoVendor: Fig.Subcommand = {
 };
 
 const subcommands: Fig.Subcommand[] = [
+  denoBench,
   denoBundle,
   denoCache,
   denoCompile,
@@ -1317,6 +1433,7 @@ const subcommands: Fig.Subcommand[] = [
   denoLsp,
   denoRepl,
   denoRun,
+  denoTask,
   denoTest,
   denoTypes,
   denoUpgrade,
