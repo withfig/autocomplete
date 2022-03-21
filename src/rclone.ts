@@ -251,7 +251,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--by-hash",
-          description: "Find indentical hashes rather than names",
+          description: "Find identical hashes rather than names",
         },
         {
           name: "--dedupe-mode",
@@ -469,7 +469,7 @@ const completionSpec: Fig.Spec = {
         },
 
         {
-          name: ["--seperator", "-s"],
+          name: ["--separator", "-s"],
           description: 'Separator for the items in the format. (default ";")',
           args: {
             name: "separator",

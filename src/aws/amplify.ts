@@ -243,7 +243,7 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
-  listEnvironemntNames: {
+  listEnvironmentNames: {
     custom: async function (tokens, executeShellCommand) {
       return customGenerator(
         tokens,
@@ -256,7 +256,7 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
-  listEnvironemntArns: {
+  listEnvironmentArns: {
     custom: async function (tokens, executeShellCommand) {
       return customGenerator(
         tokens,
@@ -572,7 +572,7 @@ const completionSpec: Fig.Spec = {
           description: "The name for the backend environment",
           args: {
             name: "string",
-            generators: generators.listEnvironemntNames,
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -755,7 +755,7 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app",
           args: {
             name: "string",
-            generators: generators.listEnvironemntArns,
+            generators: generators.listEnvironmentArns,
           },
         },
         {
@@ -1001,7 +1001,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of a backend environment of an Amplify app",
           args: {
             name: "string",
-            generators: generators.listEnvironemntNames,
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1322,7 +1322,7 @@ const completionSpec: Fig.Spec = {
           description: "The name for the backend environment",
           args: {
             name: "string",
-            generators: generators.listEnvironemntNames,
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1652,7 +1652,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the backend environment",
           args: {
             name: "string",
-            generators: generators.listEnvironemntNames,
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -2590,7 +2590,7 @@ const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app",
           args: {
             name: "string",
-            generators: generators.listEnvironemntArns,
+            generators: generators.listEnvironmentArns,
           },
         },
         {

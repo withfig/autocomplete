@@ -1010,7 +1010,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-prepared-statements",
-      description: "Lists the prepared statements in the specfied workgroup",
+      description: "Lists the prepared statements in the specified workgroup",
       options: [
         {
           name: "--work-group",

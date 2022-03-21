@@ -258,7 +258,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -291,7 +291,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -327,7 +327,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -352,7 +352,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -372,7 +372,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -412,7 +412,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -442,7 +442,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -462,7 +462,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],
@@ -486,7 +486,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--force", "-f"],
               isDangerous: true,
-              description: "Overwrite existing filess",
+              description: "Overwrite existing files",
             },
             {
               name: ["--typescript", "--ts"],

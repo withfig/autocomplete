@@ -175,7 +175,7 @@ const uninstallOnly = [
   },
 ];
 
-const useDefferedLoading = [
+const useDeferredLoading = [
   {
     name: "--use-deferred-loading",
     description:
@@ -379,7 +379,7 @@ const enableLinuxDesktop = [
   },
 ];
 
-const enableMacosDekstop = [
+const enableMacosDesktop = [
   {
     name: "--enable-macos-desktop",
     description:
@@ -925,7 +925,7 @@ const completionSpec = {
         },
         ...enableWeb,
         ...enableLinuxDesktop,
-        ...enableMacosDekstop,
+        ...enableMacosDesktop,
         ...enableWidowsDesktop,
         ...singleWidgetReloadOptimization,
         ...enableAndroid,
@@ -1304,7 +1304,7 @@ const completionSpec = {
           description:
             "The header to prepend to the generated Dart localizations files. The value of this option is the name of the file that contains the header text which will be inserted at the top of each generated Dart file. Alternatively, see the `header` option to pass in a string for a simpler header. This file should be placed in the directory specified in 'arb-dir'",
         },
-        ...useDefferedLoading,
+        ...useDeferredLoading,
         {
           name: "--gen-inputs-and-outputs-list",
 

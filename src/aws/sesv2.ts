@@ -1062,7 +1062,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--email-address",
-          description: "The contact's email addres",
+          description: "The contact's email address",
           args: {
             name: "string",
           },
@@ -1157,7 +1157,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ip",
           description:
-            "The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's assocaited with your AWS account",
+            "The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's associated with your AWS account",
           args: {
             name: "string",
           },
@@ -3245,7 +3245,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--email-address",
-          description: "The contact's email addres",
+          description: "The contact's email address",
           args: {
             name: "string",
           },

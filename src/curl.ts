@@ -700,7 +700,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--proxy-tls13-ciphers",
       description: "List> TLS 1.3 proxy cipher suites",
-      args: { name: "ciphersuit" },
+      args: { name: "ciphersuite" },
     },
     {
       name: "--proxy-tlsauthtype",

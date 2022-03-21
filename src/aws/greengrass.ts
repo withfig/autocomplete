@@ -1865,7 +1865,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-group-certificate-authority",
       description:
-        "Retreives the CA associated with a group. Returns the public key of the CA",
+        "Retrieves the CA associated with a group. Returns the public key of the CA",
       options: [
         {
           name: "--certificate-authority-id",

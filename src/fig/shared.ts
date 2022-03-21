@@ -1,6 +1,7 @@
 const SETTINGS_PATH = "~/.fig/tools/all-settings.json";
+const ACTIONS_PATH = "~/.fig/apps/autocomplete/actions.json";
 
-interface Settings {
+interface Setting {
   settingName: string;
   description: string;
   type: "boolean" | "text" | "single_select" | "multiselect";
@@ -8,8 +9,16 @@ interface Settings {
   default?: string;
 }
 
+interface Action {
+  identifier: string;
+  name: string;
+  description: string;
+  availability: string;
+  defaultBindings: string[];
+}
+
 const devCompletionsFolderGenerator: Fig.Generator = {
-  script: 'ls -d -1 "$PWD/"**/',
+  script: '\\ls -d -1 "$PWD/"**/',
   postProcess: (out) =>
     out.split("\n").map((folder) => {
       const paths = folder.split("/");
@@ -56,7 +65,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 };
 
 export const themesGenerator: Fig.Generator = {
-  script: "ls -1 ~/.fig/themes",
+  script: "\\ls -1 ~/.fig/themes",
   postProcess: (output) => {
     const builtinThemes = [
       {
@@ -89,27 +98,39 @@ export const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
 };
 
 export const subsystemsGenerator: Fig.Generator = {
-  script: "ls ~/.fig/logs",
+  script: "\\ls ~/.fig/logs",
   trigger: (curr, prev) => {
     // trigger on new token
-    return curr.length == 0 && prev.length > 0;
+    return curr.length === 0 && prev.length > 0;
   },
   postProcess: (out, tokens) => {
-    const pivot = tokens.indexOf("logs");
-    const insertedLogFiles = tokens.slice(pivot);
+    const insertedLogFiles = new Set(tokens.slice(0, -1));
     return out
       .split("\n")
-      .map((log) => {
-        return { name: log.replace(".log", "") };
-      })
-      .filter((suggestion) => !insertedLogFiles.includes(suggestion.name));
+      .map((name) => name.replace(".log", ""))
+      .concat("figterm")
+      .map((name) => ({ name, icon: "🪵" }))
+      .filter((suggestion) => !insertedLogFiles.has(suggestion.name));
   },
 };
 
-export const settingsSpecGenerator = async (_, executeShellCommand) => {
-  const settings: Settings[] = JSON.parse(
-    await executeShellCommand(`\cat ${SETTINGS_PATH}`)
-  );
+export const settingsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
+  _,
+  executeShellCommand
+) => {
+  const [settingsJson, actionsJson] = await Promise.all([
+    executeShellCommand(`\\cat ${SETTINGS_PATH}`),
+    executeShellCommand(`\\cat ${ACTIONS_PATH}`),
+  ]);
+
+  const settings: Setting[] = JSON.parse(settingsJson);
+  const actions: Action[] = JSON.parse(actionsJson);
+
+  const actionSuggestions: Fig.Suggestion[] = actions.flatMap((action) => ({
+    name: action.identifier,
+    description: action.description,
+    icon: "⚡️",
+  }));
 
   return {
     name: "settings",
@@ -124,6 +145,8 @@ export const settingsSpecGenerator = async (_, executeShellCommand) => {
         const suggestions =
           type === "boolean"
             ? ["true", "false"]
+            : name.startsWith("autocomplete.keybindings.")
+            ? actionSuggestions
             : options?.map((option) => ({
                 name: option["name"] || option,
                 description: option["description"] || "",
@@ -150,3 +173,32 @@ export const settingsSpecGenerator = async (_, executeShellCommand) => {
   };
 };
 export default {};
+
+type FigBaseObject = { name?: string | string[] | undefined };
+type MaybeObject<T> = T | T[] | undefined;
+type Editor<T> = ((things: T) => void) | Partial<T>;
+
+function toArray<T>(arr: T | T[]): T[] {
+  return Array.isArray(arr) ? arr : [arr];
+}
+
+/** Edit an object by looking up the name */
+export function edit<T extends { name?: string | string[] | undefined }>(
+  objects: MaybeObject<T>,
+  editors: Record<string, Editor<T>>
+) {
+  if (objects === undefined) return;
+  for (const object of toArray(objects)) {
+    if (object.name === undefined) continue;
+    for (const name of toArray(object.name)) {
+      if (name in editors) {
+        const editor = editors[name];
+        if (typeof editor === "function") {
+          editor(object);
+        } else {
+          Object.assign(object, editor);
+        }
+      }
+    }
+  }
+}

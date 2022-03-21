@@ -2351,7 +2351,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the resouce for which a tag list is requested. Must be the ARN of an Elastic Beanstalk resource",
+            "The Amazon Resource Name (ARN) of the resource for which a tag list is requested. Must be the ARN of an Elastic Beanstalk resource",
           args: {
             name: "string",
             generators: [
@@ -3034,7 +3034,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The Amazon Resource Name (ARN) of the resouce to be updated. Must be the ARN of an Elastic Beanstalk resource",
+            "The Amazon Resource Name (ARN) of the resource to be updated. Must be the ARN of an Elastic Beanstalk resource",
           args: {
             name: "string",
             generators: [

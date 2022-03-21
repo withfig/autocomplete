@@ -367,7 +367,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-x",
-          description: "Print the commands as they are exectued",
+          description: "Print the commands as they are executed",
         },
         {
           name: "-mod",

@@ -624,7 +624,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "create-request-validator",
-      description: "Creates a ReqeustValidator of a given RestApi",
+      description: "Creates a RequestValidator of a given RestApi",
       options: [
         {
           name: "--rest-api-id",

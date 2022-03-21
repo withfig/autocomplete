@@ -1291,7 +1291,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--force",
               description:
-                "Unedit the package even if it has uncommited and unpushed changes",
+                "Unedit the package even if it has uncommitted and unpushed changes",
             },
           ],
         },

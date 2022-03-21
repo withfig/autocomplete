@@ -472,7 +472,7 @@ const completion: Fig.Spec = {
             },
             {
               name: "z",
-              description: "Compres the resulting archive with gzip",
+              description: "Compress the resulting archive with gzip",
             },
             {
               name: "j",

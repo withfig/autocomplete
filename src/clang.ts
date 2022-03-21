@@ -2737,7 +2737,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fvisibility-dllexport",
       description:
-        "The visibility for dllexport defintions [-fvisibility-from-dllstorageclass]",
+        "The visibility for dllexport definitions [-fvisibility-from-dllstorageclass]",
       args: {
         name: "value",
       },
@@ -2764,7 +2764,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fvisibility-from-dllstorageclass",
       description:
-        "Set the visiblity of symbols in the generated code from their DLL storage class",
+        "Set the visibility of symbols in the generated code from their DLL storage class",
     },
     {
       name: "-fvisibility-global-new-delete-hidden",

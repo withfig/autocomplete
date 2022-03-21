@@ -7057,7 +7057,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-t", "--truncate"],
-          description: "Truncates queries to 40 charaters",
+          description: "Truncates queries to 40 characters",
         },
         {
           name: ["-a", "--app"],

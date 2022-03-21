@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--execution-timeout",
           description:
-            "The amount of time the executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). Deafult is empty",
+            "The amount of time the executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). Default is empty",
           args: {
             name: "EXECUTION_TIMEOUT",
             description:
