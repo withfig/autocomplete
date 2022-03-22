@@ -97,7 +97,6 @@ const appCreationBaseOptions: Fig.Option[] = [
     args: {
       name: "NAME",
     },
-    isRequired: true,
   },
   {
     name: "--organization-id",
