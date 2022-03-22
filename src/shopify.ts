@@ -68,7 +68,7 @@ const checkOptions: Fig.Option[] = [
       "Output the results of the check to a file. Options include json and text (default)",
     args: {
       name: "type",
-      suggestions: [{ name: "json" }, { name: "text" }],
+      suggestions: ["json", "text"],
     },
   },
   {
