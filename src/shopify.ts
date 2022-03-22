@@ -9,13 +9,7 @@ const helpOption: Fig.Option = {
 
 const categoryArg: Fig.Arg = {
   name: "CATEGORY",
-  suggestions: [
-    { name: "html" },
-    { name: "json" },
-    { name: "liquid" },
-    { name: "performance" },
-    { name: "translation" },
-  ],
+  suggestions: ["html", "json", "liquid", "performance", "translation"],
 };
 
 const configOptions: Fig.Option[] = [
