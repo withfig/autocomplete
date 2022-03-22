@@ -51,11 +51,7 @@ const checkOptions: Fig.Option[] = [
       "Configure the severity level that causes a run of theme check to fail (exit code 1). Options include error, suggestion, and style",
     args: {
       name: "LEVEL",
-      suggestions: [
-        { name: "error" },
-        { name: "suggestion" },
-        { name: "style" },
-      ],
+      suggestions: ["error", "suggestion", "style"],
     },
   },
   {
