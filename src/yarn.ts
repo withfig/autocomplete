@@ -6,6 +6,7 @@ import {
 
 export const nodeClis = [
   "vue",
+  "vite",
   "nuxt",
   "react-native",
   "expo",
