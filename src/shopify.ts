@@ -565,7 +565,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ressourceUrl",
               args: {
-                name: "RESSOURCE",
+                name: "RESOURCE",
                 description: "A relative link to product or variant",
               },
             },
