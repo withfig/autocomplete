@@ -508,7 +508,7 @@ const completionSpec: Fig.Spec = {
 
               options: [
                 {
-                  name: "token",
+                  name: "--token",
                   description: "Ngrok auth token",
                   isRequired: true,
                   args: { name: "token" },
