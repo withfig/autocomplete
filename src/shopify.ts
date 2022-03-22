@@ -5,6 +5,7 @@ const helpOption: Fig.Option = {
   icon: i("option"),
   description: "Show help for this command",
   priority: 1,
+  isPersistent: true,
 };
 
 const categoryArg: Fig.Arg = {
@@ -13,7 +14,6 @@ const categoryArg: Fig.Arg = {
 };
 
 const configOptions: Fig.Option[] = [
-  helpOption,
   {
     name: "--status",
   },
@@ -26,7 +26,6 @@ const configOptions: Fig.Option[] = [
 ];
 
 const checkOptions: Fig.Option[] = [
-  helpOption,
   {
     name: "--config",
     description:
@@ -86,7 +85,6 @@ const checkOptions: Fig.Option[] = [
 ];
 
 const appCreationBaseOptions: Fig.Option[] = [
-  helpOption,
   {
     name: "--name",
     description: "App name. Any string",
@@ -129,17 +127,16 @@ const appCreationBaseOptions: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "shopify",
+  options: [helpOption],
   description:
     "Shopify CLI helps you build Shopify apps. It quickly generates Node.js, Ruby on Rails, and PHP apps, app extensions, Shopify Scripts (beta), and Shopify themes. You can also use it for Shopify themes and when automating many common development tasks. Visit https://shopify.dev/apps/tools/cli to know more",
   icon: "https://avatars.githubusercontent.com/u/8085?s=16&v=4",
   subcommands: [
-    helpOption,
     {
       name: "theme",
       priority: 100,
       description: "Suite of commands for developing Shopify themes",
       subcommands: [
-        helpOption,
         {
           name: "init",
           priority: 100,
@@ -165,7 +162,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Uploads the current theme as a development theme to the store that you're connected to",
           options: [
-            helpOption,
             {
               name: "--live-reload",
               description:
@@ -223,7 +219,6 @@ const completionSpec: Fig.Spec = {
           name: "open",
           description: "Returns links that let you preview the specified theme",
           options: [
-            helpOption,
             {
               name: "--theme",
               description:
@@ -251,7 +246,6 @@ const completionSpec: Fig.Spec = {
               "The ID of the theme that you want to delete. You can specify multiple theme IDs separated by spaces",
           },
           options: [
-            helpOption,
             {
               name: "--development",
               description: "Deletes your development theme",
@@ -278,7 +272,6 @@ const completionSpec: Fig.Spec = {
               "The ID of the theme that you want to delete. You can specify multiple theme IDs separated by spaces",
           },
           options: [
-            helpOption,
             {
               name: "--force",
               description: "Publish the theme without confirming with the user",
@@ -289,7 +282,6 @@ const completionSpec: Fig.Spec = {
           name: "pull",
           description: "Retrieves theme files from Shopify",
           options: [
-            helpOption,
             {
               name: "--theme",
               description:
@@ -327,7 +319,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Uploads your local theme files to Shopify, overwriting the remote theme if specified",
           options: [
-            helpOption,
             {
               name: "--theme",
               description:
@@ -393,13 +384,11 @@ const completionSpec: Fig.Spec = {
       priority: 90,
       description: "This reference lists the Shopify CLI commands for apps",
       subcommands: [
-        helpOption,
         {
           name: "create",
           priority: 100,
           description: "Creates a ruby on rails / node / php app",
           subcommands: [
-            helpOption,
             {
               name: "rails",
               description:
@@ -463,7 +452,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Deploy the current app to a hosting service. Heroku (https://www.heroku.com) is currently the only option, but more will be added in the future",
           subcommands: [
-            helpOption,
             {
               icon: i("heroku"),
               name: "heroku",
@@ -488,7 +476,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Controls an HTTP tunnel to your local development app using ngrok. With the tunnel command, you can authenticate with ngrok and start or stop the tunnel. To authenticate with ngrok, you need to create an ngrok account, and then create an authentication token from your ngrok dashboard. Copy your token and use it with the auth command",
           subcommands: [
-            helpOption,
             {
               priority: 100,
               name: "start",
@@ -524,14 +511,12 @@ const completionSpec: Fig.Spec = {
       priority: 80,
       description: "Suite of commands for developing app extensions",
       subcommands: [
-        helpOption,
         {
           priority: 100,
           name: "create",
           description:
             "Scaffolds a new extension project in a subdirectory of your app. To specify the type and name of your extension, you can use the interactive prompts or specify them as parameters on the command",
           options: [
-            helpOption,
             {
               name: "--type",
               description: "The type of extension that you want to create",
@@ -552,7 +537,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Starts a local server that can be rendered in the development store. This command must be run from your extension’s directory. The server will continue to run until you press Ctrl+C",
           options: [
-            helpOption,
             {
               name: "--tunnel",
               description:
@@ -578,7 +562,6 @@ const completionSpec: Fig.Spec = {
             "Creates your app extension and associates it with an app in your Partner organization. This step should be done only once for each app extension. Before you can push your code to Shopify, you need to create an app in your Partner Dashboard that you want to register your extension to. After an extension is registered to an app, the registration can’t be undone",
 
           options: [
-            helpOption,
             {
               name: "--api-key",
               description:
@@ -600,7 +583,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Uploads your code to Shopify. You need to run this command before you can publish your extension from the Partner Dashboard. You need to register your extension before you can push it to Shopify",
           options: [
-            helpOption,
             {
               name: "--api-key",
               description:
@@ -631,7 +613,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Authenticates you, and logs you into the specified store, with Shopify CLI",
       options: [
-        helpOption,
         {
           name: "--store",
           description:
@@ -703,7 +684,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Configures Shopify CLI options. There are two available options: analytics and feature",
       subcommands: [
-        helpOption,
         {
           name: "analytics",
           description:
@@ -732,7 +712,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Switches between stores without logging out and logging in again",
       options: [
-        helpOption,
         {
           name: "--store",
           description:
@@ -747,13 +726,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Shopify Scripts is in beta and only available to stores on the Shopify Plus plan. Enrollment to the beta program is closed",
       subcommands: [
-        helpOption,
         {
           name: "create",
           description:
             "Creates a new script project. The project is created in a subdirectory of the current directory",
           options: [
-            helpOption,
             {
               name: "--api",
               description: "The API library to use for the script",
@@ -791,7 +768,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Deploys a previously connected script to the Shopify platform",
           options: [
-            helpOption,
             {
               name: "--force",
               description:
