@@ -777,7 +777,6 @@ const completionSpec: Fig.Spec = {
                 "The format or language of the script. Valid values: wasm. If unspecified, then your script project is created in WebAssembly (Wasm), which is the default format for script projects",
               args: {
                 name: "script_language",
-                isOptional: false,
               },
             },
           ],
