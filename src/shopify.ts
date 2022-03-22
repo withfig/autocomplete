@@ -126,7 +126,7 @@ const appCreationBaseOptions: Fig.Option[] = [
     description: "Whether this app is public or custom",
     args: {
       name: "APPTYPE",
-      suggestions: [{ name: "public" }, { name: "custom" }],
+      suggestions: ["public", "custom"],
     },
 
     isRequired: false,
