@@ -1,5 +1,9 @@
 const suggestions: Fig.Suggestion[] = [
   {
+    name: "vite",
+    icon: "https://vitejs.dev/logo.svg",
+  },
+  {
     name: "babel",
     icon: "https://raw.githubusercontent.com/babel/logo/master/babel.png",
   },
@@ -85,6 +89,10 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "vsce",
+  },
+  {
+    name: "degit",
+    icon: "fig://icon?type=git",
   },
 ];
 
