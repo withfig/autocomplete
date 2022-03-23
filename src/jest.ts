@@ -49,7 +49,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--collectCoverageFrom",
       displayName: "--collectCoverageFrom=<glob>",
-      insertValue: "--collectCoverageFrom=",
+      insertValue: "--collectCoverageFrom={cursor}",
+      requiresEquals: true,
       description:
         "A glob pattern relative to rootDir matching the files that coverage info needs to be collected from",
       args: {
@@ -64,7 +65,8 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--config", "-c"],
       displayName: "--config=<path>",
-      insertValue: "--config=",
+      insertValue: "--config={cursor}",
+      requiresEquals: true,
       description:
         "The path to a Jest config file specifying how to find and execute tests",
       args: {
@@ -75,7 +77,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--coverage",
       displayName: "--coverage=<boolean>",
-      insertValue: "--coverage=",
+      insertValue: "--coverage={cursor}",
+      requiresEquals: true,
       description: "Enable or disable coverage, disabled by default",
       args: {
         name: "true|false",
@@ -92,7 +95,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--coverageProvider",
       displayName: "--coverageProvider=<provider>",
-      insertValue: "--coverageProvider=",
+      insertValue: "--coverageProvider={cursor}",
+      requiresEquals: true,
       description:
         "Indicates which provider should be used to instrument code for coverage",
       args: {
@@ -112,7 +116,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--env",
       displayName: "--env=<environment>",
-      insertValue: "--env=",
+      insertValue: "--env={cursor}",
+      requiresEquals: true,
       description: "The test environment used for all tests",
       args: {
         name: "jsdom|node|path/to/env.js",
@@ -162,7 +167,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--outputFile",
       displayName: "--outputFile=<filename>",
-      insertValue: "--outputFile=",
+      insertValue: "--outputFile={cursor}",
+      requiresEquals: true,
       description:
         "Write test results to a file when the --json option is also specified",
       args: {
@@ -186,7 +192,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--maxConcurrency",
       displayName: "--maxConcurrency=<num>",
-      insertValue: "--maxConcurrency=",
+      insertValue: "--maxConcurrency={cursor}",
+      requiresEquals: true,
       description:
         "Prevents Jest from executing more than the specified amount of tests at the same time",
       args: {
@@ -196,7 +203,8 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--maxWorkers", "-w"],
       displayName: "--maxWorkers=<num>|<string>",
-      insertValue: "--maxWorkers=",
+      insertValue: "--maxWorkers={cursor}",
+      requiresEquals: true,
       description:
         "Specifies the maximum number of workers the worker-pool will spawn for running tests",
       args: {
@@ -234,7 +242,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--reporters",
       displayName: "--reporters=<reporter>",
-      insertValue: "--reporters=",
+      insertValue: "--reporters={cursor}",
+      requiresEquals: true,
       description: "Run tests with specified reporters",
       args: {
         name: "reporter",
@@ -272,7 +281,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--setupTestFrameworkScriptFile",
       displayName: "--setupTestFrameworkScriptFile=<file>",
-      insertValue: "--setupTestFrameworkScriptFile=",
+      insertValue: "--setupTestFrameworkScriptFile={cursor}",
+      requiresEquals: true,
       description:
         "The path to a module that runs some code to configure or set up the testing framework before each test",
       args: {
@@ -291,7 +301,8 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--testNamePattern", "-t"],
       displayName: "--testNamePattern=<regex>",
-      insertValue: "--testNamePattern=",
+      insertValue: "--testNamePattern={cursor}",
+      requiresEquals: true,
       description: "Run only tests with a name that matches the regex",
       args: {
         name: "regex",
@@ -304,7 +315,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testPathPattern",
       displayName: "--testPathPattern=<regex>",
-      insertValue: "--testPathPattern=",
+      insertValue: "--testPathPattern={cursor}",
+      requiresEquals: true,
       description:
         "A regexp pattern string that is matched against all tests paths before executing the test",
       args: {
@@ -314,7 +326,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testPathIgnorePatterns",
       displayName: "--testPathIgnorePatterns=[array]",
-      insertValue: "--testPathIgnorePatterns=",
+      insertValue: "--testPathIgnorePatterns={cursor}",
+      requiresEquals: true,
       description:
         "An array of regexp pattern strings that are tested against all tests paths before executing the test",
       args: {
@@ -324,7 +337,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testRunner",
       displayName: "--testRunner=<path>",
-      insertValue: "--testRunner=",
+      insertValue: "--testRunner={cursor}",
+      requiresEquals: true,
       description: "Lets you specify a custom test runner",
       args: {
         name: "path",
@@ -334,7 +348,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testSequencer",
       displayName: "--testSequencer=<path>",
-      insertValue: "--testSequencer=",
+      insertValue: "--testSequencer={cursor}",
+      requiresEquals: true,
       description: "Lets you specify a custom test sequencer",
       args: {
         name: "path",
@@ -344,7 +359,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testTimeout",
       displayName: "--testTimeout=<num>",
-      insertValue: "--testTimeout=",
+      insertValue: "--testTimeout={cursor}",
+      requiresEquals: true,
       description: "Default timeout of a test in milliseconds",
       args: {
         name: "timeout in ms",

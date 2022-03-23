@@ -209,14 +209,16 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   resourceVersion: {
     name: "--resource-version",
-    insertValue: "--resource-version=",
+    insertValue: "--resource-version={cursor}",
+    requiresEquals: true,
     description:
       "If non-empty, the annotation update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource",
     args: {},
   },
   dryRun: {
     name: "--dry-run",
-    insertValue: "--dry-run=",
+    insertValue: "--dry-run={cursor}",
+    requiresEquals: true,
     description:
       'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource',
     args: {
@@ -226,7 +228,8 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   fieldSelector: {
     name: "--field-selector",
-    insertValue: "--field-selector=",
+    insertValue: "--field-selector={cursor}",
+    requiresEquals: true,
     description:
       "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type",
     args: {},
@@ -259,7 +262,8 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   template: {
     name: "--template",
-    insertValue: "--template=",
+    insertValue: "--template={cursor}",
+    requiresEquals: true,
     description:
       "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview]",
     args: {},
@@ -390,14 +394,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-by",
-          insertValue: "--sort-by=",
+          insertValue: "--sort-by={cursor}",
+          requiresEquals: true,
           description:
             "If non-empty, sort nodes list using specified field. The field can be either 'name' or 'kind'",
           args: {},
         },
         {
           name: "--verbs",
-          insertValue: "--verbs=",
+          insertValue: "--verbs={cursor}",
+          requiresEquals: true,
           description: "Limit to resources that support the specified verbs",
           args: {},
         },
@@ -420,7 +426,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--field-manager",
-          insertValue: "--field-manager=",
+          insertValue: "--field-manager={cursor}",
+          requiresEquals: true,
           description: "Name of the manager used to track field ownership",
           args: {},
         },
@@ -436,7 +443,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-          insertValue: "--grace-period=",
+          insertValue: "--grace-period={cursor}",
+          requiresEquals: true,
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion)",
           args: {
@@ -460,7 +468,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--prune-whitelist",
-          insertValue: "--prune-whitelist=",
+          insertValue: "--prune-whitelist={cursor}",
+          requiresEquals: true,
           description:
             "Overwrite the default whitelist with <group/version/kind> for --prune",
           args: {
@@ -474,7 +483,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-          insertValue: "--timeout=",
+          insertValue: "--timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
           args: {
@@ -580,7 +590,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-running-timeout",
-          insertValue: "-pod-running-timeout=",
+          insertValue: "-pod-running-timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
@@ -631,7 +642,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--subresource",
-              insertValue: "--subresource=",
+              insertValue: "--subresource={cursor}",
+              requiresEquals: true,
               description: "SubResource such as pod/log or deployment/scale",
               // TODO: Generator here
               args: {},
@@ -687,7 +699,8 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         {
           name: "--cpu-percent",
-          insertValue: "--cpu-percent=",
+          insertValue: "--cpu-percent={cursor}",
+          requiresEquals: true,
           description:
             "The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used",
           args: {
@@ -696,14 +709,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--generator",
-          insertValue: "--generator=",
+          insertValue: "--generator={cursor}",
+          requiresEquals: true,
           description:
             "The name of the API generator to use. Currently there is only 1 generator",
           args: {},
         },
         {
           name: "--max",
-          insertValue: "--max=",
+          insertValue: "--max={cursor}",
+          requiresEquals: true,
           description:
             "The upper limit for the number of pods that can be set by the autoscaler. Required",
           args: {
@@ -712,7 +727,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--min",
-          insertValue: "--min=",
+          insertValue: "--min={cursor}",
+          requiresEquals: true,
           description:
             "The lower limit for the number of pods that can be set by the autoscaler. If it's not specified or negative, the server will apply a default value",
           args: {
@@ -721,7 +737,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--name",
-          insertValue: "--name=",
+          insertValue: "--name={cursor}",
+          requiresEquals: true,
           description:
             "The name for the newly created object. If not specified, the name of the input resource will be used",
           args: {},
@@ -804,14 +821,16 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--output-directory",
-              insertValue: "--output-directory=",
+              insertValue: "--output-directory={cursor}",
+              requiresEquals: true,
               description:
                 "Where to output the files.  If empty or '-' uses stdout, otherwise creates a directory hierarchy in that directory",
               args: {},
             },
             {
               name: "--pod-running-timeout",
-              insertValue: "--pod-running-timeout=",
+              insertValue: "--pod-running-timeout={cursor}",
+              requiresEquals: true,
               description:
                 "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
               args: {
@@ -839,7 +858,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--kubeconfig",
-          insertValue: "--kubeconfig=",
+          insertValue: "--kubeconfig={cursor}",
+          requiresEquals: true,
           args: {
             name: "path",
             template: "filepaths",
@@ -926,14 +946,16 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--server",
-              insertValue: "--server=",
+              insertValue: "--server={cursor}",
+              requiresEquals: true,
               args: {
                 name: "Server",
               },
             },
             {
               name: "--certificate-authority",
-              insertValue: "--certificate-authority=",
+              insertValue: "--certificate-authority={cursor}",
+              requiresEquals: true,
               description: "Path to certificate authority",
               args: {
                 name: "Certificate Authority",
@@ -942,14 +964,16 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--insecure-skip-tls-verify",
-              insertValue: "--insecure-skip-tls-verify=",
+              insertValue: "--insecure-skip-tls-verify={cursor}",
+              requiresEquals: true,
               args: {
                 suggestions: ["true", "false"],
               },
             },
             {
               name: "--tls-server-name",
-              insertValue: "--tls-server-name=",
+              insertValue: "--tls-server-name={cursor}",
+              requiresEquals: true,
               args: {
                 name: "TLS Server Name",
               },
@@ -967,21 +991,24 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--cluster",
-              insertValue: "--cluster=",
+              insertValue: "--cluster={cursor}",
+              requiresEquals: true,
               args: {
                 name: "cluster_nickname",
               },
             },
             {
               name: "--user",
-              insertValue: "--user=",
+              insertValue: "--user={cursor}",
+              requiresEquals: true,
               args: {
                 name: "user_nickname",
               },
             },
             {
               name: "--namespace",
-              insertValue: "--namespace=",
+              insertValue: "--namespace={cursor}",
+              requiresEquals: true,
               args: {
                 name: "namespace",
               },
@@ -995,7 +1022,8 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--client-certificate",
-              insertValue: "--client-certificate=",
+              insertValue: "--client-certificate={cursor}",
+              requiresEquals: true,
               description: "Client cert for user entry",
               args: {
                 template: "filepaths",
@@ -1003,7 +1031,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--client-key",
-              insertValue: "--client-key=",
+              insertValue: "--client-key={cursor}",
+              requiresEquals: true,
               description: "Client key for user entry",
               args: {
                 template: "filepaths",
@@ -1011,7 +1040,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--token",
-              insertValue: "--token=",
+              insertValue: "--token={cursor}",
+              requiresEquals: true,
               description: "Bearer Token for user entry",
               args: {
                 name: "Bearer Token",
@@ -1019,7 +1049,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--username",
-              insertValue: "--username=",
+              insertValue: "--username={cursor}",
+              requiresEquals: true,
               description: "Username for basic authentication",
               args: {
                 name: "Username",
@@ -1027,7 +1058,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--password",
-              insertValue: "--password=",
+              insertValue: "--password={cursor}",
+              requiresEquals: true,
               description: "Password for basic authentication",
               args: {
                 name: "Password",
@@ -1035,7 +1067,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--auth-provider",
-              insertValue: "--auth-provider=",
+              insertValue: "--auth-provider={cursor}",
+              requiresEquals: true,
               description: "Auth provider for the user entry in kubeconfig",
               args: {
                 name: "Auth Provider",
@@ -1043,7 +1076,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--auth-provider-arg",
-              insertValue: "--auth-provider-arg=",
+              insertValue: "--auth-provider-arg={cursor}",
+              requiresEquals: true,
               description: "'key=value' arguments for the auth provider",
               args: {
                 name: "key=value",
@@ -1056,7 +1090,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-api-version",
-              insertValue: "--exec-api-version=",
+              insertValue: "--exec-api-version={cursor}",
+              requiresEquals: true,
               description:
                 "API version of the exec credential plugin for the user entry in kubeconfig",
               args: {
@@ -1065,7 +1100,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-arg",
-              insertValue: "--exec-arg=",
+              insertValue: "--exec-arg={cursor}",
+              requiresEquals: true,
               description:
                 "New arguments for the exec credential plugin command for the user entry in kubeconfig",
               args: {
@@ -1074,7 +1110,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-command",
-              insertValue: "--exec-command=",
+              insertValue: "--exec-command={cursor}",
+              requiresEquals: true,
               description:
                 "Command for the exec credential plugin for the user entry in kubeconfig",
               args: {
@@ -1083,7 +1120,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-env",
-              insertValue: "--exec-env=",
+              insertValue: "--exec-env={cursor}",
+              requiresEquals: true,
               description:
                 "'key=value' environment values for the exec credential plugin",
               args: {
@@ -1157,7 +1195,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--output-version",
-          insertValue: "--output-version=",
+          insertValue: "--output-version={cursor}",
+          requiresEquals: true,
           description:
             "Output the formatted object with the given group version (for ex: 'extensions/v1beta1')",
           args: {},
@@ -1247,7 +1286,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--aggregation-rule",
-              insertValue: "--aggregation-rule=",
+              insertValue: "--aggregation-rule={cursor}",
+              requiresEquals: true,
               description:
                 "An aggregation label selector for combining ClusterRoles",
               args: {},
@@ -1260,13 +1300,15 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--resource",
-              insertValue: "--resource=",
+              insertValue: "--resource={cursor}",
+              requiresEquals: true,
               description: "Resource that the rule applies to",
               args: sharedArgs.resourcesArg,
             },
             {
               name: "--resource-name",
-              insertValue: "--resource-name=",
+              insertValue: "--resource-name={cursor}",
+              requiresEquals: true,
               description:
                 "Resource in the white list that the rule applies to, repeat this flag for multiple items",
               args: {},
@@ -1283,7 +1325,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--verb",
-              insertValue: "--verb=",
+              insertValue: "--verb={cursor}",
+              requiresEquals: true,
               description:
                 "Verb that applies to the resources contained in the rule",
               args: {
@@ -1307,14 +1350,16 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--clusterrole",
-              insertValue: "--clusterrole=",
+              insertValue: "--clusterrole={cursor}",
+              requiresEquals: true,
               description:
                 "ClusterRole this ClusterRoleBinding should reference",
               args: sharedArgs.listClusterRoles,
             },
             {
               name: "--user",
-              insertValue: "--user=",
+              insertValue: "--user={cursor}",
+              requiresEquals: true,
               args: {
                 name: "User Name",
               },
@@ -1364,7 +1409,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-env-file",
-              insertValue: "--from-env-file=",
+              insertValue: "--from-env-file={cursor}",
+              requiresEquals: true,
               description:
                 "Specify the path to a file to read lines of key=val pairs to create a configmap (i.e. a Docker .env file)",
               args: {
@@ -1373,7 +1419,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-file",
-              insertValue: "--from-file=",
+              insertValue: "--from-file={cursor}",
+              requiresEquals: true,
               description:
                 "Key file can be specified using its file path, in which case file basename will be used as configmap key, or optionally with a key and file path, in which case the given key will be used.  Specifying a directory will iterate each named file in the directory whose basename is a valid configmap key",
               args: {
@@ -1382,7 +1429,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-literal",
-              insertValue: "--from-literal=",
+              insertValue: "--from-literal={cursor}",
+              requiresEquals: true,
               description:
                 "Specify a key and literal value to insert in configmap (i.e. mykey=somevalue)",
               args: {
@@ -1414,7 +1462,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--image",
-              insertValue: "--image=",
+              insertValue: "--image={cursor}",
+              requiresEquals: true,
               description: "Image name to run",
               args: {
                 name: "Image",
@@ -1422,7 +1471,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--restart",
-              insertValue: "--restart=",
+              insertValue: "--restart={cursor}",
+              requiresEquals: true,
               description:
                 "Job's restart policy. supported values: OnFailure, Never",
               args: {
@@ -1462,7 +1512,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--image",
-              insertValue: "--image=",
+              insertValue: "--image={cursor}",
+              requiresEquals: true,
               description: "Image name to run",
               args: {
                 name: "Image",
@@ -1501,13 +1552,15 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--class",
-              insertValue: "--class=",
+              insertValue: "--class={cursor}",
+              requiresEquals: true,
               description: "Ingress Class to be used",
               args: {},
             },
             {
               name: "--default-backend",
-              insertValue: "--default-backend=",
+              insertValue: "--default-backend={cursor}",
+              requiresEquals: true,
               description:
                 "Default service for backend, in format of svcname:port",
               args: {
@@ -1516,13 +1569,15 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field-manager",
-              insertValue: "--field-manager=",
+              insertValue: "--field-manager={cursor}",
+              requiresEquals: true,
               description: "Name of the manager used to track field ownership",
               args: {},
             },
             {
               name: "--rule",
-              insertValue: "--rule=",
+              insertValue: "--rule={cursor}",
+              requiresEquals: true,
               description:
                 "Rule in format host/path=service:port[,tls=secretname]. Paths containing the leading character '*' are considered pathType=Prefix. tls argument is optional",
               args: {
@@ -1560,7 +1615,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--from",
-              insertValue: "--from=",
+              insertValue: "--from={cursor}",
+              requiresEquals: true,
               description:
                 "The name of the resource to create a Job from (only cronjob is supported)",
               args: {
@@ -1578,7 +1634,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--image",
-              insertValue: "--image=",
+              insertValue: "--image={cursor}",
+              requiresEquals: true,
               description: "Image name to run",
               args: {
                 name: "Image",
@@ -1674,7 +1731,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--description",
-              insertValue: "--description=",
+              insertValue: "--description={cursor}",
+              requiresEquals: true,
               description:
                 "Description is an arbitrary string that usually provides guidelines on when this priority class should be used",
               args: {
@@ -1707,7 +1765,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--value",
-              insertValue: "--value=",
+              insertValue: "--value={cursor}",
+              requiresEquals: true,
               description: "The value of this priority class",
               args: {
                 name: "INT",
@@ -1729,7 +1788,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--field-manager",
-              insertValue: "--field-manager=",
+              insertValue: "--field-manager={cursor}",
+              requiresEquals: true,
               description: "Name of the manager used to track field ownership",
               args: {},
             },
@@ -1774,13 +1834,15 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--resource",
-              insertValue: "--resource=",
+              insertValue: "--resource={cursor}",
+              requiresEquals: true,
               description: "Resource that the rule applies to",
               args: sharedArgs.resourcesArg,
             },
             {
               name: "--resource-name",
-              insertValue: "--resource-name=",
+              insertValue: "--resource-name={cursor}",
+              requiresEquals: true,
               description:
                 "Resource in the white list that the rule applies to, repeat this flag for multiple items",
               args: {},
@@ -1797,7 +1859,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--verb",
-              insertValue: "--verb=",
+              insertValue: "--verb={cursor}",
+              requiresEquals: true,
               description:
                 "Verb that applies to the resources contained in the rule",
               args: {
@@ -1821,19 +1884,22 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--clusterrole",
-              insertValue: "--clusterrole=",
+              insertValue: "--clusterrole={cursor}",
+              requiresEquals: true,
               description: "ClusterRole this RoleBinding should reference",
               args: sharedArgs.listClusterRoles,
             },
             {
               name: "--group",
-              insertValue: "--group=",
+              insertValue: "--group={cursor}",
+              requiresEquals: true,
               description: "Groups to bind to the role",
               args: {},
             },
             {
               name: "--role",
-              insertValue: "--role=",
+              insertValue: "--role={cursor}",
+              requiresEquals: true,
               description: "Role this RoleBinding should reference",
               args: {
                 name: "Role",
@@ -1850,7 +1916,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--serviceaccount",
-              insertValue: "--serviceaccount=",
+              insertValue: "--serviceaccount={cursor}",
+              requiresEquals: true,
               description:
                 "Service accounts to bind to the role, in the format <namespace>:<name>",
               args: {
@@ -1859,7 +1926,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--username",
-              insertValue: "--username=",
+              insertValue: "--username={cursor}",
+              requiresEquals: true,
               args: {
                 name: "Username",
               },
@@ -1892,7 +1960,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-email",
-                  insertValue: "--docker-email=",
+                  insertValue: "--docker-email={cursor}",
+                  requiresEquals: true,
                   description: "Email for Docker registry",
                   args: {
                     name: "Email",
@@ -1900,7 +1969,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-password",
-                  insertValue: "--docker-password=",
+                  insertValue: "--docker-password={cursor}",
+                  requiresEquals: true,
                   description: "Password for Docker registry authentication",
                   args: {
                     name: "Password",
@@ -1908,7 +1978,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-server",
-                  insertValue: "--docker-server=",
+                  insertValue: "--docker-server={cursor}",
+                  requiresEquals: true,
                   description: "Server location for Docker registry",
                   args: {
                     name: "Server",
@@ -1916,7 +1987,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-username",
-                  insertValue: "--docker-username=",
+                  insertValue: "--docker-username={cursor}",
+                  requiresEquals: true,
                   description: "Username for Docker registry authentication",
                   args: {
                     name: "Username",
@@ -1924,7 +1996,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-file",
-                  insertValue: "--from-file=",
+                  insertValue: "--from-file={cursor}",
+                  requiresEquals: true,
                   description:
                     "Key files can be specified using their file path, in which case a default name will be given to them, or optionally with a name and file path, in which case the given name will be used.  Specifying a directory will iterate each named file in the directory that is a valid secret key",
                   args: {
@@ -1961,7 +2034,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-env-file",
-                  insertValue: "--from-env-file=",
+                  insertValue: "--from-env-file={cursor}",
+                  requiresEquals: true,
                   description:
                     "Specify the path to a file to read lines of key=val pairs to create a secret (i.e. a Docker .env file)",
                   args: {
@@ -1970,7 +2044,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-file",
-                  insertValue: "--from-file=",
+                  insertValue: "--from-file={cursor}",
+                  requiresEquals: true,
                   description:
                     "Key files can be specified using their file path, in which case a default name will be given to them, or optionally with a name and file path, in which case the given name will be used.  Specifying a directory will iterate each named file in the directory that is a valid secret key",
                   args: {
@@ -1979,7 +2054,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-literal",
-                  insertValue: "--from-literal=",
+                  insertValue: "--from-literal={cursor}",
+                  requiresEquals: true,
                   description:
                     "Specify a key and literal value to insert in secret (i.e. mykey=somevalue)",
                   args: {
@@ -1993,7 +2069,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--type",
-                  insertValue: "--type=",
+                  insertValue: "--type={cursor}",
+                  requiresEquals: true,
                   description: "The type of secret to create",
                   args: {},
                 },
@@ -2022,7 +2099,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--cert",
-                  insertValue: "--cert=",
+                  insertValue: "--cert={cursor}",
+                  requiresEquals: true,
                   description: "Path to PEM encoded public key certificate",
                   args: {
                     template: "filepaths",
@@ -2030,7 +2108,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--key",
-                  insertValue: "--key=",
+                  insertValue: "--key={cursor}",
+                  requiresEquals: true,
                   description:
                     "Path to private key associated with given certificate",
                   args: {
@@ -2069,7 +2148,8 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.template,
                 {
                   name: "--clusterip",
-                  insertValue: "--clusterip=",
+                  insertValue: "--clusterip={cursor}",
+                  requiresEquals: true,
                   description:
                     "Assign your own ClusterIP or set to 'None' for a 'headless' service (no loadbalancing)",
                   args: {
@@ -2084,7 +2164,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-                  insertValue: "--tcp=",
+                  insertValue: "--tcp={cursor}",
+                  requiresEquals: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
                   args: {
@@ -2124,7 +2205,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-                  insertValue: "--tcp=",
+                  insertValue: "--tcp={cursor}",
+                  requiresEquals: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
                   args: {
@@ -2157,7 +2239,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-                  insertValue: "--tcp=",
+                  insertValue: "--tcp={cursor}",
+                  requiresEquals: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
                   args: {
@@ -2197,7 +2280,8 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-                  insertValue: "--tcp=",
+                  insertValue: "--tcp={cursor}",
+                  requiresEquals: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
                   args: {
@@ -2383,7 +2467,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-          insertValue: "--grace-period=",
+          insertValue: "--grace-period={cursor}",
+          requiresEquals: true,
           description:
             "Period of time in seconds given to each pod to terminate gracefully. If negative, the default value specified in the pod will be used",
           args: {
@@ -2396,7 +2481,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-selector",
-          insertValue: "--pod-selector=",
+          insertValue: "--pod-selector={cursor}",
+          requiresEquals: true,
           description: "Label selector to filter pods on the node",
           args: {},
         },
@@ -2408,7 +2494,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-          insertValue: "--timeout=",
+          insertValue: "--timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time to wait before giving up, zero means infinite",
           args: {
@@ -2523,34 +2610,39 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         {
           name: "--cluster-ip",
-          insertValue: "--cluster-ip=",
+          insertValue: "--cluster-ip={cursor}",
+          requiresEquals: true,
           description:
             "ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a headless service",
           args: {},
         },
         {
           name: "--external-ip",
-          insertValue: "--external-ip=",
+          insertValue: "--external-ip={cursor}",
+          requiresEquals: true,
           description:
             "Additional external IP address (not managed by Kubernetes) to accept for the service. If this IP is routed to a node, the service can be accessed by this IP in addition to its generated service IP",
           args: {},
         },
         {
           name: "--generator",
-          insertValue: "--generator=",
+          insertValue: "--generator={cursor}",
+          requiresEquals: true,
           description:
             "The name of the API generator to use. There are 2 generators: 'service/v1' and 'service/v2'. The only difference between them is that service port in v1 is named 'default', while it is left unnamed in v2. Default is 'service/v2'",
           args: {},
         },
         {
           name: ["-l", "--labels"],
-          insertValue: "--labels=",
+          insertValue: "--labels={cursor}",
+          requiresEquals: true,
           description: "Labels to apply to the service created by this call",
           args: {},
         },
         {
           name: "--load-balancer-ip",
-          insertValue: "--load-balancer-ip=",
+          insertValue: "--load-balancer-ip={cursor}",
+          requiresEquals: true,
           description:
             "IP to assign to the LoadBalancer. If empty, an ephemeral IP will be created and used (cloud-provider specific)",
           args: {},
@@ -2558,7 +2650,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description: "The name for the newly created object",
-          insertValue: "--name=",
+          insertValue: "--name={cursor}",
+          requiresEquals: true,
           args: {},
         },
         {
@@ -2569,14 +2662,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-          insertValue: "--port=",
+          insertValue: "--port={cursor}",
+          requiresEquals: true,
           description:
             "The port that the service should serve on. Copied from the resource being exposed, if unspecified",
           args: {},
         },
         {
           name: "--protocol",
-          insertValue: "--protocol=",
+          insertValue: "--protocol={cursor}",
+          requiresEquals: true,
           description:
             "The network protocol for the service to be created. Default is 'TCP'",
           args: {
@@ -2590,21 +2685,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--session-affinity",
-          insertValue: "--session-affinity=",
+          insertValue: "--session-affinity={cursor}",
+          requiresEquals: true,
           description:
             "If non-empty, set the session affinity for the service to this; legal values: 'None', 'ClientIP'",
           args: {},
         },
         {
           name: "--target-port",
-          insertValue: "--target-port=",
+          insertValue: "--target-port={cursor}",
+          requiresEquals: true,
           description:
             "Name or number for the port on the container that the service should direct traffic to. Optional",
           args: {},
         },
         {
           name: "--type",
-          insertValue: "--type=",
+          insertValue: "--type={cursor}",
+          requiresEquals: true,
           description:
             "Type for this service: ClusterIP, NodePort, LoadBalancer, or ExternalName. Default is 'ClusterIP'",
           args: {
@@ -2641,7 +2739,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--chunk-size",
-          insertValue: "--chunk-size=",
+          insertValue: "--chunk-size={cursor}",
+          requiresEquals: true,
           description:
             "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future",
           args: {},
@@ -2690,7 +2789,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-by",
-          insertValue: "--sort-by=",
+          insertValue: "--sort-by={cursor}",
+          requiresEquals: true,
           description:
             "If non-empty, sort list types using this field specification.  The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string",
           args: {},
@@ -2733,7 +2833,8 @@ const completionSpec: Fig.Spec = {
           name: ["--env", "-e"],
           description:
             "A list of environment variables to be used by functions",
-          insertValue: "--env=",
+          insertValue: "--env={cursor}",
+          requiresEquals: true,
           args: {
             template: "filepaths",
           },
@@ -2742,13 +2843,15 @@ const completionSpec: Fig.Spec = {
           name: "--load-restrictor",
           description:
             "If set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization",
-          insertValue: "--load-restrictor=",
+          insertValue: "--load-restrictor={cursor}",
+          requiresEquals: true,
           args: {},
         },
         {
           name: "--mount",
           description: "A list of storage options read from the filesystem",
-          insertValue: "--mount=",
+          insertValue: "--mount={cursor}",
+          requiresEquals: true,
           args: {},
         },
         {
@@ -2758,14 +2861,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--network-name",
           description: "The docker network to run the container in",
-          insertValue: "--network-name=",
+          insertValue: "--network-name={cursor}",
+          requiresEquals: true,
           args: {},
         },
         {
           name: "--reorder",
           description:
             "Reorder the resources just before output. Use 'legacy' to apply a legacy reordering (Namespaces first, Webhooks last, etc). Use 'none' to suppress a final reordering",
-          insertValue: "--reorder=",
+          insertValue: "--reorder={cursor}",
+          requiresEquals: true,
         },
       ],
     },
@@ -2840,20 +2945,23 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limit-bytes",
-          insertValue: "--limit-bytes=",
+          insertValue: "--limit-bytes={cursor}",
+          requiresEquals: true,
           description: "Maximum bytes of logs to return. Defaults to no limit",
           args: {},
         },
         {
           name: "--max-log-requests",
-          insertValue: "--max-log-requests=",
+          insertValue: "--max-log-requests={cursor}",
+          requiresEquals: true,
           description:
             "Specify maximum number of concurrent logs to follow when using by a selector. Defaults to 5",
           args: {},
         },
         {
           name: "--pod-running-timeout",
-          insertValue: "--pod-running-timeout=",
+          insertValue: "--pod-running-timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
@@ -2870,21 +2978,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--since",
-          insertValue: "--since=",
+          insertValue: "--since={cursor}",
+          requiresEquals: true,
           description:
             "Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one of since-time / since may be used",
           args: {},
         },
         {
           name: "--since-time",
-          insertValue: "--since-time=",
+          insertValue: "--since-time={cursor}",
+          requiresEquals: true,
           description:
             "Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of since-time / since may be used",
           args: {},
         },
         {
           name: "--tail",
-          insertValue: "--tail=",
+          insertValue: "--tail={cursor}",
+          requiresEquals: true,
           description:
             "Lines of recent log file to display. Defaults to -1 with no selector, showing all log lines otherwise 10, if a selector is provided",
           args: {},
@@ -2920,7 +3031,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-          insertValue: "--type=",
+          insertValue: "--type={cursor}",
+          requiresEquals: true,
           description:
             "The type of patch being provided; one of [json merge strategic]",
           args: {
@@ -2954,7 +3066,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-running-timeout",
-          insertValue: "---pod-running-timeout=",
+          insertValue: "---pod-running-timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
@@ -2968,27 +3081,31 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-hosts",
-          insertValue: "--accept-hosts=",
+          insertValue: "--accept-hosts={cursor}",
+          requiresEquals: true,
           description:
             "Regular expression for hosts that the proxy should accept",
           args: {},
         },
         {
           name: "--accept-paths",
-          insertValue: "--accept-paths=",
+          insertValue: "--accept-paths={cursor}",
+          requiresEquals: true,
           description:
             "Regular expression for paths that the proxy should accept",
           args: {},
         },
         {
           name: "--address",
-          insertValue: "--address=",
+          insertValue: "--address={cursor}",
+          requiresEquals: true,
           description: "The IP address on which to serve on",
           args: {},
         },
         {
           name: "--api-prefix",
-          insertValue: "--api-prefix=",
+          insertValue: "--api-prefix={cursor}",
+          requiresEquals: true,
           description: "Prefix to serve the proxied API under",
           args: {},
         },
@@ -2999,48 +3116,55 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--keepalive",
-          insertValue: "--keepalive=",
+          insertValue: "--keepalive={cursor}",
+          requiresEquals: true,
           description:
             "Keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive",
           args: {},
         },
         {
           name: ["-p", "--port"],
-          insertValue: "--port=",
+          insertValue: "--port={cursor}",
+          requiresEquals: true,
           description:
             "The port on which to run the proxy. Set to 0 to pick a random port",
           args: {},
         },
         {
           name: "--reject-methods",
-          insertValue: "--reject-methods=",
+          insertValue: "--reject-methods={cursor}",
+          requiresEquals: true,
           description:
             "Regular expression for HTTP methods that the proxy should reject (example --reject-methods='POST,PUT,PATCH')",
           args: {},
         },
         {
           name: "--reject-paths",
-          insertValue: "--reject-paths=",
+          insertValue: "--reject-paths={cursor}",
+          requiresEquals: true,
           description:
             "Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths",
           args: {},
         },
         {
           name: ["-u", "--unix-socket"],
-          insertValue: "--unix-socket=",
+          insertValue: "--unix-socket={cursor}",
+          requiresEquals: true,
           description: "Unix socket on which to run the proxy",
           args: {},
         },
         {
           name: ["-w", "--www"],
-          insertValue: "--www=",
+          insertValue: "--www={cursor}",
+          requiresEquals: true,
           description:
             "Also serve static files from the given directory under the specified prefix",
           args: {},
         },
         {
           name: ["-P", "--www-prefix"],
-          insertValue: "--www-prefix=",
+          insertValue: "--www-prefix={cursor}",
+          requiresEquals: true,
           description:
             "Prefix to serve static files under, if static file directory is specified",
           args: {},
@@ -3070,14 +3194,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-          insertValue: "--grace-period=",
+          insertValue: "--grace-period={cursor}",
+          requiresEquals: true,
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion)",
           args: {},
         },
         {
           name: "--raw",
-          insertValue: "--raw=",
+          insertValue: "--raw={cursor}",
+          requiresEquals: true,
           description:
             "Raw URI to PUT to the server.  Uses the transport specified by the kubeconfig file",
           args: {},
@@ -3089,7 +3215,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-          insertValue: "--timeout=",
+          insertValue: "--timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
           args: {},
@@ -3124,7 +3251,8 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--revision",
-              insertValue: "--revision=",
+              insertValue: "--revision={cursor}",
+              requiresEquals: true,
               description:
                 "See the details, including podTemplate of the revision specified",
               // Generator for revisions of resource specified in args
@@ -3181,14 +3309,16 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             {
               name: "--revision",
-              insertValue: "--revision=",
+              insertValue: "--revision={cursor}",
+              requiresEquals: true,
               description:
                 "Pin to a specific revision for showing its status. Defaults to 0 (last revision)",
               args: {},
             },
             {
               name: "--timeout",
-              insertValue: "--timeout=",
+              insertValue: "--timeout={cursor}",
+              requiresEquals: true,
               description:
                 "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h)",
               args: {},
@@ -3211,12 +3341,14 @@ const completionSpec: Fig.Spec = {
             sharedOpts.dryRun,
             {
               name: "--to_revision",
-              insertValue: "--to_revision=",
+              insertValue: "--to_revision={cursor}",
+              requiresEquals: true,
               args: {},
             },
             {
               name: "--timeout",
-              insertValue: "--timeout=",
+              insertValue: "--timeout={cursor}",
+              requiresEquals: true,
               description:
                 "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h)",
               args: {},
@@ -3242,7 +3374,8 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         {
           name: "--annotations",
-          insertValue: "--annotations=",
+          insertValue: "--annotations={cursor}",
+          requiresEquals: true,
           description: "Annotations to apply to the pod",
           args: {},
         },
@@ -3266,7 +3399,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--env",
-          insertValue: "--env=",
+          insertValue: "--env={cursor}",
+          requiresEquals: true,
           description: "Environment variables to set in the container",
           args: {},
         },
@@ -3282,21 +3416,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-          insertValue: "--grace-period=",
+          insertValue: "--grace-period={cursor}",
+          requiresEquals: true,
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion)",
           args: {},
         },
         {
           name: "--hostport",
-          insertValue: "--hostport=",
+          insertValue: "--hostport={cursor}",
+          requiresEquals: true,
           description:
             "The host port mapping for the container port. To demonstrate a single-machine container",
           args: {},
         },
         {
           name: "--image",
-          insertValue: "--image=",
+          insertValue: "--image={cursor}",
+          requiresEquals: true,
           description: "The image for the container to run",
           args: {},
         },
@@ -3309,7 +3446,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-l", "--labels"],
-          insertValue: "--labels=",
+          insertValue: "--labels={cursor}",
+          requiresEquals: true,
           description:
             "Comma separated labels to apply to the pod(s). Will override previous values",
           args: {},
@@ -3321,28 +3459,32 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limits",
-          insertValue: "--limits=",
+          insertValue: "--limits={cursor}",
+          requiresEquals: true,
           description:
             "The resource requirement limits for this container.  For example, 'cpu=200m,memory=512Mi'.  Note that server side components may assign limits depending on the server configuration, such as limit ranges",
           args: {},
         },
         {
           name: "--overrides",
-          insertValue: "--overrides=",
+          insertValue: "--overrides={cursor}",
+          requiresEquals: true,
           description:
             "An inline JSON override for the generated object. If this is non-empty, it is used to override the generated object. Requires that the object supply a valid apiVersion field",
           args: {},
         },
         {
           name: "--pod-running-timeout",
-          insertValue: "--pod-running-timeout=",
+          insertValue: "--pod-running-timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
         },
         {
           name: "--port",
-          insertValue: "--port=",
+          insertValue: "--port={cursor}",
+          requiresEquals: true,
           description: "The port that this container exposes",
           args: {},
         },
@@ -3352,14 +3494,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--requests",
-          insertValue: "--requests=",
+          insertValue: "--requests={cursor}",
+          requiresEquals: true,
           description:
             "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges",
           args: {},
         },
         {
           name: "--restart",
-          insertValue: "--restart=",
+          insertValue: "--restart={cursor}",
+          requiresEquals: true,
           description:
             "The restart policy for this Pod.  Legal values [Always, OnFailure, Never].  If set to 'Always' a deployment is created, if set to 'OnFailure' a job is created, if set to 'Never', a regular pod is created. For the latter two --replicas must be 1.  Default 'Always', for CronJobs `Never`",
           args: {
@@ -3378,7 +3522,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--serviceaccount",
-          insertValue: "--serviceaccount=",
+          insertValue: "--serviceaccount={cursor}",
+          requiresEquals: true,
           description: "Service account to set in the pod spec",
           args: {},
         },
@@ -3389,7 +3534,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-          insertValue: "--timeout=",
+          insertValue: "--timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
           args: {},
@@ -3431,14 +3577,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--current-replicas",
-          insertValue: "--current-replicas=",
+          insertValue: "--current-replicas={cursor}",
+          requiresEquals: true,
           description:
             "Precondition for current size. Requires that the current size of the resource match this value in order to scale",
           args: {},
         },
         {
           name: "--replicas",
-          insertValue: "--replicas=",
+          insertValue: "--replicas={cursor}",
+          requiresEquals: true,
           description: "The new desired number of replicas. Required",
           args: {},
         },
@@ -3483,28 +3631,32 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-c", "--containers"],
-              insertValue: "--containers=",
+              insertValue: "--containers={cursor}",
+              requiresEquals: true,
               description:
                 "The names of containers in the selected pod templates to change - may use wildcards",
               args: {},
             },
             {
               name: ["-e", "--env"],
-              insertValue: "--env=",
+              insertValue: "--env={cursor}",
+              requiresEquals: true,
               description:
                 "Specify a key-value pair for an environment variable to set into each container",
               args: {},
             },
             {
               name: "--from",
-              insertValue: "--from=",
+              insertValue: "--from={cursor}",
+              requiresEquals: true,
               description:
                 "The name of a resource from which to inject environment variables",
               args: {},
             },
             {
               name: "--keys",
-              insertValue: "--keys=",
+              insertValue: "--keys={cursor}",
+              requiresEquals: true,
               description:
                 "Comma-separated list of keys to import from specified resource",
               args: {},
@@ -3587,21 +3739,24 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-c", "--containers"],
-              insertValue: "--containers=",
+              insertValue: "--containers={cursor}",
+              requiresEquals: true,
               description:
                 "The names of containers in the selected pod templates to change, all containers are selected by default - may use wildcards",
               args: {},
             },
             {
               name: "--limits",
-              insertValue: "--limits=",
+              insertValue: "--limits={cursor}",
+              requiresEquals: true,
               description:
                 "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges",
               args: {},
             },
             {
               name: "--requests",
-              insertValue: "--requests=",
+              insertValue: "--requests={cursor}",
+              requiresEquals: true,
               description:
                 "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges",
               args: {},
@@ -3688,13 +3843,15 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--group",
-              insertValue: "--group=",
+              insertValue: "--group={cursor}",
+              requiresEquals: true,
               description: "Groups to bind to the role",
               args: {},
             },
             {
               name: "--serviceaccount",
-              insertValue: "--serviceaccount=",
+              insertValue: "--serviceaccount={cursor}",
+              requiresEquals: true,
               description: "Service accounts to bind to the role",
               args: {},
             },
@@ -3783,14 +3940,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--for",
-          insertValue: "--for=",
+          insertValue: "--for={cursor}",
+          requiresEquals: true,
           description:
             "The condition to wait on: [delete|condition=condition-name]",
           args: {},
         },
         {
           name: "--timeout",
-          insertValue: "--timeout=",
+          insertValue: "--timeout={cursor}",
+          requiresEquals: true,
           description:
             "The length of time to wait before giving up.  Zero means check once and don't wait, negative means wait for a week",
           args: {},
