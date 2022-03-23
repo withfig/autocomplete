@@ -88,7 +88,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
       //run `gh repo list` cmd
       const res = await execute(
-        `gh repo list ${userOrOrg} --json "nameWithOwner,description,isPrivate" `
+        `gh repo list ${userOrOrg} --limit 9999 --json "nameWithOwner,description,isPrivate" `
       );
 
       // make sure it has some existence.
@@ -104,39 +104,30 @@ const ghGenerators: Record<string, Fig.Generator> = {
     /*
      * based on the gh api (use this instead as it also returns repos in the orgs that the user is part of)
      * https://cli.github.com/manual/gh_api
+     *
+     * --jq https://cli.github.com/manual/gh_help_formatting https://www.baeldung.com/linux/jq-command-json
      */
     script:
-      "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}'",
+      "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}' --jq '.data.viewer.repositories.nodes[]'",
     postProcess: (out) => {
-      interface PageInfo {
-        hasNextPage: boolean;
-        endCursor: string;
-      }
-
-      interface Repositories {
-        nodes: RepoDataType[];
-        pageInfo: PageInfo;
-      }
-
-      interface Viewer {
-        repositories: Repositories;
-      }
-
-      interface Data {
-        viewer: Viewer;
-      }
-
-      interface ResObject {
-        data: Data;
-      }
-
       if (out) {
+        /**
+         * the string thats returned bt the command will contain lines like this:
+         *
+         * {...data}
+         * {...data}
+         * etc
+         *
+         * so the string needs to be transformed into a json array by adding commas on all newline chars then wrapping in square braces
+         *
+         * compared to none paginating request this is a touch slower 300ms or so, but it fixes the over 100 repos issue!
+         *
+         */
+        const jsonifiedOutString = `[${out.replace(/(?:\r\n|\r|\n)/g, ",")}]`;
         try {
-          const fixedOut = out.trim();
+          const data: RepoDataType[] = JSON.parse(jsonifiedOutString);
 
-          const data: ResObject = JSON.parse(fixedOut);
-
-          return data.data.viewer.repositories.nodes.map(listRepoMapFunction);
+          return data.map(listRepoMapFunction);
         } catch {
           return [];
         }
