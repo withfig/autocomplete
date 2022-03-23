@@ -550,6 +550,25 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "shell-integrations",
+          description: "Toggle shell integrations",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "mode",
+            isOptional: true,
+            suggestions: ["on", "off"],
+          },
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -623,6 +642,20 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "sync",
+          description: "Sync the current settings",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -645,7 +678,7 @@ const completion: Fig.Spec = {
       options: [
         {
           name: ["-d", "--delete"],
-          description: "Delete the state",
+          description: "Delete",
         },
         {
           name: ["-h", "--help"],
@@ -1033,7 +1066,7 @@ const completion: Fig.Spec = {
       },
     },
     {
-      name: "internal",
+      name: ["internal", "_"],
       description: "Internal subcommands used for Fig",
       hidden: true,
       subcommands: [
@@ -1209,6 +1242,19 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "get-shell",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -1290,6 +1336,50 @@ const completion: Fig.Spec = {
       name: "app:running",
       description: "(LEGACY) Old hook that was being used somewhere",
       hidden: true,
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "sync",
+          description: "Sync the current plugins",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
       options: [
         {
           name: ["-h", "--help"],
