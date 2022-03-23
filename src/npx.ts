@@ -90,6 +90,10 @@ const suggestions: Fig.Suggestion[] = [
   {
     name: "vsce",
   },
+  {
+    name: "degit",
+    icon: "fig://icon?type=git",
+  },
 ];
 
 const completionSpec: Fig.Spec = {

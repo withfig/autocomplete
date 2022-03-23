@@ -9,6 +9,7 @@ export const nodeClis = [
   "vite",
   "nuxt",
   "react-native",
+  "degit",
   "expo",
   "jest",
   "next",
