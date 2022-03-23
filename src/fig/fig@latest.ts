@@ -1408,20 +1408,3 @@ const completion: Fig.Spec = {
   ],
 };
 export default completion;
-// Automatic merge overrides these properties - will be fixed in an update to
-// the clap integration. Until then, the modifications are hardcoded.
-edit(completion.subcommands, {
-  internal: {
-    name: ["internal", "_"],
-    description: "Internal plumbing commands",
-  },
-  debug: (debug) =>
-    edit(debug.subcommands, {
-      logs: (logs) =>
-        edit(logs.args, {
-          files: {
-            isVariadic: true,
-          },
-        }),
-    }),
-});
