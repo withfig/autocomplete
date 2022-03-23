@@ -48,6 +48,11 @@ const completionSpec: Fig.Spec = {
       },
       description: "Activate inspector on host:port (default: 127.0.0.1:9229)",
     },
+    {
+      name: "--preserve-symlinks",
+      description:
+        "Follows symlinks to directories when examining source code and templates for translation strings",
+    },
   ],
   generateSpec: async (tokens, executeShellCommand) => {
     const isAdonisJsonPresentCommand = "test -f .adonisrc.json && echo '1'";
