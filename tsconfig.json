@@ -1,14 +1,22 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
     "moduleResolution": "node",
-    "outDir": "./specs",
-    "target": "es5",
+    "outDir": "./build",
+    "target": "ES6",
     "module": "ESNext",
-    "lib": ["ESNext"],
-    "noImplicitAny": false
+    "lib": ["ESNext", "DOM"],
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "types": ["@withfig/autocomplete-types"]
   },
-  "include": ["./dev/**/*", "dangerfile.ts"],
-  "files": [
-    "./schemas/fig.d.ts",
-  ]
+  "exclude": ["node_modules/"],
+  "include": ["./src/**/*", "dangerfile.ts"]
 }

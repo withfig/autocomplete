@@ -30,7 +30,7 @@ A few things to keep in mind when writing your spec:
 
 - Ensure that the argument field is filled for subcommands and options when an argument is required.
 - Make sure all generators are written with valid JavaScript.
-- [Test your spec](https://fig.io/docs/autocomplete#testing-your-completion-spec) before submitting a pull request.
+- [Test your spec](https://fig.io/docs/getting-started#testing-your-first-completion-spec) before submitting a pull request.
 
 **Git Commit Messages**
 
@@ -49,6 +49,6 @@ By contributing, you agree that your contributions will be licensed under its MI
 
 ## Questions and support
 
-For product support, visit our [docs](https://fig.io/docs) and join the [Fig Community](https://figcommunity.slack.com/join/shared_invite/zt-fupa9n8g-sfHm8MyBn1DBaCj8SoIxSA#/) for instant support and discussion.
+For product support, visit our [docs](https://fig.io/docs) and join the [Fig Community](https://fig.io/community) for instant support and discussion.
 
 Any unanswered questions or inquiries? We're always open to chat at hello@fig.io.

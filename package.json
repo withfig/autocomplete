@@ -1,48 +1,43 @@
 {
-  "name": "linter",
-  "version": "1.0.0",
+  "name": "@withfig/autocomplete",
+  "version": "2.153.0",
   "description": "Fig Autocomplete Spec Linter",
+  "schemaVersion": "v7",
+  "main": "./build/index",
+  "types": "./build/index.d.ts",
+  "type": "module",
+  "browserslist": [
+    "safari >=11"
+  ],
   "scripts": {
-    "dev": "source scripts/dev.sh",
-    "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
-    "copy": "func() { mkdir -p ~/.fig/autocomplete/$(dirname ${1}.js); cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/${1}.js; }; func",
-    "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
-    "create-boilerplate": "./scripts/create-boilerplate.sh",
-    "create-example": "./scripts/create-example.sh",
-    "build": "ts-node-script scripts/compiler.ts",
+    "dev": "npx @withfig/autocomplete-tools dev",
+    "create-spec": "npx @withfig/autocomplete-tools create-spec",
+    "build": "npx @withfig/autocomplete-tools compile; node generate-index.js",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
+    "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
     "prepare": "husky install"
   },
   "fig": {
     "dev": {
-      "description": "Watching and compile .ts files in ./dev",
+      "description": "Watching and compile .ts files in ./src",
       "icon": "fig://template?badge=🛠",
       "priority": 100
     },
-    "create-boilerplate": {
+    "create-spec": {
       "description": "Create a new completion spec"
     },
-    "create-example": {
-      "description": "Create a dummy git completion spec"
-    },
-    "test": {
-      "description": "Typecheck all .ts files in /dev"
-    },
-    "copy": {
-      "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
-    },
-    "copy:all": {
-      "description": "Copy all files from /specs to ~/.fig/autocomplete"
-    },
     "build": {
-      "description": "Compile all files in /dev"
+      "description": "Compile all files in /src"
     },
     "lint": {
       "description": "Check for linting issues"
     },
     "lint:fix": {
       "description": "Fix linting issues"
+    },
+    "test": {
+      "description": "Typecheck all .ts files in /src"
     },
     "prepare": {
       "description": "Install husky"
@@ -58,27 +53,40 @@
       "pretty-quick --staged"
     ]
   },
+  "files": [
+    "build/**/*.js"
+  ],
   "author": "",
   "license": "ISC",
+  "bugs": "https://github.com/withfig/autocomplete/issues",
+  "repository": "https://github.com/withfig/autocomplete",
   "devDependencies": {
+    "@fig/autocomplete-generators": "^1.0.0",
+    "@fig/eslint-config-autocomplete": "^1.0.0",
     "@types/inquirer": "^7.3.1",
     "@types/node": "^14.14.33",
     "@types/progress": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
+    "@withfig/autocomplete-tools": "^2.4.0",
+    "@withfig/autocomplete-types": "^1.10.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-fig-linter": "file:scripts/eslint-plugin-fig-linter",
-    "eslint-plugin-prettier": "^3.3.1",
+    "esbuild": "^0.12.15",
+    "eslint": "^8.11.0",
+    "fast-glob": "^3.2.7",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "prettier": "2.2.1",
     "pretty-quick": "^3.1.0",
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@types/glob": "^7.2.0",
+    "fs": "^0.0.1-security",
+    "glob": "^7.2.0",
+    "strip-json-comments": "^4.0.0",
+    "yaml": "^1.10.2"
   }
 }
