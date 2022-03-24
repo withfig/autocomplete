@@ -36,7 +36,7 @@ const generateManualPages: Fig.Generator = {
     const maybeSection = tokens[tokens.length - 2];
     const sectionGlob = sectionNames.has(maybeSection) ? maybeSection : "[18]";
     const out = await executeShellCommand(
-      `while IFS=':' read -ra manpath; do for path in "\${manpath[@]}"; do ls -1 "$path/man"${sectionGlob} 2>/dev/null; done; done <<< "$(${manpathCommand})" | sort -u`.trim()
+      `while IFS=':' read -ra manpath; do for path in "\${manpath[@]}"; do \\ls -1 "$path/man"${sectionGlob} 2>/dev/null; done; done <<< "$(${manpathCommand})" | sort -u`.trim()
     );
 
     const suggestions: Fig.Suggestion[] = [];
