@@ -492,6 +492,9 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     optionsCanBreakVariadicArg: false,
     generators: {
+      trigger: (newToken, oldToken) => {
+        return newToken.length === 0 && oldToken.length > 0;
+      },
       script: dumpJustfile,
       postProcess: (out, tokens) => {
         const justfile = processJustfileDump(out);
