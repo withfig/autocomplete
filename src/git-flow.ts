@@ -1,33 +1,50 @@
-const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
-  return out.split("\n").map((elm) => {
-    let name = elm.trim();
-    const parts = elm.match(/\S+/g);
-    if (parts.length > 1) {
-      // Remove decorators
-      const decorators = ["*", "+"];
-      if (decorators.includes(parts[0])) {
-        name = elm.replace(parts[0], "").trim();
+const postProcessBranches: Fig.Generator["postProcess"] = (out, tokens) => {
+  return out
+    .split("\n")
+    .map((elm) => {
+      let name = elm.trim();
+      const parts = elm.match(/\S+/g);
+      if (parts.length > 1) {
+        // Remove decorators
+        const decorators = ["*", "+"];
+        if (decorators.includes(parts[0])) {
+          name = elm.replace(parts[0], "").trim();
+        }
       }
-    }
 
-    const prefixTypeBranch = "feature/";
-    if (!name.startsWith(prefixTypeBranch)) {
-      return {};
-    }
+      const prefixTypeBranch = tokens[0];
+      if (!name.startsWith(prefixTypeBranch)) {
+        return {};
+      }
 
-    return {
-      name: name.replace(prefixTypeBranch, ""),
-      description: `${prefixTypeBranch.replace("/", "")} branch`,
-      icon: "fig://icon?type=git",
-    };
-  });
+      return {
+        name: name.replace(prefixTypeBranch, ""),
+        description: `${prefixTypeBranch.replace("/", "")} branch`,
+        icon: "fig://icon?type=git",
+      };
+    })
+    .filter((x) => x.name);
 };
 
-export const gitGenerators: Record<string, Fig.Generator> = {
-  featureBranches: {
-    script:
-      "git --no-optional-locks branch -a --no-color --sort=-committerdate",
-    postProcess: postProcessBranches,
+async function getGitFlowPrefix(
+  type: string,
+  executeShellCommand: Fig.ExecuteShellCommandFunction
+): Promise<string> {
+  const prefix: string = await executeShellCommand(
+    `git config --get gitflow.prefix.${type}`
+  );
+  return prefix;
+}
+
+export const gitFlowGenerators: Record<string, Fig.Generator> = {
+  typeBranches: {
+    custom: async (tokens, executeShellCommand) => {
+      const prefix = await getGitFlowPrefix(tokens[1], executeShellCommand);
+      const out = await executeShellCommand(
+        "git --no-optional-locks branch -a --no-color --sort=-committerdate"
+      );
+      return postProcessBranches(out, [prefix]);
+    },
   },
 };
 
@@ -70,7 +87,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "The name of the feature branch to finish",
-            generators: gitGenerators.featureBranches,
+            generators: gitFlowGenerators.typeBranches,
           },
         },
         {
@@ -115,6 +132,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "The name of the release branch to finish",
+            generators: gitFlowGenerators.typeBranches,
           },
         },
       ],
@@ -137,6 +155,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "name",
             description: "The name of the hotfix branch to finish",
+            generators: gitFlowGenerators.typeBranches,
           },
         },
       ],
