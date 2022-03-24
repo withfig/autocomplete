@@ -223,7 +223,7 @@ const sharedOpts: Record<string, Fig.Option> = {
       'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource',
     args: {
       name: "Strategy",
-      suggestions: ["None", "Server", "Client"],
+      suggestions: ["none", "server", "client"],
     },
   },
   fieldSelector: {
