@@ -3,13 +3,8 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out, tokens) => {
     .split("\n")
     .map((elm) => {
       let name = elm.trim();
-      const parts = elm.match(/\S+/g);
-      if (parts.length > 1) {
-        // Remove decorators
-        const decorators = ["*", "+"];
-        if (decorators.includes(parts[0])) {
-          name = elm.replace(parts[0], "").trim();
-        }
+      if (name.startsWith("*") || name.startsWith("+")) {
+        name = name.slice(2);
       }
 
       const prefixTypeBranch = tokens[0];
