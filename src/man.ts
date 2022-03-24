@@ -1,3 +1,5 @@
+// Linux incompatible
+
 const sections = {
   "1": "General commands",
   "2": "System calls",
@@ -13,49 +15,66 @@ const sectionIcon = "📑";
 
 const sectionNames = new Set(Object.keys(sections));
 
+let loginShell: string | undefined;
+
 const generateManualPages: Fig.Generator = {
-  script: (tokens) => {
+  trigger: (curr, prev) => curr.length === 0 && prev.length > 0,
+  custom: async (tokens, executeShellCommand) => {
+    // Fish has a lot of extra man pages, if the login shell is fish
+    // then use its manpath instead of the default
+    if (!loginShell) {
+      const out = await executeShellCommand(
+        "dscl . read /Users/$(id -un) UserShell"
+      );
+      loginShell = out.slice("UserShell: ".length);
+    }
+    const manpathCommand = loginShell.endsWith("fish")
+      ? `"${loginShell}" -NPc 'man -w'`
+      : "man -w";
+
     // If the previous token was a section, we want to search for it
     const maybeSection = tokens[tokens.length - 2];
     const sectionGlob = sectionNames.has(maybeSection) ? maybeSection : "[18]";
-    return `ls -1 $(man -w | sed 's#:#/man${sectionGlob} #g') 2>/dev/null | cut -f 1 -d . | sort | uniq`;
-  },
-  postProcess: (out) => {
-    return out
-      .split("\n")
-      .filter((line) => {
-        return !(line.length == 0 || line.startsWith("/"));
-      })
-      .map((line) => {
-        return {
-          name: line,
-          description: "Manual page",
-          icon: "fig://icon?type=string",
-        };
+    const out = await executeShellCommand(
+      `while IFS=':' read -ra manpath; do for path in "\${manpath[@]}"; do ls -1 "$path/man"${sectionGlob} 2>/dev/null; done; done <<< "$(${manpathCommand})" | sort -u`.trim()
+    );
+
+    const suggestions: Fig.Suggestion[] = [];
+    for (const line of out.split("\n")) {
+      const lastDot = line.lastIndexOf(".");
+      // Output includes directories, empty lines, and non-man-pages
+      if (
+        line.length === 0 ||
+        line.startsWith("/") ||
+        !sectionNames.has(line[lastDot + 1])
+      ) {
+        continue;
+      }
+      suggestions.push({
+        name: line.slice(0, lastDot),
+        priority: /^[a-z]/.test(line) ? 51 : 50,
+        description: "Manual page",
+        icon: "fig://icon?type=string",
       });
+    }
+    return suggestions;
   },
 };
 
 const completionSpec: Fig.Spec = {
   name: "man",
   description: "Format and display the on-line manual pages",
-  args: [
-    // No `name` or `description` because the popup stays open
-    {
-      generators: generateManualPages,
-      suggestions: Object.entries(sections).map(([number, topic]) => ({
-        name: number,
-        insertValue: `${number} {cursor}`,
-        description: `Section ${number}: ${topic}`,
-        priority: 49,
-        icon: sectionIcon,
-      })),
-    },
-    {
-      generators: generateManualPages,
-      isOptional: true,
-    },
-  ],
+  args: {
+    isVariadic: true,
+    generators: generateManualPages,
+    suggestions: Object.entries(sections).map(([number, topic]) => ({
+      name: number,
+      insertValue: `${number} {cursor}`,
+      description: `Section ${number}: ${topic}`,
+      priority: 49,
+      icon: sectionIcon,
+    })),
+  },
   options: [
     {
       name: "-C",
