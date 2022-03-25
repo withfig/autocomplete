@@ -1,31 +1,30 @@
 import { filepaths } from "@fig/autocomplete-generators";
-import { transpileModule } from "typescript";
-
-const ROBOT_ICON = "fig://icon?type=txt";
 
 const tagsGenerator: Fig.Generator = {
   custom: async (tokens, executeShellCommand) => {
     const out = await executeShellCommand(
       'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done'
     );
-    const iter = out.matchAll(/(^\s\s+\[Tags\]\s\s)(\w+ *)*(?!.\#.*)/gm);
-    const arr = [
-      ...new Set(
-        [...iter]
-          .map((item) =>
-            item[0].toString().trim().substring(6).trim().split(/\s\s+/)
-          )
-          .flat()
-      ),
-    ];
+    const iter = out.matchAll(/(?:^\s\s+\[Tags\])\s\s+(\w+ *)*(?!.\#.*)/gm);
 
-    return arr.map((tag) => {
-      return {
-        name: tag,
-        description: `Tag`,
-        icon: "🏷",
-      };
-    });
+    const seen: Set<string> = new Set();
+    const suggestions: Fig.Suggestion[] = [];
+
+    for (const [line] of iter) {
+      // original line: "   [Tags]  first tag  dev tag    some tag   "
+      // desired line: ["first tag", "dev tag", "some tag"]
+      for (const tag of line.trim().substring(6).trim().split(/\s\s+/)) {
+        console.log(tag);
+        if (seen.has(tag)) continue;
+        seen.add(tag);
+        suggestions.push({
+          name: tag,
+          description: "Tag",
+          icon: "🏷",
+        });
+      }
+    }
+    return suggestions;
   },
 };
 
@@ -57,7 +56,7 @@ const completionSpec: Fig.Spec = {
     generators: filepaths({
       extensions: ["robot"],
 
-      editFileSuggestions: { priority: 76, icon: ROBOT_ICON },
+      editFileSuggestions: { priority: 76, icon: "fig://icon?type=txt" },
     }),
   },
   options: [
