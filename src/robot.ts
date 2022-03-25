@@ -14,7 +14,6 @@ const tagsGenerator: Fig.Generator = {
       // original line: "   [Tags]  first tag  dev tag    some tag   "
       // desired line: ["first tag", "dev tag", "some tag"]
       for (const tag of line.trim().substring(6).trim().split(/\s\s+/)) {
-        console.log(tag);
         if (seen.has(tag)) continue;
         seen.add(tag);
         suggestions.push({
