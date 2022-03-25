@@ -309,7 +309,6 @@ const completionSpec: Fig.Spec = {
       description: "View a given module in your editor",
       args: {
         name: "module",
-        isOptional: false,
       },
       options: [
         {

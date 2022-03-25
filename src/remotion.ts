@@ -21,11 +21,10 @@ const completionSpec: Fig.Spec = {
               displayName: "[comp-id]",
             },
           ],
-          isOptional: false,
         },
         {
           name: "output",
-          isOptional: false,
+
           template: ["filepaths"],
           suggestions: ["out.mp4"],
         },
@@ -184,7 +183,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "entry",
-          isOptional: false,
+
           template: ["filepaths"],
         },
         {
@@ -196,11 +195,10 @@ const completionSpec: Fig.Spec = {
               displayName: "[comp-id]",
             },
           ],
-          isOptional: false,
         },
         {
           name: "output",
-          isOptional: false,
+
           template: ["filepaths"],
           suggestions: ["out.mp4"],
         },
@@ -295,7 +293,7 @@ const completionSpec: Fig.Spec = {
         "Start the server which allows you to preview the Remotion video",
       args: {
         name: "entry",
-        isOptional: false,
+
         template: ["filepaths"],
       },
       options: [

@@ -3549,7 +3549,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "repository",
           description: "Git library to be cloned",
-          isOptional: false,
         },
         {
           name: "directory",

@@ -227,7 +227,7 @@ const completionSpec: Fig.Spec = {
           name: "--using",
           description:
             "Either an explicit version, or a filename with the version written in it",
-          args: { ...version, isOptional: false },
+          args: { ...version },
         },
         lts,
         ...baseOptions,

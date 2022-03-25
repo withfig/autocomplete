@@ -25,7 +25,6 @@ const completionSpec: Fig.Spec = {
         name: "path",
         description:
           "Specify YAML file to override attributes on Swift declarations in this module",
-        isOptional: false,
       },
     },
     {
@@ -34,7 +33,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "configuration",
         description: "The assert_configuration replacement",
-        isOptional: false,
+
         suggestions: ["Debug", "Release", "Unchecked", "DisableReplacement"],
       },
     },
@@ -45,7 +44,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "target",
         description: "The target we should use for internal Clang instance",
-        isOptional: false,
       },
     },
     {
@@ -62,7 +60,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "prefix",
         description: "Remap source paths in coverage info",
-        isOptional: false,
       },
     },
     {
@@ -71,7 +68,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "type",
         description: "The debug info format type",
-        isOptional: false,
+
         suggestions: ["dwarf", "codeview"],
       },
     },
@@ -85,7 +82,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "prefix",
         description: "Remap source paths in debug info",
-        isOptional: false,
       },
     },
     {
@@ -94,7 +90,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "prefix",
         description: "The formatting style used when printing diagnostics",
-        isOptional: false,
+
         suggestions: ["swift", "llvm"],
       },
     },
@@ -137,7 +133,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "flag",
         description: "The conditional compilation flag to mark as true",
-        isOptional: false,
       },
     },
     {
@@ -146,7 +141,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "module",
         description: "Embed symbols from the module in the emitted tbd file",
-        isOptional: false,
       },
     },
     {
@@ -188,7 +182,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "enforcement",
         description: "Enforce law of exclusivity",
-        isOptional: false,
       },
     },
     {
@@ -199,7 +192,6 @@ const completionSpec: Fig.Spec = {
         name: "stdlib",
         description:
           "C++ standard library to use; forwarded to Clang's -std lib flag",
-        isOptional: false,
       },
     },
     {
@@ -208,7 +200,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "framework",
         description: "The framework which should be linked against",
-        isOptional: false,
       },
     },
     {
@@ -217,7 +208,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "directory",
         description: "The directory to add to the system framework search path",
-        isOptional: false,
       },
     },
     {
@@ -226,7 +216,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "directory",
         description: "The directory to add to the framework search path",
-        isOptional: false,
       },
     },
     {
@@ -252,7 +241,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to store indexing data to",
-        isOptional: false,
       },
     },
     {
@@ -263,7 +251,6 @@ const completionSpec: Fig.Spec = {
         name: "path",
         description:
           "The specified path as the output path in the produced index data",
-        isOptional: false,
       },
     },
     {
@@ -272,7 +259,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "directory",
         description: "The directory to add to the import search path",
-        isOptional: false,
       },
     },
     {
@@ -281,7 +267,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         description: "The number of commands to execute in parallel",
-        isOptional: false,
       },
     },
     {
@@ -290,7 +275,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "runtime",
         description: "The libc runtime library to use",
-        isOptional: false,
       },
     },
     {
@@ -299,7 +283,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "code",
         description: "The locale code",
-        isOptional: false,
       },
     },
     {
@@ -308,7 +291,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to localized diagnostic messages directory",
-        isOptional: false,
       },
     },
     {
@@ -317,7 +299,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "directory",
         description: "The directory to add to the library link search path",
-        isOptional: false,
       },
     },
     {
@@ -326,7 +307,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "Specifies a library which should be linked against",
-        isOptional: false,
       },
     },
     {
@@ -335,7 +315,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "name",
         description: "The ABI name to use for the contents of this module",
-        isOptional: false,
       },
     },
     {
@@ -344,7 +323,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "Specifies the Clang module cache path",
-        isOptional: false,
       },
     },
     {
@@ -353,7 +331,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "name",
         description: "Library to link against when using this module",
-        isOptional: false,
       },
     },
     {
@@ -362,7 +339,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "name",
         description: "Name of the module to build",
-        isOptional: false,
       },
     },
     {
@@ -383,7 +359,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         description: "The number of threads",
-        isOptional: false,
       },
     },
     {
@@ -436,7 +411,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "regex",
         description: "Regex to match missed transformations",
-        isOptional: false,
       },
     },
     {
@@ -446,7 +420,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "regex",
         description: "Regex to match performed transformations",
-        isOptional: false,
       },
     },
     {
@@ -456,7 +429,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "version",
         description: "Swift runtime version, or 'none'",
-        isOptional: false,
       },
     },
     {
@@ -467,7 +439,6 @@ const completionSpec: Fig.Spec = {
         name: "regex",
         description:
           "Regex to specify passes to be included in the optimization record",
-        isOptional: false,
       },
     },
     {
@@ -476,7 +447,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "filename",
         description: "The file name of any generated optimization record",
-        isOptional: false,
       },
     },
     {
@@ -485,7 +455,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "format",
         description: "The format",
-        isOptional: false,
+
         default: "YAML",
       },
     },
@@ -499,7 +469,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "sdk",
         description: "The SDK to compile against",
-        isOptional: false,
       },
     },
     {
@@ -508,7 +477,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to write the file to",
-        isOptional: false,
       },
     },
     {
@@ -529,7 +497,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         description: "Mode for staging isa/super signing",
-        isOptional: false,
+
         suggestions: ["LegacyAndStrip", "NewAndStrip", "NewAndAuth"],
       },
     },
@@ -539,7 +507,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         description: "Mode for staging pointer authentication",
-        isOptional: false,
+
         suggestions: ["LegacyAndStrip", "NewAndStrip", "NewAndAuth"],
       },
     },
@@ -550,7 +518,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "version",
         description: "Swift language version number",
-        isOptional: false,
       },
     },
     {
@@ -559,7 +526,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "cpu",
         description: "The CPU variant",
-        isOptional: false,
       },
     },
     {
@@ -569,7 +535,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "variant",
         description: "The target variant",
-        isOptional: false,
       },
     },
     {
@@ -579,7 +544,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "triple",
         description: "The target triple",
-        isOptional: false,
       },
     },
     {
@@ -588,7 +552,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "linker",
         description: "The linker to be used",
-        isOptional: false,
       },
     },
     {
@@ -597,7 +560,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "module",
         description: "The module version",
-        isOptional: false,
       },
     },
     {
@@ -606,7 +568,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "directory",
         description: "The directory to the VFS overlay file",
-        isOptional: false,
       },
     },
     {
@@ -642,7 +603,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "directory",
         description: "Resolve file paths relative to the specified directory",
-        isOptional: false,
       },
     },
     {
@@ -651,7 +611,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "arg",
         description: "Argument to pass to the C/C++/Objective-C compiler",
-        isOptional: false,
       },
     },
     {
@@ -660,7 +619,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "arg",
         description: "Option to be passed to the linker",
-        isOptional: false,
       },
     },
   ],
@@ -685,7 +643,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "target",
             description: "The name of the target to build",
-            isOptional: false,
           },
         },
         {
@@ -694,7 +651,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "product",
             description: "The name of the product to build",
-            isOptional: false,
           },
         },
       ],
@@ -751,7 +707,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "num-workers",
             description: "Number of tests to execute in parallel",
-            isOptional: false,
           },
         },
         {
@@ -773,7 +728,6 @@ const completionSpec: Fig.Spec = {
             name: "regex",
             description:
               "<test-target>.<test-case> or <test-target>.<test-case>/<test>",
-            isOptional: false,
           },
         },
         {
@@ -783,7 +737,6 @@ const completionSpec: Fig.Spec = {
             name: "regex",
             description:
               "<test-target>.<test-case> or <test-target>.<test-case>/<test>",
-            isOptional: false,
           },
         },
         {
@@ -792,7 +745,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "Path where the xUnit xml file should be generated",
-            isOptional: false,
           },
         },
         {
@@ -801,7 +753,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "product",
             description: "The product to be tested",
-            isOptional: false,
           },
         },
       ],
@@ -819,7 +770,6 @@ const completionSpec: Fig.Spec = {
             name: "flag",
             description:
               "The flag to pass through to all C compiler invocations",
-            isOptional: false,
           },
         },
         {
@@ -829,7 +779,6 @@ const completionSpec: Fig.Spec = {
             name: "flag",
             description:
               "The flag to pass through to all Swift compiler invocations",
-            isOptional: false,
           },
         },
         {
@@ -838,7 +787,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "flag",
             description: "The flag to pass through to all linker invocations",
-            isOptional: false,
           },
         },
         {
@@ -848,7 +796,6 @@ const completionSpec: Fig.Spec = {
             name: "configuration",
             description: "The build configuration",
             suggestions: ["debug", "release"],
-            isOptional: false,
           },
         },
         {
@@ -857,7 +804,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "The path to a specific build/cache directory",
-            isOptional: false,
           },
         },
         {
@@ -866,7 +812,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "The path to a specific shared cache directory",
-            isOptional: false,
           },
         },
         {
@@ -889,7 +834,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "chdir",
             description: "",
-            isOptional: false,
           },
         },
         {
@@ -898,7 +842,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "The working directory path to change to",
-            isOptional: false,
           },
         },
         {
@@ -908,7 +851,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "multiroot-data-file",
             description: "",
-            isOptional: false,
           },
         },
         {
@@ -938,7 +880,7 @@ const completionSpec: Fig.Spec = {
             name: "mode",
             description: "The caching mode",
             suggestions: ["shared", "local", "none"],
-            isOptional: false,
+
             default: "shared",
           },
         },
@@ -950,7 +892,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             description:
               "The path to the compilation destination describing JSON file",
-            isOptional: false,
           },
         },
         {
@@ -959,7 +900,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "triple",
             description: "The compilation destination's target triple",
-            isOptional: false,
           },
         },
         {
@@ -968,7 +908,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "Path to the compilation destination's SDK",
-            isOptional: false,
           },
         },
         {
@@ -977,7 +916,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "Path to the compilation destination's toolchain",
-            isOptional: false,
           },
         },
         {
@@ -1002,7 +940,6 @@ const completionSpec: Fig.Spec = {
             name: "type",
             description: "What to sanitize",
             suggestions: ["address", "thread", "undefined", "scudo"],
-            isOptional: false,
           },
         },
         {
@@ -1058,7 +995,6 @@ const completionSpec: Fig.Spec = {
             name: "jobs",
             description:
               "The number of jobs to spawn in parallel during the build process",
-            isOptional: false,
           },
         },
         {
@@ -1096,7 +1032,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "build system",
             description: "The build system to use",
-            isOptional: false,
+
             suggestions: ["native", "xcode"],
             default: "native",
           },
@@ -1109,7 +1045,7 @@ const completionSpec: Fig.Spec = {
             name: "bool",
             description:
               "Whether to load .netrc files for authenticating with remote servers when downloading binary artifacts or communicating with a registry",
-            isOptional: false,
+
             default: "true",
           },
         },
@@ -1121,7 +1057,6 @@ const completionSpec: Fig.Spec = {
             name: "path",
             description:
               "The path to the .netrc file used when `netrc` is `true`",
-            isOptional: false,
           },
         },
       ],
@@ -1164,7 +1099,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "type",
                 description: "The output type",
-                isOptional: false,
+
                 suggestions: ["json", "text"],
                 default: "text",
               },
@@ -1182,7 +1117,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "type",
                 description: "The package type",
-                isOptional: false,
+
                 suggestions: [
                   "empty",
                   "library",
@@ -1199,7 +1134,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "name",
                 description: "The package name",
-                isOptional: false,
               },
             },
           ],
@@ -1212,7 +1146,6 @@ const completionSpec: Fig.Spec = {
             name: "treeish",
             description:
               "The baseline treeish to compare to (e.g. a commit hash, branch name, tag, etc.)",
-            isOptional: false,
           },
           options: [
             ...commonOptions,
@@ -1255,7 +1188,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "revision",
                 description: "The revision to edit",
-                isOptional: false,
               },
             },
             {
@@ -1264,7 +1196,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "branch",
                 description: "The branch to create",
-                isOptional: false,
               },
             },
             {
@@ -1273,7 +1204,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Create or use the checkout at this path",
-                isOptional: false,
               },
             },
           ],
@@ -1284,7 +1214,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "package-name",
             description: "The name of the package to unedit",
-            isOptional: false,
           },
           options: [
             ...commonOptions,
@@ -1311,7 +1240,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "package-url",
                     description: "The package dependency url",
-                    isOptional: false,
                   },
                 },
                 {
@@ -1320,7 +1248,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "original-url",
                     description: "The original url",
-                    isOptional: false,
                   },
                 },
                 {
@@ -1329,7 +1256,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "original-url",
                     description: "The mirror url",
-                    isOptional: false,
                   },
                 },
               ],
@@ -1345,7 +1271,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "package-url",
                     description: "The package dependency url",
-                    isOptional: false,
                   },
                 },
                 {
@@ -1354,7 +1279,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "original-url",
                     description: "The original url",
-                    isOptional: false,
                   },
                 },
                 {
@@ -1363,7 +1287,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "original-url",
                     description: "The mirror url",
-                    isOptional: false,
                   },
                 },
               ],
@@ -1380,7 +1303,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "package-url",
                     description: "The package dependency url",
-                    isOptional: false,
                   },
                 },
                 {
@@ -1389,7 +1311,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "original-url",
                     description: "The original url",
-                    isOptional: false,
                   },
                 },
               ],
@@ -1402,7 +1323,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "package-name",
             description: "The name of the package to resolve",
-            isOptional: false,
           },
           options: [
             {
@@ -1424,7 +1344,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "branch",
                 description: "The branch to resolve at",
-                isOptional: false,
               },
             },
             {
@@ -1433,7 +1352,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "revision",
                 description: "The revision to resolve at",
-                isOptional: false,
               },
             },
           ],
@@ -1449,7 +1367,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "format",
                 description: "The format type",
-                isOptional: false,
+
                 suggestions: ["text", "dot", "json", "flatlist"],
                 default: "text",
               },
@@ -1467,7 +1385,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "format",
                 description: "The format type",
-                isOptional: false,
+
                 suggestions: ["text", "dot", "json", "flatlist"],
                 default: "text",
               },
@@ -1483,7 +1401,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "tools version",
                 description: "The tools version",
-                isOptional: false,
               },
             },
           ],
@@ -1500,7 +1417,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path to xcconfig file",
-                isOptional: false,
               },
             },
             {
@@ -1509,7 +1425,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path where the Xcode project should be generated",
-                isOptional: false,
               },
             },
             {
@@ -1546,7 +1461,6 @@ const completionSpec: Fig.Spec = {
                 name: "path",
                 description:
                   "The absolute or relative path for the generated source archive",
-                isOptional: false,
               },
             },
           ],
@@ -1557,7 +1471,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "mode",
             description: "The completion tool mode",
-            isOptional: false,
+
             suggestions: [
               "generate-bash-script",
               "generate-zsh-script",
