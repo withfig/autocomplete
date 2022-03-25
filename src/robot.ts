@@ -52,9 +52,9 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "robot script",
     isScript: true,
+    isOptional: false,
     generators: filepaths({
       extensions: ["robot"],
-
       editFileSuggestions: { priority: 76, icon: "fig://icon?type=txt" },
     }),
   },
@@ -94,6 +94,9 @@ const completionSpec: Fig.Spec = {
       name: ["-M", "--metadata"],
       insertValue: "-M {cursor}:",
       description: "Set metadata of the top level suite",
+      args: {
+        name: "name:value",
+      },
     },
     {
       name: ["-G", "--settag"],
@@ -110,9 +113,20 @@ const completionSpec: Fig.Spec = {
         name: "name",
       },
     },
-    // TODO: -t --test
-    // TODO: --task
-    // TODO: -s --suite
+    {
+      name: "--task",
+      description: "Alias to --test. Especially applicable with --rpa",
+      args: {
+        name: "name",
+      },
+    },
+    {
+      name: ["-s", "--suite"],
+      description: "Select suites by name",
+      args: {
+        name: "name",
+      },
+    },
     {
       name: ["-i", "--include"],
       description: "Select test cases by tag",
@@ -189,6 +203,159 @@ const completionSpec: Fig.Spec = {
         }),
       },
     },
+
+    {
+      name: ["-d", "--outputdir"],
+      description:
+        "Where to create output files. The default is the directory where tests are run from",
+      args: {
+        name: "directory",
+        template: "folders",
+      },
+    },
+    {
+      name: ["-o", "--output"],
+      description:
+        "XML output file relative to --outputdir unless given as an absolute path. Default: output.xml",
+      args: {
+        name: "file",
+        suggestions: ["output.xml"],
+      },
+    },
+    {
+      name: ["-l", "--log"],
+      description:
+        "HTML log file. Can be disabled by giving a special value `NONE`. Default: log.html",
+      args: {
+        name: "file",
+        suggestions: ["log.html", "NONE"],
+      },
+    },
+    {
+      name: ["-r", "--report"],
+      description:
+        "HTML report file. Can be disabled with `NONE` similarly as --log. Default: report.html",
+      args: {
+        name: "file",
+        suggestions: ["report.html", "NONE"],
+      },
+    },
+    {
+      name: ["-x", "--xunit"],
+      description:
+        "XUnit compatible result file. Not created unless this option is specified",
+      args: {
+        name: "file",
+        suggestions: ["xunit.xml"],
+      },
+    },
+    {
+      name: ["-b", "--debugfile"],
+      description:
+        "Debug file written during execution. Not created unless this option is specified",
+      args: {
+        name: "file",
+      },
+    },
+    {
+      name: ["-T", "--timestampoutputs"],
+      description:
+        "Adds timestamp in a format `YYYYMMDD-hhmmss` to all generated output files between their basename and extension",
+    },
+    {
+      name: "--splitlog",
+      description:
+        "Split the log file into smaller pieces that open in browsers transparently",
+    },
+    {
+      name: "--logtitle",
+      description:
+        "Title for the generated log file. The default title is `<SuiteName> Log`",
+      args: {
+        name: "title",
+      },
+    },
+    {
+      name: "--reporttitle",
+      description:
+        "Title for the generated report file. The default title is `<SuiteName> Report`",
+      args: {
+        name: "title",
+      },
+    },
+    {
+      name: "--reportbackground",
+      description:
+        "Background colors to use in the report file. Given in format `passed:failed:skipped` where the `:skipped` part can be omitted",
+      args: {
+        name: "colors",
+      },
+    },
+    {
+      name: "--maxerrorlines",
+      description:
+        "Maximum number of error message lines to show in report when tests fail. Default is 40, minimum is 10 and `NONE` can be used to show the full message",
+      args: {
+        name: "lines",
+        suggestions: [
+          {
+            name: "40",
+            displayName: "40 (default)",
+            description: "Default number of lines",
+          },
+          {
+            name: "10",
+            displayName: "10 (minimum)",
+            description: "Minimum number of lines",
+          },
+          {
+            name: "NONE",
+            description: "Unlimited number of lines. Shows the full message",
+          },
+        ],
+      },
+    },
+    {
+      name: "--maxassignlength",
+      description:
+        "Maximum number of characters to show in log when variables are assigned. Zero or negative values can be used to avoid showing assigned values at all. Default is 200",
+      args: {
+        name: "characters",
+        suggestions: [
+          {
+            name: "200",
+            displayName: "200 (default)",
+            description: "Default number of characters",
+          },
+          {
+            name: "0",
+            description: "No values at all",
+          },
+        ],
+      },
+    },
+    {
+      name: ["-L", "--loglevel"],
+      description: "Threshold level for logging",
+      args: {
+        name: "level",
+        suggestions: [
+          "TRACE",
+          "DEBUG",
+          {
+            name: "INFO",
+            displayName: "INFO (default)",
+            priority: 76,
+          },
+          "WARN",
+          {
+            name: "NONE",
+            displayName: "NONE (no logging)",
+          },
+        ],
+      },
+    },
+
     {
       name: "--version",
       description: "Print version information",
