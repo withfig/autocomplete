@@ -11,7 +11,7 @@ interface DrushOption {
   shortcut: string;
   accept_value: boolean;
   is_value_required: boolean;
-  is_multiple: boolean; // not supported by fig
+  is_multiple: boolean; // isRepeatable in fig
   description: string;
   default: null | boolean; // not supported by fig
 }
@@ -79,6 +79,7 @@ const completionSpec: Fig.Spec = {
               description: option.description,
               isRequired: option.is_value_required,
               args: option.accept_value ? {} : undefined,
+              isRepeatable: option.is_multiple,
             };
           }),
         });
