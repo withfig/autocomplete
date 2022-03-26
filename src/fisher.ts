@@ -113,7 +113,7 @@ const completionSpec: Fig.Spec = {
       description: "Update plugins",
       args: {
         name: "installed plugins",
-        description: "The plugin you want to update or update all",
+        description: "The plugin you want to update",
         isVariadic: true,
         generators: installedPlugins,
       },
