@@ -75,19 +75,16 @@ const installedPlugins: Fig.Generator = {
     if (!output) {
       return [];
     }
-    return (
-      output
-        //.replace("]697;DoneSourcing", "")
-        .substring(19)
-        .split("\n")
-        .map((p: string) => {
-          return {
-            name: p.trim(),
-            icon: "fig://icon?type=package",
-            description: "Plugin",
-          };
-        })
-    );
+    return output
+      .substring(19)
+      .split("\n")
+      .map((p: string) => {
+        return {
+          name: p.trim(),
+          icon: "fig://icon?type=package",
+          description: "Plugin",
+        };
+      });
   },
 };
 
