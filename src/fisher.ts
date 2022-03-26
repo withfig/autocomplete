@@ -121,14 +121,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List plugins",
-      args: [
-        {},
-        {
-          name: "RegEx",
-          description: "Search in list with regular expression",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "RegEx",
+        description: "Search in list with regular expression",
+        isOptional: true,
+      },
     },
   ],
   options: [
