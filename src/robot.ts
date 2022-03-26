@@ -53,6 +53,7 @@ const completionSpec: Fig.Spec = {
     name: "robot script",
     isScript: true,
     isOptional: false,
+    isVariadic: true,
     generators: filepaths({
       extensions: ["robot"],
       editFileSuggestions: { priority: 76, icon: "fig://icon?type=txt" },
@@ -86,7 +87,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-D", "--doc=..."],
+      name: ["-D", "--doc"],
       insertValue: "-D '{cursor}'",
       description: "Set a documentation of the top level suite",
     },
@@ -270,7 +271,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--logtitle",
       description:
-        "Title for the generated log file. The default title is `<SuiteName> Log`",
+        "Title for the generated log file. The default title is `<SuiteName> Log.`",
       args: {
         name: "title",
       },
@@ -301,6 +302,7 @@ const completionSpec: Fig.Spec = {
           {
             name: "40",
             displayName: "40 (default)",
+            priority: 76,
             description: "Default number of lines",
           },
           {
@@ -325,6 +327,7 @@ const completionSpec: Fig.Spec = {
           {
             name: "200",
             displayName: "200 (default)",
+            priority: 76,
             description: "Default number of characters",
           },
           {
@@ -340,22 +343,376 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "level",
         suggestions: [
-          "TRACE",
-          "DEBUG",
+          { name: "TRACE", type: "option" },
+          { name: "DEBUG", type: "option" },
           {
             name: "INFO",
             displayName: "INFO (default)",
             priority: 76,
+            type: "option",
           },
-          "WARN",
+          { name: "WARN", type: "option" },
           {
             name: "NONE",
             displayName: "NONE (no logging)",
+            type: "option",
           },
         ],
       },
     },
+    {
+      name: "--suitestatlevel",
+      description:
+        "How many levels to show in `Statistics by Suite` in log and report",
+      args: {
+        name: "level",
+      },
+    },
+    {
+      name: "--tagstatinclude",
+      description:
+        "Include only matching tags in `Statistics by Tag` in log and report",
+      args: {
+        name: "tag",
+        generators: tagsGenerator,
+      },
+    },
+    {
+      name: "--tagstatexclude",
+      description: "Exclude matching tags from `Statistics by Tag`",
+      args: {
+        name: "tag",
+        generators: tagsGenerator,
+      },
+    },
+    {
+      name: "--tagstatcombine",
+      description:
+        "Create combined statistics based on tags. These statistics are added into `Statistics by Tag`",
+      args: {
+        name: "tags:name",
+        generators: tagsGenerator,
+      },
+    },
+    {
+      name: "--tagdoc",
+      description: "Add documentation to tags matching the given pattern",
+      args: {
+        name: "pattern:doc",
+        generators: tagsGenerator,
+      },
+    },
+    {
+      name: "--tagstatlink",
+      description:
+        "Add external links into `Statistics by Tag`. Pattern can use `*`, `?` and `[]` as wildcards",
+      args: {
+        name: "pattern:link:title",
+        generators: tagsGenerator,
+      },
+    },
+    {
+      name: "--expandkeywords",
+      description:
+        "Matching keywords will be automatically expanded in the log file",
+      args: {
+        name: "pattern",
+        suggestions: [
+          {
+            name: "name:&lt;pattern&gt;",
+            insertValue: "name:{cursor}",
+            type: "option",
+          },
+          {
+            name: "tag:&lt;pattern&gt;",
+            insertValue: "tag:{cursor}",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: "--removekeywords",
+      description: "Remove keyword data from the generated log file",
+      args: {
+        name: "pattern",
+        suggestions: [
+          {
+            name: "all",
+            description: "Remove data from all keywords",
+            type: "option",
+          },
+          {
+            name: "passed",
+            description:
+              "Remove data only from keywords in passed test cases and suites",
+            type: "option",
+          },
+          {
+            name: "for",
+            description: "Remove passed iterations from for loops",
+            type: "option",
+          },
+          {
+            name: "while",
+            description: "Remove passed iterations from while loops",
+            type: "option",
+          },
+          {
+            name: "wuks",
+            description:
+              "Remove all but the last failing keyword inside `BuiltIn.Wait Until Keyword Succeeds`",
+            type: "option",
+          },
+          {
+            name: "name:&lt;pattern&gt;",
+            insertValue: "name:{cursor}",
+            type: "option",
+          },
+          {
+            name: "tag:&lt;pattern&gt;",
+            insertValue: "tag:{cursor}",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: "--flattenkeywords",
+      description: "Flattens matching keywords in the generated log file",
+      args: {
+        name: "pattern",
 
+        suggestions: [
+          {
+            name: "for",
+            description: "Flatten FOR loops fully",
+            type: "option",
+          },
+          {
+            name: "while",
+            description: "Flatten WHILE loops fully",
+            type: "option",
+          },
+          {
+            name: "iteration",
+            description: "Flatten FOR/WHILE loop iterations",
+            type: "option",
+          },
+          {
+            name: "name:&lt;pattern&gt;",
+            insertValue: "name:{cursor}",
+            type: "option",
+          },
+          {
+            name: "tag:&lt;pattern&gt;",
+            insertValue: "tag:{cursor}",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: "--listener",
+      description:
+        "A class for monitoring test execution. Gets notifications e.g. when tests start and end",
+      args: {
+        name: "class",
+      },
+    },
+    {
+      name: "--nostatusrc",
+      description:
+        "Sets the return code to zero regardless of failures in test cases. Error codes are returned normally",
+    },
+    {
+      name: "--dryrun",
+      description:
+        "Sets the return code to zero regardless of failures in test cases. Error codes are returned normally",
+    },
+    {
+      name: ["-X", "--exitonfailure"],
+      description: "Stops test execution if any test fails",
+    },
+    {
+      name: "--exitonerror",
+      description:
+        "Stops test execution if any error occurs when parsing test data, importing libraries, and so on",
+    },
+    {
+      name: "--skipteardownonexit",
+      description:
+        "Causes teardowns to be skipped if test execution is stopped prematurely",
+    },
+    {
+      name: "--randomize",
+      description: "Randomizes the test execution order",
+      args: {
+        name: "type",
+        suggestions: [
+          {
+            name: "all",
+            description: "Randomizes both suites and tests",
+            type: "option",
+          },
+          { name: "suites", description: "Randomizes suites", type: "option" },
+          { name: "tests", description: "Randomizes tests", type: "option" },
+          {
+            name: "none",
+            displayName: "none (default)",
+            priority: 76,
+            description: "No randomization (default)",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: "--prerunmodifier",
+      description:
+        "Class to programmatically modify the suite structure before execution",
+      args: {
+        name: "class",
+      },
+    },
+    {
+      name: "--prerebotmodifier",
+      description:
+        "Class to programmatically modify the result model before creating reports and logs",
+      args: {
+        name: "class",
+      },
+    },
+
+    {
+      name: "--console",
+      description: "How to report execution on the console",
+      args: {
+        name: "type",
+        suggestions: [
+          {
+            name: "verbose",
+            displayName: "verbose (default)",
+            priority: 76,
+            description: "Report every suite and test (default)",
+            type: "option",
+          },
+          {
+            name: "dotted",
+            description:
+              "Only show `.` for passed test, `s` for skipped tests, and `F` for failed tests",
+            type: "option",
+          },
+          {
+            name: "quiet",
+            description: "No output except for errors and warnings",
+            type: "option",
+          },
+          {
+            name: "none",
+            description: "No output whatsoever",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: ["-.", "--dotted"],
+      description: "Shortcut for `--console dotted`",
+    },
+    {
+      name: "--quiet",
+      description: "Shortcut for `--console quiet`",
+    },
+    {
+      name: ["-W", "--consolewidth"],
+      description: "Width of the console output. Default is 78",
+      args: {
+        name: "chars",
+        suggestions: [
+          {
+            name: "78",
+            displayName: "78 (default)",
+            priority: 76,
+          },
+        ],
+      },
+    },
+    {
+      name: ["-C", "--consolecolors"],
+      description: "Use colors on console output or not",
+      args: {
+        name: "option",
+        suggestions: [
+          {
+            name: "auto",
+            displayName: "auto (default)",
+            priority: 76,
+            description: "Use colors when output not redirected (default)",
+            type: "option",
+          },
+          {
+            name: "on",
+            description: "Always use colors",
+            type: "option",
+          },
+          {
+            name: "ansi",
+            description: "Like `on` but use ANSI colors also on Windows",
+            type: "option",
+          },
+          {
+            name: "off",
+            description: "Disable colors altogether",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: ["-K", "--consolemarkers"],
+      description:
+        "Show markers on the console when top level keywords in a test case end",
+      args: {
+        name: "option",
+        suggestions: [
+          {
+            name: "auto",
+            type: "option",
+          },
+          {
+            name: "on",
+            type: "option",
+          },
+
+          {
+            name: "off",
+            type: "option",
+          },
+        ],
+      },
+    },
+    {
+      name: ["-P", "--pythonpath"],
+      description:
+        "Additional locations (directories, ZIPs) where to search libraries and other extensions when they are imported",
+      args: {
+        name: "path",
+        generators: filepaths({
+          extensions: ["zip"],
+          suggestFolders: "always",
+        }),
+      },
+    },
+    {
+      name: ["-A", "--argumentfile"],
+      description:
+        "Text file to read more arguments from. Use special path `STDIN` to read contents from the standard input stream",
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+    },
     {
       name: "--version",
       description: "Print version information",
