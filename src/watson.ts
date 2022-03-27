@@ -174,6 +174,73 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "SECTION.OPTION",
+          suggestions: [
+            {
+              name: "backend.url",
+              description:
+                "This is the API root url of your repository, e.g. https://my.server.com/api/",
+            },
+            {
+              name: "backend.token",
+              description:
+                "To authenticate watson as an API client, once generated, you will need to set up your API token in your configuration, e.g. 7e329263e329",
+            },
+            {
+              name: "options.confirm_new_project",
+              description:
+                "If true, the user will be asked for confirmation before creating a new project. The option can be overriden in the command line with --confirm-new-project flag. Default: false",
+            },
+            {
+              name: "options.confirm_new_tag",
+              description:
+                "If true, the user will be asked for confirmation before creating a new tag. The option can be overriden in the command line with --confirm-new-tag flag. Default: false",
+            },
+            {
+              name: "options.date_format",
+              description:
+                "Globally configure how dates should be formatted. All python’s strftime directives are supported. Default: %Y.%m.%d",
+            },
+            {
+              name: "options.log_current",
+              description:
+                "If true, the output of the log command will include the currently running frame (if any) by default. The option can be overridden on the command line with the -c/-C resp. --current/--no-current flags. Default: false",
+            },
+            {
+              name: "options.pager",
+              description:
+                "If true, the output of the log and report command will be run through a pager by default. The option can be overridden on the command line with the -g/-G or --pager/--no-pager flags. If other commands output in colour, but log or report do not, try disabling the pager. Default: true",
+            },
+            {
+              name: "options.report_current",
+              description:
+                "If true, the output of the report command will include the currently running frame (if any) by default. The option can be overridden on the command line with the -c/-C resp. --current/--no-current flags. Default: false",
+            },
+            {
+              name: "options.reverse_log",
+              description:
+                "If true, the output of the log command will reverse the order of the days to display the latest day’s entries on top and the oldest day’s entries at the bottom. The option can be overridden on the command line with the -r/-R resp. --reverse/--no-reverse flags. Default: true",
+            },
+            {
+              name: "options.stop_on_start",
+              description:
+                "If true, starting a new project will stop running projects. Default false",
+            },
+            {
+              name: "options.stop_on_restart",
+              description:
+                "Similar to the options.stop_on_start option, but for the restart command. Default: false",
+            },
+            {
+              name: "options.time_format",
+              description:
+                "Globally configure how time should be formatted. All python’s strftime directives are supported. Default: %H.%M:%S%z",
+            },
+            {
+              name: "options.week_start",
+              description:
+                "Globally configure which day corresponds to the start of a week. Allowable values are monday, tuesday, wednesday, thursday, friday, saturday, and sunday",
+            },
+          ],
         },
         {
           name: "VALUE",
