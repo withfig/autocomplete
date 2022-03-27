@@ -52,7 +52,6 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "robot script",
     isScript: true,
-    isOptional: false,
     isVariadic: true,
     generators: filepaths({
       extensions: ["robot"],
