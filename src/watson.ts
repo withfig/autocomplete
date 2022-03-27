@@ -25,7 +25,7 @@ const listTags: Fig.Generator = {
 
 const listFrames: Fig.Generator = {
   script: function () {
-    return `watson log --json`;
+    return `watson log --json --reverse`;
   },
   postProcess: (output) => {
     return JSON.parse(output).map((frame) => ({
