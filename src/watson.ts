@@ -142,7 +142,7 @@ const completionSpec: Fig.Spec = {
           description: "View output through a pager",
         },
         {
-          name: ["---no-pager", "-G"],
+          name: ["--no-pager", "-G"],
           description: "Don't view output through a pager",
         },
       ],
@@ -343,7 +343,7 @@ const completionSpec: Fig.Spec = {
           description: "View output through a pager",
         },
         {
-          name: ["---no-pager", "-G"],
+          name: ["--no-pager", "-G"],
           description: "Don't view output through a pager",
         },
       ],
@@ -531,7 +531,7 @@ const completionSpec: Fig.Spec = {
           description: "View output through a pager",
         },
         {
-          name: ["---no-pager", "-G"],
+          name: ["--no-pager", "-G"],
           description: "Don't view output through a pager",
         },
       ],
