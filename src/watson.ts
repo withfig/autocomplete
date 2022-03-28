@@ -72,9 +72,14 @@ const completionSpec: Fig.Spec = {
         "Display a report of the time spent on each project aggregated by day",
       options: [
         {
-          name: ["--current", "-c", "--no-current", "-C"],
-          exclusiveOn: ["--current", "-c", "--no-current", "-C"],
-          description: "(Don't) Include currently running frame in report",
+          name: ["--current", "-c"],
+          description: "Include currently running frame in report",
+          exclusiveOn: ["--no-current", "-C"],
+        },
+        {
+          name: ["--no-current", "-C"],
+          description: "Don't include currently running frame in report",
+          exclusiveOn: ["--current", "-c"],
         },
         {
           name: ["--from", "-f"],
@@ -115,18 +120,22 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--json", "-j"],
           description: "Format output in JSON instead of plain text",
+          exclusiveOn: ["--csv", "-s"],
         },
         {
           name: ["--csv", "-s"],
           description: "Format output in CSV instead of plain text",
+          exclusiveOn: ["--json", "-j"],
         },
         {
           name: ["--pager", "-g"],
           description: "View output through a pager",
+          exclusiveOn: ["--no-pager", "-G"],
         },
         {
           name: ["--no-pager", "-G"],
           description: "Don't view output through a pager",
+          exclusiveOn: ["--pager", "-g"],
         },
       ],
     },
@@ -255,17 +264,24 @@ const completionSpec: Fig.Spec = {
       description: "Display each recorded session during the given timespan",
       options: [
         {
-          name: ["--current", "-c", "--no-current", "-C"],
-          exclusiveOn: ["--current", "-c", "--no-current", "-C"],
-          description: "(Don't) Include currently running frame in report",
+          name: ["--current", "-c"],
+          description: "Include currently running frame in report",
+          exclusiveOn: ["--no-current", "-C"],
+        },
+        {
+          name: ["--no-current", "-C"],
+          description: "Don't include currently running frame in report",
+          exclusiveOn: ["--current", "-c"],
         },
         {
           name: ["--reverse", "-r"],
           description: "Reverse the order of the days in output",
+          exclusiveOn: ["--no-reverse", "-R"],
         },
         {
           name: ["--no-reverse", "-R"],
           description: "Don't Reverse the order of the days in output",
+          exclusiveOn: ["--reverse", "-r"],
         },
         {
           name: ["--from", "-f"],
@@ -350,21 +366,24 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--json", "-j"],
           description: "Format output in JSON instead of plain text",
+          exclusiveOn: ["--csv", "-s"],
         },
         {
           name: ["--csv", "-s"],
           description: "Format output in CSV instead of plain text",
+          exclusiveOn: ["--json", "-j"],
         },
         {
           name: ["--pager", "-g"],
           description: "View output through a pager",
+          exclusiveOn: ["--no-pager", "-G"],
         },
         {
           name: ["--no-pager", "-G"],
           description: "Don't view output through a pager",
+          exclusiveOn: ["--pager", "-g"],
         },
       ],
-      // STOPPED AT MERGE - https://tailordev.github.io/Watson/user-guide/commands/
     },
     {
       name: "merge",
@@ -432,9 +451,14 @@ const completionSpec: Fig.Spec = {
       description: "Display a report of the time spent on each project",
       options: [
         {
-          name: ["--current", "-c", "--no-current", "-C"],
-          exclusiveOn: ["--current", "-c", "--no-current", "-C"],
-          description: "(Don't) Include currently running frame in report",
+          name: ["--current", "-c"],
+          description: "Include currently running frame in report",
+          exclusiveOn: ["--no-current", "-C"],
+        },
+        {
+          name: ["--no-current", "-C"],
+          description: "Don't include currently running frame in report",
+          exclusiveOn: ["--current", "-c"],
         },
         {
           name: ["--from", "-f"],
@@ -511,17 +535,21 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--json", "-j"],
           description: "Format output in JSON instead of plain text",
+          exclusiveOn: ["--csv", "-s"],
         },
         {
           name: ["--csv", "-s"],
           description: "Format output in CSV instead of plain text",
+          exclusiveOn: ["--json", "-j"],
         },
         {
           name: ["--pager", "-g"],
           description: "View output through a pager",
+          exclusiveOn: ["--no-pager", "-G"],
         },
         {
           name: ["--no-pager", "-G"],
+          exclusiveOn: ["--pager", "-g"],
           description: "Don't view output through a pager",
         },
       ],
@@ -545,9 +573,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--stop", "-s"],
           description: "Stop an already running project",
+          exclusiveOn: ["--no-stop", "-S"],
         },
         {
           name: ["--no-stop", "-S"],
+          exclusiveOn: ["--stop", "-s"],
           description: "Don't stop an already running project",
         },
       ],
@@ -572,11 +602,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--gap", "-g"],
+          exclusiveOn: ["--no-gap", "-G"],
           description:
             "Leave gap between end time of previous project and start time of the current",
         },
         {
           name: ["--no-gap", "-G"],
+          exclusiveOn: ["--gap", "-g"],
           description:
             "Don't leave gap between end time of previous project and start time of the current",
         },
@@ -643,12 +675,15 @@ const completionSpec: Fig.Spec = {
       description: "Show the version for watson",
     },
     {
-      name: ["--color", "--no-color"],
-      exclusiveOn: ["--color", "--no-color"],
-      description: "Color output, or no color output",
+      name: "--color",
+      description: "Color output",
+      exclusiveOn: ["--no-color"],
+    },
+    {
+      name: "--no-color",
+      description: "No color output",
+      exclusiveOn: ["--color"],
     },
   ],
-  // Only uncomment if watson takes an argument
-  // args: {}
 };
 export default completionSpec;
