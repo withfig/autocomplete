@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--current", "-c"],
           description: "Include currently running frame in report",
-          exclusiveOn: ["--no-current", "-C"],
+          exclusiveOn: ["-C"],
         },
         {
           name: ["--no-current", "-C"],
