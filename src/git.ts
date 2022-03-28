@@ -107,6 +107,9 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   // user aliases
   aliases: {
     script: "git --no-optional-locks config --get-regexp '^alias.'",
+    cache: {
+      strategy: "stale-while-revalidate",
+    },
     postProcess: (out) => {
       const suggestions = out.split("\n").map((aliasLine) => {
         const [name, ...parts] = aliasLine.slice("alias.".length).split(" ");

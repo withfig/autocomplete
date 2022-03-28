@@ -158,6 +158,9 @@ export const dependenciesGenerator: Fig.Generator = {
 
 /** Generator that lists package.json scripts (with the respect to the `fig` field) */
 export const npmScriptsGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
   postProcess: function (out, [npmClient]) {

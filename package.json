@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "2.161.0",
+  "version": "2.162.0",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "main": "./build/index",
@@ -67,7 +67,7 @@
     "@types/node": "^14.14.33",
     "@types/progress": "^2.0.3",
     "@withfig/autocomplete-tools": "^2.4.0",
-    "@withfig/autocomplete-types": "^1.10.0",
+    "@withfig/autocomplete-types": "^1.11.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
@@ -83,6 +83,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
+    "@fig/autocomplete-helpers": "^1.0.0",
     "@types/glob": "^7.2.0",
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
