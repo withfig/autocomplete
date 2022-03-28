@@ -120,22 +120,22 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--json", "-j"],
           description: "Format output in JSON instead of plain text",
-          exclusiveOn: ["--csv", "-s"],
+          exclusiveOn: ["--csv", "--pager", "--no-pager"],
         },
         {
           name: ["--csv", "-s"],
           description: "Format output in CSV instead of plain text",
-          exclusiveOn: ["--json", "-j"],
+          exclusiveOn: ["--json", "--pager", "--no-pager"],
         },
         {
           name: ["--pager", "-g"],
           description: "View output through a pager",
-          exclusiveOn: ["--no-pager", "-G"],
+          exclusiveOn: ["--csv", "--json", "--no-pager"],
         },
         {
           name: ["--no-pager", "-G"],
           description: "Don't view output through a pager",
-          exclusiveOn: ["--pager", "-g"],
+          exclusiveOn: ["--csv", "--pager", "--json"],
         },
       ],
     },
