@@ -1,8 +1,6 @@
 // https://tailordev.github.io/Watson/
 const listProjects: Fig.Generator = {
-  script: function () {
-    return `watson projects`;
-  },
+  script: `watson projects`,
   postProcess: (output) => {
     return output.split("\n").map((project) => ({
       name: project,
@@ -12,9 +10,7 @@ const listProjects: Fig.Generator = {
 };
 
 const listTags: Fig.Generator = {
-  script: function () {
-    return `watson tags`;
-  },
+  script: `watson tags`,
   postProcess: (output) => {
     return output.split("\n").map((tag) => ({
       name: tag,
@@ -24,9 +20,7 @@ const listTags: Fig.Generator = {
 };
 
 const listFrames: Fig.Generator = {
-  script: function () {
-    return `watson log --json --reverse`;
-  },
+  script: `watson log --json --reverse`,
   postProcess: (output) => {
     return JSON.parse(output).map((frame) => ({
       name: frame.id.substring(0, 7),
@@ -50,10 +44,6 @@ const completionSpec: Fig.Spec = {
         generators: [listProjects, listTags],
       },
       options: [
-        {
-          name: "--help",
-          description: "Show help for add command",
-        },
         {
           name: ["--from", "-f"],
           description: "Date and time of start of tracked activity",
@@ -82,16 +72,9 @@ const completionSpec: Fig.Spec = {
         "Display a report of the time spent on each project aggregated by day",
       options: [
         {
-          name: ["--current", "-c"],
-          description: "Include currently running frame in report",
-        },
-        {
-          name: ["--no-current", "-C"],
-          description: "Don't include currently running frame in report",
-        },
-        {
-          name: "--help",
-          description: "Show help for aggregate command",
+          name: ["--current", "-c", "--no-current", "-C"],
+          exclusiveOn: ["--current", "-c", "--no-current", "-C"],
+          description: "(Don't) Include currently running frame in report",
         },
         {
           name: ["--from", "-f"],
@@ -151,21 +134,11 @@ const completionSpec: Fig.Spec = {
       name: "cancel",
       description:
         "Cancel the last call to the start command. The time will not be recorded",
-      options: [
-        {
-          name: "--help",
-          description: "Show help for cancel command",
-        },
-      ],
     },
     {
       name: "config",
       description: "Get and set configuration options",
       options: [
-        {
-          name: "--help",
-          description: "Show help for config command",
-        },
         {
           name: ["--edit", "-e"],
           description: "Edit the configuration file with an editor",
@@ -257,10 +230,6 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "--help",
-          description: "Show help for edit command",
-        },
-        {
           name: ["--confirm-new-project", "-c"],
           description: "Confirm addition of new project",
         },
@@ -273,12 +242,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "frames",
       description: "Display the list of all frame IDs",
-      options: [
-        {
-          name: "--help",
-          description: "Show help for frames command",
-        },
-      ],
     },
     {
       name: "help",
@@ -286,28 +249,15 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "COMMAND",
       },
-      options: [
-        {
-          name: "--help",
-          description: "Show help for help command",
-        },
-      ],
     },
     {
       name: "log",
       description: "Display each recorded session during the given timespan",
       options: [
         {
-          name: "--help",
-          description: "Show help for log command",
-        },
-        {
-          name: ["--current", "-c"],
-          description: "Include currently running frame in report",
-        },
-        {
-          name: ["--no-current", "-C"],
-          description: "Don't include currently running frame in report",
+          name: ["--current", "-c", "--no-current", "-C"],
+          exclusiveOn: ["--current", "-c", "--no-current", "-C"],
+          description: "(Don't) Include currently running frame in report",
         },
         {
           name: ["--reverse", "-r"],
@@ -429,21 +379,11 @@ const completionSpec: Fig.Spec = {
           description:
             "If specified, then the merge will automatically be performed",
         },
-        {
-          name: "--help",
-          description: "Show help for merge command",
-        },
       ],
     },
     {
       name: "projects",
       description: "Display the list of all the existing projects",
-      options: [
-        {
-          name: "--help",
-          description: "Show help for projects command",
-        },
-      ],
     },
     {
       name: "remove",
@@ -454,10 +394,6 @@ const completionSpec: Fig.Spec = {
         generators: listFrames,
       },
       options: [
-        {
-          name: "--help",
-          description: "Show help for remove command",
-        },
         {
           name: ["-f", "--force"],
           description: "Don’t ask for confirmation",
@@ -490,28 +426,15 @@ const completionSpec: Fig.Spec = {
           name: "NEW_NAME",
         },
       ],
-      options: [
-        {
-          name: "--help",
-          description: "Show help for rename command",
-        },
-      ],
     },
     {
       name: "report",
       description: "Display a report of the time spent on each project",
       options: [
         {
-          name: "--help",
-          description: "Show help for rename command",
-        },
-        {
-          name: ["--current", "-c"],
-          description: "Include currently running frame in report",
-        },
-        {
-          name: ["--no-current", "-C"],
-          description: "Don't include currently running frame in report",
+          name: ["--current", "-c", "--no-current", "-C"],
+          exclusiveOn: ["--current", "-c", "--no-current", "-C"],
+          description: "(Don't) Include currently running frame in report",
         },
         {
           name: ["--from", "-f"],
@@ -612,10 +535,6 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "--help",
-          description: "Show help for restart",
-        },
-        {
           name: "--at",
           description:
             "Start frame at this time. Must be in (YYYY-MM-DDT)?HH:MM(:SS)? format",
@@ -643,10 +562,6 @@ const completionSpec: Fig.Spec = {
         generators: [listProjects, listTags],
       },
       options: [
-        {
-          name: "--help",
-          description: "Show help for start",
-        },
         {
           name: "--at",
           description:
@@ -681,10 +596,6 @@ const completionSpec: Fig.Spec = {
         "Display when the current project was started and the time spent since",
       options: [
         {
-          name: "--help",
-          description: "Show help for status",
-        },
-        {
           name: ["--project", "-p"],
           description: "Only output project",
         },
@@ -703,10 +614,6 @@ const completionSpec: Fig.Spec = {
       description: "Stop monitoring time for the current project",
       options: [
         {
-          name: "--help",
-          description: "Show help for status",
-        },
-        {
           name: "--at",
           description:
             "Stop frame at this time. Must be in (YYYY-MM-DDT)?HH:MM(:SS)? format",
@@ -719,40 +626,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "sync",
       description: "Get the frames from the server and push the new ones",
-      options: [
-        {
-          name: "--help",
-          description: "Show help for sync",
-        },
-      ],
     },
     {
       name: "tags",
       description: "Display the list of all the tags",
-      options: [
-        {
-          name: "--help",
-          description: "Show help for tags",
-        },
-      ],
     },
   ],
   options: [
     {
       name: "--help",
       description: "Show help for watson",
+      isPersistent: true,
     },
     {
       name: "--version",
       description: "Show the version for watson",
     },
     {
-      name: "--color",
-      description: "Color output",
-    },
-    {
-      name: "--no-color",
-      description: "No color output",
+      name: ["--color", "--no-color"],
+      exclusiveOn: ["--color", "--no-color"],
+      description: "Color output, or no color output",
     },
   ],
   // Only uncomment if watson takes an argument
