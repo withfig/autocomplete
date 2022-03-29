@@ -49,12 +49,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "Starts the current application and runs code",
+      args: {
+        name: "file",
+        generators: generatePreferredFilepaths(),
+        isOptional: true,
+      },
       options: [
         {
           name: "--config",
           description: "Loads the given configuration files",
           args: {
             name: "file",
+            template: "filepaths",
           },
         },
         {
@@ -72,6 +78,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "file|pattern",
             description: "The file|pattern to execute",
+            generators: generatePreferredFilepaths(),
           },
         },
         {
@@ -79,6 +86,7 @@ const completionSpec: Fig.Spec = {
           description: "Executes the given pattern/file",
           args: {
             name: "file|pattern",
+            generators: generatePreferredFilepaths(),
           },
         },
         {
@@ -167,6 +175,16 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+function generatePreferredFilepaths(): Fig.Generator {
+  return {
+    template: "filepaths",
+    filterTemplateSuggestions: (paths) =>
+      paths.map((path) =>
+        path.name.endsWith(".exs") ? { ...path, priority: 75 } : path
+      ),
+  };
+}
 
 function makeTaskSuggestions(out: string) {
   return out
