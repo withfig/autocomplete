@@ -16,16 +16,20 @@
 
 As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
+## ⚡️ Installation
+
+* **macOS**: 
+    * **Homebrew**: `brew install fig`
+    * **DMG**: Download from our website: [fig.io](https://fig.io/download)
+* **Windows/Linux**: 
+    * Join the [waitlist](https://withfig.typeform.com/linux)
+<br/>
 
 ![Fig Visual Autocomplete For Your Terminal Demo](https://fig.io/gifs/demo-with-header.gif)
 
 <br/>
 
-## ⚡️ Installation
 
-* **[Homebrew](https://brew.sh)**: `brew install fig`
-* **Manual**: Download the macOS app at [fig.io](https://fig.io/download)
-<br/>
 
 ## 👋 What are "completion specs"?
 
