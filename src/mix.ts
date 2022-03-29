@@ -83,34 +83,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "--preload-modules",
           description: "Preloads all modules defined in applications",
+          args: {},
         },
         {
           name: "--no-compile",
           description: "Does not compile even if files require compilation",
+          args: {},
         },
         {
           name: "--no-deps-check",
           description: "Does not check dependencies",
+          args: {},
         },
         {
           name: "--no-archives-check",
           description: "Does not check archives",
+          args: {},
         },
         {
           name: "--no-halt",
           description: "Does not halt the system after running the command",
+          args: {},
         },
         {
           name: "--no-mix-exs",
           description: "Allows the command to run even if there is no mix.exs",
+          args: {},
         },
         {
           name: "--no-start",
           description: "Does not start applications after compilation",
+          args: {},
         },
         {
           name: "--no-elixir-version-check",
           description: "Does not check the Elixir version from mix.exs",
+          args: {},
         },
       ],
     },
