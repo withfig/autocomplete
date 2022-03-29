@@ -414,7 +414,6 @@ const completionSpec: Fig.Spec = {
                       { name: "jdbc" },
                     ],
                   },
-                  isRequired: false,
                 },
                 {
                   name: "--rails-opts",
@@ -423,7 +422,6 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "RAILSOPTS",
                   },
-                  isRequired: false,
                 },
               ],
             },
@@ -716,7 +714,7 @@ const completionSpec: Fig.Spec = {
           name: "--store",
           description:
             "The store prefix, myshopify.com URL, admin URL, custom domain or custom domain admin",
-          args: { name: "STORE", isOptional: false },
+          args: { name: "STORE" },
         },
       ],
     },
@@ -736,7 +734,7 @@ const completionSpec: Fig.Spec = {
               description: "The API library to use for the script",
               args: {
                 name: "api_name",
-                isOptional: false,
+
                 suggestions: ["shipping_methods", "payment_methods"],
               },
             },
@@ -745,7 +743,6 @@ const completionSpec: Fig.Spec = {
               description: "The name of the script",
               args: {
                 name: "script_name",
-                isOptional: false,
               },
             },
             {
