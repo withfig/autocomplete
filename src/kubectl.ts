@@ -616,7 +616,16 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "VERB",
-              suggestions: ["*","get", "list", "watch", "delete","create","update","patch"],
+              suggestions: [
+                "*",
+                "get",
+                "list",
+                "watch",
+                "delete",
+                "create",
+                "update",
+                "patch",
+              ],
             },
             sharedArgs.typeOrTypeSlashName,
             sharedArgs.resourceSuggestionsFromResourceType,
@@ -1331,7 +1340,16 @@ const completionSpec: Fig.Spec = {
                 "Verb that applies to the resources contained in the rule",
               args: {
                 name: "VERB",
-                suggestions: ["*","get", "list", "watch", "delete","create","update","patch"],
+                suggestions: [
+                  "*",
+                  "get",
+                  "list",
+                  "watch",
+                  "delete",
+                  "create",
+                  "update",
+                  "patch",
+                ],
               },
             },
           ],
