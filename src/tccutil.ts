@@ -140,7 +140,7 @@ const services: Fig.Suggestion[] = [
 
 const generateBundleIds = (path: string): Fig.Generator => ({
   scriptTimeout: 15000,
-  cache: { ttl: 1000 * 60 * 60 * 24 },
+  cache: { strategy: "stale-while-revalidate" },
   script: `mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${path} | while read line; do echo $(mdls -name kMDItemCFBundleIdentifier -r "$line") $line; done`,
   postProcess: (out) => {
     const ids = new Map(
@@ -164,7 +164,7 @@ const generateBundleIds = (path: string): Fig.Generator => ({
 
 const completionSpec: Fig.Spec = {
   name: "tccutil",
-  description: "Write arguments to the standard output",
+  description: "Manage the privacy database",
   args: [
     // Note that tccutil doesn't have "subcommands", it has "commands"
     // that it can issue to the database for the given service. It just
