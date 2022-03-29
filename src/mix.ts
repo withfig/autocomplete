@@ -62,7 +62,8 @@ const completionSpec: Fig.Spec = {
           description: "Evaluates the given code",
           args: {
             name: "code",
-            description: "String contianing code to execute",
+            description: "String containing code to execute",
+            isScript: true,
           },
         },
         {
