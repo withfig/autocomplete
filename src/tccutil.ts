@@ -36,10 +36,12 @@ const services: Fig.Suggestion[] = [
   },
   {
     name: "FileProviderPresence",
-    description:
-      "Do you want to allow client to see when you are using files managed by it? It will see which applications are used to access files and whether you are actively using them. It will not see when files that are not managed by it are accessed",
+    description: "Allow the app to see when you are using files managed by it?",
   },
-  { name: "Location", description: "Use your current location" },
+  {
+    name: "Location",
+    description: "Use your current location",
+  },
   {
     name: "MediaLibrary",
     description:
@@ -69,14 +71,17 @@ const services: Fig.Suggestion[] = [
     name: "Prototype4Rights",
     description: "Authorization to Test Service Proto4Right",
   },
-  { name: "Reminders", description: "Access your reminders" },
+  {
+    name: "Reminders",
+    description: "Access your reminders",
+  },
   {
     name: "ScreenCapture",
     description: "Capture the contents of the system display",
   },
   {
     name: "Siri",
-    description: "Would You Like to Use client with Siri",
+    description: "Use app with Siri",
   },
   {
     name: "SpeechRecognition",
@@ -108,8 +113,7 @@ const services: Fig.Suggestion[] = [
   },
   {
     name: "SystemPolicySysAdminFiles",
-    description:
-      "Administer your computer. Administration can include modifying passwords, networking, and system settings",
+    description: "Administer your computer",
   },
   {
     name: "Willow",
@@ -129,12 +133,12 @@ const services: Fig.Suggestion[] = [
   },
   {
     name: "ListenEvent",
-    description: "Input Monitoring; to monitor input from your keyboard",
+    description: "Allow monitoring input from your keyboard",
   },
   {
     name: "DeveloperTool",
     description:
-      "Allows app to run software locally that do not meet the system’s security polic",
+      "Allow app to run software that doesn't meet the system's security policy",
   },
 ].map((item) => Object.assign(item, { icon: "⚙️" }));
 
