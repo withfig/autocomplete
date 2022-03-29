@@ -3,11 +3,6 @@ const sessions: Fig.Generator = {
   splitOn: "\n",
 };
 
-const help: Fig.Option = {
-  name: ["-h", "--help"],
-  description: "Print help information",
-};
-
 const completionSpec: Fig.Spec = {
   name: "zellij",
   description: "A terminal workspace with batteries included",
@@ -16,7 +11,6 @@ const completionSpec: Fig.Spec = {
       name: "attach",
       description: "Attach to a session",
       subcommands: [
-        help,
         {
           name: "options",
           description: "Change the behavior of zellij",
@@ -25,7 +19,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "session",
         description: "The session to attach to",
-        isOptional: false,
         generators: sessions,
       },
       options: [
@@ -37,7 +30,6 @@ const completionSpec: Fig.Spec = {
             description: "New session name",
           },
         },
-        help,
         {
           name: "--index",
           description:
@@ -50,7 +42,6 @@ const completionSpec: Fig.Spec = {
       name: "kill-all-sessions",
       description: "Kill all sessions",
       options: [
-        help,
         {
           name: ["-y", "--yes"],
           description: "Automation yes to prompts",
@@ -63,22 +54,18 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "session",
         description: "The session to kill",
-        isOptional: false,
         generators: sessions,
         isDangerous: true,
       },
-      options: [help],
     },
     {
       name: "list-sessions",
       description: "List active sessions",
-      options: [help],
     },
     {
       name: "options",
       description: "Change the behavior of zellij",
       options: [
-        help,
         {
           name: "--copy-clipboard",
           description:
@@ -183,7 +170,6 @@ const completionSpec: Fig.Spec = {
       name: "setup",
       description: "Setup zellij and check its configuration",
       options: [
-        help,
         {
           name: "--check",
           description:
@@ -219,15 +205,7 @@ const completionSpec: Fig.Spec = {
       description: "Print this message or the help of the given subcommand(s)",
       args: {
         name: "command",
-        suggestions: [
-          "help",
-          "attach",
-          "kill-all-sessions",
-          "kill-session",
-          "list-sessions",
-          "options",
-          "setup",
-        ],
+        template: "help",
       },
     },
   ],
@@ -235,6 +213,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for zellij",
+      isPersistent: true,
     },
     {
       name: ["-c", "--config"],
@@ -255,7 +234,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--data-dir",
       description: "Change where zellij looks for layouts and plugins",
-      args: {},
+      args: {
+        name: "data_dir",
+        template: "folders",
+      },
     },
     {
       name: ["-l", "--layout"],
