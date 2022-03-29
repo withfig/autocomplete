@@ -47,6 +47,74 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "run",
+      description: "Starts the current application and runs code",
+      options: [
+        {
+          name: "--config",
+          description: "Loads the given configuration files",
+          args: {
+            name: "file",
+          },
+        },
+        {
+          name: ["-e", "--eval"],
+          description: "Evaluates the given code",
+          args: {
+            name: "code",
+            description: "String contianing code to execute",
+          },
+        },
+        {
+          name: ["-r", "--require"],
+          description: "Executes the given pattern/file",
+          args: {
+            name: "file|pattern",
+            description: "The file|pattern to execute",
+          },
+        },
+        {
+          name: ["-p", "--parallel"],
+          description: "Executes the given pattern/file",
+          args: {
+            name: "file|pattern",
+          },
+        },
+        {
+          name: "--preload-modules",
+          description: "Preloads all modules defined in applications",
+        },
+        {
+          name: "--no-compile",
+          description: "Does not compile even if files require compilation",
+        },
+        {
+          name: "--no-deps-check",
+          description: "Does not check dependencies",
+        },
+        {
+          name: "--no-archives-check",
+          description: "Does not check archives",
+        },
+        {
+          name: "--no-halt",
+          description: "Does not halt the system after running the command",
+        },
+        {
+          name: "--no-mix-exs",
+          description: "Allows the command to run even if there is no mix.exs",
+        },
+        {
+          name: "--no-start",
+          description: "Does not start applications after compilation",
+        },
+        {
+          name: "--no-elixir-version-check",
+          description: "Does not check the Elixir version from mix.exs",
+        },
+      ],
+    },
+    {
       name: "help",
       description:
         "Prints documentation for a given task (Lists all the tasks if no task is specified)",
@@ -110,7 +178,9 @@ function makeTaskSuggestions(out: string) {
         description,
       };
     }) // filter out commands which do not make sense here
-    .filter((x) => !["mix", "help", "new", "iex -S mix"].includes(x.name));
+    .filter(
+      (x) => !["mix", "help", "new", "run", "iex -S mix"].includes(x.name)
+    );
 }
 
 export default completionSpec;
