@@ -191,7 +191,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "lsif",
       description: "Upload an LSIF dumps",
-      args: {
+      subcommands: {
         name: "upload",
         description: "",
       },
