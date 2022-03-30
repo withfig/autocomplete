@@ -329,6 +329,9 @@ const completionSpec: Fig.Spec = {
       description: "Show help for src",
     },
   ],
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   // Only uncomment if src takes an argument
   // args: {}
 };
