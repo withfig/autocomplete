@@ -48,7 +48,7 @@ const variablesGenerator: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "robot",
-  description: "Run the node interpreter",
+  description: "CLI for running Robot Framework automation tests",
   args: {
     name: "robot script",
     isScript: true,
