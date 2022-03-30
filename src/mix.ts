@@ -176,14 +176,12 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
-function generatePreferredFilepaths(): Fig.Generator {
-  return {
+const preferredFilepaths: Fig.Generator = {
     template: "filepaths",
     filterTemplateSuggestions: (paths) =>
       paths.map((path) =>
         path.name.endsWith(".exs") ? { ...path, priority: 75 } : path
       ),
-  };
 }
 
 function makeTaskSuggestions(out: string) {
