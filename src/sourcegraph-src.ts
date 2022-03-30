@@ -128,7 +128,7 @@ const completionSpec: Fig.Spec = {
       name: "batch",
       description:
         "'src login' helps you authenticate 'src' to access a Sourcegraph instance with your user credentials",
-      args: [
+      subcommands: [
         {
           name: "apply",
           description: "",
