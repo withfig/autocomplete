@@ -1,3 +1,5 @@
+import { generateBundleIds } from "./open";
+
 const commands: Fig.Suggestion[] = [
   {
     name: "reset",
@@ -141,30 +143,6 @@ const services: Fig.Suggestion[] = [
       "Allow app to run software that doesn't meet the system's security policy",
   },
 ].map((item) => Object.assign(item, { icon: "⚙️" }));
-
-const generateBundleIds = (path: string): Fig.Generator => ({
-  scriptTimeout: 15000,
-  cache: { strategy: "stale-while-revalidate" },
-  script: `mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${path} | while read line; do echo $(mdls -name kMDItemCFBundleIdentifier -r "$line") $line; done`,
-  postProcess: (out) => {
-    const ids = new Map(
-      out.split("\n").map((line) => {
-        const sep = line.indexOf(" ");
-        return [line.slice(0, sep), line.slice(sep + 1)] as const;
-      })
-    );
-    ids.delete("(null)");
-    const suggestions: Fig.Suggestion[] = [];
-    for (const [id, path] of ids.entries()) {
-      suggestions.push({
-        name: id,
-        description: path,
-        icon: `fig://${path}`,
-      });
-    }
-    return suggestions;
-  },
-});
 
 const completionSpec: Fig.Spec = {
   name: "tccutil",

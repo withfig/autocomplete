@@ -1,11 +1,44 @@
-const appGenerator = (path: string): Fig.Generator => ({
-  script: `\ls -1 ${path}`,
+export const generateApps = (unquotedPath: string): Fig.Generator => ({
+  cache: { strategy: "stale-while-revalidate" },
+  script: `mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${unquotedPath}`,
   postProcess: (out) => {
-    return out.split("\n").map((line) => ({
-      name: line,
-      icon: `fig://${path}/${line}`,
-      priority: line.endsWith(".app") && 76,
-    }));
+    return out.split("\n").map((path) => {
+      const basename = path.slice(path.lastIndexOf("/") + 1);
+      return {
+        name: basename,
+        description: path,
+        icon: `fig://${path}`,
+        priority: path.endsWith(`/Applications/${basename}`)
+          ? 80
+          : path.startsWith("/Applications")
+          ? 76
+          : 50,
+      };
+    });
+  },
+});
+
+export const generateBundleIds = (unquotedPath: string): Fig.Generator => ({
+  scriptTimeout: 15000,
+  cache: { strategy: "stale-while-revalidate" },
+  script: `mdfind kMDItemContentTypeTree=com.apple.application-bundle -onlyin ${unquotedPath} | while read line; do echo $(mdls -name kMDItemCFBundleIdentifier -r "$line") $line; done`,
+  postProcess: (out) => {
+    const ids = new Map(
+      out.split("\n").map((line) => {
+        const sep = line.indexOf(" ");
+        return [line.slice(0, sep), line.slice(sep + 1)] as const;
+      })
+    );
+    ids.delete("(null)");
+    const suggestions: Fig.Suggestion[] = [];
+    for (const [id, path] of ids.entries()) {
+      suggestions.push({
+        name: id,
+        description: path,
+        icon: `fig://${path}`,
+      });
+    }
+    return suggestions;
   },
 });
 
@@ -18,10 +51,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify the application to use for opening the file",
       args: {
         name: "Application",
-        generators: [
-          appGenerator("/Applications"),
-          appGenerator("~/Applications"),
-        ],
+        generators: generateApps("/"),
       },
     },
     {
@@ -30,6 +60,7 @@ const completionSpec: Fig.Spec = {
         "Specify the bundle identifier of the app to use to open the file",
       args: {
         name: "Bundle Identifier",
+        generators: generateBundleIds("/"),
       },
     },
     {
