@@ -10,6 +10,7 @@ const completionSpec: Fig.Spec = {
           name: "-display",
           description:
             "Limit the number of results that are displayed. Only supported together with stream flag. Statistics continue to report all results",
+          dependsOn: ["-stream"],
         },
         {
           name: "-dump-requests",
