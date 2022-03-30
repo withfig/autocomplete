@@ -89,7 +89,7 @@ const helpOption = (label: string): Fig.Option => {
 };
 
 /**
- * Plaform options used across many commands of the CLI
+ * Platform options used across many commands of the CLI
  */
 const androidGeneralOptions: Fig.Option[] = [
   {
@@ -191,6 +191,7 @@ const platformEnvOptions: Fig.Option[] = [
     description:
       "Add file replacement rules. For source files (.js and .ts) this will add a new alias to the config, for everything else, this will add a new copy rule",
     insertValue: "--env.replace={cursor}:",
+    requiresEquals: true,
   },
 ];
 

@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
   // [<repository> [<refspec>...]]
 
   // This is tricky. The arguments are surrounded by square brackets.
-  // Even though ther are triangular brackets around repository is a strange git syntax. indicating the first arg is optional
+  // Even though there are triangular brackets around repository is a strange git syntax. indicating the first arg is optional
   //
   //
 

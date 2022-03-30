@@ -222,7 +222,7 @@ const buildDateSuggestions = () => {
 
 const PRIORITIES = ["H", "M", "L"];
 
-// build the avilable priorites
+// build the available priorites
 const buildPrioritiesSuggestions = () => {
   return [
     ...PRIORITIES.map((pr) => `priority:${pr}`),
@@ -571,7 +571,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "ids",
       description:
-        "Applies the filter then extracts only the task IDs and presents them as a space-seperated list",
+        "Applies the filter then extracts only the task IDs and presents them as a space-separated list",
       args: {
         name: "filters",
         description: "Task search criteria",
@@ -583,7 +583,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "uuids",
       description:
-        "Applies the filter on all tasks (even deleted and completed tasks) then extracts only the task UUIDs and presents them as a space-seperated list",
+        "Applies the filter on all tasks (even deleted and completed tasks) then extracts only the task UUIDs and presents them as a space-separated list",
       args: {
         name: "filters",
         description: "Task search criteria",
@@ -691,7 +691,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "overdue",
       description:
-        "Shows all incomplete tasks matching the fitler that are beyond their due date",
+        "Shows all incomplete tasks matching the filter that are beyond their due date",
       args: {
         name: "filters",
         description: "Task search criteria",
@@ -714,7 +714,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "recurring",
-      description: "Shows all recurring tasks matching the fitler",
+      description: "Shows all recurring tasks matching the filter",
       args: {
         name: "filters",
         description: "Task search criteria",
@@ -786,7 +786,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Task",
         description: "The task to delete",
-        isOptional: false,
+
         isVariadic: true,
         generators: modifications,
       },
@@ -830,7 +830,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Task",
         description: "The task to edit",
-        isOptional: false,
+
         generators: listTasks,
       },
     },
@@ -913,7 +913,7 @@ const completionSpec: Fig.Spec = {
           description: "Deletes the context with the name",
           args: {
             name: "name",
-            isOptional: false,
+
             isVariadic: true,
           },
         },
@@ -924,7 +924,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
-              isOptional: false,
+
               isVariadic: true,
             },
             {
@@ -953,7 +953,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "name",
-        isOptional: false,
+
         isVariadic: true,
       },
     },

@@ -260,7 +260,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-subscription",
       description:
-        "Activates AWS Shield Advanced for an account. When you initally create a subscription, your subscription is set to be automatically renewed at the end of the existing subscription period. You can change this by submitting an UpdateSubscription request",
+        "Activates AWS Shield Advanced for an account. When you initially create a subscription, your subscription is set to be automatically renewed at the end of the existing subscription period. You can change this by submitting an UpdateSubscription request",
       options: [
         {
           name: "--cli-input-json",
@@ -1183,7 +1183,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--auto-renew",
           description:
-            "When you initally create a subscription, AutoRenew is set to ENABLED. If ENABLED, the subscription will be automatically renewed at the end of the existing subscription period. You can change this by submitting an UpdateSubscription request. If the UpdateSubscription request does not included a value for AutoRenew, the existing value for AutoRenew remains unchanged",
+            "When you initially create a subscription, AutoRenew is set to ENABLED. If ENABLED, the subscription will be automatically renewed at the end of the existing subscription period. You can change this by submitting an UpdateSubscription request. If the UpdateSubscription request does not included a value for AutoRenew, the existing value for AutoRenew remains unchanged",
           args: {
             name: "string",
           },

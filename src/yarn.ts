@@ -6,7 +6,10 @@ import {
 
 export const nodeClis = [
   "vue",
+  "vite",
   "nuxt",
+  "react-native",
+  "degit",
   "expo",
   "jest",
   "next",
@@ -61,6 +64,9 @@ const getGlobalPackagesGenerator: Fig.Generator = {
 
 // generate workspace argument completion
 const scriptList: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
   script: function (context) {
     return `\cat ${context[context.length - 2]}/package.json`;
   },
@@ -388,6 +394,7 @@ const completionSpec: Fig.Spec = {
     generators: npmScriptsGenerator,
     parserDirectives: npmParserDirectives,
     isOptional: true,
+    isCommand: true,
   },
   options: [
     {

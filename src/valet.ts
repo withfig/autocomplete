@@ -161,7 +161,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--format",
-          insertValue: "--format=",
+          insertValue: "--format={cursor}",
+          requiresEquals: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
@@ -238,7 +239,8 @@ const completionSpec: Fig.Spec = {
         { name: "--raw", description: "To output raw command list" },
         {
           name: "--format",
-          insertValue: "--format=",
+          insertValue: "--format={cursor}",
+          requiresEquals: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
@@ -280,7 +282,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--lines",
-          insertValue: "--lines=",
+          insertValue: "--lines={cursor}",
+          requiresEquals: true,
           args: {
             name: "LINES",
           },

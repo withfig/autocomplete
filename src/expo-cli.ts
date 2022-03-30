@@ -340,7 +340,6 @@ const completionSpec: Fig.Spec = {
             "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable)",
           args: {
             name: "login",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -350,7 +349,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of build: [archive|simulator]",
           args: {
             name: "archive|simulator",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "archive",
@@ -370,7 +369,6 @@ const completionSpec: Fig.Spec = {
           description: "Pull from specified release channel",
           args: {
             name: "name",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -444,7 +442,7 @@ const completionSpec: Fig.Spec = {
             "Path to your Distribution Certificate P12 (set password as EXPO_IOS_DIST_P12_PASSWORD environment variable)",
           args: {
             name: "path",
-            isOptional: false,
+
             template: "filepaths",
           },
           icon:
@@ -476,7 +474,7 @@ const completionSpec: Fig.Spec = {
           description: "Path to your Push Key .p8 file",
           args: {
             name: "path",
-            isOptional: false,
+
             template: "filepaths",
           },
           icon:
@@ -487,7 +485,7 @@ const completionSpec: Fig.Spec = {
           description: "Path to your Provisioning Profile",
           args: {
             name: "path",
-            isOptional: false,
+
             template: "filepaths",
           },
           icon:
@@ -499,7 +497,6 @@ const completionSpec: Fig.Spec = {
             "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -609,7 +606,6 @@ const completionSpec: Fig.Spec = {
           description: "Pull from specified release channel",
           args: {
             name: "name",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -661,7 +657,7 @@ const completionSpec: Fig.Spec = {
           description: "Path to your Keystore: *.jks",
           args: {
             name: "path",
-            isOptional: false,
+
             template: "filepaths",
           },
           icon:
@@ -672,7 +668,6 @@ const completionSpec: Fig.Spec = {
           description: "Keystore Alias",
           args: {
             name: "alias",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
@@ -704,7 +699,6 @@ const completionSpec: Fig.Spec = {
             "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -892,7 +886,6 @@ const completionSpec: Fig.Spec = {
             "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -938,7 +931,6 @@ const completionSpec: Fig.Spec = {
             "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable)",
           args: {
             name: "login",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
@@ -1072,7 +1064,7 @@ const completionSpec: Fig.Spec = {
           description: "Platform: [android|ios]",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "android",
@@ -1249,7 +1241,7 @@ const completionSpec: Fig.Spec = {
           description: "Platforms to sync: ios, android, all. Default: all",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "all",
@@ -1375,7 +1367,6 @@ const completionSpec: Fig.Spec = {
             "Project template to clone from. File path pointing to a local tar file or a github repo",
           args: {
             name: "template",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
@@ -1385,7 +1376,7 @@ const completionSpec: Fig.Spec = {
           description: "Platforms to sync: ios, android, all. Default: all",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "all",
@@ -1411,7 +1402,6 @@ const completionSpec: Fig.Spec = {
             "Preserves versions of listed packages in package.json (comma separated list)",
           args: {
             name: "dependencies",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
@@ -1467,7 +1457,7 @@ const completionSpec: Fig.Spec = {
           description: "Detached project platform",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "android",
@@ -1522,7 +1512,7 @@ const completionSpec: Fig.Spec = {
           description: "Detached project platform",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "android",
@@ -1588,7 +1578,7 @@ const completionSpec: Fig.Spec = {
           description: "Platforms: android, ios, all",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "all",
@@ -1614,7 +1604,6 @@ const completionSpec: Fig.Spec = {
             "The public url that will host the static files (required)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -1645,7 +1634,7 @@ const completionSpec: Fig.Spec = {
           description: "The directory to export the static files to",
           args: {
             name: "dir",
-            isOptional: false,
+
             template: "folders",
           },
           icon:
@@ -1657,7 +1646,6 @@ const completionSpec: Fig.Spec = {
             "The absolute or relative url that will host the asset files",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -1752,7 +1740,7 @@ const completionSpec: Fig.Spec = {
           description: "Target environment for which this export is intended",
           args: {
             name: "managed|bare",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "managed",
@@ -1771,7 +1759,7 @@ const completionSpec: Fig.Spec = {
           description: "A repeatable source dir to merge in",
           args: {
             name: "dir",
-            isOptional: false,
+
             template: "folders",
           },
           icon:
@@ -1782,7 +1770,6 @@ const completionSpec: Fig.Spec = {
           description: "A repeatable source tar.gz file URL to merge in",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -1793,7 +1780,6 @@ const completionSpec: Fig.Spec = {
           args: {
             generators: _gen[`max-workers`],
             name: "Number of workers",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -2000,7 +1986,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of config to show",
           args: {
             name: "public|prebuild|introspect",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "public",
@@ -2456,7 +2442,7 @@ const completionSpec: Fig.Spec = {
             "Target environment for which this publish is intended. Options are `managed` or `bare`",
           args: {
             name: "managed|bare",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "managed",
@@ -2476,7 +2462,6 @@ const completionSpec: Fig.Spec = {
           args: {
             generators: _gen[`max-workers`],
             name: "Number of workers",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -2487,7 +2472,6 @@ const completionSpec: Fig.Spec = {
             "The release channel to publish to. Default is 'default'",
           args: {
             name: "name",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2532,7 +2516,6 @@ const completionSpec: Fig.Spec = {
           description: "The channel to set the published release. (Required)",
           args: {
             name: "name",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2620,7 +2603,6 @@ const completionSpec: Fig.Spec = {
           description: "The channel to rollback from. (Required)",
           args: {
             name: "name",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2630,7 +2612,6 @@ const completionSpec: Fig.Spec = {
           description: "The sdk version to rollback. (Required)",
           args: {
             name: "version",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
@@ -2640,7 +2621,7 @@ const completionSpec: Fig.Spec = {
           description: "The platform to rollback",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "android",
@@ -2698,7 +2679,6 @@ const completionSpec: Fig.Spec = {
             "Filter by release channel. If this flag is not included, the most recent publications will be shown",
           args: {
             name: "name",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -2730,7 +2710,7 @@ const completionSpec: Fig.Spec = {
             "Filter by platform, android or ios. Defaults to both platforms",
           args: {
             name: "platform",
-            isOptional: false,
+
             suggestions: [
               {
                 name: "android",
@@ -2752,7 +2732,6 @@ const completionSpec: Fig.Spec = {
           description: "Filter by SDK version e.g. 35.0.0",
           args: {
             name: "version",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
@@ -3053,7 +3032,6 @@ const completionSpec: Fig.Spec = {
           description: "Port to start the Metro bundler on. Default: 8081",
           args: {
             name: "port",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -3172,7 +3150,6 @@ const completionSpec: Fig.Spec = {
           args: {
             generators: _gen[`xcode-devices`],
             name: "device",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
@@ -3182,7 +3159,6 @@ const completionSpec: Fig.Spec = {
           description: "Port to start the Metro bundler on. Default: 8081",
           args: {
             name: "port",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -3205,7 +3181,6 @@ const completionSpec: Fig.Spec = {
           args: {
             generators: _gen[`xcode-configuration`],
             name: "configuration",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -3282,7 +3257,6 @@ const completionSpec: Fig.Spec = {
           description: "Custom URI protocol to use with a development build",
           args: {
             name: "scheme",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
@@ -3498,7 +3472,6 @@ const completionSpec: Fig.Spec = {
           args: {
             generators: _gen[`max-workers`],
             name: "Number of workers",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -3635,7 +3608,6 @@ const completionSpec: Fig.Spec = {
             "Port to start the native Metro bundler on (does not apply to web or tunnel). Default: 19000",
           args: {
             name: "port",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -3688,7 +3660,6 @@ const completionSpec: Fig.Spec = {
           description: "Custom URI protocol to use with a development build",
           args: {
             name: "scheme",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
@@ -4040,7 +4011,6 @@ const completionSpec: Fig.Spec = {
           description: "Port to start the Webpack bundler on. Default: 19006",
           args: {
             name: "port",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
@@ -4082,7 +4052,6 @@ const completionSpec: Fig.Spec = {
           description: "Custom URI protocol to use with a development build",
           args: {
             name: "scheme",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
@@ -4329,7 +4298,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --id <id>",
           args: {
             name: "id",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4350,7 +4318,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --url <url>",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4403,7 +4370,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's serviceAccountKeyPath property",
           args: {
             name: "key",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
@@ -4413,7 +4379,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's track property",
           args: {
             name: "track",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4521,7 +4486,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --id <id>",
           args: {
             name: "id",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4542,7 +4506,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas submit --url <url>",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4636,7 +4599,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's sku property",
           args: {
             name: "sku",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4646,7 +4608,6 @@ const completionSpec: Fig.Spec = {
           description: "Migrate to eas.json's language property",
           args: {
             name: "language",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4713,7 +4674,6 @@ const completionSpec: Fig.Spec = {
           description: "Custom URI protocol to use with a development build",
           args: {
             name: "scheme",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
@@ -4919,7 +4879,6 @@ const completionSpec: Fig.Spec = {
             "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -4965,7 +4924,6 @@ const completionSpec: Fig.Spec = {
             "The URL of an externally hosted manifest (for self-hosted apps)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -5045,7 +5003,6 @@ const completionSpec: Fig.Spec = {
           description: "URL to request. (Required)",
           args: {
             name: "url",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -5078,7 +5035,6 @@ const completionSpec: Fig.Spec = {
             "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header",
           args: {
             name: "secret",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
@@ -5123,7 +5079,6 @@ const completionSpec: Fig.Spec = {
           description: "ID of the webhook to remove",
           args: {
             name: "id",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
@@ -5168,7 +5123,6 @@ const completionSpec: Fig.Spec = {
           description: "ID of the webhook to update",
           args: {
             name: "id",
-            isOptional: false,
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",

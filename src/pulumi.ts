@@ -237,13 +237,9 @@ const completionSpec: Fig.Spec = {
       name: "about",
       description: "Print information about the Pulumi environment",
       icon,
-      subcommands: [
+      options: [
         ...inheritedOptions,
         jsonOption,
-        {
-          name: ["-h", "--help"],
-          description: "Help for about",
-        },
         {
           name: ["-t", "--transitive"],
           description: "Include transitive dependencies",
@@ -253,37 +249,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "cancel",
       description: "Cancel a stack’s currently running update, if any",
-      subcommands: [
-        ...inheritedOptions,
-        yesOption,
-        stackOption,
-        {
-          name: ["-h", "--help"],
-          description: "Help for cancel",
-        },
-      ],
+      options: [...inheritedOptions, yesOption, stackOption],
     },
     {
       name: "config",
       description: "Manage configuration",
       subcommands: [
-        ...inheritedOptions,
-        jsonOption,
-        stackOption,
-        configFileOption,
-        {
-          name: "--show-secrets",
-          description:
-            "Show secret values when listing config instead of displaying blinded values",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Help for config",
-        },
         {
           name: "cp",
           description: "Copy config to another stack",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             pathOption,
             {
@@ -293,10 +268,6 @@ const completionSpec: Fig.Spec = {
                 name: "stack-name",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Help for cp",
-            },
           ],
         },
         {
@@ -305,13 +276,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "key",
           },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             jsonOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for get",
-            },
             {
               name: "--path",
               description:
@@ -323,12 +290,8 @@ const completionSpec: Fig.Spec = {
           name: "refresh",
           description:
             "Update the local configuration based on the most recent deployment of the stack",
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for rm",
-            },
             {
               name: ["-f", "--force"],
               description:
@@ -341,12 +304,8 @@ const completionSpec: Fig.Spec = {
           name: "rm",
           description: "Remove configuration value",
           args: { name: "key" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for refresh",
-            },
             {
               name: "--path",
               description:
@@ -358,30 +317,25 @@ const completionSpec: Fig.Spec = {
           name: "rm-all",
           description: "Remove multiple configuration values",
           args: {
-            name: "key1 key2 key3...",
+            name: "key",
+            isVariadic: true,
           },
-          subcommands: [
-            ...inheritedOptions,
-            pathsOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for rm-all",
-            },
-          ],
+          options: [...inheritedOptions, pathsOption],
         },
         {
           name: "set",
           description: "Set configuration value",
-          args: {
-            name: "key value",
-          },
-          subcommands: [
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "value",
+            },
+          ],
+          options: [
             ...inheritedOptions,
             pathOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for set",
-            },
             {
               name: "--plaintext",
               description: "Save the value as plaintext (unencrypted)",
@@ -399,13 +353,9 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "key value",
           },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             pathsOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for set-all",
-            },
             {
               name: "--plaintext",
               description: "Marks a value as plaintext (unencrypted)",
@@ -423,23 +373,27 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-    },
-    {
-      name: "console",
-      description: "Opens the current stack in the Pulumi Console",
-      subcommands: [
+      options: [
         ...inheritedOptions,
+        jsonOption,
         stackOption,
+        configFileOption,
         {
-          name: ["-h", "--help"],
-          description: "Help for console",
+          name: "--show-secrets",
+          description:
+            "Show secret values when listing config instead of displaying blinded values",
         },
       ],
     },
     {
+      name: "console",
+      description: "Opens the current stack in the Pulumi Console",
+      options: [...inheritedOptions, stackOption],
+    },
+    {
       name: "destroy",
       description: "Destroy an existing stack and its resources",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         ...upDestroyOptions,
         yesOption,
@@ -449,16 +403,12 @@ const completionSpec: Fig.Spec = {
           description:
             "Do not destroy protected resources. Destroy all other resources",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for destroy",
-        },
       ],
     },
     {
       name: "import",
       description: "Import resources into an existing stack",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         configFileOption,
         debugOption,
@@ -503,17 +453,13 @@ const completionSpec: Fig.Spec = {
           description:
             "Suppress display of stack outputs (in case they contain sensitive values)",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for import",
-        },
       ],
       args: [{ name: "type" }, { name: "name" }, { name: "id" }],
     },
     {
       name: "login",
       description: "Log in to the Pulumi service",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         localOption,
         {
@@ -527,17 +473,13 @@ const completionSpec: Fig.Spec = {
             "A default org to associate with the login. Please note, currently, only the managed and self-hosted backends support organizations",
           args: { name: "name" },
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for login",
-        },
       ],
       args: { name: "url" },
     },
     {
       name: "logout",
       description: "Log out of the Pulumi service",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         localOption,
         {
@@ -549,17 +491,13 @@ const completionSpec: Fig.Spec = {
           description: "A cloud URL to log out of (defaults to current cloud)",
           args: { name: "url" },
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for logout",
-        },
       ],
       args: { name: "url" },
     },
     {
       name: "logs",
       description: "[PREVIEW] Show aggregated resource logs for a stack",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         configFileOption,
         stackOption,
@@ -584,16 +522,12 @@ const completionSpec: Fig.Spec = {
             suggestions: ["5s", "2m", "3h"],
           },
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for logs",
-        },
       ],
     },
     {
       name: "new",
       description: "Create a new Pulumi project",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         stackOption,
         yesOption,
@@ -642,62 +576,33 @@ const completionSpec: Fig.Spec = {
           description:
             "Use locally cached templates without making any network requests",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for new",
-        },
       ],
     },
     {
       name: "org",
       description: "Manage Organization configuration",
       subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for org",
-        },
         {
           name: "get-default",
           description: "Get the default org for the current backend",
-          subcommands: [
-            {
-              name: ["-h", "--help"],
-              description: "Help for get-default",
-            },
-          ],
         },
         {
           name: "set-default",
           description: "Set the default organization for the current backend",
-          subcommands: [
-            {
-              name: ["-h", "--help"],
-              description: "Help for set-default",
-            },
-          ],
           args: { name: "NAME" },
         },
       ],
+      options: inheritedOptions,
     },
     {
       name: "plugin",
       description: "Manage language and resource provider plugins",
       subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for plugin",
-        },
         {
           name: "install",
           description: "Install one or more plugins",
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for install",
-            },
             {
               name: "--exact",
               description:
@@ -723,13 +628,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           description: "List plugins",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             jsonOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for ls",
-            },
             {
               name: ["-p", "--project"],
               description: "List only the plugins used by the current project",
@@ -739,13 +640,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "rm",
           description: "Remove one or more plugins from the download cache",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             yesOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for rm",
-            },
             {
               name: ["-a", "--all"],
               description: "Remove all plugins",
@@ -753,21 +650,18 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
+      options: inheritedOptions,
     },
     {
       name: "policy",
       description: "Manage resource policies",
+      options: inheritedOptions,
       subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for policy",
-        },
         {
           name: "disable",
           description: "Disable a Policy Pack for a Pulumi organization",
           args: { name: "org-name/policy-pack-name" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             {
               name: "--policy-group",
@@ -781,17 +675,13 @@ const completionSpec: Fig.Spec = {
                 "The version of the Policy Pack that will be disabled; if not specified, any enabled version of the Policy Pack will be disabled",
               args: { name: "policyPackVersion" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Help for disable",
-            },
           ],
         },
         {
           name: "enable",
           description: "Enable a Policy Pack for a Pulumi organization",
           args: { name: "org-name/policy-pack-name" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             {
               name: "--policy-group",
@@ -805,41 +695,24 @@ const completionSpec: Fig.Spec = {
                 "The file path for the Policy Pack configuration file",
               args: { name: "file" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Help for enable",
-            },
           ],
         },
         {
           name: "group",
           description: "Manage policy groups",
-          subcommands: [
-            ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for group",
-            },
-          ],
+          options: inheritedOptions,
         },
         {
           name: "ls",
           description: "List all Policy Packs for a Pulumi organization",
           args: { name: "org-name" },
-          subcommands: [
-            ...inheritedOptions,
-            jsonOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for ls",
-            },
-          ],
+          options: [...inheritedOptions, jsonOption],
         },
         {
           name: "new",
           description: "Create a new Pulumi Policy Pack",
           args: { name: "template|url" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             jsonOption,
             {
@@ -864,52 +737,31 @@ const completionSpec: Fig.Spec = {
                 "The location to place the generated Policy Pack; if not specified, the current directory is used",
               args: { name: "location", template: ["folders"] },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Help for new",
-            },
           ],
         },
         {
           name: "publish",
           description: "Publish a Policy Pack to the Pulumi service",
           args: { name: "org-name" },
-          subcommands: [
-            ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for publish",
-            },
-          ],
+          options: inheritedOptions,
         },
         {
           name: "rm",
           description: "Removes a Policy Pack from a Pulumi organization",
           args: { name: "org-name/policy-pack-name" },
-          subcommands: [
-            ...inheritedOptions,
-            yesOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for rm",
-            },
-          ],
+          options: [...inheritedOptions, yesOption],
         },
         {
           name: "validate-config",
           description: "Validate a Policy Pack configuration",
           args: { name: "org-name/policy-pack-name" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             {
               name: "--config",
               description:
                 "The file path for the Policy Pack configuration file",
               args: { name: "file" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Help for validate-config",
             },
           ],
         },
@@ -918,7 +770,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "preview",
       description: "Show a preview of updates to a stack’s resources",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         ...upDestroyOptions,
         {
@@ -964,16 +816,12 @@ const completionSpec: Fig.Spec = {
             "Specify a single resource URN to replace. Other resources will not be updated. Shorthand for --target urn --replace urn",
           args: { name: "stringArray" },
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for preview",
-        },
       ],
     },
     {
       name: "refresh",
       description: "Refresh the resources in a stack",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         configFileOption,
         debugOption,
@@ -1010,43 +858,25 @@ const completionSpec: Fig.Spec = {
           description:
             "Suppress display of stack outputs (in case they contain sensitive values)",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for refresh",
-        },
       ],
     },
     {
       name: "schema",
       description: "Analyze package schemas",
+      options: inheritedOptions,
       subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for schema",
-        },
         {
           name: "check",
           description: "Check a Pulumi package schema for errors",
-          subcommands: [
-            {
-              name: ["-h", "--help"],
-              description: "Help for check",
-            },
-          ],
         },
       ],
     },
     {
       name: "stack",
       description: "Manage stacks",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         stackOption,
-        {
-          name: ["-h", "--help"],
-          description: "Help for stack",
-        },
         { name: "--show-name", description: "Display only the stack name" },
         {
           name: "--show-secrets",
@@ -1062,27 +892,19 @@ const completionSpec: Fig.Spec = {
           description:
             "Display each resource's Pulumi-assigned globally unique URN",
         },
+      ],
+      subcommands: [
         {
           name: "change-secrets-provider",
           description: "Change the secrets provider for the current stack",
           args: { name: "new-secrets-provider" },
-          subcommands: [
-            ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for change-secrets-provider",
-            },
-          ],
+          options: inheritedOptions,
         },
         {
           name: "export",
           description: "Export a stack’s deployment to standard out",
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for export",
-            },
             {
               name: "--file",
               description: "A filename to write stack output to",
@@ -1109,12 +931,8 @@ const completionSpec: Fig.Spec = {
           name: "graph",
           description: "Export a stack’s dependency graph to a file",
           args: { name: "filename" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for graph",
-            },
             {
               name: "--dependency-edge-color",
               description:
@@ -1142,13 +960,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "history",
           description: "[PREVIEW] Display history for a stack",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             jsonOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for history",
-            },
             {
               name: "--full-dates",
               description: "Show full dates, instead of relative dates",
@@ -1176,12 +990,8 @@ const completionSpec: Fig.Spec = {
           name: "import",
           description:
             "Import a deployment from standard in into an existing stack",
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for import",
-            },
             {
               name: ["-f", "--force"],
               description:
@@ -1200,13 +1010,9 @@ const completionSpec: Fig.Spec = {
           description:
             "Create an empty stack with the given name, ready for updates",
           args: { name: "org-name/stack-name" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             secretsProviderOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for init",
-            },
             {
               name: "--copy-config-from",
               description: "The name of the stack to copy existing config from",
@@ -1217,13 +1023,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "ls",
           description: "List stacks",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             jsonOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for ls",
-            },
             {
               name: ["-a", "--all"],
               description:
@@ -1253,13 +1055,9 @@ const completionSpec: Fig.Spec = {
           name: "output",
           description: "Show a stack’s output properties",
           args: { name: "property-name" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             jsonOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for output",
-            },
             {
               name: "--show-secrets",
               description:
@@ -1271,25 +1069,15 @@ const completionSpec: Fig.Spec = {
           name: "rename",
           description: "Rename an existing stack",
           args: { name: "new-stack-name" },
-          subcommands: [
-            ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for rename",
-            },
-          ],
+          options: inheritedOptions,
         },
         {
           name: "rm",
           description: "Remove a stack and its configuration",
           args: { name: "stack-name" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
             yesOption,
-            {
-              name: ["-h", "--help"],
-              description: "Help for rm",
-            },
             {
               name: ["-f", "--force"],
               description:
@@ -1307,12 +1095,8 @@ const completionSpec: Fig.Spec = {
           name: "select",
           description: "Switch the current workspace to the given stack",
           args: { name: "stack" },
-          subcommands: [
+          options: [
             ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for select",
-            },
             {
               name: "--secrets-provider",
               description:
@@ -1335,59 +1119,30 @@ const completionSpec: Fig.Spec = {
         {
           name: "tag",
           description: "Manage stack tags",
+          options: inheritedOptions,
           subcommands: [
-            ...inheritedOptions,
-            {
-              name: ["-h", "--help"],
-              description: "Help for tag",
-            },
             {
               name: "get",
               description: "Get a single stack tag value",
               args: { name: "name" },
-              subcommands: [
-                ...inheritedOptions,
-                {
-                  name: ["-h", "--help"],
-                  description: "Help for get",
-                },
-              ],
+              subcommands: inheritedOptions,
             },
             {
               name: "ls",
               description: "List all stack tags",
-              subcommands: [
-                ...inheritedOptions,
-                jsonOption,
-                {
-                  name: ["-h", "--help"],
-                  description: "Help for ls",
-                },
-              ],
+              subcommands: [...inheritedOptions, jsonOption],
             },
             {
               name: "rm",
               description: "Remove a stack tag",
               args: { name: "name" },
-              subcommands: [
-                ...inheritedOptions,
-                {
-                  name: ["-h", "--help"],
-                  description: "Help for rm",
-                },
-              ],
+              subcommands: inheritedOptions,
             },
             {
               name: "set",
               description: "Set a stack tag",
               args: { name: "name value" },
-              subcommands: [
-                ...inheritedOptions,
-                {
-                  name: ["-h", "--help"],
-                  description: "Help for set",
-                },
-              ],
+              subcommands: inheritedOptions,
             },
           ],
         },
@@ -1397,16 +1152,12 @@ const completionSpec: Fig.Spec = {
       name: "state",
       description: "Edit the current stack’s state",
       icon,
+      options: inheritedOptions,
       subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for state",
-        },
         {
           name: "delete",
           description: "Deletes a resource from a stack’s state",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             stackOption,
             yesOption,
@@ -1417,17 +1168,13 @@ const completionSpec: Fig.Spec = {
                 name: "stack-name",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Help for delete",
-            },
           ],
           args: { name: "resource URN" },
         },
         {
           name: "unprotect",
           description: "Unprotect resources in a stack’s state",
-          subcommands: [
+          options: [
             ...inheritedOptions,
             stackOption,
             yesOption,
@@ -1438,10 +1185,6 @@ const completionSpec: Fig.Spec = {
                 name: "stack-name",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Help for unprotect",
-            },
           ],
           args: { name: "resource URN" },
         },
@@ -1450,7 +1193,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "up",
       description: "Deploy code and/or resource changes",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         ...upDestroyOptions,
         yesOption,
@@ -1499,28 +1242,18 @@ const completionSpec: Fig.Spec = {
             "Specify a single resource URN to replace. Other resources will not be updated. Shorthand for --target urn --replace urn",
           args: { name: "stringArray" },
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for up",
-        },
       ],
       args: { name: "template|url" },
     },
     {
       name: "version",
       description: "Print Pulumi’s version number",
-      subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for version",
-        },
-      ],
+      options: inheritedOptions,
     },
     {
       name: "watch",
       description: "[PREVIEW] Continuously update the resources in a stack",
-      subcommands: [
+      options: [
         ...inheritedOptions,
         configFileOption,
         debugOption,
@@ -1574,28 +1307,19 @@ const completionSpec: Fig.Spec = {
           description:
             "Show resources that don't need be updated because they haven't changed, alongside those that do",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Help for watch",
-        },
       ],
     },
     {
       name: "whoami",
       description: "Displays the username of the currently logged in user",
-      subcommands: [
-        ...inheritedOptions,
-        {
-          name: ["-h", "--help"],
-          description: "Help for whoami",
-        },
-      ],
+      options: inheritedOptions,
     },
   ],
   options: [
     {
       name: ["--help", "-h"],
-      description: "Help for pulumi",
+      isPersistent: true,
+      description: "Show help",
     },
   ],
 };

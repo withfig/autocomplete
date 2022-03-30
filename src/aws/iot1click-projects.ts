@@ -547,7 +547,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-arn",
           description:
-            "The ARN of the resouce for which tag(s) should be added or modified",
+            "The ARN of the resource for which tag(s) should be added or modified",
           args: {
             name: "string",
           },

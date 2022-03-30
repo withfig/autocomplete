@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-r",
       description:
-        "Run the command once if there's no input (compatibile with GNU xargs)",
+        "Run the command once if there's no input (compatible with GNU xargs)",
     },
     {
       name: "-R",

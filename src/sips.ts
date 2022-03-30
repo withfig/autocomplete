@@ -141,7 +141,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-E", "--embedProfileIfNone"],
-      description: "Embed profile in image only if image doen't have a profile",
+      description:
+        "Embed profile in image only if image doesn't have a profile",
       args: {
         name: "profile",
       },

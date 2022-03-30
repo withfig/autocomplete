@@ -1323,7 +1323,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--engine-name",
           description:
-            "The databse engine used for your source or target endpoint",
+            "The database engine used for your source or target endpoint",
           args: {
             name: "string",
           },

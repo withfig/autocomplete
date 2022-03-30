@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -37,7 +37,6 @@ const completionSpec: Fig.Spec = {
           description: "Pattern used to ignore some folders",
           args: {
             name: "ignore",
-            isOptional: false,
           },
         },
         {
@@ -45,7 +44,6 @@ const completionSpec: Fig.Spec = {
           description: "Pattern used to include specific files",
           args: {
             name: "files",
-            isOptional: false,
           },
         },
         {
@@ -53,7 +51,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to a custom ESLint configuration file",
           args: {
             name: "config",
-            isOptional: false,
           },
         },
         {
@@ -84,7 +81,6 @@ const completionSpec: Fig.Spec = {
             "Filepath to export completion spec (do not specify file extension)",
           args: {
             name: "output",
-            isOptional: false,
           },
         },
         {
@@ -92,7 +88,7 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "lang",
-            isOptional: false,
+
             suggestions: [" ts", "js"],
           },
         },
@@ -123,7 +119,6 @@ const completionSpec: Fig.Spec = {
           description: "Only show provided columns (comma-separated)",
           args: {
             name: "columns",
-            isOptional: false,
           },
         },
         {
@@ -131,7 +126,6 @@ const completionSpec: Fig.Spec = {
           description: "Property to sort by (prepend '-' for descending)",
           args: {
             name: "sort",
-            isOptional: false,
           },
         },
         {
@@ -140,7 +134,6 @@ const completionSpec: Fig.Spec = {
             "Filter property by partial string matching, ex: name=foo",
           args: {
             name: "filter",
-            isOptional: false,
           },
         },
         {
@@ -152,7 +145,7 @@ const completionSpec: Fig.Spec = {
           description: "Output in a more machine friendly format",
           args: {
             name: "output",
-            isOptional: false,
+
             suggestions: ["csv", "json", "yaml"],
           },
         },
@@ -196,7 +189,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "plugin",
         description: "Plugin to inspect",
-        isOptional: false,
       },
     },
     {
@@ -219,7 +211,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "plugin",
         description: "Plugin to install",
-        isOptional: false,
       },
     },
     {
@@ -238,7 +229,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "Path to plugin",
-        isOptional: false,
       },
     },
     {
@@ -309,7 +299,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "command",
-        isOptional: false,
       },
     },
     {
@@ -325,7 +314,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -347,7 +336,6 @@ const completionSpec: Fig.Spec = {
           description: "Unique object name for the custom metadata type",
           args: {
             name: "typename",
-            isOptional: false,
           },
         },
         {
@@ -355,7 +343,6 @@ const completionSpec: Fig.Spec = {
           description: "Label for the custom metadata type",
           args: {
             name: "label",
-            isOptional: false,
           },
         },
         {
@@ -364,7 +351,6 @@ const completionSpec: Fig.Spec = {
             "Plural version of the label value; if blank, uses label",
           args: {
             name: "plurallabel",
-            isOptional: false,
           },
         },
         {
@@ -372,7 +358,7 @@ const completionSpec: Fig.Spec = {
           description: "Visibility of the custom metadata type",
           args: {
             name: "visibility",
-            isOptional: false,
+
             suggestions: ["PackageProtected", "Protected", "Public"],
           },
         },
@@ -382,7 +368,6 @@ const completionSpec: Fig.Spec = {
             "Directory to store the newly-created custom metadata type files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -405,7 +390,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -427,7 +412,6 @@ const completionSpec: Fig.Spec = {
           description: "Unique name for the field",
           args: {
             name: "fieldname",
-            isOptional: false,
           },
         },
         {
@@ -435,7 +419,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of field",
           args: {
             name: "fieldtype",
-            isOptional: false,
+
             suggestions: [
               "Checkbox",
               "Date",
@@ -458,7 +442,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of picklist values; required for Picklist fields",
           args: {
             name: "picklistvalues",
-            isOptional: false,
           },
         },
         {
@@ -467,7 +450,6 @@ const completionSpec: Fig.Spec = {
             "Number of decimal places to use for Number or Percent fields",
           args: {
             name: "decimalplaces",
-            isOptional: false,
           },
         },
         {
@@ -475,7 +457,6 @@ const completionSpec: Fig.Spec = {
           description: "Label for the field",
           args: {
             name: "label",
-            isOptional: false,
           },
         },
         {
@@ -484,7 +465,6 @@ const completionSpec: Fig.Spec = {
             "Directory to store newly-created field definition files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -507,7 +487,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -530,7 +510,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -539,7 +518,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -547,7 +525,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the custom metadata type",
           args: {
             name: "devname",
-            isOptional: false,
           },
         },
         {
@@ -555,7 +532,6 @@ const completionSpec: Fig.Spec = {
           description: "Label for the custom metadata type",
           args: {
             name: "label",
-            isOptional: false,
           },
         },
         {
@@ -564,7 +540,6 @@ const completionSpec: Fig.Spec = {
             "Plural version of the label value; if blank, uses label",
           args: {
             name: "plurallabel",
-            isOptional: false,
           },
         },
         {
@@ -572,7 +547,7 @@ const completionSpec: Fig.Spec = {
           description: "Visibility of the custom metadata type",
           args: {
             name: "visibility",
-            isOptional: false,
+
             suggestions: ["PackageProtected", "Protected", "Public"],
           },
         },
@@ -582,7 +557,6 @@ const completionSpec: Fig.Spec = {
             "API name of the sObject source for custom metadata generation",
           args: {
             name: "sobjectname",
-            isOptional: false,
           },
         },
         {
@@ -595,7 +569,6 @@ const completionSpec: Fig.Spec = {
             "Directory to store newly-created custom metadata type files",
           args: {
             name: "typeoutputdir",
-            isOptional: false,
           },
         },
         {
@@ -604,7 +577,6 @@ const completionSpec: Fig.Spec = {
             "Directory to store newly-created custom metadata record files",
           args: {
             name: "recordsoutputdir",
-            isOptional: false,
           },
         },
       ],
@@ -627,7 +599,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -650,7 +622,6 @@ const completionSpec: Fig.Spec = {
             "API name of the custom metadata type to create a record for",
           args: {
             name: "typename",
-            isOptional: false,
           },
         },
         {
@@ -658,7 +629,6 @@ const completionSpec: Fig.Spec = {
           description: "Name for the new record",
           args: {
             name: "recordname",
-            isOptional: false,
           },
         },
         {
@@ -666,7 +636,6 @@ const completionSpec: Fig.Spec = {
           description: "Label for the new record",
           args: {
             name: "label",
-            isOptional: false,
           },
         },
         {
@@ -674,7 +643,7 @@ const completionSpec: Fig.Spec = {
           description: "Protect the record when it is in a managed package",
           args: {
             name: "protected",
-            isOptional: false,
+
             suggestions: ["true", "false"],
           },
         },
@@ -684,7 +653,6 @@ const completionSpec: Fig.Spec = {
             "Directory to pull the custom metadata type definition from",
           args: {
             name: "inputdir",
-            isOptional: false,
           },
         },
         {
@@ -693,7 +661,6 @@ const completionSpec: Fig.Spec = {
             "Directory to store newly-created custom metadata record files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -711,7 +678,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -733,7 +700,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to the CSV file",
           args: {
             name: "filepath",
-            isOptional: false,
           },
         },
         {
@@ -741,7 +707,6 @@ const completionSpec: Fig.Spec = {
           description: "API name of the custom metadata type",
           args: {
             name: "typename",
-            isOptional: false,
           },
         },
         {
@@ -750,7 +715,6 @@ const completionSpec: Fig.Spec = {
             "Directory to pull the custom metadata type definition from",
           args: {
             name: "inputdir",
-            isOptional: false,
           },
         },
         {
@@ -759,7 +723,6 @@ const completionSpec: Fig.Spec = {
             "Directory to store newly-created custom metadata record files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -768,7 +731,6 @@ const completionSpec: Fig.Spec = {
             "Column that is used to determine the name of the record",
           args: {
             name: "namecolumn",
-            isOptional: false,
           },
         },
       ],
@@ -786,7 +748,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -818,7 +780,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -850,7 +812,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -882,7 +844,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -905,7 +867,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -914,7 +875,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -922,7 +882,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to a local file that contains Apex code",
           args: {
             name: "apexcodefile",
-            isOptional: false,
           },
         },
       ],
@@ -940,7 +899,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -963,7 +922,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -972,7 +930,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -980,7 +937,6 @@ const completionSpec: Fig.Spec = {
           description: "Id of the log to display",
           args: {
             name: "logid",
-            isOptional: false,
           },
         },
         {
@@ -988,7 +944,6 @@ const completionSpec: Fig.Spec = {
           description: "Number of most recent logs to display",
           args: {
             name: "number",
-            isOptional: false,
           },
         },
         {
@@ -996,7 +951,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory for saving the log files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -1015,7 +969,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1038,7 +992,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1047,7 +1000,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -1066,7 +1018,7 @@ const completionSpec: Fig.Spec = {
             "[default: warn] logging level for this command invocation; logs are stored in $HOME/.sfdx/sfdx.log",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1089,7 +1041,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1098,7 +1049,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1106,7 +1056,6 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the test run",
           args: {
             name: "testrunid",
-            isOptional: false,
           },
         },
         {
@@ -1118,7 +1067,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory to store test result files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -1126,7 +1074,7 @@ const completionSpec: Fig.Spec = {
           description: "Permissible values are: human, tap, junit, json",
           args: {
             name: "resultformat",
-            isOptional: false,
+
             suggestions: ["human", "tap", "junit", "json"],
           },
         },
@@ -1136,7 +1084,6 @@ const completionSpec: Fig.Spec = {
             "Sets the streaming client socket timeout in minutes; specify a longer wait time if timeouts occur frequently",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -1160,7 +1107,7 @@ const completionSpec: Fig.Spec = {
             "[default: warn] logging level for this command invocation; logs are stored in $HOME/.sfdx/sfdx.log",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1183,7 +1130,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1192,7 +1138,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1204,7 +1149,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory to store test run files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -1213,7 +1157,7 @@ const completionSpec: Fig.Spec = {
             "Specifies which tests to run, using one of these TestLevel enum values:\nRunSpecifiedTests—Only the tests that you specify are run.\nRunLocalTests—All tests in your org are run, except the ones that originate from installed managed packages.\nRunAllTestsInOrg—All tests are in your org and in installed managed packages are run",
           args: {
             name: "testlevel",
-            isOptional: false,
+
             suggestions: [
               "RunLocalTests",
               "RunAllTestsInOrg",
@@ -1227,7 +1171,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of Apex test class names to run; if you select --classnames, you can't specify --suitenames or --tests",
           args: {
             name: "classnames",
-            isOptional: false,
           },
         },
         {
@@ -1235,7 +1178,7 @@ const completionSpec: Fig.Spec = {
           description: "Permissible values are: human, tap, junit, json",
           args: {
             name: "resultformat",
-            isOptional: false,
+
             suggestions: ["human", "tap", "junit", "json"],
           },
         },
@@ -1245,7 +1188,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of Apex test suite names to run; if you select --suitenames, you can't specify --classnames or --tests",
           args: {
             name: "suitenames",
-            isOptional: false,
           },
         },
         {
@@ -1254,7 +1196,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of Apex test class names or IDs and, if applicable, test methods to run; if you specify --tests, you can't specify --classnames or --suitenames",
           args: {
             name: "tests",
-            isOptional: false,
           },
         },
         {
@@ -1263,7 +1204,6 @@ const completionSpec: Fig.Spec = {
             "Sets the streaming client socket timeout in minutes; specify a longer wait time if timeouts occur frequently",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -1295,7 +1235,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1332,7 +1272,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1365,7 +1305,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1403,7 +1343,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1440,7 +1380,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1463,7 +1403,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1472,7 +1411,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1481,7 +1419,6 @@ const completionSpec: Fig.Spec = {
             "The path to the CSV file containing the ids of the records to delete",
           args: {
             name: "csvfile",
-            isOptional: false,
           },
         },
         {
@@ -1489,7 +1426,6 @@ const completionSpec: Fig.Spec = {
           description: "The sObject type of the records you’re deleting",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -1498,7 +1434,6 @@ const completionSpec: Fig.Spec = {
             "The number of minutes to wait for the command to complete before displaying the results",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
       ],
@@ -1516,7 +1451,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1539,7 +1474,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1548,7 +1482,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1556,7 +1489,6 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the batch whose status you want to view",
           args: {
             name: "batchid",
-            isOptional: false,
           },
         },
         {
@@ -1565,7 +1497,6 @@ const completionSpec: Fig.Spec = {
             "The ID of the job you want to view or of the job whose batch you want to view",
           args: {
             name: "jobid",
-            isOptional: false,
           },
         },
       ],
@@ -1583,7 +1514,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1606,7 +1537,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1615,7 +1545,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1623,7 +1552,6 @@ const completionSpec: Fig.Spec = {
           description: "The column name of the external ID",
           args: {
             name: "externalid",
-            isOptional: false,
           },
         },
         {
@@ -1632,7 +1560,6 @@ const completionSpec: Fig.Spec = {
             "The path to the CSV file that defines the records to upsert",
           args: {
             name: "csvfile",
-            isOptional: false,
           },
         },
         {
@@ -1640,7 +1567,6 @@ const completionSpec: Fig.Spec = {
           description: "The sObject type of the records you want to upsert",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -1649,7 +1575,6 @@ const completionSpec: Fig.Spec = {
             "The number of minutes to wait for the command to complete before displaying the results",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -1671,7 +1596,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1694,7 +1619,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1703,7 +1627,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1711,7 +1634,6 @@ const completionSpec: Fig.Spec = {
           description: "The type of the record you’re creating",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -1719,7 +1641,6 @@ const completionSpec: Fig.Spec = {
           description: "The <fieldName>=<value> pairs you’re creating",
           args: {
             name: "values",
-            isOptional: false,
           },
         },
         {
@@ -1745,7 +1666,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1768,7 +1689,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1777,7 +1697,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1785,7 +1704,6 @@ const completionSpec: Fig.Spec = {
           description: "The type of the record you’re deleting",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -1793,7 +1711,6 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the record you’re deleting",
           args: {
             name: "sobjectid",
-            isOptional: false,
           },
         },
         {
@@ -1801,7 +1718,6 @@ const completionSpec: Fig.Spec = {
           description: "A list of <fieldName>=<value> pairs to search for",
           args: {
             name: "where",
-            isOptional: false,
           },
         },
         {
@@ -1827,7 +1743,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1850,7 +1766,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1859,7 +1774,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1867,7 +1781,6 @@ const completionSpec: Fig.Spec = {
           description: "The type of the record you’re retrieving",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -1875,7 +1788,6 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the record you’re retrieving",
           args: {
             name: "sobjectid",
-            isOptional: false,
           },
         },
         {
@@ -1883,7 +1795,6 @@ const completionSpec: Fig.Spec = {
           description: "A list of <fieldName>=<value> pairs to search for",
           args: {
             name: "where",
-            isOptional: false,
           },
         },
         {
@@ -1909,7 +1820,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -1932,7 +1843,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -1941,7 +1851,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -1949,7 +1858,6 @@ const completionSpec: Fig.Spec = {
           description: "The sObject type of the record you’re updating",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -1957,7 +1865,6 @@ const completionSpec: Fig.Spec = {
           description: "The ID of the record you’re updating",
           args: {
             name: "sobjectid",
-            isOptional: false,
           },
         },
         {
@@ -1965,7 +1872,6 @@ const completionSpec: Fig.Spec = {
           description: "A list of <fieldName>=<value> pairs to search for",
           args: {
             name: "where",
-            isOptional: false,
           },
         },
         {
@@ -1973,7 +1879,6 @@ const completionSpec: Fig.Spec = {
           description: "The <fieldName>=<value> pairs you’re updating",
           args: {
             name: "values",
-            isOptional: false,
           },
         },
         {
@@ -1999,7 +1904,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2022,7 +1927,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2031,7 +1935,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2039,7 +1942,6 @@ const completionSpec: Fig.Spec = {
           description: "SOQL query to execute",
           args: {
             name: "query",
-            isOptional: false,
           },
         },
         {
@@ -2052,7 +1954,7 @@ const completionSpec: Fig.Spec = {
             "Result format emitted to stdout; --json flag overrides this parameter",
           args: {
             name: "resultformat",
-            isOptional: false,
+
             suggestions: ["human", "csv", "json"],
           },
         },
@@ -2075,7 +1977,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2098,7 +2000,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2107,7 +2008,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2116,20 +2016,18 @@ const completionSpec: Fig.Spec = {
             "Soql query, or filepath of file containing a soql query, to retrieve records",
           args: {
             name: "query",
-            isOptional: false,
           },
         },
         {
           name: ["-p", "--plan"],
           description:
-            "Generate mulitple sobject tree files and a plan definition file for aggregated import",
+            "Generate multiple sobject tree files and a plan definition file for aggregated import",
         },
         {
           name: ["-x", "--prefix"],
           description: "Prefix of generated files",
           args: {
             name: "prefix",
-            isOptional: false,
           },
         },
         {
@@ -2137,7 +2035,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory to store files'",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -2155,7 +2052,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2178,7 +2075,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2187,7 +2083,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2196,7 +2091,6 @@ const completionSpec: Fig.Spec = {
             "Comma-delimited, ordered paths of json files containing collection of record trees to insert",
           args: {
             name: "sobjecttreefiles",
-            isOptional: false,
           },
         },
         {
@@ -2205,7 +2099,6 @@ const completionSpec: Fig.Spec = {
             "Path to plan to insert multiple data files that have master-detail relationships",
           args: {
             name: "plan",
-            isOptional: false,
           },
         },
         {
@@ -2228,7 +2121,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2250,7 +2143,6 @@ const completionSpec: Fig.Spec = {
           description: "The login URL of the instance the org lives on",
           args: {
             name: "instanceurl",
-            isOptional: false,
           },
         },
         {
@@ -2269,7 +2161,6 @@ const completionSpec: Fig.Spec = {
           description: "Set an alias for the authenticated org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
         {
@@ -2291,7 +2182,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2313,7 +2204,6 @@ const completionSpec: Fig.Spec = {
           description: "OAuth client ID (sometimes called the consumer key)",
           args: {
             name: "clientid",
-            isOptional: false,
           },
         },
         {
@@ -2321,7 +2211,6 @@ const completionSpec: Fig.Spec = {
           description: "The login URL of the instance the org lives on",
           args: {
             name: "instanceurl",
-            isOptional: false,
           },
         },
         {
@@ -2339,7 +2228,6 @@ const completionSpec: Fig.Spec = {
           description: "Set an alias for the authenticated org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
       ],
@@ -2357,7 +2245,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2379,7 +2267,6 @@ const completionSpec: Fig.Spec = {
           description: "Authentication username",
           args: {
             name: "username",
-            isOptional: false,
           },
         },
         {
@@ -2387,7 +2274,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to a file containing the private key",
           args: {
             name: "jwtkeyfile",
-            isOptional: false,
           },
         },
         {
@@ -2395,7 +2281,6 @@ const completionSpec: Fig.Spec = {
           description: "OAuth client ID (sometimes called the consumer key)",
           args: {
             name: "clientid",
-            isOptional: false,
           },
         },
         {
@@ -2403,7 +2288,6 @@ const completionSpec: Fig.Spec = {
           description: "The login URL of the instance the org lives on",
           args: {
             name: "instanceurl",
-            isOptional: false,
           },
         },
         {
@@ -2421,7 +2305,6 @@ const completionSpec: Fig.Spec = {
           description: "Set an alias for the authenticated org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
       ],
@@ -2439,7 +2322,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2471,7 +2354,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2494,7 +2377,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2503,7 +2385,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2529,7 +2410,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2551,7 +2432,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to a file containing the sfdx url",
           args: {
             name: "sfdxurlfile",
-            isOptional: false,
           },
         },
         {
@@ -2569,7 +2449,6 @@ const completionSpec: Fig.Spec = {
           description: "Set an alias for the authenticated org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
       ],
@@ -2587,7 +2466,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2609,7 +2488,6 @@ const completionSpec: Fig.Spec = {
           description: "OAuth client ID (sometimes called the consumer key)",
           args: {
             name: "clientid",
-            isOptional: false,
           },
         },
         {
@@ -2617,7 +2495,6 @@ const completionSpec: Fig.Spec = {
           description: "The login URL of the instance the org lives on",
           args: {
             name: "instanceurl",
-            isOptional: false,
           },
         },
         {
@@ -2635,7 +2512,6 @@ const completionSpec: Fig.Spec = {
           description: "Set an alias for the authenticated org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
       ],
@@ -2653,7 +2529,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2676,7 +2552,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2685,7 +2560,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -2704,7 +2578,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2727,7 +2601,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2736,7 +2609,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2745,7 +2617,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of API names of standard or custom objects for which to display record counts",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
       ],
@@ -2763,7 +2634,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2786,7 +2657,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2795,7 +2665,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2817,7 +2686,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2872,7 +2741,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2895,7 +2764,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -2904,7 +2772,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -2912,7 +2779,6 @@ const completionSpec: Fig.Spec = {
           description: "Navigation URL path",
           args: {
             name: "path",
-            isOptional: false,
           },
         },
         {
@@ -2934,7 +2800,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -2957,7 +2823,6 @@ const completionSpec: Fig.Spec = {
             "A source directory other than the default package to convert",
           args: {
             name: "rootdir",
-            isOptional: false,
           },
         },
         {
@@ -2966,7 +2831,6 @@ const completionSpec: Fig.Spec = {
             "Output directory to store the Metadata API–formatted files in",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -2975,7 +2839,6 @@ const completionSpec: Fig.Spec = {
             "Name of the package to associate with the metadata-formatted files",
           args: {
             name: "packagename",
-            isOptional: false,
           },
         },
         {
@@ -2984,7 +2847,6 @@ const completionSpec: Fig.Spec = {
             "File path to manifest (package.xml) of metadata types to convert",
           args: {
             name: "manifest",
-            isOptional: false,
           },
         },
         {
@@ -2993,7 +2855,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of paths to the local source files to convert",
           args: {
             name: "sourcepath",
-            isOptional: false,
           },
         },
         {
@@ -3002,7 +2863,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of metadata component names to convert",
           args: {
             name: "metadata",
-            isOptional: false,
           },
         },
       ],
@@ -3021,7 +2881,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3044,7 +2904,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3053,7 +2912,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3069,7 +2927,6 @@ const completionSpec: Fig.Spec = {
           description: "Wait time for command to finish in minutes",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -3077,7 +2934,7 @@ const completionSpec: Fig.Spec = {
           description: "Deployment testing level",
           args: {
             name: "testlevel",
-            isOptional: false,
+
             suggestions: [
               "NoTestRun",
               "RunSpecifiedTests",
@@ -3091,7 +2948,6 @@ const completionSpec: Fig.Spec = {
           description: "Tests to run if --testlevel RunSpecifiedTests",
           args: {
             name: "runtests",
-            isOptional: false,
           },
         },
         {
@@ -3109,7 +2965,6 @@ const completionSpec: Fig.Spec = {
             "Deploy request ID of the validated deployment to run a Quick Deploy",
           args: {
             name: "validateddeployrequestid",
-            isOptional: false,
           },
         },
         {
@@ -3121,7 +2976,6 @@ const completionSpec: Fig.Spec = {
           description: "Comma-separated list of metadata component names",
           args: {
             name: "metadata",
-            isOptional: false,
           },
         },
         {
@@ -3129,7 +2983,6 @@ const completionSpec: Fig.Spec = {
           description: "Comma-separated list of source file paths to deploy",
           args: {
             name: "sourcepath",
-            isOptional: false,
           },
         },
         {
@@ -3138,7 +2991,6 @@ const completionSpec: Fig.Spec = {
             "File path for manifest (package.xml) of components to deploy",
           args: {
             name: "manifest",
-            isOptional: false,
           },
         },
       ],
@@ -3156,7 +3008,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3179,7 +3031,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3188,7 +3039,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3196,7 +3046,6 @@ const completionSpec: Fig.Spec = {
           description: "Wait time for command to finish in minutes",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -3205,7 +3054,6 @@ const completionSpec: Fig.Spec = {
             "Job ID of the deployment you want to cancel; defaults to your most recent CLI deployment if not specified",
           args: {
             name: "jobid",
-            isOptional: false,
           },
         },
       ],
@@ -3223,7 +3071,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3246,7 +3094,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3255,7 +3102,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3263,7 +3109,6 @@ const completionSpec: Fig.Spec = {
           description: "Wait time for command to finish in minutes",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -3272,7 +3117,6 @@ const completionSpec: Fig.Spec = {
             "Job ID of the deployment you want to check; defaults to your most recent CLI deployment if not specified",
           args: {
             name: "jobid",
-            isOptional: false,
           },
         },
         {
@@ -3295,7 +3139,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3318,7 +3162,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3327,7 +3170,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of names of metadata components to include in the manifest",
           args: {
             name: "metadata",
-            isOptional: false,
           },
         },
         {
@@ -3336,7 +3178,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of paths to the local source files to include in the manifest",
           args: {
             name: "sourcepath",
-            isOptional: false,
           },
         },
         {
@@ -3344,7 +3185,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of a custom manifest file to create",
           args: {
             name: "manifestname",
-            isOptional: false,
           },
         },
         {
@@ -3353,7 +3193,7 @@ const completionSpec: Fig.Spec = {
             "Type of manifest to create; the type determines the name of the created file",
           args: {
             name: "manifesttype",
-            isOptional: false,
+
             suggestions: ["pre", "post", "destroy", "package"],
           },
         },
@@ -3362,7 +3202,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory to save the created manifest",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -3380,7 +3219,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3403,7 +3242,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3412,7 +3250,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3420,7 +3257,6 @@ const completionSpec: Fig.Spec = {
           description: "File to edit",
           args: {
             name: "sourcefile",
-            isOptional: false,
           },
         },
         {
@@ -3442,7 +3278,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3465,7 +3301,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3474,7 +3309,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3482,7 +3316,6 @@ const completionSpec: Fig.Spec = {
           description: "Comma-separated list of source file paths to retrieve",
           args: {
             name: "sourcepath",
-            isOptional: false,
           },
         },
         {
@@ -3490,7 +3323,6 @@ const completionSpec: Fig.Spec = {
           description: "Wait time for command to finish in minutes",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -3499,7 +3331,6 @@ const completionSpec: Fig.Spec = {
             "File path for manifest (package.xml) of components to retrieve",
           args: {
             name: "manifest",
-            isOptional: false,
           },
         },
         {
@@ -3507,7 +3338,6 @@ const completionSpec: Fig.Spec = {
           description: "Comma-separated list of metadata component names",
           args: {
             name: "metadata",
-            isOptional: false,
           },
         },
         {
@@ -3515,7 +3345,6 @@ const completionSpec: Fig.Spec = {
           description: "A comma-separated list of packages to retrieve",
           args: {
             name: "packagenames",
-            isOptional: false,
           },
         },
         {
@@ -3537,7 +3366,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3560,7 +3389,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3569,7 +3397,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3577,7 +3404,6 @@ const completionSpec: Fig.Spec = {
           description: "The API name of the object to describe",
           args: {
             name: "sobjecttype",
-            isOptional: false,
           },
         },
         {
@@ -3599,7 +3425,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3622,7 +3448,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -3631,7 +3456,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3639,7 +3463,6 @@ const completionSpec: Fig.Spec = {
           description: "The type of objects to list (all|custom|standard)",
           args: {
             name: "sobjecttypecategory",
-            isOptional: false,
           },
         },
       ],
@@ -3657,7 +3480,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3679,7 +3502,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -3688,7 +3510,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3696,7 +3517,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the Analytics template",
           args: {
             name: "templatename",
-            isOptional: false,
           },
         },
       ],
@@ -3714,7 +3534,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3736,7 +3556,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Apex class",
           args: {
             name: "classname",
-            isOptional: false,
           },
         },
         {
@@ -3744,7 +3563,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: [
               "ApexException",
               "ApexUnitTest",
@@ -3758,7 +3577,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -3767,7 +3585,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -3785,7 +3602,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3807,7 +3624,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Apex trigger",
           args: {
             name: "triggername",
-            isOptional: false,
           },
         },
         {
@@ -3815,7 +3631,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["ApexTrigger"],
           },
         },
@@ -3824,7 +3640,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -3833,7 +3648,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3841,7 +3655,6 @@ const completionSpec: Fig.Spec = {
           description: "SObject to create a trigger on",
           args: {
             name: "sobject",
-            isOptional: false,
           },
         },
         {
@@ -3849,7 +3662,6 @@ const completionSpec: Fig.Spec = {
           description: "Events that fire the trigger",
           args: {
             name: "triggerevents",
-            isOptional: false,
           },
         },
       ],
@@ -3867,7 +3679,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3889,7 +3701,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Lightning app",
           args: {
             name: "appname",
-            isOptional: false,
           },
         },
         {
@@ -3897,7 +3708,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["DefaultLightningApp"],
           },
         },
@@ -3906,7 +3717,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -3915,7 +3725,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -3934,7 +3743,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -3956,7 +3765,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Lightning component",
           args: {
             name: "componentname",
-            isOptional: false,
           },
         },
         {
@@ -3964,7 +3772,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: [
               "default",
               "analyticsDashboard",
@@ -3977,7 +3785,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -3986,7 +3793,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -3994,7 +3800,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of the Lightning component",
           args: {
             name: "type",
-            isOptional: false,
+
             suggestions: ["aura", "lwc"],
           },
         },
@@ -4013,7 +3819,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4035,7 +3841,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Lightning event",
           args: {
             name: "eventname",
-            isOptional: false,
           },
         },
         {
@@ -4043,7 +3848,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["DefaultLightningEvt"],
           },
         },
@@ -4052,7 +3857,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -4061,7 +3865,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -4079,7 +3882,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4101,7 +3904,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Lightning interface",
           args: {
             name: "interfacename",
-            isOptional: false,
           },
         },
         {
@@ -4109,7 +3911,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["DefaultLightningIntf"],
           },
         },
@@ -4118,7 +3920,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -4127,7 +3928,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -4145,7 +3945,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4167,7 +3967,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Lightning test",
           args: {
             name: "testname",
-            isOptional: false,
           },
         },
         {
@@ -4175,7 +3974,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["DefaultLightningTest"],
           },
         },
@@ -4184,7 +3983,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
       ],
@@ -4202,7 +4000,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4224,7 +4022,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated project",
           args: {
             name: "projectname",
-            isOptional: false,
           },
         },
         {
@@ -4232,7 +4029,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for project creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["standard", "empty", "analytics"],
           },
         },
@@ -4241,7 +4038,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -4249,7 +4045,6 @@ const completionSpec: Fig.Spec = {
           description: "Project associated namespace",
           args: {
             name: "namespace",
-            isOptional: false,
           },
         },
         {
@@ -4257,7 +4052,6 @@ const completionSpec: Fig.Spec = {
           description: "Default package directory name",
           args: {
             name: "defaultpackagedir",
-            isOptional: false,
           },
         },
         {
@@ -4280,7 +4074,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4302,7 +4096,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated static resource",
           args: {
             name: "resourcename",
-            isOptional: false,
           },
         },
         {
@@ -4311,7 +4104,6 @@ const completionSpec: Fig.Spec = {
             "Content type (mime type) of the generated static resource",
           args: {
             name: "contenttype",
-            isOptional: false,
           },
         },
         {
@@ -4319,7 +4111,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -4328,7 +4119,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -4346,7 +4136,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4368,7 +4158,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["DefaultVFComponent"],
           },
         },
@@ -4377,7 +4167,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -4385,7 +4174,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Visualforce component",
           args: {
             name: "componentname",
-            isOptional: false,
           },
         },
         {
@@ -4394,7 +4182,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4402,7 +4189,6 @@ const completionSpec: Fig.Spec = {
           description: "Visualforce component label",
           args: {
             name: "label",
-            isOptional: false,
           },
         },
       ],
@@ -4420,7 +4206,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4442,7 +4228,7 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-            isOptional: false,
+
             suggestions: ["DefaultVFPage"],
           },
         },
@@ -4451,7 +4237,6 @@ const completionSpec: Fig.Spec = {
           description: "Folder for saving the created files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -4459,7 +4244,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the generated Visualforce page",
           args: {
             name: "pagename",
-            isOptional: false,
           },
         },
         {
@@ -4468,7 +4252,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4476,7 +4259,6 @@ const completionSpec: Fig.Spec = {
           description: "Visualforce page label",
           args: {
             name: "label",
-            isOptional: false,
           },
         },
       ],
@@ -4494,7 +4276,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4517,7 +4299,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -4526,7 +4307,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4535,7 +4315,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4544,7 +4323,6 @@ const completionSpec: Fig.Spec = {
             "Set an alias for the created username to reference within the CLI",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
         {
@@ -4552,7 +4330,6 @@ const completionSpec: Fig.Spec = {
           description: "File path to a user definition",
           args: {
             name: "definitionfile",
-            isOptional: false,
           },
         },
         {
@@ -4575,7 +4352,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4598,7 +4375,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -4607,7 +4383,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4616,7 +4391,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -4634,7 +4408,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4657,7 +4431,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -4666,7 +4439,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4675,7 +4447,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -4693,7 +4464,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4716,7 +4487,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -4725,7 +4495,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4734,7 +4503,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4743,7 +4511,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of usernames or aliases to assign the password to",
           args: {
             name: "onbehalfof",
-            isOptional: false,
           },
         },
         {
@@ -4752,7 +4519,6 @@ const completionSpec: Fig.Spec = {
             "Number of characters in the generated password; valid values are between 8 and 1000",
           args: {
             name: "length",
-            isOptional: false,
           },
         },
         {
@@ -4761,7 +4527,6 @@ const completionSpec: Fig.Spec = {
             "Level of password complexity or strength; the higher the value, the stronger the password",
           args: {
             name: "complexity",
-            isOptional: false,
           },
         },
       ],
@@ -4779,7 +4544,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4802,7 +4567,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4811,7 +4575,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4819,7 +4582,6 @@ const completionSpec: Fig.Spec = {
           description: "Comma-separated list of permission sets to assign",
           args: {
             name: "permsetname",
-            isOptional: false,
           },
         },
         {
@@ -4828,7 +4590,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of usernames or aliases to assign the permission set to",
           args: {
             name: "onbehalfof",
-            isOptional: false,
           },
         },
       ],
@@ -4861,7 +4622,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4884,7 +4645,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4893,7 +4653,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4905,7 +4664,6 @@ const completionSpec: Fig.Spec = {
           description: "Debug level for trace flag",
           args: {
             name: "debuglevel",
-            isOptional: false,
           },
         },
         {
@@ -4927,7 +4685,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -4950,7 +4708,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -4959,7 +4716,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -4967,7 +4723,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the site to create",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -4975,7 +4730,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use to create a site",
           args: {
             name: "templatename",
-            isOptional: false,
           },
         },
         {
@@ -4984,7 +4738,6 @@ const completionSpec: Fig.Spec = {
             "URL to append to the domain created when Digital Experiences was enabled for this org",
           args: {
             name: "urlpathprefix",
-            isOptional: false,
           },
         },
         {
@@ -4992,7 +4745,6 @@ const completionSpec: Fig.Spec = {
           description: "Description of the site",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
       ],
@@ -5010,7 +4762,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5033,7 +4785,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5042,7 +4793,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5050,7 +4800,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the Experience Builder site to publish",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
       ],
@@ -5068,7 +4817,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5091,7 +4840,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5100,7 +4848,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -5119,7 +4866,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5142,7 +4889,6 @@ const completionSpec: Fig.Spec = {
             "The root directory containing the Metadata API–formatted metadata",
           args: {
             name: "rootdir",
-            isOptional: false,
           },
         },
         {
@@ -5151,7 +4897,6 @@ const completionSpec: Fig.Spec = {
             "The output directory to store the source–formatted files",
           args: {
             name: "outputdir",
-            isOptional: false,
           },
         },
         {
@@ -5160,7 +4905,6 @@ const completionSpec: Fig.Spec = {
             "File path to manifest (package.xml) of metadata types to convert",
           args: {
             name: "manifest",
-            isOptional: false,
           },
         },
         {
@@ -5169,7 +4913,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of metadata component names to convert",
           args: {
             name: "metadata",
-            isOptional: false,
           },
         },
         {
@@ -5178,7 +4921,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of paths to the local source files to convert",
           args: {
             name: "metadatapath",
-            isOptional: false,
           },
         },
       ],
@@ -5196,7 +4938,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5219,7 +4961,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5228,7 +4969,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5240,7 +4980,6 @@ const completionSpec: Fig.Spec = {
           description: "Root of directory tree of files to deploy",
           args: {
             name: "deploydir",
-            isOptional: false,
           },
         },
         {
@@ -5249,7 +4988,6 @@ const completionSpec: Fig.Spec = {
             "Wait time for command to finish in minutes (default: 0)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -5257,7 +4995,7 @@ const completionSpec: Fig.Spec = {
           description: "Deployment testing level",
           args: {
             name: "testlevel",
-            isOptional: false,
+
             suggestions: [
               "NoTestRun",
               "RunSpecifiedTests",
@@ -5271,7 +5009,6 @@ const completionSpec: Fig.Spec = {
           description: "Tests to run if --testlevel RunSpecifiedTests",
           args: {
             name: "runtests",
-            isOptional: false,
           },
         },
         {
@@ -5289,7 +5026,6 @@ const completionSpec: Fig.Spec = {
             "Request ID of the validated deployment to run a Quick Deploy",
           args: {
             name: "validateddeployrequestid",
-            isOptional: false,
           },
         },
         {
@@ -5301,7 +5037,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to .zip file of metadata to deploy",
           args: {
             name: "zipfile",
-            isOptional: false,
           },
         },
         {
@@ -5328,7 +5063,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5351,7 +5086,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5360,7 +5094,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5368,7 +5101,6 @@ const completionSpec: Fig.Spec = {
           description: "Wait time for command to finish in minutes 33",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -5377,7 +5109,6 @@ const completionSpec: Fig.Spec = {
             "Job ID of the deployment you want to cancel; defaults to your most recent CLI deployment if not specified",
           args: {
             name: "jobid",
-            isOptional: false,
           },
         },
       ],
@@ -5395,7 +5126,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5418,7 +5149,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5427,7 +5157,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5436,7 +5165,6 @@ const completionSpec: Fig.Spec = {
             "Wait time for command to finish in minutes (default: 0)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -5445,7 +5173,6 @@ const completionSpec: Fig.Spec = {
             "Job ID of the deployment to check; required if you’ve never deployed using Salesforce CLI; if not specified, defaults to your most recent CLI deployment",
           args: {
             name: "jobid",
-            isOptional: false,
           },
         },
         {
@@ -5467,7 +5194,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5490,7 +5217,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5498,7 +5224,6 @@ const completionSpec: Fig.Spec = {
           description: "API version to use",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5506,7 +5231,6 @@ const completionSpec: Fig.Spec = {
           description: "Filter metadata known by the CLI",
           args: {
             name: "resultfile",
-            isOptional: false,
           },
         },
       ],
@@ -5525,7 +5249,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5548,7 +5272,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5556,7 +5279,6 @@ const completionSpec: Fig.Spec = {
           description: "API version to use",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5564,7 +5286,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to the file where results are stored",
           args: {
             name: "resultfile",
-            isOptional: false,
           },
         },
         {
@@ -5573,7 +5294,6 @@ const completionSpec: Fig.Spec = {
             "Metadata type to be retrieved, such as CustomObject; metadata type value is case-sensitive",
           args: {
             name: "metadatatype",
-            isOptional: false,
           },
         },
         {
@@ -5582,7 +5302,6 @@ const completionSpec: Fig.Spec = {
             "Folder associated with the component; required for components that use folders; folder names are case-sensitive",
           args: {
             name: "folder",
-            isOptional: false,
           },
         },
       ],
@@ -5600,7 +5319,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5623,7 +5342,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5631,7 +5349,6 @@ const completionSpec: Fig.Spec = {
           description: "Target API version for the retrieve",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5640,7 +5357,6 @@ const completionSpec: Fig.Spec = {
             "Wait time for command to finish in minutes (default: -1 (no limit))",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -5648,7 +5364,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory root for the retrieved files",
           args: {
             name: "retrievetargetdir",
-            isOptional: false,
           },
         },
         {
@@ -5656,7 +5371,6 @@ const completionSpec: Fig.Spec = {
           description: "File path of manifest of components to retrieve",
           args: {
             name: "unpackaged",
-            isOptional: false,
           },
         },
         {
@@ -5669,7 +5383,6 @@ const completionSpec: Fig.Spec = {
             "Source dir to use instead of the default package dir in sfdx-project.json",
           args: {
             name: "sourcedir",
-            isOptional: false,
           },
         },
         {
@@ -5677,7 +5390,6 @@ const completionSpec: Fig.Spec = {
           description: "A comma-separated list of packages to retrieve",
           args: {
             name: "packagenames",
-            isOptional: false,
           },
         },
         {
@@ -5700,7 +5412,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5723,7 +5435,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5732,7 +5443,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5741,7 +5451,6 @@ const completionSpec: Fig.Spec = {
             "Wait time for command to finish in minutes (default: -1 (no limit))",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -5749,7 +5458,6 @@ const completionSpec: Fig.Spec = {
           description: "Directory root for the retrieved files",
           args: {
             name: "retrievetargetdir",
-            isOptional: false,
           },
         },
         {
@@ -5762,7 +5470,6 @@ const completionSpec: Fig.Spec = {
             "Job ID of the retrieve you want to check; defaults to your most recent CLI retrieval if not specified",
           args: {
             name: "jobid",
-            isOptional: false,
           },
         },
       ],
@@ -5780,7 +5487,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5803,7 +5510,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5812,7 +5518,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5820,7 +5525,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of org to create",
           args: {
             name: "type",
-            isOptional: false,
+
             suggestions: ["sandbox"],
           },
         },
@@ -5829,7 +5534,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to an org definition file",
           args: {
             name: "definitionfile",
-            isOptional: false,
           },
         },
         {
@@ -5841,7 +5545,6 @@ const completionSpec: Fig.Spec = {
           description: "Alias for the created org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
         {
@@ -5849,7 +5552,6 @@ const completionSpec: Fig.Spec = {
           description: "The streaming client socket timeout (in minutes)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
       ],
@@ -5867,7 +5569,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -5890,7 +5592,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -5899,7 +5600,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -5908,7 +5608,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -5916,7 +5615,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of org to create",
           args: {
             name: "type",
-            isOptional: false,
+
             suggestions: ["scratch", "sandbox"],
           },
         },
@@ -5925,7 +5624,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to an org definition file",
           args: {
             name: "definitionfile",
-            isOptional: false,
           },
         },
         {
@@ -5943,7 +5641,6 @@ const completionSpec: Fig.Spec = {
             "Connected app consumer key; not supported for sandbox org creation",
           args: {
             name: "clientid",
-            isOptional: false,
           },
         },
         {
@@ -5955,7 +5652,6 @@ const completionSpec: Fig.Spec = {
           description: "Alias for the created org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
         {
@@ -5963,7 +5659,6 @@ const completionSpec: Fig.Spec = {
           description: "The streaming client socket timeout (in minutes)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -5972,7 +5667,6 @@ const completionSpec: Fig.Spec = {
             "Duration of the scratch org (in days) (default:7, min:1, max:30)",
           args: {
             name: "durationdays",
-            isOptional: false,
           },
         },
       ],
@@ -5990,7 +5684,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6013,7 +5707,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6022,7 +5715,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6031,7 +5723,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6054,7 +5745,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6077,7 +5768,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6086,7 +5776,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -6104,7 +5793,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6127,7 +5816,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6136,7 +5824,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6158,7 +5845,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6194,7 +5881,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6217,7 +5904,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6226,7 +5912,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6235,7 +5920,6 @@ const completionSpec: Fig.Spec = {
             "ID or locally authenticated username or alias of scratch org to snapshot",
           args: {
             name: "sourceorg",
-            isOptional: false,
           },
         },
         {
@@ -6243,7 +5927,6 @@ const completionSpec: Fig.Spec = {
           description: "Unique name of snapshot",
           args: {
             name: "snapshotname",
-            isOptional: false,
           },
         },
         {
@@ -6251,7 +5934,6 @@ const completionSpec: Fig.Spec = {
           description: "Description of snapshot",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
       ],
@@ -6269,7 +5951,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6292,7 +5974,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6301,7 +5982,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6309,7 +5989,6 @@ const completionSpec: Fig.Spec = {
           description: "Name or ID of snapshot to delete",
           args: {
             name: "snapshot",
-            isOptional: false,
           },
         },
       ],
@@ -6327,7 +6006,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6350,7 +6029,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6359,7 +6037,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6367,7 +6044,6 @@ const completionSpec: Fig.Spec = {
           description: "Name or ID of snapshot to retrieve",
           args: {
             name: "snapshot",
-            isOptional: false,
           },
         },
       ],
@@ -6385,7 +6061,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6408,7 +6084,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6417,7 +6092,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -6435,7 +6109,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6458,7 +6132,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6467,7 +6140,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6475,7 +6147,6 @@ const completionSpec: Fig.Spec = {
           description: "Name of the sandbox org to check status for",
           args: {
             name: "sandboxname",
-            isOptional: false,
           },
         },
         {
@@ -6487,7 +6158,6 @@ const completionSpec: Fig.Spec = {
           description: "Alias for the created org",
           args: {
             name: "setalias",
-            isOptional: false,
           },
         },
         {
@@ -6495,7 +6165,6 @@ const completionSpec: Fig.Spec = {
           description: "Number of minutes to wait while polling for status",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
       ],
@@ -6514,7 +6183,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6537,7 +6206,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6546,7 +6214,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6555,7 +6222,6 @@ const completionSpec: Fig.Spec = {
             "ID of the metadata package (starts with 033) of which you’re creating a new version",
           args: {
             name: "packageid",
-            isOptional: false,
           },
         },
         {
@@ -6563,7 +6229,6 @@ const completionSpec: Fig.Spec = {
           description: "Package version name",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -6571,7 +6236,6 @@ const completionSpec: Fig.Spec = {
           description: "Package version description",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
         {
@@ -6580,7 +6244,6 @@ const completionSpec: Fig.Spec = {
             "Package version in major.minor format, for example, 3.2",
           args: {
             name: "version",
-            isOptional: false,
           },
         },
         {
@@ -6592,7 +6255,6 @@ const completionSpec: Fig.Spec = {
           description: "Release notes URL",
           args: {
             name: "releasenotesurl",
-            isOptional: false,
           },
         },
         {
@@ -6600,7 +6262,6 @@ const completionSpec: Fig.Spec = {
           description: "Post install URL",
           args: {
             name: "postinstallurl",
-            isOptional: false,
           },
         },
         {
@@ -6609,7 +6270,6 @@ const completionSpec: Fig.Spec = {
             "Installation key for key-protected package (default: null)",
           args: {
             name: "installationkey",
-            isOptional: false,
           },
         },
         {
@@ -6618,7 +6278,6 @@ const completionSpec: Fig.Spec = {
             "Minutes to wait for the package version to be created (default: 2 minutes)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
       ],
@@ -6636,7 +6295,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6659,7 +6318,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6668,7 +6326,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6676,7 +6333,6 @@ const completionSpec: Fig.Spec = {
           description: "PackageUploadRequest ID",
           args: {
             name: "requestid",
-            isOptional: false,
           },
         },
       ],
@@ -6694,7 +6350,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6717,7 +6373,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6726,7 +6381,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6734,7 +6388,6 @@ const completionSpec: Fig.Spec = {
           description: "Metadata package version ID (starts with 04t)",
           args: {
             name: "packageversionid",
-            isOptional: false,
           },
         },
       ],
@@ -6753,7 +6406,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6776,7 +6429,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -6785,7 +6437,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6793,7 +6444,6 @@ const completionSpec: Fig.Spec = {
           description: "Metadata package ID (starts with 033)",
           args: {
             name: "packageid",
-            isOptional: false,
           },
         },
       ],
@@ -6811,7 +6461,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6834,7 +6484,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6843,7 +6492,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6851,7 +6499,6 @@ const completionSpec: Fig.Spec = {
           description: "Package name",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -6859,7 +6506,7 @@ const completionSpec: Fig.Spec = {
           description: "Package type",
           args: {
             name: "packagetype",
-            isOptional: false,
+
             suggestions: ["Managed", "Unlocked"],
           },
         },
@@ -6868,7 +6515,6 @@ const completionSpec: Fig.Spec = {
           description: "Package description",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
         {
@@ -6882,7 +6528,6 @@ const completionSpec: Fig.Spec = {
             "Path to directory that contains the contents of the package",
           args: {
             name: "path",
-            isOptional: false,
           },
         },
         {
@@ -6896,7 +6541,6 @@ const completionSpec: Fig.Spec = {
             "Active Dev Hub user designated to receive email notifications for package errors",
           args: {
             name: "errornotificationusername",
-            isOptional: false,
           },
         },
       ],
@@ -6914,7 +6558,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6937,7 +6581,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -6946,7 +6589,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -6958,7 +6600,6 @@ const completionSpec: Fig.Spec = {
           description: "ID (starts with 0Ho) or alias of the package to delete",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
       ],
@@ -6976,7 +6617,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -6999,7 +6640,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -7008,7 +6648,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7016,7 +6655,6 @@ const completionSpec: Fig.Spec = {
           description: "Number of minutes to wait for installation status",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -7025,7 +6663,6 @@ const completionSpec: Fig.Spec = {
             "Installation key for key-protected package (default: null)",
           args: {
             name: "installationkey",
-            isOptional: false,
           },
         },
         {
@@ -7034,7 +6671,6 @@ const completionSpec: Fig.Spec = {
             "Number of minutes to wait for subscriber package version ID to become available in the target org",
           args: {
             name: "publishwait",
-            isOptional: false,
           },
         },
         {
@@ -7047,7 +6683,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 04t) or alias of the package version to install",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -7056,7 +6691,7 @@ const completionSpec: Fig.Spec = {
             "Compile all Apex in the org and package, or only Apex in the package; unlocked packages only",
           args: {
             name: "apexcompile",
-            isOptional: false,
+
             suggestions: ["all", "package"],
           },
         },
@@ -7066,7 +6701,7 @@ const completionSpec: Fig.Spec = {
             "Security access type for the installed package (deprecation notice: The default --securitytype value will change from AllUsers to AdminsOnly in v47.0 or later.)",
           args: {
             name: "securitytype",
-            isOptional: false,
+
             suggestions: ["AllUsers", "AdminsOnly"],
           },
         },
@@ -7076,7 +6711,7 @@ const completionSpec: Fig.Spec = {
             "The upgrade type for the package installation; available only for unlocked packages",
           args: {
             name: "upgradetype",
-            isOptional: false,
+
             suggestions: ["DeprecateOnly", "Mixed", "Delete"],
           },
         },
@@ -7095,7 +6730,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7118,7 +6753,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -7127,7 +6761,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7135,7 +6768,6 @@ const completionSpec: Fig.Spec = {
           description: "ID of the package install request you want to check",
           args: {
             name: "requestid",
-            isOptional: false,
           },
         },
       ],
@@ -7153,7 +6785,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7176,7 +6808,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -7185,7 +6816,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
       ],
@@ -7203,7 +6833,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7226,7 +6856,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7235,7 +6864,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7257,7 +6885,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7280,7 +6908,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -7289,7 +6916,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7297,7 +6923,6 @@ const completionSpec: Fig.Spec = {
           description: "Number of minutes to wait for uninstall status",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -7306,7 +6931,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 04t) or alias of the package version to uninstall",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
       ],
@@ -7324,7 +6948,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7347,7 +6971,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -7356,7 +6979,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7364,7 +6986,6 @@ const completionSpec: Fig.Spec = {
           description: "ID of the package uninstall request you want to check",
           args: {
             name: "requestid",
-            isOptional: false,
           },
         },
       ],
@@ -7382,7 +7003,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7405,7 +7026,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7414,7 +7034,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7422,7 +7041,6 @@ const completionSpec: Fig.Spec = {
           description: "ID (starts with 0Ho) or alias of the package to update",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -7430,7 +7048,6 @@ const completionSpec: Fig.Spec = {
           description: "New package name",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -7438,7 +7055,6 @@ const completionSpec: Fig.Spec = {
           description: "New package description",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
         {
@@ -7447,7 +7063,6 @@ const completionSpec: Fig.Spec = {
             "Active Dev Hub user designated to receive email notifications for package errors",
           args: {
             name: "errornotificationusername",
-            isOptional: false,
           },
         },
       ],
@@ -7465,7 +7080,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7488,7 +7103,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7497,7 +7111,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7506,7 +7119,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 0Ho) or alias of the package to create a version of",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -7515,7 +7127,6 @@ const completionSpec: Fig.Spec = {
             "Path to directory that contains the contents of the package",
           args: {
             name: "path",
-            isOptional: false,
           },
         },
         {
@@ -7524,7 +7135,6 @@ const completionSpec: Fig.Spec = {
             "Path to a definition file similar to scratch org definition file that contains the list of features and org preferences that the metadata of the package version depends on",
           args: {
             name: "definitionfile",
-            isOptional: false,
           },
         },
         {
@@ -7532,7 +7142,6 @@ const completionSpec: Fig.Spec = {
           description: "The package version’s branch",
           args: {
             name: "branch",
-            isOptional: false,
           },
         },
         {
@@ -7540,7 +7149,6 @@ const completionSpec: Fig.Spec = {
           description: "The package version’s tag",
           args: {
             name: "tag",
-            isOptional: false,
           },
         },
         {
@@ -7549,7 +7157,6 @@ const completionSpec: Fig.Spec = {
             "Installation key for key-protected package (either --installationkey or --installationkeybypass is required)",
           args: {
             name: "installationkey",
-            isOptional: false,
           },
         },
         {
@@ -7562,7 +7169,6 @@ const completionSpec: Fig.Spec = {
           description: "Minutes to wait for the package version to be created",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -7570,7 +7176,6 @@ const completionSpec: Fig.Spec = {
           description: "The name of the package version to be created",
           args: {
             name: "versionname",
-            isOptional: false,
           },
         },
         {
@@ -7579,7 +7184,6 @@ const completionSpec: Fig.Spec = {
             "The version number of the package version to be created",
           args: {
             name: "versionnumber",
-            isOptional: false,
           },
         },
         {
@@ -7587,7 +7191,6 @@ const completionSpec: Fig.Spec = {
           description: "The description of the package version to be created",
           args: {
             name: "versiondescription",
-            isOptional: false,
           },
         },
         {
@@ -7600,7 +7203,6 @@ const completionSpec: Fig.Spec = {
           description: "Release notes URL",
           args: {
             name: "releasenotesurl",
-            isOptional: false,
           },
         },
         {
@@ -7608,7 +7210,6 @@ const completionSpec: Fig.Spec = {
           description: "Post-install URL",
           args: {
             name: "postinstallurl",
-            isOptional: false,
           },
         },
         {
@@ -7616,7 +7217,6 @@ const completionSpec: Fig.Spec = {
           description: "Post-install script name; managed packages only",
           args: {
             name: "postinstallscript",
-            isOptional: false,
           },
         },
         {
@@ -7624,7 +7224,6 @@ const completionSpec: Fig.Spec = {
           description: "Uninstall script name; managed packages only",
           args: {
             name: "uninstallscript",
-            isOptional: false,
           },
         },
         {
@@ -7647,7 +7246,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7670,7 +7269,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7679,7 +7277,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7688,7 +7285,6 @@ const completionSpec: Fig.Spec = {
             "Created in the last specified number of days (starting at 00:00:00 of first day to now; 0 for today)",
           args: {
             name: "createdlastdays",
-            isOptional: false,
           },
         },
         {
@@ -7696,7 +7292,7 @@ const completionSpec: Fig.Spec = {
           description: "Filter the list by version creation request status",
           args: {
             name: "status",
-            isOptional: false,
+
             suggestions: ["Queued", "InProgress", "Success", "Error"],
           },
         },
@@ -7715,7 +7311,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7738,7 +7334,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7747,7 +7342,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7755,7 +7349,6 @@ const completionSpec: Fig.Spec = {
           description: "Package version creation request ID (starts with 08c)",
           args: {
             name: "packagecreaterequestid",
-            isOptional: false,
           },
         },
       ],
@@ -7773,7 +7366,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7796,7 +7389,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7805,7 +7397,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7818,7 +7409,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 04t) or alias of the package to update a version of",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
       ],
@@ -7837,7 +7427,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7860,7 +7450,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7869,7 +7458,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7878,7 +7466,6 @@ const completionSpec: Fig.Spec = {
             "ID or alias of the package (starts with 0Ho) or package version (starts with 04t) to display ancestry for",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -7905,7 +7492,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -7928,7 +7515,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -7937,7 +7523,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -7946,7 +7531,6 @@ const completionSpec: Fig.Spec = {
             "Created in the last specified number of days (starting at 00:00:00 of first day to now; 0 for today)",
           args: {
             name: "createdlastdays",
-            isOptional: false,
           },
         },
         {
@@ -7959,7 +7543,6 @@ const completionSpec: Fig.Spec = {
             "List items modified in the specified last number of days (starting at 00:00:00 of first day to now; 0 for today)",
           args: {
             name: "modifiedlastdays",
-            isOptional: false,
           },
         },
         {
@@ -7968,7 +7551,6 @@ const completionSpec: Fig.Spec = {
             "Filter results on specified comma-delimited packages (aliases or 0Ho IDs)",
           args: {
             name: "packages",
-            isOptional: false,
           },
         },
         {
@@ -7980,7 +7562,6 @@ const completionSpec: Fig.Spec = {
           description: "Order by the specified package version fields",
           args: {
             name: "orderby",
-            isOptional: false,
           },
         },
         {
@@ -8002,7 +7583,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8025,7 +7606,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -8034,7 +7614,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8043,7 +7622,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 04t) or alias of the package version to promote",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -8067,7 +7645,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8090,7 +7668,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -8099,7 +7676,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8108,7 +7684,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 04t) or alias of the package to retrieve details for",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -8130,7 +7705,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8153,7 +7728,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the dev hub org; overrides default dev hub org",
           args: {
             name: "targetdevhubusername",
-            isOptional: false,
           },
         },
         {
@@ -8162,7 +7736,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8171,7 +7744,6 @@ const completionSpec: Fig.Spec = {
             "ID (starts with 04t) or alias of the package to update a version of",
           args: {
             name: "package",
-            isOptional: false,
           },
         },
         {
@@ -8179,7 +7751,6 @@ const completionSpec: Fig.Spec = {
           description: "New package version name",
           args: {
             name: "versionname",
-            isOptional: false,
           },
         },
         {
@@ -8187,7 +7758,6 @@ const completionSpec: Fig.Spec = {
           description: "New package version description",
           args: {
             name: "versiondescription",
-            isOptional: false,
           },
         },
         {
@@ -8195,7 +7765,6 @@ const completionSpec: Fig.Spec = {
           description: "New package version branch",
           args: {
             name: "branch",
-            isOptional: false,
           },
         },
         {
@@ -8203,7 +7772,6 @@ const completionSpec: Fig.Spec = {
           description: "New package version tag",
           args: {
             name: "tag",
-            isOptional: false,
           },
         },
         {
@@ -8212,7 +7780,6 @@ const completionSpec: Fig.Spec = {
             "New installation key for key-protected package (default: null)",
           args: {
             name: "installationkey",
-            isOptional: false,
           },
         },
       ],
@@ -8231,7 +7798,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8254,7 +7821,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -8263,7 +7829,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8280,7 +7845,6 @@ const completionSpec: Fig.Spec = {
           description: "Wait time for command to finish in minutes 33",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -8289,7 +7853,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of paths to the local metadata to delete",
           args: {
             name: "sourcepath",
-            isOptional: false,
           },
         },
         {
@@ -8298,7 +7861,6 @@ const completionSpec: Fig.Spec = {
             "Comma-separated list of names of metadata components to delete",
           args: {
             name: "metadata",
-            isOptional: false,
           },
         },
       ],
@@ -8317,7 +7879,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8340,7 +7902,6 @@ const completionSpec: Fig.Spec = {
             "File or directory of files that the command checks for foreceignored files",
           args: {
             name: "sourcepath",
-            isOptional: false,
           },
         },
       ],
@@ -8358,7 +7919,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8381,7 +7942,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -8390,7 +7950,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8399,7 +7958,6 @@ const completionSpec: Fig.Spec = {
             "Wait time for command to finish in minutes (default: 33)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
         {
@@ -8422,7 +7980,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8445,7 +8003,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -8454,7 +8011,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8472,7 +8028,6 @@ const completionSpec: Fig.Spec = {
             "Wait time for command to finish in minutes (default: 33)",
           args: {
             name: "wait",
-            isOptional: false,
           },
         },
       ],
@@ -8490,7 +8045,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8513,7 +8068,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -8522,7 +8076,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8553,7 +8106,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8576,7 +8129,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -8585,7 +8137,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8608,7 +8159,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8631,7 +8182,6 @@ const completionSpec: Fig.Spec = {
             "Username or alias for the target org; overrides default target org",
           args: {
             name: "targetusername",
-            isOptional: false,
           },
         },
         {
@@ -8640,7 +8190,6 @@ const completionSpec: Fig.Spec = {
             "Override the api version used for api requests made by this command",
           args: {
             name: "apiversion",
-            isOptional: false,
           },
         },
         {
@@ -8649,7 +8198,6 @@ const completionSpec: Fig.Spec = {
             "Reset to a specific SourceMember revision counter number",
           args: {
             name: "revision",
-            isOptional: false,
           },
         },
         {
@@ -8673,7 +8221,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8696,7 +8244,6 @@ const completionSpec: Fig.Spec = {
             "Path to Lightning web component .js file to create a test for",
           args: {
             name: "filepath",
-            isOptional: false,
           },
         },
       ],
@@ -8714,7 +8261,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",
@@ -8759,7 +8306,7 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-            isOptional: false,
+
             suggestions: [
               "trace",
               "debug",

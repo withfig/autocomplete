@@ -196,7 +196,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-emit-interface-stubs",
-      description: "Generate Inteface Stub Files",
+      description: "Generate Interface Stub Files",
     },
     {
       name: "-emit-llvm",

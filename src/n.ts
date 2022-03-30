@@ -1,7 +1,4 @@
-import nodeSpec from "./node";
-
-const node = (version?: string) =>
-  typeof nodeSpec === "function" ? nodeSpec(version) : nodeSpec;
+import node from "./node";
 
 const versionArg: Fig.Arg = {
   name: "version",
@@ -31,9 +28,9 @@ const versionArg: Fig.Arg = {
       const versions = out.split("\n").slice(1);
       for (const version of versions) {
         set.add(version); // 16.1.2
-        const splitted = version.split(".");
-        set.add(splitted[0] + "." + splitted[1]); // 16.1
-        set.add(splitted[0]); // 16
+        const split = version.split(".");
+        set.add(split[0] + "." + split[1]); // 16.1
+        set.add(split[0]); // 16
       }
       return Array.from(set).map((version) => {
         return {
@@ -54,7 +51,7 @@ const variadicVersionArg: Fig.Arg = {
   isVariadic: true,
 };
 
-const completionSpec: Fig.Spec = (version?: string) => ({
+const completionSpec: Fig.Spec = {
   name: "n",
   description: "Node version management",
   subcommands: [
@@ -104,9 +101,9 @@ const completionSpec: Fig.Spec = (version?: string) => ({
     {
       name: ["run", "use", "as"],
       description: "Execute downloaded Node.js version with args",
-      args: [versionArg, ...[node(version).args].flat()],
-      subcommands: node(version).subcommands,
-      options: node(version).options,
+      args: [versionArg, ...[node.args].flat()],
+      subcommands: node.subcommands,
+      options: node.options,
     },
     {
       name: "exec",
@@ -184,6 +181,6 @@ const completionSpec: Fig.Spec = (version?: string) => ({
       exclusiveOn: ["--use-xz"],
     },
   ],
-});
+};
 
 export default completionSpec;

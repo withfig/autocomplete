@@ -3087,7 +3087,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--oauth-scopes",
               description:
-                "Comma-separated list of OAuth scopes that are validated at runtime. Apigee validates that the scopes in any access token presented match the scopes defined in the OAuth policy assoicated with the API product",
+                "Comma-separated list of OAuth scopes that are validated at runtime. Apigee validates that the scopes in any access token presented match the scopes defined in the OAuth policy associated with the API product",
               args: {
                 name: "SCOPE",
                 description: "List",

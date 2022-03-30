@@ -472,7 +472,7 @@ const completion: Fig.Spec = {
             },
             {
               name: "z",
-              description: "Compres the resulting archive with gzip",
+              description: "Compress the resulting archive with gzip",
             },
             {
               name: "j",
@@ -652,6 +652,7 @@ const completion: Fig.Spec = {
       name: "-Werror",
       description: "Enable the type of warnings",
       insertValue: "-Werror={cursor}",
+      requiresEquals: true,
       args: {
         name: "type",
         suggestions: [
@@ -670,6 +671,7 @@ const completion: Fig.Spec = {
       name: "-Wno-error",
       description: "Disable the type of warnings",
       insertValue: "-Wno-error={cursor}",
+      requiresEquals: true,
       args: {
         name: "type",
         suggestions: [

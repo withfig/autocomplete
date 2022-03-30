@@ -127,7 +127,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "install",
       description:
-        "Initalizes a package manager or installs all packages from Pipfile",
+        "Initializes a package manager or installs all packages from Pipfile",
       args: {
         name: "package",
         description: "Package to install",
@@ -309,7 +309,6 @@ const completionSpec: Fig.Spec = {
       description: "View a given module in your editor",
       args: {
         name: "module",
-        isOptional: false,
       },
       options: [
         {

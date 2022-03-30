@@ -212,7 +212,7 @@ const sharedOptions: Fig.Option[] = [
   },
   {
     name: ["-d", "--data"],
-    description: "Additional data ot send with an API request",
+    description: "Additional data to send with an API request",
     args: {
       name: "value",
     },
@@ -582,7 +582,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--connect-headers",
           description:
-            "A comma-seperated list of custom HTTP headers to any connected accounts",
+            "A comma-separated list of custom HTTP headers to any connected accounts",
           args: {
             isVariadic: true,
             name: "values",
@@ -591,7 +591,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-e", "--events"],
-          description: "A comma-seperated list of which events to listen for",
+          description: "A comma-separated list of which events to listen for",
           args: {
             isVariadic: true,
             name: "events types",
@@ -1070,7 +1070,7 @@ const completionSpec: Fig.Spec = {
               {
                 name: "reporting.report_run.succeeded",
                 description:
-                  "Occurs whenever a requested ReportRun completed succesfully",
+                  "Occurs whenever a requested ReportRun completed successfully",
               },
               {
                 name: "reporting.report_type.updated",

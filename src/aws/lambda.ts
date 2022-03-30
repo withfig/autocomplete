@@ -556,7 +556,7 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
-  getLayerVersionPolicyRevison: {
+  getLayerVersionPolicyRevision: {
     custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
         tokens,
@@ -694,7 +694,7 @@ const generators: Record<string, Fig.Generator> = {
 
   listEventSourceArns: {
     custom: async function (tokens, executeShellCommand) {
-      // Getting sqs queues is implemented, altough it has a huge performance toll.
+      // Getting sqs queues is implemented, although it has a huge performance toll.
       // It seems Fig rejects long-running promises after a time.
       // I am currently investigating if this is the case.
 
@@ -739,7 +739,7 @@ const generators: Record<string, Fig.Generator> = {
 
   listDestinationConfigArns: {
     custom: async function (tokens, executeShellCommand) {
-      // Getting sqs queues is implemented, altough it has a huge performance toll.
+      // Getting sqs queues is implemented, although it has a huge performance toll.
       // It seems Fig rejects long-running promises after a time.
       // I am currently investigating if this is the case.
 
@@ -1060,7 +1060,7 @@ const completionSpec: Fig.Spec = {
             "Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it",
           args: {
             name: "string",
-            generators: generators.getLayerVersionPolicyRevison,
+            generators: generators.getLayerVersionPolicyRevision,
           },
         },
         {
@@ -3765,7 +3765,7 @@ const completionSpec: Fig.Spec = {
             "Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it",
           args: {
             name: "string",
-            generators: generators.getLayerVersionPolicyRevison,
+            generators: generators.getLayerVersionPolicyRevision,
           },
         },
         {

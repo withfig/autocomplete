@@ -44,7 +44,97 @@ const postProcessRemoteBranches: Fig.Generator["postProcess"] = (out) => {
   });
 };
 
+interface RepoDataType {
+  isPrivate: boolean;
+  nameWithOwner: string;
+  description: string | null;
+}
+
+const listRepoMapFunction = (repo: RepoDataType) => ({
+  name: repo.nameWithOwner,
+  description: repo.description,
+  //be able to see if the repo is private at a glance
+  icon: repo.isPrivate ? "🔒" : "👀",
+});
+
 const ghGenerators: Record<string, Fig.Generator> = {
+  listCustomRepositories: {
+    trigger: "/",
+    //execute is script then postProcess
+    custom: async (tokens, execute) => {
+      //get the last command token
+      const last = tokens.pop();
+
+      //gatekeeper
+      if (!last) return [];
+
+      /**
+       * this turns this input:
+       * `withfig/autocomplete`
+       *
+       * into:
+       * ["withfig", "autocomplete"]
+       */
+      const userRepoSplit = last.split("/");
+
+      // make sure it has some length.
+      if (userRepoSplit.length === 0) return [];
+
+      //get first element of arr
+      const userOrOrg = userRepoSplit.shift();
+
+      // make sure it has some existence.
+      if (!userOrOrg) return [];
+
+      //run `gh repo list` cmd
+      const res = await execute(
+        `gh repo list ${userOrOrg} --limit 9999 --json "nameWithOwner,description,isPrivate" `
+      );
+
+      // make sure it has some existence.
+      if (!res) return [];
+
+      //parse the JSON string output of the command
+      const repoArr: RepoDataType[] = JSON.parse(res);
+
+      return repoArr.map(listRepoMapFunction);
+    },
+  },
+  listRepositories: {
+    /*
+     * based on the gh api (use this instead as it also returns repos in the orgs that the user is part of)
+     * https://cli.github.com/manual/gh_api
+     *
+     * --jq https://cli.github.com/manual/gh_help_formatting https://www.baeldung.com/linux/jq-command-json
+     */
+    script:
+      "gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { isPrivate, nameWithOwner, description } pageInfo { hasNextPage endCursor }}}}' --jq '.data.viewer.repositories.nodes[]'",
+    postProcess: (out) => {
+      if (out) {
+        /**
+         * the string thats returned bt the command will contain lines like this:
+         *
+         * {...data}
+         * {...data}
+         * etc
+         *
+         * so the string needs to be transformed into a json array by adding commas on all newline chars then wrapping in square braces
+         *
+         * compared to none paginating request this is a touch slower 300ms or so, but it fixes the over 100 repos issue!
+         *
+         */
+        const jsonifiedOutString = `[${out.replace(/(?:\r\n|\r|\n)/g, ",")}]`;
+        try {
+          const data: RepoDataType[] = JSON.parse(jsonifiedOutString);
+
+          return data.map(listRepoMapFunction);
+        } catch {
+          return [];
+        }
+      }
+      return [];
+    },
+  },
   listPR: {
     script: "gh pr list",
     postProcess: (out) =>
@@ -71,12 +161,11 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
       return aliases.map(({ name, content }) => ({
         name,
-        description: content,
-        icon: "fig://icon?type=command",
+        description: `Alias for '${content}'`,
+        icon: "fig://icon?type=commandkey",
       }));
     },
   },
-
   remoteBranches: {
     script:
       "git --no-optional-locks branch -r --no-color --sort=-committerdate",
@@ -117,6 +206,12 @@ const ghOptions: Record<string, Fig.Option> = {
 const completionSpec: Fig.Spec = {
   name: "gh",
   description: "GitHub's CLI tool",
+  args: {
+    name: "alias",
+    description: "Custom user defined gh alias",
+    isOptional: true,
+    generators: ghGenerators.listAlias,
+  },
   subcommands: [
     {
       name: "alias",
@@ -134,7 +229,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description: "List avaible aliases",
+          description: "List available aliases",
           options: [ghOptions.help],
         },
         {
@@ -187,6 +282,68 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-w", "--web"],
               description: "Open a browser to authenticate",
+            },
+            {
+              name: "--with-token",
+              description: "Read token from standard input",
+              args: { name: "token" },
+            },
+          ],
+        },
+        {
+          name: "logout",
+          description: "Log out of a GitHub host",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
+            },
+          ],
+        },
+        {
+          name: "refresh",
+          description: "Refresh stored authentication credentials",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
+            },
+            {
+              name: ["-s", "--scopes"],
+              description: "Additional authentication scopes for gh to have",
+              args: { name: "scopes" },
+            },
+          ],
+        },
+        {
+          name: "setup-git",
+          description: "Configure git to use GitHub CLI as a credential helper",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
+            },
+          ],
+        },
+        {
+          name: "status",
+          description: "View authentication status",
+          options: [
+            ghOptions.help,
+            {
+              name: ["-h", "--hostname"],
+              description:
+                "The hostname of the GitHub instance to authenticate with",
+              args: { name: "hostname" },
             },
             {
               name: "--with-token",
@@ -857,7 +1014,7 @@ const completionSpec: Fig.Spec = {
           name: "checkout",
           description: "Check out a pull request in git",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -871,7 +1028,7 @@ const completionSpec: Fig.Spec = {
           name: "checks",
           description: "Show CI status for a single pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -885,7 +1042,7 @@ const completionSpec: Fig.Spec = {
           name: "close",
           description: "Close a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -896,10 +1053,118 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
+          name: "edit",
+          description:
+            "Edit a pull request. Without an argument, the pull request that belongs to the current branch is selected",
+          args: {
+            name: "number | url | branch",
+            generators: ghGenerators.listPR,
+          },
+          options: [
+            {
+              name: "--add-assignee",
+              description:
+                'Add assigned users by their login. Use "@me" to assign yourself',
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: "--add-label",
+              description: "Add labels by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--add-project",
+              description: "Add the pull request to projects by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--add-reviewer",
+              description: "Add reviewers by their login",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-B", "--base"],
+              description: "Change the base branch for this pull request",
+              args: {
+                name: "branch",
+              },
+            },
+            {
+              name: ["-b", "--body"],
+              description: "Set the new body",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-F", "--body-file"],
+              description:
+                'Read body text from file (use "-" to read from standard input)',
+              args: {
+                name: "file",
+              },
+            },
+            {
+              name: ["-m", "--milestone"],
+              description:
+                "Edit the milestone the pull request belongs to by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--remove-assignee",
+              description:
+                'Remove assigned users by their login. Use "@me" to unassign yourself',
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: "--remove-label",
+              description: "Remove labels by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--remove-project",
+              description: "Remove the pull request from projects by name",
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--remove-reviewer",
+              description: "Remove reviewers by their login",
+              args: {
+                name: "login",
+              },
+            },
+            {
+              name: ["-t", "--title"],
+              description: "Set the new title",
+              args: {
+                name: "string",
+              },
+            },
+            ghOptions.help,
+            ghOptions.all,
+          ],
+        },
+        {
           name: "comment",
           description: "Create a new pr comment",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1018,7 +1283,7 @@ const completionSpec: Fig.Spec = {
           name: "diff",
           description: "View changes in a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1083,7 +1348,7 @@ const completionSpec: Fig.Spec = {
           name: "merge",
           description: "Merge a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1110,7 +1375,7 @@ const completionSpec: Fig.Spec = {
           name: "ready",
           description: "Mark a pull request as ready for review",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
         },
@@ -1118,7 +1383,7 @@ const completionSpec: Fig.Spec = {
           name: "reopen",
           description: "Reopen a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
         },
@@ -1126,7 +1391,7 @@ const completionSpec: Fig.Spec = {
           name: "review",
           description: "Add a review to a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1156,7 +1421,7 @@ const completionSpec: Fig.Spec = {
           name: "view",
           description: "View a pull request",
           args: {
-            name: "number> | <url> | <branch",
+            name: "number | url | branch",
             generators: ghGenerators.listPR,
           },
           options: [
@@ -1184,6 +1449,7 @@ const completionSpec: Fig.Spec = {
           isDangerous: true,
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
             isOptional: true,
           },
           options: [ghOptions.help, ghOptions.confirm],
@@ -1197,6 +1463,10 @@ Pass additional 'git clone' flags by listing them after '--'`,
           args: [
             {
               name: "repository",
+              generators: [
+                ghGenerators.listRepositories,
+                ghGenerators.listCustomRepositories,
+              ],
             },
             {
               name: "directory",
@@ -1259,6 +1529,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
           isDangerous: true,
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
             isOptional: true,
           },
           options: [ghOptions.help, ghOptions.confirm],
@@ -1268,6 +1539,7 @@ To authorize, run "gh auth refresh -s delete_repo"`,
           description: "Edit repository settings",
           args: {
             name: "repository",
+            generators: ghGenerators.listRepositories,
             isOptional: true,
           },
           options: [
@@ -1367,6 +1639,10 @@ a name for the new fork's remote with --remote-name.
 Additional 'git clone' flags can be passed in by listing them after '--'`,
           args: {
             name: "repository",
+            generators: [
+              ghGenerators.listRepositories,
+              ghGenerators.listCustomRepositories,
+            ],
           },
           options: [
             ghOptions.help,
@@ -1498,6 +1774,10 @@ For more information about output formatting flags, see 'gh help formatting'`,
           args: {
             name: "repository",
             isOptional: true,
+            generators: [
+              ghGenerators.listRepositories,
+              ghGenerators.listCustomRepositories,
+            ],
           },
           options: [
             ghOptions.help,
@@ -1673,7 +1953,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
               },
             },
             {
-              name: ["-v", "--visibilty"],
+              name: ["-v", "--visibility"],
               description:
                 "Set visibility for an organization secret: all, `private`, or `selected` (default 'private')",
               args: {

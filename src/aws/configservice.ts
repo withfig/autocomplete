@@ -3752,7 +3752,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "put-resource-config",
       description:
-        "Records the configuration state for the resource provided in the request. The configuration state of a resource is represented in AWS Config as Configuration Items. Once this API records the configuration item, you can retrieve the list of configuration items for the custom resource type using existing AWS Config APIs.   The custom resource type must be registered with AWS CloudFormation. This API accepts the configuration item registered with AWS CloudFormation. When you call this API, AWS Config only stores configuration state of the resource provided in the request. This API does not change or remediate the configuration of the resource.  Write-only schema properites are not recorded as part of the published configuration item",
+        "Records the configuration state for the resource provided in the request. The configuration state of a resource is represented in AWS Config as Configuration Items. Once this API records the configuration item, you can retrieve the list of configuration items for the custom resource type using existing AWS Config APIs.   The custom resource type must be registered with AWS CloudFormation. This API accepts the configuration item registered with AWS CloudFormation. When you call this API, AWS Config only stores configuration state of the resource provided in the request. This API does not change or remediate the configuration of the resource.  Write-only schema properties are not recorded as part of the published configuration item",
       options: [
         {
           name: "--resource-type",
@@ -4214,7 +4214,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "subscribe",
       description:
-        "Subcribes user to AWS Config by creating an AWS Config delivery channel and configuration recorder to track AWS resource configurations. The names of the default channel and configuration recorder will be default",
+        "Subscribes user to AWS Config by creating an AWS Config delivery channel and configuration recorder to track AWS resource configurations. The names of the default channel and configuration recorder will be default",
       options: [
         {
           name: "--s3-bucket",
