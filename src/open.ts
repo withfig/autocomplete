@@ -6,8 +6,13 @@ export const generateApps = (unquotedPath: string): Fig.Generator => ({
       const basename = path.slice(path.lastIndexOf("/") + 1);
       return {
         name: basename,
+        description: path,
         icon: `fig://${path}`,
-        priority: path.endsWith(`/Applications/${basename}`) ? 76 : 50,
+        priority: path.endsWith(`/Applications/${basename}`)
+          ? 80
+          : path.startsWith("/Applications")
+          ? 76
+          : 50,
       };
     });
   },
