@@ -1,10 +1,11 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
 const tagsGenerator: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
-    const out = await executeShellCommand(
-      'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done'
-    );
+  script:
+    'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done',
+  postProcess: (out) => {
+    // find all lines with tags
+    // regex: line that starts with 2+ spaces, than '[Tags]  ' and words
     const iter = out.matchAll(/(?:^\s\s+\[Tags\])\s\s+(\w+ *)*(?!.\#.*)/gm);
 
     const seen: Set<string> = new Set();
@@ -47,21 +48,27 @@ const variablesGenerator: Fig.Generator = {
 };
 
 const testCasesGenerator: Fig.Generator = {
-  custom: async (tokens, executeShellCommand) => {
-    const out = await executeShellCommand(
-      'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done'
-    );
+  script:
+    'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done',
+  postProcess: (out) => {
+    // find all the parts of the code with test cases
+    // regex: everytring after '***Test Cases***' until '***???***')
     const iter = out.matchAll(
-      /(?:\*{3}Test Cases\*{3})([\S\s]*)(?:\*{3}(\w+\s?)\*{3})/gim
+      /(?:\*{3}Test Cases\*{3})([\S\s]*)(?:\*{3}(\w+\s?)+\*{3})/gim
     );
 
     const seen: Set<string> = new Set();
     const suggestions: Fig.Suggestion[] = [];
 
+    // go through ***Test Cases** blocks
     for (const [_, block] of iter) {
+      // get every test case name
+      // regex: word/s at the start of a line divided
       const lines = block.matchAll(/^(\w+ *)+(?!.\#.*)(?!.\#.*)/gm);
+      // go through all the test cases names found
       for (let [testCase] of lines) {
         testCase = testCase.trim();
+        // validate if the test case name isn't divided by more than one space
         if (testCase.search(/\s\s+/) != -1) continue;
 
         if (seen.has(testCase)) continue;
