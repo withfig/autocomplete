@@ -191,10 +191,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "lsif",
       description: "Upload an LSIF dumps",
-      subcommands: {
-        name: "upload",
-        description: "",
-      },
+      subcommands: [
+        {
+          name: "upload",
+          description: "",
+        },
+      ],
     },
     {
       name: "orgs",
