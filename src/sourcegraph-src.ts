@@ -161,15 +161,15 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "edit",
-          description: "",
+          description: "Edit config",
         },
         {
           name: "get",
-          description: "",
+          description: "Get configs",
         },
         {
           name: "list",
-          description: "",
+          description: "List configs",
         },
       ],
     },
@@ -180,11 +180,11 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "edit",
-          description: "",
+          description: "Edit external service configuration",
         },
         {
           name: "list",
-          description: "",
+          description: "List external service configurations",
         },
       ],
     },
@@ -194,7 +194,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "upload",
-          description: "",
+          description: "Upload LSIF dump",
         },
       ],
     },
