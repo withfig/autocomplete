@@ -46,6 +46,38 @@ const variablesGenerator: Fig.Generator = {
   },
 };
 
+const testCasesGenerator: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const out = await executeShellCommand(
+      'for i in $(find -E . -regex ".*.robot" -type f); do cat -s $i ; done'
+    );
+    const iter = out.matchAll(
+      /(?:\*{3}Test Cases\*{3})([\S\s]*)(?:\*{3}(\w+\s?)\*{3})/gim
+    );
+
+    const seen: Set<string> = new Set();
+    const suggestions: Fig.Suggestion[] = [];
+
+    for (const [_, block] of iter) {
+      const lines = block.matchAll(/^(\w+ *)+(?!.\#.*)(?!.\#.*)/gm);
+      for (let [testCase] of lines) {
+        testCase = testCase.trim();
+        if (testCase.search(/\s\s+/) != -1) continue;
+
+        if (seen.has(testCase)) continue;
+        seen.add(testCase);
+
+        suggestions.push({
+          name: testCase,
+          description: "Test case",
+        });
+      }
+    }
+
+    return suggestions;
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "robot",
   description: "CLI for running Robot Framework automation tests",
@@ -111,6 +143,7 @@ const completionSpec: Fig.Spec = {
         "Select tests by name or by long name containing also parent suite name like `Parent.Test`",
       args: {
         name: "name",
+        generators: testCasesGenerator,
       },
     },
     {
@@ -118,6 +151,7 @@ const completionSpec: Fig.Spec = {
       description: "Alias to --test. Especially applicable with --rpa",
       args: {
         name: "name",
+        generators: testCasesGenerator,
       },
     },
     {
@@ -203,7 +237,6 @@ const completionSpec: Fig.Spec = {
         }),
       },
     },
-
     {
       name: ["-d", "--outputdir"],
       description:
