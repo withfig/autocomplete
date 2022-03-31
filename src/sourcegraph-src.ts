@@ -204,23 +204,23 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "create",
-          description: "",
+          description: "Create an organization",
         },
         {
           name: "delete",
-          description: "",
+          description: "Delete an organization",
         },
         {
           name: "get",
-          description: "",
+          description: "Get an organization",
         },
         {
           name: "list",
-          description: "",
+          description: "List organizations",
         },
         {
           name: "members",
-          description: "",
+          description: "List organization members",
         },
       ],
     },
