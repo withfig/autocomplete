@@ -735,6 +735,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         isVariadic: true,
+        isOptional: true,
         name: "outdated_formula|outdated_cask",
         generators: outdatedformulaeGenerator,
       },
