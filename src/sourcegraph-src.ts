@@ -226,19 +226,19 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "repos",
-      description: "View or delete organizations",
+      description: "View or delete repositories",
       subcommands: [
         {
           name: "delete",
-          description: "",
+          description: "Delete repository",
         },
         {
           name: "get",
-          description: "",
+          description: "Get repository",
         },
         {
           name: "list",
-          description: "",
+          description: "List repositories",
         },
       ],
     },
