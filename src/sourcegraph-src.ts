@@ -131,27 +131,27 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "apply",
-          description: "",
+          description: "Apply batch",
         },
         {
           name: "exec",
-          description: "",
+          description: "Execute batch",
         },
         {
           name: "new",
-          description: "",
+          description: "New batch",
         },
         {
           name: "preview",
-          description: "",
+          description: "Preview batch",
         },
         {
           name: "repositories",
-          description: "",
+          description: "Repositories to batch",
         },
         {
           name: "validate",
-          description: "",
+          description: "Validate batch",
         },
       ],
     },
