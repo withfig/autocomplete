@@ -264,23 +264,23 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "create",
-          description: "",
+          description: "Create user",
         },
         {
           name: "delete",
-          description: "",
+          description: "Delete user",
         },
         {
           name: "get",
-          description: "",
+          description: "Get user",
         },
         {
           name: "list",
-          description: "",
+          description: "List users",
         },
         {
           name: "tag",
-          description: "",
+          description: "Tag user",
         },
       ],
     },
