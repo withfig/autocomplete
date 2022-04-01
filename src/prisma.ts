@@ -48,7 +48,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "full url",
             template: "filepaths",
-            isOptional: false,
           },
         },
       ],

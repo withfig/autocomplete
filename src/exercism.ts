@@ -11,7 +11,6 @@ const completionSpec: Fig.Spec = {
           description: "API base url",
           args: {
             name: "url",
-            isOptional: false,
           },
         },
         {
@@ -27,7 +26,6 @@ const completionSpec: Fig.Spec = {
           description: "Auth token used to connect to the site",
           args: {
             name: "token",
-            isOptional: false,
           },
         },
         {
@@ -36,7 +34,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             template: "folders",
-            isOptional: false,
           },
         },
       ],
@@ -50,7 +47,6 @@ const completionSpec: Fig.Spec = {
           description: "The exercise slug",
           args: {
             name: "exercise",
-            isOptional: false,
           },
         },
         {
@@ -58,7 +54,6 @@ const completionSpec: Fig.Spec = {
           description: "The team slug",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
         {
@@ -66,7 +61,6 @@ const completionSpec: Fig.Spec = {
           description: "The track ID",
           args: {
             name: "track",
-            isOptional: false,
           },
         },
         {
@@ -74,7 +68,6 @@ const completionSpec: Fig.Spec = {
           description: "The solution UUID",
           args: {
             name: "uuid",
-            isOptional: false,
           },
         },
       ],
@@ -89,7 +82,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         template: "folders",
-        isOptional: false,
       },
     },
     {
@@ -103,7 +95,7 @@ const completionSpec: Fig.Spec = {
         name: "file",
         description: "The files you want to submit",
         template: "filepaths",
-        isOptional: false,
+
         isVariadic: true,
       },
     },
@@ -142,7 +134,6 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       args: {
         name: "value",
-        isOptional: false,
       },
     },
     {

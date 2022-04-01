@@ -48,7 +48,6 @@ const completionSpec: Fig.Spec = {
         "The name of a template from expo/examples or URL to a GitHub repo that contains an example",
       args: {
         name: "template",
-        isOptional: false,
       },
       icon: ICONS.template,
       priority: 76,
@@ -58,7 +57,6 @@ const completionSpec: Fig.Spec = {
       description: "The path inside of a GitHub repo where the example lives",
       args: {
         name: "name",
-        isOptional: false,
       },
       icon: ICONS.path,
       priority: 76,

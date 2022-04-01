@@ -87,7 +87,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "infile",
               description: "A file with R code to be executed",
-              isOptional: false,
+
               generators: RFileGenerator,
             },
             {
@@ -105,7 +105,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "files",
             description: "Source files to be compiled",
-            isOptional: false,
+
             isVariadic: true,
             generators: compileFiles,
           },
@@ -124,7 +124,6 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: "LIB",
                   description: "Full name for the built library",
-                  isOptional: false,
                 },
               },
               {
@@ -151,7 +150,7 @@ const completionSpec: Fig.Spec = {
             name: "files",
             description:
               "The object files to be included in the shared object/DLL",
-            isOptional: false,
+
             isVariadic: true,
             generators: compileFiles,
           },
@@ -174,7 +173,7 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: "LIB",
                   description: "Path to the R library tree to install to",
-                  isOptional: false,
+
                   generators: RLibGenerator,
                 },
               },
@@ -364,7 +363,6 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: "ARGS",
                   description: "Arguments for the configure script",
-                  isOptional: false,
                 },
               },
               {
@@ -374,7 +372,6 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: "ARGS",
                   description: "Variables for the configure scripts",
-                  isOptional: false,
                 },
               },
               {
@@ -398,7 +395,6 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: "STAMP",
                   description: "A timestamp for the build (Unix only)",
-                  isOptional: false,
                 },
               },
               {
@@ -427,7 +423,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "packages",
             description: "Packages to remove",
-            isOptional: false,
+
             isDangerous: true,
             isVariadic: true,
           },

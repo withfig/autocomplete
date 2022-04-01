@@ -30,7 +30,6 @@ const completionSpec: Fig.Spec = {
     name: "pass-name",
     description: "The password you want to show",
     generators: listPasswords,
-    isOptional: false,
   },
   options: [
     {
@@ -55,7 +54,6 @@ const completionSpec: Fig.Spec = {
         name: "gpg-id",
         description:
           "The gpg-id you want to use to encrypt your password store",
-        isOptional: false,
       },
       options: [
         {
@@ -76,7 +74,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password name",
-        isOptional: false,
       },
       options: [
         {
@@ -116,13 +113,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "old-path",
           description: "The old password name or directory",
-          isOptional: false,
+
           generators: listPasswords,
         },
         {
           name: "new-path",
           description: "The new password name or directory",
-          isOptional: false,
         },
       ],
       options: [
@@ -140,13 +136,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "old-path",
           description: "The old password name or directory",
-          isOptional: false,
+
           generators: listPasswords,
         },
         {
           name: "new-path",
           description: "The new password name or directory",
-          isOptional: false,
         },
       ],
       options: [
@@ -163,7 +158,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password name",
-        isOptional: false,
+
         generators: listPasswords,
       },
       options: [
@@ -185,7 +180,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "pass-name",
           description: "The password name",
-          isOptional: false,
         },
         {
           name: "pass-length",
@@ -233,7 +227,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password name you want to search for",
-        isOptional: false,
       },
     },
     {
@@ -243,7 +236,6 @@ const completionSpec: Fig.Spec = {
         name: "pass-name",
         description: "The password you want to show",
         generators: listPasswords,
-        isOptional: false,
       },
       options: [
         {
@@ -263,7 +255,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password you want to edit",
-        isOptional: false,
+
         generators: listPasswords,
       },
     },
@@ -275,7 +267,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password name you want to grep for",
-        isOptional: false,
       },
     },
   ],

@@ -1,6 +1,6 @@
 import { filepaths } from "@fig/autocomplete-generators";
 
-const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Subcommand = {
   name: "node",
   description: "Run the node interpreter",
   args: {
@@ -47,6 +47,11 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
       description: "Activate inspector on host:port (default: 127.0.0.1:9229)",
+    },
+    {
+      name: "--preserve-symlinks",
+      description:
+        "Follows symlinks to directories when examining source code and templates for translation strings",
     },
   ],
   generateSpec: async (tokens, executeShellCommand) => {

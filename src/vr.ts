@@ -1,6 +1,9 @@
 const SCRIPT_KEYWORD = "    • ";
 
 const scriptGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
   script: "NO_COLOR=1 vr",
   postProcess: (out) => {
     const suggestions: Fig.Suggestion[] = [];

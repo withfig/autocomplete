@@ -16,16 +16,20 @@
 
 As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
+## ⚡️ Installation
+
+* **macOS**: 
+    * **Homebrew**: `brew install fig`
+    * **DMG**: Download from our website: [fig.io](https://fig.io/download)
+* **Windows/Linux**: 
+    * Join the [waitlist](https://withfig.typeform.com/linux)
+<br/>
 
 ![Fig Visual Autocomplete For Your Terminal Demo](https://fig.io/gifs/demo-with-header.gif)
 
 <br/>
 
-## ⚡️ Installation
 
-* **[Homebrew](https://brew.sh)**: `brew install fig`
-* **Manual**: Download the macOS app at [fig.io](https://fig.io/download)
-<br/>
 
 ## 👋 What are "completion specs"?
 
@@ -100,12 +104,12 @@ npm run copy <spec-name>
 ## 🔥 Contributions
 We would love contributions for:
 * new completion specs 
-* errors with existing completion specs (e.g. missing subcomannds, options, or arguments)
+* errors with existing completion specs (e.g. missing subcomands, options, or arguments)
 * [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
 * better descriptions, icons etc
 * [themes](https://github.com/withfig/themes)!
 
-If you aren't able to contribute, please feel free to open an [issue](https://github.com/withfig/autocomplete/issues/new/choose). Most people think that contributing will be too hard, but you'd be surprised, we have deliberately made contributing very very easy. Give it a go! 
+If you aren't able to contribute, please feel free to open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
 
 ## 😊 Need Help?

@@ -735,6 +735,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         isVariadic: true,
+        isOptional: true,
         name: "outdated_formula|outdated_cask",
         generators: outdatedformulaeGenerator,
       },
@@ -1079,7 +1080,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
-        isOptional: false,
+
         generators: {
           script:
             "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
@@ -1148,7 +1149,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             isVariadic: true,
-            isOptional: false,
+
             generators: {
               script: "brew list -1 --cask",
               postProcess: function (out) {
