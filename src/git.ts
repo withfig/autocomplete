@@ -4585,6 +4585,11 @@ const completionSpec: Fig.Spec = {
               description: "Switch to the last used branch",
               icon: "fig://icon?type=git",
             },
+            {
+              name: "--",
+              description: "Do not interpret more arguments as options",
+              hidden: true,
+            },
           ],
         },
         {
