@@ -11,7 +11,7 @@ const updatesGenerator: Fig.Generator = {
   },
   scriptTimeout: 20000,
   cache: {
-    ttl: 300000,
+    ttl: 1000 * 60 * 60 * 2,
   },
 };
 
