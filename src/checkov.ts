@@ -39,13 +39,13 @@ const completionSpec: Fig.Spec = {
       name: "--no-guide",
       description:
         "Do not fetch Bridgecrew platform IDs and guidelines for the checkov output report. Note: this prevents Bridgecrew platform check IDs from being used anywhere in the CLI",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
     },
     {
       name: "--output-bc-ids",
       description:
         "Print Bridgecrew platform IDs (BC...) instead of Checkov IDs (CKV...), if the check exists in the platform",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
       exclusiveOn: ["--no-guide"],
     },
     {
@@ -178,7 +178,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "--bc_api_key",
+      name: "--bc-api-key",
       description:
         "Bridgecrew API key. You may also use the environment variable: BC_API_KEY",
       args: {
@@ -189,7 +189,7 @@ const completionSpec: Fig.Spec = {
       name: "--docker-image",
       description:
         "Scan docker images by name or ID. Only works with --bc-api-key flag",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
       args: {
         name: "DOCKER_IMAGE",
       },
@@ -213,7 +213,7 @@ const completionSpec: Fig.Spec = {
       name: ["--branch", "-b"],
       description:
         "Selected branch of the persisted repository. Only has effect when using the --bc-api-key flag",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
       args: {
         name: "BRANCH",
         generators: branches,
@@ -223,19 +223,19 @@ const completionSpec: Fig.Spec = {
       name: "--skip-fixes",
       description:
         "Do not download fixed resource templates from Bridgecrew. Only has an effect when using the --bc-api-key flag",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
     },
     {
       name: "--skip-suppressions",
       description:
         "Do not download preconfigured suppressions from the Bridgecrew platform. Code comment suppressions will still be honored. Only has an effect when using the --bc-api-key flag",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
     },
     {
       name: "--skip-policy-download",
       description:
         "Do not download custom policies configured in the Bridgecrew platform. Only has an effect when using the --bc-api-key flag",
-      dependsOn: ["--bc_api_key"],
+      dependsOn: ["--bc-api-key"],
     },
     {
       name: "--download-external-modules",
