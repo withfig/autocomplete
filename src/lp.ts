@@ -13,11 +13,6 @@ const timeSuggestions: (string | Fig.Suggestion)[] = [
 const completionSpec: Fig.Spec = {
   name: "lp",
   description: "Print files",
-  subcommands: [
-    {
-      name: "-o",
-    },
-  ],
   options: [
     {
       name: "-E",
