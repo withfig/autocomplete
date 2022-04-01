@@ -4389,6 +4389,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "checkout",
       description: "Switch branches or restore working tree files",
+      additionalSuggestions: [
+        {
+          name: "--",
+          description: "Do not interpret more arguments as options",
+          hidden: true,
+        },
+      ],
       options: [
         {
           name: ["-q", "--quiet"],
