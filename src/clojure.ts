@@ -161,6 +161,12 @@ const completionSpec: Fig.Spec = {
         "Prepare executable (e.g. install dependencies), but don't execute",
     },
     {
+      name: "-J",
+      displayName: "-J&lt;option&gt;",
+      insertValue: "-J{cursor}",
+      description: "Pass Java option",
+    },
+    {
       name: "-Sdeps",
       description: "Pass the deps data on the command line",
       args: {
