@@ -550,6 +550,25 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "shell-integrations",
+          description: "Toggle shell integrations",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "mode",
+            isOptional: true,
+            suggestions: ["on", "off"],
+          },
+        },        
+        {
           name: "accessibility",
           options: [
             {

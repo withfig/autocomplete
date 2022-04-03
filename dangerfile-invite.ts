@@ -13,9 +13,9 @@ schedule(async () => {
 
   const org = "withfig";
   const inviteMarkdown = `
-  @${username} Hey! Thanks so much for your contribution! 
+  @${username} Hey! Thanks so much for your contribution!
 
-As a token of our appreciation, we've invited you to join the Fig GitHub organization. Accepting means you can display Fig's logo on your Github profile's list of member orgs. We also have a special #contributors channel in our [community Slack](https://fig.io/community) and we'd love for you to join.
+As a token of our appreciation, we've invited you to join the Fig GitHub organization. Accepting means you can display Fig's logo on your GitHub profile's list of member orgs. We also have a special #contributors channel in our [community Discord](https://fig.io/community) and we'd love for you to join.
 
 Excited to have you in the community!
 
