@@ -567,7 +567,7 @@ const completion: Fig.Spec = {
             isOptional: true,
             suggestions: ["on", "off"],
           },
-        },        
+        },
         {
           name: "accessibility",
           options: [
