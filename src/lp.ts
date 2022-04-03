@@ -115,6 +115,7 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     template: "filepaths",
+    suggestCurrentToken: true,
     description: "Filepath you want to print",
   },
 };
