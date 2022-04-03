@@ -569,6 +569,24 @@ const completion: Fig.Spec = {
           },
         },
         {
+          name: "accessibility",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "action",
+            isOptional: true,
+            suggestions: ["refresh", "reset", "prompt", "open", "status"],
+          },
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -1242,6 +1260,47 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "animation",
+          options: [
+            {
+              name: ["-f", "--filename"],
+              args: {
+                name: "filename",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-r", "--rate"],
+              args: {
+                name: "rate",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-b", "--before-text"],
+              args: {
+                name: "before-text",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-a", "--after-text"],
+              args: {
+                name: "after-text",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
           name: "get-shell",
           options: [
             {
@@ -1310,6 +1369,20 @@ const completion: Fig.Spec = {
           description: "Print help information",
         },
       ],
+      args: {
+        name: "process",
+        isOptional: true,
+        suggestions: [
+          {
+            name: "daemon",
+            description: "Daemon process",
+          },
+          {
+            name: "app",
+            description: "Fig process",
+          },
+        ],
+      },
     },
     {
       name: "alpha",
@@ -1333,26 +1406,100 @@ const completion: Fig.Spec = {
       ],
     },
     {
-      name: "app:running",
-      description: "(LEGACY) Old hook that was being used somewhere",
-      hidden: true,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-    },
-    {
       name: "plugins",
       subcommands: [
         {
           name: "sync",
-          description: "Sync the current plugins",
+          description:
+            "Sync the current plugins (this will not update plugins that are already installed)",
           options: [
             {
               name: "--version",
               description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update the installed plugins",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "add",
+          description: "Install a specific plugin from the plugin store",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+          },
+        },
+        {
+          name: "remove",
+          description: "Uninstall a specific plugin",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+          },
+        },
+        {
+          name: "list",
+          description: "List all plugins available in the plugin store",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "The output format",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-i", "--installed"],
+              description: "Only list plugins that are installed",
             },
             {
               name: ["-h", "--help"],
@@ -1380,6 +1527,28 @@ const completion: Fig.Spec = {
           },
         },
       ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "app:running",
+      description: "(LEGACY) Old hook that was being used somewhere",
+      hidden: true,
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "bg:ssh",
+      description: "(LEGACY) Old ssh hook that might be in ~/.ssh/config",
+      hidden: true,
       options: [
         {
           name: ["-h", "--help"],
