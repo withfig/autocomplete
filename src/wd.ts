@@ -19,7 +19,7 @@ const warpPointsGenerator: Fig.Generator = {
 };
 const completionSpec: Fig.Spec = {
   name: "wd",
-  description: "CLI for running Robot Framework automation tests",
+  description: "Warp to directories without using cd",
   args: [
     {
       name: "point",
