@@ -4,10 +4,14 @@ const updatesGenerator: Fig.Generator = {
     return out
       .split("\n")
       .filter((line) => line.startsWith("* Label: "))
-      .map((line) => ({
-        name: '"' + line.substring(9) + '"',
-        description: "Available update",
-      }));
+      .map((line) => {
+        const name = line.substring(9);
+        return {
+          name: name,
+          insertValue: `"${name}"`,
+          description: "Available update",
+        };
+      });
   },
   scriptTimeout: 20000,
   cache: {
