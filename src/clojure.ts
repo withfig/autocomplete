@@ -1,8 +1,24 @@
-function singleName<T>(name: Fig.SingleOrArray<T>): T {
-  if (Array.isArray(name)) {
-    return name.at(-1);
+/**
+ * Adds brackets to some content.
+ *
+ * @param content The content to be bracketized
+ * @returns The content with brackets
+ */
+function bracketize<T>(content: T): string {
+  return `&lt;${content}&gt;`;
+}
+
+/**
+ * Gets a single value from one or more values.
+ *
+ * @param value The value to extract
+ * @returns The single value
+ */
+function singleName<T>(value: Fig.SingleOrArray<T>): T {
+  if (Array.isArray(value)) {
+    return value.at(-1);
   } else {
-    return name;
+    return value;
   }
 }
 
@@ -17,7 +33,7 @@ function alias({ name: oName, ...option }: Fig.Option): Fig.Option {
 
   return {
     name: `${name}:`,
-    displayName: `${name}:&lt;aliases&gt;`,
+    displayName: `${name}:${bracketize("aliases")}`,
     insertValue: `${name}:{cursor}`,
     ...option,
   };
@@ -34,7 +50,7 @@ function tool({ name: oName, ...option }: Fig.Option): Fig.Option {
 
   return {
     name,
-    displayName: `${name}&lt;tool&gt;`,
+    displayName: `${name}${bracketize("tool")}`,
     insertValue: `${name}{cursor}`,
     ...option,
   };
@@ -162,7 +178,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-J",
-      displayName: "-J&lt;option&gt;",
+      displayName: `-J${bracketize("option")}`,
       insertValue: "-J{cursor}",
       description: "Pass Java option",
     },
