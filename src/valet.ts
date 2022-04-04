@@ -745,6 +745,39 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "isolate",
+      description:
+          "Isolate the current project",
+      args: {
+        name: "phpVersion",
+        suggestions: [
+          { name: "php@7.2" },
+          { name: "php@7.3" },
+          { name: "php@7.4" },
+          { name: "php@8.0" },
+        ],
+      },
+      options: [
+        {
+          name: "--site",
+          insertValue: "--site={cursor}",
+          requiresEquals: true,
+          description:
+              "Name of the website you want to isolate",
+          args: {
+            name: "SITE",
+          },
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
       name: "php",
       description:
           "Proxy PHP commands to the \"php\" executable on the isolated site",
