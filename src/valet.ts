@@ -779,6 +779,29 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "unisolate",
+      description:
+        "Stop customizing the version of PHP used by Valet to serve the current working directory",
+      options: [
+        {
+          name: "--site",
+          insertValue: "--site={cursor}",
+          requiresEquals: true,
+          description: "Name of the website you want to unisolate",
+          args: {
+            name: "SITE",
+          },
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
       name: "isolated",
       description: "List all sites using isolated versions of PHP",
       options: [
