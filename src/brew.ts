@@ -1101,6 +1101,92 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "reinstall",
+      description:
+        "Uninstall and then reinstall a formula or cask using the same options it was originally installed with, plus any appended options specific to a formula",
+      options: [
+        {
+          name: ["-d", "--debug"],
+          description:
+            "If brewing fails, open an interactive debugging session with access to IRB or a shell inside the temporary build directory",
+        },
+        {
+          name: ["-f", "--force"],
+          description:
+            "Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Print the verification and postinstall steps",
+        },
+        {
+          name: ["-s", "--build-from-source"],
+          description:
+            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available",
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Download and patch formula",
+        },
+        { name: ["-g", "--git"], description: "Create a Git repository" },
+        {
+          name: "--formula,",
+          description: "Treat all named arguments as formulae",
+        },
+        {
+          name: "--force-bottle",
+          description:
+            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation",
+        },
+        {
+          name: "--keep-tmp",
+          description: "Retain the temporary files created during installation",
+        },
+        {
+          name: "--display-times",
+          description:
+            "Print install times for each formula at the end of the run",
+        },
+        {
+          name: "--cask",
+          description: "--casks Treat all named arguments as casks",
+        },
+        {
+          name: "--binaries",
+          description:
+            "Disable/enable linking of helper executables (default: enabled)",
+        },
+        {
+          name: "--no-binaries",
+          description:
+            "Disable/enable linking of helper executables (default: enabled)",
+        },
+        {
+          name: "--require-sha",
+          description: "Require all casks to have a checksum",
+        },
+        {
+          name: "--quarantine",
+          description:
+            "Disable/enable quarantining of downloads (default: enabled)",
+        },
+        {
+          name: "--no-quarantine",
+          description:
+            "Disable/enable quarantining of downloads (default: enabled)",
+        },
+        {
+          name: "--skip-cask-deps",
+          description: "Skip installing cask dependencies",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        name: "formula",
+        generators: formulaeGenerator,
+      },
+    },
+    {
       name: "uninstall",
       description: "Uninstall <formula>",
       args: {
