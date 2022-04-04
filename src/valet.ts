@@ -747,7 +747,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "isolate",
       description:
-          "Change the version of PHP used by Valet to serve the current working directory",
+        "Change the version of PHP used by Valet to serve the current working directory",
       args: {
         name: "phpVersion",
         suggestions: [
@@ -762,8 +762,7 @@ const completionSpec: Fig.Spec = {
           name: "--site",
           insertValue: "--site={cursor}",
           requiresEquals: true,
-          description:
-              "Name of the website you want to isolate",
+          description: "Name of the website you want to isolate",
           args: {
             name: "SITE",
           },
@@ -779,8 +778,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "isolated",
-      description:
-          "List all sites using isolated versions of PHP",
+      description: "List all sites using isolated versions of PHP",
       options: [
         global_option_help,
         global_option_quiet,
@@ -794,7 +792,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "php",
       description:
-          "Proxy PHP commands to the \"php\" executable on the isolated site",
+        'Proxy PHP commands to the "php" executable on the isolated site',
       options: [
         global_option_help,
         global_option_quiet,
@@ -808,7 +806,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "composer",
       description:
-          "Proxy Composer commands with the \"php\" executable on the isolated site",
+        'Proxy Composer commands with the "php" executable on the isolated site',
       options: [
         global_option_help,
         global_option_quiet,
@@ -821,8 +819,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "which-php",
-      description:
-          "Get the PHP executable path for a site",
+      description: "Get the PHP executable path for a site",
       options: [
         global_option_help,
         global_option_quiet,
