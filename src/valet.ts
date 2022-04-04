@@ -780,7 +780,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "isolated",
       description:
-          "List all sites using isolated versions of PHP.",
+          "List all sites using isolated versions of PHP",
       options: [
         global_option_help,
         global_option_quiet,
@@ -822,7 +822,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "which-php",
       description:
-          "Get the PHP executable path for a site.",
+          "Get the PHP executable path for a site",
       options: [
         global_option_help,
         global_option_quiet,
