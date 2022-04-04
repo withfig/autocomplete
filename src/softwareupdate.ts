@@ -15,6 +15,7 @@ const updatesGenerator: Fig.Generator = {
   },
   scriptTimeout: 20000,
   cache: {
+    strategy: "stale-while-revalidate",
     ttl: 1000 * 60 * 60 * 2,
   },
 };
