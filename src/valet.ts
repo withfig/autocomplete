@@ -717,6 +717,7 @@ const completionSpec: Fig.Spec = {
           { name: "php@7.3" },
           { name: "php@7.4" },
           { name: "php@8.0" },
+          { name: "php@8.1" },
         ],
       },
       options: [
@@ -755,6 +756,7 @@ const completionSpec: Fig.Spec = {
           { name: "php@7.3" },
           { name: "php@7.4" },
           { name: "php@8.0" },
+          { name: "php@8.1" },
         ],
       },
       options: [
