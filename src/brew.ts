@@ -1155,11 +1155,13 @@ const completionSpec: Fig.Spec = {
           name: "--binaries",
           description:
             "Disable/enable linking of helper executables (default: enabled)",
+          exclusiveOn: ["--no-binaries"],
         },
         {
           name: "--no-binaries",
           description:
             "Disable/enable linking of helper executables (default: enabled)",
+          exclusiveOn: ["--binaries"],
         },
         {
           name: "--require-sha",
@@ -1169,11 +1171,13 @@ const completionSpec: Fig.Spec = {
           name: "--quarantine",
           description:
             "Disable/enable quarantining of downloads (default: enabled)",
+          exclusiveOn: ["--no-quarantine"],
         },
         {
           name: "--no-quarantine",
           description:
             "Disable/enable quarantining of downloads (default: enabled)",
+          exclusiveOn: ["--quarantine"],
         },
         {
           name: "--skip-cask-deps",
