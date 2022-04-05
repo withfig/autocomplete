@@ -1,7 +1,7 @@
-// https://laravel.com/docs/8.x/valet
-// laravel version 8
-// valet version 2.15.x
-// 19 June 2021
+// https://laravel.com/docs/9.x/valet
+// laravel version 9
+// valet version 3.1.X
+// 4 April 2022
 
 const global_option_help: Fig.Option = {
   name: ["-h", "--help"],
@@ -717,6 +717,7 @@ const completionSpec: Fig.Spec = {
           { name: "php@7.3" },
           { name: "php@7.4" },
           { name: "php@8.0" },
+          { name: "php@8.1" },
         ],
       },
       options: [
@@ -734,6 +735,116 @@ const completionSpec: Fig.Spec = {
       name: "which",
       description:
         "Determine which Valet driver serves the current working directory",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "isolate",
+      description:
+        "Change the version of PHP used by Valet to serve the current working directory",
+      args: {
+        name: "phpVersion",
+        suggestions: [
+          { name: "php@7.2" },
+          { name: "php@7.3" },
+          { name: "php@7.4" },
+          { name: "php@8.0" },
+          { name: "php@8.1" },
+        ],
+      },
+      options: [
+        {
+          name: "--site",
+          insertValue: "--site={cursor}",
+          requiresEquals: true,
+          description: "Name of the website you want to isolate",
+          args: {
+            name: "SITE",
+          },
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "unisolate",
+      description:
+        "Stop customizing the version of PHP used by Valet to serve the current working directory",
+      options: [
+        {
+          name: "--site",
+          insertValue: "--site={cursor}",
+          requiresEquals: true,
+          description: "Name of the website you want to unisolate",
+          args: {
+            name: "SITE",
+          },
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "isolated",
+      description: "List all sites using isolated versions of PHP",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "php",
+      description:
+        'Proxy PHP commands to the "php" executable on the isolated site',
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "composer",
+      description:
+        'Proxy Composer commands with the "php" executable on the isolated site',
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "which-php",
+      description: "Get the PHP executable path for a site",
       options: [
         global_option_help,
         global_option_quiet,
