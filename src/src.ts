@@ -1,5 +1,7 @@
+// See https://github.com/sourcegraph/src-cli
+
 const completionSpec: Fig.Spec = {
-  name: "sourcegraph-src",
+  name: "src",
   description: "Interact with Sourcegraph from the command line",
   subcommands: [
     {
