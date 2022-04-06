@@ -11272,7 +11272,7 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--address",
-                  description: "The hostname or IPv4 addres",
+                  description: "The hostname or IPv4 address",
                   args: {
                     name: "address",
                   },
