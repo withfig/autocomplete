@@ -542,6 +542,10 @@ const optionalCommands: Record<string, Omit<Fig.Subcommand, "name">> = {
       },
     ],
   },
+  flow: {
+    description: "Extensions to follow Vincent Driessen's branching model",
+    loadSpec: "git-flow",
+  },
 };
 
 const completionSpec: Fig.Spec = {
