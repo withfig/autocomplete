@@ -497,7 +497,7 @@ const configSuggestions: Fig.Suggestion[] = [
   {
     name: "core.quotePath",
     description:
-      'The commands that output paths (e.g.  ls-files, diff), when not given the -z option, will quote "unusual" characters in the pathname by enclosing the pathname in a double-quote pair and with backslashes the same way strings in C source code are quoted. If this variable is set to false, the bytes higher than 0x80 are not quoted but output as verbatim. Note that double quote, backslash and control characters are always quoted without -z regardless of the setting of this variable',
+      'The commands that output paths (e.g.  ls-files, diff), when not given the -z option, will quote "unusual" characters in the pathname by enclosing the pathname in a double-quote pair and with backslashes the same way strings in C source code are quoted. If this variable is set to false, the bytes higher than 0x80 are not quoted but output as verbatim',
   },
   {
     name: "core.eol",
@@ -712,7 +712,7 @@ const configSuggestions: Fig.Suggestion[] = [
     name: "branch.&lt;name&gt;.remote",
     insertValue: "branch.{cursor}.remote",
     description:
-      "When on branch <name>, it tells git fetch and git push which remote to fetch from/push to. The remote to push to may be overridden with remote.pushDefault (for all branches). The remote to push to, for the current branch, may be further overridden by branch.<name>.pushRemote. If no remote is configured, or if you are not on any branch, it defaults to origin for fetching and remote.pushDefault for pushing. Additionally, . (a period) is the current local repository (a dot-repository), see branch.<name>.merge's final note below",
+      "When on branch <name>, it tells git fetch and git push which remote to fetch from/push to. The remote to push to may be overridden with remote.pushDefault (for all branches). The remote to push to, for the current branch, may be further overridden by branch.<name>.pushRemote. If no remote is configured, or if you are not on any branch, it defaults to origin for fetching and remote.pushDefault for pushing",
   },
   {
     name: "branch.&lt;name&gt;.pushRemote",
@@ -895,7 +895,7 @@ const configSuggestions: Fig.Suggestion[] = [
   {
     name: "credential.username",
     description:
-      "If no username is set for a network authentication, use this username by default. See credential.<context>.* below, and gitcredentials(7)",
+      "If no username is set for a network authentication, use this username by default",
   },
   {
     name: "credential.&lt;url&gt;.*",
@@ -1017,7 +1017,7 @@ const configSuggestions: Fig.Suggestion[] = [
   {
     name: "diff.tool",
     description:
-      "Controls which diff tool is used by git-difftool. This variable overrides the value configured in merge.tool. The list below shows the valid built-in values. Any other value is treated as a custom diff tool and requires that a corresponding difftool.<tool>.cmd variable is defined",
+      "Controls which diff tool is used by git-difftool. This variable overrides the value configured in merge.tool",
   },
   { name: "diff.algorithm", description: "Choose a diff algorithm" },
   {
@@ -1704,7 +1704,7 @@ const configSuggestions: Fig.Suggestion[] = [
   {
     name: "merge.tool",
     description:
-      "Controls which merge tool is used by git-mergetool. The list below shows the valid built-in values. Any other value is treated as a custom merge tool and requires that a corresponding mergetool.<tool>.cmd variable is defined",
+      "Controls which merge tool is used by git-mergetool. Any other value is treated as a custom merge tool and requires that a corresponding mergetool.<tool>.cmd variable is defined",
   },
   {
     name: "merge.verbosity",
@@ -1792,7 +1792,7 @@ const configSuggestions: Fig.Suggestion[] = [
     name: "notes.rewrite.&lt;command&gt;",
     insertValue: "notes.rewrite.{cursor}",
     description:
-      'When rewriting commits with <command> (currently amend or rebase) and this variable is set to true, Git automatically copies your notes from the original to the rewritten commit. Defaults to true, but see "notes.rewriteRef" below',
+      "When rewriting commits with <command> (currently amend or rebase) and this variable is set to true, Git automatically copies your notes from the original to the rewritten commit",
   },
   {
     name: "notes.rewriteMode",
@@ -2143,7 +2143,7 @@ const configSuggestions: Fig.Suggestion[] = [
     name: "sendemail.&lt;identity&gt;.*",
     insertValue: "sendemail.{cursor}.",
     description:
-      "Identity-specific versions of the sendemail.*  parameters found below, taking precedence over those when the this identity is selected, through command-line or sendemail.identity",
+      "Identity-specific versions of the sendemail.*  parameters, taking precedence over those when the this identity is selected, through command-line or sendemail.identity",
   },
   {
     name: "sendemail.aliasesFile",
@@ -2157,8 +2157,14 @@ const configSuggestions: Fig.Suggestion[] = [
     name: "sendemail.annotate",
     description: "See git-send-email for description",
   },
-  { name: "sendemail.bcc", description: "See git-send-email for description" },
-  { name: "sendemail.cc", description: "See git-send-email for description" },
+  {
+    name: "sendemail.bcc",
+    description: "See git-send-email for description",
+  },
+  {
+    name: "sendemail.cc",
+    description: "See git-send-email for description",
+  },
   {
     name: "sendemail.ccCmd",
     description: "See git-send-email for description",
