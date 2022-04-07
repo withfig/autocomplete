@@ -54,7 +54,7 @@ const testCasesGenerator: Fig.Generator = {
     // find all the parts of the code with test cases
     // regex: everytring after '***Test Cases***' until '***???***')
     const iter = out.matchAll(
-      /(?:\*{3}Test Cases\*{3})([\S\s]*)(?:\*{3}(\w+\s?)+\*{3})/gim
+      /(?:\*{3} ?Test Cases ?\*{3})([\S\s]*)(?:\*{3}(\w+\s?)+\*{3})*/gim
     );
 
     const seen: Set<string> = new Set();
