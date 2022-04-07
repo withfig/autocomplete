@@ -549,7 +549,7 @@ const completionSpec: Fig.Spec = {
   description: "The stupid content tracker",
   generateSpec: async (_, executeShellCommand) => {
     const out = await executeShellCommand(
-      "compgen -c | grep git- | cut -c5- | uniq"
+      "compgen -c | grep git- | cut -c5- | sort -u"
     );
     return {
       name: "git",
