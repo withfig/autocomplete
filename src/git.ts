@@ -504,9 +504,69 @@ const headSuggestions = [
   },
 ];
 
+/** Git finds these commands as "git-<name>" on your PATH */
+const optionalCommands: Record<string, Omit<Fig.Subcommand, "name">> = {
+  open: {
+    description: "Open in your browser",
+    options: [
+      {
+        name: ["-c", "--commit"],
+        description: "Open current commit",
+      },
+      {
+        name: ["-i", "--issue"],
+        description: "Open issues page",
+      },
+      {
+        name: ["-s", "--suffix"],
+        description: "Append this suffix",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: ["-p", "--print"],
+        description: "Just print the URL",
+      },
+    ],
+  },
+  recent: {
+    description: "Show recent local branches",
+    options: [
+      {
+        name: "-n",
+        description: "Specify a number of branches to show",
+        args: {
+          name: "int",
+        },
+      },
+    ],
+  },
+  flow: {
+    description: "Extensions to follow Vincent Driessen's branching model",
+    loadSpec: "git-flow",
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "git",
   description: "The stupid content tracker",
+  generateSpec: async (_, executeShellCommand) => {
+    const out = await executeShellCommand(
+      "compgen -c | grep git- | cut -c5- | sort -u"
+    );
+    const trimmed = out.trim();
+    if (trimmed === "") {
+      return { name: "git" };
+    }
+    return {
+      name: "git",
+      subcommands: trimmed.split("\n").map((name) => ({
+        name,
+        ...(optionalCommands[name] ?? { description: `Run git-${name}` }),
+      })),
+    };
+  },
   args: {
     name: "alias",
     description: "Custom user defined git alias",
