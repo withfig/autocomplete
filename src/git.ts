@@ -551,9 +551,13 @@ const completionSpec: Fig.Spec = {
     const out = await executeShellCommand(
       "compgen -c | grep git- | cut -c5- | sort -u"
     );
+    const trimmed = out.trim();
+    if (trimmed === "") {
+      return { name: "git" };
+    }
     return {
       name: "git",
-      subcommands: out.split("\n").map((name) => ({
+      subcommands: trimmed.split("\n").map((name) => ({
         name,
         ...(optionalCommands[name] ?? { description: `Run git-${name}` }),
       })),
