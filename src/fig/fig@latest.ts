@@ -1,8 +1,8 @@
 import {
-  edit,
   settingsSpecGenerator,
   subsystemsGenerator,
   themesGenerator,
+  pluginsGenerator,
 } from "./shared";
 const completion: Fig.Spec = {
   name: "fig",
@@ -1452,6 +1452,7 @@ const completion: Fig.Spec = {
           ],
           args: {
             name: "plugin",
+            generators: pluginsGenerator({ installed: false }),
           },
         },
         {
@@ -1469,6 +1470,7 @@ const completion: Fig.Spec = {
           ],
           args: {
             name: "plugin",
+            generators: pluginsGenerator({ installed: true }),
           },
         },
         {
