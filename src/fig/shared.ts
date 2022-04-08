@@ -183,7 +183,7 @@ export const pluginsGenerator = (init: {
   installed: boolean;
 }): Fig.Generator => ({
   cache: {
-    ttl: 1000 * 60 * 60 * 24,
+    strategy: "stale-while-revalidate",
   },
   custom: async (_tokens, executeShellCommand) => {
     const script = init.installed
