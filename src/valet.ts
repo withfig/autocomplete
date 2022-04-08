@@ -140,6 +140,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         template: "folders",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -271,6 +272,7 @@ const completionSpec: Fig.Spec = {
       description: "Tail log file",
       args: {
         name: "key",
+        isOptional: true,
       },
       options: [
         { name: ["-f", "--follow"] },
@@ -428,6 +430,7 @@ const completionSpec: Fig.Spec = {
       description: "Restart the Valet services",
       args: {
         name: "service",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -573,6 +576,7 @@ const completionSpec: Fig.Spec = {
       description: "Start the Valet services",
       args: {
         name: "service",
+        isOptional: true,
       },
       options: [
         global_option_help,
@@ -589,6 +593,7 @@ const completionSpec: Fig.Spec = {
       description: "Stop the Valet services",
       args: {
         name: "service",
+        isOptional: true,
       },
       options: [
         global_option_help,
