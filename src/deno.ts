@@ -349,6 +349,13 @@ const denoRun: Fig.Subcommand = {
     description: "The JavaScript or TypeScript file to run",
     generators: generateRunnableFiles,
     isScript: true,
+    suggestions: [
+      {
+        name: "-",
+        description: "Read from standard input",
+        hidden: true,
+      },
+    ],
   },
   parserDirectives: {
     optionsMustPrecedeArguments: true,
@@ -476,6 +483,13 @@ const denoFmt: Fig.Subcommand = {
       matches: /\.(mjs|jsx?|tsx?|jsonc?|md)$/i,
       editFileSuggestions: { priority: 75 },
     }),
+    suggestions: [
+      {
+        name: "-",
+        description: "Read from standard input",
+        hidden: true,
+      },
+    ],
   },
   options: [
     configOption,
@@ -1121,12 +1135,7 @@ const completionSpec: Fig.Spec = {
         name: "subcommand",
         description: "The subcommand to get help with",
         isOptional: true,
-        suggestions: subcommands.map(
-          (subcommand): Fig.Suggestion => ({
-            ...subcommand,
-            type: "subcommand",
-          })
-        ),
+        template: "help",
       },
     },
   ],
