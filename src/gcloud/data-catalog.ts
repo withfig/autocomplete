@@ -3387,8 +3387,7 @@ const completionSpec: Fig.Spec = {
               description:
                 "Specification for a tag template field. This flag can be repeated to\nspecify multiple fields. The following keys are allowed:\n+\n  *id*::: (Required) ID of the tag template field.\n+\n  *type*::: (Required) Type of the tag template field. Choices are\n      double, string, bool, timestamp, and enum.\n+\n            To specify a string field:\n              `type=string`\n+\n            To specify an enum field with values 'A' and 'B':\n              `type=enum(A|B)`\n+\n  *display-name*::: Display name of the tag template field.\n+\n  *required*::: Indicates if the tag template field is required.\n      Defaults to FALSE",
               args: {
-                name:
-                  "id=ID,type=TYPE,display-name=DISPLAY_NAME,required=REQUIRED",
+                name: "id=ID,type=TYPE,display-name=DISPLAY_NAME,required=REQUIRED",
                 description: "Dict",
                 suggestions: [],
               },

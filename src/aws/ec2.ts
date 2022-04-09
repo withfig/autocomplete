@@ -14003,14 +14003,12 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name:
-        "describe-local-gateway-route-table-virtual-interface-group-associations",
+      name: "describe-local-gateway-route-table-virtual-interface-group-associations",
       description:
         "Describes the associations between virtual interface groups and local gateway route tables",
       options: [
         {
-          name:
-            "--local-gateway-route-table-virtual-interface-group-association-ids",
+          name: "--local-gateway-route-table-virtual-interface-group-association-ids",
           description: "The IDs of the associations",
           args: {
             name: "list",

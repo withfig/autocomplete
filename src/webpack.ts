@@ -2070,8 +2070,7 @@ const completionSpec: Fig.Spec = {
         "Handle the this context correctly according to the spec for namespace objects",
     },
     {
-      name:
-        "--no-module-parser-javascript-dynamic-strict-this-context-on-imports",
+      name: "--no-module-parser-javascript-dynamic-strict-this-context-on-imports",
       description:
         "Negative 'module-parser-javascript-dynamic-strict-this-context-on-imports' option",
     },
@@ -3343,8 +3342,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name:
-        "--optimization-split-chunks-fallback-cache-group-min-size-reduction",
+      name: "--optimization-split-chunks-fallback-cache-group-min-size-reduction",
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",

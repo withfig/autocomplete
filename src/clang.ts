@@ -253,8 +253,7 @@ const completionSpec: Fig.Spec = {
       description: "Enable linker job to emit a static library",
     },
     {
-      name:
-        "-enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang",
+      name: "-enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang",
       description:
         "Trivial automatic variable initialization to zero is only here for benchmarks, it'll eventually be removed, and I'm OK with that because I'm only using it to benchmark",
     },

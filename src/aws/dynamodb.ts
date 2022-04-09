@@ -2511,8 +2511,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name:
-            "--global-table-provisioned-write-capacity-auto-scaling-settings-update",
+          name: "--global-table-provisioned-write-capacity-auto-scaling-settings-update",
           description:
             "Auto scaling settings for managing provisioned write capacity for the global table",
           args: {

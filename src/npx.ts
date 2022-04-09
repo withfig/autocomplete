@@ -29,8 +29,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "prisma",
-    icon:
-      "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+    icon: "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
   },
   {
     name: "eslint",
@@ -42,8 +41,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "tsc",
-    icon:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
   },
   {
     name: "typeorm",
@@ -67,13 +65,11 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "create-video",
-    icon:
-      "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
+    icon: "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
   {
     name: "remotion",
-    icon:
-      "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
+    icon: "https://raw.githubusercontent.com/remotion-dev/remotion/main/packages/docs/static/img/logo-small.png",
   },
   {
     name: "create-remix",

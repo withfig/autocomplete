@@ -583,7 +583,8 @@ const defaultCommands: Fig.Subcommand[] = [
     },
     async generateSpec(_, executeShellCommand) {
       const helpText = await executeShellCommand("rails test --help");
-      const argRegex = /(?:(-[a-zA-Z]), )?(--[^ ]+?)[ =]([A-Z_]+)?[ \r\n]+([^\n]+)/g;
+      const argRegex =
+        /(?:(-[a-zA-Z]), )?(--[^ ]+?)[ =]([A-Z_]+)?[ \r\n]+([^\n]+)/g;
 
       const options = Array.from(helpText.matchAll(argRegex)).map((match) => {
         const [_match, _short, long, arg, description] = match;
