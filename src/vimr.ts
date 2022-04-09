@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      name: "-h",
+      name: ["-h", "--help"],
       description: "Show help",
     },
     {
@@ -16,6 +16,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "--cwd",
       description: "Set the working directory",
+      args: {
+        name: "CWD",
+      },
     },
     {
       name: "--line",
