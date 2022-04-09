@@ -1,12 +1,15 @@
 const listTargets: Fig.Generator = {
-  script: `make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u`,
+  script: `grep -E '^[a-zA-Z_-]+:.*?(## .*)?$' Makefile | awk 'BEGIN {FS = ":.*?## "}; {split($0,a,\/:\/); split($0,b,\/##\/); print a[1] b[2]}' | sort -u`,
   postProcess: function (out) {
     const lines = out.split("\n");
     const targets = [];
     for (let i = 1; i < lines.length; i++) {
+      let first_space = lines[i].indexOf(' ');
+      let desc = first_space == -1 ? "Make target" : lines[i].substring(first_space + 1).trim();
+
       targets.push({
-        name: lines[i].trim(),
-        description: "Make target",
+        name: lines[i].substring(0, first_space == -1 ? lines[i].length : first_space).trim(),
+        description: desc,
         icon: "🎯",
         priority: 80,
       });
