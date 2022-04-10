@@ -1,2704 +1,214 @@
-const postProcessDockerPs: Fig.Generator["postProcess"] = (out) => {
-  return out.split("\n").map((i) => {
-    try {
-      const parsedJSON: Record<string, string> = JSON.parse(i);
-      return {
-        name: parsedJSON.Names,
-        displayName: `${parsedJSON.Names} (${parsedJSON.Image})`,
-        icon: "fig://icon?type=docker",
-      };
-    } catch (error) {
-      console.error(error);
-    }
-  });
-};
-
-const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
-  return out
-    .split("\n")
-    .map((line) => JSON.parse(line))
-    .map((i) => ({
-      name: i.Name,
-      description: i.ID,
-      icon: "fig://icon?type=docker",
-    }));
-};
-
-const dockerGenerators: Record<string, Fig.Generator> = {
-  runningDockerContainers: {
-    script: `docker ps --format '{{ json . }}'`,
-    postProcess: postProcessDockerPs,
-  },
-  allDockerContainers: {
-    script: `docker ps -a --format '{{ json . }}'`,
-    postProcess: postProcessDockerPs,
-  },
-  pausedDockerContainers: {
-    script: `docker ps --filter status=paused --format '{{ json . }}'`,
-    postProcess: postProcessDockerPs,
-  },
-  allLocalImages: {
-    script: `docker image ls --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: `${i.ID}`,
-          displayName: `${i.Repository} - ${i.ID}`,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-  dockerHubSearch: {
-    script: function (context) {
-      if (context[context.length - 1] === "") return "";
-      const searchTerm = context[context.length - 1];
-      return `docker search ${searchTerm} --format '{{ json . }}'`;
-    },
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: `${i.Name}`,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-    trigger: function () {
-      return true;
-    },
-  },
-  allDockerContexts: {
-    script: `docker context list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: i.Name,
-          description: i.Description,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-  listDockerNetworks: {
-    script: `docker network list --format '{{ json . }}'`,
-    postProcess: sharedPostProcess,
-  },
-  listDockerSwarmNodes: {
-    script: `docker node list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: i.ID,
-          displayName: `${i.ID} - ${i.Hostname}`,
-          description: i.Status,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-  listDockerPlugins: {
-    script: `docker plugin list --format '{{ json . }}'`,
-    postProcess: sharedPostProcess,
-  },
-  listDockerSecrets: {
-    script: `docker secret list --format '{{ json . }}'`,
-    postProcess: sharedPostProcess,
-  },
-  listDockerServices: {
-    script: `docker service list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: i.Name,
-          description: i.Image,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-  listDockerServicesReplicas: {
-    script: `docker service list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: `${i.Name}=`,
-          description: i.Image,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-  listDockerStacks: {
-    script: `docker stack list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: i.Name,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-  listDockerVolumes: {
-    script: `docker volume list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => JSON.parse(line))
-        .map((i) => ({
-          name: i.Name,
-          icon: "fig://icon?type=docker",
-        }));
-    },
-  },
-};
-
-const containersArg = {
-  name: "container",
-  generators: dockerGenerators.runningDockerContainers,
-};
-
-const imagesArg = {
-  name: "image",
-  generators: dockerGenerators.allLocalImages,
-};
-
-const containerAndCommandArgs = [
-  containersArg,
-  {
-    name: "command",
-    isCommand: true,
-  },
-];
-
-const contextsArg = {
-  name: "CONTEXT",
-  generators: dockerGenerators.allDockerContexts,
-};
-
-const sharedCommands: Record<string, Fig.Subcommand> = {
-  build: {
-    name: "build",
-    description: "Build an image from a Dockerfile",
-    args: {
-      name: "path",
-      generators: {
-        template: "folders",
-      },
-    },
-    options: [
-      {
-        name: "--add-host",
-        args: {
-          name: "list",
-          description: "Add a custom host-to-IP mapping (host:ip)",
-        },
-      },
-      {
-        name: "--build-arg",
-        args: {
-          name: "list",
-          description: "Set build-time variables",
-        },
-      },
-      {
-        name: "--cache-from",
-        args: {
-          name: "strings",
-          description: "Images to consider as cache sources",
-        },
-      },
-      {
-        name: "--disable-content-trust",
-        description: "Skip image verification (default true)",
-      },
-      {
-        name: ["-f", "--file"],
-        description: "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
-        args: {
-          name: "string",
-          generators: {
-            template: "filepaths",
-          },
-        },
-      },
-      {
-        name: "--iidfile",
-        description: "Write the image ID to the file",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--isolation",
-        description: "Container isolation technology",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--label",
-        description: "Set metadata for an image",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--network",
-        description:
-          'Set the networking mode for the RUN instructions during build (default "default")',
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--no-cache",
-        description: "Do not use cache when building the image",
-      },
-      {
-        name: ["-o", "--output"],
-        description: "Output destination (format: type=local,dest=path)",
-        args: {
-          name: "stringArray",
-        },
-      },
-      {
-        name: "--platform",
-        description: "Set platform if server is multi-platform capable",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--progress",
-        description:
-          "Set type of progress output (auto, plain, tty). Use plain to show container output",
-        args: {
-          name: "string",
-          suggestions: ["auto", "plain", "tty"].map((i) => ({ name: i })),
-        },
-      },
-      {
-        name: "--pull",
-        description: "Always attempt to pull a newer version of the image",
-      },
-      {
-        name: ["-q", "--quiet"],
-        description: "Suppress the build output and print image ID on success",
-      },
-      {
-        name: "--secret",
-        description: `Secret file to expose to the build (only if BuildKit enabled): id=mysecret,src=/local/secret`,
-        args: {
-          name: "stringArray",
-        },
-      },
-      {
-        name: "--squash",
-        description: "Squash newly built layers into a single new layer",
-      },
-      {
-        name: "--ssh",
-        description: `SSH agent socket or keys to expose to the build (only if BuildKit enabled) (format: default|<id>[=<socket>|<key>[,<key>]])`,
-        args: {
-          name: "stringArray",
-        },
-      },
-      {
-        name: ["-t", "--tag"],
-        description: "Name and optionally a tag in the 'name:tag' format",
-      },
-      {
-        name: "--target",
-        description: "Set the target build stage to build",
-        args: {
-          name: "target build stage",
-          generators: {
-            trigger: function () {
-              return true;
-            },
-            script: function (context) {
-              let fileFlagIndex, dockerfilePath;
-              if (context.includes("-f")) {
-                fileFlagIndex = context.indexOf("-f");
-                dockerfilePath = context[fileFlagIndex + 1];
-              } else if (context.includes("--file")) {
-                fileFlagIndex = context.indexOf("--file");
-                dockerfilePath = context[fileFlagIndex + 1];
-              } else {
-                dockerfilePath = "$PWD/Dockerfile";
-              }
-
-              return `\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
-            },
-            postProcess: function (out) {
-              // This just searches the Dockerfile for the alias name after AS,
-              // and due to the grep above, will only match lines where FROM and AS
-              // are on the same line. This could certainly be made more robust
-              // down the line.
-              const imageNameRegexp = /(?:[aA][sS]\s+)([\w:.-]+)/;
-              return out
-                .split("\n")
-                .map((i) => {
-                  const result = imageNameRegexp.exec(i);
-                  if (result) {
-                    return {
-                      name: result[1],
-                    };
-                  }
-                })
-                .filter((i) => i !== undefined);
-            },
-          },
-        },
-      },
-    ],
-  },
-  create: {
-    name: "create",
-    description: "Create a new container",
-    args: [
-      {
-        name: "container",
-        generators: dockerGenerators.allLocalImages,
-      },
-      {
-        name: "command",
-        isCommand: true,
-      },
-    ],
-    options: [
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add a custom host-to-IP mapping (host:ip)",
-        name: "--add-host",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Attach to STDIN, STDOUT or STDERR",
-        name: ["-a", "--attach"],
-      },
-      {
-        args: {
-          name: "uint16",
-        },
-        description:
-          "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
-        name: "--blkio-weight",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Block IO weight (relative device weight) (default [])",
-        name: "--blkio-weight-device",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add Linux capabilities",
-        name: "--cap-add",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Drop Linux capabilities",
-        name: "--cap-drop",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Optional parent cgroup for the container",
-        name: "--cgroup-parent",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Cgroup namespace to use (host|private)",
-        name: "--cgroupns",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Write the container ID to the file",
-        name: "--cidfile",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit CPU CFS (Completely Fair Scheduler) period",
-        name: "--cpu-period",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit CPU CFS (Completely Fair Scheduler) quota",
-        name: "--cpu-quota",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit CPU real-time period in microseconds",
-        name: "--cpu-rt-period",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit CPU real-time runtime in microseconds",
-        name: "--cpu-rt-runtime",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "CPU shares (relative weight)",
-        name: ["-c", "--cpu-shares"],
-      },
-      {
-        args: {
-          name: "decimal",
-        },
-        description: "Number of CPUs",
-        name: "--cpus",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "CPUs in which to allow execution (0-3, 0,1)",
-        name: "--cpuset-cpus",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "MEMs in which to allow execution (0-3, 0,1)",
-        name: "--cpuset-mems",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add a host device to the container",
-        name: "--device",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add a rule to the cgroup allowed devices list",
-        name: "--device-cgroup-rule",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description:
-          "Limit read rate (bytes per second) from a device (default [])",
-        name: "--device-read-bps",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description:
-          "Limit read rate (IO per second) from a device (default [])",
-        name: "--device-read-iops",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description:
-          "Limit write rate (bytes per second) to a device (default [])",
-        name: "--device-write-bps",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description:
-          "Limit write rate (IO per second) to a device (default [])",
-        name: "--device-write-iops",
-      },
-      {
-        description: "Skip image verification (default true)",
-        name: "--disable-content-trust",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Set custom DNS servers",
-        name: "--dns",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Set DNS options",
-        name: "--dns-option",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Set custom DNS search domains",
-        name: "--dns-search",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Container NIS domain name",
-        name: "--domainname",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Overwrite the default ENTRYPOINT of the image",
-        name: "--entrypoint",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Set environment variables",
-        name: ["-e", "--env"],
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Read in a file of environment variables",
-        name: "--env-file",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Expose a port or a range of ports",
-        name: "--expose",
-      },
-      {
-        args: {
-          name: "gpu-request",
-        },
-        description:
-          "GPU devices to add to the container ('all' to pass all GPUs)",
-        name: "--gpus",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add additional groups to join",
-        name: "--group-add",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Command to run to check health",
-        name: "--health-cmd",
-      },
-      {
-        args: {
-          name: "duration",
-        },
-        description: "Time between running the check (ms|s|m|h) (default 0s)",
-        name: "--health-interval",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Consecutive failures needed to report unhealthy",
-        name: "--health-retries",
-      },
-      {
-        args: {
-          name: "duration",
-        },
-        description:
-          "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
-        name: "--health-start-period",
-      },
-      {
-        args: {
-          name: "duration",
-        },
-        description:
-          "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
-        name: "--health-timeout",
-      },
-      {
-        description: "Print usage",
-        name: "--help",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Container host name",
-        name: ["-h", "--hostname"],
-      },
-      {
-        description:
-          "Run an init inside the container that forwards signals and reaps processes",
-        name: "--init",
-      },
-      {
-        description: "Keep STDIN open even if not attached",
-        name: ["-i", "--interactive"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "IPv4 address (e.g., 172.30.100.104)",
-        name: "--ip",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "IPv6 address (e.g., 2001:db8::33)",
-        name: "--ip6",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "IPC mode to use",
-        name: "--ipc",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Container isolation technology",
-        name: "--isolation",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Kernel memory limit",
-        name: "--kernel-memory",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Set meta data on a container",
-        name: ["-l", "--label"],
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Read in a line delimited file of labels",
-        name: "--label-file",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add link to another container",
-        name: "--link",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Container IPv4/IPv6 link-local addresses",
-        name: "--link-local-ip",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Logging driver for the container",
-        name: "--log-driver",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Log driver options",
-        name: "--log-opt",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
-        name: "--mac-address",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Memory limit",
-        name: ["-m", "--memory"],
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Memory soft limit",
-        name: "--memory-reservation",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description:
-          "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
-        name: "--memory-swap",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Tune container memory swappiness (0 to 100) (default -1)",
-        name: "--memory-swappiness",
-      },
-      {
-        args: {
-          name: "mount",
-        },
-        description: "Attach a filesystem mount to the container",
-        name: "--mount",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Assign a name to the container",
-        name: "--name",
-      },
-      {
-        args: {
-          name: "network",
-        },
-        description: "Connect a container to a network",
-        name: "--network",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Add network-scoped alias for the container",
-        name: "--network-alias",
-      },
-      {
-        description: "Disable any container-specified HEALTHCHECK",
-        name: "--no-healthcheck",
-      },
-      {
-        description: "Disable OOM Killer",
-        name: "--oom-kill-disable",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Tune host's OOM preferences (-1000 to 1000)",
-        name: "--oom-score-adj",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "PID namespace to use",
-        name: "--pid",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Tune container pids limit (set -1 for unlimited)",
-        name: "--pids-limit",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Set platform if server is multi-platform capable",
-        name: "--platform",
-      },
-      {
-        description: "Give extended privileges to this container",
-        name: "--privileged",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Publish a container's port(s) to the host",
-        name: ["-p", "--publish"],
-      },
-      {
-        description: "Publish all exposed ports to random ports",
-        name: ["-P", "--publish-all"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description:
-          'Pull image before creating ("always"|"missing"|"never") (default "missing")',
-        name: "--pull",
-      },
-      {
-        description: "Mount the container's root filesystem as read only",
-        name: "--read-only",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description:
-          'Restart policy to apply when a container exits (default "no")',
-        name: "--restart",
-      },
-      {
-        description: "Automatically remove the container when it exits",
-        name: "--rm",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Runtime to use for this container",
-        name: "--runtime",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Security Options",
-        name: "--security-opt",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Size of /dev/shm",
-        name: "--shm-size",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: 'Signal to stop a container (default "SIGTERM")',
-        name: "--stop-signal",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Timeout (in seconds) to stop a container",
-        name: "--stop-timeout",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Storage driver options for the container",
-        name: "--storage-opt",
-      },
-      {
-        args: {
-          name: "map",
-        },
-        description: "Sysctl options (default map[])",
-        name: "--sysctl",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Mount a tmpfs directory",
-        name: "--tmpfs",
-      },
-      {
-        description: "Allocate a pseudo-TTY",
-        name: ["-t", "--tty"],
-      },
-      {
-        args: {
-          name: "ulimit",
-        },
-        description: "Ulimit options (default [])",
-        name: "--ulimit",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Username or UID (format: <name|uid>[:<group|gid>])",
-        name: ["-u", "--user"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "User namespace to use",
-        name: "--userns",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "UTS namespace to use",
-        name: "--uts",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Bind mount a volume",
-        name: ["-v", "--volume"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Optional volume driver for the container",
-        name: "--volume-driver",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Mount volumes from the specified container(s)",
-        name: "--volumes-from",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Working directory inside the container",
-        name: ["-w", "--workdir"],
-      },
-    ],
-  },
-  attach: {
-    name: "attach",
-    description:
-      "Attach local standard input, output, and error streams to a running container,",
-    options: [
-      {
-        name: "--detach-keys",
-        description: "Override the key sequence for detaching a container",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--no-stdin",
-        description: "Do not attach STDIN",
-      },
-      {
-        name: "--sig-proxy",
-        description: "Proxy all received signals to the process (default true)",
-      },
-    ],
-  },
-  commit: {
-    name: "commit",
-    description: "Create a new image from a container's changes",
-    args: [
-      containersArg,
-      {
-        name: "[REPOSITORY[:TAG]]",
-      },
-    ],
-    options: [
-      {
-        args: {
-          name: "string",
-        },
-        description:
-          'Author (e.g., "John Hannibal Smith <hannibal@a-team.com>")',
-        name: ["-a", "--author"],
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Apply Dockerfile instruction to the created image",
-        name: ["-c", "--change"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Commit message",
-        name: ["-m", "--message"],
-      },
-      {
-        description: "Pause container during commit (default true)",
-        name: ["-p", "--pause"],
-      },
-    ],
-  },
-  cp: {
-    name: "cp",
-    description:
-      "Copy files/folders between a container and the local filesystem",
-    args: {
-      name: "CONTAINER:SRC_PATH DEST_PATH|- OR SRC_PATH|- CONTAINER:DEST_PATH",
-    },
-    options: [
-      {
-        description: "Archive mode (copy all uid/gid information)",
-        name: ["-a", "--archive"],
-      },
-      {
-        description: "Always follow symbol link in SRC_PATH",
-        name: ["-L", "--follow-link"],
-      },
-    ],
-  },
-  diff: {
-    name: "diff",
-    description:
-      "Inspect changes to files or directories on a container's filesystem",
-    args: containersArg,
-  },
-  exec: {
-    name: "exec",
-    description: "Run a command in a running container",
-    options: [
-      {
-        name: "-it",
-        description: "Launch an interactive session",
-        icon: "fig://icon?type=commandkey",
-      },
-      {
-        description: "Detached mode: run command in the background",
-        name: ["-d", "--detach"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Override the key sequence for detaching a container",
-        name: "--detach-keys",
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Set environment variables",
-        name: ["-e", "--env"],
-      },
-      {
-        args: {
-          name: "list",
-        },
-        description: "Read in a file of environment variables",
-        name: "--env-file",
-      },
-      {
-        description: "Keep STDIN open even if not attached",
-        name: ["-i", "--interactive"],
-      },
-      {
-        description: "Give extended privileges to the command",
-        name: "--privileged",
-      },
-      {
-        description: "Allocate a pseudo-TTY",
-        name: ["-t", "--tty"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Username or UID (format: <name|uid>[:<group|gid>])",
-        name: ["-u", "--user"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Working directory inside the container",
-        name: ["-w", "--workdir"],
-      },
-    ],
-    args: containerAndCommandArgs,
-  },
-  export: {
-    name: "export",
-    description: "Export a container's filesystem as a tar archive",
-    args: containersArg,
-    options: [
-      {
-        description: "Write to a file, instead of STDOUT",
-        name: ["-o", "--output"],
-        args: {
-          name: "string",
-        },
-      },
-    ],
-  },
-  kill: {
-    name: "kill",
-    description: "Kill one or more running containers",
-    args: { ...containersArg, isVariadic: true },
-    options: [
-      {
-        description: 'Signal to send to the container (default "KILL")',
-        name: ["-s", "--signal"],
-        args: {
-          name: "string",
-        },
-      },
-    ],
-  },
-  logs: {
-    name: "logs",
-    description: "Fetch the logs of a container",
-    args: containersArg,
-    options: [
-      {
-        description: "Show extra details provided to logs",
-        name: "--details",
-      },
-      {
-        description: "Follow log output",
-        name: ["-f", "--follow"],
-      },
-      {
-        description:
-          "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
-        name: "--since",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        description:
-          'Number of lines to show from the end of the logs (default "all")',
-        name: ["-n", "--tail"],
-        args: {
-          name: "string",
-        },
-      },
-      {
-        description: "Show timestamps",
-        name: ["-t", "--timestamps"],
-      },
-      {
-        description:
-          "Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
-        name: "--until",
-        args: {
-          name: "string",
-        },
-      },
-    ],
-  },
-  pause: {
-    name: "pause",
-    description: "Pause all processes within one or more containers",
-    args: containersArg,
-  },
-  port: {
-    name: "port",
-    description: "List port mappings or a specific mapping for the container",
-    args: [
-      containersArg,
-      {
-        name: "[PRIVATE_PORT[/PROTO]]",
-      },
-    ],
-  },
-  rename: {
-    name: "rename",
-    description: "Rename a container",
-    args: [
-      containersArg,
-      {
-        name: "NEW_NAME",
-      },
-    ],
-  },
-  restart: {
-    name: "restart",
-    description: "Restart one or more containers",
-    args: containersArg,
-    options: [
-      {
-        description:
-          "Seconds to wait for stop before killing the container (default 10)",
-        name: ["-t", "--time"],
-        args: {
-          name: "int",
-        },
-      },
-    ],
-  },
-  rm: {
-    name: "rm",
-    description: "Remove one or more containers",
-    args: {
-      isVariadic: true,
-      name: "containers",
-      generators: dockerGenerators.allDockerContainers,
-    },
-    options: [
-      {
-        name: ["-f", "--force"],
-        description: "Force the removal of a running container (uses SIGKILL)",
-      },
-      {
-        name: ["-l", "--link"],
-        description: "Remove the specified link",
-      },
-      {
-        name: ["-v", "--volumes"],
-        description:
-          "Remove the anonymous volumes associated with the container",
-      },
-    ],
-  },
-  run: {
-    name: "run",
-    description: "Run a command in a new container",
-    options: [
-      {
-        name: "-it",
-        description: "Launch an interactive session",
-        icon: "fig://icon?type=commandkey",
-      },
-      {
-        name: "--add-host",
-        description: "Add a custom host-to-IP mapping (host:ip)",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: ["-a", "--attach"],
-        description: "Attach to STDIN, STDOUT or STDERR",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--blkio-weight",
-        description:
-          "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
-        args: {
-          name: "uint16",
-        },
-      },
-      {
-        name: "--blkio-weight-device",
-        description: "Block IO weight (relative device weight) (default [])",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--cap-add",
-        description: "Add Linux capabilities",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--cap-drop",
-        description: "Drop Linux capabilities",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--cgroup-parent",
-        description: "Optional parent cgroup for the container",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--cgroupns",
-        description: `Cgroup namespace to use (host|private)
-'host':    Run the container in the Docker host's cgroup namespace
-'private': Run the container in its own private cgroup namespace
-'':        Use the cgroup namespace as configured by the
-default-cgroupns-mode option on the daemon (default)`,
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--cidfile",
-        description: "Write the container ID to the file",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--cpu-period",
-        description: "Limit CPU CFS (Completely Fair Scheduler) period",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--cpu-quota",
-        description: "Limit CPU CFS (Completely Fair Scheduler) quota",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--cpu-rt-period",
-        description: "Limit CPU real-time period in microseconds",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--cpu-rt-runtime",
-        description: "Limit CPU real-time runtime in microseconds",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: ["-c", "--cpu-shares"],
-        description: "CPU shares (relative weight)",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--cpus",
-        description: "Number of CPUs",
-        args: {
-          name: "decimal",
-        },
-      },
-      {
-        name: "--cpuset-cpus",
-        description: "CPUs in which to allow execution (0-3, 0,1)",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--cpuset-mems",
-        description: "MEMs in which to allow execution (0-3, 0,1)",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: ["-d", "--detach"],
-        description: "Run container in background and print container ID",
-      },
-      {
-        name: "--detach-keys",
-        description: "Override the key sequence for detaching a container",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--device",
-        description: "Add a host device to the container",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--device-cgroup-rule",
-        description: "Add a rule to the cgroup allowed devices list",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--device-read-bps",
-        description:
-          "Limit read rate (bytes per second) from a device (default [])",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--device-read-iops",
-        description:
-          "Limit read rate (IO per second) from a device (default [])",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--device-write-bps",
-        description:
-          "Limit write rate (bytes per second) to a device (default [])",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--device-write-iops",
-        description:
-          "Limit write rate (IO per second) to a device (default [])",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--disable-content-trust",
-        description: "Skip image verification (default true)",
-      },
-      {
-        name: "--dns",
-        description: "Set custom DNS servers",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--dns-option",
-        description: "Set DNS options",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--dns-search",
-        description: "Set custom DNS search domains",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--domainname",
-        description: "Container NIS domain name",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--entrypoint",
-        description: "Overwrite the default ENTRYPOINT of the image",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: ["-e", "--env"],
-        description: "Set environment variables",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--env-file",
-        description: "Read in a file of environment variables",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--expose",
-        description: "Expose a port or a range of ports",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--gpus",
-        description:
-          "GPU devices to add to the container ('all' to pass all GPUs)",
-        args: {
-          name: "gpu-request",
-        },
-      },
-      {
-        name: "--group-add",
-        description: "Add additional groups to join",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--health-cmd",
-        description: "Command to run to check health",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--health-interval",
-        description: "Time between running the check (ms|s|m|h) (default 0s)",
-        args: {
-          name: "duration",
-        },
-      },
-      {
-        name: "--health-retries",
-        description: "Consecutive failures needed to report unhealthy",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--health-start-period",
-        description:
-          "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
-        args: {
-          name: "duration",
-        },
-      },
-      {
-        name: "--health-timeout",
-        description:
-          "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
-        args: {
-          name: "duration",
-        },
-      },
-      {
-        name: "--help",
-        description: "Print usage",
-      },
-      {
-        name: ["-h", "--hostname"],
-        description: "Container host name",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--init",
-        description:
-          "Run an init inside the container that forwards signals and reaps processes",
-      },
-      {
-        name: ["-i", "--interactive"],
-        description: "Keep STDIN open even if not attached",
-      },
-      {
-        name: "--ip",
-        description: "IPv4 address (e.g., 172.30.100.104)",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--ip6",
-        description: "IPv6 address (e.g., 2001:db8::33)",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--ipc",
-        description: "IPC mode to use",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--isolation",
-        description: "Container isolation technology",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--kernel-memory",
-        description: "Kernel memory limit",
-        args: {
-          name: "bytes",
-        },
-      },
-      {
-        name: ["-l", "--label"],
-        description: "Set meta data on a container",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--label-file",
-        description: "Read in a line delimited file of labels",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--link",
-        description: "Add link to another container",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--link-local-ip",
-        description: "Container IPv4/IPv6 link-local addresses",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--log-driver",
-        description: "Logging driver for the container",
-        args: {
-          name: "string",
-          suggestions: [
-            "json-file",
-            "syslog",
-            "journald",
-            "gelf",
-            "fluentd",
-            "awslogs",
-            "splunk",
-            "etwlogs",
-            "gcplogs",
-            "none",
-          ],
-        },
-      },
-      {
-        name: "--log-opt",
-        description: "Log driver options",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--mac-address",
-        description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: ["-m", "--memory"],
-        description: "Memory limit",
-        args: {
-          name: "bytes",
-        },
-      },
-      {
-        name: "--memory-reservation",
-        description: "Memory soft limit",
-        args: {
-          name: "bytes",
-        },
-      },
-      {
-        name: "--memory-swap",
-        description:
-          "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
-        args: {
-          name: "bytes",
-        },
-      },
-      {
-        name: "--memory-swappiness",
-        description: "Tune container memory swappiness (0 to 100) (default -1)",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--mount",
-        description: "Attach a filesystem mount to the container",
-        args: {
-          name: "mount",
-        },
-      },
-      {
-        name: "--name",
-        description: "Assign a name to the container",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--network",
-        description: "Connect a container to a network",
-        args: {
-          name: "network",
-        },
-      },
-      {
-        name: "--network-alias",
-        description: "Add network-scoped alias for the container",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--no-healthcheck",
-        description: "Disable any container-specified HEALTHCHECK",
-      },
-      {
-        name: "--oom-kill-disable",
-        description: "Disable OOM Killer",
-      },
-      {
-        name: "--oom-score-adj",
-        description: "Tune host's OOM preferences (-1000 to 1000)",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--pid",
-        description: "PID namespace to use",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--pids-limit",
-        description: "Tune container pids limit (set -1 for unlimited)",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--platform",
-        description: "Set platform if server is multi-platform capable",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--privileged",
-        description: "Give extended privileges to this container",
-      },
-      {
-        name: ["-p", "--publish"],
-        description: "Publish a container's port(s) to the host",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: ["-P", "--publish-all"],
-        description: "Publish all exposed ports to random ports",
-      },
-      {
-        name: "--pull",
-        description:
-          "Pull image before running ('always'|'missing'|'never') (default 'missing')",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--read-only",
-        description: "Mount the container's root filesystem as read only",
-      },
-      {
-        name: "--restart",
-        description:
-          "Restart policy to apply when a container exits (default 'no')",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--rm",
-        description: "Automatically remove the container when it exits",
-      },
-      {
-        name: "--runtime",
-        description: "Runtime to use for this container",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--security-opt",
-        description: "Security Options",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--shm-size",
-        description: "Size of /dev/shm",
-        args: {
-          name: "bytes",
-        },
-      },
-      {
-        name: "--sig-proxy",
-        description: "Proxy received signals to the process (default true)",
-      },
-      {
-        name: "--stop-signal",
-        description: "Signal to stop a container (default 'SIGTERM')",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--stop-timeout",
-        description: "Timeout (in seconds) to stop a container",
-        args: {
-          name: "int",
-        },
-      },
-      {
-        name: "--storage-opt",
-        description: "Storage driver options for the container",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--sysctl",
-        description: "Sysctl options (default map[])",
-        args: {
-          name: "map",
-        },
-      },
-      {
-        name: "--tmpfs",
-        description: "Mount a tmpfs directory",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: ["-t", "--tty"],
-        description: "Allocate a pseudo-TTY",
-      },
-      {
-        name: "--ulimit",
-        description: "Ulimit options (default [])",
-        args: {
-          name: "ulimit",
-        },
-      },
-      {
-        name: ["-u", "--user"],
-        description: "Username or UID (format: <name|uid>[:<group|gid>])",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--userns",
-        description: "User namespace to use",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--uts",
-        description: "UTS namespace to use",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: ["-v", "--volume"],
-        description: "Bind mount a volume",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: "--volume-driver",
-        description: "Optional volume driver for the container",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--volumes-from",
-        description: "Mount volumes from the specified container(s)",
-        args: {
-          name: "list",
-        },
-      },
-      {
-        name: ["-w", "--workdir"],
-        description: "Working directory inside the container",
-        args: {
-          name: "string",
-        },
-      },
-    ],
-    args: [
-      {
-        name: "image",
-        description: "The Docker image to use",
-        generators: {
-          script:
-            "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
-          postProcess: function (out) {
-            return out.split("\n").map((image) => {
-              const [repo, size, tag, id] = image.split(" ");
-              return {
-                name: repo,
-                description: `${id}@${tag} - ${size}`,
-                icon: "fig://icon?type=docker",
-              };
-            });
-          },
-        },
-      },
-      {
-        name: "command",
-        // description: "The command to run in the container"
-      },
-    ],
-  },
-  start: {
-    name: "start",
-    description: "Start one or more stopped containers",
-    args: {
-      name: "container",
-      generators: dockerGenerators.allDockerContainers,
-    },
-    options: [
-      {
-        description: "Attach STDOUT/STDERR and forward signals",
-        name: ["-a", "--attach"],
-      },
-      {
-        description: "Override the key sequence for detaching a container",
-        name: "--detach-keys",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        description: "Attach container's STDIN",
-        name: ["-i", "--interactive"],
-      },
-    ],
-  },
-  stats: {
-    name: "stats",
-    description:
-      "Display a live stream of container(s) resource usage statistics",
-    args: containersArg,
-    options: [
-      {
-        description: "Show all containers (default shows just running)",
-        name: ["-a", "--all"],
-      },
-      {
-        description: "Pretty-print images using a Go template",
-        name: "--format",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        description: "Disable streaming stats and only pull the first result",
-        name: "--no-stream",
-      },
-      {
-        description: "Do not truncate output",
-        name: "--no-trunc",
-      },
-    ],
-  },
-  stop: {
-    name: "stop",
-    description: "Stop one or more running containers",
-    args: containersArg,
-    options: [
-      {
-        name: ["-t", "--t"],
-        description: "Seconds to wait for stop before killing it (default 10)",
-        args: {
-          name: "int",
-        },
-      },
-    ],
-  },
-  top: {
-    name: "top",
-    description: "Display the running processes of a container",
-    // TODO: You can pass in psOptions?
-    args: containersArg,
-  },
-  unpause: {
-    name: "unpause",
-    description: "Unpause all processes within one or more containers",
-    args: {
-      name: "container",
-      generators: dockerGenerators.pausedDockerContainers,
-    },
-  },
-  update: {
-    name: "update",
-    description: "Update configuration of one or more containers",
-    // INFO: You can do this on any container, even if it's not running - Is that useful though?
-    // INFO: For now, only displaying running containers
-    args: containersArg,
-    options: [
-      {
-        args: {
-          name: "uint16",
-        },
-        description:
-          "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
-        name: "--blkio-weight",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit CPU CFS (Completely Fair Scheduler) period",
-        name: "--cpu-period",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit CPU CFS (Completely Fair Scheduler) quota",
-        name: "--cpu-quota",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit the CPU real-time period in microseconds",
-        name: "--cpu-rt-period",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Limit the CPU real-time runtime in microseconds",
-        name: "--cpu-rt-runtime",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "CPU shares (relative weight)",
-        name: ["-c", "--cpu-shares"],
-      },
-      {
-        args: {
-          name: "decimal",
-        },
-        description: "Number of CPUs",
-        name: "--cpus",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "CPUs in which to allow execution (0-3, 0,1)",
-        name: "--cpuset-cpus",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "MEMs in which to allow execution (0-3, 0,1)",
-        name: "--cpuset-mems",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Kernel memory limit",
-        name: "--kernel-memory",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Memory limit",
-        name: ["-m", "--memory"],
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description: "Memory soft limit",
-        name: "--memory-reservation",
-      },
-      {
-        args: {
-          name: "bytes",
-        },
-        description:
-          "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
-        name: "--memory-swap",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description: "Tune container pids limit (set -1 for unlimited)",
-        name: "--pids-limit",
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Restart policy to apply when a container exits",
-        name: "--restart",
-      },
-    ],
-  },
-  wait: {
-    name: "wait",
-    description:
-      "Block until one or more containers stop, then print their exit codes",
-    args: containersArg,
-  },
-  ps: {
-    name: "ps",
-    description: "List containers",
-    options: [
-      {
-        description: "Show all containers (default shows just running)",
-        name: ["-a", "--all"],
-      },
-      {
-        args: {
-          name: "filter",
-        },
-        description: "Filter output based on conditions provided",
-        name: ["-f", "--filter"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Pretty-print containers using a Go template",
-        name: "--format",
-      },
-      {
-        args: {
-          name: "int",
-        },
-        description:
-          "Show n last created containers (includes all states) (default -1)",
-        name: ["-n", "--last"],
-      },
-      {
-        description: "Show the latest created container (includes all states)",
-        name: ["-l", "--latest"],
-      },
-      {
-        description: "Don't truncate output",
-        name: "--no-trunc",
-      },
-      {
-        description: "Only display container IDs",
-        name: ["-q", "--quiet"],
-      },
-      {
-        description: "Display total file sizes",
-        name: ["-s", "--size"],
-      },
-    ],
-  },
-  history: {
-    name: "history",
-    description: "Show the history of an image",
-    args: imagesArg,
-    options: [
-      {
-        description: "Pretty-print images using a Go template",
-        name: "--format",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        description:
-          "Print sizes and dates in human readable format (default true)",
-        name: ["-H", "--human"],
-      },
-      {
-        description: "Don't truncate output",
-        name: "--no-trunc",
-      },
-      {
-        description: "Only show image IDs",
-        name: ["-q", "--quiet"],
-      },
-    ],
-  },
-  imageImport: {
-    name: "import",
-    description:
-      "Import the contents from a tarball to create a filesystem image",
-    args: {
-      name: "file|URL|- [REPOSITORY[:TAG]]",
-    },
-    options: [
-      {
-        args: {
-          name: "list",
-        },
-        description: "Apply Dockerfile instruction to the created image",
-        name: ["-c", "--change"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Set commit message for imported image",
-        name: ["-m", "--message"],
-      },
-      {
-        args: {
-          name: "string",
-        },
-        description: "Set platform if server is multi-platform capable",
-        name: "--platform",
-      },
-    ],
-  },
-  imageList: {
-    name: "images",
-    description: "List images",
-    args: {
-      name: "[REPOSITORY[:TAG]]",
-    },
-    options: [
-      {
-        name: ["-a", "--all"],
-        description: "Show all images (default hides intermediate images)",
-      },
-      {
-        name: "--digests",
-        description: "Show digests",
-      },
-      {
-        name: ["-f", "--filter"],
-        description: "Filter output based on conditions provided",
-        args: {
-          name: "filter",
-        },
-      },
-      {
-        name: "--format",
-        description: "Pretty-print images using a Go template",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: "--no-trunc",
-        description: "Don't truncate output",
-      },
-      {
-        name: ["-q", "--quiet"],
-        description: "Only show image IDs",
-      },
-    ],
-  },
-  load: {
-    name: "load",
-    description: "Load an image from a tar archive or STDIN",
-    options: [
-      {
-        name: "-i",
-        description: "Read from tar archive file, instead of STDIN",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        name: ["-q", "--quiet"],
-        description: "Suppress the load output",
-      },
-    ],
-  },
-  pull: {
-    name: "pull",
-    description: "Pull an image or a repository from a registry",
-    args: {
-      name: "NAME[:TAG|@DIGEST]",
-      generators: dockerGenerators.dockerHubSearch,
-      debounce: true,
-    },
-    options: [
-      {
-        description: "Download all tagged images in the repository",
-        name: ["-a", "--all-tags"],
-      },
-      {
-        description: "Skip image verification (default true)",
-        name: "--disable-content-trust",
-      },
-      {
-        description: "Set platform if server is multi-platform capable",
-        name: "--platform",
-        args: {
-          name: "string",
-        },
-      },
-      {
-        description: "Suppress verbose output",
-        name: ["-q", "--quiet"],
-      },
-    ],
-  },
-  push: {
-    name: "push",
-    description: "Push an image or a repository to a registry",
-    // TODO: Autocomplete images
-    args: {
-      name: "NAME[:TAG]",
-    },
-    options: [
-      {
-        description: "Push all tagged images in the repository",
-        name: ["-a", "--all-tags"],
-      },
-      {
-        description: "Skip image signing (default true)",
-        name: "--disable-content-trust",
-      },
-      {
-        description: "Suppress verbose output",
-        name: ["-q", "--quiet"],
-      },
-    ],
-  },
-  tag: {
-    name: "tag",
-    description: "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
-    args: {
-      name: "SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
-    },
-  },
-  imageSave: {
-    name: "save",
-    description:
-      "Save one or more images to a tar archive (streamed to STDOUT by default)",
-    args: imagesArg,
-    options: [
-      {
-        description: "Write to a file, instead of STDOUT",
-        name: ["-o", "--output"],
-        args: {
-          name: "string",
-        },
-      },
-    ],
-  },
-  removeImage: {
-    name: "rmi",
-    description: "Remove one or more images",
-    args: { ...imagesArg, isVariadic: true },
-    options: [
-      {
-        name: ["-f", "--force"],
-        description: "Force removal of the image",
-      },
-      {
-        name: "--no-prune",
-        description: "Do not delete untagged parents",
-      },
-    ],
-  },
-};
-
 const completionSpec: Fig.Spec = {
   name: "docker",
   description: "A self-sufficient runtime for containers",
   subcommands: [
-    sharedCommands.attach,
-    sharedCommands.build,
-    sharedCommands.commit,
-    sharedCommands.cp,
-    sharedCommands.create,
-    sharedCommands.diff,
-    {
-      name: "events",
-      description: "Get real time events from the server",
-      options: [
-        {
-          args: {
-            name: "filter",
-          },
-          description: "Filter output based on conditions provided",
-          name: ["-f", "--filter"],
-        },
-        {
-          args: {
-            name: "string",
-          },
-          description: "Format the output using the given Go template",
-          name: "--format",
-        },
-        {
-          args: {
-            name: "string",
-          },
-          description: "Show all events created since timestamp",
-          name: "--since",
-        },
-        {
-          args: {
-            name: "string",
-          },
-          description: "Stream events until this timestamp",
-          name: "--until",
-        },
-      ],
-    },
-    sharedCommands.exec,
-    sharedCommands.export,
-    sharedCommands.history,
-    sharedCommands.imageList,
-    sharedCommands.imageImport,
-    {
-      name: "info",
-      description: "Display system-wide information",
-      options: [
-        {
-          args: {
-            name: "string",
-          },
-          description: "Format the output using the given Go template",
-          name: ["-f", "--format"],
-        },
-      ],
-    },
-    {
-      name: "inspect",
-      description: "Return low-level information on Docker objects",
-      args: {
-        // TODO: There are more types of docker objects beyond running containers
-        // that can be inspected
-        name: "Name or ID",
-        generators: [
-          {
-            script: `docker ps -a --format '{{ json . }}'`,
-            postProcess: function (out) {
-              const allLines = out.split("\n").map((line) => JSON.parse(line));
-              return allLines.map((i) => ({
-                name: i.ID,
-                displayName: `[con] ${i.ID} (${i.Image})`,
-              }));
-            },
-          },
-          {
-            script: `docker images -a --format '{{ json . }}'`,
-            postProcess: function (out) {
-              const allLines = out.split("\n").map((line) => JSON.parse(line));
-              return allLines.map((i) => {
-                let displayName;
-                if (i.Repository === "\u003cnone\u003e") {
-                  displayName = i.ID;
-                } else {
-                  displayName = i.Repository;
-                  if (i.Tag !== "\u003cnone\u003e") {
-                    displayName += `:${i.Tag}`;
-                  }
-                }
-
-                return {
-                  name: i.ID,
-                  displayName: `[img] ${displayName}`,
-                };
-              });
-            },
-          },
-          {
-            script: `docker volume ls --format '{{ json . }}'`,
-            postProcess: function (out) {
-              const allLines = out.split("\n").map((line) => JSON.parse(line));
-              return allLines.map((i) => ({
-                name: i.Name,
-                displayName: `[vol] ${i.Name}`,
-              }));
-            },
-          },
-        ],
-      },
-      options: [
-        {
-          name: ["-f", "--format"],
-          description: "Format the output using the given Go template",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: ["-s", "--size"],
-          description: "Display total file sizes if the type is container",
-        },
-        {
-          name: "--type",
-          description: "Return JSON for specified type",
-          args: {
-            name: "string",
-          },
-        },
-      ],
-    },
-    sharedCommands.kill,
-    sharedCommands.load,
-    {
-      name: "login",
-      description: "Log in to a Docker registry",
-      args: {
-        name: "server",
-      },
-      options: [
-        {
-          description: "Password",
-          name: ["-p", "--password"],
-          args: {
-            name: "string",
-          },
-        },
-        {
-          description: "Take the password from stdin",
-          name: "--password-stdin",
-        },
-        {
-          description: "Username",
-          name: ["-u", "--username"],
-          args: {
-            name: "string",
-          },
-        },
-      ],
-    },
-    {
-      name: "logout",
-      description: "Log out from a Docker registry",
-      args: {
-        name: "server",
-      },
-    },
-    sharedCommands.logs,
-    sharedCommands.pause,
-    sharedCommands.port,
-    sharedCommands.ps,
-    sharedCommands.pull,
-    sharedCommands.push,
-    sharedCommands.rename,
-    sharedCommands.restart,
-    sharedCommands.rm,
-    sharedCommands.removeImage,
-    sharedCommands.run,
-    sharedCommands.imageSave,
-    {
-      name: "search",
-      description: "Search the Docker Hub for images",
-      args: {
-        name: "TERM",
-        description: "Search term",
-      },
-      options: [
-        {
-          args: {
-            name: "filter",
-          },
-          description: "Filter output based on conditions provided",
-          name: ["-f", "--filter"],
-        },
-        {
-          args: {
-            name: "string",
-          },
-          description: "Pretty-print search using a Go template",
-          name: "--format",
-        },
-        {
-          args: {
-            name: "int",
-          },
-          description: "Max number of search results (default 25)",
-          name: "--limit",
-        },
-        {
-          description: "Don't truncate output",
-          name: "--no-trunc",
-        },
-      ],
-    },
-    sharedCommands.start,
-    sharedCommands.stats,
-    sharedCommands.stop,
-    sharedCommands.tag,
-    sharedCommands.top,
-    sharedCommands.unpause,
-    sharedCommands.update,
-    {
-      name: "version",
-      description: "Show the Docker version information",
-      options: [
-        {
-          description:
-            "Format the output. Values: [pretty | json]. (Default: pretty)",
-          name: ["-f", "--format"],
-          args: {
-            name: "string",
-            suggestions: ["pretty", "json"],
-          },
-        },
-        {
-          description: "Kubernetes config file",
-          name: "--kubeconfig",
-          args: {
-            name: "string",
-          },
-        },
-      ],
-    },
-    sharedCommands.wait,
     {
       name: "builder",
       description: "Manage builds",
       subcommands: [
-        sharedCommands.build,
         {
-          name: "prune",
-          description: "Amount of disk space to keep for cache",
+          name: "build",
+          description: "Build an image from a Dockerfile",
           options: [
             {
-              name: "-a, --all",
+              name: "--add-host",
+              description: "Add a custom host-to-IP mapping (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--build-arg",
+              description: "Set build-time variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cache-from",
+              description: "Images to consider as cache sources",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--cgroup-parent",
+              description: "Optional parent cgroup for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--compress",
+              description: "Compress the build context using gzip",
+            },
+            {
+              name: "--cpu-period",
+              description:
+                "Limit the CPU CFS (Completely Fair Scheduler) period",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-quota",
+              description:
+                "Limit the CPU CFS (Completely Fair Scheduler) quota",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["-c", "--cpu-shares"],
+              description: "CPU shares (relative weight)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpuset-cpus",
+              description: "CPUs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-mems",
+              description: "MEMs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: ["-f", "--file"],
+              description:
+                "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--force-rm",
+              description: "Always remove intermediate containers",
+            },
+            {
+              name: "--iidfile",
+              description: "Write the image ID to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--isolation",
+              description: "Container isolation technology",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label",
+              description: "Set metadata for an image",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-m", "--memory"],
+              description: "Memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swap",
+              description:
+                "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--network",
+              description:
+                "Set the networking mode for the RUN instructions during build (default 'default')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-cache",
+              description: "Do not use cache when building the image",
+            },
+            {
+              name: "--pull",
+              description:
+                "Always attempt to pull a newer version of the image",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description:
+                "Suppress the build output and print image ID on success",
+            },
+            {
+              name: "--rm",
+              description:
+                "Remove intermediate containers after a successful build (default true)",
+            },
+            {
+              name: "--security-opt",
+              description: "Security options",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--shm-size",
+              description: "Size of /dev/shm",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--squash",
+              description: "Squash newly built layers into a single new layer",
+            },
+            {
+              name: ["-t", "--tag"],
+              description: "Name and optionally a tag in the 'name:tag' format",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--target",
+              description: "Set the target build stage to build",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options (default [])",
+              args: {
+                name: "ulimit",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "prune",
+          description: "Remove build cache",
+          options: [
+            {
+              name: ["-a", "--all"],
               description:
                 "Remove all unused build cache, not just dangling ones",
             },
@@ -2710,7 +220,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "-f, --force",
+              name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
             {
@@ -2720,7 +230,17 @@ const completionSpec: Fig.Spec = {
                 name: "bytes",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -2731,13 +251,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a config from a file or STDIN",
-          args: {
-            name: "file",
-            template: "filepaths",
-          },
           options: [
             {
-              name: "-l",
+              name: ["-l", "--label"],
               description: "Config labels",
               args: {
                 name: "list",
@@ -2750,18 +266,18 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more configs",
-          args: {
-            name: "CONFIG",
-            isVariadic: true,
-          },
           options: [
             {
-              name: "-f",
+              name: ["-f", "--format"],
               description: "Format the output using the given Go template",
               args: {
                 name: "string",
@@ -2771,6 +287,10 @@ const completionSpec: Fig.Spec = {
               name: "--pretty",
               description: "Print the information in a human friendly format",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
@@ -2778,7 +298,7 @@ const completionSpec: Fig.Spec = {
           description: "List configs",
           options: [
             {
-              name: "-f",
+              name: ["-f", "--filter"],
               description: "Filter output based on conditions provided",
               args: {
                 name: "filter",
@@ -2795,15 +315,27 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more configs",
-          args: {
-            name: "CONFIG",
-            isVariadic: true,
-          },
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -2811,16 +343,825 @@ const completionSpec: Fig.Spec = {
       name: "container",
       description: "Manage containers",
       subcommands: [
-        sharedCommands.attach,
-        sharedCommands.cp,
-        sharedCommands.create,
-        sharedCommands.diff,
-        sharedCommands.exec,
-        sharedCommands.export,
+        {
+          name: "attach",
+          description:
+            "Attach local standard input, output, and error streams to a running container",
+          options: [
+            {
+              name: "--detach-keys",
+              description:
+                "Override the key sequence for detaching a container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-stdin",
+              description: "Do not attach STDIN",
+            },
+            {
+              name: "--sig-proxy",
+              description:
+                "Proxy all received signals to the process (default true)",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "commit",
+          description: "Create a new image from a container's changes",
+          options: [
+            {
+              name: ["-a", "--author"],
+              description:
+                "Author (e.g., 'John Hannibal Smith <hannibal@a-team.com>')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-c", "--change"],
+              description: "Apply Dockerfile instruction to the created image",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-m", "--message"],
+              description: "Commit message",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-p", "--pause"],
+              description: "Pause container during commit (default true)",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "cp",
+          description:
+            "Copy files/folders between a container and the local filesystem",
+          options: [
+            {
+              name: ["-a", "--archive"],
+              description: "Archive mode (copy all uid/gid information)",
+            },
+            {
+              name: ["-L", "--follow-link"],
+              description: "Always follow symbol link in SRC_PATH",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a new container",
+          options: [
+            {
+              name: "--add-host",
+              description: "Add a custom host-to-IP mapping (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-a", "--attach"],
+              description: "Attach to STDIN, STDOUT or STDERR",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--blkio-weight",
+              description:
+                "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+              args: {
+                name: "uint16",
+              },
+            },
+            {
+              name: "--blkio-weight-device",
+              description:
+                "Block IO weight (relative device weight) (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cap-add",
+              description: "Add Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cap-drop",
+              description: "Drop Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cgroup-parent",
+              description: "Optional parent cgroup for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cgroupns",
+              description: `Cgroup namespace to use (host|private)
+'host':    Run the container in the Docker host's cgroup namespace
+'private': Run the container in its own private cgroup namespace
+'':        Use the cgroup namespace as configured by the
+default-cgroupns-mode option on the daemon (default)`,
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cidfile",
+              description: "Write the container ID to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpu-period",
+              description: "Limit CPU CFS (Completely Fair Scheduler) period",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-quota",
+              description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-rt-period",
+              description: "Limit CPU real-time period in microseconds",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-rt-runtime",
+              description: "Limit CPU real-time runtime in microseconds",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["-c", "--cpu-shares"],
+              description: "CPU shares (relative weight)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpus",
+              description: "Number of CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--cpuset-cpus",
+              description: "CPUs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-mems",
+              description: "MEMs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--device",
+              description: "Add a host device to the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-cgroup-rule",
+              description: "Add a rule to the cgroup allowed devices list",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-read-bps",
+              description:
+                "Limit read rate (bytes per second) from a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-read-iops",
+              description:
+                "Limit read rate (IO per second) from a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-write-bps",
+              description:
+                "Limit write rate (bytes per second) to a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-write-iops",
+              description:
+                "Limit write rate (IO per second) to a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: "--dns",
+              description: "Set custom DNS servers",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-option",
+              description: "Set DNS options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-search",
+              description: "Set custom DNS search domains",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--domainname",
+              description: "Container NIS domain name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--entrypoint",
+              description: "Overwrite the default ENTRYPOINT of the image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-e", "--env"],
+              description: "Set environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--env-file",
+              description: "Read in a file of environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--expose",
+              description: "Expose a port or a range of ports",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--gpus",
+              description:
+                "GPU devices to add to the container ('all' to pass all GPUs)",
+              args: {
+                name: "gpu-request",
+              },
+            },
+            {
+              name: "--group-add",
+              description: "Add additional groups to join",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--health-cmd",
+              description: "Command to run to check health",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--health-interval",
+              description:
+                "Time between running the check (ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-retries",
+              description: "Consecutive failures needed to report unhealthy",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--health-start-period",
+              description:
+                "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-timeout",
+              description:
+                "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+            {
+              name: ["-h", "--hostname"],
+              description: "Container host name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--init",
+              description:
+                "Run an init inside the container that forwards signals and reaps processes",
+            },
+            {
+              name: ["-i", "--interactive"],
+              description: "Keep STDIN open even if not attached",
+            },
+            {
+              name: "--ip",
+              description: "IPv4 address (e.g., 172.30.100.104)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ip6",
+              description: "IPv6 address (e.g., 2001:db8::33)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ipc",
+              description: "IPC mode to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--isolation",
+              description: "Container isolation technology",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--kernel-memory",
+              description: "Kernel memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: ["-l", "--label"],
+              description: "Set meta data on a container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--label-file",
+              description: "Read in a line delimited file of labels",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--link",
+              description: "Add link to another container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--link-local-ip",
+              description: "Container IPv4/IPv6 link-local addresses",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--log-driver",
+              description: "Logging driver for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--log-opt",
+              description: "Log driver options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--mac-address",
+              description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-m", "--memory"],
+              description: "Memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-reservation",
+              description: "Memory soft limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swap",
+              description:
+                "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swappiness",
+              description:
+                "Tune container memory swappiness (0 to 100) (default -1)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--mount",
+              description: "Attach a filesystem mount to the container",
+              args: {
+                name: "mount",
+              },
+            },
+            {
+              name: "--name",
+              description: "Assign a name to the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--network",
+              description: "Connect a container to a network",
+              args: {
+                name: "network",
+              },
+            },
+            {
+              name: "--network-alias",
+              description: "Add network-scoped alias for the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--no-healthcheck",
+              description: "Disable any container-specified HEALTHCHECK",
+            },
+            {
+              name: "--oom-kill-disable",
+              description: "Disable OOM Killer",
+            },
+            {
+              name: "--oom-score-adj",
+              description: "Tune host's OOM preferences (-1000 to 1000)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--pid",
+              description: "PID namespace to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pids-limit",
+              description: "Tune container pids limit (set -1 for unlimited)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Set platform if server is multi-platform capable",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--privileged",
+              description: "Give extended privileges to this container",
+            },
+            {
+              name: ["-p", "--publish"],
+              description: "Publish a container's port(s) to the host",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-P", "--publish-all"],
+              description: "Publish all exposed ports to random ports",
+            },
+            {
+              name: "--pull",
+              description:
+                "Pull image before creating ('always'|'missing'|'never') (default 'missing')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--read-only",
+              description: "Mount the container's root filesystem as read only",
+            },
+            {
+              name: "--restart",
+              description:
+                "Restart policy to apply when a container exits (default 'no')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rm",
+              description: "Automatically remove the container when it exits",
+            },
+            {
+              name: "--runtime",
+              description: "Runtime to use for this container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--security-opt",
+              description: "Security Options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--shm-size",
+              description: "Size of /dev/shm",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--stop-signal",
+              description: "Signal to stop a container (default 'SIGTERM')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--stop-timeout",
+              description: "Timeout (in seconds) to stop a container",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--storage-opt",
+              description: "Storage driver options for the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--sysctl",
+              description: "Sysctl options (default map[])",
+              args: {
+                name: "map",
+              },
+            },
+            {
+              name: "--tmpfs",
+              description: "Mount a tmpfs directory",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-t", "--tty"],
+              description: "Allocate a pseudo-TTY",
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options (default [])",
+              args: {
+                name: "ulimit",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "Username or UID (format: <name|uid>[:<group|gid>])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--userns",
+              description: "User namespace to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--uts",
+              description: "UTS namespace to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-v", "--volume"],
+              description: "Bind mount a volume",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--volume-driver",
+              description: "Optional volume driver for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--volumes-from",
+              description: "Mount volumes from the specified container(s)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-w", "--workdir"],
+              description: "Working directory inside the container",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "diff",
+          description:
+            "Inspect changes to files or directories on a container's filesystem",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "exec",
+          description: "Run a command in a running container",
+          options: [
+            {
+              name: ["-d", "--detach"],
+              description: "Detached mode: run command in the background",
+            },
+            {
+              name: "--detach-keys",
+              description:
+                "Override the key sequence for detaching a container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-e", "--env"],
+              description: "Set environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--env-file",
+              description: "Read in a file of environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-i", "--interactive"],
+              description: "Keep STDIN open even if not attached",
+            },
+            {
+              name: "--privileged",
+              description: "Give extended privileges to the command",
+            },
+            {
+              name: ["-t", "--tty"],
+              description: "Allocate a pseudo-TTY",
+            },
+            {
+              name: ["-u", "--user"],
+              description: "Username or UID (format: <name|uid>[:<group|gid>])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-w", "--workdir"],
+              description: "Working directory inside the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "export",
+          description: "Export a container's filesystem as a tar archive",
+          options: [
+            {
+              name: ["-o", "--output"],
+              description: "Write to a file, instead of STDOUT",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
         {
           name: "inspect",
-          description: "Return low-level information on Docker objects",
-          args: containersArg,
+          description: "Display detailed information on one or more containers",
           options: [
             {
               name: ["-f", "--format"],
@@ -2831,15 +1172,151 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-s", "--size"],
-              description: "Display total file sizes if the type is container",
+              description: "Display total file sizes",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
-        sharedCommands.kill,
-        sharedCommands.logs,
-        { ...sharedCommands.ps, name: "ls" },
-        sharedCommands.pause,
-        sharedCommands.port,
+        {
+          name: "kill",
+          description: "Kill one or more running containers",
+          options: [
+            {
+              name: ["-s", "--signal"],
+              description: "Signal to send to the container (default 'KILL')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "logs",
+          description: "Fetch the logs of a container",
+          options: [
+            {
+              name: "--details",
+              description: "Show extra details provided to logs",
+            },
+            {
+              name: ["-f", "--follow"],
+              description: "Follow log output",
+            },
+            {
+              name: "--since",
+              description:
+                "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-n", "--tail"],
+              description:
+                "Number of lines to show from the end of the logs (default 'all')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-t", "--timestamps"],
+              description: "Show timestamps",
+            },
+            {
+              name: "--until",
+              description:
+                "Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "ls",
+          description: "List containers",
+          options: [
+            {
+              name: ["-a", "--all"],
+              description: "Show all containers (default shows just running)",
+            },
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print containers using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-n", "--last"],
+              description:
+                "Show n last created containers (includes all states) (default -1)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["-l", "--latest"],
+              description:
+                "Show the latest created container (includes all states)",
+            },
+            {
+              name: "--no-trunc",
+              description: "Don't truncate output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display container IDs",
+            },
+            {
+              name: ["-s", "--size"],
+              description: "Display total file sizes",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "pause",
+          description: "Pause all processes within one or more containers",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "port",
+          description:
+            "List port mappings or a specific mapping for the container",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
         {
           name: "prune",
           description: "Remove all stopped containers",
@@ -2855,19 +1332,953 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
-        sharedCommands.rename,
-        sharedCommands.restart,
-        sharedCommands.rm,
-        sharedCommands.run,
-        sharedCommands.start,
-        sharedCommands.stats,
-        sharedCommands.stop,
-        sharedCommands.top,
-        sharedCommands.unpause,
-        sharedCommands.update,
-        sharedCommands.wait,
+        {
+          name: "rename",
+          description: "Rename a container",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "restart",
+          description: "Restart one or more containers",
+          options: [
+            {
+              name: ["-t", "--time"],
+              description:
+                "Seconds to wait for stop before killing the container (default 10)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove one or more containers",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "Force the removal of a running container (uses SIGKILL)",
+            },
+            {
+              name: ["-l", "--link"],
+              description: "Remove the specified link",
+            },
+            {
+              name: ["-v", "--volumes"],
+              description:
+                "Remove anonymous volumes associated with the container",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "run",
+          description: "Run a command in a new container",
+          options: [
+            {
+              name: "--add-host",
+              description: "Add a custom host-to-IP mapping (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-a", "--attach"],
+              description: "Attach to STDIN, STDOUT or STDERR",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--blkio-weight",
+              description:
+                "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+              args: {
+                name: "uint16",
+              },
+            },
+            {
+              name: "--blkio-weight-device",
+              description:
+                "Block IO weight (relative device weight) (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cap-add",
+              description: "Add Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cap-drop",
+              description: "Drop Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cgroup-parent",
+              description: "Optional parent cgroup for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cgroupns",
+              description: `Cgroup namespace to use (host|private)
+'host':    Run the container in the Docker host's cgroup namespace
+'private': Run the container in its own private cgroup namespace
+'':        Use the cgroup namespace as configured by the
+default-cgroupns-mode option on the daemon (default)`,
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cidfile",
+              description: "Write the container ID to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpu-period",
+              description: "Limit CPU CFS (Completely Fair Scheduler) period",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-quota",
+              description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-rt-period",
+              description: "Limit CPU real-time period in microseconds",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-rt-runtime",
+              description: "Limit CPU real-time runtime in microseconds",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["-c", "--cpu-shares"],
+              description: "CPU shares (relative weight)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpus",
+              description: "Number of CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--cpuset-cpus",
+              description: "CPUs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-mems",
+              description: "MEMs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-d", "--detach"],
+              description: "Run container in background and print container ID",
+            },
+            {
+              name: "--detach-keys",
+              description:
+                "Override the key sequence for detaching a container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--device",
+              description: "Add a host device to the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-cgroup-rule",
+              description: "Add a rule to the cgroup allowed devices list",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-read-bps",
+              description:
+                "Limit read rate (bytes per second) from a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-read-iops",
+              description:
+                "Limit read rate (IO per second) from a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-write-bps",
+              description:
+                "Limit write rate (bytes per second) to a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--device-write-iops",
+              description:
+                "Limit write rate (IO per second) to a device (default [])",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: "--dns",
+              description: "Set custom DNS servers",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-option",
+              description: "Set DNS options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-search",
+              description: "Set custom DNS search domains",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--domainname",
+              description: "Container NIS domain name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--entrypoint",
+              description: "Overwrite the default ENTRYPOINT of the image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-e", "--env"],
+              description: "Set environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--env-file",
+              description: "Read in a file of environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--expose",
+              description: "Expose a port or a range of ports",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--gpus",
+              description:
+                "GPU devices to add to the container ('all' to pass all GPUs)",
+              args: {
+                name: "gpu-request",
+              },
+            },
+            {
+              name: "--group-add",
+              description: "Add additional groups to join",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--health-cmd",
+              description: "Command to run to check health",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--health-interval",
+              description:
+                "Time between running the check (ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-retries",
+              description: "Consecutive failures needed to report unhealthy",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--health-start-period",
+              description:
+                "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-timeout",
+              description:
+                "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+            {
+              name: ["-h", "--hostname"],
+              description: "Container host name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--init",
+              description:
+                "Run an init inside the container that forwards signals and reaps processes",
+            },
+            {
+              name: ["-i", "--interactive"],
+              description: "Keep STDIN open even if not attached",
+            },
+            {
+              name: "--ip",
+              description: "IPv4 address (e.g., 172.30.100.104)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ip6",
+              description: "IPv6 address (e.g., 2001:db8::33)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ipc",
+              description: "IPC mode to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--isolation",
+              description: "Container isolation technology",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--kernel-memory",
+              description: "Kernel memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: ["-l", "--label"],
+              description: "Set meta data on a container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--label-file",
+              description: "Read in a line delimited file of labels",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--link",
+              description: "Add link to another container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--link-local-ip",
+              description: "Container IPv4/IPv6 link-local addresses",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--log-driver",
+              description: "Logging driver for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--log-opt",
+              description: "Log driver options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--mac-address",
+              description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-m", "--memory"],
+              description: "Memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-reservation",
+              description: "Memory soft limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swap",
+              description:
+                "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swappiness",
+              description:
+                "Tune container memory swappiness (0 to 100) (default -1)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--mount",
+              description: "Attach a filesystem mount to the container",
+              args: {
+                name: "mount",
+              },
+            },
+            {
+              name: "--name",
+              description: "Assign a name to the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--network",
+              description: "Connect a container to a network",
+              args: {
+                name: "network",
+              },
+            },
+            {
+              name: "--network-alias",
+              description: "Add network-scoped alias for the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--no-healthcheck",
+              description: "Disable any container-specified HEALTHCHECK",
+            },
+            {
+              name: "--oom-kill-disable",
+              description: "Disable OOM Killer",
+            },
+            {
+              name: "--oom-score-adj",
+              description: "Tune host's OOM preferences (-1000 to 1000)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--pid",
+              description: "PID namespace to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pids-limit",
+              description: "Tune container pids limit (set -1 for unlimited)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Set platform if server is multi-platform capable",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--privileged",
+              description: "Give extended privileges to this container",
+            },
+            {
+              name: ["-p", "--publish"],
+              description: "Publish a container's port(s) to the host",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-P", "--publish-all"],
+              description: "Publish all exposed ports to random ports",
+            },
+            {
+              name: "--pull",
+              description:
+                "Pull image before running ('always'|'missing'|'never') (default 'missing')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--read-only",
+              description: "Mount the container's root filesystem as read only",
+            },
+            {
+              name: "--restart",
+              description:
+                "Restart policy to apply when a container exits (default 'no')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rm",
+              description: "Automatically remove the container when it exits",
+            },
+            {
+              name: "--runtime",
+              description: "Runtime to use for this container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--security-opt",
+              description: "Security Options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--shm-size",
+              description: "Size of /dev/shm",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--sig-proxy",
+              description:
+                "Proxy received signals to the process (default true)",
+            },
+            {
+              name: "--stop-signal",
+              description: "Signal to stop a container (default 'SIGTERM')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--stop-timeout",
+              description: "Timeout (in seconds) to stop a container",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--storage-opt",
+              description: "Storage driver options for the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--sysctl",
+              description: "Sysctl options (default map[])",
+              args: {
+                name: "map",
+              },
+            },
+            {
+              name: "--tmpfs",
+              description: "Mount a tmpfs directory",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-t", "--tty"],
+              description: "Allocate a pseudo-TTY",
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options (default [])",
+              args: {
+                name: "ulimit",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "Username or UID (format: <name|uid>[:<group|gid>])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--userns",
+              description: "User namespace to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--uts",
+              description: "UTS namespace to use",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-v", "--volume"],
+              description: "Bind mount a volume",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--volume-driver",
+              description: "Optional volume driver for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--volumes-from",
+              description: "Mount volumes from the specified container(s)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-w", "--workdir"],
+              description: "Working directory inside the container",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "start",
+          description: "Start one or more stopped containers",
+          options: [
+            {
+              name: ["-a", "--attach"],
+              description: "Attach STDOUT/STDERR and forward signals",
+            },
+            {
+              name: "--detach-keys",
+              description:
+                "Override the key sequence for detaching a container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-i", "--interactive"],
+              description: "Attach container's STDIN",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "stats",
+          description:
+            "Display a live stream of container(s) resource usage statistics",
+          options: [
+            {
+              name: ["-a", "--all"],
+              description: "Show all containers (default shows just running)",
+            },
+            {
+              name: "--format",
+              description: "Pretty-print images using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-stream",
+              description:
+                "Disable streaming stats and only pull the first result",
+            },
+            {
+              name: "--no-trunc",
+              description: "Do not truncate output",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "stop",
+          description: "Stop one or more running containers",
+          options: [
+            {
+              name: ["-t", "--time"],
+              description:
+                "Seconds to wait for stop before killing it (default 10)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "top",
+          description: "Display the running processes of a container",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "unpause",
+          description: "Unpause all processes within one or more containers",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update configuration of one or more containers",
+          options: [
+            {
+              name: "--blkio-weight",
+              description:
+                "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+              args: {
+                name: "uint16",
+              },
+            },
+            {
+              name: "--cpu-period",
+              description: "Limit CPU CFS (Completely Fair Scheduler) period",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-quota",
+              description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-rt-period",
+              description: "Limit the CPU real-time period in microseconds",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-rt-runtime",
+              description: "Limit the CPU real-time runtime in microseconds",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["-c", "--cpu-shares"],
+              description: "CPU shares (relative weight)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpus",
+              description: "Number of CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--cpuset-cpus",
+              description: "CPUs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-mems",
+              description: "MEMs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--kernel-memory",
+              description: "Kernel memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: ["-m", "--memory"],
+              description: "Memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-reservation",
+              description: "Memory soft limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swap",
+              description:
+                "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--pids-limit",
+              description: "Tune container pids limit (set -1 for unlimited)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--restart",
+              description: "Restart policy to apply when a container exits",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "wait",
+          description:
+            "Block until one or more containers stop, then print their exit codes",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
       ],
     },
     {
@@ -2876,94 +2287,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "create",
-          description: "Create new context",
-          subcommands: [
-            {
-              name: "aci",
-              description: "Create a context for Azure Container Instances",
-              args: {
-                name: "CONTEXT",
-              },
-              options: [
-                {
-                  name: "--description",
-                  description: "Description of the context",
-                  args: {
-                    name: "string",
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Help for aci",
-                },
-                {
-                  name: "--location",
-                  description: 'Location (default "eastus")',
-                  args: {
-                    name: "string",
-                  },
-                },
-                {
-                  name: "--resource-group",
-                  description: "Resource group",
-                  args: {
-                    name: "string",
-                  },
-                },
-                {
-                  name: "--subscription-id",
-                  description: "Location",
-                  args: {
-                    name: "string",
-                  },
-                },
-              ],
-            },
-            {
-              name: "ecs",
-              description: "Create a context for Amazon ECS",
-              args: {
-                name: "CONTEXT",
-              },
-              options: [
-                {
-                  name: "--access-keys",
-                  description: "Use AWS access keys from file",
-                  args: {
-                    name: "string",
-                  },
-                },
-                {
-                  name: "--description",
-                  description: "Description of the context",
-                  args: {
-                    name: "string",
-                  },
-                },
-                {
-                  name: "--from-env",
-                  description:
-                    "Use AWS environment variables for profile, or credentials and region",
-                },
-                {
-                  name: "-h, --help",
-                  description: "Help for ecs",
-                },
-                {
-                  name: "--local-simulation",
-                  description:
-                    "Create context for ECS local simulation endpoints",
-                },
-                {
-                  name: "--profile",
-                  description: "Use an existing AWS profile",
-                  args: {
-                    name: "string",
-                  },
-                },
-              ],
-            },
-          ],
+          description: "Create a context",
           options: [
             {
               name: "--default-stack-orchestrator",
@@ -2971,7 +2295,6 @@ const completionSpec: Fig.Spec = {
                 "Default orchestrator for stack operations to use with this context (swarm|kubernetes|all)",
               args: {
                 name: "string",
-                suggestions: ["swarm", "kubernetes", "all"],
               },
             },
             {
@@ -2996,128 +2319,97 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["-h", "--help"],
-              description: "Help for create",
-            },
-            {
               name: "--kubernetes",
               description: "Set the kubernetes endpoint (default [])",
               args: {
                 name: "stringToString",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "export",
           description: "Export a context to a tar or kubeconfig file",
-          args: [
-            contextsArg,
-            {
-              name: "FILE",
-              template: "filepaths",
-            },
-          ],
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "Help for export",
-            },
             {
               name: "--kubeconfig",
               description: "Export as a kubeconfig file",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "import",
           description: "Import a context from a tar or zip file",
-          args: [
-            {
-              name: "CONTEXT",
-            },
-            {
-              name: "FILE",
-              template: "filepaths",
-            },
-          ],
           options: [
             {
-              name: ["-h", "--help"],
-              description: "Help for export",
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more contexts",
-          args: { ...contextsArg, isVariadic: true },
           options: [
             {
-              name: "-f",
+              name: ["-f", "--format"],
               description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
             },
             {
-              name: ["-h", "--help"],
-              description: "Help for inspect",
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
-          name: "list",
-          description: "List available contexts",
+          name: "ls",
+          description: "List contexts",
           options: [
             {
               name: "--format",
-              description:
-                "Format the output. Values: [pretty | json]. (Default: pretty)",
+              description: "Pretty-print contexts using a Go template",
               args: {
                 name: "string",
-                suggestions: ["pretty", "json"],
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Help for list",
             },
             {
               name: ["-q", "--quiet"],
               description: "Only show context names",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more contexts",
-          args: { ...contextsArg, isVariadic: true },
           options: [
             {
               name: ["-f", "--force"],
-              description: "Force removing current context",
+              description: "Force the removal of a context in use",
             },
             {
-              name: ["-h", "--help"],
-              description: "Help for rm",
-            },
-          ],
-        },
-        {
-          name: "show",
-          description: "Print the current context",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Help for show",
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "update",
           description: "Update a context",
-          args: contextsArg,
           options: [
             {
               name: "--default-stack-orchestrator",
@@ -3125,7 +2417,6 @@ const completionSpec: Fig.Spec = {
                 "Default orchestrator for stack operations to use with this context (swarm|kubernetes|all)",
               args: {
                 name: "string",
-                suggestions: ["swarm", "kubernetes", "all"],
               },
             },
             {
@@ -3143,34 +2434,33 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["-h", "--help"],
-              description: "Help for update",
-            },
-            {
               name: "--kubernetes",
               description: "Set the kubernetes endpoint (default [])",
               args: {
                 name: "stringToString",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "use",
-          description: "Set the default context",
-          args: contextsArg,
+          description: "Set the current docker context",
           options: [
             {
-              name: ["-h", "--help"],
-              description: "Help for use",
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
       ],
       options: [
         {
-          name: ["-h", "--help"],
-          description: "Help for context",
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -3178,25 +2468,344 @@ const completionSpec: Fig.Spec = {
       name: "image",
       description: "Manage images",
       subcommands: [
-        sharedCommands.build,
-        sharedCommands.history,
-        sharedCommands.imageImport,
+        {
+          name: "build",
+          description: "Build an image from a Dockerfile",
+          options: [
+            {
+              name: "--add-host",
+              description: "Add a custom host-to-IP mapping (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--build-arg",
+              description: "Set build-time variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cache-from",
+              description: "Images to consider as cache sources",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--cgroup-parent",
+              description: "Optional parent cgroup for the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--compress",
+              description: "Compress the build context using gzip",
+            },
+            {
+              name: "--cpu-period",
+              description:
+                "Limit the CPU CFS (Completely Fair Scheduler) period",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpu-quota",
+              description:
+                "Limit the CPU CFS (Completely Fair Scheduler) quota",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: ["-c", "--cpu-shares"],
+              description: "CPU shares (relative weight)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--cpuset-cpus",
+              description: "CPUs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--cpuset-mems",
+              description: "MEMs in which to allow execution (0-3, 0,1)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: ["-f", "--file"],
+              description:
+                "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--force-rm",
+              description: "Always remove intermediate containers",
+            },
+            {
+              name: "--iidfile",
+              description: "Write the image ID to the file",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--isolation",
+              description: "Container isolation technology",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label",
+              description: "Set metadata for an image",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-m", "--memory"],
+              description: "Memory limit",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--memory-swap",
+              description:
+                "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--network",
+              description:
+                "Set the networking mode for the RUN instructions during build (default 'default')",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-cache",
+              description: "Do not use cache when building the image",
+            },
+            {
+              name: "--pull",
+              description:
+                "Always attempt to pull a newer version of the image",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description:
+                "Suppress the build output and print image ID on success",
+            },
+            {
+              name: "--rm",
+              description:
+                "Remove intermediate containers after a successful build (default true)",
+            },
+            {
+              name: "--security-opt",
+              description: "Security options",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--shm-size",
+              description: "Size of /dev/shm",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--squash",
+              description: "Squash newly built layers into a single new layer",
+            },
+            {
+              name: ["-t", "--tag"],
+              description: "Name and optionally a tag in the 'name:tag' format",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--target",
+              description: "Set the target build stage to build",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options (default [])",
+              args: {
+                name: "ulimit",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "history",
+          description: "Show the history of an image",
+          options: [
+            {
+              name: "--format",
+              description: "Pretty-print images using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-H", "--human"],
+              description:
+                "Print sizes and dates in human readable format (default true)",
+            },
+            {
+              name: "--no-trunc",
+              description: "Don't truncate output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only show image IDs",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "import",
+          description:
+            "Import the contents from a tarball to create a filesystem image",
+          options: [
+            {
+              name: ["-c", "--change"],
+              description: "Apply Dockerfile instruction to the created image",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-m", "--message"],
+              description: "Set commit message for imported image",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--platform",
+              description: "Set platform if server is multi-platform capable",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
         {
           name: "inspect",
           description: "Display detailed information on one or more images",
-          args: { ...imagesArg, isVariadic: true },
           options: [
             {
-              name: "-f",
+              name: ["-f", "--format"],
               description: "Format the output using the given Go template",
               args: {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
-        sharedCommands.load,
-        { ...sharedCommands.imageList, name: "ls" },
+        {
+          name: "load",
+          description: "Load an image from a tar archive or STDIN",
+          options: [
+            {
+              name: ["-i", "--input"],
+              description: "Read from tar archive file, instead of STDIN",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Suppress the load output",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "ls",
+          description: "List images",
+          options: [
+            {
+              name: ["-a", "--all"],
+              description:
+                "Show all images (default hides intermediate images)",
+            },
+            {
+              name: "--digests",
+              description: "Show digests",
+            },
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print images using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-trunc",
+              description: "Don't truncate output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only show image IDs",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
         {
           name: "prune",
           description: "Remove unused images",
@@ -3216,13 +2825,238 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
-        sharedCommands.pull,
-        sharedCommands.push,
-        { ...sharedCommands.removeImage, name: "rm" },
-        sharedCommands.imageSave,
-        sharedCommands.tag,
+        {
+          name: "pull",
+          description: "Pull an image or a repository from a registry",
+          options: [
+            {
+              name: ["-a", "--all-tags"],
+              description: "Download all tagged images in the repository",
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: "--platform",
+              description: "Set platform if server is multi-platform capable",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Suppress verbose output",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "push",
+          description: "Push an image or a repository to a registry",
+          options: [
+            {
+              name: ["-a", "--all-tags"],
+              description: "Push all tagged images in the repository",
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image signing (default true)",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Suppress verbose output",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove one or more images",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Force removal of the image",
+            },
+            {
+              name: "--no-prune",
+              description: "Do not delete untagged parents",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "save",
+          description:
+            "Save one or more images to a tar archive (streamed to STDOUT by default)",
+          options: [
+            {
+              name: ["-o", "--output"],
+              description: "Write to a file, instead of STDOUT",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "tag",
+          description: "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "manifest",
+      description: "Manage Docker image manifests and manifest lists",
+      subcommands: [
+        {
+          name: "annotate",
+          description: "Add additional information to a local image manifest",
+          options: [
+            {
+              name: "--arch",
+              description: "Set architecture",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--os",
+              description: "Set operating system",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--os-features",
+              description: "Set operating system feature",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--os-version",
+              description: "Set operating system version",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--variant",
+              description: "Set architecture variant",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description:
+            "Create a local manifest list for annotating and pushing to a registry",
+          options: [
+            {
+              name: ["-a", "--amend"],
+              description: "Amend an existing manifest list",
+            },
+            {
+              name: "--insecure",
+              description: "Allow communication with an insecure registry",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "inspect",
+          description: "Display an image manifest, or manifest list",
+          options: [
+            {
+              name: "--insecure",
+              description: "Allow communication with an insecure registry",
+            },
+            {
+              name: ["-v", "--verbose"],
+              description:
+                "Output additional info including layers and platform",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "push",
+          description: "Push a manifest list to a repository",
+          options: [
+            {
+              name: "--insecure",
+              description: "Allow push to an insecure registry",
+            },
+            {
+              name: ["-p", "--purge"],
+              description: "Remove the local manifest list after push",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Delete one or more manifest lists from local storage",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
       ],
     },
     {
@@ -3232,13 +3066,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "connect",
           description: "Connect a container to a network",
-          args: [
-            {
-              name: "NETWORK",
-              generators: dockerGenerators.listDockerNetworks,
-            },
-            containersArg,
-          ],
           options: [
             {
               name: "--alias",
@@ -3282,14 +3109,15 @@ const completionSpec: Fig.Spec = {
                 name: "strings",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "create",
           description: "Create a network",
-          args: {
-            name: "NETWORK",
-          },
           options: [
             {
               name: "--attachable",
@@ -3316,7 +3144,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: ["-d", "--driver"],
-              description: 'Driver to manage the Network (default "bridge")',
+              description: "Driver to manage the Network (default 'bridge')",
               args: {
                 name: "string",
               },
@@ -3345,7 +3173,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--ipam-driver",
-              description: 'IP Address Management Driver (default "default")',
+              description: "IP Address Management Driver (default 'default')",
               args: {
                 name: "string",
               },
@@ -3390,33 +3218,29 @@ const completionSpec: Fig.Spec = {
                 name: "strings",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "disconnect",
           description: "Disconnect a container from a network",
-          args: [
-            {
-              name: "NETWORK",
-              generators: dockerGenerators.listDockerNetworks,
-            },
-            containersArg,
-          ],
           options: [
             {
               name: ["-f", "--force"],
               description: "Force the container to disconnect from a network",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more networks",
-          args: {
-            name: "NETWORK",
-            generators: dockerGenerators.listDockerNetworks,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--format"],
@@ -3428,6 +3252,10 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-v", "--verbose"],
               description: "Verbose output for diagnostics",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -3457,6 +3285,10 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display network IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
@@ -3474,16 +3306,27 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more networks",
-          args: {
-            name: "NETWORK",
-            generators: dockerGenerators.listDockerNetworks,
-            isVariadic: true,
-          },
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -3494,20 +3337,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "demote",
           description: "Demote one or more nodes from manager in the swarm",
-          args: {
-            name: "NODE",
-            generators: dockerGenerators.listDockerSwarmNodes,
-            isVariadic: true,
-          },
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more nodes",
-          args: {
-            name: "NODE",
-            generators: dockerGenerators.listDockerSwarmNodes,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--format"],
@@ -3519,6 +3358,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--pretty",
               description: "Print the information in a human friendly format",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -3544,26 +3387,26 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "promote",
           description: "Promote one or more nodes to manager in the swarm",
-          args: {
-            name: "NODE",
-            generators: dockerGenerators.listDockerSwarmNodes,
-            isVariadic: true,
-          },
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
         },
         {
           name: "ps",
           description:
             "List tasks running on one or more nodes, defaults to current node",
-          args: {
-            name: "NODE",
-            generators: dockerGenerators.listDockerSwarmNodes,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--filter"],
@@ -3591,36 +3434,34 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display task IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more nodes from the swarm",
-          args: {
-            name: "NODE",
-            generators: dockerGenerators.listDockerSwarmNodes,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--force"],
               description: "Force remove a node from the swarm",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "update",
           description: "Update a node",
-          args: {
-            name: "NODE",
-            generators: dockerGenerators.listDockerSwarmNodes,
-            isVariadic: true,
-          },
           options: [
             {
               name: "--availability",
               description:
-                'Availability of the node ("active"|"pause"|"drain")',
+                "Availability of the node ('active'|'pause'|'drain')",
               args: {
                 name: "string",
               },
@@ -3641,12 +3482,22 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--role",
-              description: 'Role of the node ("worker"|"manager")',
+              description: "Role of the node ('worker'|'manager')",
               args: {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -3658,38 +3509,34 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory",
-          args: [
-            { name: "PLUGIN" },
-            { name: "PLUGIN-DATA-DIR", template: "filepaths" },
-          ],
           options: [
             {
               name: "--compress",
               description: "Compress the context using gzip",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "disable",
           description: "Disable a plugin",
-          args: {
-            name: "PLUGIN",
-            generators: dockerGenerators.listDockerPlugins,
-          },
           options: [
             {
               name: ["-f", "--force"],
               description: "Force the disable of an active plugin",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "enable",
           description: "Enable a plugin",
-          args: {
-            name: "PLUGIN",
-            generators: dockerGenerators.listDockerPlugins,
-          },
           options: [
             {
               name: "--timeout",
@@ -3698,16 +3545,15 @@ const completionSpec: Fig.Spec = {
                 name: "int",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more plugins",
-          args: {
-            name: "PLUGIN",
-            generators: dockerGenerators.listDockerPlugins,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--format"],
@@ -3716,12 +3562,15 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "install",
           description: "Install a plugin",
-          args: [{ name: "PLUGIN" }, { name: "KEY=VALUE", isVariadic: true }],
           options: [
             {
               name: "--alias",
@@ -3741,6 +3590,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--grant-all-permissions",
               description: "Grant all permissions necessary to run the plugin",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -3770,55 +3623,53 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display plugin IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "push",
           description: "Push a plugin to a registry",
-          args: { name: "PLUGIN:[TAG]" },
           options: [
             {
               name: "--disable-content-trust",
               description: "Skip image signing (default true)",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more plugins",
-          args: {
-            name: "PLUGIN",
-            generators: dockerGenerators.listDockerPlugins,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--force"],
               description: "Force the removal of an active plugin",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "set",
           description: "Change settings for a plugin",
-          args: [
+          options: [
             {
-              name: "PLUGIN",
-              generators: dockerGenerators.listDockerPlugins,
+              name: "--help",
+              description: "Print usage",
             },
-            { name: "KEY=VALUE", isVariadic: true },
           ],
         },
         {
           name: "upgrade",
           description: "Upgrade an existing plugin",
-          args: [
-            {
-              name: "PLUGIN",
-              generators: dockerGenerators.listDockerPlugins,
-            },
-            { name: "REMOTE" },
-          ],
           options: [
             {
               name: "--disable-content-trust",
@@ -3833,7 +3684,17 @@ const completionSpec: Fig.Spec = {
               description:
                 "Do not check if specified remote plugin matches existing plugin image",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -3844,15 +3705,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a secret from a file or STDIN as content",
-          args: [
-            {
-              name: "SECRET NAME",
-            },
-            {
-              name: "SECRET",
-              template: "filepaths",
-            },
-          ],
           options: [
             {
               name: ["-d", "--driver"],
@@ -3875,16 +3727,15 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more secrets",
-          args: {
-            name: "SECRET",
-            generators: dockerGenerators.listDockerSecrets,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--format"],
@@ -3896,6 +3747,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--pretty",
               description: "Print the information in a human friendly format",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -3921,16 +3776,27 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more secrets",
-          args: {
-            name: "SECRET",
-            generators: dockerGenerators.listDockerSecrets,
-            isVariadic: true,
-          },
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -3941,14 +3807,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new service",
-          args: [
-            imagesArg,
-            {
-              name: "COMMAND",
-              isOptional: true,
-              isCommand: true,
-            },
-          ],
           options: [
             {
               name: "--cap-add",
@@ -3986,9 +3844,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],
@@ -4018,7 +3879,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--endpoint-mode",
-              description: 'Endpoint mode (vip or dnsrr) (default "vip")',
+              description: "Endpoint mode (vip or dnsrr) (default 'vip')",
               args: {
                 name: "string",
               },
@@ -4176,15 +4037,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--mode",
               description:
-                'Service mode (replicated, global, replicated-job, or global-job) (default "replicated")',
+                "Service mode (replicated, global, replicated-job, or global-job) (default 'replicated')",
               args: {
                 name: "string",
-                suggestions: [
-                  "replicated",
-                  "global",
-                  "replicated-job",
-                  "global-job",
-                ],
               },
             },
             {
@@ -4271,7 +4126,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--restart-condition",
               description:
-                'Restart when condition is met ("none"|"on-failure"|"any") (default "any")',
+                "Restart when condition is met ('none'|'on-failure'|'any') (default 'any')",
               args: {
                 name: "string",
               },
@@ -4310,7 +4165,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--rollback-failure-action",
               description:
-                'Action on rollback failure ("pause"|"continue") (default "pause")',
+                "Action on rollback failure ('pause'|'continue') (default 'pause')",
               args: {
                 name: "string",
               },
@@ -4334,7 +4189,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--rollback-order",
               description:
-                'Rollback order ("start-first"|"stop-first") (default "stop-first")',
+                "Rollback order ('start-first'|'stop-first') (default 'stop-first')",
               args: {
                 name: "string",
               },
@@ -4398,7 +4253,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--update-failure-action",
               description:
-                'Action on update failure ("pause"|"continue"|"rollback") (default "pause")',
+                "Action on update failure ('pause'|'continue'|'rollback') (default 'pause')",
               args: {
                 name: "string",
               },
@@ -4422,7 +4277,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--update-order",
               description:
-                'Update order ("start-first"|"stop-first") (default "stop-first")',
+                "Update order ('start-first'|'stop-first') (default 'stop-first')",
               args: {
                 name: "string",
               },
@@ -4454,16 +4309,15 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more services",
-          args: {
-            name: "SERVICE",
-            generators: dockerGenerators.listDockerServices,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--format"],
@@ -4476,15 +4330,15 @@ const completionSpec: Fig.Spec = {
               name: "--pretty",
               description: "Print the information in a human friendly format",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "logs",
           description: "Fetch the logs of a service or task",
-          args: {
-            name: "SERVICE OR TASK",
-            generators: dockerGenerators.listDockerServices,
-          },
           options: [
             {
               name: "--details",
@@ -4521,7 +4375,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-n", "--tail"],
               description:
-                'Number of lines to show from the end of the logs (default "all")',
+                "Number of lines to show from the end of the logs (default 'all')",
               args: {
                 name: "string",
               },
@@ -4529,6 +4383,10 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-t", "--timestamps"],
               description: "Show timestamps",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -4554,16 +4412,15 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "ps",
           description: "List the tasks of one or more services",
-          args: {
-            name: "SERVICE",
-            generators: dockerGenerators.listDockerServices,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--filter"],
@@ -4591,24 +4448,25 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display task IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more services",
-          args: {
-            name: "SERVICE",
-            generators: dockerGenerators.listDockerServices,
-            isVariadic: true,
-          },
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
         },
         {
           name: "rollback",
           description: "Revert changes to a service's configuration",
-          args: {
-            name: "SERVICE",
-            generators: dockerGenerators.listDockerServices,
-          },
           options: [
             {
               name: ["-d", "--detach"],
@@ -4619,31 +4477,30 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Suppress progress output",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "scale",
           description: "Scale one or multiple replicated services",
-          args: {
-            name: "SERVICE=REPLICAS",
-            generators: dockerGenerators.listDockerServicesReplicas,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-d", "--detach"],
               description:
                 "Exit immediately instead of waiting for the service to converge",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "update",
           description: "Update a service",
-          args: {
-            name: "SERVICE",
-            generators: dockerGenerators.listDockerServices,
-          },
           options: [
             {
               name: "--args",
@@ -4709,9 +4566,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: "--credential-spec credential-spec",
+              name: "--credential-spec",
               description:
                 "Credential spec for managed service account (Windows only)",
+              args: {
+                name: "credential-spec",
+              },
             },
             {
               name: ["-d", "--detach"],
@@ -5061,7 +4921,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--restart-condition",
               description:
-                'Restart when condition is met ("none"|"on-failure"|"any")',
+                "Restart when condition is met ('none'|'on-failure'|'any')",
               args: {
                 name: "string",
               },
@@ -5101,7 +4961,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--rollback-failure-action",
-              description: 'Action on rollback failure ("pause"|"continue")',
+              description: "Action on rollback failure ('pause'|'continue')",
               args: {
                 name: "string",
               },
@@ -5123,7 +4983,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--rollback-order",
-              description: 'Rollback order ("start-first"|"stop-first")',
+              description: "Rollback order ('start-first'|'stop-first')",
               args: {
                 name: "string",
               },
@@ -5207,7 +5067,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--update-failure-action",
               description:
-                'Action on update failure ("pause"|"continue"|"rollback")',
+                "Action on update failure ('pause'|'continue'|'rollback')",
               args: {
                 name: "string",
               },
@@ -5229,7 +5089,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--update-order",
-              description: 'Update order ("start-first"|"stop-first")',
+              description: "Update order ('start-first'|'stop-first')",
               args: {
                 name: "string",
               },
@@ -5261,7 +5121,17 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -5272,16 +5142,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "deploy",
           description: "Deploy a new stack or update an existing stack",
-          args: {
-            name: "STACK",
-          },
           options: [
             {
               name: ["-c", "--compose-file"],
-              description: 'Path to a Compose file, or "-" to read from stdin',
+              description: "Path to a Compose file, or '-' to read from stdin",
               args: {
                 name: "strings",
-                template: "filepaths",
               },
             },
             {
@@ -5298,7 +5164,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--resolve-image",
               description:
-                'Query the registry to resolve image digest and supported platforms ("always"|"changed"|"never") (default "always")',
+                "Query the registry to resolve image digest and supported platforms ('always'|'changed'|'never') (default 'always')",
               args: {
                 name: "string",
               },
@@ -5307,6 +5173,10 @@ const completionSpec: Fig.Spec = {
               name: "--with-registry-auth",
               description:
                 "Send registry authentication details to Swarm agents",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -5328,15 +5198,15 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "ps",
           description: "List the tasks in the stack",
-          args: {
-            name: "STACK",
-            generators: dockerGenerators.listDockerStacks,
-          },
           options: [
             {
               name: ["-f", "--filter"],
@@ -5371,16 +5241,15 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display task IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more stacks",
-          args: {
-            name: "STACK",
-            generators: dockerGenerators.listDockerStacks,
-            isVariadic: true,
-          },
           options: [
             {
               name: "--orchestrator",
@@ -5389,15 +5258,15 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "services",
           description: "List the services in the stack",
-          args: {
-            name: "STACK",
-            generators: dockerGenerators.listDockerStacks,
-          },
           options: [
             {
               name: ["-f", "--filter"],
@@ -5424,7 +5293,24 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display IDs",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--orchestrator",
+          description: "Orchestrator to use (swarm|kubernetes|all)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -5442,7 +5328,6 @@ const completionSpec: Fig.Spec = {
                 "Path to the PEM-formatted root CA certificate to use for the new cluster",
               args: {
                 name: "pem-file",
-                template: "filepaths",
               },
             },
             {
@@ -5451,7 +5336,6 @@ const completionSpec: Fig.Spec = {
                 "Path to the PEM-formatted root CA key to use for the new cluster",
               args: {
                 name: "pem-file",
-                template: "filepaths",
               },
             },
             {
@@ -5484,6 +5368,10 @@ const completionSpec: Fig.Spec = {
               description:
                 "Rotate the swarm CA - if no certificate or key are provided, new ones will be generated",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
@@ -5505,7 +5393,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--availability",
               description:
-                'Availability of the node ("active"|"pause"|"drain") (default "active")',
+                "Availability of the node ('active'|'pause'|'drain') (default 'active')",
               args: {
                 name: "string",
               },
@@ -5528,8 +5416,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--data-path-port",
-              description:
-                "Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is used",
+              description: `Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is
+used.`,
               args: {
                 name: "uint32",
               },
@@ -5599,14 +5487,15 @@ const completionSpec: Fig.Spec = {
                 name: "int",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "join",
           description: "Join a swarm as a node and/or manager",
-          args: {
-            name: "HOST:PORT",
-          },
           options: [
             {
               name: "--advertise-addr",
@@ -5618,7 +5507,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--availability",
               description:
-                'Availability of the node ("active"|"pause"|"drain") (default "active")',
+                "Availability of the node ('active'|'pause'|'drain') (default 'active')",
               args: {
                 name: "string",
               },
@@ -5646,15 +5535,15 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "join-token",
           description: "Manage join tokens",
-          args: {
-            name: "worker or manager",
-            suggestions: ["worker", "manager"],
-          },
           options: [
             {
               name: ["-q", "--quiet"],
@@ -5663,6 +5552,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--rotate",
               description: "Rotate join token",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -5675,11 +5568,21 @@ const completionSpec: Fig.Spec = {
               description:
                 "Force this node to leave the swarm, ignoring warnings",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "unlock",
           description: "Unlock swarm",
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
         },
         {
           name: "unlock-key",
@@ -5693,6 +5596,10 @@ const completionSpec: Fig.Spec = {
               name: "--rotate",
               description: "Rotate unlock key",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
@@ -5702,9 +5609,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autolock",
               description: "Change manager autolocking setting (true|false)",
-              args: {
-                suggestions: ["true", "false"],
-              },
             },
             {
               name: "--cert-expiry",
@@ -5752,7 +5656,17 @@ const completionSpec: Fig.Spec = {
                 name: "int",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -5760,31 +5674,6 @@ const completionSpec: Fig.Spec = {
       name: "system",
       description: "Manage Docker",
       subcommands: [
-        {
-          name: "prune",
-          description: "Remove unused data",
-          options: [
-            {
-              name: ["-a", "--all"],
-              description: "Remove all unused images not just dangling ones",
-            },
-            {
-              name: "--filter",
-              description: `Provide filter values (e.g. 'label=<key>=<value')`,
-              args: {
-                name: "filter",
-              },
-            },
-            {
-              name: ["-f", "--force"],
-              description: "Do not prompt for confirmation",
-            },
-            {
-              name: "--volumes",
-              description: "Prune volumes",
-            },
-          ],
-        },
         {
           name: "df",
           description: "Show docker disk usage",
@@ -5799,6 +5688,10 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-v", "--verbose"],
               description: "Show detailed information on space usage",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -5834,6 +5727,10 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
@@ -5847,7 +5744,46 @@ const completionSpec: Fig.Spec = {
                 name: "string",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+        {
+          name: "prune",
+          description: "Remove unused data",
+          options: [
+            {
+              name: ["-a", "--all"],
+              description: "Remove all unused images not just dangling ones",
+            },
+            {
+              name: "--filter",
+              description: "Provide filter values (e.g. 'label=<key>=<value>')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Do not prompt for confirmation",
+            },
+            {
+              name: "--volumes",
+              description: "Prune volumes",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -5856,40 +5792,143 @@ const completionSpec: Fig.Spec = {
       description: "Manage trust on Docker images",
       subcommands: [
         {
+          name: "key",
+          description: "Manage keys for signing Docker images",
+          subcommands: [
+            {
+              name: "generate",
+              description: "Generate and load a signing key-pair",
+              options: [
+                {
+                  name: "--dir",
+                  description:
+                    "Directory to generate key in, defaults to current directory",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print usage",
+                },
+              ],
+            },
+            {
+              name: "load",
+              description: "Load a private key file for signing",
+              options: [
+                {
+                  name: "--name",
+                  description: "Name for the loaded key (default 'signer')",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print usage",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
+          name: "signer",
+          description: "Manage entities who can sign Docker images",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a signer",
+              options: [
+                {
+                  name: "--key",
+                  description: "Path to the signer's public key file",
+                  args: {
+                    name: "list",
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print usage",
+                },
+              ],
+            },
+            {
+              name: "remove",
+              description: "Remove a signer",
+              options: [
+                {
+                  name: ["-f", "--force"],
+                  description:
+                    "Do not prompt for confirmation before removing the most recent signer",
+                },
+                {
+                  name: "--help",
+                  description: "Print usage",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: "--help",
+              description: "Print usage",
+            },
+          ],
+        },
+        {
           name: "inspect",
           description: "Return low-level information about keys and signatures",
-          args: {
-            name: "IMAGE[:TAG]",
-            isVariadic: true,
-          },
           options: [
             {
               name: "--pretty",
               description: "Print the information in a human friendly format",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "revoke",
           description: "Remove trust for an image",
-          args: imagesArg,
           options: [
             {
               name: ["-y", "--yes"],
               description: "Do not prompt for confirmation",
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
         {
           name: "sign",
           description: "Sign an image",
-          args: imagesArg,
           options: [
             {
               name: "--local",
               description: "Sign a locally tagged image",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
@@ -5900,13 +5939,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a volume",
-          args: {
-            name: "VOLUME",
-          },
           options: [
             {
               name: ["-d", "--driver"],
-              description: 'Specify volume driver name (default "local")',
+              description: "Specify volume driver name (default 'local')",
               args: {
                 name: "string",
               },
@@ -5925,16 +5961,15 @@ const completionSpec: Fig.Spec = {
                 name: "map",
               },
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more volumes",
-          args: {
-            name: "VOLUME",
-            generators: dockerGenerators.listDockerVolumes,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--format"],
@@ -5942,6 +5977,10 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "string",
               },
+            },
+            {
+              name: "--help",
+              description: "Print usage",
             },
           ],
         },
@@ -5967,6 +6006,10 @@ const completionSpec: Fig.Spec = {
               name: ["-q", "--quiet"],
               description: "Only display volume names",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
@@ -5984,31 +6027,3390 @@ const completionSpec: Fig.Spec = {
               name: ["-f", "--force"],
               description: "Do not prompt for confirmation",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
         },
         {
           name: "rm",
           description: "Remove one or more volumes",
-          args: {
-            name: "VOLUME",
-            generators: dockerGenerators.listDockerVolumes,
-            isVariadic: true,
-          },
           options: [
             {
               name: ["-f", "--force"],
               description: "Force the removal of one or more volumes",
             },
+            {
+              name: "--help",
+              description: "Print usage",
+            },
           ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
         },
       ],
     },
     {
-      name: "compose",
-      description: "Define and run multi-container applications with Docker",
-      loadSpec: "docker-compose",
+      name: "attach",
+      description:
+        "Attach local standard input, output, and error streams to a running container",
+      options: [
+        {
+          name: "--detach-keys",
+          description: "Override the key sequence for detaching a container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--no-stdin",
+          description: "Do not attach STDIN",
+        },
+        {
+          name: "--sig-proxy",
+          description:
+            "Proxy all received signals to the process (default true)",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "build",
+      description: "Build an image from a Dockerfile",
+      options: [
+        {
+          name: "--add-host",
+          description: "Add a custom host-to-IP mapping (host:ip)",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--build-arg",
+          description: "Set build-time variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cache-from",
+          description: "Images to consider as cache sources",
+          args: {
+            name: "strings",
+          },
+        },
+        {
+          name: "--cgroup-parent",
+          description: "Optional parent cgroup for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--compress",
+          description: "Compress the build context using gzip",
+        },
+        {
+          name: "--cpu-period",
+          description: "Limit the CPU CFS (Completely Fair Scheduler) period",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-quota",
+          description: "Limit the CPU CFS (Completely Fair Scheduler) quota",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: ["-c", "--cpu-shares"],
+          description: "CPU shares (relative weight)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpuset-cpus",
+          description: "CPUs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cpuset-mems",
+          description: "MEMs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--disable-content-trust",
+          description: "Skip image verification (default true)",
+        },
+        {
+          name: ["-f", "--file"],
+          description: "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--force-rm",
+          description: "Always remove intermediate containers",
+        },
+        {
+          name: "--iidfile",
+          description: "Write the image ID to the file",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--isolation",
+          description: "Container isolation technology",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--label",
+          description: "Set metadata for an image",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-m", "--memory"],
+          description: "Memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-swap",
+          description:
+            "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--network",
+          description:
+            "Set the networking mode for the RUN instructions during build (default 'default')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--no-cache",
+          description: "Do not use cache when building the image",
+        },
+        {
+          name: "--pull",
+          description: "Always attempt to pull a newer version of the image",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description:
+            "Suppress the build output and print image ID on success",
+        },
+        {
+          name: "--rm",
+          description:
+            "Remove intermediate containers after a successful build (default true)",
+        },
+        {
+          name: "--security-opt",
+          description: "Security options",
+          args: {
+            name: "strings",
+          },
+        },
+        {
+          name: "--shm-size",
+          description: "Size of /dev/shm",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--squash",
+          description: "Squash newly built layers into a single new layer",
+        },
+        {
+          name: ["-t", "--tag"],
+          description: "Name and optionally a tag in the 'name:tag' format",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--target",
+          description: "Set the target build stage to build",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ulimit",
+          description: "Ulimit options (default [])",
+          args: {
+            name: "ulimit",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "commit",
+      description: "Create a new image from a container's changes",
+      options: [
+        {
+          name: ["-a", "--author"],
+          description:
+            "Author (e.g., 'John Hannibal Smith <hannibal@a-team.com>')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-c", "--change"],
+          description: "Apply Dockerfile instruction to the created image",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-m", "--message"],
+          description: "Commit message",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-p", "--pause"],
+          description: "Pause container during commit (default true)",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "cp",
+      description:
+        "Copy files/folders between a container and the local filesystem",
+      options: [
+        {
+          name: ["-a", "--archive"],
+          description: "Archive mode (copy all uid/gid information)",
+        },
+        {
+          name: ["-L", "--follow-link"],
+          description: "Always follow symbol link in SRC_PATH",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "create",
+      description: "Create a new container",
+      options: [
+        {
+          name: "--add-host",
+          description: "Add a custom host-to-IP mapping (host:ip)",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-a", "--attach"],
+          description: "Attach to STDIN, STDOUT or STDERR",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--blkio-weight",
+          description:
+            "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+          args: {
+            name: "uint16",
+          },
+        },
+        {
+          name: "--blkio-weight-device",
+          description: "Block IO weight (relative device weight) (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cap-add",
+          description: "Add Linux capabilities",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cap-drop",
+          description: "Drop Linux capabilities",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cgroup-parent",
+          description: "Optional parent cgroup for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cgroupns",
+          description: `Cgroup namespace to use (host|private)
+'host':    Run the container in the Docker host's cgroup namespace
+'private': Run the container in its own private cgroup namespace
+'':        Use the cgroup namespace as configured by the
+default-cgroupns-mode option on the daemon (default)`,
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cidfile",
+          description: "Write the container ID to the file",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cpu-period",
+          description: "Limit CPU CFS (Completely Fair Scheduler) period",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-quota",
+          description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-rt-period",
+          description: "Limit CPU real-time period in microseconds",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-rt-runtime",
+          description: "Limit CPU real-time runtime in microseconds",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: ["-c", "--cpu-shares"],
+          description: "CPU shares (relative weight)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpus",
+          description: "Number of CPUs",
+          args: {
+            name: "decimal",
+          },
+        },
+        {
+          name: "--cpuset-cpus",
+          description: "CPUs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cpuset-mems",
+          description: "MEMs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--device",
+          description: "Add a host device to the container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-cgroup-rule",
+          description: "Add a rule to the cgroup allowed devices list",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-read-bps",
+          description:
+            "Limit read rate (bytes per second) from a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-read-iops",
+          description:
+            "Limit read rate (IO per second) from a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-write-bps",
+          description:
+            "Limit write rate (bytes per second) to a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-write-iops",
+          description:
+            "Limit write rate (IO per second) to a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--disable-content-trust",
+          description: "Skip image verification (default true)",
+        },
+        {
+          name: "--dns",
+          description: "Set custom DNS servers",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--dns-option",
+          description: "Set DNS options",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--dns-search",
+          description: "Set custom DNS search domains",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--domainname",
+          description: "Container NIS domain name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--entrypoint",
+          description: "Overwrite the default ENTRYPOINT of the image",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-e", "--env"],
+          description: "Set environment variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--env-file",
+          description: "Read in a file of environment variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--expose",
+          description: "Expose a port or a range of ports",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--gpus",
+          description:
+            "GPU devices to add to the container ('all' to pass all GPUs)",
+          args: {
+            name: "gpu-request",
+          },
+        },
+        {
+          name: "--group-add",
+          description: "Add additional groups to join",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--health-cmd",
+          description: "Command to run to check health",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--health-interval",
+          description: "Time between running the check (ms|s|m|h) (default 0s)",
+          args: {
+            name: "duration",
+          },
+        },
+        {
+          name: "--health-retries",
+          description: "Consecutive failures needed to report unhealthy",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--health-start-period",
+          description:
+            "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
+          args: {
+            name: "duration",
+          },
+        },
+        {
+          name: "--health-timeout",
+          description:
+            "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
+          args: {
+            name: "duration",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+        {
+          name: ["-h", "--hostname"],
+          description: "Container host name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--init",
+          description:
+            "Run an init inside the container that forwards signals and reaps processes",
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Keep STDIN open even if not attached",
+        },
+        {
+          name: "--ip",
+          description: "IPv4 address (e.g., 172.30.100.104)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ip6",
+          description: "IPv6 address (e.g., 2001:db8::33)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ipc",
+          description: "IPC mode to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--isolation",
+          description: "Container isolation technology",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kernel-memory",
+          description: "Kernel memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: ["-l", "--label"],
+          description: "Set meta data on a container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--label-file",
+          description: "Read in a line delimited file of labels",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--link",
+          description: "Add link to another container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--link-local-ip",
+          description: "Container IPv4/IPv6 link-local addresses",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--log-driver",
+          description: "Logging driver for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--log-opt",
+          description: "Log driver options",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--mac-address",
+          description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-m", "--memory"],
+          description: "Memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-reservation",
+          description: "Memory soft limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-swap",
+          description:
+            "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-swappiness",
+          description:
+            "Tune container memory swappiness (0 to 100) (default -1)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--mount",
+          description: "Attach a filesystem mount to the container",
+          args: {
+            name: "mount",
+          },
+        },
+        {
+          name: "--name",
+          description: "Assign a name to the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--network",
+          description: "Connect a container to a network",
+          args: {
+            name: "network",
+          },
+        },
+        {
+          name: "--network-alias",
+          description: "Add network-scoped alias for the container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--no-healthcheck",
+          description: "Disable any container-specified HEALTHCHECK",
+        },
+        {
+          name: "--oom-kill-disable",
+          description: "Disable OOM Killer",
+        },
+        {
+          name: "--oom-score-adj",
+          description: "Tune host's OOM preferences (-1000 to 1000)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--pid",
+          description: "PID namespace to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--pids-limit",
+          description: "Tune container pids limit (set -1 for unlimited)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--platform",
+          description: "Set platform if server is multi-platform capable",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--privileged",
+          description: "Give extended privileges to this container",
+        },
+        {
+          name: ["-p", "--publish"],
+          description: "Publish a container's port(s) to the host",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-P", "--publish-all"],
+          description: "Publish all exposed ports to random ports",
+        },
+        {
+          name: "--pull",
+          description:
+            "Pull image before creating ('always'|'missing'|'never') (default 'missing')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--read-only",
+          description: "Mount the container's root filesystem as read only",
+        },
+        {
+          name: "--restart",
+          description:
+            "Restart policy to apply when a container exits (default 'no')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--rm",
+          description: "Automatically remove the container when it exits",
+        },
+        {
+          name: "--runtime",
+          description: "Runtime to use for this container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-opt",
+          description: "Security Options",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--shm-size",
+          description: "Size of /dev/shm",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--stop-signal",
+          description: "Signal to stop a container (default 'SIGTERM')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stop-timeout",
+          description: "Timeout (in seconds) to stop a container",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--storage-opt",
+          description: "Storage driver options for the container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--sysctl",
+          description: "Sysctl options (default map[])",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--tmpfs",
+          description: "Mount a tmpfs directory",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-t", "--tty"],
+          description: "Allocate a pseudo-TTY",
+        },
+        {
+          name: "--ulimit",
+          description: "Ulimit options (default [])",
+          args: {
+            name: "ulimit",
+          },
+        },
+        {
+          name: ["-u", "--user"],
+          description: "Username or UID (format: <name|uid>[:<group|gid>])",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--userns",
+          description: "User namespace to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--uts",
+          description: "UTS namespace to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-v", "--volume"],
+          description: "Bind mount a volume",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--volume-driver",
+          description: "Optional volume driver for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--volumes-from",
+          description: "Mount volumes from the specified container(s)",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-w", "--workdir"],
+          description: "Working directory inside the container",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
+    {
+      name: "diff",
+      description:
+        "Inspect changes to files or directories on a container's filesystem",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "events",
+      description: "Get real time events from the server",
+      options: [
+        {
+          name: ["-f", "--filter"],
+          description: "Filter output based on conditions provided",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "--format",
+          description: "Format the output using the given Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--since",
+          description: "Show all events created since timestamp",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--until",
+          description: "Stream events until this timestamp",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "exec",
+      description: "Run a command in a running container",
+      options: [
+        {
+          name: ["-d", "--detach"],
+          description: "Detached mode: run command in the background",
+        },
+        {
+          name: "--detach-keys",
+          description: "Override the key sequence for detaching a container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-e", "--env"],
+          description: "Set environment variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--env-file",
+          description: "Read in a file of environment variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Keep STDIN open even if not attached",
+        },
+        {
+          name: "--privileged",
+          description: "Give extended privileges to the command",
+        },
+        {
+          name: ["-t", "--tty"],
+          description: "Allocate a pseudo-TTY",
+        },
+        {
+          name: ["-u", "--user"],
+          description: "Username or UID (format: <name|uid>[:<group|gid>])",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-w", "--workdir"],
+          description: "Working directory inside the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "export",
+      description: "Export a container's filesystem as a tar archive",
+      options: [
+        {
+          name: ["-o", "--output"],
+          description: "Write to a file, instead of STDOUT",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "history",
+      description: "Show the history of an image",
+      options: [
+        {
+          name: "--format",
+          description: "Pretty-print images using a Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-H", "--human"],
+          description:
+            "Print sizes and dates in human readable format (default true)",
+        },
+        {
+          name: "--no-trunc",
+          description: "Don't truncate output",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Only show image IDs",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "images",
+      description: "List images",
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Show all images (default hides intermediate images)",
+        },
+        {
+          name: "--digests",
+          description: "Show digests",
+        },
+        {
+          name: ["-f", "--filter"],
+          description: "Filter output based on conditions provided",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "--format",
+          description: "Pretty-print images using a Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--no-trunc",
+          description: "Don't truncate output",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Only show image IDs",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "import",
+      description:
+        "Import the contents from a tarball to create a filesystem image",
+      options: [
+        {
+          name: ["-c", "--change"],
+          description: "Apply Dockerfile instruction to the created image",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-m", "--message"],
+          description: "Set commit message for imported image",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--platform",
+          description: "Set platform if server is multi-platform capable",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "info",
+      description: "Display system-wide information",
+      options: [
+        {
+          name: ["-f", "--format"],
+          description: "Format the output using the given Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "inspect",
+      description: "Return low-level information on Docker objects",
+      options: [
+        {
+          name: ["-f", "--format"],
+          description: "Format the output using the given Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-s", "--size"],
+          description: "Display total file sizes if the type is container",
+        },
+        {
+          name: "--type",
+          description: "Return JSON for specified type",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "kill",
+      description: "Kill one or more running containers",
+      options: [
+        {
+          name: ["-s", "--signal"],
+          description: "Signal to send to the container (default 'KILL')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "load",
+      description: "Load an image from a tar archive or STDIN",
+      options: [
+        {
+          name: ["-i", "--input"],
+          description: "Read from tar archive file, instead of STDIN",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Suppress the load output",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "login",
+      description: "Log in to a Docker registry",
+      options: [
+        {
+          name: ["-p", "--password"],
+          description: "Password",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--password-stdin",
+          description: "Take the password from stdin",
+        },
+        {
+          name: ["-u", "--username"],
+          description: "Username",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "logout",
+      description: "Log out from a Docker registry",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "logs",
+      description: "Fetch the logs of a container",
+      options: [
+        {
+          name: "--details",
+          description: "Show extra details provided to logs",
+        },
+        {
+          name: ["-f", "--follow"],
+          description: "Follow log output",
+        },
+        {
+          name: "--since",
+          description:
+            "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-n", "--tail"],
+          description:
+            "Number of lines to show from the end of the logs (default 'all')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-t", "--timestamps"],
+          description: "Show timestamps",
+        },
+        {
+          name: "--until",
+          description:
+            "Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "pause",
+      description: "Pause all processes within one or more containers",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "port",
+      description: "List port mappings or a specific mapping for the container",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "ps",
+      description: "List containers",
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Show all containers (default shows just running)",
+        },
+        {
+          name: ["-f", "--filter"],
+          description: "Filter output based on conditions provided",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "--format",
+          description: "Pretty-print containers using a Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-n", "--last"],
+          description:
+            "Show n last created containers (includes all states) (default -1)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: ["-l", "--latest"],
+          description:
+            "Show the latest created container (includes all states)",
+        },
+        {
+          name: "--no-trunc",
+          description: "Don't truncate output",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Only display container IDs",
+        },
+        {
+          name: ["-s", "--size"],
+          description: "Display total file sizes",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "pull",
+      description: "Pull an image or a repository from a registry",
+      options: [
+        {
+          name: ["-a", "--all-tags"],
+          description: "Download all tagged images in the repository",
+        },
+        {
+          name: "--disable-content-trust",
+          description: "Skip image verification (default true)",
+        },
+        {
+          name: "--platform",
+          description: "Set platform if server is multi-platform capable",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Suppress verbose output",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "push",
+      description: "Push an image or a repository to a registry",
+      options: [
+        {
+          name: ["-a", "--all-tags"],
+          description: "Push all tagged images in the repository",
+        },
+        {
+          name: "--disable-content-trust",
+          description: "Skip image signing (default true)",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Suppress verbose output",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "rename",
+      description: "Rename a container",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "restart",
+      description: "Restart one or more containers",
+      options: [
+        {
+          name: ["-t", "--time"],
+          description:
+            "Seconds to wait for stop before killing the container (default 10)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "rm",
+      description: "Remove one or more containers",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description:
+            "Force the removal of a running container (uses SIGKILL)",
+        },
+        {
+          name: ["-l", "--link"],
+          description: "Remove the specified link",
+        },
+        {
+          name: ["-v", "--volumes"],
+          description: "Remove anonymous volumes associated with the container",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "rmi",
+      description: "Remove one or more images",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description: "Force removal of the image",
+        },
+        {
+          name: "--no-prune",
+          description: "Do not delete untagged parents",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "run",
+      description: "Run a command in a new container",
+      options: [
+        {
+          name: "--add-host",
+          description: "Add a custom host-to-IP mapping (host:ip)",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-a", "--attach"],
+          description: "Attach to STDIN, STDOUT or STDERR",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--blkio-weight",
+          description:
+            "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+          args: {
+            name: "uint16",
+          },
+        },
+        {
+          name: "--blkio-weight-device",
+          description: "Block IO weight (relative device weight) (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cap-add",
+          description: "Add Linux capabilities",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cap-drop",
+          description: "Drop Linux capabilities",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--cgroup-parent",
+          description: "Optional parent cgroup for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cgroupns",
+          description: `Cgroup namespace to use (host|private)
+'host':    Run the container in the Docker host's cgroup namespace
+'private': Run the container in its own private cgroup namespace
+'':        Use the cgroup namespace as configured by the
+default-cgroupns-mode option on the daemon (default)`,
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cidfile",
+          description: "Write the container ID to the file",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cpu-period",
+          description: "Limit CPU CFS (Completely Fair Scheduler) period",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-quota",
+          description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-rt-period",
+          description: "Limit CPU real-time period in microseconds",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-rt-runtime",
+          description: "Limit CPU real-time runtime in microseconds",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: ["-c", "--cpu-shares"],
+          description: "CPU shares (relative weight)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpus",
+          description: "Number of CPUs",
+          args: {
+            name: "decimal",
+          },
+        },
+        {
+          name: "--cpuset-cpus",
+          description: "CPUs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cpuset-mems",
+          description: "MEMs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-d", "--detach"],
+          description: "Run container in background and print container ID",
+        },
+        {
+          name: "--detach-keys",
+          description: "Override the key sequence for detaching a container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--device",
+          description: "Add a host device to the container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-cgroup-rule",
+          description: "Add a rule to the cgroup allowed devices list",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-read-bps",
+          description:
+            "Limit read rate (bytes per second) from a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-read-iops",
+          description:
+            "Limit read rate (IO per second) from a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-write-bps",
+          description:
+            "Limit write rate (bytes per second) to a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--device-write-iops",
+          description:
+            "Limit write rate (IO per second) to a device (default [])",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--disable-content-trust",
+          description: "Skip image verification (default true)",
+        },
+        {
+          name: "--dns",
+          description: "Set custom DNS servers",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--dns-option",
+          description: "Set DNS options",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--dns-search",
+          description: "Set custom DNS search domains",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--domainname",
+          description: "Container NIS domain name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--entrypoint",
+          description: "Overwrite the default ENTRYPOINT of the image",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-e", "--env"],
+          description: "Set environment variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--env-file",
+          description: "Read in a file of environment variables",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--expose",
+          description: "Expose a port or a range of ports",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--gpus",
+          description:
+            "GPU devices to add to the container ('all' to pass all GPUs)",
+          args: {
+            name: "gpu-request",
+          },
+        },
+        {
+          name: "--group-add",
+          description: "Add additional groups to join",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--health-cmd",
+          description: "Command to run to check health",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--health-interval",
+          description: "Time between running the check (ms|s|m|h) (default 0s)",
+          args: {
+            name: "duration",
+          },
+        },
+        {
+          name: "--health-retries",
+          description: "Consecutive failures needed to report unhealthy",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--health-start-period",
+          description:
+            "Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
+          args: {
+            name: "duration",
+          },
+        },
+        {
+          name: "--health-timeout",
+          description:
+            "Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
+          args: {
+            name: "duration",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+        {
+          name: ["-h", "--hostname"],
+          description: "Container host name",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--init",
+          description:
+            "Run an init inside the container that forwards signals and reaps processes",
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Keep STDIN open even if not attached",
+        },
+        {
+          name: "--ip",
+          description: "IPv4 address (e.g., 172.30.100.104)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ip6",
+          description: "IPv6 address (e.g., 2001:db8::33)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--ipc",
+          description: "IPC mode to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--isolation",
+          description: "Container isolation technology",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kernel-memory",
+          description: "Kernel memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: ["-l", "--label"],
+          description: "Set meta data on a container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--label-file",
+          description: "Read in a line delimited file of labels",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--link",
+          description: "Add link to another container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--link-local-ip",
+          description: "Container IPv4/IPv6 link-local addresses",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--log-driver",
+          description: "Logging driver for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--log-opt",
+          description: "Log driver options",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--mac-address",
+          description: "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-m", "--memory"],
+          description: "Memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-reservation",
+          description: "Memory soft limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-swap",
+          description:
+            "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-swappiness",
+          description:
+            "Tune container memory swappiness (0 to 100) (default -1)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--mount",
+          description: "Attach a filesystem mount to the container",
+          args: {
+            name: "mount",
+          },
+        },
+        {
+          name: "--name",
+          description: "Assign a name to the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--network",
+          description: "Connect a container to a network",
+          args: {
+            name: "network",
+          },
+        },
+        {
+          name: "--network-alias",
+          description: "Add network-scoped alias for the container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--no-healthcheck",
+          description: "Disable any container-specified HEALTHCHECK",
+        },
+        {
+          name: "--oom-kill-disable",
+          description: "Disable OOM Killer",
+        },
+        {
+          name: "--oom-score-adj",
+          description: "Tune host's OOM preferences (-1000 to 1000)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--pid",
+          description: "PID namespace to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--pids-limit",
+          description: "Tune container pids limit (set -1 for unlimited)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--platform",
+          description: "Set platform if server is multi-platform capable",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--privileged",
+          description: "Give extended privileges to this container",
+        },
+        {
+          name: ["-p", "--publish"],
+          description: "Publish a container's port(s) to the host",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-P", "--publish-all"],
+          description: "Publish all exposed ports to random ports",
+        },
+        {
+          name: "--pull",
+          description:
+            "Pull image before running ('always'|'missing'|'never') (default 'missing')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--read-only",
+          description: "Mount the container's root filesystem as read only",
+        },
+        {
+          name: "--restart",
+          description:
+            "Restart policy to apply when a container exits (default 'no')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--rm",
+          description: "Automatically remove the container when it exits",
+        },
+        {
+          name: "--runtime",
+          description: "Runtime to use for this container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--security-opt",
+          description: "Security Options",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--shm-size",
+          description: "Size of /dev/shm",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--sig-proxy",
+          description: "Proxy received signals to the process (default true)",
+        },
+        {
+          name: "--stop-signal",
+          description: "Signal to stop a container (default 'SIGTERM')",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--stop-timeout",
+          description: "Timeout (in seconds) to stop a container",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--storage-opt",
+          description: "Storage driver options for the container",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--sysctl",
+          description: "Sysctl options (default map[])",
+          args: {
+            name: "map",
+          },
+        },
+        {
+          name: "--tmpfs",
+          description: "Mount a tmpfs directory",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-t", "--tty"],
+          description: "Allocate a pseudo-TTY",
+        },
+        {
+          name: "--ulimit",
+          description: "Ulimit options (default [])",
+          args: {
+            name: "ulimit",
+          },
+        },
+        {
+          name: ["-u", "--user"],
+          description: "Username or UID (format: <name|uid>[:<group|gid>])",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--userns",
+          description: "User namespace to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--uts",
+          description: "UTS namespace to use",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-v", "--volume"],
+          description: "Bind mount a volume",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: "--volume-driver",
+          description: "Optional volume driver for the container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--volumes-from",
+          description: "Mount volumes from the specified container(s)",
+          args: {
+            name: "list",
+          },
+        },
+        {
+          name: ["-w", "--workdir"],
+          description: "Working directory inside the container",
+          args: {
+            name: "string",
+          },
+        },
+      ],
+    },
+    {
+      name: "save",
+      description:
+        "Save one or more images to a tar archive (streamed to STDOUT by default)",
+      options: [
+        {
+          name: ["-o", "--output"],
+          description: "Write to a file, instead of STDOUT",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "search",
+      description: "Search the Docker Hub for images",
+      options: [
+        {
+          name: ["-f", "--filter"],
+          description: "Filter output based on conditions provided",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "--format",
+          description: "Pretty-print search using a Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--limit",
+          description: "Max number of search results (default 25)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--no-trunc",
+          description: "Don't truncate output",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "start",
+      description: "Start one or more stopped containers",
+      options: [
+        {
+          name: ["-a", "--attach"],
+          description: "Attach STDOUT/STDERR and forward signals",
+        },
+        {
+          name: "--detach-keys",
+          description: "Override the key sequence for detaching a container",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Attach container's STDIN",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "stats",
+      description:
+        "Display a live stream of container(s) resource usage statistics",
+      options: [
+        {
+          name: ["-a", "--all"],
+          description: "Show all containers (default shows just running)",
+        },
+        {
+          name: "--format",
+          description: "Pretty-print images using a Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--no-stream",
+          description: "Disable streaming stats and only pull the first result",
+        },
+        {
+          name: "--no-trunc",
+          description: "Do not truncate output",
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "stop",
+      description: "Stop one or more running containers",
+      options: [
+        {
+          name: ["-t", "--time"],
+          description:
+            "Seconds to wait for stop before killing it (default 10)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "tag",
+      description: "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "top",
+      description: "Display the running processes of a container",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "unpause",
+      description: "Unpause all processes within one or more containers",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "update",
+      description: "Update configuration of one or more containers",
+      options: [
+        {
+          name: "--blkio-weight",
+          description:
+            "Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+          args: {
+            name: "uint16",
+          },
+        },
+        {
+          name: "--cpu-period",
+          description: "Limit CPU CFS (Completely Fair Scheduler) period",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-quota",
+          description: "Limit CPU CFS (Completely Fair Scheduler) quota",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-rt-period",
+          description: "Limit the CPU real-time period in microseconds",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpu-rt-runtime",
+          description: "Limit the CPU real-time runtime in microseconds",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: ["-c", "--cpu-shares"],
+          description: "CPU shares (relative weight)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--cpus",
+          description: "Number of CPUs",
+          args: {
+            name: "decimal",
+          },
+        },
+        {
+          name: "--cpuset-cpus",
+          description: "CPUs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--cpuset-mems",
+          description: "MEMs in which to allow execution (0-3, 0,1)",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kernel-memory",
+          description: "Kernel memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: ["-m", "--memory"],
+          description: "Memory limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-reservation",
+          description: "Memory soft limit",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--memory-swap",
+          description:
+            "Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+          args: {
+            name: "bytes",
+          },
+        },
+        {
+          name: "--pids-limit",
+          description: "Tune container pids limit (set -1 for unlimited)",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--restart",
+          description: "Restart policy to apply when a container exits",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "version",
+      description: "Show the Docker version information",
+      options: [
+        {
+          name: ["-f", "--format"],
+          description: "Format the output using the given Go template",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--kubeconfig",
+          description: "Kubernetes config file",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+    {
+      name: "wait",
+      description:
+        "Block until one or more containers stop, then print their exit codes",
+      options: [
+        {
+          name: "--help",
+          description: "Print usage",
+        },
+      ],
+    },
+  ],
+  options: [
+    {
+      name: "--config",
+      description: "Location of client config files (default '$HOME/.docker')",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: ["-c", "--context"],
+      description:
+        "Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with 'docker context use')",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: ["-D", "--debug"],
+      description: "Enable debug mode",
+    },
+    {
+      name: ["-H", "--host"],
+      description: "Daemon socket(s) to connect to",
+      args: {
+        name: "list",
+      },
+    },
+    {
+      name: ["-l", "--log-level"],
+      description:
+        "Set the logging level ('debug'|'info'|'warn'|'error'|'fatal') (default 'info')",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: "--tls",
+      description: "Use TLS; implied by --tlsverify",
+    },
+    {
+      name: "--tlscacert",
+      description:
+        "Trust certs signed only by this CA (default '$HOME/.docker/ca.pem')",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: "--tlscert",
+      description:
+        "Path to TLS certificate file (default '$HOME/.docker/cert.pem')",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: "--tlskey",
+      description: "Path to TLS key file (default '$HOME/.docker/key.pem')",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: "--tlsverify",
+      description: "Use TLS and verify the remote",
+    },
+    {
+      name: ["-v", "--version"],
+      description: "Print version information and quit",
+    },
+    {
+      name: "--help",
+      description: "Print usage",
     },
   ],
 };
+
+const postProcessDockerPs: Fig.Generator["postProcess"] = (out) => {
+  return out.split("\n").map((i) => {
+    try {
+      const parsedJSON: Record<string, string> = JSON.parse(i);
+      return {
+        name: parsedJSON.Names,
+        displayName: `${parsedJSON.Names} (${parsedJSON.Image})`,
+        icon: "fig://icon?type=docker",
+      };
+    } catch (error) {
+      console.error(error);
+    }
+  });
+};
+
+const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
+  return out
+    .split("\n")
+    .map((line) => JSON.parse(line))
+    .map((i) => ({
+      name: i.Name,
+      description: i.ID,
+      icon: "fig://icon?type=docker",
+    }));
+};
+
+const dockerGenerators: Record<string, Fig.Generator> = {
+  runningDockerContainers: {
+    script: `docker ps --format '{{ json . }}'`,
+    postProcess: postProcessDockerPs,
+  },
+  allDockerContainers: {
+    script: `docker ps -a --format '{{ json . }}'`,
+    postProcess: postProcessDockerPs,
+  },
+  pausedDockerContainers: {
+    script: `docker ps --filter status=paused --format '{{ json . }}'`,
+    postProcess: postProcessDockerPs,
+  },
+  allLocalImages: {
+    script: `docker image ls --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: `${i.ID}`,
+          displayName: `${i.Repository} - ${i.ID}`,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+  dockerHubSearch: {
+    script: function (context) {
+      if (context[context.length - 1] === "") return "";
+      const searchTerm = context[context.length - 1];
+      return `docker search ${searchTerm} --format '{{ json . }}'`;
+    },
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: `${i.Name}`,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+    trigger: function () {
+      return true;
+    },
+  },
+  allDockerContexts: {
+    script: `docker context list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          description: i.Description,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+  listDockerNetworks: {
+    script: `docker network list --format '{{ json . }}'`,
+    postProcess: sharedPostProcess,
+  },
+  listDockerSwarmNodes: {
+    script: `docker node list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.ID,
+          displayName: `${i.ID} - ${i.Hostname}`,
+          description: i.Status,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+  listDockerPlugins: {
+    script: `docker plugin list --format '{{ json . }}'`,
+    postProcess: sharedPostProcess,
+  },
+  listDockerSecrets: {
+    script: `docker secret list --format '{{ json . }}'`,
+    postProcess: sharedPostProcess,
+  },
+  listDockerServices: {
+    script: `docker service list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          description: i.Image,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+  listDockerServicesReplicas: {
+    script: `docker service list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: `${i.Name}=`,
+          description: i.Image,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+  listDockerStacks: {
+    script: `docker stack list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+  listDockerVolumes: {
+    script: `docker volume list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      return out
+        .split("\n")
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          icon: "fig://icon?type=docker",
+        }));
+    },
+  },
+};
+
+const containersArg = {
+  name: "container",
+  generators: dockerGenerators.runningDockerContainers,
+};
+
+const imagesArg = {
+  name: "image",
+  generators: dockerGenerators.allLocalImages,
+};
+
+const containerAndCommandArgs = [
+  containersArg,
+  {
+    name: "command",
+    isCommand: true,
+  },
+];
+
+const contextsArg = {
+  name: "CONTEXT",
+  generators: dockerGenerators.allDockerContexts,
+};
+
+completionSpec.subcommands.forEach((command) => {
+  // containersArg
+  switch (command.name) {
+    case "commit":
+      command.args = [
+        containersArg,
+        {
+          name: "[REPOSITORY[:TAG]]",
+        },
+      ];
+      break;
+    case "kill":
+      command.args = { ...containersArg, isVariadic: true };
+      break;
+    case "port":
+      command.args = [
+        containersArg,
+        {
+          name: "[PRIVATE_PORT[/PROTO]]",
+        },
+      ];
+      break;
+    case "rename":
+      command.args = [
+        containersArg,
+        {
+          name: "NEW_NAME",
+        },
+      ];
+      break;
+    case "container":
+      command.subcommands.find((c) => c.name == "inspect").args = containersArg;
+      break;
+    case "network":
+      command.subcommands
+        .filter((c) => c.name == "connect" || c.name == "disconnect")
+        .forEach((c) => {
+          c.args = [
+            {
+              name: "NETWORK",
+              generators: dockerGenerators.listDockerNetworks,
+            },
+            containersArg,
+          ];
+        });
+      break;
+    case "exec":
+      command.args = [
+        containersArg,
+        {
+          name: "command",
+          isCommand: true,
+        },
+      ];
+      break;
+    case "logs":
+    case "diff":
+    case "export":
+    case "pause":
+    case "restart":
+    case "stats":
+    case "stop":
+    case "top":
+    case "update":
+    case "wait":
+      command.args = containersArg;
+  }
+
+  // imagesArg
+  switch (command.name) {
+    case "history":
+    case "save":
+      command.args = imagesArg;
+      break;
+    case "image":
+      command.subcommands.find((c) => c.name == "inspect").args = imagesArg;
+      break;
+    case "service":
+      command.subcommands.find((c) => c.name == "create").args = [
+        imagesArg,
+        {
+          name: "COMMAND",
+          isOptional: true,
+          isCommand: true,
+        },
+      ];
+      break;
+    case "rmi":
+      command.args = { ...imagesArg, isVariadic: true };
+      break;
+    case "trust":
+      command.subcommands
+        .filter((c) => c.name == "revoke" || c.name == "sign")
+        .forEach((c) => {
+          c.args = imagesArg;
+        });
+  }
+
+  // contextsArg
+  if (command.name == "context") {
+    command.subcommands.find((c) => c.name == "export").args = [
+      contextsArg,
+      {
+        name: "FILE",
+        template: "filepaths",
+      },
+    ];
+    command.subcommands
+      .filter((c) => c.name == "inspect" || c.name == "rm")
+      .forEach((c) => {
+        c.args = { ...contextsArg, isVariadic: true };
+      });
+    command.subcommands
+      .filter((c) => c.name == "update" || c.name == "use")
+      .forEach((c) => {
+        c.args = contextsArg;
+      });
+  }
+
+  // dockerGenerators.allDockerContainers
+  switch (command.name) {
+    case "rm":
+      command.args = {
+        isVariadic: true,
+        name: "containers",
+        generators: dockerGenerators.allDockerContainers,
+      };
+      break;
+    case "start":
+      command.args = {
+        name: "container",
+        generators: dockerGenerators.allDockerContainers,
+      };
+      break;
+  }
+
+  // dockerGenerators.pausedDockerContainers
+  if (command.name == "unpause") {
+    command.args = {
+      name: "container",
+      generators: dockerGenerators.pausedDockerContainers,
+    };
+  }
+
+  // dockerGenerators.allLocalImages
+  if (command.name == "create") {
+    command.args = [
+      {
+        name: "container",
+        generators: dockerGenerators.allLocalImages,
+      },
+      {
+        name: "command",
+        isCommand: true,
+      },
+    ];
+  }
+
+  // dockerGenerators.dockerHubSearch
+  if (command.name == "pull") {
+    command.args = {
+      name: "NAME[:TAG|@DIGEST]",
+      generators: dockerGenerators.dockerHubSearch,
+      debounce: true,
+    };
+  }
+
+  // dockerGenerators.listDockerNetworks
+  if (command.name == "network") {
+    command.subcommands
+      .filter((c) => c.name == "inspect" || c.name == "rm")
+      .forEach((c) => {
+        c.args = {
+          name: "NETWORK",
+          generators: dockerGenerators.listDockerNetworks,
+          isVariadic: true,
+        };
+      });
+  }
+
+  // dockerGenerators.listDockerSwarmNodes
+  if (command.name == "node") {
+    command.subcommands
+      .filter(
+        (c) =>
+          c.name == "demote" ||
+          c.name == "inspect" ||
+          c.name == "promote" ||
+          c.name == "ps" ||
+          c.name == "rm" ||
+          c.name == "update"
+      )
+      .forEach((c) => {
+        c.args = {
+          name: "NODE",
+          generators: dockerGenerators.listDockerSwarmNodes,
+          isVariadic: true,
+        };
+      });
+  }
+
+  // dockerGenerators.listDockerPlugins
+  if (command.name == "plugin") {
+    command.subcommands
+      .filter((c) => c.name == "enable" || c.name == "disable")
+      .forEach((c) => {
+        c.args = {
+          name: "PLUGIN",
+          generators: dockerGenerators.listDockerPlugins,
+        };
+      });
+
+    command.subcommands
+      .filter((c) => c.name == "inspect" || c.name == "rm")
+      .forEach((c) => {
+        c.args = {
+          name: "PLUGIN",
+          generators: dockerGenerators.listDockerPlugins,
+          isVariadic: true,
+        };
+      });
+
+    command.subcommands.find((c) => c.name == "set").args = [
+      {
+        name: "PLUGIN",
+        generators: dockerGenerators.listDockerPlugins,
+      },
+      { name: "KEY=VALUE", isVariadic: true },
+    ];
+
+    command.subcommands.find((c) => c.name == "upgrade").args = [
+      {
+        name: "PLUGIN",
+        generators: dockerGenerators.listDockerPlugins,
+      },
+      { name: "REMOTE" },
+    ];
+  }
+
+  // dockerGenerators.listDockerSecrets
+  if (command.name == "secret") {
+    command.subcommands
+      .filter((c) => c.name == "inspect" || c.name == "rm")
+      .forEach((c) => {
+        c.args = {
+          name: "SECRET",
+          generators: dockerGenerators.listDockerSecrets,
+          isVariadic: true,
+        };
+      });
+  }
+
+  // dockerGenerators.listDockerServices
+  if (command.name == "service") {
+    command.subcommands
+      .filter((c) => c.name == "inspect" || c.name == "ps" || c.name == "rm")
+      .forEach((c) => {
+        c.args = {
+          name: "SERVICE",
+          generators: dockerGenerators.listDockerServices,
+          isVariadic: true,
+        };
+      });
+
+    command.subcommands
+      .filter(
+        (c) => c.name == "logs" || c.name == "rollback" || c.name == "update"
+      )
+      .forEach((c) => {
+        c.args = {
+          name: "SERVICE",
+          generators: dockerGenerators.listDockerServices,
+        };
+      });
+
+    command.subcommands.find((c) => c.name == "logs").args = {
+      name: "SERVICE OR TASK",
+      generators: dockerGenerators.listDockerServices,
+    };
+
+    command.subcommands.find((c) => c.name == "scale").args = {
+      name: "SERVICE=REPLICAS",
+      generators: dockerGenerators.listDockerServicesReplicas,
+      isVariadic: true,
+    };
+  }
+
+  // dockerGenerators.listDockerStacks
+  if (command.name == "stack") {
+    command.subcommands
+      .filter((c) => c.name == "ps" || c.name == "services")
+      .forEach((c) => {
+        c.args = {
+          name: "STACK",
+          generators: dockerGenerators.listDockerStacks,
+        };
+      });
+
+    command.subcommands.find((c) => c.name == "rm").args = {
+      name: "STACK",
+      generators: dockerGenerators.listDockerStacks,
+      isVariadic: true,
+    };
+  }
+
+  // dockerGenerators.listDockerVolumes
+  if (command.name == "volume") {
+    command.subcommands
+      .filter((c) => c.name == "inspect" || c.name == "rm")
+      .forEach((c) => {
+        c.args = {
+          name: "VOLUME",
+          generators: dockerGenerators.listDockerVolumes,
+          isVariadic: true,
+        };
+      });
+  }
+
+  // template
+  if (command.name == "config") {
+    command.subcommands.find((c) => c.name == "create").args = {
+      name: "file",
+      template: "filepaths",
+    };
+  }
+  if (command.name == "context") {
+    command.subcommands.find((c) => c.name == "import").args = [
+      { name: "CONTEXT" },
+      { name: "FILE", template: "filepaths" },
+    ];
+  }
+  if (command.name == "plugin") {
+    command.subcommands.find((c) => c.name == "create").args = [
+      { name: "PLUGIN" },
+      { name: "PLUGIN-DATA-DIR", template: "filepaths" },
+    ];
+  }
+  if (command.name == "secret") {
+    command.subcommands.find((c) => c.name == "create").args = [
+      { name: "SECRET NAME" },
+      { name: "SECRET", template: "filepaths" },
+    ];
+  }
+
+  // customize
+  if (command.name == "inspect") {
+    command.args = {
+      // TODO: There are more types of docker objects beyond running containers
+      // that can be inspected
+      name: "Name or ID",
+      generators: [
+        {
+          script: `docker ps -a --format '{{ json . }}'`,
+          postProcess: function (out) {
+            const allLines = out.split("\n").map((line) => JSON.parse(line));
+            return allLines.map((i) => ({
+              name: i.ID,
+              displayName: `[con] ${i.ID} (${i.Image})`,
+            }));
+          },
+        },
+        {
+          script: `docker images -a --format '{{ json . }}'`,
+          postProcess: function (out) {
+            const allLines = out.split("\n").map((line) => JSON.parse(line));
+            return allLines.map((i) => {
+              let displayName;
+              if (i.Repository === "\u003cnone\u003e") {
+                displayName = i.ID;
+              } else {
+                displayName = i.Repository;
+                if (i.Tag !== "\u003cnone\u003e") {
+                  displayName += `:${i.Tag}`;
+                }
+              }
+
+              return {
+                name: i.ID,
+                displayName: `[img] ${displayName}`,
+              };
+            });
+          },
+        },
+        {
+          script: `docker volume ls --format '{{ json . }}'`,
+          postProcess: function (out) {
+            const allLines = out.split("\n").map((line) => JSON.parse(line));
+            return allLines.map((i) => ({
+              name: i.Name,
+              displayName: `[vol] ${i.Name}`,
+            }));
+          },
+        },
+      ],
+    };
+  }
+});
+
+const handleCommand = function (c: Fig.Subcommand) {
+  if (c.options != null) {
+    c.options.forEach((co) => {
+      // suggestions
+      if (co.name.includes("--log-driver")) {
+        co.args = {
+          name: "string",
+          suggestions: [
+            "json-file",
+            "syslog",
+            "journald",
+            "gelf",
+            "fluentd",
+            "awslogs",
+            "splunk",
+            "etwlogs",
+            "gcplogs",
+            "none",
+          ],
+        };
+      }
+      if (co.description.includes("('always'|'missing'|'never')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["always", "missing", "never"],
+        };
+      }
+
+      if (co.description.includes("(host|private)")) {
+        co.args = {
+          name: "string",
+          suggestions: ["host", "private"],
+        };
+      }
+
+      if (co.description.includes("(swarm|kubernetes|all)")) {
+        co.args = {
+          name: "string",
+          suggestions: ["swarm", "kubernetes", "all"],
+        };
+      }
+
+      if (co.description.includes("('active'|'pause'|'drain')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["active", "pause", "drain"],
+        };
+      }
+
+      if (co.description.includes("('worker'|'manager')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["worker", "manager"],
+        };
+      }
+
+      if (co.description.includes("('none'|'on-failure'|'any')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["none", "on-failure", "any"],
+        };
+      }
+
+      if (co.description.includes("('pause'|'continue')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["pause", "continue"],
+        };
+      }
+
+      if (co.description.includes("('pause'|'continue'|'rollback')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["pause", "continue", "rollback"],
+        };
+      }
+
+      if (co.description.includes("('start-first'|'stop-first')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["start-first", "stop-first"],
+        };
+      }
+
+      if (co.description.includes("('always'|'changed'|'never')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["always", "changed", "never"],
+        };
+      }
+
+      if (co.description.includes("(true|false)")) {
+        co.args = {
+          name: "string",
+          suggestions: ["true", "false"],
+        };
+      }
+
+      if (co.description.includes("('debug'|'info'|'warn'|'error'|'fatal')")) {
+        co.args = {
+          name: "string",
+          suggestions: ["debug", "info", "warn", "error", "fatal"],
+        };
+      }
+
+      if (
+        co.description.includes(
+          "(replicated, global, replicated-job, or global-job)"
+        )
+      ) {
+        co.args = {
+          name: "string",
+          suggestions: ["replicated", "global", "replicated-job", "global-job"],
+        };
+      }
+
+      // template
+      if (co.name.includes("--ca-key") || co.name.includes("--ca-cert")) {
+        co.args = {
+          name: "pem-file",
+          template: "filepaths",
+        };
+      }
+      if (co.name.includes("--compose-file")) {
+        co.args = {
+          name: "strings",
+          template: "filepaths",
+        };
+      }
+    });
+  }
+
+  if (c.name == "build") {
+    c.args = {
+      name: "path",
+      generators: {
+        template: "folders",
+      },
+    };
+    c.options.find((co) => co.name.includes("--file")).args = {
+      name: "string",
+      generators: {
+        template: "filepaths",
+      },
+    };
+    c.options.find((co) => co.name.includes("--target")).args = {
+      name: "target build stage",
+      generators: {
+        trigger: function () {
+          return true;
+        },
+        script: function (context) {
+          let fileFlagIndex, dockerfilePath;
+          if (context.includes("-f")) {
+            fileFlagIndex = context.indexOf("-f");
+            dockerfilePath = context[fileFlagIndex + 1];
+          } else if (context.includes("--file")) {
+            fileFlagIndex = context.indexOf("--file");
+            dockerfilePath = context[fileFlagIndex + 1];
+          } else {
+            dockerfilePath = "$PWD/Dockerfile";
+          }
+
+          return `\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+        },
+        postProcess: function (out) {
+          // This just searches the Dockerfile for the alias name after AS,
+          // and due to the grep above, will only match lines where FROM and AS
+          // are on the same line. This could certainly be made more robust
+          // down the line.
+          const imageNameRegexp = /(?:[aA][sS]\s+)([\w:.-]+)/;
+          return out
+            .split("\n")
+            .map((i) => {
+              const result = imageNameRegexp.exec(i);
+              if (result) {
+                return {
+                  name: result[1],
+                };
+              }
+            })
+            .filter((i) => i !== undefined);
+        },
+      },
+    };
+  }
+
+  if (c.name == "run" || c.name == "exec") {
+    c.options.push({
+      name: "-it",
+      description: "Launch an interactive session",
+      icon: "fig://icon?type=commandkey",
+    });
+  }
+
+  if (c.name == "run") {
+    c.args = [
+      {
+        name: "image",
+        description: "The Docker image to use",
+        generators: {
+          script:
+            "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
+          postProcess: function (out) {
+            return out.split("\n").map((image) => {
+              const [repo, size, tag, id] = image.split(" ");
+              return {
+                name: repo,
+                description: `${id}@${tag} - ${size}`,
+                icon: "fig://icon?type=docker",
+              };
+            });
+          },
+        },
+      },
+      {
+        name: "command",
+        // description: "The command to run in the container"
+      },
+    ];
+  }
+
+  if (c.subcommands != null) {
+    c.subcommands.forEach((cc) => handleCommand(cc));
+  }
+};
+handleCommand(completionSpec);
 
 export default completionSpec;
