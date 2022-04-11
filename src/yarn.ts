@@ -344,7 +344,16 @@ export const createCLIsGenerator: Fig.Generator = {
   },
 };
 
-const completionSpec: Fig.Spec = {
+// Function that returns the semantic version for a given CLI tool,
+// then used to load up the relevant completion spec.
+export const getVersionCommand: Fig.GetVersionCommand = async (
+  executeShellCommand
+) => {
+  const version = await executeShellCommand("yarn --version");
+  return version;
+};
+
+const completionSpec: Fig.Spec = (version) => ({
   name: "yarn",
   description: "Manage packages and run scripts",
   generateSpec: async (_tokens, executeShellCommand) => {
@@ -1352,9 +1361,12 @@ const completionSpec: Fig.Spec = {
       name: "workspace",
       description: "Manage workspace",
       generateSpec: async (_tokens, executeShellCommand) => {
+        // Only use info in yarn workspaces info 1.X.X
+        const versionedCommand = /^1\.\d+\.\d+/.test(version) ? "info" : "list";
+
         try {
           const out = await executeShellCommand(
-            "yarn workspaces --silent info"
+            `yarn workspaces --silent ${versionedCommand}`
           );
 
           const workspacesDefinitions = JSON.parse(out);
@@ -1473,6 +1485,6 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
-};
+});
 
 export default completionSpec;
