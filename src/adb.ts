@@ -19,6 +19,10 @@ const installOptions: Fig.Option[] = [
     name: "-s",
     description: "Install on SD card instead of internal storage",
   },
+    {
+    name: "-g",
+    description: "Grant all runtime permissions",
+  },
   {
     name: "-g",
     description: "Grant all runtime permissions",
