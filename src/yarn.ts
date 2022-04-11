@@ -62,29 +62,6 @@ const getGlobalPackagesGenerator: Fig.Generator = {
   },
 };
 
-// generate workspace argument completion
-const scriptList: Fig.Generator = {
-  cache: {
-    strategy: "stale-while-revalidate",
-  },
-  script: function (context) {
-    return `\cat ${context[context.length - 2]}/package.json`;
-  },
-  postProcess: function (out) {
-    if (out.trim() == "") {
-      return [];
-    }
-    try {
-      const packageContent = JSON.parse(out);
-      const scripts = packageContent["scripts"];
-      if (scripts) {
-        return Object.keys(scripts).map((script) => ({ name: script }));
-      }
-    } catch (e) {}
-    return [];
-  },
-};
-
 // generate package list of direct and indirect dependencies
 const allDependenciesGenerator: Fig.Generator = {
   script: "yarn list --depth=0 --json",
@@ -1375,78 +1352,52 @@ const completionSpec: Fig.Spec = {
       name: "workspace",
       description: "Manage workspace",
       generateSpec: async (_tokens, executeShellCommand) => {
-        const { postProcess } = scriptList;
-        const subcommands = [];
-
         try {
-          const out = await executeShellCommand("cat package.json");
+          const out = await executeShellCommand(
+            "yarn workspaces --silent info"
+          );
 
-          if (out.trim() == "") {
-            return { name: "workspaces" };
-          }
-          const packageContent = JSON.parse(out);
-          const workspaces = packageContent["workspaces"];
+          const workspacesDefinitions = JSON.parse(out);
 
-          const getPackageName = async (workspace: string): Promise<string> => {
-            const workspacePackage = await executeShellCommand(
-              `\cat ${workspace}/package.json`
-            );
-
-            try {
-              return JSON.parse(workspacePackage)["name"] || workspace;
-            } catch (e) {
-              console.error(e);
-              return workspace;
-            }
-          };
-
-          if (workspaces) {
-            for (const workspace of workspaces) {
-              if (workspace.includes("*")) {
-                const workspacePath = workspace.slice(0, -1);
-                const out = await executeShellCommand(`\ls ${workspacePath}`);
-                const workspaceList = out.split("\n");
-
-                for (const space of workspaceList) {
-                  subcommands.push({
-                    name: await getPackageName(workspacePath + space),
-                    description: "Workspaces",
-                    args: {
-                      name: "script",
-                      generators: {
-                        script: `\cat ${workspace.slice(
-                          0,
-                          -1
-                        )}/${space}/package.json`,
-                        postProcess,
-                      },
-                    },
-                  });
-                }
-              } else {
-                subcommands.push({
-                  name: await getPackageName(workspace),
-                  description: "Workspaces",
-                  args: {
-                    name: "script",
-                    generators: {
-                      script: `\cat ${workspace}/package.json`,
-                      postProcess,
-                    },
+          const subcommands = Object.entries(workspacesDefinitions).map(
+            ([name, workspaceDef]: [string, { location: string }]) => ({
+              name,
+              description: "Workspaces",
+              args: {
+                name: "script",
+                generators: {
+                  cache: {
+                    strategy: "stale-while-revalidate" as const,
                   },
-                });
-              }
-            }
-          }
+                  script: `\cat ${workspaceDef.location}/package.json`,
+                  postProcess: function (out: string) {
+                    if (out.trim() == "") {
+                      return [];
+                    }
+                    try {
+                      const packageContent = JSON.parse(out);
+                      const scripts = packageContent["scripts"];
+                      if (scripts) {
+                        return Object.keys(scripts).map((script) => ({
+                          name: script,
+                        }));
+                      }
+                    } catch (e) {}
+                    return [];
+                  },
+                },
+              },
+            })
+          );
+
+          return {
+            name: "workspace",
+            subcommands,
+          };
         } catch (e) {
           console.error(e);
-          return { name: "workspaces" };
         }
-
-        return {
-          name: "workspace",
-          subcommands,
-        };
+        return { name: "workspaces" };
       },
     },
     {
