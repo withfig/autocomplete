@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const tcp_rdp_ssh_smb_options: Fig.Option[] = [
   {
     name: ["--hostname", "--tunnel-host", "-T"],
@@ -82,10 +84,6 @@ const tcp_rdp_ssh_smb_options: Fig.Option[] = [
     },
     isRequired: true,
   },
-  {
-    name: ["--help", "-h"],
-    description: "Show help (default: false)",
-  },
 ];
 
 const update: Fig.Subcommand = {
@@ -104,10 +102,6 @@ const update: Fig.Subcommand = {
         name: "value",
       },
     },
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
   ],
   args: {
     name: "arguments",
@@ -119,12 +113,7 @@ const update: Fig.Subcommand = {
 const version: Fig.Subcommand = {
   name: "version",
   description: "Print the version",
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
-  ],
+
   args: {
     name: "arguments",
     isVariadic: true,
@@ -187,10 +176,6 @@ const proxyDns: Fig.Subcommand = {
         isVariadic: true,
       },
     },
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
   ],
   args: {
     name: "command options",
@@ -215,12 +200,7 @@ const service: Fig.Subcommand = {
       description: "Shows a list of commands or help for one command",
     },
   ],
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
-  ],
+
   args: [
     {
       name: "command options",
@@ -237,12 +217,6 @@ const service: Fig.Subcommand = {
 const help: Fig.Subcommand = {
   name: "help",
   description: "Shows a list of commands or help for one command",
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
-  ],
 };
 
 const access: Fig.Subcommand = {
@@ -264,7 +238,7 @@ const access: Fig.Subcommand = {
       description: "Uninstall the cloudflared launch agent",
       options: [
         {
-          name: ["--allow-request", "-ar"],
+          name: ["--allow-request", "--ar"],
         },
       ],
       args: [
@@ -334,10 +308,6 @@ const access: Fig.Subcommand = {
           description:
             "Specify if you wish to generate short lived certs. (default: false)",
         },
-        {
-          name: ["--help", "-h"],
-          description: "Show help (default: false)",
-        },
       ],
       args: [
         {
@@ -364,10 +334,6 @@ const access: Fig.Subcommand = {
           },
           isRequired: true,
         },
-        {
-          name: ["--help", "-h"],
-          description: "Show help (default: false)",
-        },
       ],
       args: [
         {
@@ -386,12 +352,7 @@ const access: Fig.Subcommand = {
       description: "Shows a list of commands or help for one command",
     },
   ],
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
-  ],
+
   args: [
     {
       name: "command options",
@@ -429,6 +390,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file",
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
           isRequired: true,
         },
@@ -929,7 +891,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file in YAML",
-            template: ["filepaths"],
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
         },
         {
@@ -1113,39 +1075,46 @@ const tunnel: Fig.Subcommand = {
             "Run Hello World Server (default: false) [$TUNNEL_HELLO_WORLD]",
         },
         {
-          name: "--socks5 --url",
+          name: "--socks5",
           description:
             "Specify if this tunnel is running as a SOCK5 Server This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false) [$TUNNEL_SOCKS]",
+          dependsOn: ["--url"],
         },
         {
-          name: "--proxy-connect-timeout --url",
+          name: "--proxy-connect-timeout",
           description:
             "HTTP proxy timeout for establishing a new connection This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 30s)",
+          dependsOn: ["--url"],
         },
         {
-          name: "--proxy-tls-timeout --url",
+          name: "--proxy-tls-timeout",
           description:
             "HTTP proxy timeout for completing a TLS handshake This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 10s)",
+          dependsOn: ["--url"],
         },
         {
-          name: "--proxy-tcp-keepalive --url",
+          name: "--proxy-tcp-keepalive",
           description:
             "HTTP proxy TCP keepalive duration This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 30s)",
+          dependsOn: ["--url"],
         },
         {
-          name: "--proxy-no-happy-eyeballs --url",
+          name: "--proxy-no-happy-eyeballs",
           description:
             'HTTP proxy should disable "happy eyeballs" for IPv4/v6 fallback This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false)',
+          dependsOn: ["--url"],
         },
         {
-          name: "--proxy-keepalive-connections --url",
+          name: "--proxy-keepalive-connections",
           description:
             "HTTP proxy maximum keepalive connection pool size This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 100)",
+          dependsOn: ["--url"],
         },
         {
-          name: "--proxy-keepalive-timeout --url",
+          name: "--proxy-keepalive-timeout",
           description:
             "HTTP proxy timeout for closing an idle connection This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 1m30s)",
+          dependsOn: ["--url"],
         },
         {
           name: "--proxy-connection-timeout",
@@ -1158,14 +1127,16 @@ const tunnel: Fig.Subcommand = {
           deprecated: true,
         },
         {
-          name: "--http-host-header --url",
+          name: "--http-host-header",
           description:
             "Sets the HTTP Host header for the local webserver. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress [$TUNNEL_HTTP_HOST_HEADER]",
+          dependsOn: ["--url"],
         },
         {
-          name: "--origin-server-name --url",
+          name: "--origin-server-name",
           description:
             "Hostname on the origin server certificate. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress [$TUNNEL_ORIGIN_SERVER_NAME]",
+          dependsOn: ["--url"],
         },
         {
           name: "--unix-socket",
@@ -1178,19 +1149,22 @@ const tunnel: Fig.Subcommand = {
           },
         },
         {
-          name: "--origin-ca-pool --url",
+          name: "--origin-ca-pool",
           description:
             "Path to the CA for the certificate of your origin. This option should be used only if your certificate is not signed by Cloudflare. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress [$TUNNEL_ORIGIN_CA_POOL]",
+          dependsOn: ["--url"],
         },
         {
-          name: "--no-tls-verify --url",
+          name: "--no-tls-verify",
           description:
             "Disables TLS verification of the certificate presented by your origin. Will allow any certificate from the origin to be accepted. Note: The connection from your machine to Cloudflare's Edge is still encrypted. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false) [$NO_TLS_VERIFY]",
+          dependsOn: ["--url"],
         },
         {
-          name: "--no-chunked-encoding --url",
+          name: "--no-chunked-encoding",
           description:
             "Disables chunked transfer encoding; useful if you are running a WSGI server. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false) [$TUNNEL_NO_CHUNKED_ENCODING]",
+          dependsOn: ["--url"],
         },
         {
           name: "--bastion",
@@ -1228,7 +1202,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file",
-            template: "filepaths",
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
         },
         {
@@ -1431,7 +1405,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file",
-            template: "filepaths",
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
         },
         {
@@ -1588,7 +1562,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file",
-            template: "filepaths",
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
         },
         {
@@ -1728,7 +1702,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file",
-            template: "filepaths",
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
         },
         {
@@ -1868,7 +1842,7 @@ const tunnel: Fig.Subcommand = {
           args: {
             name: "value",
             description: "Config file",
-            template: "filepaths",
+            generators: filepaths({ extensions: ["yml", "yaml"] }),
           },
         },
         {
@@ -2009,7 +1983,7 @@ const tunnel: Fig.Subcommand = {
       args: {
         name: "value",
         description: "Config file",
-        template: "filepaths",
+        generators: filepaths({ extensions: ["yml", "yaml"] }),
       },
     },
     {
@@ -2057,39 +2031,46 @@ const tunnel: Fig.Subcommand = {
         "Run Hello World Server (default: false) [$TUNNEL_HELLO_WORLD]",
     },
     {
-      name: "--socks5 --url",
+      name: "--socks5",
       description:
         "Specify if this tunnel is running as a SOCK5 Server This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false) [$TUNNEL_SOCKS]",
+      dependsOn: ["--url"],
     },
     {
-      name: "--proxy-connect-timeout --url",
+      name: "--proxy-connect-timeout",
       description:
         "HTTP proxy timeout for establishing a new connection This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 30s)",
+      dependsOn: ["--url"],
     },
     {
-      name: "--proxy-tls-timeout --url",
+      name: "--proxy-tls-timeout",
       description:
         "HTTP proxy timeout for completing a TLS handshake This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 10s)",
+      dependsOn: ["--url"],
     },
     {
-      name: "--proxy-tcp-keepalive --url",
+      name: "--proxy-tcp-keepalive",
       description:
         "HTTP proxy TCP keepalive duration This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 30s)",
+      dependsOn: ["--url"],
     },
     {
-      name: "--proxy-no-happy-eyeballs --url",
+      name: "--proxy-no-happy-eyeballs",
       description:
         'HTTP proxy should disable "happy eyeballs" for IPv4/v6 fallback This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false)',
+      dependsOn: ["--url"],
     },
     {
-      name: "--proxy-keepalive-connections --url",
+      name: "--proxy-keepalive-connections",
       description:
         "HTTP proxy maximum keepalive connection pool size This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 100)",
+      dependsOn: ["--url"],
     },
     {
-      name: "--proxy-keepalive-timeout --url",
+      name: "--proxy-keepalive-timeout",
       description:
         "HTTP proxy timeout for closing an idle connection This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: 1m30s)",
+      dependsOn: ["--url"],
     },
     {
       name: "--proxy-connection-timeout",
@@ -2102,14 +2083,16 @@ const tunnel: Fig.Subcommand = {
       deprecated: true,
     },
     {
-      name: "--http-host-header --url",
+      name: "--http-host-header",
       description:
         "Sets the HTTP Host header for the local webserver. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress [$TUNNEL_HTTP_HOST_HEADER]",
+      dependsOn: ["--url"],
     },
     {
-      name: "--origin-server-name --url",
+      name: "--origin-server-name",
       description:
         "Hostname on the origin server certificate. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress [$TUNNEL_ORIGIN_SERVER_NAME]",
+      dependsOn: ["--url"],
     },
     {
       name: "--unix-socket",
@@ -2122,19 +2105,22 @@ const tunnel: Fig.Subcommand = {
       },
     },
     {
-      name: "--origin-ca-pool --url",
+      name: "--origin-ca-pool",
       description:
         "Path to the CA for the certificate of your origin. This option should be used only if your certificate is not signed by Cloudflare. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress [$TUNNEL_ORIGIN_CA_POOL]",
+      dependsOn: ["--url"],
     },
     {
-      name: "--no-tls-verify --url",
+      name: "--no-tls-verify",
       description:
         "Disables TLS verification of the certificate presented by your origin. Will allow any certificate from the origin to be accepted. Note: The connection from your machine to Cloudflare's Edge is still encrypted. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false) [$NO_TLS_VERIFY]",
+      dependsOn: ["--url"],
     },
     {
-      name: "--no-chunked-encoding --url",
+      name: "--no-chunked-encoding",
       description:
         "Disables chunked transfer encoding; useful if you are running a WSGI server. This flag only takes effect if you define your origin with --url and if you do not use ingress rules. The recommended way is to rely on ingress rules and define this property under `originRequest` as per https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress (default: false) [$TUNNEL_NO_CHUNKED_ENCODING]",
+      dependsOn: ["--url"],
     },
     {
       name: "--bastion",
@@ -2358,10 +2344,6 @@ const tunnel: Fig.Subcommand = {
       description:
         "Overwrites existing DNS records with this hostname (default: false) [$TUNNEL_FORCE_PROVISIONING_DNS]",
     },
-    {
-      name: ["--help", "-h"],
-      description: "Show help (default: false)",
-    },
   ],
   args: {
     name: "command options",
@@ -2402,6 +2384,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for cloudflared",
+      isPersistent: true,
     },
   ],
   // Only uncomment if cloudflared takes an argument
