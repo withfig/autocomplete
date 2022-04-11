@@ -1,3 +1,4 @@
+import { findConfigFile } from "typescript";
 import {
   npmParserDirectives,
   npmScriptsGenerator,
@@ -1371,36 +1372,36 @@ const completionSpec: Fig.Spec = (version) => ({
 
           const workspacesDefinitions = JSON.parse(out);
 
-          const subcommands = Object.entries(workspacesDefinitions).map(
-            ([name, workspaceDef]: [string, { location: string }]) => ({
-              name,
-              description: "Workspaces",
-              args: {
-                name: "script",
-                generators: {
-                  cache: {
-                    strategy: "stale-while-revalidate" as const,
-                  },
-                  script: `\cat ${workspaceDef.location}/package.json`,
-                  postProcess: function (out: string) {
-                    if (out.trim() == "") {
-                      return [];
-                    }
-                    try {
-                      const packageContent = JSON.parse(out);
-                      const scripts = packageContent["scripts"];
-                      if (scripts) {
-                        return Object.keys(scripts).map((script) => ({
-                          name: script,
-                        }));
-                      }
-                    } catch (e) {}
+          const subcommands: Fig.Subcommand[] = Object.entries(
+            workspacesDefinitions
+          ).map(([name, workspaceDef]: [string, { location: string }]) => ({
+            name,
+            description: "Workspaces",
+            args: {
+              name: "script",
+              generators: {
+                cache: {
+                  strategy: "stale-while-revalidate",
+                },
+                script: `\cat ${workspaceDef.location}/package.json`,
+                postProcess: function (out: string) {
+                  if (out.trim() == "") {
                     return [];
-                  },
+                  }
+                  try {
+                    const packageContent = JSON.parse(out);
+                    const scripts = packageContent["scripts"];
+                    if (scripts) {
+                      return Object.keys(scripts).map((script) => ({
+                        name: script,
+                      }));
+                    }
+                  } catch (e) {}
+                  return [];
                 },
               },
-            })
-          );
+            },
+          }));
 
           return {
             name: "workspace",
