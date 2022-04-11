@@ -1,26 +1,17 @@
-const commonOptions: Fig.Option[] = [
-  {
-    name: "--no-interaction",
-    description: "Disable interactions",
-  },
-  {
-    name: "--debug",
-    description: "Display debug information instead of standard output",
-  },
-  {
-    name: "--silent",
-    description: "Do not print anything",
-  },
-];
-
 const applyOptions: Fig.Option[] = [
   {
     name: ["--path", "-p"],
     description: "Path to a sub-directory in which to look for a preset",
+    args: {
+      name: "path",
+    },
   },
   {
     name: ["--tag", "-t"],
     description: "Branch or tag to use if the preset is a repository",
+    args: {
+      name: "tag",
+    },
   },
   {
     name: "--no-ssh",
@@ -41,7 +32,7 @@ const applyArguments: Fig.Arg[] = [
   {
     name: "target-directory",
     description: "Directory in which to apply the preset",
-    template: ["folders"],
+    template: "folders",
     isOptional: true,
   },
 ];
@@ -53,23 +44,21 @@ const completionSpec: Fig.Spec = {
     {
       name: "apply",
       description: "Apply a preset",
-      options: [...applyOptions, ...commonOptions],
+      options: applyOptions,
       args: applyArguments,
     },
     {
       name: "init",
       description: "Create a new preset",
-      options: commonOptions,
       args: {
         name: "target-directory",
         description: "Directory in which to apply the preset",
-        template: ["folders"],
+        template: "folders",
         isOptional: true,
       },
     },
   ],
   options: [
-    ...commonOptions,
     ...applyOptions,
     {
       name: ["--help", "-h"],
@@ -78,6 +67,21 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--version", "-v"],
       description: "Show the version number",
+    },
+    {
+      name: "--no-interaction",
+      description: "Disable interactions",
+      isPersistent: true,
+    },
+    {
+      name: "--debug",
+      description: "Display debug information instead of standard output",
+      isPersistent: true,
+    },
+    {
+      name: "--silent",
+      description: "Do not print anything",
+      isPersistent: true,
     },
   ],
   args: applyArguments, // `apply` is optional, so its arguments can be used directly
