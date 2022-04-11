@@ -139,6 +139,7 @@ const proxyDns: Fig.Subcommand = {
         'Listen address for the DNS over HTTPS proxy server. (default: "localhost") [$TUNNEL_DNS_ADDRESS]',
       args: {
         name: "value",
+        default: "localhost",
       },
     },
     {
@@ -147,6 +148,7 @@ const proxyDns: Fig.Subcommand = {
         "Listen on given port for the DNS over HTTPS proxy server. (default: 53) [$TUNNEL_DNS_PORT]",
       args: {
         name: "value",
+        default: "53",
       },
     },
     {
@@ -791,7 +793,7 @@ const tunnel: Fig.Subcommand = {
             {
               name: ["--default", "-d"],
               description:
-                "--default, -d  The virtual network becomes the default one for the account. This means that all operations that omit a virtual network will now implicitly be using this virtual network (i.e., the default one) such as new IP routes that are created. When this flag is not set, the virtual network will not become the default one in the account. (default: false)",
+                "The virtual network becomes the default one for the account. This means that all operations that omit a virtual network will now implicitly be using this virtual network (i.e., the default one) such as new IP routes that are created. When this flag is not set, the virtual network will not become the default one in the account. (default: false)",
             },
           ],
         },
@@ -2324,7 +2326,7 @@ const tunnel: Fig.Subcommand = {
         suggestions: [
           { name: "0", description: "Off" },
           { name: "1", description: "Low" },
-          { name: ">3", description: "High" },
+          { name: "3", description: "High" },
         ],
       },
     },
