@@ -92,8 +92,7 @@ const suggestions: Fig.Suggestion[] = [
   },
   {
     name: "@preset/cli",
-    icon:
-      "https://raw.githubusercontent.com/preset/preset/main/.github/assets/logo.svg",
+    icon: "https://raw.githubusercontent.com/preset/preset/main/.github/assets/logo.svg",
   },
 ];
 
