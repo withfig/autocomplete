@@ -90,6 +90,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "degit",
     icon: "fig://icon?type=git",
   },
+  {
+    name: "@preset/cli",
+    icon: "https://raw.githubusercontent.com/preset/preset/main/.github/assets/logo.svg",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
