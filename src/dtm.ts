@@ -1,25 +1,19 @@
-const cmds: Fig.Generator = {
-  script: `dtm -h | sed -e '/Available Commands:/,/Flags:/!d' | grep -Ev "Available Commands:|Flags:|^$" | awk '{print $1}'`,
-  postProcess: (output) => {
-    if (output.startsWith("fatal:")) {
-      return [];
-    }
-    return output.split("\n").map((cmd) => {
-      return { name: cmd.trim(), description: "Command" };
-    });
-  },
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
-const plugins: Fig.Generator = {
-  script: "dtm list plugins",
-  postProcess: (output) => {
-    if (output.startsWith("fatal:")) {
-      return [];
-    }
-    return output.split("\n").map((plugin) => {
-      return { name: plugin.trim(), description: "Plugin" };
-    });
+const dtmGenerators: Record<string, Fig.Generator> = {
+  plugins: {
+    script: "dtm list plugins",
+    postProcess: (output) => {
+      if (output.startsWith("fatal:")) {
+        return [];
+      }
+      return output.split("\n").map((plugin) => {
+        return { name: plugin.trim(), description: "Plugin" };
+      });
+    },
   },
+
+  yamlFiles: filepaths({ extensions: ["yaml", "yml"] }),
 };
 
 const completionSpec: Fig.Spec = {
@@ -40,7 +34,7 @@ const completionSpec: Fig.Spec = {
           description: 'Config file (default "config.yaml")',
           args: {
             name: "file",
-            template: "filepaths",
+            generators: dtmGenerators.yamlFiles,
           },
         },
         {
@@ -118,7 +112,7 @@ const completionSpec: Fig.Spec = {
           description: 'Config file (default "config.yaml")',
           args: {
             name: "file",
-            template: "filepaths",
+            generators: dtmGenerators.yamlFiles,
           },
         },
         {
@@ -150,7 +144,7 @@ const completionSpec: Fig.Spec = {
           description: 'Config file (default "config.yaml")',
           args: {
             name: "file",
-            template: "filepaths",
+            generators: dtmGenerators.yamlFiles,
           },
         },
         {
@@ -205,11 +199,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "--plugin",
               description: "Specify name with the plugin",
+              // insertValue: "--plugin={cursor}",
+              // requiresEquals: true,
               isRequired: true,
               args: {
                 name: "plugin name",
                 description: "Plugin name",
-                generators: plugins,
+                generators: dtmGenerators.plugins,
               },
             },
           ],
@@ -222,7 +218,7 @@ const completionSpec: Fig.Spec = {
       description: "Help about any command",
       args: {
         name: "command",
-        generators: cmds,
+        template: "help",
       },
     },
     {
@@ -238,15 +234,15 @@ const completionSpec: Fig.Spec = {
           description: 'Config file (default "config.yaml")',
           args: {
             name: "file",
-            template: "filepaths",
+            generators: dtmGenerators.yamlFiles,
           },
         },
         {
           name: ["-p", "--plugin-dir"],
           description: 'Plugins directory (default ".devstream")',
           args: {
-            name: "file",
-            template: "filepaths",
+            name: "dir",
+            template: "folders",
           },
         },
       ],
@@ -261,7 +257,7 @@ const completionSpec: Fig.Spec = {
           description: 'Config file (default "config.yaml")',
           args: {
             name: "file",
-            template: "filepaths",
+            generators: dtmGenerators.yamlFiles,
           },
         },
       ],
