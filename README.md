@@ -104,7 +104,7 @@ npm run copy <spec-name>
 ## 🔥 Contributions
 We would love contributions for:
 * new completion specs 
-* errors with existing completion specs (e.g. missing subcomands, options, or arguments)
+* errors with existing completion specs (e.g. missing subcommands, options, or arguments)
 * [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
 * better descriptions, icons etc
 * [themes](https://github.com/withfig/themes)!
