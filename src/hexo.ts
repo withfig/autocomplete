@@ -67,7 +67,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "new",
-      description: "Creates a new article",
+      description: "Create a new article",
       options: [
         {
           name: ["-p", "--path"],
@@ -106,7 +106,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "generate",
-      description: "Generates static files",
+      description: "Generate static files",
       options: [
         {
           name: ["-d", "--deploy"],
@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "publish",
-      description: "Publishes a draft",
+      description: "Publish a draft",
       args: [
         {
           name: "layout",
@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "server",
       description:
-        "Starts a local server. By default, this is at http://localhost:4000/",
+        "Start a local server. By default, this is at http://localhost:4000/",
       options: [
         {
           name: ["-i", "--ip"],
@@ -200,7 +200,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "deploy",
-      description: "Deploys your website",
+      description: "Deploy your website",
       options: [
         {
           name: "--setup",
@@ -245,21 +245,21 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "migrate",
-      description: "Migrates content from other blog systems",
+      description: "Migrate content from other blog systems",
       args: {
         name: "type",
         description:
-          "The type of migration, check https://hexo.io/docs/migration for more details",
+          "The type of migration. check https://hexo.io/docs/migration for more details",
       },
     },
     {
       name: "clean",
       description:
-        "Cleans the cache file (`db.json`) and generated files (`public`)",
+        "Clean the cache file (`db.json`) and generated files (`public`)",
     },
     {
       name: "list",
-      description: "Lists all routes",
+      description: "List all routes",
       args: {
         name: "type",
         description: "The type of routes to list",
@@ -268,13 +268,14 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "version",
-      description: "Displays version information",
+      description: "Display version information",
     },
   ],
   options: [
     {
       name: "--config",
-      description: "Show help for hexo",
+      description:
+        "Uses a custom config file (instead of `_config.yml`). Also accepts a comma-separated list (no spaces) of JSON or YAML config files that will combine the files into a single `_multiconfig.yml`",
       args: {
         name: "config file",
         template: "filepaths",
@@ -282,24 +283,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--safe",
-      description: "Disables loading plugins and scripts",
+      description: "Disable loading plugins and scripts",
+      isPersistent: true,
     },
     {
       name: "--debug",
-      description: "Logs verbose messages to the terminal and to `debug.log`",
+      description: "Log verbose messages to the terminal and to `debug.log`",
     },
     {
       name: "--silent",
-      description: "Silences output to the terminal",
+      description: "Silence output to the terminal",
     },
     {
       name: "--draft",
       description:
-        "Displays draft posts (stored in the `source/_drafts` folder)",
+        "Display draft posts (stored in the `source/_drafts` folder)",
     },
     {
       name: "--cwd",
-      description: "Customizes the path of current working directory",
+      description: "Customize the path of current working directory",
       args: {
         name: "directory",
         template: "folders",
