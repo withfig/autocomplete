@@ -1,4 +1,3 @@
-import { findConfigFile } from "typescript";
 import {
   npmParserDirectives,
   npmScriptsGenerator,
@@ -1354,7 +1353,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage workspace",
       generateSpec: async (_tokens, executeShellCommand) => {
         const version = await executeShellCommand("yarn --version");
-        const isYarnV1 = /^1\.\d+\.\d+/.test(version);
+        const isYarnV1 = version.startsWith("1.");
 
         // Only use info in yarn workspaces info 1.X.X
         const versionedCommand = isYarnV1 ? "info --silent" : "list --json";
@@ -1367,18 +1366,15 @@ const completionSpec: Fig.Spec = {
           const workspacesDefinitions = isYarnV1
             ? // transform Yarn V1 output to array of workspaces like Yarn V2
               Object.entries(
-                JSON.parse(out) as Record<string, { location: string }>
+                JSON.parse(
+                  out.slice(out.indexOf("\n") + 1, out.lastIndexOf("\n"))
+                ) as Record<string, { location: string }>
               ).map(([name, { location }]) => ({
                 name,
                 location,
               }))
-            : // add commas and array boundaries to make Yarn V2 output parsable JSON
-              JSON.parse(
-                `[${out
-                  .split(/\n/)
-                  .filter((line) => line.trim().length)
-                  .join(",")}]`
-              );
+            : // in yarn v>=2.0.0, workspaces definitions are a list of JSON lines
+              out.split("\n").map((line) => JSON.parse(line.trim()));
 
           const subcommands: Fig.Subcommand[] = workspacesDefinitions.map(
             ({ name, location }: { name: string; location: string }) => ({
@@ -1389,6 +1385,7 @@ const completionSpec: Fig.Spec = {
                 generators: {
                   cache: {
                     strategy: "stale-while-revalidate",
+                    ttl: 60_000, // 60s
                   },
                   script: `\cat ${location}/package.json`,
                   postProcess: function (out: string) {
