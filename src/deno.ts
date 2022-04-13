@@ -4,6 +4,7 @@
 import { filepaths } from "@fig/autocomplete-generators";
 import {
   generateDocs,
+  generateInstalledDenoScripts,
   generateLintRules,
   generatePreferredFilepaths,
   generateRunnableFiles,
@@ -727,8 +728,8 @@ const denoUninstall: Fig.Subcommand = {
     "Uninstalls an executable script in the installation root's bin directory",
   args: {
     name: "name",
-    description: "Arguments that will be provided automatically when run",
-    isVariadic: true,
+    description: "Delete an executable with this name",
+    generators: generateInstalledDenoScripts,
   },
   options: [
     {
