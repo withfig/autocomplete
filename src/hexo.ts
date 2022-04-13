@@ -8,7 +8,7 @@ const draftGenerator: Fig.Generator = {
         .replace(/.md$/g, "");
       return {
         name: title,
-        description: "draft for " + title,
+        description: "Draft for " + title,
         icon: "fig://icon?type=md",
       };
     });
