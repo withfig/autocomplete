@@ -4,6 +4,7 @@
 import { filepaths } from "@fig/autocomplete-generators";
 import {
   generateDocs,
+  generateInstalledDenoScripts,
   generateLintRules,
   generatePreferredFilepaths,
   generateRunnableFiles,
@@ -728,18 +729,7 @@ const denoUninstall: Fig.Subcommand = {
   args: {
     name: "name",
     description: "Arguments that will be provided automatically when run",
-    generators: {
-      script: "\\find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
-      postProcess: (out) =>
-        out
-          .split("\n")
-          .filter((path) => !path.endsWith("/deno"))
-          .map((path) => ({
-            name: path.slice(path.lastIndexOf("/") + 1),
-            icon: "📦",
-            description: path,
-          })),
-    },
+    generators: generateInstalledDenoScripts,
   },
   options: [
     {
