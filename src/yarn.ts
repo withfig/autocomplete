@@ -1356,7 +1356,7 @@ const completionSpec: Fig.Spec = {
         const isYarnV1 = version.startsWith("1.");
 
         // Only use info in yarn workspaces info 1.X.X
-        const versionedCommand = isYarnV1 ? "info --silent" : "list --json";
+        const versionedCommand = isYarnV1 ? "info" : "list --json";
 
         try {
           const out = await executeShellCommand(
@@ -1366,9 +1366,7 @@ const completionSpec: Fig.Spec = {
           const workspacesDefinitions = isYarnV1
             ? // transform Yarn V1 output to array of workspaces like Yarn V2
               Object.entries(
-                JSON.parse(
-                  out.slice(out.indexOf("\n") + 1, out.lastIndexOf("\n"))
-                ) as Record<string, { location: string }>
+                JSON.parse(out) as Record<string, { location: string }>
               ).map(([name, { location }]) => ({
                 name,
                 location,
