@@ -276,6 +276,7 @@ const completionSpec: Fig.Spec = {
       name: "--config",
       description:
         "Uses a custom config file (instead of `_config.yml`). Also accepts a comma-separated list (no spaces) of JSON or YAML config files that will combine the files into a single `_multiconfig.yml`",
+      isPersistent: true,
       args: {
         name: "config file",
         template: "filepaths",
@@ -289,19 +290,23 @@ const completionSpec: Fig.Spec = {
     {
       name: "--debug",
       description: "Log verbose messages to the terminal and to `debug.log`",
+      isPersistent: true,
     },
     {
       name: "--silent",
       description: "Silence output to the terminal",
+      isPersistent: true,
     },
     {
       name: "--draft",
       description:
         "Display draft posts (stored in the `source/_drafts` folder)",
+      isPersistent: true,
     },
     {
       name: "--cwd",
       description: "Customize the path of current working directory",
+      isPersistent: true,
       args: {
         name: "directory",
         template: "folders",
