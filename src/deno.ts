@@ -728,7 +728,18 @@ const denoUninstall: Fig.Subcommand = {
   args: {
     name: "name",
     description: "Arguments that will be provided automatically when run",
-    isVariadic: true,
+    generators: {
+      script: "\\find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+      postProcess: (out) =>
+        out
+          .split("\n")
+          .filter((path) => !path.endsWith("/deno"))
+          .map((path) => ({
+            name: path.slice(path.lastIndexOf("/") + 1),
+            icon: "📦",
+            description: path,
+          })),
+    },
   },
   options: [
     {
