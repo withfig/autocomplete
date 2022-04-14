@@ -4,7 +4,8 @@ import {
   themesGenerator,
   pluginsGenerator,
 } from "./shared";
-const completion: Fig.Spec = {
+
+const completion: Fig.Subcommand = {
   name: "fig",
   description: "The CLI for Fig",
   subcommands: [
@@ -1578,4 +1579,10 @@ const completion: Fig.Spec = {
     },
   ],
 };
+
+const versions: Fig.VersionDiffMap = {};
+
+versions["1.3.0"] = {};
+
+export { versions };
 export default completion;
