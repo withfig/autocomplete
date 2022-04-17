@@ -24,6 +24,10 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   },
   {
+    name: "nuxi",
+    icon: "https://raw.githubusercontent.com/nuxt/framework/main/docs/static/icon.png",
+  },
+  {
     name: "gltfjsx",
     icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
   },
