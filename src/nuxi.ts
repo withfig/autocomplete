@@ -17,7 +17,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "TEMPALTE",
+          name: "TEMPLATE",
           description: "Specify a template of the file to be generated",
           suggestions: [
             "component",
