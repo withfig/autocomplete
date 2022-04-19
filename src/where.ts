@@ -1,5 +1,5 @@
 const completionSpec: Fig.Spec = {
-  name: "whence",
+  name: "where",
   description: "For each name, indicate how it should be interpreted",
   args: {
     name: "names",

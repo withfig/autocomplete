@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
-  name: "whence",
-  description: "For each name, indicate how it should be interpreted",
+  name: "which",
+  description: "Locate a program in the user's PATH",
   args: {
     name: "names",
     isVariadic: true,
