@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
-  name: "nocorrect",
-  description: "ZSH pre-command modifier that disables correction",
+  name: "until",
+  description: "Repeat a command until this is true",
   args: {
     isCommand: true,
   },
