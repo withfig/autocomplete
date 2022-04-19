@@ -1,6 +1,7 @@
 const completionSpec: Fig.Spec = {
-  name: "nocorrect",
-  description: "ZSH pre-command modifier that disables correction",
+  name: "-",
+  description:
+    "ZSH pre-command modifier that prepends a '-' to the argv[0] string",
   args: {
     isCommand: true,
   },
