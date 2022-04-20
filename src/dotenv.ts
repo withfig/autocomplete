@@ -1,3 +1,5 @@
+// completion spec for dotenv
+// https://github.com/bkeepers/dotenv
 const completionSpec: Fig.Spec = {
   name: "dotenv",
   description: "Loads environment variables from .env",
