@@ -12,16 +12,16 @@
 ![Discord](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)
 [![Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.** 
+**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
 
 As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
 ## ⚡️ Installation
 
-* **macOS**: 
-    * **Homebrew**: `brew install fig`
+* **macOS**:
+    * **Homebrew**: `brew install --cask fig`
     * **DMG**: Download from our website: [fig.io](https://fig.io/download)
-* **Windows/Linux**: 
+* **Windows/Linux**:
     * Join the [waitlist](https://withfig.typeform.com/linux)
 <br/>
 
@@ -33,7 +33,7 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 
 ## 👋 What are "completion specs"?
 
-A completion spec is a _declarative_ schema that specifies the `subcommands`, `options` and `arguments` for a CLI tool. We use these schemas to generate suggestions. 
+A completion spec is a _declarative_ schema that specifies the `subcommands`, `options` and `arguments` for a CLI tool. We use these schemas to generate suggestions.
 
 
 <br/>
@@ -80,7 +80,7 @@ npm run dev
 
 - Edit your spec in typescript in the `src/` folder
 - On save, specs are compiled to the `build/` folder
-- In **dev mode** specs are read from the `build` folders. 
+- In **dev mode** specs are read from the `build` folders.
 
 <br/>
 
@@ -103,7 +103,7 @@ npm run copy <spec-name>
 
 ## 🔥 Contributions
 We would love contributions for:
-* new completion specs 
+* new completion specs
 * errors with existing completion specs (e.g. missing subcommands, options, or arguments)
 * [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
 * better descriptions, icons etc
@@ -118,7 +118,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
     Join our community
 <br/>
 <a href="https://fig.io/community">
-    <img src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" /> 
+    <img src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" />
 </a>
 </p>
 
@@ -126,7 +126,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
 
 #### What terminals does Fig work with?
 
-Fig works with the native MacOS Terminal app, [iTerm](https://iterm2.com/), [Tabby](https://tabby.sh), [Hyper](https://hyper.is) and the [integrated terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal). We are adding support for Alacritty, Kitty, and the integrated terminals in JetBrains very soon. 
+Fig works with the native MacOS Terminal app, [iTerm](https://iterm2.com/), [Tabby](https://tabby.sh), [Hyper](https://hyper.is) and the [integrated terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal). We are adding support for Alacritty, Kitty, and the integrated terminals in JetBrains very soon.
 
 #### How does Fig work?
 
