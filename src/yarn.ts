@@ -1385,7 +1385,7 @@ const completionSpec: Fig.Spec = {
                     strategy: "stale-while-revalidate",
                     ttl: 60_000, // 60s
                   },
-                  script: `\cat ${location}/package.json`,
+                  script: `\\cat ${location}/package.json`,
                   postProcess: function (out: string) {
                     if (out.trim() == "") {
                       return [];

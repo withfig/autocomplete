@@ -349,7 +349,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
                 dockerfilePath = "$PWD/Dockerfile";
               }
 
-              return `\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+              return `\\grep -iE 'FROM.*AS' "${dockerfilePath}"`;
             },
             postProcess: function (out) {
               // This just searches the Dockerfile for the alias name after AS,

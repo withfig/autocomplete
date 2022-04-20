@@ -27,7 +27,7 @@ const getBranches: Fig.Generator = {
 
 const getAllScriptsFromPackages: Fig.Generator = {
   // Get all lerna packages, loop over them and get content of package.json
-  script: `lerna list -p | while read p; do\n \cat $p/package.json && echo ${SPLIT_CHAR}\ndone`,
+  script: `lerna list -p | while read p; do\n \\cat $p/package.json && echo ${SPLIT_CHAR}\ndone`,
   postProcess: (output) => {
     // Split output by the divider and remove empty entry
     const packages = output.split(SPLIT_CHAR).filter((e) => e.trim() !== "");
