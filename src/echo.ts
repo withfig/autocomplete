@@ -11,6 +11,14 @@ const completionSpec: Fig.Spec = {
       name: "-n",
       description: "Do not print the trailing newline character",
     },
+    {
+      name: "-e",
+      description: "Interpret escape sequences",
+    },
+    {
+      name: "-E",
+      description: "Disable escape sequences",
+    },
   ],
 };
 

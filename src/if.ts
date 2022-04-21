@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
-  name: "nocorrect",
-  description: "ZSH pre-command modifier that disables correction",
+  name: "if",
+  description: "Conditionally execute based on the return value of a command",
   args: {
     isCommand: true,
   },

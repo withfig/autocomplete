@@ -4834,7 +4834,7 @@ const completionSpec: Fig.Spec = {
           description: "Show each commit as a single line",
         },
         {
-          name: "--p",
+          name: ["-p", "-u", "--patch"],
           description: "Display the full diff of each commit",
         },
         {

@@ -45,7 +45,7 @@ const searchGenerator: Fig.Generator = {
   script: function (context) {
     if (context[context.length - 1] === "") return "";
     const searchTerm = context[context.length - 1];
-    return `cargo search "${searchTerm}" | \grep -E "^\\w"`;
+    return `cargo search "${searchTerm}" | \\grep -E "^\\w"`;
   },
   postProcess: function (out) {
     return out.split("\n").map((line) => {
@@ -4457,8 +4457,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "spec",
         generators: {
-          script:
-            "cargo install --list | grep -E \"^[a-zA-Z\\-]+\\sv\" | cut -d ' ' -f 1",
+          script: `cargo install --list | \\grep -E "^[a-zA-Z\\-]+\\sv" | cut -d ' ' -f 1`,
           splitOn: "\n",
         },
         isVariadic: true,

@@ -1,11 +1,14 @@
 // See https://github.com/sourcegraph/src-cli
 
+const icon = "https://sourcegraph.com/.assets/img/sourcegraph-mark.svg";
+
 const completionSpec: Fig.Spec = {
   name: "src",
   description: "Interact with Sourcegraph from the command line",
   subcommands: [
     {
       name: "search",
+      icon,
       description: "Run a code search",
       options: [
         {
@@ -59,6 +62,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "api",
+      icon,
       description: "Sourcegraph API Access",
       options: [
         {
@@ -98,6 +102,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "login",
+      icon,
       description:
         "'src login' helps you authenticate 'src' to access a Sourcegraph instance with your user credentials",
       options: [
@@ -128,6 +133,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "batch",
+      icon,
       description:
         "'Batch gives you a declarative structure for finding and modifying code across all of your repositories",
       subcommands: [
@@ -159,6 +165,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "config",
+      icon,
       description: "'src config' helps you configure 'src'",
       subcommands: [
         {
@@ -177,6 +184,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "extsvc",
+      icon,
       description:
         "Edit or view external service configuration on the Sourcegraph instance",
       subcommands: [
@@ -192,6 +200,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "lsif",
+      icon,
       description: "Upload an LSIF dumps",
       subcommands: [
         {
@@ -202,6 +211,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "orgs",
+      icon,
       description: "Create, edit, view, or delete organizations and members",
       subcommands: [
         {
@@ -228,6 +238,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "repos",
+      icon,
       description: "View or delete repositories",
       subcommands: [
         {
@@ -246,6 +257,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "serve-git",
+      icon,
       description:
         "By default 'src serve-git' will recursively serve your current directory on the address ':3434'",
       options: [
@@ -262,6 +274,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "users",
+      icon,
       description: "Create, edit, view, tag, or delete users",
       subcommands: [
         {
@@ -288,6 +301,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "validate",
+      icon,
       description:
         "EXPERIMENTAL: Instance validation provides a quick way to check that a Sourcegraph instance functions properly after a fresh install or an update",
       options: [
