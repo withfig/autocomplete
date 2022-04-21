@@ -12,6 +12,13 @@ const servicesGenerator = (action: string): Fig.Generator => ({
   },
 });
 
+const repositoriesGenerator = (): Fig.Generator => ({
+  script: "brew tap",
+  postProcess: (out) => {
+    return out.split("\n").map((line) => ({ name: line }));
+  },
+});
+
 const formulaeGenerator: Fig.Generator = {
   script: "brew list -1",
   postProcess: function (out) {
@@ -1448,6 +1455,37 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "user/repo or URL",
       },
+    },
+    {
+      name: "untap",
+      description: "Remove a tapped formula repository",
+      args: {
+        name: "repository",
+        generators: repositoriesGenerator(),
+      },
+      options: [
+        {
+          name: ["-f", "--force"],
+          description:
+            "Untap even if formulae or casks from this tap are currently installed",
+        },
+        {
+          name: ["-d", "--debug"],
+          description: "Display any debugging information",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Make some output more quiet",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Make some output more verbose",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Show help message",
+        },
+      ],
     },
     {
       name: "link",
