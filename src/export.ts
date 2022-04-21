@@ -1,10 +1,9 @@
 const completionSpec: Fig.Spec = {
-  name: ".",
-  description: "Source a file",
+  name: "export",
+  description: "Export variables",
   hidden: true,
   args: {
-    template: "filepaths",
-    isScript: true,
+    isVariadic: true,
   },
 };
 
