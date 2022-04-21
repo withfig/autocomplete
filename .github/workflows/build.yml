@@ -10,6 +10,7 @@ on:
       # - a pr is merged to master
       # - we push into master
       - "master"
+  workflow_dispatch:
 
 jobs:
   build:
