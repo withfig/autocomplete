@@ -27,7 +27,7 @@ const getSubfolderSpecNames = (dirPathRelativeToSrc) => {
   try {
     // if index.ts exists we are in a spec folder and we only return the current dir path e.g. fig/index.ts return fig
     fs.readFileSync(path.join(resolvedDirPath, 'index.ts'))
-    return [dirPathRelativeToSrc]
+    return [`"${dirPathRelativeToSrc}"`]
   } catch {
     // otherwise the folder is just used to organize specs e.g. aws/*.ts
     const specNames = []
