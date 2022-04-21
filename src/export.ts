@@ -1,10 +1,10 @@
 const completionSpec: Fig.Spec = {
   name: "export",
   description: "Export variables",
-	hidden: true,
+  hidden: true,
   args: {
-		isVariadic: true,
-	},
+    isVariadic: true,
+  },
 };
 
 export default completionSpec;
