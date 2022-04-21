@@ -2,11 +2,15 @@ const listTargets: Fig.Generator = {
   script: `cat [Mm]akefile`,
   postProcess: function (out) {
     const matches = out.matchAll(
-      /((?:^#.*\n)*)(?:^\.PHONY:.*\n)?(^\S*):.*?(?:\s#+\s*(.*))?\n\t/gm
+      /((?:^#.*\n)*)(?:^\.[A-Z_]+:.*\n)*(^\S*?):.*?(?:\s#+[ \t]*(.+))?$/gm
     );
     const targets: Fig.Suggestion[] = [];
-    for (const match of matches) {
+    const specialTargets = new Set([".PHONY", ".SUFFIXES", ".DEFAULT"])
+    for (const match of matches) {      
       const [_, leadingComment, target, inlineComment] = match;
+
+      if (specialTargets.has(target)) continue;
+
       const name = target.trim();
       const description = inlineComment
         ? inlineComment.trim()
