@@ -5,7 +5,7 @@ const listTargets: Fig.Generator = {
       /((?:^#.*\n)*)(?:^\.[A-Z_]+:.*\n)*(^\S*?):.*?(?:\s#+[ \t]*(.+))?$/gm
     );
     const targets: Fig.Suggestion[] = [];
-    const specialTargets = new Set([".PHONY", ".SUFFIXES", ".DEFAULT"])
+    const specialTargets = new Set(['.PHONY', '.SUFFIXES', '.DEFAULT', '.PRECIOUS', '.INTERMEDIATE', '.SECONDARY', '.SECONDEXPANSION', '.DELETE_ON_ERROR', '.IGNORE', '.LOW_RESOLUTION_TIME', '.SILENT', '.EXPORT_ALL_VARIABLES', '.NOTPARALLEL', '.ONESHELL', '.POSIX'])
     for (const match of matches) {      
       const [_, leadingComment, target, inlineComment] = match;
 
