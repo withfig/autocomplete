@@ -31,6 +31,10 @@ const completionSpec: Fig.Spec = {
       name: "-e",
       description:
         "Separate the name and the value of the variable(s) with '='",
+      args: {
+        name: "variable",
+        isVariadic: true,
+      },
     },
     {
       name: "-h",
