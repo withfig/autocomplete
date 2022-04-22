@@ -1355,24 +1355,35 @@ const completionSpec: Fig.Spec = {
         const version = await executeShellCommand("yarn --version");
         const isYarnV1 = version.startsWith("1.");
 
-        // Only use info in yarn workspaces info 1.X.X
-        const versionedCommand = isYarnV1 ? "info" : "list --json";
+        const getWorkspacesDefinitionsV1 = async () => {
+          const out = await executeShellCommand(`yarn workspaces info`);
+
+          const startJson = out.indexOf("{");
+          const endJson = out.lastIndexOf("}");
+
+          return Object.entries(
+            JSON.parse(out.slice(startJson, endJson + 1)) as Record<
+              string,
+              { location: string }
+            >
+          ).map(([name, { location }]) => ({
+            name,
+            location,
+          }));
+        };
+
+        // For yarn >= 2.0.0
+        const getWorkspacesDefinitionsVOther = async () => {
+          const out = await executeShellCommand(`yarn workspaces list --json`);
+          return out.split("\n").map((line) => JSON.parse(line.trim()));
+        };
 
         try {
-          const out = await executeShellCommand(
-            `yarn workspaces ${versionedCommand}`
-          );
-
           const workspacesDefinitions = isYarnV1
             ? // transform Yarn V1 output to array of workspaces like Yarn V2
-              Object.entries(
-                JSON.parse(out) as Record<string, { location: string }>
-              ).map(([name, { location }]) => ({
-                name,
-                location,
-              }))
+              await getWorkspacesDefinitionsV1()
             : // in yarn v>=2.0.0, workspaces definitions are a list of JSON lines
-              out.split("\n").map((line) => JSON.parse(line.trim()));
+              await getWorkspacesDefinitionsVOther();
 
           const subcommands: Fig.Subcommand[] = workspacesDefinitions.map(
             ({ name, location }: { name: string; location: string }) => ({
