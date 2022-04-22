@@ -49,7 +49,7 @@ const defRepoCommand: Fig.Subcommand = {
   subcommands: [
     {
       name: "set-version",
-      description: "Set the versions in policu and task references",
+      description: "Set the versions in policies and task references",
       options: [
         {
           name: ["-v", "--version"],
