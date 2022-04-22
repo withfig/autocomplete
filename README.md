@@ -72,6 +72,15 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 
 3. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
 
+
+#### Other things to know
+
+- Edit your spec in TypeScript in the `src/` folder
+- On save, specs are compiled to the `build/` folder
+- In **dev mode**, specs are read from the `build` folder, and generators run every keystroke.
+
+<br>
+
 ## 🏠 Make completions for local scripts
 
 You can use Fig's autocomplete for your own tools too. Here's how to create private completions:
@@ -90,12 +99,6 @@ npm run dev
 ```
 
 Read more: [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
-
-#### Other things to know
-
-- Edit your spec in TypeScript in the `src/` folder
-- On save, specs are compiled to the `build/` folder
-- In **dev mode**, specs are read from the `build` folder, and generators run every keystroke.
 
 <br/>
 
