@@ -1372,6 +1372,7 @@ const completionSpec: Fig.Spec = {
           }));
         };
 
+        // For yarn >= 2.0.0
         const getWorkspacesDefinitionsVOther = async () => {
           const out = await executeShellCommand(`yarn workspaces list --json`);
           return out.split("\n").map((line) => JSON.parse(line.trim()));
