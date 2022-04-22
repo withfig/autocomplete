@@ -1,3 +1,15 @@
+const generateSysctlNames: Fig.Generator = {
+  script: "sysctl -A -N",
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      return {
+        name: line,
+        description: "Variable name",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "sysctl",
   description: "Get or set kernel state",
@@ -59,6 +71,7 @@ const completionSpec: Fig.Spec = {
     name: "Variable names (and values if available)",
     isVariadic: true,
     isOptional: true,
+    generators: generateSysctlNames,
   },
 };
 
