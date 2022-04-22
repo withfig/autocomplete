@@ -57,7 +57,7 @@ const completion: Fig.Subcommand = {
         },
         {
           name: "launch",
-          description: "Launch th Fig desktop app",
+          description: "Launch the Fig desktop app",
           options: [
             {
               name: "--version",
