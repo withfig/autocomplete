@@ -20,7 +20,6 @@ const completionSpec: Fig.Spec = {
       description: "Override the language for any plain text files",
       args: {
         name: "language",
-        isVariadic: false,
       },
     },
     {
