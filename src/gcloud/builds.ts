@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "cancel",
       description: "Cancel an ongoing build",
-
       options: [
         {
           name: "--account",
@@ -153,7 +152,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Get information about a particular build",
-
       options: [
         {
           name: "--account",
@@ -301,7 +299,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List builds",
-
       options: [
         {
           name: "--account",
@@ -493,7 +490,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "log",
       description: "Stream the logs for a build",
-
       options: [
         {
           name: "--account",
@@ -646,7 +642,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "submit",
       description: "Submit a build using Google Cloud Build",
-
       options: [
         {
           name: "--account",

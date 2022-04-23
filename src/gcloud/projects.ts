@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add IAM policy binding for a project",
-
       options: [
         {
           name: "--account",
@@ -184,7 +183,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Create a new project",
-
       options: [
         {
           name: "--account",
@@ -369,7 +367,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete",
       description: "Delete a project",
-
       options: [
         {
           name: "--account",
@@ -506,7 +503,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Show metadata for a project",
-
       options: [
         {
           name: "--account",
@@ -643,7 +639,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-ancestors",
       description: "Get the ancestors for a project",
-
       options: [
         {
           name: "--account",
@@ -781,7 +776,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-ancestors-iam-policy",
       description: "Get IAM policies for a project and its ancestors",
-
       options: [
         {
           name: "--account",
@@ -959,7 +953,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-iam-policy",
       description: "Get IAM policy for a project",
-
       options: [
         {
           name: "--account",
@@ -1137,7 +1130,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List projects accessible by the active account",
-
       options: [
         {
           name: "--account",
@@ -1315,7 +1307,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-iam-policy-binding",
       description: "Remove IAM policy binding for a project",
-
       options: [
         {
           name: "--account",
@@ -1499,7 +1490,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-iam-policy",
       description: "Set IAM policy for a project",
-
       options: [
         {
           name: "--account",
@@ -1644,7 +1634,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "undelete",
       description: "Undelete a project",
-
       options: [
         {
           name: "--account",
@@ -1781,7 +1770,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update the name of a project",
-
       options: [
         {
           name: "--account",

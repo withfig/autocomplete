@@ -173,7 +173,6 @@ const completionSpec: Fig.Spec = {
           description: "Upload multiple key-value pairs to a namespace",
           args: {
             name: "keys",
-
             template: "filepaths",
           },
         },

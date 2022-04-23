@@ -25,7 +25,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "fetch",
       description: "Fetches a tool to the local machine",
-
       args: {
         isVariadic: true,
         name: "tool | tool@version",

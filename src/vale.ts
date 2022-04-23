@@ -41,7 +41,6 @@ const completionSpec: Fig.Spec = {
       name: "--ext",
       description: "An extension to associate with stdin",
       displayName: "--ext=<ext>",
-
       requiresSeparator: true,
       args: {
         name: "ext",
@@ -52,7 +51,6 @@ const completionSpec: Fig.Spec = {
       name: "--glob",
       description: "A glob pattern",
       displayName: "--glob=<glob>",
-
       requiresSeparator: true,
       args: {
         name: "glob",
@@ -62,7 +60,6 @@ const completionSpec: Fig.Spec = {
       name: "--minAlertLevel",
       description: "The minimum level to display",
       displayName: "--minAlertLevel=<level>",
-
       requiresSeparator: true,
       args: {
         name: "level",
@@ -73,7 +70,6 @@ const completionSpec: Fig.Spec = {
       name: "--output",
       description: "The alert output style to use",
       displayName: "--output=<style>",
-
       requiresSeparator: true,
       args: {
         name: "style",
@@ -84,7 +80,6 @@ const completionSpec: Fig.Spec = {
       name: "--config",
       description: "A path to a .vale.ini file",
       displayName: "--config=<path>",
-
       requiresSeparator: true,
       args: {
         name: "path",

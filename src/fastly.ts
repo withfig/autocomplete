@@ -16,7 +16,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a new ACL attached to the specified service version",
-
           options: [
             {
               name: "--name",
@@ -59,7 +58,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an ACL from the specified service version",
-
           options: [
             {
               name: "--name",
@@ -102,7 +100,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Retrieve a single ACL by name for the version and service",
-
           options: [
             {
               name: "--name",
@@ -143,7 +140,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List ACLs",
-
           options: [
             {
               name: "--version",
@@ -177,7 +173,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an ACL for a particular service and version",
-
           options: [
             {
               name: "--name",
@@ -232,7 +227,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Add an ACL entry to an ACL",
-
           options: [
             {
               name: "--acl-id",
@@ -287,7 +281,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an ACL entry from a specified ACL",
-
           options: [
             {
               name: "--acl-id",
@@ -323,7 +316,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Retrieve a single ACL entry",
-
           options: [
             {
               name: "--acl-id",
@@ -363,7 +355,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List ACLs",
-
           options: [
             {
               name: "--acl-id",
@@ -424,7 +415,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an ACL entry for a specified ACL",
-
           options: [
             {
               name: "--acl-id",
@@ -500,7 +490,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create an API token",
-
           options: [
             {
               name: "--password",
@@ -544,7 +533,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Revoke an API token",
-
           options: [
             {
               name: "--current",
@@ -570,7 +558,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Get the current API token",
-
           options: [
             {
               name: "--json",
@@ -581,7 +568,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List API tokens",
-
           options: [
             {
               name: "--customer-id",
@@ -606,7 +592,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a backend on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -811,7 +796,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a backend on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -854,7 +838,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Show detailed information about a backend on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -895,7 +878,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List backends on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -929,7 +911,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a backend on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -1147,7 +1128,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "build",
           description: "Build a Compute@Edge package locally",
-
           options: [
             {
               name: "--accept-custom-build",
@@ -1189,7 +1169,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "deploy",
           description: "Deploy a package to a Fastly Compute@Edge service",
-
           options: [
             {
               name: "--service-id",
@@ -1252,7 +1231,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "init",
           description: "Initialize a new Compute@Edge package locally",
-
           options: [
             {
               name: "--name",
@@ -1309,7 +1287,6 @@ const completionSpec: Fig.Spec = {
           name: "pack",
           description:
             "Package a pre-compiled Wasm binary for a Fastly Compute@Edge service",
-
           options: [
             {
               name: "--wasm-binary",
@@ -1324,7 +1301,6 @@ const completionSpec: Fig.Spec = {
           name: "publish",
           description:
             "Build and deploy a Compute@Edge package to a Fastly service",
-
           options: [
             {
               name: "--accept-custom-build",
@@ -1415,7 +1391,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "serve",
           description: "Build and run a Compute@Edge package locally",
-
           options: [
             {
               name: "--accept-custom-build",
@@ -1488,7 +1463,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update a package on a Fastly Compute@Edge service version",
-
           options: [
             {
               name: "--service-id",
@@ -1530,7 +1504,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "validate",
           description: "Validate a Compute@Edge package",
-
           options: [
             {
               name: "--package",
@@ -1546,7 +1519,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Display the Fastly CLI configuration",
-
       options: [
         {
           name: "--location",
@@ -1562,7 +1534,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a Fastly edge dictionary on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -1613,7 +1584,6 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete a Fastly edge dictionary from a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -1656,7 +1626,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Show detailed information about a Fastly edge dictionary",
-
           options: [
             {
               name: "--json",
@@ -1697,7 +1666,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all dictionaries on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -1731,7 +1699,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update name of dictionary on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -1794,7 +1761,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new item on a Fastly edge dictionary",
-
           options: [
             {
               name: "--service-id",
@@ -1837,7 +1803,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an item from a Fastly edge dictionary",
-
           options: [
             {
               name: "--service-id",
@@ -1874,7 +1839,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Show detailed information about a Fastly edge dictionary item",
-
           options: [
             {
               name: "--json",
@@ -1914,7 +1878,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List items in a Fastly edge dictionary",
-
           options: [
             {
               name: "--dictionary-id",
@@ -1975,7 +1938,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update or insert an item on a Fastly edge dictionary",
-
           options: [
             {
               name: "--dictionary-id",
@@ -2031,7 +1993,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a domain on a Fastly service version",
-
           options: [
             {
               name: "--name",
@@ -2080,7 +2041,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a domain on a Fastly service version",
-
           options: [
             {
               name: "--name",
@@ -2123,7 +2083,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Show detailed information about a domain on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -2164,7 +2123,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List domains on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -2198,7 +2156,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a domain on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -2255,7 +2212,6 @@ const completionSpec: Fig.Spec = {
           name: "validate",
           description:
             "Checks the status of a specific domain's DNS record for a Service Version",
-
           options: [
             {
               name: "--version",
@@ -2304,7 +2260,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a healthcheck on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -2426,7 +2381,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a healthcheck on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -2469,7 +2423,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Show detailed information about a healthcheck on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -2510,7 +2463,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List healthchecks on a Fastly service version",
-
           options: [
             {
               name: "--json",
@@ -2544,7 +2496,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a healthcheck on a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -2679,7 +2630,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "log-tail",
       description: "Tail Compute@Edge logs",
-
       options: [
         {
           name: "--service-id",
@@ -2746,7 +2696,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an Azure Blob Storage logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -2907,7 +2856,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete an Azure Blob Storage logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -2951,7 +2899,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about an Azure Blob Storage logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -2994,7 +2941,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Azure Blob Storage logging endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -3029,7 +2975,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update an Azure Blob Storage logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -3205,7 +3150,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a BigQuery logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -3325,7 +3269,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a BigQuery logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -3368,7 +3311,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a BigQuery logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -3410,7 +3352,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List BigQuery endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -3445,7 +3386,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a BigQuery logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -3578,7 +3518,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Cloudfiles logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -3737,7 +3676,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Cloudfiles logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -3780,7 +3718,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Cloudfiles logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -3822,7 +3759,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Cloudfiles endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -3857,7 +3793,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Cloudfiles logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -4029,7 +3964,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Datadog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -4120,7 +4054,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Datadog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -4163,7 +4096,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Datadog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -4204,7 +4136,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Datadog endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -4239,7 +4170,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Datadog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -4343,7 +4273,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a DigitalOcean Spaces logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -4502,7 +4431,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a DigitalOcean Spaces logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -4546,7 +4474,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a DigitalOcean Spaces logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -4589,7 +4516,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List DigitalOcean Spaces logging endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -4624,7 +4550,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a DigitalOcean Spaces logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -4798,7 +4723,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an Elasticsearch logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -4945,7 +4869,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete an Elasticsearch logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -4988,7 +4911,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about an Elasticsearch logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -5030,7 +4952,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Elasticsearch endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -5065,7 +4986,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update an Elasticsearch logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -5225,7 +5145,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an FTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -5369,7 +5288,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete an FTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -5412,7 +5330,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about an FTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -5453,7 +5370,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List FTP endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -5488,7 +5404,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update an FTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -5653,7 +5568,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a GCS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -5798,7 +5712,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a GCS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -5841,7 +5754,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a GCS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -5882,7 +5794,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List GCS endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -5917,7 +5828,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a GCS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -6075,7 +5985,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -6181,7 +6090,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -6225,7 +6133,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -6268,7 +6175,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Google Cloud Pub/Sub endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -6303,7 +6209,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -6424,7 +6329,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Heroku logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -6514,7 +6418,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Heroku logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -6557,7 +6460,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Heroku logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -6598,7 +6500,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Heroku endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -6633,7 +6534,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Heroku logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -6736,7 +6636,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Honeycomb logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -6827,7 +6726,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Honeycomb logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -6870,7 +6768,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Honeycomb logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -6912,7 +6809,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Honeycomb endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -6947,7 +6843,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Honeycomb logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -7051,7 +6946,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an HTTPS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -7231,7 +7125,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete an HTTPS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -7274,7 +7167,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about an HTTPS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -7315,7 +7207,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List HTTPS endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -7350,7 +7241,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update an HTTPS logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -7543,7 +7433,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Kafka logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -7727,7 +7616,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Kafka logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -7770,7 +7658,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Kafka logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -7811,7 +7698,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Kafka endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -7846,7 +7732,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Kafka logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -8043,7 +7928,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an Amazon Kinesis logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -8155,7 +8039,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Kinesis logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -8198,7 +8081,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Kinesis logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -8239,7 +8121,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Kinesis endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -8274,7 +8155,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Kinesis logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -8397,7 +8277,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Logentries logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -8499,7 +8378,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Logentries logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -8542,7 +8420,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Logentries logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -8584,7 +8461,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Logentries endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -8619,7 +8495,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Logentries logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -8734,7 +8609,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Loggly logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -8817,7 +8691,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Loggly logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -8860,7 +8733,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Loggly logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -8901,7 +8773,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Loggly endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -8936,7 +8807,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Loggly logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -9032,7 +8902,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Logshuttle logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -9122,7 +8991,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Logshuttle logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -9165,7 +9033,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Logshuttle logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -9207,7 +9074,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Logshuttle endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -9242,7 +9108,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Logshuttle logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -9345,7 +9210,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an New Relic logging endpoint attached to the specified service version",
-
               options: [
                 {
                   name: "--key",
@@ -9436,7 +9300,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete the New Relic Logs logging object for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -9480,7 +9343,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get the details of a New Relic Logs logging object for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -9523,7 +9385,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List all of the New Relic Logs logging objects for a particular service and version",
-
               options: [
                 {
                   name: "--version",
@@ -9558,7 +9419,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a New Relic Logs logging object for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -9664,7 +9524,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an OpenStack logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -9822,7 +9681,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete an OpenStack logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -9865,7 +9723,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about an OpenStack logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -9907,7 +9764,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List OpenStack logging endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -9942,7 +9798,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update an OpenStack logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -10113,7 +9968,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Papertrail logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -10202,7 +10056,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Papertrail logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -10245,7 +10098,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Papertrail logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -10287,7 +10139,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Papertrail endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -10322,7 +10173,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Papertrail logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -10423,7 +10273,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an Amazon S3 logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -10612,7 +10461,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a S3 logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -10655,7 +10503,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a S3 logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -10696,7 +10543,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List S3 endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -10731,7 +10577,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a S3 logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -10933,7 +10778,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Scalyr logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -11024,7 +10868,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Scalyr logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -11067,7 +10910,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Scalyr logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -11108,7 +10950,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Scalyr endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -11143,7 +10984,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Scalyr logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -11247,7 +11087,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create an SFTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -11423,7 +11262,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete an SFTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -11466,7 +11304,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about an SFTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -11507,7 +11344,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List SFTP endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -11542,7 +11378,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update an SFTP logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -11731,7 +11566,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Splunk logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -11853,7 +11687,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Splunk logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -11896,7 +11729,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Splunk logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -11937,7 +11769,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Splunk endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -11972,7 +11803,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Splunk logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -12106,7 +11936,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Sumologic logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -12196,7 +12025,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Sumologic logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -12239,7 +12067,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Sumologic logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -12281,7 +12108,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Sumologic endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -12316,7 +12142,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Sumologic logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -12419,7 +12244,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a Syslog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--name",
@@ -12561,7 +12385,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a Syslog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -12604,7 +12427,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show detailed information about a Syslog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -12645,7 +12467,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Syslog endpoints on a Fastly service version",
-
               options: [
                 {
                   name: "--json",
@@ -12680,7 +12501,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a Syslog logging endpoint on a Fastly service version",
-
               options: [
                 {
                   name: "--version",
@@ -12861,7 +12681,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "purge",
       description: "Invalidate objects in the Fastly cache",
-
       options: [
         {
           name: "--all",
@@ -12918,7 +12737,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Fastly service",
-
           options: [
             {
               name: "--name",
@@ -12947,7 +12765,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Fastly service",
-
           options: [
             {
               name: "--service-id",
@@ -12973,7 +12790,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show detailed information about a Fastly service",
-
           options: [
             {
               name: "--json",
@@ -12999,7 +12815,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Fastly services",
-
           options: [
             {
               name: "--direction",
@@ -13038,7 +12853,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "search",
           description: "Search for a Fastly service by name",
-
           options: [
             {
               name: "--name",
@@ -13052,7 +12866,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Fastly service",
-
           options: [
             {
               name: "--service-id",
@@ -13094,7 +12907,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "activate",
           description: "Activate a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -13129,7 +12941,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "clone",
           description: "Clone a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -13159,7 +12970,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "deactivate",
           description: "Deactivate a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -13189,7 +12999,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Fastly service versions",
-
           options: [
             {
               name: "--json",
@@ -13215,7 +13024,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "lock",
           description: "Lock a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -13245,7 +13053,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Fastly service version",
-
           options: [
             {
               name: "--service-id",
@@ -13294,7 +13101,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "historical",
           description: "View historical stats for a Fastly service",
-
           options: [
             {
               name: "--service-id",
@@ -13352,7 +13158,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "realtime",
           description: "View realtime stats for a Fastly service",
-
           options: [
             {
               name: "--service-id",
@@ -13395,7 +13200,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a user of the Fastly API and web interface",
-
           options: [
             {
               name: "--login",
@@ -13425,7 +13229,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a user of the Fastly API and web interface",
-
           options: [
             {
               name: "--id",
@@ -13440,7 +13243,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Get a specific user of the Fastly API and web interface",
-
           options: [
             {
               name: "--current",
@@ -13462,7 +13264,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all users from a specified customer id",
-
           options: [
             {
               name: "--customer-id",
@@ -13481,7 +13282,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a user of the Fastly API and web interface",
-
           options: [
             {
               name: "--id",
@@ -13532,7 +13332,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Upload a VCL for a particular service and version",
-
               options: [
                 {
                   name: "--content",
@@ -13587,7 +13386,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete the uploaded VCL for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -13630,7 +13428,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get the uploaded VCL for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -13672,7 +13469,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List the uploaded VCLs for a particular service and version",
-
               options: [
                 {
                   name: "--version",
@@ -13707,7 +13503,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update the uploaded VCL for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -13772,7 +13567,6 @@ const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a snippet for a particular service and version",
-
               options: [
                 {
                   name: "--content",
@@ -13844,7 +13638,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a specific snippet for a particular service and version",
-
               options: [
                 {
                   name: "--name",
@@ -13887,7 +13680,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get the uploaded VCL snippet for a particular service and version",
-
               options: [
                 {
                   name: "--version",
@@ -13941,7 +13733,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List the uploaded VCL snippets for a particular service and version",
-
               options: [
                 {
                   name: "--version",
@@ -13976,7 +13767,6 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Update a VCL snippet for a particular service and version",
-
               options: [
                 {
                   name: "--version",

@@ -5,7 +5,6 @@
 // To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 const global_parameter_path: Fig.Option = {
   name: "--path",
-
   requiresSeparator: true,
   description: "Path to the WordPress files",
   args: {
@@ -16,7 +15,6 @@ const global_parameter_path: Fig.Option = {
 
 const global_parameter_url: Fig.Option = {
   name: "--url",
-
   requiresSeparator: true,
   description:
     "Pretend request came from given URL. In multisite, this argument is how the target site is specified",
@@ -27,7 +25,6 @@ const global_parameter_url: Fig.Option = {
 
 const global_parameter_ssh: Fig.Option = {
   name: "--ssh",
-
   requiresSeparator: true,
   description:
     "Perform operation against a remote server over SSH (or a container using scheme of “docker”, “docker-compose”, “vagrant”)",
@@ -46,7 +43,6 @@ const global_parameter_ssh: Fig.Option = {
 
 const global_parameter_http: Fig.Option = {
   name: "--http",
-
   requiresSeparator: true,
   description:
     "Perform operation against a remote WordPress installation over HTTP",
@@ -57,7 +53,6 @@ const global_parameter_http: Fig.Option = {
 
 const global_parameter_user: Fig.Option = {
   name: "--user",
-
   requiresSeparator: true,
   description: "Set the WordPress user",
   args: {
@@ -74,7 +69,6 @@ const global_parameter_skip_plugins1: Fig.Option = {
 
 const global_parameter_skip_plugins2: Fig.Option = {
   name: "--skip-plugins",
-
   requiresSeparator: true,
   displayName: "--skip-plugins=",
   description:
@@ -91,7 +85,6 @@ const global_parameter_skip_themes1: Fig.Option = {
 
 const global_parameter_skip_themes2: Fig.Option = {
   name: "--skip-themes",
-
   requiresSeparator: true,
   displayName: "--skip-themes=",
   description: "Skip loading all themes, or a comma-separated list of themes",
@@ -107,7 +100,6 @@ const global_parameter_skip_packages: Fig.Option = {
 
 const global_parameter_require: Fig.Option = {
   name: "--require",
-
   requiresSeparator: true,
   description:
     "Load PHP file before running the command (may be used more than once)",
@@ -118,7 +110,6 @@ const global_parameter_require: Fig.Option = {
 
 const global_parameter_exec: Fig.Option = {
   name: "--exec",
-
   requiresSeparator: true,
   description:
     "Execute PHP code before running the command (may be used more than once)",
@@ -163,7 +154,6 @@ const global_parameter_prompt1: Fig.Option = {
 
 const global_parameter_prompt2: Fig.Option = {
   name: "--prompt",
-
   requiresSeparator: true,
   displayName: "--prompt=",
   description:
@@ -186,7 +176,6 @@ const completionSpec: Fig.Spec = {
     // {
     //   name: "admin",
     //   description: "Open /wp-admin/ in a browser.",
-
     //   // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
     //   // If you want to build custom suggestions for arguments check out: https://fig.io/docs/concepts/dynamic-suggestions
     //   args: [{}],
@@ -430,7 +419,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -509,21 +497,18 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--set-user",
-
                   requiresSeparator: true,
                   description: "Set user for alias",
                   args: { name: "user" },
                 },
                 {
                   name: "--set-url",
-
                   requiresSeparator: true,
                   description: "Set url for alias",
                   args: { name: "url" },
                 },
                 {
                   name: "--set-path",
-
                   requiresSeparator: true,
                   description: "Set path for alias",
                   args: {
@@ -533,28 +518,24 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--set-ssh",
-
                   requiresSeparator: true,
                   description: "Set ssh for alias",
                   args: { name: "ssh" },
                 },
                 {
                   name: "--set-http",
-
                   requiresSeparator: true,
                   description: "Set http for alias",
                   args: { name: "http" },
                 },
                 {
                   name: "--grouping",
-
                   requiresSeparator: true,
                   description: "For grouping multiple aliases",
                   args: { name: "grouping" },
                 },
                 {
                   name: "--config",
-
                   requiresSeparator: true,
                   description: "Config file to be considered for operations",
                   args: {
@@ -574,7 +555,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--config",
-
                   requiresSeparator: true,
                   description: "Config file to be considered for operations",
                   args: {
@@ -598,7 +578,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Set user for alias",
                   args: {
@@ -622,21 +601,18 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--set-user",
-
                   requiresSeparator: true,
                   description: "Set user for alias",
                   args: { name: "user" },
                 },
                 {
                   name: "--set-url",
-
                   requiresSeparator: true,
                   description: "Set url for alias",
                   args: { name: "url" },
                 },
                 {
                   name: "--set-path",
-
                   requiresSeparator: true,
                   description: "Set path for alias",
                   args: {
@@ -646,28 +622,24 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--set-ssh",
-
                   requiresSeparator: true,
                   description: "Set ssh for alias",
                   args: { name: "ssh" },
                 },
                 {
                   name: "--set-http",
-
                   requiresSeparator: true,
                   description: "Set http for alias",
                   args: { name: "http" },
                 },
                 {
                   name: "--grouping",
-
                   requiresSeparator: true,
                   description: "For grouping multiple aliases",
                   args: { name: "grouping" },
                 },
                 {
                   name: "--config",
-
                   requiresSeparator: true,
                   description: "Config file to be considered for operations",
                   args: {
@@ -712,14 +684,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each update",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific object fields. Defaults to version,update_type,package_url",
@@ -727,7 +697,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -753,14 +722,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--line",
-
               requiresSeparator: true,
               description: "The current command line to be executed",
               args: { name: "line" },
             },
             {
               name: "--point",
-
               requiresSeparator: true,
               description:
                 "The index to the current cursor position relative to the beginning of the command",
@@ -782,7 +749,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -803,7 +769,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -942,7 +907,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--count",
-
               requiresSeparator: true,
               description: "How many comments to generate?",
               args: {
@@ -952,7 +916,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_id",
-
               requiresSeparator: true,
               description: "Assign comments to a specific post",
               args: {
@@ -961,7 +924,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -981,7 +943,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole comment, returns the value of a single field",
@@ -991,7 +952,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -1001,7 +961,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -1027,7 +986,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Prints the value of a single field for each comment",
@@ -1037,7 +995,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: {
@@ -1046,7 +1003,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -1089,7 +1045,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -1140,7 +1095,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Get value in a particular format",
                   args: {
@@ -1164,7 +1118,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--keys",
-
                   requiresSeparator: true,
                   description: "Limit output to metadata of specific keys",
                   args: {
@@ -1173,7 +1126,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value",
@@ -1183,7 +1135,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -1199,7 +1150,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--orderby",
-
                   requiresSeparator: true,
                   description: "Set orderby which field",
                   args: {
@@ -1213,7 +1163,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--order",
-
                   requiresSeparator: true,
                   description: "Set ascending or descending order",
                   args: {
@@ -1262,7 +1211,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -1293,7 +1241,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -1328,7 +1275,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -1446,21 +1392,18 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbname",
-
               requiresSeparator: true,
               description: "Set the database name",
               args: { name: "dbname" },
             },
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Set the database user",
               args: { name: "dbuser" },
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Set the database password",
               args: {
@@ -1470,7 +1413,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbhost",
-
               requiresSeparator: true,
               description: "Set the database host",
               args: {
@@ -1480,7 +1422,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbprefix",
-
               requiresSeparator: true,
               description: "Set the database table prefix",
               args: {
@@ -1490,7 +1431,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbcharset",
-
               requiresSeparator: true,
               description: "Set the database charset",
               args: {
@@ -1500,14 +1440,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbcollate",
-
               requiresSeparator: true,
               description: "Set the database collation",
               args: { name: "dbcollate" },
             },
             {
               name: "--locale",
-
               requiresSeparator: true,
               description:
                 "Set the WPLANG constant. Defaults to $wp_local_package variable",
@@ -1549,7 +1487,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--type",
-
               requiresSeparator: true,
               description:
                 "Type of the config value to delete. Defaults to ‘all’",
@@ -1579,7 +1516,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--type",
-
               requiresSeparator: true,
               description:
                 "Type of the config value to delete. Defaults to ‘all’",
@@ -1594,7 +1530,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Get value in a particular format",
               args: {
@@ -1619,7 +1554,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--type",
-
               requiresSeparator: true,
               description:
                 "Type of the config value to delete. Defaults to ‘all’",
@@ -1645,7 +1579,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -1653,7 +1586,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -1709,7 +1641,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--anchor",
-
               requiresSeparator: true,
               description:
                 "Anchor string where additions of new values are anchored around. Defaults to “/* That’s all, stop editing!”",
@@ -1717,7 +1648,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--placement",
-
               requiresSeparator: true,
               description:
                 "Where to place the new values in relation to the anchor string",
@@ -1728,7 +1658,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--separator",
-
               requiresSeparator: true,
               description:
                 "Separator string to put between an added value and its anchor string. The following escape sequences will be recognized and properly interpreted: ‘\n’ => newline, ‘\r’ => carriage return, ‘\t’ => tab. Defaults to a single EOL (“\n” on *nix and “\r\n” on Windows)",
@@ -1736,7 +1665,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--type",
-
               requiresSeparator: true,
               description: "Type of the config value to set. Defaults to ‘all’",
               args: {
@@ -1814,14 +1742,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each update",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific object fields. Defaults to version,update_type,package_url",
@@ -1829,7 +1755,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -1856,7 +1781,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--path",
-
               requiresSeparator: true,
               description:
                 "Specify the path in which to install WordPress. Defaults to current directory",
@@ -1864,14 +1788,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--locale",
-
               requiresSeparator: true,
               description: "Select which language you want to download",
               args: { name: "locale" },
             },
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "Select which version you want to download. Accepts a version number, ‘latest’ or ‘nightly’",
@@ -1905,28 +1827,24 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--url",
-
               requiresSeparator: true,
               description: "The address of the new site",
               args: { name: "url" },
             },
             {
               name: "--title",
-
               requiresSeparator: true,
               description: "The title of the new site",
               args: { name: "site-title" },
             },
             {
               name: "--admin_user",
-
               requiresSeparator: true,
               description: "The name of the admin user",
               args: { name: "username" },
             },
             {
               name: "--admin_password",
-
               requiresSeparator: true,
               description:
                 "The password for the admin user. Defaults to randomly generated string",
@@ -1934,7 +1852,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--admin_email",
-
               requiresSeparator: true,
               description: "The email address for the admin user",
               args: { name: "email" },
@@ -1963,14 +1880,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--title",
-
               requiresSeparator: true,
               description: "The title of the new network",
               args: { name: "network-title" },
             },
             {
               name: "--base",
-
               requiresSeparator: true,
               description:
                 "Base path after the domain name that each site url will start with",
@@ -1992,14 +1907,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--url",
-
               requiresSeparator: true,
               description: "The address of the new site",
               args: { name: "url" },
             },
             {
               name: "--base",
-
               requiresSeparator: true,
               description:
                 "Base path after the domain name that each site url will start with",
@@ -2015,14 +1928,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--title",
-
               requiresSeparator: true,
               description: "The title of the new site",
               args: { name: "site-title" },
             },
             {
               name: "--admin_user",
-
               requiresSeparator: true,
               description: "The name of the admin user",
               args: {
@@ -2032,7 +1943,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--admin_password",
-
               requiresSeparator: true,
               description:
                 "The password for the admin user. Defaults to randomly generated string",
@@ -2040,7 +1950,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--admin_email",
-
               requiresSeparator: true,
               description: "The email address for the admin user",
               args: { name: "email" },
@@ -2073,7 +1982,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "Update to a specific version, instead of to the latest version. Alternatively accepts ‘nightly’",
@@ -2086,7 +1994,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--locale",
-
               requiresSeparator: true,
               description: "Select which language you want to download",
               args: { name: "locale" },
@@ -2120,7 +2027,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "Verify checksums against a specific version of WordPress",
@@ -2128,7 +2034,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--locale",
-
               requiresSeparator: true,
               description:
                 "Verify checksums against a specific locale of WordPress",
@@ -2198,7 +2103,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific object fields",
                   args: { name: "fields" },
@@ -2210,7 +2114,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description:
                     "Prints the value of a single field for each term",
@@ -2218,7 +2121,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -2303,14 +2205,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific object fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description:
                     "Prints the value of a single field for each schedule",
@@ -2318,7 +2218,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -2375,7 +2274,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER",
@@ -2383,7 +2281,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD",
@@ -2409,7 +2306,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER",
@@ -2417,7 +2313,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD",
@@ -2436,14 +2331,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--database",
-
               requiresSeparator: true,
               description: "Use a specific database. Defaults to DB_NAME",
               args: { name: "database" },
             },
             {
               name: "--default-character-set",
-
               requiresSeparator: true,
               description:
                 "Use a specific character set. Defaults to DB_CHARSET when defined",
@@ -2451,14 +2344,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysql. Defaults to DB_USER",
               args: { name: "value" },
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Password to pass to mysql. Defaults to DB_PASSWORD",
               args: { name: "value" },
@@ -2486,7 +2377,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -2507,14 +2397,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysql. Defaults to DB_USER",
               args: { name: "value" },
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Password to pass to mysql. Defaults to DB_PASSWORD",
               args: { name: "value" },
@@ -2527,14 +2415,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysql. Defaults to DB_USER",
               args: { name: "value" },
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Password to pass to mysql. Defaults to DB_PASSWORD",
               args: { name: "value" },
@@ -2556,14 +2442,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysqldump. Defaults to DB_USER",
               args: { name: "value" },
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description:
                 "Password to pass to mysqldump. Defaults to DB_PASSWORD",
@@ -2577,7 +2461,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--tables",
-
               requiresSeparator: true,
               description:
                 "The comma separated list of specific tables to export. Excluding this parameter will export all tables in the database",
@@ -2585,7 +2468,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exclude_tables",
-
               requiresSeparator: true,
               description:
                 "The comma separated list of specific tables that should be skipped from exporting. Excluding this parameter will export all tables in the database",
@@ -2618,7 +2500,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysql. Defaults to DB_USER",
               args: {
@@ -2628,7 +2509,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Password to pass to mysql. Defaults to DB_PASSWORD",
               args: {
@@ -2660,7 +2540,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER",
@@ -2671,7 +2550,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD",
@@ -2708,7 +2586,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysql. Defaults to DB_USER",
               args: {
@@ -2718,7 +2595,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Password to pass to mysql. Defaults to DB_PASSWORD",
               args: {
@@ -2745,7 +2621,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER",
@@ -2756,7 +2631,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD",
@@ -2784,7 +2658,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dbuser",
-
               requiresSeparator: true,
               description: "Username to pass to mysql. Defaults to DB_USER",
               args: {
@@ -2794,7 +2667,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--dbpass",
-
               requiresSeparator: true,
               description: "Password to pass to mysql. Defaults to DB_PASSWORD",
               args: {
@@ -2841,7 +2713,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--before_context",
-
               requiresSeparator: true,
               description: "Number of characters to display before the match",
               args: {
@@ -2851,7 +2722,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--after_context",
-
               requiresSeparator: true,
               description: "Number of characters to display after the match",
               args: {
@@ -2866,7 +2736,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--regex-flags",
-
               requiresSeparator: true,
               description:
                 "Pass PCRE modifiers to the regex search (e.g. ‘i’ for case-insensitivity)",
@@ -2874,7 +2743,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--regex-delimiter",
-
               requiresSeparator: true,
               description:
                 "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1)",
@@ -2902,7 +2770,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--table_column_color",
-
               requiresSeparator: true,
               description:
                 "Percent color code to use for the ‘table:column’ output. For a list of available percent color codes, see below. Default ‘%G’ (bright green)",
@@ -2910,7 +2777,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--id_color",
-
               requiresSeparator: true,
               description:
                 "Percent color code to use for the row id output. For a list of available percent color codes, see below. Default ‘%Y’ (bright yellow)",
@@ -2918,7 +2784,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--match_color",
-
               requiresSeparator: true,
               description:
                 "Percent color code to use for the match (unless both before and after context are 0, when no color code is used). For a list of available percent color codes, see below. Default ‘%3%k’ (black on a mustard background)",
@@ -2932,7 +2797,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--size_format",
-
               requiresSeparator: true,
               description: "Display the database size only, as a bare number",
               args: {
@@ -2966,7 +2830,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -2981,7 +2844,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--scope",
-
               requiresSeparator: true,
               description:
                 "Can be all, global, ms_global, blog, or old tables. Defaults to all",
@@ -3014,7 +2876,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--scope",
-
               requiresSeparator: true,
               description:
                 "Can be all, global, ms_global, blog, or old tables. Defaults to all",
@@ -3036,7 +2897,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -3072,7 +2932,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--format",
-
           requiresSeparator: true,
           description: "Choose the format for the archive",
           args: {
@@ -3148,7 +3007,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--width",
-
                   requiresSeparator: true,
                   description:
                     "Width of the embed in pixels. Part of cache key so must match. Defaults to content_width if set else 500px, so is theme and context dependent",
@@ -3156,7 +3014,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--height",
-
                   requiresSeparator: true,
                   description:
                     "Height of the embed in pixels. Part of cache key so must match. Defaults to 1.5 * default width (content_width or 500px), to a maximum of 1000px",
@@ -3190,21 +3047,18 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--width",
-
               requiresSeparator: true,
               description: "Width of the embed in pixels",
               args: { name: "width" },
             },
             {
               name: "--height",
-
               requiresSeparator: true,
               description: "Height of the embed in pixels",
               args: { name: "height" },
             },
             {
               name: "--post-id",
-
               requiresSeparator: true,
               description: "Cache oEmbed response for a given post",
               args: { name: "id" },
@@ -3230,7 +3084,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--limit-response-size",
-
               requiresSeparator: true,
               description:
                 "Limit the size of the resulting HTML when using discovery. Default 150 KB (the standard WordPress limit). Not compatible with ‘no-discover’",
@@ -3243,7 +3096,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--raw-format",
-
               requiresSeparator: true,
               description: "The serialization format for the value",
               args: {
@@ -3263,21 +3115,18 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Display the value of a single field",
                   args: { name: "field" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -3303,21 +3152,18 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Display the value of a single field",
                   args: { name: "field" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -3346,7 +3192,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--limit-response-size",
-
                   requiresSeparator: true,
                   description:
                     "Limit the size of the resulting HTML when using discovery. Default 150 KB (the standard WordPress limit). Not compatible with ‘no-discover’",
@@ -3354,7 +3199,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--link-type",
-
                   requiresSeparator: true,
                   description:
                     "Whether to accept only a certain link type when using discovery. Defaults to any (json or xml), preferring json. Not compatible with ‘no-discover’",
@@ -3449,7 +3293,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--dir",
-
           requiresSeparator: true,
           description:
             "Full path to directory where WXR export files should be stored. Defaults to current working directory",
@@ -3466,7 +3309,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max_file_size",
-
           requiresSeparator: true,
           description:
             "A single export file should have this many megabytes. -1 for unlimited",
@@ -3477,7 +3319,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--start_date",
-
           requiresSeparator: true,
           description:
             "Export only posts published after this date, in format YYYY-MM-DD",
@@ -3485,7 +3326,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--end_date",
-
           requiresSeparator: true,
           description:
             "Export only posts published before this date, in format YYYY-MM-DD",
@@ -3493,7 +3333,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--post_type",
-
           requiresSeparator: true,
           description:
             "Export only posts with this post_type. Separate multiple post types with a comma",
@@ -3504,7 +3343,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--post_type__not_in",
-
           requiresSeparator: true,
           description:
             "Export all post types except those identified. Separate multiple post types with a comma. Defaults to none",
@@ -3512,7 +3350,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--post_in",
-
           requiresSeparator: true,
           description:
             "Export all posts specified as a comma- or space-separated list of IDs. Post’s attachments won’t be exported unless –with_attachments is specified",
@@ -3525,7 +3362,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--start_id",
-
           requiresSeparator: true,
           description:
             "Export only posts with IDs greater than or equal to this post ID",
@@ -3533,7 +3369,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max_num_posts",
-
           requiresSeparator: true,
           description:
             "Export no more than <num> posts (excluding attachments)",
@@ -3541,7 +3376,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--author",
-
           requiresSeparator: true,
           description:
             "Export only posts by this author. Can be either user login or user ID",
@@ -3549,21 +3383,18 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--category",
-
           requiresSeparator: true,
           description: "Export only posts in this category",
           args: { name: "category" },
         },
         {
           name: "--post_status",
-
           requiresSeparator: true,
           description: "Export only posts with this status",
           args: { name: "status" },
         },
         {
           name: "--filename_format",
-
           requiresSeparator: true,
           description:
             "Use a custom format for export filenames. Defaults to ‘{site}.wordpress.{date}.{n}.xml’",
@@ -3586,7 +3417,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--include_ignored_paths",
-
           requiresSeparator: true,
           description:
             "Include additional ignored paths as CSV (e.g. ‘/sys-backup/,/temp/’)",
@@ -3594,28 +3424,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max_depth",
-
           requiresSeparator: true,
           description: "Only recurse to a specified depth, inclusive",
           args: { name: "max-depth" },
         },
         {
           name: "--fields",
-
           requiresSeparator: true,
           description: "Limit the output to specific row fields",
           args: { name: "fields" },
         },
         {
           name: "--field",
-
           requiresSeparator: true,
           description: "Output a specific field for each row",
           args: { name: "field" },
         },
         {
           name: "--format",
-
           requiresSeparator: true,
           description: "Render output in a particular format",
           args: {
@@ -3768,7 +3594,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--slug",
-
               requiresSeparator: true,
               description:
                 "Plugin or theme slug. Defaults to the source directory’s basename",
@@ -3776,7 +3601,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--domain",
-
               requiresSeparator: true,
               description:
                 "Text domain to look for in the source code, unless the --ignore-domain option is used. By default, the “Text Domain” header of the plugin or theme is used. If none is provided, it falls back to the project slug",
@@ -3789,7 +3613,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--merge",
-
               requiresSeparator: true,
               description:
                 "Comma-separated list of POT files whose contents should be merged with the extracted strings. If left empty, defaults to the destination POT file. POT file headers will be ignored",
@@ -3797,7 +3620,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--subtract",
-
               requiresSeparator: true,
               description:
                 "Comma-separated list of POT files whose contents should act as some sort of blacklist for string extraction. Any string which is found on that blacklist will not be extracted. This can be useful when you want to create multiple POT files from the same source directory with slightly different content and no duplicate strings between them",
@@ -3805,7 +3627,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--include",
-
               requiresSeparator: true,
               description:
                 "Comma-separated list of files and paths that should be used for string extraction. If provided, only these files and folders will be taken into account for string extraction. For example, --include='src,my-file.php will ignore anything besides my-file.php and files in the src directory. Simple glob patterns can be used, i.e. --include=foo-*.php includes any PHP file with the foo- prefix. Leading and trailing slashes are ignored, i.e. /my/directory/ is the same as my/directory",
@@ -3813,7 +3634,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exclude",
-
               requiresSeparator: true,
               description:
                 "Comma-separated list of files and paths that should be skipped for string extraction. For example, --exclude='.github,myfile.php would ignore any strings found within myfile.php or the .github folder. Simple glob patterns can be used, i.e. --exclude=foo-*.php excludes any PHP file with the foo- prefix. Leading and trailing slashes are ignored, i.e. /my/directory/ is the same as my/directory. The following files and folders are always excluded: node_modules, .git, .svn, .CVS, .hg, vendor, *.min.js",
@@ -3821,7 +3641,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--headers",
-
               requiresSeparator: true,
               description:
                 "Array in JSON format of custom headers which will be added to the POT file. Defaults to empty array",
@@ -3847,7 +3666,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--file-comment",
-
               requiresSeparator: true,
               description:
                 "String that should be added as a comment to the top of the resulting POT file. By default, a copyright comment is added for WordPress plugins and themes in the following manner: Copyright (C) 2018 Example Plugin Author. This file is distributed under the same license as the Example Plugin package. If a plugin or theme specifies a license in their main plugin file or stylesheet, the comment looks like this: Copyright (C) 2018 Example Plugin Author. This file is distributed under the GPLv2",
@@ -3855,7 +3673,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--package-name",
-
               requiresSeparator: true,
               description:
                 "Name to use for package name in the resulting POT file’s Project-Id-Version header. Overrides plugin or theme name, if applicable",
@@ -3877,7 +3694,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--authors",
-
           requiresSeparator: true,
           description:
             "How the author mapping should be handled. Options are ‘create’, ‘mapping.csv’, or ‘skip’. The first will create any non-existent users from the WXR file. The second will read author mapping associations from a CSV, or create a CSV for editing if the file path doesn’t exist. The CSV requires two columns, and a header row like “old_user_login,new_user_login”. The last option will skip any author mapping",
@@ -3885,7 +3701,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--skip",
-
           requiresSeparator: true,
           description:
             "Skip importing specific data. Supported options are: ‘attachment’ and ‘image_resize’ (skip time-consuming thumbnail generation)",
@@ -3978,7 +3793,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Display the value of a single field",
                   args: { name: "field" },
@@ -3990,14 +3804,12 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -4056,7 +3868,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description:
                     "Render output in a particular format. Used when installing languages for all plugins",
@@ -4102,7 +3913,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Display the value of a single field",
                   args: { name: "field" },
@@ -4114,14 +3924,12 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -4196,7 +4004,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description:
                     "Render output in a particular format. Used when installing languages for all themes",
@@ -4242,7 +4049,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Display the value of a single field",
                   args: { name: "field" },
@@ -4254,14 +4060,12 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -4409,7 +4213,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -4417,7 +4220,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -4445,35 +4247,30 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--post_id",
-
               requiresSeparator: true,
               description: "ID of the post to attach the imported files to",
               args: { name: "post_id" },
             },
             {
               name: "--title",
-
               requiresSeparator: true,
               description: "Attachment title (post title field)",
               args: { name: "title" },
             },
             {
               name: "--caption",
-
               requiresSeparator: true,
               description: "Caption for attachent (post excerpt field)",
               args: { name: "caption" },
             },
             {
               name: "--alt",
-
               requiresSeparator: true,
               description: "Alt text for image (saved as post meta)",
               args: { name: "alt_text" },
             },
             {
               name: "--desc",
-
               requiresSeparator: true,
               description:
                 "'Description' field (post content) of attachment post",
@@ -4510,7 +4307,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--image_size",
-
               requiresSeparator: true,
               description:
                 "Name of the image size to regenerate. Only thumbnails of this image size will be regenerated, thumbnails of other image sizes will not",
@@ -4607,42 +4403,36 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--description",
-
                   requiresSeparator: true,
                   description: "Set a custom description for the menu item",
                   args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
-
                   requiresSeparator: true,
                   description: "Set a custom title attribute for the menu item",
                   args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
-
                   requiresSeparator: true,
                   description: "Set a custom link target for the menu item",
                   args: { name: "target" },
                 },
                 {
                   name: "--classes",
-
                   requiresSeparator: true,
                   description: "Set a custom link classes for the menu item",
                   args: { name: "classes" },
                 },
                 {
                   name: "--position",
-
                   requiresSeparator: true,
                   description: "Specify the position of this menu item",
                   args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
-
                   requiresSeparator: true,
                   description:
                     "Make this menu item a child of another menu item",
@@ -4670,56 +4460,48 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--title",
-
                   requiresSeparator: true,
                   description: "Set a custom title for the menu item",
                   args: { name: "title" },
                 },
                 {
                   name: "--link",
-
                   requiresSeparator: true,
                   description: "Set a custom url for the menu item",
                   args: { name: "link" },
                 },
                 {
                   name: "--description",
-
                   requiresSeparator: true,
                   description: "Set a custom description for the menu item",
                   args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
-
                   requiresSeparator: true,
                   description: "Set a custom title attribute for the menu item",
                   args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
-
                   requiresSeparator: true,
                   description: "Set a custom link target for the menu item",
                   args: { name: "target" },
                 },
                 {
                   name: "--classes",
-
                   requiresSeparator: true,
                   description: "Set a custom link classes for the menu item",
                   args: { name: "classes" },
                 },
                 {
                   name: "--position",
-
                   requiresSeparator: true,
                   description: "Specify the position of this menu item",
                   args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
-
                   requiresSeparator: true,
                   description:
                     "Make this menu item a child of another menu item",
@@ -4751,56 +4533,48 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--title",
-
                   requiresSeparator: true,
                   description: "Set a custom title for the menu item",
                   args: { name: "title" },
                 },
                 {
                   name: "--link",
-
                   requiresSeparator: true,
                   description: "Set a custom url for the menu item",
                   args: { name: "link" },
                 },
                 {
                   name: "--description",
-
                   requiresSeparator: true,
                   description: "Set a custom description for the menu item",
                   args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
-
                   requiresSeparator: true,
                   description: "Set a custom title attribute for the menu item",
                   args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
-
                   requiresSeparator: true,
                   description: "Set a custom link target for the menu item",
                   args: { name: "target" },
                 },
                 {
                   name: "--classes",
-
                   requiresSeparator: true,
                   description: "Set a custom link classes for the menu item",
                   args: { name: "classes" },
                 },
                 {
                   name: "--position",
-
                   requiresSeparator: true,
                   description: "Specify the position of this menu item",
                   args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
-
                   requiresSeparator: true,
                   description:
                     "Make this menu item a child of another menu item",
@@ -4830,14 +4604,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific object fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -4864,56 +4636,48 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--title",
-
                   requiresSeparator: true,
                   description: "Set a custom title for the menu item",
                   args: { name: "title" },
                 },
                 {
                   name: "--link",
-
                   requiresSeparator: true,
                   description: "Set a custom url for the menu item",
                   args: { name: "link" },
                 },
                 {
                   name: "--description",
-
                   requiresSeparator: true,
                   description: "Set a custom description for the menu item",
                   args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
-
                   requiresSeparator: true,
                   description: "Set a custom title attribute for the menu item",
                   args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
-
                   requiresSeparator: true,
                   description: "Set a custom link target for the menu item",
                   args: { name: "target" },
                 },
                 {
                   name: "--classes",
-
                   requiresSeparator: true,
                   description: "Set a custom link classes for the menu item",
                   args: { name: "classes" },
                 },
                 {
                   name: "--position",
-
                   requiresSeparator: true,
                   description: "Specify the position of this menu item",
                   args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
-
                   requiresSeparator: true,
                   description:
                     "Make this menu item a child of another menu item",
@@ -4929,14 +4693,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -4977,7 +4739,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -5063,7 +4824,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -5114,7 +4874,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Get value in a particular format",
                   args: {
@@ -5138,14 +4897,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--keys",
-
                   requiresSeparator: true,
                   description: "Limit output to metadata of specific keys",
                   args: { name: "keys" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value",
@@ -5153,7 +4910,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -5169,7 +4925,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--orderby",
-
                   requiresSeparator: true,
                   description: "Set orderby which field",
                   args: {
@@ -5183,7 +4938,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--order",
-
                   requiresSeparator: true,
                   description: "Set ascending or descending order",
                   args: {
@@ -5232,7 +4986,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -5263,7 +5016,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -5298,7 +5050,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -5355,7 +5106,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "The serialization format for the value",
               args: {
@@ -5365,7 +5115,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--autoload",
-
               requiresSeparator: true,
               description: "Should this option be automatically loaded",
               args: {
@@ -5393,7 +5142,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Get value in a particular format",
               args: {
@@ -5413,14 +5161,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--search",
-
               requiresSeparator: true,
               description: "Use wildcards ( * and ? ) to match option name",
               args: { name: "search" },
             },
             {
               name: "--exclude",
-
               requiresSeparator: true,
               description:
                 "Pattern to exclude. Use wildcards ( * and ? ) to match option name",
@@ -5428,7 +5174,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--autoload",
-
               requiresSeparator: true,
               description:
                 "Match only autoload options when value is on, and only not-autoload option when off",
@@ -5450,21 +5195,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description:
                 "The serialization format for the value. total_bytes displays the total size of matching options in bytes",
@@ -5482,7 +5224,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orderby",
-
               requiresSeparator: true,
               description: "Set orderby which field",
               args: {
@@ -5496,7 +5237,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--order",
-
               requiresSeparator: true,
               description: "Set ascending or descending order",
               args: {
@@ -5537,7 +5277,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "The serialization format for the value",
               args: {
@@ -5564,7 +5303,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "The output format for the value",
               args: {
@@ -5595,7 +5333,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--autoload",
-
               requiresSeparator: true,
               description:
                 "Requires WP 4.2. Should this option be automatically loaded",
@@ -5606,7 +5343,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "The serialization format for the value",
               args: {
@@ -5649,7 +5385,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -5657,7 +5392,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -5695,7 +5429,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -5703,7 +5436,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -5859,7 +5591,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Only show the provided field",
                   args: { name: "field" },
@@ -5916,7 +5647,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole plugin, returns the value of a single field",
@@ -5924,7 +5654,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -5932,7 +5661,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -5958,7 +5686,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "If set, get that particular version from wordpress.org, instead of the stable version",
@@ -6019,21 +5746,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each plugin",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6049,7 +5773,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--status",
-
               requiresSeparator: true,
               description: "Filter the output by plugin status",
               args: {
@@ -6091,7 +5814,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--page",
-
               requiresSeparator: true,
               description: "Optional page to display",
               args: {
@@ -6101,7 +5823,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--per-page",
-
               requiresSeparator: true,
               description: "Optional number of results to display",
               args: {
@@ -6111,14 +5832,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each plugin",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Ask for specific fields from the API. Defaults to name,slug,author_profile,rating. Acceptable values:",
@@ -6157,7 +5876,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6236,7 +5954,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exclude",
-
               requiresSeparator: true,
               description:
                 "Comma separated list of plugin names that should be excluded from updating",
@@ -6254,7 +5971,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6269,7 +5985,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "If set, the plugin will be updated to the specified version",
@@ -6305,7 +6020,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6364,7 +6078,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--post_author",
-
               requiresSeparator: true,
               description:
                 "The ID of the user who added the post. Default is the current user ID",
@@ -6372,14 +6085,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_date",
-
               requiresSeparator: true,
               description: "The date of the post. Default is the current time",
               args: { name: "post_date" },
             },
             {
               name: "--post_date_gmt",
-
               requiresSeparator: true,
               description:
                 "The date of the post in the GMT timezone. Default is the value of $post_date",
@@ -6387,49 +6098,42 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_content",
-
               requiresSeparator: true,
               description: "The post content. Default empty",
               args: { name: "post_content" },
             },
             {
               name: "--post_content_filtered",
-
               requiresSeparator: true,
               description: "The filtered post content. Default empty",
               args: { name: "post_content_filtered" },
             },
             {
               name: "--post_title",
-
               requiresSeparator: true,
               description: "The post title. Default empty",
               args: { name: "post_title" },
             },
             {
               name: "--post_excerpt",
-
               requiresSeparator: true,
               description: "The post excerpt. Default empty",
               args: { name: "post_excerpt" },
             },
             {
               name: "--post_status",
-
               requiresSeparator: true,
               description: "The post status. Default ‘draft’",
               args: { name: "post_status" },
             },
             {
               name: "--post_type",
-
               requiresSeparator: true,
               description: "The post type. Default ‘post’",
               args: { name: "post_type" },
             },
             {
               name: "--comment_status",
-
               requiresSeparator: true,
               description:
                 "Whether the post can accept comments. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_comment_status’ option",
@@ -6440,7 +6144,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--ping_status",
-
               requiresSeparator: true,
               description:
                 "Whether the post can accept pings. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_ping_status’ option",
@@ -6451,14 +6154,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_password",
-
               requiresSeparator: true,
               description: "The password to access the post. Default empty",
               args: { name: "post_password" },
             },
             {
               name: "--post_name",
-
               requiresSeparator: true,
               description:
                 "The post name. Default is the sanitized post title when creating a new post",
@@ -6466,14 +6167,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-post",
-
               requiresSeparator: true,
               description: "Post id of a post to be duplicated",
               args: { name: "post_id" },
             },
             {
               name: "--to_ping",
-
               requiresSeparator: true,
               description:
                 "Space or carriage return-separated list of URLs to ping. Default empty",
@@ -6481,7 +6180,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--pinged",
-
               requiresSeparator: true,
               description:
                 "Space or carriage return-separated list of URLs that have been pinged. Default empty",
@@ -6489,7 +6187,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_modified",
-
               requiresSeparator: true,
               description:
                 "The date when the post was last modified. Default is the current time",
@@ -6497,7 +6194,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_modified_gmt",
-
               requiresSeparator: true,
               description:
                 "The date when the post was last modified in the GMT timezone. Default is the current time",
@@ -6505,7 +6201,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_parent",
-
               requiresSeparator: true,
               description:
                 "Set this for the post it belongs to, if any. Default 0",
@@ -6516,7 +6211,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--menu_order",
-
               requiresSeparator: true,
               description:
                 "The order the post should be displayed in. Default 0",
@@ -6527,14 +6221,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_mime_type",
-
               requiresSeparator: true,
               description: "The mime type of the post. Default empty",
               args: { name: "post_mime_type" },
             },
             {
               name: "--guid",
-
               requiresSeparator: true,
               description:
                 "Global Unique ID for referencing the post. Default empty",
@@ -6542,7 +6234,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_category",
-
               requiresSeparator: true,
               description:
                 "Array of category names, slugs, or IDs. Defaults to value of the ‘default_category’ option",
@@ -6550,14 +6241,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--tags_input",
-
               requiresSeparator: true,
               description: "Array of tag names, slugs, or IDs. Default empty",
               args: { name: "tags_input" },
             },
             {
               name: "--tax_input",
-
               requiresSeparator: true,
               description:
                 "Array of taxonomy terms keyed by their taxonomy name. Default empty",
@@ -6565,7 +6254,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--meta_input",
-
               requiresSeparator: true,
               description:
                 "Array in JSON format of post meta values keyed by their post meta key. Default empty",
@@ -6629,7 +6317,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--count",
-
               requiresSeparator: true,
               description: "How many posts to generate?",
               args: {
@@ -6639,7 +6326,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_type",
-
               requiresSeparator: true,
               description: "The type of the generated posts",
               args: {
@@ -6649,7 +6335,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_status",
-
               requiresSeparator: true,
               description: "The status of the generated posts",
               args: {
@@ -6659,21 +6344,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_title",
-
               requiresSeparator: true,
               description: "The post title",
               args: { name: "post_title" },
             },
             {
               name: "--post_author",
-
               requiresSeparator: true,
               description: "The author of the generated posts",
               args: { name: "login" },
             },
             {
               name: "--post_date",
-
               requiresSeparator: true,
               description:
                 "The date of the generated posts. Default: current date",
@@ -6681,7 +6363,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_date_gmt",
-
               requiresSeparator: true,
               description:
                 "The GMT date of the generated posts. Default: value of post_date (or current date if it’s not set)",
@@ -6694,7 +6375,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--max_depth",
-
               requiresSeparator: true,
               description:
                 "For hierarchical post types, generate child posts down to a certain depth",
@@ -6705,7 +6385,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6725,7 +6404,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole post, returns the value of a single field",
@@ -6733,7 +6411,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -6741,7 +6418,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6767,7 +6443,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each post",
               args: {
@@ -6803,7 +6478,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: {
@@ -6839,7 +6513,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -6881,7 +6554,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -6932,7 +6604,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Get value in a particular format",
                   args: {
@@ -6956,14 +6627,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--keys",
-
                   requiresSeparator: true,
                   description: "Limit output to metadata of specific keys",
                   args: { name: "keys" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value",
@@ -6971,7 +6640,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -6987,7 +6655,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--orderby",
-
                   requiresSeparator: true,
                   description: "Set orderby which field",
                   args: {
@@ -7001,7 +6668,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--order",
-
                   requiresSeparator: true,
                   description: "Set ascending or descending order",
                   args: {
@@ -7050,7 +6716,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -7081,7 +6746,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -7116,7 +6780,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -7152,7 +6815,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--by",
-
                   requiresSeparator: true,
                   description:
                     "Explicitly handle the term value as a slug or id",
@@ -7179,7 +6841,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description:
                     "Prints the value of a single field for each term",
@@ -7200,7 +6861,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific row fields",
                   args: {
@@ -7220,7 +6880,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -7258,7 +6917,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--by",
-
                   requiresSeparator: true,
                   description:
                     "Explicitly handle the term value as a slug or id",
@@ -7293,7 +6951,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--by",
-
                   requiresSeparator: true,
                   description:
                     "Explicitly handle the term value as a slug or id",
@@ -7322,7 +6979,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--post_author",
-
               requiresSeparator: true,
               description:
                 "The ID of the user who added the post. Default is the current user ID",
@@ -7330,14 +6986,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_date",
-
               requiresSeparator: true,
               description: "The date of the post. Default is the current time",
               args: { name: "post_date" },
             },
             {
               name: "--post_date_gmt",
-
               requiresSeparator: true,
               description:
                 "The date of the post in the GMT timezone. Default is the value of $post_date",
@@ -7345,49 +6999,42 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_content",
-
               requiresSeparator: true,
               description: "The post content. Default empty",
               args: { name: "post_content" },
             },
             {
               name: "--post_content_filtered",
-
               requiresSeparator: true,
               description: "The filtered post content. Default empty",
               args: { name: "post_content_filtered" },
             },
             {
               name: "--post_title",
-
               requiresSeparator: true,
               description: "The post title. Default empty",
               args: { name: "post_title" },
             },
             {
               name: "--post_excerpt",
-
               requiresSeparator: true,
               description: "The post excerpt. Default empty",
               args: { name: "post_excerpt" },
             },
             {
               name: "--post_status",
-
               requiresSeparator: true,
               description: "The post status. Default ‘draft’",
               args: { name: "post_status" },
             },
             {
               name: "--post_type",
-
               requiresSeparator: true,
               description: "The post type. Default ‘post’",
               args: { name: "post_type" },
             },
             {
               name: "--comment_status",
-
               requiresSeparator: true,
               description:
                 "Whether the post can accept comments. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_comment_status’ option",
@@ -7398,7 +7045,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--ping_status",
-
               requiresSeparator: true,
               description:
                 "Whether the post can accept pings. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_ping_status’ option",
@@ -7409,14 +7055,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_password",
-
               requiresSeparator: true,
               description: "The password to access the post. Default empty",
               args: { name: "post_password" },
             },
             {
               name: "--post_name",
-
               requiresSeparator: true,
               description:
                 "The post name. Default is the sanitized post title when creating a new post",
@@ -7424,7 +7068,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--to_ping",
-
               requiresSeparator: true,
               description:
                 "Space or carriage return-separated list of URLs to ping. Default empty",
@@ -7432,7 +7075,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--pinged",
-
               requiresSeparator: true,
               description:
                 "Space or carriage return-separated list of URLs that have been pinged. Default empty",
@@ -7440,7 +7082,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_modified",
-
               requiresSeparator: true,
               description:
                 "The date when the post was last modified. Default is the current time",
@@ -7448,7 +7089,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_modified_gmt",
-
               requiresSeparator: true,
               description:
                 "The date when the post was last modified in the GMT timezone. Default is the current time",
@@ -7456,7 +7096,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_parent",
-
               requiresSeparator: true,
               description:
                 "Set this for the post it belongs to, if any. Default 0",
@@ -7467,7 +7106,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--menu_order",
-
               requiresSeparator: true,
               description:
                 "The order the post should be displayed in. Default 0",
@@ -7478,14 +7116,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_mime_type",
-
               requiresSeparator: true,
               description: "The mime type of the post. Default empty",
               args: { name: "post_mime_type" },
             },
             {
               name: "--guid",
-
               requiresSeparator: true,
               description:
                 "Global Unique ID for referencing the post. Default empty",
@@ -7493,7 +7129,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--post_category",
-
               requiresSeparator: true,
               description:
                 "Array of category names, slugs, or IDs. Defaults to value of the ‘default_category’ option",
@@ -7501,14 +7136,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--tags_input",
-
               requiresSeparator: true,
               description: "Array of tag names, slugs, or IDs. Default empty",
               args: { name: "tags_input" },
             },
             {
               name: "--tax_input",
-
               requiresSeparator: true,
               description:
                 "Array of taxonomy terms keyed by their taxonomy name. Default empty",
@@ -7516,7 +7149,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--meta_input",
-
               requiresSeparator: true,
               description:
                 "Array in JSON format of post meta values keyed by their post meta key. Default empty",
@@ -7524,7 +7156,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "One or more fields to update. See wp_insert_post()",
             },
@@ -7572,7 +7203,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole taxonomy, returns the value of a single field",
@@ -7580,7 +7210,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -7588,7 +7217,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -7615,7 +7243,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Prints the value of a single field for each post type",
@@ -7623,14 +7250,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific post type fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -7683,7 +7308,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--hook",
-
               requiresSeparator: true,
               description:
                 "Focus on key metrics for all hooks, or callbacks on a specific hook",
@@ -7691,14 +7315,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Display one or more fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -7713,7 +7335,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--order",
-
               requiresSeparator: true,
               description: "Ascending or descending order",
               args: {
@@ -7723,7 +7344,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orderby",
-
               requiresSeparator: true,
               description: "Order by fields",
               args: { name: "orderby" },
@@ -7741,7 +7361,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--hook",
-
               requiresSeparator: true,
               description:
                 "Focus on key metrics for all hooks, or callbacks on a specific hook",
@@ -7749,14 +7368,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Display one or more fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -7771,7 +7388,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--order",
-
               requiresSeparator: true,
               description: "Ascending or descending order",
               args: {
@@ -7781,7 +7397,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orderby",
-
               requiresSeparator: true,
               description: "Order by fields",
               args: { name: "orderby" },
@@ -7808,7 +7423,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--url",
-
               requiresSeparator: true,
               description:
                 "Execute a request against a specified URL. Defaults to the home URL",
@@ -7816,14 +7430,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Display one or more fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -7838,7 +7450,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--order",
-
               requiresSeparator: true,
               description: "Ascending or descending order",
               args: {
@@ -7848,7 +7459,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orderby",
-
               requiresSeparator: true,
               description: "Order by fields",
               args: { name: "orderby" },
@@ -7874,7 +7484,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--url",
-
               requiresSeparator: true,
               description:
                 "Execute a request against a specified URL. Defaults to the home URL",
@@ -7882,7 +7491,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Default is all fields",
@@ -7890,7 +7498,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -7905,7 +7512,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--order",
-
               requiresSeparator: true,
               description: "Ascending or descending order",
               args: {
@@ -7915,7 +7521,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--orderby",
-
               requiresSeparator: true,
               description: "Order by fields",
               args: { name: "orderby" },
@@ -7967,21 +7572,18 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--match",
-
               requiresSeparator: true,
               description: "Show rewrite rules matching a particular URL",
               args: { name: "url" },
             },
             {
               name: "--source",
-
               requiresSeparator: true,
               description: "Show rewrite rules from a particular source",
               args: { name: "source" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to match,query,source",
@@ -7989,7 +7591,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -8015,7 +7616,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--category-base",
-
               requiresSeparator: true,
               description:
                 "Set the base for category permalinks, i.e. ‘/category/’",
@@ -8023,7 +7623,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--tag-base",
-
               requiresSeparator: true,
               description: "Set the base for tag permalinks, i.e. ‘/tag/’",
               args: { name: "base" },
@@ -8079,7 +7678,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--clone",
-
               requiresSeparator: true,
               description: "Clone capabilities from an existing role",
               args: { name: "role" },
@@ -8108,21 +7706,18 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific row fields",
               args: { name: "fields" },
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field",
               args: { name: "field" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -8191,14 +7786,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--title",
-
               requiresSeparator: true,
               description: "The display title for your block",
               args: { name: "title" },
             },
             {
               name: "--dashicon",
-
               requiresSeparator: true,
               description:
                 "The dashicon to make it easier to identify your block",
@@ -8206,7 +7799,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--category",
-
               requiresSeparator: true,
               description:
                 "The category name to help users browse and discover your block",
@@ -8228,7 +7820,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--plugin",
-
               requiresSeparator: true,
               description: "Create files in the given plugin’s directory",
               args: { name: "plugin" },
@@ -8249,7 +7840,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--parent_theme",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Template:’ header in ‘style.css’",
@@ -8257,7 +7847,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--theme_name",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Theme Name:’ header in ‘style.css’",
@@ -8265,14 +7854,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--author",
-
               requiresSeparator: true,
               description: "What to put in the ‘Author:’ header in ‘style.css’",
               args: { name: "full-name" },
             },
             {
               name: "--author_uri",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Author URI:’ header in ‘style.css’",
@@ -8280,7 +7867,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--theme_uri",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Theme URI:’ header in ‘style.css’",
@@ -8311,7 +7897,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dir",
-
               requiresSeparator: true,
               description:
                 "Put the new plugin in some arbitrary directory path. Plugin directory will be path plus supplied slug",
@@ -8319,35 +7904,30 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--plugin_name",
-
               requiresSeparator: true,
               description: "What to put in the ‘Plugin Name:’ header",
               args: { name: "title" },
             },
             {
               name: "--plugin_description",
-
               requiresSeparator: true,
               description: "What to put in the ‘Description:’ header",
               args: { name: "description" },
             },
             {
               name: "--plugin_author",
-
               requiresSeparator: true,
               description: "What to put in the ‘Author:’ header",
               args: { name: "author" },
             },
             {
               name: "--plugin_author_uri",
-
               requiresSeparator: true,
               description: "What to put in the ‘Author URI:’ header",
               args: { name: "uri" },
             },
             {
               name: "--plugin_uri",
-
               requiresSeparator: true,
               description: "What to put in the ‘Plugin URI:’ header",
               args: { name: "uri" },
@@ -8358,7 +7938,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--ci",
-
               requiresSeparator: true,
               description:
                 "Choose a configuration file for a continuous integration provider",
@@ -8396,7 +7975,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dir",
-
               requiresSeparator: true,
               description:
                 "Generate test files for a non-standard plugin path. If no plugin slug is specified, the directory name is used",
@@ -8404,7 +7982,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--ci",
-
               requiresSeparator: true,
               description:
                 "Choose a configuration file for a continuous integration provider",
@@ -8434,21 +8011,18 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--label",
-
               requiresSeparator: true,
               description: "The text used to translate the update messages",
               args: { name: "label" },
             },
             {
               name: "--textdomain",
-
               requiresSeparator: true,
               description: "The textdomain to use for the labels",
               args: { name: "textdomain" },
             },
             {
               name: "--dashicon",
-
               requiresSeparator: true,
               description: "The dashicon to use in the menu",
               args: { name: "dashicon" },
@@ -8460,7 +8034,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--plugin",
-
               requiresSeparator: true,
               description:
                 "Create a file in the given plugin’s directory, instead of sending to STDOUT",
@@ -8487,21 +8060,18 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--post_types",
-
               requiresSeparator: true,
               description: "Post types to register for use with the taxonomy",
               args: { name: "post_types" },
             },
             {
               name: "--label",
-
               requiresSeparator: true,
               description: "The text used to translate the update messages",
               args: { name: "label" },
             },
             {
               name: "--textdomain",
-
               requiresSeparator: true,
               description: "The textdomain to use for the labels",
               args: { name: "textdomain" },
@@ -8513,7 +8083,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--plugin",
-
               requiresSeparator: true,
               description:
                 "Create a file in the given plugin’s directory, instead of sending to STDOUT",
@@ -8541,7 +8110,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--dir",
-
               requiresSeparator: true,
               description:
                 "Generate test files for a non-standard theme path. If no theme slug is specified, the directory name is used",
@@ -8549,7 +8117,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--ci",
-
               requiresSeparator: true,
               description:
                 "Choose a configuration file for a continuous integration provider",
@@ -8589,7 +8156,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--theme_name",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Theme Name:’ header in ‘style.css’",
@@ -8597,14 +8163,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--author",
-
               requiresSeparator: true,
               description: "What to put in the ‘Author:’ header in ‘style.css’",
               args: { name: "full-name" },
             },
             {
               name: "--author_uri",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Author URI:’ header in ‘style.css’",
@@ -8644,7 +8208,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--theme_name",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Theme Name:’ header in ‘style.css’",
@@ -8652,14 +8215,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--author",
-
               requiresSeparator: true,
               description: "What to put in the ‘Author:’ header in ‘style.css’",
               args: { name: "full-name" },
             },
             {
               name: "--author_uri",
-
               requiresSeparator: true,
               description:
                 "What to put in the ‘Author URI:’ header in ‘style.css’",
@@ -8723,7 +8284,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--export",
-
           requiresSeparator: true,
           description:
             "Write transformed data as SQL file instead of saving replacements to the database. If <file> is not supplied, will output to STDOUT",
@@ -8731,7 +8291,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--export_insert_size",
-
           requiresSeparator: true,
           description:
             "Define number of rows in single INSERT statement when doing SQL export. You might want to change this depending on your database configuration (e.g. if you need to do fewer queries). Default: 50",
@@ -8742,7 +8301,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--skip-tables",
-
           requiresSeparator: true,
           description:
             "Do not perform the replacement on specific tables. Use commas to specify multiple tables. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'",
@@ -8750,7 +8308,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--skip-columns",
-
           requiresSeparator: true,
           description:
             "Do not perform the replacement on specific columns. Use commas to specify multiple columns",
@@ -8758,7 +8315,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--include-columns",
-
           requiresSeparator: true,
           description:
             "Perform the replacement on specific columns. Use commas to specify multiple columns",
@@ -8790,7 +8346,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--regex-flags",
-
           requiresSeparator: true,
           description:
             "Pass PCRE modifiers to regex search-replace (e.g. ‘i’ for case-insensitivity)",
@@ -8798,7 +8353,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--regex-delimiter",
-
           requiresSeparator: true,
           description:
             "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1)",
@@ -8806,7 +8360,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--regex-limit",
-
           requiresSeparator: true,
           description:
             "The maximum possible replacements for the regex per row (or per unserialized data bit per row). Defaults to -1 (no limit)",
@@ -8814,7 +8367,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--format",
-
           requiresSeparator: true,
           description: "Render output in a particular format",
           args: {
@@ -8842,7 +8394,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--before_context",
-
           requiresSeparator: true,
           description:
             "For logging, number of characters to display before the old match and the new replacement. Default 40. Ignored if not logging",
@@ -8850,7 +8401,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--after_context",
-
           requiresSeparator: true,
           description:
             "For logging, number of characters to display after the old match and the new replacement. Default 40. Ignored if not logging",
@@ -8884,7 +8434,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--host",
-
           requiresSeparator: true,
           description: "The hostname to bind the server to",
           args: {
@@ -8894,7 +8443,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-
           requiresSeparator: true,
           description: "The port number to bind the server to",
           args: {
@@ -8904,7 +8452,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--docroot",
-
           requiresSeparator: true,
           description:
             "The path to use as the document root. If the path global parameter is set, the default value is it",
@@ -8912,7 +8459,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-
           requiresSeparator: true,
           description: "Config the server with a specific .ini file",
           args: { name: "file" },
@@ -9000,14 +8546,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific row fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -9074,7 +8618,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--slug",
-
               requiresSeparator: true,
               description:
                 "Path for the new site. Subdomain on subdomain installs, directory on subdirectory installs",
@@ -9082,14 +8625,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--title",
-
               requiresSeparator: true,
               description: "Title of the new site. Default: prettified slug",
               args: { name: "title" },
             },
             {
               name: "--email",
-
               requiresSeparator: true,
               description:
                 "Email for Admin user. User will be created if none exists. Assignment to Super Admin if not included",
@@ -9097,7 +8638,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--network_id",
-
               requiresSeparator: true,
               description:
                 "Network to associate new site with. Defaults to current network (typically 1)",
@@ -9133,7 +8673,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--slug",
-
               requiresSeparator: true,
               description:
                 "Path of the blog to be deleted. Subdomain on subdomain installs, directory on subdirectory installs",
@@ -9173,7 +8712,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--network",
-
               requiresSeparator: true,
               description: "The network to which the sites belong",
               args: { name: "id" },
@@ -9185,7 +8723,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--site_in",
-
               requiresSeparator: true,
               description:
                 "Only list the sites with these blog_id values (comma-separated)",
@@ -9193,21 +8730,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each site",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Comma-separated list of fields to show",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -9257,7 +8791,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -9308,7 +8841,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Get value in a particular format",
                   args: {
@@ -9332,14 +8864,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--keys",
-
                   requiresSeparator: true,
                   description: "Limit output to metadata of specific keys",
                   args: { name: "keys" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value",
@@ -9350,7 +8880,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -9366,7 +8895,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--orderby",
-
                   requiresSeparator: true,
                   description: "Set orderby which field",
                   args: {
@@ -9380,7 +8908,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--order",
-
                   requiresSeparator: true,
                   description: "Set ascending or descending order",
                   args: {
@@ -9429,7 +8956,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -9460,7 +8986,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -9495,7 +9020,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -9529,7 +9053,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -9557,7 +9080,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Get value in a particular format",
                   args: {
@@ -9577,35 +9099,30 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--search",
-
                   requiresSeparator: true,
                   description: "Use wildcards ( * and ? ) to match option name",
                   args: { name: "pattern" },
                 },
                 {
                   name: "--site_id",
-
                   requiresSeparator: true,
                   description: "Limit options to those of a particular site id",
                   args: { name: "id" },
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Prints the value of a single field",
                   args: { name: "field" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific object fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description:
                     "The serialization format for the value. total_bytes displays the total size of matching options in bytes",
@@ -9654,7 +9171,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -9681,7 +9197,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -9712,7 +9227,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -9822,7 +9336,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -9884,7 +9397,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole taxonomy, returns the value of a single field",
@@ -9892,7 +9404,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -9900,7 +9411,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -9927,7 +9437,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Prints the value of a single field for each taxonomy",
@@ -9935,14 +9444,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific taxonomy fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -10002,7 +9509,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--slug",
-
               requiresSeparator: true,
               description:
                 "A unique slug for the new term. Defaults to sanitized version of name",
@@ -10010,14 +9516,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--description",
-
               requiresSeparator: true,
               description: "A description for the new term",
               args: { name: "description" },
             },
             {
               name: "--parent",
-
               requiresSeparator: true,
               description: "A parent for the new term",
               args: { name: "term-id" },
@@ -10044,7 +9548,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--by",
-
               requiresSeparator: true,
               description: "Explicitly handle the term value as a slug or id",
               args: {
@@ -10064,7 +9567,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--count",
-
               requiresSeparator: true,
               description: "How many terms to generate?",
               args: {
@@ -10074,7 +9576,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--max_depth",
-
               requiresSeparator: true,
               description: "Generate child terms down to a certain depth",
               args: {
@@ -10084,7 +9585,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -10110,7 +9610,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--by",
-
               requiresSeparator: true,
               description: "Explicitly handle the term value as a slug or id",
               args: {
@@ -10120,7 +9619,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole term, returns the value of a single field",
@@ -10128,7 +9626,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -10136,7 +9633,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Get value in a particular format",
               args: {
@@ -10167,21 +9663,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each term",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -10223,7 +9716,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -10274,7 +9766,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Get value in a particular format",
                   args: {
@@ -10298,14 +9789,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--keys",
-
                   requiresSeparator: true,
                   description: "Limit output to metadata of specific keys",
                   args: { name: "keys" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value",
@@ -10316,7 +9805,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -10332,7 +9820,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--orderby",
-
                   requiresSeparator: true,
                   description: "Set orderby which field",
                   args: {
@@ -10346,7 +9833,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--order",
-
                   requiresSeparator: true,
                   description: "Set ascending or descending order",
                   args: {
@@ -10395,7 +9881,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -10426,7 +9911,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -10461,7 +9945,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -10483,7 +9966,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--by",
-
               requiresSeparator: true,
               description: "Explicitly handle the term value as a slug or id",
               args: {
@@ -10493,14 +9975,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from",
-
               requiresSeparator: true,
               description: "Taxonomy slug of the term to migrate",
               args: { name: "taxonomy" },
             },
             {
               name: "--to",
-
               requiresSeparator: true,
               description: "Taxonomy slug to migrate to",
               args: { name: "taxonomy" },
@@ -10531,7 +10011,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--by",
-
               requiresSeparator: true,
               description: "Explicitly handle the term value as a slug or id",
               args: {
@@ -10541,28 +10020,24 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--name",
-
               requiresSeparator: true,
               description: "A new name for the term",
               args: { name: "name" },
             },
             {
               name: "--slug",
-
               requiresSeparator: true,
               description: "A new slug for the term",
               args: { name: "slug" },
             },
             {
               name: "--description",
-
               requiresSeparator: true,
               description: "A new description for the term",
               args: { name: "description" },
             },
             {
               name: "--parent",
-
               requiresSeparator: true,
               description: "A new parent for the term",
               args: { name: "term-id" },
@@ -10675,7 +10150,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Only show the provided field",
                   args: { name: "field" },
@@ -10748,7 +10222,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole theme, returns the value of a single field",
@@ -10756,7 +10229,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Limit the output to specific fields. Defaults to all fields",
@@ -10764,7 +10236,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -10790,7 +10261,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "If set, get that particular version from wordpress.org, instead of the stable version",
@@ -10840,21 +10310,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each theme",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -10870,7 +10337,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--status",
-
               requiresSeparator: true,
               description: "Filter the output by theme status",
               args: {
@@ -10898,7 +10364,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Returns the value of a single field",
                 },
@@ -10908,7 +10373,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -10929,14 +10393,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description: "Returns the value of a single field",
                   args: { name: "field" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -11007,7 +10469,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--page",
-
               requiresSeparator: true,
               description: "Optional page to display",
               args: {
@@ -11017,7 +10478,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--per-page",
-
               requiresSeparator: true,
               description:
                 "Optional number of results to display. Defaults to 10",
@@ -11028,14 +10488,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each theme",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description:
                 "Ask for specific fields from the API. Defaults to name,slug,author,rating",
@@ -11080,7 +10538,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11119,7 +10576,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exclude",
-
               requiresSeparator: true,
               description:
                 "Comma separated list of theme names that should be excluded from updating",
@@ -11127,7 +10583,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11142,7 +10597,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--version",
-
               requiresSeparator: true,
               description:
                 "If set, the theme will be updated to the specified version",
@@ -11220,7 +10674,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11246,14 +10699,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--search",
-
               requiresSeparator: true,
               description: "Use wildcards ( * and ? ) to match transient name",
               args: { name: "pattern" },
             },
             {
               name: "--exclude",
-
               requiresSeparator: true,
               description:
                 "Pattern to exclude. Use wildcards ( * and ? ) to match transient name",
@@ -11274,14 +10725,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11421,7 +10870,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--role",
-
               requiresSeparator: true,
               description:
                 "The role of the user to create. Default: default role. Possible values include ‘administrator’, ‘editor’, ‘author’, ‘contributor’, ‘subscriber’",
@@ -11438,14 +10886,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user_pass",
-
               requiresSeparator: true,
               description: "The user password. Default: randomly generated",
               args: { name: "password" },
             },
             {
               name: "--user_registered",
-
               requiresSeparator: true,
               description:
                 "The date the user registered. Default: current date",
@@ -11453,14 +10899,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--display_name",
-
               requiresSeparator: true,
               description: "The display name",
               args: { name: "name" },
             },
             {
               name: "--user_nicename",
-
               requiresSeparator: true,
               description:
                 "A string that contains a URL-friendly name for the user. The default is the user’s username",
@@ -11468,7 +10912,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user_url",
-
               requiresSeparator: true,
               description:
                 "A string containing the user’s URL for the user’s web site",
@@ -11476,7 +10919,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--nickname",
-
               requiresSeparator: true,
               description:
                 "The user’s nickname, defaults to the user’s username",
@@ -11484,28 +10926,24 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--first_name",
-
               requiresSeparator: true,
               description: "The user’s first name",
               args: { name: "first_name" },
             },
             {
               name: "--last_name",
-
               requiresSeparator: true,
               description: "The user’s last name",
               args: { name: "last_name" },
             },
             {
               name: "--description",
-
               requiresSeparator: true,
               description: "A string containing content about the user",
               args: { name: "description" },
             },
             {
               name: "--rich_editing",
-
               requiresSeparator: true,
               description:
                 "A string for whether to enable the rich editor or not. False if not empty",
@@ -11538,7 +10976,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--reassign",
-
               requiresSeparator: true,
               description: "User ID to reassign the posts to",
               args: { name: "user-id" },
@@ -11555,7 +10992,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--count",
-
               requiresSeparator: true,
               description: "How many users to generate?",
               args: {
@@ -11565,7 +11001,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--role",
-
               requiresSeparator: true,
               description:
                 "The role of the generated users. Default: default role from WP",
@@ -11573,7 +11008,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11593,7 +11027,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "Instead of returning the whole user, returns the value of a single field",
@@ -11601,14 +11034,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Get a specific subset of the user’s fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11649,7 +11080,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--role",
-
               requiresSeparator: true,
               description: "Only display users with a certain role",
               args: { name: "role" },
@@ -11666,21 +11096,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description: "Prints the value of a single field for each user",
               args: { name: "field" },
             },
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific object fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11707,7 +11134,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -11749,7 +11175,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -11796,7 +11221,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -11822,14 +11246,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--keys",
-
                   requiresSeparator: true,
                   description: "Limit output to metadata of specific keys",
                   args: { name: "keys" },
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value",
@@ -11840,7 +11262,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -11856,7 +11277,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--orderby",
-
                   requiresSeparator: true,
                   description: "Set orderby which field",
                   args: {
@@ -11870,7 +11290,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--order",
-
                   requiresSeparator: true,
                   description: "Set ascending or descending order",
                   args: {
@@ -11919,7 +11338,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -11950,7 +11368,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The output format of the value",
                   args: {
@@ -11985,7 +11402,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "The serialization format for the value",
                   args: {
@@ -12075,14 +11491,12 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -12148,7 +11562,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--by",
-
                   requiresSeparator: true,
                   description:
                     "Explicitly handle the term value as a slug or id",
@@ -12175,7 +11588,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--field",
-
                   requiresSeparator: true,
                   description:
                     "Prints the value of a single field for each term",
@@ -12183,14 +11595,12 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-
                   requiresSeparator: true,
                   description: "Limit the output to specific row fields",
                   args: { name: "fields" },
                 },
                 {
                   name: "--format",
-
                   requiresSeparator: true,
                   description: "Render output in a particular format",
                   args: {
@@ -12228,7 +11638,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--by",
-
                   requiresSeparator: true,
                   description:
                     "Explicitly handle the term value as a slug or id",
@@ -12263,7 +11672,6 @@ const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--by",
-
                   requiresSeparator: true,
                   description:
                     "Explicitly handle the term value as a slug or id",
@@ -12295,7 +11703,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--user_pass",
-
               requiresSeparator: true,
               description:
                 "A string that contains the plain text password for the user",
@@ -12303,7 +11710,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user_nicename",
-
               requiresSeparator: true,
               description:
                 "A string that contains a URL-friendly name for the user. The default is the user’s username",
@@ -12311,7 +11717,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user_url",
-
               requiresSeparator: true,
               description:
                 "A string containing the user’s URL for the user’s web site",
@@ -12319,21 +11724,18 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user_email",
-
               requiresSeparator: true,
               description: "A string containing the user’s email address",
               args: { name: "email" },
             },
             {
               name: "--display_name",
-
               requiresSeparator: true,
               description: "The display name",
               args: { name: "display_name" },
             },
             {
               name: "--nickname",
-
               requiresSeparator: true,
               description:
                 "The user’s nickname, defaults to the user’s username",
@@ -12341,28 +11743,24 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--first_name",
-
               requiresSeparator: true,
               description: "The user’s first name",
               args: { name: "first_name" },
             },
             {
               name: "--last_name",
-
               requiresSeparator: true,
               description: "The user’s last name",
               args: { name: "last_name" },
             },
             {
               name: "--description",
-
               requiresSeparator: true,
               description: "A string containing content about the user",
               args: { name: "description" },
             },
             {
               name: "--rich_editing",
-
               requiresSeparator: true,
               description:
                 "A string for whether to enable the rich editor or not. False if not empty",
@@ -12370,7 +11768,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user_registered",
-
               requiresSeparator: true,
               description:
                 "The date the user registered. Default: current date",
@@ -12378,14 +11775,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--role",
-
               requiresSeparator: true,
               description: "A string used to set the user’s role",
               args: { name: "role" },
             },
             {
               name: "--field",
-
               requiresSeparator: true,
               description:
                 "One or more fields to update. For accepted fields, see wp_update_user()",
@@ -12477,14 +11872,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--fields",
-
               requiresSeparator: true,
               description: "Limit the output to specific row fields",
               args: { name: "fields" },
             },
             {
               name: "--format",
-
               requiresSeparator: true,
               description: "Render output in a particular format",
               args: {
@@ -12511,14 +11904,12 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--position",
-
               requiresSeparator: true,
               description: "Assign the widget to a new position",
               args: { name: "position" },
             },
             {
               name: "--sidebar-id",
-
               requiresSeparator: true,
               description: "Assign the widget to a new sidebars",
               args: { name: "sidebar-id" },

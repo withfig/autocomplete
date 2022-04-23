@@ -209,7 +209,6 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   resourceVersion: {
     name: "--resource-version",
-
     requiresSeparator: true,
     description:
       "If non-empty, the annotation update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource",
@@ -217,7 +216,6 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   dryRun: {
     name: "--dry-run",
-
     requiresSeparator: true,
     description:
       'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource',
@@ -228,7 +226,6 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   fieldSelector: {
     name: "--field-selector",
-
     requiresSeparator: true,
     description:
       "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type",
@@ -262,7 +259,6 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
   template: {
     name: "--template",
-
     requiresSeparator: true,
     description:
       "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview]",
@@ -290,7 +286,6 @@ const completionSpec: Fig.Spec = {
       name: "alpha",
       description:
         "These commands correspond to alpha features that are not enabled in Kubernetes clusters by default",
-
       subcommands: [
         {
           name: "debug",
@@ -374,7 +369,6 @@ const completionSpec: Fig.Spec = {
         sharedOpts.output,
         {
           name: "--api-group",
-
           description: "Limit to resources in the specified API group",
           args: {},
         },
@@ -394,7 +388,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-by",
-
           requiresSeparator: true,
           description:
             "If non-empty, sort nodes list using specified field. The field can be either 'name' or 'kind'",
@@ -402,7 +395,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--verbs",
-
           requiresSeparator: true,
           description: "Limit to resources that support the specified verbs",
           args: {},
@@ -426,7 +418,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--field-manager",
-
           requiresSeparator: true,
           description: "Name of the manager used to track field ownership",
           args: {},
@@ -443,7 +434,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-
           requiresSeparator: true,
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion)",
@@ -468,7 +458,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--prune-whitelist",
-
           requiresSeparator: true,
           description:
             "Overwrite the default whitelist with <group/version/kind> for --prune",
@@ -483,7 +472,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-
           requiresSeparator: true,
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
@@ -590,7 +578,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-running-timeout",
-
           requiresSeparator: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -651,7 +638,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--subresource",
-
               requiresSeparator: true,
               description: "SubResource such as pod/log or deployment/scale",
               // TODO: Generator here
@@ -708,7 +694,6 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         {
           name: "--cpu-percent",
-
           requiresSeparator: true,
           description:
             "The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used",
@@ -718,7 +703,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--generator",
-
           requiresSeparator: true,
           description:
             "The name of the API generator to use. Currently there is only 1 generator",
@@ -726,7 +710,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--max",
-
           requiresSeparator: true,
           description:
             "The upper limit for the number of pods that can be set by the autoscaler. Required",
@@ -736,7 +719,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--min",
-
           requiresSeparator: true,
           description:
             "The lower limit for the number of pods that can be set by the autoscaler. If it's not specified or negative, the server will apply a default value",
@@ -746,7 +728,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--name",
-
           requiresSeparator: true,
           description:
             "The name for the newly created object. If not specified, the name of the input resource will be used",
@@ -830,7 +811,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--output-directory",
-
               requiresSeparator: true,
               description:
                 "Where to output the files.  If empty or '-' uses stdout, otherwise creates a directory hierarchy in that directory",
@@ -838,7 +818,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--pod-running-timeout",
-
               requiresSeparator: true,
               description:
                 "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -867,7 +846,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--kubeconfig",
-
           requiresSeparator: true,
           args: {
             name: "path",
@@ -955,7 +933,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--server",
-
               requiresSeparator: true,
               args: {
                 name: "Server",
@@ -963,7 +940,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--certificate-authority",
-
               requiresSeparator: true,
               description: "Path to certificate authority",
               args: {
@@ -973,7 +949,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--insecure-skip-tls-verify",
-
               requiresSeparator: true,
               args: {
                 suggestions: ["true", "false"],
@@ -981,7 +956,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--tls-server-name",
-
               requiresSeparator: true,
               args: {
                 name: "TLS Server Name",
@@ -1000,7 +974,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--cluster",
-
               requiresSeparator: true,
               args: {
                 name: "cluster_nickname",
@@ -1008,7 +981,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user",
-
               requiresSeparator: true,
               args: {
                 name: "user_nickname",
@@ -1016,7 +988,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--namespace",
-
               requiresSeparator: true,
               args: {
                 name: "namespace",
@@ -1031,7 +1002,6 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--client-certificate",
-
               requiresSeparator: true,
               description: "Client cert for user entry",
               args: {
@@ -1040,7 +1010,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--client-key",
-
               requiresSeparator: true,
               description: "Client key for user entry",
               args: {
@@ -1049,7 +1018,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--token",
-
               requiresSeparator: true,
               description: "Bearer Token for user entry",
               args: {
@@ -1058,7 +1026,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--username",
-
               requiresSeparator: true,
               description: "Username for basic authentication",
               args: {
@@ -1067,7 +1034,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--password",
-
               requiresSeparator: true,
               description: "Password for basic authentication",
               args: {
@@ -1076,7 +1042,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--auth-provider",
-
               requiresSeparator: true,
               description: "Auth provider for the user entry in kubeconfig",
               args: {
@@ -1085,7 +1050,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--auth-provider-arg",
-
               requiresSeparator: true,
               description: "'key=value' arguments for the auth provider",
               args: {
@@ -1099,7 +1063,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-api-version",
-
               requiresSeparator: true,
               description:
                 "API version of the exec credential plugin for the user entry in kubeconfig",
@@ -1109,7 +1072,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-arg",
-
               requiresSeparator: true,
               description:
                 "New arguments for the exec credential plugin command for the user entry in kubeconfig",
@@ -1119,7 +1081,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-command",
-
               requiresSeparator: true,
               description:
                 "Command for the exec credential plugin for the user entry in kubeconfig",
@@ -1129,7 +1090,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--exec-env",
-
               requiresSeparator: true,
               description:
                 "'key=value' environment values for the exec credential plugin",
@@ -1204,7 +1164,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--output-version",
-
           requiresSeparator: true,
           description:
             "Output the formatted object with the given group version (for ex: 'extensions/v1beta1')",
@@ -1295,7 +1254,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--aggregation-rule",
-
               requiresSeparator: true,
               description:
                 "An aggregation label selector for combining ClusterRoles",
@@ -1303,20 +1261,17 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--non-resource-url",
-
               description: "A partial url that user should have access to",
               args: {},
             },
             {
               name: "--resource",
-
               requiresSeparator: true,
               description: "Resource that the rule applies to",
               args: sharedArgs.resourcesArg,
             },
             {
               name: "--resource-name",
-
               requiresSeparator: true,
               description:
                 "Resource in the white list that the rule applies to, repeat this flag for multiple items",
@@ -1334,7 +1289,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--verb",
-
               requiresSeparator: true,
               description:
                 "Verb that applies to the resources contained in the rule",
@@ -1368,7 +1322,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--clusterrole",
-
               requiresSeparator: true,
               description:
                 "ClusterRole this ClusterRoleBinding should reference",
@@ -1376,7 +1329,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--user",
-
               requiresSeparator: true,
               args: {
                 name: "User Name",
@@ -1427,7 +1379,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-env-file",
-
               requiresSeparator: true,
               description:
                 "Specify the path to a file to read lines of key=val pairs to create a configmap (i.e. a Docker .env file)",
@@ -1437,7 +1388,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-file",
-
               requiresSeparator: true,
               description:
                 "Key file can be specified using its file path, in which case file basename will be used as configmap key, or optionally with a key and file path, in which case the given key will be used.  Specifying a directory will iterate each named file in the directory whose basename is a valid configmap key",
@@ -1447,7 +1397,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from-literal",
-
               requiresSeparator: true,
               description:
                 "Specify a key and literal value to insert in configmap (i.e. mykey=somevalue)",
@@ -1480,7 +1429,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--image",
-
               requiresSeparator: true,
               description: "Image name to run",
               args: {
@@ -1489,7 +1437,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--restart",
-
               requiresSeparator: true,
               description:
                 "Job's restart policy. supported values: OnFailure, Never",
@@ -1530,7 +1477,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--image",
-
               requiresSeparator: true,
               description: "Image name to run",
               args: {
@@ -1570,14 +1516,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--class",
-
               requiresSeparator: true,
               description: "Ingress Class to be used",
               args: {},
             },
             {
               name: "--default-backend",
-
               requiresSeparator: true,
               description:
                 "Default service for backend, in format of svcname:port",
@@ -1587,14 +1531,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--field-manager",
-
               requiresSeparator: true,
               description: "Name of the manager used to track field ownership",
               args: {},
             },
             {
               name: "--rule",
-
               requiresSeparator: true,
               description:
                 "Rule in format host/path=service:port[,tls=secretname]. Paths containing the leading character '*' are considered pathType=Prefix. tls argument is optional",
@@ -1633,7 +1575,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--from",
-
               requiresSeparator: true,
               description:
                 "The name of the resource to create a Job from (only cronjob is supported)",
@@ -1652,7 +1593,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--image",
-
               requiresSeparator: true,
               description: "Image name to run",
               args: {
@@ -1749,7 +1689,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--description",
-
               requiresSeparator: true,
               description:
                 "Description is an arbitrary string that usually provides guidelines on when this priority class should be used",
@@ -1764,7 +1703,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--preemption-policy",
-
               description:
                 "Preemption-policy is the policy for preempting pods with lower priority",
               args: {
@@ -1783,7 +1721,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--value",
-
               requiresSeparator: true,
               description: "The value of this priority class",
               args: {
@@ -1806,7 +1743,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--field-manager",
-
               requiresSeparator: true,
               description: "Name of the manager used to track field ownership",
               args: {},
@@ -1852,14 +1788,12 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--resource",
-
               requiresSeparator: true,
               description: "Resource that the rule applies to",
               args: sharedArgs.resourcesArg,
             },
             {
               name: "--resource-name",
-
               requiresSeparator: true,
               description:
                 "Resource in the white list that the rule applies to, repeat this flag for multiple items",
@@ -1877,7 +1811,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--verb",
-
               requiresSeparator: true,
               description:
                 "Verb that applies to the resources contained in the rule",
@@ -1902,21 +1835,18 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--clusterrole",
-
               requiresSeparator: true,
               description: "ClusterRole this RoleBinding should reference",
               args: sharedArgs.listClusterRoles,
             },
             {
               name: "--group",
-
               requiresSeparator: true,
               description: "Groups to bind to the role",
               args: {},
             },
             {
               name: "--role",
-
               requiresSeparator: true,
               description: "Role this RoleBinding should reference",
               args: {
@@ -1934,7 +1864,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--serviceaccount",
-
               requiresSeparator: true,
               description:
                 "Service accounts to bind to the role, in the format <namespace>:<name>",
@@ -1944,7 +1873,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--username",
-
               requiresSeparator: true,
               args: {
                 name: "Username",
@@ -1978,7 +1906,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-email",
-
                   requiresSeparator: true,
                   description: "Email for Docker registry",
                   args: {
@@ -1987,7 +1914,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-password",
-
                   requiresSeparator: true,
                   description: "Password for Docker registry authentication",
                   args: {
@@ -1996,7 +1922,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-server",
-
                   requiresSeparator: true,
                   description: "Server location for Docker registry",
                   args: {
@@ -2005,7 +1930,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--docker-username",
-
                   requiresSeparator: true,
                   description: "Username for Docker registry authentication",
                   args: {
@@ -2014,7 +1938,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-file",
-
                   requiresSeparator: true,
                   description:
                     "Key files can be specified using their file path, in which case a default name will be given to them, or optionally with a name and file path, in which case the given name will be used.  Specifying a directory will iterate each named file in the directory that is a valid secret key",
@@ -2052,7 +1975,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-env-file",
-
                   requiresSeparator: true,
                   description:
                     "Specify the path to a file to read lines of key=val pairs to create a secret (i.e. a Docker .env file)",
@@ -2062,7 +1984,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-file",
-
                   requiresSeparator: true,
                   description:
                     "Key files can be specified using their file path, in which case a default name will be given to them, or optionally with a name and file path, in which case the given name will be used.  Specifying a directory will iterate each named file in the directory that is a valid secret key",
@@ -2072,7 +1993,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--from-literal",
-
                   requiresSeparator: true,
                   description:
                     "Specify a key and literal value to insert in secret (i.e. mykey=somevalue)",
@@ -2087,7 +2007,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--type",
-
                   requiresSeparator: true,
                   description: "The type of secret to create",
                   args: {},
@@ -2117,7 +2036,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--cert",
-
                   requiresSeparator: true,
                   description: "Path to PEM encoded public key certificate",
                   args: {
@@ -2126,7 +2044,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--key",
-
                   requiresSeparator: true,
                   description:
                     "Path to private key associated with given certificate",
@@ -2151,7 +2068,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "service",
           description: "Create a service using specified subcommand",
-
           subcommands: [
             {
               name: "clusterip",
@@ -2166,7 +2082,6 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.template,
                 {
                   name: "--clusterip",
-
                   requiresSeparator: true,
                   description:
                     "Assign your own ClusterIP or set to 'None' for a 'headless' service (no loadbalancing)",
@@ -2182,7 +2097,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-
                   requiresSeparator: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
@@ -2223,7 +2137,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-
                   requiresSeparator: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
@@ -2257,7 +2170,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-
                   requiresSeparator: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
@@ -2298,7 +2210,6 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--tcp",
-
                   requiresSeparator: true,
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'",
@@ -2485,7 +2396,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-
           requiresSeparator: true,
           description:
             "Period of time in seconds given to each pod to terminate gracefully. If negative, the default value specified in the pod will be used",
@@ -2499,7 +2409,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-selector",
-
           requiresSeparator: true,
           description: "Label selector to filter pods on the node",
           args: {},
@@ -2512,7 +2421,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-
           requiresSeparator: true,
           description:
             "The length of time to wait before giving up, zero means infinite",
@@ -2628,7 +2536,6 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         {
           name: "--cluster-ip",
-
           requiresSeparator: true,
           description:
             "ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a headless service",
@@ -2636,7 +2543,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--external-ip",
-
           requiresSeparator: true,
           description:
             "Additional external IP address (not managed by Kubernetes) to accept for the service. If this IP is routed to a node, the service can be accessed by this IP in addition to its generated service IP",
@@ -2644,7 +2550,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--generator",
-
           requiresSeparator: true,
           description:
             "The name of the API generator to use. There are 2 generators: 'service/v1' and 'service/v2'. The only difference between them is that service port in v1 is named 'default', while it is left unnamed in v2. Default is 'service/v2'",
@@ -2659,7 +2564,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--load-balancer-ip",
-
           requiresSeparator: true,
           description:
             "IP to assign to the LoadBalancer. If empty, an ephemeral IP will be created and used (cloud-provider specific)",
@@ -2668,7 +2572,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description: "The name for the newly created object",
-
           requiresSeparator: true,
           args: {},
         },
@@ -2680,7 +2583,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-
           requiresSeparator: true,
           description:
             "The port that the service should serve on. Copied from the resource being exposed, if unspecified",
@@ -2688,7 +2590,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--protocol",
-
           requiresSeparator: true,
           description:
             "The network protocol for the service to be created. Default is 'TCP'",
@@ -2703,7 +2604,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--session-affinity",
-
           requiresSeparator: true,
           description:
             "If non-empty, set the session affinity for the service to this; legal values: 'None', 'ClientIP'",
@@ -2711,7 +2611,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--target-port",
-
           requiresSeparator: true,
           description:
             "Name or number for the port on the container that the service should direct traffic to. Optional",
@@ -2719,7 +2618,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-
           requiresSeparator: true,
           description:
             "Type for this service: ClusterIP, NodePort, LoadBalancer, or ExternalName. Default is 'ClusterIP'",
@@ -2757,7 +2655,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--chunk-size",
-
           requiresSeparator: true,
           description:
             "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future",
@@ -2807,7 +2704,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sort-by",
-
           requiresSeparator: true,
           description:
             "If non-empty, sort list types using this field specification.  The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string",
@@ -2851,7 +2747,6 @@ const completionSpec: Fig.Spec = {
           name: ["--env", "-e"],
           description:
             "A list of environment variables to be used by functions",
-
           requiresSeparator: true,
           args: {
             template: "filepaths",
@@ -2861,14 +2756,12 @@ const completionSpec: Fig.Spec = {
           name: "--load-restrictor",
           description:
             "If set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization",
-
           requiresSeparator: true,
           args: {},
         },
         {
           name: "--mount",
           description: "A list of storage options read from the filesystem",
-
           requiresSeparator: true,
           args: {},
         },
@@ -2879,7 +2772,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--network-name",
           description: "The docker network to run the container in",
-
           requiresSeparator: true,
           args: {},
         },
@@ -2887,7 +2779,6 @@ const completionSpec: Fig.Spec = {
           name: "--reorder",
           description:
             "Reorder the resources just before output. Use 'legacy' to apply a legacy reordering (Namespaces first, Webhooks last, etc). Use 'none' to suppress a final reordering",
-
           requiresSeparator: true,
         },
       ],
@@ -2963,14 +2854,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limit-bytes",
-
           requiresSeparator: true,
           description: "Maximum bytes of logs to return. Defaults to no limit",
           args: {},
         },
         {
           name: "--max-log-requests",
-
           requiresSeparator: true,
           description:
             "Specify maximum number of concurrent logs to follow when using by a selector. Defaults to 5",
@@ -2978,7 +2867,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-running-timeout",
-
           requiresSeparator: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -2996,7 +2884,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--since",
-
           requiresSeparator: true,
           description:
             "Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one of since-time / since may be used",
@@ -3004,7 +2891,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--since-time",
-
           requiresSeparator: true,
           description:
             "Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of since-time / since may be used",
@@ -3012,7 +2898,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--tail",
-
           requiresSeparator: true,
           description:
             "Lines of recent log file to display. Defaults to -1 with no selector, showing all log lines otherwise 10, if a selector is provided",
@@ -3049,7 +2934,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--type",
-
           requiresSeparator: true,
           description:
             "The type of patch being provided; one of [json merge strategic]",
@@ -3084,7 +2968,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-running-timeout",
-
           requiresSeparator: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -3099,7 +2982,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--accept-hosts",
-
           requiresSeparator: true,
           description:
             "Regular expression for hosts that the proxy should accept",
@@ -3107,7 +2989,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--accept-paths",
-
           requiresSeparator: true,
           description:
             "Regular expression for paths that the proxy should accept",
@@ -3115,14 +2996,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--address",
-
           requiresSeparator: true,
           description: "The IP address on which to serve on",
           args: {},
         },
         {
           name: "--api-prefix",
-
           requiresSeparator: true,
           description: "Prefix to serve the proxied API under",
           args: {},
@@ -3134,7 +3013,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--keepalive",
-
           requiresSeparator: true,
           description:
             "Keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive",
@@ -3150,7 +3028,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--reject-methods",
-
           requiresSeparator: true,
           description:
             "Regular expression for HTTP methods that the proxy should reject (example --reject-methods='POST,PUT,PATCH')",
@@ -3158,7 +3035,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--reject-paths",
-
           requiresSeparator: true,
           description:
             "Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths",
@@ -3212,7 +3088,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-
           requiresSeparator: true,
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion)",
@@ -3220,7 +3095,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--raw",
-
           requiresSeparator: true,
           description:
             "Raw URI to PUT to the server.  Uses the transport specified by the kubeconfig file",
@@ -3233,7 +3107,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-
           requiresSeparator: true,
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
@@ -3269,7 +3142,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             {
               name: "--revision",
-
               requiresSeparator: true,
               description:
                 "See the details, including podTemplate of the revision specified",
@@ -3327,7 +3199,6 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             {
               name: "--revision",
-
               requiresSeparator: true,
               description:
                 "Pin to a specific revision for showing its status. Defaults to 0 (last revision)",
@@ -3335,7 +3206,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--timeout",
-
               requiresSeparator: true,
               description:
                 "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h)",
@@ -3359,13 +3229,11 @@ const completionSpec: Fig.Spec = {
             sharedOpts.dryRun,
             {
               name: "--to_revision",
-
               requiresSeparator: true,
               args: {},
             },
             {
               name: "--timeout",
-
               requiresSeparator: true,
               description:
                 "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h)",
@@ -3392,7 +3260,6 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         {
           name: "--annotations",
-
           requiresSeparator: true,
           description: "Annotations to apply to the pod",
           args: {},
@@ -3417,7 +3284,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--env",
-
           requiresSeparator: true,
           description: "Environment variables to set in the container",
           args: {},
@@ -3434,7 +3300,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--grace-period",
-
           requiresSeparator: true,
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion)",
@@ -3442,7 +3307,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--hostport",
-
           requiresSeparator: true,
           description:
             "The host port mapping for the container port. To demonstrate a single-machine container",
@@ -3450,14 +3314,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--image",
-
           requiresSeparator: true,
           description: "The image for the container to run",
           args: {},
         },
         {
           name: "--image-pull-policy",
-
           description:
             "The image pull policy for the container. If left empty, this value will not be specified by the client and defaulted by the server",
           args: {},
@@ -3477,7 +3339,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--limits",
-
           requiresSeparator: true,
           description:
             "The resource requirement limits for this container.  For example, 'cpu=200m,memory=512Mi'.  Note that server side components may assign limits depending on the server configuration, such as limit ranges",
@@ -3485,7 +3346,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--overrides",
-
           requiresSeparator: true,
           description:
             "An inline JSON override for the generated object. If this is non-empty, it is used to override the generated object. Requires that the object supply a valid apiVersion field",
@@ -3493,7 +3353,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pod-running-timeout",
-
           requiresSeparator: true,
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -3501,7 +3360,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--port",
-
           requiresSeparator: true,
           description: "The port that this container exposes",
           args: {},
@@ -3512,7 +3370,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--requests",
-
           requiresSeparator: true,
           description:
             "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges",
@@ -3520,7 +3377,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--restart",
-
           requiresSeparator: true,
           description:
             "The restart policy for this Pod.  Legal values [Always, OnFailure, Never].  If set to 'Always' a deployment is created, if set to 'OnFailure' a job is created, if set to 'Never', a regular pod is created. For the latter two --replicas must be 1.  Default 'Always', for CronJobs `Never`",
@@ -3540,7 +3396,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--serviceaccount",
-
           requiresSeparator: true,
           description: "Service account to set in the pod spec",
           args: {},
@@ -3552,7 +3407,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-
           requiresSeparator: true,
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
@@ -3595,7 +3449,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--current-replicas",
-
           requiresSeparator: true,
           description:
             "Precondition for current size. Requires that the current size of the resource match this value in order to scale",
@@ -3603,14 +3456,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--replicas",
-
           requiresSeparator: true,
           description: "The new desired number of replicas. Required",
           args: {},
         },
         {
           name: "--timeout",
-
           description:
             "The length of time to wait before giving up on a scale operation, zero means don't wait. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h)",
           args: {},
@@ -3665,7 +3516,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--from",
-
               requiresSeparator: true,
               description:
                 "The name of a resource from which to inject environment variables",
@@ -3673,7 +3523,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--keys",
-
               requiresSeparator: true,
               description:
                 "Comma-separated list of keys to import from specified resource",
@@ -3691,7 +3540,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--prefix",
-
               description: "Prefix to append to variable names",
               args: {},
             },
@@ -3765,7 +3613,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--limits",
-
               requiresSeparator: true,
               description:
                 "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges",
@@ -3773,7 +3620,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--requests",
-
               requiresSeparator: true,
               description:
                 "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges",
@@ -3861,14 +3707,12 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--group",
-
               requiresSeparator: true,
               description: "Groups to bind to the role",
               args: {},
             },
             {
               name: "--serviceaccount",
-
               requiresSeparator: true,
               description: "Service accounts to bind to the role",
               args: {},
@@ -3958,7 +3802,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--for",
-
           requiresSeparator: true,
           description:
             "The condition to wait on: [delete|condition=condition-name]",
@@ -3966,7 +3809,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--timeout",
-
           requiresSeparator: true,
           description:
             "The length of time to wait before giving up.  Zero means check once and don't wait, negative means wait for a week",

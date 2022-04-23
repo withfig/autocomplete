@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an insight",
-
           options: [
             {
               name: "--account",
@@ -165,7 +164,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List insights for a Cloud project",
-
           options: [
             {
               name: "--account",
@@ -358,7 +356,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "mark-accepted",
           description: "Mark an insight's state as ACCEPTED",
-
           options: [
             {
               name: "--account",
@@ -669,7 +666,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a recommendation for a Cloud project",
-
           options: [
             {
               name: "--account",
@@ -825,7 +821,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists recommendations for a Cloud project",
-
           options: [
             {
               name: "--account",
@@ -1023,7 +1018,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "mark-claimed",
           description: "Mark a recommendation's state as CLAIMED",
-
           options: [
             {
               name: "--account",
@@ -1200,7 +1194,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "mark-failed",
           description: "Mark a recommendation's state as FAILED",
-
           options: [
             {
               name: "--account",
@@ -1377,7 +1370,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "mark-succeeded",
           description: "Mark a recommendation's state as SUCCEEDED",
-
           options: [
             {
               name: "--account",

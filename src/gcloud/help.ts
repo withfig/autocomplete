@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "help",
   description: "Search gcloud help text",
-
   options: [
     {
       name: "--account",

@@ -31,7 +31,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "predict",
       description: "Make predictions with a model",
-
       options: [
         {
           name: ["-f", "--file"],

@@ -1085,7 +1085,6 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
-
         generators: {
           script:
             "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
@@ -1211,7 +1210,6 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "install",
-
           description: "Installs the given cask",
           args: {
             name: "cask",
@@ -1320,12 +1318,10 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "cleanup",
-
           description: "Remove all unused services",
         },
         {
           name: "list",
-
           description: "List all services",
         },
         {
@@ -1360,7 +1356,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "stop",
-
           description:
             "Stop the service formula immediately and unregister it from launching at",
           options: [
@@ -1376,7 +1371,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "restart",
-
           description:
             "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot)",
           options: [

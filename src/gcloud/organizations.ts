@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add IAM policy binding for an organization",
-
       options: [
         {
           name: "--account",
@@ -184,7 +183,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Show metadata for an organization",
-
       options: [
         {
           name: "--account",
@@ -321,7 +319,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-iam-policy",
       description: "Get IAM policy for an organization",
-
       options: [
         {
           name: "--account",
@@ -499,7 +496,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List organizations accessible by the active account",
-
       options: [
         {
           name: "--account",
@@ -677,7 +673,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-iam-policy-binding",
       description: "Remove IAM policy binding for an organization",
-
       options: [
         {
           name: "--account",
@@ -861,7 +856,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-iam-policy",
       description: "Set IAM policy for an organization",
-
       options: [
         {
           name: "--account",

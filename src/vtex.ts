@@ -302,7 +302,6 @@ const completion: Fig.Spec = {
         {
           name: "update",
           description: "Updates all installed infra services",
-
           options: [...commonOptions],
         },
       ],

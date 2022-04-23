@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new connectivity test",
-
           options: [
             {
               name: "--account",
@@ -288,7 +287,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a connectivity test",
-
           options: [
             {
               name: "--account",
@@ -431,7 +429,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a connectivity test",
-
           options: [
             {
               name: "--account",
@@ -569,7 +566,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List connectivity tests",
-
           options: [
             {
               name: "--account",
@@ -742,7 +738,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "rerun",
           description: "Rerun a connectivity test",
-
           options: [
             {
               name: "--account",
@@ -885,7 +880,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an existing connectivity test",
-
           options: [
             {
               name: "--account",
@@ -1314,7 +1308,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Network Management operation",
-
           options: [
             {
               name: "--account",
@@ -1452,7 +1445,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Network Management operations",
-
           options: [
             {
               name: "--account",

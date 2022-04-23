@@ -113,7 +113,6 @@ const update: Fig.Subcommand = {
 const version: Fig.Subcommand = {
   name: "version",
   description: "Print the version",
-
   args: {
     name: "arguments",
     isVariadic: true,

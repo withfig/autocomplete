@@ -1025,7 +1025,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "licenses",
       description: "",
-
       subcommands: [
         {
           name: "list",
@@ -1092,7 +1091,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "owner",
       description: "Manage package owners",
-
       subcommands: [
         {
           name: "list",

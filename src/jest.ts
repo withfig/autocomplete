@@ -49,7 +49,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--collectCoverageFrom",
       displayName: "--collectCoverageFrom=<glob>",
-
       requiresSeparator: true,
       description:
         "A glob pattern relative to rootDir matching the files that coverage info needs to be collected from",
@@ -65,7 +64,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--config", "-c"],
       displayName: "--config=<path>",
-
       requiresSeparator: true,
       description:
         "The path to a Jest config file specifying how to find and execute tests",
@@ -77,7 +75,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--coverage",
       displayName: "--coverage=<boolean>",
-
       requiresSeparator: true,
       description: "Enable or disable coverage, disabled by default",
       args: {
@@ -95,7 +92,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--coverageProvider",
       displayName: "--coverageProvider=<provider>",
-
       requiresSeparator: true,
       description:
         "Indicates which provider should be used to instrument code for coverage",
@@ -116,7 +112,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--env",
       displayName: "--env=<environment>",
-
       requiresSeparator: true,
       description: "The test environment used for all tests",
       args: {
@@ -167,7 +162,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--outputFile",
       displayName: "--outputFile=<filename>",
-
       requiresSeparator: true,
       description:
         "Write test results to a file when the --json option is also specified",
@@ -192,7 +186,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--maxConcurrency",
       displayName: "--maxConcurrency=<num>",
-
       requiresSeparator: true,
       description:
         "Prevents Jest from executing more than the specified amount of tests at the same time",
@@ -203,7 +196,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--maxWorkers", "-w"],
       displayName: "--maxWorkers=<num>|<string>",
-
       requiresSeparator: true,
       description:
         "Specifies the maximum number of workers the worker-pool will spawn for running tests",
@@ -242,7 +234,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--reporters",
       displayName: "--reporters=<reporter>",
-
       requiresSeparator: true,
       description: "Run tests with specified reporters",
       args: {
@@ -281,7 +272,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--setupTestFrameworkScriptFile",
       displayName: "--setupTestFrameworkScriptFile=<file>",
-
       requiresSeparator: true,
       description:
         "The path to a module that runs some code to configure or set up the testing framework before each test",
@@ -301,7 +291,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--testNamePattern", "-t"],
       displayName: "--testNamePattern=<regex>",
-
       requiresSeparator: true,
       description: "Run only tests with a name that matches the regex",
       args: {
@@ -315,7 +304,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testPathPattern",
       displayName: "--testPathPattern=<regex>",
-
       requiresSeparator: true,
       description:
         "A regexp pattern string that is matched against all tests paths before executing the test",
@@ -326,7 +314,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testPathIgnorePatterns",
       displayName: "--testPathIgnorePatterns=[array]",
-
       requiresSeparator: true,
       description:
         "An array of regexp pattern strings that are tested against all tests paths before executing the test",
@@ -337,7 +324,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testRunner",
       displayName: "--testRunner=<path>",
-
       requiresSeparator: true,
       description: "Lets you specify a custom test runner",
       args: {
@@ -348,7 +334,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testSequencer",
       displayName: "--testSequencer=<path>",
-
       requiresSeparator: true,
       description: "Lets you specify a custom test sequencer",
       args: {
@@ -359,7 +344,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--testTimeout",
       displayName: "--testTimeout=<num>",
-
       requiresSeparator: true,
       description: "Default timeout of a test in milliseconds",
       args: {

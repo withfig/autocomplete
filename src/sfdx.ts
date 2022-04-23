@@ -15,7 +15,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -88,7 +87,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "lang",
-
             suggestions: [" ts", "js"],
           },
         },
@@ -145,7 +143,6 @@ const completionSpec: Fig.Spec = {
           description: "Output in a more machine friendly format",
           args: {
             name: "output",
-
             suggestions: ["csv", "json", "yaml"],
           },
         },
@@ -296,7 +293,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "which",
       description: "Show which plugin a command is in",
-
       args: {
         name: "command",
       },
@@ -314,7 +310,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -358,7 +353,6 @@ const completionSpec: Fig.Spec = {
           description: "Visibility of the custom metadata type",
           args: {
             name: "visibility",
-
             suggestions: ["PackageProtected", "Protected", "Public"],
           },
         },
@@ -390,7 +384,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -419,7 +412,6 @@ const completionSpec: Fig.Spec = {
           description: "Type of field",
           args: {
             name: "fieldtype",
-
             suggestions: [
               "Checkbox",
               "Date",
@@ -487,7 +479,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -547,7 +538,6 @@ const completionSpec: Fig.Spec = {
           description: "Visibility of the custom metadata type",
           args: {
             name: "visibility",
-
             suggestions: ["PackageProtected", "Protected", "Public"],
           },
         },
@@ -599,7 +589,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -643,7 +632,6 @@ const completionSpec: Fig.Spec = {
           description: "Protect the record when it is in a managed package",
           args: {
             name: "protected",
-
             suggestions: ["true", "false"],
           },
         },
@@ -678,7 +666,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -748,7 +735,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -780,7 +766,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -812,7 +797,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -844,7 +828,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -899,7 +882,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -969,7 +951,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1018,7 +999,6 @@ const completionSpec: Fig.Spec = {
             "[default: warn] logging level for this command invocation; logs are stored in $HOME/.sfdx/sfdx.log",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1074,7 +1054,6 @@ const completionSpec: Fig.Spec = {
           description: "Permissible values are: human, tap, junit, json",
           args: {
             name: "resultformat",
-
             suggestions: ["human", "tap", "junit", "json"],
           },
         },
@@ -1107,7 +1086,6 @@ const completionSpec: Fig.Spec = {
             "[default: warn] logging level for this command invocation; logs are stored in $HOME/.sfdx/sfdx.log",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1157,7 +1135,6 @@ const completionSpec: Fig.Spec = {
             "Specifies which tests to run, using one of these TestLevel enum values:\nRunSpecifiedTests—Only the tests that you specify are run.\nRunLocalTests—All tests in your org are run, except the ones that originate from installed managed packages.\nRunAllTestsInOrg—All tests are in your org and in installed managed packages are run",
           args: {
             name: "testlevel",
-
             suggestions: [
               "RunLocalTests",
               "RunAllTestsInOrg",
@@ -1178,7 +1155,6 @@ const completionSpec: Fig.Spec = {
           description: "Permissible values are: human, tap, junit, json",
           args: {
             name: "resultformat",
-
             suggestions: ["human", "tap", "junit", "json"],
           },
         },
@@ -1235,7 +1211,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1272,7 +1247,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1305,7 +1279,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1343,7 +1316,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1380,7 +1352,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1451,7 +1422,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1514,7 +1484,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1596,7 +1565,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1666,7 +1634,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1743,7 +1710,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1820,7 +1786,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1904,7 +1869,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -1954,7 +1918,6 @@ const completionSpec: Fig.Spec = {
             "Result format emitted to stdout; --json flag overrides this parameter",
           args: {
             name: "resultformat",
-
             suggestions: ["human", "csv", "json"],
           },
         },
@@ -1977,7 +1940,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2052,7 +2014,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2121,7 +2082,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2182,7 +2142,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2245,7 +2204,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2322,7 +2280,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2354,7 +2311,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2410,7 +2366,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2466,7 +2421,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2529,7 +2483,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2578,7 +2531,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2634,7 +2586,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2686,7 +2637,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2741,7 +2691,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2800,7 +2749,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2881,7 +2829,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -2934,7 +2881,6 @@ const completionSpec: Fig.Spec = {
           description: "Deployment testing level",
           args: {
             name: "testlevel",
-
             suggestions: [
               "NoTestRun",
               "RunSpecifiedTests",
@@ -3008,7 +2954,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3071,7 +3016,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3139,7 +3083,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3193,7 +3136,6 @@ const completionSpec: Fig.Spec = {
             "Type of manifest to create; the type determines the name of the created file",
           args: {
             name: "manifesttype",
-
             suggestions: ["pre", "post", "destroy", "package"],
           },
         },
@@ -3219,7 +3161,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3278,7 +3219,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3366,7 +3306,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3425,7 +3364,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3480,7 +3418,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3534,7 +3471,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3563,7 +3499,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: [
               "ApexException",
               "ApexUnitTest",
@@ -3602,7 +3537,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3631,7 +3565,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["ApexTrigger"],
           },
         },
@@ -3679,7 +3612,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3708,7 +3640,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["DefaultLightningApp"],
           },
         },
@@ -3743,7 +3674,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3772,7 +3702,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: [
               "default",
               "analyticsDashboard",
@@ -3800,7 +3729,6 @@ const completionSpec: Fig.Spec = {
           description: "Type of the Lightning component",
           args: {
             name: "type",
-
             suggestions: ["aura", "lwc"],
           },
         },
@@ -3819,7 +3747,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3848,7 +3775,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["DefaultLightningEvt"],
           },
         },
@@ -3882,7 +3808,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3911,7 +3836,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["DefaultLightningIntf"],
           },
         },
@@ -3945,7 +3869,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -3974,7 +3897,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["DefaultLightningTest"],
           },
         },
@@ -4000,7 +3922,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4029,7 +3950,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for project creation",
           args: {
             name: "template",
-
             suggestions: ["standard", "empty", "analytics"],
           },
         },
@@ -4074,7 +3994,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4136,7 +4055,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4158,7 +4076,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["DefaultVFComponent"],
           },
         },
@@ -4206,7 +4123,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4228,7 +4144,6 @@ const completionSpec: Fig.Spec = {
           description: "Template to use for file creation",
           args: {
             name: "template",
-
             suggestions: ["DefaultVFPage"],
           },
         },
@@ -4276,7 +4191,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4352,7 +4266,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4408,7 +4321,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4464,7 +4376,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4544,7 +4455,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4622,7 +4532,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4685,7 +4594,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4762,7 +4670,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4817,7 +4724,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4866,7 +4772,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4938,7 +4843,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -4995,7 +4899,6 @@ const completionSpec: Fig.Spec = {
           description: "Deployment testing level",
           args: {
             name: "testlevel",
-
             suggestions: [
               "NoTestRun",
               "RunSpecifiedTests",
@@ -5063,7 +4966,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5126,7 +5028,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5194,7 +5095,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5249,7 +5149,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5319,7 +5218,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5412,7 +5310,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5487,7 +5384,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5525,7 +5421,6 @@ const completionSpec: Fig.Spec = {
           description: "Type of org to create",
           args: {
             name: "type",
-
             suggestions: ["sandbox"],
           },
         },
@@ -5569,7 +5464,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5615,7 +5509,6 @@ const completionSpec: Fig.Spec = {
           description: "Type of org to create",
           args: {
             name: "type",
-
             suggestions: ["scratch", "sandbox"],
           },
         },
@@ -5684,7 +5577,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5745,7 +5637,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5793,7 +5684,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5845,7 +5735,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5881,7 +5770,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -5951,7 +5839,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6006,7 +5893,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6061,7 +5947,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6109,7 +5994,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6183,7 +6067,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6295,7 +6178,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6350,7 +6232,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6406,7 +6287,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6461,7 +6341,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6506,7 +6385,6 @@ const completionSpec: Fig.Spec = {
           description: "Package type",
           args: {
             name: "packagetype",
-
             suggestions: ["Managed", "Unlocked"],
           },
         },
@@ -6558,7 +6436,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6617,7 +6494,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6691,7 +6567,6 @@ const completionSpec: Fig.Spec = {
             "Compile all Apex in the org and package, or only Apex in the package; unlocked packages only",
           args: {
             name: "apexcompile",
-
             suggestions: ["all", "package"],
           },
         },
@@ -6701,7 +6576,6 @@ const completionSpec: Fig.Spec = {
             "Security access type for the installed package (deprecation notice: The default --securitytype value will change from AllUsers to AdminsOnly in v47.0 or later.)",
           args: {
             name: "securitytype",
-
             suggestions: ["AllUsers", "AdminsOnly"],
           },
         },
@@ -6711,7 +6585,6 @@ const completionSpec: Fig.Spec = {
             "The upgrade type for the package installation; available only for unlocked packages",
           args: {
             name: "upgradetype",
-
             suggestions: ["DeprecateOnly", "Mixed", "Delete"],
           },
         },
@@ -6730,7 +6603,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6785,7 +6657,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6833,7 +6704,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6885,7 +6755,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -6948,7 +6817,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7003,7 +6871,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7080,7 +6947,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7246,7 +7112,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7292,7 +7157,6 @@ const completionSpec: Fig.Spec = {
           description: "Filter the list by version creation request status",
           args: {
             name: "status",
-
             suggestions: ["Queued", "InProgress", "Success", "Error"],
           },
         },
@@ -7311,7 +7175,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7366,7 +7229,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7427,7 +7289,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7492,7 +7353,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7583,7 +7443,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7645,7 +7504,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7705,7 +7563,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7798,7 +7655,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7879,7 +7735,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7919,7 +7774,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -7980,7 +7834,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -8045,7 +7898,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -8106,7 +7958,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -8159,7 +8010,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -8221,7 +8071,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -8261,7 +8110,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",
@@ -8306,7 +8154,6 @@ const completionSpec: Fig.Spec = {
           description: "Logging level for this command invocation",
           args: {
             name: "loglevel",
-
             suggestions: [
               "trace",
               "debug",

@@ -543,7 +543,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-go",
-
               requiresSeparator: true,
               description: "Set the expected Go language version",
               args: {
@@ -552,7 +551,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-require",
-
               requiresSeparator: true,
               description: "Add a requirement on the given module",
               args: {
@@ -561,7 +559,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-droprequire",
-
               requiresSeparator: true,
               description: "Drop a requirement on the given module",
               args: {
@@ -570,7 +567,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-exclude",
-
               requiresSeparator: true,
               description: "Add an exclusion on the given module",
               args: {
@@ -579,7 +575,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropexclude",
-
               requiresSeparator: true,
               description: "Drop an exclusion on the given module",
               args: {
@@ -588,7 +583,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-replace",
-
               requiresSeparator: true,
               description:
                 "Add a replacement of the given module path and version pair",
@@ -598,7 +592,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropreplace",
-
               requiresSeparator: true,
               description:
                 "Drops a replacement of the given module path and version pair",
@@ -608,7 +601,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-retract",
-
               requiresSeparator: true,
               description: "Add a retraction for the given version",
               args: {
@@ -617,7 +609,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropretract",
-
               requiresSeparator: true,
               description: "Drop a retraction for the given version",
               args: {
@@ -813,7 +804,6 @@ const completionSpec: Fig.Spec = {
         ...resolutionAndExecutionOptions,
         {
           name: "-vettool",
-
           requiresSeparator: true,
           description:
             "Select a different analysis tool with alternative or additional checks",

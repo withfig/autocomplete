@@ -521,7 +521,6 @@ const completionSpec: Fig.Spec = {
       description: "Flattens matching keywords in the generated log file",
       args: {
         name: "pattern",
-
         suggestions: [
           {
             name: "for",

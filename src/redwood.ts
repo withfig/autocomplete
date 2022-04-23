@@ -122,7 +122,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "side",
             description: "Select side to build",
-
             suggestions: ["api", "web"],
           },
           options: [
@@ -881,7 +880,6 @@ const completionSpec: Fig.Spec = {
       description: "Data migration tools",
       args: {
         name: "command",
-
         suggestions: [
           {
             name: "install",

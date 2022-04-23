@@ -13,7 +13,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete an Artifact Registry container image",
-
               options: [
                 {
                   name: "--account",
@@ -161,7 +160,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe an Artifact Registry container image",
-
               options: [
                 {
                   name: "--account",
@@ -329,7 +327,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Artifact Registry container images",
-
               options: [
                 {
                   name: "--account",
@@ -671,7 +668,6 @@ const completionSpec: Fig.Spec = {
               name: "add",
               description:
                 "Add a tag to a container image in Artifact Registry",
-
               options: [
                 {
                   name: "--account",
@@ -817,7 +813,6 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a tag from a container image in Artifact Registry",
-
               options: [
                 {
                   name: "--account",
@@ -956,7 +951,6 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List all tags associated with a container image in Artifact Registry",
-
               options: [
                 {
                   name: "--account",
@@ -1398,7 +1392,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all Artifact Registry supported locations",
-
           options: [
             {
               name: "--account",
@@ -1705,7 +1698,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Artifact Registry operation",
-
           options: [
             {
               name: "--account",
@@ -1987,7 +1979,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Artifact Registry package",
-
           options: [
             {
               name: "--account",
@@ -2150,7 +2141,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Artifact Registry packages",
-
           options: [
             {
               name: "--account",
@@ -2478,7 +2468,6 @@ const completionSpec: Fig.Spec = {
           name: "gradle",
           description:
             "Print a snippet to add a repository to the Gradle build.gradle file",
-
           options: [
             {
               name: "--account",
@@ -2642,7 +2631,6 @@ const completionSpec: Fig.Spec = {
           name: "mvn",
           description:
             "Print a snippet to add a Maven repository to the pom.xml file",
-
           options: [
             {
               name: "--account",
@@ -2805,7 +2793,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "npm",
           description: "Print credential settings to add to the .npmrc file",
-
           options: [
             {
               name: "--account",
@@ -3113,7 +3100,6 @@ const completionSpec: Fig.Spec = {
           name: "add-iam-policy-binding",
           description:
             "Add an IAM policy binding to the IAM policy of an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3302,7 +3288,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3496,7 +3481,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3649,7 +3633,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3797,7 +3780,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -3985,7 +3967,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List repositories in the specified project",
-
           options: [
             {
               name: "--account",
@@ -4170,7 +4151,6 @@ const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from the IAM policy of an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -4364,7 +4344,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -4519,7 +4498,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an Artifact Registry repository",
-
           options: [
             {
               name: "--account",
@@ -4835,7 +4813,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create an Artifact Registry tag",
-
           options: [
             {
               name: "--account",
@@ -5002,7 +4979,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Artifact Registry tag",
-
           options: [
             {
               name: "--account",
@@ -5169,7 +5145,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Artifact Registry tags",
-
           options: [
             {
               name: "--account",
@@ -5373,7 +5348,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an Artifact Registry tag",
-
           options: [
             {
               name: "--account",
@@ -5674,7 +5648,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Artifact Registry package version",
-
           options: [
             {
               name: "--account",
@@ -5851,7 +5824,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Artifact Registry package versions",
-
           options: [
             {
               name: "--account",

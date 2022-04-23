@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get the setting for an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -176,7 +175,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set",
           description: "Set the setting for an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -482,7 +480,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -676,7 +673,6 @@ const completionSpec: Fig.Spec = {
           name: "disable",
           description:
             "Disable Cloud Identity-Aware Proxy (Cloud IAP) on an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -831,7 +827,6 @@ const completionSpec: Fig.Spec = {
           name: "enable",
           description:
             "Enable Cloud Identity-Aware Proxy (Cloud IAP) on an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -1005,7 +1000,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -1197,7 +1191,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding from an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -1395,7 +1388,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for an IAP IAM resource",
-
           options: [
             {
               name: "--account",

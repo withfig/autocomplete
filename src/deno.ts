@@ -237,7 +237,6 @@ const seedOption: Fig.Option = {
 
 const v8FlagsOption: Fig.Option = {
   name: "--v8-flags",
-
   description: "Set V8 command line options (for help: --v8-flags=--help",
   requiresSeparator: true,
   args: {
@@ -253,7 +252,7 @@ function watchOption(options: ExclusiveOn & { files: boolean }): Fig.Option {
     description:
       "UNSTABLE: Watch for file changes and restart process automatically",
     exclusiveOn: options.exclusiveOn,
-    requiresEquals: options.files ? true : undefined,
+    requiresSeparator: options.files ? true : undefined,
     args: options.files
       ? {
           name: "files",
@@ -388,7 +387,6 @@ const denoTest: Fig.Subcommand = {
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: "--ignore",
-
       description: "Ignore files",
       requiresSeparator: true,
       args: {
@@ -439,7 +437,6 @@ const denoTest: Fig.Subcommand = {
     },
     {
       name: "--coverage",
-
       description: "UNSTABLE: Collect coverage profile data into the directory",
       requiresSeparator: true,
       args: {
@@ -505,7 +502,6 @@ const denoFmt: Fig.Subcommand = {
     },
     {
       name: "--ignore",
-
       description: "Ignore formatting particular source files",
       requiresSeparator: true,
       args: {
@@ -831,7 +827,6 @@ const denoCoverage: Fig.Subcommand = {
   options: [
     {
       name: "--ignore",
-
       description: "Ignore coverage files",
       requiresSeparator: true,
       args: {
@@ -842,7 +837,6 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--include",
-
       description: "Include source files in the report",
       isRepeatable: true,
       requiresSeparator: true,
@@ -854,7 +848,6 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--exclude",
-
       description: "Exclude source files from the report",
       isRepeatable: true,
       requiresSeparator: true,
@@ -870,7 +863,6 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--output",
-
       description: "Output file (defaults to stdout) for lcov",
       dependsOn: ["--lcov"],
       requiresSeparator: true,

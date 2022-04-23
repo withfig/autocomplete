@@ -102,7 +102,6 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "bs",
-
       icon: "fig://icon?type=asterisk",
       description: "Set input and output block size",
       requiresSeparator: true,
@@ -112,7 +111,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "cbs",
-
       icon: "fig://icon?type=asterisk",
       description: "Set the conversion record size",
       requiresSeparator: true,
@@ -122,7 +120,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "count",
-
       icon: "fig://icon?type=asterisk",
       description: "Copy this many input blocks",
       requiresSeparator: true,
@@ -132,7 +129,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "files",
-
       icon: "fig://icon?type=asterisk",
       description: "Copy this many files before terminating",
       requiresSeparator: true,
@@ -142,7 +138,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "ibs",
-
       icon: "fig://icon?type=asterisk",
       description: "Set the input block size",
       requiresSeparator: true,
@@ -153,7 +148,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "if",
-
       icon: "fig://icon?type=asterisk",
       description: "Read an input file instead of stdin",
       requiresSeparator: true,
@@ -165,7 +159,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "iseek",
-
       icon: "fig://icon?type=asterisk",
       description: "Seek this many blocks on the input file",
       requiresSeparator: true,
@@ -175,7 +168,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "obs",
-
       icon: "fig://icon?type=asterisk",
       description: "Set the output block size",
       requiresSeparator: true,
@@ -186,7 +178,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "of",
-
       icon: "fig://icon?type=asterisk",
       description: "Write to an output file instead of stdout",
       requiresSeparator: true,
@@ -199,7 +190,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "oseek",
-
       icon: "fig://icon?type=asterisk",
       description: "Seek this many blocks on the output file",
       requiresSeparator: true,
@@ -209,7 +199,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "seek",
-
       icon: "fig://icon?type=asterisk",
       description:
         "Seek this many blocks from the beginning of the output before copying",
@@ -220,7 +209,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "skip",
-
       icon: "fig://icon?type=asterisk",
       description:
         "Skip this many blocks from the beginning of the input before copying",
@@ -231,7 +219,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "conv",
-
       icon: "fig://icon?type=asterisk",
       description: "Convert input data (comma-separated list)",
       requiresSeparator: true,

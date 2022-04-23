@@ -432,7 +432,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "prompt",
-
               description: "Toggle interactive prompting in the terminal",
               args: {
                 name: "value",

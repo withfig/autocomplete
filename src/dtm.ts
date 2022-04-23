@@ -199,8 +199,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "--plugin",
               description: "Specify name with the plugin",
-              //
-              // requiresSeparator: true,
               isRequired: true,
               args: {
                 name: "plugin name",

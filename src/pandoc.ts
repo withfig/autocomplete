@@ -52,7 +52,6 @@ const styleFileArg: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "pandoc",
   description: "A universal document converter",
-
   options: [
     {
       name: ["-f", "-r", "--from", "--read"],

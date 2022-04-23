@@ -87,7 +87,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "infile",
               description: "A file with R code to be executed",
-
               generators: RFileGenerator,
             },
             {
@@ -105,7 +104,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "files",
             description: "Source files to be compiled",
-
             isVariadic: true,
             generators: compileFiles,
           },
@@ -150,7 +148,6 @@ const completionSpec: Fig.Spec = {
             name: "files",
             description:
               "The object files to be included in the shared object/DLL",
-
             isVariadic: true,
             generators: compileFiles,
           },
@@ -173,7 +170,6 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: "LIB",
                   description: "Path to the R library tree to install to",
-
                   generators: RLibGenerator,
                 },
               },
@@ -423,7 +419,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "packages",
             description: "Packages to remove",
-
             isDangerous: true,
             isVariadic: true,
           },

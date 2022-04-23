@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add IAM policy binding to a secret",
-
       options: [
         {
           name: "--account",
@@ -184,7 +183,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Create a new secret",
-
       options: [
         {
           name: "--account",
@@ -362,7 +360,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete",
       description: "Delete a secret",
-
       options: [
         {
           name: "--account",
@@ -500,7 +497,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Describe a secret's metadata",
-
       options: [
         {
           name: "--account",
@@ -638,7 +634,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-iam-policy",
       description: "Get the IAM policy for the secret",
-
       options: [
         {
           name: "--account",
@@ -816,7 +811,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List all secret names",
-
       options: [
         {
           name: "--account",
@@ -998,7 +992,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a location",
-
           options: [
             {
               name: "--account",
@@ -1136,7 +1129,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all available locations",
-
           options: [
             {
               name: "--account",
@@ -1444,7 +1436,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-iam-policy-binding",
       description: "Remove IAM policy binding for a secret",
-
       options: [
         {
           name: "--account",
@@ -1628,7 +1619,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "set-iam-policy",
       description: "Set the IAM policy binding for a secret",
-
       options: [
         {
           name: "--account",
@@ -1773,7 +1763,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update a secret's metadata",
-
       options: [
         {
           name: "--account",
@@ -1940,7 +1929,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "access",
           description: "Access a secret version's data",
-
           options: [
             {
               name: "--account",
@@ -2087,7 +2075,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add",
           description: "Create a new version of an existing secret",
-
           options: [
             {
               name: "--account",
@@ -2236,7 +2223,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe metadata about the secret version",
-
           options: [
             {
               name: "--account",
@@ -2383,7 +2369,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "destroy",
           description: "Destroy a secret version's metadata and secret data",
-
           options: [
             {
               name: "--account",
@@ -2530,7 +2515,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "disable",
           description: "Disable the version of the provided secret",
-
           options: [
             {
               name: "--account",
@@ -2677,7 +2661,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "enable",
           description: "Enable the version of the provided secret",
-
           options: [
             {
               name: "--account",
@@ -2824,7 +2807,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all versions for a secret",
-
           options: [
             {
               name: "--account",

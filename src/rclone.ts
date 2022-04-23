@@ -335,7 +335,6 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "hash",
-
           suggestions: hashes,
         },
         remotePath,
@@ -492,7 +491,6 @@ const completionSpec: Fig.Spec = {
           description: "Show only this hash type (may be repeated)",
           args: {
             name: "hashes",
-
             suggestions: hashes,
           },
         },
@@ -535,7 +533,6 @@ const completionSpec: Fig.Spec = {
           description: "Output hashsums to a file rather than the terminal",
           args: {
             name: "file",
-
             template: "filepaths",
           },
         },

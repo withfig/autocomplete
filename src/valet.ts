@@ -162,7 +162,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--format",
-
           requiresSeparator: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
@@ -240,7 +239,6 @@ const completionSpec: Fig.Spec = {
         { name: "--raw", description: "To output raw command list" },
         {
           name: "--format",
-
           requiresSeparator: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
@@ -284,7 +282,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--lines",
-
           requiresSeparator: true,
           args: {
             name: "LINES",
@@ -767,7 +764,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--site",
-
           requiresSeparator: true,
           description: "Name of the website you want to isolate",
           args: {
@@ -790,7 +786,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--site",
-
           requiresSeparator: true,
           description: "Name of the website you want to unisolate",
           args: {

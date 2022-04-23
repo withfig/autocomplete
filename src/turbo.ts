@@ -55,7 +55,6 @@ const completionSpec: Fig.Spec = {
           name: "--sso-team",
           description:
             "Attempt to authenticate to the specified team using SSO",
-
           requiresSeparator: true,
         },
       ],
@@ -66,7 +65,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "prune",
-
       description: "Prepare a subset of your monorepo",
       options: [
         {
@@ -143,7 +141,6 @@ const completionSpec: Fig.Spec = {
           name: "--scope",
           description:
             "Specify packages to act as entry points for task execution",
-
           requiresSeparator: true,
           args: {
             name: "package",
@@ -151,7 +148,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--cache-dir",
-
           requiresSeparator: true,
           description: "Specify local filesystem cache directory",
           args: {
@@ -195,7 +191,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--since",
           description: "Limit/set scope to changed packages since a mergebase",
-
           requiresSeparator: true,
           args: {
             name: "branch",
@@ -204,7 +199,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--team",
-
           requiresSeparator: true,
           description: "The slug of a turborepo.com team",
           args: {
@@ -213,7 +207,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--token",
-
           requiresSeparator: true,
           description: "A turborepo.com access token",
           args: {

@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-user-verified",
       description: "Lists the user's verified domains",
-
       options: [
         {
           name: "--account",
@@ -138,7 +137,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "verify",
       description: "Verifies a domain via an in-browser workflow",
-
       options: [
         {
           name: "--account",

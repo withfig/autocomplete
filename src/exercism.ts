@@ -95,7 +95,6 @@ const completionSpec: Fig.Spec = {
         name: "file",
         description: "The files you want to submit",
         template: "filepaths",
-
         isVariadic: true,
       },
     },

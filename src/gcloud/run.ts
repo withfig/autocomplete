@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Obtain details about a given configuration",
-
           options: [
             {
               name: "--account",
@@ -217,7 +216,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List available Configurations",
-
           options: [
             {
               name: "--account",
@@ -655,7 +653,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "deploy",
       description: "Deploy a container to Cloud Run",
-
       options: [
         {
           name: "--account",
@@ -1197,7 +1194,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -1426,7 +1422,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -1640,7 +1635,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -1854,7 +1848,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists domain mappings for Cloud Run for Anthos",
-
           options: [
             {
               name: "--account",
@@ -2296,7 +2289,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List available Cloud Run (fully managed) regions",
-
           options: [
             {
               name: "--account",
@@ -2728,7 +2720,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a revision",
-
           options: [
             {
               name: "--account",
@@ -2936,7 +2927,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Obtain details about revisions",
-
           options: [
             {
               name: "--account",
@@ -3144,7 +3134,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List available revisions",
-
           options: [
             {
               name: "--account",
@@ -3595,7 +3584,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Obtain details about a given route",
-
           options: [
             {
               name: "--account",
@@ -3803,7 +3791,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List available Routes",
-
           options: [
             {
               name: "--account",
@@ -4245,7 +4232,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -4484,7 +4470,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a service",
-
           options: [
             {
               name: "--account",
@@ -4692,7 +4677,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Obtain details about a given service",
-
           options: [
             {
               name: "--account",
@@ -4900,7 +4884,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -5138,7 +5121,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List available services",
-
           options: [
             {
               name: "--account",
@@ -5386,7 +5368,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a Cloud Run service",
-
           options: [
             {
               name: "--account",
@@ -5630,7 +5611,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a service",
-
           options: [
             {
               name: "--account",
@@ -5836,7 +5816,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update Cloud Run environment variables and other configuration settings",
-
           options: [
             {
               name: "--account",
@@ -6368,7 +6347,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update-traffic",
           description: "Adjust the traffic assignments for a Cloud Run service",
-
           options: [
             {
               name: "--account",

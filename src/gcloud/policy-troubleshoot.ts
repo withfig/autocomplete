@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "iam",
       description: "Troubleshoot the IAM Policy",
-
       options: [
         {
           name: "--account",
