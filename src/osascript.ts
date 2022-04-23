@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
       description: "Enter one line of a script",
       args: {
         name: "statement",
-        isVariadic: false,
       },
     },
     {
