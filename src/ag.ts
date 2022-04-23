@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "pattern",
       isOptional: true,
-      isVariadic: false,
     },
     {
       name: "path",

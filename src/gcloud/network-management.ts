@@ -283,7 +283,6 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
@@ -427,7 +426,6 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
@@ -566,7 +564,6 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
@@ -883,7 +880,6 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
@@ -1179,7 +1175,6 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
       ],
@@ -1452,7 +1447,6 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {

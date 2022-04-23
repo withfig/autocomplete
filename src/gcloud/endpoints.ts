@@ -152,7 +152,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIG_ID",
             description: "The configuration ID to retrieve",
-            isVariadic: false,
           },
         },
         {
@@ -614,7 +613,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "The name of the operation to describe",
-            isVariadic: false,
           },
         },
         {
@@ -940,7 +938,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "The name of the operation on which to wait",
-            isVariadic: false,
           },
         },
       ],
@@ -1234,7 +1231,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
@@ -1374,7 +1370,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "The name of the service for which to check the IAM policy",
-            isVariadic: false,
           },
         },
         {
@@ -1517,7 +1512,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             description: "The name of the service to delete",
-            isVariadic: false,
           },
         },
         {
@@ -1810,7 +1804,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             description: "The name of the service to describe",
-            isVariadic: false,
           },
         },
         {
@@ -1989,7 +1982,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "The name of the service whose IAM policy is to be described",
-            isVariadic: false,
           },
         },
         {
@@ -2322,7 +2314,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE",
             description:
               "ID of the service or fully qualified identifier for the service",
-            isVariadic: false,
           },
         },
         {
@@ -2466,7 +2457,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             description: "The name of the service to undelete",
-            isVariadic: false,
           },
         },
       ],

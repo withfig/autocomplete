@@ -451,7 +451,6 @@ const completionSpec: Fig.Spec = {
         name: "OUTPUT_URL_PREFIX",
         description:
           "Location for the export metadata and data files. Must be a valid\nGoogle Cloud Storage bucket with an optional path prefix. For example:\n+\n  $ {command} gs://mybucket/my/path\n+\nWill place the export in the `mybucket` bucket in objects prefixed with\n`my/path`",
-        isVariadic: false,
       },
     },
     {
@@ -625,7 +624,6 @@ const completionSpec: Fig.Spec = {
         name: "INPUT_URL",
         description:
           "Location of the import metadata. Must be a valid Google Cloud Storage\nobject. The file extension is 'overall_export_metadata'.\n+\nThis location is the 'output_url' field of a previous export, and can\nbe found via the 'operations describe' command",
-        isVariadic: false,
       },
     },
     {
@@ -769,7 +767,6 @@ const completionSpec: Fig.Spec = {
             name: "INDEX_FILE",
             description:
               "The path to your `index.yaml` file. For a detailed look into defining\nyour `index.yaml` file, refer to this configuration guide:\nhttps://cloud.google.com/datastore/docs/tools/indexconfig#Datastore_About_index_yaml",
-            isVariadic: false,
           },
         },
         {
@@ -909,7 +906,6 @@ const completionSpec: Fig.Spec = {
             name: "INDEX_FILE",
             description:
               "The path to your `index.yaml` file. For a detailed look into defining\nyour `index.yaml` file, refer to this configuration guide:\nhttps://cloud.google.com/datastore/docs/tools/indexconfig#Datastore_About_index_yaml",
-            isVariadic: false,
           },
         },
         {
@@ -1048,7 +1044,6 @@ const completionSpec: Fig.Spec = {
             name: "INDEX",
             description:
               "ID of the index or fully qualified identifier for the index",
-            isVariadic: false,
           },
         },
         {
@@ -1500,7 +1495,6 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The unique name of the Operation to cancel, formatted as either the full\nor relative resource path:\n+\n  projects/my-app-id/operations/foo\n+\nor:\n+\n  foo",
-            isVariadic: false,
           },
         },
         {
@@ -1639,7 +1633,6 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The unique name of the Operation to delete, formatted as either the full\nor relative resource path:\n+\n  projects/my-app-id/operations/foo\n+\nor:\n+\n  foo",
-            isVariadic: false,
           },
         },
         {
@@ -1779,7 +1772,6 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The unique name of the Operation to retrieve, formatted as either the\nfull or relative resource path:\n+\n  projects/my-app-id/operations/foo\n+\nor:\n+\n  foo",
-            isVariadic: false,
           },
         },
         {

@@ -394,7 +394,6 @@ const completionSpec: Fig.Spec = {
             name: "ENVIRONMENT",
             description:
               "ID of the environment or fully qualified identifier for the environment",
-            isVariadic: false,
           },
         },
         {
@@ -697,7 +696,6 @@ const completionSpec: Fig.Spec = {
             name: "ENVIRONMENT",
             description:
               "ID of the environment or fully qualified identifier for the environment",
-            isVariadic: false,
           },
         },
         {
@@ -1038,19 +1036,16 @@ const completionSpec: Fig.Spec = {
               name: "ENVIRONMENT",
               description:
                 "ID of the environment or fully qualified identifier for the environment",
-              isVariadic: false,
             },
             {
               name: "SUBCOMMAND",
               description:
                 "The Airflow CLI subcommand to run. Available subcommands include: backfill, clear, connections, dag_state, delete_dag, kerberos, list_dag_runs, list_dags, list_tasks, next_execution, pause, pool, render, run, task_failed_deps, task_state, test, trigger_dag, unpause, variables, version (see https://airflow.apache.org/cli.html for more info). Note that delete_dag is available from Airflow 1.10.1, and list_dag_runs, next_execution are available from Airflow 1.10.2",
-              isVariadic: false,
             },
             {
               name: "CMD_ARGS",
               description:
                 "Command line arguments to the subcommand.\n+\nThe '--' argument must be specified between gcloud specific args on the left and CMD_ARGS on the right. Example:\n+\n{command} myenv trigger_dag -- some_dag --run_id=foo",
-              isVariadic: false,
             },
           ],
         },
@@ -1221,7 +1216,6 @@ const completionSpec: Fig.Spec = {
                     name: "TARGET",
                     description:
                       "A relative path to a file or subdirectory to delete within the\ndags Cloud Storage subdirectory. If not specified, the entire contents\nof the dags subdirectory will be deleted",
-                    isVariadic: false,
                   },
                 },
                 {
@@ -2023,7 +2017,6 @@ const completionSpec: Fig.Spec = {
                     name: "TARGET",
                     description:
                       "A relative path to a file or subdirectory to delete within the\ndata Cloud Storage subdirectory. If not specified, the entire contents\nof the data subdirectory will be deleted",
-                    isVariadic: false,
                   },
                 },
                 {
@@ -2824,7 +2817,6 @@ const completionSpec: Fig.Spec = {
                     name: "TARGET",
                     description:
                       "A relative path to a file or subdirectory to delete within the\nplugins Cloud Storage subdirectory. If not specified, the entire contents\nof the plugins subdirectory will be deleted",
-                    isVariadic: false,
                   },
                 },
                 {
@@ -3865,7 +3857,6 @@ const completionSpec: Fig.Spec = {
             name: "ENVIRONMENT",
             description:
               "ID of the environment or fully qualified identifier for the environment",
-            isVariadic: false,
           },
         },
       ],
@@ -4297,7 +4288,6 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
@@ -4635,7 +4625,6 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
       ],

@@ -158,7 +158,6 @@ const completionSpec: Fig.Spec = {
         name: "RESOURCE",
         description:
           'The full resource name or URI to get the list of roles for.\n+\nSee ["Resource Names"](https://cloud.google.com/apis/design/resource_names) for\ndetails. To get a URI from most `list` commands in `gcloud`, pass the `--uri`\nflag. For example:\n+\n```\n$ gcloud compute instances list --project prj --uri\nhttps://compute.googleapis.com/compute/v1/projects/prj/zones/us-east1-c/instances/i1\nhttps://compute.googleapis.com/compute/v1/projects/prj/zones/us-east1-d/instances/i2\n```\n+',
-        isVariadic: false,
       },
     },
     {
@@ -307,7 +306,6 @@ const completionSpec: Fig.Spec = {
         name: "RESOURCE",
         description:
           'The full resource name or URI to get the testable permissions for.\n+\nSee ["Resource Names"](https://cloud.google.com/apis/design/resource_names) for\ndetails. To get a URI from most `list` commands in `gcloud`, pass the `--uri`\nflag. For example:\n+\n```\n$ gcloud compute instances list --project prj --uri\nhttps://compute.googleapis.com/compute/v1/projects/prj/zones/us-east1-c/instances/i1\nhttps://compute.googleapis.com/compute/v1/projects/prj/zones/us-east1-d/instances/i2\n```\n+',
-        isVariadic: false,
       },
     },
     {
@@ -688,7 +686,6 @@ const completionSpec: Fig.Spec = {
             name: "ROLE_ID",
             description:
               "The id of the custom role to create. For example: CustomRole. You must also specify the `--organization` or `--project` flag",
-            isVariadic: false,
           },
         },
         {
@@ -826,7 +823,6 @@ const completionSpec: Fig.Spec = {
             name: "ROLE_ID",
             description:
               "The id of the custom role to delete. For example: CustomRole. You must also specify the `--organization` or `--project` flag",
-            isVariadic: false,
           },
         },
         {
@@ -964,7 +960,6 @@ const completionSpec: Fig.Spec = {
             name: "ROLE_ID",
             description:
               "The id of the role to describe. Curated roles example: roles/viewer. Custom roles example: CustomRole. For custom roles, you must also specify the `--organization` or `--project` flag",
-            isVariadic: false,
           },
         },
         {
@@ -1270,7 +1265,6 @@ const completionSpec: Fig.Spec = {
             name: "ROLE_ID",
             description:
               "The id of the custom role to undelete. For example: CustomRole. You must also specify the `--organization` or `--project` flag",
-            isVariadic: false,
           },
         },
         {
@@ -1475,7 +1469,6 @@ const completionSpec: Fig.Spec = {
             name: "ROLE_ID",
             description:
               "The id of the custom role to update. For example: CustomRole. You must also specify the `--organization` or `--project` flag",
-            isVariadic: false,
           },
         },
       ],
@@ -1789,7 +1782,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "ID of the serviceAccount or fully qualified identifier for the serviceAccount",
-            isVariadic: false,
           },
         },
         {
@@ -1946,7 +1938,6 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The internal name of the new service account. Used to generate an IAM_ACCOUNT (an IAM internal email address used as an identifier of service account), which must be passed to subsequent commands",
-            isVariadic: false,
           },
         },
         {
@@ -2085,7 +2076,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "The service account to delete. The account should be formatted either as a numeric service account ID or as an email, like this: 123456789876543212345 or my-iam-account@somedomain.com",
-            isVariadic: false,
           },
         },
         {
@@ -2224,7 +2214,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "The service account to describe. The account should be formatted either as a numeric service account ID or as an email, like this: 123456789876543212345 or my-iam-account@somedomain.com",
-            isVariadic: false,
           },
         },
         {
@@ -2363,7 +2352,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "ID of the serviceAccount or fully qualified identifier for the serviceAccount",
-            isVariadic: false,
           },
         },
         {
@@ -2502,7 +2490,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "ID of the serviceAccount or fully qualified identifier for the serviceAccount",
-            isVariadic: false,
           },
         },
         {
@@ -2681,7 +2668,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "The service account whose policy to get. The account should be formatted either as a numeric service account ID or as an email, like this: 123456789876543212345 or my-iam-account@somedomain.com",
-            isVariadic: false,
           },
         },
         {
@@ -2845,7 +2831,6 @@ const completionSpec: Fig.Spec = {
                 name: "OUTPUT-FILE",
                 description:
                   "The path where the resulting private key should be written. File system write permission will be checked on the specified path prior to the key creation",
-                isVariadic: false,
               },
             },
             {
@@ -2994,7 +2979,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "KEY-ID",
                 description: "The key to delete",
-                isVariadic: false,
               },
             },
             {
@@ -3347,7 +3331,6 @@ const completionSpec: Fig.Spec = {
                 name: "PUBLIC_KEY_FILE",
                 description:
                   "Path of the file containing the public key. Note that only public key data in the format of\nRSA_X509_PEM is supported. See https://cloud.google.com/iot/docs/concepts/device-security#public_key_format\nfor more information",
-                isVariadic: false,
               },
             },
           ],
@@ -3830,7 +3813,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "ID of the serviceAccount or fully qualified identifier for the serviceAccount",
-            isVariadic: false,
           },
         },
         {
@@ -3970,13 +3952,11 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE_ACCOUNT",
               description:
                 "The service account whose policy to set. The account should be formatted either as a numeric service account ID or as an email, like this: 123456789876543212345 or my-iam-account@somedomain.com",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy",
-              isVariadic: false,
             },
           ],
         },
@@ -4126,13 +4106,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "INPUT-FILE",
               description: "A path to the blob file to be signed",
-              isVariadic: false,
             },
             {
               name: "OUTPUT-FILE",
               description:
                 "A path the resulting signed blob will be written to",
-              isVariadic: false,
             },
           ],
         },
@@ -4290,7 +4268,6 @@ const completionSpec: Fig.Spec = {
             name: "SERVICE_ACCOUNT",
             description:
               "ID of the serviceAccount or fully qualified identifier for the serviceAccount",
-            isVariadic: false,
           },
         },
       ],

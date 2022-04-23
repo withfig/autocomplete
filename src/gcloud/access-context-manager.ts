@@ -1464,7 +1464,6 @@ const completionSpec: Fig.Spec = {
             name: "LEVEL",
             description:
               "ID of the level or fully qualified identifier for the level",
-            isVariadic: false,
           },
         },
         {
@@ -1617,7 +1616,6 @@ const completionSpec: Fig.Spec = {
             name: "LEVEL",
             description:
               "ID of the level or fully qualified identifier for the level",
-            isVariadic: false,
           },
         },
         {
@@ -1765,7 +1763,6 @@ const completionSpec: Fig.Spec = {
             name: "LEVEL",
             description:
               "ID of the level or fully qualified identifier for the level",
-            isVariadic: false,
           },
         },
         {
@@ -2108,7 +2105,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -2306,7 +2302,6 @@ const completionSpec: Fig.Spec = {
             name: "LEVEL",
             description:
               "ID of the level or fully qualified identifier for the level",
-            isVariadic: false,
           },
         },
       ],
@@ -2669,7 +2664,6 @@ const completionSpec: Fig.Spec = {
             name: "PERIMETER",
             description:
               "ID of the perimeter or fully qualified identifier for the perimeter",
-            isVariadic: false,
           },
         },
         {
@@ -2822,7 +2816,6 @@ const completionSpec: Fig.Spec = {
             name: "PERIMETER",
             description:
               "ID of the perimeter or fully qualified identifier for the perimeter",
-            isVariadic: false,
           },
         },
         {
@@ -2970,7 +2963,6 @@ const completionSpec: Fig.Spec = {
             name: "PERIMETER",
             description:
               "ID of the perimeter or fully qualified identifier for the perimeter",
-            isVariadic: false,
           },
         },
         {
@@ -3250,7 +3242,6 @@ const completionSpec: Fig.Spec = {
                 name: "PERIMETER",
                 description:
                   "ID of the perimeter or fully qualified identifier for the perimeter",
-                isVariadic: false,
               },
             },
             {
@@ -3404,7 +3395,6 @@ const completionSpec: Fig.Spec = {
                 name: "PERIMETER",
                 description:
                   "ID of the perimeter or fully qualified identifier for the perimeter",
-                isVariadic: false,
               },
             },
             {
@@ -3553,7 +3543,6 @@ const completionSpec: Fig.Spec = {
                 name: "PERIMETER",
                 description:
                   "ID of the perimeter or fully qualified identifier for the perimeter",
-                isVariadic: false,
               },
             },
             {
@@ -3707,7 +3696,6 @@ const completionSpec: Fig.Spec = {
                 name: "PERIMETER",
                 description:
                   "ID of the perimeter or fully qualified identifier for the perimeter",
-                isVariadic: false,
               },
             },
             {
@@ -3861,7 +3849,6 @@ const completionSpec: Fig.Spec = {
                 name: "PERIMETER",
                 description:
                   "ID of the perimeter or fully qualified identifier for the perimeter",
-                isVariadic: false,
               },
             },
             {
@@ -4454,7 +4441,6 @@ const completionSpec: Fig.Spec = {
                 name: "PERIMETER",
                 description:
                   "ID of the perimeter or fully qualified identifier for the perimeter",
-                isVariadic: false,
               },
             },
           ],
@@ -4927,7 +4913,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -5233,7 +5218,6 @@ const completionSpec: Fig.Spec = {
             name: "PERIMETER",
             description:
               "ID of the perimeter or fully qualified identifier for the perimeter",
-            isVariadic: false,
           },
         },
       ],
@@ -5665,7 +5649,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -5804,7 +5787,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -6136,7 +6118,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
       ],

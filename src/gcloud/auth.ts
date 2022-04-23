@@ -138,12 +138,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "ACCOUNT",
           description: "The account to associate with the refresh token",
-          isVariadic: false,
         },
         {
           name: "TOKEN",
           description: "OAuth2 refresh token. If blank, prompt for value",
-          isVariadic: false,
         },
       ],
     },
@@ -308,7 +306,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNT",
         description: "E-mail address of the service account",
-        isVariadic: false,
       },
     },
     {
@@ -889,7 +886,6 @@ const completionSpec: Fig.Spec = {
             name: "QUOTA_PROJECT_ID",
             description:
               "Quota project ID to add to application default credentials. If a quota project already exists, it will be updated",
-            isVariadic: false,
           },
         },
       ],
@@ -1158,7 +1154,6 @@ const completionSpec: Fig.Spec = {
         name: "REGISTRIES",
         description:
           "The comma-separated list of registries to configure the credential helper for",
-        isVariadic: false,
       },
     },
     {
@@ -1296,7 +1291,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNT_NAME",
         description: "Name of the account to describe",
-        isVariadic: false,
       },
     },
     {
@@ -1435,7 +1429,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "METHOD",
         description: "The docker credential helper method",
-        isVariadic: false,
       },
     },
     {
@@ -1579,7 +1572,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "METHOD",
         description: "The git credential helper method",
-        isVariadic: false,
       },
     },
     {
@@ -1929,7 +1921,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNT",
         description: "User account used for authorization",
-        isVariadic: false,
       },
     },
     {
@@ -2068,7 +2059,6 @@ const completionSpec: Fig.Spec = {
         name: "ACCOUNT",
         description:
           "Account to get the access token for. If not specified, the current active account will be used",
-        isVariadic: false,
       },
     },
     {
@@ -2237,7 +2227,6 @@ const completionSpec: Fig.Spec = {
         name: "ACCOUNT",
         description:
           "Account to print the identity token for. If not specified, the current active account will be used",
-        isVariadic: false,
       },
     },
     {
@@ -2377,7 +2366,6 @@ const completionSpec: Fig.Spec = {
         name: "ACCOUNT",
         description:
           "The account to get the refresh token for. Leave empty for the active account",
-        isVariadic: false,
       },
     },
     {
@@ -2519,7 +2507,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNTS",
         description: "Accounts whose credentials are to be revoked",
-        isVariadic: false,
       },
     },
   ],

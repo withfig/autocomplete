@@ -295,7 +295,6 @@ const completionSpec: Fig.Spec = {
             name: "DASHBOARD",
             description:
               "ID of the dashboard or fully qualified identifier for the dashboard",
-            isVariadic: false,
           },
         },
         {
@@ -434,7 +433,6 @@ const completionSpec: Fig.Spec = {
             name: "DASHBOARD",
             description:
               "ID of the dashboard or fully qualified identifier for the dashboard",
-            isVariadic: false,
           },
         },
         {
@@ -771,7 +769,6 @@ const completionSpec: Fig.Spec = {
             name: "DASHBOARD",
             description:
               "ID of the dashboard or fully qualified identifier for the dashboard",
-            isVariadic: false,
           },
         },
       ],

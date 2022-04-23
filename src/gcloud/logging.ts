@@ -141,7 +141,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "LOG_NAME",
             description: "Log name",
-            isVariadic: false,
           },
         },
         {
@@ -597,7 +596,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the new metric",
-            isVariadic: false,
           },
         },
         {
@@ -735,7 +733,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the metric to delete",
-            isVariadic: false,
           },
         },
         {
@@ -873,7 +870,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the metric",
-            isVariadic: false,
           },
         },
         {
@@ -1194,7 +1190,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the log-based metric to update",
-            isVariadic: false,
           },
         },
       ],
@@ -1511,7 +1506,6 @@ const completionSpec: Fig.Spec = {
         name: "LOG_FILTER",
         description:
           "Filter expression that specifies the log entries to return. A detailed guide on basic and advanced filters can be found at: https://cloud.google.com/logging/docs/view/overview",
-        isVariadic: false,
       },
     },
     {
@@ -1983,12 +1977,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name for the sink",
-              isVariadic: false,
             },
             {
               name: "DESTINATION",
               description: "The destination for the sink",
-              isVariadic: false,
             },
           ],
         },
@@ -2144,7 +2136,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SINK_NAME",
             description: "The name of the sink to delete",
-            isVariadic: false,
           },
         },
         {
@@ -2300,7 +2291,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SINK_NAME",
             description: "The name of the sink to describe",
-            isVariadic: false,
           },
         },
         {
@@ -2646,13 +2636,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name of the sink to update",
-              isVariadic: false,
             },
             {
               name: "DESTINATION",
               description:
                 "A new destination for the sink. If omitted, the sink's existing destination is unchanged",
-              isVariadic: false,
             },
           ],
         },
@@ -2969,13 +2957,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "LOG_NAME",
           description: "Name of the log where the log entry will be written",
-          isVariadic: false,
         },
         {
           name: "MESSAGE",
           description:
             "Message to put in the log entry. It can be JSON if you include `--payload-type=json`",
-          isVariadic: false,
         },
       ],
     },

@@ -302,7 +302,6 @@ const completionSpec: Fig.Spec = {
                 name: "JOB",
                 description:
                   "ID of the job or fully qualified identifier for the job",
-                isVariadic: false,
               },
             },
             {
@@ -629,7 +628,6 @@ const completionSpec: Fig.Spec = {
                 name: "JOB",
                 description:
                   "ID of the job or fully qualified identifier for the job",
-                isVariadic: false,
               },
             },
             {
@@ -891,7 +889,6 @@ const completionSpec: Fig.Spec = {
                 name: "JOB",
                 description:
                   "ID of the job or fully qualified identifier for the job",
-                isVariadic: false,
               },
             },
           ],
@@ -1160,7 +1157,6 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
@@ -1299,7 +1295,6 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
@@ -1616,7 +1611,6 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
@@ -1755,7 +1749,6 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
@@ -1894,7 +1887,6 @@ const completionSpec: Fig.Spec = {
             name: "JOB",
             description:
               "ID of the job or fully qualified identifier for the job",
-            isVariadic: false,
           },
         },
         {
@@ -2248,7 +2240,6 @@ const completionSpec: Fig.Spec = {
                 name: "JOB",
                 description:
                   "ID of the job or fully qualified identifier for the job",
-                isVariadic: false,
               },
             },
             {
@@ -2625,7 +2616,6 @@ const completionSpec: Fig.Spec = {
                 name: "JOB",
                 description:
                   "ID of the job or fully qualified identifier for the job",
-                isVariadic: false,
               },
             },
             {
@@ -2928,7 +2918,6 @@ const completionSpec: Fig.Spec = {
                 name: "JOB",
                 description:
                   "ID of the job or fully qualified identifier for the job",
-                isVariadic: false,
               },
             },
           ],

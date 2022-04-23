@@ -1403,7 +1403,6 @@ const completionSpec: Fig.Spec = {
             name: "DEVICE",
             description:
               "ID of the device or fully qualified identifier for the device",
-            isVariadic: false,
           },
         },
         {
@@ -1939,7 +1938,6 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "The index (zero-based) of the credential to delete",
-                isVariadic: false,
               },
             },
             {
@@ -2107,7 +2105,6 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "The index (zero-based) of the credential to describe",
-                isVariadic: false,
               },
             },
             {
@@ -2477,7 +2474,6 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "The index (zero-based) of the credential to update",
-                isVariadic: false,
               },
             },
           ],
@@ -2764,7 +2760,6 @@ const completionSpec: Fig.Spec = {
             name: "DEVICE",
             description:
               "ID of the device or fully qualified identifier for the device",
-            isVariadic: false,
           },
         },
         {
@@ -2921,7 +2916,6 @@ const completionSpec: Fig.Spec = {
             name: "DEVICE",
             description:
               "ID of the device or fully qualified identifier for the device",
-            isVariadic: false,
           },
         },
         {
@@ -4389,7 +4383,6 @@ const completionSpec: Fig.Spec = {
             name: "DEVICE",
             description:
               "ID of the device or fully qualified identifier for the device",
-            isVariadic: false,
           },
         },
       ],
@@ -4724,7 +4717,6 @@ const completionSpec: Fig.Spec = {
             name: "REGISTRY",
             description:
               "ID of the registry or fully qualified identifier for the registry",
-            isVariadic: false,
           },
         },
         {
@@ -5204,7 +5196,6 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "The index (zero-based) of the credential to delete",
-                isVariadic: false,
               },
             },
             {
@@ -5363,7 +5354,6 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "The index (zero-based) of the credential to describe",
-                isVariadic: false,
               },
             },
             {
@@ -5824,7 +5814,6 @@ const completionSpec: Fig.Spec = {
             name: "REGISTRY",
             description:
               "ID of the registry or fully qualified identifier for the registry",
-            isVariadic: false,
           },
         },
         {
@@ -5972,7 +5961,6 @@ const completionSpec: Fig.Spec = {
             name: "REGISTRY",
             description:
               "ID of the registry or fully qualified identifier for the registry",
-            isVariadic: false,
           },
         },
         {
@@ -6160,7 +6148,6 @@ const completionSpec: Fig.Spec = {
             name: "REGISTRY",
             description:
               "ID of the registry or fully qualified identifier for the registry",
-            isVariadic: false,
           },
         },
         {
@@ -6498,12 +6485,10 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description: "JSON or YAML file with the IAM policy",
-              isVariadic: false,
             },
           ],
         },
@@ -6693,7 +6678,6 @@ const completionSpec: Fig.Spec = {
             name: "REGISTRY",
             description:
               "ID of the registry or fully qualified identifier for the registry",
-            isVariadic: false,
           },
         },
       ],

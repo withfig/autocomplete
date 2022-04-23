@@ -281,7 +281,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY",
             description:
               "ID of the entry or fully qualified identifier for the entry",
-            isVariadic: false,
           },
         },
         {
@@ -438,7 +437,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY",
             description:
               "ID of the entry or fully qualified identifier for the entry",
-            isVariadic: false,
           },
         },
         {
@@ -595,7 +593,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY",
             description:
               "ID of the entry or fully qualified identifier for the entry",
-            isVariadic: false,
           },
         },
         {
@@ -932,7 +929,6 @@ const completionSpec: Fig.Spec = {
             name: "RESOURCE",
             description:
               "The name of the target resource to lookup. This can be either the Google Cloud Platform\nresource name or the SQL name of a Google Cloud Platform resource. SQL names follow Standard\nSQL lexical structure: https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical",
-            isVariadic: false,
           },
         },
         {
@@ -1192,7 +1188,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY",
             description:
               "ID of the entry or fully qualified identifier for the entry",
-            isVariadic: false,
           },
         },
       ],
@@ -1496,7 +1491,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
         {
@@ -1662,7 +1656,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
         {
@@ -1810,7 +1803,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
         {
@@ -1958,7 +1950,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
         {
@@ -2147,7 +2138,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
         {
@@ -2506,7 +2496,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
         {
@@ -2656,13 +2645,11 @@ const completionSpec: Fig.Spec = {
               name: "ENTRY_GROUP",
               description:
                 "ID of the entry group or fully qualified identifier for the entry group",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -2829,7 +2816,6 @@ const completionSpec: Fig.Spec = {
             name: "ENTRY_GROUP",
             description:
               "ID of the entry group or fully qualified identifier for the entry group",
-            isVariadic: false,
           },
         },
       ],
@@ -3161,7 +3147,6 @@ const completionSpec: Fig.Spec = {
         name: "QUERY",
         description:
           "Query string in search query syntax in Cloud Data Catalog. For more\ninformation, see:\nhttps://cloud.google.com/data-catalog/docs/how-to/search-reference",
-        isVariadic: false,
       },
     },
     {
@@ -3335,7 +3320,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
         {
@@ -3503,7 +3487,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
         {
@@ -3656,7 +3639,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
         {
@@ -3804,7 +3786,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
         {
@@ -3985,7 +3966,6 @@ const completionSpec: Fig.Spec = {
                 name: "FIELD",
                 description:
                   "ID of the tag template field or fully qualified identifier for the tag template field",
-                isVariadic: false,
               },
             },
             {
@@ -4147,7 +4127,6 @@ const completionSpec: Fig.Spec = {
                 name: "FIELD",
                 description:
                   "ID of the tag template field or fully qualified identifier for the tag template field",
-                isVariadic: false,
               },
             },
             {
@@ -4330,7 +4309,6 @@ const completionSpec: Fig.Spec = {
                     name: "ENUM_VALUE",
                     description:
                       "ID of the enum value or fully qualified identifier for the enum value",
-                    isVariadic: false,
                   },
                 },
               ],
@@ -4627,7 +4605,6 @@ const completionSpec: Fig.Spec = {
                 name: "FIELD",
                 description:
                   "ID of the tag template field or fully qualified identifier for the tag template field",
-                isVariadic: false,
               },
             },
             {
@@ -4808,7 +4785,6 @@ const completionSpec: Fig.Spec = {
                 name: "FIELD",
                 description:
                   "ID of the tag template field or fully qualified identifier for the tag template field",
-                isVariadic: false,
               },
             },
           ],
@@ -5127,7 +5103,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
         {
@@ -5297,7 +5272,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
         {
@@ -5447,13 +5421,11 @@ const completionSpec: Fig.Spec = {
               name: "TAG_TEMPLATE",
               description:
                 "ID of the tag template or fully qualified identifier for the tag template",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -5611,7 +5583,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG_TEMPLATE",
             description:
               "ID of the tag template or fully qualified identifier for the tag template",
-            isVariadic: false,
           },
         },
       ],
@@ -6123,7 +6094,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG",
             description:
               "ID of the tag or fully qualified identifier for the tag",
-            isVariadic: false,
           },
         },
         {
@@ -6536,7 +6506,6 @@ const completionSpec: Fig.Spec = {
             name: "TAG",
             description:
               "ID of the tag or fully qualified identifier for the tag",
-            isVariadic: false,
           },
         },
       ],
@@ -6839,7 +6808,6 @@ const completionSpec: Fig.Spec = {
             name: "TAXONOMY",
             description:
               "ID of the taxonomy or fully qualified identifier for the taxonomy",
-            isVariadic: false,
           },
         },
         {
@@ -6987,7 +6955,6 @@ const completionSpec: Fig.Spec = {
             name: "TAXONOMY",
             description:
               "ID of the taxonomy or fully qualified identifier for the taxonomy",
-            isVariadic: false,
           },
         },
         {
@@ -7136,7 +7103,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TAXONOMIES",
             description: "List of taxonomies to bring",
-            isVariadic: false,
           },
         },
         {
@@ -7324,7 +7290,6 @@ const completionSpec: Fig.Spec = {
             name: "TAXONOMY",
             description:
               "ID of the taxonomy or fully qualified identifier for the taxonomy",
-            isVariadic: false,
           },
         },
         {
@@ -7474,7 +7439,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TAXONOMIES",
             description: "File containing serialized taxonomy",
-            isVariadic: false,
           },
         },
         {
@@ -7846,7 +7810,6 @@ const completionSpec: Fig.Spec = {
                 name: "POLICY_TAG",
                 description:
                   "ID of the policy tag or fully qualified identifier for the policy tag",
-                isVariadic: false,
               },
             },
             {
@@ -8003,7 +7966,6 @@ const completionSpec: Fig.Spec = {
                 name: "POLICY_TAG",
                 description:
                   "ID of the policy tag or fully qualified identifier for the policy tag",
-                isVariadic: false,
               },
             },
             {
@@ -8201,7 +8163,6 @@ const completionSpec: Fig.Spec = {
                 name: "POLICY_TAG",
                 description:
                   "ID of the policy tag or fully qualified identifier for the policy tag",
-                isVariadic: false,
               },
             },
             {
@@ -8578,7 +8539,6 @@ const completionSpec: Fig.Spec = {
                 name: "POLICY_TAG",
                 description:
                   "ID of the policy tag or fully qualified identifier for the policy tag",
-                isVariadic: false,
               },
             },
             {
@@ -8737,13 +8697,11 @@ const completionSpec: Fig.Spec = {
                   name: "POLICY_TAG",
                   description:
                     "ID of the policy tag or fully qualified identifier for the policy tag",
-                  isVariadic: false,
                 },
                 {
                   name: "POLICY_FILE",
                   description:
                     "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-                  isVariadic: false,
                 },
               ],
             },
@@ -9044,7 +9002,6 @@ const completionSpec: Fig.Spec = {
             name: "TAXONOMY",
             description:
               "ID of the taxonomy or fully qualified identifier for the taxonomy",
-            isVariadic: false,
           },
         },
         {
@@ -9193,13 +9150,11 @@ const completionSpec: Fig.Spec = {
               name: "TAXONOMY",
               description:
                 "ID of the taxonomy or fully qualified identifier for the taxonomy",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
