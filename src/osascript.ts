@@ -52,7 +52,6 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "script",
     isScript: true,
-    isVariadic: false,
     isOptional: true,
     generators: filepaths({
       extensions: ["scpt", "scptd"],
