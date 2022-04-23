@@ -38,7 +38,6 @@ const infoArgs: Fig.SingleOrArray<Fig.Arg> = [
     description: "Mention statistics at end of run (levels 1-3)",
   },
   { name: "SYMSAFE", description: "Mention symlinks that are unsafe" },
-
   { name: "ALL", description: "Set all --info options (e.g. all4)" },
   {
     name: "NONE",
@@ -87,7 +86,6 @@ const debugArgs: Fig.SingleOrArray<Fig.Arg> = [
     description: "Mention statistics at end of run (levels 1-3)",
   },
   { name: "SYMSAFE", description: "Mention symlinks that are unsafe" },
-
   { name: "ALL", description: "Set all --info options (e.g. all4)" },
   {
     name: "NONE",
@@ -143,7 +141,6 @@ const completionSpec: Fig.Spec = {
       name: ["--checksum", "-c"],
       description: "Skip based on checksum, not mod-time & size",
     },
-
     {
       name: ["-a", "--archive"],
       description: "Archive mode; equals -rlptgoD (no -H,-A,-X)",

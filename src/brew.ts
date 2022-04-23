@@ -812,7 +812,6 @@ const completionSpec: Fig.Spec = {
           name: ["-v", "--verbose"],
           description: "Make some output more verbose",
         },
-
         {
           name: ["-q", "--quiet"],
           description: "Make some output more quiet",
@@ -880,7 +879,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["gcc-7", "llvm_clang", "clang"],
           },
         },
-
         {
           name: "--force-bottle",
           description:

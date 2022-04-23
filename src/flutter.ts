@@ -132,7 +132,6 @@ const nullAssertions = [
     description:
       "Perform additional null assertions on the boundaries of migrated and un-migrated code. This setting is not currently supported on desktop devices",
   },
-
   {
     name: "--no-null-assertions",
     description:

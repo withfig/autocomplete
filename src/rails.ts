@@ -161,7 +161,6 @@ const newCommand = {
       name: "--skip-webpack-install]",
       description: "Don't run Webpack install",
     },
-
     {
       name: ["--f", "--force"],
       description: "Overwrite files that already exist",

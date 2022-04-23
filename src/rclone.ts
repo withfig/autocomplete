@@ -464,7 +464,6 @@ const completionSpec: Fig.Spec = {
             suggestions: hashes,
           },
         },
-
         {
           name: ["--separator", "-s"],
           description: 'Separator for the items in the format. (default ";")',

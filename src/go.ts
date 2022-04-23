@@ -78,7 +78,6 @@ const globalOptions: Fig.Option[] = [
     name: "-a",
     description: "Force rebuilding of packages that are already up-to-date",
   },
-
   {
     name: "-p",
     description: "The number of programs, such as build commands or",

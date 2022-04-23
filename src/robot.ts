@@ -622,7 +622,6 @@ const completionSpec: Fig.Spec = {
         name: "class",
       },
     },
-
     {
       name: "--console",
       description: "How to report execution on the console",
@@ -723,7 +722,6 @@ const completionSpec: Fig.Spec = {
             name: "on",
             type: "option",
           },
-
           {
             name: "off",
             type: "option",

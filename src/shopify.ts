@@ -574,7 +574,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Connects your local project directory to an existing app in your Partner organization. This command is intended to help teams collaborate on the same extension code. Each developer can clone the extension code locally, and then run shopify extension connect to populate the local .env file with the API keys required to push changes to the extension",
         },
-
         {
           name: "push",
           priority: 60,

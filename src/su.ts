@@ -7,15 +7,12 @@ const completionSpec: Fig.Spec = {
       description:
         "If the invoked shell is csh(1), this option prevents it from reading the .cshrc file",
     },
-
     {
       name: "-l",
       description:
         "Simulate a full login.  The environment is discarded except for  HOME, SHELL, PATH, TERM, and USER. HOME and SHELL are modified as above.  USER is set to the target login.  PATH is set to   ``/bin:/usr/bin''.  TERM is imported from your current environment.  The invoked shell is the target login's, and su willchange directory to the target login's home directory",
     },
-
     { name: "-", description: "(no letter) The same as -l" },
-
     {
       name: "-m",
       description:

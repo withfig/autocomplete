@@ -188,7 +188,6 @@ const mainCommands: Fig.Subcommand[] = [
           name: "foo=bar",
         },
       },
-
       {
         name: "-var-file",
 

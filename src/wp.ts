@@ -6303,7 +6303,6 @@ const completionSpec: Fig.Spec = {
               description:
                 "If set, even “soft changes” like readme.txt changes will trigger checksum errors",
             },
-
             {
               name: "--format",
 
