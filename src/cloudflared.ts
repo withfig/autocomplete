@@ -258,8 +258,7 @@ const access: Fig.Subcommand = {
       options: [
         {
           name: "--app",
-          insertValue: "--app={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "value",
             description: "Url of access application",

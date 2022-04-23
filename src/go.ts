@@ -544,8 +544,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-go",
-              insertValue: "-go={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Set the expected Go language version",
               args: {
                 name: "version",
@@ -553,8 +553,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-require",
-              insertValue: "-require={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Add a requirement on the given module",
               args: {
                 name: "path",
@@ -562,8 +562,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-droprequire",
-              insertValue: "-droprequire={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Drop a requirement on the given module",
               args: {
                 name: "path",
@@ -571,8 +571,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-exclude",
-              insertValue: "-exclude={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Add an exclusion on the given module",
               args: {
                 name: "path",
@@ -580,8 +580,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropexclude",
-              insertValue: "-dropexclude={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Drop an exclusion on the given module",
               args: {
                 name: "path",
@@ -589,8 +589,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-replace",
-              insertValue: "-replace={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description:
                 "Add a replacement of the given module path and version pair",
               args: {
@@ -599,8 +599,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropreplace",
-              insertValue: "-dropreplace={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description:
                 "Drops a replacement of the given module path and version pair",
               args: {
@@ -609,8 +609,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-retract",
-              insertValue: "-retract={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Add a retraction for the given version",
               args: {
                 name: "version",
@@ -618,8 +618,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "-dropretract",
-              insertValue: "-dropretract={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Drop a retraction for the given version",
               args: {
                 name: "version",
@@ -814,8 +814,8 @@ const completionSpec: Fig.Spec = {
         ...resolutionAndExecutionOptions,
         {
           name: "-vettool",
-          insertValue: "-vettool={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description:
             "Select a different analysis tool with alternative or additional checks",
           args: {

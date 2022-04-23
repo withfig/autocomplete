@@ -2490,8 +2490,8 @@ const addOptions: Fig.Option[] = [
     name: "--chmod",
     description:
       "Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged",
-    insertValue: "--chmod={cursor}",
-    requiresEquals: true,
+
+    requiresSeparator: true,
     args: {
       suggestions: ["+x", "-x"],
     },
@@ -2917,8 +2917,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--abbrev",
-          insertValue: "--abbrev={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description: "Use <n> digits to display object names",
           args: {
             name: "n",
@@ -4110,8 +4110,8 @@ const completionSpec: Fig.Spec = {
 
         {
           name: "--repo",
-          insertValue: "--repo={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description:
             "This option is equivalent to the <repository> argument. If both are specified, the command-line argument takes precedence",
           args: {
@@ -4158,8 +4158,8 @@ const completionSpec: Fig.Spec = {
 
         {
           name: "--recurse-submodules",
-          insertValue: "--recurse-submodules={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description:
             "May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If check is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If on-demand is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If only is used all submodules will be recursively pushed while the superproject is left unpushed. A value of no or using --no-recurse-submodules can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required",
           args: {
@@ -4282,8 +4282,8 @@ const completionSpec: Fig.Spec = {
           name: "--cleanup",
           description:
             "This option determines how the merge message will be cleaned up before committing. See git-commit[1] for more details. In addition, if the <mode> is given a value of scissors, scissors will be appended to MERGE_MSG before being passed on to the commit machinery in the case of a merge conflict",
-          insertValue: "--cleanup={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "mode",
             suggestions: [
@@ -4490,8 +4490,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--depth",
-          insertValue: "--depth={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -4500,8 +4500,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--deepen",
-          insertValue: "--deepen={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -4510,8 +4510,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-since",
-          insertValue: "--shallow-since={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "date",
           },
@@ -4520,8 +4520,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-exclude",
-          insertValue: "--shallow-exclude={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "revision",
           },
@@ -4540,8 +4540,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--negotiation-tip",
-          insertValue: "--negotiation-tip={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "commit|glob",
             generators: gitGenerators.commits,
@@ -4578,8 +4578,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--refmap",
-          insertValue: "--refmap={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "refspec",
           },
@@ -4593,8 +4593,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules",
-          insertValue: "--recurse-submodules={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "mode",
             isOptional: true,
@@ -4704,7 +4704,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--stat",
           description: "Generate a diffstat",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             isOptional: true,
             name: "[=< width >[,< name-width >[,&lt; count &gt;]]]",
@@ -4780,8 +4780,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pathspec-from-file",
-          insertValue: "--pathspec-from-file={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description:
             "Pathspec is passed in file <file> instead of commandline args",
           args: {
@@ -4846,8 +4846,8 @@ const completionSpec: Fig.Spec = {
           name: "--grep",
           description:
             "Search for commits with a commit message that matches <pattern>",
-          insertValue: "--grep={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "pattern",
           },
@@ -4855,8 +4855,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "--author",
           description: "Search for commits by a particular author",
-          insertValue: "--author={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "pattern",
           },
@@ -4920,8 +4920,8 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--mirror",
-              insertValue: "--mirror={cursor}",
-              requiresEquals: true,
+
+              requiresSeparator: true,
               description: "Create fetch or push mirror",
               args: {
                 suggestions: ["fetch", "push"],
@@ -5147,8 +5147,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--depth",
-          insertValue: "--depth={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -5157,8 +5157,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--deepen",
-          insertValue: "--deepen={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -5167,8 +5167,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-since",
-          insertValue: "--shallow-since={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "date",
           },
@@ -5177,8 +5177,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-exclude",
-          insertValue: "--shallow-exclude={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "revision",
           },
@@ -5197,8 +5197,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--negotiation-tip",
-          insertValue: "--negotiation-tip={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "commit|glob",
             generators: gitGenerators.commits,
@@ -5269,8 +5269,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--refmap",
-          insertValue: "--refmap={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "refspec",
           },
@@ -5284,8 +5284,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules",
-          insertValue: "--recurse-submodules={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "mode",
             isOptional: true,
@@ -5314,8 +5314,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--submodule-prefix",
-          insertValue: "--submodule-prefix={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "path",
           },
@@ -5324,8 +5324,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules-default",
-          insertValue: "--recurse-submodules-default={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "mode",
             isOptional: true,
@@ -5699,8 +5699,8 @@ const completionSpec: Fig.Spec = {
           name: "--server-option",
           description:
             "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. The server’s handling of server options, including unknown ones, is server-specific. When multiple --server-option=<option> are given, they are all sent to the other side in the order listed on the command line",
-          insertValue: "--server-option={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "option",
           },
@@ -5724,8 +5724,8 @@ const completionSpec: Fig.Spec = {
           name: "--filter",
           description:
             "Use the partial clone feature and request that the server sends a subset of reachable objects according to a given object filter. When using --filter, the supplied <filter-spec> is used for the partial clone filter. For example, --filter=blob:none will filter out all blobs (file contents) until needed by Git. Also, --filter=blob:limit=<size> will filter out all blobs of size at least <size>. For more details on filter specifications, see the --filter option in git-rev-list[1]",
-          insertValue: "--filter={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: { name: "filter spec" },
         },
         {
@@ -5757,8 +5757,8 @@ const completionSpec: Fig.Spec = {
           name: "--template",
           description:
             "Specify the directory from which templates will be used",
-          insertValue: "--template={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "template directory",
           },
@@ -5781,8 +5781,8 @@ const completionSpec: Fig.Spec = {
           name: "--shallow-since",
           description:
             "Create a shallow clone with a history after the specified time",
-          insertValue: "--shallow-since={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "date",
           },
@@ -5791,8 +5791,8 @@ const completionSpec: Fig.Spec = {
           name: "--shallow-exclude",
           description:
             "Create a shallow clone with a history, excluding commits reachable from a specified remote branch or tag. This option can be specified multiple times",
-          insertValue: "--shallow-exclude={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "revision",
           },
@@ -5853,8 +5853,8 @@ const completionSpec: Fig.Spec = {
           name: "--separate-git-dir",
           description:
             "Instead of placing the cloned repository where it is supposed to be, place the cloned repository at the specified directory, then make a filesystem-agnostic Git symbolic link to there. The result is Git repository can be separated from working tree",
-          insertValue: "--separate-git-dir={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "git dir",
           },
@@ -6578,8 +6578,8 @@ const completionSpec: Fig.Spec = {
           name: "--conflict",
           description:
             "The same as --merge option above, but changes the way the conflicting hunks are presented, overriding the merge.conflictStyle configuration variable. Possible values are 'merge' (default) and 'diff3' (in addition to what is shown by 'merge' style, shows the original contents)",
-          insertValue: "--conflict={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             isOptional: true,
             suggestions: ["merge", "diff3"],
@@ -7276,8 +7276,8 @@ const completionSpec: Fig.Spec = {
           name: "--cleanup",
           description:
             "This option determines how the merge message will be cleaned up before committing. See git-commit[1] for more details. In addition, if the <mode> is given a value of scissors, scissors will be appended to MERGE_MSG before being passed on to the commit machinery in the case of a merge conflict",
-          insertValue: "--cleanup={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "mode",
             suggestions: [

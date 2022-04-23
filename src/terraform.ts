@@ -33,8 +33,8 @@ const addressList: Fig.Generator = {
 const generalSubCommandOptions: Fig.Option[] = [
   {
     name: "-lock",
-    insertValue: "-lock={cursor}",
-    requiresEquals: true,
+
+    requiresSeparator: true,
     description:
       "Lock the state file when locking is supported. Defaults to true",
     args: {
@@ -44,8 +44,8 @@ const generalSubCommandOptions: Fig.Option[] = [
   },
   {
     name: "-force",
-    insertValue: "-force={cursor}",
-    requiresEquals: true,
+
+    requiresSeparator: true,
     description:
       "Delete the workspace even if its state is not empty. Defaults to false",
     args: {
@@ -55,8 +55,8 @@ const generalSubCommandOptions: Fig.Option[] = [
   },
   {
     name: "-lock-timeout",
-    insertValue: "-lock-timeout={cursor}",
-    requiresEquals: true,
+
+    requiresSeparator: true,
     description: "Duration to retry a state lock. Default 0s",
     args: {
       name: "seconds",
@@ -64,8 +64,8 @@ const generalSubCommandOptions: Fig.Option[] = [
   },
   {
     name: "-input",
-    insertValue: "-input={cursor}",
-    requiresEquals: true,
+
+    requiresSeparator: true,
     description: "Ask for input for variables if not directly set",
     args: {
       name: "true or false",
@@ -88,8 +88,8 @@ const globalOptions: Fig.Option[] = [
     name: "-chdir",
     description:
       "Switch to a different working directory before executing the given subcommand",
-    insertValue: "-chdir={cursor}",
-    requiresEquals: true,
+
+    requiresSeparator: true,
     args: {
       template: "filepaths",
     },
@@ -139,8 +139,8 @@ const mainCommands: Fig.Subcommand[] = [
       },
       {
         name: "-out",
-        insertValue: "-out={cursor}",
-        requiresEquals: true,
+
+        requiresSeparator: true,
         description: "The path to save the generated execution plan",
       },
       {
@@ -153,8 +153,8 @@ const mainCommands: Fig.Subcommand[] = [
       },
       {
         name: "-refresh",
-        insertValue: "-refresh={cursor}",
-        requiresEquals: true,
+
+        requiresSeparator: true,
         description: "Update the state prior to checking for differences",
         args: {
           name: "true or false",
@@ -163,8 +163,8 @@ const mainCommands: Fig.Subcommand[] = [
       },
       {
         name: "-state",
-        insertValue: "-state={cursor}",
-        requiresEquals: true,
+
+        requiresSeparator: true,
         description:
           "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used",
         args: {
@@ -191,8 +191,8 @@ const mainCommands: Fig.Subcommand[] = [
 
       {
         name: "-var-file",
-        insertValue: "-var-file={cursor}",
-        requiresEquals: true,
+
+        requiresSeparator: true,
         description:
           "Set variables in the Terraform configuration from a variable file",
         args: {
@@ -298,8 +298,8 @@ const otherCommands: Fig.Subcommand[] = [
       },
       {
         name: "-lock",
-        insertValue: "-lock={cursor}",
-        requiresEquals: true,
+
+        requiresSeparator: true,
         description:
           "Disables Terraform's default behavior of attempting to take a read/write lock on the state for the duration of the operation if set to false. Defaults to true",
         args: {
@@ -309,8 +309,8 @@ const otherCommands: Fig.Subcommand[] = [
       },
       {
         name: "-lock-timeout",
-        insertValue: "-lock-timeout={cursor}",
-        requiresEquals: true,
+
+        requiresSeparator: true,
         description:
           "Unless locking is disabled with -lock=false, instructs Terraform to retry acquiring a lock for a period of time before returning an error. The duration syntax is a number followed by a time unit letter, such as 3s for three seconds",
         args: {
@@ -368,8 +368,8 @@ const otherCommands: Fig.Subcommand[] = [
           },
           {
             name: "-state",
-            insertValue: "-state={cursor}",
-            requiresEquals: true,
+
+            requiresSeparator: true,
             description:
               "Path to an existing state file to initialize the state of this environment",
             args: {

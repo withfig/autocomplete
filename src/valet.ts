@@ -162,8 +162,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--format",
-          insertValue: "--format={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
@@ -240,8 +240,8 @@ const completionSpec: Fig.Spec = {
         { name: "--raw", description: "To output raw command list" },
         {
           name: "--format",
-          insertValue: "--format={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description:
             "The output format (txt, xml, json, or md) [default: 'txt']",
           args: {
@@ -284,8 +284,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--lines",
-          insertValue: "--lines={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           args: {
             name: "LINES",
           },
@@ -767,8 +767,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--site",
-          insertValue: "--site={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description: "Name of the website you want to isolate",
           args: {
             name: "SITE",
@@ -790,8 +790,8 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--site",
-          insertValue: "--site={cursor}",
-          requiresEquals: true,
+
+          requiresSeparator: true,
           description: "Name of the website you want to unisolate",
           args: {
             name: "SITE",
