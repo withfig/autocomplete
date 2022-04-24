@@ -807,7 +807,7 @@ const completion: Fig.Subcommand = {
     },
     {
       name: "install",
-      description: "Install fig cli comoponents",
+      description: "Install fig cli components",
       options: [
         {
           name: "--daemon",
