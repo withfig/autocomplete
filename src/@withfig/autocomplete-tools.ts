@@ -153,7 +153,7 @@ const completionSpec: Fig.Spec = {
             { name: "specName" },
             { 
               name: "newSpecFilePath",
-              template: filepaths({ extensions: ["ts"] }), 
+              generators: filepaths({ extensions: ["ts"] }), 
             },
             { name: "diffVersion" },
           ],
