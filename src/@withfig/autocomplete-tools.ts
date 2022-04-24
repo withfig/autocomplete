@@ -151,9 +151,9 @@ const completionSpec: Fig.Spec = {
           ],
           args: [
             { name: "specName" },
-            { 
+            {
               name: "newSpecFilePath",
-              generators: filepaths({ extensions: ["ts"] }), 
+              generators: filepaths({ extensions: ["ts"] }),
             },
             { name: "diffVersion" },
           ],
