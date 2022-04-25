@@ -57,7 +57,7 @@ const completion: Fig.Subcommand = {
         },
         {
           name: "launch",
-          description: "Launch th Fig desktop app",
+          description: "Launch the Fig desktop app",
           options: [
             {
               name: "--version",
@@ -807,7 +807,7 @@ const completion: Fig.Subcommand = {
     },
     {
       name: "install",
-      description: "Install fig cli comoponents",
+      description: "Install fig cli components",
       options: [
         {
           name: "--daemon",

@@ -218,7 +218,6 @@ const completionSpec: Fig.Spec = {
         name: "TASK_ID",
         description:
           "The task to create.\n+\nIf not specified then the system will generate a random unique task\nID. Explicitly specifying a task ID enables task de-duplication. If a\ntask's ID is identical to that of an existing task or a task that was\ndeleted or completed recently then the call will fail.\n+\nBecause there is an extra lookup cost to identify duplicate task\nnames, tasks created with IDs have significantly increased latency.\nUsing hashed strings for the task ID or for the prefix of the task ID\nis recommended",
-        isVariadic: false,
       },
     },
     {
@@ -470,7 +469,6 @@ const completionSpec: Fig.Spec = {
         name: "TASK_ID",
         description:
           "The task to create.\n+\nIf not specified then the system will generate a random unique task\nID. Explicitly specifying a task ID enables task de-duplication. If a\ntask's ID is identical to that of an existing task or a task that was\ndeleted or completed recently then the call will fail.\n+\nBecause there is an extra lookup cost to identify duplicate task\nnames, tasks created with IDs have significantly increased latency.\nUsing hashed strings for the task ID or for the prefix of the task ID\nis recommended",
-        isVariadic: false,
       },
     },
     {
@@ -617,7 +615,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "TASK",
         description: "The task to delete.\n+",
-        isVariadic: false,
       },
     },
     {
@@ -774,7 +771,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "TASK",
         description: "The task to describe.\n+",
-        isVariadic: false,
       },
     },
     {
@@ -1104,7 +1100,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "LOCATION",
             description: "The Cloud location to describe",
-            isVariadic: false,
           },
         },
         {
@@ -1585,7 +1580,6 @@ const completionSpec: Fig.Spec = {
             name: "QUEUE",
             description:
               "ID of the queue or fully qualified identifier for the queue",
-            isVariadic: false,
           },
         },
         {
@@ -1813,7 +1807,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to create.\n+",
-            isVariadic: false,
           },
         },
         {
@@ -1951,7 +1944,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to delete.\n+",
-            isVariadic: false,
           },
         },
         {
@@ -2089,7 +2081,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to describe.\n+",
-            isVariadic: false,
           },
         },
         {
@@ -2277,7 +2268,6 @@ const completionSpec: Fig.Spec = {
             name: "QUEUE",
             description:
               "ID of the queue or fully qualified identifier for the queue",
-            isVariadic: false,
           },
         },
         {
@@ -2593,7 +2583,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to pause.\n+",
-            isVariadic: false,
           },
         },
         {
@@ -2731,7 +2720,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to purge.\n+",
-            isVariadic: false,
           },
         },
         {
@@ -2900,7 +2888,6 @@ const completionSpec: Fig.Spec = {
             name: "QUEUE",
             description:
               "ID of the queue or fully qualified identifier for the queue",
-            isVariadic: false,
           },
         },
         {
@@ -3038,7 +3025,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to resume.\n+",
-            isVariadic: false,
           },
         },
         {
@@ -3187,13 +3173,11 @@ const completionSpec: Fig.Spec = {
               name: "QUEUE",
               description:
                 "ID of the queue or fully qualified identifier for the queue",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
@@ -3463,7 +3447,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to update.\n+",
-            isVariadic: false,
           },
         },
       ],
@@ -3740,7 +3723,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "TASK",
         description: "The task to run.\n+",
-        isVariadic: false,
       },
     },
   ],

@@ -149,7 +149,6 @@ const completionSpec: Fig.Spec = {
         name: "MOUNT_DIR",
         description:
           "Local directory onto which the Cloud Shell home directory should be\nmounted",
-        isVariadic: false,
       },
     },
     {
@@ -322,7 +321,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "(cloudshell|localhost):DEST",
           description: "Specifies a destination for the source files",
-          isVariadic: false,
         },
       ],
     },

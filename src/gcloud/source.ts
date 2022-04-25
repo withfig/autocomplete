@@ -622,13 +622,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository",
-              isVariadic: false,
             },
             {
               name: "DIRECTORY_NAME",
               description:
                 "Directory name for the cloned repo. Defaults to the repository name",
-              isVariadic: false,
             },
           ],
         },
@@ -768,7 +766,6 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY_NAME",
             description:
               "Name of the repository. May contain between 3 and 63 (inclusive)\nlowercase letters, digits, and hyphens. Must start with a letter, and\nmay not end with a hyphen",
-            isVariadic: false,
           },
         },
         {
@@ -911,7 +908,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "REPOSITORY_NAME",
             description: "Name of the repository",
-            isVariadic: false,
           },
         },
         {
@@ -1049,7 +1045,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "REPOSITORY_NAME",
             description: "Name of the repository",
-            isVariadic: false,
           },
         },
         {
@@ -1228,7 +1223,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "REPOSITORY_NAME",
             description: "Name of the repository",
-            isVariadic: false,
           },
         },
         {
@@ -1540,13 +1534,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "JSON or YAML file with IAM policy. See https://cloud.google.com/resource-manager/reference/rest/Shared.Types/Policy",
-              isVariadic: false,
             },
           ],
         },
@@ -1749,7 +1741,6 @@ const completionSpec: Fig.Spec = {
             name: "REPO",
             description:
               "ID of the repo or fully qualified identifier for the repo",
-            isVariadic: false,
           },
         },
       ],

@@ -487,7 +487,6 @@ const completionSpec: Fig.Spec = {
         name: "DEPLOYABLES",
         description:
           "The yaml files for the services or configurations you want to deploy.\nIf not given, defaults to `app.yaml` in the current directory.\nIf that is not found, attempts to automatically generate necessary\nconfiguration files (such as app.yaml) in the current directory",
-        isVariadic: false,
       },
     },
     {
@@ -783,7 +782,6 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-            isVariadic: false,
           },
         },
         {
@@ -922,7 +920,6 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-            isVariadic: false,
           },
         },
         {
@@ -1061,7 +1058,6 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-            isVariadic: false,
           },
         },
         {
@@ -1402,7 +1398,6 @@ const completionSpec: Fig.Spec = {
             name: "DOMAIN",
             description:
               "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-            isVariadic: false,
           },
         },
       ],
@@ -1706,7 +1701,6 @@ const completionSpec: Fig.Spec = {
             name: "PRIORITY",
             description:
               "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules",
-            isVariadic: false,
           },
         },
         {
@@ -1845,7 +1839,6 @@ const completionSpec: Fig.Spec = {
             name: "PRIORITY",
             description:
               "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules",
-            isVariadic: false,
           },
         },
         {
@@ -1984,7 +1977,6 @@ const completionSpec: Fig.Spec = {
             name: "PRIORITY",
             description:
               "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules",
-            isVariadic: false,
           },
         },
         {
@@ -2300,7 +2292,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "IP",
             description: "An IPv4 or IPv6 address to test against the firewall",
-            isVariadic: false,
           },
         },
         {
@@ -2468,7 +2459,6 @@ const completionSpec: Fig.Spec = {
             name: "PRIORITY",
             description:
               "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules",
-            isVariadic: false,
           },
         },
       ],
@@ -2913,7 +2903,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "INSTANCE",
             description: "The instance ID",
-            isVariadic: false,
           },
         },
         {
@@ -3061,7 +3050,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "INSTANCE",
             description: "The instance ID",
-            isVariadic: false,
           },
         },
         {
@@ -3210,7 +3198,6 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "The instance ID to disable debug mode on. If not specified,\nselect instance interactively. Must uniquely specify (with other\nflags) exactly one instance",
-            isVariadic: false,
           },
         },
         {
@@ -3360,7 +3347,6 @@ const completionSpec: Fig.Spec = {
             name: "INSTANCE",
             description:
               "Instance ID to enable debug mode on. If not specified,\nselect instance interactively. Must uniquely specify (with other\nflags) exactly one instance",
-            isVariadic: false,
           },
         },
         {
@@ -3711,7 +3697,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "[INSTANCE:]DEST",
               description: "Specifies a destination for the source files",
-              isVariadic: false,
             },
           ],
         },
@@ -3869,13 +3854,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "INSTANCE",
               description: "The instance ID",
-              isVariadic: false,
             },
             {
               name: "COMMAND",
               description:
                 "Remote command to execute on the VM.\n+\nThe '--' argument must be specified between gcloud specific args on the left and COMMAND on the right",
-              isVariadic: false,
             },
           ],
         },
@@ -4778,7 +4761,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "ID of operation",
-            isVariadic: false,
           },
         },
         {
@@ -5098,7 +5080,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION",
             description: "ID of operation",
-            isVariadic: false,
           },
         },
       ],
@@ -5966,7 +5947,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             description: "The service to describe",
-            isVariadic: false,
           },
         },
         {
@@ -6308,7 +6288,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICES",
             description: "The services to modify",
-            isVariadic: false,
           },
         },
         {
@@ -6461,7 +6440,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICES",
             description: "The services to modify",
-            isVariadic: false,
           },
         },
       ],
@@ -6899,7 +6877,6 @@ const completionSpec: Fig.Spec = {
             name: "ID",
             description:
               "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates",
-            isVariadic: false,
           },
         },
         {
@@ -7038,7 +7015,6 @@ const completionSpec: Fig.Spec = {
             name: "ID",
             description:
               "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates",
-            isVariadic: false,
           },
         },
         {
@@ -7384,7 +7360,6 @@ const completionSpec: Fig.Spec = {
             name: "ID",
             description:
               "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates",
-            isVariadic: false,
           },
         },
       ],
@@ -8107,7 +8082,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VERSION",
             description: "The ID of the version to show",
-            isVariadic: false,
           },
         },
         {
@@ -8447,7 +8421,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VERSION",
             description: "The version to migrate to",
-            isVariadic: false,
           },
         },
         {

@@ -152,7 +152,6 @@ const completionSpec: Fig.Spec = {
     name: "DOCKER_ARGS",
     description:
       "Arguments to pass to Docker.\n+\nThe '--' argument must be specified between gcloud specific args on the left and DOCKER_ARGS on the right",
-    isVariadic: false,
   },
 };
 

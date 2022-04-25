@@ -291,7 +291,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIGURATION_NAME",
             description: "Name of the configuration to activate",
-            isVariadic: false,
           },
         },
         {
@@ -434,7 +433,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIGURATION_NAME",
             description: "Name of the configuration to create",
-            isVariadic: false,
           },
         },
         {
@@ -716,7 +714,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIGURATION_NAME",
             description: "Name of the configuration to describe",
-            isVariadic: false,
           },
         },
         {
@@ -1148,7 +1145,6 @@ const completionSpec: Fig.Spec = {
         name: "SECTION/PROPERTY",
         description:
           "The property to be fetched. Note that `SECTION/` is optional while referring to properties in the core section",
-        isVariadic: false,
       },
     },
     {
@@ -1323,7 +1319,6 @@ const completionSpec: Fig.Spec = {
         name: "SECTION/PROPERTY",
         description:
           "Property to be listed. Note that SECTION/ is optional while referring to properties in the core section",
-        isVariadic: false,
       },
     },
     {
@@ -1468,12 +1463,10 @@ const completionSpec: Fig.Spec = {
           name: "SECTION/PROPERTY",
           description:
             "Property to be set. Note that SECTION/ is optional while referring to properties in the core section, i.e., using either `core/project` or `project` is a valid way of setting a project. Using section names is required for setting other properties like `compute/region`. Consult the Available Properties section below for a comprehensive list of properties",
-          isVariadic: false,
         },
         {
           name: "VALUE",
           description: "Value to be set",
-          isVariadic: false,
         },
       ],
     },
@@ -1618,7 +1611,6 @@ const completionSpec: Fig.Spec = {
         name: "SECTION/PROPERTY",
         description:
           "The property to be unset. Note that SECTION/ is optional while referring to properties in the core section",
-        isVariadic: false,
       },
     },
   ],

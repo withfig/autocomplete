@@ -179,7 +179,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -358,7 +357,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -497,7 +495,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -636,7 +633,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -815,7 +811,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -1136,7 +1131,6 @@ const completionSpec: Fig.Spec = {
             name: "LOCATION",
             description:
               "ID of the location or fully qualified identifier for the location",
-            isVariadic: false,
           },
         },
         {
@@ -1629,7 +1623,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -1769,13 +1762,11 @@ const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret",
-          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-          isVariadic: false,
         },
       ],
     },
@@ -1940,7 +1931,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -2092,7 +2082,6 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
@@ -2242,7 +2231,6 @@ const completionSpec: Fig.Spec = {
             name: "SECRET",
             description:
               "ID of the secret or fully qualified identifier for the secret",
-            isVariadic: false,
           },
         },
         {
@@ -2390,7 +2378,6 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
@@ -2538,7 +2525,6 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
@@ -2686,7 +2672,6 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
@@ -2834,7 +2819,6 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
@@ -3018,7 +3002,6 @@ const completionSpec: Fig.Spec = {
             name: "SECRET",
             description:
               "ID of the secret or fully qualified identifier for the secret",
-            isVariadic: false,
           },
         },
       ],

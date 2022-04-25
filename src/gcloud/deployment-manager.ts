@@ -156,7 +156,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "DEPLOYMENT_NAME",
             description: "Deployment name",
-            isVariadic: false,
           },
         },
         {
@@ -368,7 +367,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "DEPLOYMENT_NAME",
             description: "Deployment name",
-            isVariadic: false,
           },
         },
         {
@@ -659,7 +657,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "DEPLOYMENT_NAME",
             description: "Deployment name",
-            isVariadic: false,
           },
         },
         {
@@ -996,7 +993,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "DEPLOYMENT_NAME",
             description: "Deployment name",
-            isVariadic: false,
           },
         },
         {
@@ -1243,7 +1239,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "DEPLOYMENT_NAME",
             description: "Deployment name",
-            isVariadic: false,
           },
         },
       ],
@@ -1525,7 +1520,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "MANIFEST",
             description: "Manifest name",
-            isVariadic: false,
           },
         },
         {
@@ -1990,7 +1984,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION_NAME",
             description: "Operation name",
-            isVariadic: false,
           },
         },
         {
@@ -2593,7 +2586,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "RESOURCE",
             description: "Resource name",
-            isVariadic: false,
           },
         },
         {

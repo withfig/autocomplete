@@ -1298,7 +1298,6 @@ const completionSpec: Fig.Spec = {
             name: "URL",
             description:
               "Zero or more URLs for the component repositories you want to remove.  If none are given, you will be prompted to choose which existing repository you want to remove",
-            isVariadic: false,
           },
         },
       ],
@@ -1700,7 +1699,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "COMPONENT-IDS",
         description: "THIS ARGUMENT NEEDS HELP TEXT",
-        isVariadic: false,
       },
     },
   ],

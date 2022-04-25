@@ -151,7 +151,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "KEY-ID",
             description: "The DNS key identifier",
-            isVariadic: false,
           },
         },
         {
@@ -766,7 +765,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "ZONE_NAME",
             description: "The name of the managed-zone to be created",
-            isVariadic: false,
           },
         },
         {
@@ -904,7 +902,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "ZONE_NAME",
             description: "The name of the empty managed-zone to be deleted",
-            isVariadic: false,
           },
         },
         {
@@ -1043,7 +1040,6 @@ const completionSpec: Fig.Spec = {
             name: "ZONE",
             description:
               "ID of the zone or fully qualified identifier for the zone",
-            isVariadic: false,
           },
         },
         {
@@ -1528,7 +1524,6 @@ const completionSpec: Fig.Spec = {
             name: "ZONE",
             description:
               "ID of the zone or fully qualified identifier for the zone",
-            isVariadic: false,
           },
         },
       ],
@@ -1810,7 +1805,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "OPERATION_ID",
             description: "The id of the operation to display",
-            isVariadic: false,
           },
         },
         {
@@ -2308,7 +2302,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -2447,7 +2440,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -2586,7 +2578,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
         {
@@ -2952,7 +2943,6 @@ const completionSpec: Fig.Spec = {
             name: "POLICY",
             description:
               "ID of the policy or fully qualified identifier for the policy",
-            isVariadic: false,
           },
         },
       ],
@@ -3225,7 +3215,6 @@ const completionSpec: Fig.Spec = {
             name: "PROJECT_ID",
             description:
               "The identifier for the project you want DNS related info for",
-            isVariadic: false,
           },
         },
       ],
@@ -3513,7 +3502,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "CHANGE_ID",
                 description: "The ID of the change you want details for",
-                isVariadic: false,
               },
             },
             {
@@ -3997,7 +3985,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "RECORDS_FILE",
             description: "File to which record-sets should be exported",
-            isVariadic: false,
           },
         },
         {
@@ -4162,7 +4149,6 @@ const completionSpec: Fig.Spec = {
             name: "RECORDS_FILE",
             description:
               "File from which record-sets should be imported. For examples of YAML-formatted and BIND zone-formatted records files, refer to https://cloud.google.com/dns/records#importing_and_exporting_record_sets",
-            isVariadic: false,
           },
         },
         {
