@@ -123,7 +123,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
 </p>
 
 ## 🧑‍💻 Teams / Enterprise
-Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig but have security / compliance concerns.
+Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at work but have security / compliance concerns.
 
 We would love to help get you set up. Please email [enterprise@fig.io](mailto:enterprise@fig.io)
 
