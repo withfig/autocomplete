@@ -1,6 +1,6 @@
 <p align="center">
-  <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true#gh-light-mode-only"/>
-  <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBannerInverted.png?raw=true#gh-dark-mode-only"/>
+  <img width="300" alt="Fig logo" src="https://raw.githubusercontent.com/withfig/fig/main/static/FigBanner.png#gh-light-mode-only"/>
+  <img width="300" alt="Fig logo" src="https://raw.githubusercontent.com/withfig/fig/main/static/FigBannerInverted.png#gh-dark-mode-only"/>
 </p>
 
 ---
@@ -42,7 +42,7 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 **Prerequisites:**
 
 - Download Fig for macOS
-- Node and NPM (or Yarn).
+- Node and NPM (or Yarn)
 
 <br/>
 
@@ -95,10 +95,10 @@ cd ~/.fig/autocomplete
 
 # Create your completions!
 npm run create-spec xyz
-npm run dev
+npm run build
 ```
 
-Read more: [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
+You can also create completions for project scripts, or even add custom suggestions to official specs. Read more at [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
 
 <br/>
 
@@ -132,7 +132,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
   Join our community
   <br/>
   <a href="https://fig.io/community">
-    <img src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" />
+    <img alt="Discord logo" src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" />
   </a>
 </p>
 
@@ -153,7 +153,7 @@ Fig works with the native macOS Terminal app, [iTerm], [Tabby], [Hyper], [Kitty]
 [Android Studio]: https://developer.android.com/studio
 [Nova]: https://nova.app/
 
-Want to see another terminal included? Check our [issue tracker](https://github.com/withfig/fig) and add your support!
+Want to see another terminal included? Check our [issue tracker](https://github.com/withfig/fig) and add your support for it!
 
 #### How does Fig work?
 
@@ -161,7 +161,7 @@ Fig uses the Accessibility API on Mac to position the window, and integrates wit
 
 #### Does Fig work on Windows or Linux?
 
-Not yet, Fig is only available on MacOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) is in progress!
+Not yet, Fig is only available on MacOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
 
 #### How can I download Fig?
 
@@ -173,11 +173,11 @@ Yes! Check out our guide on how to [get started building autocomplete specs](htt
 
 #### How do I submit a PR?
 
-Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 150+ contributors made their first open source contribution to Fig!
+Check out our [How to Contribute](https://fig.io/docs/getting-started/contributing) guide. Many of Fig's 200+ contributors made their first open source contribution to Fig!
 
 #### Fig doesn't work for me!
 
-[Join the Discord server](https://fig.io/community) and we'll debug it. Fixing Fig in your setup will also fix it for other people too! 🙂
+[Join the Discord server](https://fig.io/community) and we'll debug it. Fixing Fig in your setup will fix it for other people too! 🙂
 
 #### Did we miss something?
 
@@ -188,6 +188,6 @@ Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/communi
 ## ✨ Contributors
 
 <a href="https://github.com/withfig/autocomplete/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=withfig/autocomplete" />
+  <img alt="Grid of profile icons of the 200+ contributors" src="https://contrib.rocks/image?repo=withfig/autocomplete" />
 </a>
 <!--  https://contrib.rocks -->
