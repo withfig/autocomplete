@@ -1,19 +1,13 @@
+const android = `~/.tldr/cache/pages/android/`;
+const common = `~/.tldr/cache/pages/common/`;
+const linux = `~/.tldr/cache/pages/linux/`;
+const osx = `~/.tldr/cache/pages/osx/`;
+const sunos = `~/.tldr/cache/pages/sunos/`;
+const windows = `~/.tldr/cache/pages/windows/`;
+
 const wholeTldrPages: Fig.Generator = {
   script: () => {
-    const android = `~/.tldr/cache/pages/android/`;
-    const common = `~/.tldr/cache/pages/common/`;
-    const linux = `~/.tldr/cache/pages/linux/`;
-    const osx = `~/.tldr/cache/pages/osx/`;
-    const sunos = `~/.tldr/cache/pages/sunos/`;
-    const windows = `~/.tldr/cache/pages/windows/`;
-    return `{
-      ls -l ${android} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 &
-      ls -l ${common} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 &
-      ls -l ${linux} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 &
-      ls -l ${osx} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 &
-      ls -l ${sunos} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 &
-      ls -l ${windows} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9;
-    } | cat`;
+    return `ls -l ${android} ${common} ${linux} ${osx} ${sunos} ${windows} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 | sort -u`;
   },
   postProcess: (out) => {
     return out
@@ -33,10 +27,7 @@ const wholeTldrPages: Fig.Generator = {
 
 const linuxTldrPages: Fig.Generator = {
   script: () => {
-    const linux = `~/.tldr/cache/pages/linux/`;
-    return `{
-      ls -l ${linux} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9
-    } | cat`;
+    return `ls -l ${linux} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9`;
   },
   postProcess: (out) => {
     return out
@@ -56,10 +47,7 @@ const linuxTldrPages: Fig.Generator = {
 
 const osxTldrPages: Fig.Generator = {
   script: () => {
-    const osx = `~/.tldr/cache/pages/osx/`;
-    return `{
-      ls -l ${osx} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9
-    } | cat`;
+    return `ls -l ${osx} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9`;
   },
   postProcess: (out) => {
     return out
@@ -79,10 +67,7 @@ const osxTldrPages: Fig.Generator = {
 
 const sunosTldrPages: Fig.Generator = {
   script: () => {
-    const sunos = `~/.tldr/cache/pages/sunos/`;
-    return `{
-      ls -l ${sunos} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9
-    } | cat`;
+    return `ls -l ${sunos} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9`;
   },
   postProcess: (out) => {
     return out
