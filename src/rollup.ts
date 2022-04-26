@@ -1,14 +1,4 @@
-const configFiles: Fig.Generator = {
-  script: "ls",
-  postProcess: (output) => {
-    const files = output.split(/ +|\n/g);
-    const configFiles = files.filter((file) => file.endsWith(".config.js"));
-    return configFiles.map((configFile) => ({
-      name: configFile,
-      priority: 100,
-    }));
-  },
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
 const completionSpec: Fig.Spec = {
   name: "rollup",
@@ -20,7 +10,7 @@ const completionSpec: Fig.Spec = {
         "Use this config file (if argument is used but value is unspecified, defaults to rollup.config.js)",
       args: {
         name: "filename",
-        generators: configFiles,
+        generators: filepaths({ extensions: ["config.js"] }),
       },
     },
     {
