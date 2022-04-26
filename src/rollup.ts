@@ -28,6 +28,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "dirname",
         description: "Directory for chunks (if absent, prints to stdout)",
+        template: "folders",
       },
     },
     {
