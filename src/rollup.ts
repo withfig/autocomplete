@@ -16,11 +16,10 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-c", "--config"],
+      description:
+        "Use this config file (if argument is used but value is unspecified, defaults to rollup.config.js)",
       args: {
         name: "filename",
-        description:
-          "Use this config file (if argument is used but value is unspecified, defaults to rollup.config.js)",
-        isOptional: true,
         generators: configFiles,
       },
     },
@@ -29,7 +28,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "dirname",
         description: "Directory for chunks (if absent, prints to stdout)",
-        isOptional: true,
       },
     },
     {
@@ -37,7 +35,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ids",
         description: "Comma-separate list of module IDs to exclude",
-        isOptional: true,
       },
     },
     {
@@ -45,7 +42,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "format",
         description: "Type of output (amd, cjs, es, iife, umd, system)",
-        isOptional: true,
       },
     },
     {
@@ -53,7 +49,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pairs",
         description: "Comma-separate list of `moduleID:Global` pairs",
-        isOptional: true,
       },
     },
     {
