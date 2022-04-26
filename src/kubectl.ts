@@ -33,6 +33,10 @@ const sharedArgs: Record<string, Fig.Arg> = {
     name: "Resource Type",
     generators: {
       script: scripts.types,
+      cache: {
+        strategy: "stale-while-revalidate",
+        ttl: 1000 * 60 * 60,
+      },
       postProcess: sharedPostProcess,
     },
   },
@@ -51,6 +55,10 @@ const sharedArgs: Record<string, Fig.Arg> = {
         return scripts.typeWithoutName(resourceType);
       },
       postProcess: sharedPostProcess,
+      cache: {
+        strategy: "stale-while-revalidate",
+        ttl: 1000 * 60 * 60,
+      },
     },
     isOptional: true,
   },
@@ -72,8 +80,12 @@ const sharedArgs: Record<string, Fig.Arg> = {
   listDeployments: {
     name: "Deployments",
     generators: {
-      script: () => scripts.typeWithoutName("deployments"),
+      script: scripts.typeWithoutName("deployments"),
       postProcess: sharedPostProcess,
+      cache: {
+        strategy: "stale-while-revalidate",
+        ttl: 1000 * 60 * 60,
+      },
     },
   },
   listClusters: {
@@ -120,20 +132,32 @@ const sharedArgs: Record<string, Fig.Arg> = {
       postProcess: sharedPostProcess,
       trigger: "/",
       getQueryTerm: "/",
+      cache: {
+        strategy: "stale-while-revalidate",
+        ttl: 1000 * 60 * 60,
+      },
     },
   },
   listNodes: {
     name: "Node",
     generators: {
-      script: () => scripts.typeWithoutName("nodes"),
+      script: scripts.typeWithoutName("nodes"),
       postProcess: sharedPostProcess,
+      cache: {
+        strategy: "stale-while-revalidate",
+        ttl: 1000 * 60 * 60,
+      },
     },
   },
   listClusterRoles: {
     name: "Cluster Role",
     generators: {
-      script: () => scripts.typeWithoutName("clusterroles"),
+      script: scripts.typeWithoutName("clusterroles"),
       postProcess: sharedPostProcess,
+      cache: {
+        strategy: "stale-while-revalidate",
+        ttl: 1000 * 60 * 60,
+      },
     },
   },
   listContainersFromPod: {
