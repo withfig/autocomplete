@@ -61,6 +61,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "filename",
         description: "Input (alternative to <entry file>)",
+        template: "filepaths",
       },
     },
     {
