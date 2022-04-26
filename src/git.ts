@@ -3264,6 +3264,9 @@ const completionSpec: Fig.Spec = {
           name: "--get-regexp",
           description:
             "Like --get-all, but interprets the name as a regular expression and writes ou",
+          args: {
+            name: "regexp",
+          },
         },
         {
           name: "--get-urlmatch",
@@ -3422,10 +3425,31 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "setting",
+          // All git config keys are valid
+          suggestCurrentToken: true,
           suggestions: configSuggestions.map((suggestion) => ({
             ...suggestion,
             icon: "⚙️",
           })),
+          generators: {
+            script: "git config --get-regexp '.*'",
+            // This is inefficient but it doesn't need to be faster - most
+            // of the time, you don't need to run `git config` commands,
+            // and when you do it's typically one or two at most.
+            postProcess: (out) =>
+              out
+                .trim()
+                .split("\n")
+                .map((line) => line.slice(0, line.indexOf(" ")))
+                .filter(
+                  (line) =>
+                    line.startsWith("alias.") ||
+                    line.startsWith("branch.") ||
+                    line.startsWith("remote.") ||
+                    !configSuggestions.find(({ name }) => line === name)
+                )
+                .map((name) => ({ name, icon: "⚙️" })),
+          },
         },
         {
           name: "value",
