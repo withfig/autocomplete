@@ -1754,24 +1754,22 @@ versions["1.3.1"] = {
       options: [
         {
           name: ["-f", "--format"],
-          args: [
-            {
-              suggestions: [
-                {
-                  name: "plain",
-                  description: "Outputs the results as markdown",
-                },
-                {
-                  name: "json",
-                  description: "Outputs the results as JSON",
-                },
-                {
-                  name: "json-pretty",
-                  description: "Outputs the results as pretty print JSON",
-                },
-              ],
-            },
-          ],
+          args: {
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
+          },
         },
       ],
     },
@@ -1895,24 +1893,22 @@ versions["1.3.1"] = {
           options: [
             {
               name: ["-f", "--format"],
-              args: [
-                {
-                  suggestions: [
-                    {
-                      name: "plain",
-                      description: "Outputs the results as markdown",
-                    },
-                    {
-                      name: "json",
-                      description: "Outputs the results as JSON",
-                    },
-                    {
-                      name: "json-pretty",
-                      description: "Outputs the results as pretty print JSON",
-                    },
-                  ],
-                },
-              ],
+              args: {
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
             },
           ],
         },
