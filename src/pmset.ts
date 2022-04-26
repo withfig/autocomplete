@@ -87,7 +87,7 @@ const settings: Fig.Suggestion[] = [
   },
 ];
 
-const events: Fig.Suggestion[] = [
+const events: string[] = [
   "sleep",
   "wake",
   "poweron",
