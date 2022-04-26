@@ -2,7 +2,6 @@ const completionSpec: Fig.Spec = {
   name: "docker",
   description:
     "*(DEPRECATED)*  Enable Docker CLI access to Google Container Registry",
-
   options: [
     {
       name: "--account",

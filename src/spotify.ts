@@ -81,7 +81,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "vol",
       description: "Show the current Spotify volume",
-
       args: {
         name: "amount",
         description: "Set the volume to an amount between 0 and 100",

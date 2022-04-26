@@ -428,7 +428,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to add (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Add a native platform to your Ionic project",
@@ -464,7 +463,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to build for (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Build an Ionic project for a given platform",
@@ -505,7 +503,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to open (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Open the IDE for a given native platform project",
@@ -596,7 +593,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to run (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Run an Ionic project on a connected device",
@@ -912,14 +908,12 @@ const completionSpec = {
             {
               name: "platform",
               description: "The platform to package (android, ios)",
-
               suggestions: ["ios", "android"],
             },
             {
               name: "type",
               description:
                 "The build type (debug, release, development, ad-hoc, app-store, enterprise)",
-
               suggestions: [
                 "debug",
                 "release",
@@ -1153,7 +1147,6 @@ const completionSpec = {
             name: "name",
             description:
               "The integration to disable (e.g. capacitor, cordova, enterprise)",
-
             suggestions: ["capacitor", "cordova", "enterprise"],
           },
           description: "Disable an integration",
@@ -1182,7 +1175,6 @@ const completionSpec = {
             name: "name",
             description:
               "The integration to enable (e.g. capacitor, cordova, enterprise)",
-
             suggestions: ["capacitor", "cordova", "enterprise"],
           },
           description: "Add & enable integrations to your app",
@@ -1274,7 +1266,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to build (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description:
@@ -1311,7 +1302,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to compile (android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Compile native platform code",
@@ -1453,7 +1443,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to run (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Emulate an Ionic project on a simulator/emulator",
@@ -1714,7 +1703,6 @@ const completionSpec = {
           args: {
             name: "platform",
             description: "The platform to run (e.g. android, ios)",
-
             suggestions: ["ios", "android"],
           },
           description: "Run an Ionic project on a connected device",

@@ -13,7 +13,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "send",
               description: "Sends a command to a device",
-
               options: [
                 {
                   name: "--account",
@@ -342,7 +341,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Show details about the latest configuration for a device",
-
               options: [
                 {
                   name: "--account",
@@ -505,7 +503,6 @@ const completionSpec: Fig.Spec = {
               name: "get-value",
               description:
                 "Show the binary data of a device's latest configuration",
-
               options: [
                 {
                   name: "--account",
@@ -667,7 +664,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List configs for a device",
-
               options: [
                 {
                   name: "--account",
@@ -859,7 +855,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a specific device configuration",
-
               options: [
                 {
                   name: "--account",
@@ -1181,7 +1176,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new device",
-
           options: [
             {
               name: "--account",
@@ -1412,7 +1406,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "clear",
               description: "Delete all credentials from a device",
-
               options: [
                 {
                   name: "--account",
@@ -1574,7 +1567,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Add a new credential to a device",
-
               options: [
                 {
                   name: "--account",
@@ -1776,7 +1768,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a credential from a device",
-
               options: [
                 {
                   name: "--account",
@@ -1943,7 +1934,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Show details about a specific device credential",
-
               options: [
                 {
                   name: "--account",
@@ -2110,7 +2100,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List credentials for a device",
-
               options: [
                 {
                   name: "--account",
@@ -2302,7 +2291,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a specific device credential",
-
               options: [
                 {
                   name: "--account",
@@ -2609,7 +2597,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a device",
-
           options: [
             {
               name: "--account",
@@ -2765,7 +2752,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a device",
-
           options: [
             {
               name: "--account",
@@ -2925,7 +2911,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "bind",
               description: "Associate a device with a gateway",
-
               options: [
                 {
                   name: "--account",
@@ -3116,7 +3101,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list-bound-devices",
               description: "Lists all of the devices bound to the gateway",
-
               options: [
                 {
                   name: "--account",
@@ -3321,7 +3305,6 @@ const completionSpec: Fig.Spec = {
               name: "unbind",
               description:
                 "Remove the association between a device and a gateway",
-
               options: [
                 {
                   name: "--account",
@@ -3642,7 +3625,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List devices",
-
           options: [
             {
               name: "--account",
@@ -3875,7 +3857,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List states for a device",
-
               options: [
                 {
                   name: "--account",
@@ -4197,7 +4178,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an existing device",
-
           options: [
             {
               name: "--account",
@@ -4522,7 +4502,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new device registry",
-
           options: [
             {
               name: "--account",
@@ -4726,7 +4705,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "clear",
               description: "Delete all credentials from a registry",
-
               options: [
                 {
                   name: "--account",
@@ -4879,7 +4857,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Add a new credential to a registry",
-
               options: [
                 {
                   name: "--account",
@@ -5043,7 +5020,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a credential from a registry",
-
               options: [
                 {
                   name: "--account",
@@ -5201,7 +5177,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Show details about a specific registry credential",
-
               options: [
                 {
                   name: "--account",
@@ -5359,7 +5334,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List credentials for a registry",
-
               options: [
                 {
                   name: "--account",
@@ -5672,7 +5646,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a device registry",
-
           options: [
             {
               name: "--account",
@@ -5819,7 +5792,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a device registry",
-
           options: [
             {
               name: "--account",
@@ -5966,7 +5938,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a device registry",
-
           options: [
             {
               name: "--account",
@@ -6153,7 +6124,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List device registries",
-
           options: [
             {
               name: "--account",
@@ -6342,7 +6312,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a device registry",
-
           options: [
             {
               name: "--account",
@@ -6495,7 +6464,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a device registry",
-
           options: [
             {
               name: "--account",

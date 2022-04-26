@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--ignore",
-          requiresEquals: true,
+          requiresSeparator: true,
           isRepeatable: true,
           description:
             "A key to ignore in the comparison. Can be specified multiple times",
@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--format",
-          requiresEquals: true,
+          requiresSeparator: true,
           description: "YAML output format",
           args: {
             name: "FORMAT",
@@ -84,7 +84,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--group-option",
-          requiresEquals: true,
+          requiresSeparator: true,
           description:
             "The position of the groups when sorting. If no option is specified sorting will interleave groups and files",
           args: {

@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an asset given its resource name or asset id",
-
           options: [
             {
               name: "--account",
@@ -168,7 +167,6 @@ const completionSpec: Fig.Spec = {
           name: "get-parent",
           description:
             "Get the Parent for an asset given its resource name or asset id",
-
           options: [
             {
               name: "--account",
@@ -327,7 +325,6 @@ const completionSpec: Fig.Spec = {
           name: "get-project",
           description:
             "Get the Project for an asset given its resource name or asset id",
-
           options: [
             {
               name: "--account",
@@ -486,7 +483,6 @@ const completionSpec: Fig.Spec = {
           name: "group",
           description:
             "Filter an organization's assets and groups them by their specified properties",
-
           options: [
             {
               name: "--account",
@@ -684,7 +680,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Security Command Center assets",
-
           options: [
             {
               name: "--account",
@@ -912,7 +907,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list-marks",
           description: "List an assets's security marks",
-
           options: [
             {
               name: "--account",
@@ -1120,7 +1114,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "run-discovery",
           description: "Scan an organization for new/modified/deleted assets",
-
           options: [
             {
               name: "--account",
@@ -1259,7 +1252,6 @@ const completionSpec: Fig.Spec = {
           name: "update-marks",
           description:
             "Update Cloud Security Command Center asset's security marks",
-
           options: [
             {
               name: "--account",
@@ -1571,7 +1563,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Security Command Center finding",
-
           options: [
             {
               name: "--account",
@@ -1793,7 +1784,6 @@ const completionSpec: Fig.Spec = {
           name: "group",
           description:
             "Filter an organization or source's findings and groups them by their specified properties",
-
           options: [
             {
               name: "--account",
@@ -2000,7 +1990,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List an organization or source's findings",
-
           options: [
             {
               name: "--account",
@@ -2237,7 +2226,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list-marks",
           description: "List a finding's security marks",
-
           options: [
             {
               name: "--account",
@@ -2455,7 +2443,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Security Command Center finding",
-
           options: [
             {
               name: "--account",
@@ -2665,7 +2652,6 @@ const completionSpec: Fig.Spec = {
           name: "update-marks",
           description:
             "Update Cloud Security Command Center finding's security marks",
-
           options: [
             {
               name: "--account",
@@ -2988,7 +2974,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3167,7 +3152,6 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3316,7 +3300,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Describe a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3465,7 +3448,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List Cloud Security Command Center notification configs",
-
           options: [
             {
               name: "--account",
@@ -3644,7 +3626,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update a Cloud Security Command Center notification config",
-
           options: [
             {
               name: "--account",
@@ -3956,7 +3937,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud SCC's long running scan operation",
-
           options: [
             {
               name: "--account",
@@ -4238,7 +4218,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a source given its display name or source id",
-
           options: [
             {
               name: "--account",

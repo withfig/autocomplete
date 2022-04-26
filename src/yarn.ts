@@ -933,7 +933,6 @@ const completionSpec: Fig.Spec = {
                 "Install most recent release with the same major version. Only used when --latest is specified",
               dependsOn: ["--latest"],
             },
-
             {
               name: ["-A", "--audit"],
               description: "Run vulnerability audit on installed packages",
@@ -1026,7 +1025,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "licenses",
       description: "",
-
       subcommands: [
         {
           name: "list",
@@ -1093,7 +1091,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "owner",
       description: "Manage package owners",
-
       subcommands: [
         {
           name: "list",
@@ -1292,7 +1289,6 @@ const completionSpec: Fig.Spec = {
             "Install most recent release with the same major version. Only used when --latest is specified",
           dependsOn: ["--latest"],
         },
-
         {
           name: ["-A", "--audit"],
           description: "Run vulnerability audit on installed packages",

@@ -113,7 +113,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "old-path",
           description: "The old password name or directory",
-
           generators: listPasswords,
         },
         {
@@ -136,7 +135,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "old-path",
           description: "The old password name or directory",
-
           generators: listPasswords,
         },
         {
@@ -158,7 +156,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password name",
-
         generators: listPasswords,
       },
       options: [
@@ -255,7 +252,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pass-name",
         description: "The password you want to edit",
-
         generators: listPasswords,
       },
     },

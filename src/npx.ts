@@ -103,7 +103,6 @@ const suggestions: Fig.Suggestion[] = [
 const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
-
   args: {
     name: "command",
     isCommand: true,

@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -189,7 +188,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -340,7 +338,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -487,7 +484,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Bigtable app profiles",
-
           options: [
             {
               name: "--account",
@@ -676,7 +672,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Bigtable app profile",
-
           options: [
             {
               name: "--account",
@@ -995,7 +990,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -1192,7 +1186,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a backup of a Cloud Bigtable table",
-
           options: [
             {
               name: "--account",
@@ -1384,7 +1377,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing backup",
-
           options: [
             {
               name: "--account",
@@ -1540,7 +1532,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Retrieves information about a backup",
-
           options: [
             {
               name: "--account",
@@ -1696,7 +1687,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get an IAM policy on a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -1892,7 +1882,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing Bigtable backups",
-
           options: [
             {
               name: "--account",
@@ -2093,7 +2082,6 @@ const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -2295,7 +2283,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set an IAM policy on a Cloud Bigtable Backup",
-
           options: [
             {
               name: "--account",
@@ -2459,7 +2446,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update a backup, only supported for the following fields: --expiration-date and --retention-period",
-
           options: [
             {
               name: "--account",
@@ -2769,7 +2755,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a bigtable cluster",
-
           options: [
             {
               name: "--account",
@@ -2941,7 +2926,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a bigtable cluster",
-
           options: [
             {
               name: "--account",
@@ -3088,7 +3072,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing Bigtable cluster",
-
           options: [
             {
               name: "--account",
@@ -3235,7 +3218,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing Bigtable clusters",
-
           options: [
             {
               name: "--account",
@@ -3424,7 +3406,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Bigtable cluster's number of nodes",
-
           options: [
             {
               name: "--account",
@@ -3720,7 +3701,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to a Cloud Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -3879,7 +3859,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4083,7 +4062,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4222,7 +4200,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4360,7 +4337,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4538,7 +4514,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing Bigtable instances",
-
           options: [
             {
               name: "--account",
@@ -4717,7 +4692,6 @@ const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from a Cloud Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -4876,7 +4850,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for an instance",
-
           options: [
             {
               name: "--account",
@@ -5026,7 +4999,6 @@ const completionSpec: Fig.Spec = {
               name: "add-iam-policy-binding",
               description:
                 "Add an IAM policy binding to a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -5215,7 +5187,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "get-iam-policy",
               description: "Get an IAM policy on a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -5402,7 +5373,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List existing Bigtable instance tables",
-
               options: [
                 {
                   name: "--account",
@@ -5591,7 +5561,6 @@ const completionSpec: Fig.Spec = {
               name: "remove-iam-policy-binding",
               description:
                 "Remove an IAM policy binding from a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -5785,7 +5754,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "restore",
               description: "Restore a Cloud Bigtable backup to a new table",
-
               options: [
                 {
                   name: "--account",
@@ -5972,7 +5940,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "set-iam-policy",
               description: "Set an IAM policy on a Cloud Bigtable table",
-
               options: [
                 {
                   name: "--account",
@@ -6256,7 +6223,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Modify an existing Bigtable instance",
-
           options: [
             {
               name: "--account",
@@ -6404,7 +6370,6 @@ const completionSpec: Fig.Spec = {
           name: "upgrade",
           description:
             "Upgrade an existing instance's type from development to production",
-
           options: [
             {
               name: "--account",
@@ -6681,7 +6646,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Bigtable operation",
-
           options: [
             {
               name: "--account",
@@ -6819,7 +6783,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Bigtable operations",
-
           options: [
             {
               name: "--account",

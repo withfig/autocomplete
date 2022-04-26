@@ -31,7 +31,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "NAME",
-
           description: "Specify a name of the file that will be created",
         },
       ],

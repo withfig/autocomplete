@@ -2490,8 +2490,7 @@ const addOptions: Fig.Option[] = [
     name: "--chmod",
     description:
       "Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged",
-    insertValue: "--chmod={cursor}",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       suggestions: ["+x", "-x"],
     },
@@ -2620,7 +2619,6 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-C",
-
       args: {
         name: "path",
         template: "folders",
@@ -2917,8 +2915,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--abbrev",
-          insertValue: "--abbrev={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description: "Use <n> digits to display object names",
           args: {
             name: "n",
@@ -3448,37 +3445,31 @@ const completionSpec: Fig.Spec = {
             generators: gitGenerators.commits,
           },
         },
-
         {
           name: "--keep-base",
           description:
             "Set the starting point at which to create the new commits to the merge base of <upstream> <branch>. Running git rebase --keep-base <upstream> <branch> is equivalent to running git rebase --onto <upstream>…​ <upstream>. This option is useful in the case where one is developing a feature on top of an upstream branch. While the feature is being worked on, the upstream branch may advance and it may not be the best idea to keep rebasing on top of the upstream but to keep the base commit as-is. Although both this option and --fork-point find the merge base between <upstream> and <branch>, this option uses the merge base as the starting point on which new commits will be created, whereas --fork-point uses the merge base to determine the set of commits which will be rebased",
         },
-
         {
           name: "--continue",
           description:
             "Restart the rebasing process after having resolved a merge conflict",
         },
-
         {
           name: "--abort",
           description:
             "Abort the rebase operation and reset HEAD to the original branch. If <branch> was provided when the rebase operation was started, then HEAD will be reset to <branch>. Otherwise HEAD will be reset to where it was when the rebase operation was started",
         },
-
         {
           name: "--quit",
           description:
             "Abort the rebase operation but HEAD is not reset back to the original branch. The index and working tree are also left unchanged as a result. If a temporary stash entry was created using --autostash, it will be saved to the stash list",
         },
-
         {
           name: "--apply",
           description:
             "Use applying strategies to rebase (calling git-am internally). This option may become a no-op in the future once the merge backend handles everything the apply one does",
         },
-
         {
           name: "--empty",
           description:
@@ -3488,60 +3479,50 @@ const completionSpec: Fig.Spec = {
             suggestions: ["drop", "keep", "ask"],
           },
         },
-
         {
           name: "--no-keep-empty",
           description:
             "Do not keep commits that start empty before the rebase (i.e. that do not change anything from its parent) in the result. The default is to keep commits which start empty, since creating such commits requires passing the --allow-empty override flag to git commit, signifying that a user is very intentionally creating such a commit and thus wants to keep it. Usage of this flag will probably be rare, since you can get rid of commits that start empty by just firing up an interactive rebase and removing the lines corresponding to the commits you don’t want. This flag exists as a convenient shortcut, such as for cases where external tools generate many empty commits and you want them all removed. For commits which do not start empty but become empty after rebasing, see the --empty flag",
         },
-
         {
           name: "--keep-empty",
           description:
             "Keep commits that start empty before the rebase (i.e. that do not change anything from its parent) in the result. The default is to keep commits which start empty, since creating such commits requires passing the --allow-empty override flag to git commit, signifying that a user is very intentionally creating such a commit and thus wants to keep it. Usage of this flag will probably be rare, since you can get rid of commits that start empty by just firing up an interactive rebase and removing the lines corresponding to the commits you don’t want. This flag exists as a convenient shortcut, such as for cases where external tools generate many empty commits and you want them all removed. For commits which do not start empty but become empty after rebasing, see the --empty flag",
         },
-
         {
           name: "--reapply-cherry-picks",
           description:
             "Reapply all clean cherry-picks of any upstream commit instead of preemptively dropping them. (If these commits then become empty after rebasing, because they contain a subset of already upstream changes, the behavior towards them is controlled by the --empty flag). By default (or if --no-reapply-cherry-picks is given), these commits will be automatically dropped. Because this necessitates reading all upstream commits, this can be expensive in repos with a large number of upstream commits that need to be read. --reapply-cherry-picks allows rebase to forgo reading all upstream commits, potentially improving performance",
         },
-
         {
           name: "--no-reapply-cherry-picks",
           description:
             "Do not reapply all clean cherry-picks of any upstream commit instead of preemptively dropping them",
         },
-
         {
           name: "--allow-empty-message",
           description:
             "No-op. Rebasing commits with an empty message used to fail and this option would override that behavior, allowing commits with empty messages to be rebased. Now commits with an empty message do not cause rebasing to halt",
         },
-
         {
           name: "--skip",
           description:
             "Restart the rebasing process by skipping the current patch",
         },
-
         {
           name: "--edit-todo",
           description: "Edit the todo list during an interactive rebase",
         },
-
         {
           name: "--show-current-patch",
           description:
             "Show the current patch in an interactive rebase or when rebase is stopped because of conflicts. This is the equivalent of git show REBASE_HEAD",
         },
-
         {
           name: ["-m", "--merge"],
           description:
             "Use merging strategies to rebase. When the recursive (default) merge strategy is used, this allows rebase to be aware of renames on the upstream side. This is the default. Note that a rebase merge works by replaying each commit from the working branch on top of the <upstream> branch. Because of this, when a merge conflict happens, the side reported as ours is the so-far rebased series, starting with <upstream>, and theirs is the working branch. In other words, the sides are swapped",
         },
-
         {
           name: ["-s", "--strategy"],
           isRepeatable: true,
@@ -3553,7 +3534,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
           },
         },
-
         {
           name: ["-X", "--strategy-option"],
           description:
@@ -3581,19 +3561,16 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-
         {
           name: "--rerere-autoupdate",
           description:
             "Allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible",
         },
-
         {
           name: "--no-rerere-autoupdate",
           description:
             "Allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible",
         },
-
         {
           name: ["-S", "--gpg-sign"],
           description:
@@ -3603,46 +3580,38 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
-
         {
           name: "--no-gpg-sign",
           description:
             "Do not GPG-sign commits.--no-gpg-sign is useful to countermand both commit.gpgSign configuration variable, and earlier --gpg-sign",
         },
-
         {
           name: ["-q", "--quiet"],
           description: "Be quiet. Implies --no-stat",
         },
-
         {
           name: ["-v", "--verbose"],
           description: "Be verbose. Implies --stat",
         },
-
         {
           name: "--stat",
           description:
             "Show a diffstat of what changed upstream since the last rebase. The diffstat is also controlled by the configuration option rebase.stat",
         },
-
         {
           name: ["-n", "--no-stat"],
           description: "Do not show a diffstat as part of the rebase process",
         },
-
         {
           name: "--no-verify",
           description:
             "This option bypasses the pre-rebase hook. See also githooks[5]",
         },
-
         {
           name: "--verify",
           description:
             "Allows the pre-rebase hook to run, which is the default. This option can be used to override --no-verify. See also githooks[5]",
         },
-
         {
           name: "-C",
           description:
@@ -3651,31 +3620,26 @@ const completionSpec: Fig.Spec = {
             name: "n",
           },
         },
-
         {
           name: ["--no-ff", "--force-rebase", "-f"],
           description:
             "Individually replay all rebased commits instead of fast-forwarding over the unchanged ones. This ensures that the entire history of the rebased branch is composed of new commits. You may find this helpful after reverting a topic branch merge, as this option recreates the topic branch with fresh commits so it can be remerged successfully without needing to 'revert the reversion' (see the revert-a-faulty-merge How-To for details)",
         },
-
         {
           name: "--fork-point",
           description:
             "Use reflog to find a better common ancestor between <upstream> and <branch> when calculating which commits have been introduced by <branch>. When --fork-point is active, fork_point will be used instead of <upstream> to calculate the set of commits to rebase, where fork_point is the result of git merge-base --fork-point <upstream> <branch> command (see git-merge-base[1]). If fork_point ends up being empty, the <upstream> will be used as a fallback. If <upstream> is given on the command line, then the default is --no-fork-point, otherwise the default is --fork-point. If your branch was based on <upstream> but <upstream> was rewound and your branch contains commits which were dropped, this option can be used with --keep-base in order to drop those commits from your branch",
         },
-
         {
           name: "--no-fork-point",
           description:
             "Do not use reflog to find a better common ancestor between <upstream> and <branch> when calculating which commits have been introduced by <branch>. When --fork-point is active, fork_point will be used instead of <upstream> to calculate the set of commits to rebase, where fork_point is the result of git merge-base --fork-point <upstream> <branch> command (see git-merge-base[1]). If fork_point ends up being empty, the <upstream> will be used as a fallback. If <upstream> is given on the command line, then the default is --no-fork-point, otherwise the default is --fork-point. If your branch was based on <upstream> but <upstream> was rewound and your branch contains commits which were dropped, this option can be used with --keep-base in order to drop those commits from your branch",
         },
-
         {
           name: "--ignore-whitespace",
           description:
             "Ignore whitespace differences when trying to reconcile differences. Currently, each backend implements an approximation of this behavior: apply backend: When applying a patch, ignore changes in whitespace in context lines. Unfortunately, this means that if the 'old' lines being replaced by the patch differ only in whitespace from the existing file, you will get a merge conflict instead of a successful patch application. merge backend: Treat lines with only whitespace changes as unchanged when merging. Unfortunately, this means that any patch hunks that were intended to modify whitespace and nothing else will be dropped, even if the other side had no changes that conflicted",
         },
-
         {
           name: "--whitespace",
           description:
@@ -3684,31 +3648,26 @@ const completionSpec: Fig.Spec = {
             name: "option",
           },
         },
-
         {
           name: "--committer-date-is-author-date",
           description:
             "Instead of using the current time as the committer date, use the author date of the commit being rebased as the committer date. This option implies --force-rebase",
         },
-
         {
           name: ["--ignore-date", "--reset-author-date"],
           description:
             "Instead of using the author date of the original commit, use the current time as the author date of the rebased commit. This option implies --force-rebase",
         },
-
         {
           name: "--signoff",
           description:
             "Add a Signed-off-by trailer to all the rebased commits. Note that if --interactive is given then only commits marked to be picked, edited or reworded will have the trailer added",
         },
-
         {
           name: ["-i", "--interactive"],
           description:
             "Make a list of the commits which are about to be rebased. Let the user edit that list before rebasing. This mode can also be used to split commits (see SPLITTING COMMITS below). The commit list format can be changed by setting the configuration option rebase.instructionFormat. A customized instruction format will automatically have the long commit hash prepended to the format",
         },
-
         {
           name: ["-r", "--rebase-merges"],
           description:
@@ -3719,7 +3678,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["rebase-cousins", "no-rebase-cousins"],
           },
         },
-
         {
           name: ["-x", "--exec"],
           insertValue: "-x '{cursor}'",
@@ -3729,43 +3687,36 @@ const completionSpec: Fig.Spec = {
             name: "cmd",
           },
         },
-
         {
           name: "--root",
           description:
             "Rebase all commits reachable from <branch>, instead of limiting them with an <upstream>. This allows you to rebase the root commit(s) on a branch. When used with --onto, it will skip changes already contained in <newbase> (instead of <upstream>) whereas without --onto it will operate on every change. When used together with both --onto and --preserve-merges, all root commits will be rewritten to have <newbase> as parent instead",
         },
-
         {
           name: "--autosquash",
           description:
             "When the commit log message begins with 'squash! …​' (or 'fixup! …​'), and there is already a commit in the todo list that matches the same ..., automatically modify the todo list of rebase -i so that the commit marked for squashing comes right after the commit to be modified, and change the action of the moved commit from pick to squash (or fixup). A commit matches the ... if the commit subject matches, or if the ... refers to the commit’s hash. As a fall-back, partial matches of the commit subject work, too. The recommended way to create fixup/squash commits is by using the --fixup/--squash options of git-commit[1]",
         },
-
         {
           name: "--no-autosquash",
           description:
             "When the commit log message begins with 'squash! …' (or 'fixup! …'), and there is already a commit in the todo list that matches the same ..., automatically modify the todo list of rebase -i so that the commit marked for squashing comes right after the commit to be modified, and change the action of the moved commit from pick to squash (or fixup). A commit matches the ... if the commit subject matches, or if the ... refers to the commit’s hash. As a fall-back, partial matches of the commit subject work, too. The recommended way to create fixup/squash commits is by using the --fixup/--squash options of git-commit[1]",
         },
-
         {
           name: "--autostash",
           description:
             "Automatically create a temporary stash entry before the operation begins, and apply it after the operation ends. This means that you can run rebase on a dirty worktree. However, use with care: the final stash application after a successful rebase might result in non-trivial conflicts",
         },
-
         {
           name: "--no-autostash",
           description:
             "Do not automatically create a temporary stash entry before the operation begins, and apply it after the operation ends. This means that you can run rebase on a dirty worktree. However, use with care: the final stash application after a successful rebase might result in non-trivial conflicts",
         },
-
         {
           name: "--reschedule-failed-exec",
           description:
             "Automatically reschedule exec commands that failed. This only makes sense in interactive mode (or when an --exec option was provided)",
         },
-
         {
           name: "--no-reschedule-failed-exec",
           description:
@@ -3995,7 +3946,6 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--staged",
-
           description:
             "Don’t actually remove anything, just show what would be done",
         },
@@ -4033,30 +3983,25 @@ const completionSpec: Fig.Spec = {
           description:
             "Push all branches (i.e. refs under refs/heads/); cannot be used with other <refspec>",
         },
-
         {
           name: "--prune",
           description:
             "Remove remote branches that don't have a local counterpart",
         },
-
         {
           name: "--mirror",
           description:
             "Instead of naming each ref to push, specifies that all refs under refs/ be mirrored to the remote repository",
         },
-
         {
           name: ["-n", "--dry-run"],
           description: "Do everything except actually send the updates",
         },
-
         {
           name: "--porcelain",
           description:
             "Produce machine-readable output. The output status line for each ref will be tab-separated and sent to stdout instead of stderr",
         },
-
         {
           name: ["-d", "--delete"],
           description:
@@ -4067,13 +4012,11 @@ const completionSpec: Fig.Spec = {
           description:
             "All refs under refs/tags are pushed, in addition to refspecs explicitly listed on the command line",
         },
-
         {
           name: "--follow-tags",
           description:
             "Push all the refs that would be pushed without this option, and also push annotated tags in refs/tags that are missing from the remote but are pointing at commit-ish that are reachable from the refs being pushed. This can also be specified with configuration variable push.followTags",
         },
-
         {
           name: "--signed",
           description:
@@ -4083,48 +4026,40 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false", "if-asked"],
           },
         },
-
         {
           name: "--no-signed",
           description:
             "GPG-sign the push request to update refs on the receiving side, to allow it to be checked by the hooks and/or be logged. If false or --no-signed, no signing will be attempted. If true or --signed, the push will fail if the server does not support signed pushes. If set to if-asked, sign if and only if the server supports signed pushes. The push will also fail if the actual call to gpg --sign fails. See git-receive-pack(1) for the details on the receiving end",
         },
-
         {
           name: "--atomic",
           description:
             "Use an atomic transaction on the remote side if available. Either all refs are updated, or on error, no refs are updated. If the server does not support atomic pushes the push will fail",
         },
-
         {
           name: "--no-atomic",
           description:
             "Use an atomic transaction on the remote side if available. Either all refs are updated, or on error, no refs are updated. If the server does not support atomic pushes the push will fail",
         },
-
         {
           name: ["-f", "--force"],
           description:
             "Usually, the command refuses to update a remote ref that is not an ancestor of the local ref used to overwrite it. Also, when --force-with-lease option is used, the command refuses to update a remote ref whose current value does not match what is expected. This flag disables these checks, and can cause the remote repository to lose commits; use it with care",
         },
-
         {
           name: "--repo",
-          insertValue: "--repo={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description:
             "This option is equivalent to the <repository> argument. If both are specified, the command-line argument takes precedence",
           args: {
             name: "repository",
           },
         },
-
         {
           name: ["-u", "--set-upstream"],
           description:
             "For every branch that is up to date or successfully pushed, add upstream (tracking) reference, used by argument-less git-pull(1) and other commands",
         },
-
         {
           name: "--thin",
           description:
@@ -4135,60 +4070,49 @@ const completionSpec: Fig.Spec = {
           description:
             "These options are passed to git-send-pack(1). A thin transfer significantly reduces the amount of sent data when the sender and receiver share many of the same objects in common. The default is --thin",
         },
-
         {
           name: ["-q", "--quiet"],
           description:
             "Suppress all output, including the listing of updated refs, unless an error occurs. Progress is not reported to the standard error stream",
         },
-
         { name: ["-v", "--verbose"], description: "Run verbosely" },
-
         {
           name: "--progress",
           description:
             "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified. This flag forces progress status even if the standard error stream is not directed to a terminal",
         },
-
         {
           name: "--no-recurse-submodules",
           description:
             "May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If check is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If on-demand is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If only is used all submodules will be recursively pushed while the superproject is left unpushed. A value of no or using --no-recurse-submodules can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required",
         },
-
         {
           name: "--recurse-submodules",
-          insertValue: "--recurse-submodules={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description:
             "May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If check is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If on-demand is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If only is used all submodules will be recursively pushed while the superproject is left unpushed. A value of no or using --no-recurse-submodules can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required",
           args: {
             suggestions: ["check", "on-demand", "only", "no"],
           },
         },
-
         {
           name: "--verify",
           description:
             "Turn on the pre-push hook. The default is --verify, giving the hook a chance to prevent the push. With",
         },
-
         {
           name: "--no-verify",
           description:
             "Turn off the pre-push hook. The default is --verify, giving the hook a chance to prevent the push. With",
         },
-
         {
           name: ["-4", "--ipv4"],
           description: "Use IPv4 addresses only, ignoring IPv6 addresses",
         },
-
         {
           name: ["-6", "--ipv6"],
           description: "Use IPv6 addresses only, ignoring IPv4 addresses",
         },
-
         {
           name: ["-o", "--push-option"],
 
@@ -4198,7 +4122,6 @@ const completionSpec: Fig.Spec = {
             name: "option",
           },
         },
-
         {
           name: ["--receive-pack", "--exec"],
           description:
@@ -4207,13 +4130,11 @@ const completionSpec: Fig.Spec = {
             name: "git-receive-pack",
           },
         },
-
         {
           name: "--no-force-with-lease",
           description:
             "Cancel all the previous --force-with-lease on the command line",
         },
-
         {
           name: "--force-with-lease",
           description:
@@ -4259,31 +4180,26 @@ const completionSpec: Fig.Spec = {
           description:
             "Perform the merge and commit the result. This option can be used to override --no-commit",
         },
-
         {
           name: "--no-commit",
           description:
             "Perform the merge and stop just before creating a merge commit, to give the user a chance to inspect and further tweak the merge result before committing",
         },
-
         {
           name: ["--edit", "-e"],
           description:
             "Invoke an editor before committing successful mechanical merge to further edit the auto-generated merge message, so that the user can explain and justify the merge",
         },
-
         {
           name: "--no-edit",
           description:
             "The --no-edit option can be used to accept the auto-generated message (this is generally discouraged). The --edit (or -e) option is still useful if you are giving a draft message with the -m option from the command line and want to edit it in the editor",
         },
-
         {
           name: "--cleanup",
           description:
             "This option determines how the merge message will be cleaned up before committing. See git-commit[1] for more details. In addition, if the <mode> is given a value of scissors, scissors will be appended to MERGE_MSG before being passed on to the commit machinery in the case of a merge conflict",
-          insertValue: "--cleanup={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "mode",
             suggestions: [
@@ -4295,25 +4211,21 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-
         {
           name: "--ff",
           description:
             "When possible resolve the merge as a fast-forward (only update the branch pointer to match the merged branch; do not create a merge commit). When not possible (when the merged-in history is not a descendant of the current history), create a merge commit",
         },
-
         {
           name: "--no-ff",
           description:
             "Create a merge commit in all cases, even when the merge could instead be resolved as a fast-forward",
         },
-
         {
           name: "--ff-only",
           description:
             "Resolve the merge as a fast-forward when possible. When not possible, refuse to merge and exit with a non-zero status",
         },
-
         {
           name: ["-S", "--gpg-sign"],
           description:
@@ -4323,13 +4235,11 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
-
         {
           name: "--no-gpg-sign",
           description:
             "Is useful to countermand both commit.gpgSign configuration variable, and earlier --gpg-sign",
         },
-
         {
           name: "--log",
           description:
@@ -4339,54 +4249,45 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
-
         {
           name: "--no-log",
           description:
             "Do not list one-line descriptions from the actual commits being merged",
         },
-
         {
           name: "--signoff",
           description:
             "Add a Signed-off-by trailer by the committer at the end of the commit log message. The meaning of a signoff depends on the project to which you’re committing. For example, it may certify that the committer has the rights to submit the work under the project’s license or agrees to some contributor representation, such as a Developer Certificate of Origin. (See http://developercertificate.org for the one used by the Linux kernel and Git projects.) Consult the documentation or leadership of the project to which you’re contributing to understand how the signoffs are used in that project",
         },
-
         {
           name: "--no-signoff",
           description:
             "Can be used to countermand an earlier --signoff option on the command line",
         },
-
         {
           name: "--stat",
           description:
             "Show a diffstat at the end of the merge. The diffstat is also controlled by the configuration option merge.stat",
         },
-
         {
           name: ["-n", "--no-stat"],
           description: "Do not show a diffstat at the end of the merge",
         },
-
         {
           name: "--squash",
           description:
             "With --squash, --commit is not allowed, and will fail. Produce the working tree and index state as if a real merge happened (except for the merge information), but do not actually make a commit, move the HEAD, or record $GIT_DIR/MERGE_HEAD (to cause the next git commit command to create a merge commit). This allows you to create a single commit on top of the current branch whose effect is the same as merging another branch (or more in case of an octopus)",
         },
-
         {
           name: "--no-squash",
           description:
             "Perform the merge and commit the result. This option can be used to override --squash",
         },
-
         {
           name: "--no-verify",
           description:
             "This option bypasses the pre-merge and commit-msg hooks. See also githooks[5]",
         },
-
         {
           name: ["-s", "--strategy"],
           description:
@@ -4397,7 +4298,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
           },
         },
-
         {
           name: ["-X", "--strategy-option"],
           description:
@@ -4425,50 +4325,41 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-
         {
           name: "--verify-signatures",
           description:
             "Verify that the tip commit of the side branch being merged is signed with a valid key, i.e. a key that has a valid uid: in the default trust model, this means the signing key has been signed by a trusted key. If the tip commit of the side branch is not signed with a valid key, the merge is aborted",
         },
-
         {
           name: "--no-verify-signatures",
           description:
             "Do not verify that the tip commit of the side branch being merged is signed with a valid key",
         },
-
         {
           name: "--summary",
           description:
             "Synonym to --stat ; this is deprecated and will be removed in the future",
         },
-
         {
           name: "--no-summary",
           description:
             "Synonym to --no-stat ; this is deprecated and will be removed in the future",
         },
-
         {
           name: ["-q", "--quiet"],
           description: "Operate quietly. Implies --no-progress",
         },
-
         { name: ["-v", "--verbose"], description: "Be verbose" },
-
         {
           name: "--autostash",
           description:
             "Automatically create a temporary stash entry before the operation begins, and apply it after the operation ends. This means that you can run the operation on a dirty worktree. However, use with care: the final stash application after a successful merge might result in non-trivial conflicts",
         },
-
         {
           name: "--no-autostash",
           description:
             "Do not automatically create a temporary stash entry before the operation begins, and apply it after the operation ends",
         },
-
         {
           name: "--allow-unrelated-histories",
           description:
@@ -4490,8 +4381,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--depth",
-          insertValue: "--depth={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -4500,8 +4390,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--deepen",
-          insertValue: "--deepen={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -4510,8 +4399,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-since",
-          insertValue: "--shallow-since={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "date",
           },
@@ -4520,8 +4408,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-exclude",
-          insertValue: "--shallow-exclude={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "revision",
           },
@@ -4540,8 +4427,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--negotiation-tip",
-          insertValue: "--negotiation-tip={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "commit|glob",
             generators: gitGenerators.commits,
@@ -4578,8 +4464,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--refmap",
-          insertValue: "--refmap={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "refspec",
           },
@@ -4593,8 +4478,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules",
-          insertValue: "--recurse-submodules={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "mode",
             isOptional: true,
@@ -4704,7 +4588,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--stat",
           description: "Generate a diffstat",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             isOptional: true,
             name: "[=< width >[,< name-width >[,&lt; count &gt;]]]",
@@ -4780,8 +4664,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pathspec-from-file",
-          insertValue: "--pathspec-from-file={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description:
             "Pathspec is passed in file <file> instead of commandline args",
           args: {
@@ -4811,7 +4694,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "log",
       description: "Show commit logs",
-
       options: [
         {
           name: "--follow",
@@ -4846,8 +4728,7 @@ const completionSpec: Fig.Spec = {
           name: "--grep",
           description:
             "Search for commits with a commit message that matches <pattern>",
-          insertValue: "--grep={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "pattern",
           },
@@ -4855,8 +4736,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--author",
           description: "Search for commits by a particular author",
-          insertValue: "--author={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "pattern",
           },
@@ -4920,8 +4800,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--mirror",
-              insertValue: "--mirror={cursor}",
-              requiresEquals: true,
+              requiresSeparator: true,
               description: "Create fetch or push mirror",
               args: {
                 suggestions: ["fetch", "push"],
@@ -5147,8 +5026,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--depth",
-          insertValue: "--depth={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -5157,8 +5035,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--deepen",
-          insertValue: "--deepen={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "depth",
           },
@@ -5167,8 +5044,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-since",
-          insertValue: "--shallow-since={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "date",
           },
@@ -5177,8 +5053,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--shallow-exclude",
-          insertValue: "--shallow-exclude={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "revision",
           },
@@ -5197,8 +5072,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--negotiation-tip",
-          insertValue: "--negotiation-tip={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "commit|glob",
             generators: gitGenerators.commits,
@@ -5269,8 +5143,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--refmap",
-          insertValue: "--refmap={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "refspec",
           },
@@ -5284,8 +5157,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules",
-          insertValue: "--recurse-submodules={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "mode",
             isOptional: true,
@@ -5314,8 +5186,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--submodule-prefix",
-          insertValue: "--submodule-prefix={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "path",
           },
@@ -5324,8 +5195,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules-default",
-          insertValue: "--recurse-submodules-default={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "mode",
             isOptional: true,
@@ -5448,7 +5318,6 @@ const completionSpec: Fig.Spec = {
           name: "show",
           description: "Show the changes recorded in the stash entry as a diff",
           insertValue: "show {cursor}",
-
           args: {
             name: "stash",
             isOptional: true,
@@ -5583,7 +5452,6 @@ const completionSpec: Fig.Spec = {
           name: "store",
           description:
             "Store a given stash in the stash ref., updating the staft reflog",
-
           options: [
             {
               name: ["-m", "--message"],
@@ -5699,8 +5567,7 @@ const completionSpec: Fig.Spec = {
           name: "--server-option",
           description:
             "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. The server’s handling of server options, including unknown ones, is server-specific. When multiple --server-option=<option> are given, they are all sent to the other side in the order listed on the command line",
-          insertValue: "--server-option={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "option",
           },
@@ -5724,8 +5591,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter",
           description:
             "Use the partial clone feature and request that the server sends a subset of reachable objects according to a given object filter. When using --filter, the supplied <filter-spec> is used for the partial clone filter. For example, --filter=blob:none will filter out all blobs (file contents) until needed by Git. Also, --filter=blob:limit=<size> will filter out all blobs of size at least <size>. For more details on filter specifications, see the --filter option in git-rev-list[1]",
-          insertValue: "--filter={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: { name: "filter spec" },
         },
         {
@@ -5757,8 +5623,7 @@ const completionSpec: Fig.Spec = {
           name: "--template",
           description:
             "Specify the directory from which templates will be used",
-          insertValue: "--template={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "template directory",
           },
@@ -5781,8 +5646,7 @@ const completionSpec: Fig.Spec = {
           name: "--shallow-since",
           description:
             "Create a shallow clone with a history after the specified time",
-          insertValue: "--shallow-since={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "date",
           },
@@ -5791,8 +5655,7 @@ const completionSpec: Fig.Spec = {
           name: "--shallow-exclude",
           description:
             "Create a shallow clone with a history, excluding commits reachable from a specified remote branch or tag. This option can be specified multiple times",
-          insertValue: "--shallow-exclude={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "revision",
           },
@@ -5830,7 +5693,6 @@ const completionSpec: Fig.Spec = {
           name: "--no-shallow-submodules",
           description: "Disable --shallow-submodules",
         },
-
         {
           name: "--remote-submodules",
           description:
@@ -5853,8 +5715,7 @@ const completionSpec: Fig.Spec = {
           name: "--separate-git-dir",
           description:
             "Instead of placing the cloned repository where it is supposed to be, place the cloned repository at the specified directory, then make a filesystem-agnostic Git symbolic link to there. The result is Git repository can be separated from working tree",
-          insertValue: "--separate-git-dir={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "git dir",
           },
@@ -6004,7 +5865,6 @@ const completionSpec: Fig.Spec = {
           {
             name: ".",
             description: "Current directory",
-
             icon: "fig://icon?type=folder",
           },
         ],
@@ -6394,7 +6254,6 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
-
         {
           name: "--no-track",
           exclusiveOn: ["--track", "-t"],
@@ -6473,36 +6332,30 @@ const completionSpec: Fig.Spec = {
           name: ["-q", "--quiet"],
           description: "Quiet, suppress feedback messages",
         },
-
         {
           name: "--progress",
           description:
             "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless --quiet is specified. This flag enables progress reporting even if not attached to a terminal, regardless of --quiet",
         },
-
         {
           name: "--no-progress",
           description: "Disable progress status reporting",
         },
-
         {
           name: ["-f", "--force"],
           description:
             "When switching branches, proceed even if the index or the working tree differs from HEAD. This is used to throw away local changes",
         },
-
         {
           name: ["-2", "--ours"],
           description:
             "When checking out paths from the index, check out stage #2 (ours) for unmerged paths",
         },
-
         {
           name: ["-3", "--theirs"],
           description:
             "When checking out paths from the index, check out stage #3 (theirs) for unmerged paths",
         },
-
         {
           name: "-b",
           description:
@@ -6511,7 +6364,6 @@ const completionSpec: Fig.Spec = {
             name: "New Branch",
           },
         },
-
         {
           name: "-B",
           description:
@@ -6520,39 +6372,32 @@ const completionSpec: Fig.Spec = {
             name: "New Branch",
           },
         },
-
         {
           name: ["-t", "--track"],
           description:
             "When creating a new branch, set up 'upstream' configuration",
         },
-
         {
           name: "--no-track",
           description:
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true",
         },
-
         {
           name: "--guess",
           description:
             "If <branch> is not found but there does exist a tracking branch in exactly one remote (call it <remote>) with a matching name, treat as equivalent to $ git checkout -b <branch> --track <remote>/<branch>",
         },
-
         { name: "--no-guess", description: "Disable --guess" },
-
         {
           name: "-l",
           description:
             "Create the new branch’s reflog; see git-branch[1] for details",
         },
-
         {
           name: ["-d", "--detach"],
           description:
             "Rather than checking out a branch to work on it, check out a commit for inspection and discardable experiments. This is the default behavior of git checkout <commit> when <commit> is not a branch name",
         },
-
         {
           name: "--orphan",
           description:
@@ -6561,78 +6406,65 @@ const completionSpec: Fig.Spec = {
             name: "New Branch",
           },
         },
-
         {
           name: "--ignore-skip-worktree-bits",
           description:
             "In sparse checkout mode, git checkout -- <paths> would update only entries matched by <paths> and sparse patterns in $GIT_DIR/info/sparse-checkout. This option ignores the sparse patterns and adds back any files in <paths>",
         },
-
         {
           name: ["-m", "--merge"],
           description:
             "When switching branches, if you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context",
         },
-
         {
           name: "--conflict",
           description:
             "The same as --merge option above, but changes the way the conflicting hunks are presented, overriding the merge.conflictStyle configuration variable. Possible values are 'merge' (default) and 'diff3' (in addition to what is shown by 'merge' style, shows the original contents)",
-          insertValue: "--conflict={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             isOptional: true,
             suggestions: ["merge", "diff3"],
           },
         },
-
         {
           name: ["-p", "--patch"],
           description:
             "Interactively select hunks in the difference between the <tree-ish> (or the index, if unspecified) and the working tree",
         },
-
         {
           name: "--ignore-other-worktrees",
           description:
             "Git checkout refuses when the wanted ref is already checked out by another worktree. This option makes it check the ref out anyway. In other words, the ref can be held by more than one worktree",
         },
-
         {
           name: "--overwrite-ignore",
           description:
             "Silently overwrite ignored files when switching branches. This is the default behavior",
         },
-
         {
           name: "--no-overwrite-ignore",
           description:
             "Use --no-overwrite-ignore to abort the operation when the new branch contains ignored files",
         },
-
         {
           name: "--recurse-submodules",
           description:
             "Using --recurse-submodules will update the content of all active submodules according to the commit recorded in the superproject. If local modifications in a submodule would be overwritten the checkout will fail unless -f is used. If nothing (or --no-recurse-submodules) is used, submodules working trees will not be updated. Just like git-submodule[1], this will detach HEAD of the submodule",
         },
-
         {
           name: "--no-recurse-submodules",
           description: "Submodules working trees will not be updated",
         },
-
         {
           name: "--overlay ",
           description:
             "In the default overlay mode, git checkout never removes files from the index or the working tree",
         },
-
         {
           name: "--no-overlay",
           description:
             "When specifying --no-overlay, files that appear in the index and working tree, but not in <tree-ish> are removed, to make them match <tree-ish> exactly",
         },
-
         {
           name: "--pathspec-from-file",
           description:
@@ -6642,7 +6474,6 @@ const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
         },
-
         {
           name: "--pathspec-file-nul",
           description: "Only meaningful with --pathspec-from-file",
@@ -7253,31 +7084,26 @@ const completionSpec: Fig.Spec = {
           description:
             "Perform the merge and commit the result. This option can be used to override --no-commit",
         },
-
         {
           name: "--no-commit",
           description:
             "Perform the merge and stop just before creating a merge commit, to give the user a chance to inspect and further tweak the merge result before committing",
         },
-
         {
           name: ["--edit", "-e"],
           description:
             "Invoke an editor before committing successful mechanical merge to further edit the auto-generated merge message, so that the user can explain and justify the merge",
         },
-
         {
           name: "--no-edit",
           description:
             "The --no-edit option can be used to accept the auto-generated message (this is generally discouraged). The --edit (or -e) option is still useful if you are giving a draft message with the -m option from the command line and want to edit it in the editor",
         },
-
         {
           name: "--cleanup",
           description:
             "This option determines how the merge message will be cleaned up before committing. See git-commit[1] for more details. In addition, if the <mode> is given a value of scissors, scissors will be appended to MERGE_MSG before being passed on to the commit machinery in the case of a merge conflict",
-          insertValue: "--cleanup={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "mode",
             suggestions: [
@@ -7289,25 +7115,21 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-
         {
           name: "--ff",
           description:
             "When possible resolve the merge as a fast-forward (only update the branch pointer to match the merged branch; do not create a merge commit). When not possible (when the merged-in history is not a descendant of the current history), create a merge commit",
         },
-
         {
           name: "--no-ff",
           description:
             "Create a merge commit in all cases, even when the merge could instead be resolved as a fast-forward",
         },
-
         {
           name: "--ff-only",
           description:
             "Resolve the merge as a fast-forward when possible. When not possible, refuse to merge and exit with a non-zero status",
         },
-
         {
           name: ["-S", "--gpg-sign"],
           description:
@@ -7317,13 +7139,11 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
-
         {
           name: "--no-gpg-sign",
           description:
             "Is useful to countermand both commit.gpgSign configuration variable, and earlier --gpg-sign",
         },
-
         {
           name: "--log",
           description:
@@ -7333,54 +7153,45 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
-
         {
           name: "--no-log",
           description:
             "Do not list one-line descriptions from the actual commits being merged",
         },
-
         {
           name: "--signoff",
           description:
             "Add a Signed-off-by trailer by the committer at the end of the commit log message. The meaning of a signoff depends on the project to which you’re committing. For example, it may certify that the committer has the rights to submit the work under the project’s license or agrees to some contributor representation, such as a Developer Certificate of Origin. (See http://developercertificate.org for the one used by the Linux kernel and Git projects.) Consult the documentation or leadership of the project to which you’re contributing to understand how the signoffs are used in that project",
         },
-
         {
           name: "--no-signoff",
           description:
             "Can be used to countermand an earlier --signoff option on the command line",
         },
-
         {
           name: "--stat",
           description:
             "Show a diffstat at the end of the merge. The diffstat is also controlled by the configuration option merge.stat",
         },
-
         {
           name: ["-n", "--no-stat"],
           description: "Do not show a diffstat at the end of the merge",
         },
-
         {
           name: "--squash",
           description:
             "With --squash, --commit is not allowed, and will fail. Produce the working tree and index state as if a real merge happened (except for the merge information), but do not actually make a commit, move the HEAD, or record $GIT_DIR/MERGE_HEAD (to cause the next git commit command to create a merge commit). This allows you to create a single commit on top of the current branch whose effect is the same as merging another branch (or more in case of an octopus)",
         },
-
         {
           name: "--no-squash",
           description:
             "Perform the merge and commit the result. This option can be used to override --squash",
         },
-
         {
           name: "--no-verify",
           description:
             "This option bypasses the pre-merge and commit-msg hooks. See also githooks[5]",
         },
-
         {
           name: ["-s ", "--strategy"],
           description:
@@ -7391,7 +7202,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
           },
         },
-
         {
           name: ["-X", "--strategy-option"],
           description:
@@ -7419,68 +7229,56 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
-
         {
           name: "--verify-signatures",
           description:
             "Verify that the tip commit of the side branch being merged is signed with a valid key, i.e. a key that has a valid uid: in the default trust model, this means the signing key has been signed by a trusted key. If the tip commit of the side branch is not signed with a valid key, the merge is aborted",
         },
-
         {
           name: "--no-verify-signatures",
           description:
             "Do not verify that the tip commit of the side branch being merged is signed with a valid key",
         },
-
         {
           name: "--summary",
           description:
             "Synonym to --stat ; this is deprecated and will be removed in the future",
         },
-
         {
           name: "--no-summary",
           description:
             "Synonym to --no-stat ; this is deprecated and will be removed in the future",
         },
-
         {
           name: ["-q", "--quiet"],
           description: "Operate quietly. Implies --no-progress",
         },
-
         { name: ["-v", "--verbose"], description: "Be verbose" },
-
         {
           name: "--progress",
           description:
             "Turn progress on/off explicitly. If neither is specified, progress is shown if standard error is connected to a terminal. Note that not all merge strategies may support progress reporting",
         },
-
         {
           name: "--no-progress",
           description:
             "Turn progress on/off explicitly. If neither is specified, progress is shown if standard error is connected to a terminal. Note that not all merge strategies may support progress reporting",
         },
-
         {
           name: "--autostash",
           description:
             "Automatically create a temporary stash entry before the operation begins, and apply it after the operation ends. This means that you can run the operation on a dirty worktree. However, use with care: the final stash application after a successful merge might result in non-trivial conflicts",
         },
-
         {
           name: "--no-autostash",
           description:
             "Do not automatically create a temporary stash entry before the operation begins, and apply it after the operation ends",
         },
-
         {
           name: "--allow-unrelated-histories",
           description:
             "By default, git merge command refuses to merge histories that do not share a common ancestor. This option can be used to override this safety when merging histories of two projects that started their lives independently. As that is a very rare occasion, no configuration variable to enable this by default exists and will not be added",
         },
-
         {
           name: "-m",
           description:
@@ -7489,7 +7287,6 @@ const completionSpec: Fig.Spec = {
             name: "message",
           },
         },
-
         {
           name: ["-F", "--file"],
           description:
@@ -7499,43 +7296,36 @@ const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
         },
-
         {
           name: "--rerere-autoupdate",
           description:
             "Allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible",
         },
-
         {
           name: "--no-rerere-autoupdate",
           description:
             "Do not allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible",
         },
-
         {
           name: "--overwrite-ignore",
           description:
             "Silently overwrite ignored files from the merge result. This is the default behavior. Use --no-overwrite-ignore to abort",
         },
-
         {
           name: "--no-overwrite-ignore",
           description:
             "Do not silently overwrite ignored files from the merge result",
         },
-
         {
           name: "--abort",
           description:
             "Abort the current conflict resolution process, and try to reconstruct the pre-merge state. If an autostash entry is present, apply it to the worktree. If there were uncommitted worktree changes present when the merge started, git merge --abort will in some cases be unable to reconstruct these changes. It is therefore recommended to always commit or stash your changes before running git merge. git merge --abort is equivalent to git reset --merge when MERGE_HEAD is present unless MERGE_AUTOSTASH is also present in which case git merge --abort applies the stash entry to the worktree whereas git reset --merge will save the stashed changes in the stash list",
         },
-
         {
           name: "--quit",
           description:
             "Forget about the current merge in progress. Leave the index and the working tree as-is. If MERGE_AUTOSTASH is present, the stash entry will be saved to the stash list",
         },
-
         {
           name: "--continue",
           description:

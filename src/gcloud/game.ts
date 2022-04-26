@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Location",
-
           options: [
             {
               name: "--account",
@@ -147,7 +146,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Locations",
-
           options: [
             {
               name: "--account",
@@ -459,7 +457,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Operation",
-
           options: [
             {
               name: "--account",
@@ -606,7 +603,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Operations",
-
           options: [
             {
               name: "--account",
@@ -932,7 +928,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Game Server Cluster",
-
               options: [
                 {
                   name: "--account",
@@ -1143,7 +1138,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Game Server Cluster",
-
               options: [
                 {
                   name: "--account",
@@ -1314,7 +1308,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Game Server Cluster",
-
               options: [
                 {
                   name: "--account",
@@ -1470,7 +1463,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Game Server Clusters",
-
               options: [
                 {
                   name: "--account",
@@ -1667,7 +1659,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a Game Server Cluster",
-
               options: [
                 {
                   name: "--account",
@@ -2006,7 +1997,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Game Server Config",
-
               options: [
                 {
                   name: "--account",
@@ -2209,7 +2199,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Game Server Config",
-
               options: [
                 {
                   name: "--account",
@@ -2370,7 +2359,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Game Server Config",
-
               options: [
                 {
                   name: "--account",
@@ -2526,7 +2514,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Configs",
-
               options: [
                 {
                   name: "--account",
@@ -2857,7 +2844,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Deployment",
-
               options: [
                 {
                   name: "--account",
@@ -3028,7 +3014,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Deployment",
-
               options: [
                 {
                   name: "--account",
@@ -3180,7 +3165,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Deployment",
-
               options: [
                 {
                   name: "--account",
@@ -3327,7 +3311,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe-rollout",
               description: "Describe a Rollout",
-
               options: [
                 {
                   name: "--account",
@@ -3474,7 +3457,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "fetch-state",
               description: "Fetches the state of a Deployment",
-
               options: [
                 {
                   name: "--account",
@@ -3621,7 +3603,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Deployments",
-
               options: [
                 {
                   name: "--account",
@@ -3809,7 +3790,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a Deployment",
-
               options: [
                 {
                   name: "--account",
@@ -3995,7 +3975,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update-rollout",
               description: "Update a Deployment Rollout",
-
               options: [
                 {
                   name: "--account",
@@ -4321,7 +4300,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Realm",
-
               options: [
                 {
                   name: "--account",
@@ -4503,7 +4481,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Realm",
-
               options: [
                 {
                   name: "--account",
@@ -4655,7 +4632,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Realm",
-
               options: [
                 {
                   name: "--account",
@@ -4802,7 +4778,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Realms",
-
               options: [
                 {
                   name: "--account",
@@ -4990,7 +4965,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a Realm",
-
               options: [
                 {
                   name: "--account",

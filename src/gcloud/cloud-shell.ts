@@ -6,7 +6,6 @@ const completionSpec: Fig.Spec = {
       name: "get-mount-command",
       description:
         "Prints a command to mount the Cloud Shell home directory via sshfs",
-
       options: [
         {
           name: "--account",
@@ -154,7 +153,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "scp",
       description: "Copies files between Cloud Shell and the local machine",
-
       options: [
         {
           name: "--account",
@@ -328,7 +326,6 @@ const completionSpec: Fig.Spec = {
       name: "ssh",
       description:
         "Allows you to establish an interactive SSH session with Cloud Shell",
-
       options: [
         {
           name: "--account",

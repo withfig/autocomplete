@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a folder",
-
           options: [
             {
               name: "--account",
@@ -188,7 +187,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new folder",
-
           options: [
             {
               name: "--account",
@@ -354,7 +352,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a folder",
-
           options: [
             {
               name: "--account",
@@ -491,7 +488,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a folder",
-
           options: [
             {
               name: "--account",
@@ -628,7 +624,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-ancestors-iam-policy",
           description: "Get IAM policies for a folder and its ancestors",
-
           options: [
             {
               name: "--account",
@@ -806,7 +801,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a folder",
-
           options: [
             {
               name: "--account",
@@ -983,7 +977,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List folders accessible by the active account",
-
           options: [
             {
               name: "--account",
@@ -1180,7 +1173,6 @@ const completionSpec: Fig.Spec = {
           name: "move",
           description:
             "Move a folder to a new position within the same organization",
-
           options: [
             {
               name: "--account",
@@ -1340,7 +1332,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding for a folder",
-
           options: [
             {
               name: "--account",
@@ -1524,7 +1515,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a folder",
-
           options: [
             {
               name: "--account",
@@ -1667,7 +1657,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "undelete",
           description: "Undelete a folder",
-
           options: [
             {
               name: "--account",
@@ -1804,7 +1793,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update the display name of a folder",
-
           options: [
             {
               name: "--account",
@@ -2087,7 +2075,6 @@ const completionSpec: Fig.Spec = {
           name: "allow",
           description:
             "Add values to an Organization Policy allowed_values list policy",
-
           options: [
             {
               name: "--account",
@@ -2240,7 +2227,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Organization Policy",
-
           options: [
             {
               name: "--account",
@@ -2386,7 +2372,6 @@ const completionSpec: Fig.Spec = {
           name: "deny",
           description:
             "Add values to an Organization Policy denied_values list policy",
-
           options: [
             {
               name: "--account",
@@ -2538,7 +2523,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Organization Policy",
-
           options: [
             {
               name: "--account",
@@ -2688,7 +2672,6 @@ const completionSpec: Fig.Spec = {
           name: "disable-enforce",
           description:
             "Turns off enforcement of boolean Organization Policy constraint",
-
           options: [
             {
               name: "--account",
@@ -2834,7 +2817,6 @@ const completionSpec: Fig.Spec = {
           name: "enable-enforce",
           description:
             "Turns on enforcement of boolean Organization Policy constraint",
-
           options: [
             {
               name: "--account",
@@ -2980,7 +2962,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List Organization Policies associated with the specified resource",
-
           options: [
             {
               name: "--account",
@@ -3171,7 +3152,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-policy",
           description: "Set Organization Policy",
-
           options: [
             {
               name: "--account",

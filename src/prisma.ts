@@ -253,7 +253,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: ["version", "-v"],
       description: "Print current version of Prisma components",

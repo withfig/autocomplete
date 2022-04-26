@@ -432,7 +432,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "prompt",
-
               description: "Toggle interactive prompting in the terminal",
               args: {
                 name: "value",
@@ -1701,7 +1700,6 @@ For more information about output formatting flags, see 'gh help formatting'`,
               description: "Show only public repositories",
             },
             { name: "--source", description: "Show only non-forks" },
-
             {
               name: ["-q", "--jq"],
               description: "Filter JSON output using a jq expression",

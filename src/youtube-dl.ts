@@ -180,7 +180,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Do not bypass geographic restriction via faking X-Forwarded-For HTTP header",
     },
-
     {
       name: "--geo-bypass-country",
       description:

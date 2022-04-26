@@ -6,7 +6,6 @@ const completionSpec: Fig.Spec = {
       name: "asymmetric-decrypt",
       description:
         "Decrypt an input file using an asymmetric-encryption key version",
-
       options: [
         {
           name: "--account",
@@ -187,7 +186,6 @@ const completionSpec: Fig.Spec = {
       name: "asymmetric-sign",
       description:
         "Sign a user input file using an asymmetric-signing key version",
-
       options: [
         {
           name: "--account",
@@ -378,7 +376,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "decrypt",
       description: "Decrypt a ciphertext file using a Cloud KMS key",
-
       options: [
         {
           name: "--account",
@@ -570,7 +567,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "encrypt",
       description: "Encrypt a plaintext file using a key",
-
       options: [
         {
           name: "--account",
@@ -764,7 +760,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a KMS import job",
-
           options: [
             {
               name: "--account",
@@ -941,7 +936,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new import job",
-
           options: [
             {
               name: "--account",
@@ -1121,7 +1115,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Get metadata for a given import job",
-
           options: [
             {
               name: "--account",
@@ -1285,7 +1278,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for an import job",
-
           options: [
             {
               name: "--account",
@@ -1481,7 +1473,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists import jobs within a keyring",
-
           options: [
             {
               name: "--account",
@@ -1677,7 +1668,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding for a KMS import job",
-
           options: [
             {
               name: "--account",
@@ -1854,7 +1844,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy binding for a KMS import job",
-
           options: [
             {
               name: "--account",
@@ -2151,7 +2140,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a kms keyring",
-
           options: [
             {
               name: "--account",
@@ -2339,7 +2327,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new keyring",
-
           options: [
             {
               name: "--account",
@@ -2486,7 +2473,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Get metadata for a keyring",
-
           options: [
             {
               name: "--account",
@@ -2633,7 +2619,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a keyring",
-
           options: [
             {
               name: "--account",
@@ -2819,7 +2804,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List keyrings within a location",
-
           options: [
             {
               name: "--account",
@@ -3008,7 +2992,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding for a kms keyring",
-
           options: [
             {
               name: "--account",
@@ -3201,7 +3184,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a keyring",
-
           options: [
             {
               name: "--account",
@@ -3487,7 +3469,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a kms key",
-
           options: [
             {
               name: "--account",
@@ -3684,7 +3665,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new key",
-
           options: [
             {
               name: "--account",
@@ -3928,7 +3908,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Get metadata for a given key",
-
           options: [
             {
               name: "--account",
@@ -4084,7 +4063,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a key",
-
           options: [
             {
               name: "--account",
@@ -4279,7 +4257,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List the keys within a keyring",
-
           options: [
             {
               name: "--account",
@@ -4477,7 +4454,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding for a kms key",
-
           options: [
             {
               name: "--account",
@@ -4679,7 +4655,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-rotation-schedule",
           description: "Remove the rotation schedule for a key",
-
           options: [
             {
               name: "--account",
@@ -4835,7 +4810,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a key",
-
           options: [
             {
               name: "--account",
@@ -4996,7 +4970,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-primary-version",
           description: "Set the primary version of a key",
-
           options: [
             {
               name: "--account",
@@ -5151,7 +5124,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-rotation-schedule",
           description: "Update the rotation schedule for a key",
-
           options: [
             {
               name: "--account",
@@ -5327,7 +5299,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a key",
-
           options: [
             {
               name: "--account",
@@ -5573,7 +5544,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a new version",
-
               options: [
                 {
                   name: "--account",
@@ -5748,7 +5718,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Get metadata for a given version",
-
               options: [
                 {
                   name: "--account",
@@ -5921,7 +5890,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "destroy",
               description: "Schedule a version to be destroyed",
-
               options: [
                 {
                   name: "--account",
@@ -6085,7 +6053,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "disable",
               description: "Disable a given version",
-
               options: [
                 {
                   name: "--account",
@@ -6249,7 +6216,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "enable",
               description: "Enable a given version",
-
               options: [
                 {
                   name: "--account",
@@ -6413,7 +6379,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "get-public-key",
               description: "Get the public key for a given version",
-
               options: [
                 {
                   name: "--account",
@@ -6586,7 +6551,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "import",
               description: "Import a version into an existing crypto key",
-
               options: [
                 {
                   name: "--account",
@@ -6812,7 +6776,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List the versions within a key",
-
               options: [
                 {
                   name: "--account",
@@ -7017,7 +6980,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "restore",
               description: "Restore a version scheduled for destruction",
-
               options: [
                 {
                   name: "--account",
@@ -7181,7 +7143,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a key version",
-
               options: [
                 {
                   name: "--account",
@@ -7628,7 +7589,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List the project's locations",
-
           options: [
             {
               name: "--account",

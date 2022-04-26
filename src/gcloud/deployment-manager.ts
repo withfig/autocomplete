@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "cancel-preview",
           description: "Cancel a pending or running deployment preview",
-
           options: [
             {
               name: "--account",
@@ -161,7 +160,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a deployment",
-
           options: [
             {
               name: "--account",
@@ -372,7 +370,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a deployment",
-
           options: [
             {
               name: "--account",
@@ -525,7 +522,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about a deployment",
-
           options: [
             {
               name: "--account",
@@ -662,7 +658,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List deployments in a project",
-
           options: [
             {
               name: "--account",
@@ -846,7 +841,6 @@ const completionSpec: Fig.Spec = {
           name: "stop",
           description:
             "Stop a pending or running deployment update or creation",
-
           options: [
             {
               name: "--account",
@@ -998,7 +992,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a deployment based on a provided config file",
-
           options: [
             {
               name: "--account",
@@ -1378,7 +1371,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about a manifest",
-
           options: [
             {
               name: "--account",
@@ -1525,7 +1517,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List manifests in a deployment",
-
           options: [
             {
               name: "--account",
@@ -1852,7 +1843,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about an operation",
-
           options: [
             {
               name: "--account",
@@ -1989,7 +1979,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List operations in a project",
-
           options: [
             {
               name: "--account",
@@ -2173,7 +2162,6 @@ const completionSpec: Fig.Spec = {
           name: "wait",
           description:
             "Wait for all operations specified to complete before returning",
-
           options: [
             {
               name: "--account",
@@ -2445,7 +2433,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about a resource",
-
           options: [
             {
               name: "--account",
@@ -2591,7 +2578,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List resources in a deployment",
-
           options: [
             {
               name: "--account",
@@ -2926,7 +2912,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List types in a project",
-
           options: [
             {
               name: "--account",

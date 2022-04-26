@@ -6,7 +6,6 @@ const completionSpec: Fig.Spec = {
       name: "config-helper",
       description:
         "A helper for providing auth and config data to external tools",
-
       options: [
         {
           name: "--account",
@@ -159,7 +158,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "activate",
           description: "Activates an existing named configuration",
-
           options: [
             {
               name: "--account",
@@ -296,7 +294,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a new named configuration",
-
           options: [
             {
               name: "--account",
@@ -438,7 +435,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes a named configuration",
-
           options: [
             {
               name: "--account",
@@ -578,7 +574,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Describes a named configuration by listing its properties",
-
           options: [
             {
               name: "--account",
@@ -719,7 +714,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists existing named configurations",
-
           options: [
             {
               name: "--account",
@@ -1012,7 +1006,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-value",
       description: "Print the value of a Cloud SDK property",
-
       options: [
         {
           name: "--account",
@@ -1151,7 +1144,6 @@ const completionSpec: Fig.Spec = {
       name: "list",
       description:
         "List Cloud SDK properties for the currently active configuration",
-
       options: [
         {
           name: "--account",
@@ -1324,7 +1316,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "set",
       description: "Set a Cloud SDK property",
-
       options: [
         {
           name: "--account",
@@ -1473,7 +1464,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "unset",
       description: "Unset a Cloud SDK property",
-
       options: [
         {
           name: "--account",

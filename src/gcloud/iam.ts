@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-grantable-roles",
       description: "List IAM grantable roles for a resource",
-
       options: [
         {
           name: "--account",
@@ -163,7 +162,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list-testable-permissions",
       description: "List IAM testable permissions for a resource",
-
       options: [
         {
           name: "--account",
@@ -315,7 +313,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "copy",
           description: "Create a role from an existing role",
-
           options: [
             {
               name: "--account",
@@ -506,7 +503,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a custom role for a project or an organization",
-
           options: [
             {
               name: "--account",
@@ -691,7 +687,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a custom role from an organization or a project",
-
           options: [
             {
               name: "--account",
@@ -828,7 +823,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a role",
-
           options: [
             {
               name: "--account",
@@ -966,7 +960,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the roles defined at a parent organization or a project",
-
           options: [
             {
               name: "--account",
@@ -1133,7 +1126,6 @@ const completionSpec: Fig.Spec = {
           name: "undelete",
           description:
             "Undelete a custom role from an organization or a project",
-
           options: [
             {
               name: "--account",
@@ -1270,7 +1262,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an IAM custom role",
-
           options: [
             {
               name: "--account",
@@ -1608,7 +1599,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to an IAM service account",
-
           options: [
             {
               name: "--account",
@@ -1787,7 +1777,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a service account for a project",
-
           options: [
             {
               name: "--account",
@@ -1943,7 +1932,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a service account from a project",
-
           options: [
             {
               name: "--account",
@@ -2081,7 +2069,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a service account from a project",
-
           options: [
             {
               name: "--account",
@@ -2219,7 +2206,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "disable",
           description: "Disable an IAM service account",
-
           options: [
             {
               name: "--account",
@@ -2357,7 +2343,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "enable",
           description: "Enable an IAM service account",
-
           options: [
             {
               name: "--account",
@@ -2495,7 +2480,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a service account",
-
           options: [
             {
               name: "--account",
@@ -2677,7 +2661,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a private key for a service account",
-
               options: [
                 {
                   name: "--account",
@@ -2836,7 +2819,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a user-managed key from a service account",
-
               options: [
                 {
                   name: "--account",
@@ -2984,7 +2966,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List the keys for a service account",
-
               options: [
                 {
                   name: "--account",
@@ -3187,7 +3168,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "upload",
               description: "Upload a public key for an IAM service account",
-
               options: [
                 {
                   name: "--account",
@@ -3466,7 +3446,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all of a project's service accounts",
-
           options: [
             {
               name: "--account",
@@ -3634,7 +3613,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding from a service account",
-
           options: [
             {
               name: "--account",
@@ -3818,7 +3796,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a service account",
-
           options: [
             {
               name: "--account",
@@ -3963,7 +3940,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "sign-blob",
           description: "Sign a blob with a managed service account key",
-
           options: [
             {
               name: "--account",
@@ -4117,7 +4093,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an IAM service account",
-
           options: [
             {
               name: "--account",

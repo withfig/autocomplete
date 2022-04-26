@@ -10,7 +10,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a Google Cloud Firestore in Datastore Mode database",
-
           options: [
             {
               name: "--account",
@@ -283,7 +282,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "export",
       description: "Export Cloud Datastore entities to Google Cloud Storage",
-
       options: [
         {
           name: "--account",
@@ -456,7 +454,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "import",
       description: "Import Cloud Datastore entities from Google Cloud Storage",
-
       options: [
         {
           name: "--account",
@@ -634,7 +631,6 @@ const completionSpec: Fig.Spec = {
           name: "cleanup",
           description:
             "Remove unused datastore indexes based on your local index configuration",
-
           options: [
             {
               name: "--account",
@@ -773,7 +769,6 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create new datastore indexes based on your local index configuration",
-
           options: [
             {
               name: "--account",
@@ -911,7 +906,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about an Cloud Datastore index",
-
           options: [
             {
               name: "--account",
@@ -1049,7 +1043,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Datastore indexes",
-
           options: [
             {
               name: "--account",
@@ -1362,7 +1355,6 @@ const completionSpec: Fig.Spec = {
           name: "cancel",
           description:
             "Cancel a currently-running Cloud Datastore admin operation",
-
           options: [
             {
               name: "--account",
@@ -1500,7 +1492,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a completed Cloud Datastore admin operation",
-
           options: [
             {
               name: "--account",
@@ -1639,7 +1630,6 @@ const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Retrieves information about a Cloud Datastore admin operation",
-
           options: [
             {
               name: "--account",
@@ -1778,7 +1768,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List pending Cloud Datastore admin operations and their status",
-
           options: [
             {
               name: "--account",

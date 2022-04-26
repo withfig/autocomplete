@@ -38,7 +38,6 @@ const infoArgs: Fig.SingleOrArray<Fig.Arg> = [
     description: "Mention statistics at end of run (levels 1-3)",
   },
   { name: "SYMSAFE", description: "Mention symlinks that are unsafe" },
-
   { name: "ALL", description: "Set all --info options (e.g. all4)" },
   {
     name: "NONE",
@@ -87,7 +86,6 @@ const debugArgs: Fig.SingleOrArray<Fig.Arg> = [
     description: "Mention statistics at end of run (levels 1-3)",
   },
   { name: "SYMSAFE", description: "Mention symlinks that are unsafe" },
-
   { name: "ALL", description: "Set all --info options (e.g. all4)" },
   {
     name: "NONE",
@@ -118,13 +116,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "--info",
       description: "Fine-grained informational verbosity",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: infoArgs,
     },
     {
       name: "--debug",
       description: "Fine-grained debug verbosity",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: debugArgs,
     },
     {
@@ -143,7 +141,6 @@ const completionSpec: Fig.Spec = {
       name: ["--checksum", "-c"],
       description: "Skip based on checksum, not mod-time & size",
     },
-
     {
       name: ["-a", "--archive"],
       description: "Archive mode; equals -rlptgoD (no -H,-A,-X)",
@@ -167,7 +164,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--backup-dir",
       description: "Make backups into hierarchy based in DIR",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "DIR",
         template: "folders",
@@ -176,7 +173,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--suffix",
       description: "Set backup suffix (default ~ w/o --backup-dir)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "SUFFIX",
       },
@@ -236,7 +233,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--chmod",
       description: "Affect file and/or directory permissions",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "CHMOD",
       },
@@ -302,7 +299,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--checksum-choice",
       description: "Choose the checksum algorithms",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "ALGORITHM",
         suggestions: ["auto", "md4", "md5", "none"],
@@ -315,7 +312,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-B", "--block-size"],
       description: "Force a fixed checksum block-size",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "SIZE",
       },
@@ -323,7 +320,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-e", "--rsh"],
       description: "Specify the remote shell to use",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "COMMAND",
       },
@@ -331,7 +328,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--rsync-path",
       description: "Specify the rsync to run on the remote machine",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "PATH",
       },
@@ -388,7 +385,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--max-delete",
       description: "Don't delete more than NUM files",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "NUM",
       },
@@ -396,7 +393,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--max-size",
       description: "Don't transfer any file larger than SIZE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "SIZE",
       },
@@ -404,7 +401,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--min-size",
       description: "Don't transfer any file smaller than SIZE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "SIZE",
       },
@@ -413,7 +410,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--partial-dir=DIR",
       description: "Put a partially transferred file into DIR",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "DIR",
         template: "folders",
@@ -434,7 +431,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--usermap",
       description: "Custom username mapping",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "STRING",
       },
@@ -442,7 +439,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--groupmap",
       description: "Custom groupname mapping",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "STRING",
       },
@@ -450,7 +447,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--chown=USER:GROUP",
       description: "Simple username/groupname mapping",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "USER:GROUP",
       },
@@ -458,7 +455,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--timeout",
       description: "Set I/O timeout in seconds",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "SECONDS",
       },
@@ -466,7 +463,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--contimeout",
       description: "Set daemon connection timeout in seconds",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "SECONDS",
       },
@@ -485,7 +482,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--remote-option",
       description: "Send OPTION to the remote side only",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "OPTION",
       },
@@ -501,7 +498,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--modify-window",
       description: "Set the accuracy for mod-time comparisons",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "NUM",
       },
@@ -517,7 +514,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--temp-dir",
       description: "Create temporary files in directory DIR",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "DIR",
         template: "folders",
@@ -530,7 +527,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--compare-dest",
       description: "Also compare destination files relative to DIR",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "DIR",
         template: "folders",
@@ -548,7 +545,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--link-dest",
       description: "Hardlink to files in DIR when unchanged",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "DIR",
         template: "folders",
@@ -561,7 +558,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--compress-level",
       description: "Explicitly set compression level",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "NUM",
         suggestions: Array.from(Array(10).keys()).map((v) => v.toString()),
@@ -570,7 +567,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--skip-compress",
       description: "Skip compressing files with a suffix in LIST",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "LIST",
       },
@@ -589,7 +586,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--filter",
       description: "Add a file-filtering RULE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "RULE",
       },
@@ -606,7 +603,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--exclude",
       description: "Exclude files matching PATTERN",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "PATTERN",
       },
@@ -614,7 +611,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--exclude-from",
       description: "Read exclude patterns from FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -623,7 +620,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--include",
       description: "Don't exclude files matching PATTERN",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "PATTERN",
       },
@@ -631,7 +628,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--include-from",
       description: "Read include patterns from FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -640,7 +637,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--files-from",
       description: "Read list of source-file names from FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -657,7 +654,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--address",
       description: "Bind address for outgoing socket to daemon",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "ADDRESS",
       },
@@ -665,7 +662,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--port",
       description: "Specify double-colon alternate port number",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "PORT",
       },
@@ -673,7 +670,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--sockopts",
       description: "Specify custom TCP options",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "OPTIONS",
       },
@@ -700,7 +697,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--out-format",
       description: "Output updates using the specified FORMAT",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FORMAT",
       },
@@ -708,7 +705,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--log-file",
       description: "Log what we're doing to the specified FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -717,7 +714,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--log-file-format",
       description: "Log updates using the specified FMT",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FMT",
       },
@@ -725,7 +722,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--password-file",
       description: "Read daemon-access password from FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -738,7 +735,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--bwlimit",
       description: "Limit socket I/O bandwidth",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "RATE",
       },
@@ -746,7 +743,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--stop-at",
       description: "Stop rsync at year-month-dayThour:minute",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "y-m-dTh:m",
       },
@@ -754,7 +751,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--time-limit",
       description: "Stop rsync after MINS minutes have elapsed",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "MINS",
       },
@@ -762,7 +759,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--outbuf",
       description: "Set output buffering to None, Line, or Block",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "BUFFER",
         suggestions: ["N", "L", "B"],
@@ -771,7 +768,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--write-batch",
       description: "Write a batched update to FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -780,7 +777,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--only-write-batch",
       description: "Like --write-batch but w/o updating destination",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -789,7 +786,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--read-batch",
       description: "Read a batched update from FILE",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "FILE",
         template: "filepaths",
@@ -798,7 +795,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--protocol",
       description: "Force an older protocol version to be used",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "NUM",
       },
@@ -806,7 +803,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--iconv",
       description: "Request charset conversion of filenames",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "CONVERT_SPEC",
       },
@@ -814,7 +811,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--checksum-seed",
       description: "Set block/file checksum seed (advanced)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "NUM",
       },

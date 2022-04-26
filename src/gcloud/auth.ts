@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "activate-refresh-token",
       description: "Get credentials via an existing refresh token",
-
       options: [
         {
           name: "--account",
@@ -149,7 +148,6 @@ const completionSpec: Fig.Spec = {
       name: "activate-service-account",
       description:
         "Authorize access to Google Cloud Platform with a service account",
-
       options: [
         {
           name: "--account",
@@ -316,7 +314,6 @@ const completionSpec: Fig.Spec = {
           name: "login",
           description:
             "Acquire new user credentials to use for Application Default Credentials",
-
           options: [
             {
               name: "--account",
@@ -485,7 +482,6 @@ const completionSpec: Fig.Spec = {
           name: "print-access-token",
           description:
             "Print an access token for your current Application Default Credentials",
-
           options: [
             {
               name: "--account",
@@ -619,7 +615,6 @@ const completionSpec: Fig.Spec = {
           name: "revoke",
           description:
             "Revoke previously generated Application Default Credentials",
-
           options: [
             {
               name: "--account",
@@ -753,7 +748,6 @@ const completionSpec: Fig.Spec = {
           name: "set-quota-project",
           description:
             "Update or add a quota project in application default credentials (ADC)",
-
           options: [
             {
               name: "--account",
@@ -1021,7 +1015,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "configure-docker",
       description: "Register `gcloud` as a Docker credential helper",
-
       options: [
         {
           name: "--account",
@@ -1159,7 +1152,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Describes credentials",
-
       options: [
         {
           name: "--account",
@@ -1297,7 +1289,6 @@ const completionSpec: Fig.Spec = {
       name: "docker-helper",
       description:
         "A Docker credential helper to provide access to GCR repositories",
-
       options: [
         {
           name: "--account",
@@ -1435,7 +1426,6 @@ const completionSpec: Fig.Spec = {
       name: "git-helper",
       description:
         "A git credential helper to provide access to Google git repositories",
-
       options: [
         {
           name: "--account",
@@ -1577,7 +1567,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "Lists credentialed accounts",
-
       options: [
         {
           name: "--account",
@@ -1761,7 +1750,6 @@ const completionSpec: Fig.Spec = {
       name: "login",
       description:
         "Authorize gcloud to access the Cloud Platform with Google user credentials",
-
       options: [
         {
           name: "--account",
@@ -1926,7 +1914,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "print-access-token",
       description: "Print an access token for the specified account",
-
       options: [
         {
           name: "--account",
@@ -2064,7 +2051,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "print-identity-token",
       description: "Print an identity token for the specified account",
-
       options: [
         {
           name: "--account",
@@ -2233,7 +2219,6 @@ const completionSpec: Fig.Spec = {
       name: "print-refresh-token",
       description:
         "A command that prints the refresh token for the current account",
-
       options: [
         {
           name: "--account",
@@ -2371,7 +2356,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "revoke",
       description: "Revoke access credentials for an account",
-
       options: [
         {
           name: "--account",

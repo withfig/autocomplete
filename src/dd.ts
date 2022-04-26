@@ -102,50 +102,45 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "bs",
-      insertValue: "bs={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Set input and output block size",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "size",
       },
     },
     {
       name: "cbs",
-      insertValue: "cbs={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Set the conversion record size",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "size",
       },
     },
     {
       name: "count",
-      insertValue: "count={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Copy this many input blocks",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "number",
       },
     },
     {
       name: "files",
-      insertValue: "files={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Copy this many files before terminating",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "number",
       },
     },
     {
       name: "ibs",
-      insertValue: "ibs={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Set the input block size",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "size",
         default: "512",
@@ -153,10 +148,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "if",
-      insertValue: "if={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Read an input file instead of stdin",
-      requiresEquals: true,
+      requiresSeparator: true,
       priority: 60,
       args: {
         name: "file",
@@ -165,20 +159,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "iseek",
-      insertValue: "iseek={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Seek this many blocks on the input file",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "blocks",
       },
     },
     {
       name: "obs",
-      insertValue: "obs={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Set the output block size",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "size",
         default: "512",
@@ -186,10 +178,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "of",
-      insertValue: "of={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Write to an output file instead of stdout",
-      requiresEquals: true,
+      requiresSeparator: true,
       priority: 59,
       args: {
         name: "file",
@@ -199,42 +190,38 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "oseek",
-      insertValue: "oseek={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Seek this many blocks on the output file",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "blocks",
       },
     },
     {
       name: "seek",
-      insertValue: "seek={cursor}",
       icon: "fig://icon?type=asterisk",
       description:
         "Seek this many blocks from the beginning of the output before copying",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "blocks",
       },
     },
     {
       name: "skip",
-      insertValue: "skip={cursor}",
       icon: "fig://icon?type=asterisk",
       description:
         "Skip this many blocks from the beginning of the input before copying",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "blocks",
       },
     },
     {
       name: "conv",
-      insertValue: "conv={cursor}",
       icon: "fig://icon?type=asterisk",
       description: "Convert input data (comma-separated list)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "value",
         generators: {
