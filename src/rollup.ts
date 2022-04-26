@@ -42,6 +42,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "format",
         description: "Type of output (amd, cjs, es, iife, umd, system)",
+        suggestions: ["amd", "cjs", "es", "iife", "umd", "system"],
       },
     },
     {
