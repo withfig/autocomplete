@@ -1,4 +1,4 @@
-const settings: Fig.suggestion[] = [
+const settings: Fig.Suggestion[] = [
   {
     name: ["displaysleep", "dim"],
     description: "Display sleep timer (value in minutes, or 0 to disable)",
@@ -87,7 +87,7 @@ const settings: Fig.suggestion[] = [
   },
 ];
 
-const events: Fig.suggestion[] = [
+const events: Fig.Suggestion[] = [
   "sleep",
   "wake",
   "poweron",
@@ -227,7 +227,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "schedule",
       description: "For setting up one-time power events",
-      options: { name: "cancel" },
+      options: [{ name: "cancel" }],
       args: [
         { name: "type", suggestions: events },
         {
@@ -240,7 +240,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "repeat",
       description: "For setting up daily/weekly power on and power off events",
-      subcommands: { name: "cancel" },
+      subcommands: [{ name: "cancel" }],
       args: [
         { name: "type", suggestions: events },
         {
