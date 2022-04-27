@@ -943,7 +943,6 @@ const completionSpec: Fig.Spec = {
               description: "Whether or not to merge config values",
               args: {
                 name: "merged",
-
                 suggestions: ["yes", "no"],
               },
             },
@@ -2423,7 +2422,6 @@ const completionSpec: Fig.Spec = {
           description: "Edition to set for the crate generated",
           args: {
             name: "edition",
-
             suggestions: rustEditions,
           },
         },
@@ -2867,7 +2865,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to Cargo.toml",
           args: {
             name: "manifest-path",
-
             generators: filepaths({ equals: "Cargo.toml" }),
           },
         },
@@ -2980,7 +2977,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to Cargo.toml",
           args: {
             name: "manifest-path",
-
             generators: filepaths({ equals: "Cargo.toml" }),
           },
         },
@@ -4020,7 +4016,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to Cargo.toml",
           args: {
             name: "manifest-path",
-
             generators: filepaths({ equals: "Cargo.toml" }),
           },
         },
@@ -4568,7 +4563,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to Cargo.toml",
           args: {
             name: "manifest-path",
-
             generators: filepaths({ equals: "Cargo.toml" }),
           },
         },
@@ -4671,7 +4665,6 @@ const completionSpec: Fig.Spec = {
           description: "Path to Cargo.toml",
           args: {
             name: "manifest-path",
-
             generators: filepaths({ equals: "Cargo.toml" }),
           },
         },

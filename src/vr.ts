@@ -31,7 +31,6 @@ const scriptGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "vr",
   description: "The npm-style script runner for Deno",
-
   subcommands: [
     {
       name: "run",

@@ -17,7 +17,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an Android locale",
-
                   options: [
                     {
                       name: "--account",
@@ -150,14 +149,12 @@ const completionSpec: Fig.Spec = {
                     name: "LOCALE",
                     description:
                       "The locale to describe, found using $ {parent_command} list",
-                    isVariadic: false,
                   },
                 },
                 {
                   name: "list",
                   description:
                     "List all Android locales available for testing internationalized apps",
-
                   options: [
                     {
                       name: "--account",
@@ -467,7 +464,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an Android model",
-
                   options: [
                     {
                       name: "--account",
@@ -600,13 +596,11 @@ const completionSpec: Fig.Spec = {
                     name: "MODEL_ID",
                     description:
                       "ID of the model to describe, found using $ {parent_command} list",
-                    isVariadic: false,
                   },
                 },
                 {
                   name: "list",
                   description: "List all Android models available for testing",
-
                   options: [
                     {
                       name: "--account",
@@ -912,7 +906,6 @@ const completionSpec: Fig.Spec = {
               name: "run",
               description:
                 "Invoke a test in Firebase Test Lab for Android and view test results",
-
               options: [
                 {
                   name: "--account",
@@ -1381,7 +1374,6 @@ const completionSpec: Fig.Spec = {
                 name: "ARGSPEC",
                 description:
                   "An ARG_FILE:ARG_GROUP_NAME pair, where ARG_FILE is the path to a file containing groups of test arguments in yaml format, and ARG_GROUP_NAME is the particular yaml object holding a group of arg:value pairs to use. Run *$ gcloud topic arg-files* for more information and examples",
-                isVariadic: false,
               },
             },
             {
@@ -1391,7 +1383,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an Android OS version",
-
                   options: [
                     {
                       name: "--account",
@@ -1524,14 +1515,12 @@ const completionSpec: Fig.Spec = {
                     name: "VERSION_ID",
                     description:
                       "The version ID to describe, found using $ {parent_command} list",
-                    isVariadic: false,
                   },
                 },
                 {
                   name: "list",
                   description:
                     "List all Android OS versions available for testing",
-
                   options: [
                     {
                       name: "--account",
@@ -1974,7 +1963,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an iOS locale",
-
                   options: [
                     {
                       name: "--account",
@@ -2107,14 +2095,12 @@ const completionSpec: Fig.Spec = {
                     name: "LOCALE",
                     description:
                       "The locale to describe, found using $ {parent_command} list",
-                    isVariadic: false,
                   },
                 },
                 {
                   name: "list",
                   description:
                     "List all iOS locales available for testing internationalized apps",
-
                   options: [
                     {
                       name: "--account",
@@ -2424,7 +2410,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an iOS model",
-
                   options: [
                     {
                       name: "--account",
@@ -2557,13 +2542,11 @@ const completionSpec: Fig.Spec = {
                     name: "MODEL_ID",
                     description:
                       "ID of the model to describe, found using $ {parent_command} list",
-                    isVariadic: false,
                   },
                 },
                 {
                   name: "list",
                   description: "List all iOS models available for testing",
-
                   options: [
                     {
                       name: "--account",
@@ -2869,7 +2852,6 @@ const completionSpec: Fig.Spec = {
               name: "run",
               description:
                 "Invoke a test in Firebase Test Lab for iOS and view test results",
-
               options: [
                 {
                   name: "--account",
@@ -3158,7 +3140,6 @@ const completionSpec: Fig.Spec = {
                 name: "ARGSPEC",
                 description:
                   "An ARG_FILE:ARG_GROUP_NAME pair, where ARG_FILE is the path to a file containing groups of test arguments in yaml format, and ARG_GROUP_NAME is the particular yaml object holding a group of arg:value pairs to use. Run *$ gcloud topic arg-files* for more information and examples",
-                isVariadic: false,
               },
             },
             {
@@ -3168,7 +3149,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an iOS operating system version",
-
                   options: [
                     {
                       name: "--account",
@@ -3301,13 +3281,11 @@ const completionSpec: Fig.Spec = {
                     name: "VERSION_ID",
                     description:
                       "The version ID to describe, found using $ {parent_command} list",
-                    isVariadic: false,
                   },
                 },
                 {
                   name: "list",
                   description: "List all iOS versions available for testing",
-
                   options: [
                     {
                       name: "--account",
@@ -3746,7 +3724,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a network profile",
-
               options: [
                 {
                   name: "--account",
@@ -3879,13 +3856,11 @@ const completionSpec: Fig.Spec = {
                 name: "PROFILE_ID",
                 description:
                   "The network profile to describe, found using $ {parent_command} list",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description: "List all network profiles available for testing",
-
               options: [
                 {
                   name: "--account",

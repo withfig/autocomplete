@@ -525,7 +525,6 @@ const completionSpec: Fig.Spec = {
         "List the versions of your integration available for use in the Zapier editor",
       options: [formatFlag, debugFlag],
     },
-
     {
       name: "help",
       description: "Display help for <%= config.bin %>",

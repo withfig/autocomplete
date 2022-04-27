@@ -6,7 +6,6 @@
 const completionSpec: Fig.Spec = {
   name: "ffmpeg",
   description: "Play, record, convert, and stream audio and video",
-
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
@@ -21,12 +20,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "-i",
       description: "Input file",
-
       isRequired: true,
 
       args: {
         name: "infile",
-
         template: "filepaths",
       },
     },
@@ -37,7 +34,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-h",
       description: "Show help",
-
       args: {
         name: "topic",
       },
@@ -45,7 +41,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-?",
       description: "Show help",
-
       args: {
         name: "topic",
       },
@@ -53,7 +48,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-help",
       description: "Show help",
-
       args: {
         name: "topic",
       },
@@ -61,7 +55,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--help",
       description: "Show help",
-
       args: {
         name: "topic",
       },
@@ -133,10 +126,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-sources",
       description: "List sources of the input device",
-
       args: {
         name: "device",
-
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
@@ -154,10 +145,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-sinks",
       description: "List sinks of the output device",
-
       args: {
         name: "device",
-
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
@@ -179,7 +168,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-loglevel",
       description: "Set logging level",
-
       args: {
         name: "loglevel",
       },
@@ -187,7 +175,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-v",
       description: "Set logging level",
-
       args: {
         name: "loglevel",
       },
@@ -199,7 +186,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-max_alloc",
       description: "Set maximum size of a single allocated block",
-
       args: {
         name: "bytes",
       },
@@ -232,7 +218,6 @@ const completionSpec: Fig.Spec = {
       name: "-max_error_rate",
       description:
         "Ratio of errors (0.0: no errors, 1.0: 100% errors) above which ffmpeg returns an error instead of success",
-
       args: {
         name: "maximum error rate",
       },
@@ -240,7 +225,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-bits_per_raw_sample",
       description: "Set the number of bits per raw sample",
-
       args: {
         name: "number",
       },
@@ -248,7 +232,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vol",
       description: "Change audio volume (256=normal)",
-
       args: {
         name: "volume",
       },
@@ -256,7 +239,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-cpuflags",
       description: "Force specific cpu flags",
-
       args: {
         name: "flags",
       },
@@ -264,7 +246,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-hide_banner",
       description: "Do not show program banner",
-
       args: {
         name: "hide_banner",
       },
@@ -284,7 +265,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-progress",
       description: "Write program-readable progress information",
-
       args: {
         name: "url",
       },
@@ -296,7 +276,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-timelimit",
       description: "Set max runtime in seconds",
-
       args: {
         name: "limit",
       },
@@ -324,7 +303,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-adrift_threshold",
       description: "Audio drift threshold",
-
       args: {
         name: "threshold",
       },
@@ -340,7 +318,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-copytb",
       description: "Copy input stream time base when stream copying",
-
       args: {
         name: "mode",
       },
@@ -348,7 +325,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-dts_delta_threshold",
       description: "Timestamp discontinuity delta threshold",
-
       args: {
         name: "threshold",
       },
@@ -356,7 +332,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-dts_error_threshold",
       description: "Timestamp error delta threshold",
-
       args: {
         name: "threshold",
       },
@@ -364,7 +339,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-xerror",
       description: "Exit on error",
-
       args: {
         name: "error",
       },
@@ -372,7 +346,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-abort_on",
       description: "Abort on the specified condition flags",
-
       args: {
         name: "flags",
       },
@@ -380,7 +353,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-filter_complex",
       description: "Create a complex filtergraph",
-
       args: {
         name: "graph_description",
       },
@@ -388,7 +360,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-lavfi",
       description: "Create a complex filtergraph",
-
       args: {
         name: "graph_description",
       },
@@ -396,7 +367,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-filter_complex_script",
       description: "Read complex filtergraph description from a file",
-
       args: {
         name: "filename",
       },
@@ -434,7 +404,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vstats_file",
       description: "Dump video coding statistics to file",
-
       args: {
         name: "file",
       },
@@ -473,7 +442,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-sdp_file",
       description: "Specify a file in which to print sdp information",
-
       args: {
         name: "file",
       },
@@ -481,10 +449,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vaapi_device",
       description: "Set VAAPI hardware device (DRM path or X11 display name)",
-
       args: {
         name: "device",
-
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
@@ -502,7 +468,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-init_hw_device",
       description: "Initialise hardware device",
-
       args: {
         name: "args",
       },
@@ -510,10 +475,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-filter_hw_device",
       description: "Set hardware device used when filtering",
-
       args: {
         name: "device",
-
         generators: {
           script: "ffmpeg -devices",
           postProcess: (out) => {
@@ -531,7 +494,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-f",
       description: "Force format",
-
       args: {
         name: "fmt",
       },
@@ -539,10 +501,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-c",
       description: "Codec name",
-
       args: {
         name: "codec",
-
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
@@ -560,10 +520,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-codec",
       description: "Codec name",
-
       args: {
         name: "codec",
-
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
@@ -581,7 +539,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-pre",
       description: "Preset name",
-
       args: {
         name: "preset",
       },
@@ -589,7 +546,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-map_metadata",
       description: "Set metadata information of outfile from infile",
-
       args: {
         name: "outfile[,metadata]:infile[,metadata]",
       },
@@ -605,7 +561,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-to",
       description: "Record or transcode stop time",
-
       args: {
         name: "time_stop",
       },
@@ -613,7 +568,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fs",
       description: "Set the limit file size in bytes",
-
       args: {
         name: "limit_size",
       },
@@ -621,7 +575,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ss",
       description: "Set the start time offset",
-
       args: {
         name: "time_off",
       },
@@ -629,7 +582,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-sseof",
       description: "Set the start time offset relative to EOF",
-
       args: {
         name: "time_off",
       },
@@ -642,7 +594,6 @@ const completionSpec: Fig.Spec = {
       name: "-timestamp",
       description:
         "Set the recording timestamp ('now' to set the current time)",
-
       args: {
         name: "time",
       },
@@ -650,7 +601,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-metadata",
       description: "Add metadata",
-
       args: {
         name: "string=string",
       },
@@ -658,7 +608,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-program",
       description: "Add program with specified streams",
-
       args: {
         name: "title=string:st=number...",
       },
@@ -679,7 +628,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-frames",
       description: "Set the number of frames to output",
-
       args: {
         name: "number",
       },
@@ -687,7 +635,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-filter",
       description: "Set stream filtergraph",
-
       args: {
         name: "filter_graph",
       },
@@ -695,7 +642,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-filter_script",
       description: "Read stream filtergraph description from a file",
-
       args: {
         name: "filename",
       },
@@ -715,7 +661,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-map",
       description: "Set input stream mapping",
-
       args: {
         name: "[-]input_file_id[:stream_specifier][,sync_file_id[:stream_s",
       },
@@ -723,7 +668,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-map_channel",
       description: "Map an audio channel from one stream to another",
-
       args: {
         name: "file.stream.channel[:syncfile.syncstream]",
       },
@@ -731,7 +675,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-map_chapters",
       description: "Set chapters mapping",
-
       args: {
         name: "input_file_index",
       },
@@ -743,7 +686,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-itsoffset",
       description: "Set the input ts offset",
-
       args: {
         name: "time_off",
       },
@@ -751,7 +693,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-itsscale",
       description: "Set the input ts scale",
-
       args: {
         name: "scale",
       },
@@ -759,7 +700,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-dframes",
       description: "Set the number of data frames to output",
-
       args: {
         name: "number",
       },
@@ -787,7 +727,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-tag",
       description: "Force codec tag/fourcc",
-
       args: {
         name: "fourcc/tag",
       },
@@ -795,7 +734,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-q",
       description: "Use fixed quality scale (VBR)",
-
       args: {
         name: "q",
       },
@@ -803,7 +741,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-qscale",
       description: "Use fixed quality scale (VBR)",
-
       args: {
         name: "q",
       },
@@ -811,7 +748,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-profile",
       description: "Set profile",
-
       args: {
         name: "profile",
       },
@@ -819,7 +755,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-attach",
       description: "Add an attachment to the output file",
-
       args: {
         name: "filename",
       },
@@ -827,7 +762,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-dump_attachment",
       description: "Extract an attachment into a file",
-
       args: {
         name: "filename",
       },
@@ -835,7 +769,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-stream_loop",
       description: "Set number of times input stream shall be looped",
-
       args: {
         name: "loop count",
       },
@@ -856,7 +789,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-muxdelay",
       description: "Set the maximum demux-decode delay",
-
       args: {
         name: "seconds",
       },
@@ -864,7 +796,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-muxpreload",
       description: "Set the initial demux-decode delay",
-
       args: {
         name: "seconds",
       },
@@ -873,7 +804,6 @@ const completionSpec: Fig.Spec = {
       name: "-time_base",
       description:
         "Set the desired time base hint for output stream (1:24, 1:48000 or 0.04166, 2.0833e-5)",
-
       args: {
         name: "ratio",
       },
@@ -882,7 +812,6 @@ const completionSpec: Fig.Spec = {
       name: "-enc_time_base",
       description:
         "Set the desired time base for the encoder (1:24, 1:48000 or 0.04166, 2.0833e-5). two special values are defined - 0 = use frame rate (video) or sample rate (audio),-1 = match source time base",
-
       args: {
         name: "ratio",
       },
@@ -890,7 +819,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-bsf",
       description: "A comma-separated list of bitstream filters",
-
       args: {
         name: "bitstream_filters",
       },
@@ -898,7 +826,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fpre",
       description: "Set options from indicated preset file",
-
       args: {
         name: "filename",
       },
@@ -907,7 +834,6 @@ const completionSpec: Fig.Spec = {
       name: "-max_muxing_queue_size",
       description:
         "Maximum number of packets that can be buffered while waiting for all streams to initialize",
-
       args: {
         name: "packets",
       },
@@ -915,10 +841,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-dcodec",
       description: "Force data codec ('copy' to copy stream)",
-
       args: {
         name: "codec",
-
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
@@ -936,7 +860,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vframes",
       description: "Set the number of video frames to output",
-
       args: {
         name: "number",
       },
@@ -944,7 +867,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-r",
       description: "Set frame rate (Hz value, fraction or abbreviation)",
-
       args: {
         name: "rate",
       },
@@ -952,7 +874,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-s",
       description: "Set frame size (WxH or abbreviation)",
-
       args: {
         name: "size",
       },
@@ -960,7 +881,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-aspect",
       description: "Set aspect ratio (4:3, 16:9 or 1.3333, 1.7777)",
-
       args: {
         name: "aspect",
       },
@@ -972,10 +892,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vcodec",
       description: "Force video codec ('copy' to copy stream)",
-
       args: {
         name: "codec",
-
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
@@ -993,7 +911,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-timecode",
       description: "Set initial TimeCode value",
-
       args: {
         name: "hh:mm:ss[:;.]ff",
       },
@@ -1001,7 +918,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-pass",
       description: "Select the pass number (1 to 3)",
-
       args: {
         name: "n",
       },
@@ -1009,7 +925,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vf",
       description: "Set video filters",
-
       args: {
         name: "filter_graph",
       },
@@ -1017,7 +932,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ab",
       description: "Audio bitrate (please use -b:a)",
-
       args: {
         name: "bitrate",
       },
@@ -1025,7 +939,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-b",
       description: "Video bitrate (please use -b:v)",
-
       args: {
         name: "bitrate",
       },
@@ -1037,7 +950,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-pix_fmt",
       description: "Set pixel format",
-
       args: {
         name: "format",
       },
@@ -1045,7 +957,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-rc_override",
       description: "Rate control override for specific intervals",
-
       args: {
         name: "override",
       },
@@ -1053,7 +964,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-passlogfile",
       description: "Select two pass log file name prefix",
-
       args: {
         name: "prefix",
       },
@@ -1061,7 +971,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-intra_matrix",
       description: "Specify intra matrix coeffs",
-
       args: {
         name: "matrix",
       },
@@ -1069,7 +978,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-inter_matrix",
       description: "Specify inter matrix coeffs",
-
       args: {
         name: "matrix",
       },
@@ -1077,7 +985,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-chroma_intra_matrix",
       description: "Specify intra matrix coeffs",
-
       args: {
         name: "matrix",
       },
@@ -1089,7 +996,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vtag",
       description: "Force video tag/fourcc",
-
       args: {
         name: "fourcc/tag",
       },
@@ -1102,7 +1008,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-streamid",
       description: "Set the value of an outfile streamid",
-
       args: {
         name: "streamIndex:value",
       },
@@ -1110,7 +1015,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-force_key_frames",
       description: "Force key frames at specified timestamps",
-
       args: {
         name: "timestamps",
       },
@@ -1118,7 +1022,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-hwaccel",
       description: "Use HW accelerated decoding",
-
       args: {
         name: "hwaccel name",
       },
@@ -1126,7 +1029,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-hwaccel_device",
       description: "Select a device for HW acceleration",
-
       args: {
         name: "devicename",
       },
@@ -1134,7 +1036,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-hwaccel_output_format",
       description: "Select output format used with HW accelerated decoding",
-
       args: {
         name: "format",
       },
@@ -1151,7 +1052,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-vpre",
       description: "Set the video options to the indicated preset",
-
       args: {
         name: "preset",
       },
@@ -1159,7 +1059,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-aframes",
       description: "Set the number of audio frames to output",
-
       args: {
         name: "number",
       },
@@ -1167,7 +1066,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-aq",
       description: "Set audio quality (codec-specific)",
-
       args: {
         name: "quality",
       },
@@ -1175,7 +1073,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ar",
       description: "Set audio sampling rate (in Hz)",
-
       args: {
         name: "rate",
       },
@@ -1183,7 +1080,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ac",
       description: "Set number of audio channels",
-
       args: {
         name: "channels",
       },
@@ -1195,10 +1091,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-acodec",
       description: "Force audio codec ('copy' to copy stream)",
-
       args: {
         name: "codec",
-
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
@@ -1216,7 +1110,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-af",
       description: "Set audio filters",
-
       args: {
         name: "filter_graph",
       },
@@ -1224,7 +1117,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-atag",
       description: "Force audio tag/fourcc",
-
       args: {
         name: "fourcc/tag",
       },
@@ -1232,7 +1124,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-sample_fmt",
       description: "Set sample format",
-
       args: {
         name: "format",
       },
@@ -1240,7 +1131,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-channel_layout",
       description: "Set channel layout",
-
       args: {
         name: "layout",
       },
@@ -1262,7 +1152,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-apre",
       description: "Set the audio options to the indicated preset",
-
       args: {
         name: "preset",
       },
@@ -1274,10 +1163,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-scodec",
       description: "Force subtitle codec ('copy' to copy stream)",
-
       args: {
         name: "codec",
-
         generators: {
           script: "ffmpeg -codecs",
           postProcess: (out) => {
@@ -1295,7 +1182,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-stag",
       description: "Force subtitle tag/fourcc",
-
       args: {
         name: "fourcc/tag",
       },
@@ -1307,7 +1193,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-canvas_size",
       description: "Set canvas size (WxH or abbreviation)",
-
       args: {
         name: "size",
       },
@@ -1315,7 +1200,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-spre",
       description: "Set the subtitle options to the indicated preset",
-
       args: {
         name: "preset",
       },

@@ -76,7 +76,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         description: "The name of the package to install",
         debounce: true,
-        isVariadic: false,
+
         generators: packageList,
       },
       options: [
@@ -148,7 +148,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           isOptional: true,
-          isVariadic: false,
         },
         {
           name: "version",

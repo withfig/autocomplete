@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new Cloud Monitoring dashboard",
-
           options: [
             {
               name: "--account",
@@ -162,7 +161,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Cloud Monitoring dashboard",
-
           options: [
             {
               name: "--account",
@@ -295,13 +293,11 @@ const completionSpec: Fig.Spec = {
             name: "DASHBOARD",
             description:
               "ID of the dashboard or fully qualified identifier for the dashboard",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a Cloud Monitoring dashboard",
-
           options: [
             {
               name: "--account",
@@ -434,13 +430,11 @@ const completionSpec: Fig.Spec = {
             name: "DASHBOARD",
             description:
               "ID of the dashboard or fully qualified identifier for the dashboard",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Cloud Monitoring dashboards",
-
           options: [
             {
               name: "--account",
@@ -618,7 +612,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Monitoring dashboard",
-
           options: [
             {
               name: "--account",
@@ -771,7 +764,6 @@ const completionSpec: Fig.Spec = {
             name: "DASHBOARD",
             description:
               "ID of the dashboard or fully qualified identifier for the dashboard",
-            isVariadic: false,
           },
         },
       ],

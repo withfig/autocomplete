@@ -41,7 +41,7 @@ const completionSpec: Fig.Subcommand = {
     },
     {
       name: "--inspect",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "[host:]port",
         isOptional: true,
@@ -108,7 +108,7 @@ const completionSpec: Fig.Subcommand = {
                   },
                   {
                     name: "--encore-args",
-                    requiresEquals: true,
+                    requiresSeparator: true,
                     insertValue: "--encore-args='{cursor}'",
                     description:
                       "CLI options to pass to the encore command line",
@@ -179,13 +179,13 @@ const completionSpec: Fig.Subcommand = {
                   },
                   {
                     name: "--node-args",
-                    requiresEquals: true,
+                    requiresSeparator: true,
                     insertValue: "--node-args='{cursor}'",
                     description: "CLI options to pass to the node command line",
                   },
                   {
                     name: "--encore-args",
-                    requiresEquals: true,
+                    requiresSeparator: true,
                     insertValue: "--encore-args='{cursor}'",
                     description:
                       "CLI options to pass to the encore command line",

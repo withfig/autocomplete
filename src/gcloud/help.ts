@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "help",
   description: "Search gcloud help text",
-
   options: [
     {
       name: "--account",
@@ -168,13 +167,11 @@ const completionSpec: Fig.Spec = {
       name: "COMMAND",
       description:
         "Sequence of names representing a gcloud group or command name.\n+\nIf the arguments provide the name of a gcloud command, the full help\ntext of that command will be displayed. Otherwise, all arguments will\nbe considered search terms and used to search through all of gcloud's\nhelp text",
-      isVariadic: false,
     },
     {
       name: "SEARCH_TERMS",
       description:
         "Search terms. The command will return a list of gcloud commands that are\nrelevant to the searched term. If this argument is provided, the command\nwill always return a list of search results rather than displaying help\ntext of a single command.\n+\nFor example, to search for commands that relate to the term `project` or\n`folder`, run:\n+\n  $ {command} -- project folder\n+\n+\nThe '--' argument must be specified between gcloud specific args on the left and SEARCH_TERMS on the right",
-      isVariadic: false,
     },
   ],
 };

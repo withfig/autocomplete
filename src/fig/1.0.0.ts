@@ -57,7 +57,7 @@ const completion: Fig.Subcommand = {
         },
         {
           name: "launch",
-          description: "Launch th Fig desktop app",
+          description: "Launch the Fig desktop app",
           options: [
             {
               name: "--version",
@@ -807,7 +807,7 @@ const completion: Fig.Subcommand = {
     },
     {
       name: "install",
-      description: "Install fig cli comoponents",
+      description: "Install fig cli components",
       options: [
         {
           name: "--daemon",
@@ -1583,6 +1583,353 @@ const completion: Fig.Subcommand = {
 const versions: Fig.VersionDiffMap = {};
 
 versions["1.3.0"] = {};
+
+versions["1.3.1"] = {
+  subcommands: [
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "shell-integrations",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "settings",
+      subcommands: [
+        {
+          name: "all",
+          description: "List all the settings",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format of the output",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-r", "--remote"],
+              description: "List the remote settings",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-f", "--format"],
+          description: "Format of the output",
+          args: {
+            name: "format",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
+          },
+        },
+        {
+          name: ["-d", "--delete"],
+          description: "Delete a value",
+        },
+      ],
+    },
+    {
+      name: "install",
+      options: [
+        {
+          name: "--daemon",
+          exclusiveOn: ["--input-method"],
+        },
+        {
+          name: "--dotfiles",
+          exclusiveOn: ["--input-method"],
+        },
+        {
+          name: "--input-method",
+          description: "Prompt input method installation",
+          exclusiveOn: ["--daemon", "--dotfiles"],
+        },
+        {
+          name: "--ssh",
+          description: "Install only the ssh integration",
+        },
+      ],
+    },
+    {
+      name: "ssh",
+      description: "Enable/disable fig SSH integration",
+      subcommands: [
+        {
+          name: "enable",
+          description: "Enable ssh integration",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          description: "Disable ssh integration",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "diagnostic",
+      options: [
+        {
+          name: ["-f", "--format"],
+          args: {
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      name: "init",
+      options: [
+        {
+          name: "--rcfile",
+          args: {
+            name: "rcfile",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "local-state",
+          subcommands: [
+            {
+              name: "all",
+              description: "List all the settings",
+              options: [
+                {
+                  name: ["-f", "--format"],
+                  args: {
+                    name: "format",
+                    isOptional: true,
+                    suggestions: [
+                      {
+                        name: "plain",
+                        description: "Outputs the results as markdown",
+                      },
+                      {
+                        name: "json",
+                        description: "Outputs the results as JSON",
+                      },
+                      {
+                        name: "json-pretty",
+                        description: "Outputs the results as pretty print JSON",
+                      },
+                    ],
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format of the output",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          options: [
+            {
+              name: "--daemon",
+              exclusiveOn: ["--input-method"],
+            },
+            {
+              name: "--dotfiles",
+              exclusiveOn: ["--input-method"],
+            },
+            {
+              name: "--input-method",
+              description: "Prompt input method installation",
+              exclusiveOn: ["--daemon", "--dotfiles"],
+            },
+            {
+              name: "--ssh",
+              description: "Install only the ssh integration",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: "--ssh",
+              description: "Uninstall only the ssh integration",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "list",
+          options: [
+            {
+              name: ["-f", "--format"],
+              args: {
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "man",
+      description: "Open manual page",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "command",
+        isOptional: true,
+      },
+    },
+  ],
+};
 
 export { versions };
 export default completion;

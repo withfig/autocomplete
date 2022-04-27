@@ -1,4 +1,4 @@
-const completionSpec: Fig.Spec = {
+const completion: Fig.Subcommand = {
   name: "infracost",
   description: "Cloud cost estimates for Terraform",
   subcommands: [
@@ -10,7 +10,10 @@ const completionSpec: Fig.Spec = {
           name: "--config-file",
           description:
             "Path to Infracost config file. Cannot be used with path, terraform* or usage-file flags",
-          args: { name: "config-file", template: ["filepaths"] },
+          args: {
+            name: "config-file",
+            template: ["filepaths"],
+          },
         },
         {
           name: "--fields",
@@ -24,7 +27,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--format",
           description: "Output format: json, table, html",
-          args: { name: "format", default: "table" },
+          args: {
+            name: "format",
+            default: "table",
+          },
         },
         {
           name: "--no-cache",
@@ -33,14 +39,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--out-file",
           description: "Save output to a file, helpful with format flag",
-          args: { name: "out-file" },
+          args: {
+            name: "out-file",
+          },
         },
         {
           name: ["--path", "-p"],
           description: "Path to the Terraform directory or JSON/plan file",
-          args: { name: "path", template: ["filepaths"] },
+          args: {
+            name: "path",
+            template: ["filepaths"],
+          },
         },
-        { name: "--show-skipped", description: "Show unsupported resources" },
+        {
+          name: "--show-skipped",
+          description: "Show unsupported resources",
+        },
         {
           name: "--sync-usage-file",
           description:
@@ -56,7 +70,9 @@ const completionSpec: Fig.Spec = {
           name: "--terraform-plan-flags",
           description:
             "Flags to pass to 'terraform plan'. Applicable when path is a Terraform directory",
-          args: { name: "terraform-plan-flags" },
+          args: {
+            name: "terraform-plan-flags",
+          },
         },
         {
           name: "--terraform-use-state",
@@ -68,26 +84,35 @@ const completionSpec: Fig.Spec = {
           description:
             "Set a value for one of the input variables, similar to Terraform's -var flag. Only supported with --terraform-parse-hcl (experimental)",
           hidden: true,
-          args: { name: "terraform-var" },
+          args: {
+            name: "terraform-var",
+          },
         },
         {
           name: "--terraform-var-file",
           description:
             "Load variable files from the given file, similar to Terraform's -var-file flag. Only supported with --terraform-parse-hcl (experimental)",
           hidden: true,
-          args: { name: "terraform-var-file" },
+          args: {
+            name: "terraform-var-file",
+          },
         },
         {
           name: "--terraform-workspace",
           description:
             "Terraform workspace to use. Applicable when path is a Terraform directory",
-          args: { name: "terraform-workspace" },
+          args: {
+            name: "terraform-workspace",
+          },
         },
         {
           name: "--usage-file",
           description:
             "Path to Infracost usage file that specifies values for usage-based resources",
-          args: { name: "usage-file", template: ["filepaths"] },
+          args: {
+            name: "usage-file",
+            template: ["filepaths"],
+          },
         },
       ],
     },
@@ -103,14 +128,19 @@ const completionSpec: Fig.Spec = {
             {
               name: "--azure-access-token",
               description: "Azure DevOps access token",
-              args: { name: "azure-access-token" },
+              args: {
+                name: "azure-access-token",
+              },
               isRequired: true,
             },
             {
               name: "--behavior",
               description:
                 "Behavior when posting comment, one of:   update (default)  Update latest comment   new               Create a new comment   delete-and-new    Delete previous matching comments and create a new comment",
-              args: { name: "behavior", default: "update" },
+              args: {
+                name: "behavior",
+                default: "update",
+              },
             },
             {
               name: "--dry-run",
@@ -122,7 +152,10 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost JSON files, glob patterns need quotes",
               isRepeatable: true,
-              args: { name: "path", template: ["filepaths"] },
+              args: {
+                name: "path",
+                template: ["filepaths"],
+              },
               isRequired: true,
             },
             {
@@ -130,26 +163,35 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost policy files, glob patterns need quotes (experimental)",
               isRepeatable: true,
-              args: { name: "policy-path" },
+              args: {
+                name: "policy-path",
+              },
             },
             {
               name: "--pull-request",
               description: "Pull request number to post comment on",
-              args: { name: "pull-request", default: "0" },
+              args: {
+                name: "pull-request",
+                default: "0",
+              },
               isRequired: true,
             },
             {
               name: "--repo-url",
               description:
                 "Repository URL, e.g. https://dev.azure.com/my-org/my-project/_git/my-repo",
-              args: { name: "repo-url" },
+              args: {
+                name: "repo-url",
+              },
               isRequired: true,
             },
             {
               name: "--tag",
               description:
                 "Customize hidden markdown tag used to detect comments posted by Infracost",
-              args: { name: "tag" },
+              args: {
+                name: "tag",
+              },
             },
           ],
         },
@@ -161,7 +203,10 @@ const completionSpec: Fig.Spec = {
               name: "--behavior",
               description:
                 "Behavior when posting comment, one of:   update (default)  Update latest comment   new               Create a new comment   delete-and-new    Delete previous matching comments and create a new comment",
-              args: { name: "behavior", default: "update" },
+              args: {
+                name: "behavior",
+                default: "update",
+              },
             },
             {
               name: "--bitbucket-server-url",
@@ -175,14 +220,18 @@ const completionSpec: Fig.Spec = {
               name: "--bitbucket-token",
               description:
                 "Bitbucket access token. Use 'username:app-password' for Bitbucket Cloud and HTTP access token for Bitbucket Server",
-              args: { name: "bitbucket-token" },
+              args: {
+                name: "bitbucket-token",
+              },
               isRequired: true,
             },
             {
               name: "--commit",
               description:
                 "Commit SHA to post comment on, mutually exclusive with pull-request. Not available when bitbucket-server-url is set",
-              args: { name: "commit" },
+              args: {
+                name: "commit",
+              },
             },
             {
               name: "--dry-run",
@@ -194,7 +243,10 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost JSON files, glob patterns need quotes",
               isRepeatable: true,
-              args: { name: "path", template: ["filepaths"] },
+              args: {
+                name: "path",
+                template: ["filepaths"],
+              },
               isRequired: true,
             },
             {
@@ -202,24 +254,33 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost policy files, glob patterns need quotes (experimental)",
               isRepeatable: true,
-              args: { name: "policy-path" },
+              args: {
+                name: "policy-path",
+              },
             },
             {
               name: "--pull-request",
               description: "Pull request number to post comment on",
-              args: { name: "pull-request", default: "0" },
+              args: {
+                name: "pull-request",
+                default: "0",
+              },
             },
             {
               name: "--repo",
               description: "Repository in format workspace/repo",
-              args: { name: "repo" },
+              args: {
+                name: "repo",
+              },
               isRequired: true,
             },
             {
               name: "--tag",
               description:
                 "Customize special text used to detect comments posted by Infracost (placed at the bottom of a comment)",
-              args: { name: "tag" },
+              args: {
+                name: "tag",
+              },
             },
           ],
         },
@@ -231,13 +292,18 @@ const completionSpec: Fig.Spec = {
               name: "--behavior",
               description:
                 "Behavior when posting comment, one of:   update (default)  Update latest comment   new               Create a new comment   hide-and-new      Hide previous matching comments and create a new comment   delete-and-new    Delete previous matching comments and create a new comment",
-              args: { name: "behavior", default: "update" },
+              args: {
+                name: "behavior",
+                default: "update",
+              },
             },
             {
               name: "--commit",
               description:
                 "Commit SHA to post comment on, mutually exclusive with pull-request",
-              args: { name: "commit" },
+              args: {
+                name: "commit",
+              },
             },
             {
               name: "--dry-run",
@@ -255,7 +321,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--github-token",
               description: "GitHub token",
-              args: { name: "github-token" },
+              args: {
+                name: "github-token",
+              },
               isRequired: true,
             },
             {
@@ -263,7 +331,10 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost JSON files, glob patterns need quotes",
               isRepeatable: true,
-              args: { name: "path", template: ["filepaths"] },
+              args: {
+                name: "path",
+                template: ["filepaths"],
+              },
               isRequired: true,
             },
             {
@@ -271,25 +342,34 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost policy files, glob patterns need quotes (experimental)",
               isRepeatable: true,
-              args: { name: "policy-path" },
+              args: {
+                name: "policy-path",
+              },
             },
             {
               name: "--pull-request",
               description:
                 "Pull request number to post comment on, mutually exclusive with commit",
-              args: { name: "pull-request", default: "0" },
+              args: {
+                name: "pull-request",
+                default: "0",
+              },
             },
             {
               name: "--repo",
               description: "Repository in format owner/repo",
-              args: { name: "repo" },
+              args: {
+                name: "repo",
+              },
               isRequired: true,
             },
             {
               name: "--tag",
               description:
                 "Customize hidden markdown tag used to detect comments posted by Infracost",
-              args: { name: "tag" },
+              args: {
+                name: "tag",
+              },
             },
           ],
         },
@@ -301,13 +381,18 @@ const completionSpec: Fig.Spec = {
               name: "--behavior",
               description:
                 "Behavior when posting comment, one of:   update (default)  Update latest comment   new               Create a new comment   delete-and-new    Delete previous matching comments and create a new comment",
-              args: { name: "behavior", default: "update" },
+              args: {
+                name: "behavior",
+                default: "update",
+              },
             },
             {
               name: "--commit",
               description:
                 "Commit SHA to post comment on, mutually exclusive with merge-request",
-              args: { name: "commit" },
+              args: {
+                name: "commit",
+              },
             },
             {
               name: "--dry-run",
@@ -325,21 +410,29 @@ const completionSpec: Fig.Spec = {
             {
               name: "--gitlab-token",
               description: "GitLab token",
-              args: { name: "gitlab-token" },
+              args: {
+                name: "gitlab-token",
+              },
               isRequired: true,
             },
             {
               name: "--merge-request",
               description:
                 "Merge request number to post comment on, mutually exclusive with commit",
-              args: { name: "merge-request", default: "0" },
+              args: {
+                name: "merge-request",
+                default: "0",
+              },
             },
             {
               name: ["--path", "-p"],
               description:
                 "Path to Infracost JSON files, glob patterns need quotes",
               isRepeatable: true,
-              args: { name: "path", template: ["filepaths"] },
+              args: {
+                name: "path",
+                template: ["filepaths"],
+              },
               isRequired: true,
             },
             {
@@ -347,19 +440,25 @@ const completionSpec: Fig.Spec = {
               description:
                 "Path to Infracost policy files, glob patterns need quotes (experimental)",
               isRepeatable: true,
-              args: { name: "policy-path" },
+              args: {
+                name: "policy-path",
+              },
             },
             {
               name: "--repo",
               description: "Repository in format owner/repo",
-              args: { name: "repo" },
+              args: {
+                name: "repo",
+              },
               isRequired: true,
             },
             {
               name: "--tag",
               description:
                 "Customize hidden markdown tag used to detect comments posted by Infracost",
-              args: { name: "tag" },
+              args: {
+                name: "tag",
+              },
             },
           ],
         },
@@ -372,7 +471,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--shell",
           description: "Supported shell formats: bash, zsh, fish, powershell",
-          args: { name: "shell" },
+          args: {
+            name: "shell",
+          },
           isRequired: true,
         },
       ],
@@ -381,8 +482,14 @@ const completionSpec: Fig.Spec = {
       name: "configure",
       description: "Display or change global configuration",
       subcommands: [
-        { name: "get", description: "Get global configuration" },
-        { name: "set", description: "Set global configuration" },
+        {
+          name: "get",
+          description: "Get global configuration",
+        },
+        {
+          name: "set",
+          description: "Set global configuration",
+        },
       ],
     },
     {
@@ -394,7 +501,10 @@ const completionSpec: Fig.Spec = {
           name: "--config-file",
           description:
             "Path to Infracost config file. Cannot be used with path, terraform* or usage-file flags",
-          args: { name: "config-file", template: ["filepaths"] },
+          args: {
+            name: "config-file",
+            template: ["filepaths"],
+          },
         },
         {
           name: "--no-cache",
@@ -403,14 +513,22 @@ const completionSpec: Fig.Spec = {
         {
           name: "--out-file",
           description: "Save output to a file",
-          args: { name: "out-file" },
+          args: {
+            name: "out-file",
+          },
         },
         {
           name: ["--path", "-p"],
           description: "Path to the Terraform directory or JSON/plan file",
-          args: { name: "path", template: ["filepaths"] },
+          args: {
+            name: "path",
+            template: ["filepaths"],
+          },
         },
-        { name: "--show-skipped", description: "Show unsupported resources" },
+        {
+          name: "--show-skipped",
+          description: "Show unsupported resources",
+        },
         {
           name: "--sync-usage-file",
           description:
@@ -420,19 +538,26 @@ const completionSpec: Fig.Spec = {
           name: "--terraform-plan-flags",
           description:
             "Flags to pass to 'terraform plan'. Applicable when path is a Terraform directory",
-          args: { name: "terraform-plan-flags" },
+          args: {
+            name: "terraform-plan-flags",
+          },
         },
         {
           name: "--terraform-workspace",
           description:
             "Terraform workspace to use. Applicable when path is a Terraform directory",
-          args: { name: "terraform-workspace" },
+          args: {
+            name: "terraform-workspace",
+          },
         },
         {
           name: "--usage-file",
           description:
             "Path to Infracost usage file that specifies values for usage-based resources",
-          args: { name: "usage-file", template: ["filepaths"] },
+          args: {
+            name: "usage-file",
+            template: ["filepaths"],
+          },
         },
       ],
     },
@@ -472,25 +597,39 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--out-file", "-o"],
           description: "Save output to a file, helpful with format flag",
-          args: { name: "out-file" },
+          args: {
+            name: "out-file",
+          },
         },
         {
           name: ["--path", "-p"],
           description:
             "Path to Infracost JSON files, glob patterns need quotes",
           isRepeatable: true,
-          args: { name: "path", template: ["filepaths"] },
+          args: {
+            name: "path",
+            template: ["filepaths"],
+          },
           isRequired: true,
         },
-        { name: "--show-skipped", description: "Show unsupported resources" },
+        {
+          name: "--show-skipped",
+          description: "Show unsupported resources",
+        },
       ],
     },
-    { name: "register", description: "Register for a free Infracost API key" },
+    {
+      name: "register",
+      description: "Register for a free Infracost API key",
+    },
     {
       name: "help",
       description: "Help about any command",
       subcommands: [
-        { name: "breakdown", description: "Show full breakdown of costs" },
+        {
+          name: "breakdown",
+          description: "Show full breakdown of costs",
+        },
         {
           name: "comment",
           description:
@@ -514,13 +653,22 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
-        { name: "completion", description: "Generate shell completion script" },
+        {
+          name: "completion",
+          description: "Generate shell completion script",
+        },
         {
           name: "configure",
           description: "Display or change global configuration",
           subcommands: [
-            { name: "get", description: "Get global configuration" },
-            { name: "set", description: "Set global configuration" },
+            {
+              name: "get",
+              description: "Get global configuration",
+            },
+            {
+              name: "set",
+              description: "Set global configuration",
+            },
           ],
         },
         {
@@ -555,7 +703,17 @@ const completionSpec: Fig.Spec = {
       description: "Turn off colored output",
       isPersistent: true,
     },
-    { name: ["--help", "-h"], description: "Display help", isPersistent: true },
+    {
+      name: ["--help", "-h"],
+      description: "Display help",
+      isPersistent: true,
+    },
   ],
 };
-export default completionSpec;
+
+const versions: Fig.VersionDiffMap = {};
+
+versions["0.9.19"] = {};
+
+export { versions };
+export default completion;

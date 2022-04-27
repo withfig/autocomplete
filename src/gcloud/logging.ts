@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes all entries from a log",
-
           options: [
             {
               name: "--account",
@@ -141,13 +140,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "LOG_NAME",
             description: "Log name",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "Lists your project's logs",
-
           options: [
             {
               name: "--account",
@@ -444,7 +441,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a logs-based metric",
-
           options: [
             {
               name: "--account",
@@ -597,13 +593,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the new metric",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Deletes a logs-based metric",
-
           options: [
             {
               name: "--account",
@@ -735,13 +729,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the metric to delete",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Shows the definition of a logs-based metric",
-
           options: [
             {
               name: "--account",
@@ -873,13 +865,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the metric",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "Displays all logs-based metrics",
-
           options: [
             {
               name: "--account",
@@ -1042,7 +1032,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates the definition of a logs-based metric",
-
           options: [
             {
               name: "--account",
@@ -1194,7 +1183,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "METRIC_NAME",
             description: "The name of the log-based metric to update",
-            isVariadic: false,
           },
         },
       ],
@@ -1330,7 +1318,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "read",
       description: "Read log entries",
-
       options: [
         {
           name: "--account",
@@ -1511,7 +1498,6 @@ const completionSpec: Fig.Spec = {
         name: "LOG_FILTER",
         description:
           "Filter expression that specifies the log entries to return. A detailed guide on basic and advanced filters can be found at: https://cloud.google.com/logging/docs/view/overview",
-        isVariadic: false,
       },
     },
     {
@@ -1521,7 +1507,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all available resource descriptors",
-
           options: [
             {
               name: "--account",
@@ -1818,7 +1803,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a sink",
-
           options: [
             {
               name: "--account",
@@ -1983,19 +1967,16 @@ const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name for the sink",
-              isVariadic: false,
             },
             {
               name: "DESTINATION",
               description: "The destination for the sink",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "delete",
           description: "Deletes a sink",
-
           options: [
             {
               name: "--account",
@@ -2144,13 +2125,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SINK_NAME",
             description: "The name of the sink to delete",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Displays information about a sink",
-
           options: [
             {
               name: "--account",
@@ -2300,13 +2279,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SINK_NAME",
             description: "The name of the sink to describe",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "Lists the defined sinks",
-
           options: [
             {
               name: "--account",
@@ -2486,7 +2463,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates a sink",
-
           options: [
             {
               name: "--account",
@@ -2646,13 +2622,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name of the sink to update",
-              isVariadic: false,
             },
             {
               name: "DESTINATION",
               description:
                 "A new destination for the sink. If omitted, the sink's existing destination is unchanged",
-              isVariadic: false,
             },
           ],
         },
@@ -2789,7 +2763,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "write",
       description: "Write a log entry",
-
       options: [
         {
           name: "--account",
@@ -2969,13 +2942,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "LOG_NAME",
           description: "Name of the log where the log entry will be written",
-          isVariadic: false,
         },
         {
           name: "MESSAGE",
           description:
             "Message to put in the log entry. It can be JSON if you include `--payload-type=json`",
-          isVariadic: false,
         },
       ],
     },

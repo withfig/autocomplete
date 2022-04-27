@@ -199,8 +199,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "--plugin",
               description: "Specify name with the plugin",
-              // insertValue: "--plugin={cursor}",
-              // requiresEquals: true,
               isRequired: true,
               args: {
                 name: "plugin name",
@@ -212,7 +210,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "help",
       description: "Help about any command",

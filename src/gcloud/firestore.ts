@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Google Cloud Firestore Native database",
-
           options: [
             {
               name: "--account",
@@ -282,7 +281,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "export",
       description: "Export Cloud Firestore documents to Google Cloud Storage",
-
       options: [
         {
           name: "--account",
@@ -430,13 +428,11 @@ const completionSpec: Fig.Spec = {
         name: "OUTPUT_URI_PREFIX",
         description:
           "Location where the export files will be stored. Must be a valid\nGoogle Cloud Storage bucket with an optional path prefix.\n+\nFor example:\n+\n  $ {command} gs://mybucket/my/path\n+\nWill place the export in the `mybucket` bucket in objects prefixed with\n`my/path`",
-        isVariadic: false,
       },
     },
     {
       name: "import",
       description: "Import Cloud Firestore documents from Google Cloud Storage",
-
       options: [
         {
           name: "--account",
@@ -584,7 +580,6 @@ const completionSpec: Fig.Spec = {
         name: "INPUT_URI_PREFIX",
         description:
           "Location of the import files.\n+\nThis location is the 'output_uri_prefix' field of a previous export,\nand can be found via the '{parent_command} operations describe' command",
-        isVariadic: false,
       },
     },
     {
@@ -598,7 +593,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a new composite index",
-
               options: [
                 {
                   name: "--account",
@@ -759,7 +753,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete the given composite index",
-
               options: [
                 {
                   name: "--account",
@@ -892,13 +885,11 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "ID of the composite index or fully qualified identifier for the composite index",
-                isVariadic: false,
               },
             },
             {
               name: "describe",
               description: "Describe the given composite index",
-
               options: [
                 {
                   name: "--account",
@@ -1031,13 +1022,11 @@ const completionSpec: Fig.Spec = {
                 name: "INDEX",
                 description:
                   "ID of the composite index or fully qualified identifier for the composite index",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description: "List composite indexes",
-
               options: [
                 {
                   name: "--account",
@@ -1350,7 +1339,6 @@ const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Describe the index configuration of the given field",
-
               options: [
                 {
                   name: "--account",
@@ -1492,13 +1480,11 @@ const completionSpec: Fig.Spec = {
                 name: "FIELD",
                 description:
                   "ID of the field or fully qualified identifier for the field",
-                isVariadic: false,
               },
             },
             {
               name: "list",
               description: "List fields with non-default index settings",
-
               options: [
                 {
                   name: "--account",
@@ -1686,7 +1672,6 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update the index configuration of the given field",
-
               options: [
                 {
                   name: "--account",
@@ -1853,7 +1838,6 @@ const completionSpec: Fig.Spec = {
                 name: "FIELD",
                 description:
                   "ID of the field or fully qualified identifier for the field",
-                isVariadic: false,
               },
             },
           ],
@@ -2124,7 +2108,6 @@ const completionSpec: Fig.Spec = {
           name: "cancel",
           description:
             "Cancel a currently-running Cloud Firestore admin operation",
-
           options: [
             {
               name: "--account",
@@ -2257,13 +2240,11 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The unique name of the Operation to cancel, formatted as either the full\nor relative resource path:\n+\n  projects/my-app-id/databases/(default)/operations/foo\n+\nor:\n+\n  foo",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a completed Cloud Firestore admin operation",
-
           options: [
             {
               name: "--account",
@@ -2396,14 +2377,12 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The unique name of the operation to delete, formatted as either the full\nor relative resource path:\n+\n  projects/my-app-id/databases/(default)/operations/foo\n+\nor:\n+\n  foo",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description:
             "Retrieves information about a Cloud Firestore admin operation",
-
           options: [
             {
               name: "--account",
@@ -2536,14 +2515,12 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "The unique name of the Operation to retrieve, formatted as either the\nfull or relative resource path:\n+\n  projects/my-app-id/databases/(default)/operations/foo\n+\nor:\n+\n  foo",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description:
             "List pending Cloud Firestore admin operations and their status",
-
           options: [
             {
               name: "--account",

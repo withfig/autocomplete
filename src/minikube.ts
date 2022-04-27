@@ -59,7 +59,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["true", "false"],
           },
         },
-
         {
           name: "--base-image",
           description:
@@ -82,7 +81,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["auto", "bridge", "cilium", "flannel", "kindnet"],
           },
         },
-
         {
           name: "--container-runtime",
           description: "The container runtime to be used",

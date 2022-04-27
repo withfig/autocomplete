@@ -188,7 +188,6 @@ const affectedOptions: Fig.Option[] = [
     name: "--only-failed",
     description: "Isolate projects which previously failed",
   },
-
   {
     name: "--parallel",
     args: { suggestions: ["false", "true"] },

@@ -130,7 +130,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Specifies that psql should do its work quietly. By default, it prints welcome messages and various informational output. If this option is used, none of this happens. This is useful with the -c option. This is equivalent to setting the variable QUIET to on",
     },
-
     {
       name: ["-R", "--record-separator"],
       description:

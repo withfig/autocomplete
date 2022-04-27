@@ -33,7 +33,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "configuration",
         description: "The assert_configuration replacement",
-
         suggestions: ["Debug", "Release", "Unchecked", "DisableReplacement"],
       },
     },
@@ -68,7 +67,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "type",
         description: "The debug info format type",
-
         suggestions: ["dwarf", "codeview"],
       },
     },
@@ -90,7 +88,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "prefix",
         description: "The formatting style used when printing diagnostics",
-
         suggestions: ["swift", "llvm"],
       },
     },
@@ -455,7 +452,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "format",
         description: "The format",
-
         default: "YAML",
       },
     },
@@ -497,7 +493,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         description: "Mode for staging isa/super signing",
-
         suggestions: ["LegacyAndStrip", "NewAndStrip", "NewAndAuth"],
       },
     },
@@ -507,7 +502,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         description: "Mode for staging pointer authentication",
-
         suggestions: ["LegacyAndStrip", "NewAndStrip", "NewAndAuth"],
       },
     },
@@ -1032,7 +1026,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "build system",
             description: "The build system to use",
-
             suggestions: ["native", "xcode"],
             default: "native",
           },
@@ -1045,7 +1038,6 @@ const completionSpec: Fig.Spec = {
             name: "bool",
             description:
               "Whether to load .netrc files for authenticating with remote servers when downloading binary artifacts or communicating with a registry",
-
             default: "true",
           },
         },
@@ -1099,7 +1091,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "type",
                 description: "The output type",
-
                 suggestions: ["json", "text"],
                 default: "text",
               },
@@ -1117,7 +1108,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "type",
                 description: "The package type",
-
                 suggestions: [
                   "empty",
                   "library",
@@ -1367,7 +1357,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "format",
                 description: "The format type",
-
                 suggestions: ["text", "dot", "json", "flatlist"],
                 default: "text",
               },
@@ -1385,7 +1374,6 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "format",
                 description: "The format type",
-
                 suggestions: ["text", "dot", "json", "flatlist"],
                 default: "text",
               },
@@ -1471,7 +1459,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "mode",
             description: "The completion tool mode",
-
             suggestions: [
               "generate-bash-script",
               "generate-zsh-script",

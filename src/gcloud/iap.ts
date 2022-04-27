@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get the setting for an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -176,7 +175,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set",
           description: "Set the setting for an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -343,7 +341,6 @@ const completionSpec: Fig.Spec = {
             name: "SETTING_FILE",
             description:
               'JSON or YAML file containing the IAP resource settings.\n+\n       JSON example:\n         {\n           "access_settings" : {\n             "oauth_settings" : {\n                "login_hint" : {\n                   "value": "test_hint"\n                }\n             },\n             "gcip_settings" : {\n                "tenant_ids": ["tenant1-p9puj", "tenant2-y8rxc"],\n                "login_page_uri" : {\n                   "value" : "https://test.com/?apiKey=abcd_efgh"\n                }\n             },\n             "cors_settings": {\n                "allow_http_options" : {\n                   "value": true\n                }\n             }\n          },\n          "application_settings" : {\n             "csm_settings" : {\n               "rctoken_aud" : {\n                  "value" : "test_aud"\n               }\n             }\n          }\n        }\n+\n       YAML example:\n       accessSettings :\n          oauthSettings:\n            loginHint: test_hint\n          gcipSettings:\n            tenantIds:\n            - tenant1-p9puj\n            - tenant2-y8rxc\n            loginPageUri: https://test.com/?apiKey=abcd_efgh\n          corsSettings:\n            allowHttpOptions: true\n       applicationSettings:\n          csmSettings:\n            rctokenAud: test_aud',
-            isVariadic: false,
           },
         },
       ],
@@ -483,7 +480,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -677,7 +673,6 @@ const completionSpec: Fig.Spec = {
           name: "disable",
           description:
             "Disable Cloud Identity-Aware Proxy (Cloud IAP) on an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -832,7 +827,6 @@ const completionSpec: Fig.Spec = {
           name: "enable",
           description:
             "Enable Cloud Identity-Aware Proxy (Cloud IAP) on an IAP resource",
-
           options: [
             {
               name: "--account",
@@ -1006,7 +1000,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -1198,7 +1191,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding from an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -1396,7 +1388,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for an IAP IAM resource",
-
           options: [
             {
               name: "--account",
@@ -1547,7 +1538,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "POLICY_FILE",
             description: "JSON or YAML file containing the IAM policy",
-            isVariadic: false,
           },
         },
       ],

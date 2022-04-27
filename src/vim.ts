@@ -99,7 +99,6 @@ const completionSpec: Fig.Spec = {
       description: "Same as -r",
       args: {
         name: "filename",
-
         template: "filepaths",
       },
     },
@@ -123,7 +122,6 @@ const completionSpec: Fig.Spec = {
       description: "Use <vimrc> instead of any .vimrc",
       args: {
         name: "vimrc",
-
         template: "filepaths",
       },
     },
@@ -171,7 +169,6 @@ const completionSpec: Fig.Spec = {
       description: "Execute <command> before loading any vimrc file",
       args: {
         name: "command",
-
         isCommand: true,
       },
     },
@@ -187,7 +184,6 @@ const completionSpec: Fig.Spec = {
       description: "Source file <session> after loading the first file",
       args: {
         name: "session",
-
         template: "filepaths",
       },
     },
@@ -196,7 +192,6 @@ const completionSpec: Fig.Spec = {
       description: "Read Normal mode commands from file <scriptin>",
       args: {
         name: "scriptin",
-
         template: "filepaths",
       },
     },
@@ -205,7 +200,6 @@ const completionSpec: Fig.Spec = {
       description: "Append all typed commands to file <scriptout>",
       args: {
         name: "scriptout",
-
         template: "filepaths",
       },
     },
@@ -214,7 +208,6 @@ const completionSpec: Fig.Spec = {
       description: "Write all typed commands to file <scriptout>",
       args: {
         name: "scriptout",
-
         template: "filepaths",
       },
     },
@@ -227,7 +220,6 @@ const completionSpec: Fig.Spec = {
       description: "Write startup timing messages to <file>",
       args: {
         name: "file",
-
         template: "filepaths",
       },
     },
@@ -236,7 +228,6 @@ const completionSpec: Fig.Spec = {
       description: "Use <viminfo> instead of .viminfo",
       args: {
         name: "viminfo",
-
         template: "filepaths",
       },
     },
