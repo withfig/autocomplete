@@ -82,6 +82,22 @@ const targetGenerator: Fig.Generator = {
   },
 };
 
+const dependencyGenerator: Fig.Generator = {
+  script: "cargo metadata --format-version 1",
+  postProcess: function (data: string) {
+    const metadata = JSON.parse(data);
+    return metadata.packages
+      .map(({ name, description }) => ({
+        name,
+        description,
+      }))
+      .filter(
+        (value, index, self) =>
+          self.findIndex((v) => v.name === value.name) === index
+      );
+  },
+};
+
 const rustEditions: Fig.Suggestion[] = [
   { name: "2015", description: "2015 edition" },
   { name: "2018", description: "2018 edition" },
@@ -5303,6 +5319,145 @@ const completionSpec: Fig.Spec = {
 
     if (commands.includes("audit")) {
       subcommands.push(audit);
+    }
+
+    const outdated: Fig.Subcommand = {
+      name: "outdated",
+      icon: "📦",
+      description: "Displays information about project dependency versions",
+      options: [
+        {
+          name: ["-a", "--aggressive"],
+          description: "Ignores channels for latest updates",
+        },
+        {
+          name: "--color",
+          description: "Output coloring",
+          args: {
+            name: "COLOR",
+            suggestions: ["always", "never", "auto"],
+            default: "auto",
+          },
+        },
+        {
+          name: ["-d", "--depth"],
+          description:
+            "How deep in the dependency chain to search (Defaults to all dependencies when omitted)",
+          args: {
+            name: "DEPTH",
+          },
+          exclusiveOn: ["-R", "--root-deps-only"],
+        },
+        {
+          name: ["-x", "--exclude"],
+          description: "Exclude a dependency from the output",
+          isRequired: true,
+          args: {
+            name: "DEPENDENCY",
+            generators: dependencyGenerator,
+          },
+        },
+        {
+          name: "--exit-code",
+          description: "The exit code to return on new versions found",
+          args: {
+            name: "NUM",
+            suggestions: ["0", "1"],
+            default: "0",
+          },
+        },
+        {
+          name: "--features",
+          description: "Space-separated list of features",
+          args: {
+            name: "FEATURES",
+            generators: featuresGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: "--format",
+          description: "Output formatting",
+          args: {
+            name: "FORMAT",
+            suggestions: ["json", "list"],
+            default: "list",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+        {
+          name: ["-i", "--ignore"],
+          description: "Dependencies to not print in the output",
+          args: {
+            name: "DEPENDENCY",
+            generators: dependencyGenerator,
+          },
+        },
+        {
+          name: ["-e", "--ignore-external-rel"],
+          description:
+            "Ignore relative dependencies external to workspace and check root dependencies only",
+        },
+        {
+          name: ["-m", "--manifest-path"],
+          description: "Path to the Cargo.toml file to use",
+          args: {
+            name: "PATH",
+            generators: filepaths({
+              equals: ["Cargo.toml"],
+            }),
+          },
+        },
+        {
+          name: ["-o", "--offline"],
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-p", "--packages"],
+          description: "Packages to inspect for updates",
+          args: {
+            name: "PACKAGES",
+            generators: dependencyGenerator,
+          },
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Suppresses warnings",
+        },
+        {
+          name: ["-r", "--root"],
+          description: "Package to treat as the root package",
+          args: {
+            name: "PACKAGE",
+            generators: dependencyGenerator,
+          },
+        },
+        {
+          name: ["-R", "--root-deps-only"],
+          description: "Only check root dependencies",
+          exclusiveOn: ["-d", "--depth"],
+        },
+        {
+          name: ["-V", "--version"],
+          description: "Prints version information",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: ["-w", "--workspace"],
+          description:
+            "Checks updates for all workspace members rather than only the root package",
+        },
+      ],
+    };
+
+    if (commands.includes("outdated")) {
+      subcommands.push(outdated);
     }
 
     return {
