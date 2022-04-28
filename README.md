@@ -18,9 +18,11 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 
 ## ⚡️ Installation
 
+Once it's downloaded, launch the app to set up Fig!
+
 * **macOS**:
-  * **Homebrew**: `brew install --cask fig` and restart your terminal
-  * **DMG**: Download from our website: [fig.io](https://fig.io/download)
+  * **Homebrew**: `brew install --cask fig`
+  * **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
 * **Windows/Linux**:
   * Join the [waitlist](https://withfig.typeform.com/linux)
 <br/>
