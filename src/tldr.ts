@@ -5,19 +5,19 @@ const osx = `~/.tldr/cache/pages/osx/`;
 const sunos = `~/.tldr/cache/pages/sunos/`;
 const windows = `~/.tldr/cache/pages/windows/`;
 
+const isMarkDownRegex = new RegExp(/^.*\.md$/);
+
 const wholeTldrPages: Fig.Generator = {
   script: () => {
-    return `ls -l ${android} ${common} ${linux} ${osx} ${sunos} ${windows} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9 | sort -u`;
+    return `ls -Al ${android} ${common} ${linux} ${osx} ${sunos} ${windows} 2>/dev/null`;
   },
   postProcess: (out) => {
     return out
       .split("\n")
-      .filter((line) => {
-        return !(line.length == 0 || line.startsWith("/"));
-      })
+      .filter((line) => isMarkDownRegex.test(line))
       .map((line) => {
         return {
-          name: line.slice(0, -3),
+          name: line.split(" ").at(-1).slice(0, -3),
           description: "Tldr page",
           icon: "fig://icon?type=string",
         };
@@ -27,17 +27,15 @@ const wholeTldrPages: Fig.Generator = {
 
 const linuxTldrPages: Fig.Generator = {
   script: () => {
-    return `ls -l ${linux} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9`;
+    return `ls -Al ${linux} 2>/dev/null`;
   },
   postProcess: (out) => {
     return out
       .split("\n")
-      .filter((line) => {
-        return !(line.length == 0 || line.startsWith("/"));
-      })
+      .filter((line) => isMarkDownRegex.test(line))
       .map((line) => {
         return {
-          name: line.slice(0, -3),
+          name: line.split(" ").at(-1).slice(0, -3),
           description: "Tldr page",
           icon: "fig://icon?type=string",
         };
@@ -47,17 +45,15 @@ const linuxTldrPages: Fig.Generator = {
 
 const osxTldrPages: Fig.Generator = {
   script: () => {
-    return `ls -l ${osx} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9`;
+    return `ls -l ${osx} 2>/dev/null`;
   },
   postProcess: (out) => {
     return out
       .split("\n")
-      .filter((line) => {
-        return !(line.length == 0 || line.startsWith("/"));
-      })
+      .filter((line) => isMarkDownRegex.test(line))
       .map((line) => {
         return {
-          name: line.slice(0, -3),
+          name: line.split(" ").at(-1).slice(0, -3),
           description: "Tldr page",
           icon: "fig://icon?type=string",
         };
@@ -67,17 +63,15 @@ const osxTldrPages: Fig.Generator = {
 
 const sunosTldrPages: Fig.Generator = {
   script: () => {
-    return `ls -l ${sunos} 2>/dev/null | tr -s ' ' | cut -d ' ' -f 9`;
+    return `ls -l ${sunos} 2>/dev/null`;
   },
   postProcess: (out) => {
     return out
       .split("\n")
-      .filter((line) => {
-        return !(line.length == 0 || line.startsWith("/"));
-      })
+      .filter((line) => isMarkDownRegex.test(line))
       .map((line) => {
         return {
-          name: line.slice(0, -3),
+          name: line.split(" ").at(-1).slice(0, -3),
           description: "Tldr page",
           icon: "fig://icon?type=string",
         };
