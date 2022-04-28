@@ -19,7 +19,7 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 ## ⚡️ Installation
 
 * **macOS**:
-  * **Homebrew**: `brew install --cask fig`
+  * **Homebrew**: `brew install --cask fig` and restart your terminal
   * **DMG**: Download from our website: [fig.io](https://fig.io/download)
 * **Windows/Linux**:
   * Join the [waitlist](https://withfig.typeform.com/linux)
