@@ -18,13 +18,14 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 
 ## ⚡️ Installation
 
-Once it's downloaded, launch the app to set up Fig!
-
 * **macOS**:
   * **Homebrew**: `brew install --cask fig`
   * **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
 * **Windows/Linux**:
   * Join the [waitlist](https://withfig.typeform.com/linux)
+
+> NOTE: Once it's downloaded, launch the app to set up Fig!
+
 <br/>
 
 ![Demo of Fig's visual autocomplete in a terminal](https://fig.io/gifs/demo-with-header.gif)
