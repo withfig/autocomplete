@@ -1255,6 +1255,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         generators: dependenciesGenerator,
         isVariadic: true,
+        isOptional: true,
       },
       options: [
         ...commonOptions,
