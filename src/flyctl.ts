@@ -25,8 +25,8 @@ const flyAppsGenerator: Fig.Generator = {
   },
 };
 
-// Autocompletion generator for Fly apps using flyctl list apps
-// https://fly.io/docs/flyctl/list-apps/#usage
+// Autocompletion generator for Fly apps using flyctl list orgs
+// https://fly.io/docs/flyctl/list-orgs/#usage
 const flyOrgsGenerator: Fig.Generator = {
   script: "flyctl list orgs",
   postProcess: (output) => {
