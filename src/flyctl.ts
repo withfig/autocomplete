@@ -1,6 +1,53 @@
+// This spec is auto-generated from the flyctl CLI
+// v0.0.325 https://github.com/superfly/flyctl/releases/tag/v0.0.325
+
+// Specs generated using autocomplete-tools/packages/cobra v1.1.3
+// https://github.com/BogDAAAMN/flyctl/commit/c0f338a6f3c59acc8286a8c82836fc2e73124b6f
+
+// Autocompletion generator for Fly apps using flyctl list apps
+// https://fly.io/docs/flyctl/list-apps/#usage
+const flyAppsGenerator: Fig.Generator = {
+  script: "flyctl list apps",
+  postProcess: (output) => {
+    return output
+      .split("\n")
+      .slice(2)
+      .map((app) => {
+        const appSplitText = app.split("|").map((el) => el.trim());
+        const [name, status, org, deployed] = appSplitText;
+
+        return {
+          name: name,
+          description: `Organization: ${org}`,
+          icon: status == "running" ? "🟢" : status == "pending" ? "🟡" : "🔴",
+        };
+      });
+  },
+};
+
+// Autocompletion generator for Fly apps using flyctl list apps
+// https://fly.io/docs/flyctl/list-apps/#usage
+const flyOrgsGenerator: Fig.Generator = {
+  script: "flyctl list orgs",
+  postProcess: (output) => {
+    return output
+      .split("\n")
+      .slice(2)
+      .map((org) => {
+        const appSplitText = org.split("|").map((el) => el.trim());
+        const [name, slug, type] = appSplitText;
+
+        return {
+          name: name,
+          description: `${slug}`,
+        };
+      });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "flyctl",
-  description: "The Fly CLI",
+  description: "The flyctl is a command-line interface for fly.io",
   subcommands: [
     {
       name: "agent",
@@ -42,7 +89,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--org", "-o"],
               description: "The organization to operate on",
-              args: { name: "org" },
+              args: { name: "org", generators: flyOrgsGenerator },
             },
           ],
         },
@@ -61,7 +108,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--org", "-o"],
               description: "The organization to operate on",
-              args: { name: "org" },
+              args: { name: "org", generators: flyOrgsGenerator },
             },
             { name: ["--yes", "-y"], description: "Accept all confirmations" },
           ],
@@ -73,12 +120,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -89,12 +136,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: "--image",
@@ -160,13 +207,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -177,13 +228,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -194,13 +249,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -211,13 +270,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -229,13 +292,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -244,12 +311,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -264,12 +335,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -286,13 +357,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -303,13 +378,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -320,13 +399,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -337,13 +420,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             { name: ["--yes", "-y"], description: "Accept all confirmations" },
           ],
@@ -355,13 +442,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -370,12 +461,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -415,7 +510,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: "--check-name",
@@ -426,7 +521,11 @@ const completionSpec: Fig.Spec = {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -489,13 +588,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -506,13 +609,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -523,13 +630,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -540,13 +651,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -555,12 +670,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -585,7 +704,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--org", "-o"],
           description: "The organization to operate on",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
       ],
     },
@@ -601,13 +720,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -616,12 +739,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -632,7 +759,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: "--build-arg",
@@ -650,7 +777,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: "--detach",
@@ -727,17 +854,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: ["--org", "-o"],
           description: "The organization to operate on",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
         {
           name: ["--short", "-s"],
@@ -772,12 +899,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: "--force",
@@ -791,12 +918,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
       ],
     },
@@ -817,12 +944,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
       ],
     },
@@ -837,12 +964,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -854,12 +981,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: "--detach",
@@ -878,12 +1005,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
         { name: "--host", description: "Returns just the hostname" },
         { name: ["--name", "-n"], description: "Returns just the appname" },
@@ -900,13 +1031,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--region",
@@ -922,13 +1057,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--region",
@@ -944,13 +1083,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -961,13 +1104,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -978,13 +1125,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -993,12 +1144,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -1036,7 +1191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--org",
           description: "The organization that will own the app",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
         {
           name: "--path",
@@ -1068,7 +1223,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--org", "-o"],
               description: "Show only apps in this organisation",
-              args: { name: "org" },
+              args: { name: "org", generators: flyOrgsGenerator },
             },
             {
               name: "--sort",
@@ -1092,12 +1247,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: ["--instance", "-i"],
@@ -1122,12 +1277,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: ["--detach", "-d"],
@@ -1141,7 +1296,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--org", "-o"],
               description: "The organization to operate on",
-              args: { name: "org" },
+              args: { name: "org", generators: flyOrgsGenerator },
             },
             {
               name: ["--region", "-r"],
@@ -1157,12 +1312,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -1173,12 +1328,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             { name: ["--quiet", "-q"], description: "Only list machine ids" },
           ],
@@ -1190,12 +1345,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: ["--force", "-f"],
@@ -1210,7 +1365,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: "--build-arg",
@@ -1238,7 +1393,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: "--cpu-kind",
@@ -1299,7 +1454,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--org",
               description: "The organization that will own the app",
-              args: { name: "org" },
+              args: { name: "org", generators: flyOrgsGenerator },
             },
             {
               name: ["--port", "-p"],
@@ -1332,12 +1487,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -1348,12 +1503,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -1364,12 +1519,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: ["--signal", "-s"],
@@ -1392,12 +1547,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
       ],
     },
@@ -1408,7 +1563,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--org", "-o"],
           description: "The organization to operate on",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
         { name: ["--yes", "-y"], description: "Accept all confirmations" },
       ],
@@ -1420,12 +1575,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
       ],
     },
@@ -1475,12 +1630,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: ["--count", "-n"],
@@ -1495,7 +1650,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--org", "-o"],
           description: "The organization to operate on",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
         {
           name: ["--size", "-s"],
@@ -1524,13 +1679,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--database-name",
@@ -1564,13 +1723,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--database",
@@ -1654,13 +1817,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "App name to operate on",
-                  args: { name: "app" },
+                  args: { name: "app", generators: flyAppsGenerator },
                 },
                 {
                   name: ["--config", "-c"],
                   description:
                     "Path to an app config file or directory containing one",
-                  args: { name: "config", default: "./fly.toml" },
+                  args: {
+                    name: "config",
+                    default: "./fly.toml",
+                    template: "filepaths",
+                  },
                 },
               ],
             },
@@ -1673,13 +1840,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--postgres-app",
@@ -1700,13 +1871,17 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["--app", "-a"],
                   description: "App name to operate on",
-                  args: { name: "app" },
+                  args: { name: "app", generators: flyAppsGenerator },
                 },
                 {
                   name: ["--config", "-c"],
                   description:
                     "Path to an app config file or directory containing one",
-                  args: { name: "config", default: "./fly.toml" },
+                  args: {
+                    name: "config",
+                    default: "./fly.toml",
+                    template: "filepaths",
+                  },
                 },
               ],
             },
@@ -1721,17 +1896,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: ["--org", "-o"],
           description: "The organization to operate on",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
         {
           name: ["--select", "-s"],
@@ -1751,13 +1926,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--group",
@@ -1773,13 +1952,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -1790,13 +1973,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -1807,13 +1994,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--group",
@@ -1829,13 +2020,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--group",
@@ -1849,12 +2044,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -1865,12 +2064,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: "--image",
@@ -1891,13 +2090,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--max-per-region",
@@ -1913,13 +2116,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--group",
@@ -1935,13 +2142,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -1953,13 +2164,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--group",
@@ -1978,12 +2193,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -1998,13 +2217,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--detach",
@@ -2020,13 +2243,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -2037,13 +2264,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--detach",
@@ -2059,13 +2290,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: "--detach",
@@ -2079,12 +2314,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "App name to operate on",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to an app config file or directory containing one",
-          args: { name: "config", default: "./fly.toml" },
+          args: {
+            name: "config",
+            default: "./fly.toml",
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -2099,7 +2338,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--command", "-C"],
@@ -2110,7 +2349,11 @@ const completionSpec: Fig.Spec = {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
             {
               name: ["--probe", "-p"],
@@ -2171,12 +2414,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
@@ -2186,12 +2429,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--app", "-a"],
           description: "Application name",
-          args: { name: "app" },
+          args: { name: "app", generators: flyAppsGenerator },
         },
         {
           name: ["--config", "-c"],
           description: "Path to application configuration file",
-          args: { name: "config" },
+          args: { name: "config", template: "filepaths" },
         },
         {
           name: "--deployment",
@@ -2228,7 +2471,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--org",
           description: "The organization that will own the app",
-          args: { name: "org" },
+          args: { name: "org", generators: flyOrgsGenerator },
         },
         {
           name: "--region",
@@ -2265,13 +2508,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -2282,13 +2529,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -2299,13 +2550,17 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "App name to operate on",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description:
                 "Path to an app config file or directory containing one",
-              args: { name: "config", default: "./fly.toml" },
+              args: {
+                name: "config",
+                default: "./fly.toml",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -2322,12 +2577,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
             {
               name: "--no-encryption",
@@ -2364,12 +2619,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--app", "-a"],
               description: "Application name",
-              args: { name: "app" },
+              args: { name: "app", generators: flyAppsGenerator },
             },
             {
               name: ["--config", "-c"],
               description: "Path to application configuration file",
-              args: { name: "config" },
+              args: { name: "config", template: "filepaths" },
             },
           ],
         },
