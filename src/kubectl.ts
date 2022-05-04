@@ -1606,8 +1606,8 @@ const completionSpec: Fig.Spec = {
                 name: "Cronjob",
                 generators: {
                   script: () => scripts.typeWithoutName("cronjob"),
-                  postProcess: (out) => {
-                    return sharedPostProcess(out).map((item) => ({
+                  postProcess: (out, tokens) => {
+                    return sharedPostProcess(out, tokens).map((item) => ({
                       ...item,
                       name: `cronjob/${item.name}`,
                     })) as Fig.Suggestion[];
