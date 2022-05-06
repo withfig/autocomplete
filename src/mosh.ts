@@ -104,7 +104,12 @@ const completionSpec: Fig.Spec = {
       description: "{ssh|any|IP}, ask the server to reply from an IP address, (default: \"ssh\")",
     },
     {
-      name: ["--ssh="],
+      name: "--ssh",
+      requiresSeparator: true,
+      args: {
+        name: "command",
+        isCommand: true,
+      },
       description: "ssh command to run when setting up session, (example: \"ssh -p 2222\")",
     },
     {
