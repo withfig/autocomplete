@@ -120,8 +120,14 @@ const completionSpec: Fig.Spec = {
       description: "run mosh-server locally without using ssh",
     },
     {
-      name: ["--experimental-remote-ip="],
-      description: "{local|remote|proxy}, select the method for discovering the remote IP address to use for mosh (default: \"proxy\")",
+      name: "--experimental-remote-ip",
+      description: "Select the method for discovering the remote IP address to use for mosh",
+      requiresSeparator: true,
+      args: {
+        name: "method",
+        suggestions: ["local", "remote", "proxy"],
+        default: "proxy",
+      },
     },
     {
       name: ["--version"],
