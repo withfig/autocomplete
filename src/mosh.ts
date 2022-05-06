@@ -1,38 +1,4 @@
-const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numerical IPs as well as domains/subdomains
-
-export const knownHosts: Fig.Generator = {
-  script: "cat ~/.ssh/known_hosts",
-  postProcess: function (out, tokens) {
-    return out
-      .split("\n")
-      .map((line) => {
-        const match = knownHostRegex.exec(line);
-        if (match) {
-          return String(match);
-        }
-      })
-      .filter((value, index, self) => value && self.indexOf(value) === index)
-      .map((knownHost) => ({
-        name: (tokens[1].endsWith("@") ? tokens[1] : "") + knownHost, // also suggest when user@ is provided
-        description: "SSH host",
-      }));
-  },
-  trigger: "@",
-};
-
-export const configHosts: Fig.Generator = {
-  script: "cat ~/.ssh/config",
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .filter((line) => line.trim().startsWith("Host ") && !line.includes("*"))
-      .map((host) => ({
-        name: host.split(" ")[1],
-        description: "SSH host",
-        priority: 90,
-      }));
-  },
-};
+import { knownHosts, configHosts } from "./ssh"
 
 const completionSpec: Fig.Spec = {
   name: "mosh",
