@@ -8088,6 +8088,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--inetd",
           description: "Have the server run as an inetd service",
+          exclusiveOn: ["--pid-file", "--user", "--group"],
         },
         {
           name: "--listen",
@@ -8163,22 +8164,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--pid-file",
-          description:
-            "Save the process id in file. Ignored when the daemon is run under --inetd",
+          description: "Save the process id in the provided file",
           requiresEquals: true,
           args: { name: "file", template: "filepaths" },
+          exclusiveOn: ["--inetd"],
         },
         {
           name: "--user",
           description:
-            "Change daemon’s uid and gid before entering the service loop. When only --user is given without --group, the primary group ID for the user is used. The values of the option are given to getpwnam(3) and getgrnam(3) and numeric IDs are not supported.\n\nGiving this option is an error when used with --inetd; use the facility of inet daemon to achieve the same before spawning git daemon if needed",
+            "Change daemon’s uid and gid before entering the service loop. When only --user is given without --group, the primary group ID for the user is used. The values of the option are given to getpwnam(3) and getgrnam(3) and numeric IDs are not supported",
           requiresEquals: true,
+          exclusiveOn: ["--inetd"],
           args: { name: "user" },
         },
         {
           name: "--group",
           description:
-            "Change daemon’s gid before entering the service loop. The value of this option is given to getgrnam(3) and numeric IDs are not supported.\n\nGiving this option is an error when used with --inetd; use the facility of inet daemon to achieve the same before spawning git daemon if needed",
+            "Change daemon’s gid before entering the service loop. The value of this option is given to getgrnam(3) and numeric IDs are not supported",
+          exclusiveOn: ["--inetd"],
         },
         {
           name: "--enable",
