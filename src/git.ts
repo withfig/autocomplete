@@ -2574,6 +2574,24 @@ const optionalCommands: Record<string, Omit<Fig.Subcommand, "name">> = {
   },
 };
 
+const daemonServices: Fig.Suggestion[] = [
+  {
+    name: "upload-pack",
+    description:
+      "This serves git fetch-pack and git ls-remote clients. It is enabled by default, but a repository can disable it by setting daemon.uploadpack configuration item to false",
+  },
+  {
+    name: "upload-archive",
+    description:
+      "This serves git archive --remote. It is disabled by default, but a repository can enable it by setting daemon.uploadarch configuration item to true",
+  },
+  {
+    name: "receive-pack",
+    description:
+      "This serves git send-pack clients, allowing anonymous push. It is disabled by default, as there is no authentication in the protocol (in other words, anybody can push anything into the repository, including removal of refs). This is solely meant for a closed LAN setting where everybody is friendly. This service can be enabled by setting daemon.receivepack configuration item to true",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "git",
   description: "The stupid content tracker",
@@ -8027,6 +8045,191 @@ const completionSpec: Fig.Spec = {
         name: "patch",
         isVariadic: true,
       },
+    },
+    {
+      name: "daemon",
+      description: "A really simple server for Git repositories",
+      args: {
+        name: "directory",
+        description:
+          "A directory to add to the whitelist of allowed directories. Unless --strict-paths is specified this will also include subdirectories of each named directory",
+        isVariadic: true,
+      },
+      options: [
+        {
+          name: "--strict-paths",
+          description:
+            'Match paths exactly (i.e. don’t allow "/foo/repo" when the real path is "/foo/repo.git" or "/foo/repo/.git") and don’t do user-relative paths.  git daemon will refuse to start when this option is enabled and no whitelist is specified',
+        },
+        {
+          name: "--base-path",
+          description:
+            "Remap all the path requests as relative to the given path",
+          requiresSeparator: true,
+          args: { name: "path", template: "folders" },
+        },
+        {
+          name: "--base-path-relaxed",
+          description:
+            "If --base-path is enabled and repo lookup fails, with this option git daemon will attempt to lookup without prefixing the base path. This is useful for switching to --base-path usage, while still allowing the old paths",
+        },
+        {
+          name: "--interpolated-path",
+          requiresSeparator: true,
+          description:
+            "To support virtual hosting, an interpolated path template can be used to dynamically construct alternate paths. The template supports %H for the target hostname as supplied by the client but converted to all lowercase, %CH for the canonical hostname, %IP for the server’s IP address, %P for the port number, and %D for the absolute path of the named repository. After interpolation, the path is validated against the directory whitelist",
+          args: { name: "path-template" },
+        },
+        {
+          name: "--export-all",
+          description:
+            "Allow pulling from all directories that look like Git repositories (have the objects and refs subdirectories), even if they do not have the git-daemon-export-ok file",
+        },
+        {
+          name: "--inetd",
+          description: "Have the server run as an inetd service",
+          exclusiveOn: ["--pid-file", "--user", "--group"],
+        },
+        {
+          name: "--listen",
+          description:
+            "Listen on a specific IP address or hostname. IP addresses can be either an IPv4 address or an IPv6 address if supported. If IPv6 is not supported, then --listen=hostname is also not supported and --listen must be given an IPv4 address. Can be given more than once. Incompatible with --inetd option",
+          requiresSeparator: true,
+          args: { name: "host_or_ipaddr" },
+        },
+        {
+          name: "--port",
+          description:
+            "Listen on an alternative port. Incompatible with --inetd option",
+          requiresSeparator: true,
+          args: { name: "port" },
+        },
+        {
+          name: "--init-timeout",
+          description:
+            "Timeout (in seconds) between the moment the connection is established and the client request is received (typically a rather low value, since that should be basically immediate)",
+          requiresSeparator: true,
+          args: { name: "timeout" },
+        },
+        {
+          name: "--max-connections",
+          description:
+            "Maximum number of concurrent clients, defaults to 32. Set it to zero for no limit",
+          requiresSeparator: true,
+          args: { name: "maximum" },
+        },
+        {
+          name: "--syslog",
+          description: "Short for --log-destination=syslog",
+        },
+        {
+          name: "--log-destination",
+          description:
+            "Send log messages to the specified destination. Note that this option does not imply --verbose, thus by default only error conditions will be logged. The default destination is syslog if --inetd or --detach is specified, otherwise stderr",
+          requiresSeparator: true,
+          args: {
+            name: "destination",
+            suggestions: [
+              {
+                name: "stderr",
+                description:
+                  "Write to standard error. Note that if --detach is specified, the process disconnects from the real standard error, making this destination effectively equivalent to none",
+              },
+              {
+                name: "syslog",
+                description: "Write to syslog, using the git-daemon identifier",
+              },
+              { name: "none", description: "Disable all logging" },
+            ],
+          },
+        },
+        {
+          name: "--user-path",
+          description:
+            "Allow ~user notation to be used in requests. When specified with no parameter, requests to git://host/~alice/foo is taken as a request to access foo repository in the home directory of user alice. If --user-path=some-path is specified, the same request is taken as a request to access the some-path/foo repository in the home directory of user alice",
+          requiresSeparator: true,
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: "--verbose",
+          description:
+            "Log details about the incoming connections and requested files",
+        },
+        {
+          name: "--detach",
+          description: "Detach from the shell. Implies --syslog",
+        },
+        {
+          name: "--pid-file",
+          description: "Save the process id in the provided file",
+          requiresSeparator: true,
+          args: { name: "file", template: "filepaths" },
+          exclusiveOn: ["--inetd"],
+        },
+        {
+          name: "--user",
+          description:
+            "Change daemon’s uid and gid before entering the service loop. When only --user is given without --group, the primary group ID for the user is used. The values of the option are given to getpwnam(3) and getgrnam(3) and numeric IDs are not supported",
+          requiresSeparator: true,
+          exclusiveOn: ["--inetd"],
+          args: { name: "user" },
+        },
+        {
+          name: "--group",
+          description:
+            "Change daemon’s gid before entering the service loop. The value of this option is given to getgrnam(3) and numeric IDs are not supported",
+          exclusiveOn: ["--inetd"],
+        },
+        {
+          name: "--enable",
+          description: "Enable the service site-wide per default",
+          requiresSeparator: true,
+          args: { name: "service", suggestions: daemonServices },
+        },
+        {
+          name: "--disable",
+          description:
+            "Disable the service site-wide per default. Note that a service disabled site-wide can still be enabled per repository if it is marked overridable and the repository enables the service with a configuration item",
+          requiresSeparator: true,
+          args: { name: "service", suggestions: daemonServices },
+        },
+        {
+          name: "--allow-override",
+          description:
+            "Allow overriding the site-wide default with per repository configuration. By default, all the services may be overridden",
+          requiresSeparator: true,
+          args: { name: "service", suggestions: daemonServices },
+        },
+        {
+          name: "--forbid-override",
+          description:
+            "Forbid overriding the site-wide default with per repository configuration. By default, all the services may be overridden",
+          requiresSeparator: true,
+          args: { name: "service", suggestions: daemonServices },
+        },
+        {
+          name: "--informative-errors",
+          description:
+            'When informative errors are turned on, git-daemon will report more verbose errors to the client, differentiating conditions like "no such repository" from "repository not exported". This is more convenient for clients, but may leak information about the existence of unexported repositories. When informative errors are not enabled, all errors report "access denied" to the client',
+          exclusiveOn: ["--no-informative-errors"],
+        },
+        {
+          name: "--no-informative-errors",
+          description:
+            "Turn off informative errors. This option is the default. See --informative-errors for more information",
+          exclusiveOn: ["--informative-errors"],
+        },
+        {
+          name: "--access-hook",
+          description:
+            'Every time a client connects, first run an external command specified by the <path> with service name (e.g. "upload-pack"), path to the repository, hostname (%H), canonical hostname (%CH), IP address (%IP), and TCP port (%P) as its command-line arguments. The external command can decide to decline the service by exiting with a non-zero status (or to allow it by exiting with a zero status). It can also look at the $REMOTE_ADDR and $REMOTE_PORT environment variables to learn about the requestor when making this decision.\n\nThe external command can optionally write a single line to its standard output to be sent to the requestor as an error message when it declines the service',
+          requiresSeparator: true,
+          args: { name: "path", template: "filepaths" },
+        },
+      ],
     },
   ],
   additionalSuggestions: [
