@@ -8065,6 +8065,7 @@ const completionSpec: Fig.Spec = {
           name: "--base-path",
           description:
             "Remap all the path requests as relative to the given path",
+          requiresEquals: true,
           args: { name: "path", template: "folders" },
         },
         {
@@ -8074,6 +8075,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--interpolated-path",
+          requiresEquals: true,
           description:
             "To support virtual hosting, an interpolated path template can be used to dynamically construct alternate paths. The template supports %H for the target hostname as supplied by the client but converted to all lowercase, %CH for the canonical hostname, %IP for the server’s IP address, %P for the port number, and %D for the absolute path of the named repository. After interpolation, the path is validated against the directory whitelist",
           args: { name: "path-template" },
@@ -8091,24 +8093,28 @@ const completionSpec: Fig.Spec = {
           name: "--listen",
           description:
             "Listen on a specific IP address or hostname. IP addresses can be either an IPv4 address or an IPv6 address if supported. If IPv6 is not supported, then --listen=hostname is also not supported and --listen must be given an IPv4 address. Can be given more than once. Incompatible with --inetd option",
+          requiresEquals: true,
           args: { name: "host_or_ipaddr" },
         },
         {
           name: "--port",
           description:
             "Listen on an alternative port. Incompatible with --inetd option",
+          requiresEquals: true,
           args: { name: "port" },
         },
         {
           name: "--init-timeout",
           description:
             "Timeout (in seconds) between the moment the connection is established and the client request is received (typically a rather low value, since that should be basically immediate)",
+          requiresEquals: true,
           args: { name: "timeout" },
         },
         {
           name: "--max-connections",
           description:
             "Maximum number of concurrent clients, defaults to 32. Set it to zero for no limit",
+          requiresEquals: true,
           args: { name: "maximum" },
         },
         {
@@ -8119,6 +8125,7 @@ const completionSpec: Fig.Spec = {
           name: "--log-destination",
           description:
             "Send log messages to the specified destination. Note that this option does not imply --verbose, thus by default only error conditions will be logged. The default destination is syslog if --inetd or --detach is specified, otherwise stderr",
+          requiresEquals: true,
           args: {
             name: "destination",
             suggestions: [
@@ -8139,6 +8146,7 @@ const completionSpec: Fig.Spec = {
           name: "--user-path",
           description:
             "Allow ~user notation to be used in requests. When specified with no parameter, requests to git://host/~alice/foo is taken as a request to access foo repository in the home directory of user alice. If --user-path=some-path is specified, the same request is taken as a request to access the some-path/foo repository in the home directory of user alice",
+          requiresEquals: true,
           args: {
             name: "path",
             template: "folders",
@@ -8157,12 +8165,14 @@ const completionSpec: Fig.Spec = {
           name: "--pid-file",
           description:
             "Save the process id in file. Ignored when the daemon is run under --inetd",
+          requiresEquals: true,
           args: { name: "file", template: "filepaths" },
         },
         {
           name: "--user",
           description:
             "Change daemon’s uid and gid before entering the service loop. When only --user is given without --group, the primary group ID for the user is used. The values of the option are given to getpwnam(3) and getgrnam(3) and numeric IDs are not supported.\n\nGiving this option is an error when used with --inetd; use the facility of inet daemon to achieve the same before spawning git daemon if needed",
+          requiresEquals: true,
           args: { name: "user" },
         },
         {
@@ -8173,24 +8183,28 @@ const completionSpec: Fig.Spec = {
         {
           name: "--enable",
           description: "Enable the service site-wide per default",
+          requiresEquals: true,
           args: { name: "service", suggestions: daemonServices },
         },
         {
           name: "--disable",
           description:
             "Disable the service site-wide per default. Note that a service disabled site-wide can still be enabled per repository if it is marked overridable and the repository enables the service with a configuration item",
+          requiresEquals: true,
           args: { name: "service", suggestions: daemonServices },
         },
         {
           name: "--allow-override",
           description:
             "Allow overriding the site-wide default with per repository configuration. By default, all the services may be overridden",
+          requiresEquals: true,
           args: { name: "service", suggestions: daemonServices },
         },
         {
           name: "--forbid-override",
           description:
             "Forbid overriding the site-wide default with per repository configuration. By default, all the services may be overridden",
+          requiresEquals: true,
           args: { name: "service", suggestions: daemonServices },
         },
         {
@@ -8207,6 +8221,7 @@ const completionSpec: Fig.Spec = {
           name: "--access-hook",
           description:
             'Every time a client connects, first run an external command specified by the <path> with service name (e.g. "upload-pack"), path to the repository, hostname (%H), canonical hostname (%CH), IP address (%IP), and TCP port (%P) as its command-line arguments. The external command can decide to decline the service by exiting with a non-zero status (or to allow it by exiting with a zero status). It can also look at the $REMOTE_ADDR and $REMOTE_PORT environment variables to learn about the requestor when making this decision.\n\nThe external command can optionally write a single line to its standard output to be sent to the requestor as an error message when it declines the service',
+          requiresEquals: true,
           args: { name: "path", template: "filepaths" },
         },
       ],
