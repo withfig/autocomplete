@@ -38,28 +38,37 @@ const completionSpec: Fig.Spec = {
       description: "Aggressively echo even when incorrect",
     },
     {
-      name: ["--family=inet", "-4"],
+      name: "-4",
       description: "Use IPv4 only",
     },
     {
-      name: ["--family=inet6", "-6"],
+      name: "-6",
       description: "Use IPv6 only",
     },
     {
-      name: "--family=auto",
-      description: "Autodetect network type for single-family hosts only",
-    },
-    {
-      name: "--family=all",
-      description: "Try all network types",
-    },
-    {
-      name: "--family=prefer-inet",
-      description: "Use all network types, but try IPv4 first [default]",
-    },
-    {
-      name: "--family=prefer-inet6",
-      description: "Use all network types, but try IPv6 first",
+      name: "--family",
+      description: "Network Type",
+      args: {
+        name: "auto",
+        description: "Autodetect network type for single-family hosts only",
+        suggestions: [
+          { name: "inet", description: "Use IPv4 only" },
+          { name: "ine6", description: "Use IPv6 only" },
+          {
+            name: "auto",
+            description: "Autodetect network type for single-family hosts only",
+          },
+          { name: "all", description: "Try all network types" },
+          {
+            name: "prefer-inet4",
+            description: "Use all network types, but try IPv4 first [default]",
+          },
+          {
+            name: "prefer-inet6",
+            description: "Use all network types, but try IPv6 first",
+          },
+        ],
+      },
     },
     {
       name: ["--port", "-p"],
