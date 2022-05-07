@@ -8214,11 +8214,13 @@ const completionSpec: Fig.Spec = {
           name: "--informative-errors",
           description:
             'When informative errors are turned on, git-daemon will report more verbose errors to the client, differentiating conditions like "no such repository" from "repository not exported". This is more convenient for clients, but may leak information about the existence of unexported repositories. When informative errors are not enabled, all errors report "access denied" to the client',
+          exclusiveOn: ["--no-informative-errors"],
         },
         {
           name: "--no-informative-errors",
           description:
             "Turn off informative errors. This option is the default. See --informative-errors for more information",
+          exclusiveOn: ["--informative-errors"],
         },
         {
           name: "--access-hook",
