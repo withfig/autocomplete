@@ -3,7 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "Fast git handover for remote collaboration with mob.sh",
   subcommands: [
     {
-      name: "start",
+      name: ["start", "s"],
       description: "Start session from base branch in wip branch",
       options: [
         {
@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "next",
+      name: ["next", "n"],
       description: "Handover changes in wip branch to next person",
       options: [
         {
@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "done",
+      name: ["done", "d"],
       description: "Squashes all changes in wip branch to index in base branch",
       options: [
         {
@@ -83,7 +83,7 @@ const completionSpec: Fig.Spec = {
       description: "Removes all orphan wip branches",
     },
     {
-      name: "timer",
+      name: ["timer", "t"],
       description: "Start a <minutes> timer",
       args: {
         name: "minutes",
@@ -105,7 +105,7 @@ const completionSpec: Fig.Spec = {
       description: "Fetch remote state",
     },
     {
-      name: "branch",
+      name: ["branch", "b"],
       description: "Show remote wip branches",
     },
     {
