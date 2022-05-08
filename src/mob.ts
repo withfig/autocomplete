@@ -113,11 +113,11 @@ const completionSpec: Fig.Spec = {
       description: "Show all configuration options",
     },
     {
-      name: ["version", "--version", "-v"],
+      name: "version",
       description: "Show the version",
     },
     {
-      name: ["help", "--help", "-h"],
+      name: "help",
       description: "Show help",
     },
     {
