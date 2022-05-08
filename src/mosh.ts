@@ -22,20 +22,20 @@ const completionSpec: Fig.Spec = {
       description: 'Mosh server on remote machine (default: "mosh-server")',
     },
     {
-      name: "--predict=adaptive",
-      description: "Local echo for slower links [default]",
-    },
-    {
-      name: ["--predict=always", "-a"],
-      description: "Use local echo even on fast links",
-    },
-    {
-      name: ["--predict=never", "-n"],
-      description: "Never use local echo",
-    },
-    {
-      name: "--predict=experimental",
-      description: "Aggressively echo even when incorrect",
+      name: "--predict",
+      description: "Local echo options",
+      sugestions: [
+        {
+          name: "adaptive",
+          description: "Local echo for slower links [default]",
+        },
+        { name: "always", description: "Use local echo even on fast links" },
+        { name: "never", description: "Never use local echo" },
+        {
+          name: "experimental",
+          description: "Aggressively echo even when incorrect",
+        },
+      ],
     },
     {
       name: "-4",
