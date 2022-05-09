@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--predict",
       description: "Local echo options",
-      requiresEqual: true,
+      requiresEquals: true,
       args: {
         suggestions: [
           {
@@ -32,10 +32,7 @@ const completionSpec: Fig.Spec = {
             description: "Local echo for slower links [default]",
           },
           { name: "always", description: "Use local echo even on fast links" },
-          {
-            name: "never",
-            description: "Never use local echo",
-          },
+          { name: "never", description: "Never use local echo" },
           {
             name: "experimental",
             description: "Aggressively echo even when incorrect",
@@ -54,7 +51,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--family",
       description: "Network Type",
-      requiresEqual: true,
+      requiresEquals: true,
       args: {
         suggestions: [
           { name: "inet", description: "Use IPv4 only" },
