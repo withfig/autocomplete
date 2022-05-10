@@ -36,7 +36,7 @@ type SearchResult = {
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
   script: 'cat "$(yarn global dir)/package.json"',
-  postProcess: (out, context) => {
+  postProcess: (out, tokens) => {
     if (out.trim() == "") return [];
 
     try {
@@ -49,7 +49,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
       ];
 
       const filteredDependencies = dependencies.filter(
-        (dependency) => !context.includes(dependency)
+        (dependency) => !tokens.includes(dependency)
       );
 
       return filteredDependencies.map((dependencyName) => ({
@@ -347,11 +347,12 @@ export const createCLIsGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (_tokens, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
     const packages = postProcess(
-      await executeShellCommand(script as string)
+      await executeShellCommand(script as string),
+      tokens
     ).map(({ name }) => name as string);
 
     const subcommands = packages

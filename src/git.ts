@@ -217,13 +217,15 @@ export const gitGenerators: Record<string, Fig.Generator> = {
         return postProcessBranches(
           await executeShellCommand(
             "git --no-optional-locks branch -r --no-color --sort=-committerdate"
-          )
+          ),
+          tokens
         );
       } else {
         return postProcessBranches(
           await executeShellCommand(
             "git --no-optional-locks branch --no-color --sort=-committerdate"
-          )
+          ),
+          tokens
         );
       }
     },
