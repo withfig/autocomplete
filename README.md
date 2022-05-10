@@ -173,7 +173,7 @@ Not yet, Fig is only available on MacOS for now. [Windows](https://github.com/wi
 
 #### How can I download Fig?
 
-Run `brew install fig` or, downloading the app at [fig.io/download](https://fig.io/download). Then, launch the Fig app!
+Run `brew install --cask fig` or, downloading the app at [fig.io/download](https://fig.io/download). Then, launch the Fig app!
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 
