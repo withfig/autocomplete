@@ -23,6 +23,8 @@ export const nodeClis = [
   "remotion",
   "@withfig/autocomplete-tools",
   "@redwoodjs/core",
+  "create-completion-spec",
+  "@fig/publish-spec-to-team",
 ];
 
 type SearchResult = {
