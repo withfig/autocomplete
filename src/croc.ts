@@ -104,7 +104,9 @@ const completionSpec: Fig.Spec = {
       description: "Print the version",
     },
   ],
-  // Only uncomment if croc takes an argument
-  // args: {}
+  args: {
+    name: "secret-code",
+    description: "Receive a file using code",
+  },
 };
 export default completionSpec;
