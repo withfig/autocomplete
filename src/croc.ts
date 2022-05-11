@@ -1,6 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "croc",
-  description: "",
+  description:
+    "Croc is a tool that allows any two computers to simply and securely transfer files and folders",
   subcommands: [
     {
       name: "send",
