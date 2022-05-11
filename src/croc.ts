@@ -13,14 +13,25 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--code", "-c"],
           description: "Codephrase used to connect to relay",
+          args: { name: "codephrase" },
         },
         {
           name: "--hash",
           description: "Hash algorithm",
+          args: {
+            suggestions: [
+              { name: "xxhash" },
+              { name: "imohash" },
+              { name: "md5" },
+            ],
+          },
         },
         {
           name: ["--text", "-t"],
           description: "Send some text",
+          args: {
+            name: "text",
+          },
         },
         {
           name: "--no-local",
