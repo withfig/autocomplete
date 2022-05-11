@@ -11,6 +11,14 @@ const completionSpec: Fig.Spec = {
       name: "relay",
       description: "Start your own relay",
     },
+    {
+      name: ["help", "h"],
+      description: "Shows a list of commands or help for one command",
+      args: {
+        name: "command",
+        template: "help",
+      },
+    },
   ],
   options: [
     {
