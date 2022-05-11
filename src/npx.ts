@@ -60,6 +60,14 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://fig.io/icons/fig-light.png",
   },
   {
+    name: "create-completion-spec",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
+  {
+    name: "@fig/publish-spec-to-team",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
+  {
     name: "fig-teams@latest",
     icon: "https://fig.io/icons/fig-light.png",
   },
