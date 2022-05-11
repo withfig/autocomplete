@@ -1,0 +1,109 @@
+const completionSpec: Fig.Spec = {
+  name: "croc",
+  description: "",
+  subcommands: [
+    {
+      name: "send",
+      description: "Send file(s), or folder",
+    },
+    {
+      name: "relay",
+      description: "Start your own relay",
+    },
+  ],
+  options: [
+    {
+      name: ["--help", "-h"],
+      description: "Show help for croc",
+    },
+    {
+      name: "--internal-dns",
+      description:
+        "Use a built-in DNS stub resolver rather than the host operating system",
+    },
+    {
+      name: "--remember",
+      description: "Save these settings to reuse next time",
+    },
+    {
+      name: "--debug",
+      description: "Toggle debug mode",
+    },
+    {
+      name: "--yes",
+      description: "Automatically agree to all prompts",
+    },
+    {
+      name: "--stdout",
+      description: "Redirect file to stdout",
+    },
+    {
+      name: "--no-compress",
+      description: "Disable compression",
+    },
+    {
+      name: "--ask",
+      description: "Make sure sender and recipient are prompted",
+    },
+    {
+      name: "--local",
+      description: "Force to use only local connections",
+    },
+    {
+      name: "--ignore-stdin",
+      description: "Ignore piped stdin",
+    },
+    {
+      name: "--overwrite",
+      description: "Do not prompt to overwrite",
+    },
+    {
+      name: "--curve",
+      description: "Choose an encryption curve",
+      args: {
+        name: "value",
+        suggestions: [
+          { name: "p521" },
+          { name: "p256" },
+          { name: "p384" },
+          { name: "siec" },
+        ],
+      },
+    },
+    {
+      name: "--ip",
+      description: "Set sender ip if known",
+    },
+    {
+      name: "--relay",
+      description: "Address of the relay",
+    },
+    {
+      name: "--relay6",
+      description: "Ipv6 address of the relay",
+    },
+    {
+      name: "--out",
+      description: "Specify an output folder to receive the file",
+    },
+    {
+      name: "--pass",
+      description: 'Password for the relay (default: "pass123")',
+    },
+    {
+      name: "--socks5",
+      description: "Add a socks5 proxy",
+    },
+    {
+      name: "--throttleUpload",
+      description: "Throttle the upload speed e.g. 500k",
+    },
+    {
+      name: ["--version", "-v"],
+      description: "Print the version",
+    },
+  ],
+  // Only uncomment if croc takes an argument
+  // args: {}
+};
+export default completionSpec;
