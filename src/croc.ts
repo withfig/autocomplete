@@ -6,10 +6,49 @@ const completionSpec: Fig.Spec = {
     {
       name: "send",
       description: "Send file(s), or folder",
+      args: {
+        template: ["filepaths", "folders"],
+      },
+      options: [
+        {
+          name: ["--code", "-c"],
+          description: "Codephrase used to connect to relay",
+        },
+        {
+          name: "--hash",
+          description: "Hash algorithm",
+        },
+        {
+          name: ["--text", "-t"],
+          description: "Send some text",
+        },
+        {
+          name: "--no-local",
+          description: "Disable local relay when sending",
+        },
+        {
+          name: "--no-multi",
+          description: "Disable multiplexing",
+        },
+        {
+          name: "--ports",
+          description: "Ports of the local relay",
+        },
+      ],
     },
     {
       name: "relay",
       description: "Start your own relay",
+      options: [
+        {
+          name: "--host",
+          description: "Host of the relay",
+        },
+        {
+          name: "--ports",
+          description: "Ports of the local relay",
+        },
+      ],
     },
     {
       name: ["help", "h"],
