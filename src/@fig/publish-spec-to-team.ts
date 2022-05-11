@@ -16,7 +16,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-t", "--token"],
       description: "A fig token",
-      isRequired: true,
       args: { name: "string" },
     },
     {
@@ -31,12 +30,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-p", "--spec-path"],
       description: "The local path of the spec to publish",
-      args: { name: "path" },
+      args: { name: "path", template: ["filepaths"] },
     },
     {
       name: ["-b", "--binary-path"],
       description: "The path of the binary to run to generate the spec",
-      args: { name: "path" },
+      args: { name: "path", template: ["filepaths"] },
     },
     {
       name: ["-s", "--subcommand-name"],
