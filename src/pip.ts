@@ -432,6 +432,10 @@ export const packageList: Array<Fig.Suggestion> = [
     icon: "📦",
   },
   {
+    name: "openai",
+    icon: "📦",
+  },
+  {
     name: "mccabe",
     icon: "📦",
   },
