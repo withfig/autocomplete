@@ -74,6 +74,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for croc",
+      isPersistent: true,
     },
     {
       name: "--internal-dns",
