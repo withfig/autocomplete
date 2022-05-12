@@ -54,10 +54,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--host",
           description: "Host of the relay",
+          args: { name: "value" },
         },
         {
           name: "--ports",
           description: "Ports of the local relay",
+          args: { name: "ports" },
         },
       ],
     },
@@ -133,30 +135,37 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ip",
       description: "Set sender ip if known",
+      args: { name: "value" },
     },
     {
       name: "--relay",
       description: "Address of the relay",
+      args: { name: "ipv4 address" },
     },
     {
       name: "--relay6",
       description: "Ipv6 address of the relay",
+      args: { name: "ipv6 address" },
     },
     {
       name: "--out",
       description: "Specify an output folder to receive the file",
+      args: { name: "output folder" },
     },
     {
       name: "--pass",
       description: 'Password for the relay (default: "pass123")',
+      args: { name: "password" },
     },
     {
       name: "--socks5",
       description: "Add a socks5 proxy",
+      args: { name: "value" },
     },
     {
       name: "--throttleUpload",
       description: "Throttle the upload speed e.g. 500k",
+      args: { name: "value" },
     },
     {
       name: ["--version", "-v"],
