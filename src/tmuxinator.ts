@@ -1,23 +1,3 @@
-/*
-const projects: Fig.Generator = {
-  script: "tmuxinator list",
-  postProcess: (output) => {
-    if (output.startsWith("fatal:")) {
-      return [];
-    }
-    return output
-      .split("\n")[1]
-      .split(/[ ]+/)
-      .map((project) => {
-        return {
-          name: project,
-          description: "Project",
-        };
-      });
-  },
-};
-*/
-
 const projects: Fig.Generator = {
   script: "tmuxinator list -n",
   postProcess: (output) => {
