@@ -5,20 +5,20 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "help",
-      description: "display help for command",
+      description: "Display help for command",
       priority: 49,
       args: { name: "command", isOptional: true },
     },
   ],
   options: [
-    { name: ["-V", "--version"], description: "output the version number" },
+    { name: ["-V", "--version"], description: "Output the version number" },
     {
       name: ["-t", "--token"],
       description: "A fig token",
       args: { name: "string" },
     },
     {
-      name: ["--team"],
+      name: "--team",
       description: "Set the namespace of the published spec",
       args: { name: "string" },
     },
@@ -49,7 +49,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-h", "--help"],
-      description: "display help for command",
+      description: "Display help for command",
       priority: 49,
     },
   ],
