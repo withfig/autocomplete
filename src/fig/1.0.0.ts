@@ -1931,5 +1931,474 @@ versions["1.3.1"] = {
   ],
 };
 
+versions["1.4.0"] = {
+  subcommands: [
+    {
+      name: "app",
+      subcommands: [
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: "--user-data",
+              description: "Remove configuration and data files",
+            },
+            {
+              name: "--app-bundle",
+              description: "Remove executable and",
+            },
+            {
+              name: "--input-method",
+              description: "Remove input method",
+            },
+            {
+              name: "--terminal-integrations",
+              description:
+                "Remove terminal integrations (i.e. VSCode, iTerm2, etc.)",
+            },
+            {
+              name: "--daemon",
+              description: "Remove Fig daemon",
+            },
+            {
+              name: "--dotfiles",
+              description: "Remove dotfile shell integration",
+            },
+            {
+              name: "--ssh",
+              description: "Remove SSH integration",
+            },
+            {
+              name: "--no-open",
+              description: "Do not open the uninstallation page",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "dotfiles",
+          description: "Debug dotfiles",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: "--disable",
+              description: "Disable debug mode",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          description: "Login to Fig",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-r", "--refresh"],
+              description: "Manually refresh the auth token",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "logout",
+          description: "Logout of Fig",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "whoami",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Output format to use",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-e", "--only-email"],
+              description:
+                "Only print the user's email address, this is quicker since it doesn't require a network request",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "new",
+              options: [
+                {
+                  name: "--expires-date",
+                  description:
+                    "The expiration date of the token in RFC3339 format",
+                  exclusiveOn: ["--expires-in"],
+                  args: {
+                    name: "expires-date",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: "--expires-in",
+                  description: 'The time till the token expires (e.g. "90d")',
+                  exclusiveOn: ["--expires-date"],
+                  args: {
+                    name: "expires-in",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: ["-t", "--team"],
+                  description: "The team namespace to create the token for",
+                  args: {
+                    name: "team",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+              ],
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  description: "The team namespace to list the tokens for",
+                  exclusiveOn: ["-p", "--personal"],
+                  args: {
+                    name: "team",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: ["-f", "--format"],
+                  args: {
+                    name: "format",
+                    isOptional: true,
+                    suggestions: [
+                      {
+                        name: "plain",
+                        description: "Outputs the results as markdown",
+                      },
+                      {
+                        name: "json",
+                        description: "Outputs the results as JSON",
+                      },
+                      {
+                        name: "json-pretty",
+                        description: "Outputs the results as pretty print JSON",
+                      },
+                    ],
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-p", "--personal"],
+                  description: "Only list tokens owned by the current user",
+                  exclusiveOn: ["-t", "--team"],
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  description: "The team namespace to revoke the token for",
+                  args: {
+                    name: "team",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+              ],
+              args: {
+                name: "name",
+              },
+            },
+          ],
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          description: "List all members on a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a member from a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "add",
+          description: "Invite a member to a team",
+          options: [
+            {
+              name: "--role",
+              args: {
+                name: "role",
+                isOptional: true,
+                suggestions: ["owner", "admin", "member"],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "invitations",
+          description: "List pending invitations to a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description: "Revoke an invitation to a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-f", "--format"],
+          args: {
+            name: "format",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
+          },
+        },
+        {
+          name: "--list",
+          exclusiveOn: ["--new", "--delete"],
+        },
+        {
+          name: "--new",
+          exclusiveOn: ["--list", "--delete"],
+        },
+        {
+          name: "--delete",
+          exclusiveOn: ["--list", "--new"],
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "team",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "hostname",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 export { versions };
 export default completion;
