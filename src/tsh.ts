@@ -1,5 +1,3 @@
-import { filepaths } from "@fig/autocomplete-generators";
-import fig from "./fig";
 import sshSpec from "./ssh";
 
 const globalOptions: Fig.Option[] = [

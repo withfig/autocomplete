@@ -3,6 +3,9 @@ import {
   subsystemsGenerator,
   themesGenerator,
   pluginsGenerator,
+  tokensGenerators,
+  invitationsGenerators,
+  membersGenerators,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -2105,6 +2108,7 @@ versions["1.4.0"] = {
                   args: {
                     name: "team",
                     isOptional: true,
+                    generators: tokensGenerators,
                   },
                 },
                 {
@@ -2130,6 +2134,7 @@ versions["1.4.0"] = {
                   args: {
                     name: "team",
                     isOptional: true,
+                    generators: tokensGenerators,
                   },
                 },
                 {
@@ -2177,6 +2182,7 @@ versions["1.4.0"] = {
                   args: {
                     name: "team",
                     isOptional: true,
+                    generators: tokensGenerators,
                   },
                 },
                 {
@@ -2190,6 +2196,7 @@ versions["1.4.0"] = {
               ],
               args: {
                 name: "name",
+                generators: tokensGenerators,
               },
             },
           ],
@@ -2257,6 +2264,7 @@ versions["1.4.0"] = {
           ],
           args: {
             name: "email",
+            generators: membersGenerators,
           },
         },
         {
@@ -2313,6 +2321,7 @@ versions["1.4.0"] = {
           ],
           args: {
             name: "email",
+            generators: invitationsGenerators,
           },
         },
         {
@@ -2376,6 +2385,7 @@ versions["1.4.0"] = {
       ],
       args: {
         name: "team",
+        generators: tokensGenerators,
         isOptional: true,
       },
     },

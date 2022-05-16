@@ -199,4 +199,97 @@ export const pluginsGenerator = (init: {
   },
 });
 
+/**
+ *
+ *
+ * Fig team
+ *
+ *
+ */
+
+// For insertions like `fig user tokens <subcommand> --team <team name> <arg holding this generator>`
+export const tokensGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const teamOptionIndex = tokens.findIndex((value) =>
+      value.startsWith("--team")
+    );
+    if (teamOptionIndex === -1) return [];
+    let teamName: string;
+    if (tokens[teamOptionIndex].includes("=")) {
+      teamName = tokens[teamOptionIndex + 1].split("=")[1];
+    } else {
+      teamName = tokens[teamOptionIndex + 1];
+    }
+    const out = await executeShellCommand(
+      `fig user tokens list --team ${teamName}`
+    );
+    return out
+      .trim()
+      .split("\n")
+      .slice(1)
+      .map((token) => {
+        const [tokenName, tokenNamespace] = token.split("\t");
+        return {
+          name: tokenName,
+          description: `Team: ${tokenNamespace}`,
+        };
+      });
+  },
+  splitOn: "\n",
+};
+
+export const teamsGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
+  script: "fig team --list",
+  splitOn: "\n",
+};
+
+// For insertions like `fig teams <team name> <members subcommand> <arg holding this generator>`
+export const membersGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60,
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const teamName = tokens.at(-3);
+    const out = await executeShellCommand(`fig team ${teamName} members`);
+    return out
+      .trim()
+      .split("\n")
+      .slice(1)
+      .map((member) => {
+        const [role, email] = member.split("\t");
+        return {
+          name: email,
+          description: `Role: ${role}`,
+        };
+      });
+  },
+};
+
+// For insertions like `fig teams <team name> <invitations subcommand>`
+export const invitationsGenerators: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60,
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const teamName = tokens.at(-3);
+    const out = await executeShellCommand(`fig team ${teamName} invitations`);
+    return out
+      .trim()
+      .split("\n")
+      .map((email) => {
+        return {
+          name: email,
+        };
+      });
+  },
+};
+
 export default {};
