@@ -15,6 +15,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-e", "--env"],
           description: "Specify environment name for application",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--help", "-h"],
@@ -23,6 +26,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-n", "--namespace"],
           description: "Specify the Kubernetes namespace to use",
+          args: {
+            name: "string",
+          },
         },
       ],
     },
@@ -49,6 +55,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--namespace",
               description: "Specify K8s namespace for env",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -78,10 +87,16 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--env", "-e"],
           description: "Specify environment name for application",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--namespace", "-n"],
           description: "Specify the Kubernetes namespace to use",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--render-only",
@@ -100,24 +115,40 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--env", "-e"],
           description: "The environment name for the CLI request",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--file", "-f"],
           description:
             "The file path for appfile or application. It could be a remote url",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
         },
         {
           name: ["--namespace", "-n"],
           description: "If present, the namespace scope for this CLI request",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--publish-version", "-v"],
           description: "The publish version for deploying application",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--revision", "-r"],
           description:
             "The revision to use for deploying the application, if empty, the current application configuration will be used",
+          args: {
+            name: "string",
+          },
         },
       ],
     },
@@ -137,6 +168,10 @@ const completionSpec: Fig.Spec = {
               name: ["--kubeconfig-path", "-p"],
               description:
                 "Specify the kubeconfig path of managed cluster. If you use ocm to manage your cluster, you must set the kubeconfig-path",
+              args: {
+                name: "path",
+                template: "filepaths",
+              },
             },
           ],
         },
@@ -148,11 +183,17 @@ const completionSpec: Fig.Spec = {
               name: "--create-namespace",
               description:
                 'Specifies the namespace need to create in managedCluster (default "vela-system")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--name", "-n"],
               description:
                 "Specify the cluster name. If empty, it will use the cluster name in config file. Default to be empty",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -195,10 +236,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--env", "-e"],
               description: "Specify environment name for application",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--namespace", "-n"],
               description: "Specify the Kubernetes namespace to use",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -209,10 +256,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--env", "-e"],
               description: "Specify environment name for application",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--namespace", "-n"],
               description: "Specify the Kubernetes namespace to use",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -224,10 +277,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--env", "-e"],
               description: "Specify environment name for application",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--namespace", "-n"],
               description: "Specify the Kubernetes namespace to use",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -238,10 +297,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--env", "-e"],
               description: "Specify environment name for application",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--namespace", "-n"],
               description: "Specify the Kubernetes namespace to use",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -252,10 +317,16 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--env", "-e"],
               description: "Specify environment name for application",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--namespace", "-n"],
               description: "Specify the Kubernetes namespace to use",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -283,6 +354,9 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--clusters", "-c"],
               description: "Specify the runtime-clusters to enable",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -301,22 +375,37 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--bucket",
                   description: "Specify the OSS bucket name",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--endpoint",
                   description: "Specify the addon registry endpoint",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--gitToken",
                   description: "Specify the github repo token",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--path",
                   description: "Specify the addon registry OSS path",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--type",
                   description: "Specify the addon registry type",
+                  args: {
+                    name: "string",
+                  },
                 },
               ],
             },
@@ -339,22 +428,37 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--bucket",
                   description: "Specify the OSS bucket name",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--endpoint",
                   description: "Specify the addon registry endpoint",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--gitToken",
                   description: "Specify the github repo token",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--path",
                   description: "Specify the addon registry OSS path",
+                  args: {
+                    name: "string",
+                  },
                 },
                 {
                   name: "--type",
                   description: "Specify the addon registry type",
+                  args: {
+                    name: "string",
+                  },
                 },
               ],
             },
@@ -401,6 +505,9 @@ const completionSpec: Fig.Spec = {
               name: ["--namespace", "-n"],
               description:
                 'Specify which namespace to apply. (default "vela-system")',
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -416,11 +523,17 @@ const completionSpec: Fig.Spec = {
               name: ["--namespace", "-n"],
               description:
                 'Specify which namespace to apply. (default "vela-system")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--type", "-t"],
               description:
                 "Specify the definition type of target. Valid types: workflow-step, component, trait, policy, workload, scope",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -433,6 +546,9 @@ const completionSpec: Fig.Spec = {
               name: ["--type", "-t"],
               description:
                 "Specify the definition type of target. Valid types: workflow-step, component, trait, policy, workload, scope",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -444,11 +560,17 @@ const completionSpec: Fig.Spec = {
               name: ["--namespace", "-n"],
               description:
                 'Specify which namespace to apply. (default "vela-system")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--type", "-t"],
               description:
                 "Specify the definition type of target. Valid types: workflow-step, component, trait, policy, workload, scope",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -460,11 +582,17 @@ const completionSpec: Fig.Spec = {
               name: ["--namespace", "-n"],
               description:
                 'Specify which namespace to apply. (default "vela-system")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--type", "-t"],
               description:
                 "Specify the definition type of target. Valid types: workflow-step, component, trait, policy, workload, scope",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -475,6 +603,9 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--desc", "-d"],
               description: "Specify the description of the new definition",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--interactive", "-i"],
@@ -485,36 +616,58 @@ const completionSpec: Fig.Spec = {
               name: "--git",
               description:
                 "Specify which git repository the configuration(HCL) is stored in. Valid when --provider/-p is set",
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--local",
               description:
                 "Specify the local path of the configuration(HCL) file. Valid when --provider/-p is set",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--output", "-o"],
               description:
                 "Specify the output path of the generated definition. If empty, the definition will be printed in the console",
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--path",
               description:
                 "Specify which path the configuration(HCL) is stored in the Git repository. Valid when --git is set",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--provider", "-p"],
               description:
                 "Specify which provider the cloud resource definition belongs to. Only alibaba, `aws`, `azure` are supported",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--template-yaml", "-f"],
               description:
                 "Specify the template yaml file that definition will use to build the schema. If empty, a default template for the given definition type will be used",
+              args: {
+                name: "path",
+                template: "filepaths",
+              },
             },
             {
               name: ["--type", "-t"],
               description:
                 "Specify the type of the new definition. Valid types: scope, workflow-step, component, trait, policy, workload",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -526,11 +679,17 @@ const completionSpec: Fig.Spec = {
               name: ["--namespace", "-n"],
               description:
                 'Specify which namespace to apply. (default "vela-system")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--type", "-t"],
               description:
                 "Specify the definition type of target. Valid types: workflow-step, component, trait, policy, workload, scope",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -542,11 +701,18 @@ const completionSpec: Fig.Spec = {
               name: "--message",
               description:
                 "Specify the header message of the generated YAML file. For example, declaring author information",
+              args: {
+                name: "string",
+              },
             },
             {
               name: ["--output", "-o"],
               description:
                 "Specify the output path of the rendered definition YAML. If empty, the definition will be printed in the console. If input is a directory, the output path is expected to be a directory as well",
+              args: {
+                name: "path",
+                template: "folders",
+              },
             },
           ],
         },
@@ -572,6 +738,9 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--token", "-t"],
               description: "Github Repo token",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -596,15 +765,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "--registry",
               description: 'Specify the registry name (default "default")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--token",
               description:
                 "Specify token when using --url to specify registry url",
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--url",
               description: "Specify the registry url",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -613,18 +791,38 @@ const completionSpec: Fig.Spec = {
         {
           name: "--discover",
           description: "Discover more registry",
+          args: {
+            name: "string",
+          },
+        },
+        {
+          name: "--label",
+          description:
+            "A label to filter components, the format is --label type=terraform",
+          args: {
+            name: "key=value",
+          },
         },
         {
           name: "--registry",
           description: 'Specify the registry name (default "default")',
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--token",
           description: "Specify token when using --url to specify registry url",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--url",
           description: "Specify the registry url",
+          args: {
+            name: "string",
+          },
         },
       ],
     },
@@ -639,15 +837,24 @@ const completionSpec: Fig.Spec = {
             {
               name: "--registry",
               description: 'Specify the registry name (default "default")',
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--token",
               description:
                 "Specify token when using --url to specify registry url",
+              args: {
+                name: "string",
+              },
             },
             {
               name: "--url",
               description: "Specify the registry url",
+              args: {
+                name: "string",
+              },
             },
           ],
         },
@@ -660,14 +867,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--registry",
           description: 'Specify the registry name (default "default")',
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--token",
           description: "Specify token when using --url to specify registry url",
+          args: {
+            name: "string",
+          },
         },
         {
           name: "--url",
           description: "Specify the registry url",
+          args: {
+            name: "string",
+          },
         },
       ],
     },
@@ -687,6 +903,9 @@ const completionSpec: Fig.Spec = {
           name: ["--namespace", "-n"],
           description:
             'Namespace scope for installing KubeVela Core. (default "vela-system")',
+          args: {
+            name: "string",
+          },
         },
       ],
     },
@@ -697,6 +916,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--file", "-f"],
           description: "Custom the chart path of KubeVela control plane",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
         },
         {
           name: ["--detail", "-d"],
@@ -705,15 +928,24 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--namespace", "-n"],
           description: "Namespace scope for installing KubeVela Core",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--reuse", "-r"],
           description:
             "Will re-use the user's last supplied values. (default true)",
+          args: {
+            name: "bool",
+          },
         },
         {
           name: ["--version", "-v"],
           description: "Specify the version of KubeVela to install",
+          args: {
+            name: "string",
+          },
         },
       ],
     },
@@ -739,14 +971,24 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--file", "-f"],
           description: "Specify the appfile path",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
         },
         {
           name: ["--env", "-e"],
           description: "Specify environment name for application",
+          args: {
+            name: "string",
+          },
         },
         {
           name: ["--namespace", "-n"],
           description: "Specify the Kubernetes namespace to use",
+          args: {
+            name: "string",
+          },
         },
       ],
     },
