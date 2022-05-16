@@ -1,12 +1,42 @@
+import { filepaths } from "@fig/autocomplete-generators";
+import fig from "./fig";
 import sshSpec from "./ssh";
 
 const globalOptions: Fig.Option[] = [
   { name: ["-l", "--login"], description: "Remote host login" },
-  { name: "--proxy", description: "SSH proxy address" },
-  { name: "--user", description: "SSH proxy user" },
-  { name: "--ttl", description: "Minutes to live for a SSH session" },
-  { name: ["-i", "--identity"], description: "Identity file" },
-  { name: "--cert-format", description: "SSH certificate format" },
+  {
+    name: "--proxy",
+    description: "SSH proxy address",
+    args: {
+      name: "Teleport proxy address",
+      generators: {
+        script: "tsh clusters --format=json",
+        postProcess: (out) => JSON.parse(out).map((elm) => elm.cluster_name),
+      },
+    },
+  },
+  {
+    name: "--user",
+    description: "SSH proxy user",
+    args: {
+      name: "user",
+      generators: {
+        script: "tsh status --format json",
+        postProcess: (out) => [JSON.parse(out).active.username],
+      },
+    },
+  },
+  {
+    name: "--ttl",
+    description: "Minutes to live for a SSH session",
+    args: { name: "time" },
+  },
+  {
+    name: ["-i", "--identity"],
+    description: "Identity file",
+    args: { name: "file", template: "filepaths" },
+  },
+  { name: "--cert-format", description: "SSH certificate format", args: {} },
   {
     name: "--insecure",
     description:
@@ -15,6 +45,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--auth",
     description: "Specify the name of authentication connector to use",
+    args: {},
   },
   {
     name: "--skip-version-check",
@@ -66,7 +97,6 @@ const completionSpec: Fig.Spec = {
         generators: {
           script: "tsh ls --format=json",
           postProcess: (out) => {
-            var arr = JSON.parse(out);
             return JSON.parse(out).map((elm) => {
               return {
                 name: elm.spec.hostname,
@@ -76,7 +106,7 @@ const completionSpec: Fig.Spec = {
           },
         },
       },
-      options: sshSpec.options,
+      options: (sshSpec as Fig.Subcommand).options,
       // Rather than loadspec we will probably just import the ssh spec for all option suggestions and then override argument suggestions with the below
       // loadSpec: "ssh",
     },
