@@ -27,13 +27,31 @@ const serverList: Fig.Generator = {
   },
 };
 
+const generalOptions: Fig.Option[] = [
+  {
+    name: ["--format", "-o"],
+    description: "Output format: 'json', 'yaml' or custom format",
+    args: {
+      name: "format",
+    },
+  },
+  {
+    name: ["--quiet", "-q"],
+    description: "Only display IDs or suppress help text",
+  },
+  {
+    name: ["--help", "-h"],
+    description: "Show help",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "rancher",
   description:
     "The Rancher CLI (Command Line Interface) is a unified tool that you can use to interact with Rancher",
   subcommands: [
     {
-      name: "apps",
+      name: ["apps", "app"],
       description:
         "Operations with apps. Uses helm. Flags are prepended with 'helm' can also be accurately described by helm documentation",
       subcommands: [
@@ -45,7 +63,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Delete an app",
           args: {
-            name: "app name",
+            name: "APP_NAME/APP_ID",
             description: "The name of the app to delete",
           },
         },
@@ -63,31 +81,158 @@ const completionSpec: Fig.Spec = {
               description: "The name of the app to install",
             },
           ],
+          options: [
+            {
+              name: ["--answers", "-a"],
+              description:
+                "Path to an answers file, the format of the file is a map with key:value. This supports JSON and YAML",
+              args: {
+                name: "answers-file-path",
+                template: "filepaths",
+              },
+            },
+            {
+              name: ["--values", "-v"],
+              description: "Path to a helm values file",
+              args: {
+                name: "values-file-path",
+                template: "filepaths",
+              },
+            },
+            {
+              name: ["--namespace", "-n"],
+              description: "Namespace to install the app into",
+              args: {
+                name: "namespace",
+              },
+            },
+            {
+              name: "--set",
+              description:
+                "Set answers for the template, can be used multiple times. Example: --set foo=bar",
+              args: {
+                name: "key=value",
+              },
+              isRepeatable: true,
+            },
+            {
+              name: "--set-string",
+              description:
+                "Set string answers for the template (Skips Helm's type conversion), can be used multiple times. Example: --set-string foo=bar",
+              args: {
+                name: "key=value",
+              },
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              description: "Version of the template to use",
+              args: {
+                name: "version",
+              },
+            },
+            {
+              name: "--no-prompt",
+              description:
+                "Suppress asking questions and use the default values when required answers are not provided",
+            },
+            {
+              name: "--helm-timeout",
+              description:
+                "Amount of time for helm to wait for k8s commands (default is 300 secs). Example: --helm-timeout 600 (default: 300)",
+              args: {
+                name: "seconds",
+              },
+            },
+            {
+              name: "--helm-wait",
+              description:
+                "Helm will wait for as long as timeout value, for installed resources to be ready (pods, PVCs, deployments, etc.). Example: --helm-wait",
+            },
+          ],
         },
-      ],
-      options: [
         {
-          name: ["--quiet", "-q"],
-          description: "Only display IDs",
+          name: "rollback",
+          description: "Rollback an app to a previous version",
+          args: [
+            {
+              name: "APP_NAME/APP_ID",
+              description: "The name/id of the app to rollback",
+            },
+            {
+              name: "REVISION_ID/REVISION_NAME",
+              description: "The name/id of the revision to rollback",
+            },
+          ],
+        },
+        {
+          name: "upgrade",
+          description: "Upgrade an existing app to a newer version",
+        },
+        {
+          name: ["list-templates", "lt"],
+          description: "List templates available for installation",
+        },
+        {
+          name: ["show-tempate", "st"],
+          description: "Show versions available to install for an app template",
+        },
+        {
+          name: ["show-app", "sa"],
+          description: "Show an app's available versions and revisions",
+        },
+        {
+          name: "show-notes",
+          description: "Show contents of apps notes.txt",
         },
       ],
-    },
-    {
-      name: "app",
-      description:
-        "Operations with apps. Uses helm. Flags are prepended with 'helm' can also be accurately described by helm documentation",
+      options: [...generalOptions],
     },
     {
       name: "catalog",
       description: "Operations with catalogs",
+      subcommands: [
+        {
+          name: "ls",
+          description: "List all catalogs in the current Rancher server",
+          options: [
+            ...generalOptions,
+            {
+              name: ["--verbose", "-v"],
+            },
+          ],
+        },
+        {
+          name: "add",
+          description: "Add a catalog",
+          args: [
+            {
+              name: "CATALOG_NAME",
+              description: "The name of the catalog to add",
+            },
+            {
+              name: "CATALOG_URL",
+              description: "The URL of the catalog to add",
+            },
+          ],
+          options: [
+            {
+              name: "--branch",
+              description: "Branch from the url to use (default: 'master')",
+              args: { name: "branch name" },
+            },
+            {
+              name: "--helm-version",
+              description:
+                "Version of helm the app(s) in your catalog will use for deployment. Use 'v2' for helm 2 or 'v3' for helm 3 (default: 'v2')",
+              args: { name: "version" },
+            },
+          ],
+        },
+      ],
     },
     {
-      name: "clusters",
-      description: "Operations on clusters",
-      icon: "https://rancher.com/docs/img/favicon.png",
-    },
-    {
-      name: "cluster",
+      name: ["clusters", "cluster"],
       description: "Operations on clusters",
       icon: "https://rancher.com/docs/img/favicon.png",
     },
@@ -128,43 +273,23 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "machines",
+      name: ["machines", "machine"],
       description: "Operations on machines",
     },
     {
-      name: "machine",
-      description: "Operations on machines",
-    },
-    {
-      name: "multiclusterapps",
+      name: ["multiclusterapps", "multiclusterapp"],
       description: "Operations with multi-cluster apps",
     },
     {
-      name: "multiclusterapp",
-      description: "Operations with multi-cluster apps",
-    },
-    {
-      name: "namespaces",
+      name: ["namespaces", "namespace"],
       description: "Operations on namespaces",
     },
     {
-      name: "namespace",
-      description: "Operations on namespaces",
-    },
-    {
-      name: "nodes",
+      name: ["nodes", "node"],
       description: "Operations on nodes",
     },
     {
-      name: "node",
-      description: "Operations on nodes",
-    },
-    {
-      name: "projects",
-      description: "Operations on projects",
-    },
-    {
-      name: "project",
+      name: ["projects", "project"],
       description: "Operations on projects",
     },
     {
@@ -236,10 +361,7 @@ const completionSpec: Fig.Spec = {
             },
           ],
           options: [
-            {
-              name: ["--format", "-o"],
-              description: "'json', 'yaml' or custom format",
-            },
+            ...generalOptions,
             {
               name: "--default",
               description:
@@ -265,6 +387,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "token",
       description: "Authenticate and generate new kubeconfig token",
+    },
+    {
+      name: ["help", "h"],
+      description: "Shows a list of commands or help for one command",
     },
   ],
   options: [
