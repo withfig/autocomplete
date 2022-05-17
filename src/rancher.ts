@@ -352,12 +352,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "SETTINGNAME",
               description: "The name of setting you want to set",
-              isOptional: false,
             },
             {
               name: "SETTING_VALUE",
               description: "The value of setting you want to set",
-              isOptional: false,
             },
           ],
           options: [
