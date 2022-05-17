@@ -16,21 +16,6 @@ const projects: Fig.Generator = {
   },
 };
 
-const commands: Fig.Generator = {
-  script: "tmuxinator commands",
-  postProcess: (output) => {
-    if (output.startsWith("fatal:")) {
-      return [];
-    }
-    return output.split("\n").map((project) => {
-      return {
-        name: project,
-        description: "Command",
-      };
-    });
-  },
-};
-
 const tmuxsessions: Fig.Generator = {
   script: "tmux ls",
   postProcess: (output) => {
