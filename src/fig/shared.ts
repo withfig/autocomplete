@@ -238,7 +238,6 @@ export const tokensGenerators: Fig.Generator = {
         };
       });
   },
-  splitOn: "\n",
 };
 
 export const teamsGenerators: Fig.Generator = {
@@ -246,7 +245,12 @@ export const teamsGenerators: Fig.Generator = {
     strategy: "stale-while-revalidate",
   },
   script: "fig team --list",
-  splitOn: "\n",
+  postProcess: (out) => {
+    return out
+      .trim()
+      .split("\n")
+      .map((name) => ({ name, priority: 75 }));
+  },
 };
 
 // For insertions like `fig teams <team name> <members subcommand> <arg holding this generator>`

@@ -6,6 +6,7 @@ import {
   tokensGenerators,
   invitationsGenerators,
   membersGenerators,
+  teamsGenerators,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -2108,7 +2109,7 @@ versions["1.4.0"] = {
                   args: {
                     name: "team",
                     isOptional: true,
-                    generators: tokensGenerators,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2134,7 +2135,7 @@ versions["1.4.0"] = {
                   args: {
                     name: "team",
                     isOptional: true,
-                    generators: tokensGenerators,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2182,7 +2183,7 @@ versions["1.4.0"] = {
                   args: {
                     name: "team",
                     isOptional: true,
-                    generators: tokensGenerators,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2385,7 +2386,7 @@ versions["1.4.0"] = {
       ],
       args: {
         name: "team",
-        generators: tokensGenerators,
+        generators: teamsGenerators,
         isOptional: true,
       },
     },
