@@ -82,7 +82,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-a", "--attach"],
           description: "Attach to tmux session after creation",
-          args: {},
+          args: {
+            name: "attach-session",
+            description: "Attach to tmux session",
+          },
         },
         {
           name: ["-n", "--name"],
@@ -123,7 +126,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         description: "The tmuxinator commands",
-        generators: commands,
+        template: "help",
       },
     },
     {
@@ -216,7 +219,10 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-a", "--attach"],
               description: "Attach to tmux session after creation",
-              args: {},
+              args: {
+                name: "attach-session",
+                description: "Attach to tmux session",
+              },
             },
             {
               name: ["-n", "--name"],
