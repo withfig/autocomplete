@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "login",
-      description: "Logs in to LastPass",
+      description: "Log in to LastPass",
       options: [
         {
           name: "--trust",
@@ -15,16 +15,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--plaintext-key",
-          description:
-            "The decryption key will be saved to the hard disk in plaintext",
-        },
-        {
-          name: ["--force", "-f"],
-          description: "Not documented in the man page :(",
+          description: "Save decryption key to the hard disk in plaintext",
+          args: {
+            name: "--force",
+            description: "Skip user confirmation",
+            isOptional: true,
+          },
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -33,62 +33,61 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "USERNAME",
-        description: "LastPass account email",
+        description: "LastPass account username",
       },
     },
     {
       name: "logout",
-      description: "Logs out of LastPass",
+      description: "Log out of LastPass",
       options: [
         {
           name: "--force",
-          description: "Will not prompt ask for confirmation",
+          description: "Skip user confirmation",
         },
       ],
     },
     {
       name: "ls",
-      description: "Lists names in groups in a tree structure",
+      description: "List names in groups in a tree structure",
       options: [
         {
-          name: ["--long", "-l"],
-          description: "Also list the last modification time",
-        },
-        {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
           },
         },
         {
+          name: ["--long", "-l"],
+          description: "Show the last modification time",
+        },
+        {
           name: "-m",
-          description: "Show last modified time",
+          description: "Show the last modified time",
         },
         {
           name: "-u",
-          description: "Show last used time",
+          description: "Show the last used time",
         },
       ],
       args: {
         name: "GROUP",
-        description: "Group to list",
+        description: "Group of entries to list",
         isOptional: true,
       },
     },
     {
       name: "passwd",
-      description: "Change your LastPass password",
+      description: "Change LastPass password and reencrypt all entries",
     },
     {
       name: "show",
-      description: "Will display a password or selected field",
+      description: "Show password or selected field",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -96,19 +95,19 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--clip", "-c"],
-          description: "Copies the text to the clipboard",
+          description: "Copy to the clipboard",
         },
         {
           name: ["--quiet", "-q"],
-          description: "Not documented in the man page :(",
+          description: "Display no output and only sets return code",
         },
         {
           name: ["--expand-multi", "-x"],
-          description: "Shows information from all matching sites",
+          description: "Show information from all matching sites",
         },
         {
           name: ["--json", "-j"],
-          description: "Generated json output instead of human-readable text",
+          description: "Generate json output instead of human-readable text",
         },
         {
           name: "--all",
@@ -119,13 +118,14 @@ const completionSpec: Fig.Spec = {
             "--url",
             "--notes",
             "--field",
+            "--id",
             "--name",
             "--attachid",
           ],
         },
         {
           name: "--username",
-          description: "Show just the username",
+          description: "Show only the username",
           exclusiveOn: [
             "--all",
             "--password",
@@ -139,7 +139,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--password",
-          description: "Show just the password",
+          description: "Show only the password",
           exclusiveOn: [
             "--all",
             "--username",
@@ -153,7 +153,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "Show just the URL",
+          description: "Show only the URL",
           exclusiveOn: [
             "--all",
             "--username",
@@ -167,7 +167,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--notes",
-          description: "Show just the notes",
+          description: "Show only the notes",
           exclusiveOn: [
             "--all",
             "--username",
@@ -181,7 +181,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--field",
-          description: "Show just the field",
+          description: "Show only the field",
           exclusiveOn: [
             "--all",
             "--username",
@@ -194,12 +194,12 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "FIELD",
-            description: "Show just this field",
+            description: "Show only this field",
           },
         },
         {
           name: "--id",
-          description: "Show just the ID",
+          description: "Show only the ID",
           exclusiveOn: [
             "--all",
             "--username",
@@ -213,7 +213,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--name",
-          description: "Show just the name",
+          description: "Show only the name",
           exclusiveOn: [
             "--all",
             "--username",
@@ -227,13 +227,14 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--attach",
-          description: "Show just the attachment",
+          description: "Show only the attachment",
           exclusiveOn: [
             "--all",
             "--username",
             "--password",
             "--url",
             "--notes",
+            "--field",
             "--id",
             "--name",
           ],
@@ -255,7 +256,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -263,17 +264,17 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["UNIQENAME", "UNIQUEID"],
-          description: "Shows entry with this name or ID",
+          description: "Shows entry with this unique name or ID",
         },
       ],
     },
     {
       name: "mv",
-      description: "Moves LastPass entry to a different group",
+      description: "Move LastPass entry to a different group",
       options: [
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -293,12 +294,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "add",
-      description: "Adds a new entry",
+      description: "Add a new entry",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -307,11 +307,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--non-interactive",
           description:
-            "Will accept data until EOF or, unless the notes field is being edited, the first new line",
+            "Accept data until EOF or, unless the notes field is being edited, the first new line",
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -319,7 +319,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--username",
-          description: "Show just the username",
+          description: "Add only the username",
           exclusiveOn: [
             "--password",
             "--url",
@@ -330,7 +330,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--password",
-          description: "Show just the password",
+          description: "Add only the password",
           exclusiveOn: [
             "--username",
             "--url",
@@ -341,7 +341,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "Show just the URL",
+          description: "Add only the URL",
           exclusiveOn: [
             "--username",
             "--password",
@@ -352,7 +352,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--notes",
-          description: "Show just the notes",
+          description: "Add only the notes",
           exclusiveOn: [
             "--username",
             "--password",
@@ -363,7 +363,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--field",
-          description: "Show just the field",
+          description: "Add only the field",
           exclusiveOn: [
             "--username",
             "--password",
@@ -373,12 +373,12 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "FIELD",
-            description: "Show just this field",
+            description: "Add only this field",
           },
         },
         {
           name: "--note-type",
-          description: "Show just the field",
+          description: "Add only the note",
           exclusiveOn: [
             "--username",
             "--password",
@@ -418,12 +418,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "edit",
-      description: "Edits a existing entry",
+      description: "Edit existing entry",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -432,11 +431,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--non-interactive",
           description:
-            "Will accept data until EOF or, unless the notes field is being edited, the first new line",
+            "Accept data until EOF or, unless the notes field is being edited, the first new line",
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -444,7 +443,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--name", "--username"],
-          description: "Edit just the name (or username)",
+          description: "Edit only the name (or username)",
           exclusiveOn: [
             "--password",
             "--url",
@@ -455,7 +454,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--password",
-          description: "Edit just the password",
+          description: "Edit only the password",
           exclusiveOn: [
             "--username",
             "--url",
@@ -466,7 +465,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--url",
-          description: "Edit just the URL",
+          description: "Edit only the URL",
           exclusiveOn: [
             "--username",
             "--password",
@@ -477,7 +476,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--notes",
-          description: "Edit just the notes",
+          description: "Edit only the notes",
           exclusiveOn: [
             "--username",
             "--password",
@@ -488,7 +487,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--field",
-          description: "Edit just the field",
+          description: "Edit only the field",
           exclusiveOn: [
             "--username",
             "--password",
@@ -509,12 +508,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "generate",
-      description: "Create a randomly generated password",
+      description: "Create randomly generated password",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -522,7 +520,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -530,7 +528,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--clip", "-c"],
-          description: "Copies the text to the clipboard",
+          description: "Copy the text to the clipboard",
         },
         {
           name: "--username",
@@ -567,12 +565,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "duplicate",
-      description: "Duplicates existing password",
+      description: "Duplicate existing entry",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -580,7 +577,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -589,17 +586,16 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "UNIQUENAME|UNIQUEID",
-        description: "Unique name or unique ID of the password to duplicate",
+        description: "Unique name or unique ID of the entry to duplicate",
       },
     },
     {
       name: "rm",
-      description: "Removes existing password",
+      description: "Removes existing entry",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -607,7 +603,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -616,7 +612,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "UNIQUENAME|UNIQUEID",
-        description: "Unique name or unique ID of the password to remove",
+        description: "Unique name or unique ID of the entry to remove",
       },
     },
     {
@@ -625,11 +621,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["--quiet", "-q"],
-          description: "Displays no output and only sets return code",
+          description: "Display no output and only sets return code",
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -639,7 +635,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "sync",
-      description: "Syncs the local cache against the LastPass server",
+      description: "Sync the local cache against the LastPass server",
       options: [
         {
           name: ["--background", "-b"],
@@ -647,7 +643,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -657,12 +653,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "import",
-      description: "Imports account information from an unencrypted CSV",
+      description: "Import account information from an unencrypted CSV",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -680,12 +675,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "export",
-      description: "Exports account information to an unencrypted CSV",
+      description: "Export account information to an unencrypted CSV",
       options: [
         {
           name: "--sync",
-          description:
-            "Controls when the current operation involves a synchronization to the server",
+          description: "When the current operation syncs to server",
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -693,7 +687,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--color",
-          description: "Controls colored output to the terminal",
+          description: "Control colored output to the terminal",
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -727,47 +721,47 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "useradd",
-          description: "Adds LastPass users to a Shared Folders",
+          description: "Add user to Shared Folders",
           options: [
             {
               name: "--read-only",
-              description: "Controls read or write access",
+              description: "Control read or write access",
               args: [
                 {
                   name: "true",
-                  description: "Grants read only access",
+                  description: "Grant read only access",
                 },
                 {
                   name: "false",
-                  description: "Grants write access",
+                  description: "Grant write access",
                 },
               ],
             },
             {
               name: "--hidden",
-              description: "Not documented in the man page :(",
+              description: "Share user view permission",
               args: [
                 {
                   name: "true",
-                  description: "Hidden, whatever that means",
+                  description: "User can only view entry",
                 },
                 {
                   name: "false",
-                  description: "Not hidden, whatever that means",
+                  description: "User can view entry and secrets",
                 },
               ],
             },
             {
               name: "--admin",
-              description: "Not documented in the man page :(",
+              description: "Share user administer permission",
               args: [
                 {
                   name: "true",
-                  description: "Admin, whatever that means",
+                  description: "User can administer entry",
                 },
                 {
                   name: "false",
-                  description: "Not admin, whatever that means",
+                  description: "User cannot administer entry",
                 },
               ],
             },
@@ -775,57 +769,57 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "SHARE",
-              description: "LastPass entry to share",
+              description: "Entry to share",
             },
             {
               name: "USERNAME",
-              description: "LastPass user to share with",
+              description: "User to share entry with",
             },
           ],
         },
         {
           name: "usermod",
-          description: "Modifies LastPass users on a Shared Folders",
+          description: "Modify user on Shared Folders",
           options: [
             {
               name: "--read-only",
-              description: "Controls read or write access",
+              description: "Control read or write access",
               args: [
                 {
                   name: "true",
-                  description: "Grants read only access",
+                  description: "Grant read only access",
                 },
                 {
                   name: "false",
-                  description: "Grants write access",
+                  description: "Grant write access",
                 },
               ],
             },
             {
               name: "--hidden",
-              description: "Not documented in the man page :(",
+              description: "Share user view permission",
               args: [
                 {
                   name: "true",
-                  description: "Hidden, whatever that means",
+                  description: "User can only view entry",
                 },
                 {
                   name: "false",
-                  description: "Not hidden, whatever that means",
+                  description: "User can view entry and secrets",
                 },
               ],
             },
             {
               name: "--admin",
-              description: "Not documented in the man page :(",
+              description: "Share user administer permission",
               args: [
                 {
                   name: "true",
-                  description: "Admin, whatever that means",
+                  description: "User can administer entry",
                 },
                 {
                   name: "false",
-                  description: "Not admin, whatever that means",
+                  description: "User cannot administer entry",
                 },
               ],
             },
@@ -833,17 +827,17 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "SHARE",
-              description: "LastPass entry to modify",
+              description: "Entry to modify",
             },
             {
               name: "USERNAME",
-              description: "LastPass user's access to modify",
+              description: "User access to modify",
             },
           ],
         },
         {
           name: "userdel",
-          description: "Remove LastPass user from Shared Folders",
+          description: "Remove user from Shared Folders",
           args: [
             {
               name: "SHARE",
@@ -857,7 +851,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
-          description: "Create a new LastPass Shared Folder",
+          description: "Create new LastPass Shared Folder",
           args: {
             name: "SHARE",
             description: "LastPass Shared Folder to create",
@@ -887,11 +881,11 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "SHARE",
-              description: "LastPass Shared Folder to remove",
+              description: "Shared Folder to remove",
             },
             {
               name: "USERNAME",
-              description: "LastPass user's access to manipulate",
+              description: "User access to manipulate",
             },
             {
               name: "sites",
@@ -910,11 +904,11 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--help", "-h"],
-      description: "Displays the help for lpass",
+      description: "Display the help for lpass",
     },
     {
       name: "--version",
-      description: "Displays the version of lpass",
+      description: "Display the version of lpass",
     },
   ],
 };
