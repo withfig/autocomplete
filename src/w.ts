@@ -5,10 +5,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "-h",
       description: "Suppress the heading",
+      isDangerous: false,
     },
     {
       name: "-i",
       description: "Output is sorted by idle time",
+      isDangerous: false,
     },
   ],
   args: {
