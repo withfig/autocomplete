@@ -139,6 +139,7 @@ const completionSpec: Fig.Spec = {
         name: "port",
         isDangerous: false,
       },
+      exclusiveOn: ["-p", "-s", "-z", "-w"],
     },
     {
       name: "-L",
@@ -166,6 +167,7 @@ const completionSpec: Fig.Spec = {
         name: "source_port",
         isDangerous: false,
       },
+      exclusiveOn: ["-l"],
     },
     {
       name: "-r",
@@ -184,6 +186,7 @@ const completionSpec: Fig.Spec = {
         name: "source_ip_address",
         isDangerous: false,
       },
+      exclusiveOn: ["-l"],
     },
     {
       name: "-t",
@@ -226,6 +229,7 @@ const completionSpec: Fig.Spec = {
         name: "timeout",
         isDangerous: false,
       },
+      exclusiveOn: ["-l"],
     },
     {
       name: "-X",
@@ -253,6 +257,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isDangerous: false,
       },
+      exclusiveOn: ["-l"],
     },
     {
       name: "--apple-delegate-pid",
