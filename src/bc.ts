@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "bc",
   description: "An arbitrary precision calculator language",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   args: {
     name: "file",
     isOptional: true,
@@ -12,36 +15,64 @@ const completionSpec: Fig.Spec = {
       name: ["--help", "-h"],
       description: "Print the usage and exit",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: ["--interactive", "-i"],
       description: "Force interactive mode",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: ["--mathlib", "-l"],
       description: "Define the standard math library",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: ["--warn", "-w"],
       description: "Give warnings for extensions to POSIX bc",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: ["--standard", "-s"],
       description: "Process exactly the POSIX bc language",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: ["--quiet", "-q"],
       description: "Do not print the normal GNU bc welcome",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: ["--version", "-v"],
       description: "Print the version number and copyright and quit",
       isDangerous: false,
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
   ],
 };
