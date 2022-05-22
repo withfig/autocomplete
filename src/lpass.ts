@@ -12,6 +12,10 @@ const completionSpec: Fig.Spec = {
           name: "--trust",
           description:
             "Subsequent logins will not require multifactor authentication",
+          args: {
+            isOptional: true,
+            isDangerous: true,
+          },
         },
         {
           name: "--plaintext-key",
@@ -28,12 +32,14 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
       ],
       args: {
         name: "USERNAME",
-        description: "LastPass account username",
+        description: "LastPass account username (email address)",
       },
     },
     {
@@ -43,6 +49,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--force",
           description: "Skip user confirmation",
+          args: {
+            isOptional: true,
+            isDangerous: true,
+          },
         },
       ],
     },
@@ -53,22 +63,37 @@ const completionSpec: Fig.Spec = {
         {
           name: "--color",
           description: "Control colored output to the terminal",
+          requiresEquals: true,
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
           name: ["--long", "-l"],
           description: "Show the last modification time",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: "-m",
           description: "Show the last modified time",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: "-u",
           description: "Show the last used time",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
       ],
       args: {
@@ -88,26 +113,45 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
           name: ["--clip", "-c"],
           description: "Copy to the clipboard",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: ["--quiet", "-q"],
           description: "Display no output and only sets return code",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: ["--expand-multi", "-x"],
           description: "Show information from all matching sites",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: ["--json", "-j"],
           description: "Generate json output instead of human-readable text",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: "--all",
@@ -260,6 +304,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -278,6 +324,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
       ],
@@ -299,9 +347,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -315,6 +366,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -423,9 +476,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -439,6 +495,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -513,9 +571,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -524,11 +585,17 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
           name: ["--clip", "-c"],
           description: "Copy the text to the clipboard",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: "--username",
@@ -549,6 +616,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-symbols",
           description: "Generate password without symbols",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
       ],
       args: [
@@ -570,9 +641,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -581,6 +655,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
       ],
@@ -596,9 +672,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -607,6 +686,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
       ],
@@ -622,6 +703,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--quiet", "-q"],
           description: "Display no output and only sets return code",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: "--color",
@@ -629,6 +714,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
       ],
@@ -640,6 +727,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--background", "-b"],
           description: "Syncronization occurs in a daemonized process",
+          args: {
+            isOptional: true,
+            isDangerous: false,
+          },
         },
         {
           name: "--color",
@@ -647,6 +738,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
       ],
@@ -658,9 +751,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -680,9 +776,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
+          requiresEquals: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -691,6 +790,8 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
+            isOptional: true,
+            default: "auto",
           },
         },
         {
@@ -905,10 +1006,18 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Display the help for lpass",
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
     {
       name: "--version",
       description: "Display the version of lpass",
+      args: {
+        isOptional: true,
+        isDangerous: false,
+      },
     },
   ],
 };
