@@ -8,7 +8,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-a",
       description: "Same as -bdlprTtu",
-      insertValue: "-bdlprTtu",
     },
     {
       name: "-b",
