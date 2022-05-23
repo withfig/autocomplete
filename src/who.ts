@@ -90,6 +90,7 @@ const completionSpec: Fig.Spec = {
     description:
       "By default, who gathers information from the file /var/run/utmpx; an alternative file may be specified",
     isOptional: true,
+    template: "filepaths",
   },
 };
 export default completionSpec;
