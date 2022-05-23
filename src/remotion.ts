@@ -24,7 +24,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "output",
-
           template: ["filepaths"],
           suggestions: ["out.mp4"],
         },
@@ -183,7 +182,6 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "entry",
-
           template: ["filepaths"],
         },
         {
@@ -198,7 +196,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "output",
-
           template: ["filepaths"],
           suggestions: ["out.mp4"],
         },
@@ -293,7 +290,6 @@ const completionSpec: Fig.Spec = {
         "Start the server which allows you to preview the Remotion video",
       args: {
         name: "entry",
-
         template: ["filepaths"],
       },
       options: [

@@ -69,7 +69,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "clean",
       description: "Uninstalls all packages not specified in Pipfile.lock",
@@ -100,7 +99,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "graph",
       description: "Displays currently-installed dependency graph information",
@@ -123,7 +121,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "install",
       description:
@@ -235,7 +232,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "lock",
       description: "Generates Pipfile.lock",
@@ -303,7 +299,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "open",
       description: "View a given module in your editor",
@@ -338,7 +333,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "run",
       description: "Spawns a command installed into the virtualenv",
@@ -375,7 +369,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "scripts",
       description: "Lists scripts in current environment config",
@@ -407,7 +400,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "shell",
       description: "Start a shell within the environment",
@@ -441,7 +433,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "sync",
       description: "Installs all packages specified in Pipfile.lock",
@@ -499,7 +490,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "uninstall",
       description: "Uninstalls a provided package and removes it from Pipfile",
@@ -569,7 +559,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "update",
       description: "Runs lock, then sync",
@@ -664,59 +653,48 @@ const completionSpec: Fig.Spec = {
       name: "--where",
       description: "View project home information",
     },
-
     {
       name: "--venv",
       description: "View virtualenv information",
     },
-
     {
       name: "--py",
       description: "View python interpreter information",
     },
-
     {
       name: "--envs",
       description: "View environment variable options",
     },
-
     {
       name: "--rm",
       description: "Remove the virtualenv",
     },
-
     {
       name: "--bare",
       description: "Minimal output",
     },
-
     {
       name: "--completion",
       description: "Output completion (to be executed by shell)",
     },
-
     {
       name: "--man",
       description: "Display manpage",
     },
-
     {
       name: "--support",
       description: "View diagnostic information for use in GitHub issues",
     },
-
     {
       name: "--site-packages",
       description:
         "Enable site-packages for the virtualenv [env var: PIPENV_SITE_PACKAGES]",
     },
-
     {
       name: "--no-site-packages",
       description:
         "Enable site-packages for the virtualenv [env var: PIPENV_SITE_PACKAGES]",
     },
-
     {
       name: "--python",
       description: "Specify which version of Python virtualenv should use",
@@ -727,28 +705,23 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     },
-
     {
       name: "--three",
       description: "Use python 3 when creating virtualenv",
     },
-
     {
       name: "--two",
       description: "Use python 2 when creating virtualenv",
     },
-
     {
       name: "--clear",
       description:
         "Clears caches (pipenv, pip, and pip-tools). [env var: PIPENV_CLEAR]",
     },
-
     {
       name: ["-v", "--verbose"],
       description: "Verbose mode",
     },
-
     {
       name: "--pypi-mirror",
       description: "Specify a PyPi mirror",
@@ -756,12 +729,10 @@ const completionSpec: Fig.Spec = {
         name: "mirror",
       },
     },
-
     {
       name: "--version",
       description: "View your current pipenv version",
     },
-
     {
       name: ["-h", "--help"],
       description: "List commands",

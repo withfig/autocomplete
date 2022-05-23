@@ -127,8 +127,6 @@ const completionSpec: Fig.Spec = {
       description: "Sets process.env.NODE_ENV to the specified value",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -137,7 +135,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -155,7 +152,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -163,8 +159,6 @@ const completionSpec: Fig.Spec = {
       description: "Prefetch this request",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -173,7 +167,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -212,8 +205,6 @@ const completionSpec: Fig.Spec = {
         "Number of generations unused cache entries stay in memory cache at minimum (1 = may be removed after unused for a single compilation, ..., Infinity: kept forever)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -221,8 +212,6 @@ const completionSpec: Fig.Spec = {
       description: "In memory caching. Filesystem caching",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -241,7 +230,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["folders"],
       },
     },
@@ -251,8 +239,6 @@ const completionSpec: Fig.Spec = {
         "Locations for the cache (defaults to cacheDirectory / name)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -260,8 +246,6 @@ const completionSpec: Fig.Spec = {
       description: "Compression type used for the cache files",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -274,8 +258,6 @@ const completionSpec: Fig.Spec = {
         "Algorithm used for generation the hash (see node.js crypto package)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -284,8 +266,6 @@ const completionSpec: Fig.Spec = {
         "Time in ms after which idle period the cache storing should happen",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -294,8 +274,6 @@ const completionSpec: Fig.Spec = {
         "Time in ms after which idle period the cache storing should happen when larger changes has been detected (cumulative build time > 2 x avg cache store time)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -304,8 +282,6 @@ const completionSpec: Fig.Spec = {
         "Time in ms after which idle period the initial cache storing should happen",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -346,8 +322,6 @@ const completionSpec: Fig.Spec = {
         "Time for which unused cache entries stay in the filesystem cache at minimum (in milliseconds)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -356,8 +330,6 @@ const completionSpec: Fig.Spec = {
         "Number of generations unused cache entries stay in memory cache at minimum (0 = no memory cache used, 1 = may be removed after unused for a single compilation, ..., Infinity: kept forever). Cache entries will be deserialized from disk when removed from memory cache",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -375,8 +347,6 @@ const completionSpec: Fig.Spec = {
         "Name for the cache. Different names will lead to different coexisting caches",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -394,8 +364,6 @@ const completionSpec: Fig.Spec = {
         "When to store data to the filesystem. (pack: Store data when compiler is idle in a single file)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -404,8 +372,6 @@ const completionSpec: Fig.Spec = {
         "Version of the cache data. Different versions won't allow to reuse the cache and override existing content. Update the version when config changed in a way which doesn't allow to reuse cache. This will invalidate the cache",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -415,7 +381,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["folders"],
       },
     },
@@ -438,8 +403,6 @@ const completionSpec: Fig.Spec = {
       description: "Determine source maps to use",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -498,8 +461,6 @@ const completionSpec: Fig.Spec = {
         "Location where resource content is stored for lockfile entries. It's also possible to disable storing by passing false",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -520,8 +481,6 @@ const completionSpec: Fig.Spec = {
       description: "Location of the lockfile",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -530,8 +489,6 @@ const completionSpec: Fig.Spec = {
         "Proxy configuration, which can be used to specify a proxy server to use for HTTP requests",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -599,8 +556,6 @@ const completionSpec: Fig.Spec = {
       description: "A custom client",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -608,8 +563,6 @@ const completionSpec: Fig.Spec = {
       description: "A port",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -617,8 +570,6 @@ const completionSpec: Fig.Spec = {
       description: "A host",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -626,8 +577,6 @@ const completionSpec: Fig.Spec = {
       description: "A port",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -636,8 +585,6 @@ const completionSpec: Fig.Spec = {
         "Specifies the protocol the client should use to connect to the server",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -662,8 +609,6 @@ const completionSpec: Fig.Spec = {
         "Specify which entrypoints or import()ed modules should be lazily compiled. This is matched with the imported module and not the entrypoint name",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -784,8 +729,6 @@ const completionSpec: Fig.Spec = {
         "Specifies the default type of externals ('amd*', 'umd*', 'system' and 'jsonp' depend on output.libraryTarget set to the same value)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -871,8 +814,6 @@ const completionSpec: Fig.Spec = {
       description: "Log level",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -880,8 +821,6 @@ const completionSpec: Fig.Spec = {
       description: "Defines the mode to pass to webpack",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -909,7 +848,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
       deprecated: true,
     },
@@ -923,8 +861,6 @@ const completionSpec: Fig.Spec = {
         "Set the default request for full dynamic dependencies. Deprecated: This option has moved to 'module.parser.javascript.exprContextRequest'",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
       deprecated: true,
     },
@@ -933,8 +869,6 @@ const completionSpec: Fig.Spec = {
       description: "Asset encoding (defaults to base64)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -946,8 +880,6 @@ const completionSpec: Fig.Spec = {
       description: "Asset mimetype (getting from file extension by default)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -966,7 +898,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -977,7 +908,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["folders"],
       },
     },
@@ -987,8 +917,6 @@ const completionSpec: Fig.Spec = {
         "The 'publicPath' specifies the public URL address of the output files when referenced in a browser",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -996,8 +924,6 @@ const completionSpec: Fig.Spec = {
       description: "Asset encoding (defaults to base64)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1010,8 +936,6 @@ const completionSpec: Fig.Spec = {
       description: "Asset mimetype (getting from file extension by default)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1030,7 +954,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -1041,7 +964,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["folders"],
       },
     },
@@ -1051,8 +973,6 @@ const completionSpec: Fig.Spec = {
         "The 'publicPath' specifies the public URL address of the output files when referenced in a browser",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1076,8 +996,6 @@ const completionSpec: Fig.Spec = {
         "Maximum size of asset that should be inline as modules. Default: 8kb",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1116,8 +1034,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..." and "export ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1151,7 +1067,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1164,8 +1079,6 @@ const completionSpec: Fig.Spec = {
       description: "Set the default request for full dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1190,8 +1103,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1226,7 +1137,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1239,7 +1149,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
+
         template: ["filepaths"],
       },
     },
@@ -1253,7 +1163,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1266,8 +1175,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "export ... from ...". This might be useful to disable during the migration from "export ... from ..." to "export type ... from ..." when reexporting types in TypeScript',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1365,7 +1272,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1379,8 +1285,6 @@ const completionSpec: Fig.Spec = {
         "Sets the request when using the require function in a not statically analyse-able way",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1389,7 +1293,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1440,8 +1343,6 @@ const completionSpec: Fig.Spec = {
         "Set the inner regular expression for partial dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1480,8 +1381,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..." and "export ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1515,7 +1414,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1528,8 +1426,6 @@ const completionSpec: Fig.Spec = {
       description: "Set the default request for full dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1554,8 +1450,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1591,7 +1485,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1605,7 +1498,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
+
         template: ["filepaths"],
       },
     },
@@ -1620,7 +1513,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1634,8 +1526,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "export ... from ...". This might be useful to disable during the migration from "export ... from ..." to "export type ... from ..." when reexporting types in TypeScript',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1736,7 +1626,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1750,8 +1639,6 @@ const completionSpec: Fig.Spec = {
         "Sets the request when using the require function in a not statically analyse-able way",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1760,7 +1647,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1811,8 +1697,6 @@ const completionSpec: Fig.Spec = {
         "Set the inner regular expression for partial dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1853,8 +1737,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..." and "export ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1888,7 +1770,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1901,8 +1782,6 @@ const completionSpec: Fig.Spec = {
       description: "Set the default request for full dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1927,8 +1806,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -1964,7 +1841,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -1978,7 +1854,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
+
         template: ["filepaths"],
       },
     },
@@ -1993,7 +1869,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2007,8 +1882,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "export ... from ...". This might be useful to disable during the migration from "export ... from ..." to "export type ... from ..." when reexporting types in TypeScript',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2110,7 +1983,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2124,8 +1996,6 @@ const completionSpec: Fig.Spec = {
         "Sets the request when using the require function in a not statically analyse-able way",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2134,7 +2004,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2185,8 +2054,6 @@ const completionSpec: Fig.Spec = {
         "Set the inner regular expression for partial dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2225,8 +2092,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..." and "export ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2260,7 +2125,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2273,8 +2137,6 @@ const completionSpec: Fig.Spec = {
       description: "Set the default request for full dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2299,8 +2161,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "import ... from ..."',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2335,7 +2195,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2349,7 +2208,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
+
         template: ["filepaths"],
       },
     },
@@ -2364,7 +2223,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2377,8 +2235,6 @@ const completionSpec: Fig.Spec = {
         'Specifies the behavior of invalid export names in "export ... from ...". This might be useful to disable during the migration from "export ... from ..." to "export type ... from ..." when reexporting types in TypeScript',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2479,7 +2335,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2493,8 +2348,6 @@ const completionSpec: Fig.Spec = {
         "Sets the request when using the require function in a not statically analyse-able way",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2503,7 +2356,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -2554,8 +2406,6 @@ const completionSpec: Fig.Spec = {
         "Set the inner regular expression for partial dynamic dependencies",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -2927,7 +2777,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
       deprecated: true,
     },
@@ -2941,8 +2790,6 @@ const completionSpec: Fig.Spec = {
         "Sets the request when using the require function in a not statically analyse-able way. Deprecated: This option has moved to 'module.parser.javascript.unknownContextRequest'",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
       deprecated: true,
     },
@@ -2980,8 +2827,6 @@ const completionSpec: Fig.Spec = {
         "Set the inner regular expression for partial dynamic dependencies. Deprecated: This option has moved to 'module.parser.javascript.wrappedContextRegExp'",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
       deprecated: true,
     },
@@ -2991,8 +2836,6 @@ const completionSpec: Fig.Spec = {
         "Name of the configuration. Used when loading multiple configurations",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3005,7 +2848,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -3018,7 +2860,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
+
         template: ["filepaths"],
       },
     },
@@ -3032,7 +2874,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -3054,8 +2895,6 @@ const completionSpec: Fig.Spec = {
         "Define the algorithm to choose chunk ids (named: readable ids for better debugging, deterministic: numeric hash ids for better long term caching, size: numeric ids focused on minimal initial download size, total-size: numeric ids focused on minimal total download size, false: no algorithm used, as custom one can be provided via plugin)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3105,7 +2944,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -3142,8 +2980,6 @@ const completionSpec: Fig.Spec = {
         "Define the algorithm to choose module ids (natural: numeric ids in order of usage, named: readable ids for better debugging, hashed: (deprecated) short hashes as ids for better long term caching, deterministic: numeric hash ids for better long term caching, size: numeric ids focused on minimal initial download size, false: no algorithm used, as custom one can be provided via plugin)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
       deprecated: true,
     },
@@ -3156,8 +2992,6 @@ const completionSpec: Fig.Spec = {
       description: "Set process.env.NODE_ENV to a specific value",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3215,7 +3049,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -3227,8 +3060,6 @@ const completionSpec: Fig.Spec = {
       description: "The name or name factory for the runtime chunks",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3238,7 +3069,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -3254,8 +3084,6 @@ const completionSpec: Fig.Spec = {
       description: "Sets the name delimiter for created chunks",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3264,8 +3092,6 @@ const completionSpec: Fig.Spec = {
         'Select chunks for determining shared modules (defaults to "async", "initial" and "all" requires adding these chunks to the HTML)',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3287,8 +3113,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3301,8 +3125,6 @@ const completionSpec: Fig.Spec = {
         'Select chunks for determining shared modules (defaults to "async", "initial" and "all" requires adding these chunks to the HTML)',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3310,8 +3132,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3319,8 +3139,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3328,8 +3146,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3337,8 +3153,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3346,8 +3160,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3356,7 +3168,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3375,8 +3186,6 @@ const completionSpec: Fig.Spec = {
         "Maximum number of requests which are accepted for on-demand loading",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3384,8 +3193,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3394,8 +3201,6 @@ const completionSpec: Fig.Spec = {
         "Maximum number of initial chunks which are accepted for an entry point",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3403,8 +3208,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3412,8 +3215,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3422,8 +3223,6 @@ const completionSpec: Fig.Spec = {
         "Minimum number of times a module has to be duplicated until it's considered for splitting",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3431,8 +3230,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3440,8 +3237,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3449,8 +3244,6 @@ const completionSpec: Fig.Spec = {
       description: "Size of the javascript part of the chunk",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3459,8 +3252,6 @@ const completionSpec: Fig.Spec = {
         "Give chunks created a name (chunks with equal name are merged)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3483,7 +3274,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -3497,7 +3287,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths", "folders"],
       },
     },
@@ -3525,7 +3314,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3535,8 +3323,6 @@ const completionSpec: Fig.Spec = {
         "The format of chunks (formats included by default are 'array-push' (web/WebWorker), 'commonjs' (node.js), 'module' (ESM), but others might be added by plugins)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3548,8 +3334,6 @@ const completionSpec: Fig.Spec = {
       description: "Number of milliseconds before chunk request expires",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3558,8 +3342,6 @@ const completionSpec: Fig.Spec = {
         "The method of loading chunks (methods included by default are 'jsonp' (web), 'import' (ESM), 'importScripts' (WebWorker), 'require' (sync node.js), 'async-node' (async node.js), but others might be added by plugins)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3571,8 +3353,6 @@ const completionSpec: Fig.Spec = {
       description: "The global variable used by webpack for loading of chunks",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3597,8 +3377,6 @@ const completionSpec: Fig.Spec = {
       description: "Keep these assets",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3615,8 +3393,6 @@ const completionSpec: Fig.Spec = {
       description: "This option enables cross-origin loading of chunks",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3630,7 +3406,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3641,7 +3416,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3651,8 +3425,6 @@ const completionSpec: Fig.Spec = {
         "Similar to `output.devtoolModuleFilenameTemplate`, but used in the case of duplicate module identifiers",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3662,7 +3434,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3673,7 +3444,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3806,7 +3576,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths"],
       },
     },
@@ -3816,8 +3585,6 @@ const completionSpec: Fig.Spec = {
         "An expression which is used to address the global object/scope in runtime code",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3825,8 +3592,6 @@ const completionSpec: Fig.Spec = {
       description: "Digest type used for the hash",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3834,8 +3599,6 @@ const completionSpec: Fig.Spec = {
       description: "Number of chars which are used for the hash",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3844,8 +3607,6 @@ const completionSpec: Fig.Spec = {
         "Algorithm used for generation the hash (see node.js crypto package)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3853,8 +3614,6 @@ const completionSpec: Fig.Spec = {
       description: "Any string which is added to the hash to salt it",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3864,7 +3623,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths", "folders"],
       },
     },
@@ -3874,8 +3632,6 @@ const completionSpec: Fig.Spec = {
         "The global variable used by webpack for loading of hot update chunks",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3885,7 +3641,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths", "folders"],
       },
     },
@@ -3904,8 +3659,6 @@ const completionSpec: Fig.Spec = {
         "The name of the native import() function (can be exchanged for a polyfill)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3914,8 +3667,6 @@ const completionSpec: Fig.Spec = {
         "The name of the native import.meta object (can be exchanged for a polyfill)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3937,8 +3688,6 @@ const completionSpec: Fig.Spec = {
       description: "Name of the exposed AMD library in the UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3946,8 +3695,6 @@ const completionSpec: Fig.Spec = {
       description: "Name of the exposed commonjs export in the UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3970,8 +3717,6 @@ const completionSpec: Fig.Spec = {
       description: "Append the same comment above each import style",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3979,8 +3724,6 @@ const completionSpec: Fig.Spec = {
       description: "Set comment for `amd` section in UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3988,8 +3731,6 @@ const completionSpec: Fig.Spec = {
       description: "Set comment for `commonjs` (exports) section in UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -3998,8 +3739,6 @@ const completionSpec: Fig.Spec = {
         "Set comment for `commonjs2` (module.exports) section in UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4007,8 +3746,6 @@ const completionSpec: Fig.Spec = {
       description: "Set comment for `root` (global variable) section in UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4044,8 +3781,6 @@ const completionSpec: Fig.Spec = {
       description: "Name of the exposed AMD library in the UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4053,8 +3788,6 @@ const completionSpec: Fig.Spec = {
       description: "Name of the exposed commonjs export in the UMD",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4078,8 +3811,6 @@ const completionSpec: Fig.Spec = {
         "Type of library (types included by default are 'var', 'module', 'assign', 'assign-properties', 'this', 'window', 'self', 'global', 'commonjs', 'commonjs2', 'commonjs-module', 'commonjs-static', 'amd', 'amd-require', 'umd', 'umd2', 'jsonp', 'system', but others might be added by plugins)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4105,8 +3836,6 @@ const completionSpec: Fig.Spec = {
         "Output location of the file generated by webpack e.g. ./dist/",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4115,7 +3844,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -4128,8 +3856,6 @@ const completionSpec: Fig.Spec = {
         "The 'publicPath' specifies the public URL address of the output files when referenced in a browser",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4138,8 +3864,6 @@ const completionSpec: Fig.Spec = {
         'This option enables loading async chunks via a custom script type, such as script type="module"',
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4153,7 +3877,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths", "folders"],
       },
     },
@@ -4163,8 +3886,6 @@ const completionSpec: Fig.Spec = {
         "Prefixes every line of the source in the bundle with this string",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4193,7 +3914,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -4202,8 +3922,6 @@ const completionSpec: Fig.Spec = {
         "The name of the Trusted Types policy created by webpack to serve bundle chunks",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4212,8 +3930,6 @@ const completionSpec: Fig.Spec = {
         "A unique name of the webpack build to avoid multiple webpack runtimes to conflict when using globals",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4222,8 +3938,6 @@ const completionSpec: Fig.Spec = {
         "The method of loading WebAssembly Modules (methods included by default are 'fetch' (web/WebWorker), 'async-node' (node.js), but others might be added by plugins)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4237,7 +3951,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["filepaths", "folders"],
       },
     },
@@ -4247,8 +3960,6 @@ const completionSpec: Fig.Spec = {
         "The method of loading chunks (methods included by default are 'jsonp' (web), 'import' (ESM), 'importScripts' (WebWorker), 'require' (sync node.js), 'async-node' (async node.js), but others might be added by plugins)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4261,8 +3972,6 @@ const completionSpec: Fig.Spec = {
         "The method of loading WebAssembly Modules (methods included by default are 'fetch' (web/WebWorker), 'async-node' (node.js), but others might be added by plugins)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4275,8 +3984,6 @@ const completionSpec: Fig.Spec = {
         "The number of parallel processed modules in the compilation",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4289,8 +3996,6 @@ const completionSpec: Fig.Spec = {
         "Sets the format of the hints: warnings, errors or nothing at all",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4303,8 +4008,6 @@ const completionSpec: Fig.Spec = {
         "File size limit (in bytes) when exceeded, that webpack will provide performance hints",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4312,8 +4015,6 @@ const completionSpec: Fig.Spec = {
       description: "Total size of an entry point (in bytes)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4329,8 +4030,6 @@ const completionSpec: Fig.Spec = {
       description: "Store compiler state to a json file",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4342,8 +4041,6 @@ const completionSpec: Fig.Spec = {
       description: "Load compiler state from a json file",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -4356,8 +4053,6 @@ const completionSpec: Fig.Spec = {
         "Store/Load compiler state from/to a json file. This will result in persistent ids of modules and chunks. An absolute path is expected. `recordsPath` is used for `recordsInputPath` and `recordsOutputPath` if they left undefined",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5109,7 +4804,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -5138,8 +4832,6 @@ const completionSpec: Fig.Spec = {
       description: "Sort the assets by that field",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5148,8 +4840,6 @@ const completionSpec: Fig.Spec = {
         "Space to display assets (groups will be collapsed to fit this space)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5216,8 +4906,6 @@ const completionSpec: Fig.Spec = {
       description: "Limit of assets displayed in chunk groups",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5242,8 +4930,6 @@ const completionSpec: Fig.Spec = {
         "Space to display chunk modules (groups will be collapsed to fit this space, value is in number of modules/group)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5276,8 +4962,6 @@ const completionSpec: Fig.Spec = {
       description: "Sort the chunks by that field",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5293,8 +4977,6 @@ const completionSpec: Fig.Spec = {
       description: "Custom color for bold text",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5302,8 +4984,6 @@ const completionSpec: Fig.Spec = {
       description: "Custom color for cyan text",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5311,8 +4991,6 @@ const completionSpec: Fig.Spec = {
       description: "Custom color for green text",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5320,8 +4998,6 @@ const completionSpec: Fig.Spec = {
       description: "Custom color for magenta text",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5329,8 +5005,6 @@ const completionSpec: Fig.Spec = {
       description: "Custom color for red text",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5338,8 +5012,6 @@ const completionSpec: Fig.Spec = {
       description: "Custom color for yellow text",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5348,7 +5020,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
 
-        isVariadic: false,
         template: ["folders"],
       },
     },
@@ -5375,7 +5046,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -5396,7 +5066,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -5584,7 +5253,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -5647,8 +5315,6 @@ const completionSpec: Fig.Spec = {
       description: "Sort the modules by that field",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5657,8 +5323,6 @@ const completionSpec: Fig.Spec = {
         "Space to display modules (groups will be collapsed to fit this space, value is in number of modules/groups)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5676,8 +5340,6 @@ const completionSpec: Fig.Spec = {
         "Space to display modules nested within other modules (groups will be collapsed to fit this space, value is in number of modules/group)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5718,7 +5380,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {
@@ -5755,8 +5416,6 @@ const completionSpec: Fig.Spec = {
         "Space to display reasons (groups will be collapsed to fit this space)",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5881,8 +5540,6 @@ const completionSpec: Fig.Spec = {
         "Delay the rebuilt after the first change. Value is a time in ms",
       args: {
         name: "value",
-
-        isVariadic: false,
       },
     },
     {
@@ -5916,7 +5573,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "value",
         isOptional: true,
-        isVariadic: false,
       },
     },
     {

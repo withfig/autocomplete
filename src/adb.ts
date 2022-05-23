@@ -320,7 +320,6 @@ const completionSpec: Fig.Spec = {
       name: "wait-for-usb-disconnect",
       description: "Wait for usb in state=disconnect",
     },
-
     {
       name: "wait-for-local-device",
       description: "Wait for local in state=device",
@@ -345,7 +344,6 @@ const completionSpec: Fig.Spec = {
       name: "wait-for-local-disconnect",
       description: "Wait for local in state=disconnect",
     },
-
     {
       name: "wait-for-any-device",
       description: "Wait for any in state=device",
@@ -370,7 +368,6 @@ const completionSpec: Fig.Spec = {
       name: "wait-for-any-disconnect",
       description: "Wait for any in state=disconnect",
     },
-
     {
       name: "keygen",
       description:

@@ -490,7 +490,6 @@ const completionSpec: Fig.Spec = {
               name: "auth",
               description:
                 "Writes an ngrok auth token to ~/.ngrok2/ngrok.yml to connect with an ngrok account. Visit https://dashboard.ngrok.com/signup to sign up",
-
               options: [
                 {
                   name: "--token",
@@ -558,7 +557,6 @@ const completionSpec: Fig.Spec = {
           priority: 80,
           description:
             "Creates your app extension and associates it with an app in your Partner organization. This step should be done only once for each app extension. Before you can push your code to Shopify, you need to create an app in your Partner Dashboard that you want to register your extension to. After an extension is registered to an app, the registration can’t be undone",
-
           options: [
             {
               name: "--api-key",
@@ -574,7 +572,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Connects your local project directory to an existing app in your Partner organization. This command is intended to help teams collaborate on the same extension code. Each developer can clone the extension code locally, and then run shopify extension connect to populate the local .env file with the API keys required to push changes to the extension",
         },
-
         {
           name: "push",
           priority: 60,
@@ -632,7 +629,6 @@ const completionSpec: Fig.Spec = {
         "Adds example data to your store for testing your app or theme’s behavior.The populate command lets you specify which type of data you're populating, and how many to create",
       args: {
         name: "TYPE",
-
         isVariadic: true,
         suggestions: [
           {
@@ -734,7 +730,6 @@ const completionSpec: Fig.Spec = {
               description: "The API library to use for the script",
               args: {
                 name: "api_name",
-
                 suggestions: ["shipping_methods", "payment_methods"],
               },
             },

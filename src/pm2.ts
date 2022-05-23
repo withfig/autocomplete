@@ -332,7 +332,7 @@ const sharedOptions: Fig.Option[] = [
     description:
       "Enables all monitoring tools (equivalent to –v8 –event-loop-inspector –trace)",
   },
-  { name: "-h, –-help", description: "Outputs usage information" },
+  { name: ["-h", "–-help"], description: "Outputs usage information" },
 ];
 
 const completionSpec: Fig.Spec = {

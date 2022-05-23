@@ -60,6 +60,14 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://fig.io/icons/fig-light.png",
   },
   {
+    name: "create-completion-spec",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
+  {
+    name: "@fig/publish-spec-to-team",
+    icon: "https://fig.io/icons/fig-light.png",
+  },
+  {
     name: "fig-teams@latest",
     icon: "https://fig.io/icons/fig-light.png",
   },
@@ -98,12 +106,15 @@ const suggestions: Fig.Suggestion[] = [
     name: "@preset/cli",
     icon: "https://raw.githubusercontent.com/preset/preset/main/.github/assets/logo.svg",
   },
+  {
+    name: "mikro-orm",
+    icon: "https://raw.githubusercontent.com/mikro-orm/mikro-orm/master/docs/static/img/favicon.ico",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
-
   args: {
     name: "command",
     isCommand: true,

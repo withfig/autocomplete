@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add IAM policy binding for a project",
-
       options: [
         {
           name: "--account",
@@ -179,13 +178,11 @@ const completionSpec: Fig.Spec = {
         name: "PROJECT_ID",
         description:
           "ID of the project or fully qualified identifier for the project",
-        isVariadic: false,
       },
     },
     {
       name: "create",
       description: "Create a new project",
-
       options: [
         {
           name: "--account",
@@ -365,13 +362,11 @@ const completionSpec: Fig.Spec = {
         name: "PROJECT_ID",
         description:
           "ID for the project you want to create.\n+\nProject IDs are immutable and can be set only during project creation. They must start with a lowercase letter and can have lowercase ASCII letters, digits or hyphens. Project IDs must be between 6 and 30 characters",
-        isVariadic: false,
       },
     },
     {
       name: "delete",
       description: "Delete a project",
-
       options: [
         {
           name: "--account",
@@ -503,13 +498,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROJECT_ID_OR_NUMBER",
         description: "ID or number for the project you want to delete",
-        isVariadic: false,
       },
     },
     {
       name: "describe",
       description: "Show metadata for a project",
-
       options: [
         {
           name: "--account",
@@ -641,13 +634,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROJECT_ID_OR_NUMBER",
         description: "ID or number for the project you want to describe",
-        isVariadic: false,
       },
     },
     {
       name: "get-ancestors",
       description: "Get the ancestors for a project",
-
       options: [
         {
           name: "--account",
@@ -780,13 +771,11 @@ const completionSpec: Fig.Spec = {
         name: "PROJECT_ID",
         description:
           "ID of the project or fully qualified identifier for the project",
-        isVariadic: false,
       },
     },
     {
       name: "get-ancestors-iam-policy",
       description: "Get IAM policies for a project and its ancestors",
-
       options: [
         {
           name: "--account",
@@ -959,13 +948,11 @@ const completionSpec: Fig.Spec = {
         name: "PROJECT_ID",
         description:
           "ID of the project_id or fully qualified identifier for the project_id",
-        isVariadic: false,
       },
     },
     {
       name: "get-iam-policy",
       description: "Get IAM policy for a project",
-
       options: [
         {
           name: "--account",
@@ -1138,13 +1125,11 @@ const completionSpec: Fig.Spec = {
         name: "PROJECT_ID_OR_NUMBER",
         description:
           "ID or number for the project you want to get IAM policy for",
-        isVariadic: false,
       },
     },
     {
       name: "list",
       description: "List projects accessible by the active account",
-
       options: [
         {
           name: "--account",
@@ -1322,7 +1307,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-iam-policy-binding",
       description: "Remove IAM policy binding for a project",
-
       options: [
         {
           name: "--account",
@@ -1501,13 +1485,11 @@ const completionSpec: Fig.Spec = {
         name: "PROJECT_ID",
         description:
           "ID of the project or fully qualified identifier for the project",
-        isVariadic: false,
       },
     },
     {
       name: "set-iam-policy",
       description: "Set IAM policy for a project",
-
       options: [
         {
           name: "--account",
@@ -1641,20 +1623,17 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID_OR_NUMBER",
           description:
             "ID or number for the project you want to set IAM policy for",
-          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-          isVariadic: false,
         },
       ],
     },
     {
       name: "undelete",
       description: "Undelete a project",
-
       options: [
         {
           name: "--account",
@@ -1786,13 +1765,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROJECT_ID_OR_NUMBER",
         description: "ID or number for the project you want to undelete",
-        isVariadic: false,
       },
     },
     {
       name: "update",
       description: "Update the name of a project",
-
       options: [
         {
           name: "--account",
@@ -1934,7 +1911,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROJECT_ID",
         description: "ID for the project you want to update",
-        isVariadic: false,
       },
     },
   ],

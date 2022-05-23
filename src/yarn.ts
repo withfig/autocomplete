@@ -23,6 +23,8 @@ export const nodeClis = [
   "remotion",
   "@withfig/autocomplete-tools",
   "@redwoodjs/core",
+  "create-completion-spec",
+  "@fig/publish-spec-to-team",
 ];
 
 type SearchResult = {
@@ -36,7 +38,7 @@ type SearchResult = {
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
   script: 'cat "$(yarn global dir)/package.json"',
-  postProcess: (out, context) => {
+  postProcess: (out, tokens) => {
     if (out.trim() == "") return [];
 
     try {
@@ -49,7 +51,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
       ];
 
       const filteredDependencies = dependencies.filter(
-        (dependency) => !context.includes(dependency)
+        (dependency) => !tokens.includes(dependency)
       );
 
       return filteredDependencies.map((dependencyName) => ({
@@ -347,11 +349,12 @@ export const createCLIsGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (_tokens, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
     const packages = postProcess(
-      await executeShellCommand(script as string)
+      await executeShellCommand(script as string),
+      tokens
     ).map(({ name }) => name as string);
 
     const subcommands = packages
@@ -933,7 +936,6 @@ const completionSpec: Fig.Spec = {
                 "Install most recent release with the same major version. Only used when --latest is specified",
               dependsOn: ["--latest"],
             },
-
             {
               name: ["-A", "--audit"],
               description: "Run vulnerability audit on installed packages",
@@ -1026,7 +1028,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "licenses",
       description: "",
-
       subcommands: [
         {
           name: "list",
@@ -1093,7 +1094,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "owner",
       description: "Manage package owners",
-
       subcommands: [
         {
           name: "list",
@@ -1258,6 +1258,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         generators: dependenciesGenerator,
         isVariadic: true,
+        isOptional: true,
       },
       options: [
         ...commonOptions,
@@ -1292,7 +1293,6 @@ const completionSpec: Fig.Spec = {
             "Install most recent release with the same major version. Only used when --latest is specified",
           dependsOn: ["--latest"],
         },
-
         {
           name: ["-A", "--audit"],
           description: "Run vulnerability audit on installed packages",
@@ -1355,24 +1355,35 @@ const completionSpec: Fig.Spec = {
         const version = await executeShellCommand("yarn --version");
         const isYarnV1 = version.startsWith("1.");
 
-        // Only use info in yarn workspaces info 1.X.X
-        const versionedCommand = isYarnV1 ? "info" : "list --json";
+        const getWorkspacesDefinitionsV1 = async () => {
+          const out = await executeShellCommand(`yarn workspaces info`);
+
+          const startJson = out.indexOf("{");
+          const endJson = out.lastIndexOf("}");
+
+          return Object.entries(
+            JSON.parse(out.slice(startJson, endJson + 1)) as Record<
+              string,
+              { location: string }
+            >
+          ).map(([name, { location }]) => ({
+            name,
+            location,
+          }));
+        };
+
+        // For yarn >= 2.0.0
+        const getWorkspacesDefinitionsVOther = async () => {
+          const out = await executeShellCommand(`yarn workspaces list --json`);
+          return out.split("\n").map((line) => JSON.parse(line.trim()));
+        };
 
         try {
-          const out = await executeShellCommand(
-            `yarn workspaces ${versionedCommand}`
-          );
-
           const workspacesDefinitions = isYarnV1
             ? // transform Yarn V1 output to array of workspaces like Yarn V2
-              Object.entries(
-                JSON.parse(out) as Record<string, { location: string }>
-              ).map(([name, { location }]) => ({
-                name,
-                location,
-              }))
+              await getWorkspacesDefinitionsV1()
             : // in yarn v>=2.0.0, workspaces definitions are a list of JSON lines
-              out.split("\n").map((line) => JSON.parse(line.trim()));
+              await getWorkspacesDefinitionsVOther();
 
           const subcommands: Fig.Subcommand[] = workspacesDefinitions.map(
             ({ name, location }: { name: string; location: string }) => ({

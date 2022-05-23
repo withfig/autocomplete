@@ -170,7 +170,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--email",
-
           args: {
             name: "EMAIL",
           },

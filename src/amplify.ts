@@ -239,7 +239,6 @@ const completionSpec: Fig.Spec = {
       description:
         "If using temporary cloud provider credentials, this logs out of the account",
     },
-
     {
       name: "env",
       description: "Display all commands available for new Amplify project",

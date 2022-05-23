@@ -41,8 +41,7 @@ const completionSpec: Fig.Spec = {
       name: "--ext",
       description: "An extension to associate with stdin",
       displayName: "--ext=<ext>",
-      insertValue: "--ext={cursor}",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "ext",
         suggestions: [".md", ".rst", ".adoc", ".html"],
@@ -52,8 +51,7 @@ const completionSpec: Fig.Spec = {
       name: "--glob",
       description: "A glob pattern",
       displayName: "--glob=<glob>",
-      insertValue: "--glob={cursor}",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "glob",
       },
@@ -62,8 +60,7 @@ const completionSpec: Fig.Spec = {
       name: "--minAlertLevel",
       description: "The minimum level to display",
       displayName: "--minAlertLevel=<level>",
-      insertValue: "--minAlertLevel={cursor}",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "level",
         suggestions: ["suggestion", "warning", "error"],
@@ -73,8 +70,7 @@ const completionSpec: Fig.Spec = {
       name: "--output",
       description: "The alert output style to use",
       displayName: "--output=<style>",
-      insertValue: "--output={cursor}",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "style",
         suggestions: ["line", "JSON"],
@@ -84,8 +80,7 @@ const completionSpec: Fig.Spec = {
       name: "--config",
       description: "A path to a .vale.ini file",
       displayName: "--config=<path>",
-      insertValue: "--config={cursor}",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "path",
       },

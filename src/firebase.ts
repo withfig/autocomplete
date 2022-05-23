@@ -72,7 +72,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: "apps:android:sha:create",
       description: "Add a SHA certificate hash for a given app id",

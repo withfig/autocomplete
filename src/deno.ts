@@ -12,10 +12,6 @@ import {
   generateVersions,
 } from "./deno/generators";
 
-// Fig doesn't automatically insert an '=' where an option's argument requires
-// an equals and the argument isn't optional. That's why you'll see a lot of
-// `insertValue: "--name={cursor}"` in this spec.
-
 type ExclusiveOn = {
   exclusiveOn?: string[];
 };
@@ -24,7 +20,7 @@ const unsafelyIgnoreCertificateErrorsOption: Fig.Option = {
   name: "--unsafely-ignore-certificate-errors",
   description: "DANGER: Disables verification of TLS certificates",
   isDangerous: true,
-  requiresEquals: true,
+  requiresSeparator: true,
   args: {
     name: "host names",
     description: "Scope ignoring certificate errors to these hosts",
@@ -40,7 +36,7 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-env",
     description: "Allow environment access",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "variable",
       description: "Comma-separated list of environment variables to allow",
@@ -50,7 +46,7 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-ffi",
     description: "Allow loading dynamic libraries",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "library",
       description: "The path of the dynamic library to allow",
@@ -64,7 +60,7 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-net",
     description: "Allow network access",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "hosts",
       isOptional: true,
@@ -73,7 +69,7 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-read",
     description: "Allow file system read access",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "paths",
       generators: {
@@ -86,7 +82,7 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-run",
     description: "Allow running subprocesses",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "executables",
       isOptional: true,
@@ -95,7 +91,7 @@ const permissionOptions: Fig.Option[] = [
   {
     name: "--allow-write",
     description: "Allow file system write access",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "paths",
       isOptional: true,
@@ -117,7 +113,7 @@ function inspectorOptions(options: ExclusiveOn = {}): Fig.Option[] {
     {
       name: "--inspect",
       description: "Activate inspector on host:port (default: 127.0.0.1:9229)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "host:port",
         description: "The host:port to activate the inspector on",
@@ -129,7 +125,7 @@ function inspectorOptions(options: ExclusiveOn = {}): Fig.Option[] {
       name: "--inspect-brk",
       description:
         "Activate inspector on host:port and break at the start of user script (default: 127.0.0.1:9229)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "host:port",
         description: "The host:port to activate the inspector on",
@@ -198,7 +194,7 @@ const lockWriteOption: Fig.Option = {
 const noCheckOption: Fig.Option = {
   name: "--no-check",
   description: "Skip type checking modules",
-  requiresEquals: true,
+  requiresSeparator: true,
   args: {
     name: "type",
     description: "Specify the kind of modules to skip type checking",
@@ -222,7 +218,7 @@ const reloadOption: Fig.Option = {
   name: ["-r", "--reload"],
   description:
     "Reload source code cache (recompile TypeScript, download dependencies)",
-  requiresEquals: true,
+  requiresSeparator: true,
   args: {
     name: "cache blocklist",
     description: "A comma-separated list of URLs to block from the cache",
@@ -241,9 +237,8 @@ const seedOption: Fig.Option = {
 
 const v8FlagsOption: Fig.Option = {
   name: "--v8-flags",
-  insertValue: "--v8-flags={cursor}",
   description: "Set V8 command line options (for help: --v8-flags=--help",
-  requiresEquals: true,
+  requiresSeparator: true,
   args: {
     name: "V8 flags",
     description: "Flags to pass to V8",
@@ -257,7 +252,7 @@ function watchOption(options: ExclusiveOn & { files: boolean }): Fig.Option {
     description:
       "UNSTABLE: Watch for file changes and restart process automatically",
     exclusiveOn: options.exclusiveOn,
-    requiresEquals: options.files ? true : undefined,
+    requiresSeparator: options.files ? true : undefined,
     args: options.files
       ? {
           name: "files",
@@ -392,9 +387,8 @@ const denoTest: Fig.Subcommand = {
     ...runtimeOptions({ perms: true, inspector: true }),
     {
       name: "--ignore",
-      insertValue: "--ignore={cursor}",
       description: "Ignore files",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "Files to ignore",
         description: "Files matching this pattern will be ignored",
@@ -414,7 +408,7 @@ const denoTest: Fig.Subcommand = {
       name: "--fail-fast",
       description:
         "Stop after N errors (defaults to stopping after the first error)",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "number",
         isOptional: true,
@@ -435,7 +429,7 @@ const denoTest: Fig.Subcommand = {
     {
       name: "--shuffle",
       description: "UNSTABLE: Shuffle the order in which tests are run",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "number",
         isOptional: true,
@@ -443,9 +437,8 @@ const denoTest: Fig.Subcommand = {
     },
     {
       name: "--coverage",
-      insertValue: "--coverage={cursor}",
       description: "UNSTABLE: Collect coverage profile data into the directory",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "directory",
         description: "The directory to use for coverage data",
@@ -509,9 +502,8 @@ const denoFmt: Fig.Subcommand = {
     },
     {
       name: "--ignore",
-      insertValue: "--ignore={cursor}",
       description: "Ignore formatting particular source files",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "Files to ignore",
         template: "filepaths",
@@ -590,7 +582,7 @@ const denoLint: Fig.Subcommand = {
     {
       name: "--ignore",
       description: "Ignore linting particular source files",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "files",
         template: "filepaths",
@@ -835,9 +827,8 @@ const denoCoverage: Fig.Subcommand = {
   options: [
     {
       name: "--ignore",
-      insertValue: "--ignore={cursor}",
       description: "Ignore coverage files",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "pattern",
         description: "Ignore files matching this regex pattern",
@@ -846,10 +837,9 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--include",
-      insertValue: "--include={cursor}",
       description: "Include source files in the report",
       isRepeatable: true,
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "pattern",
         description: "Include files matching this regex pattern",
@@ -858,10 +848,9 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--exclude",
-      insertValue: "--exclude={cursor}",
       description: "Exclude source files from the report",
       isRepeatable: true,
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "pattern",
         description: "Exclude files matching this regex pattern",
@@ -874,10 +863,9 @@ const denoCoverage: Fig.Subcommand = {
     },
     {
       name: "--output",
-      insertValue: "--output={cursor}",
       description: "Output file (defaults to stdout) for lcov",
       dependsOn: ["--lcov"],
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "outfile",
         template: "filepaths",
@@ -1011,7 +999,7 @@ const denoBench: Fig.Subcommand = {
     {
       name: "--ignore",
       description: "Ignore files",
-      requiresEquals: true,
+      requiresSeparator: true,
       args: {
         name: "files",
         generators: {

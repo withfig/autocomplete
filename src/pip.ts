@@ -16023,6 +16023,10 @@ export const packageList: Array<Fig.Suggestion> = [
     name: "prisma",
     icon: "📦",
   },
+  {
+    name: "sourcery-cli",
+    icon: "📦",
+  },
 ];
 
 const completionSpec: Fig.Spec = {

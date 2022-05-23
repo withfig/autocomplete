@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "info",
   description: "Display information about the current gcloud environment",
-
   options: [
     {
       name: "--account",
