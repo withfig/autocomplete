@@ -4,6 +4,14 @@ const completionSpec: Fig.Spec = {
   parserDirectives: {
     optionsMustPrecedeArguments: true,
   },
+  subcommands: [
+    {
+      name: "am",
+      insertValue: "am I",
+      displayName: "am I",
+      subcommands: [{ name: "I" }],
+    },
+  ],
   options: [
     {
       name: "-a",
