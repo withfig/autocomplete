@@ -10,6 +10,7 @@ const completionSpec: Fig.Spec = {
       insertValue: "am I",
       displayName: "am I",
       subcommands: [{ name: "I" }],
+      priority: 40,
     },
   ],
   options: [
