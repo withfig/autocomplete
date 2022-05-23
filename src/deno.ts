@@ -1100,6 +1100,14 @@ const completion: Fig.Spec = {
           name: "source_file",
           isOptional: true,
           template: "filepaths",
+          suggestions: [
+            {
+              name: "--builtin",
+              description: "Get documentation for built-in symbols",
+              icon: "fig://icon?type=option",
+              type: "option",
+            },
+          ],
         },
         {
           name: "filter",
