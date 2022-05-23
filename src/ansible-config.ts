@@ -7,6 +7,32 @@ const completionSpec: Fig.Spec = {
       description: "List and output available configs",
       options: [
         {
+          name: ["--help", "-h"],
+          description: "Show help and exit",
+          args: {
+            isOptional: true,
+          },
+        },
+        {
+          name: "--verbose",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["-v"],
+        },
+        {
+          name: "-v",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["--verbose"],
+          isRepeatable: 4,
+        },
+        {
           name: ["--config", "-c"],
           description:
             "Path to configuration file, defaults to first file found in precedence",
@@ -41,12 +67,45 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      args: {
+        name: "args",
+        description:
+          "Specific plugin to target, requires type of plugin to be set",
+        isOptional: true,
+        isVariadic: true,
+      },
     },
     {
       name: "dump",
       description:
         "Shows the current settings, merges ansible.cfg if specified",
       options: [
+        {
+          name: ["--help", "-h"],
+          description: "Show help and exit",
+          args: {
+            isOptional: true,
+          },
+        },
+        {
+          name: "--verbose",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["-v"],
+        },
+        {
+          name: "-v",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["--verbose"],
+          isRepeatable: 4,
+        },
         {
           name: ["--only-changed", "--changed-only"],
           description:
@@ -90,11 +149,44 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      args: {
+        name: "args",
+        description:
+          "Specific plugin to target, requires type of plugin to be set",
+        isOptional: true,
+        isVariadic: true,
+      },
     },
     {
       name: "view",
       description: "Displays the current config file",
       options: [
+        {
+          name: ["--help", "-h"],
+          description: "Show help and exit",
+          args: {
+            isOptional: true,
+          },
+        },
+        {
+          name: "--verbose",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["-v"],
+        },
+        {
+          name: "-v",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["--verbose"],
+          isRepeatable: 4,
+        },
         {
           name: ["--config", "-c"],
           description:
@@ -130,11 +222,44 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      args: {
+        name: "args",
+        description:
+          "Specific plugin to target, requires type of plugin to be set",
+        isOptional: true,
+        isVariadic: true,
+      },
     },
     {
       name: "init",
       description: "Initializes a new config file (to stdout)",
       options: [
+        {
+          name: ["--help", "-h"],
+          description: "Show help and exit",
+          args: {
+            isOptional: true,
+          },
+        },
+        {
+          name: "--verbose",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["-v"],
+        },
+        {
+          name: "-v",
+          description:
+            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          args: {
+            isOptional: true,
+          },
+          exclusiveOn: ["--verbose"],
+          isRepeatable: 4,
+        },
         {
           name: "--disabled",
           description:
@@ -189,6 +314,13 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      args: {
+        name: "args",
+        description:
+          "Specific plugin to target, requires type of plugin to be set",
+        isOptional: true,
+        isVariadic: true,
+      },
     },
   ],
   options: [
@@ -203,25 +335,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help and exit",
-      args: {
-        isOptional: true,
-      },
-    },
-    {
-      name: "--verbose",
-      description:
-        "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-      exclusiveOn: ["-v"],
-      args: {
-        isOptional: true,
-      },
-    },
-    {
-      name: "-v",
-      description:
-        "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-      isRepeatable: 5,
-      exclusiveOn: ["--verbose"],
       args: {
         isOptional: true,
       },
