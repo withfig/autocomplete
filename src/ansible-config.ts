@@ -13,7 +13,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIG_FILE",
             description: "Path to configuration file",
-            isDangerous: false,
             template: ["filepaths"],
           },
         },
@@ -23,7 +22,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TYPE",
             description: "Plugin type",
-            isDangerous: false,
             suggestions: [
               "all",
               "base",
@@ -54,7 +52,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Only show configurations that have changed from the default",
           args: {
-            isDangerous: false,
             isOptional: true,
           },
         },
@@ -65,7 +62,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIG_FILE",
             description: "Path to configuration file",
-            isDangerous: false,
             template: ["filepaths"],
           },
         },
@@ -75,7 +71,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TYPE",
             description: "Plugin type",
-            isDangerous: false,
             suggestions: [
               "all",
               "base",
@@ -107,7 +102,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIG_FILE",
             description: "Path to configuration file",
-            isDangerous: false,
             template: ["filepaths"],
           },
         },
@@ -117,7 +111,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TYPE",
             description: "Plugin type",
-            isDangerous: false,
             suggestions: [
               "all",
               "base",
@@ -147,7 +140,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Prefixes all entries with a comment character to disable them",
           args: {
-            isDangerous: false,
             isOptional: true,
           },
         },
@@ -157,7 +149,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "FORMAT",
             description: "Output format",
-            isDangerous: false,
             isOptional: true,
             suggestions: ["ini", "env", "vars"],
             default: "ini",
@@ -170,7 +161,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "CONFIG_FILE",
             description: "Path to configuration file",
-            isDangerous: false,
             template: ["filepaths"],
           },
         },
@@ -180,7 +170,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "TYPE",
             description: "Plugin type",
-            isDangerous: false,
             suggestions: [
               "all",
               "base",
@@ -209,7 +198,6 @@ const completionSpec: Fig.Spec = {
         "Shows version number, config file location, module search path, module location, executable location and exit",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -217,7 +205,6 @@ const completionSpec: Fig.Spec = {
       description: "Show help and exit",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -227,7 +214,6 @@ const completionSpec: Fig.Spec = {
       exclusiveOn: ["-v"],
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -238,7 +224,6 @@ const completionSpec: Fig.Spec = {
       exclusiveOn: ["--verbose"],
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
   ],
