@@ -82,7 +82,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-u",
       description:
-        "Print the idel time for each user and the associated process ID",
+        "Print the idle time for each user and the associated process ID",
     },
   ],
   args: {
