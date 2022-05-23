@@ -12,7 +12,6 @@ const completionSpec: Fig.Spec = {
       description: "Forces nc to use IPv4 addresses only",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
       exclusiveOn: ["-6"],
     },
@@ -21,7 +20,6 @@ const completionSpec: Fig.Spec = {
       description: "Forces nc to use IPv6 addresses only",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
       exclusiveOn: ["-4"],
     },
@@ -30,7 +28,6 @@ const completionSpec: Fig.Spec = {
       description: "Set SO_RECV_ANYIF on socket",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -38,7 +35,6 @@ const completionSpec: Fig.Spec = {
       description: "Specifies the interface to bind the socket to",
       args: {
         name: "boundif",
-        isDangerous: false,
       },
     },
     {
@@ -46,7 +42,6 @@ const completionSpec: Fig.Spec = {
       description: "Send CRLF as line-ending",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -54,7 +49,6 @@ const completionSpec: Fig.Spec = {
       description: "Enable debugging on the socket",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -62,7 +56,6 @@ const completionSpec: Fig.Spec = {
       description: "Force nc not to use cellular data context",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -70,7 +63,6 @@ const completionSpec: Fig.Spec = {
       description: "Do not attempt to read from stdin",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -78,7 +70,6 @@ const completionSpec: Fig.Spec = {
       description: "Prints out nc help",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -87,7 +78,6 @@ const completionSpec: Fig.Spec = {
         "Specifies a delay time interval between lines of text sent and received",
       args: {
         name: "interval",
-        isDangerous: false,
       },
     },
     {
@@ -95,7 +85,6 @@ const completionSpec: Fig.Spec = {
       description: "TCP connection timeout in seconds",
       args: {
         name: "conntimeout",
-        isDangerous: false,
       },
     },
     {
@@ -103,7 +92,6 @@ const completionSpec: Fig.Spec = {
       description: "Initial TCP keep alive timeout in seconds",
       args: {
         name: "keepidle",
-        isDangerous: false,
       },
     },
     {
@@ -111,7 +99,6 @@ const completionSpec: Fig.Spec = {
       description: "Interval for repeating TCP keep alive timeout in seconds",
       args: {
         name: "keepintvl",
-        isDangerous: false,
       },
     },
     {
@@ -119,7 +106,6 @@ const completionSpec: Fig.Spec = {
       description: "Number of times to repeat TCP keep alive packets",
       args: {
         name: "keepcnt",
-        isDangerous: false,
       },
     },
     {
@@ -128,7 +114,6 @@ const completionSpec: Fig.Spec = {
         "Force nc to stay listening for another connection after its current connection is completed",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -137,7 +122,6 @@ const completionSpec: Fig.Spec = {
         "Used to specify that nc should listen for an incoming connection rather than initiate a connection to a remote host",
       args: {
         name: "port",
-        isDangerous: false,
       },
       exclusiveOn: ["-p", "-s", "-z", "-w"],
     },
@@ -147,7 +131,6 @@ const completionSpec: Fig.Spec = {
         "Number of prbes to send to the peer before declaring that the peer is not reachable",
       args: {
         name: "num_probes",
-        isDangerous: false,
       },
     },
     {
@@ -156,7 +139,6 @@ const completionSpec: Fig.Spec = {
         "Do not do any DNS or service lookups on any specified addresses, hostnames or ports",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -165,7 +147,6 @@ const completionSpec: Fig.Spec = {
         "Specifies the source port nc should use, subject to privilege restrictions and availability",
       args: {
         name: "source_port",
-        isDangerous: false,
       },
       exclusiveOn: ["-l"],
     },
@@ -175,7 +156,6 @@ const completionSpec: Fig.Spec = {
         "Specifies that source and/or destination ports should be chosen randomly instead of sequentially within a range or in the order that the system assigns them",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -184,7 +164,6 @@ const completionSpec: Fig.Spec = {
         "Specifies the IP of the interface which is used to send the packets",
       args: {
         name: "source_ip_address",
-        isDangerous: false,
       },
       exclusiveOn: ["-l"],
     },
@@ -194,7 +173,6 @@ const completionSpec: Fig.Spec = {
         "Causes nc to send RFC 854 DON'T and WON'T responses to RFC 854 DO and WILL requests",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -202,7 +180,6 @@ const completionSpec: Fig.Spec = {
       description: "Specifies to use Unix Domain Sockets",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -210,7 +187,6 @@ const completionSpec: Fig.Spec = {
       description: "Use UDP instead of the default option of TCP",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -218,7 +194,6 @@ const completionSpec: Fig.Spec = {
       description: "Have nc give more verbose output",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -227,7 +202,6 @@ const completionSpec: Fig.Spec = {
         "If a connection and stdin are idle for more than timeout seconds, then the connection is silently closed",
       args: {
         name: "timeout",
-        isDangerous: false,
       },
       exclusiveOn: ["-l"],
     },
@@ -237,7 +211,6 @@ const completionSpec: Fig.Spec = {
         "Requests that nc should use the specified protocol when talking to the proxy server",
       args: {
         name: "proxy_version",
-        isDangerous: false,
       },
     },
     {
@@ -246,7 +219,6 @@ const completionSpec: Fig.Spec = {
         "Requests that nc should connect to hostname using a proxy at proxy_address and port",
       args: {
         name: "proxy_address[:port]",
-        isDangerous: false,
       },
     },
     {
@@ -255,7 +227,6 @@ const completionSpec: Fig.Spec = {
         "Specifies that nc should just scan for listening daemons, without sending any data to them",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
       exclusiveOn: ["-l"],
     },
@@ -265,7 +236,6 @@ const completionSpec: Fig.Spec = {
         "Requests that nc should delegate the socket for the specified PID",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -274,7 +244,6 @@ const completionSpec: Fig.Spec = {
         "Requests that nc should delegate the socket for the specified UUID",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -283,7 +252,6 @@ const completionSpec: Fig.Spec = {
         "Requests that nc marks its socket for extended background idle time when the process becomes suspended",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -292,7 +260,6 @@ const completionSpec: Fig.Spec = {
         "When the parameter n is greater than 0, requests that nc marks its socket to exlude the local port from the list of opened ports that is queried by drivers when the system goes to sleep args",
       args: {
         isOptional: true,
-        isDangerous: false,
       },
     },
     {
@@ -301,7 +268,6 @@ const completionSpec: Fig.Spec = {
         "Requests that nc marks to use the socket option TCP_ECN_MODE to set the ECN mode",
       args: {
         isOptional: true,
-        isDangerous: false,
         suggestions: ["default", "enable", "disable"],
         default: "default",
       },
