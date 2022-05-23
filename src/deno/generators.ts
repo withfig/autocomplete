@@ -334,7 +334,7 @@ export const generateTasks: Fig.Generator = {
     if (config === null) {
       return [];
     }
-    return Object.entries(config.tasks).map(([name, command]) => {
+    return Object.entries(config.tasks || {}).map(([name, command]) => {
       const fig = config.fig?.[name] || {};
       return {
         name,

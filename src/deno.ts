@@ -2550,12 +2550,17 @@ const completion: Fig.Spec = {
           description: "Suppress diagnostic output",
         },
       ],
-      args: {
-        name: "task_name_and_args",
-        isVariadic: true,
-        isOptional: true,
-        generators: generateTasks,
-      },
+      args: [
+        {
+          name: "task_name",
+          generators: generateTasks,
+        },
+        {
+          name: "task_args",
+          isVariadic: true,
+          isOptional: true,
+        },
+      ],
     },
     {
       name: "test",
