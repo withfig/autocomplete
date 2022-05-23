@@ -655,6 +655,9 @@ const completion: Fig.Spec = {
       name: "compile",
       description:
         "UNSTABLE: Compile the script into a self contained executable",
+      parserDirectives: {
+        optionsMustPrecedeArguments: true,
+      },
       options: [
         {
           name: "--import-map",
@@ -921,6 +924,7 @@ const completion: Fig.Spec = {
       ],
       args: {
         name: "script_arg",
+        isScript: true,
         isVariadic: true,
         template: "filepaths",
       },
@@ -1415,6 +1419,13 @@ const completion: Fig.Spec = {
         isVariadic: true,
         isOptional: true,
         template: "filepaths",
+        suggestions: [
+          {
+            name: "-",
+            description: "Read from standard input",
+            hidden: true,
+          },
+        ],
       },
     },
     {
@@ -1512,6 +1523,9 @@ const completion: Fig.Spec = {
     {
       name: "install",
       description: "Install script as an executable",
+      parserDirectives: {
+        optionsMustPrecedeArguments: true,
+      },
       options: [
         {
           name: "--import-map",
@@ -1799,6 +1813,7 @@ const completion: Fig.Spec = {
       args: {
         name: "cmd",
         isVariadic: true,
+        isScript: true,
         template: "filepaths",
       },
     },
@@ -2190,6 +2205,9 @@ const completion: Fig.Spec = {
     {
       name: "run",
       description: "Run a JavaScript or TypeScript program",
+      parserDirectives: {
+        optionsMustPrecedeArguments: true,
+      },
       options: [
         {
           name: "--import-map",
@@ -2477,6 +2495,14 @@ const completion: Fig.Spec = {
         name: "script_arg",
         isVariadic: true,
         template: "filepaths",
+        isScript: true,
+        suggestions: [
+          {
+            name: "-",
+            description: "Read from standard input",
+            hidden: true,
+          },
+        ],
       },
     },
     {
