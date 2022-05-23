@@ -2508,6 +2508,9 @@ const completion: Fig.Spec = {
     {
       name: "task",
       description: "Run a task defined in the configuration file",
+      parserDirectives: {
+        optionsMustPrecedeArguments: true,
+      },
       options: [
         {
           name: ["-c", "--config"],
