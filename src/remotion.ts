@@ -1,9 +1,227 @@
+const globalLambdaOptions: Fig.Option[] = [
+  {
+    name: "--quiet",
+    description: "Print less output",
+  },
+  {
+    name: "-q",
+    hidden: true,
+    description: "Print less output",
+  },
+  {
+    name: "--yes",
+    description: "Skip confirmation",
+  },
+  {
+    name: "--force",
+    hidden: true,
+    isDangerous: true,
+    description: "Skip confirmation",
+  },
+  {
+    name: "-y",
+    isDangerous: true,
+    hidden: true,
+    description: "Skip confirmation",
+  },
+  {
+    name: "-f",
+    isDangerous: true,
+    hidden: true,
+    description: "Skip confirmation",
+  },
+  {
+    name: "--region",
+    description: "The AWS region specifier",
+    args: {
+      suggestions: [
+        {
+          name: "us-east-1",
+          description: "North Virginia",
+        },
+        {
+          name: "us-east-2",
+          description: "Ohio",
+        },
+        {
+          name: "eu-central-1",
+          description: "Frankfurt",
+        },
+        {
+          name: "eu-west-1",
+          description: "Ireland",
+        },
+        {
+          name: "eu-west-2",
+          description: "London",
+        },
+        {
+          name: "us-west-2",
+          description: "Oregon",
+        },
+        {
+          name: "ap-south-1",
+          description: "Mumbai",
+        },
+        {
+          name: "ap-southeast-1",
+          description: "Singapore",
+        },
+        {
+          name: "ap-southeast-2",
+          description: "Sydney",
+        },
+        {
+          name: "ap-northeast-1",
+          description: "Tokyo",
+        },
+      ],
+    },
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "remotion",
+
   description: "Create videos programmatically in React",
   subcommands: [
     {
+      name: "lambda",
+
+      description: "Access functionality of @remotion/lambda",
+      subcommands: [
+        {
+          name: "functions",
+
+          description: "Manage functions on AWS Lambda",
+          subcommands: [
+            {
+              name: "ls",
+              description: "List deployed functions",
+              options: globalLambdaOptions,
+            },
+            {
+              name: "deploy",
+              description:
+                "Deploy a function if one with the same parameters doesn't exist",
+              options: [
+                {
+                  name: "--memory",
+                  description: "Amount of memory in MB to allocate",
+                  insertValue: "--memory=",
+                  args: {
+                    name: "sizeInMegabytes",
+                  },
+                },
+                {
+                  name: "--disk",
+                  description: "Amount of disk space in MB to allocate",
+                  insertValue: "--disk=",
+                  args: {
+                    name: "diskInMegabytes",
+                  },
+                },
+                {
+                  name: "--architecture",
+                  description:
+                    "Type of CPU architecture to use for the Lambda function",
+                  insertValue: "--architecture=",
+                  args: {
+                    name: "architecture",
+                    suggestions: [{ name: "x86_64" }, { name: "arm64" }],
+                  },
+                },
+                {
+                  name: "--disable-cloudwatch",
+                  description: "Disable CloudWatch logging",
+
+                  exclusiveOn: ["--retention-period"],
+                },
+                {
+                  name: "--retention-period",
+                  description: "CloudWatch log retention period in days",
+                  exclusiveOn: ["--disable-cloudwatch"],
+                  args: {
+                    name: "retentionPeriodInDays",
+                  },
+                },
+                ...globalLambdaOptions,
+              ],
+            },
+            {
+              name: "rmall",
+              description: "Remove all functions in a region",
+              isDangerous: true,
+              options: globalLambdaOptions,
+            },
+            {
+              name: "rm",
+
+              description: "Remove a function",
+              args: {
+                name: "function-name",
+                description: "ID of your function",
+                suggestCurrentToken: true,
+              },
+              options: globalLambdaOptions,
+            },
+          ],
+          options: globalLambdaOptions,
+        },
+        {
+          name: "sites",
+
+          options: globalLambdaOptions,
+          subcommands: [
+            {
+              name: "ls",
+              description: "List sites",
+              options: globalLambdaOptions,
+            },
+            {
+              name: "rmall",
+              description: "Remove all sites in a region",
+              isDangerous: true,
+              options: globalLambdaOptions,
+            },
+            {
+              name: "rm",
+
+              description: "Remove a site",
+              args: {
+                name: "site-name",
+                description: "ID of your site",
+                suggestCurrentToken: true,
+              },
+              options: globalLambdaOptions,
+            },
+            {
+              name: "create",
+              description: "Create or update a site",
+
+              options: [
+                ...globalLambdaOptions,
+                {
+                  name: "--site-name",
+                  insertValue: "--site-name=",
+                  args: {
+                    name: "How the folder in S3 should be named.",
+                  },
+                },
+              ],
+              args: {
+                name: "entry",
+                template: ["filepaths"],
+              },
+            },
+          ],
+        },
+      ],
+      options: [...globalLambdaOptions],
+    },
+    {
       name: "render",
+
       priority: 60,
       description:
         "Render a video based on the entry point, the composition ID and save it to the output location",
@@ -15,6 +233,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "comp-id",
           description: "The composition ID",
+
           suggestions: [
             {
               type: "arg",
@@ -24,6 +243,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "output",
+
           template: ["filepaths"],
           suggestions: ["out.mp4"],
         },
