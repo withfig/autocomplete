@@ -9,26 +9,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--help", "-h"],
           description: "Show help and exit",
-          args: {
-            isOptional: true,
-          },
         },
         {
           name: "--verbose",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["--verbose"],
           isRepeatable: 4,
         },
@@ -83,26 +74,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--help", "-h"],
           description: "Show help and exit",
-          args: {
-            isOptional: true,
-          },
         },
         {
           name: "--verbose",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["--verbose"],
           isRepeatable: 4,
         },
@@ -110,9 +92,6 @@ const completionSpec: Fig.Spec = {
           name: ["--only-changed", "--changed-only"],
           description:
             "Only show configurations that have changed from the default",
-          args: {
-            isOptional: true,
-          },
         },
         {
           name: ["--config", "-c"],
@@ -164,26 +143,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--help", "-h"],
           description: "Show help and exit",
-          args: {
-            isOptional: true,
-          },
         },
         {
           name: "--verbose",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["--verbose"],
           isRepeatable: 4,
         },
@@ -237,26 +207,17 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--help", "-h"],
           description: "Show help and exit",
-          args: {
-            isOptional: true,
-          },
         },
         {
           name: "--verbose",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
           description:
             "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
-          args: {
-            isOptional: true,
-          },
           exclusiveOn: ["--verbose"],
           isRepeatable: 4,
         },
@@ -264,9 +225,6 @@ const completionSpec: Fig.Spec = {
           name: "--disabled",
           description:
             "Prefixes all entries with a comment character to disable them",
-          args: {
-            isOptional: true,
-          },
         },
         {
           name: ["--format", "-f"],
@@ -328,16 +286,10 @@ const completionSpec: Fig.Spec = {
       name: "--version",
       description:
         "Shows version number, config file location, module search path, module location, executable location and exit",
-      args: {
-        isOptional: true,
-      },
     },
     {
       name: ["--help", "-h"],
       description: "Show help and exit",
-      args: {
-        isOptional: true,
-      },
     },
   ],
 };
