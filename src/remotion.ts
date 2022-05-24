@@ -1,4 +1,125 @@
+const localRenderAndStillOptions: Fig.Option[] = [
+  {
+    name: "--env-file",
+    description: "Specify a location for a dotenv file",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
+    name: "--overwrite",
+    description: "Overwrite if file exists, default true",
+  },
+  {
+    name: "--browser-executable",
+    description: "Custom path for browser executable",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
+    name: "--ffmpeg-executable",
+    description: "Custom path for FFMPEG executable",
+    args: {
+      template: "filepaths",
+    },
+  },
+  {
+    name: "--bundle-cache",
+    description: "Cache webpack bundle, boolean, default true",
+  },
+  {
+    name: "--port",
+    description: "Custom port to use for the HTTP server",
+    args: {
+      name: "port",
+      default: "3333",
+    },
+  },
+  {
+    name: "--disable-headless",
+    description: "Run Chrome in normal mode rather than headless",
+  },
+  {
+    name: "--config",
+    description: "Custom location for a Remotion config file",
+    args: {
+      template: "filepaths",
+    },
+  },
+];
+
+const lambdaRenderAndStillOptions: Fig.Option[] = [
+  {
+    name: "--max-retries",
+    insertValue: "--max-retries=",
+    description:
+      "How many times a chunk can be retried before the render times out",
+    args: {
+      name: "numberOfRetries",
+    },
+  },
+  {
+    name: "--privacy",
+    insertValue: "--privacy=",
+    args: {
+      name: "privacy",
+      default: "public",
+      suggestions: ["public", "private"],
+    },
+  },
+  {
+    name: "--frames-per-lambda",
+    insertValue: "--frames-per-lambda=",
+    description: "How many frames should be rendered per chunk",
+    args: {
+      name: "framesPerLambda",
+    },
+  },
+];
+
+const localRenderOptions: Fig.Option[] = [
+  {
+    name: "--sequence",
+    description: "Output as an image sequence",
+  },
+  {
+    name: "--concurrency",
+    description: "How many frames to render in parallel",
+  },
+];
+
+const stillOptions: Fig.Option[] = [
+  {
+    name: "--frame",
+    description: "Which frame to render (default 0)",
+    args: { name: "frame", default: "0" },
+  },
+];
+
 const renderOptions: Fig.Option[] = [
+  {
+    name: "--gl",
+    insertValue: "--gl=",
+    description: "Which OpenGL renderer to use",
+    args: {
+      suggestions: ["angle", "egl", "swiftshader", "swangle"],
+    },
+  },
+  {
+    name: "--timeout",
+    insertValue: "--timeout=",
+    description:
+      "The time in milisecond that a delayRender() may take before it times out",
+  },
+  {
+    name: "--ignore-certificate-errors",
+    description: "Ignore SSL errors",
+  },
+  {
+    name: "--disable-web-security",
+    description: "Disable CORS and other web security features",
+  },
   {
     name: "--props",
     insertValue: "--props=",
@@ -20,6 +141,17 @@ const renderOptions: Fig.Option[] = [
     args: {
       default: "80",
       suggestions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((e) => ({
+        name: e.toString(),
+      })),
+    },
+  },
+  {
+    name: "--scale",
+    insertValue: "--scale=",
+    description: "Upscale or downscale or the dimensions of the video",
+    args: {
+      default: "1",
+      suggestions: [0.25, 0.5, 1, 1.5, 2, 4].map((e) => ({
         name: e.toString(),
       })),
     },
@@ -73,7 +205,7 @@ const renderOptions: Fig.Option[] = [
     },
   },
   {
-    name: "prores-profile",
+    name: "--prores-profile",
     insertValue: "--prores-profile=",
     description: "ProRes profile, need --codec=prores to be set",
     args: {
@@ -201,57 +333,141 @@ const completionSpec: Fig.Spec = {
   description: "Create videos programmatically in React",
   subcommands: [
     {
+      name: "versions",
+      description: "Prints and validates versions of all Remotion packages",
+    },
+    {
+      name: "compositions",
+      description: "Prints the list of available compositions",
+      args: {
+        name: "entry",
+        description: "The entry point of your Remotion app",
+        template: ["filepaths"],
+      },
+    },
+    {
       name: "lambda",
       description: "Access functionality of @remotion/lambda",
       subcommands: [
         {
+          name: "policies",
+          description: "Manage AWS policies",
+          subcommands: [
+            {
+              name: "role",
+              description: "Print policy to be added to the AWS role",
+            },
+            {
+              name: "user",
+              description: "Print policy to be added to the AWS user",
+            },
+            {
+              name: "validate",
+              description: "Validate the user policy was configured correctly",
+            },
+          ],
+        },
+        {
+          name: "quotas",
+          description: "Show current AWS quota",
+          options: globalLambdaOptions,
+          subcommands: [
+            {
+              name: "increase",
+              description:
+                "Send a request to AWS to increase concurrency quotas",
+              options: globalLambdaOptions,
+            },
+          ],
+        },
+        {
+          name: "regions",
+          description: "Prints list of supported regions",
+        },
+        {
           name: "render",
           description: "Render media on Lambda",
-
           args: [
             {
               name: "serve-url",
               description: "URL or name of the site",
+              suggestions: [
+                {
+                  type: "arg",
+                  displayName: "[serve-url]",
+                },
+              ],
             },
             {
               name: "composition-id",
               description: "Name of the composition",
+              suggestions: [
+                {
+                  type: "arg",
+                  displayName: "[serve-url]",
+                },
+              ],
+            },
+            {
+              name: "out-name",
+              description:
+                "Where the output should be downloaded. No download it omitted",
+              suggestions: [
+                {
+                  type: "arg",
+                  displayName: "[out-name]",
+                },
+              ],
+
+              isOptional: true,
+            },
+          ],
+          options: [
+            ...lambdaRenderAndStillOptions,
+            ...renderOptions,
+            ...globalLambdaOptions,
+          ],
+        },
+        {
+          name: "still",
+          description: "Render a still on Lambda",
+          args: [
+            {
+              name: "serve-url",
+              description: "URL or name of the site",
+              suggestions: [
+                {
+                  type: "arg",
+                  displayName: "[serve-url]",
+                },
+              ],
+            },
+            {
+              name: "composition-id",
+              description: "Name of the composition",
+              suggestions: [
+                {
+                  type: "arg",
+                  displayName: "[composition-id]",
+                },
+              ],
             },
             {
               name: "out-name",
               description:
                 "Where the output should be downloaded. No download it omitted",
               isOptional: true,
+              suggestions: [
+                {
+                  type: "arg",
+                  displayName: "[out-name]",
+                },
+              ],
             },
           ],
           options: [
-            {
-              name: "--max-retries",
-              insertValue: "--max-retries=",
-              description:
-                "How many times a chunk can be retried before the render times out",
-              args: {
-                name: "numberOfRetries",
-              },
-            },
-            {
-              name: "--privacy",
-              insertValue: "--privacy=",
-              args: {
-                name: "privacy",
-                default: "public",
-                suggestions: ["public", "private"],
-              },
-            },
-            {
-              name: "--frames-per-lambda",
-              insertValue: "--frames-per-lambda=",
-              description: "How many frames should be rendered per chunk",
-              args: {
-                name: "framesPerLambda",
-              },
-            },
-            ...renderOptions,
+            ...lambdaRenderAndStillOptions,
+            ...stillOptions,
             ...globalLambdaOptions,
           ],
         },
@@ -375,6 +591,12 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "entry",
                 template: ["filepaths"],
+                suggestions: [
+                  {
+                    type: "arg",
+                    displayName: "[entry-point]",
+                  },
+                ],
               },
             },
           ],
@@ -412,52 +634,9 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [
-        {
-          name: "--concurrency",
-          description: "How many frames to render in parallel",
-        },
-        {
-          name: "--config",
-          description: "Custom location for a Remotion config file",
-          args: {
-            template: "filepaths",
-          },
-        },
         ...renderOptions,
-        {
-          name: "--overwrite",
-          description: "Overwrite if file exists, default true",
-        },
-        {
-          name: "--sequence",
-          description: "Output as an image sequence",
-        },
-        {
-          name: "--browser-executable",
-          description: "Custom path for browser executable",
-          args: {
-            template: "filepaths",
-          },
-        },
-        {
-          name: "--bundle-cache",
-          description: "Cache webpack bundle, boolean, default true",
-        },
-        {
-          name: "--port",
-          description: "Custom port to use for the HTTP server",
-          args: {
-            name: "port",
-            default: "3333",
-          },
-        },
-        {
-          name: "--env-file",
-          description: "Specify a location for a dotenv file",
-          args: {
-            template: "filepaths",
-          },
-        },
+        ...localRenderOptions,
+        ...localRenderAndStillOptions,
       ],
     },
     {
@@ -486,88 +665,7 @@ const completionSpec: Fig.Spec = {
           suggestions: ["out.mp4"],
         },
       ],
-      options: [
-        {
-          name: "--frame",
-          description: "Which frame to render (default 0)",
-          args: { name: "frame", default: "0" },
-        },
-        {
-          name: "--image-format",
-          description: 'Format to render the frames in, "jpeg" or "png"',
-          args: {
-            template: ["filepaths"],
-          },
-        },
-        {
-          name: "--props",
-          description: "Pass input props as filename or as JSON",
-          args: {
-            template: ["filepaths"],
-            suggestions: [
-              {
-                type: "arg",
-                displayName: "[json string]",
-              },
-            ],
-          },
-        },
-        {
-          name: "--config",
-          description: "Custom location for a Remotion config file",
-          args: {
-            template: "filepaths",
-          },
-        },
-        {
-          name: "--quality",
-          description: "Quality for rendered frames, JPEG only, 0-100",
-          args: {
-            default: "80",
-          },
-        },
-        {
-          name: "--overwrite",
-          description: "Overwrite if file exists, default true",
-        },
-        {
-          name: "--browser-executable",
-          description: "Custom path for browser executable",
-          args: {
-            template: "filepaths",
-          },
-        },
-        {
-          name: "--bundle-cache",
-          description: "Cache webpack bundle, boolean, default true",
-        },
-        {
-          name: "--log",
-          description:
-            'Log level, "error", "warning", "verbose", "info" (default)',
-          args: {
-            default: "info",
-            suggestions: [
-              { name: "error" },
-              { name: "warning" },
-              { name: "verbose" },
-              { name: "info" },
-            ],
-          },
-        },
-        {
-          name: "--port",
-          description: "Custom port to use for the HTTP server",
-          args: {
-            name: "port",
-            default: "3333",
-          },
-        },
-        {
-          name: "--env-file",
-          description: "Specify a location for a dotenv file",
-        },
-      ],
+      options: [...stillOptions, ...localRenderAndStillOptions],
     },
     {
       name: "preview",
