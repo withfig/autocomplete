@@ -1,3 +1,118 @@
+const renderOptions: Fig.Option[] = [
+  {
+    name: "--props",
+    insertValue: "--props=",
+    description: "Pass input props as filename or as JSON",
+    args: {
+      template: ["filepaths"],
+      suggestions: [
+        {
+          type: "arg",
+          displayName: "[json string]",
+        },
+      ],
+    },
+  },
+  {
+    name: "--quality",
+    insertValue: "--quality=",
+    description: "Quality for rendered frames, JPEG only, 0-100",
+    args: {
+      default: "80",
+      suggestions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((e) => ({
+        name: e.toString(),
+      })),
+    },
+  },
+  {
+    name: "--codec",
+    insertValue: "--codec=",
+    description: "Video of audio codec",
+    args: {
+      default: "h264",
+      suggestions: [
+        { name: "h264" },
+        { name: "h265" },
+        { name: "png" },
+        { name: "vp8" },
+        { name: "vp9" },
+        { name: "mp3" },
+        { name: "aac" },
+        { name: "wav" },
+        { name: "prores" },
+        { name: "h264-mkv" },
+      ],
+    },
+  },
+  {
+    name: "--crf",
+    insertValue: "--crf=",
+    description: "FFMPEG CRF value, controls quality, see docs for info",
+  },
+  {
+    name: "--frames",
+    insertValue: "--frames=",
+
+    description: "Render a portion or a still of a video, 0-9, 50",
+    args: {
+      name: "frames",
+    },
+  },
+  {
+    name: "--log",
+    insertValue: "--log=",
+    description: 'Log level, "error", "warning", "verbose", "info" (default)',
+    args: {
+      default: "info",
+      suggestions: [
+        { name: "error" },
+        { name: "warning" },
+        { name: "verbose" },
+        { name: "info" },
+      ],
+    },
+  },
+  {
+    name: "prores-profile",
+    insertValue: "--prores-profile=",
+    description: "ProRes profile, need --codec=prores to be set",
+    args: {
+      suggestions: ["4444-xq", "4444", "hq", "standard", "light", "proxy"],
+    },
+  },
+  {
+    name: "--image-format",
+    insertValue: "--image-format=",
+    description: 'Format to render the frames in, "jpeg" or "png"',
+    args: {
+      suggestions: [
+        {
+          name: "jpeg",
+        },
+        {
+          name: "png",
+        },
+      ],
+    },
+  },
+  {
+    name: "--pixel-format",
+    insertValue: "--pixel-format=",
+    description: "Custom pixel format, see docs for available values",
+    args: {
+      suggestions: [
+        { name: "yuv420p" },
+        { name: "yuv422p" },
+        { name: "yuv444p" },
+        { name: "yuv420p10le" },
+        { name: "yuv422p10le" },
+        { name: "yuv444p10le" },
+        { name: "yuva420p" },
+      ],
+    },
+  },
+];
+
 const globalLambdaOptions: Fig.Option[] = [
   {
     name: "--quiet",
@@ -87,12 +202,61 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "lambda",
-
       description: "Access functionality of @remotion/lambda",
       subcommands: [
         {
-          name: "functions",
+          name: "render",
+          description: "Render media on Lambda",
 
+          args: [
+            {
+              name: "serve-url",
+              description: "URL or name of the site",
+            },
+            {
+              name: "composition-id",
+              description: "Name of the composition",
+            },
+            {
+              name: "out-name",
+              description:
+                "Where the output should be downloaded. No download it omitted",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: "--max-retries",
+              insertValue: "--max-retries=",
+              description:
+                "How many times a chunk can be retried before the render times out",
+              args: {
+                name: "numberOfRetries",
+              },
+            },
+            {
+              name: "--privacy",
+              insertValue: "--privacy=",
+              args: {
+                name: "privacy",
+                default: "public",
+                suggestions: ["public", "private"],
+              },
+            },
+            {
+              name: "--frames-per-lambda",
+              insertValue: "--frames-per-lambda=",
+              description: "How many frames should be rendered per chunk",
+              args: {
+                name: "framesPerLambda",
+              },
+            },
+            ...renderOptions,
+            ...globalLambdaOptions,
+          ],
+        },
+        {
+          name: "functions",
           description: "Manage functions on AWS Lambda",
           subcommands: [
             {
@@ -156,7 +320,6 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "rm",
-
               description: "Remove a function",
               args: {
                 name: "function-name",
@@ -250,50 +413,8 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: "--props",
-          description: "Pass input props as filename or as JSON",
-          args: {
-            template: ["filepaths"],
-            suggestions: [
-              {
-                type: "arg",
-                displayName: "[json string]",
-              },
-            ],
-          },
-        },
-        {
           name: "--concurrency",
           description: "How many frames to render in parallel",
-        },
-        {
-          name: "--image-format",
-          description: 'Format to render the frames in, "jpeg" or "png"',
-          args: {
-            suggestions: [
-              {
-                name: "jpeg",
-              },
-              {
-                name: "png",
-              },
-            ],
-          },
-        },
-        {
-          name: "--pixel-format",
-          description: "Custom pixel format, see docs for available values",
-          args: {
-            suggestions: [
-              { name: "yuv420p" },
-              { name: "yuv422p" },
-              { name: "yuv444p" },
-              { name: "yuv420p10le" },
-              { name: "yuv422p10le" },
-              { name: "yuv444p10le" },
-              { name: "yuva420p" },
-            ],
-          },
         },
         {
           name: "--config",
@@ -302,18 +423,7 @@ const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
         },
-        {
-          name: "--quality",
-          description: "Quality for rendered frames, JPEG only, 0-100",
-          args: {
-            default: "80",
-            suggestions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(
-              (e) => ({
-                name: e.toString(),
-              })
-            ),
-          },
-        },
+        ...renderOptions,
         {
           name: "--overwrite",
           description: "Overwrite if file exists, default true",
@@ -323,29 +433,6 @@ const completionSpec: Fig.Spec = {
           description: "Output as an image sequence",
         },
         {
-          name: "--codec",
-          description: "Video of audio codec",
-          args: {
-            default: "h264",
-            suggestions: [
-              { name: "h264" },
-              { name: "h265" },
-              { name: "png" },
-              { name: "vp8" },
-              { name: "vp9" },
-              { name: "mp3" },
-              { name: "aac" },
-              { name: "wav" },
-              { name: "prores" },
-              { name: "h264-mkv" },
-            ],
-          },
-        },
-        {
-          name: "--crf",
-          description: "FFMPEG CRF value, controls quality, see docs for info",
-        },
-        {
           name: "--browser-executable",
           description: "Custom path for browser executable",
           args: {
@@ -353,29 +440,8 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--frames",
-          description: "Render a portion or a still of a video, 0-9, 50",
-          args: {
-            name: "frames",
-          },
-        },
-        {
           name: "--bundle-cache",
           description: "Cache webpack bundle, boolean, default true",
-        },
-        {
-          name: "--log",
-          description:
-            'Log level, "error", "warning", "verbose", "info" (default)',
-          args: {
-            default: "info",
-            suggestions: [
-              { name: "error" },
-              { name: "warning" },
-              { name: "verbose" },
-              { name: "info" },
-            ],
-          },
         },
         {
           name: "--port",
