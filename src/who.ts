@@ -7,9 +7,15 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "am",
-      insertValue: "am I",
+      description: "Returns the invoker's real user name",
+      insertValue: "am I{cursor}",
       displayName: "am I",
-      subcommands: [{ name: "I" }],
+      subcommands: [
+        {
+          name: "I",
+          description: "Returns the invoker's real user name",
+        },
+      ],
       priority: 40,
     },
   ],
