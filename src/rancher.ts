@@ -33,6 +33,7 @@ const generalOptions: Fig.Option[] = [
     description: "Output format: 'json', 'yaml' or custom format",
     args: {
       name: "format",
+      suggestions: ["json", "yaml"],
     },
   },
   {
