@@ -187,7 +187,7 @@ const completionSpec: Fig.Spec = {
           description: "Show contents of apps notes.txt",
         },
       ],
-      options: [...generalOptions],
+      options: generalOptions,
     },
     {
       name: "catalog",
