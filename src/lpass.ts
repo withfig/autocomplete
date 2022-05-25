@@ -1,8 +1,6 @@
-import { deserialize } from "v8";
-
 const completionSpec: Fig.Spec = {
   name: "lpass",
-  description: "",
+  description: "Command line interface for LastPass",
   subcommands: [
     {
       name: "login",
@@ -272,11 +270,11 @@ const completionSpec: Fig.Spec = {
             default: "auto",
           },
         },
-        {
-          name: ["UNIQENAME", "UNIQUEID"],
-          description: "Shows entry with this unique name or ID",
-        },
       ],
+      args: {
+        name: "UNIQENAME|UNIQUEID",
+        description: "Shows entry with this unique name or ID",
+      },
     },
     {
       name: "mv",
