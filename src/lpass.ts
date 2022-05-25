@@ -53,7 +53,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--color",
           description: "Control colored output to the terminal",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "color",
             suggestions: ["auto", "never", "always"],
@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -309,7 +309,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -438,7 +438,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -533,7 +533,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -595,7 +595,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -626,7 +626,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -697,7 +697,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
@@ -722,7 +722,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--sync",
           description: "When the current operation syncs to server",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "sync",
             suggestions: ["auto", "now", "no"],
