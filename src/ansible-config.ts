@@ -12,16 +12,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--verbose",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["--verbose"],
-          isRepeatable: 4,
         },
         {
           name: ["--config", "-c"],
@@ -77,16 +74,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--verbose",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["--verbose"],
-          isRepeatable: 4,
         },
         {
           name: ["--only-changed", "--changed-only"],
@@ -146,16 +140,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--verbose",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["--verbose"],
-          isRepeatable: 4,
         },
         {
           name: ["--config", "-c"],
@@ -210,16 +201,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--verbose",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["-v"],
         },
         {
           name: "-v",
-          description:
-            "Verbose mode (-vvv for more, -vvvv to enable connection debugging)",
+          description: "Verbose mode",
           exclusiveOn: ["--verbose"],
-          isRepeatable: 4,
         },
         {
           name: "--disabled",
