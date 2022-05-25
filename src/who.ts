@@ -8,12 +8,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "am",
       description: "Returns the invoker's real user name",
-      insertValue: "am I{cursor}",
-      displayName: "am I",
-      subcommands: [
+      additionalSuggestions: [
         {
-          name: "I",
-          description: "Returns the invoker's real user name",
+          name: "am I",
+          insertValue: "I{cursor}",
+          icon: "fig://icon?type=command",
         },
       ],
       priority: 40,
