@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const serverList: Fig.Generator = {
   script: "rancher server ls",
   postProcess: function (out) {
@@ -89,7 +91,7 @@ const completionSpec: Fig.Spec = {
                 "Path to an answers file, the format of the file is a map with key:value. This supports JSON and YAML",
               args: {
                 name: "answers-file-path",
-                template: "filepaths",
+                generators: filepaths({ extensions: ["json", "yaml"] }),
               },
             },
             {
