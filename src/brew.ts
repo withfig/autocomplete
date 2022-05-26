@@ -12,6 +12,13 @@ const servicesGenerator = (action: string): Fig.Generator => ({
   },
 });
 
+const repositoriesGenerator = (): Fig.Generator => ({
+  script: "brew tap",
+  postProcess: (out) => {
+    return out.split("\n").map((line) => ({ name: line }));
+  },
+});
+
 const formulaeGenerator: Fig.Generator = {
   script: "brew list -1",
   postProcess: function (out) {
@@ -735,6 +742,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         isVariadic: true,
+        isOptional: true,
         name: "outdated_formula|outdated_cask",
         generators: outdatedformulaeGenerator,
       },
@@ -804,7 +812,6 @@ const completionSpec: Fig.Spec = {
           name: ["-v", "--verbose"],
           description: "Make some output more verbose",
         },
-
         {
           name: ["-q", "--quiet"],
           description: "Make some output more quiet",
@@ -872,7 +879,6 @@ const completionSpec: Fig.Spec = {
             suggestions: ["gcc-7", "llvm_clang", "clang"],
           },
         },
-
         {
           name: "--force-bottle",
           description:
@@ -1079,7 +1085,6 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
-        isOptional: false,
         generators: {
           script:
             "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
@@ -1100,6 +1105,96 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "reinstall",
+      description:
+        "Uninstall and then reinstall a formula or cask using the same options it was originally installed with, plus any appended options specific to a formula",
+      options: [
+        {
+          name: ["-d", "--debug"],
+          description:
+            "If brewing fails, open an interactive debugging session with access to IRB or a shell inside the temporary build directory",
+        },
+        {
+          name: ["-f", "--force"],
+          description:
+            "Install formulae without checking for previously installed keg-only or non-migrated versions. When installing casks",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Print the verification and postinstall steps",
+        },
+        {
+          name: ["-s", "--build-from-source"],
+          description:
+            "Compile formula from source even if a bottle is provided. Dependencies will still be installed from bottles if they are available",
+        },
+        {
+          name: ["-i", "--interactive"],
+          description: "Download and patch formula",
+        },
+        { name: ["-g", "--git"], description: "Create a Git repository" },
+        {
+          name: "--formula,",
+          description: "Treat all named arguments as formulae",
+        },
+        {
+          name: "--force-bottle",
+          description:
+            "Install from a bottle if it exists for the current or newest version of macOS, even if it would not normally be used for installation",
+        },
+        {
+          name: "--keep-tmp",
+          description: "Retain the temporary files created during installation",
+        },
+        {
+          name: "--display-times",
+          description:
+            "Print install times for each formula at the end of the run",
+        },
+        {
+          name: "--cask",
+          description: "--casks Treat all named arguments as casks",
+        },
+        {
+          name: "--binaries",
+          description:
+            "Disable/enable linking of helper executables (default: enabled)",
+          exclusiveOn: ["--no-binaries"],
+        },
+        {
+          name: "--no-binaries",
+          description:
+            "Disable/enable linking of helper executables (default: enabled)",
+          exclusiveOn: ["--binaries"],
+        },
+        {
+          name: "--require-sha",
+          description: "Require all casks to have a checksum",
+        },
+        {
+          name: "--quarantine",
+          description:
+            "Disable/enable quarantining of downloads (default: enabled)",
+          exclusiveOn: ["--no-quarantine"],
+        },
+        {
+          name: "--no-quarantine",
+          description:
+            "Disable/enable quarantining of downloads (default: enabled)",
+          exclusiveOn: ["--quarantine"],
+        },
+        {
+          name: "--skip-cask-deps",
+          description: "Skip installing cask dependencies",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        name: "formula",
+        generators: formulaeGenerator,
+      },
+    },
+    {
       name: "uninstall",
       description: "Uninstall <formula>",
       args: {
@@ -1115,7 +1210,6 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "install",
-
           description: "Installs the given cask",
           args: {
             name: "cask",
@@ -1148,7 +1242,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             isVariadic: true,
-            isOptional: false,
+
             generators: {
               script: "brew list -1 --cask",
               postProcess: function (out) {
@@ -1224,12 +1318,10 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "cleanup",
-
           description: "Remove all unused services",
         },
         {
           name: "list",
-
           description: "List all services",
         },
         {
@@ -1264,7 +1356,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "stop",
-
           description:
             "Stop the service formula immediately and unregister it from launching at",
           options: [
@@ -1280,7 +1371,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "restart",
-
           description:
             "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot)",
           options: [
@@ -1357,6 +1447,37 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "user/repo or URL",
       },
+    },
+    {
+      name: "untap",
+      description: "Remove a tapped formula repository",
+      args: {
+        name: "repository",
+        generators: repositoriesGenerator(),
+      },
+      options: [
+        {
+          name: ["-f", "--force"],
+          description:
+            "Untap even if formulae or casks from this tap are currently installed",
+        },
+        {
+          name: ["-d", "--debug"],
+          description: "Display any debugging information",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Make some output more quiet",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Make some output more verbose",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Show help message",
+        },
+      ],
     },
     {
       name: "link",

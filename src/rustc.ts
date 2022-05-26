@@ -18,7 +18,6 @@ const completionSpec: Fig.Spec = {
         description: `Ex: verbose' or 'feature="serde"'`,
       },
     },
-
     {
       name: "-L",
       description: "Adds a directory to the library search path",

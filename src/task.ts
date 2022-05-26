@@ -786,7 +786,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Task",
         description: "The task to delete",
-        isOptional: false,
         isVariadic: true,
         generators: modifications,
       },
@@ -830,7 +829,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Task",
         description: "The task to edit",
-        isOptional: false,
         generators: listTasks,
       },
     },
@@ -913,7 +911,6 @@ const completionSpec: Fig.Spec = {
           description: "Deletes the context with the name",
           args: {
             name: "name",
-            isOptional: false,
             isVariadic: true,
           },
         },
@@ -924,7 +921,6 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "name",
-              isOptional: false,
               isVariadic: true,
             },
             {
@@ -953,7 +949,6 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "name",
-        isOptional: false,
         isVariadic: true,
       },
     },

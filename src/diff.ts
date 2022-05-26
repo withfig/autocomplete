@@ -139,7 +139,6 @@ const completionSpec: Fig.Spec = {
       description: "Output merged file to show `#ifdef NAME' diffs",
       args: { name: "NAME" },
     },
-
     {
       name: ["-l", "--paginate"],
       description: "Pass the output through `pr' to paginate it",

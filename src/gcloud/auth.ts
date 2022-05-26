@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "activate-refresh-token",
       description: "Get credentials via an existing refresh token",
-
       options: [
         {
           name: "--account",
@@ -138,12 +137,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "ACCOUNT",
           description: "The account to associate with the refresh token",
-          isVariadic: false,
         },
         {
           name: "TOKEN",
           description: "OAuth2 refresh token. If blank, prompt for value",
-          isVariadic: false,
         },
       ],
     },
@@ -151,7 +148,6 @@ const completionSpec: Fig.Spec = {
       name: "activate-service-account",
       description:
         "Authorize access to Google Cloud Platform with a service account",
-
       options: [
         {
           name: "--account",
@@ -308,7 +304,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNT",
         description: "E-mail address of the service account",
-        isVariadic: false,
       },
     },
     {
@@ -319,7 +314,6 @@ const completionSpec: Fig.Spec = {
           name: "login",
           description:
             "Acquire new user credentials to use for Application Default Credentials",
-
           options: [
             {
               name: "--account",
@@ -488,7 +482,6 @@ const completionSpec: Fig.Spec = {
           name: "print-access-token",
           description:
             "Print an access token for your current Application Default Credentials",
-
           options: [
             {
               name: "--account",
@@ -622,7 +615,6 @@ const completionSpec: Fig.Spec = {
           name: "revoke",
           description:
             "Revoke previously generated Application Default Credentials",
-
           options: [
             {
               name: "--account",
@@ -756,7 +748,6 @@ const completionSpec: Fig.Spec = {
           name: "set-quota-project",
           description:
             "Update or add a quota project in application default credentials (ADC)",
-
           options: [
             {
               name: "--account",
@@ -889,7 +880,6 @@ const completionSpec: Fig.Spec = {
             name: "QUOTA_PROJECT_ID",
             description:
               "Quota project ID to add to application default credentials. If a quota project already exists, it will be updated",
-            isVariadic: false,
           },
         },
       ],
@@ -1025,7 +1015,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "configure-docker",
       description: "Register `gcloud` as a Docker credential helper",
-
       options: [
         {
           name: "--account",
@@ -1158,13 +1147,11 @@ const completionSpec: Fig.Spec = {
         name: "REGISTRIES",
         description:
           "The comma-separated list of registries to configure the credential helper for",
-        isVariadic: false,
       },
     },
     {
       name: "describe",
       description: "Describes credentials",
-
       options: [
         {
           name: "--account",
@@ -1296,14 +1283,12 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNT_NAME",
         description: "Name of the account to describe",
-        isVariadic: false,
       },
     },
     {
       name: "docker-helper",
       description:
         "A Docker credential helper to provide access to GCR repositories",
-
       options: [
         {
           name: "--account",
@@ -1435,14 +1420,12 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "METHOD",
         description: "The docker credential helper method",
-        isVariadic: false,
       },
     },
     {
       name: "git-helper",
       description:
         "A git credential helper to provide access to Google git repositories",
-
       options: [
         {
           name: "--account",
@@ -1579,13 +1562,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "METHOD",
         description: "The git credential helper method",
-        isVariadic: false,
       },
     },
     {
       name: "list",
       description: "Lists credentialed accounts",
-
       options: [
         {
           name: "--account",
@@ -1769,7 +1750,6 @@ const completionSpec: Fig.Spec = {
       name: "login",
       description:
         "Authorize gcloud to access the Cloud Platform with Google user credentials",
-
       options: [
         {
           name: "--account",
@@ -1929,13 +1909,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNT",
         description: "User account used for authorization",
-        isVariadic: false,
       },
     },
     {
       name: "print-access-token",
       description: "Print an access token for the specified account",
-
       options: [
         {
           name: "--account",
@@ -2068,13 +2046,11 @@ const completionSpec: Fig.Spec = {
         name: "ACCOUNT",
         description:
           "Account to get the access token for. If not specified, the current active account will be used",
-        isVariadic: false,
       },
     },
     {
       name: "print-identity-token",
       description: "Print an identity token for the specified account",
-
       options: [
         {
           name: "--account",
@@ -2237,14 +2213,12 @@ const completionSpec: Fig.Spec = {
         name: "ACCOUNT",
         description:
           "Account to print the identity token for. If not specified, the current active account will be used",
-        isVariadic: false,
       },
     },
     {
       name: "print-refresh-token",
       description:
         "A command that prints the refresh token for the current account",
-
       options: [
         {
           name: "--account",
@@ -2377,13 +2351,11 @@ const completionSpec: Fig.Spec = {
         name: "ACCOUNT",
         description:
           "The account to get the refresh token for. Leave empty for the active account",
-        isVariadic: false,
       },
     },
     {
       name: "revoke",
       description: "Revoke access credentials for an account",
-
       options: [
         {
           name: "--account",
@@ -2519,7 +2491,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "ACCOUNTS",
         description: "Accounts whose credentials are to be revoked",
-        isVariadic: false,
       },
     },
   ],

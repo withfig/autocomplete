@@ -20,7 +20,8 @@ const versionGenerator: Fig.Generator = {
   },
 };
 
-const NODE_VERSION_REGEX = /v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?: \((?<ltsName>\w+)\))?/iu;
+const NODE_VERSION_REGEX =
+  /v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?: \((?<ltsName>\w+)\))?/iu;
 const parseNodejsVersion = (raw: string): NodejsVersion => {
   const { major, minor, patch, ltsName } =
     NODE_VERSION_REGEX.exec(raw)?.groups ?? {};
@@ -56,8 +57,9 @@ const remoteVersionGenerator: Fig.Generator = {
       .map(parseNodejsVersion);
 
     // The last even major release, that's to say the last LTS.
-    const lastLtsMajor = parsed.find((version) => version.major % 2 === 0)
-      .major;
+    const lastLtsMajor = parsed.find(
+      (version) => version.major % 2 === 0
+    ).major;
     const latests = new Map<number, NodejsVersion>();
 
     const nodeVersion = parsed
@@ -227,7 +229,7 @@ const completionSpec: Fig.Spec = {
           name: "--using",
           description:
             "Either an explicit version, or a filename with the version written in it",
-          args: { ...version, isOptional: false },
+          args: { ...version },
         },
         lts,
         ...baseOptions,

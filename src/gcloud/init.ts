@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "init",
   description: "Initialize or reinitialize gcloud",
-
   options: [
     {
       name: "--account",
@@ -135,7 +134,6 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "OBSOLETE_PROJECT_ARG",
     description: "THIS ARGUMENT NEEDS HELP TEXT",
-    isVariadic: false,
   },
 };
 

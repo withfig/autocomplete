@@ -3034,10 +3034,9 @@ const completionSpec: Fig.Spec = {
             "The number of instantiations of the specified task to place on your cluster. You can specify up to 10 tasks per call",
           args: {
             name: "integer",
-            suggestions: Array.from(
-              { length: 10 },
-              (_, i) => i + 1
-            ).map((number) => number.toString()),
+            suggestions: Array.from({ length: 10 }, (_, i) => i + 1).map(
+              (number) => number.toString()
+            ),
           },
         },
         {

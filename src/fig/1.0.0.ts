@@ -1,10 +1,11 @@
 import {
-  edit,
   settingsSpecGenerator,
   subsystemsGenerator,
   themesGenerator,
+  pluginsGenerator,
 } from "./shared";
-const completion: Fig.Spec = {
+
+const completion: Fig.Subcommand = {
   name: "fig",
   description: "The CLI for Fig",
   subcommands: [
@@ -56,7 +57,7 @@ const completion: Fig.Spec = {
         },
         {
           name: "launch",
-          description: "Launch th Fig desktop app",
+          description: "Launch the Fig desktop app",
           options: [
             {
               name: "--version",
@@ -550,6 +551,43 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "shell-integrations",
+          description: "Toggle shell integrations",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "mode",
+            isOptional: true,
+            suggestions: ["on", "off"],
+          },
+        },
+        {
+          name: "accessibility",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "action",
+            isOptional: true,
+            suggestions: ["refresh", "reset", "prompt", "open", "status"],
+          },
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -623,6 +661,20 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "sync",
+          description: "Sync the current settings",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -645,7 +697,7 @@ const completion: Fig.Spec = {
       options: [
         {
           name: ["-d", "--delete"],
-          description: "Delete the state",
+          description: "Delete",
         },
         {
           name: ["-h", "--help"],
@@ -755,7 +807,7 @@ const completion: Fig.Spec = {
     },
     {
       name: "install",
-      description: "Install fig cli comoponents",
+      description: "Install fig cli components",
       options: [
         {
           name: "--daemon",
@@ -1033,7 +1085,7 @@ const completion: Fig.Spec = {
       },
     },
     {
-      name: "internal",
+      name: ["internal", "_"],
       description: "Internal subcommands used for Fig",
       hidden: true,
       subcommands: [
@@ -1209,6 +1261,60 @@ const completion: Fig.Spec = {
           ],
         },
         {
+          name: "animation",
+          options: [
+            {
+              name: ["-f", "--filename"],
+              args: {
+                name: "filename",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-r", "--rate"],
+              args: {
+                name: "rate",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-b", "--before-text"],
+              args: {
+                name: "before-text",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-a", "--after-text"],
+              args: {
+                name: "after-text",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "get-shell",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
           name: "help",
           description:
             "Print this message or the help of the given subcommand(s)",
@@ -1264,6 +1370,20 @@ const completion: Fig.Spec = {
           description: "Print help information",
         },
       ],
+      args: {
+        name: "process",
+        isOptional: true,
+        suggestions: [
+          {
+            name: "daemon",
+            description: "Daemon process",
+          },
+          {
+            name: "app",
+            description: "Fig process",
+          },
+        ],
+      },
     },
     {
       name: "alpha",
@@ -1287,8 +1407,150 @@ const completion: Fig.Spec = {
       ],
     },
     {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "sync",
+          description:
+            "Sync the current plugins (this will not update plugins that are already installed)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update the installed plugins",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "add",
+          description: "Install a specific plugin from the plugin store",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+            generators: pluginsGenerator({ installed: false }),
+          },
+        },
+        {
+          name: "remove",
+          description: "Uninstall a specific plugin",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "plugin",
+            generators: pluginsGenerator({ installed: true }),
+          },
+        },
+        {
+          name: "list",
+          description: "List all plugins available in the plugin store",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "The output format",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-i", "--installed"],
+              description: "Only list plugins that are installed",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
       name: "app:running",
       description: "(LEGACY) Old hook that was being used somewhere",
+      hidden: true,
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "bg:ssh",
+      description: "(LEGACY) Old ssh hook that might be in ~/.ssh/config",
       hidden: true,
       options: [
         {
@@ -1317,21 +1579,826 @@ const completion: Fig.Spec = {
     },
   ],
 };
-export default completion;
-// Automatic merge overrides these properties - will be fixed in an update to
-// the clap integration. Until then, the modifications are hardcoded.
-edit(completion.subcommands, {
-  internal: {
-    name: ["internal", "_"],
-    description: "Internal plumbing commands",
-  },
-  debug: (debug) =>
-    edit(debug.subcommands, {
-      logs: (logs) =>
-        edit(logs.args, {
-          files: {
-            isVariadic: true,
+
+const versions: Fig.VersionDiffMap = {};
+
+versions["1.3.0"] = {};
+
+versions["1.3.1"] = {
+  subcommands: [
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "shell-integrations",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "settings",
+      subcommands: [
+        {
+          name: "all",
+          description: "List all the settings",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format of the output",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-r", "--remote"],
+              description: "List the remote settings",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-f", "--format"],
+          description: "Format of the output",
+          args: {
+            name: "format",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
           },
-        }),
-    }),
-});
+        },
+        {
+          name: ["-d", "--delete"],
+          description: "Delete a value",
+        },
+      ],
+    },
+    {
+      name: "install",
+      options: [
+        {
+          name: "--daemon",
+          exclusiveOn: ["--input-method"],
+        },
+        {
+          name: "--dotfiles",
+          exclusiveOn: ["--input-method"],
+        },
+        {
+          name: "--input-method",
+          description: "Prompt input method installation",
+          exclusiveOn: ["--daemon", "--dotfiles"],
+        },
+        {
+          name: "--ssh",
+          description: "Install only the ssh integration",
+        },
+      ],
+    },
+    {
+      name: "ssh",
+      description: "Enable/disable fig SSH integration",
+      subcommands: [
+        {
+          name: "enable",
+          description: "Enable ssh integration",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          description: "Disable ssh integration",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+    },
+    {
+      name: "diagnostic",
+      options: [
+        {
+          name: ["-f", "--format"],
+          args: {
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      name: "init",
+      options: [
+        {
+          name: "--rcfile",
+          args: {
+            name: "rcfile",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "local-state",
+          subcommands: [
+            {
+              name: "all",
+              description: "List all the settings",
+              options: [
+                {
+                  name: ["-f", "--format"],
+                  args: {
+                    name: "format",
+                    isOptional: true,
+                    suggestions: [
+                      {
+                        name: "plain",
+                        description: "Outputs the results as markdown",
+                      },
+                      {
+                        name: "json",
+                        description: "Outputs the results as JSON",
+                      },
+                      {
+                        name: "json-pretty",
+                        description: "Outputs the results as pretty print JSON",
+                      },
+                    ],
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format of the output",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          options: [
+            {
+              name: "--daemon",
+              exclusiveOn: ["--input-method"],
+            },
+            {
+              name: "--dotfiles",
+              exclusiveOn: ["--input-method"],
+            },
+            {
+              name: "--input-method",
+              description: "Prompt input method installation",
+              exclusiveOn: ["--daemon", "--dotfiles"],
+            },
+            {
+              name: "--ssh",
+              description: "Install only the ssh integration",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: "--ssh",
+              description: "Uninstall only the ssh integration",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "list",
+          options: [
+            {
+              name: ["-f", "--format"],
+              args: {
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "man",
+      description: "Open manual page",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "command",
+        isOptional: true,
+      },
+    },
+  ],
+};
+
+versions["1.4.0"] = {
+  subcommands: [
+    {
+      name: "app",
+      subcommands: [
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: "--user-data",
+              description: "Remove configuration and data files",
+            },
+            {
+              name: "--app-bundle",
+              description: "Remove executable and",
+            },
+            {
+              name: "--input-method",
+              description: "Remove input method",
+            },
+            {
+              name: "--terminal-integrations",
+              description:
+                "Remove terminal integrations (i.e. VSCode, iTerm2, etc.)",
+            },
+            {
+              name: "--daemon",
+              description: "Remove Fig daemon",
+            },
+            {
+              name: "--dotfiles",
+              description: "Remove dotfile shell integration",
+            },
+            {
+              name: "--ssh",
+              description: "Remove SSH integration",
+            },
+            {
+              name: "--no-open",
+              description: "Do not open the uninstallation page",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "dotfiles",
+          description: "Debug dotfiles",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: "--disable",
+              description: "Disable debug mode",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          description: "Login to Fig",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-r", "--refresh"],
+              description: "Manually refresh the auth token",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "logout",
+          description: "Logout of Fig",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "whoami",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Output format to use",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-e", "--only-email"],
+              description:
+                "Only print the user's email address, this is quicker since it doesn't require a network request",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "new",
+              options: [
+                {
+                  name: "--expires-date",
+                  description:
+                    "The expiration date of the token in RFC3339 format",
+                  exclusiveOn: ["--expires-in"],
+                  args: {
+                    name: "expires-date",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: "--expires-in",
+                  description: 'The time till the token expires (e.g. "90d")',
+                  exclusiveOn: ["--expires-date"],
+                  args: {
+                    name: "expires-in",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: ["-t", "--team"],
+                  description: "The team namespace to create the token for",
+                  args: {
+                    name: "team",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+              ],
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  description: "The team namespace to list the tokens for",
+                  exclusiveOn: ["-p", "--personal"],
+                  args: {
+                    name: "team",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: ["-f", "--format"],
+                  args: {
+                    name: "format",
+                    isOptional: true,
+                    suggestions: [
+                      {
+                        name: "plain",
+                        description: "Outputs the results as markdown",
+                      },
+                      {
+                        name: "json",
+                        description: "Outputs the results as JSON",
+                      },
+                      {
+                        name: "json-pretty",
+                        description: "Outputs the results as pretty print JSON",
+                      },
+                    ],
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-p", "--personal"],
+                  description: "Only list tokens owned by the current user",
+                  exclusiveOn: ["-t", "--team"],
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  description: "The team namespace to revoke the token for",
+                  args: {
+                    name: "team",
+                    isOptional: true,
+                  },
+                },
+                {
+                  name: "--help",
+                  description: "Print help information",
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+              ],
+              args: {
+                name: "name",
+              },
+            },
+          ],
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          description: "List all members on a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Remove a member from a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "add",
+          description: "Invite a member to a team",
+          options: [
+            {
+              name: "--role",
+              args: {
+                name: "role",
+                isOptional: true,
+                suggestions: ["owner", "admin", "member"],
+              },
+            },
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "invitations",
+          description: "List pending invitations to a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          description: "Revoke an invitation to a team",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "help",
+          description:
+            "Print this message or the help of the given subcommand(s)",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "subcommand",
+            isOptional: true,
+          },
+        },
+      ],
+      options: [
+        {
+          name: ["-f", "--format"],
+          args: {
+            name: "format",
+            isOptional: true,
+            suggestions: [
+              {
+                name: "plain",
+                description: "Outputs the results as markdown",
+              },
+              {
+                name: "json",
+                description: "Outputs the results as JSON",
+              },
+              {
+                name: "json-pretty",
+                description: "Outputs the results as pretty print JSON",
+              },
+            ],
+          },
+        },
+        {
+          name: "--list",
+          exclusiveOn: ["--new", "--delete"],
+        },
+        {
+          name: "--new",
+          exclusiveOn: ["--list", "--delete"],
+        },
+        {
+          name: "--delete",
+          exclusiveOn: ["--list", "--new"],
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "team",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "hostname",
+          options: [
+            {
+              name: "--version",
+              description: "Print version information",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export { versions };
+export default completion;

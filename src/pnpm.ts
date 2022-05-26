@@ -856,11 +856,12 @@ const completionSpec: Fig.Spec = {
     generators: npmScriptsGenerator,
     isVariadic: true,
   },
-  generateSpec: async (_tokens, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
     const packages = postProcess(
-      await executeShellCommand(script as string)
+      await executeShellCommand(script as string),
+      tokens
     ).map(({ name }) => name as string);
 
     const subcommands = packages

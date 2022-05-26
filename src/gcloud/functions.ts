@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add an IAM policy binding for a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -169,13 +168,11 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
       name: "call",
       description: "Trigger execution of a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -328,13 +325,11 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
       name: "delete",
       description: "Delete a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -477,13 +472,11 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
       name: "deploy",
       description: "Create or update a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -928,13 +921,11 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
       name: "describe",
       description: "Display details of a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -1077,7 +1068,6 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
@@ -1089,7 +1079,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List types of events that can be a trigger for a Google Cloud Function",
-
           options: [
             {
               name: "--account",
@@ -1352,7 +1341,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-iam-policy",
       description: "Get IAM policy for a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -1540,13 +1528,11 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
       name: "list",
       description: "List Google Cloud Functions",
-
       options: [
         {
           name: "--account",
@@ -1738,7 +1724,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "read",
           description: "Display log entries produced by Google Cloud Functions",
-
           options: [
             {
               name: "--account",
@@ -1965,7 +1950,6 @@ const completionSpec: Fig.Spec = {
             name: "NAME",
             description:
               "Name of the function which logs are to be displayed. If no name is specified, logs from all functions are displayed",
-            isVariadic: false,
           },
         },
       ],
@@ -2105,7 +2089,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List regions available to Google Cloud Functions",
-
           options: [
             {
               name: "--account",
@@ -2413,7 +2396,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-iam-policy-binding",
       description: "Removes an IAM policy binding from a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -2577,13 +2559,11 @@ const completionSpec: Fig.Spec = {
         name: "NAME",
         description:
           "ID of the function or fully qualified identifier for the function",
-        isVariadic: false,
       },
     },
     {
       name: "set-iam-policy",
       description: "Sets IAM policy for a Google Cloud Function",
-
       options: [
         {
           name: "--account",
@@ -2727,13 +2707,11 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function",
-          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy",
-          isVariadic: false,
         },
       ],
     },

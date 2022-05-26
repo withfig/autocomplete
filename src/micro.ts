@@ -503,7 +503,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "file",
     template: ["filepaths"],
-    isVariadic: false,
+
     isOptional: true,
   },
 };

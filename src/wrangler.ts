@@ -130,7 +130,6 @@ const completionSpec: Fig.Spec = {
           description: "Get a key's value from a namespace",
           args: {
             name: "key",
-            isOptional: false,
           },
         },
         {
@@ -147,7 +146,6 @@ const completionSpec: Fig.Spec = {
           description: "Put a key-value pair into a namespace",
           args: {
             name: "key",
-            isOptional: false,
           },
         },
       ],
@@ -163,7 +161,6 @@ const completionSpec: Fig.Spec = {
           description: "Delete multiple keys and their values from a namespace",
           args: {
             name: "keys",
-            isOptional: false,
           },
         },
         {
@@ -176,7 +173,6 @@ const completionSpec: Fig.Spec = {
           description: "Upload multiple key-value pairs to a namespace",
           args: {
             name: "keys",
-            isOptional: false,
             template: "filepaths",
           },
         },
@@ -193,7 +189,6 @@ const completionSpec: Fig.Spec = {
           description: "Delete a route by ID",
           args: {
             name: "routeId",
-            isOptional: false,
           },
         },
         {
@@ -214,7 +209,6 @@ const completionSpec: Fig.Spec = {
           description: "Delete a secret variable from a script",
           args: {
             name: "secret",
-            isOptional: false,
           },
         },
         {
@@ -226,7 +220,6 @@ const completionSpec: Fig.Spec = {
           description: "Create or update a secret variable for a script",
           args: {
             name: "secret",
-            isOptional: false,
           },
         },
       ],

@@ -12,8 +12,7 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
             name: `${index + 1} - ${video.title}`,
             description: video.uploader,
             insertValue: `${index + 1}`,
-            icon:
-              "https://www.youtube.com/s/desktop/810941b4/img/favicon_32.png",
+            icon: "https://www.youtube.com/s/desktop/810941b4/img/favicon_32.png",
           };
         });
       } catch (e) {
@@ -35,8 +34,7 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
             {
               name: out,
               description: "Clipboard",
-              icon:
-                "https://www.youtube.com/s/desktop/810941b4/img/favicon_32.png",
+              icon: "https://www.youtube.com/s/desktop/810941b4/img/favicon_32.png",
             },
           ];
       } catch (e) {
@@ -182,7 +180,6 @@ const completionSpec: Fig.Spec = {
       description:
         "Do not bypass geographic restriction via faking X-Forwarded-For HTTP header",
     },
-
     {
       name: "--geo-bypass-country",
       description:

@@ -111,6 +111,7 @@ function getRecipeSuggestions(
 
     suggestions.push({
       name,
+      insertValue: recipe.parameters.length === 0 ? name : name + " ",
       displayName: showRecipeParameters ? getRecipeUsage(recipe) : name,
       description: recipe.doc ?? "Recipe",
       icon: "fig://icon?type=command",
@@ -492,6 +493,9 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     optionsCanBreakVariadicArg: false,
     generators: {
+      trigger: (newToken, oldToken) => {
+        return newToken.length === 0 && oldToken.length > 0;
+      },
       script: dumpJustfile,
       postProcess: (out, tokens) => {
         const justfile = processJustfileDump(out);

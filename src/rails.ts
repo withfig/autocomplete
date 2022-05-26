@@ -161,7 +161,6 @@ const newCommand = {
       name: "--skip-webpack-install]",
       description: "Don't run Webpack install",
     },
-
     {
       name: ["--f", "--force"],
       description: "Overwrite files that already exist",
@@ -583,7 +582,8 @@ const defaultCommands: Fig.Subcommand[] = [
     },
     async generateSpec(_, executeShellCommand) {
       const helpText = await executeShellCommand("rails test --help");
-      const argRegex = /(?:(-[a-zA-Z]), )?(--[^ ]+?)[ =]([A-Z_]+)?[ \r\n]+([^\n]+)/g;
+      const argRegex =
+        /(?:(-[a-zA-Z]), )?(--[^ ]+?)[ =]([A-Z_]+)?[ \r\n]+([^\n]+)/g;
 
       const options = Array.from(helpText.matchAll(argRegex)).map((match) => {
         const [_match, _short, long, arg, description] = match;
@@ -600,26 +600,9 @@ const defaultCommands: Fig.Subcommand[] = [
   newCommand,
 ];
 
-const checkRailsInstalled = async (
-  executeShellCommand: Fig.ExecuteShellCommandFunction
-): Promise<boolean> => {
-  const gemfileMatch = await executeShellCommand(
-    `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \grep "gem ['\"]rails['\"]"; else echo ""; fi`
-  );
-  const isRails = !!gemfileMatch;
-
-  return isRails;
-};
-
 // Generator that searches asynchronously for more Rails commands through the help command
 export const railsCommandsGenerator: Fig.Generator = {
   custom: async (_, executeShellCommand) => {
-    const isRails = await checkRailsInstalled(executeShellCommand);
-
-    if (!isRails) {
-      return [];
-    }
-
     // parse help text to find more commands
     let commands: Fig.Subcommand[] = [];
     try {
@@ -637,6 +620,7 @@ export const railsCommandsGenerator: Fig.Generator = {
     return commands;
   },
   cache: {
+    strategy: "stale-while-revalidate",
     ttl: 1000 * 60 * 60 * 24 * 3, // 3 days
     cacheByDirectory: true,
   },
@@ -646,9 +630,11 @@ const completionSpec: Fig.Spec = {
   name: "rails",
   description: "Ruby on Rails CLI",
   generateSpec: async (_, executeShellCommand) => {
-    const isRails = await checkRailsInstalled(executeShellCommand);
+    const isRailsDirectory = !!(await executeShellCommand(
+      `until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | \\grep "gem ['\\"]rails['\\"]"; fi`
+    ));
 
-    if (!isRails) {
+    if (!isRailsDirectory) {
       return {
         name: "rails",
         subcommands: [newCommand],
@@ -658,11 +644,11 @@ const completionSpec: Fig.Spec = {
     return {
       name: "rails",
       subcommands: defaultCommands,
+      args: {
+        generators: railsCommandsGenerator,
+        isOptional: true,
+      },
     };
-  },
-  args: {
-    generators: railsCommandsGenerator,
-    isOptional: true,
   },
 };
 

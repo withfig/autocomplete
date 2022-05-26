@@ -27,7 +27,7 @@ const getBranches: Fig.Generator = {
 
 const getAllScriptsFromPackages: Fig.Generator = {
   // Get all lerna packages, loop over them and get content of package.json
-  script: `lerna list -p | while read p; do\n \cat $p/package.json && echo ${SPLIT_CHAR}\ndone`,
+  script: `lerna list -p | while read p; do\n \\cat $p/package.json && echo ${SPLIT_CHAR}\ndone`,
   postProcess: (output) => {
     // Split output by the divider and remove empty entry
     const packages = output.split(SPLIT_CHAR).filter((e) => e.trim() !== "");
@@ -514,8 +514,7 @@ const completionSpec: Fig.Spec = {
               },
               {
                 name: "gitlab",
-                icon:
-                  "https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/a0178a3dfdb9c4e34857bad3d2d788036baa0c76/icons/gitlab.svg",
+                icon: "https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/a0178a3dfdb9c4e34857bad3d2d788036baa0c76/icons/gitlab.svg",
               },
             ],
           },
@@ -542,8 +541,7 @@ const completionSpec: Fig.Spec = {
                 return output.split("\n").map((remoteName) => ({
                   name: remoteName,
                   description: "Remote",
-                  icon:
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1024px-Git_icon.svg.png",
+                  icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1024px-Git_icon.svg.png",
                 }));
               },
             },

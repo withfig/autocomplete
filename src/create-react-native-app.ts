@@ -1,16 +1,12 @@
 const ICONS = {
-  help:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
+  help: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
   version:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/info.png",
-  true:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
+  true: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
   false:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-  skip:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
-  path:
-    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
+  skip: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
+  path: "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
   string:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
   template:
@@ -48,7 +44,6 @@ const completionSpec: Fig.Spec = {
         "The name of a template from expo/examples or URL to a GitHub repo that contains an example",
       args: {
         name: "template",
-        isOptional: false,
       },
       icon: ICONS.template,
       priority: 76,
@@ -58,7 +53,6 @@ const completionSpec: Fig.Spec = {
       description: "The path inside of a GitHub repo where the example lives",
       args: {
         name: "name",
-        isOptional: false,
       },
       icon: ICONS.path,
       priority: 76,

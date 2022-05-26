@@ -9,7 +9,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new connectivity test",
-
           options: [
             {
               name: "--account",
@@ -283,13 +282,11 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a connectivity test",
-
           options: [
             {
               name: "--account",
@@ -427,13 +424,11 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a connectivity test",
-
           options: [
             {
               name: "--account",
@@ -566,13 +561,11 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List connectivity tests",
-
           options: [
             {
               name: "--account",
@@ -745,7 +738,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "rerun",
           description: "Rerun a connectivity test",
-
           options: [
             {
               name: "--account",
@@ -883,13 +875,11 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
         {
           name: "update",
           description: "Update an existing connectivity test",
-
           options: [
             {
               name: "--account",
@@ -1179,7 +1169,6 @@ const completionSpec: Fig.Spec = {
             name: "CONNECTIVITY_TEST",
             description:
               "ID of the connectivity test or fully qualified identifier for the connectivity test",
-            isVariadic: false,
           },
         },
       ],
@@ -1319,7 +1308,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Network Management operation",
-
           options: [
             {
               name: "--account",
@@ -1452,13 +1440,11 @@ const completionSpec: Fig.Spec = {
             name: "OPERATION",
             description:
               "ID of the operation or fully qualified identifier for the operation",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List Network Management operations",
-
           options: [
             {
               name: "--account",

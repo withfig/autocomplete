@@ -1,7 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "http.server",
   description: "",
-
   options: [
     {
       name: ["-d", "--directory"],

@@ -13,7 +13,6 @@ const completionSpec: Fig.Spec = {
           name: command.name,
           description: command.description,
           icon: "https://web.tinkerwell.app/img/laravel.3cab6a56.png",
-
           args: Object.keys(command.definition.arguments).map((argumentKey) => {
             const argument = command.definition.arguments[argumentKey];
 
