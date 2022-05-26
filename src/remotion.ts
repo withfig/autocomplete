@@ -52,7 +52,6 @@ const localRenderAndStillOptions: Fig.Option[] = [
 const lambdaRenderAndStillOptions: Fig.Option[] = [
   {
     name: "--max-retries",
-    insertValue: "--max-retries=",
     description:
       "How many times a chunk can be retried before the render times out",
     args: {
@@ -61,7 +60,6 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
   },
   {
     name: "--privacy",
-    insertValue: "--privacy=",
     args: {
       name: "privacy",
       default: "public",
@@ -70,7 +68,6 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
   },
   {
     name: "--frames-per-lambda",
-    insertValue: "--frames-per-lambda=",
     description: "How many frames should be rendered per chunk",
     args: {
       name: "framesPerLambda",
@@ -100,7 +97,6 @@ const stillOptions: Fig.Option[] = [
 const renderOptions: Fig.Option[] = [
   {
     name: "--gl",
-    insertValue: "--gl=",
     description: "Which OpenGL renderer to use",
     args: {
       suggestions: ["angle", "egl", "swiftshader", "swangle"],
@@ -108,7 +104,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--timeout",
-    insertValue: "--timeout=",
     description:
       "The time in milisecond that a delayRender() may take before it times out",
   },
@@ -122,7 +117,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--props",
-    insertValue: "--props=",
     description: "Pass input props as filename or as JSON",
     args: {
       template: ["filepaths"],
@@ -136,7 +130,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--quality",
-    insertValue: "--quality=",
     description: "Quality for rendered frames, JPEG only, 0-100",
     args: {
       default: "80",
@@ -147,7 +140,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--scale",
-    insertValue: "--scale=",
     description: "Upscale or downscale or the dimensions of the video",
     args: {
       default: "1",
@@ -158,7 +150,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--codec",
-    insertValue: "--codec=",
     description: "Video of audio codec",
     args: {
       default: "h264",
@@ -178,13 +169,10 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--crf",
-    insertValue: "--crf=",
     description: "FFMPEG CRF value, controls quality, see docs for info",
   },
   {
     name: "--frames",
-    insertValue: "--frames=",
-
     description: "Render a portion or a still of a video, 0-9, 50",
     args: {
       name: "frames",
@@ -192,7 +180,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--log",
-    insertValue: "--log=",
     description: 'Log level, "error", "warning", "verbose", "info" (default)',
     args: {
       default: "info",
@@ -206,7 +193,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--prores-profile",
-    insertValue: "--prores-profile=",
     description: "ProRes profile, need --codec=prores to be set",
     args: {
       suggestions: ["4444-xq", "4444", "hq", "standard", "light", "proxy"],
@@ -214,7 +200,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--image-format",
-    insertValue: "--image-format=",
     description: 'Format to render the frames in, "jpeg" or "png"',
     args: {
       suggestions: [
@@ -229,7 +214,6 @@ const renderOptions: Fig.Option[] = [
   },
   {
     name: "--pixel-format",
-    insertValue: "--pixel-format=",
     description: "Custom pixel format, see docs for available values",
     args: {
       suggestions: [
@@ -488,7 +472,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--memory",
                   description: "Amount of memory in MB to allocate",
-                  insertValue: "--memory=",
                   args: {
                     name: "sizeInMegabytes",
                   },
@@ -496,7 +479,6 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--disk",
                   description: "Amount of disk space in MB to allocate",
-                  insertValue: "--disk=",
                   args: {
                     name: "diskInMegabytes",
                   },
@@ -505,7 +487,6 @@ const completionSpec: Fig.Spec = {
                   name: "--architecture",
                   description:
                     "Type of CPU architecture to use for the Lambda function",
-                  insertValue: "--architecture=",
                   args: {
                     name: "architecture",
                     suggestions: [{ name: "x86_64" }, { name: "arm64" }],
@@ -582,7 +563,6 @@ const completionSpec: Fig.Spec = {
                 ...globalLambdaOptions,
                 {
                   name: "--site-name",
-                  insertValue: "--site-name=",
                   args: {
                     name: "How the folder in S3 should be named.",
                   },
