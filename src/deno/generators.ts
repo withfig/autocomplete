@@ -334,7 +334,7 @@ export const generateTasks: Fig.Generator = {
     if (config === null) {
       return [];
     }
-    return Object.entries(config.tasks).map(([name, command]) => {
+    return Object.entries(config.tasks || {}).map(([name, command]) => {
       const fig = config.fig?.[name] || {};
       return {
         name,
@@ -346,4 +346,19 @@ export const generateTasks: Fig.Generator = {
       };
     });
   },
+};
+
+// --- Generate installed deno scripts
+
+export const generateInstalledDenoScripts: Fig.Generator = {
+  script: "\\find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  postProcess: (out) =>
+    out
+      .split("\n")
+      .filter((path) => !path.endsWith("/deno"))
+      .map((path) => ({
+        name: path.slice(path.lastIndexOf("/") + 1),
+        icon: "📦",
+        description: path,
+      })),
 };

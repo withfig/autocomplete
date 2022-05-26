@@ -212,7 +212,6 @@ const completionSpec: Fig.Spec = {
       description: "Set wallpaper from local file",
       args: {
         name: "filepath",
-
         template: "filepaths",
       },
     },

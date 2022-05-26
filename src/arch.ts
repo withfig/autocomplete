@@ -43,7 +43,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-64",
       description:
-        "Add the native 32-bit architecture to the list of architectures",
+        "Add the native 64-bit architecture to the list of architectures",
     },
     archOption,
     ...archOptions,

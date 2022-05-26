@@ -34,7 +34,6 @@ const completionSpec: Fig.Spec = {
             name: "app",
           },
         },
-
         {
           name: "--modules",
           description: "Name the modules in the generated code skeleton",

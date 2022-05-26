@@ -46,8 +46,8 @@ const completionSpec: Fig.Spec = {
     {
       description: "When to use terminal colours (always, auto, never)",
       name: ["--colour", "--color"],
-      insertValue: "--colour={cursor}",
-      requiresEquals: true,
+
+      requiresSeparator: true,
       args: {
         name: "when",
         suggestions: [

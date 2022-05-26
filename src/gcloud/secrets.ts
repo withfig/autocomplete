@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add IAM policy binding to a secret",
-
       options: [
         {
           name: "--account",
@@ -179,13 +178,11 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
       name: "create",
       description: "Create a new secret",
-
       options: [
         {
           name: "--account",
@@ -358,13 +355,11 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
       name: "delete",
       description: "Delete a secret",
-
       options: [
         {
           name: "--account",
@@ -497,13 +492,11 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
       name: "describe",
       description: "Describe a secret's metadata",
-
       options: [
         {
           name: "--account",
@@ -636,13 +629,11 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
       name: "get-iam-policy",
       description: "Get the IAM policy for the secret",
-
       options: [
         {
           name: "--account",
@@ -815,13 +806,11 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
       name: "list",
       description: "List all secret names",
-
       options: [
         {
           name: "--account",
@@ -1003,7 +992,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a location",
-
           options: [
             {
               name: "--account",
@@ -1136,13 +1124,11 @@ const completionSpec: Fig.Spec = {
             name: "LOCATION",
             description:
               "ID of the location or fully qualified identifier for the location",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List all available locations",
-
           options: [
             {
               name: "--account",
@@ -1450,7 +1436,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove-iam-policy-binding",
       description: "Remove IAM policy binding for a secret",
-
       options: [
         {
           name: "--account",
@@ -1629,13 +1614,11 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
       name: "set-iam-policy",
       description: "Set the IAM policy binding for a secret",
-
       options: [
         {
           name: "--account",
@@ -1769,20 +1752,17 @@ const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret",
-          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-          isVariadic: false,
         },
       ],
     },
     {
       name: "update",
       description: "Update a secret's metadata",
-
       options: [
         {
           name: "--account",
@@ -1940,7 +1920,6 @@ const completionSpec: Fig.Spec = {
         name: "SECRET",
         description:
           "ID of the secret or fully qualified identifier for the secret",
-        isVariadic: false,
       },
     },
     {
@@ -1950,7 +1929,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "access",
           description: "Access a secret version's data",
-
           options: [
             {
               name: "--account",
@@ -2092,13 +2070,11 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
           name: "add",
           description: "Create a new version of an existing secret",
-
           options: [
             {
               name: "--account",
@@ -2242,13 +2218,11 @@ const completionSpec: Fig.Spec = {
             name: "SECRET",
             description:
               "ID of the secret or fully qualified identifier for the secret",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe metadata about the secret version",
-
           options: [
             {
               name: "--account",
@@ -2390,13 +2364,11 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
           name: "destroy",
           description: "Destroy a secret version's metadata and secret data",
-
           options: [
             {
               name: "--account",
@@ -2538,13 +2510,11 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
           name: "disable",
           description: "Disable the version of the provided secret",
-
           options: [
             {
               name: "--account",
@@ -2686,13 +2656,11 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
           name: "enable",
           description: "Enable the version of the provided secret",
-
           options: [
             {
               name: "--account",
@@ -2834,13 +2802,11 @@ const completionSpec: Fig.Spec = {
             name: "VERSION",
             description:
               "ID of the version or fully qualified identifier for the version",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List all versions for a secret",
-
           options: [
             {
               name: "--account",
@@ -3018,7 +2984,6 @@ const completionSpec: Fig.Spec = {
             name: "SECRET",
             description:
               "ID of the secret or fully qualified identifier for the secret",
-            isVariadic: false,
           },
         },
       ],

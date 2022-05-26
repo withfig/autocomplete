@@ -25,8 +25,7 @@ const completionSpec: Fig.Spec = {
   name: "prisma",
   description:
     "Prisma is a modern DB toolkit to query, migrate and model your database",
-  icon:
-    "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+  icon: "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
   subcommands: [
     {
       name: "init",
@@ -254,7 +253,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
     {
       name: ["version", "-v"],
       description: "Print current version of Prisma components",

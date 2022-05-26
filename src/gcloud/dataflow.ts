@@ -11,7 +11,6 @@ const completionSpec: Fig.Spec = {
           name: "build",
           description:
             "Builds a flex template file from the specified parameters",
-
           options: [
             {
               name: "--account",
@@ -224,13 +223,11 @@ const completionSpec: Fig.Spec = {
             name: "TEMPLATE_FILE_GCS_PATH",
             description:
               "The Google Cloud Storage location of the flex template file.Overrides if file already exists",
-            isVariadic: false,
           },
         },
         {
           name: "run",
           description: "Runs a job from the specified path",
-
           options: [
             {
               name: "--account",
@@ -514,7 +511,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB_NAME",
             description: "Unique name to assign to the job",
-            isVariadic: false,
           },
         },
       ],
@@ -654,7 +650,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancels all jobs that match the command line arguments",
-
           options: [
             {
               name: "--account",
@@ -802,7 +797,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Outputs the Job object resulting from the Get API",
-
           options: [
             {
               name: "--account",
@@ -948,13 +942,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB_ID",
             description: "The job ID to operate on",
-            isVariadic: false,
           },
         },
         {
           name: "drain",
           description: "Drains all jobs that match the command line arguments",
-
           options: [
             {
               name: "--account",
@@ -1103,7 +1095,6 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Lists all jobs in a particular project, optionally filtered by region",
-
           options: [
             {
               name: "--account",
@@ -1321,7 +1312,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "run",
           description: "Runs a job from the specified path",
-
           options: [
             {
               name: "--account",
@@ -1592,13 +1582,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB_NAME",
             description: "The unique name to assign to the job",
-            isVariadic: false,
           },
         },
         {
           name: "show",
           description: "Shows a short description of the given job",
-
           options: [
             {
               name: "--account",
@@ -1748,7 +1736,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "JOB_ID",
             description: "The job ID to operate on",
-            isVariadic: false,
           },
         },
       ],
@@ -1888,7 +1875,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "query",
           description: "Execute the user-specified SQL query on Dataflow",
-
           options: [
             {
               name: "--account",
@@ -2235,7 +2221,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUERY",
             description: "The SQL query to execute",
-            isVariadic: false,
           },
         },
       ],

@@ -305,8 +305,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--skip-import-validation",
@@ -750,8 +749,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--include-podspecs",
@@ -950,8 +948,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--no-overwrite",
@@ -1107,8 +1104,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "VERSION",
               },
-              icon:
-                "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
+              icon: "https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_swift.svg",
             },
             {
               name: "--skip-import-validation",

@@ -5,7 +5,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "create-app-engine-task",
       description: "Create and add a task that targets App Engine",
-
       options: [
         {
           name: "--account",
@@ -218,13 +217,11 @@ const completionSpec: Fig.Spec = {
         name: "TASK_ID",
         description:
           "The task to create.\n+\nIf not specified then the system will generate a random unique task\nID. Explicitly specifying a task ID enables task de-duplication. If a\ntask's ID is identical to that of an existing task or a task that was\ndeleted or completed recently then the call will fail.\n+\nBecause there is an extra lookup cost to identify duplicate task\nnames, tasks created with IDs have significantly increased latency.\nUsing hashed strings for the task ID or for the prefix of the task ID\nis recommended",
-        isVariadic: false,
       },
     },
     {
       name: "create-http-task",
       description: "Create and add a task that targets a HTTP endpoint",
-
       options: [
         {
           name: "--account",
@@ -470,13 +467,11 @@ const completionSpec: Fig.Spec = {
         name: "TASK_ID",
         description:
           "The task to create.\n+\nIf not specified then the system will generate a random unique task\nID. Explicitly specifying a task ID enables task de-duplication. If a\ntask's ID is identical to that of an existing task or a task that was\ndeleted or completed recently then the call will fail.\n+\nBecause there is an extra lookup cost to identify duplicate task\nnames, tasks created with IDs have significantly increased latency.\nUsing hashed strings for the task ID or for the prefix of the task ID\nis recommended",
-        isVariadic: false,
       },
     },
     {
       name: "delete",
       description: "Delete a task from a queue",
-
       options: [
         {
           name: "--account",
@@ -617,13 +612,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "TASK",
         description: "The task to delete.\n+",
-        isVariadic: false,
       },
     },
     {
       name: "describe",
       description: "Show details about a task",
-
       options: [
         {
           name: "--account",
@@ -774,13 +767,11 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "TASK",
         description: "The task to describe.\n+",
-        isVariadic: false,
       },
     },
     {
       name: "list",
       description: "List tasks",
-
       options: [
         {
           name: "--account",
@@ -972,7 +963,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a location",
-
           options: [
             {
               name: "--account",
@@ -1104,13 +1094,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "LOCATION",
             description: "The Cloud location to describe",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "Lists the locations where Cloud Tasks is available",
-
           options: [
             {
               name: "--account",
@@ -1422,7 +1410,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a tasks queue",
-
           options: [
             {
               name: "--account",
@@ -1585,13 +1572,11 @@ const completionSpec: Fig.Spec = {
             name: "QUEUE",
             description:
               "ID of the queue or fully qualified identifier for the queue",
-            isVariadic: false,
           },
         },
         {
           name: "create",
           description: "Create a Cloud Tasks queue",
-
           options: [
             {
               name: "--account",
@@ -1813,13 +1798,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to create.\n+",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a queue",
-
           options: [
             {
               name: "--account",
@@ -1951,13 +1934,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to delete.\n+",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Show details about a queue",
-
           options: [
             {
               name: "--account",
@@ -2089,13 +2070,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to describe.\n+",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a queue",
-
           options: [
             {
               name: "--account",
@@ -2277,13 +2256,11 @@ const completionSpec: Fig.Spec = {
             name: "QUEUE",
             description:
               "ID of the queue or fully qualified identifier for the queue",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List all queues",
-
           options: [
             {
               name: "--account",
@@ -2461,7 +2438,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "pause",
           description: "Pause a queue",
-
           options: [
             {
               name: "--account",
@@ -2593,13 +2569,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to pause.\n+",
-            isVariadic: false,
           },
         },
         {
           name: "purge",
           description: "Purge a queue by deleting all of its tasks",
-
           options: [
             {
               name: "--account",
@@ -2731,13 +2705,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to purge.\n+",
-            isVariadic: false,
           },
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of tasks queue",
-
           options: [
             {
               name: "--account",
@@ -2900,13 +2872,11 @@ const completionSpec: Fig.Spec = {
             name: "QUEUE",
             description:
               "ID of the queue or fully qualified identifier for the queue",
-            isVariadic: false,
           },
         },
         {
           name: "resume",
           description: "Request to resume a paused or disabled queue",
-
           options: [
             {
               name: "--account",
@@ -3038,13 +3008,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to resume.\n+",
-            isVariadic: false,
           },
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a queue",
-
           options: [
             {
               name: "--account",
@@ -3187,20 +3155,17 @@ const completionSpec: Fig.Spec = {
               name: "QUEUE",
               description:
                 "ID of the queue or fully qualified identifier for the queue",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy)",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "update",
           description: "Update a Cloud Tasks queue",
-
           options: [
             {
               name: "--account",
@@ -3463,7 +3428,6 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "QUEUE",
             description: "The queue to update.\n+",
-            isVariadic: false,
           },
         },
       ],
@@ -3599,7 +3563,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "Force a task to run now",
-
       options: [
         {
           name: "--account",
@@ -3740,7 +3703,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "TASK",
         description: "The task to run.\n+",
-        isVariadic: false,
       },
     },
   ],

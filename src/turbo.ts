@@ -55,8 +55,7 @@ const completionSpec: Fig.Spec = {
           name: "--sso-team",
           description:
             "Attempt to authenticate to the specified team using SSO",
-          insertValue: "--sso-team={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
         },
       ],
     },
@@ -66,16 +65,15 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "prune",
-      insertValue: "prune --scope={cursor}",
       description: "Prepare a subset of your monorepo",
       options: [
         {
           name: "--scope",
           description:
             "Specify package to act as entry point for pruned monorepo",
-          requiresEquals: true,
+          requiresSeparator: true,
           isRequired: true,
-          insertValue: "--scope={cursor}",
+
           args: {
             name: "package",
           },
@@ -143,16 +141,14 @@ const completionSpec: Fig.Spec = {
           name: "--scope",
           description:
             "Specify packages to act as entry points for task execution",
-          insertValue: "--scope={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "package",
           },
         },
         {
           name: "--cache-dir",
-          insertValue: "--cache-dir={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description: "Specify local filesystem cache directory",
           args: {
             name: "dir",
@@ -163,8 +159,8 @@ const completionSpec: Fig.Spec = {
           name: "--concurrency",
           description:
             "Limit the concurrency of task execution (use `1` for serial)",
-          requiresEquals: true,
-          insertValue: "--concurrency={cursor}",
+          requiresSeparator: true,
+
           args: {
             name: "limit",
           },
@@ -187,7 +183,7 @@ const completionSpec: Fig.Spec = {
             "Specify glob of global filesystem dependencies to be hashed (useful for .env and files in the root directory)",
           isRepeatable: true,
           insertValue: "--global-deps='{cursor}'",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "glob",
           },
@@ -195,8 +191,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--since",
           description: "Limit/set scope to changed packages since a mergebase",
-          insertValue: "--since={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           args: {
             name: "branch",
             generators: gitGenerators.remoteLocalBranches,
@@ -204,8 +199,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--team",
-          insertValue: "--team={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description: "The slug of a turborepo.com team",
           args: {
             name: "slug",
@@ -213,8 +207,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--token",
-          insertValue: "--token={cursor}",
-          requiresEquals: true,
+          requiresSeparator: true,
           description: "A turborepo.com access token",
           args: {
             name: "token",
@@ -222,8 +215,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--ignore",
-          requiresEquals: true,
-          insertValue: "--ignore={cursor}",
+          requiresSeparator: true,
+
           description:
             "Files to ignore when calculating changed files (supports globs)",
           args: {
@@ -232,8 +225,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--profile",
-          requiresEquals: true,
-          insertValue: "--profile={cursor}",
+          requiresSeparator: true,
+
           description: "File to write turbo's performance profile into",
           args: {
             name: "file",
@@ -259,8 +252,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--output-logs",
-          requiresEquals: true,
-          insertValue: "--output-logs={cursor}",
+          requiresSeparator: true,
+
           args: {
             name: "level",
             suggestions: [
@@ -285,7 +278,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--dry", "--dry-run"],
-          requiresEquals: true,
+          requiresSeparator: true,
           description:
             "List the packages in scope and the tasks that would be run",
           args: {

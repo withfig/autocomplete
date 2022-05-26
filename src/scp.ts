@@ -1,14 +1,27 @@
+import { knownHosts, configHosts } from "./ssh";
+
 const completionSpec: Fig.Spec = {
   name: "scp",
   description: "Copies files or directories between hosts on a network",
   args: [
     {
-      name: "source",
+      name: "sources",
       description: "File or directory, local or remote ([user@]host:[path])",
+      isVariadic: true,
+      generators: [
+        knownHosts,
+        configHosts,
+        { template: ["history", "filepaths", "folders"] },
+      ],
     },
     {
       name: "target",
       description: "File or directory, local or remote ([user@]host:[path])",
+      generators: [
+        knownHosts,
+        configHosts,
+        { template: ["history", "filepaths", "folders"] },
+      ],
     },
   ],
   options: [

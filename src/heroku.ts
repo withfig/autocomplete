@@ -182,7 +182,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "buildpacks:info",
       description: "Fetch info about a buildpack",
-
       args: {
         name: "buildpack",
         description: "Namespace/name of the buildpack",
@@ -292,7 +291,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "buildpacks:versions",
       description: "List versions of a buildpack",
-
       args: {
         name: "buildpack",
         description: "Namespace/name of the buildpack",
@@ -1477,7 +1475,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "keys:remove",
       description: "Remove an SSH key from the user",
-
       args: {
         name: "key",
       },
@@ -3152,7 +3149,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["authorizations:revoke", "authorizations:destroy"],
       description: "Revoke OAuth authorization",
-
       args: {
         name: "id",
       },
@@ -3160,7 +3156,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "authorizations:rotate",
       description: "Updates an OAuth authorization token",
-
       args: {
         name: "id",
       },
@@ -3230,7 +3225,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "clients:destroy",
       description: "Delete client by ID",
-
       args: {
         name: "id",
       },
@@ -3305,7 +3299,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "sessions:destroy",
       description: "Delete (logout) OAuth session by ID",
-
       args: {
         name: "id",
       },
@@ -4162,7 +4155,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:destroy",
       description: "Destroy a pipeline",
-
       args: {
         name: "pipeline",
         description: "Name of pipeline",
@@ -4207,7 +4199,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:open",
       description: "Open a pipeline in dashboard",
-
       args: {
         name: "pipeline",
         description: "Name of pipeline",
@@ -4266,7 +4257,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:rename",
       description: "Rename a pipeline",
-
       args: [
         {
           name: "pipeline",
@@ -6014,7 +6004,6 @@ const completionSpec: Fig.Spec = {
           description: "Output in a more machine friendly format",
           args: {
             name: "output",
-
             suggestions: ["csv", "json", "yaml"],
           },
         },
@@ -6050,7 +6039,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "which",
       description: "Show which plugin a command is in",
-
       args: {
         name: "command",
       },
@@ -6058,7 +6046,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update the <%= config.bin %> CLI",
-
       args: {
         name: "channel",
         isOptional: true,

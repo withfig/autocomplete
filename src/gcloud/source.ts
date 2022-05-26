@@ -10,7 +10,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about the configuration of a project",
-
           options: [
             {
               name: "--account",
@@ -144,7 +143,6 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update the Cloud Source Repositories configuration of the current project",
-
           options: [
             {
               name: "--account",
@@ -484,7 +482,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "clone",
           description: "Clone a cloud source repository",
-
           options: [
             {
               name: "--account",
@@ -622,20 +619,17 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository",
-              isVariadic: false,
             },
             {
               name: "DIRECTORY_NAME",
               description:
                 "Directory name for the cloned repo. Defaults to the repository name",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "create",
           description: "Create a cloud source repository",
-
           options: [
             {
               name: "--account",
@@ -768,13 +762,11 @@ const completionSpec: Fig.Spec = {
             name: "REPOSITORY_NAME",
             description:
               "Name of the repository. May contain between 3 and 63 (inclusive)\nlowercase letters, digits, and hyphens. Must start with a letter, and\nmay not end with a hyphen",
-            isVariadic: false,
           },
         },
         {
           name: "delete",
           description: "Delete a cloud source repository",
-
           options: [
             {
               name: "--account",
@@ -911,13 +903,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "REPOSITORY_NAME",
             description: "Name of the repository",
-            isVariadic: false,
           },
         },
         {
           name: "describe",
           description: "Describe a cloud source repository",
-
           options: [
             {
               name: "--account",
@@ -1049,14 +1039,12 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "REPOSITORY_NAME",
             description: "Name of the repository",
-            isVariadic: false,
           },
         },
         {
           name: "get-iam-policy",
           description:
             "Get the IAM policy for the named cloud source repository",
-
           options: [
             {
               name: "--account",
@@ -1228,13 +1216,11 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "REPOSITORY_NAME",
             description: "Name of the repository",
-            isVariadic: false,
           },
         },
         {
           name: "list",
           description: "List the repositories the currently active project",
-
           options: [
             {
               name: "--account",
@@ -1407,7 +1393,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for the named repository",
-
           options: [
             {
               name: "--account",
@@ -1540,20 +1525,17 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository",
-              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "JSON or YAML file with IAM policy. See https://cloud.google.com/resource-manager/reference/rest/Shared.Types/Policy",
-              isVariadic: false,
             },
           ],
         },
         {
           name: "update",
           description: "Update the configuration of a Cloud Source Repository",
-
           options: [
             {
               name: "--account",
@@ -1749,7 +1731,6 @@ const completionSpec: Fig.Spec = {
             name: "REPO",
             description:
               "ID of the repo or fully qualified identifier for the repo",
-            isVariadic: false,
           },
         },
       ],
