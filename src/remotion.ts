@@ -124,6 +124,7 @@ const renderOptions: Fig.Option[] = [
         {
           type: "arg",
           displayName: "[json string]",
+          insertValue: "'{cursor}'",
         },
       ],
     },
@@ -669,6 +670,7 @@ const completionSpec: Fig.Spec = {
               {
                 type: "arg",
                 displayName: "[json string]",
+                insertValue: "'{cursor}'",
               },
             ],
           },
