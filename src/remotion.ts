@@ -489,7 +489,10 @@ const completionSpec: Fig.Spec = {
                     "Type of CPU architecture to use for the Lambda function",
                   args: {
                     name: "architecture",
-                    suggestions: [{ name: "x86_64" }, { name: "arm64" }],
+                    suggestions: [
+                      { name: "x86_64", icon: "fig://icon?type=cpu" },
+                      { name: "arm64", icon: "fig://icon?type=cpu" },
+                    ],
                   },
                 },
                 {
