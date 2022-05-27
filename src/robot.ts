@@ -1,4 +1,4 @@
-import { filepaths } from "@fig/autocomplete-generators";
+import { filepaths, keyValue } from "@fig/autocomplete-generators";
 
 const tagsGenerator: Fig.Generator = {
   script:
@@ -28,12 +28,9 @@ const tagsGenerator: Fig.Generator = {
   },
 };
 
-const variablesGenerator: Fig.Generator = {
-  trigger: ":",
-  custom: async (tokens, executeShellCommand) => {
-    const finalToken = tokens[tokens.length - 1];
-    const isKey = !finalToken.includes(":");
-    if (!isKey) return [];
+const variablesGenerator = keyValue({
+  separator: ":",
+  values: async (_, executeShellCommand) => {
     const out = await executeShellCommand(
       'for i in $(find -E . -regex ".*.(robot|resource)" -type f); do cat -s $i ; done'
     );
@@ -45,7 +42,7 @@ const variablesGenerator: Fig.Generator = {
         description: "Variable",
       }));
   },
-};
+});
 
 const testCasesGenerator: Fig.Generator = {
   script:
