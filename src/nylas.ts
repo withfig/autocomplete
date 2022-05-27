@@ -2486,6 +2486,31 @@ const completionSpec: Fig.Spec = {
                 name: "triggers",
                 default:
                   "account.connected,account.running,account.stopped,account.invalid,account.sync_error,message.created,message.opened,message.updated,message.link_clicked,message.bounced,thread.replied,calendar.created,calendar.updated,calendar.deleted,event.created,event.updated,event.deleted,contact.created,contact.updated,contact.deleted,job.successful,job.failed",
+                suggestions: [
+                  "account.connected",
+                  "account.running",
+                  "account.stopped",
+                  "account.invalid",
+                  "account.sync_error",
+                  "message.created",
+                  "message.opened",
+                  "message.updated",
+                  "message.link_clicked",
+                  "message.bounced",
+                  "thread.replied",
+                  "calendar.created",
+                  "calendar.updated",
+                  "calendar.deleted",
+                  "event.created",
+                  "event.updated",
+                  "event.deleted",
+                  "contact.created",
+                  "contact.updated",
+                  "contact.updated",
+                  "contact.deleted",
+                  "job.successful",
+                  "job.failed",
+                ],
               },
             },
             {
@@ -3110,6 +3135,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "config_dir",
         default: "/Users/blag/.nylas",
+        template: "folders",
       },
     },
     {
@@ -3118,6 +3144,7 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       args: {
         name: "config_file",
+        template: "filepaths",
       },
     },
     {
@@ -3153,6 +3180,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "output",
         default: "json",
+        suggestions: ["json", "table"],
       },
     },
     {
@@ -3161,6 +3189,7 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       args: {
         name: "region",
+        suggestions: ["us", "ireland", "canada", "australia"],
       },
     },
     {
