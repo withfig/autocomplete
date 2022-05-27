@@ -30,7 +30,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -45,7 +44,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                     {
@@ -116,7 +114,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -145,7 +142,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -174,7 +170,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -203,7 +198,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -256,7 +250,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -285,7 +278,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -302,7 +294,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -329,7 +320,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -346,7 +336,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -419,7 +408,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -442,7 +430,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -475,7 +462,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -498,7 +484,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -521,7 +506,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -614,7 +598,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -635,7 +618,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -660,7 +642,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -683,7 +664,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -711,7 +691,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -762,7 +741,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -791,7 +769,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                     {
@@ -853,7 +830,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                     {
@@ -900,7 +876,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -939,7 +914,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -1047,7 +1021,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1070,7 +1043,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1091,7 +1063,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1130,7 +1101,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -1257,7 +1227,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1280,7 +1249,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1307,7 +1275,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1330,7 +1297,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1349,7 +1315,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1374,7 +1339,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -1420,7 +1384,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1441,7 +1404,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1456,7 +1418,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -1497,7 +1458,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1520,7 +1480,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1546,7 +1505,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1567,7 +1525,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1582,7 +1539,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -1623,7 +1579,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1646,7 +1601,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1691,7 +1645,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -1811,7 +1764,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -1844,7 +1796,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1873,7 +1824,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1902,7 +1852,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1931,7 +1880,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1960,7 +1908,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -1989,7 +1936,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2018,7 +1964,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2047,7 +1992,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2076,7 +2020,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2105,7 +2048,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2128,7 +2070,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -2166,7 +2107,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -2195,7 +2135,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -2240,7 +2179,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
                 {
@@ -2391,7 +2329,6 @@ const completionSpec: Fig.Spec = {
                     "(optional) A comma separated list of column headers to display for the table output",
                   args: {
                     name: "headers",
-                    isOptional: true,
                   },
                 },
               ],
@@ -2416,7 +2353,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2431,7 +2367,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2454,7 +2389,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
@@ -2477,7 +2411,6 @@ const completionSpec: Fig.Spec = {
                         "(optional) A comma separated list of column headers to display for the table output",
                       args: {
                         name: "headers",
-                        isOptional: true,
                       },
                     },
                   ],
