@@ -30,7 +30,7 @@ const tagsGenerator: Fig.Generator = {
 
 const variablesGenerator = keyValue({
   separator: ":",
-  values: async (_, executeShellCommand) => {
+  keys: async (_, executeShellCommand) => {
     const out = await executeShellCommand(
       'for i in $(find -E . -regex ".*.(robot|resource)" -type f); do cat -s $i ; done'
     );
