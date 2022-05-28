@@ -3,10 +3,6 @@ const completionSpec: Fig.Spec = {
   description: "Line numbering filter",
   options: [
     {
-      name: "--help",
-      description: "Show help for nl",
-    },
-    {
       name: "-b",
       description: `Specify the logical page body lines to be numbered
         'a' number all lines, 't' number only non-empty lines,
