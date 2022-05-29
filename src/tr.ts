@@ -158,19 +158,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "-d",
       description: "Delete characters in string1 from the input",
-      exclusiveOn: ["-s", "-sd"],
     },
     {
       name: "-s",
       description:
         "Squeeze multiple occurrences of the characters listed in the last operand (either string1 or string2) in the input into a single instance of the character. This occurs after all deletion and translation is completed",
-      exclusiveOn: ["-d", "-sd"],
-    },
-    {
-      name: "-ds",
-      description:
-        "Delete characters in string1 and squeeze multiple occurrences of the characters listed in string2 into a single instance of the character",
-      exclusiveOn: ["-s", "-d"],
     },
     {
       name: "-u",
