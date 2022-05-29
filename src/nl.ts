@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "nl",
   description: "Line numbering filter",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     {
       name: "-b",
