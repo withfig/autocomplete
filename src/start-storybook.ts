@@ -47,7 +47,7 @@ export const storybookCommonOptions: Fig.Option[] = [
   },
   {
     name: "--ssl-key",
-    description: "Provide an SSL key. (Required with --https)	",
+    description: "Provide an SSL key. (Required with --https)",
     args: {
       name: "key",
     },

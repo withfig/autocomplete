@@ -33,12 +33,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--form", "-f"],
       exclusiveOn: ["--json", "-j", "--multipart", "--boundary"],
-      description: `
-      fData items from the command line are serialized as form fields.
-      The Content-Type is set to application/x-www-form-urlencoded (if not
-      specified). The presence of any file fields results in a
-      multipart/form-data request.
-      `,
+      description: `FData items from the command line are serialized as form fields.
+The Content-Type is set to application/x-www-form-urlencoded (if not
+specified). The presence of any file fields results in a
+multipart/form-data request`,
     },
     {
       name: "--multipart",
@@ -62,11 +60,9 @@ const completionSpec: Fig.Spec = {
       args: {
         suggestions: ["all", "colors", "format", "none"],
       },
-      description: `
-      Controls output processing. The value can be "none" to not prettify
-      the output (default for redirected output), "all" to apply both colors
-      and formatting (default for terminal output), "colors", or "format".
-      `,
+      description: `Controls output processing. The value can be "none" to not prettify
+the output (default for redirected output), "all" to apply both colors
+and formatting (default for terminal output), "colors", or "format"`,
     },
     {
       name: ["--style", "-s"],
@@ -151,14 +147,7 @@ const completionSpec: Fig.Spec = {
         ],
         default: "hb",
       },
-      description: `
-      String specifying what the output should contain.
-
-      'H' request headers;
-      'B' request body;
-      'h' response headers;
-      'b' response body;
-      `,
+      description: "String specifying what the output should contain",
     },
     {
       name: ["--headers", "-h"],
@@ -170,20 +159,16 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--verbose", "-v"],
-      description: `
-      Verbose output. Print the whole request as well as the response. Also print
-      any intermediary requests/responses (such as redirects).
-      It's a shortcut for: --all --print=BHbh
-      `,
+      description: `Verbose output. Print the whole request as well as the response. Also print
+any intermediary requests/responses (such as redirects).
+It's a shortcut for: --all --print=BHbh`,
     },
     {
       name: "--all",
-      description: `
-      By default, only the final request/response is shown. Use this flag to show
-      any intermediary requests/responses as well. Intermediary requests include
-      followed redirects (with --follow), the first unauthorized request when
-      Digest auth is used (--auth=digest), etc.
-      `,
+      description: `By default, only the final request/response is shown. Use this flag to show
+any intermediary requests/responses as well. Intermediary requests include
+followed redirects (with --follow), the first unauthorized request when
+Digest auth is used (--auth=digest), etc`,
     },
     {
       name: ["--history-print", "-P"],
@@ -197,12 +182,10 @@ const completionSpec: Fig.Spec = {
         ],
         default: "hb",
       },
-      description: `
-      The same as --print, -p but applies only to intermediary requests/responses
-      (such as redirects) when their inclusion is enabled with --all. If this
-      options is not specified, then they are formatted the same way as the final
-      response.
-      `,
+      description: `The same as --print, -p but applies only to intermediary requests/responses
+(such as redirects) when their inclusion is enabled with --all. If this
+options is not specified, then they are formatted the same way as the final
+response`,
     },
     {
       name: ["--stream", "-S"],
@@ -215,19 +198,15 @@ const completionSpec: Fig.Spec = {
         name: "FILE",
         template: "filepaths",
       },
-      description: `
-      Save output to FILE instead of stdout. If --download is also set, then only
-      the response body is saved to FILE. Other parts of the HTTP exchange are
-      printed to stderr.
-      `,
+      description: `Save output to FILE instead of stdout. If --download is also set, then only
+the response body is saved to FILE. Other parts of the HTTP exchange are
+printed to stderr`,
     },
     {
       name: ["--download", "-d"],
-      description: `
-      Do not print the response body to stdout. Rather, download it and store it
-      in a file. The filename is guessed unless specified with --output
-      [filename]. This action is similar to the default behaviour of wget.
-      `,
+      description: `Do not print the response body to stdout. Rather, download it and store it
+in a file. The filename is guessed unless specified with --output
+[filename]. This action is similar to the default behaviour of wget`,
     },
     {
       name: ["--continue", "-c"],
@@ -236,11 +215,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--quiet", "-q"],
-      description: `
-      Do not print to stdout or stderr.
-      stdout is still redirected if --output is specified.
-      Flag doesn't affect behaviour of download beyond not printing to terminal.
-      `,
+      description: `Do not print to stdout or stderr.
+stdout is still redirected if --output is specified.
+Flag doesn't affect behaviour of download beyond not printing to terminal`,
     },
     {
       name: "--session",
@@ -248,11 +225,9 @@ const completionSpec: Fig.Spec = {
         name: "SESSION_NAME_OR_PATH",
         template: "filepaths",
       },
-      description: `
-      Create, or reuse and update a session. Within a session, custom headers,
-      auth credential, as well as any cookies sent by the server persist between
-      requests.
-      `,
+      description: `Create, or reuse and update a session. Within a session, custom headers,
+auth credential, as well as any cookies sent by the server persist between
+requests`,
     },
     {
       name: "--session-read-only",
@@ -295,12 +270,10 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "PROTOCOL:PROXY_URL",
       },
-      description: `
-      String mapping protocol to the URL of the proxy
-      (e.g. http:http://foo.bar:3128). You can specify multiple proxies with
-      different protocols. The environment variables $ALL_PROXY, $HTTP_PROXY,
-      and $HTTPS_proxy are supported as well.
-      `,
+      description: `String mapping protocol to the URL of the proxy
+(e.g. http:http://foo.bar:3128). You can specify multiple proxies with
+different protocols. The environment variables $ALL_PROXY, $HTTP_PROXY,
+and $HTTPS_proxy are supported as well`,
     },
     {
       name: ["--follow", "-F"],
@@ -327,18 +300,14 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "SECONDS",
       },
-      description: `
-      The connection timeout of the request in seconds.
-      The default value is 0, i.e., there is no timeout limit.
-      `,
+      description: `The connection timeout of the request in seconds.
+The default value is 0, i.e., there is no timeout limit`,
     },
     {
       name: "--check-status",
-      description: `
-      By default, HTTPie exits with 0 when no network or other fatal errors
-      occur. This flag instructs HTTPie to also check the HTTP status code and
-      exit with an error if the status indicates one.
-      `,
+      description: `By default, HTTPie exits with 0 when no network or other fatal errors
+occur. This flag instructs HTTPie to also check the HTTP status code and
+exit with an error if the status indicates one`,
     },
     {
       name: "--path-as-is",
@@ -355,22 +324,18 @@ const completionSpec: Fig.Spec = {
         suggestions: ["no", "yes"],
         template: "filepaths",
       },
-      description: `
-      Set to "no" (or "false") to skip checking the host's SSL certificate.
-      Defaults to "yes" ("true"). You can also pass the path to a CA_BUNDLE file
-      for private certs.
-      `,
+      description: `Set to "no" (or "false") to skip checking the host's SSL certificate.
+Defaults to "yes" ("true"). You can also pass the path to a CA_BUNDLE file
+for private certs`,
     },
     {
       name: "--ssl",
       args: {
         suggestions: ["ssl2.3", "tls1", "tls1.1", "tls1.2"],
       },
-      description: `
-      The desired protocol version to use. This will default to
-      SSL v2.3 which will negotiate the highest protocol that both
-      the server and your installation of OpenSSL support.
-      `,
+      description: `The desired protocol version to use. This will default to
+SSL v2.3 which will negotiate the highest protocol that both
+the server and your installation of OpenSSL support`,
     },
     {
       name: "--ciphers",
@@ -385,11 +350,9 @@ const completionSpec: Fig.Spec = {
       args: {
         template: "filepaths",
       },
-      description: `
-      You can specify a local cert to use as client side SSL certificate.
-      This file may either contain both private key and certificate or you may
-      specify --cert-key separately.
-      `,
+      description: `You can specify a local cert to use as client side SSL certificate.
+This file may either contain both private key and certificate or you may
+specify --cert-key separately`,
     },
     {
       name: "--cert-key",
@@ -424,10 +387,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--debug",
-      description: `
-      Prints the exception traceback should one occur, as well as other
-      information useful for debugging HTTPie itself and for reporting bugs.
-      `,
+      description: `Prints the exception traceback should one occur, as well as other
+information useful for debugging HTTPie itself and for reporting bugs`,
     },
   ],
 };

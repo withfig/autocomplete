@@ -87,21 +87,21 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "-race",
-    description: `enable data race detection.
-    Supported only on linux/amd64, freebsd/amd64, darwin/amd64, windows/amd64,
-    linux/ppc64le and linux/arm64 (only for 48-bit VMA).`,
+    description: `Enable data race detection.
+Supported only on linux/amd64, freebsd/amd64, darwin/amd64, windows/amd64,
+linux/ppc64le and linux/arm64 (only for 48-bit VMA)`,
   },
   {
     name: "-msan",
-    description: `enable interoperation with memory sanitizer.
-    Supported only on linux/amd64, linux/arm64
-    and only with Clang/LLVM as the host C compiler.
-    On linux/arm64, pie build mode will be used.`,
+    description: `Enable interoperation with memory sanitizer.
+Supported only on linux/amd64, linux/arm64
+and only with Clang/LLVM as the host C compiler.
+On linux/arm64, pie build mode will be used`,
   },
   {
     name: "-work",
-    description: `print the name of the temporary work directory and
-    do not delete it when exiting.`,
+    description: `Print the name of the temporary work directory and
+do not delete it when exiting`,
   },
   {
     name: "-asmflags",
