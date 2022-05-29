@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "od",
   description: "Octal, decimal, hex, ASCII dump",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     {
       name: "-A",
