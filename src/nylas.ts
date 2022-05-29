@@ -3134,7 +3134,7 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       args: {
         name: "config_dir",
-        default: "/Users/blag/.nylas",
+        default: "~/.nylas",
         template: "folders",
       },
     },
