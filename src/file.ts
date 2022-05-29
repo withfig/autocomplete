@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "file",
   description: "Determine file type",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     {
       name: "--help",
