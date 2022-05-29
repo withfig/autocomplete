@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "tac",
   description: "Concatenate and print files in reverse",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     {
       name: "--help",
