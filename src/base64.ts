@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "base64",
   description: "Encode and decode using Base64 representation",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     {
       name: ["--help", "-h"],

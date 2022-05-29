@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "basenc",
   description: "Encode/decode data and print to standard output",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   options: [
     {
       name: ["--help", "-h"],
