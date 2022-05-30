@@ -596,7 +596,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-w", "--word-regexp"],
-      description: "Only shows th ematches surrounded by word boundaries",
+      description: "Only shows the matches surrounded by word boundaries",
     },
   ],
   args: [
