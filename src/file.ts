@@ -1,3 +1,5 @@
+import { keyValue } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "file",
   description: "Determine file type",
@@ -180,15 +182,18 @@ const completionSpec: Fig.Spec = {
       description: `Set various parameter limits.`,
       args: {
         name: "name=value",
-        suggestions: [
-          "bytes=1048576",
-          "elf_notes=256",
-          "elf_phum=2048",
-          "encoding=65536",
-          "indir=50",
-          "name=60",
-          "regex=8192",
-        ],
+        generators: keyValue({
+          keys: [
+            "bytes",
+            "elf_notes",
+            "elf_phum",
+            "encoding",
+            "indir",
+            "name",
+            "regex",
+          ],
+          values: ["1048576", "256", "2048", "65536", "50", "60", "8192"],
+        }),
       },
     },
     {
