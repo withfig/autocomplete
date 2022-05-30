@@ -180,6 +180,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--parameter", "-P"],
       description: `Set various parameter limits.`,
+      isRepeatable: true,
       args: {
         name: "name=value",
         generators: keyValue({
