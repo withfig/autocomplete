@@ -8,8 +8,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-A",
       description: `Specify the input address base.  The argument base may be
-        one of d, o, x or n, which specify decimal, octal,
-        hexadecimal addresses or no address, respectively.`,
+one of d, o, x or n, which specify decimal, octal,
+hexadecimal addresses or no address, respectively`,
       args: {
         name: "base",
         suggestions: ["d", "o", "x", "n"],
@@ -69,9 +69,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "-j",
       description: `Skip skip bytes of the combined input before dumping.  The
-        number may be followed by one of b, k, m or g which
-        specify the units of the number as blocks (512 bytes),
-        kilobytes, megabytes and gigabytes, respectively.`,
+number may be followed by one of b, k, m or g which
+specify the units of the number as blocks (512 bytes),
+kilobytes, megabytes and gigabytes, respectively`,
       args: {
         name: "skip",
       },
@@ -94,8 +94,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-t",
       description: `Specify the output format.  The type argument is a string
-        containing one or more of the following kinds of type specificers: a,
-        c, [d|o|u|x][C|S|I|L|n], or f[F|D|L|n]. See the man page for meanings.`,
+containing one or more of the following kinds of type specificers: a,
+c, [d|o|u|x][C|S|I|L|n], or f[F|D|L|n]. See the man page for meanings`,
       args: {
         name: "type",
         suggestions: [
