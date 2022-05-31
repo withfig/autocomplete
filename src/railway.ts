@@ -130,6 +130,11 @@ const completionSpec: Fig.Spec = {
           description: "Environment to run in",
           args: {},
         },
+        {
+          name: ["-s", "--service"],
+          description: "Define specific service",
+          args: { name: "Service name" },
+        },
       ],
     },
     {
@@ -152,6 +157,11 @@ const completionSpec: Fig.Spec = {
       options: [
         { name: ["-d", "--detach"], description: "Detach from build logs" },
         { name: ["-e", "--environment"], description: "Environment to run in" },
+        {
+          name: ["-s", "--service"],
+          description: "Deploy app to specific service",
+          args: { name: "Service name" },
+        },
       ],
     },
     {
@@ -189,7 +199,14 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [{ name: ["-e", "--environment"], description: "Environment" }],
+      options: [
+        { name: ["-e", "--environment"], description: "Environment" },
+        {
+          name: ["-s", "--service"],
+          description: "Deploy app to specific service",
+          args: { name: "Service name" },
+        },
+      ],
     },
     {
       name: "version",
