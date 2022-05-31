@@ -31,9 +31,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "-d",
       description: `Specify the delimiter characters used to indicate the
-      start of a logical page section in the input file. At most two
-      characters may be specified; if only one character is specified,
-      the first character is replaced and the second character remains unchanged`,
+start of a logical page section in the input file. At most two
+characters may be specified; if only one character is specified,
+the first character is replaced and the second character remains unchanged`,
       args: {
         name: "delim",
         suggestions: ["\\:"],
@@ -73,9 +73,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "-l",
       description: `If numbering of all lines is specified for the current
-      logical section using the corresponding -b a, -f a or -h a option, specify
-      the number of adjacent blank lines to be considered as one. For example,
-      -l 2 results in only the second adjacent blank line being numbered`,
+logical section using the corresponding -b a, -f a or -h a option, specify
+the number of adjacent blank lines to be considered as one. For example,
+-l 2 results in only the second adjacent blank line being numbered`,
       args: {
         name: "num",
         suggestions: ["1"],
@@ -112,8 +112,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-s",
       description: `Specify the characters used in separating the line
-      number and the corresponding text line.  The default
-      sep setting is a single tab character`,
+number and the corresponding text line.  The default
+sep setting is a single tab character`,
       args: {
         name: "sep",
         suggestions: ["\\t"],
@@ -133,8 +133,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-w",
       description: `Specify the number of characters to be occupied by the
-      line number; in case the width is insufficient to hold the line number,
-      it will be truncated to its width least significant digits`,
+line number; in case the width is insufficient to hold the line number,
+it will be truncated to its width least significant digits`,
       args: {
         name: "width",
         suggestions: ["6", "5", "4", "3", "2", "1"],

@@ -45,15 +45,15 @@ const completionSpec: Fig.Spec = {
     {
       name: "-a",
       description: `Attempt to continue interrupted transfers rather than overwriting
-        existing partial or complete copies of files.  If the partial
-        contents differ from those being transferred, then the resultant
-        file is likely to be corrupt`,
+existing partial or complete copies of files.  If the partial
+contents differ from those being transferred, then the resultant
+file is likely to be corrupt`,
     },
     {
       name: "-B",
       description: `Specify the size of the buffer that sftp uses when transferring
-        files.  Larger buffers require fewer round trips at the cost of
-        higher memory consumption.  The default is 32768 bytes`,
+files.  Larger buffers require fewer round trips at the cost of
+higher memory consumption.  The default is 32768 bytes`,
       args: {
         name: "buffer_size",
         description: "The buffer size",
@@ -64,10 +64,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "-b",
       description: `Batch mode reads a series of commands from an input batchfile
-        instead of stdin.  Since it lacks user interaction it should be
-        used in conjunction with non-interactive authentication to obviate
-        the need to enter a password at connection time (see sshd(8) and
-        ssh-keygen(1) for details)`,
+instead of stdin.  Since it lacks user interaction it should be
+used in conjunction with non-interactive authentication to obviate
+the need to enter a password at connection time (see sshd(8) and
+ssh-keygen(1) for details)`,
       args: {
         name: "batchfile",
         description: "The batch file",
@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-D",
       description: `Connect directly to a local sftp server (rather than via ssh(1)).
-        This option may be useful in debugging the client and server`,
+This option may be useful in debugging the client and server`,
       args: {
         name: "sftp_server_path",
         description: "Path to the SFTP server",
@@ -123,11 +123,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "-J",
       description: `Connect to the target host by first making an scp connection to the
-      jump host described by destination and then establishing a TCP
-      forwarding to the ultimate destination from there.  Multiple jump
-      hops may be specified separated by comma characters.  This is a
-      shortcut to specify a ProxyJump configuration directive.  This
-      option is directly passed to ssh(1).`,
+jump host described by destination and then establishing a TCP
+forwarding to the ultimate destination from there.  Multiple jump
+hops may be specified separated by comma characters.  This is a
+shortcut to specify a ProxyJump configuration directive.  This
+option is directly passed to ssh(1)`,
       args: {
         name: "destination",
         description: "Scp destination",
@@ -149,10 +149,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "-o",
       description: `Can be used to pass options to ssh in the format used in
-      ssh_config(5).  This is useful for specifying options for which
-      there is no separate scp command-line flag.  For full details of
-      the options listed below, and their possible values, see
-      ssh_config(5).`,
+ssh_config(5).  This is useful for specifying options for which
+there is no separate scp command-line flag.  For full details of
+the options listed below, and their possible values, see
+ssh_config(5)`,
       args: {
         name: "option",
         suggestions: [
@@ -231,8 +231,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-P",
       description: `Specifies the port to connect to on the remote host.  Note that
-      this option is written with a capital ‘P’, because -p is already
-      reserved for preserving the times and modes of the file.`,
+this option is written with a capital ‘P’, because -p is already
+reserved for preserving the times and modes of the file`,
       args: {
         name: "port",
       },
@@ -250,8 +250,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-R",
       description: `Specify how many requests may be outstanding at any one time.
-        Increasing this may slightly improve file transfer speed but will
-        increase memory usage.  The default is 64 outstanding requests`,
+Increasing this may slightly improve file transfer speed but will
+increase memory usage.  The default is 64 outstanding requests`,
       args: {
         name: "num_requests",
         description: "The number of requests",
@@ -275,8 +275,8 @@ const completionSpec: Fig.Spec = {
     {
       name: "-s",
       description: `Specifies the SSH2 subsystem or the path for an sftp server on the
-        remote host.  A path is useful when the remote sshd(8) does not
-        have an sftp subsystem configured.`,
+remote host.  A path is useful when the remote sshd(8) does not
+have an sftp subsystem configured`,
       args: {
         name: "subsystem | sftp_server",
         description: "Path to the SFTP server",
