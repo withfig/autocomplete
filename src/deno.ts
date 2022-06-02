@@ -3131,6 +3131,7 @@ const completion: Fig.Spec = {
       args: {
         name: "specifiers",
         isVariadic: true,
+        template: "filepaths",
       },
     },
     {
@@ -3159,6 +3160,7 @@ const completion: Fig.Spec = {
       args: {
         name: "subcommand",
         isOptional: true,
+        template: "help",
       },
     },
   ],
