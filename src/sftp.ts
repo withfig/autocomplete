@@ -1,8 +1,8 @@
 import { knownHosts, configHosts } from "./ssh";
 
 const completionSpec: Fig.Spec = {
-  name: "scp",
-  description: "Copies files or directories between hosts on a network",
+  name: "sftp",
+  description: "OpenSSH secure file transfer",
   args: [
     {
       name: "sources",
@@ -26,12 +26,8 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: "-3",
-      description: `Copies between two remote hosts are transferred through the local
-host.  Without this option the data is copied directly between the
-two remote hosts.  Note that this option disables the progress
-meter and selects batch mode for the second host, since scp cannot
-ask for passwords or passphrases for both hosts`,
+      name: ["--help", "-h"],
+      description: "Show help for sftp",
     },
     {
       name: "-4",
@@ -47,9 +43,36 @@ ask for passwords or passphrases for both hosts`,
         "Allows forwarding of ssh-agent(1) to the remote system. The default is not to forward an authentication agent",
     },
     {
+      name: "-a",
+      description: `Attempt to continue interrupted transfers rather than overwriting
+existing partial or complete copies of files.  If the partial
+contents differ from those being transferred, then the resultant
+file is likely to be corrupt`,
+    },
+    {
       name: "-B",
-      description:
-        "Selects batch mode (prevents asking for passwords or passphrases)",
+      description: `Specify the size of the buffer that sftp uses when transferring
+files.  Larger buffers require fewer round trips at the cost of
+higher memory consumption.  The default is 32768 bytes`,
+      args: {
+        name: "buffer_size",
+        description: "The buffer size",
+        suggestions: ["32768"],
+        default: "32768",
+      },
+    },
+    {
+      name: "-b",
+      description: `Batch mode reads a series of commands from an input batchfile
+instead of stdin.  Since it lacks user interaction it should be
+used in conjunction with non-interactive authentication to obviate
+the need to enter a password at connection time (see sshd(8) and
+ssh-keygen(1) for details)`,
+      args: {
+        name: "batchfile",
+        description: "The batch file",
+        template: "filepaths",
+      },
     },
     {
       name: "-C",
@@ -66,6 +89,15 @@ ask for passwords or passphrases for both hosts`,
       },
     },
     {
+      name: "-D",
+      description: `Connect directly to a local sftp server (rather than via ssh(1)).
+This option may be useful in debugging the client and server`,
+      args: {
+        name: "sftp_server_path",
+        description: "Path to the SFTP server",
+      },
+    },
+    {
       name: "-F",
       description:
         "Specifies an alternative per-user configuration file for ssh. This option is directly passed to ssh(1)",
@@ -73,6 +105,11 @@ ask for passwords or passphrases for both hosts`,
         name: "ssh_config",
         description: "The selected ssh config",
       },
+    },
+    {
+      name: "-f",
+      description:
+        "Requests that files be flushed to disk immediately after transfer",
     },
     {
       name: "-i",
@@ -103,6 +140,11 @@ option is directly passed to ssh(1)`,
         name: "limit",
         description: "Limit bandwidth in Kbit/s",
       },
+    },
+    {
+      name: "-N",
+      description:
+        "Disables quiet mode, e.g. to override the implicit quiet mode set by the -b flag",
     },
     {
       name: "-o",
@@ -206,6 +248,18 @@ reserved for preserving the times and modes of the file`,
         "Quiet mode: disables the progress meter as well as warning and diagnostic messages from ssh(1)",
     },
     {
+      name: "-R",
+      description: `Specify how many requests may be outstanding at any one time.
+Increasing this may slightly improve file transfer speed but will
+increase memory usage.  The default is 64 outstanding requests`,
+      args: {
+        name: "num_requests",
+        description: "The number of requests",
+        suggestions: ["64"],
+        default: "64",
+      },
+    },
+    {
       name: "-r",
       description:
         "Recursively copy entire directories.  Note that scp follows symbolic links encountered in the tree traversal",
@@ -219,16 +273,14 @@ reserved for preserving the times and modes of the file`,
       },
     },
     {
-      name: "-T",
-      description: `Disable strict filename checking.  By default when copying files
-from a remote host to a local directory scp checks that the
-received filenames match those requested on the command-line to
-prevent the remote end from sending unexpected or unwanted files.
-Because of differences in how various operating systems and shells
-interpret filename wildcards, these checks may cause wanted files
-to be rejected.  This option disables these checks at the expense
-of fully trusting that the server will not send unexpected
-filenames`,
+      name: "-s",
+      description: `Specifies the SSH2 subsystem or the path for an sftp server on the
+remote host.  A path is useful when the remote sshd(8) does not
+have an sftp subsystem configured`,
+      args: {
+        name: "subsystem | sftp_server",
+        description: "Path to the SFTP server",
+      },
     },
     {
       name: "-v",

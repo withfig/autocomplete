@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-p",
-      description: `Acts mostly same as -n switch, but print the value of variable $_ at the each end of the loop.`,
+      description: `Acts mostly same as -n switch, but print the value of variable $_ at the each end of the loop`,
     },
     {
       name: "-r",
