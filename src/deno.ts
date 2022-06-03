@@ -287,6 +287,7 @@ const completion: Fig.Spec = {
           name: "files",
           isVariadic: true,
           isOptional: true,
+          template: "filepaths",
         },
         {
           name: "script_arg",
@@ -3130,6 +3131,7 @@ const completion: Fig.Spec = {
       args: {
         name: "specifiers",
         isVariadic: true,
+        template: "filepaths",
       },
     },
     {
@@ -3158,6 +3160,7 @@ const completion: Fig.Spec = {
       args: {
         name: "subcommand",
         isOptional: true,
+        template: "help",
       },
     },
   ],
