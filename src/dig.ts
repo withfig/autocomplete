@@ -92,6 +92,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "+nocomments +noquestion +noauthority +noadditional +nostats",
+      insertValue:
+        "+nocomments +noquestion +noauthority +noadditional +nostats {cursor}",
       description: "Query only answer section",
     },
   ],
