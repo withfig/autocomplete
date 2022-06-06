@@ -5,22 +5,22 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "help",
-      description: "display help for command",
+      description: "Display help for command",
       priority: 49,
       args: { name: "command", isOptional: true },
     },
   ],
   options: [
     {
-      name: ["--here"],
+      name: "--here",
       description: "Set if the spec should be created in the current folder",
     },
     {
       name: ["-h", "--help"],
-      description: "display help for command",
+      description: "Display help for command",
       priority: 49,
     },
   ],
-  args: [{ name: "name" }],
+  args: { name: "name" },
 };
 export default completionSpec;
