@@ -434,6 +434,25 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "dashboard",
+      description:
+        "Access the Kubernetes dashboard running within the minikube cluster",
+      options: [
+        {
+          name: "--port",
+          description:
+            "Exposed port of the proxyfied dashboard. Set to 0 to pick a random port",
+          args: {
+            name: "int",
+          },
+        },
+        {
+          name: "--url",
+          description: "Display dashboard URL instead of opening a browse",
+        },
+      ],
+    },
+    {
       name: "status",
       description: "Gets the status of a local Kubernetes cluster",
       options: [
