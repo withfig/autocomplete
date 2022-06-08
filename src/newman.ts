@@ -2,6 +2,7 @@
 
 const completionSpec: Fig.Spec = {
   name: "newman",
+  description: "Newman is a command-line collection runner for Postman",
   subcommands: [
     {
       name: "run",
@@ -10,13 +11,13 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-e", "--environment"],
           description: "Specify a URL or path to a Postman Environment",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: ["-g", "--globals"],
           description:
             "Specify a URL or path to a file containing Postman Globals",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: ["-r", "--reporters"],
@@ -32,43 +33,48 @@ const completionSpec: Fig.Spec = {
           name: ["-d", "--iteration-data"],
           description:
             "Specify a data file to use for iterations (either JSON or CSV)",
-          args: { name: "path" },
+          args: {
+            name: "path",
+            template: "filepaths",
+            suggestions: ["JSON", "CSV"],
+          },
         },
         {
           name: "--folder",
           description:
             "Specify the folder to run from a collection. Can be specified multiple times to run multiple folders",
-          args: { name: "path", default: "" },
+          isRepeatable: true,
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--global-var",
           description:
             "Allows the specification of global variables via the command line, in a key=value format",
-          args: { name: "value", default: "" },
+          args: { name: "value" },
         },
         {
           name: "--env-var",
           description:
             "Allows the specification of environment variables via the command line, in a key=value format",
-          args: { name: "value", default: "" },
+          args: { name: "value" },
         },
         {
           name: "--export-environment",
           description:
             "Exports the final environment to a file after completing the run",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--export-globals",
           description:
             "Exports the final globals to a file after completing the run",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--export-collection",
           description:
             "Exports the executed collection to a file after completing the run",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--postman-api-key",
@@ -104,7 +110,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--color",
           description: "Enable/Disable colored output (auto|on|off)",
-          args: { name: "value", default: "auto" },
+          args: {
+            name: "value",
+            default: "auto",
+            suggestions: ["auto", "on", "off"],
+          },
         },
         {
           name: "--delay-request",
@@ -130,7 +140,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--working-dir",
           description: "Specify the path to the working directory",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--no-insecure-file-read",
@@ -142,17 +152,17 @@ const completionSpec: Fig.Spec = {
           name: "--ssl-client-cert-list",
           description:
             "Specify the path to a client certificates configurations (JSON)",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--ssl-client-cert",
           description: "Specify the path to a client certificate (PEM)",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--ssl-client-key",
           description: "Specify the path to a client certificate private key",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--ssl-client-passphrase",
@@ -163,19 +173,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssl-extra-ca-certs",
           description: "Specify additionally trusted CA certificates (PEM)",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--cookie-jar",
           description:
             "Specify the path to a custom cookie jar (serialized tough-cookie JSON)",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--export-cookie-jar",
           description:
             "Exports the cookie jar to a file after completing the run",
-          args: { name: "path" },
+          args: { name: "path", template: "filepaths" },
         },
         {
           name: "--verbose",
