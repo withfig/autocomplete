@@ -11,7 +11,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-address",
     description:
       "Address of the Vault server. The default is https://127.0.0.1:8200. This can also be specified via the VAULT_ADDR environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -21,7 +21,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-agent-address",
     description:
       "Address of the Agent. This can also be specified via the VAULT_AGENT_ADDR environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -31,7 +31,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-ca-cert",
     description:
       "Path on the local disk to a single PEM-encoded CA certificate to verify the Vault server's SSL certificate. This takes precedence over -ca-path. This can also be specified via the VAULT_CACERT environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -41,7 +41,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-ca-path",
     description:
       "Path on the local disk to a directory of PEM-encoded CA certificates to verify the Vault server's SSL certificate. This can also be specified via the VAULT_CAPATH environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -51,7 +51,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-client-cert",
     description:
       "Path on the local disk to a single PEM-encoded CA certificate to use for TLS authentication to the Vault server. If this flag is specified, -client-key is also required. This can also be specified via the VAULT_CLIENT_CERT environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -61,7 +61,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-client-key",
     description:
       "Path on the local disk to a single PEM-encoded private key matching the client certificate from -client-cert. This can also be specified via the VAULT_CLIENT_KEY environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -71,7 +71,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-header-key",
     description:
       "Key-value pair provided as key=value to provide http header added to any request done by the CLI.Trying to add headers starting with 'X-Vault-' is forbidden and will make the command fail This can be specified multiple times",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -81,7 +81,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-mfa",
     description:
       "Supply MFA credentials as part of X-Vault-MFA header. This can also be specified via the VAULT_MFA environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -91,7 +91,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-namespace",
     description:
       "The namespace to use for the command. Setting this is not necessary but allows using relative paths. -ns can be used as shortcut. The default is (not set). This can also be specified via the VAULT_NAMESPACE environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -101,7 +101,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-non-interactive",
     description:
       "When set true, prevents asking the user for input via the terminal. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -111,7 +111,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-output-curl-string",
     description:
       "Instead of executing the request, print an equivalent cURL command string and exit. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -121,7 +121,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-policy-override",
     description:
       "Override a Sentinel policy that has a soft-mandatory enforcement_level specified The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -131,7 +131,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-tls-server-name",
     description:
       "Name to use as the SNI host when connecting to the Vault server via TLS.  This can also be specified via the VAULT_TLS_SERVER_NAME environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -141,7 +141,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-tls-skip-verify",
     description:
       "Disable verification of TLS certificates. Using this option is highly discouraged as it decreases the security of data transmissions to and from the Vault server. The default is false. This can also be specified via the VAULT_SKIP_VERIFY environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -150,7 +150,7 @@ const vaultHTTPOptions: Fig.Option[] = [
   {
     name: "-unlock-key",
     description: "Key to unlock a namespace API lock. The default is (not set)",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -160,7 +160,7 @@ const vaultHTTPOptions: Fig.Option[] = [
     name: "-wrap-ttl",
     description:
       "Wraps the response in a cubbyhole token with the requested TTL. The response is available via the 'vault unwrap' command. The TTL is specified as a numeric string with suffix like '30s' or '5m'. This can also be specified via the VAULT_WRAP_TTL environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -173,7 +173,7 @@ const vaultOutputFieldOptions: Fig.Option[] = [
     name: "-field",
     description:
       "Print only the field with the given name. Specifying this option will take precedence over other formatting directives. The result will not have a trailing newline making it ideal for piping to other processes",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -186,7 +186,7 @@ const vaultOutputFormatOptions: Fig.Option[] = [
     name: "-format",
     description:
       "Print the output in the given format. Valid formats are 'table', 'json', 'yaml', or 'pretty'. The default is table. This can also be specified via the VAULT_FORMAT environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["table", "json", "yaml", "pretty"],
@@ -210,7 +210,7 @@ const vaultLoginOptions: Fig.Option[] = [
     name: "-method",
     description:
       "Type of authentication to use such as 'userpass' or 'ldap'. Note this corresponds to the TYPE, not the enabled path. Use -path to specify the path where the authentication is enabled. The default is token",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["userpass", "ldap", "token"],
@@ -222,7 +222,7 @@ const vaultLoginOptions: Fig.Option[] = [
     name: "-no-print",
     description:
       "Do not display the token. The token will be still be stored to the configured token helper. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -234,7 +234,7 @@ const vaultLoginOptions: Fig.Option[] = [
     name: "-no-store",
     description:
       "Do not persist the token to the token helper (usually the local filesystem) after authentication for use in future requests. The token will only be displayed in the command output. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -246,7 +246,7 @@ const vaultLoginOptions: Fig.Option[] = [
     name: "-path",
     description:
       "Remote path in Vault where the auth method is enabled. This defaults to the TYPE of method (e.g. userpass -> userpass/)",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["userpass/"],
@@ -258,7 +258,7 @@ const vaultLoginOptions: Fig.Option[] = [
     name: "-token-only",
     description:
       "Output only the token with no verification. This flag is a shortcut for '-field=token -no-store'. Setting those flags to other values will have no affect. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -273,7 +273,7 @@ const vaultAgentOptions: Fig.Option[] = [
     name: "-config",
     description:
       "Path to a configuration file. This configuration file should contain only agent directives",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       template: "filepaths",
@@ -284,7 +284,7 @@ const vaultAgentOptions: Fig.Option[] = [
     name: "-exit-after-auth",
     description:
       "If set to true, the agent will exit with code 0 after a single successful auth, where success means that a token was retrieved and all sinks successfully wrote it The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -296,7 +296,7 @@ const vaultAgentOptions: Fig.Option[] = [
     name: "-log-level",
     description:
       "Log verbosity level. Supported values (in order of detail) are 'trace', 'debug', 'info', 'warn', and 'err'. The default is info. This can also be specified via the VAULT_LOG_LEVEL environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["trace", "debug", "info", "warn", "err"],
@@ -311,7 +311,7 @@ const vaultServerOptions: Fig.Option[] = [
     name: "-config",
     description:
       "Path to a configuration file or directory of configuration files. This flag can be specified multiple times to load multiple configurations.  If the path is a directory, all files which end in .hcl or .json are loaded",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       template: "filepaths",
@@ -322,7 +322,7 @@ const vaultServerOptions: Fig.Option[] = [
     name: "-exit-on-core-shutdown",
     description:
       "Exit the vault server if the vault core is shutdown. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -334,7 +334,7 @@ const vaultServerOptions: Fig.Option[] = [
     name: "-log-format",
     description:
       "Log format. Supported values are 'standard' and 'json'. The default is (not set)",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["standard", "json"],
@@ -345,7 +345,7 @@ const vaultServerOptions: Fig.Option[] = [
     name: "-log-level",
     description:
       "Log verbosity level. Supported values (in order of detail) are 'trace', 'debug', 'info', 'warn', and 'err'. The default is info. This can also be specified via the VAULT_LOG_LEVEL environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["trace", "debug", "info", "warn", "err"],
@@ -357,7 +357,7 @@ const vaultServerOptions: Fig.Option[] = [
     name: "-recovery",
     description:
       "Enable recovery mode. In this mode, Vault is used to perform recovery actions.Using a recovery operation token, 'sys/raw' API can be used to manipulate the storage. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -372,7 +372,7 @@ const vaultDevOptions: Fig.Option[] = [
     name: "-dev",
     description:
       "Enable development mode. In this mode, Vault runs in-memory and starts unsealed. As the name implies, do not run 'dev' mode in production. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -384,7 +384,7 @@ const vaultDevOptions: Fig.Option[] = [
     name: "-dev-listen-address",
     description:
       "Address to bind to in 'dev' mode. The default is 127.0.0.1:8200. This can also be specified via the VAULT_DEV_LISTEN_ADDRESS environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["127.0.0.1:8200"],
@@ -396,7 +396,7 @@ const vaultDevOptions: Fig.Option[] = [
     name: "-dev-no-store-token",
     description:
       "Do not persist the dev root token to the token helper (usually the local filesystem) for use in future requests. The token will only be displayed in the command output. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -408,7 +408,7 @@ const vaultDevOptions: Fig.Option[] = [
     name: "-dev-root-token-id",
     description:
       "Initial root token. This only applies when running in 'dev' mode.  This can also be specified via the VAULT_DEV_ROOT_TOKEN_ID environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -421,7 +421,7 @@ const vaultDebugOptions: Fig.Option[] = [
     name: "-compress",
     description:
       "Toggles whether to compress output package The default is true",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["true", "true"],
@@ -432,7 +432,7 @@ const vaultDebugOptions: Fig.Option[] = [
   {
     name: "-duration",
     description: "Duration to run the command. The default is 2m0s",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["2m0s"],
@@ -444,7 +444,7 @@ const vaultDebugOptions: Fig.Option[] = [
     name: "-interval",
     description:
       "The polling interval at which to collect profiling data and server state. The default is 30s",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["30s"],
@@ -456,7 +456,7 @@ const vaultDebugOptions: Fig.Option[] = [
     name: "-metrics-interval",
     description:
       "The polling interval at which to collect metrics data. The default is 10s",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["10s"],
@@ -467,7 +467,7 @@ const vaultDebugOptions: Fig.Option[] = [
   {
     name: "-output",
     description: "Specifies the output path for the debug package",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -477,7 +477,7 @@ const vaultDebugOptions: Fig.Option[] = [
     name: "-target",
     description:
       "Target to capture, defaulting to all if none specified. This can be specified multiple times to capture multiple targets",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: [
@@ -499,7 +499,7 @@ const vaultMonitorOptions: Fig.Option[] = [
     name: "-log-level",
     description:
       "If passed, the log level to monitor logs. Supported values(in order of detail) are 'trace', 'debug', 'info', 'warn' and 'error'. These are not case sensitive. The default is info",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["info", "trace", "debug", "warn", "error"],
@@ -514,7 +514,7 @@ const vaultAuditEnableOptions: Fig.Option[] = [
     name: "-description",
     description:
       "Human-friendly description for the purpose of this audit device",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -524,7 +524,7 @@ const vaultAuditEnableOptions: Fig.Option[] = [
     name: "-local",
     description:
       "Mark the audit device as a local-only device. Local devices are not replicated or removed by replication. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -536,7 +536,7 @@ const vaultAuditEnableOptions: Fig.Option[] = [
     name: "-path",
     description:
       "Place where the audit device will be accessible. This must be unique across all audit devices. This defaults to the 'type' of the audit device",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -548,7 +548,7 @@ const vaultVersionOptions: Fig.Option[] = [
   {
     name: "-versions",
     description: "Specifies the version numbers",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -563,7 +563,7 @@ const vaultKvMetadataPatchAndPutOptions: Fig.Option[] = [
     name: "-cas-required",
     description:
       "If true the key will require the cas parameter to be set on all write requests. If false, the backend’s configuration will be used",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -573,7 +573,7 @@ const vaultKvMetadataPatchAndPutOptions: Fig.Option[] = [
     name: "-custom-metadata",
     description:
       "Specifies arbitrary version-agnostic key=value metadata meant to describe a secret. This can be specified multiple times to add multiple pieces of metadata",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "key=value",
     },
@@ -583,7 +583,7 @@ const vaultKvMetadataPatchAndPutOptions: Fig.Option[] = [
     name: "-delete-version-after",
     description:
       "Specifies the length of time before a version is deleted. If not set, the backend's configured delete-version-after is used. Cannot be greater than the backend's delete-version-after. The delete-version-after is specified as a numeric string with a suffix like '30s' or '3h25m19s'. The default is -1ns",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["30s", "3h25m19s"],
@@ -595,7 +595,7 @@ const vaultKvMetadataPatchAndPutOptions: Fig.Option[] = [
     name: "-max-versions",
     description:
       "The number of versions to keep. If not set, the backend’s configured max version is used. The default is -1",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["-1"],
@@ -610,7 +610,7 @@ const vaultKvPatchOptions: Fig.Option[] = [
     name: "-cas",
     description:
       "Specifies to use a Check-And-Set operation. If set to 0 or not set, the patch will be allowed. If the index is non-zero the patch will only be allowed if the key’s current version matches the version specified in the cas parameter",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["-1", "0", "1"],
@@ -622,7 +622,7 @@ const vaultKvPatchOptions: Fig.Option[] = [
     name: "-method",
     description:
       "Specifies which method of patching to use. If set to 'patch', then an HTTP PATCH request will be issued. If set to 'rw', then a read will be performed, then a local update, followed by a remote update",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["patch", "rw"],
@@ -636,7 +636,7 @@ const vaultKvPutOptions: Fig.Option[] = [
     name: "-cas",
     description:
       "Specifies to use a Check-And-Set operation. If set to 0 or not set, the patch will be allowed. If the index is non-zero the patch will only be allowed if the key’s current version matches the version specified in the cas parameter",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["-1", "0", "1"],
@@ -651,7 +651,7 @@ const vaultLeaseRenewOptions: Fig.Option[] = [
     name: "-increment",
     description:
       "Request a specific increment in seconds. Vault is not required to honor this request",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
     },
@@ -664,7 +664,7 @@ const vaultLeaseRevokeOptions: Fig.Option[] = [
     name: "-force",
     description:
       "Delete the lease from Vault even if the secret engine revocation fails. This is meant for recovery situations where the secret in the target secret engine was manually removed. If this flag is specified, -prefix is also required. This is aliased as '-f'. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -676,7 +676,7 @@ const vaultLeaseRevokeOptions: Fig.Option[] = [
     name: "-prefix",
     description:
       "Treat the ID as a prefix instead of an exact lease ID. This can revoke multiple leases simultaneously. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -688,7 +688,7 @@ const vaultLeaseRevokeOptions: Fig.Option[] = [
     name: "-sync",
     description:
       "Force a synchronous operation; on failure it is up to the client to retry. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -703,7 +703,7 @@ const vaultAuditListOptions: Fig.Option[] = [
     name: "-detailed",
     description:
       "Print detailed information such as options and replication status about each auth device. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["false", "true"],
@@ -718,7 +718,7 @@ const vaultOperatorDiagnoseOptions: Fig.Option[] = [
     name: "-config",
     description:
       "Path to a Vault configuration file or directory of configuration files. This flag can be specified multiple times to load multiple configurations. If the path is a directory, all files which end in .hcl or .json are loaded",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       template: "filepaths",
@@ -733,7 +733,7 @@ const vaultOperatorDiagnoseOptions: Fig.Option[] = [
   {
     name: "-format",
     description: "The output format",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "format",
       suggestions: ["table", "json", "yaml", "pretty"],
@@ -744,7 +744,7 @@ const vaultOperatorDiagnoseOptions: Fig.Option[] = [
   {
     name: "-skip",
     description: "Skip the health checks named as arguments",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["listen", "storage", "autounseal"],
@@ -763,7 +763,7 @@ const vaultOperatorGenerateRootOptions: Fig.Option[] = [
     name: "-decode",
     description:
       "The value to decode; setting this triggers a decode operation. If the value is '-' then read the encoded token from stdin",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["-"],
@@ -790,7 +790,7 @@ const vaultOperatorGenerateRootOptions: Fig.Option[] = [
     name: "-nonce",
     description:
       "Nonce value provided at initialization. The same nonce value must be provided with each unseal key",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -799,7 +799,7 @@ const vaultOperatorGenerateRootOptions: Fig.Option[] = [
   {
     name: "-otp",
     description: "OTP code to use with '-decode' or '-init'",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -809,7 +809,7 @@ const vaultOperatorGenerateRootOptions: Fig.Option[] = [
     name: "-pgp-key",
     description:
       "Path to a file on disk containing a binary or base64-encoded public PGP key. This can also be specified as a Keybase username using the format 'keybase:<username>'. When supplied, the generated root token will be encrypted and base64-encoded with the given public key",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: [
       {
         name: "string",
@@ -838,7 +838,7 @@ const vaultOperatorInitOptions: Fig.Option[] = [
     name: ["-key-shares", "-n"],
     description:
       "Number of key shares to split the generated root key into. This is the number of 'unseal keys' to generate. This is aliased as '-n'. The default is 5",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["5"],
@@ -849,7 +849,7 @@ const vaultOperatorInitOptions: Fig.Option[] = [
     name: ["-key-threshold", "-t"],
     description:
       "Number of key shares required to reconstruct the root key. This must be less than or equal to -key-shares. This is aliased as '-t'. The default is 3",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["5"],
@@ -860,7 +860,7 @@ const vaultOperatorInitOptions: Fig.Option[] = [
     name: "-pgp-keys",
     description:
       "Comma-separated list of paths to files on disk containing public PGP keys OR a comma-separated list of Keybase usernames using the format 'keybase:<username>'. When supplied, the generated unseal keys will be encrypted and base64-encoded in the order specified in this list. The number of entries must match -key-shares, unless -stored-shares are used",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "pgp_key",
       suggestions: ["keybase:user1", "/path/to/pgp/key1,/path/to/pgp/key2"],
@@ -871,7 +871,7 @@ const vaultOperatorInitOptions: Fig.Option[] = [
     name: "-root-token-pgp-key",
     description:
       "Path to a file on disk containing a binary or base64-encoded public PGP key. This can also be specified as a Keybase username using the format 'keybase:<username>'. When supplied, the generated root token will be encrypted and base64-encoded with the given public key",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "pgp_key",
       suggestions: ["keybase:user1", "/path/to/pgp/key"],
@@ -887,7 +887,7 @@ const vaultOperatorInitOptions: Fig.Option[] = [
     name: "-stored-shares",
     description:
       "DEPRECATED: This flag does nothing. It will be removed in Vault 1.3. The default is -1",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["-1"],
@@ -906,7 +906,7 @@ const vaultOperatorConsulOptions: Fig.Option[] = [
     name: "-consul-service",
     description:
       "Name of the service in Consul under which the Vault servers are registered. The default is vault",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["vault"],
@@ -920,7 +920,7 @@ const vaultOperatorAutoUnsealOptions: Fig.Option[] = [
     name: "-recovery-pgp-keys",
     description:
       "Behaves like -pgp-keys, but for the recovery key shares. This is only used in Auto Unseal mode",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "pgp_key",
       suggestions: ["keybase:user1", "/path/to/pgp/key"],
@@ -931,7 +931,7 @@ const vaultOperatorAutoUnsealOptions: Fig.Option[] = [
     name: "-recovery-shares",
     description:
       "Number of key shares to split the recovery key into. This is only used in auto-unseal mode. The default is 5",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["5"],
@@ -942,7 +942,7 @@ const vaultOperatorAutoUnsealOptions: Fig.Option[] = [
     name: "-recovery-threshold",
     description:
       "Number of key shares required to reconstruct the recovery key. This is only used in Auto Unseal mode. The default is 3",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["3"],
@@ -956,7 +956,7 @@ const vaultOperatorMigrateOptions: Fig.Option[] = [
     name: "-config",
     description:
       "Path to a configuration file. This configuration file should contain only migrator directives",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       template: "filepaths",
@@ -970,7 +970,7 @@ const vaultOperatorMigrateOptions: Fig.Option[] = [
   {
     name: "-start",
     description: "Only copy keys lexicographically at or after this value",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -982,7 +982,7 @@ const vaultOperatorRaftJoinOptions: Fig.Option[] = [
     name: "-auto-join-port",
     description:
       "An optional port used for addresses discovered via auto-join. The default is 8200",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "uint",
       suggestions: ["8200"],
@@ -993,7 +993,7 @@ const vaultOperatorRaftJoinOptions: Fig.Option[] = [
     name: "-auto-join-scheme",
     description:
       "An optional URI protocol scheme used for addresses discovered via auto-join. The default is https",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["https", "http"],
@@ -1003,7 +1003,7 @@ const vaultOperatorRaftJoinOptions: Fig.Option[] = [
   {
     name: "-leader-ca-cert",
     description: "CA cert to use when verifying the Raft leader certificate",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["@/path/to/leader_ca.crt"],
@@ -1013,7 +1013,7 @@ const vaultOperatorRaftJoinOptions: Fig.Option[] = [
   {
     name: "-leader-client-cert",
     description: "Client cert to use when authenticating with the Raft leader",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["@/path/to/client.crt"],
@@ -1023,7 +1023,7 @@ const vaultOperatorRaftJoinOptions: Fig.Option[] = [
   {
     name: "-leader-client-key",
     description: "Client key to use when authenticating with the Raft leader",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["@/path/to/client.key"],
@@ -1047,7 +1047,7 @@ const vaultOperatorRaftPeerOptions: Fig.Option[] = [
     name: "-dr-token",
     description:
       "DR operation token used to authorize this request (if a DR secondary node)",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1058,7 +1058,7 @@ const vaultOperatorRaftSetConfigOptions: Fig.Option[] = [
   {
     name: "-cleanup-dead-servers",
     description: "Clean up dead servers",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "bool",
       suggestions: ["false", "true"],
@@ -1068,7 +1068,7 @@ const vaultOperatorRaftSetConfigOptions: Fig.Option[] = [
   {
     name: "-dead-server-last-contact-threshold",
     description: "Dead server last contact threshold",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
     },
@@ -1076,7 +1076,7 @@ const vaultOperatorRaftSetConfigOptions: Fig.Option[] = [
   {
     name: "-last-contact-threshold",
     description: "Last contact threshold",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
     },
@@ -1084,7 +1084,7 @@ const vaultOperatorRaftSetConfigOptions: Fig.Option[] = [
   {
     name: "-max-trailing-logs",
     description: "Max trailing logs",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "uint",
     },
@@ -1092,7 +1092,7 @@ const vaultOperatorRaftSetConfigOptions: Fig.Option[] = [
   {
     name: "-min-quorum",
     description: "Min quorum",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "uint",
     },
@@ -1100,7 +1100,7 @@ const vaultOperatorRaftSetConfigOptions: Fig.Option[] = [
   {
     name: "-server-stabilization-time",
     description: "Server stabilization time",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
     },
@@ -1122,7 +1122,7 @@ const vaultOperatorRekeyOptions: Fig.Option[] = [
     name: ["-key-shares", "-n"],
     description:
       "Number of key shares to split the generated root key into. This is the number of 'unseal keys' to generate. This is aliased as '-n'. The default is 5",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["5"],
@@ -1133,7 +1133,7 @@ const vaultOperatorRekeyOptions: Fig.Option[] = [
     name: ["-key-threshold", "-t"],
     description:
       "Number of key shares required to reconstruct the root key. This must be less than or equal to -key-shares. This is aliased as '-t'. The default is 3",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
       suggestions: ["5"],
@@ -1144,7 +1144,7 @@ const vaultOperatorRekeyOptions: Fig.Option[] = [
     name: "-nonce",
     description:
       "Nonce value provided at initialization. The same nonce value must be provided with each unseal key",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1154,7 +1154,7 @@ const vaultOperatorRekeyOptions: Fig.Option[] = [
     name: "-pgp-keys",
     description:
       "Comma-separated list of paths to files on disk containing public PGP keys OR a comma-separated list of Keybase usernames using the format 'keybase:<username>'. When supplied, the generated unseal keys will be encrypted and base64-encoded in the order specified in this list. The number of entries must match -key-shares, unless -stored-shares are used",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "pgp_key",
       suggestions: ["keybase:user1", "/path/to/pgp/key1,/path/to/pgp/key2"],
@@ -1165,13 +1165,13 @@ const vaultOperatorRekeyOptions: Fig.Option[] = [
     name: "-status",
     description:
       "Print the status of the current attempt without providing an unseal key. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-target",
     description:
       "Target for rekeying. 'recovery' only applies when HSM support is enabled. The default is barrier",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["barrier"],
@@ -1182,24 +1182,24 @@ const vaultOperatorRekeyOptions: Fig.Option[] = [
     name: "-verify",
     description:
       "Indicates that the action (-status, -cancel, or providing a key share) will be affecting verification for the current rekey attempt. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-backup",
     description:
       "Store a backup of the current PGP encrypted unseal keys in Vault's core. The encrypted values can be recovered in the event of failure or discarded after success. See the -backup-delete and -backup-retrieve options for more information. This option only applies when the existing unseal keys were PGP encrypted. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-backup-delete",
     description: "Delete any stored backup unseal keys. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-backup-retries",
     description:
       "Retrieve the backed-up unseal keys. This option is only available if the PGP keys were provided and the backup has not been deleted. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
 ];
 
@@ -1208,7 +1208,7 @@ const vaultOperatorRaftSnaphotRestoreOptions: Fig.Option[] = [
     name: "-force",
     description:
       "This bypasses checks ensuring the Autounseal or shamir keys are consistent with the snapshot data. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
 ];
 
@@ -1217,13 +1217,13 @@ const vaultOperatorUnsealOptions: Fig.Option[] = [
     name: "-migrate",
     description:
       "Indicate that this share is provided with the intent that it is part of a seal migration process. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-reset",
     description:
       "Discard any previously entered keys to the unseal process. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
 ];
 
@@ -1231,7 +1231,7 @@ const vaultOperatorUsageOptions: Fig.Option[] = [
   {
     name: "-end-time",
     description: "End of report period. Defaults to end of last month",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "time",
     },
@@ -1240,7 +1240,7 @@ const vaultOperatorUsageOptions: Fig.Option[] = [
     name: "-start-time",
     description:
       "Start of report period. Defaults to 'default_reporting_period' before end time",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "time",
     },
@@ -1252,7 +1252,7 @@ const vaultPluginRegisterOptions: Fig.Option[] = [
     name: "-args",
     description:
       "Arguments to pass to the plugin when starting. Separate multiple arguments with a comma",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1261,7 +1261,7 @@ const vaultPluginRegisterOptions: Fig.Option[] = [
     name: "-command",
     description:
       "Command to spawn the plugin. This defaults to the name of the plugin if unspecified",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1270,7 +1270,7 @@ const vaultPluginRegisterOptions: Fig.Option[] = [
     name: "-sha256",
     description:
       "SHA256 of the plugin binary. This is required for all plugins",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1282,7 +1282,7 @@ const vaultPluginReloadOptions: Fig.Option[] = [
     name: "-mounts",
     description:
       "Array or comma-separated string mount paths of the plugin backends to reload",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1291,7 +1291,7 @@ const vaultPluginReloadOptions: Fig.Option[] = [
     name: "-plugin",
     description:
       "The name of the plugin to reload, as registered in the plugin catalog",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1300,7 +1300,7 @@ const vaultPluginReloadOptions: Fig.Option[] = [
     name: "-scope",
     description:
       "The scope of the reload, omitted for local, 'global', for replicated reloads",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1312,7 +1312,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-allowed-managed-keys",
     description:
       "Managed key name(s) that the mount in question is allowed to access.  Note that multiple keys may be specified by providing this option multiple times, each time with 1 key",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1321,7 +1321,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-allowed-response-headers",
     description:
       "Comma-separated string or list of response header values that plugins will be allowed to set",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1330,7 +1330,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-audit-non-hmac-request-keys",
     description:
       "Comma-separated string or list of keys that will not be HMAC'd by audit devices in the request data object",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1339,7 +1339,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-audit-non-hmac-response-keys",
     description:
       "Comma-separated string or list of keys that will not be HMAC'd by audit devices in the response data object",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1348,7 +1348,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-default-lease-ttl",
     description:
       "The default lease TTL for this secrets engine. If unspecified, this defaults to the Vault server's globally configured default lease TTL",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
     },
@@ -1356,7 +1356,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
   {
     name: "-description",
     description: "Human-friendly description for the purpose of this engine",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1365,19 +1365,19 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-external-entropy-access",
     description:
       "Enable secrets engine to access Vault's external entropy source. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-force-no-cache",
     description:
       "Force the secrets engine to disable caching. If unspecified, this defaults to the Vault server's globally configured cache settings. This does not affect caching of the underlying encrypted data storage. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-listing-visibility",
     description:
       "Determines the visibility of the mount in the UI-specific listing endpoint",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1386,7 +1386,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-local",
     description:
       "Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-max-lease-ttl",
@@ -1400,7 +1400,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-options",
     description:
       "Key-value pair provided as key=value for the mount options. This can be specified multiple times",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "key=value",
     },
@@ -1409,7 +1409,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-passthrough-request-headers",
     description:
       "Comma-separated string or list of request header values that will be sent to the plugins",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1418,7 +1418,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-path",
     description:
       "Place where the secrets engine will be accessible. This must be unique cross all secrets engines. This defaults to the 'type' of the secrets engine",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1427,7 +1427,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-plugin-name",
     description:
       "Name of the secrets engine plugin. This plugin name must already exist in Vault's plugin catalog",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1441,7 +1441,7 @@ const vaultSecretsEnableOptions: Fig.Option[] = [
     name: "-version",
     description:
       "Select the version of the engine to run. Not supported by all engines",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
     },
@@ -1453,7 +1453,7 @@ const vaultSecretsListOptions: Fig.Option[] = [
     name: "-details",
     description:
       "Print detailed information such as TTLs and replication status about each secrets engine. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
 ];
 
@@ -1461,7 +1461,7 @@ const vaultSshOptions: Fig.Option[] = [
   {
     name: "-mode",
     description: "Name of the authentication mode (ca, dynamic, otp)",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["ca", "dynamic", "otp"],
@@ -1470,7 +1470,7 @@ const vaultSshOptions: Fig.Option[] = [
   {
     name: "-mount-point",
     description: "Mount point to the SSH secrets engine. The default is ssh/",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["ssh/"],
@@ -1481,12 +1481,12 @@ const vaultSshOptions: Fig.Option[] = [
     name: "-no-exec",
     description:
       "Print the generated credentials, but do not establish a connection. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-role",
     description: "Name of the role to use to generate the key",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1495,7 +1495,7 @@ const vaultSshOptions: Fig.Option[] = [
     name: "-strict-host-key-checking",
     description:
       "Value to use for the SSH configuration option 'StrictHostKeyChecking'. The default is ask. This can also be specified via the VAULT_SSH_STRICT_HOST_KEY_CHECKING environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1504,7 +1504,7 @@ const vaultSshOptions: Fig.Option[] = [
     name: "-user-known-hosts-file",
     description:
       "Value to use for the SSH configuration option 'UserKnownHostsFile'. This can also be specified via the VAULT_SSH_USER_KNOWN_HOSTS_FILE environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["~/.ssh/known_hosts"],
@@ -1519,7 +1519,7 @@ const vaultSshCaOptions: Fig.Option[] = [
     name: "-host-key-hostnames",
     description:
       "List of hostnames to delegate for the CA. The default value allows all domains and IPs. This is specified as a comma-separated list of values. The default is *. This can also be specified via the VAULT_SSH_HOST_KEY_HOSTNAMES environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["*"],
@@ -1530,7 +1530,7 @@ const vaultSshCaOptions: Fig.Option[] = [
     name: "-host-key-mount-point",
     description:
       "Mount point to the SSH secrets engine where host keys are signed. When given a value, Vault will generate a custom 'known_hosts' file with delegation to the CA at the provided mount point to verify the SSH connection's host keys against the provided CA. By default, host keys are validated against the user's local 'known_hosts' file. This flag forces strict key host checking and ignores a custom user known hosts file. This can also be specified via the VAULT_SSH_HOST_KEY_MOUNT_POINT environment variable",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       template: "folders",
@@ -1584,7 +1584,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-display-name",
     description:
       "Name to associate with this token. This is a non-sensitive value that can be used to help identify created secrets (e.g. prefixes)",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1593,7 +1593,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-empty-alias",
     description:
       "Name of the entity alias to associate with during token creation. Only works in combination with -role argument and used entity alias must be listed in allowed_entity_aliases. If this has been specified, the entity will not be inherited from the parent",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1602,7 +1602,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-explicit-max-ttl",
     description:
       "Explicit maximum lifetime for the token. Unlike normal TTLs, the maximum TTL is a hard limit and cannot be exceeded. This is specified as a numeric string with suffix like '30s' or '5m'",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["30s", "1m", "5m"],
@@ -1612,7 +1612,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-id",
     description:
       "Value for the token. By default, this is an auto-generated string. Specifying this value requires sudo permissions",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1621,7 +1621,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-metadata",
     description:
       "Arbitrary key=value metadata to associate with the token. This metadata will show in the audit log when the token is used. This can be specified multiple times to add multiple pieces of metadata",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "key=value",
     },
@@ -1635,13 +1635,13 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-orphan",
     description:
       "Create the token with no parent. This prevents the token from being revoked when the token which created it expires. Setting this value requires root or sudo permissions. The default is false",
-    requiresEquals: true,
+    requiresSeparator: true,
   },
   {
     name: "-period",
     description:
       "If specified, every renewal will use the given period. Periodic tokens do not expire (unless -explicit-max-ttl is also provided). Setting this value requires sudo permissions. This is specified as a numeric string with suffix like '30s' or '5m'",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["30s", "1m", "5m"],
@@ -1651,7 +1651,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-policy",
     description:
       "Name of a policy to associate with this token. This can be specified multiple times to attach multiple policies",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1665,7 +1665,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-role",
     description:
       "Name of the role to create the token against. Specifying -role may override other arguments. The locally authenticated Vault token must have permission for 'auth/token/create/<role>'",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
     },
@@ -1674,7 +1674,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-ttl",
     description:
       "Initial TTL to associate with the token. Token renewals may be able to extend beyond this value, depending on the configured maximum TTLs. This is specified as a numeric string with suffix like '30s' or '5m'",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["30s", "1m", "5m"],
@@ -1684,7 +1684,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-type",
     description:
       "The type of token to create. Can be 'service' or 'batch'. The default is service",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "string",
       suggestions: ["service", "batch"],
@@ -1695,7 +1695,7 @@ const vaultTokenCreateOptions: Fig.Option[] = [
     name: "-use-limit",
     description:
       "Number of times this token can be used. After the last use, the token is automatically revoked. By default, tokens can be used an unlimited number of times until their expiration",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "int",
     },
@@ -1720,7 +1720,7 @@ const vaultTokenRenewOptions: Fig.Option[] = [
     name: ["-increment", "-i"],
     description:
       "Request a specific increment for renewal. This increment may not be honored, for instance in the case of periodic tokens. If not supplied, Vault will use the default TTL. This is specified as a numeric string with suffix like '30s' or '5m'. This is aliased as '-i'",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["30s", "1m", "5m"],
@@ -1738,7 +1738,7 @@ const vaultTokenRevokeOptions: Fig.Option[] = [
     name: "-mode",
     description:
       "Type of revocation to perform. If unspecified, Vault will revoke the token and all of the token's children. If 'orphan', Vault will revoke only the token, leaving the children as orphans. If 'path', tokens created from the given authentication path prefix are deleted along with their children",
-    requiresEquals: true,
+    requiresSeparator: true,
     args: {
       name: "duration",
       suggestions: ["orphan", "path"],
