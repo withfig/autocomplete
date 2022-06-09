@@ -26,27 +26,21 @@ const completionSpec: Fig.Spec = {
         "Create or update DevOps tools according to DevStream configuration file",
       options: [
         {
-          name: ["-d", "--debug"],
-          description: "Debug level log",
-        },
-        {
-          name: ["-f", "--config-file"],
-          description: 'Config file (default "config.yaml")',
+          name: ["--config-file", "-f"],
+          description: "Config file",
           args: {
-            name: "file",
+            name: "config-file",
+            default: "config.yaml",
             generators: dtmGenerators.yamlFiles,
           },
         },
         {
-          name: ["-p", "--plugin-dir"],
-          description: 'Plugins directory (default ".devstream")',
-          args: {
-            name: "dir",
-            template: "folders",
-          },
+          name: ["--plugin-dir", "-d"],
+          description: "Plugins directory",
+          args: { name: "plugin-dir", default: ".devstream" },
         },
         {
-          name: ["-y", "--yes"],
+          name: ["--yes", "-y"],
           description: "Apply directly without confirmation",
         },
       ],
@@ -101,31 +95,25 @@ const completionSpec: Fig.Spec = {
       name: "delete",
       description:
         "Delete DevOps tools according to DevStream configuration file",
-      isDangerous: true,
       options: [
         {
-          name: ["-d", "--debug"],
-          description: "Debug level log",
-        },
-        {
-          name: ["-f", "--config-file"],
-          description: 'Config file (default "config.yaml")',
+          name: ["--config-file", "-f"],
+          description: "Config file",
           args: {
-            name: "file",
+            name: "config-file",
+            default: "config.yaml",
             generators: dtmGenerators.yamlFiles,
           },
         },
+        { name: "--force", description: "Force delete by config" },
         {
-          name: ["-p", "--plugin-dir"],
-          description: 'Plugins directory (default ".devstream")',
-          args: {
-            name: "dir",
-            template: "folders",
-          },
+          name: ["--plugin-dir", "-d"],
+          description: "Plugins directory",
+          args: { name: "plugin-dir", default: ".devstream" },
         },
         {
-          name: "--force",
-          description: "Force delete by config",
+          name: ["--yes", "-y"],
+          description: "Delete directly without confirmation",
         },
       ],
     },
@@ -133,27 +121,19 @@ const completionSpec: Fig.Spec = {
       name: "destroy",
       description:
         "Destroy DevOps tools deployment according to DevStream configuration file & state file",
-      isDangerous: true,
       options: [
         {
-          name: ["-d", "--debug"],
-          description: "Debug level log",
-        },
-        {
-          name: ["-f", "--config-file"],
-          description: 'Config file (default "config.yaml")',
+          name: ["--config-file", "-f"],
+          description: "Config file",
           args: {
-            name: "file",
+            name: "config-file",
+            default: "config.yaml",
             generators: dtmGenerators.yamlFiles,
           },
         },
         {
-          name: ["-p", "--plugin-dir"],
-          description: 'Plugins directory (default ".devstream")',
-          args: {
-            name: "dir",
-            template: "folders",
-          },
+          name: ["--yes", "-y"],
+          description: "Destroy directly without confirmation",
         },
       ],
     },
@@ -163,28 +143,70 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "create-plugin",
-          description: "Create plugin",
+          description: "Create a new plugin",
           options: [
             {
-              name: ["-n", "--name"],
+              name: ["--name", "-n"],
               description: "Specify name with the new plugin",
-              isRequired: true,
-              args: {
-                name: "plugin name",
-                description: "Plugin name",
-              },
+              isPersistent: true,
+              args: { name: "name" },
+            },
+          ],
+        },
+        {
+          name: "validate-plugin",
+          description: "Validate a plugin",
+          options: [
+            {
+              name: ["--all", "-a"],
+              description: "Validate all plugins",
+              isPersistent: true,
+            },
+            {
+              name: ["--name", "-n"],
+              description: "Specify name with the new plugin",
+              isPersistent: true,
+              args: { name: "name" },
             },
           ],
         },
       ],
     },
     {
+      name: "init",
+      description: "Download needed plugins according to the config file",
+      options: [
+        {
+          name: ["--config-file", "-f"],
+          description: "Config file",
+          args: {
+            name: "config-file",
+            default: "config.yaml",
+            generators: dtmGenerators.yamlFiles,
+          },
+        },
+        {
+          name: ["--plugin-dir", "-d"],
+          description: "Plugins directory",
+          args: { name: "plugin-dir", default: ".devstream" },
+        },
+      ],
+    },
+    {
       name: "list",
-      description: "This command lists all of the plugins",
+      description: "This command only supports listing plugins now",
       subcommands: [
         {
           name: "plugins",
-          description: "List plugin",
+          description: "List all plugins",
+          options: [
+            {
+              name: ["--filter", "-r"],
+              description: "Filter plugin by regex",
+              isPersistent: true,
+              args: { name: "filter" },
+            },
+          ],
         },
       ],
     },
@@ -194,53 +216,44 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "config",
-          description: "Show config",
+          description: "Show configuration information",
           options: [
             {
-              name: "--plugin",
+              name: ["--plugin", "-p"],
               description: "Specify name with the plugin",
-              isRequired: true,
-              args: {
-                name: "plugin name",
-                description: "Plugin name",
-                generators: dtmGenerators.plugins,
-              },
+              args: { name: "plugin", generators: dtmGenerators.plugins },
             },
           ],
         },
-      ],
-    },
-    {
-      name: "help",
-      description: "Help about any command",
-      args: {
-        name: "command",
-        template: "help",
-      },
-    },
-    {
-      name: "init",
-      description: "Download needed plugins according to the config file",
-      options: [
         {
-          name: ["-d", "--debug"],
-          description: "Debug level log",
-        },
-        {
-          name: ["-f", "--config-file"],
-          description: 'Config file (default "config.yaml")',
-          args: {
-            name: "file",
-            generators: dtmGenerators.yamlFiles,
-          },
-        },
-        {
-          name: ["-p", "--plugin-dir"],
-          description: 'Plugins directory (default ".devstream")',
-          args: {
-            name: "dir",
-            template: "folders",
-          },
+          name: "status",
+          description: "Show status information",
+          options: [
+            {
+              name: ["--all", "-a"],
+              description: "Show all instances of all plugins status",
+            },
+            {
+              name: ["--config-file", "-f"],
+              description: "Config file",
+              args: { name: "config-file", default: "config.yaml" },
+            },
+            {
+              name: ["--id", "-i"],
+              description: "Specify id with the plugin instance",
+              args: { name: "id" },
+            },
+            {
+              name: ["--plugin", "-p"],
+              description: "Specify name with the plugin",
+              args: { name: "plugin" },
+            },
+            {
+              name: ["--plugin-dir", "-d"],
+              description: "Plugins directory",
+              args: { name: "plugin-dir", default: ".devstream" },
+            },
+          ],
         },
       ],
     },
@@ -250,28 +263,104 @@ const completionSpec: Fig.Spec = {
         "Verify DevOps tools according to DevStream config file and state",
       options: [
         {
-          name: ["-f", "--config-file"],
-          description: 'Config file (default "config.yaml")',
+          name: ["--config-file", "-f"],
+          description: "Config file",
           args: {
-            name: "file",
+            name: "config-file",
+            default: "config.yaml",
             generators: dtmGenerators.yamlFiles,
           },
         },
+        {
+          name: ["--plugin-dir", "-d"],
+          description: "Plugins directory",
+          args: { name: "plugin-dir", default: ".devstream" },
+        },
       ],
     },
+    { name: "version", description: "Print the version number of DevStream" },
     {
-      name: "version",
-      description: "Print the version number of DevStream",
+      name: "help",
+      description: "Help about any command",
+      subcommands: [
+        {
+          name: "apply",
+          description:
+            "Create or update DevOps tools according to DevStream configuration file",
+        },
+        {
+          name: "completion",
+          description:
+            "Generate the autocompletion script for the specified shell",
+          subcommands: [
+            {
+              name: "bash",
+              description: "Generate the autocompletion script for bash",
+            },
+            {
+              name: "fish",
+              description: "Generate the autocompletion script for fish",
+            },
+            {
+              name: "powershell",
+              description: "Generate the autocompletion script for powershell",
+            },
+            {
+              name: "zsh",
+              description: "Generate the autocompletion script for zsh",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description:
+            "Delete DevOps tools according to DevStream configuration file",
+        },
+        {
+          name: "destroy",
+          description:
+            "Destroy DevOps tools deployment according to DevStream configuration file & state file",
+        },
+        {
+          name: "develop",
+          description: "Develop is used for develop a new plugin",
+          subcommands: [
+            { name: "create-plugin", description: "Create a new plugin" },
+            { name: "validate-plugin", description: "Validate a plugin" },
+          ],
+        },
+        {
+          name: "init",
+          description: "Download needed plugins according to the config file",
+        },
+        {
+          name: "list",
+          description: "This command only supports listing plugins now",
+          subcommands: [{ name: "plugins", description: "List all plugins" }],
+        },
+        {
+          name: "show",
+          description: "Show is used to print some useful information",
+          subcommands: [
+            { name: "config", description: "Show configuration information" },
+            { name: "status", description: "Show status information" },
+          ],
+        },
+        {
+          name: "verify",
+          description:
+            "Verify DevOps tools according to DevStream config file and state",
+        },
+        {
+          name: "version",
+          description: "Print the version number of DevStream",
+        },
+      ],
     },
   ],
   options: [
-    {
-      name: ["-h", "--help"],
-      description: "Help for dtm",
-      isPersistent: true,
-    },
+    { name: "--debug", description: "Debug level log", isPersistent: true },
+    { name: ["--help", "-h"], description: "Display help", isPersistent: true },
   ],
-  // Only uncomment if dtm takes an argument
-  // args: {}
 };
 export default completionSpec;
