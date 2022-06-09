@@ -5,9 +5,12 @@ const completionSpec: Fig.Spec = {
     description: "The name for a Wi-Fi network",
     generators: {
       script:
-        "networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}' | xargs networksetup -listpreferredwirelessnetworks | tail -n +2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'",
-      // TODO: Replace this with `splitOn` once it's fixed
-      postProcess: (out) => out.split("\n").map((line) => ({ name: line })),
+        "networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}' | xargs networksetup -listpreferredwirelessnetworks",
+      postProcess: (out) =>
+        out
+          .split("\n")
+          .slice(1)
+          .map((line) => ({ name: line.trim() })),
     },
   },
   description:
