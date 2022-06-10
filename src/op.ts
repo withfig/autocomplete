@@ -114,9 +114,9 @@ const spec: Fig.Spec = {
               ],
             },
             {
+              name: "revoke",
               description:
                 "Revoke a group's access to manage Secrets Automation",
-              name: "revoke",
               options: [
                 {
                   name: "--all-servers",
@@ -139,13 +139,12 @@ const spec: Fig.Spec = {
           description: "Manage Connect servers",
           subcommands: [
             {
-              description: "Set up a Connect server",
               name: "create",
+              description: "Set up a Connect server",
             },
             {
-              description: "Get a Connect server",
               name: "get",
-
+              description: "Get a Connect server",
               args: {
                 name: "serverName | serverID",
                 suggestions: [
@@ -156,7 +155,6 @@ const spec: Fig.Spec = {
             {
               description: "Rename a Connect server",
               name: "edit",
-
               args: {
                 name: "serverName | serverID",
               },
@@ -164,7 +162,6 @@ const spec: Fig.Spec = {
             {
               description: "Remove a Connect server",
               name: ["delete", "remove", "rm"],
-
               args: {
                 name: "serverName | serverID",
                 suggestions: [
@@ -219,7 +216,6 @@ const spec: Fig.Spec = {
             {
               description: "Revoke a token for a Connect server",
               name: ["delete", "remove", "rm"],
-
               args: {
                 name: "token",
               },
@@ -471,7 +467,6 @@ const spec: Fig.Spec = {
         {
           name: "get",
           description: "Get details about a group",
-
           args: {
             name: "groupName | groupID",
             suggestions: [
@@ -501,7 +496,6 @@ const spec: Fig.Spec = {
         {
           name: ["delete", "remove", "rm"],
           description: "Remove a group",
-
           args: {
             name: "groupName | groupID",
             suggestions: [
@@ -654,7 +648,6 @@ const spec: Fig.Spec = {
           name: "edit",
           description: "Edit an item's details",
           icon: "🔏",
-
           args: [
             {
               name: "itemName | itemID | shareLink",
@@ -851,7 +844,6 @@ const spec: Fig.Spec = {
         {
           name: "reactivate",
           description: "Reactivate a suspended user",
-
           args: {
             name: "email | name | userID",
             suggestions: [
@@ -862,7 +854,6 @@ const spec: Fig.Spec = {
         {
           name: ["delete", "remove", "rm"],
           description: "Remove a user and all their data from the account",
-
           args: {
             name: "email | name | userID",
             suggestions: [
@@ -957,7 +948,6 @@ const spec: Fig.Spec = {
               name: ["list", "ls"],
               description:
                 "List all the groups that have access to the given vault",
-
               args: {
                 name: "vault",
                 suggestions: [
@@ -1062,7 +1052,6 @@ const spec: Fig.Spec = {
           name: "get",
           description: "Get details about a vault",
           icon: "📑",
-
           args: {
             name: "vaultName | vaultID",
             suggestions: [
@@ -1117,7 +1106,6 @@ const spec: Fig.Spec = {
           name: ["delete", "remove", "rm"],
           description: "Remove a vault",
           icon: "🗑️",
-
           args: {
             name: "vaultName | vaultID",
             suggestions: [
@@ -1325,4 +1313,5 @@ const spec: Fig.Spec = {
     },
   ],
 };
+
 export default spec;
