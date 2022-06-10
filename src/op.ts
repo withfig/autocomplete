@@ -1326,7 +1326,3 @@ const spec: Fig.Spec = {
   ],
 };
 export default spec;
-
-for (const subcommand of spec.subcommands) {
-  subcommand.icon = icon;
-}
