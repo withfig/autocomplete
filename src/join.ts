@@ -56,20 +56,7 @@ const completionSpec: Fig.Spec = {
         name: "field",
       },
     },
-    {
-      name: "-j1",
-      description: "Join on the field'th field of file1",
-      args: {
-        name: "field",
-      },
-    },
-    {
-      name: "-j2",
-      description: "Join on the field'th field of file2",
-      args: {
-        name: "field",
-      },
-    },
+
     {
       name: "-j",
       description: "Join on the field'th field of both file1 and file2",
