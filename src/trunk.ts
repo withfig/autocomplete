@@ -89,10 +89,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--check-sample",
           description: "Run `trunk check sample` without prompting",
+          exclusiveOn: ["--nocheck-sample"],
         },
         {
           name: "--nocheck-sample",
           description: "Do not run `trunk check sample` post-init",
+          exclusiveOn: ["--check-sample"],
         },
         {
           name: "--force",
@@ -265,12 +267,14 @@ const completionSpec: Fig.Spec = {
       name: "--no-progress",
       description: "Don't show progress updates",
       isPersistent: true,
+      exclusiveOn: ["--ci-progress"],
     },
     {
       name: "--ci-progress",
       description:
         "Show updates every 30 seconds without clearing terminal screen (implicit with --ci)",
       isPersistent: true,
+      exclusiveOn: ["--no-progress"],
     },
     {
       name: "--action_timeout",
