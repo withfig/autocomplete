@@ -35,11 +35,9 @@ const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
         type: "option",
       }));
 
-    if (oldWorkspaceMap.length > 0) {
-      return oldWorkspaceMap;
-    }
+    if (oldWorkspaceMap.length > 0) return oldWorkspaceMap;
 
-    Object.entries<string>(workspace.projects)
+    return Object.entries<string>(workspace.projects)
       .filter((proj) => proj[1].split("/")[0] === "apps")
       .map(([projectName]) => projectName)
       .map((suggestion) => ({
