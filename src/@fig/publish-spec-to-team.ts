@@ -5,20 +5,24 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "help",
-      description: "Display help for command",
+      description: "display help for command",
       priority: 49,
       args: { name: "command", isOptional: true },
     },
   ],
   options: [
-    { name: ["-V", "--version"], description: "Output the version number" },
+    { name: ["-V", "--version"], description: "output the version number" },
+    {
+      name: ["-i", "--interactive"],
+      description: "Publish a spec interactively",
+    },
     {
       name: ["-t", "--token"],
       description: "A fig token",
       args: { name: "string" },
     },
     {
-      name: "--team",
+      name: ["--team"],
       description: "Set the namespace of the published spec",
       args: { name: "string" },
     },
@@ -43,13 +47,18 @@ const completionSpec: Fig.Spec = {
       args: { name: "string" },
     },
     {
+      name: ["--is-script"],
+      description:
+        "The spec is a local script and will only be loaded when referenced in a fig/config.json file.",
+    },
+    {
       name: ["-f", "--framework"],
       description: "Framework used to build the CLI",
       args: { name: "string" },
     },
     {
       name: ["-h", "--help"],
-      description: "Display help for command",
+      description: "display help for command",
       priority: 49,
     },
   ],
