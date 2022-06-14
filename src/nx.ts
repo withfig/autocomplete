@@ -25,16 +25,22 @@ interface NxGenerators {
 const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
   try {
     const workspace = JSON.parse(out);
-    return Object.entries<NxProject>(workspace.projects)
-      .filter((el, ind, arr) => {
-        function filterFn(el, ind, arr) {
-          if (el == null || ind == null || arr == null) {
-            return false;
-          }
-          return true;
-        }
-        return filterFn(el, ind, arr);
-      })
+    const oldWorkspaceMap: Fig.Suggestion[] = Object.entries<NxProject>(
+      workspace.projects
+    )
+      .filter(filterFn)
+      .map(([projectName]) => projectName)
+      .map((suggestion) => ({
+        name: suggestion,
+        type: "option",
+      }));
+
+    if (oldWorkspaceMap.length > 0) {
+      return oldWorkspaceMap;
+    }
+
+    Object.entries<string>(workspace.projects)
+      .filter((proj) => proj[1].split("/")[0] === "apps")
       .map(([projectName]) => projectName)
       .map((suggestion) => ({
         name: suggestion,
@@ -63,16 +69,18 @@ const oneDayCache: Fig.Cache = {
 const nxGenerators: NxGenerators = {
   apps: {
     script: "cat workspace.json",
-    postProcess: processWorkspaceJson(
-      ([projectName, project], _, projects) =>
-        project.projectType === "application" && !projectName.endsWith("-e2e")
+    postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
+      project.projectType == null
+        ? !projectName.endsWith("-e2e")
+        : project.projectType === "application" && !projectName.endsWith("-e2e")
     ),
   },
   e2eApps: {
     script: "cat workspace.json",
-    postProcess: processWorkspaceJson(
-      ([projectName, project], _, projects) =>
-        project.projectType === "application" && projectName.endsWith("-e2e")
+    postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
+      project.projectType == null
+        ? projectName.endsWith("-e2e")
+        : project.projectType === "application" && projectName.endsWith("-e2e")
     ),
   },
   appsAndLibs: {
