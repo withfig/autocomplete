@@ -76,7 +76,8 @@ const checkAndFormatSharedOptions: Fig.Option[] = [
 
 const completionSpec: Fig.Spec = {
   name: "trunk",
-  description: "",
+  description:
+    "An all-in-one tool for scalably checking, formatting, and monitoring code",
   subcommands: [
     {
       name: "init",
