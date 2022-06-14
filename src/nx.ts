@@ -4,12 +4,10 @@ interface NxProject {
   projectType: string;
 }
 
+type NxArray = [string, NxProject];
+
 type PostProcessWorkspaceFn = (
-  filterFn: (
-    projectEntry: [string, NxProject],
-    index: number,
-    array: [string, NxProject][]
-  ) => boolean
+  filterFn: (projectEntry: NxArray, index: number, array: NxArray[]) => boolean
 ) => PostProcessFn;
 
 interface NxGenerators {
@@ -26,7 +24,15 @@ const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
   try {
     const workspace = JSON.parse(out);
     return Object.entries<NxProject>(workspace.projects)
-      .filter(filterFn)
+      .filter((el, ind, arr) => {
+        function filterFn(el, ind, arr) {
+          if (el == null || ind == null || arr == null) {
+            return false;
+          }
+          return true;
+        }
+        return filterFn(el, ind, arr);
+      })
       .map(([projectName]) => projectName)
       .map((suggestion) => ({
         name: suggestion,
