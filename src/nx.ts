@@ -4,10 +4,12 @@ interface NxProject {
   projectType: string;
 }
 
-type NxArray = [string, NxProject];
-
 type PostProcessWorkspaceFn = (
-  filterFn: (projectEntry: NxArray, index: number, array: NxArray[]) => boolean
+  filterFn: (
+    projectEntry: [string, NxProject],
+    index: number,
+    array: [string, NxProject][]
+  ) => boolean
 ) => PostProcessFn;
 
 interface NxGenerators {
