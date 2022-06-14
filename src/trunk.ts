@@ -247,7 +247,7 @@ const completionSpec: Fig.Spec = {
       isPersistent: true,
       args: {
         name: "value",
-        suggestions: ["0", "1"],
+        suggestions: ["true", "false"],
       },
     },
     {
