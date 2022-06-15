@@ -76,7 +76,7 @@ const nxGenerators: NxGenerators = {
   e2eApps: {
     script: "cat workspace.json",
     postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
-      project.projectType == null
+      !project.projectType
         ? projectName.endsWith("-e2e")
         : project.projectType === "application" && projectName.endsWith("-e2e")
     ),
