@@ -6,7 +6,7 @@ interface NxProject {
 
 type PostProcessWorkspaceFn = (
   filterFn: (
-    projectEntry: [string, NxProject],
+    projectEntry: [string, NxProject | string],
     index: number,
     array: [string, NxProject][]
   ) => boolean
@@ -38,7 +38,9 @@ const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
     if (oldWorkspaceMap.length > 0) return oldWorkspaceMap;
 
     return Object.entries<string>(workspace.projects)
-      .filter((proj) => proj[1].split("/")[0] === "apps")
+      .filter((proj) =>
+        proj[1].startsWith("apps") || proj[1].startsWith("e2e") ? true : false
+      )
       .map(([projectName]) => projectName)
       .map((suggestion) => ({
         name: suggestion,
@@ -68,16 +70,16 @@ const nxGenerators: NxGenerators = {
   apps: {
     script: "cat workspace.json",
     postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
-      project.projectType == null
-        ? !projectName.endsWith("-e2e")
+      typeof project === "string"
+        ? !project.startsWith("e2e") && !project.endsWith("e2e")
         : project.projectType === "application" && !projectName.endsWith("-e2e")
     ),
   },
   e2eApps: {
     script: "cat workspace.json",
     postProcess: processWorkspaceJson(([projectName, project], _, projects) =>
-      project.projectType == null
-        ? projectName.endsWith("-e2e")
+      typeof project === "string"
+        ? project.startsWith("e2e") || project.endsWith("e2e")
         : project.projectType === "application" && projectName.endsWith("-e2e")
     ),
   },
