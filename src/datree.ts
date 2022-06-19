@@ -97,7 +97,6 @@ const datreeSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get configuration value",
-          additionalSuggestions: ["--help"],
           options: [
             {
               name: ["-h", "--help"],
