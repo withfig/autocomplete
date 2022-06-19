@@ -129,7 +129,7 @@ const datreeSpec: Fig.Spec = {
       name: "help",
       description: "Help about any command",
       args: {
-        template: 'help',
+        template: "help",
       },
     },
     {
