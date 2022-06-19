@@ -1,7 +1,7 @@
 const testOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
-    description: "Helo for 'test'",
+    description: "Help for 'test'",
   },
   {
     name: "--ignore-missing-schemas",
