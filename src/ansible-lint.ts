@@ -22,38 +22,20 @@ const fullFormatArg: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "ansible-lint",
   description: "Ansible static code analysis",
-  subcommands: [
-    {
-      name: ["--list-rules", "-L"],
-      description: "List all the rules",
-      options: [
-        {
-          name: ["--format", "-f"],
-          displayName: "Format",
-          description: "Stdout formatting",
-          args: shortFormatArg,
-          icon: "fig://icon?type=characters",
-        },
-      ],
-    },
-    {
-      name: ["--list-tags", "-T"],
-      description: "List all the tags and the rules they cover",
-      options: [
-        {
-          name: ["--format", "-f"],
-          displayName: "Format",
-          description: "Stdout formatting",
-          args: fullFormatArg,
-          icon: "fig://icon?type=characters",
-        },
-      ],
-    },
-  ],
   options: [
     {
       name: ["--help", "-h"],
       description: "Show help for ansible-lint",
+    },
+    {
+      name: ["--list-rules", "-L"],
+      description: "List all the rules",
+      exclusiveOn: ["-T"],
+    },
+    {
+      name: ["--list-tags", "-T"],
+      description: "List all the tags and the rules they cover",
+      exclusiveOn: ["-L"],
     },
     {
       name: ["--format", "-f"],
