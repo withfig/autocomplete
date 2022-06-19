@@ -1,6 +1,16 @@
 const completionSpec: Fig.Spec = {
   name: "mknod",
   description: "Create device special file",
+  subcommands: [
+    {
+      name: "c",
+      description: "Create (c)haracter device",
+    },
+    {
+      name: "b",
+      description: "Create (b)lock device",
+    },
+  ],
   options: [
     {
       name: "-F",
@@ -31,16 +41,6 @@ const completionSpec: Fig.Spec = {
         ],
         default: "native",
       },
-    },
-    {
-      name: "c",
-      description: "Create (c)haracter device",
-      exclusiveOn: ["b"],
-    },
-    {
-      name: "b",
-      description: "Create (b)lock device",
-      exclusiveOn: ["c"],
     },
   ],
   args: [
