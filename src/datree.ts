@@ -108,7 +108,6 @@ const datreeSpec: Fig.Spec = {
         {
           name: "set",
           description: "Set configuration value",
-          additionalSuggestions: ["--help"],
           options: [
             {
               name: ["-h", "--help"],
@@ -159,7 +158,6 @@ const datreeSpec: Fig.Spec = {
           description: "Help for publish",
         },
       ],
-      additionalSuggestions: ["--help"],
       args: {
         name: "file path",
         template: "filepaths",
