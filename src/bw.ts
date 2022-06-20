@@ -1,18 +1,11 @@
 const completionSpec: Fig.Spec = {
   name: "bw",
-  description: "The best secrets manager",
-  args: {
-    name: "",
-  },
-
-  options: [
+  description: "Bitwarden Secrets Manager CLI Tool",
+  subcommands: [
     {
       name: ["--help", "-h"],
-      description: "Displays the man page",
+      description: "Displays the Bitwarden CLI man page",
     },
-  ],
-
-  subcommands: [
     {
       name: "login",
       description:
@@ -20,42 +13,33 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "--help",
-          description: "Displays help on the particular command",
+          description: "Displays help on the particular command'",
         },
         {
           name: "--method",
           description: "Prompts for selection of login method",
         },
-        {
-          name: "-- apikey",
-          description: "Logs in using API Key",
-        },
+        { name: "--apikey", description: "Logs in using API Key" },
       ],
     },
     {
       name: "unlock",
       description: "Unlocks the Bitwarden Vault",
-
-      /** Args array breaks script - commented out
-    args: [ "email", "password" ],
-    options: [ "--method", "--apikey", "--sso" ], 
-*/
-
       subcommands: [
         {
           name: "--passwordenv",
-          description: "Displays help on the particular command",
+          description: "Insert description here",
         },
         {
           name: "--passwordfile",
           description:
-            "Looks for specified file, which must have master password as first line",
+            "Looks for the password in the specified file.  Master Password must be the first line",
         },
       ],
     },
     {
       name: "create",
-      description: "Creates an item in the Bitwarden Vault",
+      description: "Creates a new object in your Vault",
       subcommands: [
         {
           name: "item",
@@ -75,17 +59,6 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-
-    /** args array breaks script - commented out
-    { 
-    name: "create attachment", 
-    description: "Adds an attachment to an existing Vault Item", 
-    args: [ 
-      --file, --itemid 
-      ] 
-    }, 
-    */
-
     {
       name: "get",
       description: "Retrieves a single object from your Vault",
@@ -144,7 +117,82 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "edit",
+      description: "Edits an object in your Vault",
+    },
+    {
+      name: "list",
+      description: "Retrieves an array of objects from your Vault",
+    },
+    {
+      name: "delete",
+      description: "Deletes an object from your Vault",
+    },
+    {
+      name: "restore",
+      description: "Restores a deleted object from your bin",
+    },
+    {
+      name: "send",
+      description: "Creates a Bitwarden Send for ephemeral sharing",
+    },
+    {
+      name: "receive",
+      description: "Accesses a Bitwarden Send object",
+    },
+    {
+      name: "move",
+      description: "Transfers a Vault item to an Organisation",
+    },
+    {
+      name: "confirm",
+      description: "Confirms invited members to your Organisation",
+    },
+    {
+      name: "config",
+      description: "Specifies settings for the Bitwarden CLI",
+    },
+    {
+      name: "sync",
+      description: "Downloads your encrypted Vault from the BW Server",
+    },
+    {
+      name: "encode",
+      description: "Encodes stdin in Base 64",
+    },
+    {
+      name: "import",
+      description: "Imports data from a suported format",
+    },
+    {
+      name: "export",
+      description: "Exports Vault data",
+    },
+    {
+      name: "generate",
+      description: "Generates a strong password or passphrase",
+    },
+    {
+      name: "update",
+      description: "Checks for updated CLI version",
+    },
+    {
+      name: "status",
+      description: "Returns status information about the Bitwarden CLI",
+    },
+    {
+      name: "serve",
+      description: "Stars a local express web server",
+    },
   ],
+  options: [
+    {
+      name: ["--help", "-h"],
+      description: "Show help for bw",
+    },
+  ],
+  // Only uncomment if bw takes an argument
+  // args: {}
 };
-
 export default completionSpec;
