@@ -13,6 +13,10 @@ const completionSpec: Fig.Spec = {
   options: [
     { name: ["-V", "--version"], description: "Output the version number" },
     {
+      name: ["-i", "--interactive"],
+      description: "Publish a spec interactively",
+    },
+    {
       name: ["-t", "--token"],
       description: "A fig token",
       args: { name: "string" },
@@ -41,6 +45,11 @@ const completionSpec: Fig.Spec = {
       name: ["-s", "--subcommand-name"],
       description: "The subcommand of the binary used to generate the spec",
       args: { name: "string" },
+    },
+    {
+      name: "--is-script",
+      description:
+        "The spec is a local script and will only be loaded when referenced in a fig/config.json file",
     },
     {
       name: ["-f", "--framework"],
