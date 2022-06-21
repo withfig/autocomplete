@@ -356,7 +356,7 @@ const dbOptions = [
 
 const defaultCommands: Fig.Subcommand[] = [
   {
-    name: "console",
+    name: ["c", "console"],
     description: "Interact with your Rails application from the command line",
     options: [
       {
