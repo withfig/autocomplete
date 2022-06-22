@@ -20,16 +20,9 @@ const defaultRootDirArg: Fig.Arg = {
 // Main Nuxi options
 const mainNuxiOptions: Fig.Option[] = [
   {
-    name: ["--help", "-h"],
-    description: "Show help for nuxi",
-  },
-];
-
-// Command --help option
-const mainCommandHelpOption: Fig.Option[] = [
-  {
     name: "--help",
-    description: "Show help for command",
+    description: "Show help",
+    isPersistent: true,
   },
 ];
 
@@ -42,7 +35,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     description:
       "The info command logs information about the current or specified Nuxt project",
     args: defaultRootDirArg,
-    options: [...mainCommandHelpOption],
   },
   {
     name: ["init", "create"],
@@ -60,7 +52,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         name: ["--template", "-t"],
         description: "Specify a Git repository to use as a template",
       },
-      ...mainCommandHelpOption,
     ],
   },
   {
@@ -77,7 +68,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         name: "--force",
         description: "Force override file if it already exists",
       },
-      ...mainCommandHelpOption,
     ],
     args: [
       {
@@ -102,7 +92,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     description:
       "The analyze command builds Nuxt and analyzes the production bundle (experimental)",
     args: defaultRootDirArg,
-    options: [...mainCommandHelpOption],
   },
   {
     name: "build",
@@ -111,7 +100,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     description:
       "The build command creates a .output directory with all your application, server and dependencies ready for production",
     args: defaultRootDirArg,
-    options: [...mainCommandHelpOption],
   },
   {
     name: "dev",
@@ -150,13 +138,11 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         name: "--ssl-key",
         description: "Specify the key for the https certificate",
       },
-      ...mainCommandHelpOption,
     ],
   },
   {
     name: "prepare",
     description: "Prepare nuxt for development/build",
-    options: [...mainCommandHelpOption],
   },
   {
     name: "preview",
@@ -165,7 +151,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     description:
       "The preview command starts a server to preview your Nuxt application after running the build command",
     args: defaultRootDirArg,
-    options: [...mainCommandHelpOption],
   },
   {
     name: "generate",
@@ -173,7 +158,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     icon: "📦",
     description: "Build Nuxt and prerender static routes",
     args: defaultRootDirArg,
-    options: [...mainCommandHelpOption],
   },
   {
     name: "test",
@@ -190,7 +174,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         name: "--watch",
         description: "Actively watch for changes and rerun tests",
       },
-      ...mainCommandHelpOption,
     ],
   },
   {
@@ -203,7 +186,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
         name: ["--force", "-f"],
         description: "Removes node_modules and lock files before upgrade",
       },
-      ...mainCommandHelpOption,
     ],
   },
   {
@@ -212,7 +194,6 @@ const mainNuxiSubcommands: Fig.Subcommand[] = [
     description:
       "The typecheck command runs vue-tsc to check types throughout your app",
     args: defaultRootDirArg,
-    options: [...mainCommandHelpOption],
   },
   {
     name: "usage",
