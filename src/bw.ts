@@ -174,6 +174,7 @@ const completionSpec: Fig.Spec = {
           description: "The format used to encode the target file",
           args: {
             name: "format",
+            suggestions: ["json", "csv", "encoded json"],
           },
         },
         {
