@@ -1,5 +1,8 @@
 import { keyValueList } from "@fig/autocomplete-generators";
 
+const icon =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMRSURBVHgBvVe/TxRBFP52dlc0NgRDZ8IRC60UY2IijVKbKMQSEu4SlU6xtuBItAbsjAVHQksA8R+w8FdHY0xEw2lCYUwIjTFw+8P3ZnZu547dvWNxecnbud399n3fvDd7+8ZCgm2vohcuypbATTodgoWSlQTkiyESLVSHTRrrNK4P3kYtLUSLfdvAqCOwSOS9lhUBLOSzUAkJ6RCEqAceZi/caRXSEnr7DeboyrRt0w0rP2+CDiUikGOVsjGr7wn94/sGZoogZ+NYHFMIeVLdek0TNe7hyyrKp1wsOrYC/U9y0zgTnAXfBxoNjF0cw5rk+rqObddBiWcvimKPjNaCEuBhz93FoP15BWWaedkuePZNs9R6ID+97+KXoLyMypoXzmxokIsCXJNbgl63gSzu37vAsxdqPA7mkAg+CFzhDAyl5Z0DPl+gRbqlxiSCbjCpFqIkoh+J9nI5DqiJ2gnmX3XGZJnIujk1AfSfi8+TCB6OA2fPZGNyC+jvA54+yhYxcF5h8ooQnQBFi+gooGgRXQkoUkTXArSIqfHWaxyY3xZtLGLiXjYmt4CkQJwRflu0/dgBlleyMbkEJKWSA8uy9MXkjPnzNx2TS0BR5FKA7FZw8uSaV0SfRuknQm7wsQvZpwXGRQNrfgvSAjOmW3I9a83F3Cyg7geqU2nPgvktSAv85EFnTNLsI85N+/4YRmyBS9wNCStuFnjgP5Rrl4GfOxFRQuBuMDBm3+wJPeCggU/Wx2VM9ziY63EBakxhO+Qi7pCO2yjppOqUe74kxv4BifBRET0N1HxqEFkRO6tjD9rWRS43au1H5MzhefK8fn0cNXG1gj0/RCVKCbfLChAJ8YNY0FHcfNZTbXgzvhw9tTlpZvj9EuZdG4+pPYfDZbDjUujtWbfliPaFquacAd8Q4ssJzt6YRLVFANuHJVRpMc4wuZMg4NADaeSmgCj9fpyVheFJTGvYoXjvFlFmEeQluZ0y3oqjWPsaoEzsIUBluII1E5cal4WQgLv0/BCBSnkU8NacHtsk8rdU9toIrbd22D8gaAOqnuYnFgAAAABJRU5ErkJggg==";
+
 const extensions: Fig.Generator["custom"] = async (_, executeShellCommand) => {
   const out = await executeShellCommand(
     "find . -type f -name '*.*' | sed 's|.*.||' | sort -u"
@@ -24,6 +27,8 @@ const spec: Fig.Spec = {
     {
       name: "--bundle",
       description: "Bundle all dependencies into the output files",
+      priority: 51,
+      icon,
     },
     {
       name: "--define",
@@ -31,18 +36,24 @@ const spec: Fig.Spec = {
         "Substitude variable K with literal V, eg. --define:DEBUG=true",
       requiresSeparator: ":",
       args: {},
+      priority: 51,
+      icon,
     },
     {
       name: "--external",
       description: "Exclude modules from the build",
       requiresSeparator: ":",
       args: {},
+      priority: 51,
+      icon,
     },
     {
       name: "--format",
       description: "The output format",
       requiresSeparator: "=",
       args: { suggestions: ["iife", "cjs", "esm"] },
+      priority: 51,
+      icon,
     },
     {
       name: "--loader",
@@ -68,38 +79,52 @@ const spec: Fig.Spec = {
           cache: true,
         }),
       },
+      priority: 51,
+      icon,
     },
     {
       name: "--minify",
       description: "Minify the output (sets all the --minify-* options)",
+      priority: 51,
+      icon,
     },
     {
       name: "--outdir",
       description: "The output directory for multiple entrypoints",
       requiresSeparator: "=",
       args: { template: "folders" },
+      priority: 51,
+      icon,
     },
     {
       name: "--outfile",
       description: "The output file for one entrypoint",
       requiresSeparator: "=",
       args: { template: "filepaths" },
+      priority: 51,
+      icon,
     },
     {
       name: "--platform",
       description: "The platform target",
       requiresSeparator: "=",
       args: { suggestions: ["browser", "node", "neutral"] },
+      priority: 51,
+      icon,
     },
     {
       name: "--serve",
       description: "Start a local HTTP server on this host:port",
       requiresSeparator: "=",
       args: {},
+      priority: 51,
+      icon,
     },
     {
       name: "--splitting",
       description: "Enable code splitting",
+      priority: 51,
+      icon,
     },
     {
       name: "--target",
@@ -121,10 +146,14 @@ const spec: Fig.Spec = {
           ],
         }),
       },
+      priority: 51,
+      icon,
     },
     {
       name: "--watch",
       description: "Rebuild on file system changes",
+      priority: 51,
+      icon,
     },
     // Advanced options:
     {
@@ -364,6 +393,8 @@ const spec: Fig.Spec = {
       description: "Generate source maps?",
       requiresSeparator: "=",
       args: { isOptional: true, suggestions: ["external", "inline"] },
+      priority: 51,
+      icon,
     },
     {
       name: "--sources-content",
