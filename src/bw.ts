@@ -3,10 +3,6 @@ const completionSpec: Fig.Spec = {
   description: "Bitwarden Secrets Manager CLI Tool",
   subcommands: [
     {
-      name: ["--help", "-h"],
-      description: "Displays the Bitwarden CLI man page",
-    },
-    {
       name: "login",
       description:
         "Initiates a prompt for Email, Password and (if set), 2FA code",
@@ -25,10 +21,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "unlock",
       description: "Unlocks the Bitwarden Vault",
-      subcommands: [
+      options: [
         {
           name: "--passwordenv",
-          description: "Insert description here",
+          description:
+            "Looks for the password in the specified environmental variable file",
         },
         {
           name: "--passwordfile",
@@ -47,15 +44,15 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "attachment",
-          description: "Creates attachment",
+          description: "Attaches a file to an existing item",
         },
         {
           name: "folder",
-          description: "Creates folder (personal Vaults only)",
+          description: "Creates a new folder (personal Vaults only)",
         },
         {
           name: "org-collection",
-          description: "Creates Collection (org Vaults only)",
+          description: "Creates a new Collection (org Vaults only)",
         },
       ],
     },
@@ -156,6 +153,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "sync",
       description: "Downloads your encrypted Vault from the BW Server",
+      options: [
+        {
+          name: "--last",
+          description:
+            "Returns only the timestamp of the last time a sync was performed",
+        },
+      ],
     },
     {
       name: "encode",
@@ -163,11 +167,27 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "import",
-      description: "Imports data from a suported format",
+      description: "Imports data from a file in a supported format",
+      options: [
+        {
+          name: "format",
+          description: "The format used to encode the target file",
+          args: {
+            name: "format",
+          },
+        },
+        {
+          name: "path",
+          description: "Path to the target file",
+          args: {
+            template: "filepaths",
+          },
+        },
+      ],
     },
     {
       name: "export",
-      description: "Exports Vault data",
+      description: "Exports Vault data as .json, .csv or encrypted .json",
     },
     {
       name: "generate",
@@ -189,7 +209,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--help", "-h"],
-      description: "Show help for bw",
+      description: "Displays the Bitwarden CLI man page",
     },
   ],
   // Only uncomment if bw takes an argument
