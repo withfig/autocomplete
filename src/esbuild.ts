@@ -38,7 +38,7 @@ const spec: Fig.Spec = {
     {
       name: "--define",
       description:
-        "Substitude variable names with a literal value, eg. --define:DEBUG=true",
+        "Replace variable names with a literal value, eg. --define:DEBUG=true",
       requiresSeparator: ":",
       args: { name: "name=value" },
       priority: 51,
@@ -367,7 +367,7 @@ const spec: Fig.Spec = {
     },
     {
       name: "--mangle-quoted",
-      description: "Enable renamining quoted properties",
+      description: "Enable mangling (renaming) quoted properties",
       requiresSeparator: "=",
       args: { name: "status", suggestions: ["true", "false"] },
       icon,
@@ -490,7 +490,7 @@ const spec: Fig.Spec = {
     },
     {
       name: "--sources-content",
-      description: "Omit the sourcesContent field in generated souce maps",
+      description: "Omit the sourcesContent field in generated source maps",
       insertValue: "--sources-content=false",
       displayName: "--sources-content=false",
       requiresSeparator: "=",
