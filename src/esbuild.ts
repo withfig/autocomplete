@@ -17,6 +17,7 @@ const extensions: Fig.Generator["custom"] = async (_, executeShellCommand) => {
 
 const spec: Fig.Spec = {
   name: "esbuild",
+  icon,
   description: "An extremely fast JavaScript bundler",
   parserDirectives: {
     optionArgSeparators: ["=", ":"],
