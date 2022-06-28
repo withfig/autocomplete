@@ -1,7 +1,7 @@
 import { keyValueList } from "@fig/autocomplete-generators";
 
 const icon =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMRSURBVHgBvVe/TxRBFP52dlc0NgRDZ8IRC60UY2IijVKbKMQSEu4SlU6xtuBItAbsjAVHQksA8R+w8FdHY0xEw2lCYUwIjTFw+8P3ZnZu547dvWNxecnbud399n3fvDd7+8ZCgm2vohcuypbATTodgoWSlQTkiyESLVSHTRrrNK4P3kYtLUSLfdvAqCOwSOS9lhUBLOSzUAkJ6RCEqAceZi/caRXSEnr7DeboyrRt0w0rP2+CDiUikGOVsjGr7wn94/sGZoogZ+NYHFMIeVLdek0TNe7hyyrKp1wsOrYC/U9y0zgTnAXfBxoNjF0cw5rk+rqObddBiWcvimKPjNaCEuBhz93FoP15BWWaedkuePZNs9R6ID+97+KXoLyMypoXzmxokIsCXJNbgl63gSzu37vAsxdqPA7mkAg+CFzhDAyl5Z0DPl+gRbqlxiSCbjCpFqIkoh+J9nI5DqiJ2gnmX3XGZJnIujk1AfSfi8+TCB6OA2fPZGNyC+jvA54+yhYxcF5h8ooQnQBFi+gooGgRXQkoUkTXArSIqfHWaxyY3xZtLGLiXjYmt4CkQJwRflu0/dgBlleyMbkEJKWSA8uy9MXkjPnzNx2TS0BR5FKA7FZw8uSaV0SfRuknQm7wsQvZpwXGRQNrfgvSAjOmW3I9a83F3Cyg7geqU2nPgvktSAv85EFnTNLsI85N+/4YRmyBS9wNCStuFnjgP5Rrl4GfOxFRQuBuMDBm3+wJPeCggU/Wx2VM9ziY63EBakxhO+Qi7pCO2yjppOqUe74kxv4BifBRET0N1HxqEFkRO6tjD9rWRS43au1H5MzhefK8fn0cNXG1gj0/RCVKCbfLChAJ8YNY0FHcfNZTbXgzvhw9tTlpZvj9EuZdG4+pPYfDZbDjUujtWbfliPaFquacAd8Q4ssJzt6YRLVFANuHJVRpMc4wuZMg4NADaeSmgCj9fpyVheFJTGvYoXjvFlFmEeQluZ0y3oqjWPsaoEzsIUBluII1E5cal4WQgLv0/BCBSnkU8NacHtsk8rdU9toIrbd22D8gaAOqnuYnFgAAAABJRU5ErkJggg==";
+  "data:image/png;base64,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";
 
 const ignoreExtensions = new Set(["", "sample", "env"]);
 
@@ -37,9 +37,9 @@ const spec: Fig.Spec = {
     {
       name: "--define",
       description:
-        "Substitude variable K with literal V, eg. --define:DEBUG=true",
+        "Substitude variable names with a literal value, eg. --define:DEBUG=true",
       requiresSeparator: ":",
-      args: {},
+      args: { name: "name=value" },
       priority: 51,
       icon,
     },
@@ -47,7 +47,7 @@ const spec: Fig.Spec = {
       name: "--external",
       description: "Exclude modules from the build",
       requiresSeparator: ":",
-      args: {},
+      args: { name: "module specifier" },
       priority: 51,
       icon,
     },
@@ -55,7 +55,7 @@ const spec: Fig.Spec = {
       name: "--format",
       description: "The output format",
       requiresSeparator: "=",
-      args: { suggestions: ["iife", "cjs", "esm"] },
+      args: { name: "format", suggestions: ["iife", "cjs", "esm"] },
       priority: 51,
       icon,
     },
@@ -64,6 +64,7 @@ const spec: Fig.Spec = {
       description: "For a given file extension, specify a loader",
       requiresSeparator: ":",
       args: {
+        name: "loaders",
         generators: keyValueList({
           keys: extensions,
           values: [
@@ -96,7 +97,7 @@ const spec: Fig.Spec = {
       name: "--outdir",
       description: "The output directory for multiple entrypoints",
       requiresSeparator: "=",
-      args: { template: "folders" },
+      args: { name: "path", template: "folders" },
       priority: 51,
       icon,
     },
@@ -104,7 +105,7 @@ const spec: Fig.Spec = {
       name: "--outfile",
       description: "The output file for one entrypoint",
       requiresSeparator: "=",
-      args: { template: "filepaths" },
+      args: { name: "path", template: "filepaths" },
       priority: 51,
       icon,
     },
@@ -112,7 +113,7 @@ const spec: Fig.Spec = {
       name: "--platform",
       description: "The platform target",
       requiresSeparator: "=",
-      args: { suggestions: ["browser", "node", "neutral"] },
+      args: { name: "name", suggestions: ["browser", "node", "neutral"] },
       priority: 51,
       icon,
     },
@@ -120,7 +121,7 @@ const spec: Fig.Spec = {
       name: "--serve",
       description: "Start a local HTTP server on this host:port",
       requiresSeparator: "=",
-      args: {},
+      args: { isOptional: true, name: "[address:]port" },
       priority: 51,
       icon,
     },
@@ -136,6 +137,7 @@ const spec: Fig.Spec = {
         "Set the environment target. Can be a particular ES version or browser version, eg. chrome101",
       requiresSeparator: "=",
       args: {
+        name: "target",
         generators: keyValueList({
           keys: [
             "esnext",
@@ -148,6 +150,12 @@ const spec: Fig.Spec = {
             "safari",
             "opera",
           ],
+          // There's a bug with keyValueList that causes it to read the first key
+          // as a value if there's a preceding equals, eg. --target=key
+          // The problem will be fixed here by switching to valueList once it's merged,
+          // but that won't solve the issue itself. The workaround is to set the
+          // separator to an arbitrary value that won't normally be written.
+          separator: "[NEVER]",
         }),
       },
       priority: 51,
@@ -168,38 +176,41 @@ const spec: Fig.Spec = {
       name: "--analyze",
       description: "Print a report about the contents of the bundle",
       requiresSeparator: "=",
-      args: { isOptional: true, suggestions: ["verbose"] },
+      args: { name: "verbose?", isOptional: true, suggestions: ["verbose"] },
     },
     {
       name: "--asset-names",
       description: "Path template for 'file' loader files",
       requiresSeparator: "=",
-      args: { default: "[name]-[hash]" },
+      args: { name: "template", default: "[name]-[hash]" },
     },
     {
       name: "--banner",
       description: "Text to be prepended to each output file type",
       requiresSeparator: ":",
-      args: { generators: keyValueList({ keys: extensions, cache: true }) },
+      args: {
+        name: "ext=text[,ext=text...]",
+        generators: keyValueList({ keys: extensions, cache: true }),
+      },
     },
     {
       name: "--charset",
       description: "Do not escape UTF-8 code points",
       insertValue: "--charset=utf8",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "utf8" },
     },
     {
       name: "--chunk-names",
       description: "Path template to use for code splitting chunks",
       requiresSeparator: "=",
-      args: { default: "[name]-[hash]" },
+      args: { name: "template", default: "[name]-[hash]" },
     },
     {
       name: "--color",
       description: "Force use of terminal colors",
       requiresSeparator: "=",
-      args: { suggestions: ["true", "false"] },
+      args: { name: "enabled", suggestions: ["true", "false"] },
     },
     {
       name: "--drop",
@@ -211,19 +222,22 @@ const spec: Fig.Spec = {
       name: "--entry-names",
       description: "Path template to use for entry point output paths",
       requiresSeparator: "=",
-      args: { default: "[dir]/[name]" },
+      args: { name: "template", default: "[dir]/[name]" },
     },
     {
       name: "--footer",
       description: "Text to be appended to each file type",
       requiresSeparator: ":",
-      args: { generators: keyValueList({ keys: ["css", "js"] }) },
+      args: {
+        name: "ext=text",
+        generators: keyValueList({ keys: ["css", "js"] }),
+      },
     },
     {
       name: "--global-name",
       description: "The name of the global if using --format=iife",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "name" },
     },
     {
       name: "--ignore-annotations",
@@ -235,26 +249,30 @@ const spec: Fig.Spec = {
       description:
         "Import the file into all input files, automatically replace matching globals",
       requiresSeparator: ":",
-      args: { template: "filepaths" },
+      args: { name: "import", template: "filepaths" },
     },
     {
       name: "--jsx-factory",
       description: "What to use for the JSX factory",
       requiresSeparator: "=",
-      args: { suggestions: ["React.createElement", "h", "preact.h"] },
+      args: {
+        name: "factory",
+        suggestions: ["React.createElement", "h", "preact.h"],
+      },
     },
     {
       name: "--jsx-fragment",
       description: "What to use for the JS Fragment factory",
       requiresSeparator: "=",
-      args: { suggestions: ["React.Fragment", "Fragment"] },
+      args: { name: "fragment", suggestions: ["React.Fragment", "Fragment"] },
     },
     {
       name: "--jsx",
       description: "Preserve JSX instead of transforming",
       insertValue: "--jsx=preserve",
+      displayName: "--jsx=preserve",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "perserve?", suggestions: ["preserve"] },
     },
     {
       name: "--keep-names",
@@ -264,13 +282,17 @@ const spec: Fig.Spec = {
       name: "--legal-comments",
       description: "Where to place legal comments",
       requiresSeparator: "=",
-      args: { suggestions: ["none", "inline", "eof", "linked", "external"] },
+      args: {
+        name: "location",
+        suggestions: ["none", "inline", "eof", "linked", "external"],
+      },
     },
     {
       name: "--log-level",
       description: "Set the log level",
       requiresSeparator: "=",
       args: {
+        name: "level",
         suggestions: ["verbose", "debug", "info", "warning", "error", "silent"],
         default: "info",
       },
@@ -279,13 +301,14 @@ const spec: Fig.Spec = {
       name: "--log-limit",
       description: "Maximum message count, 0 to disable",
       requiresSeparator: "=",
-      args: { default: "6" },
+      args: { name: "count", default: "6" },
     },
     {
       name: "--log-override",
       description: "For a particular identifier, set the log level",
       requiresSeparator: ":",
       args: {
+        name: "identifier:level",
         generators: keyValueList({
           values: ["verbose", "debug", "info", "warning", "error", "silent"],
         }),
@@ -295,31 +318,31 @@ const spec: Fig.Spec = {
       name: "--main-fields",
       description: "Override the main file order in package.json",
       requiresSeparator: "=",
-      args: { default: "browser,module,main" },
+      args: { name: "field order", default: "browser,module,main" },
     },
     {
       name: "--mangle-cache",
       description: "Save 'mangle props' decisions to a JSON file",
       requiresSeparator: "=",
-      args: { template: "filepaths", suggestCurrentToken: true },
+      args: { name: "path", template: "filepaths", suggestCurrentToken: true },
     },
     {
       name: "--mangle-props",
       description: "Rename all properties matching a regular expression",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "regex" },
     },
     {
       name: "--mangle-quoted",
       description: "Enable renamining quoted properties",
       requiresSeparator: "=",
-      args: { suggestions: ["true", "false"] },
+      args: { name: "status", suggestions: ["true", "false"] },
     },
     {
       name: "--metafile",
       description: "Write metadata about the build to a JSON file",
       requiresSeparator: "=",
-      args: { template: "filepaths", suggestCurrentToken: true },
+      args: { name: "path", template: "filepaths", suggestCurrentToken: true },
     },
     {
       name: "--minify-whitespace",
@@ -336,15 +359,18 @@ const spec: Fig.Spec = {
     {
       name: "--out-extension",
       description: "Use a custom output extension for each extension",
-      requiresSeparator: "=",
-      args: { generators: keyValueList({ keys: extensions, cache: true }) },
+      requiresSeparator: ":",
+      args: {
+        name: "ext=new",
+        generators: keyValueList({ keys: extensions, cache: true }),
+      },
     },
     {
       name: "--outbase",
       description:
         "Base path used to determine entrypoint output paths, for multiple entrypoints",
       requiresSeparator: "=",
-      args: { template: "folders" },
+      args: { name: "path", template: "folders" },
     },
     {
       name: "--preserve-symlinks",
@@ -354,49 +380,63 @@ const spec: Fig.Spec = {
       name: "--public-path",
       description: "Set the base URL for the 'file' loader",
       requiresSeparator: "=",
-      args: { template: "folders" },
+      args: { name: "path", template: "folders" },
     },
     {
       name: "--pure",
       description: "Mark the name as a pure function for tree shaking",
       requiresSeparator: ":",
-      args: {},
+      args: { name: "name" },
     },
     {
       name: "--reserve-props",
       description: "Do not mangle these properties",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "properties" },
     },
     {
       name: "--resolve-extensions",
       description: "Comma-separated list of implicit extensions",
       requiresSeparator: "=",
-      args: { generators: keyValueList({ keys: extensions, cache: true }) },
+      args: {
+        name: "extensions",
+        generators: keyValueList({ keys: extensions, cache: true }),
+      },
     },
     {
       name: "--servedir",
       description: "What to serve in addition to the generated output files",
       requiresSeparator: "=",
-      args: { template: "folders" },
+      args: { name: "path", template: "folders" },
     },
     {
       name: "--source-root",
       description: "Set the sourceRoot field in generated source maps",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "URL" },
     },
     {
       name: "--sourcefile",
-      description: "Set the source file for the source map",
+      description:
+        "Set the source file for the source map if there's no file name to use",
       requiresSeparator: "=",
-      args: {},
+      args: { name: "name" },
     },
     {
       name: "--sourcemap",
       description: "Generate source maps?",
       requiresSeparator: "=",
-      args: { isOptional: true, suggestions: ["external", "inline"] },
+      args: {
+        name: "options",
+        isOptional: true,
+        suggestions: [
+          {
+            name: "external",
+            description: "Generate a separate .map.js file with no comment",
+          },
+          { name: "inline", description: "Append source maps to JS files" },
+        ],
+      },
       priority: 51,
       icon,
     },
@@ -405,25 +445,28 @@ const spec: Fig.Spec = {
       description: "Omit the sourcesContent field in generated souce maps",
       insertValue: "--sources-content=false",
       requiresSeparator: "=",
-      args: { suggestions: ["false"] },
+      args: { name: "status", suggestions: ["false"] },
     },
     {
       name: "--supported",
       description: "Consider a given syntax to be supported",
       requiresSeparator: ":",
-      args: { generators: keyValueList({ values: ["true", "false"] }) },
+      args: {
+        name: "syntax=status",
+        generators: keyValueList({ values: ["true", "false"] }),
+      },
     },
     {
       name: "--tree-shaking",
       description: "Force tree shaking on or off",
       requiresSeparator: "=",
-      args: { suggestions: ["true", "false"] },
+      args: { name: "status", suggestions: ["true", "false"] },
     },
     {
       name: "--tsconfig",
       description: "Use this TypeScript config instead of the default",
       requiresSeparator: "=",
-      args: { template: "filepaths" },
+      args: { name: "path", template: "filepaths" },
     },
     {
       name: "--version",
