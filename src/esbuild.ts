@@ -3,12 +3,16 @@ import { keyValueList } from "@fig/autocomplete-generators";
 const icon =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMRSURBVHgBvVe/TxRBFP52dlc0NgRDZ8IRC60UY2IijVKbKMQSEu4SlU6xtuBItAbsjAVHQksA8R+w8FdHY0xEw2lCYUwIjTFw+8P3ZnZu547dvWNxecnbud399n3fvDd7+8ZCgm2vohcuypbATTodgoWSlQTkiyESLVSHTRrrNK4P3kYtLUSLfdvAqCOwSOS9lhUBLOSzUAkJ6RCEqAceZi/caRXSEnr7DeboyrRt0w0rP2+CDiUikGOVsjGr7wn94/sGZoogZ+NYHFMIeVLdek0TNe7hyyrKp1wsOrYC/U9y0zgTnAXfBxoNjF0cw5rk+rqObddBiWcvimKPjNaCEuBhz93FoP15BWWaedkuePZNs9R6ID+97+KXoLyMypoXzmxokIsCXJNbgl63gSzu37vAsxdqPA7mkAg+CFzhDAyl5Z0DPl+gRbqlxiSCbjCpFqIkoh+J9nI5DqiJ2gnmX3XGZJnIujk1AfSfi8+TCB6OA2fPZGNyC+jvA54+yhYxcF5h8ooQnQBFi+gooGgRXQkoUkTXArSIqfHWaxyY3xZtLGLiXjYmt4CkQJwRflu0/dgBlleyMbkEJKWSA8uy9MXkjPnzNx2TS0BR5FKA7FZw8uSaV0SfRuknQm7wsQvZpwXGRQNrfgvSAjOmW3I9a83F3Cyg7geqU2nPgvktSAv85EFnTNLsI85N+/4YRmyBS9wNCStuFnjgP5Rrl4GfOxFRQuBuMDBm3+wJPeCggU/Wx2VM9ziY63EBakxhO+Qi7pCO2yjppOqUe74kxv4BifBRET0N1HxqEFkRO6tjD9rWRS43au1H5MzhefK8fn0cNXG1gj0/RCVKCbfLChAJ8YNY0FHcfNZTbXgzvhw9tTlpZvj9EuZdG4+pPYfDZbDjUujtWbfliPaFquacAd8Q4ssJzt6YRLVFANuHJVRpMc4wuZMg4NADaeSmgCj9fpyVheFJTGvYoXjvFlFmEeQluZ0y3oqjWPsaoEzsIUBluII1E5cal4WQgLv0/BCBSnkU8NacHtsk8rdU9toIrbd22D8gaAOqnuYnFgAAAABJRU5ErkJggg==";
 
+const ignoreExtensions = new Set(["", "sample", "env"]);
+
 const extensions: Fig.Generator["custom"] = async (_, executeShellCommand) => {
   const out = await executeShellCommand(
-    "find . -type f -name '*.*' | sed 's|.*.||' | sort -u"
+    "find . -depth 3 -type f -name '*.*' -not -path '*/node_modules/*' | gsed 's/.*\\.//' | sort -u"
   );
   const lines = out.trim().split("\n");
-  return lines.map((line) => ({ name: line }));
+  return lines
+    .filter((line) => !ignoreExtensions.has(line))
+    .map((line) => ({ name: "." + line }));
 };
 
 const spec: Fig.Spec = {
