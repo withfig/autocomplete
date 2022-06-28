@@ -2656,11 +2656,9 @@ versions["1.4.1"] = {
               remove: true,
             },
           ],
-          args: [
-            {
-              isVariadic: true,
-            },
-          ],
+          args: {
+            isVariadic: true,
+          },
         },
         {
           name: "ime",
@@ -2933,11 +2931,9 @@ versions["1.4.1"] = {
           isRepeatable: true,
         },
       ],
-      args: [
-        {
-          isVariadic: true,
-        },
-      ],
+      args: {
+        isVariadic: true,
+      },
     },
     {
       name: "login",
@@ -3177,28 +3173,26 @@ versions["1.4.1"] = {
     },
     {
       name: "completion",
-      args: [
-        {
-          suggestions: [
-            {
-              name: "bash",
-              description: "Bash shell completions",
-            },
-            {
-              name: "fish",
-              description: "Fish shell completions",
-            },
-            {
-              name: "zsh",
-              description: "Zsh shell completions",
-            },
-            {
-              name: "fig",
-              description: "Fig completion spec",
-            },
-          ],
-        },
-      ],
+      args: {
+        suggestions: [
+          {
+            name: "bash",
+            description: "Bash shell completions",
+          },
+          {
+            name: "fish",
+            description: "Fish shell completions",
+          },
+          {
+            name: "zsh",
+            description: "Zsh shell completions",
+          },
+          {
+            name: "fig",
+            description: "Fig completion spec",
+          },
+        ],
+      },
     },
     {
       name: ["internal", "_"],
@@ -3522,11 +3516,9 @@ versions["1.4.1"] = {
     },
     {
       name: "man",
-      args: [
-        {
-          isVariadic: true,
-        },
-      ],
+      args: {
+        isVariadic: true,
+      },
     },
     {
       name: [
