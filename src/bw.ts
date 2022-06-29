@@ -1,3 +1,12 @@
+/*
+
+Bitwarden fig completion spec!
+
+# Icon support:
+https://fig.io/docs/reference/suggestion/icon-api#standard-icons
+
+*/
+
 const completionSpec: Fig.Spec = {
   name: "bw",
   description: "Bitwarden Secrets Manager CLI Tool",
@@ -26,6 +35,10 @@ const completionSpec: Fig.Spec = {
           name: "--passwordenv",
           description:
             "Looks for the password in the specified environmental variable file",
+          args: {
+            name: "path",
+            template: "filepaths",
+          },
         },
         {
           name: "--passwordfile",
@@ -37,7 +50,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Creates a new object in your Vault",
-      subcommands: [
+      options: [
         {
           name: "item",
           description: "Creates item",
@@ -59,7 +72,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get",
       description: "Retrieves a single object from your Vault",
-      subcommands: [
+      options: [
         {
           name: "item",
           description: "Retrieves a Vault Item",
@@ -189,10 +202,90 @@ const completionSpec: Fig.Spec = {
     {
       name: "export",
       description: "Exports Vault data as .json, .csv or encrypted .json",
+      options: [
+        {
+          name: "--output",
+          description: "Exports to a specific location",
+          args: {
+            /* Design question - should this be a filepath template, or just a space for the user to enter the filepath? */
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--format",
+          description: "Exports .json or encrypyted .json",
+          args: {
+            name: "format",
+            suggestions: ["json", "encrypyed_json"],
+          },
+        },
+        {
+          name: "--raw",
+          description: "Returns export to stdout instead of a file",
+        },
+      ],
     },
     {
       name: "generate",
       description: "Generates a strong password or passphrase",
+      options: [
+        {
+          name: ["--uppercase", "-u"],
+          description: "Include uppercase character(s)",
+        },
+        {
+          name: ["--lowercase", "-l"],
+          description: "Include lowercase character(s)",
+        },
+        {
+          name: ["--number", "-n"],
+          description: "Include number(s)",
+        },
+        {
+          name: ["--special", "-s"],
+          description: "Include special character(s)",
+        },
+        {
+          name: "--length",
+          description: "Specify password length (min 5)",
+          args: {
+            name: "length",
+            /* needs a special function here to input a number */
+          },
+        },
+        {
+          name: "--passphrase",
+          description: "Generates a passphrase instead of a password",
+          args: [
+            {
+              name: "--words",
+              description: "Number of words",
+            },
+            {
+              name: "--seperator",
+              description: "Seperator Character",
+            },
+
+            /* 
+
+This breaks things - a nested arg cannot use an array in the name field.
+Asking for support here:
+https://discord.com/channels/837809111248535583/991730840386150502/991732198048809110
+
+            {
+              name: ["--capitalize", "-c"],
+              description: "Include to title-case the passphrase"
+            },
+
+            */
+
+            {
+              name: "--includeNumber",
+              description: "Includes numbers in the passphrase",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "update",
