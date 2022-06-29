@@ -5,6 +5,41 @@ Bitwarden fig completion spec!
 # Icon support:
 https://fig.io/docs/reference/suggestion/icon-api#standard-icons
 
+
+# Planning
+
+Commands:
+login         incomplete
+unlock        incomplete
+
+create        incomplete
+get           incomplete
+edit          incomplete
+list          incomplete
+delete        incomplete
+restore       incomplete
+send          incomplete
+receive       incomplete
+move          incomplete
+confirm        incomplete
+
+config         incomplete
+sync          complete
+encode        complete
+import        complete
+export        complete
+generate      incomplete
+update        complete
+status        complete
+serve         complete
+
+
+global opts   incomplete
+
+
+
+
+
 */
 
 const completionSpec: Fig.Spec = {
@@ -297,12 +332,54 @@ https://discord.com/channels/837809111248535583/991730840386150502/9917321980488
     },
     {
       name: "serve",
-      description: "Stars a local express web server",
+      description: "Stars a local express web server on port 8087",
+      args: [
+        {
+          name: "--port",
+          description: "Specifies alternative port",
+        },
+        {
+          name: "--hostname",
+          description: "Specifies an alternative hostname",
+        },
+      ],
     },
   ],
   options: [
     {
-      name: ["--help", "-h"],
+      name: "--pretty",
+      description: "Format output. JSON is tabbed with two spaces",
+    },
+    {
+      name: "--raw",
+      description: "Return raw output instead of a descriptive message",
+    },
+    {
+      name: "--response",
+      description: "Return a JSON formatted version of response output",
+    },
+    {
+      name: "--quiet",
+      description: "Don't return anything to stdout",
+    },
+    {
+      name: "--nointeraction",
+      description: "Do not prompt for interactive user input",
+    },
+    {
+      name: "--session",
+      description:
+        "Pass session key instead of reading from an environmen variable",
+      args: {
+        name: "session",
+      },
+    },
+    {
+      name: ["-v", "--version"],
+      description: "Output the Bitwarden CLI version number",
+    },
+    {
+      name: ["-h", "--help"],
       description: "Displays the Bitwarden CLI man page",
     },
   ],
