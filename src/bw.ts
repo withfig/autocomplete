@@ -34,7 +34,7 @@ status        complete
 serve         complete
 
 
-global opts   incomplete
+global opts   complete
 
 
 
