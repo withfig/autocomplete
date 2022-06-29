@@ -72,7 +72,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "get",
       description: "Retrieves a single object from your Vault",
-      options: [
+      args: [
         {
           name: "item",
           description: "Retrieves a Vault Item",
@@ -306,7 +306,5 @@ https://discord.com/channels/837809111248535583/991730840386150502/9917321980488
       description: "Displays the Bitwarden CLI man page",
     },
   ],
-  // Only uncomment if bw takes an argument
-  // args: {}
 };
 export default completionSpec;
