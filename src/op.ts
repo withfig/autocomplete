@@ -23,14 +23,17 @@ const suggestAccounts: Fig.Generator = {
 
 const spec: Fig.Spec = {
   name: "op",
+  description: "Official 1Password CLI",
+  icon,
   subcommands: [
     {
-      description: "Manage your locally configured 1Password accounts",
       name: "account",
+      description: "Manage your locally configured 1Password accounts",
+      icon,
       subcommands: [
         {
-          description: "Add an account to sign in to for the first time",
           name: "add",
+          description: "Add an account to sign in to for the first time",
           options: [
             {
               name: "--address",
@@ -47,10 +50,6 @@ const spec: Fig.Spec = {
               },
             },
             {
-              name: ["-h", "--help"],
-              description: "Get help with account add",
-            },
-            {
               name: "--raw",
               description: "Only return the session token",
             },
@@ -61,366 +60,40 @@ const spec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
         },
         {
-          description: "Get details about your account",
           name: "get",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
+          description: "Get details about your account",
         },
         {
-          description: "List users and accounts set up on this device",
           name: ["list", "ls"],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
+          description: "List users and accounts set up on this device",
         },
         {
-          description: "Remove a 1Password account from this device",
           name: "forget",
+          description: "Remove a 1Password account from this device",
           options: [
             {
               name: "--all",
               description: "Forget all authenticated accounts",
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
             name: "account",
           },
         },
       ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
-      ],
     },
     {
+      name: "connect",
       description:
         "Manage Connect instances and Connect tokens in your 1Password account",
-      name: "connect",
+      icon,
       subcommands: [
         {
-          description: "Manage group access to Secrets Automation",
           name: "group",
+          description: "Manage group access to Secrets Automation",
           subcommands: [
             {
               description: "Grant a group access to manage Secrets Automation",
@@ -438,77 +111,12 @@ const spec: Fig.Spec = {
                     name: "group",
                   },
                 },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect group grant",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
             {
+              name: "revoke",
               description:
                 "Revoke a group's access to manage Secrets Automation",
-              name: "revoke",
               options: [
                 {
                   name: "--all-servers",
@@ -522,289 +130,23 @@ const spec: Fig.Spec = {
                     name: "group",
                   },
                 },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect group revoke",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
-            },
-          ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
             },
           ],
         },
         {
-          description: "Manage Connect servers",
           name: "server",
+          description: "Manage Connect servers",
           subcommands: [
             {
-              description: "Set up a Connect server",
               name: "create",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect server create",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
+              description: "Set up a Connect server",
             },
             {
-              description: "Get a Connect server",
               name: "get",
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
+              description: "Get a Connect server",
               args: {
-                name: "serverName | serverID | -",
+                name: "serverName | serverID",
                 suggestions: [
                   { name: "-", description: "Read from stdin", hidden: true },
                 ],
@@ -813,73 +155,6 @@ const spec: Fig.Spec = {
             {
               description: "Rename a Connect server",
               name: "edit",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect server edit",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
               args: {
                 name: "serverName | serverID",
               },
@@ -887,75 +162,8 @@ const spec: Fig.Spec = {
             {
               description: "Remove a Connect server",
               name: ["delete", "remove", "rm"],
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
               args: {
-                name: "serverName | serverID | -",
+                name: "serverName | serverID",
                 suggestions: [
                   { name: "-", description: "Read from stdin", hidden: true },
                 ],
@@ -964,146 +172,12 @@ const spec: Fig.Spec = {
             {
               description: "List Connect servers",
               name: ["list", "ls"],
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
             },
           ],
         },
         {
-          description: "Manage Connect tokens",
           name: "token",
+          description: "Manage Connect tokens",
           subcommands: [
             {
               description: "Issue a token for a 1Password Connect server",
@@ -1118,75 +192,10 @@ const spec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect token create",
-                },
-                {
                   name: "--server",
                   description: "Issue a token for this server",
                   args: {
                     name: "string",
-                  },
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
                   },
                 },
               ],
@@ -1196,75 +205,10 @@ const spec: Fig.Spec = {
               name: "edit",
               options: [
                 {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect token edit",
-                },
-                {
                   name: "--name",
                   description: "Change the token's name",
                   args: {
                     name: "string",
-                  },
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
                   },
                 },
               ],
@@ -1272,73 +216,6 @@ const spec: Fig.Spec = {
             {
               description: "Revoke a token for a Connect server",
               name: ["delete", "remove", "rm"],
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect token delete",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
               args: {
                 name: "token",
               },
@@ -1346,221 +223,22 @@ const spec: Fig.Spec = {
             {
               description: "Get a list of tokens",
               name: ["list", "ls"],
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect token list",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
             },
           ],
         },
         {
-          description: "Manage connect server vault access",
           name: "vault",
+          description: "Manage connect server vault access",
           subcommands: [
             {
               description: "Grant a Connect server access to a vault",
               name: "grant",
               options: [
                 {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect vault grant",
-                },
-                {
                   name: "--server",
                   description: "The server to be granted access",
                   args: {
                     name: "string",
-                  },
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
                   },
                 },
               ],
@@ -1570,224 +248,26 @@ const spec: Fig.Spec = {
               name: "revoke",
               options: [
                 {
-                  name: ["-h", "--help"],
-                  description: "Get help with connect vault revoke",
-                },
-                {
                   name: "--server",
                   description: "The server to revoke access from",
                   args: {
                     name: "server",
                   },
                 },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
           ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
         },
       ],
     },
     {
-      description: "Perform CRUD operations on Document items in your vaults",
       name: "document",
+      description: "Perform CRUD operations on Document items in your vaults",
+      icon,
       subcommands: [
         {
-          description: "Create a document item",
           name: "create",
+          description: "Create a document item",
           options: [
             {
               name: "--file-name",
@@ -1795,10 +275,6 @@ const spec: Fig.Spec = {
               args: {
                 name: "name",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with document create",
             },
             {
               name: "--tags",
@@ -1815,83 +291,18 @@ const spec: Fig.Spec = {
                 name: "title",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "file | -",
+            name: "file",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Download a document",
           name: "get",
+          description: "Download a document",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "Get help with document get",
-            },
             {
               name: "--include-archive",
               description:
@@ -1905,75 +316,14 @@ const spec: Fig.Spec = {
                 name: "path",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
             name: "itemName | itemID",
           },
         },
         {
-          description: "Edit a document item",
           name: "edit",
+          description: "Edit a document item",
           options: [
             {
               name: "--file-name",
@@ -1981,10 +331,6 @@ const spec: Fig.Spec = {
               args: {
                 name: "name",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with document edit",
             },
             {
               name: "--tags",
@@ -2001,74 +347,13 @@ const spec: Fig.Spec = {
                 name: "title",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: [
             {
               name: "itemName | itemID",
             },
             {
-              name: "file | -",
+              name: "file",
               suggestions: [
                 { name: "-", description: "Read from stdin", hidden: true },
               ],
@@ -2076,383 +361,54 @@ const spec: Fig.Spec = {
           ],
         },
         {
-          description: "Delete or archive a document item",
           name: ["delete", "remove", "rm"],
+          description: "Delete or archive a document item",
           options: [
             {
               name: "--archive",
               description: "Move the document to the Archive",
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with document delete",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "itemName | itemID | -",
+            name: "itemName | itemID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Get a list of documents",
           name: ["list", "ls"],
+          description: "Get a list of documents",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "Get help with document list",
-            },
             {
               name: "--include-archive",
               description:
                 "Include document items in the Archive. Can also be set using OP_INCLUDE_ARCHIVE environment variable",
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
-        },
-      ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
         },
       ],
     },
     {
-      description: "Manage Events API integrations in your 1Password account",
       name: "events-api",
+      description: "Manage Events API integrations in your 1Password account",
+      icon,
       subcommands: [
         {
-          description: "Set up an integration with the Events API",
           name: "create",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
+          description: "Set up an integration with the Events API",
         },
       ],
     },
     {
+      name: "group",
       description:
         "Perform CRUD operations on the groups of users in your 1Password account",
-      name: "group",
+      icon,
       subcommands: [
         {
-          description: "Manage users in groups",
           name: "user",
+          description: "Manage users in groups",
           subcommands: [
             {
               description: "Grant a user access to a group",
@@ -2466,76 +422,11 @@ const spec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["-h", "--help"],
-                  description: "Get help with group user grant",
-                },
-                {
                   name: "--role",
                   description:
                     "Specify the user's role as a member or manager. Default: member",
                   args: {
                     name: "string",
-                  },
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
                   },
                 },
               ],
@@ -2552,216 +443,17 @@ const spec: Fig.Spec = {
                     name: "string",
                   },
                 },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with group user revoke",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
             {
               description: "Retrieve users that belong to a group",
               name: ["list", "ls"],
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
             },
           ],
         },
         {
-          description: "Create a group",
           name: "create",
+          description: "Create a group",
           options: [
             {
               name: "--description",
@@ -2770,153 +462,21 @@ const spec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
         },
         {
-          description: "Get details about a group",
           name: "get",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
+          description: "Get details about a group",
           args: {
-            name: "groupName | groupID | -",
+            name: "groupName | groupID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Edit a group's name or description",
           name: "edit",
+          description: "Edit a group's name or description",
           options: [
             {
               name: "--description",
@@ -2925,164 +485,28 @@ const spec: Fig.Spec = {
                 name: "description",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with group edit",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "groupName | groupID | -",
+            name: "groupName | groupID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Remove a group",
           name: ["delete", "remove", "rm"],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
+          description: "Remove a group",
           args: {
-            name: "groupName | groupID | -",
+            name: "groupName | groupID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "List groups",
           name: ["list", "ls"],
+          description: "List groups",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "Get help with group list",
-            },
             {
               name: "--user",
               description: "List groups that a user belongs to",
@@ -3090,142 +514,15 @@ const spec: Fig.Spec = {
                 name: "user",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
-        },
-      ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
         },
       ],
     },
     {
+      name: "item",
       description:
         "Perform CRUD operations on the 1Password items in your vaults",
-      name: "item",
+      icon,
       subcommands: [
         {
           description: "Manage templates",
@@ -3233,229 +530,30 @@ const spec: Fig.Spec = {
           icon: "📕",
           subcommands: [
             {
-              description: "Get an item template",
               name: "get",
+              description: "Get an item template",
               options: [
                 {
                   name: ["-f", "--force"],
                   description: "Do not prompt for confirmation",
                 },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with item template get",
-                },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
               args: {
-                name: "category | -",
+                name: "category",
                 suggestions: [
                   { name: "-", description: "Read from stdin", hidden: true },
                 ],
               },
             },
             {
-              description: "Get a list of templates",
               name: ["list", "ls"],
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
+              description: "Get a list of templates",
             },
           ],
         },
         {
-          description: "Create an item",
           name: "create",
+          description: "Create an item",
           icon: "🪄",
           options: [
             {
@@ -3477,10 +575,6 @@ const spec: Fig.Spec = {
               args: {
                 name: "recipe",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with item create",
             },
             {
               name: "--tags",
@@ -3511,75 +605,14 @@ const spec: Fig.Spec = {
                 name: "URL",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
             name: "assignment...",
           },
         },
         {
-          description: "Get an item's details",
           name: "get",
+          description: "Get an item's details",
           icon: "📑",
           options: [
             {
@@ -3589,10 +622,6 @@ const spec: Fig.Spec = {
               args: {
                 name: "fields",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with item get",
             },
             {
               name: "--include-archive",
@@ -3607,146 +636,18 @@ const spec: Fig.Spec = {
               name: "--share-link",
               description: "Get a shareable link for the item",
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "itemName | itemID | shareLink | -",
+            name: "itemName | itemID | shareLink",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Edit an item's details",
           name: "edit",
+          description: "Edit an item's details",
           icon: "🔏",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
           args: [
             {
               name: "itemName | itemID | shareLink",
@@ -3757,90 +658,25 @@ const spec: Fig.Spec = {
           ],
         },
         {
-          description: "Delete or archive an item",
           name: ["delete", "remove", "rm"],
+          description: "Delete or archive an item",
           icon: "🗑️",
           options: [
             {
               name: "--archive",
               description: "Move the item to the Archive",
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with item delete",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "itemName | itemID | shareLink | -",
+            name: "itemName | itemID | shareLink",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "List items",
           name: ["list", "ls"],
+          description: "List items",
           icon: "📖",
           options: [
             {
@@ -3850,10 +686,6 @@ const spec: Fig.Spec = {
               args: {
                 name: "categories",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with item list",
             },
             {
               name: "--include-archive",
@@ -3871,72 +703,11 @@ const spec: Fig.Spec = {
                 name: "tags",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
         },
         {
-          description: "Share an item",
           name: "share",
+          description: "Share an item",
           icon: "👥",
           options: [
             {
@@ -3955,75 +726,10 @@ const spec: Fig.Spec = {
               },
             },
             {
-              name: ["-h", "--help"],
-              description: "Get help with item share",
-            },
-            {
               name: "--vault",
               description: "Look for the item in this vault",
               args: {
                 name: "string",
-              },
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
               },
             },
           ],
@@ -4032,81 +738,15 @@ const spec: Fig.Spec = {
           },
         },
       ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
-      ],
     },
     {
-      description: "Manage users within this 1Password account",
       name: "user",
+      description: "Manage users within this 1Password account",
+      icon,
       subcommands: [
         {
-          description: "Provision a user in the authenticated account",
           name: "provision",
+          description: "Provision a user in the authenticated account",
           options: [
             {
               name: "--email",
@@ -4116,10 +756,6 @@ const spec: Fig.Spec = {
               },
             },
             {
-              name: ["-h", "--help"],
-              description: "Get help with user provision",
-            },
-            {
               name: "--language",
               description:
                 'Provide the user\'s account language. (default "en")',
@@ -4127,226 +763,35 @@ const spec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
         },
         {
-          description: "Confirm a user",
           name: "confirm",
+          description: "Confirm a user",
           options: [
             {
               name: "--all",
               description: "Confirm all unconfirmed users",
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "email | name | userID | -",
+            name: "email | name | userID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Get details about a user",
           name: "get",
+          description: "Get details about a user",
           options: [
             {
               name: "--fingerprint",
               description: "Get the user's public key fingerprint",
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with user get",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "email | name | userID | --me | -",
+            name: "email | name | userID | --me",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
               {
@@ -4358,13 +803,9 @@ const spec: Fig.Spec = {
           },
         },
         {
-          description: "Edit a user's name or Travel Mode status",
           name: "edit",
+          description: "Edit a user's name or Travel Mode status",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "Get help with user edit",
-            },
             {
               name: "--name",
               description: "Set the user's name",
@@ -4372,78 +813,17 @@ const spec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "email | name | userID | -",
+            name: "email | name | userID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Suspend a user",
           name: "suspend",
+          description: "Suspend a user",
           options: [
             {
               name: "--deauthorize-devices-after",
@@ -4453,236 +833,37 @@ const spec: Fig.Spec = {
                 name: "duration",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "email | name | userID | -",
+            name: "email | name | userID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Reactivate a suspended user",
           name: "reactivate",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
+          description: "Reactivate a suspended user",
           args: {
-            name: "email | name | userID | -",
+            name: "email | name | userID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Remove a user and all their data from the account",
           name: ["delete", "remove", "rm"],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
+          description: "Remove a user and all their data from the account",
           args: {
-            name: "email | name | userID | -",
+            name: "email | name | userID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "List users",
           name: ["list", "ls"],
+          description: "List users",
           options: [
             {
               name: "--group",
@@ -4691,155 +872,24 @@ const spec: Fig.Spec = {
                 name: "group",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with user list",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
-        },
-      ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
         },
       ],
     },
     {
+      name: "vault",
       description:
         "Manage permissions and perform CRUD operations on your 1Password vaults",
-      name: "vault",
+      icon,
       subcommands: [
         {
-          description: "Manage group vault access",
           name: "group",
+          description: "Manage group vault access",
           icon: "👥",
           subcommands: [
             {
-              description: "Grant a group permissions to a vault",
               name: "grant",
+              description: "Grant a group permissions to a vault",
               options: [
                 {
                   name: "--group",
@@ -4847,10 +897,6 @@ const spec: Fig.Spec = {
                   args: {
                     name: "group",
                   },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with vault group grant",
                 },
                 {
                   name: "--no-input",
@@ -4867,73 +913,12 @@ const spec: Fig.Spec = {
                     name: "permissions",
                   },
                 },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
             {
+              name: "revoke",
               description:
                 "Revoke a portion or the entire access of a group to a vault",
-              name: "revoke",
               options: [
                 {
                   name: "--group",
@@ -4941,10 +926,6 @@ const spec: Fig.Spec = {
                   args: {
                     name: "group",
                   },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with vault group revoke",
                 },
                 {
                   name: "--no-input",
@@ -4961,229 +942,30 @@ const spec: Fig.Spec = {
                     name: "permissions",
                   },
                 },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
             {
+              name: ["list", "ls"],
               description:
                 "List all the groups that have access to the given vault",
-              name: ["list", "ls"],
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
               args: {
-                name: "vault | -",
+                name: "vault",
                 suggestions: [
                   { name: "-", description: "Read from stdin", hidden: true },
                 ],
               },
             },
           ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
         },
         {
-          description: "Manage user vault access",
           name: "user",
+          description: "Manage user vault access",
           icon: "📈",
           subcommands: [
             {
               description: "Grant a user access to a vault",
               name: "grant",
               options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with vault user grant",
-                },
                 {
                   name: "--no-input",
                   description:
@@ -5206,67 +988,6 @@ const spec: Fig.Spec = {
                     name: "user",
                   },
                 },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
             {
@@ -5274,10 +995,6 @@ const spec: Fig.Spec = {
                 "Revoke a portion or the entire access of a user to a vault",
               name: "revoke",
               options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help with vault user revoke",
-                },
                 {
                   name: "--no-input",
                   description:
@@ -5300,213 +1017,18 @@ const spec: Fig.Spec = {
                     name: "user",
                   },
                 },
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
               ],
             },
             {
               description:
                 "List all users with access to the vault and their permissions",
               name: ["list", "ls"],
-              options: [
-                {
-                  name: "--account",
-                  description:
-                    "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-                  args: {
-                    name: "account",
-                    generators: suggestAccounts,
-                  },
-                },
-                {
-                  name: "--cache",
-                  description: "Store and use cached information",
-                },
-                {
-                  name: "--config",
-                  description: "Use this configuration directory",
-                  args: {
-                    name: "directory",
-                    template: "folders",
-                  },
-                },
-                {
-                  name: "--debug",
-                  description:
-                    "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-                },
-                {
-                  name: "--encoding",
-                  description:
-                    "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-                  args: {
-                    name: "type",
-                    suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-                  },
-                },
-                {
-                  name: "--format",
-                  description:
-                    "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-                  args: {
-                    name: "string",
-                    suggestions: ["human-readable", "json"],
-                  },
-                },
-                {
-                  name: ["-h", "--help"],
-                  description: "Get help for op",
-                },
-                {
-                  name: "--iso-timestamps",
-                  description:
-                    "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-                },
-                {
-                  name: "--no-color",
-                  description: "Print output without color",
-                },
-                {
-                  name: "--session",
-                  description:
-                    "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-                  args: {
-                    name: "token",
-                  },
-                },
-              ],
-            },
-          ],
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
             },
           ],
         },
         {
-          description: "Create a new vault",
           name: "create",
+          description: "Create a new vault",
           icon: "🪄",
           options: [
             {
@@ -5524,155 +1046,23 @@ const spec: Fig.Spec = {
                 name: "description",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with vault create",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
         },
         {
-          description: "Get details about a vault",
           name: "get",
+          description: "Get details about a vault",
           icon: "📑",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
           args: {
-            name: "vaultName | vaultID | -",
+            name: "vaultName | vaultID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
+          name: "edit",
           description:
             "Edit a vault's name, description, icon or Travel Mode status",
-          name: "edit",
           icon: "🔏",
           options: [
             {
@@ -5681,10 +1071,6 @@ const spec: Fig.Spec = {
               args: {
                 name: "description",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with vault edit",
             },
             {
               name: "--icon",
@@ -5708,156 +1094,28 @@ const spec: Fig.Spec = {
                 name: "on|off",
               },
             },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
           args: {
-            name: "vaultName | vaultID | -",
+            name: "vaultName | vaultID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "Remove a vault",
           name: ["delete", "remove", "rm"],
+          description: "Remove a vault",
           icon: "🗑️",
-          options: [
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Get help for op",
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
-          ],
           args: {
-            name: "vaultName | vaultID | -",
+            name: "vaultName | vaultID",
             suggestions: [
               { name: "-", description: "Read from stdin", hidden: true },
             ],
           },
         },
         {
-          description: "List all vaults in the account",
           name: ["list", "ls"],
+          description: "List all vaults in the account",
           icon: "📖",
           options: [
             {
@@ -5867,287 +1125,24 @@ const spec: Fig.Spec = {
                 name: "string",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Get help with vault list",
-            },
-            {
-              name: "--account",
-              description:
-                "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-              args: {
-                name: "account",
-                generators: suggestAccounts,
-              },
-            },
-            {
-              name: "--cache",
-              description: "Store and use cached information",
-            },
-            {
-              name: "--config",
-              description: "Use this configuration directory",
-              args: {
-                name: "directory",
-                template: "folders",
-              },
-            },
-            {
-              name: "--debug",
-              description:
-                "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-            },
-            {
-              name: "--encoding",
-              description:
-                "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-              args: {
-                name: "type",
-                suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-              },
-            },
-            {
-              name: "--format",
-              description:
-                "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-              args: {
-                name: "string",
-                suggestions: ["human-readable", "json"],
-              },
-            },
-            {
-              name: "--iso-timestamps",
-              description:
-                "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-            },
-            {
-              name: "--no-color",
-              description: "Print output without color",
-            },
-            {
-              name: "--session",
-              description:
-                "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-              args: {
-                name: "token",
-              },
-            },
           ],
         },
       ],
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
-      ],
     },
     {
-      description: "Generate shell completion information",
       name: "completion",
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
-      ],
+      description: "Generate shell completion information",
+      icon,
     },
     {
-      description: "Inject secrets into a config file",
       name: "inject",
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
-      ],
+      description: "Inject secrets into a config file",
+      icon,
     },
     {
-      description: "Read a secret using the secrets reference syntax",
       name: "read",
+      description: "Read a secret using the secrets reference syntax",
+      icon,
       options: [
         {
           name: "--file-mode",
@@ -6162,234 +1157,47 @@ const spec: Fig.Spec = {
           description: "Do not prompt for confirmation",
         },
         {
-          name: ["-h", "--help"],
-          description: "Get help with read",
-        },
-        {
           name: ["-n", "--no-newline"],
           description: "Do not print a new line after the secret",
-        },
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
         },
       ],
     },
     {
-      description: "Pass secrets as environment variables to a process",
       name: "run",
-      insertValue: "run --",
+      description: "Pass secrets as environment variables to a process",
+      icon,
+      insertValue: "run -- {cursor}",
+      args: {
+        name: "command",
+        isCommand: true,
+      },
       options: [
         {
           name: "--env-file",
           description:
             "Enable Dotenv integration with specific Dotenv files to parse. For example: --env-file=.env",
+          requiresSeparator: true,
           args: {
             name: "stringArray",
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help with run",
-        },
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
           },
         },
       ],
     },
     {
-      description: "Sign in to a 1Password account",
       name: "signin",
+      description: "Sign in to a 1Password account",
+      icon,
       options: [
         {
           name: ["-f", "--force"],
           description: "Ignore warnings and print raw output from this command",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Get help with signin",
-        },
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
       ],
     },
     {
-      description: "Sign out of a 1Password account",
       name: "signout",
+      description: "Sign out of a 1Password account",
+      icon,
       options: [
         {
           name: "--all",
@@ -6400,76 +1208,12 @@ const spec: Fig.Spec = {
           description:
             "Remove the details for a 1Password account from this device",
         },
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
       ],
     },
     {
-      description: "Check for and download updates",
       name: "update",
+      description: "Check for and download updates",
+      icon,
       options: [
         {
           name: "--directory",
@@ -6479,143 +1223,12 @@ const spec: Fig.Spec = {
             template: "folders",
           },
         },
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
       ],
     },
     {
-      description: "Get information about a signed-in account",
       name: "whoami",
-      options: [
-        {
-          name: "--account",
-          description:
-            "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
-          args: {
-            name: "account",
-            generators: suggestAccounts,
-          },
-        },
-        {
-          name: "--cache",
-          description: "Store and use cached information",
-        },
-        {
-          name: "--config",
-          description: "Use this configuration directory",
-          args: {
-            name: "directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "--debug",
-          description:
-            "Output debug logs. Can also be set using $OP_DEBUG environment variable",
-        },
-        {
-          name: "--encoding",
-          description:
-            "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
-          args: {
-            name: "type",
-            suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
-          },
-        },
-        {
-          name: "--format",
-          description:
-            "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
-          args: {
-            name: "string",
-            suggestions: ["human-readable", "json"],
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Get help for op",
-        },
-        {
-          name: "--iso-timestamps",
-          description:
-            "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
-        },
-        {
-          name: "--no-color",
-          description: "Print output without color",
-        },
-        {
-          name: "--session",
-          description:
-            "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
-          args: {
-            name: "token",
-          },
-        },
-      ],
+      description: "Get information about a signed-in account",
+      icon,
     },
   ],
   options: [
@@ -6623,6 +1236,7 @@ const spec: Fig.Spec = {
       name: "--account",
       description:
         "Select the account to execute the command by account shorthand, sign-in address, account ID, or user ID. For a list of available accounts, run 'op account list'. Can be set as the OP_ACCOUNT environment variable",
+      isPersistent: true,
       args: {
         name: "account",
         generators: suggestAccounts,
@@ -6631,10 +1245,12 @@ const spec: Fig.Spec = {
     {
       name: "--cache",
       description: "Store and use cached information",
+      isPersistent: true,
     },
     {
       name: "--config",
       description: "Use this configuration directory",
+      isPersistent: true,
       args: {
         name: "directory",
         template: "folders",
@@ -6644,11 +1260,13 @@ const spec: Fig.Spec = {
       name: "--debug",
       description:
         "Output debug logs. Can also be set using $OP_DEBUG environment variable",
+      isPersistent: true,
     },
     {
       name: "--encoding",
       description:
         "Use this character encoding type. Default: UTF-8. Supported: SHIFT_JIS, gbk",
+      isPersistent: true,
       args: {
         name: "type",
         suggestions: ["UTF-8", "SHIFT_JIS", "gbk"],
@@ -6658,6 +1276,7 @@ const spec: Fig.Spec = {
       name: "--format",
       description:
         "Use this output format. Can be 'human-readable' or 'json'. Can be set as the OP_FORMAT environment variable. (default \"human-readable\")",
+      isPersistent: true,
       args: {
         name: "string",
         suggestions: ["human-readable", "json"],
@@ -6666,28 +1285,33 @@ const spec: Fig.Spec = {
     {
       name: ["-h", "--help"],
       description: "Get help for op",
+      isPersistent: true,
     },
     {
       name: "--iso-timestamps",
       description:
         "Format timestamps according to ISO 8601 / RFC 3339. Can be set as the OP_ISO_TIMESTAMPS environment variable",
+      isPersistent: true,
     },
     {
       name: "--no-color",
+      isPersistent: true,
       description: "Print output without color",
     },
     {
       name: "--session",
       description:
         "Authenticate with this session token. 1Password CLI outputs session tokens for successful 'op signin' commands when biometric unlock is disabled",
+      isPersistent: true,
       args: {
         name: "token",
       },
     },
+    {
+      name: ["-v", "--version"],
+      description: "Version for op",
+    },
   ],
 };
-export default spec;
 
-for (const subcommand of spec.subcommands) {
-  subcommand.icon = icon;
-}
+export default spec;

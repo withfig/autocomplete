@@ -169,7 +169,7 @@ Fig uses the Accessibility API on Mac to position the window, and integrates wit
 
 #### Does Fig work on Windows or Linux?
 
-Not yet, Fig is only available on MacOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
+Not yet, Fig is only available on macOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
 
 #### How can I download Fig?
 
