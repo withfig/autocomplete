@@ -3521,26 +3521,72 @@ versions["1.4.1"] = {
       },
     },
     {
-      name: [
-        "workflow",
-        "run",
-        "r",
-        "workflows",
-        "snippet",
-        "snippets",
-        "flow",
-        "flows",
-      ],
+      name: "run",
+      description: "Search for and execute workflows",
       options: [
         {
           name: ["-h", "--help"],
+          priority: 20,
           description: "Print help information",
         },
       ],
-      args: {
-        name: "args",
-        isVariadic: true,
-        isOptional: true,
+      generateSpec: async (tokens, exec) => {
+        const response = await exec(
+          "fig _ request --route '/workflows' --method GET"
+        );
+        const workflows = JSON.parse(response);
+        const subcommands = workflows.map((workflow) => {
+          const displayName =
+            workflow.displayName.length == 0 ? null : workflow.displayName;
+
+          const options = workflow.parameters.map((param) => {
+            const option: Fig.Option = {
+              name: `--${param.name}`,
+              description: param.description,
+            };
+            switch (param.type) {
+              case "text":
+                option.args = {
+                  name: param.name, //param.displayName ? param.displayName : param.name,
+                };
+              case "selector":
+                let generators: Fig.Generator[] = [];
+                if (param.typeData.generators) {
+                  generators = param.typeData.generators
+                    .filter((generator) => generator.type === "script")
+                    .map((generator) => ({
+                      script: generator.script,
+                      splitOn: "\n",
+                    }));
+                }
+                option.args = {
+                  name: param.name, //param.displayName ? param.displayName : param.name,
+                  suggestions: param.typeData.suggestions,
+                  generators,
+                };
+            }
+            return option;
+          });
+
+          // Add @namespace/name and name (if this workflow is associated with user's namespace)
+          const name = [`@${workflow.namespace}/${workflow.name}`];
+          if (workflow.isOwnedByUser) {
+            name.push(workflow.name);
+          }
+
+          return {
+            displayName,
+            icon: "⚡️",
+            name,
+            insertValue: `${workflow.isOwnedByUser ? workflow.name : name[0]} `,
+            description: workflow.description,
+            options,
+          };
+        });
+        return {
+          name: "run",
+          subcommands,
+        };
       },
     },
     {
