@@ -3,11 +3,12 @@ import { filepaths } from "@fig/autocomplete-generators";
 const examplesGenerator: Fig.Generator = {
   script: "meteor create --list",
   postProcess: (output) => {
-    return output.split("\n").map((example) => {
-      if (example.includes("github.com")) {
+    return output
+      .split("\n")
+      .filter((example) => example.includes("github.com"))
+      .map((example) => {
         return { name: example.split(":")[0].trim() };
-      }
-    });
+      });
   },
 };
 
@@ -54,51 +55,18 @@ const completionSpec: Fig.Spec = {
         name: "command",
         description: "Built-in command",
         isOptional: true,
-        suggestions: [
-          "run",
-          "debug",
-          "create",
-          "update",
-          "add",
-          "remove",
-          "list",
-          "add-platform",
-          "remove-platform",
-          "list-platforms",
-          "ensure-cordova-dependencies",
-          "build",
-          "lint",
-          "shell",
-          "mongo",
-          "reset",
-          "deploy",
-          "authorized",
-          "login",
-          "logout",
-          "whoami",
-          "test-packages",
-          "test",
-          "list-sites",
-          "publish-release",
-          "publish",
-          "publish-for-arch",
-          "search",
-          "show",
-        ],
+        template: "help",
       },
       subcommands: [
         {
           name: "admin",
-          args: {
-            name: "command",
-            suggestions: [
-              "maintainers",
-              "recommend-release",
-              "change-homepage",
-              "list-organizations",
-              "members",
-            ],
-          },
+          subcommands: [
+            { name: "maintainers" },
+            { name: "recommend-release" },
+            { name: "change-homepage" },
+            { name: "list-organizations" },
+            { name: "members" },
+          ],
         },
       ],
     },
@@ -122,9 +90,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--inspect", "--inspect-brk"],
+          name: "--inspect",
           description:
-            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code. With --inspect-brk, the server will be paused at startup, waiting for clients to attach to the process on the specified port",
+            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code",
+          args: {
+            name: "port",
+            isOptional: true,
+            default: "9229",
+          },
+        },
+        {
+          name: "--inspect-brk",
+          description:
+            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code. The server will be paused at startup, waiting for clients to attach to the process on the specified port",
           args: {
             name: "port",
             isOptional: true,
@@ -214,6 +192,9 @@ const completionSpec: Fig.Spec = {
       name: "create",
       description:
         "Create a new Meteor project. By default, it uses React and makes a subdirectory named name and copies in the template app. You can pass an absolute or relative path",
+      args: {
+        name: "path",
+      },
       options: [
         {
           name: "--release",
@@ -282,9 +263,6 @@ const completionSpec: Fig.Spec = {
           name: "--tailwind",
           description:
             "Create a basic react-based app, with tailwind configured",
-        },
-        {
-          name: "path",
         },
       ],
     },
@@ -670,9 +648,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--inspect", "--inspect-brk"],
+          name: "--inspect",
           description:
-            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code. With --inspect-brk, the server will be paused at startup, waiting for clients to attach to the process on the specified port",
+            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code",
+          args: {
+            name: "port",
+            isOptional: true,
+            default: "9229",
+          },
+        },
+        {
+          name: "--inspect-brk",
+          description:
+            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code. The server will be paused at startup, waiting for clients to attach to the process on the specified port",
           args: {
             name: "port",
             isOptional: true,
@@ -788,9 +776,19 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--inspect", "--inspect-brk"],
+          name: "--inspect",
           description:
-            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code. With --inspect-brk, the server will be paused at startup, waiting for clients to attach to the process on the specified port",
+            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code",
+          args: {
+            name: "port",
+            isOptional: true,
+            default: "9229",
+          },
+        },
+        {
+          name: "--inspect-brk",
+          description:
+            "Enable server-side debugging via debugging clients like the Node.js command-line debugger, Chrome DevTools, or Visual Studio Code. The server will be paused at startup, waiting for clients to attach to the process on the specified port",
           args: {
             name: "port",
             isOptional: true,
