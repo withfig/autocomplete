@@ -110,6 +110,9 @@ const suggestions: Fig.Suggestion[] = [
     name: "mikro-orm",
     icon: "https://raw.githubusercontent.com/mikro-orm/mikro-orm/master/docs/static/img/favicon.ico",
   },
+  {
+    name: "pod-install",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
