@@ -1,5 +1,8 @@
 const getAppGenerator: Fig.Generator = {
   script: "heroku apps --all --json",
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
   postProcess: function (out) {
     try {
       return JSON.parse(out).map((app) => {
