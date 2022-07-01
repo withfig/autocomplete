@@ -1,8 +1,3 @@
-import { filepaths } from "@fig/autocomplete-generators";
-import { exec } from "child_process";
-import { trace } from "console";
-import { write } from "fs";
-
 // NOTE: Copied this generator from chown.ts
 const existingUsersandGroups: Fig.Generator = {
   custom: async function (tokens, executeShellCommand) {
