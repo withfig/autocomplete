@@ -2400,5 +2400,1213 @@ versions["1.4.0"] = {
   ],
 };
 
+versions["1.4.1"] = {
+  subcommands: [
+    {
+      name: "app",
+      subcommands: [
+        {
+          name: "install",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "onboarding",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "running",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "launch",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "restart",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "quit",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "set-path",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: "--user-data",
+              isRepeatable: true,
+            },
+            {
+              name: "--app-bundle",
+              isRepeatable: true,
+            },
+            {
+              name: "--input-method",
+              isRepeatable: true,
+            },
+            {
+              name: "--terminal-integrations",
+              isRepeatable: true,
+            },
+            {
+              name: "--daemon",
+              isRepeatable: true,
+            },
+            {
+              name: "--dotfiles",
+              isRepeatable: true,
+            },
+            {
+              name: "--ssh",
+              isRepeatable: true,
+            },
+            {
+              name: "--no-open",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "prompts",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "hook",
+      subcommands: [
+        {
+          name: "editbuffer",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "hide",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "init",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "integration-ready",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "keyboard-focus-changed",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "pre-exec",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "ssh",
+          options: [
+            {
+              name: "--prompt",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "event",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "debug",
+      subcommands: [
+        {
+          name: "app",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "dotfiles",
+          options: [
+            {
+              name: "--disable",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "build",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "autocomplete-window",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "logs",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+          args: {
+            isVariadic: true,
+          },
+        },
+        {
+          name: "ime",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "prompt-accessibility",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "sample",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "unix-socket",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "verify-codesign",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "accessibility",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "settings",
+      subcommands: [
+        {
+          name: "init",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "docs",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "open",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "sync",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "all",
+          options: [
+            {
+              name: ["-f", "--format"],
+              isRepeatable: true,
+            },
+            {
+              name: ["-r", "--remote"],
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-f", "--format"],
+          isRepeatable: true,
+        },
+        {
+          name: ["-d", "--delete"],
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "tips",
+      subcommands: [
+        {
+          name: "enable",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "disable",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "reset",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "prompt",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "install",
+      options: [
+        {
+          name: "--daemon",
+          isRepeatable: true,
+        },
+        {
+          name: "--dotfiles",
+          isRepeatable: true,
+        },
+        {
+          name: "--input-method",
+          isRepeatable: true,
+        },
+        {
+          name: "--no-confirm",
+          isRepeatable: true,
+        },
+        {
+          name: "--force",
+          isRepeatable: true,
+        },
+        {
+          name: "--ssh",
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "ssh",
+      subcommands: [
+        {
+          name: "enable",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "disable",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "update",
+      options: [
+        {
+          name: ["-y", "--no-confirm"],
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "diagnostic",
+      options: [
+        {
+          name: ["-f", "--format"],
+          isRepeatable: true,
+        },
+        {
+          name: "--force",
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "init",
+      options: [
+        {
+          name: "--rcfile",
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "theme",
+      options: [
+        {
+          name: "--list",
+          exclusiveOn: ["--folder"],
+          isRepeatable: true,
+        },
+        {
+          name: "--folder",
+          exclusiveOn: ["--list"],
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "issue",
+      options: [
+        {
+          name: ["-f", "--force"],
+          isRepeatable: true,
+        },
+      ],
+      args: {
+        isVariadic: true,
+      },
+    },
+    {
+      name: "login",
+      options: [
+        {
+          name: ["-r", "--refresh"],
+          isRepeatable: true,
+        },
+        {
+          name: "--hard-refresh",
+          description: "Manually refresh the auth token",
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: ["-r", "--refresh"],
+              isRepeatable: true,
+            },
+            {
+              name: "--hard-refresh",
+              description: "Manually refresh the auth token",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "logout",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "whoami",
+          options: [
+            {
+              name: ["-f", "--format"],
+              isRepeatable: true,
+            },
+            {
+              name: ["-e", "--only-email"],
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "tokens",
+          subcommands: [
+            {
+              name: "new",
+              options: [
+                {
+                  name: "--expires-date",
+                  isRepeatable: true,
+                },
+                {
+                  name: "--expires-in",
+                  isRepeatable: true,
+                },
+                {
+                  name: ["-t", "--team"],
+                  isRepeatable: true,
+                },
+                {
+                  name: "--version",
+                  remove: true,
+                },
+              ],
+            },
+            {
+              name: "list",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  isRepeatable: true,
+                },
+                {
+                  name: ["-f", "--format"],
+                  isRepeatable: true,
+                },
+                {
+                  name: ["-p", "--personal"],
+                  isRepeatable: true,
+                },
+                {
+                  name: "--version",
+                  remove: true,
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              options: [
+                {
+                  name: ["-t", "--team"],
+                  isRepeatable: true,
+                },
+                {
+                  name: "--version",
+                  remove: true,
+                },
+              ],
+            },
+            {
+              name: "validate",
+              description: "Validate a token is valid",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "token",
+              },
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              args: {
+                name: "subcommand",
+                isOptional: true,
+              },
+            },
+          ],
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "team",
+      subcommands: [
+        {
+          name: "members",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "remove",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "add",
+          options: [
+            {
+              name: "--role",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "invitations",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "revoke",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-f", "--format"],
+          isRepeatable: true,
+        },
+        {
+          name: "--list",
+          isRepeatable: true,
+        },
+        {
+          name: "--new",
+          isRepeatable: true,
+        },
+        {
+          name: "--delete",
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "doctor",
+      options: [
+        {
+          name: "--verbose",
+          isRepeatable: true,
+        },
+        {
+          name: "--strict",
+          isRepeatable: true,
+        },
+      ],
+    },
+    {
+      name: "completion",
+      args: {
+        suggestions: [
+          {
+            name: "bash",
+            description: "Bash shell completions",
+          },
+          {
+            name: "fish",
+            description: "Fish shell completions",
+          },
+          {
+            name: "zsh",
+            description: "Zsh shell completions",
+          },
+          {
+            name: "fig",
+            description: "Fig completion spec",
+          },
+        ],
+      },
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "prompt-dotfiles-changed",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "local-state",
+          subcommands: [
+            {
+              name: "init",
+              options: [
+                {
+                  name: "--version",
+                  remove: true,
+                },
+              ],
+            },
+            {
+              name: "open",
+              options: [
+                {
+                  name: "--version",
+                  remove: true,
+                },
+              ],
+            },
+            {
+              name: "all",
+              options: [
+                {
+                  name: ["-f", "--format"],
+                  isRepeatable: true,
+                },
+                {
+                  name: "--version",
+                  remove: true,
+                },
+              ],
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              args: {
+                name: "subcommand",
+                isOptional: true,
+              },
+            },
+          ],
+          options: [
+            {
+              name: ["-f", "--format"],
+              isRepeatable: true,
+            },
+            {
+              name: ["-d", "--delete"],
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "callback",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "install",
+          options: [
+            {
+              name: "--daemon",
+              isRepeatable: true,
+            },
+            {
+              name: "--dotfiles",
+              isRepeatable: true,
+            },
+            {
+              name: "--input-method",
+              isRepeatable: true,
+            },
+            {
+              name: "--no-confirm",
+              isRepeatable: true,
+            },
+            {
+              name: "--force",
+              isRepeatable: true,
+            },
+            {
+              name: "--ssh",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "install-ibus",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "fig-ibus-engine-location",
+          },
+        },
+        {
+          name: "uninstall",
+          options: [
+            {
+              name: "--daemon",
+              isRepeatable: true,
+            },
+            {
+              name: "--dotfiles",
+              isRepeatable: true,
+            },
+            {
+              name: "--binary",
+              isRepeatable: true,
+            },
+            {
+              name: "--ssh",
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "get-shell",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "hostname",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "should-figterm-launch",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "event",
+          options: [
+            {
+              name: "--name",
+              description: "Name of the event",
+              isRepeatable: true,
+              args: {
+                name: "name",
+              },
+            },
+            {
+              name: "--payload",
+              description: "Payload of the event as a JSON string",
+              isRepeatable: true,
+              args: {
+                name: "payload",
+                isOptional: true,
+              },
+            },
+            {
+              name: "--apps",
+              description: "Apps to send the event to",
+              isRepeatable: true,
+              args: {
+                name: "apps",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "auth-token",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "request",
+          options: [
+            {
+              name: "--route",
+              isRepeatable: true,
+              args: {
+                name: "route",
+              },
+            },
+            {
+              name: "--method",
+              isRepeatable: true,
+              args: {
+                name: "method",
+              },
+            },
+            {
+              name: "--body",
+              isRepeatable: true,
+              args: {
+                name: "body",
+                isOptional: true,
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "warn-user-when-uninstalling-incorrectly",
+          remove: true,
+        },
+        {
+          name: "animation",
+          remove: true,
+        },
+      ],
+    },
+    {
+      name: "plugins",
+      subcommands: [
+        {
+          name: "sync",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "update",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "add",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "remove",
+          options: [
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+        {
+          name: "list",
+          options: [
+            {
+              name: ["-f", "--format"],
+              isRepeatable: true,
+            },
+            {
+              name: ["-i", "--installed"],
+              isRepeatable: true,
+            },
+            {
+              name: "--version",
+              remove: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "man",
+      args: {
+        isVariadic: true,
+      },
+    },
+    {
+      name: "run",
+      description: "Search for and execute workflows",
+      options: [
+        {
+          name: ["-h", "--help"],
+          priority: 20,
+          description: "Print help information",
+        },
+      ],
+      generateSpec: async (tokens, exec) => {
+        const response = await exec(
+          "fig _ request --route '/workflows' --method GET"
+        );
+        const workflows = JSON.parse(response);
+        const subcommands = workflows.map((workflow) => {
+          const displayName =
+            workflow.displayName.length == 0 ? null : workflow.displayName;
+
+          const options = workflow.parameters.map((param) => {
+            const option: Fig.Option = {
+              name: `--${param.name}`,
+              description: param.description,
+            };
+            switch (param.type) {
+              case "text":
+                option.args = {
+                  name: param.name, //param.displayName ? param.displayName : param.name,
+                };
+              case "selector":
+                let generators: Fig.Generator[] = [];
+                if (param.typeData.generators) {
+                  generators = param.typeData.generators
+                    .filter((generator) => generator.type === "script")
+                    .map((generator) => ({
+                      script: generator.script,
+                      splitOn: "\n",
+                    }));
+                }
+                option.args = {
+                  name: param.name, //param.displayName ? param.displayName : param.name,
+                  suggestions: param.typeData.suggestions,
+                  generators,
+                };
+            }
+            return option;
+          });
+
+          // Add @namespace/name and name (if this workflow is associated with user's namespace)
+          const name = [`@${workflow.namespace}/${workflow.name}`];
+          if (workflow.isOwnedByUser) {
+            name.push(workflow.name);
+          }
+
+          return {
+            displayName,
+            icon: "⚡️",
+            name,
+            insertValue: `${workflow.isOwnedByUser ? workflow.name : name[0]} `,
+            description: workflow.description,
+            options,
+          };
+        });
+        return {
+          name: "run",
+          subcommands,
+        };
+      },
+    },
+    {
+      name: "bg:tmux",
+      description: "(LEGACY) Old tmux hook that might be in ~/.tmux.conf",
+      hidden: true,
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+  ],
+};
+
 export { versions };
 export default completion;

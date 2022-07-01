@@ -160,6 +160,7 @@ export const dependenciesGenerator: Fig.Generator = {
 export const npmScriptsGenerator: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
+    cacheByDirectory: true,
   },
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",

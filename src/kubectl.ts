@@ -2765,7 +2765,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--enable-managedby-label",
-          description: "	enable adding app.kubernetes.io/managed-by",
+          description: "Enable adding app.kubernetes.io/managed-by",
         },
         {
           name: ["--env", "-e"],

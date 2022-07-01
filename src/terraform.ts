@@ -1,13 +1,11 @@
+// If you edit commands or options, please copy our changes on to the terragrunt spec
 const workspaceList: Fig.Generator = {
   script: "terraform workspace list",
   postProcess: function (out) {
-    // debug only
-    //console.log("this is  out list: ", out);
     return out.split("\n").map((workspace) => {
       return {
         name: workspace.replace("* ", "").trim(),
-        // UPDATE: Update this after the Icons API is available publicly!
-        icon: "fig://icon?type=terraform",
+        icon: "https://www.terraform.io/favicon.ico",
         description: "Workspace",
       };
     });
@@ -23,7 +21,7 @@ const addressList: Fig.Generator = {
     return out.split("\n").map((addresses) => {
       return {
         name: addresses.replace("* ", "").trim(),
-        icon: "fig://icon?type=terraform",
+        icon: "https://www.terraform.io/favicon.ico",
         description: "Address",
       };
     });

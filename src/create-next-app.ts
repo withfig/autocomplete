@@ -5,12 +5,20 @@ const completionSpec: Fig.Spec = {
   icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   options: [
     {
+      name: ["-V", "--version"],
+      description: "Output the version number",
+    },
+    {
       name: ["--ts", "--typescript"],
       description: "Initialize as a TypeScript project",
     },
     {
       name: "--use-npm",
       description: "Explicitly tell the CLI to bootstrap the app using npm",
+    },
+    {
+      name: "--use-pnpm",
+      description: "Explicitly tell the CLI to bootstrap the app using pnpm",
     },
     {
       name: ["-e", "--example"],
