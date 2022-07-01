@@ -24,53 +24,32 @@ function singleName<T>(value: Fig.SingleOrArray<T>): T {
 
 /**
  * Create an option with aliasing support.
- *
- * @param option The option
- * @returns An option optimized for aliases
  */
-function alias({ name: oName, ...option }: Fig.Option): Fig.Option {
-  const name = singleName(oName);
-
-  return {
-    name: `${name}:`,
-    displayName: `${name}:${bracketize("aliases")}`,
-    insertValue: `${name}:{cursor}`,
-    ...option,
-  };
-}
-
-/**
- * Create an option for tools.
- *
- * @param option The rest of the options
- * @returns An option optimized for tools
- */
-function tool({ name: oName, ...option }: Fig.Option): Fig.Option {
+function alias(
+  { name: oName, ...option }: Fig.Option,
+  { args } = { args: "aliases" }
+): Fig.Option {
   const name = singleName(oName);
 
   return {
     name,
-    displayName: `${name}${bracketize("tool")}`,
-    insertValue: `${name}{cursor}`,
+    displayName: `${name}:${bracketize(args)}`,
     ...option,
   };
 }
 
-/**
- * Arguments for -X and -T.
- */
-const invokeArgs: Fig.Arg[] = [
+const invokeArgs = [
   {
-    name: "fn",
-    description: "An arbitrary function to execute",
+    name: "a/fn",
+    description: "An alias to refer to its function or a qualified function",
     isOptional: true,
-    isScript: true,
   },
   {
     name: "kvs",
-    description: "Key-path and value pairs to merge with the :exec-args map",
-    isOptional: true,
+    description: "A list of key-value arguments to merge with the exec-args",
     isVariadic: true,
+    optionsCanBreakVariadicArg: false,
+    isOptional: true,
   },
   {
     name: "kv-map",
@@ -80,24 +59,6 @@ const invokeArgs: Fig.Arg[] = [
   },
 ];
 
-const execOption: Fig.Option = {
-  name: "-X",
-  description: "Modify classpath or supply exec fn/args",
-  isRepeatable: true,
-  args: invokeArgs,
-};
-
-const toolOption: Fig.Option = {
-  name: "-T",
-  description: "Invoke a tool that does not use the project classpath",
-  args: invokeArgs,
-};
-
-const mainOption: Fig.Option = {
-  name: "-M",
-  description: "Modify classpath or supply main opts",
-};
-
 const completionSpec: Fig.Spec = {
   name: "clojure",
   description:
@@ -106,81 +67,44 @@ const completionSpec: Fig.Spec = {
     flagsArePosixNoncompliant: true,
   },
   options: [
-    // -A
+    // exec-opts
     alias({
       name: "-A",
       description: "Use concatenated aliases to modify classpath",
     }),
-    // -X
-    execOption,
-    alias(execOption),
-    // -T
-    tool(toolOption),
-    alias(toolOption),
-    // -M
-    mainOption,
-    alias(mainOption),
-    // Init options
-    {
-      name: ["-i", "--init"],
-      description: "Load a file or resource",
-      args: {
-        name: "path",
+    alias({
+      name: "-X",
+      args: invokeArgs,
+    }),
+    alias(
+      {
+        name: "-T",
+        description: "Invoke tool by name or via aliases ala -X",
+        args: invokeArgs,
       },
-    },
-    {
-      name: ["-e", "--eval"],
-      description: "Evaluate expressions in string; print non-nil values",
+      { args: "name|aliases" }
+    ),
+    alias({
+      name: "-M",
+      description:
+        "Use concatenated aliases to modify classpath or supply main opts",
       args: {
-        name: "string",
+        name: "args",
+        isVariadic: true,
+        isOptional: true,
       },
-    },
-    {
-      name: "--report",
-      description: "Report uncaught exceptions",
-      args: {
-        name: "target",
-        description: "Where to report",
-        suggestions: ["file", "stderr", "none"],
-      },
-    },
-    // Main options
-    {
-      name: ["-m", "--main"],
-      description: "Call the -main function from a namespace with args",
-      args: [
-        {
-          name: "ns-name",
-          description: "The namespace of the -main function",
-          isScript: true,
-        },
-        {
-          name: "args",
-          description: "The arguments to pass to the -main function",
-          isVariadic: true,
-        },
-      ],
-    },
-    {
-      name: ["-r", "--repl"],
-      description: "Run a REPL",
-    },
-    // May want to add `path` and `-` later if someone can figure out how to use those.
-    {
-      name: ["-h", "-?", "--help"],
-      description: "Show help for clojure",
-    },
-    // Others
+    }),
     {
       name: "-P",
       description:
-        "Prepare executable (e.g. install dependencies), but don't execute",
+        "Prepare deps - download libs, cache classpath, but don't exec",
     },
+    // clj-opts
     {
       name: "-J",
-      displayName: `-J${bracketize("option")}`,
+      description: "Pass opt through in java_opts",
+      displayName: "-J<opt>",
       insertValue: "-J{cursor}",
-      description: "Pass Java option",
     },
     {
       name: "-Sdeps",
@@ -238,6 +162,56 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-version", "--version"],
       description: "Print the Clojure CLI version",
+    },
+    // Init options
+    {
+      name: ["-i", "--init"],
+      description: "Load a file or resource",
+      args: {
+        name: "path",
+      },
+    },
+    {
+      name: ["-e", "--eval"],
+      description: "Evaluate expressions in string; print non-nil values",
+      args: {
+        name: "string",
+      },
+    },
+    {
+      name: "--report",
+      description: "Report uncaught exceptions",
+      args: {
+        name: "target",
+        description: "Where to report",
+        suggestions: ["file", "stderr", "none"],
+      },
+    },
+    // Main options
+    {
+      name: ["-m", "--main"],
+      description: "Call the -main function from a namespace with args",
+      args: [
+        {
+          name: "ns-name",
+          description: "The namespace of the -main function",
+          isScript: true,
+        },
+        {
+          name: "args",
+          description: "The arguments to pass to the -main function",
+          isVariadic: true,
+        },
+      ],
+    },
+    {
+      name: ["-r", "--repl"],
+      description: "Run a REPL",
+    },
+    // May want to add `path` and `-` later if someone can figure out how to use those.
+    {
+      name: ["-h", "-?", "--help"],
+      description: "Show help for clojure",
     },
   ],
 };
