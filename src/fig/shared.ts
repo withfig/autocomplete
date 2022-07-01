@@ -223,20 +223,26 @@ export const tokensGenerators: Fig.Generator = {
     } else {
       teamName = tokens[teamOptionIndex + 1];
     }
-    const out = await executeShellCommand(
-      `fig user tokens list --team ${teamName}`
-    );
-    return out
-      .trim()
-      .split("\n")
-      .slice(1)
-      .map((token) => {
-        const [tokenName, tokenNamespace] = token.split("\t");
-        return {
-          name: tokenName,
-          description: `Team: ${tokenNamespace}`,
-        };
-      });
+    const out = JSON.parse(
+      await executeShellCommand(
+        `fig user tokens list --team ${teamName} --format json`
+      )
+    ) as {
+      createdAt: string;
+      description?: string;
+      expiresAt?: string;
+      lastUsedAt: string;
+      name: string;
+      namespace: { username: string };
+    }[];
+    return out.map((token) => {
+      return {
+        name: token.name,
+        description: `Team: ${token.namespace.username}.${
+          token.description ? " " + token.description : ""
+        }`,
+      };
+    });
   },
 };
 
@@ -244,12 +250,11 @@ export const teamsGenerators: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
   },
-  script: "fig team --list",
+  script: "fig team --list --format json",
   postProcess: (out) => {
-    return out
-      .trim()
-      .split("\n")
-      .map((name) => ({ name, priority: 75 }));
+    return (
+      JSON.parse(out) as { id: number; name: string; specs: string[] }[]
+    ).map((team) => ({ name: team.name, priority: 75 }));
   },
 };
 
@@ -261,18 +266,15 @@ export const membersGenerators: Fig.Generator = {
   },
   custom: async (tokens, executeShellCommand) => {
     const teamName = tokens.at(-3);
-    const out = await executeShellCommand(`fig team ${teamName} members`);
-    return out
-      .trim()
-      .split("\n")
-      .slice(1)
-      .map((member) => {
-        const [role, email] = member.split("\t");
-        return {
-          name: email,
-          description: `Role: ${role}`,
-        };
-      });
+    const out = JSON.parse(
+      await executeShellCommand(`fig team --format json ${teamName} members`)
+    ) as { email: string; role: string }[];
+    return out.map((member) => {
+      return {
+        name: member.email,
+        description: `Role: ${member.role}`,
+      };
+    });
   },
 };
 
@@ -284,15 +286,17 @@ export const invitationsGenerators: Fig.Generator = {
   },
   custom: async (tokens, executeShellCommand) => {
     const teamName = tokens.at(-3);
-    const out = await executeShellCommand(`fig team ${teamName} invitations`);
-    return out
-      .trim()
-      .split("\n")
-      .map((email) => {
-        return {
-          name: email,
-        };
-      });
+    const out = JSON.parse(
+      await executeShellCommand(
+        `fig team --format json ${teamName} invitations`
+      )
+    ) as { email: string; role: string }[];
+    return out.map((invitation) => {
+      return {
+        name: invitation.email,
+        description: `Role: ${invitation.role}`,
+      };
+    });
   },
 };
 
