@@ -125,6 +125,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "version",
+      description: "View your Angular CLI version (update for Angular 14+)",
+    }
   ],
   options: [
     {
@@ -132,6 +136,7 @@ const completionSpec: Fig.Spec = {
       description: "View your Angular CLI version",
     },
   ],
+  
 };
 
 export default completionSpec;
