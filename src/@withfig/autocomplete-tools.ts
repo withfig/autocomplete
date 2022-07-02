@@ -99,6 +99,8 @@ const completionSpec: Fig.Spec = {
               "clap",
               "swift-argument-parser",
               "click",
+              "argparse",
+              "cement",
             ],
           },
           priority: 76,
