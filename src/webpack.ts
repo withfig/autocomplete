@@ -1,23 +1,3 @@
-import { filepaths } from "@fig/autocomplete-generators";
-
-const NodeEnvArgument: Fig.SingleOrArray<Fig.Arg> = [
-  {
-    name: "environment",
-    suggestions: [
-      {
-        name: ["production", "prod"],
-        description: "Use production-ready environment in Node",
-        insertValue: "production",
-      },
-      {
-        name: ["development", "dev"],
-        description: "Use development environment in Node",
-        insertValue: "development",
-      },
-    ],
-  },
-];
-
 const WebpackConfigFileArgument: Fig.SingleOrArray<Fig.Arg> = [
   {
     name: "config",
