@@ -90,7 +90,7 @@ export const npmSearchGenerator: Fig.Generator = {
 };
 
 const workspaceGenerator: Fig.Generator = {
-  script: "cat package.json",
+  script: "cat $(npm prefix)/package.json",
   postProcess: function (out: string) {
     const suggestions = [];
 
@@ -122,9 +122,7 @@ export const dependenciesGenerator: Fig.Generator = {
   trigger: (newToken) => newToken === "-g" || newToken === "--global",
   custom: async function (tokens, executeShellCommand) {
     if (!tokens.includes("-g") && !tokens.includes("--global")) {
-      const out = await executeShellCommand(
-        "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json"
-      );
+      const out = await executeShellCommand("cat $(npm prefix)/package.json");
       const packageContent = JSON.parse(out);
       const dependencies = packageContent["dependencies"] ?? {};
       const devDependencies = packageContent["devDependencies"];
