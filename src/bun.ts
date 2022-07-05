@@ -225,6 +225,7 @@ const spec: Fig.Spec = {
   subcommands: [
     {
       name: "dev",
+      icon: "🛠️",
       description: "Start a bun Dev server",
       args: {
         name: "files",
@@ -234,6 +235,7 @@ const spec: Fig.Spec = {
     },
     {
       name: "bun",
+      icon: "📦",
       description: "Bundle dependencies of input files into a '.bun' file",
       args: {
         name: "files",
@@ -243,6 +245,7 @@ const spec: Fig.Spec = {
     },
     {
       name: ["c", "create"],
+      icon: "🛠️",
       description: "Start a new project from a template",
       args: [
         {
@@ -272,6 +275,7 @@ const spec: Fig.Spec = {
     },
     {
       name: "run",
+      icon: "🛠️",
       description: "Run a package.json script or executable",
       args: {
         name: "script",
@@ -280,11 +284,13 @@ const spec: Fig.Spec = {
     },
     {
       name: ["i", "install"],
+      icon: "📦",
       description: "Install dependencies for a package.json",
       options: dependencyOptions,
     },
     {
       name: ["a", "add"],
+      icon: "📦",
       description: "Add a dependency to package.json",
       options: dependencyOptions,
       args: {
@@ -295,6 +301,7 @@ const spec: Fig.Spec = {
     },
     {
       name: ["rm", "remove"],
+      icon: "📦",
       description: "Remove a dependency from package.json",
       options: dependencyOptions,
       args: {
@@ -304,14 +311,17 @@ const spec: Fig.Spec = {
     },
     {
       name: "upgrade",
+      icon: "🛠️",
       description: "Get the latest version of bun",
     },
     {
       name: "completions",
+      icon: "🛠️",
       description: "Install shell completions",
     },
     {
       name: "discord",
+      icon: "fig://icon?type=discord",
       description: "Open bun's Discord server",
     },
     {
