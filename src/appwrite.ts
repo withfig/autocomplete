@@ -157,6 +157,16 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "createJWT",
+          description: "Create a JWT token for currently logged in user",
+          options: [
+            {
+              name: "--help",
+              description: "Display help for createJWT command",
+            },
+          ],
+        },
       ],
       options: [
         {
