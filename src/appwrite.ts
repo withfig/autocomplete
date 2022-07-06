@@ -125,6 +125,44 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "delete",
+          description: "Delete currently logged in user",
+        },
+        {
+          name: "updateEmail",
+          description: "Update currently logged in user email",
+          options: [
+            {
+              name: "--email",
+              description: "User Email",
+              isRequired: true,
+              args: {
+                name: "email",
+                description: "User Email",
+              },
+            },
+            {
+              name: "--password",
+              description: "User Password",
+              isRequired: true,
+              args: {
+                name: "password",
+                description: "User Password",
+              },
+            },
+            {
+              name: "--help",
+              description: "Display help for updateEmail command",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--help",
+          description: "Show help for a command",
+        },
       ],
     },
   ],
