@@ -195,6 +195,24 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "updateName",
+          description: "Update currently logged in user name",
+          options: [
+            {
+              name: "--name",
+              description: "User Name",
+              args: {
+                name: "name",
+                description: "User Name, Max length: 128 chars",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Show help for updateName command",
+            },
+          ],
+        },
       ],
       options: [
         {
