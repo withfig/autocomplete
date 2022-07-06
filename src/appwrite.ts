@@ -167,6 +167,34 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "getLogs",
+          description:
+            "Currently logged in user list of latest security activity logs",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Show help for getLogs command",
+            },
+            {
+              name: "--limit",
+              description:
+                "Limit number of logs to return, default is 10, Max is 100",
+              args: {
+                name: "limit",
+                description: "Limit number of logs to return",
+              },
+            },
+            {
+              name: "--offset",
+              description: "Offset logs to return, default is 0",
+              args: {
+                name: "offset",
+                description: "Offset logs to return",
+              },
+            },
+          ],
+        },
       ],
       options: [
         {
