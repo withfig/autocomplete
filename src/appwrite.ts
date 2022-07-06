@@ -239,6 +239,16 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "getPrefs",
+          description: "Get currently logged in user preferences",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Show help for appwrite",
+            },
+          ],
+        },
       ],
       options: [
         {
