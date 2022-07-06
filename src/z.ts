@@ -3,6 +3,7 @@ const completionSpec: Fig.Spec = {
   name: "z",
   description: "CLI tool to jump around directories",
   args: {
+    template: ["folders"],
     name: "regex",
     isVariadic: true,
     isOptional: true,
