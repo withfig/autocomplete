@@ -40,6 +40,30 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "deploy",
+      description: "Deploy a functions or collections",
+      subcommands: [
+        {
+          name: "function",
+          description: "Deploy functions in current directory",
+        },
+        {
+          name: "collection",
+          description: "Deploy collections in current project",
+        },
+      ],
+      options: [
+        {
+          name: "--all",
+          description: "Deploy all functions and collections",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Display help for deploy command",
+        },
+      ],
+    },
   ],
   options: [
     {
