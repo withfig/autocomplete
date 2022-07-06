@@ -74,6 +74,59 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "account",
+      description: "Authenticate and manage user account",
+      subcommands: [
+        {
+          name: "get",
+          description: "Get currently logged in user data as JSON",
+        },
+        {
+          name: "create",
+          description: "Create a new user in your project",
+          options: [
+            {
+              name: "--userId",
+              description:
+                'Choose ID, or pass the string "unique()" to generate a random ID',
+              args: {
+                name: "ID",
+                description: "User ID",
+              },
+            },
+            {
+              name: "--email",
+              description: "User Email",
+              args: {
+                name: "email",
+                description: "User Email",
+              },
+            },
+            {
+              name: "--password",
+              description: "User Password",
+              args: {
+                name: "password",
+                description: "User Password",
+              },
+            },
+            {
+              name: "--name",
+              description: "User Name",
+              args: {
+                name: "name",
+                description: "User Name",
+              },
+            },
+            {
+              name: "--help",
+              description: "Display help for create command",
+            },
+          ],
+        },
+      ],
+    },
   ],
   options: [
     {
