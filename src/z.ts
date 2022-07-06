@@ -3,10 +3,29 @@ const completionSpec: Fig.Spec = {
   name: "z",
   description: "CLI tool to jump around directories",
   args: {
-    template: ["folders"],
     name: "regex",
     isVariadic: true,
     isOptional: true,
+    // Generate a completion for the given argument, via zoxide CLI.
+    generators: {
+        script: context => {
+          const query = context[context.length - 1]
+          return `zoxide query -l ${query}`
+        },
+        postProcess: out => {
+          return out.split("\n").map(fullPath => {
+            const homeRegex = /\/users\/\w+/i
+
+            const shortPath = fullPath.replace(homeRegex, '~') // .split('/').slice(3).join('/')
+
+            return {
+              name: shortPath,
+              description: fullPath,
+              displayName: shortPath
+            };
+          });
+        }
+      }
   },
   options: [
     {
