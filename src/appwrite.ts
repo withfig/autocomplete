@@ -213,6 +213,32 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "updatePassword",
+          description: "Update currently logged in user password",
+          options: [
+            {
+              name: "--password",
+              description: "User Password",
+              args: {
+                name: "password",
+                description: "User Password, Must be at least 8 chars",
+              },
+            },
+            {
+              name: "--oldPassword",
+              description: "Current User Password",
+              args: {
+                name: "oldPassword",
+                description: "Current User Password",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Show help for updatePassword command",
+            },
+          ],
+        },
       ],
       options: [
         {
