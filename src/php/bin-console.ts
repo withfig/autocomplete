@@ -3,21 +3,18 @@ const completionSpec: Fig.Spec = {
   description: "Symfony bin/console command",
   generateSpec: async (tokens, executeShellCommand) => {
     const out = await executeShellCommand("php bin/console list --format=json");
-    const subcommands = [];
+    let subcommands = [];
 
     try {
       const commandDefinitions = JSON.parse(out);
 
-      commandDefinitions.commands.map((command) => {
-        if (command.name === "_complete") {
-          return;
-        }
-
-        subcommands.push({
+      subcommands = commandDefinitions.commands
+        .filter((command) => command.name !== "_complete")
+        .map((command) => ({
           name: command.name,
           description: command.description,
           icon: "https://cdn.iconscout.com/icon/free/png-128/symfony-282493.png",
-          args: Object.keys(command.definition.arguments).map((argumentKey) => {
+          args: command.definition.arguments.map((argumentKey) => {
             const argument = command.definition.arguments[argumentKey];
 
             return {
@@ -26,7 +23,7 @@ const completionSpec: Fig.Spec = {
               isOptional: !argument.is_required,
             };
           }),
-          options: Object.keys(command.definition.options).map((optionKey) => {
+          options: command.definition.options.map((optionKey) => {
             const option = command.definition.options[optionKey];
             const names = [option.name];
 
@@ -39,8 +36,7 @@ const completionSpec: Fig.Spec = {
               description: option.description,
             };
           }),
-        });
-      });
+        }));
     } catch (err) {
       // ignore
     }
