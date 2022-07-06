@@ -516,6 +516,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "share",
       description: "--DEPRECATED-- Move an item to an organization",
+      deprecated: true,
       options: [
         {
           name: ["-h", "--help"],
