@@ -249,6 +249,24 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "updatePrefs",
+          description: "Update currently logged in user preferences",
+          options: [
+            {
+              name: "--prefs",
+              description: "User Preferences, JSON object",
+              args: {
+                name: "prefs",
+                description: "User Preferences, JSON object",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Show help for appwrite",
+            },
+          ],
+        },
       ],
       options: [
         {
