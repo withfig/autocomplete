@@ -293,6 +293,48 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "updateRecovery",
+          description: "Complete user password recovery",
+          options: [
+            {
+              name: "--userId",
+              description: "User ID",
+              args: {
+                name: "userId",
+                description: "User ID",
+              },
+            },
+            {
+              name: "--secret",
+              description: "Valid reset token",
+              args: {
+                name: "secret",
+                description: "Valid reset token",
+              },
+            },
+            {
+              name: "--password",
+              description: "New User password, must be at least 8 chars",
+              args: {
+                name: "password",
+                description: "New User password, must be at least 8 chars",
+              },
+            },
+            {
+              name: "--passwordAgain",
+              description: "New User password, must be at least 8 chars",
+              args: {
+                name: "passwordAgain",
+                description: "New User password, must be at least 8 chars",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Show help for updateRecovery command",
+            },
+          ],
+        },
       ],
       options: [
         {
