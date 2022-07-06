@@ -64,6 +64,16 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "logout",
+      description: "Logout from Appwrite account",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Display help for logout command",
+        },
+      ],
+    },
   ],
   options: [
     {
