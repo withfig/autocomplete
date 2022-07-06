@@ -267,6 +267,32 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "createRecovery",
+          description: "Send user temporary password recovery email",
+          options: [
+            {
+              name: "--email",
+              description: "User Email",
+              args: {
+                name: "email",
+                description: "User Email",
+              },
+            },
+            {
+              name: "--url",
+              description: "URL to redirect to after recovery",
+              args: {
+                name: "url",
+                description: "URL to redirect to after recovery",
+              },
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Show help for createRecovery command",
+            },
+          ],
+        },
       ],
       options: [
         {
