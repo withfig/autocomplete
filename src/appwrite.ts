@@ -346,6 +346,35 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "createSession",
+          description:
+            "Allow user to login into a given application by providing their email and password",
+          options: [
+            {
+              name: ["--email", "-e"],
+              description: "User email",
+              args: {
+                name: "email",
+                description: "User email",
+              },
+              isRequired: true,
+            },
+            {
+              name: ["--password", "-p"],
+              description: "User password. Must be at least 8 chars",
+              args: {
+                name: "password",
+                description: "User password. Must be at least 8 chars",
+              },
+              isRequired: true,
+            },
+            {
+              name: ["--help", "-h"],
+              description: "Show help for createSession command",
+            },
+          ],
+        },
       ],
       options: [
         {
