@@ -9,14 +9,6 @@ const completionSpec: Fig.Spec = {
       description:
         "The login command allows you to authenticate and manage a user account",
       icon,
-
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "init",
@@ -28,26 +20,11 @@ const completionSpec: Fig.Spec = {
           name: "project",
           description: "Initialise your Appwrite project",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "function",
           description: "Initialise your Appwrite cloud function",
           icon,
-
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "collection",
@@ -63,26 +40,7 @@ const completionSpec: Fig.Spec = {
               name: "--all",
               description: "Flag to initialize all databases",
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
-        },
-      ],
-
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
         },
       ],
     },
@@ -102,11 +60,6 @@ const completionSpec: Fig.Spec = {
               args: { name: "functionId" },
             },
             { name: "--all", description: "Flag to deploy all functions" },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -115,41 +68,16 @@ const completionSpec: Fig.Spec = {
           icon,
           options: [
             { name: "--all", description: "Flag to deploy all functions" },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "logout",
       description:
         "The logout command allows you to logout of your Appwrite account",
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "account",
@@ -160,13 +88,6 @@ const completionSpec: Fig.Spec = {
           name: "get",
           description: "Get currently logged in user data as JSON object",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "create",
@@ -198,11 +119,6 @@ const completionSpec: Fig.Spec = {
               description: "User name. Max length: 128 chars",
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -223,11 +139,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "password" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -235,13 +146,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getLogs",
@@ -261,11 +165,6 @@ const completionSpec: Fig.Spec = {
                 "Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)",
               args: { name: "offset" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -278,11 +177,6 @@ const completionSpec: Fig.Spec = {
               description: "User name. Max length: 128 chars",
               isRequired: true,
               args: { name: "name" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -302,11 +196,6 @@ const completionSpec: Fig.Spec = {
               name: "--oldPassword",
               description: "Current user password. Must be at least 8 chars",
               args: { name: "oldPassword" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -329,11 +218,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "password" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -341,13 +225,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Get currently logged in user preferences as a key-value object",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "updatePrefs",
@@ -360,11 +237,6 @@ const completionSpec: Fig.Spec = {
               description: "Prefs key-value JSON object",
               isRequired: true,
               args: { name: "prefs" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -386,11 +258,6 @@ const completionSpec: Fig.Spec = {
                 "URL to redirect the user back to your app from the recovery email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API",
               isRequired: true,
               args: { name: "url" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -424,11 +291,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "passwordAgain" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -436,39 +298,18 @@ const completionSpec: Fig.Spec = {
           description:
             "Get currently logged in user list of active sessions across different devices",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "deleteSessions",
           description:
             "Delete all sessions from the user account and remove any sessions cookies from the end client",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "createAnonymousSession",
           description:
             "Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to update its [email and password](/docs/client/account#accountUpdateEmail) or create an [OAuth2 session](/docs/client/account#accountCreateOAuth2Session)",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "createEmailSession",
@@ -487,11 +328,6 @@ const completionSpec: Fig.Spec = {
               description: "User password. Must be at least 8 chars",
               isRequired: true,
               args: { name: "password" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -520,11 +356,6 @@ const completionSpec: Fig.Spec = {
                 "URL to redirect the user back to your app from the magic URL login. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API",
               args: { name: "url" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -544,11 +375,6 @@ const completionSpec: Fig.Spec = {
               description: "Valid verification token",
               isRequired: true,
               args: { name: "secret" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -583,11 +409,6 @@ const completionSpec: Fig.Spec = {
                 "A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long",
               args: { name: "scopes", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -610,11 +431,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "number" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -635,11 +451,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "secret" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -654,11 +465,6 @@ const completionSpec: Fig.Spec = {
                 "Session ID. Use the string 'current' to get the current device session",
               isRequired: true,
               args: { name: "sessionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -675,11 +481,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "sessionId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -695,11 +496,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "sessionId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -707,13 +503,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "createVerification",
@@ -727,11 +516,6 @@ const completionSpec: Fig.Spec = {
                 "URL to redirect the user back to your app from the verification email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API",
               isRequired: true,
               args: { name: "url" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -753,11 +537,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "secret" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -765,13 +544,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user's phone number using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone) endpoint. Learn more about how to [complete the verification process](/docs/client/account#accountUpdatePhoneVerification). The verification code sent to the user's phone number is valid for 15 minutes",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "updatePhoneVerification",
@@ -780,39 +552,15 @@ const completionSpec: Fig.Spec = {
           icon,
           options: [
             {
-              name: "--userId",
-              description: "User ID",
-              isRequired: true,
-              args: { name: "userId" },
-            },
-            {
               name: "--secret",
               description: "Valid verification token",
               isRequired: true,
               args: { name: "secret" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "avatars",
@@ -855,11 +603,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -899,11 +642,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -924,11 +662,6 @@ const completionSpec: Fig.Spec = {
               description: "Output file path",
               isRequired: true,
               args: { name: "path" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -968,11 +701,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1004,11 +732,6 @@ const completionSpec: Fig.Spec = {
               description: "Output file path",
               isRequired: true,
               args: { name: "path" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1054,11 +777,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1097,28 +815,10 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "databases",
@@ -1164,11 +864,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1188,11 +883,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1203,11 +893,6 @@ const completionSpec: Fig.Spec = {
               name: "--range",
               description: "'Date range",
               args: { name: "range" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1220,11 +905,6 @@ const completionSpec: Fig.Spec = {
               description: "Database ID",
               isRequired: true,
               args: { name: "databaseId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1244,11 +924,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1260,11 +935,6 @@ const completionSpec: Fig.Spec = {
               description: "Database ID",
               isRequired: true,
               args: { name: "databaseId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1313,11 +983,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1364,11 +1029,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "write", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1386,11 +1046,6 @@ const completionSpec: Fig.Spec = {
               description: "Collection ID",
               isRequired: true,
               args: { name: "collectionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1440,11 +1095,6 @@ const completionSpec: Fig.Spec = {
               description: "Is collection enabled?",
               args: { name: "enabled" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1462,11 +1112,6 @@ const completionSpec: Fig.Spec = {
               description: "Collection ID",
               isRequired: true,
               args: { name: "collectionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1486,11 +1131,6 @@ const completionSpec: Fig.Spec = {
                 "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection)",
               isRequired: true,
               args: { name: "collectionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1534,11 +1174,6 @@ const completionSpec: Fig.Spec = {
               description: "Is attribute an array?",
               args: { name: "array" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1580,11 +1215,6 @@ const completionSpec: Fig.Spec = {
               name: "--array",
               description: "Is attribute an array?",
               args: { name: "array" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1634,11 +1264,6 @@ const completionSpec: Fig.Spec = {
               name: "--array",
               description: "Is attribute an array?",
               args: { name: "array" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1692,11 +1317,6 @@ const completionSpec: Fig.Spec = {
               description: "Is attribute an array?",
               args: { name: "array" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1749,11 +1369,6 @@ const completionSpec: Fig.Spec = {
               description: "Is attribute an array?",
               args: { name: "array" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1795,11 +1410,6 @@ const completionSpec: Fig.Spec = {
               name: "--array",
               description: "Is attribute an array?",
               args: { name: "array" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -1850,11 +1460,6 @@ const completionSpec: Fig.Spec = {
               description: "Is attribute an array?",
               args: { name: "array" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1897,11 +1502,6 @@ const completionSpec: Fig.Spec = {
               description: "Is attribute an array?",
               args: { name: "array" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1927,11 +1527,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "key" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -1956,11 +1551,6 @@ const completionSpec: Fig.Spec = {
               description: "Attribute Key",
               isRequired: true,
               args: { name: "key" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2023,11 +1613,6 @@ const completionSpec: Fig.Spec = {
                 "Array of order directions for sorting attribtues. Possible values are DESC for descending order, or ASC for ascending order. Maximum of 100 order types are allowed",
               args: { name: "orderTypes", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2072,11 +1657,6 @@ const completionSpec: Fig.Spec = {
                 "An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions",
               args: { name: "write", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2101,11 +1681,6 @@ const completionSpec: Fig.Spec = {
               description: "Document ID",
               isRequired: true,
               args: { name: "documentId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2149,11 +1724,6 @@ const completionSpec: Fig.Spec = {
                 "An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions",
               args: { name: "write", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2178,11 +1748,6 @@ const completionSpec: Fig.Spec = {
               description: "Document ID",
               isRequired: true,
               args: { name: "documentId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2220,11 +1785,6 @@ const completionSpec: Fig.Spec = {
                 "Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)",
               args: { name: "offset" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2243,11 +1803,6 @@ const completionSpec: Fig.Spec = {
                 "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection)",
               isRequired: true,
               args: { name: "collectionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2293,11 +1848,6 @@ const completionSpec: Fig.Spec = {
                 "Array of index orders. Maximum of 100 orders are allowed",
               args: { name: "orders", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2323,11 +1873,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "key" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2352,11 +1897,6 @@ const completionSpec: Fig.Spec = {
               description: "Index Key",
               isRequired: true,
               args: { name: "key" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2388,11 +1928,6 @@ const completionSpec: Fig.Spec = {
                 "Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)",
               args: { name: "offset" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2415,11 +1950,6 @@ const completionSpec: Fig.Spec = {
               name: "--range",
               description: "Date range",
               args: { name: "range" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2445,11 +1975,6 @@ const completionSpec: Fig.Spec = {
                 "Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)",
               args: { name: "offset" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2467,28 +1992,10 @@ const completionSpec: Fig.Spec = {
               description: "'Date range",
               args: { name: "range" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "functions",
@@ -2535,11 +2042,6 @@ const completionSpec: Fig.Spec = {
               name: "--orderType",
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2596,11 +2098,6 @@ const completionSpec: Fig.Spec = {
               description: "Function maximum execution time in seconds",
               args: { name: "timeout" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2608,13 +2105,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Get a list of all runtimes that are currently active on your instance",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "get",
@@ -2626,11 +2116,6 @@ const completionSpec: Fig.Spec = {
               description: "Function ID",
               isRequired: true,
               args: { name: "functionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2679,11 +2164,6 @@ const completionSpec: Fig.Spec = {
               description: "Maximum execution time in seconds",
               args: { name: "timeout" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2696,11 +2176,6 @@ const completionSpec: Fig.Spec = {
               description: "Function ID",
               isRequired: true,
               args: { name: "functionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2751,11 +2226,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2790,11 +2260,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "activate" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2813,11 +2278,6 @@ const completionSpec: Fig.Spec = {
               description: "Deployment ID",
               isRequired: true,
               args: { name: "deploymentId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2839,11 +2299,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "deploymentId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2862,11 +2317,6 @@ const completionSpec: Fig.Spec = {
               description: "Deployment ID",
               isRequired: true,
               args: { name: "deploymentId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2891,11 +2341,6 @@ const completionSpec: Fig.Spec = {
               description: "Build unique ID",
               isRequired: true,
               args: { name: "buildId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -2941,11 +2386,6 @@ const completionSpec: Fig.Spec = {
                 "Direction of the cursor, can be either 'before' or 'after'",
               args: { name: "cursorDirection" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2970,11 +2410,6 @@ const completionSpec: Fig.Spec = {
               description: "Execute code asynchronously. Default value is true",
               args: { name: "async" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -2994,11 +2429,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "executionId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3016,28 +2446,10 @@ const completionSpec: Fig.Spec = {
               description: "Date range",
               args: { name: "range" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "health",
@@ -3048,144 +2460,61 @@ const completionSpec: Fig.Spec = {
           name: "get",
           description: "Check the Appwrite HTTP server is up and responsive",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getAntivirus",
           description:
             "Check the Appwrite Antivirus server is up and connection is successful",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getCache",
           description:
             "Check the Appwrite in-memory cache server is up and connection is successful",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getDB",
           description:
             "Check the Appwrite database server is up and connection is successful",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getQueueCertificates",
           description:
             "Get the number of certificates that are waiting to be issued against [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue server",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getQueueFunctions",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getQueueLogs",
           description:
             "Get the number of logs that are waiting to be processed in the Appwrite internal queue server",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getQueueWebhooks",
           description:
             "Get the number of webhooks that are waiting to be processed in the Appwrite internal queue server",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getStorageLocal",
           description:
             "Check the Appwrite local storage device is up and connection is successful",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getTime",
           description:
             "Check the Appwrite server time is synced with Google remote NTP server. We use this technology to smoothly handle leap seconds with no disruptive events. The [Network Time Protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol) (NTP) is used by hundreds of millions of computers and devices to synchronize their clocks over the Internet. If your computer sets its own clock, it likely uses NTP",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "locale",
@@ -3197,107 +2526,45 @@ const completionSpec: Fig.Spec = {
           description:
             "Get the current user location based on IP. Returns an object with user country code, country name, continent name, continent code, ip address and suggested currency. You can use the locale header to get the data in a supported language.  ([IP Geolocation by DB-IP](https://db-ip.com))",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getContinents",
           description:
             "List of all continents. You can use the locale header to get the data in a supported language",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getCountries",
           description:
             "List of all countries. You can use the locale header to get the data in a supported language",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getCountriesEU",
           description:
             "List of all countries that are currently members of the EU. You can use the locale header to get the data in a supported language",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getCountriesPhones",
           description:
             "List of all countries phone codes. You can use the locale header to get the data in a supported language",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getCurrencies",
           description:
             "List of all currencies, including currency symbol, name, plural, and decimal digits for all major and minor currencies. You can use the locale header to get the data in a supported language",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "getLanguages",
           description:
             "List of all languages classified by ISO 639-1 including 2-letter code, name in English, and name in the respective language",
           icon,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "projects",
@@ -3342,11 +2609,6 @@ const completionSpec: Fig.Spec = {
               name: "--orderType",
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3418,11 +2680,6 @@ const completionSpec: Fig.Spec = {
               description: "Project legal Tax ID. Max length: 256 chars",
               args: { name: "legalTaxId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3434,11 +2691,6 @@ const completionSpec: Fig.Spec = {
               description: "Project unique ID",
               isRequired: true,
               args: { name: "projectId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3503,11 +2755,6 @@ const completionSpec: Fig.Spec = {
               description: "Project legal tax ID. Max length: 256 chars",
               args: { name: "legalTaxId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3527,11 +2774,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "password" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3550,11 +2792,6 @@ const completionSpec: Fig.Spec = {
                 "Set the max number of users allowed in this project. Use 0 for unlimited",
               isRequired: true,
               args: { name: "limit" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3581,11 +2818,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "status" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3597,11 +2829,6 @@ const completionSpec: Fig.Spec = {
               description: "Project unique ID",
               isRequired: true,
               args: { name: "projectId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3621,11 +2848,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "domain" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3643,11 +2865,6 @@ const completionSpec: Fig.Spec = {
               description: "Domain unique ID",
               isRequired: true,
               args: { name: "domainId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3667,11 +2884,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "domainId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3690,11 +2902,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "domainId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3706,11 +2913,6 @@ const completionSpec: Fig.Spec = {
               description: "Project unique ID",
               isRequired: true,
               args: { name: "projectId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3742,11 +2944,6 @@ const completionSpec: Fig.Spec = {
                 "Key expiration time in Unix timestamp. Use 0 for unlimited expiration",
               args: { name: "expire" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3764,11 +2961,6 @@ const completionSpec: Fig.Spec = {
               description: "Key unique ID",
               isRequired: true,
               args: { name: "keyId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3806,11 +2998,6 @@ const completionSpec: Fig.Spec = {
                 "Key expiration time in Unix timestamp. Use 0 for unlimited expiration",
               args: { name: "expire" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3828,11 +3015,6 @@ const completionSpec: Fig.Spec = {
               description: "Key unique ID",
               isRequired: true,
               args: { name: "keyId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3862,11 +3044,6 @@ const completionSpec: Fig.Spec = {
               description: "Provider secret key. Max length: 512 chars",
               args: { name: "secret" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3878,11 +3055,6 @@ const completionSpec: Fig.Spec = {
               description: "Project unique ID",
               isRequired: true,
               args: { name: "projectId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3925,11 +3097,6 @@ const completionSpec: Fig.Spec = {
               description: "Platform client hostname. Max length: 256 chars",
               args: { name: "hostname" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -3947,11 +3114,6 @@ const completionSpec: Fig.Spec = {
               description: "Platform unique ID",
               isRequired: true,
               args: { name: "platformId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -3994,11 +3156,6 @@ const completionSpec: Fig.Spec = {
               description: "Platform client URL. Max length: 256 chars",
               args: { name: "hostname" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4016,11 +3173,6 @@ const completionSpec: Fig.Spec = {
               description: "Platform unique ID",
               isRequired: true,
               args: { name: "platformId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4046,11 +3198,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "status" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4068,11 +3215,6 @@ const completionSpec: Fig.Spec = {
               description: "Date range",
               args: { name: "range" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4084,11 +3226,6 @@ const completionSpec: Fig.Spec = {
               description: "Project unique ID",
               isRequired: true,
               args: { name: "projectId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4137,11 +3274,6 @@ const completionSpec: Fig.Spec = {
               description: "Webhook HTTP password. Max length: 256 chars",
               args: { name: "httpPass" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4159,11 +3291,6 @@ const completionSpec: Fig.Spec = {
               description: "Webhook unique ID",
               isRequired: true,
               args: { name: "webhookId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4218,11 +3345,6 @@ const completionSpec: Fig.Spec = {
               description: "Webhook HTTP password. Max length: 256 chars",
               args: { name: "httpPass" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4240,11 +3362,6 @@ const completionSpec: Fig.Spec = {
               description: "Webhook unique ID",
               isRequired: true,
               args: { name: "webhookId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4264,28 +3381,10 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "webhookId" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "storage",
@@ -4332,11 +3431,6 @@ const completionSpec: Fig.Spec = {
               name: "--orderType",
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4406,11 +3500,6 @@ const completionSpec: Fig.Spec = {
                 "Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled",
               args: { name: "antivirus" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4424,11 +3513,6 @@ const completionSpec: Fig.Spec = {
               description: "Bucket unique ID",
               isRequired: true,
               args: { name: "bucketId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4497,11 +3581,6 @@ const completionSpec: Fig.Spec = {
                 "Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled",
               args: { name: "antivirus" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4514,11 +3593,6 @@ const completionSpec: Fig.Spec = {
               description: "Bucket unique ID",
               isRequired: true,
               args: { name: "bucketId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4570,11 +3644,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4615,11 +3684,6 @@ const completionSpec: Fig.Spec = {
                 "An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions",
               args: { name: "write", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4640,11 +3704,6 @@ const completionSpec: Fig.Spec = {
               description: "File ID",
               isRequired: true,
               args: { name: "fileId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4679,11 +3738,6 @@ const completionSpec: Fig.Spec = {
                 "An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions",
               args: { name: "write", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4704,11 +3758,6 @@ const completionSpec: Fig.Spec = {
               description: "File ID",
               isRequired: true,
               args: { name: "fileId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4736,11 +3785,6 @@ const completionSpec: Fig.Spec = {
               description: "Output file path",
               isRequired: true,
               args: { name: "path" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4834,11 +3878,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4866,11 +3905,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "path" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -4881,11 +3915,6 @@ const completionSpec: Fig.Spec = {
               name: "--range",
               description: "Date range",
               args: { name: "range" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -4904,28 +3933,10 @@ const completionSpec: Fig.Spec = {
               description: "Date range",
               args: { name: "range" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "teams",
@@ -4973,11 +3984,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5005,11 +4011,6 @@ const completionSpec: Fig.Spec = {
                 "Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long",
               args: { name: "roles", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5023,11 +4024,6 @@ const completionSpec: Fig.Spec = {
               description: "Team ID",
               isRequired: true,
               args: { name: "teamId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5049,11 +4045,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5067,11 +4058,6 @@ const completionSpec: Fig.Spec = {
               description: "Team ID",
               isRequired: true,
               args: { name: "teamId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5097,11 +4083,6 @@ const completionSpec: Fig.Spec = {
               description:
                 "Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)",
               args: { name: "offset" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5152,11 +4133,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5196,11 +4172,6 @@ const completionSpec: Fig.Spec = {
               description: "Name of the new team member. Max length: 128 chars",
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5220,11 +4191,6 @@ const completionSpec: Fig.Spec = {
               description: "Membership ID",
               isRequired: true,
               args: { name: "membershipId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5253,11 +4219,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "roles", isVariadic: true },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5277,11 +4238,6 @@ const completionSpec: Fig.Spec = {
               description: "Membership ID",
               isRequired: true,
               args: { name: "membershipId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5303,40 +4259,17 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "membershipId" },
             },
-            {
-              name: "--userId",
-              description: "User ID",
-              isRequired: true,
-              args: { name: "userId" },
-            },
+
             {
               name: "--secret",
               description: "Secret key",
               isRequired: true,
               args: { name: "secret" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "users",
@@ -5383,11 +4316,6 @@ const completionSpec: Fig.Spec = {
               description: "Order result by ASC or DESC order",
               args: { name: "orderType" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5419,11 +4347,6 @@ const completionSpec: Fig.Spec = {
               description: "User name. Max length: 128 chars",
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5440,49 +4363,18 @@ const completionSpec: Fig.Spec = {
               description: "Provider Name",
               args: { name: "provider" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
           name: "get",
           description: "Get a user by its unique ID",
           icon,
-          options: [
-            {
-              name: "--userId",
-              description: "User ID",
-              isRequired: true,
-              args: { name: "userId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "delete",
           description:
             "Delete a user by its unique ID, thereby releasing it's ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus) endpoint instead",
           icon,
-          options: [
-            {
-              name: "--userId",
-              description: "User ID",
-              isRequired: true,
-              args: { name: "userId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
-          ],
         },
         {
           name: "updateEmail",
@@ -5500,11 +4392,6 @@ const completionSpec: Fig.Spec = {
               description: "User email",
               isRequired: true,
               args: { name: "email" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5531,11 +4418,6 @@ const completionSpec: Fig.Spec = {
                 "Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)",
               args: { name: "offset" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5548,11 +4430,6 @@ const completionSpec: Fig.Spec = {
               description: "User ID",
               isRequired: true,
               args: { name: "userId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5573,11 +4450,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "name" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5596,11 +4468,6 @@ const completionSpec: Fig.Spec = {
               description: "New user password. Must be at least 8 chars",
               isRequired: true,
               args: { name: "password" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5621,11 +4488,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "number" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5638,11 +4500,6 @@ const completionSpec: Fig.Spec = {
               description: "User ID",
               isRequired: true,
               args: { name: "userId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5664,11 +4521,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "prefs" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5681,11 +4533,6 @@ const completionSpec: Fig.Spec = {
               description: "User ID",
               isRequired: true,
               args: { name: "userId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5700,11 +4547,6 @@ const completionSpec: Fig.Spec = {
               description: "User ID",
               isRequired: true,
               args: { name: "userId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5724,11 +4566,6 @@ const completionSpec: Fig.Spec = {
               description: "Session ID",
               isRequired: true,
               args: { name: "sessionId" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5751,11 +4588,6 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "status" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
         },
         {
@@ -5775,11 +4607,6 @@ const completionSpec: Fig.Spec = {
               description: "User email verification status",
               isRequired: true,
               args: { name: "emailVerification" },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
             },
           ],
         },
@@ -5801,28 +4628,10 @@ const completionSpec: Fig.Spec = {
               isRequired: true,
               args: { name: "phoneVerification" },
             },
-            {
-              name: ["-h", "--help"],
-              description: "Display help for command",
-              priority: 49,
-            },
           ],
-        },
-        {
-          name: "help",
-          description: "Display help for command",
-          priority: 49,
-          args: { name: "command", isOptional: true },
         },
       ],
       icon,
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
-      ],
     },
     {
       name: "client",
@@ -5852,18 +4661,7 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--debug", description: "Print CLI debug information" },
         { name: "--reset", description: "Reset the CLI configuration" },
-        {
-          name: ["-h", "--help"],
-          description: "Display help for command",
-          priority: 49,
-        },
       ],
-    },
-    {
-      name: "help",
-      description: "Display help for command",
-      priority: 49,
-      args: { name: "command", isOptional: true },
     },
   ],
   icon,
@@ -5875,6 +4673,7 @@ const completionSpec: Fig.Spec = {
       name: ["-h", "--help"],
       description: "Display help for command",
       priority: 49,
+      isPersistent: true,
     },
   ],
 };
