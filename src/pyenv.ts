@@ -12,12 +12,15 @@ const versionList: Fig.Generator = {
 const globalList: Fig.Generator = {
   script: "pyenv versions",
   postProcess: function (out) {
-    return out.trim().split("\n").map((l) => {
-      const sel = l.match(/\s*\*/) != null;
-      const name = sel ? l.replace("*", "").trim() : l.trim();
-      const icon = sel ? "🌟" : "🐍";
-      return { name, icon };
-    });
+    return out
+      .trim()
+      .split("\n")
+      .map((l) => {
+        const sel = l.match(/\s*\*/) != null;
+        const name = sel ? l.replace("*", "").trim() : l.trim();
+        const icon = sel ? "🌟" : "🐍";
+        return { name, icon };
+      });
   },
 };
 
