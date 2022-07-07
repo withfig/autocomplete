@@ -335,6 +335,17 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "getSessions",
+          description:
+            "Currently logged user list of active sessions, across all devices",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Show help for getSessions command",
+            },
+          ],
+        },
       ],
       options: [
         {
