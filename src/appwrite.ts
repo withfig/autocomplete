@@ -1,3 +1,5 @@
+const icon =
+  "https://raw.githubusercontent.com/appwrite/appwrite/master/public/images/icon.svg";
 const completionSpec: Fig.Spec = {
   name: "index",
   description: "Appwrite - Open-Source End-to-End Backend Server",
@@ -6,6 +8,8 @@ const completionSpec: Fig.Spec = {
       name: "login",
       description:
         "The login command allows you to authenticate and manage a user account",
+      icon,
+
       options: [
         {
           name: ["-h", "--help"],
@@ -18,10 +22,12 @@ const completionSpec: Fig.Spec = {
       name: "init",
       description:
         "The init command helps you initialize your Appwrite project, functions and collections",
+      icon,
       subcommands: [
         {
           name: "project",
           description: "Initialise your Appwrite project",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -33,6 +39,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "function",
           description: "Initialise your Appwrite cloud function",
+          icon,
+
           options: [
             {
               name: ["-h", "--help"],
@@ -44,6 +52,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "collection",
           description: "Initialise your Appwrite collections",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -68,6 +77,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+
       options: [
         {
           name: ["-h", "--help"],
@@ -84,6 +94,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "function",
           description: "Deploy functions in the current directory",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -101,6 +112,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "collection",
           description: "Deploy collections in the current project",
+          icon,
           options: [
             { name: "--all", description: "Flag to deploy all functions" },
             {
@@ -117,6 +129,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -129,6 +142,7 @@ const completionSpec: Fig.Spec = {
       name: "logout",
       description:
         "The logout command allows you to logout of your Appwrite account",
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -145,6 +159,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get currently logged in user data as JSON object",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -157,6 +172,7 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Use this endpoint to allow a new user to register a new account in your project. After the user registration completes successfully, you can use the [/account/verfication](/docs/client/account#accountCreateVerification) route to start verifying the user email address. To allow the new user to login to their new account, you need to create a new [account session](/docs/client/account#accountCreateSession)",
+          icon,
           options: [
             {
               name: "--userId",
@@ -193,6 +209,7 @@ const completionSpec: Fig.Spec = {
           name: "updateEmail",
           description:
             "Update currently logged in user account email address. After changing user address, the user confirmation status will get reset. A new confirmation email is not sent automatically however you can use the send confirmation email endpoint again to send the confirmation email. For security measures, user password is required to complete this request. This endpoint can also be used to convert an anonymous account to a normal one, by passing an email address and a new password",
+          icon,
           options: [
             {
               name: "--email",
@@ -217,6 +234,7 @@ const completionSpec: Fig.Spec = {
           name: "createJWT",
           description:
             "Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -229,6 +247,7 @@ const completionSpec: Fig.Spec = {
           name: "getLogs",
           description:
             "Get currently logged in user list of latest security activity logs. Each log returns user IP address, location and date and time of log",
+          icon,
           options: [
             {
               name: "--limit",
@@ -252,6 +271,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "updateName",
           description: "Update currently logged in user account name",
+          icon,
           options: [
             {
               name: "--name",
@@ -270,6 +290,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePassword",
           description:
             "Update currently logged in user password. For validation, user is required to pass in the new password, and the old password. For users created with OAuth, Team Invites and Magic URL, oldPassword is optional",
+          icon,
           options: [
             {
               name: "--password",
@@ -293,6 +314,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePhone",
           description:
             "Update the currently logged in user's phone number. After updating the phone number, the phone verification status will be reset. A confirmation SMS is not sent automatically, however you can use the [POST /account/verification/phone](/docs/client/account#accountCreatePhoneVerification) endpoint to send a confirmation SMS",
+          icon,
           options: [
             {
               name: "--number",
@@ -318,6 +340,7 @@ const completionSpec: Fig.Spec = {
           name: "getPrefs",
           description:
             "Get currently logged in user preferences as a key-value object",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -330,6 +353,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePrefs",
           description:
             "Update currently logged in user account preferences. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded",
+          icon,
           options: [
             {
               name: "--prefs",
@@ -348,6 +372,7 @@ const completionSpec: Fig.Spec = {
           name: "createRecovery",
           description:
             "Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to the [PUT /account/recovery](/docs/client/account#accountUpdateRecovery) endpoint to complete the process. The verification link sent to the user's email address is valid for 1 hour",
+          icon,
           options: [
             {
               name: "--email",
@@ -373,6 +398,7 @@ const completionSpec: Fig.Spec = {
           name: "updateRecovery",
           description:
             "Use this endpoint to complete the user account password reset. Both the **userId** and **secret** arguments will be passed as query parameters to the redirect URL you have provided when sending your request to the [POST /account/recovery](/docs/client/account#accountCreateRecovery) endpoint.  Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface",
+          icon,
           options: [
             {
               name: "--userId",
@@ -409,6 +435,7 @@ const completionSpec: Fig.Spec = {
           name: "getSessions",
           description:
             "Get currently logged in user list of active sessions across different devices",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -421,6 +448,7 @@ const completionSpec: Fig.Spec = {
           name: "deleteSessions",
           description:
             "Delete all sessions from the user account and remove any sessions cookies from the end client",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -433,6 +461,7 @@ const completionSpec: Fig.Spec = {
           name: "createAnonymousSession",
           description:
             "Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to update its [email and password](/docs/client/account#accountUpdateEmail) or create an [OAuth2 session](/docs/client/account#accountCreateOAuth2Session)",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -445,6 +474,7 @@ const completionSpec: Fig.Spec = {
           name: "createEmailSession",
           description:
             "Allow the user to login into their account by providing a valid email and password combination. This route will create a new session for the user",
+          icon,
           options: [
             {
               name: "--email",
@@ -469,6 +499,7 @@ const completionSpec: Fig.Spec = {
           name: "createMagicURLSession",
           description:
             "Sends the user an email with a secret key for creating a session. When the user clicks the link in the email, the user is redirected back to the URL you provided with the secret key and userId values attached to the URL query string. Use the query string parameters to submit a request to the [PUT /account/sessions/magic-url](/docs/client/account#accountUpdateMagicURLSession) endpoint to complete the login process. The link sent to the user's email address is valid for 1 hour. If you are on a mobile device you can leave the URL parameter empty, so that the login completion will be handled by your Appwrite instance by default",
+          icon,
           options: [
             {
               name: "--userId",
@@ -500,6 +531,7 @@ const completionSpec: Fig.Spec = {
           name: "updateMagicURLSession",
           description:
             "Use this endpoint to complete creating the session with the Magic URL. Both the **userId** and **secret** arguments will be passed as query parameters to the redirect URL you have provided when sending your request to the [POST /account/sessions/magic-url](/docs/client/account#accountCreateMagicURLSession) endpoint.  Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface",
+          icon,
           options: [
             {
               name: "--userId",
@@ -524,6 +556,7 @@ const completionSpec: Fig.Spec = {
           name: "createOAuth2Session",
           description:
             "Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL's back to your app when login is completed.  If there is already an active session, the new session will be attached to the logged-in account. If there are no active sessions, the server will attempt to look for a user with the same email address as the email received from the OAuth2 provider and attach the new session to the existing user. If no matching user is found - the server will create a new user",
+          icon,
           options: [
             {
               name: "--provider",
@@ -561,6 +594,7 @@ const completionSpec: Fig.Spec = {
           name: "createPhoneSession",
           description:
             "Sends the user an SMS with a secret key for creating a session. Use the returned user ID and secret and submit a request to the [PUT /account/sessions/phone](/docs/client/account#accountUpdatePhoneSession) endpoint to complete the login process. The secret sent to the user's phone is valid for 15 minutes",
+          icon,
           options: [
             {
               name: "--userId",
@@ -587,6 +621,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePhoneSession",
           description:
             "Use this endpoint to complete creating a session with SMS. Use the **userId** from the [createPhoneSession](/docs/client/account#accountCreatePhoneSession) endpoint and the **secret** received via SMS to successfully update and confirm the phone session",
+          icon,
           options: [
             {
               name: "--userId",
@@ -611,6 +646,7 @@ const completionSpec: Fig.Spec = {
           name: "getSession",
           description:
             "Use this endpoint to get a logged in user's session using a Session ID. Inputting 'current' will return the current session being used",
+          icon,
           options: [
             {
               name: "--sessionId",
@@ -630,6 +666,7 @@ const completionSpec: Fig.Spec = {
           name: "updateSession",
           description:
             'Access tokens have limited lifespan and expire to mitigate security risks. If session was created using an OAuth provider, this route can be used to "refresh" the access token',
+          icon,
           options: [
             {
               name: "--sessionId",
@@ -649,6 +686,7 @@ const completionSpec: Fig.Spec = {
           name: "deleteSession",
           description:
             "Use this endpoint to log out the currently logged in user from all their account sessions across all of their different devices. When using the Session ID argument, only the unique session ID provided is deleted",
+          icon,
           options: [
             {
               name: "--sessionId",
@@ -668,6 +706,7 @@ const completionSpec: Fig.Spec = {
           name: "updateStatus",
           description:
             "Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -680,6 +719,7 @@ const completionSpec: Fig.Spec = {
           name: "createVerification",
           description:
             "Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](/docs/client/account#accountUpdateEmailVerification). The verification link sent to the user's email address is valid for 7 days.  Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md), the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface",
+          icon,
           options: [
             {
               name: "--url",
@@ -699,6 +739,7 @@ const completionSpec: Fig.Spec = {
           name: "updateVerification",
           description:
             "Use this endpoint to complete the user email verification process. Use both the **userId** and **secret** parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code",
+          icon,
           options: [
             {
               name: "--userId",
@@ -723,6 +764,7 @@ const completionSpec: Fig.Spec = {
           name: "createPhoneVerification",
           description:
             "Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user's phone number using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone) endpoint. Learn more about how to [complete the verification process](/docs/client/account#accountUpdatePhoneVerification). The verification code sent to the user's phone number is valid for 15 minutes",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -735,6 +777,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePhoneVerification",
           description:
             "Use this endpoint to complete the user phone verification process. Use the **userId** and **secret** that were sent to your user's phone number to verify the user email ownership. If confirmed this route will return a 200 status code",
+          icon,
           options: [
             {
               name: "--userId",
@@ -762,6 +805,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -779,6 +823,7 @@ const completionSpec: Fig.Spec = {
           name: "getBrowser",
           description:
             "You can use this endpoint to show different browser icons to your users. The code argument receives the browser code as it appears in your user [GET /account/sessions](/docs/client/account#accountGetSessions) endpoint. Use width, height and quality arguments to change the output settings.  When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px",
+          icon,
           options: [
             {
               name: "--code",
@@ -821,6 +866,7 @@ const completionSpec: Fig.Spec = {
           name: "getCreditCard",
           description:
             "The credit card endpoint will return you the icon of the credit card provider you need. Use width, height and quality arguments to change the output settings.  When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px",
+          icon,
           options: [
             {
               name: "--code",
@@ -864,6 +910,7 @@ const completionSpec: Fig.Spec = {
           name: "getFavicon",
           description:
             "Use this endpoint to fetch the favorite icon (AKA favicon) of any remote website URL",
+          icon,
           options: [
             {
               name: "--url",
@@ -889,6 +936,7 @@ const completionSpec: Fig.Spec = {
           name: "getFlag",
           description:
             "You can use this endpoint to show different country flags icons to your users. The code argument receives the 2 letter country code. Use width, height and quality arguments to change the output settings.  When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px",
+          icon,
           options: [
             {
               name: "--code",
@@ -931,6 +979,7 @@ const completionSpec: Fig.Spec = {
           name: "getImage",
           description:
             "Use this endpoint to fetch a remote image URL and crop it to any image size you want. This endpoint is very useful if you need to crop and display remote images in your app or in case you want to make sure a 3rd party image is properly served using a TLS protocol.  When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 400x400px",
+          icon,
           options: [
             {
               name: "--url",
@@ -967,6 +1016,7 @@ const completionSpec: Fig.Spec = {
           name: "getInitials",
           description:
             "Use this endpoint to show your user initials avatar icon on your website or app. By default, this route will try to print your logged-in user name or email initials. You can also overwrite the user name if you pass the 'name' parameter. If no name is given and no user is logged, an empty avatar will be returned.  You can use the color and background params to change the avatar colors. By default, a random theme will be selected. The random theme will persist for the user's initials when reloading the same theme will always return for the same initials.  When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px",
+          icon,
           options: [
             {
               name: "--name",
@@ -1015,6 +1065,7 @@ const completionSpec: Fig.Spec = {
           name: "getQR",
           description:
             "Converts a given plain text to a QR code image. You can use the query parameters to change the size and style of the resulting image",
+          icon,
           options: [
             {
               name: "--text",
@@ -1060,6 +1111,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -1075,6 +1127,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
+          icon,
           options: [
             {
               name: "--search",
@@ -1120,6 +1173,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1143,6 +1197,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getUsage",
+          icon,
           options: [
             {
               name: "--range",
@@ -1158,6 +1213,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "get",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1174,6 +1230,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1196,6 +1253,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1212,6 +1270,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listCollections",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1263,6 +1322,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createCollection",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1313,6 +1373,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getCollection",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1335,6 +1396,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateCollection",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1387,6 +1449,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteCollection",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1409,6 +1472,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listAttributes",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1432,6 +1496,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createBooleanAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1478,6 +1543,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createEmailAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1524,6 +1590,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createEnumAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1577,6 +1644,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createFloatAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1633,6 +1701,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createIntegerAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1689,6 +1758,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createIpAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1735,6 +1805,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createStringAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1788,6 +1859,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createUrlAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1834,6 +1906,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1863,6 +1936,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteAttribute",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1892,6 +1966,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listDocuments",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -1957,6 +2032,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createDocument",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2005,6 +2081,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getDocument",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2034,6 +2111,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateDocument",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2080,6 +2158,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteDocument",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2109,6 +2188,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listDocumentLogs",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2149,6 +2229,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listIndexes",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2172,6 +2253,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createIndex",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2220,6 +2302,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getIndex",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2249,6 +2332,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteIndex",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2278,6 +2362,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listCollectionLogs",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2312,6 +2397,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getCollectionUsage",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2339,6 +2425,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listLogs",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2367,6 +2454,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getDatabaseUsage",
+          icon,
           options: [
             {
               name: "--databaseId",
@@ -2393,6 +2481,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -2410,6 +2499,7 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Get a list of all the project's functions. You can use the query params to filter your results",
+          icon,
           options: [
             {
               name: "--search",
@@ -2457,6 +2547,7 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a new function. You can pass a list of [permissions](/docs/permissions) to allow different project users or team with access to execute the function using the client API",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2516,6 +2607,7 @@ const completionSpec: Fig.Spec = {
           name: "listRuntimes",
           description:
             "Get a list of all runtimes that are currently active on your instance",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -2527,6 +2619,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get a function by its unique ID",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2544,6 +2637,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update function by its unique ID",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2595,6 +2689,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a function by its unique ID",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2613,6 +2708,7 @@ const completionSpec: Fig.Spec = {
           name: "listDeployments",
           description:
             "Get a list of all the project's code deployments. You can use the query params to filter your results",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2666,6 +2762,7 @@ const completionSpec: Fig.Spec = {
           name: "createDeployment",
           description:
             "Create a new function code deployment. Use this endpoint to upload a new version of your code function. To execute your newly uploaded code, you'll need to update the function's deployment to use your new deployment UID.  This endpoint accepts a tar.gz file compressed with your code. Make sure to include any dependencies your code has within the compressed file. You can learn more about code packaging in the [Appwrite Cloud Functions tutorial](/docs/functions).  Use the \"command\" param to set the entry point used to execute your code",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2703,6 +2800,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "getDeployment",
           description: "Get a code deployment by its unique ID",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2727,6 +2825,7 @@ const completionSpec: Fig.Spec = {
           name: "updateDeployment",
           description:
             "Update the function code deployment ID using the unique function ID. Use this endpoint to switch the code deployment that should be executed by the execution endpoint",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2750,6 +2849,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "deleteDeployment",
           description: "Delete a code deployment by its unique ID",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2772,6 +2872,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "retryBuild",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2802,6 +2903,7 @@ const completionSpec: Fig.Spec = {
           name: "listExecutions",
           description:
             "Get a list of all the current user function execution logs. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project's executions. [Learn more about different API modes](/docs/admin)",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2850,6 +2952,7 @@ const completionSpec: Fig.Spec = {
           name: "createExecution",
           description:
             "Trigger a function execution. The returned object will return you the current execution status. You can ping the 'Get Execution' endpoint to get updates on the current execution status. Once this endpoint is called, your function execution process will start asynchronously",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2877,6 +2980,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "getExecution",
           description: "Get a function execution log by its unique ID",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2899,6 +3003,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getUsage",
+          icon,
           options: [
             {
               name: "--functionId",
@@ -2925,6 +3030,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -2941,6 +3047,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Check the Appwrite HTTP server is up and responsive",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -2953,6 +3060,7 @@ const completionSpec: Fig.Spec = {
           name: "getAntivirus",
           description:
             "Check the Appwrite Antivirus server is up and connection is successful",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -2965,6 +3073,7 @@ const completionSpec: Fig.Spec = {
           name: "getCache",
           description:
             "Check the Appwrite in-memory cache server is up and connection is successful",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -2977,6 +3086,7 @@ const completionSpec: Fig.Spec = {
           name: "getDB",
           description:
             "Check the Appwrite database server is up and connection is successful",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -2989,6 +3099,7 @@ const completionSpec: Fig.Spec = {
           name: "getQueueCertificates",
           description:
             "Get the number of certificates that are waiting to be issued against [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue server",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -2999,6 +3110,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getQueueFunctions",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3011,6 +3123,7 @@ const completionSpec: Fig.Spec = {
           name: "getQueueLogs",
           description:
             "Get the number of logs that are waiting to be processed in the Appwrite internal queue server",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3023,6 +3136,7 @@ const completionSpec: Fig.Spec = {
           name: "getQueueWebhooks",
           description:
             "Get the number of webhooks that are waiting to be processed in the Appwrite internal queue server",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3035,6 +3149,7 @@ const completionSpec: Fig.Spec = {
           name: "getStorageLocal",
           description:
             "Check the Appwrite local storage device is up and connection is successful",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3047,6 +3162,7 @@ const completionSpec: Fig.Spec = {
           name: "getTime",
           description:
             "Check the Appwrite server time is synced with Google remote NTP server. We use this technology to smoothly handle leap seconds with no disruptive events. The [Network Time Protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol) (NTP) is used by hundreds of millions of computers and devices to synchronize their clocks over the Internet. If your computer sets its own clock, it likely uses NTP",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3062,6 +3178,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -3079,6 +3196,7 @@ const completionSpec: Fig.Spec = {
           name: "get",
           description:
             "Get the current user location based on IP. Returns an object with user country code, country name, continent name, continent code, ip address and suggested currency. You can use the locale header to get the data in a supported language.  ([IP Geolocation by DB-IP](https://db-ip.com))",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3091,6 +3209,7 @@ const completionSpec: Fig.Spec = {
           name: "getContinents",
           description:
             "List of all continents. You can use the locale header to get the data in a supported language",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3103,6 +3222,7 @@ const completionSpec: Fig.Spec = {
           name: "getCountries",
           description:
             "List of all countries. You can use the locale header to get the data in a supported language",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3115,6 +3235,7 @@ const completionSpec: Fig.Spec = {
           name: "getCountriesEU",
           description:
             "List of all countries that are currently members of the EU. You can use the locale header to get the data in a supported language",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3127,6 +3248,7 @@ const completionSpec: Fig.Spec = {
           name: "getCountriesPhones",
           description:
             "List of all countries phone codes. You can use the locale header to get the data in a supported language",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3139,6 +3261,7 @@ const completionSpec: Fig.Spec = {
           name: "getCurrencies",
           description:
             "List of all currencies, including currency symbol, name, plural, and decimal digits for all major and minor currencies. You can use the locale header to get the data in a supported language",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3151,6 +3274,7 @@ const completionSpec: Fig.Spec = {
           name: "getLanguages",
           description:
             "List of all languages classified by ISO 639-1 including 2-letter code, name in English, and name in the respective language",
+          icon,
           options: [
             {
               name: ["-h", "--help"],
@@ -3166,6 +3290,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -3181,6 +3306,7 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "list",
+          icon,
           options: [
             {
               name: "--search",
@@ -3226,6 +3352,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "create",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3300,6 +3427,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "get",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3316,6 +3444,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "update",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3383,6 +3512,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3406,6 +3536,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateAuthLimit",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3429,6 +3560,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateAuthStatus",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3458,6 +3590,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listDomains",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3474,6 +3607,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createDomain",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3496,6 +3630,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getDomain",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3518,6 +3653,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteDomain",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3540,6 +3676,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateDomainVerification",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3562,6 +3699,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listKeys",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3578,6 +3716,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createKey",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3612,6 +3751,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getKey",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3634,6 +3774,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateKey",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3674,6 +3815,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteKey",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3696,6 +3838,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateOAuth2",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3728,6 +3871,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listPlatforms",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3744,6 +3888,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createPlatform",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3789,6 +3934,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getPlatform",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3811,6 +3957,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updatePlatform",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3856,6 +4003,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deletePlatform",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3878,6 +4026,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateServiceStatus",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3906,6 +4055,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getUsage",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3927,6 +4077,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "listWebhooks",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3943,6 +4094,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "createWebhook",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -3994,6 +4146,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getWebhook",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -4016,6 +4169,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateWebhook",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -4073,6 +4227,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "deleteWebhook",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -4095,6 +4250,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "updateWebhookSignature",
+          icon,
           options: [
             {
               name: "--projectId",
@@ -4122,6 +4278,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -4139,6 +4296,7 @@ const completionSpec: Fig.Spec = {
           name: "listBuckets",
           description:
             "Get a list of all the storage buckets. You can use the query params to filter your results",
+          icon,
           options: [
             {
               name: "--search",
@@ -4185,6 +4343,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "createBucket",
           description: "Create a new storage bucket",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4258,6 +4417,7 @@ const completionSpec: Fig.Spec = {
           name: "getBucket",
           description:
             "Get a storage bucket by its unique ID. This endpoint response returns a JSON object with the storage bucket metadata",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4275,6 +4435,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "updateBucket",
           description: "Update a storage bucket by its unique ID",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4346,6 +4507,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "deleteBucket",
           description: "Delete a storage bucket by its unique ID",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4364,6 +4526,7 @@ const completionSpec: Fig.Spec = {
           name: "listFiles",
           description:
             "Get a list of all the user files. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project's files. [Learn more about different API modes](/docs/admin)",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4418,6 +4581,7 @@ const completionSpec: Fig.Spec = {
           name: "createFile",
           description:
             "Create a new file. Before using this route, you should create a new bucket resource using either a [server integration](/docs/server/database#storageCreateBucket) API or directly from your Appwrite console.  Larger files should be uploaded using multiple requests with the [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range) header to send a partial request with a maximum supported chunk of '5MB'. The 'content-range' header values should always be in bytes.  When the first request is sent, the server will return the **File** object, and the subsequent part request must include the file's **id** in 'x-appwrite-id' header to allow the server to know that the partial upload is for the existing file and not for a new one.  If you're creating a new file using one of the Appwrite SDKs, all the chunking logic will be managed by the SDK internally",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4462,6 +4626,7 @@ const completionSpec: Fig.Spec = {
           name: "getFile",
           description:
             "Get a file by its unique ID. This endpoint response returns a JSON object with the file metadata",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4487,6 +4652,7 @@ const completionSpec: Fig.Spec = {
           name: "updateFile",
           description:
             "Update a file by its unique ID. Only users with write permissions have access to update this resource",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4524,6 +4690,7 @@ const completionSpec: Fig.Spec = {
           name: "deleteFile",
           description:
             "Delete a file by its unique ID. Only users with write permissions have access to delete this resource",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4549,6 +4716,7 @@ const completionSpec: Fig.Spec = {
           name: "getFileDownload",
           description:
             "Get a file content by its unique ID. The endpoint response return with a 'Content-Disposition: attachment' header that tells the browser to start downloading the file to user downloads directory",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4580,6 +4748,7 @@ const completionSpec: Fig.Spec = {
           name: "getFilePreview",
           description:
             "Get a file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets, will return the file icon image. You can also pass query string arguments for cutting and resizing your preview image. Preview is supported only for image files smaller than 10MB",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4676,6 +4845,7 @@ const completionSpec: Fig.Spec = {
           name: "getFileView",
           description:
             "Get a file content by its unique ID. This endpoint is similar to the download method but returns with no  'Content-Disposition: attachment' header",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4705,6 +4875,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getUsage",
+          icon,
           options: [
             {
               name: "--range",
@@ -4720,6 +4891,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getBucketUsage",
+          icon,
           options: [
             {
               name: "--bucketId",
@@ -4746,6 +4918,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -4763,6 +4936,7 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Get a list of all the teams in which the current user is a member. You can use the parameters to filter your results.\n \n In admin mode, this endpoint returns a list of all the teams in the current project. [Learn more about different API modes](/docs/admin)",
+          icon,
           options: [
             {
               name: "--search",
@@ -4810,6 +4984,7 @@ const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a new team. The user who creates the team will automatically be assigned as the owner of the team. Only the users with the owner role can invite new members, add new owners and delete or update the team",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -4841,6 +5016,7 @@ const completionSpec: Fig.Spec = {
           name: "get",
           description:
             "Get a team by its ID. All team members have read access for this resource",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -4859,6 +5035,7 @@ const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update a team using its ID. Only members with the owner role can update the team",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -4883,6 +5060,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete a team using its ID. Only team members with the owner role can delete the team",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -4900,6 +5078,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "listLogs",
           description: "Get the team activity logs list by its unique ID",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -4930,6 +5109,7 @@ const completionSpec: Fig.Spec = {
           name: "getMemberships",
           description:
             "Use this endpoint to list a team's members using the team's ID. All team members have read access to this endpoint",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -4983,6 +5163,7 @@ const completionSpec: Fig.Spec = {
           name: "createMembership",
           description:
             "Invite a new member to join your team. If initiated from the client SDK, an email with a link to join the team will be sent to the member's email address and an account will be created for them should they not be signed up already. If initiated from server-side SDKs, the new member will automatically be added to the team.  Use the 'url' parameter to redirect the user from the invitation email back to your app. When the user is redirected, use the [Update Team Membership Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow the user to accept the invitation to the team.   Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URL's are the once from domains you have set when adding your platforms in the console interface",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -5026,6 +5207,7 @@ const completionSpec: Fig.Spec = {
           name: "getMembership",
           description:
             "Get a team member by the membership unique id. All team members have read access for this resource",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -5050,6 +5232,7 @@ const completionSpec: Fig.Spec = {
           name: "updateMembershipRoles",
           description:
             "Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about [roles and permissions](/docs/permissions)",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -5081,6 +5264,7 @@ const completionSpec: Fig.Spec = {
           name: "deleteMembership",
           description:
             "This endpoint allows a user to leave a team or for a team owner to delete the membership of any other team member. You can also use this endpoint to delete a user membership even if it is not accepted",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -5105,6 +5289,7 @@ const completionSpec: Fig.Spec = {
           name: "updateMembershipStatus",
           description:
             "Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email received by the user.  If the request is successful, a session for the user is automatically created",
+          icon,
           options: [
             {
               name: "--teamId",
@@ -5144,6 +5329,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -5160,6 +5346,7 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Get a list of all the project's users. You can use the query params to filter your results",
+          icon,
           options: [
             {
               name: "--search",
@@ -5206,6 +5393,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new user",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5240,6 +5428,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "getUsage",
+          icon,
           options: [
             {
               name: "--range",
@@ -5261,6 +5450,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Get a user by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5279,6 +5469,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete a user by its unique ID, thereby releasing it's ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus) endpoint instead",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5296,6 +5487,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "updateEmail",
           description: "Update the user email by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5319,6 +5511,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "getLogs",
           description: "Get the user activity logs list by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5348,6 +5541,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "getMemberships",
           description: "Get the user membership list by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5365,6 +5559,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "updateName",
           description: "Update the user name by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5388,6 +5583,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "updatePassword",
           description: "Update the user password by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5411,6 +5607,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "updatePhone",
           description: "Update the user phone by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5434,6 +5631,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "getPrefs",
           description: "Get the user preferences by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5452,6 +5650,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePrefs",
           description:
             "Update the user preferences by its unique ID. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5475,6 +5674,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "getSessions",
           description: "Get the user sessions list by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5493,6 +5693,7 @@ const completionSpec: Fig.Spec = {
           name: "deleteSessions",
           description:
             "Delete all user's sessions by using the user's unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5510,6 +5711,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "deleteSession",
           description: "Delete a user sessions by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5534,6 +5736,7 @@ const completionSpec: Fig.Spec = {
           name: "updateStatus",
           description:
             "Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user's ID reserved",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5559,6 +5762,7 @@ const completionSpec: Fig.Spec = {
           name: "updateEmailVerification",
           description:
             "Update the user email verification status by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5583,6 +5787,7 @@ const completionSpec: Fig.Spec = {
           name: "updatePhoneVerification",
           description:
             "Update the user phone verification status by its unique ID",
+          icon,
           options: [
             {
               name: "--userId",
@@ -5610,6 +5815,7 @@ const completionSpec: Fig.Spec = {
           args: { name: "command", isOptional: true },
         },
       ],
+      icon,
       options: [
         {
           name: ["-h", "--help"],
@@ -5621,6 +5827,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "client",
       description: "The client command allows you to configure your CLI",
+      icon,
       options: [
         {
           name: "--selfSigned",
@@ -5659,6 +5866,7 @@ const completionSpec: Fig.Spec = {
       args: { name: "command", isOptional: true },
     },
   ],
+  icon,
   options: [
     { name: ["-v", "--version"], description: "Output the version number" },
     { name: "--verbose", description: "Show complete error log" },
