@@ -375,6 +375,17 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "deleteSessions",
+          description:
+            "Delete all sessions for currently logged in user account",
+          options: [
+            {
+              name: ["--help", "-h"],
+              description: "Show help for deleteSessions command",
+            },
+          ],
+        },
       ],
       options: [
         {
