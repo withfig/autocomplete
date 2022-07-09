@@ -76,7 +76,7 @@ const suggestions: Fig.Suggestion[] = [
     icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   },
   {
-    name: "create-t3-app@latest",
+    name: "create-t3-app",
     icon: "https://create.t3.gg/favicon.svg",
   },
   {
