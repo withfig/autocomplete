@@ -1,3 +1,12 @@
+const dirArgument: Fig.Arg = {
+  name: "dir",
+  description:
+    "The name of the application, as well as the name of the directory to create",
+  template: "folders",
+  isOptional: true,
+  suggestCurrentToken: true,
+};
+
 const completionSpec: Fig.Spec = {
   name: "create-t3-app",
   description: "A CLI for creating web applications with the t3 stack",
@@ -18,6 +27,7 @@ const completionSpec: Fig.Spec = {
       description: "Display help for command",
     },
   ],
+  args: dirArgument,
 };
 
 export default completionSpec;
