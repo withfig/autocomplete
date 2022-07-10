@@ -73,6 +73,13 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+  {
+    name: "--concurrency-per-lambda",
+    description: "Concurrency with which each Lambda function should render",
+    args: {
+      name: "concurrencyPerLambda",
+    },
+  },
 ];
 
 const localRenderOptions: Fig.Option[] = [
