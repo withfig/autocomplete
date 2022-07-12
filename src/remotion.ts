@@ -336,6 +336,17 @@ const completionSpec: Fig.Spec = {
         description: "The entry point of your Remotion app",
         template: ["filepaths"],
       },
+      options: [
+        {
+          name: "--quiet",
+          description: "Print less output",
+        },
+        {
+          name: "-q",
+          hidden: true,
+          description: "Print less output",
+        },
+      ],
     },
     {
       name: "lambda",
