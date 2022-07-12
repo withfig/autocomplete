@@ -176,6 +176,22 @@ const renderOptions: Fig.Option[] = [
     },
   },
   {
+    name: "--every-nth-frame",
+    description: "Render only every nth frame (only for GIFs)",
+    args: {
+      default: "1",
+      suggestions: [{ name: "2" }, { name: "3" }, { name: "4" }, { name: "5" }],
+    },
+  },
+  {
+    name: "--loop",
+    description: "How many times a GIF should loop. 0 = No loop",
+    args: {
+      default: "1",
+      suggestions: [{ name: "0" }, { name: "1" }, { name: "2" }, { name: "3" }],
+    },
+  },
+  {
     name: "--crf",
     description: "FFMPEG CRF value, controls quality, see docs for info",
   },
