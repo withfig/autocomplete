@@ -184,7 +184,7 @@ const renderOptions: Fig.Option[] = [
     },
   },
   {
-    name: "--loop",
+    name: "--number-of-gif-loops",
     description: "How many times a GIF should loop. 0 = No loop",
     args: {
       default: "1",
