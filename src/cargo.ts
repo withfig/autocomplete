@@ -28,9 +28,7 @@ const testList: Fig.Generator = {
 };
 
 const binList: Fig.Generator = {
-  script: function () {
-    return `cargo read-manifest`;
-  },
+  script: "cargo read-manifest",
   postProcess: function (data: string) {
     const manifest = JSON.parse(data);
     return manifest.targets
@@ -41,21 +39,30 @@ const binList: Fig.Generator = {
   },
 };
 
+export interface CrateSearchResults {
+  crates: Crate[];
+}
+
+export interface Crate {
+  description: null | string;
+  name: string;
+  newest_version: string;
+}
+
 const searchGenerator: Fig.Generator = {
   script: function (context) {
-    if (context[context.length - 1] === "") return "";
     const searchTerm = context[context.length - 1];
-    return `cargo search "${searchTerm}" | \\grep -E "^\\w"`;
+    return `curl -sfL 'https://crates.io/api/v1/crates?q=${encodeURIComponent(
+      searchTerm
+    )}&per_page=30'`;
   },
   postProcess: function (out) {
-    return out.split("\n").map((line) => {
-      const regex = /([a-zA-Z0-9-_]+)\s=\s"(.*)"\s+#\s(.*)/;
-      const matches = regex.exec(line);
-      return {
-        name: matches[1],
-        description: `v${matches[2]} - ${matches[3]}`,
-      };
-    });
+    const json = JSON.parse(out) as CrateSearchResults;
+    return json.crates.map((crate) => ({
+      name: crate.name,
+      description: crate.description || "v" + crate.newest_version,
+      icon: "📦",
+    }));
   },
 };
 
@@ -3923,6 +3930,8 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "query",
         isVariadic: true,
+        generators: searchGenerator,
+        suggestCurrentToken: true,
       },
     },
     {
