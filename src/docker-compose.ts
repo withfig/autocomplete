@@ -22,7 +22,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "build",
       description: "Build or rebuild services",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "--build-arg",
@@ -118,7 +123,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "create",
       description: "Creates containers for a service",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "--force-recreate",
@@ -176,7 +186,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "events",
       description: "Receive real time events from containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "--json",
@@ -187,7 +202,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "exec",
       description: "Execute a command in a running container",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isCommand: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: ["-d", "--detach"],
@@ -241,7 +260,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "images",
       description: "List images used by the created containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: ["-q", "--quiet"],
@@ -252,7 +276,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "kill",
       description: "Force stop service containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "-s",
@@ -264,7 +293,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "logs",
       description: "View output from containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "--no-color",
@@ -295,11 +329,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "pause",
       description: "Pause services",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
     },
     {
       name: "port",
       description: "Print the public port for a port binding",
+      args: [
+        {
+          name: "service",
+          isOptional: true,
+          isVariadic: true,
+          generators: servicesGenerator,
+        },
+        { name: "private_port" },
+      ],
       options: [
         {
           name: "--protocol",
@@ -322,7 +370,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "ps",
       description: "List containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: ["-q", "--quiet"],
@@ -350,6 +403,12 @@ const completionSpec: Fig.Spec = {
       name: "pull",
       description:
         "Pulls images for services defined in a Compose file, but does not start the containers",
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "--ignore-pull-failures",
@@ -377,6 +436,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "push",
       description: "Pushes images for services",
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: "--ignore-push-failures",
@@ -402,7 +467,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "rm",
       description: "Removes stopped service containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: ["-f", "--force"],
@@ -421,7 +491,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "Run a one-off command on a service",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        generators: servicesGenerator,
+        isCommand: true,
+      },
       options: [
         {
           name: ["-d", "--detach"],
@@ -526,12 +600,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "start",
       description: "Start existing containers",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
     },
     {
       name: "stop",
       description: "Stop running containers without removing them",
-      args: { generators: servicesGenerator },
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
       options: [
         {
           name: ["-t", "--timeout"],
@@ -545,10 +629,22 @@ const completionSpec: Fig.Spec = {
     {
       name: "top",
       description: "Display the running processes",
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
     },
     {
       name: "unpause",
       description: "Unpause services",
+      args: {
+        name: "service",
+        isOptional: true,
+        isVariadic: true,
+        generators: servicesGenerator,
+      },
     },
     {
       name: "up",
@@ -556,6 +652,7 @@ const completionSpec: Fig.Spec = {
         "Builds, (re)creates, starts, and attaches to containers for a service",
       args: {
         name: "service",
+        isOptional: true,
         isVariadic: true,
         generators: servicesGenerator,
       },
