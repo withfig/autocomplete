@@ -51,10 +51,8 @@ export interface Crate {
 
 const searchGenerator: Fig.Generator = {
   script: function (context) {
-    const searchTerm = context[context.length - 1];
-    return `curl -sfL 'https://crates.io/api/v1/crates?q=${encodeURIComponent(
-      searchTerm
-    )}&per_page=30'`;
+    const query = encodeURIComponent(context[context.length - 1]);
+    return `curl -sfL 'https://crates.io/api/v1/crates?q=${query}&per_page=60'`;
   },
   postProcess: function (out) {
     const json = JSON.parse(out) as CrateSearchResults;
