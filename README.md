@@ -116,6 +116,9 @@ npm run build
 
 # Lint and fix issues
 npm run lint:fix
+
+# Check for any spelling mistake
+npm run cspell
 ```
 
 ## 🔥 Contributions
