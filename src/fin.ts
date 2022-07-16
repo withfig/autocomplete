@@ -366,7 +366,7 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
             generators: {
               script:
-                "\\command ls $HOME/.ssh | \\command grep --color=never -E '^id_'",
+                "\\command ls $HOME/.ssh | \\command grep --color=never -v 'pub'",
               splitOn: "\n",
             },
           },
