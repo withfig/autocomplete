@@ -838,16 +838,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["docker", "d"],
       description: "Run Docker commands directly",
-      args: {
-        name: "command",
-      },
+      loadSpec: "docker",
     },
     {
       name: ["docker-compose", "dc"],
       description: "Run Docker Compose commands directly",
-      args: {
-        name: "command",
-      },
+      loadSpec: "docker-compose",
     },
     {
       name: ["docker-machine", "dm"],
