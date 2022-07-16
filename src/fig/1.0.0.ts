@@ -3,6 +3,10 @@ import {
   subsystemsGenerator,
   themesGenerator,
   pluginsGenerator,
+  tokensGenerators,
+  invitationsGenerators,
+  membersGenerators,
+  teamsGenerators,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -2104,7 +2108,7 @@ versions["1.4.0"] = {
                   description: "The team namespace to create the token for",
                   args: {
                     name: "team",
-                    isOptional: true,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2129,7 +2133,7 @@ versions["1.4.0"] = {
                   exclusiveOn: ["-p", "--personal"],
                   args: {
                     name: "team",
-                    isOptional: true,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2176,7 +2180,7 @@ versions["1.4.0"] = {
                   description: "The team namespace to revoke the token for",
                   args: {
                     name: "team",
-                    isOptional: true,
+                    generators: teamsGenerators,
                   },
                 },
                 {
@@ -2190,6 +2194,7 @@ versions["1.4.0"] = {
               ],
               args: {
                 name: "name",
+                generators: tokensGenerators,
               },
             },
           ],
@@ -2227,114 +2232,124 @@ versions["1.4.0"] = {
     },
     {
       name: "team",
-      subcommands: [
-        {
-          name: "members",
-          description: "List all members on a team",
-          options: [
+      args: {
+        name: "team",
+        generators: teamsGenerators,
+        isOptional: true,
+        loadSpec: {
+          name: "team",
+          subcommands: [
             {
-              name: "--version",
-              description: "Print version information",
+              name: "members",
+              description: "List all members on a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
             },
             {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "remove",
-          description: "Remove a member from a team",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "add",
-          description: "Invite a member to a team",
-          options: [
-            {
-              name: "--role",
+              name: "remove",
+              description: "Remove a member from a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
               args: {
-                name: "role",
-                isOptional: true,
-                suggestions: ["owner", "admin", "member"],
+                name: "email",
+                generators: membersGenerators,
               },
             },
             {
-              name: "--version",
-              description: "Print version information",
+              name: "add",
+              description: "Invite a member to a team",
+              options: [
+                {
+                  name: "--role",
+                  args: {
+                    name: "role",
+                    isOptional: true,
+                    suggestions: ["owner", "admin", "member"],
+                  },
+                },
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+              },
             },
             {
-              name: ["-h", "--help"],
-              description: "Print help information",
+              name: "invitations",
+              description: "List pending invitations to a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+            },
+            {
+              name: "revoke",
+              description: "Revoke an invitation to a team",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "email",
+                generators: invitationsGenerators,
+              },
+            },
+            {
+              name: "help",
+              description:
+                "Print this message or the help of the given subcommand(s)",
+              options: [
+                {
+                  name: "--version",
+                  description: "Print version information",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Print help information",
+                },
+              ],
+              args: {
+                name: "subcommand",
+                isOptional: true,
+              },
             },
           ],
-          args: {
-            name: "email",
-          },
         },
-        {
-          name: "invitations",
-          description: "List pending invitations to a team",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "revoke",
-          description: "Revoke an invitation to a team",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "email",
-          },
-        },
-        {
-          name: "help",
-          description:
-            "Print this message or the help of the given subcommand(s)",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "subcommand",
-            isOptional: true,
-          },
-        },
-      ],
+      },
       options: [
         {
           name: ["-f", "--format"],
@@ -2374,10 +2389,6 @@ versions["1.4.0"] = {
           description: "Print help information",
         },
       ],
-      args: {
-        name: "team",
-        isOptional: true,
-      },
     },
     {
       name: ["internal", "_"],
