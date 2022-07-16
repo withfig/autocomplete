@@ -19,7 +19,7 @@ const hosts: Fig.Generator = {
   },
 };
 
-const aliass: Fig.Generator = {
+const aliasGenerator: Fig.Generator = {
   script: "fin alias list",
   postProcess: (output) => {
     return output
@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove alias",
           args: {
             name: "alias_name",
-            generators: aliass,
+            generators: aliasGenerator,
           },
         },
       ],
@@ -93,6 +93,7 @@ const completionSpec: Fig.Spec = {
             "Truncate the database and import from SQL dump file or stdin",
           args: {
             name: "file",
+            template: "filepaths",
           },
           options: [
             {
@@ -359,14 +360,20 @@ const completionSpec: Fig.Spec = {
         {
           name: "add",
           description:
-            "Add a private SSH key from $HOME/.ssh by file name. mAdds all default keys (id_rsa/id_dsa/id_ecdsa/id_ed25519) if no file name is given",
+            "Add a private SSH key from $HOME/.ssh by file name. Adds all default keys (id_rsa/id_dsa/id_ecdsa/id_ed25519) if no file name is given",
           args: {
             name: "key-name",
             isOptional: true,
+            generators: {
+              script:
+                "\\command ls .ssh | \\command grep --color=never -E '^id_'",
+              splitOn: "\n",
+            },
           },
           options: [
             {
               name: "--quiet",
+              description: "Suppress key already loaded notifications",
             },
           ],
         },
@@ -554,6 +561,7 @@ const completionSpec: Fig.Spec = {
               requiresEquals: true,
               args: {
                 name: "name",
+                template: "filepaths",
               },
             },
           ],
@@ -600,6 +608,7 @@ const completionSpec: Fig.Spec = {
               requiresEquals: true,
               args: {
                 name: "name",
+                template: "filepaths",
               },
             },
           ],
@@ -614,6 +623,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute a command or a script in cli",
       args: {
         name: "command|file",
+        isCommand: true,
       },
     },
     {
@@ -669,6 +679,7 @@ const completionSpec: Fig.Spec = {
           description: "Load docker images from a tar archive",
           args: {
             name: "file",
+            template: "filepaths",
           },
         },
       ],
