@@ -31,6 +31,11 @@ const aliasGenerator: Fig.Generator = {
   },
 };
 
+const serviceGenerator: Fig.Generator = {
+  script: "\\command fin docker ps --format '{{.Names}}'",
+  splitOn: "\n",
+};
+
 const completionSpec: Fig.Spec = {
   name: "fin",
   description: "Docksal command line utility",
@@ -252,6 +257,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "service",
+            generators: serviceGenerator,
             isOptional: true,
           },
         },
@@ -271,6 +277,7 @@ const completionSpec: Fig.Spec = {
           priority: 70,
           args: {
             name: "service",
+            generators: serviceGenerator,
           },
         },
         {
@@ -286,6 +293,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "service",
+            generators: serviceGenerator,
           },
         },
         {
@@ -499,6 +507,7 @@ const completionSpec: Fig.Spec = {
       description: "Open shell into service's container. Defaults to cli",
       args: {
         name: "service",
+        generators: serviceGenerator,
       },
     },
     {
@@ -731,7 +740,8 @@ const completionSpec: Fig.Spec = {
         },
       ],
       args: {
-        name: "SERVICE",
+        name: "service",
+        generators: serviceGenerator,
       },
     },
     {
