@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
           description: "Type of the container, defaults to `ephemeral`",
           args: {
             name: "container type",
-            suggestions: ["ephemeral", ""],
+            suggestions: ["ephemeral", "persistent"],
           },
         },
         {
