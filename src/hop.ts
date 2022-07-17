@@ -68,32 +68,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Prints this message or the help of the given subcommand(s)",
-      subcommands: [
-        {
-          name: "auth",
-          description: "Get help on auth",
-        },
-        {
-          name: "deploy",
-          description: "Get help on deploy",
-        },
-        {
-          name: "ignite",
-          description: "Get help on ignite",
-        },
-        {
-          name: "projects",
-          description: "Get help on projects",
-        },
-        {
-          name: "secrets",
-          description: "Get help on project secrets",
-        },
-        {
-          name: "whoami",
-          description: "Get help on whoami",
-        },
-      ],
+      args: {
+        name: "command",
+        template: "help,"
+      },
     },
     {
       name: "ignite",
