@@ -33,35 +33,66 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--type", "-t"],
           description: "Type of the container, defaults to `ephemeral`",
+          args: {
+            name: "container type",
+            suggestions: ["ephemeral", ""],
+          },
         },
         {
           name: ["--containers", "-i"],
           description:
             "Number of containers to use, defaults to 1 if `scaling` is manual",
+          args: {
+            name: "container amount",
+            suggestions: ["1", "2", "4", "8", "10"],
+          },
         },
         {
           name: ["--cpu", "-c"],
           description: "The number of CPUs to use, defaults to 1",
+          args: {
+            name: "cpu amount",
+            suggestions: ["1", "2", "4", "8"],
+          },
         },
         {
           name: ["--env", "-e"],
           description: "Environment variables to set, in the form of KEY=VALUE",
+          args: {
+            name: "environment variable",
+            suggestions: ["port="],
+          },
         },
         {
           name: ["--name", "-n"],
           description: "Name of the deployment, defaults to the directory name",
+          args: {
+            name: "deployment name",
+          },
         },
         {
           name: ["--project", "-p"],
           description: "Namespace or ID of the project to use",
+          args: {
+            name: "project",
+            isOptional: true,
+          },
         },
         {
           name: ["--ram", "-m"],
           description: "Amount of RAM to use, defaults to 512MB",
+          args: {
+            name: "ram amount",
+            suggestions: ["128MB", "256MB", "512MB", "1G", "2G", "4G"],
+          },
         },
         {
           name: ["--scaling", "-s"],
           description: "Scaling strategy, defaults to `manual`",
+          args: {
+            name: "scaling strategy",
+            suggestions: ["manual", "autoscale"],
+          },
         },
       ],
     },
@@ -70,7 +101,7 @@ const completionSpec: Fig.Spec = {
       description: "Prints this message or the help of the given subcommand(s)",
       args: {
         name: "command",
-        template: "help,"
+        template: "help",
       },
     },
     {
