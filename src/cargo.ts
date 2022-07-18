@@ -91,15 +91,14 @@ const dependencyGenerator: Fig.Generator = {
   script: "cargo metadata --format-version 1",
   postProcess: function (data: string) {
     const metadata = JSON.parse(data);
+    const seen = new Set<string>();
     return metadata.packages
-      .map(({ name, description }) => ({
-        name,
-        description,
-      }))
-      .filter(
-        (value, index, self) =>
-          self.findIndex((v) => v.name === value.name) === index
-      );
+      .map(({ name, description }) => ({ name, description }))
+      .filter((item: { name: string; description: string }) => {
+        if (seen.has(item.name)) return false;
+        seen.add(item.name);
+        return true;
+      });
   },
 };
 
@@ -3927,9 +3926,9 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "query",
-        isVariadic: true,
         generators: searchGenerator,
-        suggestCurrentToken: true,
+        debounce: true,
+        isVariadic: true,
       },
     },
     {
