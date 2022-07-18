@@ -3929,6 +3929,7 @@ const completionSpec: Fig.Spec = {
         generators: searchGenerator,
         debounce: true,
         isVariadic: true,
+        suggestCurrentToken: true,
       },
     },
     {
