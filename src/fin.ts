@@ -373,8 +373,7 @@ const completionSpec: Fig.Spec = {
             name: "key-name",
             isOptional: true,
             generators: {
-              script:
-                "\\command ls $HOME/.ssh | \\command grep --color=never -v 'pub'",
+              script: "\\ls $HOME/.ssh | \\grep --color=never -v 'pub'",
               splitOn: "\n",
             },
           },
