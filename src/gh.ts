@@ -374,8 +374,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "browse",
       description: "Open the repository in the browser",
-      options: [ghOptions.help],
-      subcommands: [
+      args: {
+        name: "[pr | issue | path[:line]",
+        generators: ghGenerators.listPR,
+      },
+      options: [
+        ghOptions.help,
         {
           name: ["-b", "--branch"],
           description: "Select another branch by passing in the branch name",
@@ -386,7 +390,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-c", "--commit"],
-          description: "Select another branch by passing in the branch name",
+          description: "Open the last commit",
         },
         {
           name: ["-n", "--no-browser"],
