@@ -377,6 +377,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "[pr | issue | path[:line]",
         generators: ghGenerators.listPR,
+        suggestCurrentToken: true,
       },
       options: [
         ghOptions.help,
