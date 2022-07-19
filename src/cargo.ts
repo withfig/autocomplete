@@ -361,6 +361,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: [
         {
@@ -607,6 +611,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
     },
     {
@@ -833,6 +841,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
     },
@@ -1334,6 +1346,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
     },
     {
@@ -1649,6 +1665,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
     },
@@ -2092,6 +2112,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
       args: {
@@ -3401,6 +3425,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: {
         name: "args",
@@ -3630,6 +3658,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: {
         name: "args",
@@ -3841,6 +3873,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
       args: {
@@ -4169,6 +4205,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
       args: [
@@ -4942,6 +4982,154 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "subcommand",
+      },
+    },
+    {
+      name: "add",
+      icon: "📦",
+      description: "Add dependencies to a Cargo.toml manifest file",
+      options: [
+        {
+          name: "--no-default-features",
+          description: "Disable the default features",
+        },
+        {
+          name: "--default-features",
+          description: "Re-enable the default features",
+        },
+        {
+          name: ["-F", "--features"],
+          description: "Space or comma separated list of features to activate",
+        },
+        {
+          name: "--optional",
+          description: "Mark the dependency as optional",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: "--no-optional",
+          description: "Mark the dependency as required",
+        },
+        {
+          name: "--color",
+          args: {
+            name: "WHEN",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--rename",
+          description: "Rename the dependency",
+          args: {
+            name: "NAME",
+          },
+        },
+        {
+          name: "--frozen",
+          description: "Require Cargo.lock and cache are up to date",
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+        },
+        {
+          name: "--locked",
+          description: "Require Cargo.lock is up to date",
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to modify",
+          args: {
+            name: "SPEC",
+          },
+        },
+        {
+          name: "--offline",
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Do not print cargo log messages",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the manifest",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--path",
+          description: "Filesystem path to local crate to add",
+          args: {
+            name: "PATH",
+            template: "folders",
+          },
+        },
+        {
+          name: "--git",
+          description: "Git repository location",
+          args: {
+            name: "URI",
+          },
+        },
+        {
+          name: "--branch",
+          description: "Git branch to download the crate from",
+          dependsOn: ["--git"],
+          args: {
+            name: "BRANCH",
+          },
+        },
+        {
+          name: "--tag",
+          description: "Git tag to download the crate from",
+          dependsOn: ["--git"],
+          args: {
+            name: "TAG",
+          },
+        },
+        {
+          name: "--rev",
+          description: "Git reference to download the crate from",
+          dependsOn: ["--git"],
+          args: {
+            name: "REV",
+          },
+        },
+        {
+          name: "--registry",
+          description: "Package registry for this dependency",
+          args: {
+            name: "NAME",
+          },
+        },
+        {
+          name: "--dev",
+          description: "Add as development dependency",
+        },
+        {
+          name: "--build",
+          description: "Add as build dependency",
+        },
+        {
+          name: "--target",
+          description: "Add as dependency to the given target platform",
+          args: {
+            name: "TARGET",
+            generators: targetGenerator,
+          },
+        },
+      ],
+      args: {
+        name: "DEP_ID",
+        generators: searchGenerator,
+        debounce: true,
+        isVariadic: true,
       },
     },
   ],
