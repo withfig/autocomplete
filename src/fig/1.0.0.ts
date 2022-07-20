@@ -621,6 +621,7 @@ const completion: Fig.Subcommand = {
     {
       name: "settings",
       description: "Customize appearance & behavior",
+      filterStrategy: "fuzzy",
       subcommands: [
         {
           name: "init",
@@ -3534,6 +3535,7 @@ versions["1.4.1"] = {
     {
       name: "run",
       description: "Search for and execute workflows",
+      filterStrategy: "fuzzy",
       options: [
         {
           name: ["-h", "--help"],
