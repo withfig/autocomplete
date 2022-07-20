@@ -621,6 +621,7 @@ const completion: Fig.Subcommand = {
     {
       name: "settings",
       description: "Customize appearance & behavior",
+      filterStrategy: "fuzzy",
       subcommands: [
         {
           name: "init",
