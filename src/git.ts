@@ -45,43 +45,60 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
   ];
 };
 
-const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
-  const output = filterMessages(out);
+interface PostProcessBranchesOptions {
+  insertWithoutRemotes?: true;
+}
+const postProcessBranches =
+  (options: PostProcessBranchesOptions = {}): Fig.Generator["postProcess"] =>
+  (out) => {
+    const { insertWithoutRemotes = false } = options;
 
-  if (output.startsWith("fatal:")) {
-    return [];
-  }
+    const output = filterMessages(out);
 
-  return output.split("\n").map((elm) => {
-    let name = elm.trim();
-    const parts = elm.match(/\S+/g);
-    if (parts.length > 1) {
-      if (parts[0] === "*") {
-        // We are in a detached HEAD state
-        if (elm.includes("HEAD detached")) {
-          return {};
-        }
-        // Current branch
-        return {
-          name: elm.replace("*", "").trim(),
-          description: "Current branch",
-          priority: 100,
-          icon: "⭐️",
-        };
-      } else if (parts[0] === "+") {
-        // Branch checked out in another worktree.
-        name = elm.replace("+", "").trim();
-      }
+    if (output.startsWith("fatal:")) {
+      return [];
     }
 
-    return {
-      name,
-      description: "Branch",
-      icon: "fig://icon?type=git",
-      priority: 75,
-    };
-  });
-};
+    return output
+      .split("\n")
+      .filter((line) => !line.trim().startsWith("HEAD"))
+      .map((branch) => {
+        let name = branch.trim();
+        const parts = branch.match(/\S+/g);
+        if (parts.length > 1) {
+          if (parts[0] === "*") {
+            // We are in a detached HEAD state
+            if (branch.includes("HEAD detached")) {
+              return null;
+            }
+            // Current branch
+            return {
+              name: branch.replace("*", "").trim(),
+              description: "Current branch",
+              priority: 100,
+              icon: "⭐️",
+            };
+          } else if (parts[0] === "+") {
+            // Branch checked out in another worktree.
+            name = branch.replace("+", "").trim();
+          }
+        }
+
+        let description = "Branch";
+
+        if (insertWithoutRemotes && name.startsWith("remotes/")) {
+          name = name.slice(name.indexOf("/", 8) + 1);
+          description = "Remote branch";
+        }
+
+        return {
+          name,
+          description,
+          icon: "fig://icon?type=git",
+          priority: 75,
+        };
+      });
+  };
 
 export const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
@@ -120,12 +137,12 @@ export const gitGenerators: Record<string, Fig.Generator> = {
           icon: "fig://icon?type=commandkey",
         };
       });
-      const names = {};
+      const seen = new Set();
       return suggestions.filter((suggestion) => {
-        if (names[suggestion.name]) {
+        if (seen.has(suggestion.name)) {
           return false;
         }
-        names[suggestion.name] = true;
+        seen.add(suggestion.name);
         return true;
       });
     },
@@ -201,27 +218,28 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   remoteLocalBranches: {
     script:
       "git --no-optional-locks branch -a --no-color --sort=-committerdate",
-    postProcess: postProcessBranches,
+    postProcess: postProcessBranches({ insertWithoutRemotes: true }),
   },
 
   localBranches: {
     script: "git --no-optional-locks branch --no-color --sort=-committerdate",
-    postProcess: postProcessBranches,
+    postProcess: postProcessBranches({ insertWithoutRemotes: true }),
   },
 
   // custom generator to display local branches by default or
   // remote branches if '-r' flag is used. See branch -d for use
   localOrRemoteBranches: {
     custom: async (tokens, executeShellCommand) => {
+      const pp = postProcessBranches({ insertWithoutRemotes: true });
       if (tokens.includes("-r")) {
-        return postProcessBranches(
+        return pp(
           await executeShellCommand(
             "git --no-optional-locks branch -r --no-color --sort=-committerdate"
           ),
           tokens
         );
       } else {
-        return postProcessBranches(
+        return pp(
           await executeShellCommand(
             "git --no-optional-locks branch --no-color --sort=-committerdate"
           ),
