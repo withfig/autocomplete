@@ -3,6 +3,7 @@ const getAppGenerator: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
   },
+  scriptTimeout: 15000,
   postProcess: function (out) {
     try {
       return JSON.parse(out).map((app) => {
