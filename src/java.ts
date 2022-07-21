@@ -47,7 +47,7 @@ const completionSpec: Fig.Spec = {
       name: ["--classpath", "-cp"],
       description: "Class search path of directories and zip/jar files",
       args: {
-        name: "seach files",
+        name: "search files",
         template: "filepaths",
       },
     },
