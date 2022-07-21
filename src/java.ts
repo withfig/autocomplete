@@ -17,7 +17,7 @@ const completionSpec: Fig.Spec = {
       description: "To launch the main class in a JAR file",
       args: {
         name: "JAR file",
-        template: "filepaths",
+        generators: filepaths({ extensions: ["jar"] }),
       },
     },
     {
