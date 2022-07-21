@@ -1,10 +1,14 @@
+import { filepaths } from "@fig/autocomplete-generators";
 const completionSpec: Fig.Spec = {
   name: "java",
   description: "Launch a Java application",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   args: {
     name: "mainclass",
     description: "To launch a class file",
-    template: "filepaths",
+    generators: filepaths({ extensions: ["java", "class"] }),
   },
   options: [
     {
@@ -12,7 +16,7 @@ const completionSpec: Fig.Spec = {
       priority: 99,
       description: "To launch the main class in a JAR file",
       args: {
-        name: "main class",
+        name: "JAR file",
         template: "filepaths",
       },
     },
