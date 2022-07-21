@@ -1,21 +1,23 @@
 const servicesGenerator: Fig.Generator = {
   script: (tokens) => {
+    const compose =
+      tokens[0] === "docker" ? "docker compose" : "docker-compose";
     const files: string[] = [];
-    for (let i = 0; i < tokens.length - 1; i += 1) {
+    for (let i = 0; i < tokens.length - 1; i++) {
       if (tokens[i] === "-f") {
         files.push(tokens[i + 1]);
         i += 1;
       }
     }
     const fileArgs = files.map((f) => `-f ${f}`).join(" ");
-    return `docker-compose ${fileArgs} config --services`;
+    return `${compose} ${fileArgs} config --services`;
   },
   splitOn: "\n",
 };
 
-const compose: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "docker-compose",
-  description: "Docker Compose",
+  description: "Define and run multi-container applications with Docker",
   subcommands: [
     {
       name: "build",
@@ -337,6 +339,7 @@ const compose: Fig.Spec = {
           description: "Path to workdir directory for this command",
           args: {
             name: "workdir",
+            template: "folders",
           },
         },
       ],
@@ -412,7 +415,8 @@ const compose: Fig.Spec = {
           description:
             "Number of lines to show from the end of the logs for each container",
           args: {
-            name: "tail",
+            name: "lines",
+            suggestions: ["all"],
             default: "all",
           },
         },
@@ -425,7 +429,7 @@ const compose: Fig.Spec = {
           description:
             "Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
           args: {
-            name: "until",
+            name: "timestamp",
           },
         },
       ],
@@ -493,6 +497,7 @@ const compose: Fig.Spec = {
           args: {
             name: "protocol",
             default: "tcp",
+            suggestions: ["tcp", "udp"],
           },
         },
       ],
@@ -757,6 +762,7 @@ const compose: Fig.Spec = {
           description: "Working directory inside the container",
           args: {
             name: "workdir",
+            template: "folders",
           },
         },
       ],
@@ -1028,4 +1034,4 @@ const compose: Fig.Spec = {
   ],
 };
 
-export default compose;
+export default completionSpec;
