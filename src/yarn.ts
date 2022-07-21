@@ -1,8 +1,15 @@
-import {
-  npmParserDirectives,
-  npmScriptsGenerator,
-  npmSearchGenerator,
-} from "./npm";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
+
+export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
+  alias: async (token, executeShellCommand) => {
+    const out = await executeShellCommand("cat $(npm prefix)/package.json");
+    const script: string = JSON.parse(out).scripts?.[token];
+    if (!script) {
+      throw new Error(`Script not found: '${token}'`);
+    }
+    return script;
+  },
+};
 
 export const nodeClis = [
   "vue",
@@ -372,7 +379,7 @@ const completionSpec: Fig.Spec = {
   },
   args: {
     generators: npmScriptsGenerator,
-    parserDirectives: npmParserDirectives,
+    parserDirectives: yarnScriptParserDirectives,
     isOptional: true,
     isCommand: true,
   },
@@ -1223,7 +1230,7 @@ const completionSpec: Fig.Spec = {
           name: "script",
           description: "Script to run from your package.json",
           generators: npmScriptsGenerator,
-          parserDirectives: npmParserDirectives,
+          parserDirectives: yarnScriptParserDirectives,
           isCommand: true,
         },
         {

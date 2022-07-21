@@ -199,17 +199,6 @@ export const npmScriptsGenerator: Fig.Generator = {
   },
 };
 
-export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
-  alias: async (token, executeShellCommand) => {
-    const out = await executeShellCommand("cat $(npm prefix)/package.json");
-    const script: string = JSON.parse(out).scripts?.[token];
-    if (!script) {
-      throw new Error(`Script not found: '${token}'`);
-    }
-    return script;
-  },
-};
-
 const globalOption: Fig.Option = {
   name: ["-g", "--global"],
   description:
@@ -454,13 +443,19 @@ const completionSpec: Fig.Spec = {
         },
         ignoreScriptsOption,
         scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "args",
+            isVariadic: true,
+            // TODO: load the spec based on the runned script (see yarn spec `yarnScriptParsedDirectives`)
+          },
+        },
       ],
       args: {
         name: "script",
         description: "Script to run from your package.json",
         generators: npmScriptsGenerator,
-        parserDirectives: npmParserDirectives,
-        isCommand: true,
       },
     },
     {
