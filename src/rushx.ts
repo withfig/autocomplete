@@ -1,4 +1,5 @@
-import { npmParserDirectives, npmScriptsGenerator } from "./npm";
+import { npmScriptsGenerator } from "./npm";
+import { yarnScriptParserDirectives } from "./yarn";
 
 const completionSpec: Fig.Spec = {
   name: "rushx",
@@ -8,7 +9,7 @@ const completionSpec: Fig.Spec = {
     name: "Scripts",
     description: "Script to run from your package.json",
     generators: npmScriptsGenerator,
-    parserDirectives: npmParserDirectives,
+    parserDirectives: yarnScriptParserDirectives,
     isCommand: true,
   },
   options: [
