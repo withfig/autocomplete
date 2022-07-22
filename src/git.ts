@@ -3789,11 +3789,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "base",
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
           isOptional: true,
         },
         {
           name: "new base",
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
           isOptional: true,
         },
       ],
@@ -4244,11 +4246,13 @@ const completionSpec: Fig.Spec = {
           name: "remote",
           isOptional: true,
           generators: gitGenerators.remotes,
+          filterStrategy: "fuzzy",
         },
         {
           name: "branch",
           isOptional: true,
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
         },
       ],
     },
@@ -4265,6 +4269,7 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
             name: "remote",
             generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
             suggestions: ["false", "true", "merges", "preserve", "interactive"],
           },
         },
@@ -4644,11 +4649,13 @@ const completionSpec: Fig.Spec = {
           name: "remote",
           isOptional: true,
           generators: gitGenerators.remotes,
+          filterStrategy: "fuzzy",
         },
         {
           name: "branch",
           isOptional: true,
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
         },
       ],
     },
@@ -4954,6 +4961,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "remote",
             generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -4963,6 +4971,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "old remote",
               generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "new remote name",
@@ -5092,11 +5101,13 @@ const completionSpec: Fig.Spec = {
           name: "remote",
           isOptional: true,
           generators: gitGenerators.remotes,
+          filterStrategy: "fuzzy",
         },
         {
           name: "branch",
           isOptional: true,
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
         },
         {
           name: "refspec",
@@ -5416,6 +5427,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5470,6 +5482,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5491,6 +5504,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5516,6 +5530,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5526,11 +5541,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "branch",
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               name: "stash",
               isOptional: true,
               generators: gitGenerators.stashes,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6222,9 +6239,11 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6234,9 +6253,11 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6252,6 +6273,7 @@ const completionSpec: Fig.Spec = {
           description: "Edit the description for the branch",
           args: {
             generators: gitGenerators.localBranches,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6340,6 +6362,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "branch",
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               name: "start point",
@@ -6356,10 +6379,12 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               isOptional: true,
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6370,6 +6395,7 @@ const completionSpec: Fig.Spec = {
             name: "upstream",
             isOptional: true,
             generators: gitGenerators.localBranches,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6379,6 +6405,7 @@ const completionSpec: Fig.Spec = {
             name: "upstream",
             isOptional: true,
             generators: gitGenerators.localBranches,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6578,6 +6605,7 @@ const completionSpec: Fig.Spec = {
           name: "branch, file, tag or commit",
           description: "Branch, file, tag or commit to switch to",
           isOptional: true,
+          filterStrategy: "fuzzy",
           generators: [
             gitGenerators.remoteLocalBranches,
             gitGenerators.tags,
@@ -7163,6 +7191,7 @@ const completionSpec: Fig.Spec = {
       description: "Join two or more development histories together",
       args: {
         name: "branch",
+        filterStrategy: "fuzzy",
         generators: gitGenerators.remoteLocalBranches,
         isVariadic: true,
         isOptional: true,
@@ -7694,6 +7723,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "branch",
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               name: "start point",
@@ -7710,10 +7740,12 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               isOptional: true,
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -7746,6 +7778,7 @@ const completionSpec: Fig.Spec = {
           name: "branch name",
           description: "Branch or commit to switch to",
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
           suggestions: [
             {
               name: "-",
