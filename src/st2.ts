@@ -2052,7 +2052,7 @@ const triggerInstanceSubcommand: Fig.Subcommand = {
 };
 
 const ruleEnforcementSubcommand: Fig.Subcommand = {
-  name: "rule-enforcemnt",
+  name: "rule-enforcement",
   description: "Models that represent enforcement of rules",
   subcommands: [
     {
