@@ -895,7 +895,294 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "openpgp", description: "Manage the OpenPGP applications" },
+    {
+      name: "openpgp",
+      description: "Manage the OpenPGP applications",
+      subcommands: [
+        {
+          name: "info",
+          description: "Display general status of the OpenPGP application",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show openpgp info usage information",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description: "Reset all the OpenPGP data",
+          isDangerous: true,
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show openpgp reset usage information",
+            },
+          ],
+        },
+        {
+          name: "access",
+          description: "Manage PIN, Reset Code, and Admin PIN",
+          subcommands: [
+            {
+              name: "set-retries",
+              description: "Set PIN, Reset Code and Admin PIN retries",
+              args: [
+                {
+                  name: "PIN-RETRIES",
+                },
+                {
+                  name: "RESET-CODE-RETRIES",
+                },
+                {
+                  name: "ADMIN-PIN-RETRIES",
+                },
+              ],
+              options: [
+                {
+                  name: ["-a", "--admin-pin"],
+                  description: "Admin PIN for OpenPGP",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm the action without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show openpgp access set-retries usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show openpgp access usage information",
+            },
+          ],
+        },
+        {
+          name: "certificates",
+          description: "Manage certificates",
+          subcommands: [
+            {
+              name: "delete",
+              description: "Delete an OpenPGP certificate",
+              args: {
+                name: "KEY",
+                description:
+                  "Key slot to delete certificate from (sig, enc, aut, or att)",
+              },
+              options: [
+                {
+                  name: ["-a", "--admin-pin"],
+                  description: "Admin PIN for OpenPGP",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show openpgp certificates delete usage information",
+                },
+              ],
+            },
+            {
+              name: "export",
+              description: "Export an OpenPGP certificate",
+              args: [
+                {
+                  name: "KEY",
+                  description: "Key slot to read from (sig, enc, aut, or att)",
+                },
+                {
+                  name: "CERTIFICATE",
+                  description:
+                    "File to write certificate to. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-F", "--format"],
+                  description: "Encoding format",
+                  args: {
+                    name: "PEM|DER",
+                    default: "PEM",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show openpgp certificates export usage information",
+                },
+              ],
+            },
+            {
+              name: "import",
+              description: "Import an OpenPGP certificate",
+              args: [
+                {
+                  name: "KEY",
+                  description:
+                    "Key slot to import certificates to (sig, enc, aut, or att)",
+                },
+                {
+                  name: "CERTIFICATE",
+                  description:
+                    "File containing the certificate. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-a", "--admin-pin"],
+                  description: "Admin PIN for OpenPGP",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show openpgp certificates export usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show openpgp certificates usage information",
+            },
+          ],
+        },
+        {
+          name: "keys",
+          description: "Manage private keys",
+          subcommands: [
+            {
+              name: "attest",
+              description:
+                "Generate a attestation certificate for a key. Attestation is used to show that an asymmetric key was generated on the YubiKey and therefore doesn't exist outside the device",
+              args: [
+                {
+                  name: "KEY",
+                  description: "Key slot to attest (sig, enc, aut, or att)",
+                },
+                {
+                  name: "CERTIFICATE",
+                  description:
+                    "File to write attestation certificate to. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-F", "--format"],
+                  description: "Encoding format",
+                  args: {
+                    name: "PEM|DER",
+                    default: "PEM",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show openpgp keys attest usage information",
+                },
+              ],
+            },
+            {
+              name: "import",
+              description:
+                "Import a private key (ONLY SUPPORTS ATTESTATION KEY)",
+              args: [
+                {
+                  name: "KEY",
+                },
+                {
+                  name: "PRIVATE-KEY",
+                  description:
+                    "File containing the private key. Use '-' to use stdin",
+                },
+              ],
+              options: [
+                {
+                  name: ["-a", "--admin-pin"],
+                  description: "Admin PIN for OpenPGP",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show openpgp keys import usage information",
+                },
+              ],
+            },
+            {
+              name: "set-touch",
+              description: "Set touch policy for OpenPGP key",
+              args: [
+                {
+                  name: "KEY",
+                  description: "Key slot to set (sig, enc, aut or att)",
+                },
+                {
+                  name: "POLICY",
+                  description:
+                    "Touch policy to set (on, off, fixed, cached or cached-fixed)",
+                },
+              ],
+              options: [
+                {
+                  name: ["-a", "--admin-pin"],
+                  description: "Admin PIN for OpenPGP",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm the action without prompting",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show openpgp set-touch usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show openpgp keys usage information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Show openpgp usage information",
+        },
+      ],
+    },
     { name: "otp", description: "Manage the YubiOTP applications" },
     { name: "piv", description: "Manage the PIV applications" },
   ],
