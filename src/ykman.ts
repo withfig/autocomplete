@@ -1160,6 +1160,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: ["-f", "--force"],
                   description: "Confirm the action without prompting",
+                  isDangerous: true,
                 },
                 {
                   name: ["-h", "--help"],
@@ -1183,7 +1184,372 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "otp", description: "Manage the YubiOTP applications" },
+    {
+      name: "otp",
+      description: "Manage the YubiOTP applications",
+      subcommands: [
+        {
+          name: "calculate",
+          description:
+            "Perform a challenge-response operation. Send a challenge (in hex) to a YubiKey slot with a challenge-response credential, and read the response. Supports output as a OATH-TOTP code",
+          options: [
+            {
+              name: ["-T", "--totp"],
+              description:
+                "Generate a TOTP code, use the current time if challenge is omitted",
+            },
+            {
+              name: ["-d", "--digits"],
+              description: "Number of digits in generated TOTP code",
+              args: {
+                name: "6|8",
+                default: "6",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp calculate usage information",
+            },
+          ],
+        },
+        {
+          name: "chalresp",
+          description: "Program a challenge-response operation",
+          args: [
+            {
+              name: "1|2",
+            },
+            {
+              name: "KEY",
+              description:
+                "A key given in hex (or base32, if --totp is specified)",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: ["-t", "--touch"],
+              description:
+                "Require touch on the YubiKey to generate a response",
+            },
+            {
+              name: ["-T", "--totp"],
+              description:
+                "Use a base32 encoded key (optionally padded) for TOTP credentials",
+            },
+            {
+              name: ["-g", "--generate"],
+              description:
+                "Generate a random secret key. Conflicts with KEY argument",
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp chalresp usage information",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes the configuration stored in a slot",
+          isDangerous: true,
+          args: {
+            name: "1|2",
+          },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp delete usage information",
+            },
+          ],
+        },
+        {
+          name: "hotp",
+          description: "Program an HMAC-SHA1 OATH-HOTP credential",
+          args: [
+            {
+              name: "1|2",
+            },
+            {
+              name: "KEY",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: ["-d", "--digits"],
+              description: "Number of digits in generated code",
+              args: {
+                name: "6|8",
+                default: "6",
+              },
+            },
+            {
+              name: ["-c", "--counter"],
+              description: "Initial counter value",
+              args: {
+                name: "INTEGER",
+              },
+            },
+            {
+              name: ["-i", "--identifier"],
+              description: "Token identifier",
+              args: {
+                name: "TEXT",
+              },
+            },
+            {
+              name: "--no-enter",
+              description:
+                "Don't send an Enter keystroke after outputting the code",
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp hotp usage information",
+            },
+          ],
+        },
+        {
+          name: "info",
+          description: "Display general status of the YubiKey OTP slots",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show otp info usage information",
+            },
+          ],
+        },
+        {
+          name: "ndef",
+          description: "Configure a slot to be used over NDEF (NFC)",
+          args: {
+            name: "1|2",
+          },
+          options: [
+            {
+              name: "--prefix",
+              description: "Added before the NDEF payload. Typically a URI",
+              args: {
+                name: "TEXT",
+                default: "an empty string",
+              },
+            },
+            {
+              name: ["-t", "--ndef-type"],
+              description: "NDEF payload type",
+              args: {
+                name: "TEXT|URI",
+                default: "URI",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp ndef usage information",
+            },
+          ],
+        },
+        {
+          name: "settings",
+          description: "Update the settings for a slot",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-A", "--new-access-code"],
+              description:
+                'Set a new 6 byte access code for the slot. Use "-" as a value to prompt for input',
+              args: {
+                name: "HEX",
+              },
+            },
+            {
+              name: "--delete-access-code",
+              description: "Remove access code from the slot",
+            },
+            {
+              name: ["--enter", "--no-enter"],
+              description:
+                "Should send 'Enter' keystroke after slot output. (default: enter)",
+            },
+            {
+              name: ["-p", "--pacing"],
+              description:
+                "Throttle output speed by adding a delay (in ms) between characters emitted",
+              args: {
+                name: "0|20|40|60",
+                default: "0",
+              },
+            },
+            {
+              name: "--use-numeric-keypad",
+              description:
+                "Use scancodes for numeric keypad when sending digits. Helps with some keyboard layouts",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp settings usage information",
+            },
+          ],
+        },
+        {
+          name: "static",
+          description: "Configure a static password",
+          args: [
+            {
+              name: "1|2",
+            },
+            {
+              name: "PASSWORD",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: ["-g", "--generate"],
+              description: "Generate a random password",
+            },
+            {
+              name: ["-l", "--length"],
+              description: "Length of generated password",
+              args: {
+                name: "LENGTH",
+                default: "38 (1<=x<=38)",
+              },
+            },
+            {
+              name: ["-k", "--keyboard-layout"],
+              description: "Keyboard layout to use for the static password",
+              args: {
+                name: "MODHEX|US|UK|DE|FR|IT|BEPO|NORMAN",
+                default: "MODHEX",
+              },
+            },
+            {
+              name: "--no-enter",
+              description:
+                "Don't send an Enter keystroke after outputting the password",
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp chalresp usage information",
+            },
+          ],
+        },
+        {
+          name: "swap",
+          description: "Swaps the two slot configurations",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp swap usage information",
+            },
+          ],
+        },
+        {
+          name: "yubiotp",
+          description: "Program a Yubico OTP credential",
+          args: {
+            name: "1|2",
+          },
+          options: [
+            {
+              name: ["-P", "--public-id"],
+              description: "Public identifier prefix",
+              args: {
+                name: "MODHEX",
+              },
+            },
+            {
+              name: ["-p", "--private-id"],
+              description: "6 byte private identifier",
+              args: {
+                name: "HEX",
+              },
+            },
+            {
+              name: ["-k", "--key"],
+              description: "16 byte secret key",
+              args: {
+                name: "HEX",
+              },
+            },
+            {
+              name: "--no-enter",
+              description:
+                "Don't send an Enter keystroke after emitting the OTP",
+            },
+            {
+              name: ["-S", "--serial-public-id"],
+              description:
+                "Use YubiKey serial number as public ID. Conflicts with --public-id",
+            },
+            {
+              name: ["-g", "--generate-private-id"],
+              description:
+                "Generate a random private ID. Conflicts with --private-id",
+            },
+            {
+              name: ["-G", "--generate-key"],
+              description: "Generate a random secret key. Conflicts with --key",
+            },
+            {
+              name: ["-u", "--upload"],
+              description:
+                "Upload credential to YubiCloud (opens in browser). Conflicts with --force",
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show otp yubiotp usage information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: "--access-code",
+          description:
+            'A 6 byte access code. Use "-" as a value to prompt for input',
+          args: {
+            name: "HEX",
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Show otp usage information",
+        },
+      ],
+    },
     { name: "piv", description: "Manage the PIV applications" },
   ],
   options: [
