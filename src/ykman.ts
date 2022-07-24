@@ -250,7 +250,266 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "fido", description: "Manage the FIDO applications" },
+    {
+      name: "fido",
+      description: "Manage the FIDO applications",
+      subcommands: [
+        {
+          name: "info",
+          description: "Display general status of the FIDO2 application",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show fido info usage information",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description:
+            "Reset all FIDO applications. This action will wipe all FIDO credentials, including FIDO U2F credentials, on the YubiKey and remove the PIN code",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show fido reset usage information",
+            },
+          ],
+        },
+        {
+          name: "access",
+          description: "Manage the PIN for FIDO",
+          subcommands: [
+            {
+              name: "change-pin",
+              description: "Set or change PIN code",
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "Current PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-n", "--new-pin"],
+                  description: "Current PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-u", "--u2f"],
+                  description: "Set FIDO U2F pin instead of FIDO2 PIN",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido access change-pin usage information",
+                },
+              ],
+            },
+            {
+              name: "verify-pin",
+              description: "Verify the PIN against a YubiKey",
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "Current PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido access verify-pin usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show fido access usage information",
+            },
+          ],
+        },
+        {
+          name: "credentials",
+          description:
+            "Manage discoverable (resident) credentials. This command lets you manage credentials stored on your YubiKey. Credential management is only available when a FIDO PIN is set on the YubiKey",
+          subcommands: [
+            {
+              name: "delete",
+              description: "Delete a credential",
+              args: {
+                name: "QUERY",
+                description:
+                  "A unique substring match of a credentials RP ID, user ID (hex) or name, or credential ID",
+              },
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm deletion without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido credentials delete usage information",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List credentials",
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido credentials list usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show fido credentials usage information",
+            },
+          ],
+        },
+        {
+          name: "fingerprints",
+          description: "Manage fingerprints",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a new fingerprint",
+              args: {
+                name: "NAME",
+                description:
+                  'A short readable name for the fingerprint (eg. "Left thumb")',
+              },
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido fingerprints add usage information",
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                'Delete a fingerprint. Delete a fingerprint from the YubiKey by its ID, which can be seen by running the "list" subcommand',
+              args: {
+                name: "ID",
+              },
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm deletion without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show fido fingerprints delete usage information",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List registered fingerprint. Lists fingerprints by ID and (if available) label",
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido fingerprints list usage information",
+                },
+              ],
+            },
+            {
+              name: "rename",
+              description: "Set the label for a fingerprint",
+              args: [
+                {
+                  name: "ID",
+                  description:
+                    'The ID of the fingerprint to rename (as shown in "list")',
+                },
+                {
+                  name: "NAME",
+                  description:
+                    'A short readable name for the fingerprint (eg. "Left thumb")',
+                },
+              ],
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show fido rename usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show fido fingerprints usage information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Show fido usage information",
+        },
+      ],
+    },
     { name: "oath", description: "Manage the OATH applications" },
     { name: "openpgp", description: "Manage the OpenPGP applications" },
     { name: "otp", description: "Manage the YubiOTP applications" },
