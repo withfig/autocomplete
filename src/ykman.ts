@@ -1550,7 +1550,757 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "piv", description: "Manage the PIV applications" },
+    {
+      name: "piv",
+      description: "Manage the PIV applications",
+      subcommands: [
+        {
+          name: "info",
+          description: "Display general status of the PIV application",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show piv info usage information",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description: "Reset all PIV data",
+          isDangerous: true,
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Show piv reset usage information",
+            },
+          ],
+        },
+        {
+          name: "access",
+          description: "Manage PIN, PUK, and Management Key",
+          subcommands: [
+            {
+              name: "change-management-key",
+              description: "Change the management key",
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-t", "--touch"],
+                  description: "Require touch on YubiKey to generate code",
+                },
+                {
+                  name: ["-n", "--new-management-key"],
+                  description: "A new management key",
+                  args: {
+                    name: "TEX",
+                  },
+                },
+                {
+                  name: ["-m", "--management-key"],
+                  description: "Current management key",
+                  args: {
+                    name: "TEX",
+                  },
+                },
+                {
+                  name: ["-a", "--algorithm"],
+                  description: "Management key algorithm",
+                  args: {
+                    name: "TDES|AES128|AES192|AES256",
+                    default: "TDES",
+                  },
+                },
+                {
+                  name: ["-p", "--protect"],
+                  description:
+                    "Store new management key on the YubiKey, protected by PIN. A random key will be used if no key is provided",
+                },
+                {
+                  name: ["-g", "--generate"],
+                  description:
+                    "Generate a random management key. Implied by --protect unless --new-management-key is also given. Conflicts with --new-management-key",
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm the action without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show piv access change-management-key usage information",
+                },
+              ],
+            },
+            {
+              name: "change-pin",
+              description: "Change the PIN code",
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "Current PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-n", "--new-pin"],
+                  description: "A new PIN",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv access change-pin usage information",
+                },
+              ],
+            },
+            {
+              name: "change-puk",
+              description: "Change the PUK code",
+              options: [
+                {
+                  name: ["-P", "--puk"],
+                  description: "Current PUK code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-n", "--new-puk"],
+                  description: "A new PUK",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv access change-puk usage information",
+                },
+              ],
+            },
+            {
+              name: "set-retries",
+              description: "Set the number of PIN and PUK retry attempts",
+              args: [
+                {
+                  name: "PIN-RETRIES",
+                },
+                {
+                  name: "PUK-RETRIES",
+                },
+              ],
+              options: [
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm the action without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv access set-retries usage information",
+                },
+              ],
+            },
+            {
+              name: "unblock-pin",
+              description: "Unblock the PIN (using PUK)",
+              options: [
+                {
+                  name: ["-p", "--puk"],
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-n", "--new-pin"],
+                  args: {
+                    name: "NEW-PIN",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv access unblock-pin usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show piv access usage information",
+            },
+          ],
+        },
+        {
+          name: "certificates",
+          description: "Manage certificates",
+          subcommands: [
+            {
+              name: "delete",
+              description: "Delete a certificate",
+              isDangerous: true,
+              args: {
+                name: "SLOT",
+                description: "PIV slot of the certificate",
+              },
+              options: [
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv certificates delete usage information",
+                },
+              ],
+            },
+            {
+              name: "export",
+              description: "Export an X.509 certificate",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the certificate",
+                },
+                {
+                  name: "CERTIFICATE",
+                  description:
+                    "File to write certificate to. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-F", "--format"],
+                  description: "Encoding format",
+                  args: {
+                    name: "PEM|DER",
+                    default: "PEM",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv certificates export usage information",
+                },
+              ],
+            },
+            {
+              name: "generate",
+              description: "Generate a self-signed X.509 certificate",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the certificate",
+                },
+                {
+                  name: "PUBLIC-KEY",
+                  description:
+                    "File containing a public key. Use '-' to use stdin",
+                },
+              ],
+              options: [
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-s", "--subject"],
+                  description:
+                    "Subject for the certificate, as an RFC 4514 string",
+                  isRequired: true,
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-d", "--valid-days"],
+                  description: "Number of days until the certificate expires",
+                  args: {
+                    name: "INTEGER",
+                    default: "365",
+                  },
+                },
+                {
+                  name: ["-a", "--hash-algorithm"],
+                  description: "Hash algorithm",
+                  args: {
+                    name: "SHA1|SHA256|SHA384|SHA512",
+                    default: "SHA256",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show piv certificates generate usage information",
+                },
+              ],
+            },
+            {
+              name: "import",
+              description: "Import an X.509 certificate",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the certificate",
+                },
+                {
+                  name: "CERTIFICATE",
+                  description:
+                    "File containing the certificate. Use '-' to use stdin",
+                },
+              ],
+              options: [
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "A password may be needed to decrypt the data",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-v", "--verify"],
+                  description:
+                    "Verify that the certificate matches the private key in the slot",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv certificates import usage information",
+                },
+              ],
+            },
+            {
+              name: "request",
+              description: "Generate a Certificate Signing Request (CSR)",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the certificate",
+                },
+                {
+                  name: "PUBLIC-KEY",
+                  description:
+                    "File containing a public key. Use '-' to use stdin",
+                },
+                {
+                  name: "CSR",
+                  description: "File to write CSR to. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-s", "--subject"],
+                  description:
+                    "Subject for the certificate, as an RFC 4514 string",
+                  isRequired: true,
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-a", "--hash-algorithm"],
+                  description: "Hash algorithm",
+                  args: {
+                    name: "SHA1|SHA256|SHA384|SHA512",
+                    default: "SHA256",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description:
+                    "Show piv certificates request usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show piv certificates usage information",
+            },
+          ],
+        },
+        {
+          name: "keys",
+          description: "Manage private keys",
+          subcommands: [
+            {
+              name: "attest",
+              description: "Generate an attestation certificate for a key pair",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the private key",
+                },
+                {
+                  name: "CERTIFICATE",
+                  description:
+                    "File to write attestation certificate to. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-F", "--format"],
+                  description: "Encoding format",
+                  args: {
+                    name: "PEM|DER",
+                    default: "PEM",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv keys attest usage information",
+                },
+              ],
+            },
+            {
+              name: "export",
+              description:
+                "Export a public key corresponding to a stored private key",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the private key",
+                },
+                {
+                  name: "PUBLIC-KEY",
+                  description:
+                    "File containing the generated public key. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-F", "--format"],
+                  description: "Encoding format",
+                  args: {
+                    name: "PEM|DER",
+                    default: "PEM",
+                  },
+                },
+                {
+                  name: ["-v", "--verify"],
+                  description:
+                    "Verify that the public key matches the private key in the slot",
+                },
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code (used for --verify)",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv keys attest usage information",
+                },
+              ],
+            },
+            {
+              name: "generate",
+              description: "Generate an asymmetric key pair",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the private key",
+                },
+                {
+                  name: "PUBLIC-KEY",
+                  description:
+                    "File containing the generated public key. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-a", "--algorithm"],
+                  description: "Algorithm to use in key generation",
+                  args: {
+                    name: "RSA1024|RSA2048|ECCP256|ECCP384",
+                    default: "RSA2048",
+                  },
+                },
+                {
+                  name: ["-F", "--format"],
+                  description: "Encoding format",
+                  args: {
+                    name: "PEM|DER",
+                    default: "PEM",
+                  },
+                },
+                {
+                  name: "--pin-policy",
+                  description: "PIN policy for slot",
+                  args: {
+                    name: "DEFAULT|NEVER|ONCE|ALWAY",
+                  },
+                },
+                {
+                  name: "--touch-policy",
+                  description: "Touch policy for slot",
+                  args: {
+                    name: "DEFAULT|NEVER|ALWAYS|CACHED",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv keys generate usage information",
+                },
+              ],
+            },
+            {
+              name: "import",
+              description: "Import a private key from file",
+              args: [
+                {
+                  name: "SLOT",
+                  description: "PIV slot of the private key",
+                },
+                {
+                  name: "PRIVATE-KEY",
+                  description:
+                    "File containing the private key. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: "--pin-policy",
+                  description: "PIN policy for slot",
+                  args: {
+                    name: "DEFAULT|NEVER|ONCE|ALWAY",
+                  },
+                },
+                {
+                  name: "--touch-policy",
+                  description: "Touch policy for slot",
+                  args: {
+                    name: "DEFAULT|NEVER|ALWAYS|CACHED",
+                  },
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Password used to decrypt the private key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv keys import usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show piv keys usage information",
+            },
+          ],
+        },
+        {
+          name: "objects",
+          description: "Manage PIV data objects",
+          subcommands: [
+            {
+              name: "export",
+              description: "Export an arbitrary PIV data object",
+              args: [
+                {
+                  name: "OBJECT",
+                  description: "Name of PIV data object, or ID in HEX",
+                },
+                {
+                  name: "OUTPUT",
+                  description: "File to write object to. Use '-' to use stdout",
+                },
+              ],
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv objects export usage information",
+                },
+              ],
+            },
+            {
+              name: "generate",
+              description:
+                "Generate and write data for a supported data object",
+              args: {
+                name: "OBJECT",
+                description: "Name of PIV data object, or ID in HEX",
+              },
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv objects generate usage information",
+                },
+              ],
+            },
+            {
+              name: "import",
+              description: "Write an arbitrary PIV object",
+              args: [
+                {
+                  name: "OBJECT",
+                  description: "Name of PIV data object, or ID in HEX",
+                },
+                {
+                  name: "DATA",
+                  description:
+                    "File containing the data to be written. Use '-' to use stdin",
+                },
+              ],
+              options: [
+                {
+                  name: ["-P", "--pin"],
+                  description: "PIN code",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-m", "--management-key"],
+                  description: "The management key",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show piv objects import usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show piv objects usage information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Show piv usage information",
+        },
+      ],
+    },
   ],
   options: [
     {
