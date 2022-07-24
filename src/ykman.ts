@@ -510,7 +510,391 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "oath", description: "Manage the OATH applications" },
+    {
+      name: "oath",
+      description: "Manage the OATH applications",
+      subcommands: [
+        {
+          name: "info",
+          description: "Display general status of OATH application",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show oath info usage information",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description:
+            "Reset all OATH data. This action will delete all accounts and restore factory settings for the OATH application on the YubiKey",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show oath reset usage information",
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Confirm the action without prompting",
+              isDangerous: true,
+            },
+          ],
+        },
+        {
+          name: "access",
+          description: "Manage password protection for OATH",
+          subcommands: [
+            {
+              name: "change",
+              description:
+                "Change the password used to protect OATH accounts. Alows you to set or change a password that will be required to access the OATH accounts stored on the YubiKey",
+              options: [
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-c", "--clear"],
+                  description: "Clear the current password",
+                },
+                {
+                  name: ["-n", "--new-password"],
+                  description: "Provide a new password as an argument",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath access change usage information",
+                },
+              ],
+            },
+            {
+              name: "forget",
+              description: "Remove a stored password from this computer",
+              options: [
+                {
+                  name: ["-a", "--all"],
+                  description: "Remove all stored passwords",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath forget usage information",
+                },
+              ],
+            },
+            {
+              name: "remember",
+              description:
+                "Store the YubiKeys password on this computer to avoid having to enter it on each use",
+              options: [
+                {
+                  name: ["-P", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath remember usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show oath access usage information",
+            },
+          ],
+        },
+        {
+          name: "accounts",
+          description: "Manage and use OATH accounts",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a new account",
+              args: [
+                {
+                  name: "NAME",
+                  description:
+                    "Human readable name of the account, such as a username or e-mail address",
+                },
+                {
+                  name: "SECRET",
+                  description:
+                    "Base32-encoded secret/key value provided by the server",
+                  isOptional: true,
+                },
+              ],
+              options: [
+                {
+                  name: ["-o", "--oath-type"],
+                  description:
+                    "Time-based (TOTP) or counter-based (HOTP) account",
+                  args: {
+                    name: "HOTP|TOTP",
+                    default: "TOTP",
+                  },
+                },
+                {
+                  name: ["-d", "--digits"],
+                  description: "Number of digits in generated code",
+                  args: {
+                    name: "6|7|8",
+                    default: "6",
+                  },
+                },
+                {
+                  name: ["-a", "--algorithm"],
+                  description: "Algorithm to use for code generation",
+                  args: {
+                    name: "SHA1|SHA256|SHA512",
+                    default: "SHA1",
+                  },
+                },
+                {
+                  name: ["-c", "--counter"],
+                  description: "Initial counter value for HOTP accounts",
+                  args: {
+                    name: "INTEGER",
+                  },
+                },
+                {
+                  name: ["-i", "--issuer"],
+                  description: "Issuer of the account",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-P", "--period"],
+                  description: "Number of seconds a TOTP code is valid",
+                  args: {
+                    name: "INTEGER",
+                    default: "30",
+                  },
+                },
+                {
+                  name: ["-t", "--touch"],
+                  description: "Require touch on YubiKey to generate code",
+                },
+                {
+                  name: ["-f", "--force"],
+                  isDangerous: true,
+                  description: "Confirm the action without prompting",
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-r", "--remember"],
+                  description: "Remember the password on this machine",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath accounts add usage information",
+                },
+              ],
+            },
+            {
+              name: "code",
+              description: "Generate codes",
+              args: {
+                name: "QUERY",
+                description:
+                  "Provide a query string to match one or more specific accounts",
+                isOptional: true,
+              },
+              options: [
+                {
+                  name: ["-H", "--show-hidden"],
+                  description: "Include hidden accounts",
+                },
+                {
+                  name: ["-s", "--single"],
+                  description:
+                    "Ensure only a single match, and output only the code",
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-r", "--remember"],
+                  description: "Remember the password on this machine",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath accounts code usage information",
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete an account",
+              isDangerous: true,
+              args: {
+                name: "QUERY",
+                description:
+                  'A query to match a single account (as shown in "list")',
+              },
+              options: [
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm deletion without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-r", "--remember"],
+                  description: "Remember the password on this machine",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath accounts delete usage information",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all accounts",
+              options: [
+                {
+                  name: ["-H", "--show-hidden"],
+                  description: "Include hidden accounts",
+                },
+                {
+                  name: ["-o", "--oath-type"],
+                  description: "Display the OATH type",
+                },
+                {
+                  name: ["-P", "--period"],
+                  description: "Display the period",
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-r", "--remember"],
+                  description: "Remember the password on this machine",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath accounts list usage information",
+                },
+              ],
+            },
+            {
+              name: "rename",
+              description: "Rename an account (Requires YubiKey 5.3 or later)",
+              args: [
+                {
+                  name: "QUERY",
+                  description:
+                    'A query to match a single account (as shown in "list")',
+                },
+                {
+                  name: "NAME",
+                  description:
+                    'The name of the account (use "<issuer>:<name>" to specify issuer)',
+                },
+              ],
+              options: [
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm rename without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-r", "--remember"],
+                  description: "Remember the password on this machine",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath accounts rename usage information",
+                },
+              ],
+            },
+            {
+              name: "uri",
+              description: "Add a new account from an otpauth:// URI",
+              args: {
+                name: "URI",
+              },
+              options: [
+                {
+                  name: ["-t", "--touch"],
+                  description: "Require touch on YubiKey to generate code",
+                },
+                {
+                  name: ["-f", "--force"],
+                  description: "Confirm the action without prompting",
+                  isDangerous: true,
+                },
+                {
+                  name: ["-p", "--password"],
+                  description: "Provide a password to unlock the YubiKey",
+                  args: {
+                    name: "TEXT",
+                  },
+                },
+                {
+                  name: ["-r", "--remember"],
+                  description: "Remember the password on this machine",
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Show oath accounts uri usage information",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Show oath accounts usage information",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Show oath usage information",
+        },
+      ],
+    },
     { name: "openpgp", description: "Manage the OpenPGP applications" },
     { name: "otp", description: "Manage the YubiOTP applications" },
     { name: "piv", description: "Manage the PIV applications" },
