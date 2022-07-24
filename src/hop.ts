@@ -132,6 +132,10 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "link",
+      description: "Link an existing deployment to a hopfile",
+    },
+    {
       name: "projects",
       description: "Interact with projects",
       subcommands: [
