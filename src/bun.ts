@@ -279,6 +279,7 @@ const spec: Fig.Spec = {
       description: "Run a package.json script or executable",
       args: {
         name: "script",
+        filterStrategy: "fuzzy",
         generators: npmScriptsGenerator,
       },
     },
@@ -306,6 +307,7 @@ const spec: Fig.Spec = {
       options: dependencyOptions,
       args: {
         name: "package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
       },
     },

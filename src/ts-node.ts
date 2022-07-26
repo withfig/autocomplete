@@ -32,6 +32,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "module",
         generators: dependenciesGenerator,
+        filterStrategy: "fuzzy",
       },
     },
     {

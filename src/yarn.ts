@@ -379,6 +379,7 @@ const completionSpec: Fig.Spec = {
   },
   args: {
     generators: npmScriptsGenerator,
+    filterStrategy: "fuzzy",
     parserDirectives: yarnScriptParserDirectives,
     isOptional: true,
     isCommand: true,
@@ -891,6 +892,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove globally installed packages",
           args: {
             name: "package",
+            filterStrategy: "fuzzy",
             generators: getGlobalPackagesGenerator,
             isVariadic: true,
           },
@@ -1203,6 +1205,7 @@ const completionSpec: Fig.Spec = {
       name: "remove",
       description: "Remove installed package",
       args: {
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -1230,6 +1233,7 @@ const completionSpec: Fig.Spec = {
           name: "script",
           description: "Script to run from your package.json",
           generators: npmScriptsGenerator,
+          filterStrategy: "fuzzy",
           parserDirectives: yarnScriptParserDirectives,
           isCommand: true,
         },
@@ -1264,6 +1268,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         generators: dependenciesGenerator,
+        filterStrategy: "fuzzy",
         isVariadic: true,
         isOptional: true,
       },
@@ -1345,6 +1350,7 @@ const completionSpec: Fig.Spec = {
       description: "Show information about why a package is installed",
       args: {
         name: "package",
+        filterStrategy: "fuzzy",
         generators: allDependenciesGenerator,
       },
       options: [
@@ -1358,6 +1364,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
+      filterStrategy: "fuzzy",
       generateSpec: async (_tokens, executeShellCommand) => {
         const version = await executeShellCommand("yarn --version");
         const isYarnV1 = version.startsWith("1.");

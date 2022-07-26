@@ -5,6 +5,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
     args: {
       name: "package",
       generators: dependenciesGenerator,
+      filterStrategy: "fuzzy",
       isVariadic: true,
     },
     options: npmUninstallOptions,
@@ -455,6 +456,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "script",
         description: "Script to run from your package.json",
+        filterStrategy: "fuzzy",
         generators: npmScriptsGenerator,
       },
     },
@@ -666,10 +668,6 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: "--global", description: "Edits the global config" },
           ],
-          args: {
-            name: "package",
-            generators: dependenciesGenerator,
-          },
         },
       ],
     },
@@ -731,6 +729,7 @@ const completionSpec: Fig.Spec = {
       description: "Browse an installed package",
       args: {
         name: "package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
       },
     },
