@@ -3737,22 +3737,20 @@ versions["1.4.3"] = {
           options: [
             {
               name: "--method",
-              args: [
-                {
-                  isOptional: true,
-                  suggestions: [
-                    "GET",
-                    "POST",
-                    "PUT",
-                    "DELETE",
-                    "HEAD",
-                    "OPTIONS",
-                    "CONNECT",
-                    "PATCH",
-                    "TRACE",
-                  ],
-                },
-              ],
+              args: {
+                isOptional: true,
+                suggestions: [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "DELETE",
+                  "HEAD",
+                  "OPTIONS",
+                  "CONNECT",
+                  "PATCH",
+                  "TRACE",
+                ],
+              },
             },
           ],
         },
