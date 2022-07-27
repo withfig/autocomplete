@@ -10,6 +10,7 @@ const completionSpec: Fig.Spec = {
     name: "site or directory",
     template: "folders",
     isOptional: true,
+    isVariadic: true,
     suggestCurrentToken: true,
   },
   subcommands: [
@@ -24,7 +25,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cwd",
           description: "Working directory",
-          args: { name: "string", template: "folders" },
+          args: { name: "directory", template: "folders" },
         },
         {
           name: "--json",
@@ -33,12 +34,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--serveStatic", "--ss"],
           description: "Directories to serve static files from",
-          args: { name: "array", template: "filepaths" },
+          args: { name: "directories", template: "folders" },
         },
         {
           name: "--port",
           description: "Specify a port to use",
-          args: { name: "number" },
+          args: { name: "port" },
         },
         { name: ["-p", "--proxy"], description: "Proxy an existing server" },
         {
@@ -48,7 +49,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-b", "--browser"],
           description: "Choose which browser should be auto-opened",
-          args: { name: "array" },
+          args: { name: "name" },
         },
         {
           name: ["-w", "--watch"],
@@ -57,32 +58,32 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore",
           description: "Ignore patterns for file watchers",
-          args: { name: "array" },
+          args: { name: "patterns" },
         },
         {
           name: ["-f", "--files"],
           description: "File paths to watch",
-          args: { name: "array", template: "filepaths" },
+          args: { name: "paths", template: "filepaths" },
         },
         {
           name: "--index",
           description: "Specify which file should be used as the index page",
-          args: { name: "string" },
+          args: { name: "file", template: "filepaths" },
         },
         {
           name: "--plugins",
           description: "Load Browsersync plugins",
-          args: { name: "array" },
+          args: { name: "plugins" },
         },
         {
           name: "--extensions",
           description: "Specify file extension fallbacks",
-          args: { name: "array" },
+          args: { name: "extensions" },
         },
         {
           name: "--startPath",
           description: "Specify the start path for the opened browser",
-          args: { name: "string" },
+          args: { name: "start-path" },
         },
         {
           name: "--single",
@@ -103,7 +104,11 @@ const completionSpec: Fig.Spec = {
           name: "--open",
           description:
             "Choose which URL is auto-opened (local, external or tunnel), or provide a url",
-          args: { name: "string" },
+          args: {
+            name: "string",
+            suggestions: ["local", "external", "tunnel"],
+            suggestCurrentToken: true,
+          },
         },
         {
           name: "--cors",
@@ -112,13 +117,20 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-c", "--config"],
           description: "Specify a path to a configuration file",
-          args: { name: "string" },
+          args: { name: "path", template: "filepaths" },
         },
-        { name: "--host", description: "Specify a hostname to use" },
+        {
+          name: "--host",
+          description: "Specify a hostname to use",
+          args: { name: "hostname" },
+        },
         {
           name: "--listen",
           description:
             "Specify a hostname bind to (this will prevent binding to all interfaces)",
+          args: {
+            name: "hostname",
+          },
         },
         {
           name: "--logLevel",
@@ -132,23 +144,23 @@ const completionSpec: Fig.Spec = {
           name: "--reload-delay",
           description:
             "Time in milliseconds to delay the reload event following file changes",
-          args: { name: "number" },
+          args: { name: "milliseconds" },
         },
         {
           name: "--reload-debounce",
           description:
             "Restrict the frequency in which browser:reload events can be emitted to connected clients",
-          args: { name: "number" },
+          args: { name: "milliseconds" },
         },
         {
           name: "--ui-port",
           description: "Specify a port for the UI to use",
-          args: { name: "number" },
+          args: { name: "port" },
         },
         {
           name: "--watchEvents",
           description: "Specify which file events to respond to",
-          args: { name: "array" },
+          args: { name: "events" },
         },
         {
           name: "--no-notify",
@@ -187,23 +199,23 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--files"],
           description: "File paths to reload",
-          args: { name: "array", template: "filepaths" },
+          args: { name: "paths", template: "filepaths" },
         },
         {
           name: ["-p", "--port"],
           description: "Target a running instance by port number",
-          args: { name: "number" },
+          args: { name: "port" },
         },
         {
           name: ["-u", "--url"],
           description:
             "Provide the full URL to the running browsersync isntance",
-          args: { name: "number" },
+          args: { name: "url" },
         },
         {
           name: "--cwd",
           description: "Working directory",
-          args: { name: "string", template: "folders" },
+          args: { name: "directory", template: "folders" },
         },
       ],
     },
@@ -227,12 +239,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cwd",
           description: "Working directory",
-          args: { name: "string", template: "folders" },
+          args: { name: "directory", template: "folders" },
         },
         {
           name: ["-o", "--output"],
           description: "Specify an output directory",
-          args: { name: "string", template: "folders" },
+          args: { name: "directory", template: "folders" },
         },
       ],
     },
