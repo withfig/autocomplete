@@ -317,10 +317,9 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   );
   const workflows = JSON.parse(response);
   const subcommands = workflows.map((workflow) => {
-    const displayName =
-      workflow.displayName.length == 0
-        ? null
-        : `${workflow.displayName} | @${workflow.namespace} `;
+    const displayName = `${workflow.displayName ?? workflow.name} | @${
+      workflow.namespace
+    }`;
 
     const options = workflow.parameters.map((param) => {
       const option: Fig.Option = {
@@ -330,7 +329,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
       switch (param.type) {
         case "text":
           option.args = {
-            name: param.name, //param.displayName ? param.displayName : param.name,
+            name: param.name,
           };
         case "selector":
           let generators: Fig.Generator[] = [];
@@ -343,7 +342,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
               }));
           }
           option.args = {
-            name: param.name, //param.displayName ? param.displayName : param.name,
+            name: param.name,
             suggestions: param.typeData.suggestions,
             generators,
           };
