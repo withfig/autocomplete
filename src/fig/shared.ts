@@ -318,7 +318,9 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   const workflows = JSON.parse(response);
   const subcommands = workflows.map((workflow) => {
     const displayName =
-      workflow.displayName.length == 0 ? null : workflow.displayName;
+      workflow.displayName.length == 0
+        ? null
+        : `${workflow.displayName} | @${workflow.namespace} `;
 
     const options = workflow.parameters.map((param) => {
       const option: Fig.Option = {
