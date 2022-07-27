@@ -3534,7 +3534,7 @@ versions["1.4.1"] = {
       },
     },
     {
-      name: "run",
+      name: ["run", "r", "workflow", "workflows", "flow", "flows"],
       description: "Search for and execute workflows",
       filterStrategy: "fuzzy",
       options: [
