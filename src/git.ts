@@ -59,6 +59,7 @@ const postProcessBranches =
       return [];
     }
 
+    const seen = new Set<string>();
     return output
       .split("\n")
       .filter((line) => !line.trim().startsWith("HEAD"))
@@ -91,12 +92,22 @@ const postProcessBranches =
           description = "Remote branch";
         }
 
+        const space = name.indexOf(" ");
+        if (space !== -1) {
+          name = name.slice(0, space);
+        }
+
         return {
           name,
           description,
           icon: "fig://icon?type=git",
           priority: 75,
         };
+      })
+      .filter((suggestion) => {
+        if (seen.has(suggestion.name)) return false;
+        seen.add(suggestion.name);
+        return true;
       });
   };
 
