@@ -143,7 +143,7 @@ const completion: Fig.Spec = {
           args: {
             name: "layout-dir",
             isOptional: true,
-            template: "filepaths",
+            template: "folders",
           },
         },
         {
@@ -154,7 +154,7 @@ const completion: Fig.Spec = {
           args: {
             name: "theme-dir",
             isOptional: true,
-            template: "filepaths",
+            template: "folders",
           },
         },
         {
@@ -441,7 +441,16 @@ const completion: Fig.Spec = {
               args: {
                 name: "default-shell",
                 isOptional: true,
-                template: "filepaths",
+                suggestions: [
+                  "bash",
+                  "fish",
+                  "zsh",
+                  "tcsh",
+                  "csh",
+                  "sh",
+                  "ksh",
+                  "nu",
+                ],
               },
             },
             {
@@ -462,7 +471,7 @@ const completion: Fig.Spec = {
               args: {
                 name: "layout-dir",
                 isOptional: true,
-                template: "filepaths",
+                template: "folders",
               },
             },
             {
@@ -473,7 +482,7 @@ const completion: Fig.Spec = {
               args: {
                 name: "theme-dir",
                 isOptional: true,
-                template: "filepaths",
+                template: "folders",
               },
             },
             {
@@ -675,7 +684,7 @@ const completion: Fig.Spec = {
       args: {
         name: "data-dir",
         isOptional: true,
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -726,7 +735,7 @@ const completion: Fig.Spec = {
       args: {
         name: "config-dir",
         isOptional: true,
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
