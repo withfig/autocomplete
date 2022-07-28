@@ -1,5 +1,3 @@
-import * as YAML from "yaml";
-
 const completion: Fig.Spec = {
   name: "zellij",
   description: "A terminal workspace with batteries included",
