@@ -4016,5 +4016,40 @@ versions["1.4.3"] = {
   ],
 };
 
+versions["1.4.7"] = {
+  subcommands: [
+    {
+      name: "ssh",
+      options: [
+        {
+          name: "--get-identities",
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "request",
+          options: [
+            {
+              name: "--namespace",
+              isRepeatable: true,
+              args: {
+                name: "namespace",
+                isOptional: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "integrations",
+      description: "Manage system integrations",
+    },
+  ],
+};
+
 export { versions };
 export default completion;
