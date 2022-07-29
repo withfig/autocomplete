@@ -1056,6 +1056,8 @@ const completionSpec: Fig.Spec = {
                   name: "CERTIFICATE",
                   description:
                     "File to write certificate to. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -1088,6 +1090,8 @@ const completionSpec: Fig.Spec = {
                   name: "CERTIFICATE",
                   description:
                     "File containing the certificate. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -1130,6 +1134,8 @@ const completionSpec: Fig.Spec = {
                   name: "CERTIFICATE",
                   description:
                     "File to write attestation certificate to. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -1876,6 +1882,8 @@ const completionSpec: Fig.Spec = {
                   name: "CERTIFICATE",
                   description:
                     "File to write certificate to. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -2015,10 +2023,14 @@ const completionSpec: Fig.Spec = {
                   name: "PUBLIC-KEY",
                   description:
                     "File containing a public key. Use '-' to use stdin",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
                 {
                   name: "CSR",
                   description: "File to write CSR to. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -2078,6 +2090,8 @@ const completionSpec: Fig.Spec = {
                   name: "CERTIFICATE",
                   description:
                     "File to write attestation certificate to. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -2109,6 +2123,8 @@ const completionSpec: Fig.Spec = {
                   name: "PUBLIC-KEY",
                   description:
                     "File containing the generated public key. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -2151,6 +2167,8 @@ const completionSpec: Fig.Spec = {
                   name: "PUBLIC-KEY",
                   description:
                     "File containing the generated public key. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -2220,6 +2238,8 @@ const completionSpec: Fig.Spec = {
                   name: "PRIVATE-KEY",
                   description:
                     "File containing the private key. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
@@ -2289,6 +2309,8 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "OUTPUT",
                   description: "File to write object to. Use '-' to use stdout",
+                  template: "filepaths",
+                  suggestions: [{ name: "-", hidden: true }],
                 },
               ],
               options: [
