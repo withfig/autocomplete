@@ -2414,6 +2414,14 @@ const completionSpec: Fig.Spec = {
       description: "Specify which YubiKey to interact with by serial number",
       args: {
         name: "SERIAL",
+        generators: {
+          script: "ykman list | sed -rn 's/.*Serial: (.*)/\\1/p'",
+          postProcess: function (out) {
+            return out.split("\n").map((serial) => {
+              return { name: serial, description: "Yubikey serial" };
+            });
+          },
+        },
       },
     },
     {
@@ -2423,6 +2431,14 @@ const completionSpec: Fig.Spec = {
       exclusiveOn: ["--device"],
       args: {
         name: "NAME",
+        generators: {
+          script: "ykman list --readers",
+          postProcess: function (out) {
+            return out.split("\n").map((readerName) => {
+              return { name: readerName, description: "Yubikey name" };
+            });
+          },
+        },
       },
     },
     {
@@ -2439,6 +2455,7 @@ const completionSpec: Fig.Spec = {
         "Write logs to the given FILE instead of standard error; ignore unless --log-level is also set",
       args: {
         name: "FILE",
+        template: "filepaths",
       },
     },
     {
