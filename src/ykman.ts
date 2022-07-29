@@ -49,6 +49,11 @@ const completionSpec: Fig.Spec = {
             name: "MODE",
             description:
               "MODE can be a string, such as 'OTP+FIDO+CCID', or a shortened form: 'o+f+c'. It can also be a mode number",
+            generators: {
+              getQueryTerm: "+",
+              // TODO
+              // custom: () => Promise.resolve(['OTP', 'FIDO', 'CCID']),
+            },
           },
           options: [
             {
@@ -96,14 +101,32 @@ const completionSpec: Fig.Spec = {
               name: ["-e", "--enable"],
               description: "Enable applications",
               args: {
-                name: "OTP|U2F|FIDO2|OATH|PIV|OPENPGP|HSMAUTH",
+                name: "application",
+                suggestions: [
+                  "OTP",
+                  "U2F",
+                  "FIDO2",
+                  "OATH",
+                  "PIV",
+                  "OPENPGP",
+                  "HSMAUTH",
+                ],
               },
             },
             {
               name: ["-d", "--disable"],
               description: "Disable applications",
               args: {
-                name: "OTP|U2F|FIDO2|OATH|PIV|OPENPGP|HSMAUTH",
+                name: "application",
+                suggestions: [
+                  "OTP",
+                  "U2F",
+                  "FIDO2",
+                  "OATH",
+                  "PIV",
+                  "OPENPGP",
+                  "HSMAUTH",
+                ],
               },
             },
             {
@@ -182,14 +205,32 @@ const completionSpec: Fig.Spec = {
               name: ["-e", "--enable"],
               description: "Enable applications",
               args: {
-                name: "OTP|U2F|FIDO2|OATH|PIV|OPENPGP|HSMAUTH",
+                name: "applications",
+                suggestions: [
+                  "OTP",
+                  "U2F",
+                  "FIDO2",
+                  "OATH",
+                  "PIV",
+                  "OPENPGP",
+                  "HSMAUTH",
+                ],
               },
             },
             {
               name: ["-d", "--disable"],
               description: "Disable applications",
               args: {
-                name: "OTP|U2F|FIDO2|OATH|PIV|OPENPGP|HSMAUTH",
+                name: "application",
+                suggestions: [
+                  "OTP",
+                  "U2F",
+                  "FIDO2",
+                  "OATH",
+                  "PIV",
+                  "OPENPGP",
+                  "HSMAUTH",
+                ],
               },
             },
             {
@@ -639,24 +680,27 @@ const completionSpec: Fig.Spec = {
                   description:
                     "Time-based (TOTP) or counter-based (HOTP) account",
                   args: {
-                    name: "HOTP|TOTP",
+                    name: "oath type",
                     default: "TOTP",
+                    suggestions: ["HOTP", "TOTP"],
                   },
                 },
                 {
                   name: ["-d", "--digits"],
                   description: "Number of digits in generated code",
                   args: {
-                    name: "6|7|8",
+                    name: "number of digits",
                     default: "6",
+                    suggestions: ["6", "7", "8"],
                   },
                 },
                 {
                   name: ["-a", "--algorithm"],
                   description: "Algorithm to use for code generation",
                   args: {
-                    name: "SHA1|SHA256|SHA512",
+                    name: "algorithm",
                     default: "SHA1",
+                    suggestions: ["SHA1", "SHA256", "SHA512"],
                   },
                 },
                 {
@@ -1017,8 +1061,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-F", "--format"],
                   description: "Encoding format",
                   args: {
-                    name: "PEM|DER",
+                    name: "format",
                     default: "PEM",
+                    suggestions: ["PEM", "DER"],
                   },
                 },
                 {
@@ -1097,8 +1142,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-F", "--format"],
                   description: "Encoding format",
                   args: {
-                    name: "PEM|DER",
+                    name: "format",
                     default: "PEM",
+                    suggestions: ["PEM", "DER"],
                   },
                 },
                 {
@@ -1202,8 +1248,9 @@ const completionSpec: Fig.Spec = {
               name: ["-d", "--digits"],
               description: "Number of digits in generated TOTP code",
               args: {
-                name: "6|8",
+                name: "number of digits",
                 default: "6",
+                suggestions: ["6", "8"],
               },
             },
             {
@@ -1217,7 +1264,8 @@ const completionSpec: Fig.Spec = {
           description: "Program a challenge-response operation",
           args: [
             {
-              name: "1|2",
+              name: "slot",
+              suggestions: ["1", "2"],
             },
             {
               name: "KEY",
@@ -1258,7 +1306,8 @@ const completionSpec: Fig.Spec = {
           description: "Deletes the configuration stored in a slot",
           isDangerous: true,
           args: {
-            name: "1|2",
+            name: "slot",
+            suggestions: ["1", "2"],
           },
           options: [
             {
@@ -1277,7 +1326,8 @@ const completionSpec: Fig.Spec = {
           description: "Program an HMAC-SHA1 OATH-HOTP credential",
           args: [
             {
-              name: "1|2",
+              name: "slot",
+              suggestions: ["1", "2"],
             },
             {
               name: "KEY",
@@ -1289,8 +1339,9 @@ const completionSpec: Fig.Spec = {
               name: ["-d", "--digits"],
               description: "Number of digits in generated code",
               args: {
-                name: "6|8",
+                name: "number of digits",
                 default: "6",
+                suggestions: ["6", "8"],
               },
             },
             {
@@ -1337,7 +1388,8 @@ const completionSpec: Fig.Spec = {
           name: "ndef",
           description: "Configure a slot to be used over NDEF (NFC)",
           args: {
-            name: "1|2",
+            name: "slot",
+            suggestions: ["1", "2"],
           },
           options: [
             {
@@ -1352,8 +1404,9 @@ const completionSpec: Fig.Spec = {
               name: ["-t", "--ndef-type"],
               description: "NDEF payload type",
               args: {
-                name: "TEXT|URI",
+                name: "NDEF type",
                 default: "URI",
+                suggestions: ["TEXT", "URI"],
               },
             },
             {
@@ -1393,8 +1446,9 @@ const completionSpec: Fig.Spec = {
               description:
                 "Throttle output speed by adding a delay (in ms) between characters emitted",
               args: {
-                name: "0|20|40|60",
+                name: "milliseconds",
                 default: "0",
+                suggestions: ["0", "20", "40", "60"],
               },
             },
             {
@@ -1413,7 +1467,8 @@ const completionSpec: Fig.Spec = {
           description: "Configure a static password",
           args: [
             {
-              name: "1|2",
+              name: "slot",
+              suggestions: ["1", "2"],
             },
             {
               name: "PASSWORD",
@@ -1437,8 +1492,17 @@ const completionSpec: Fig.Spec = {
               name: ["-k", "--keyboard-layout"],
               description: "Keyboard layout to use for the static password",
               args: {
-                name: "MODHEX|US|UK|DE|FR|IT|BEPO|NORMAN",
+                name: "layout",
                 default: "MODHEX",
+                suggestions: [
+                  "MODHEX",
+                  "US",
+                  "UK",
+                  "DE",
+                  "FR",
+                  "BEPO",
+                  "NORMAN",
+                ],
               },
             },
             {
@@ -1476,7 +1540,8 @@ const completionSpec: Fig.Spec = {
           name: "yubiotp",
           description: "Program a Yubico OTP credential",
           args: {
-            name: "1|2",
+            name: "slot",
+            suggestions: ["1", "2"],
           },
           options: [
             {
@@ -1617,8 +1682,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-a", "--algorithm"],
                   description: "Management key algorithm",
                   args: {
-                    name: "TDES|AES128|AES192|AES256",
+                    name: "algorithm",
                     default: "TDES",
+                    suggestions: ["TDES", "AES128", "AES192", "AES256"],
                   },
                 },
                 {
@@ -1810,8 +1876,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-F", "--format"],
                   description: "Encoding format",
                   args: {
-                    name: "PEM|DER",
+                    name: "format",
                     default: "PEM",
+                    suggestions: ["PEM", "DER"],
                   },
                 },
                 {
@@ -1870,8 +1937,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-a", "--hash-algorithm"],
                   description: "Hash algorithm",
                   args: {
-                    name: "SHA1|SHA256|SHA384|SHA512",
+                    name: "hash algorithm",
                     default: "SHA256",
+                    suggestions: ["SHA1", "SHA256", "SHA384"],
                   },
                 },
                 {
@@ -1967,8 +2035,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-a", "--hash-algorithm"],
                   description: "Hash algorithm",
                   args: {
-                    name: "SHA1|SHA256|SHA384|SHA512",
+                    name: "hash algorithm",
                     default: "SHA256",
+                    suggestions: ["SHA1", "SHA256", "SHA384", "SHA512"],
                   },
                 },
                 {
@@ -2009,8 +2078,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-F", "--format"],
                   description: "Encoding format",
                   args: {
-                    name: "PEM|DER",
+                    name: "format",
                     default: "PEM",
+                    suggestions: ["PEM", "DER"],
                   },
                 },
                 {
@@ -2039,8 +2109,9 @@ const completionSpec: Fig.Spec = {
                   name: ["-F", "--format"],
                   description: "Encoding format",
                   args: {
-                    name: "PEM|DER",
+                    name: "format",
                     default: "PEM",
+                    suggestions: ["PEM", "DER"],
                   },
                 },
                 {
@@ -2094,30 +2165,34 @@ const completionSpec: Fig.Spec = {
                   name: ["-a", "--algorithm"],
                   description: "Algorithm to use in key generation",
                   args: {
-                    name: "RSA1024|RSA2048|ECCP256|ECCP384",
+                    name: "algorithm",
                     default: "RSA2048",
+                    suggestions: ["RSA1024", "RSA2048", "ECCP256", "ECCP384"],
                   },
                 },
                 {
                   name: ["-F", "--format"],
                   description: "Encoding format",
                   args: {
-                    name: "PEM|DER",
+                    name: "format",
                     default: "PEM",
+                    suggestions: ["PEM", "DER"],
                   },
                 },
                 {
                   name: "--pin-policy",
                   description: "PIN policy for slot",
                   args: {
-                    name: "DEFAULT|NEVER|ONCE|ALWAY",
+                    name: "policy",
+                    suggestions: ["DEFAULT", "NEVER", "ONCE", "ALWAYS"],
                   },
                 },
                 {
                   name: "--touch-policy",
                   description: "Touch policy for slot",
                   args: {
-                    name: "DEFAULT|NEVER|ALWAYS|CACHED",
+                    name: "policy",
+                    suggestions: ["DEFAULT", "NEVER", "ALWAYS", "ONCE"],
                   },
                 },
                 {
@@ -2159,14 +2234,16 @@ const completionSpec: Fig.Spec = {
                   name: "--pin-policy",
                   description: "PIN policy for slot",
                   args: {
-                    name: "DEFAULT|NEVER|ONCE|ALWAY",
+                    name: "policy",
+                    suggestions: ["DEFAULT", "NEVER", "ONCE", "ALWAYS"],
                   },
                 },
                 {
                   name: "--touch-policy",
                   description: "Touch policy for slot",
                   args: {
-                    name: "DEFAULT|NEVER|ALWAYS|CACHED",
+                    name: "policy",
+                    suggestions: ["DEFAULT", "NEVER", "ALWAYS", "ONCE"],
                   },
                 },
                 {
@@ -2322,7 +2399,8 @@ const completionSpec: Fig.Spec = {
       name: ["-l", "--log-level"],
       description: "Enable logging at given verbosity level",
       args: {
-        name: "DEBUG|INFO|WARNING|ERROR|CRITICAL",
+        name: "log level",
+        suggestions: ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
       },
     },
     {
