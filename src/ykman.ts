@@ -173,6 +173,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-n", "--new-lock-code"],
               description: "New lock code. Conflicts with --generate",
+              exclusiveOn: ["--generate"],
               args: {
                 name: "HEX",
               },
@@ -185,6 +186,7 @@ const completionSpec: Fig.Spec = {
               name: ["-g", "--generate"],
               description:
                 "Generate a random lock code. Conflicts with --new-lock-code",
+              exclusiveOn: ["--new-lock-code"],
             },
             {
               name: ["-h", "--help"],
@@ -1574,20 +1576,24 @@ const completionSpec: Fig.Spec = {
               name: ["-S", "--serial-public-id"],
               description:
                 "Use YubiKey serial number as public ID. Conflicts with --public-id",
+              exclusiveOn: ["--public-id"],
             },
             {
               name: ["-g", "--generate-private-id"],
               description:
                 "Generate a random private ID. Conflicts with --private-id",
+              exclusiveOn: ["--private-id"],
             },
             {
               name: ["-G", "--generate-key"],
               description: "Generate a random secret key. Conflicts with --key",
+              exclusiveOn: ["--key"],
             },
             {
               name: ["-u", "--upload"],
               description:
                 "Upload credential to YubiCloud (opens in browser). Conflicts with --force",
+              exclusiveOn: ["--force"],
             },
             {
               name: ["-f", "--force"],
@@ -1696,6 +1702,7 @@ const completionSpec: Fig.Spec = {
                   name: ["-g", "--generate"],
                   description:
                     "Generate a random management key. Implied by --protect unless --new-management-key is also given. Conflicts with --new-management-key",
+                  exclusiveOn: ["--new-management-key"],
                 },
                 {
                   name: ["-f", "--force"],
@@ -2391,6 +2398,7 @@ const completionSpec: Fig.Spec = {
       name: ["-r", "--reader"],
       description:
         "Use an exteral smart card reader. Conflicts with --device and list",
+      exclusiveOn: ["--device"],
       args: {
         name: "NAME",
       },
