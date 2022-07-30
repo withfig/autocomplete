@@ -680,7 +680,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "output",
           template: ["filepaths"],
-          suggestions: ["out.mp4"],
+          suggestions: ["out.png"],
+          isOptional: true,
         },
       ],
       options: [...stillOptions, ...localRenderAndStillOptions],
