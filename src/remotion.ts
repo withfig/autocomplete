@@ -437,7 +437,6 @@ const completionSpec: Fig.Spec = {
                   displayName: "[out-name]",
                 },
               ],
-
               isOptional: true,
             },
           ],
@@ -649,6 +648,7 @@ const completionSpec: Fig.Spec = {
 
           template: ["filepaths"],
           suggestions: ["out.mp4"],
+          isOptional: true,
         },
       ],
       options: [
