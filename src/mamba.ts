@@ -10,6 +10,29 @@ interface Package {
   version: string;
 }
 
+// Interface for search results from `conda search`
+interface SearchItem {
+  arch: null;
+  build: string;
+  build_number: number;
+  channel: string;
+  constrains: string[];
+  depends: string[];
+  fn: string;
+  license: string;
+  license_family?: string;
+  md5: string;
+  name: string;
+  noarch?: string;
+  package_type?: string;
+  platform: null;
+  sha256: string;
+  size: number;
+  subdir: string;
+  timestamp?: number;
+  url: string;
+  version: string;
+}
 // using conda for all the generators as mamba just proxies over them
 const getMambaEnvs: Fig.Generator = {
   // For some reason the json version of this command
@@ -57,6 +80,35 @@ const getInstalledPackages: Fig.Generator = {
       return installedPackages;
     } catch (e) {
       return installedPackages;
+    }
+  },
+};
+// This is a generator that searches for a given query via conda search
+const condaSearchGenerator: Fig.Generator = {
+  script: (context) => {
+    const searchTerm = context[context.length - 1];
+    return `conda search ${searchTerm} --json`;
+  },
+  scriptTimeout: 10000,
+  postProcess(out) {
+    let searchResults: Array<Fig.Suggestion> = [];
+    try {
+      const parsed = JSON.parse(out);
+      // just get the names of the packages
+      searchResults = Object.entries(parsed).map(
+        ([key, value]: [string, SearchItem[]]) => {
+          return <Fig.Suggestion>{
+            name: key,
+            icon: "fig://icon?type=package",
+            description: `${value[value.length - 1].version} - ${
+              value[value.length - 1].subdir
+            }`,
+          };
+        }
+      );
+      return searchResults;
+    } catch (e) {
+      return searchResults;
     }
   },
 };
@@ -635,8 +687,9 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package spec",
         description: "Packages to install or update in the conda environment",
+        debounce: true,
         isVariadic: true,
-        //generators: getAllCondaPackages,
+        generators: condaSearchGenerator,
       },
       options: [
         {
