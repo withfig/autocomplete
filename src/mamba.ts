@@ -22,22 +22,18 @@ const getMambaEnvs: Fig.Generator = {
   postProcess: function (out) {
     const lines = out.split("\n");
     const availableEnvs: Fig.Suggestion[] = [];
-    try {
-      // Skip first 2 lines as they are just headers for the output
-      for (let i = 2; i < lines.length; i++) {
-        const parts = lines[i].split(" ").filter((p) => p != "");
-        const isActive = parts[1] == "*";
-        availableEnvs.push({
-          name: parts[0],
-          description: parts[parts.length - 1],
-          priority: isActive ? 100 : 50,
-          icon: isActive ? "✅" : "🐍",
-        });
-      }
-      return availableEnvs;
-    } catch (e) {
-      return availableEnvs;
+    // Skip first 2 lines as they are just headers for the output
+    for (let i = 2; i < lines.length; i++) {
+      const parts = lines[i].split(" ").filter((p) => p != "");
+      const isActive = parts[1] == "*";
+      availableEnvs.push({
+        name: parts[0],
+        description: parts[parts.length - 1],
+        priority: isActive ? 100 : 50,
+        icon: isActive ? "✅" : "🐍",
+      });
     }
+    return availableEnvs;
   },
 };
 
@@ -48,10 +44,9 @@ const getInstalledPackages: Fig.Generator = {
     strategy: "stale-while-revalidate",
   },
   postProcess: function (out) {
-    const parsed: Array<Package> = JSON.parse(out);
-    let installedPackages = [];
-    // console.log(parsed);
+    let installedPackages: Array<Fig.Suggestion> = [];
     try {
+      const parsed: Array<Package> = JSON.parse(out);
       installedPackages = parsed.map((conda_package) => {
         return <Fig.Suggestion>{
           name: conda_package.name,
@@ -365,11 +360,13 @@ const completionSpec: Fig.Spec = {
           name: "--stack",
           description:
             "Stack the environment being activated on top of the previous active environment",
+          exclusiveOn: ["--no-stack"],
         },
         {
           name: "--no-stack",
           description:
             "Do not stack the environment. Overrides 'auto_stack' setting",
+          exclusiveOn: ["--stack"],
         },
       ],
     },
@@ -514,12 +511,14 @@ const completionSpec: Fig.Spec = {
           name: "--override-channels",
           description:
             "Do not search default or .condarc channels. Requires --channel",
+          dependsOn: ["--channel"],
         },
         {
           name: "--repodata-fn",
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
           args: {},
+          isRepeatable: true,
         },
         {
           name: "--strict-channel-priority",
@@ -978,6 +977,7 @@ const completionSpec: Fig.Spec = {
           name: "--override-channels",
           description:
             "Do not search default or .condarc channels. Requires --channel",
+          dependsOn: ["--channel"],
         },
         {
           name: "--repodata-fn",
