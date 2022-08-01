@@ -73,6 +73,13 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "framesPerLambda",
     },
   },
+  {
+    name: "--concurrency-per-lambda",
+    description: "Concurrency with which each Lambda function should render",
+    args: {
+      name: "concurrencyPerLambda",
+    },
+  },
 ];
 
 const localRenderOptions: Fig.Option[] = [
@@ -166,6 +173,22 @@ const renderOptions: Fig.Option[] = [
         { name: "prores" },
         { name: "h264-mkv" },
       ],
+    },
+  },
+  {
+    name: "--every-nth-frame",
+    description: "Render only every nth frame (only for GIFs)",
+    args: {
+      default: "1",
+      suggestions: [{ name: "2" }, { name: "3" }, { name: "4" }, { name: "5" }],
+    },
+  },
+  {
+    name: "--number-of-gif-loops",
+    description: "How many times a GIF should loop. 0 = No loop",
+    args: {
+      default: "1",
+      suggestions: [{ name: "0" }, { name: "1" }, { name: "2" }, { name: "3" }],
     },
   },
   {
@@ -329,6 +352,17 @@ const completionSpec: Fig.Spec = {
         description: "The entry point of your Remotion app",
         template: ["filepaths"],
       },
+      options: [
+        {
+          name: "--quiet",
+          description: "Print less output",
+        },
+        {
+          name: "-q",
+          hidden: true,
+          description: "Print less output",
+        },
+      ],
     },
     {
       name: "lambda",
@@ -403,7 +437,6 @@ const completionSpec: Fig.Spec = {
                   displayName: "[out-name]",
                 },
               ],
-
               isOptional: true,
             },
           ],
@@ -615,6 +648,7 @@ const completionSpec: Fig.Spec = {
 
           template: ["filepaths"],
           suggestions: ["out.mp4"],
+          isOptional: true,
         },
       ],
       options: [
@@ -646,7 +680,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "output",
           template: ["filepaths"],
-          suggestions: ["out.mp4"],
+          suggestions: ["out.png"],
+          isOptional: true,
         },
       ],
       options: [...stillOptions, ...localRenderAndStillOptions],
