@@ -138,6 +138,7 @@ const update_options: Fig.Option[] = [
     description:
       "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2)",
     args: {
+      name: "file",
       template: "filepaths",
     },
   },
@@ -146,7 +147,7 @@ const update_options: Fig.Option[] = [
     name: ["-c", "--channel"],
     description:
       "They are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/",
-    args: {},
+    args: { name: "channel" },
   },
   {
     name: "--use-local",
@@ -161,7 +162,9 @@ const update_options: Fig.Option[] = [
     name: "--repodata-fn",
     description:
       "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
-    args: {},
+    args: {
+      name: "repodata",
+    },
   },
   {
     name: "--strict-channel-priority",
@@ -269,7 +272,9 @@ const remove_options: Fig.Option[] = [
     name: ["-c", "--channel"],
     description:
       "They are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/",
-    args: {},
+    args: {
+      name: "channel",
+    },
   },
   {
     name: "--use-local",
@@ -284,7 +289,9 @@ const remove_options: Fig.Option[] = [
     name: "--repodata-fn",
     description:
       "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
-    args: {},
+    args: {
+      name: "repodata",
+    },
   },
   {
     name: "--all",
@@ -340,7 +347,9 @@ const repoquery_options: Fig.Option[] = [
     name: ["-c", "--channel"],
     description:
       "They are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/",
-    args: {},
+    args: {
+      name: "channel",
+    },
   },
   {
     name: "--use-local",
@@ -355,7 +364,9 @@ const repoquery_options: Fig.Option[] = [
     name: "--repodata-fn",
     description:
       "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
-    args: {},
+    args: {
+      name: "repodata",
+    },
   },
   {
     name: ["-C", "--use-index-cache"],
@@ -405,6 +416,7 @@ const completionSpec: Fig.Spec = {
       name: "activate",
       description: "Activate an environment",
       args: {
+        name: "environment",
         generators: getMambaEnvs,
       },
       options: [
@@ -429,7 +441,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "clean",
       description: "Remove unused packages and caches",
-      args: {},
       options: [
         {
           name: ["-a", "--all"],
@@ -453,10 +464,19 @@ const completionSpec: Fig.Spec = {
           description: "Remove all writable package caches",
         },
         {
+          name: ["-l", "--logfiles"],
+          description: "Remove log files",
+        },
+        {
+          name: "--locks",
+          description: "Remove lock files",
+        },
+        {
           name: ["-c", "--tempfiles"],
           description:
             "Remove temporary files that could not be deleted earlier due to being in-use. Argument is path(s) to prefix(es) where files should be found and removed",
           args: {
+            name: "file",
             template: "filepaths",
             isVariadic: true,
           },
@@ -532,6 +552,7 @@ const completionSpec: Fig.Spec = {
           name: "--clone",
           description: "Path to (or name of) existing local environment",
           args: {
+            name: "env",
             generators: getMambaEnvs,
           },
         },
@@ -540,6 +561,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2)",
           args: {
+            name: "file",
             template: "filepaths",
           },
         },
@@ -553,7 +575,9 @@ const completionSpec: Fig.Spec = {
           name: "-c, --channel",
           description:
             "They are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/",
-          args: {},
+          args: {
+            name: "channel",
+          },
         },
         {
           name: "--use-local",
@@ -569,7 +593,9 @@ const completionSpec: Fig.Spec = {
           name: "--repodata-fn",
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
-          args: {},
+          args: {
+            name: "repodata",
+          },
           isRepeatable: true,
         },
         {
@@ -695,13 +721,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "--revision",
           description: "Revert to the specified REVISION",
-          args: {},
+          args: {
+            name: "revision",
+          },
         },
         {
           name: "--file",
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2)",
           args: {
+            name: "file",
             template: "filepaths",
           },
         },
@@ -715,7 +744,9 @@ const completionSpec: Fig.Spec = {
           name: "-c, --channel",
           description:
             "They are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/",
-          args: {},
+          args: {
+            name: "channel",
+          },
         },
         {
           name: "--use-local",
@@ -730,7 +761,9 @@ const completionSpec: Fig.Spec = {
           name: "--repodata-fn",
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
-          args: {},
+          args: {
+            name: "repodata",
+          },
         },
         {
           name: "--strict-channel-priority",
@@ -918,17 +951,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "--pkg-name",
           description: "Package name of the created package",
-          args: {},
+          args: {
+            name: "package_name",
+          },
         },
         {
           name: "--pkg-version",
           description: "Package version of the created package",
-          args: {},
+          args: {
+            name: "package_version",
+          },
         },
         {
           name: "--pkg-build",
           description: "Package build number of the created package",
-          args: {},
+          args: {
+            name: "package_build",
+          },
         },
         ...name_options,
       ],
@@ -982,7 +1021,10 @@ const completionSpec: Fig.Spec = {
           name: "--cwd",
           description:
             "Current working directory for command to run in. Defaults to cwd",
-          args: {},
+          args: {
+            name: "directory",
+            template: "folders",
+          },
         },
         {
           name: "--no-capture-output",
@@ -1014,13 +1056,17 @@ const completionSpec: Fig.Spec = {
           name: ["--subdir", "--platform"],
           description:
             "Search the given subdir. Should be formatted like 'osx-64', 'linux-32', 'win-64', and so on. The default is to search the current platform",
-          args: {},
+          args: {
+            name: "platform",
+          },
         },
         {
           name: ["-c", "--channel"],
           description:
             "They are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/",
-          args: {},
+          args: {
+            name: "channel",
+          },
         },
         {
           name: "--use-local",
@@ -1036,7 +1082,9 @@ const completionSpec: Fig.Spec = {
           name: "--repodata-fn",
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically",
-          args: {},
+          args: {
+            name: "repodata",
+          },
         },
         {
           name: ["-C", "--use-index-cache"],
@@ -1149,7 +1197,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "env",
       description: "Manage environments",
-      args: {},
       subcommands: [
         {
           name: "list",
