@@ -373,6 +373,10 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
 
 export const sshHostsGenerator: Fig.Generator = {
   script: "fig _ request --method GET --route /access/hosts/all",
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60 * 3,
+  },
   postProcess: (out) => {
     return (JSON.parse(out) as { nickName: string; namespace: string }[]).map(
       (host) => ({
@@ -385,6 +389,10 @@ export const sshHostsGenerator: Fig.Generator = {
 };
 
 export const sshIdentityGenerator: Fig.Generator = {
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60 * 3,
+  },
   custom: async (tokens, executeShellCommand) => {
     const host = tokens.slice(2).find((value) => !value.startsWith("-"));
     if (host === undefined) {
