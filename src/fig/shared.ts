@@ -371,4 +371,37 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
   };
 };
 
+export const sshHostsGenerator: Fig.Generator = {
+  script: "fig _ request --method GET --route /access/hosts/all",
+  cache: {
+    strategy: "stale-while-revalidate",
+    ttl: 1000 * 60 * 3,
+  },
+  postProcess: (out) => {
+    return (JSON.parse(out) as { nickName: string; namespace: string }[]).map(
+      (host) => ({
+        insertValue: `'@${host.namespace}/${host.nickName}'`,
+        displayName: `${host.nickName} (${host.namespace})`,
+        name: [host.namespace, host.nickName],
+      })
+    );
+  },
+};
+
+export const sshIdentityGenerator: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const host = tokens.slice(2).find((value) => !value.startsWith("-"));
+    if (host === undefined) {
+      return [];
+    }
+    const hosts = JSON.parse(
+      await executeShellCommand(`fig ssh ${host} --get-identities`)
+    ) as { displayName: string; username: string }[];
+
+    return hosts.map((host) => ({
+      name: host.displayName,
+    }));
+  },
+};
+
 export default {};

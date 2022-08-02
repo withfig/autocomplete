@@ -8,6 +8,8 @@ import {
   membersGenerators,
   teamsGenerators,
   workflowsSpecGenerator,
+  sshHostsGenerator,
+  sshIdentityGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -3576,11 +3578,13 @@ versions["1.4.3"] = {
           args: {
             name: "auth",
             isOptional: true,
+            generators: sshIdentityGenerator,
           },
         },
       ],
       args: {
         name: "host",
+        generators: sshHostsGenerator,
       },
     },
     {
