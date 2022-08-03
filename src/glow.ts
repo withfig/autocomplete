@@ -84,6 +84,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-m", "--memo"],
           description: "Memo/note for stashing",
+          args: { name: "note" },
         },
       ],
     },
