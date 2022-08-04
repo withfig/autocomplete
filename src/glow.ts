@@ -5,6 +5,7 @@ const completionSpec: Fig.Spec = {
   description: "Render markdown on the CLI, with pizzazz!",
   args: {
     name: "source|dir",
+    isOptional: true,
     generators: filepaths({
       extensions: ["md"],
       suggestFolders: "always",
