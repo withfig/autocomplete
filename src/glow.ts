@@ -6,6 +6,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "source|dir",
     isOptional: true,
+    isVariadic: true,
     generators: filepaths({
       extensions: ["md"],
       suggestFolders: "always",
@@ -86,6 +87,7 @@ const completionSpec: Fig.Spec = {
           name: ["-m", "--memo"],
           description: "Memo/note for stashing",
           args: { name: "note" },
+          insertValue: "--memo '{cursor}'",
         },
       ],
     },
