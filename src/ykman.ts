@@ -51,9 +51,8 @@ const completionSpec: Fig.Spec = {
               "MODE can be a string, such as 'OTP+FIDO+CCID', or a shortened form: 'o+f+c'. It can also be a mode number",
             generators: {
               getQueryTerm: "+",
-              // TODO
-              // custom: () => Promise.resolve(['OTP', 'FIDO', 'CCID']),
             },
+            suggestions: ["OTP", "FIDO", "CCID"],
           },
           options: [
             {
