@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "streamlit",
   description: "",
@@ -44,8 +46,10 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "file",
         description: "The Python script to run",
-        template: "filepaths",
-        suggestions: ["streamlit_app.py"],
+        generators: filepaths({
+          extensions: ["py"],
+          editFileSuggestions: { priority: 76 },
+        }),
       },
     },
     {
