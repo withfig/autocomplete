@@ -9,6 +9,36 @@ const completionSpec: Fig.Spec = {
     {
       name: "clone",
       description: "Clone a project into a folder",
+      args: {
+        name: "namespace/repository_name",
+      },
+      options: [
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: ["-hub"],
+          description: "Service hub where the project is hosted (Default: GitHub)",
+          args: {
+            name: "gitlab|github|bitbucket",
+          },
+        },
+        {
+          name: ["-r"],
+          description: "Revision to clone - It can be a git branch, tag or revision number",
+          args: {
+            name: "revision",
+          },
+        },
+        {
+          name: ["-user"],
+          description: "Private repository user name",
+          args: {
+            name: "username",
+          },
+        },
+      ],
     },
     {
       name: "config",
