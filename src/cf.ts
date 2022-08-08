@@ -97,7 +97,7 @@ const completionSpec: Fig.Spec = {
     description: "Log user out",
   },
   {
-    name: "passwd",
+    name: "password",
     description: "Change user password",
   },
   {
