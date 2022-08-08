@@ -1,15 +1,6 @@
 const boilerplates: Fig.Generator = {
-  script: 'find "$HOME/.gitignore-boilerplates" -name "*.gitignore"',
-  postProcess: (output) => {
-    return output
-      .split("\n")
-      .map((path) => {
-        return { name: path.replace(/.*\//, "").replace(".gitignore", "") };
-      })
-      .sort((a, b) => {
-        return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
-      });
-  },
+  script: "gibo list",
+  splitOn: "\n",
 };
 
 const completionSpec: Fig.Spec = {
