@@ -26,7 +26,14 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
       },
     },
-    { name: "search", description: "Search for boilerplates" },
+    {
+      name: "search",
+      description: "Search for boilerplates",
+      args: {
+        name: "search term",
+        description: "Name of the language or framework to search for",
+      },
+    },
     {
       name: "root",
       description: "Show the directory where gibo stores its boilerplates",
