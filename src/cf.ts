@@ -3,18 +3,10 @@ const completionSpec: Fig.Spec = {
   description: "",
   subcommands: [
   {
-    name: "app",
+    name: ["app", "a"],
     description: "Display health and status for app",
     args: {
       name: "APP_NAME",
-      generators: {
-          script: `cf apps | cut -d " " -f1`,
-          postProcess: function(out) {
-            return out.split('\n').map(APP_NAME => {
-              return { name: APP_NAME, description: "APP_NAME"}
-            })
-          }
-        },
       description: "The app you want to get health and status for",
       isOptional: false,
     },
@@ -31,14 +23,6 @@ const completionSpec: Fig.Spec = {
     description: "Display health and status for app",
     args: {
       name: "APP_NAME",
-      generators: {
-        script: `cf apps | cut -d " " -f1`,
-        postProcess: function(out) {
-          return out.split('\n').map(APP_NAME => {
-            return { name: APP_NAME, description: "APP_NAME"}
-          })
-        }
-      },
       description: "The app you want to ssh into",
       isOptional: false,
     },
@@ -55,14 +39,6 @@ const completionSpec: Fig.Spec = {
     description: "Show all env variables for an app",
     args: {
       name: "APP_NAME",
-      generators: {
-        script: `cf apps | cut -d " " -f1`,
-        postProcess: function(out) {
-          return out.split('\n').map(APP_NAME => {
-            return { name: APP_NAME, description: "APP_NAME"}
-          })
-        }
-      },
       description: "The app you want to get env vars for",
       isOptional: false,
     },
@@ -289,14 +265,6 @@ const completionSpec: Fig.Spec = {
     args: 
     {
       name: "APP_NAME",
-      generators: {
-          script: `cf apps | cut -d " " -f1`,
-          postProcess: function(out) {
-            return out.split('\n').map(APP_NAME => {
-              return { name: APP_NAME, description: "APP_NAME"}
-            })
-          }
-        },
       description: "The app you want to get health and status for",
       isOptional: false,
     },
