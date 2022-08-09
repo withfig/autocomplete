@@ -45,6 +45,36 @@ const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Print a project configuration",
+      args: {
+        name: "project name",
+      },
+      options: [
+        {
+          name: "-flat",
+          description: "Print config using flat notation (Default: false)",
+        },
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: "-profile",
+          description: "Choose a configuration profile",
+        },
+        {
+          name: "-properties",
+          description:
+            "Prints config using Java properties notatio (Default: false)",
+        },
+        {
+          name: ["-a", "-show-profiles"],
+          description: "Show all configuration profiles",
+        },
+        {
+          name: "-sort",
+          description: "Sort config attributes (Default: false)",
+        },
+      ],
     },
     {
       name: "console",
