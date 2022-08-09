@@ -18,21 +18,23 @@ const completionSpec: Fig.Spec = {
           description: "Print the command usage (Default: false)",
         },
         {
-          name: ["-hub"],
-          description: "Service hub where the project is hosted (Default: GitHub)",
+          name: "-hub",
+          description:
+            "Service hub where the project is hosted (Default: GitHub)",
           args: {
             name: "gitlab|github|bitbucket",
           },
         },
         {
-          name: ["-r"],
-          description: "Revision to clone - It can be a git branch, tag or revision number",
+          name: "-r",
+          description:
+            "Revision to clone - It can be a git branch, tag or revision number",
           args: {
             name: "revision",
           },
         },
         {
-          name: ["-user"],
+          name: "-user",
           description: "Private repository user name",
           args: {
             name: "username",
