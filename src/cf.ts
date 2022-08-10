@@ -11,6 +11,32 @@ const generateAppNames: Fig.Generator = {
   },
 };
 
+const generateOrgs: Fig.Generator = {
+  script: `cf orgs`,
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .slice(3)
+      .map((org) => ({
+        name: org,
+        description: "Org",
+      }));
+  },
+};
+
+const generateSpaces: Fig.Generator = {
+  script: `cf spaces`,
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .slice(3)
+      .map((org) => ({
+        name: org,
+        description: "Org",
+      }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "cf",
   description: "Cloudfoundry cli",
@@ -79,6 +105,7 @@ const completionSpec: Fig.Spec = {
           description: "Org",
           args: {
             name: "Org",
+            generators: generateOrgs,
           },
         },
         {
@@ -86,6 +113,7 @@ const completionSpec: Fig.Spec = {
           description: "Space",
           args: {
             name: "Space",
+            generators: generateSpaces,
           },
         },
         {
@@ -121,6 +149,7 @@ const completionSpec: Fig.Spec = {
           description: "Org",
           args: {
             name: "Org",
+            generators: generateOrgs,
           },
         },
         {
@@ -128,6 +157,7 @@ const completionSpec: Fig.Spec = {
           description: "Space",
           args: {
             name: "Space",
+            generators: generateSpaces,
           },
         },
       ],
@@ -508,6 +538,7 @@ const completionSpec: Fig.Spec = {
           description: "Space that contains the target application",
           args: {
             name: "space",
+            generators: generateSpaces,
           },
         },
         {
@@ -515,6 +546,7 @@ const completionSpec: Fig.Spec = {
           description: "Org that contains the target application",
           args: {
             name: "org",
+            generators: generateOrgs,
           },
         },
         {
@@ -932,6 +964,7 @@ const completionSpec: Fig.Spec = {
       description: "Show org info",
       args: {
         name: "org",
+        generators: generateOrgs,
       },
       options: [
         {
@@ -963,6 +996,7 @@ const completionSpec: Fig.Spec = {
       description: "Delete an org",
       args: {
         name: "org",
+        generators: generateOrgs,
       },
       options: [
         {
@@ -977,6 +1011,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "new org",
@@ -992,6 +1027,7 @@ const completionSpec: Fig.Spec = {
       description: "Show space info",
       args: {
         name: "space",
+        generators: generateSpaces,
       },
       options: [
         {
@@ -1018,6 +1054,7 @@ const completionSpec: Fig.Spec = {
           description: "Org",
           args: {
             name: "org",
+            generators: generateOrgs,
           },
         },
         {
@@ -1034,6 +1071,7 @@ const completionSpec: Fig.Spec = {
       description: "Delete a space",
       args: {
         name: "space",
+        generators: generateSpaces,
       },
       options: [
         {
@@ -1041,6 +1079,7 @@ const completionSpec: Fig.Spec = {
           description: "Delete space within specified org",
           args: {
             name: "org",
+            generators: generateOrgs,
           },
         },
         {
@@ -1055,6 +1094,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "space",
+          generators: generateSpaces,
         },
         {
           name: "new space",
@@ -1066,6 +1106,7 @@ const completionSpec: Fig.Spec = {
       description: "Allow SSH access for the space",
       args: {
         name: "space",
+        generators: generateSpaces,
       },
     },
     {
@@ -1073,6 +1114,7 @@ const completionSpec: Fig.Spec = {
       description: "Disallow SSH access for the space",
       args: {
         name: "space",
+        generators: generateSpaces,
       },
     },
     {
@@ -1080,6 +1122,7 @@ const completionSpec: Fig.Spec = {
       description: "Reports whether SSH is allowed in a space",
       args: {
         name: "space",
+        generators: generateSpaces,
       },
     },
     {
@@ -1092,6 +1135,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "domain",
@@ -1103,6 +1147,7 @@ const completionSpec: Fig.Spec = {
       description: "Delete a domain",
       args: {
         name: "space",
+        generators: generateSpaces,
       },
       options: [
         {
@@ -1159,7 +1204,8 @@ const completionSpec: Fig.Spec = {
       description: "Create a url route in a space for later use",
       args: [
         {
-          name: "space name",
+          name: "space",
+          generators: generateSpaces,
         },
         {
           name: "domain",
@@ -1378,6 +1424,7 @@ const completionSpec: Fig.Spec = {
       description: "Show org users by role",
       args: {
         name: "org",
+        generators: generateOrgs,
       },
       options: [
         {
@@ -1395,6 +1442,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "role",
@@ -1410,6 +1458,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "role",
@@ -1429,9 +1478,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "space",
+          generators: generateSpaces,
         },
         {
           name: "role",
@@ -1447,9 +1498,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "space",
+          generators: generateSpaces,
         },
         {
           name: "role",
@@ -1473,6 +1526,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "org",
+          generators: generateOrgs,
         },
         {
           name: "quota",
@@ -1777,6 +1831,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "space",
+          generators: generateSpaces,
         },
         {
           name: "quota",
@@ -1789,6 +1844,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "space",
+          generators: generateSpaces,
         },
         {
           name: "quota",
