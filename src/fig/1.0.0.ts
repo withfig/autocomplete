@@ -4062,11 +4062,9 @@ versions["1.4.10"] = {
       options: [
         {
           name: ["-a", "--auth"],
-          args: [
-            {
-              isOptional: true,
-            },
-          ],
+          args: {
+            isOptional: true,
+          },
         },
       ],
     },
@@ -4075,6 +4073,7 @@ versions["1.4.10"] = {
       options: [
         {
           name: "--switchable",
+          hidden: true,
         },
       ],
       args: {
@@ -4090,6 +4089,7 @@ versions["1.4.10"] = {
           options: [
             {
               name: "--switchable",
+              hidden: true,
             },
           ],
           args: {
@@ -4113,7 +4113,6 @@ versions["1.4.10"] = {
             {
               name: ["-f", "--format"],
               description: "Output format to use",
-              isRepeatable: true,
               args: {
                 name: "format",
                 isOptional: true,
@@ -4147,7 +4146,6 @@ versions["1.4.10"] = {
             {
               name: ["-f", "--format"],
               description: "Output format to use",
-              isRepeatable: true,
               args: {
                 name: "format",
                 isOptional: true,
@@ -4223,7 +4221,6 @@ versions["1.4.10"] = {
           name: ["-n", "--n"],
           description: "Number of completions to generate (must be <=5)",
           hidden: true,
-          isRepeatable: true,
           args: {
             name: "n",
             isOptional: true,
