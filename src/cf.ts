@@ -1,3 +1,16 @@
+const generateAppNames: Fig.Generator = {
+  script: `cf apps | cut -d " " -f1`,
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .slice(4)
+      .map((APP_NAME) => ({
+        name: APP_NAME,
+        description: "APP_NAME",
+      }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "cf",
   description: "Cloudfoundry cli",
@@ -8,18 +21,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "APP_NAME",
         description: "The app you want to get health and status for",
-        generators: {
-          script: `cf apps | cut -d " " -f1`,
-          postProcess: function (out) {
-            return out
-              .split("\n")
-              .slice(4)
-              .map((APP_NAME) => ({
-                name: APP_NAME,
-                description: "APP_NAME",
-              }));
-          },
-        },
+        generators: generateAppNames,
       },
       options: [
         {
@@ -35,6 +37,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "APP_NAME",
         description: "The app you want to ssh into",
+        generators: generateAppNames,
       },
       options: [
         {
@@ -49,6 +52,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "APP_NAME",
         description: "The app you want to get env vars for",
+        generators: generateAppNames,
       },
     },
     {
@@ -274,6 +278,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "APP_NAME",
         description: "The app you want to get health and status for",
+        generators: generateAppNames,
       },
       options: [
         {
@@ -292,7 +297,8 @@ const completionSpec: Fig.Spec = {
       description: "Rename an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "new app name",
@@ -303,14 +309,16 @@ const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start an app",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
       name: "stop",
       description: "Stop an app",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -318,7 +326,8 @@ const completionSpec: Fig.Spec = {
       description:
         "Stop all instances of the app, then start them again. This may cause downtime",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -326,7 +335,8 @@ const completionSpec: Fig.Spec = {
       description:
         "Recreate the app's executable artifact using the latest pushed app files and the latest environment (variables, service bindings, buildpack, stack, etc.)",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -335,7 +345,8 @@ const completionSpec: Fig.Spec = {
         "Terminate the running application Instance at the given index and instantiate a new instance of the application with the same index",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "index",
@@ -347,7 +358,8 @@ const completionSpec: Fig.Spec = {
       description: "Run a one-off task on an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "command",
@@ -381,7 +393,8 @@ const completionSpec: Fig.Spec = {
       name: "tasks",
       description: "List tasks of an app",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -389,7 +402,8 @@ const completionSpec: Fig.Spec = {
       description: "Terminate a running task of an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "task id",
@@ -400,7 +414,8 @@ const completionSpec: Fig.Spec = {
       name: "events",
       description: "Show recent app events",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -409,7 +424,8 @@ const completionSpec: Fig.Spec = {
         "Print out a list of files in a directory or the contents of a specific file of an app running on the DEA backend",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "path",
@@ -430,7 +446,8 @@ const completionSpec: Fig.Spec = {
       name: "logs",
       description: "Trail or show recent logs for an app",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
       options: [
         {
@@ -444,7 +461,8 @@ const completionSpec: Fig.Spec = {
       description: "Set an environment variable for an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "env var name",
@@ -459,7 +477,8 @@ const completionSpec: Fig.Spec = {
       description: "Remove an environment variable",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "env var name",
@@ -510,7 +529,8 @@ const completionSpec: Fig.Spec = {
       description:
         "Create an app manifest for an app that has been pushed successfully",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
       options: [
         {
@@ -526,7 +546,8 @@ const completionSpec: Fig.Spec = {
       name: "get-health-check",
       description: "Show the type of health check performed on an app",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -534,7 +555,8 @@ const completionSpec: Fig.Spec = {
       description: "Change type of health check performed on an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "type of health check",
@@ -546,14 +568,16 @@ const completionSpec: Fig.Spec = {
       name: "enable-ssh",
       description: "Enable ssh for the application",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
       name: "disable-ssh",
       description: "Disable ssh for the application",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -561,7 +585,8 @@ const completionSpec: Fig.Spec = {
       description:
         "Reports whether SSH is enabled on an application container instance",
       args: {
-        name: "app name",
+        name: "APP_NAME",
+        generators: generateAppNames,
       },
     },
     {
@@ -733,7 +758,8 @@ const completionSpec: Fig.Spec = {
       description: "Bind a service instance to an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "service instance",
@@ -755,7 +781,8 @@ const completionSpec: Fig.Spec = {
       description: "Unbind a service instance from an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "service instance",
@@ -1194,7 +1221,8 @@ const completionSpec: Fig.Spec = {
       description: "Add a url route to an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "domain",
@@ -1234,7 +1262,8 @@ const completionSpec: Fig.Spec = {
       description: "Remove a url route from an app",
       args: [
         {
-          name: "app name",
+          name: "APP_NAME",
+          generators: generateAppNames,
         },
         {
           name: "domain",
