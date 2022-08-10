@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "cf",
-  description: "",
+  description: "Cloudfoundry cli",
   subcommands: [
     {
       name: ["app", "a"],
@@ -8,6 +8,18 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "APP_NAME",
         description: "The app you want to get health and status for",
+        generators: {
+          script: `cf apps | cut -d " " -f1`,
+          postProcess: function (out) {
+            return out
+              .split("\n")
+              .slice(4)
+              .map((APP_NAME) => ({
+                name: APP_NAME,
+                description: "APP_NAME",
+              }));
+          },
+        },
       },
       options: [
         {
