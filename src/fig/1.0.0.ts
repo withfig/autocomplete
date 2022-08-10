@@ -3577,7 +3577,7 @@ versions["1.4.3"] = {
           description: "Identity to connect with",
           args: {
             name: "auth",
-            isOptional: true,
+            isOptional: false,
             generators: sshIdentityGenerator,
           },
         },
