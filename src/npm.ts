@@ -184,6 +184,7 @@ export const npmScriptsGenerator: Fig.Generator = {
             name: scriptName,
             icon,
             description: scriptContents as string,
+            priority: 51,
             /**
              * If there are custom definitions for the scripts
              * we want to override the default values
