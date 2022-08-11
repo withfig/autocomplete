@@ -200,11 +200,7 @@ export const pluginsGenerator = (init: {
 });
 
 /**
- *
- *
  * Fig team
- *
- *
  */
 
 // For insertions like `fig user tokens <subcommand> --team <team name> <arg holding this generator>`
@@ -301,11 +297,7 @@ export const invitationsGenerators: Fig.Generator = {
 };
 
 /**
- *
- *
  * Fig workflows
- *
- *
  */
 
 export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
@@ -401,6 +393,19 @@ export const sshIdentityGenerator: Fig.Generator = {
     return hosts.map((host) => ({
       name: host.displayName,
     }));
+  },
+};
+
+export const userGenerator: Fig.Generator = {
+  script: "fig user list-accounts",
+  postProcess: (out) => {
+    if (out.startsWith("error: ")) {
+      return [];
+    }
+    return out
+      .trim()
+      .split("\n")
+      .map((name) => ({ name, icon: "👤" }));
   },
 };
 

@@ -10,6 +10,7 @@ import {
   workflowsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
+  userGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -4183,6 +4184,7 @@ versions["1.4.10"] = {
           ],
           args: {
             name: "email",
+            generators: userGenerator,
           },
         },
       ],
