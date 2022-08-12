@@ -192,6 +192,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "self-update",
       description: "Update nextflow runtime to the latest available version",
+      options: [
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+      ],
     },
     {
       name: "view",
