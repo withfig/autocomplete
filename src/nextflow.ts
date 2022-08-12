@@ -160,6 +160,23 @@ const completionSpec: Fig.Spec = {
     {
       name: "view",
       description: "View project script file(s)",
+      args: {
+        name: "project name",
+      },
+      options: [
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: "-l",
+          description: "List repository content (Default: false)",
+        },
+        {
+          name: "-q",
+          description: "Hide header line (Default: false)",
+        },
+      ],
     },
   ],
   options: [
