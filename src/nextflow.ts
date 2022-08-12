@@ -141,6 +141,49 @@ const completionSpec: Fig.Spec = {
       description: "View project script file(s)",
     },
   ],
+  options: [
+    {
+      name: "-C",
+      description:
+        "Use the specified configuration file(s) overriding any defaults",
+    },
+    {
+      name: "-D",
+      description: "Set JVM properties",
+    },
+    {
+      name: "-bg",
+      description: "Execute nextflow in background",
+    },
+    {
+      name: ["-c", "-config"],
+      description: "Add the specified file to configuration set",
+    },
+    {
+      name: ["-d", "-dockerize"],
+      description: "Launch nextflow via Docker (experimental)",
+    },
+    {
+      name: "-h",
+      description: "Print this help",
+    },
+    {
+      name: "-log",
+      description: "Set nextflow log file path",
+    },
+    {
+      name: ["-q", "-quiet"],
+      description: "Do not print information messages",
+    },
+    {
+      name: "-syslog",
+      description: "Send logs to syslog server (eg. localhost:514)",
+    },
+    {
+      name: ["-v", "-version"],
+      description: "Print the program version",
+    },
+  ],
   // Only uncomment if nextflow takes an argument
   // args: {}
 };
