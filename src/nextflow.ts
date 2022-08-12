@@ -148,6 +148,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "pull",
       description: "Download or update a project",
+      args: {
+        name: "project name or repository url to pull",
+      },
+      options: [
+        {
+          name: "-all",
+          description: "Update all downloaded projects (Default: false)",
+        },
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: "-hub",
+          description: "Service hub where the project is hosted",
+        },
+        {
+          name: ["-r", "-revision"],
+          description:
+            "Revision of the project to run (either a git branch, tag or commit SHA number)",
+        },
+        {
+          name: "-user",
+          description: "Private repository user name",
+        },
+      ],
     },
     {
       name: "run",
