@@ -79,6 +79,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "console",
       description: "Launch Nextflow interactive console",
+      options: [
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+      ],
     },
     {
       name: "drop",
