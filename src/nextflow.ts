@@ -107,6 +107,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Print the usage help for a command",
+      options: [
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+      ],
     },
     {
       name: "info",
