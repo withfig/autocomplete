@@ -89,6 +89,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "drop",
       description: "Delete the local copy of a project",
+      args: {
+        name: "name of the project to drop",
+      },
+      options: [
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: "-f",
+          description:
+            "Delete the repository without taking care of local changes (Default: false)",
+        },
+      ],
     },
     {
       name: "help",
