@@ -1,10 +1,11 @@
-const postProcessCfList =
-  (description: string, leadingLines: number) => (out: string) =>
-    out
-      .trim() // output can have a trailing newline, prevents empty suggestion
-      .split("\n")
-      .slice(leadingLines)
-      .map((name) => ({ name, description }));
+const postProcessCfList = (description: string, leadingLines: number) => (
+  out: string
+) =>
+  out
+    .trim() // output can have a trailing newline, prevents empty suggestion
+    .split("\n")
+    .slice(leadingLines)
+    .map((name) => ({ name, description }));
 
 const generateAppNames: Fig.Generator = {
   script: `cf apps | cut -d " " -f1`,
@@ -19,6 +20,11 @@ const generateOrgs: Fig.Generator = {
 const generateSpaces: Fig.Generator = {
   script: `cf spaces`,
   postProcess: postProcessCfList("Space", 3),
+};
+
+const generateServices: Fig.Generator = {
+  script: `cf services | cut -d " " -f1 `,
+  postProcess: postProcessCfList("Service", 4),
 };
 
 const completionSpec: Fig.Spec = {
@@ -659,6 +665,7 @@ const completionSpec: Fig.Spec = {
       description: "Update a service instance",
       args: {
         name: "service",
+        generators: generateServices,
       },
       options: [
         {
@@ -690,6 +697,7 @@ const completionSpec: Fig.Spec = {
       description: "Delete a service instance",
       args: {
         name: "service instance",
+        generators: generateServices,
       },
       options: [
         {
@@ -704,6 +712,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "service instance",
+          generators: generateServices,
         },
         {
           name: "new service instance",
@@ -716,6 +725,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "service instance",
+          generators: generateServices,
         },
         {
           name: "service key",
@@ -737,6 +747,7 @@ const completionSpec: Fig.Spec = {
       description: "List keys for a service instance",
       args: {
         name: "service instance",
+        generators: generateServices,
       },
     },
     {
@@ -745,6 +756,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "service instance",
+          generators: generateServices,
         },
         {
           name: "service key",
@@ -757,6 +769,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "service instance",
+          generators: generateServices,
         },
         {
           name: "service key",
@@ -779,6 +792,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "service instance",
+          generators: generateServices,
         },
       ],
       options: [
@@ -802,6 +816,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "service instance",
+          generators: generateServices,
         },
       ],
     },
@@ -814,6 +829,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "service instance",
+          generators: generateServices,
         },
       ],
       options: [
@@ -852,6 +868,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "service instance",
+          generators: generateServices,
         },
       ],
       options: [
