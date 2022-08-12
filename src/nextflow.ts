@@ -111,6 +111,27 @@ const completionSpec: Fig.Spec = {
     {
       name: "info",
       description: "Print project and system runtime information",
+      args: {
+        name: "project name",
+      },
+      options: [
+        {
+          name: ["-u", "-check-updates"],
+          description: "Check for remote updates (Default: false)",
+        },
+        {
+          name: "-d",
+          description: "Show detailed information (Default: false)",
+        },
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: "-o",
+          description: "Output format, either: text (default), json, yaml",
+        },
+      ],
     },
     {
       name: "kuberun",
