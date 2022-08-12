@@ -140,6 +140,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List all downloaded projects",
+      args: {
+        name: ["-h", "-help"],
+        description: "Print the command usage (Default: false)",
+      },
     },
     {
       name: "log",
