@@ -1,40 +1,24 @@
+const postProcessCfList =
+  (description: string, leadingLines: number) => (out: string) =>
+    out
+      .trim() // output can have a trailing newline, prevents empty suggestion
+      .split("\n")
+      .slice(leadingLines)
+      .map((name) => ({ name, description }));
+
 const generateAppNames: Fig.Generator = {
   script: `cf apps | cut -d " " -f1`,
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .slice(4)
-      .map((APP_NAME) => ({
-        name: APP_NAME,
-        description: "APP_NAME",
-      }));
-  },
+  postProcess: postProcessCfList("App name", 4),
 };
 
 const generateOrgs: Fig.Generator = {
   script: `cf orgs`,
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .slice(3)
-      .map((org) => ({
-        name: org,
-        description: "Org",
-      }));
-  },
+  postProcess: postProcessCfList("Org", 3),
 };
 
 const generateSpaces: Fig.Generator = {
   script: `cf spaces`,
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .slice(3)
-      .map((org) => ({
-        name: org,
-        description: "Org",
-      }));
-  },
+  postProcess: postProcessCfList("Space", 3),
 };
 
 const completionSpec: Fig.Spec = {
