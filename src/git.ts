@@ -4800,7 +4800,11 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         isVariadic: true,
         suggestions: headSuggestions,
-        generators: [gitGenerators.treeish, gitGenerators.commits],
+        generators: [
+          gitGenerators.treeish,
+          gitGenerators.commits,
+          gitGenerators.remoteLocalBranches,
+        ],
       },
     },
     {
