@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "nextflow",
   description: "",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   subcommands: [
     {
       name: "clean",
