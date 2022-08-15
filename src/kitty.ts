@@ -156,6 +156,7 @@ const plusCommands: Fig.Subcommand[] = [
   },
   {
     name: "kitten",
+    requiresSubcommand: true,
     subcommands: kittenCommands,
   },
   {
@@ -259,6 +260,7 @@ const completionSpec: Fig.Spec = {
       description: "Display this help message",
     },
   ],
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "@",
@@ -271,6 +273,7 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "close-tab",

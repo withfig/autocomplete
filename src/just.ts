@@ -102,16 +102,16 @@ function getRecipeSuggestions(
   justfile: Justfile,
   { showRecipeParameters = false } = {}
 ): Fig.Suggestion[] {
-  const suggestions: Fig.Suggestion[] = [];
+  const suggestions = new Map<string, Fig.Suggestion>();
 
   for (const [name, recipe] of Object.entries(justfile.recipes)) {
     if (recipe.private) {
       continue;
     }
-
-    suggestions.push({
+    suggestions.set(name, {
       name,
-      insertValue: recipe.parameters.length === 0 ? name : name + " ",
+      insertValue:
+        recipe.parameters.length === 0 ? `${name}{cursor}` : `${name} {cursor}`,
       displayName: showRecipeParameters ? getRecipeUsage(recipe) : name,
       description: recipe.doc ?? "Recipe",
       icon: "fig://icon?type=command",
@@ -121,14 +121,19 @@ function getRecipeSuggestions(
   // Now the aliases. Like the git aliases, these don't list their usage.
   // Also like with the git spec, these use the commandkey icon.
   for (const [name, alias] of Object.entries(justfile.aliases)) {
-    suggestions.push({
+    // Can guarantee that the original exists, because dumping the justfile
+    // would have failed if it didn't exist.
+    const original = suggestions.get(alias.target)!;
+    suggestions.set(name, {
       name,
+      // The insertValue has definitely been set (see above loop)
+      insertValue: original.insertValue!,
       description: `Alias for '${alias.target}'`,
       icon: "fig://icon?type=commandkey",
     });
   }
 
-  return suggestions;
+  return [...suggestions.values()];
 }
 
 /**

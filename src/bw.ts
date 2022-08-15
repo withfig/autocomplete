@@ -2,6 +2,7 @@
 
 const completionSpec: Fig.Spec = {
   name: "bw",
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "login",
@@ -534,6 +535,7 @@ const completionSpec: Fig.Spec = {
       name: "send",
       description:
         "Work with Bitwarden sends. A Send can be quickly created using this command or subcommands can be used to fine-tune the Send",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "list",

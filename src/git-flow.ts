@@ -47,6 +47,7 @@ const completionSpec: Fig.Spec = {
   name: "git-flow",
   description:
     "A collection of Git extensions to provide high-level repository operations for Vincent Driessen's branching model",
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "init",

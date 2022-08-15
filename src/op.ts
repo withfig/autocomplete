@@ -25,11 +25,13 @@ const spec: Fig.Spec = {
   name: "op",
   description: "Official 1Password CLI",
   icon,
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "account",
       description: "Manage your locally configured 1Password accounts",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "add",
@@ -90,6 +92,7 @@ const spec: Fig.Spec = {
       description:
         "Manage Connect instances and Connect tokens in your 1Password account",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "group",
@@ -137,6 +140,7 @@ const spec: Fig.Spec = {
         {
           name: "server",
           description: "Manage Connect servers",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "create",
@@ -178,6 +182,7 @@ const spec: Fig.Spec = {
         {
           name: "token",
           description: "Manage Connect tokens",
+          requiresSubcommand: true,
           subcommands: [
             {
               description: "Issue a token for a 1Password Connect server",
@@ -229,6 +234,7 @@ const spec: Fig.Spec = {
         {
           name: "vault",
           description: "Manage connect server vault access",
+          requiresSubcommand: true,
           subcommands: [
             {
               description: "Grant a Connect server access to a vault",
@@ -264,6 +270,7 @@ const spec: Fig.Spec = {
       name: "document",
       description: "Perform CRUD operations on Document items in your vaults",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "create",
@@ -393,6 +400,7 @@ const spec: Fig.Spec = {
       name: "events-api",
       description: "Manage Events API integrations in your 1Password account",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "create",
@@ -405,10 +413,12 @@ const spec: Fig.Spec = {
       description:
         "Perform CRUD operations on the groups of users in your 1Password account",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "user",
           description: "Manage users in groups",
+          requiresSubcommand: true,
           subcommands: [
             {
               description: "Grant a user access to a group",
@@ -523,11 +533,13 @@ const spec: Fig.Spec = {
       description:
         "Perform CRUD operations on the 1Password items in your vaults",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           description: "Manage templates",
           name: "template",
           icon: "📕",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "get",
@@ -743,6 +755,7 @@ const spec: Fig.Spec = {
       name: "user",
       description: "Manage users within this 1Password account",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "provision",
@@ -881,11 +894,13 @@ const spec: Fig.Spec = {
       description:
         "Manage permissions and perform CRUD operations on your 1Password vaults",
       icon,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "group",
           description: "Manage group vault access",
           icon: "👥",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "grant",
@@ -961,6 +976,7 @@ const spec: Fig.Spec = {
           name: "user",
           description: "Manage user vault access",
           icon: "📈",
+          requiresSubcommand: true,
           subcommands: [
             {
               description: "Grant a user access to a vault",

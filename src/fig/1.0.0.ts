@@ -16,10 +16,12 @@ import {
 const completion: Fig.Subcommand = {
   name: "fig",
   description: "The CLI for Fig",
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "app",
       description: "Interact with the desktop app",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "install",
@@ -178,6 +180,7 @@ const completion: Fig.Subcommand = {
       name: "hook",
       description: "Hook commands",
       hidden: true,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "editbuffer",
@@ -404,6 +407,7 @@ const completion: Fig.Subcommand = {
     {
       name: "debug",
       description: "Debug Fig",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "app",
@@ -626,6 +630,7 @@ const completion: Fig.Subcommand = {
       name: "settings",
       description: "Customize appearance & behavior",
       filterStrategy: "fuzzy",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "init",
@@ -728,6 +733,7 @@ const completion: Fig.Subcommand = {
     {
       name: "tips",
       description: "Enable/disable fig tips",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "enable",
@@ -1097,6 +1103,7 @@ const completion: Fig.Subcommand = {
       name: ["internal", "_"],
       description: "Internal subcommands used for Fig",
       hidden: true,
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "prompt-dotfiles-changed",
@@ -1116,6 +1123,7 @@ const completion: Fig.Subcommand = {
         {
           name: "local-state",
           description: "Change the local-state file",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "init",
@@ -1417,6 +1425,7 @@ const completion: Fig.Subcommand = {
     },
     {
       name: "plugins",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "sync",
@@ -1702,6 +1711,7 @@ versions["1.3.1"] = {
     {
       name: "ssh",
       description: "Enable/disable fig SSH integration",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "enable",
@@ -2010,6 +2020,7 @@ versions["1.4.0"] = {
     },
     {
       name: "user",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "login",
@@ -2085,6 +2096,7 @@ versions["1.4.0"] = {
         },
         {
           name: "tokens",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "new",
@@ -2243,6 +2255,7 @@ versions["1.4.0"] = {
         isOptional: true,
         loadSpec: {
           name: "team",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "members",
@@ -3603,6 +3616,7 @@ versions["1.4.3"] = {
     },
     {
       name: "user",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "login",
@@ -3902,6 +3916,7 @@ versions["1.4.3"] = {
     {
       name: "integrations",
       description: "Managed system integrations",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "install",
