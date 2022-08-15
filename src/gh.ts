@@ -212,11 +212,13 @@ const completionSpec: Fig.Spec = {
     isOptional: true,
     generators: ghGenerators.listAlias,
   },
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "alias",
       description: "Create command shortcuts",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "delete",
@@ -262,6 +264,7 @@ const completionSpec: Fig.Spec = {
       name: "auth",
       description: "Login, logout, and refresh your authentication",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "login",
@@ -358,6 +361,7 @@ const completionSpec: Fig.Spec = {
       name: "gpg-key",
       description: "Manage GPG keys registered with your GitHub account",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "add",
@@ -437,6 +441,7 @@ const completionSpec: Fig.Spec = {
       name: "config",
       description: "Manage configuration for gh",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "get",
@@ -463,6 +468,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "set",
           description: "Update configuration with a value for the given key",
+          requiresSubcommand: true,
           subcommands: [
             {
               name: "git_protocol",
@@ -515,6 +521,7 @@ const completionSpec: Fig.Spec = {
       name: "extensions",
       description: "Manage gh extensions",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "create",
@@ -563,6 +570,7 @@ const completionSpec: Fig.Spec = {
       name: "gist",
       description: "Manage gists",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "clone",
@@ -678,6 +686,7 @@ const completionSpec: Fig.Spec = {
       name: "issue",
       description: "Manage issues",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "close",
@@ -1056,6 +1065,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "pr",
       description: "Manage pull requests",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "checkout",
@@ -1488,6 +1498,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "repo",
       description: "Work with GitHub repositories",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "archive",
@@ -1846,6 +1857,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
       name: "run",
       description: "View details about workflow runs",
       options: [ghOptions.help, ghOptions.all],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "download",
@@ -1948,6 +1960,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
       name: "secret",
       description: "Manage GitHub secrets",
       options: [ghOptions.help, ghOptions.all],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "list",
@@ -2023,6 +2036,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
       name: "ssh-key",
       description: "Manage SSH keys",
       options: [ghOptions.help],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "add",
@@ -2051,6 +2065,7 @@ For more information about output formatting flags, see 'gh help formatting'`,
       name: "workflow",
       description: "View details about GitHub Actions workflows",
       options: [ghOptions.help, ghOptions.all],
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "disable",

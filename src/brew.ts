@@ -1208,6 +1208,7 @@ const completionSpec: Fig.Spec = {
       name: "cask",
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "install",
@@ -1390,6 +1391,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "analytics",
       description: "Manages analytics preferences",
+      requiresSubcommand: true,
       subcommands: [
         {
           name: "on",
