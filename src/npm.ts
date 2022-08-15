@@ -343,6 +343,7 @@ const completionSpec: Fig.Spec = {
     flagsArePosixNoncompliant: true,
   },
   description: "Node package manager",
+  requiresSubcommand: true,
   subcommands: [
     {
       name: ["install", "i", "add"],

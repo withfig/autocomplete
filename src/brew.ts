@@ -175,6 +175,7 @@ const brewInfo = (name: string): Fig.Subcommand => ({
 const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "list",

@@ -137,6 +137,7 @@ const completionSpec: Fig.Spec = {
   name: "cargo",
   icon: "📦",
   description: "CLI Interface for Cargo",
+  requiresSubcommand: true,
   subcommands: [
     {
       name: "bench",

@@ -5382,11 +5382,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stash",
-      insertValue: "stash{cursor}", 
+
       description: "Temporarily stores all the modified tracked files",
       subcommands: [
         {
-          name: "push", // TODO: support for no subcommand is missing
+          name: "push",
           description:
             "Save your local modifications to a new stash entry and roll them back to HEAD",
           insertValue: "push {cursor}",
