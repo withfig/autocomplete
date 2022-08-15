@@ -1,11 +1,10 @@
-const postProcessCfList = (description: string, leadingLines: number) => (
-  out: string
-) =>
-  out
-    .trim() // output can have a trailing newline, prevents empty suggestion
-    .split("\n")
-    .slice(leadingLines)
-    .map((name) => ({ name, description }));
+const postProcessCfList =
+  (description: string, leadingLines: number) => (out: string) =>
+    out
+      .trim() // output can have a trailing newline, prevents empty suggestion
+      .split("\n")
+      .slice(leadingLines)
+      .map((name) => ({ name, description }));
 
 const generateAppNames: Fig.Generator = {
   script: `cf apps | cut -d " " -f1`,
