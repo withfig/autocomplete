@@ -228,10 +228,17 @@ const completionSpec: Fig.Spec = {
       name: "-C",
       description:
         "Use the specified configuration file(s) overriding any defaults",
+      args: {
+        name: "configuration file",
+      },
     },
     {
       name: "-D",
       description: "Set JVM properties",
+      insertValue: "-D{cursor}",
+      args: {
+        name: "custom Java system property",
+      },
     },
     {
       name: "-bg",
@@ -240,6 +247,9 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-c", "-config"],
       description: "Add the specified file to configuration set",
+      args: {
+        name: "configuration file",
+      },
     },
     {
       name: ["-d", "-dockerize"],
