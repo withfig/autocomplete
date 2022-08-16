@@ -142,7 +142,14 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
   args: toolchain
     ? {
         name: "toolchain",
-        suggestions: ["+nightly", "+stable"],
+        generators: {
+          script: `rustup toolchain list | awk -F- '{ print "+"$1 }'`,
+          splitOn: "\n",
+          cache: {
+            strategy: "stale-while-revalidate",
+            ttl: 1000 * 60 * 4,
+          },
+        },
         loadSpec: completionSpec(false),
       }
     : undefined,
