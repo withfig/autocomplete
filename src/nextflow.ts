@@ -8,6 +8,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "clean",
       description: "Clean up project cache and work directories",
+      args: {
+        name: "run_name|session_id",
+      },
       options: [
         {
           name: "-after",
@@ -190,6 +193,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "kuberun",
       description: "Execute a workflow in a Kubernetes cluster (experimental)",
+      args: {
+        name: "project name",
+      },
     },
     {
       name: "list",
@@ -305,6 +311,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "Execute a pipeline project",
+      args: {
+        name: "project name",
+      },
     },
     {
       name: "self-update",
