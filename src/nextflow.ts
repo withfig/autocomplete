@@ -159,6 +159,73 @@ const completionSpec: Fig.Spec = {
     {
       name: "log",
       description: "Print executions log and runtime info",
+      options: [
+        {
+          name: "-after",
+          description:
+            "Show log entries for runs executed after the specified one",
+          args: {
+            name: "run name",
+          },
+        },
+        {
+          name: "-before",
+          description:
+            "Show log entries for runs executed before the specified one",
+          args: {
+            name: "run name",
+          },
+        },
+        {
+          name: "-but",
+          description: "Show log entries of all runs except the specified one",
+          args: {
+            name: "run name",
+          },
+        },
+        {
+          name: ["-f", "-fields"],
+          description:
+            "Comma separated list of fields to include in the printed log -- Use the `-l` option to show the list of available fields",
+          args: {
+            name: "field1,field2,...",
+          },
+        },
+        {
+          name: ["-F", "filter"],
+          description:
+            "Filter log entries by a custom expression e.g. process =~ /foo.*/ && status == 'COMPLETED'",
+          args: {
+            name: "expression",
+          },
+        },
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: ["-l", "-list-fields"],
+          description: "Show all available fields (Default: false)",
+        },
+        {
+          name: ["-q", "-quiet"],
+          description: "Show only run names (Default: false)",
+        },
+        {
+          name: "-s",
+          description: "Character used to separate column values (Default: )",
+          args: {
+            name: "character",
+          },
+        },
+        {
+          name: ["-t", "-template"],
+          description: "Text template used to each record in the log",
+          args: {
+            name: "template",
+          },
+        },
+      ],
     },
     {
       name: "pull",
