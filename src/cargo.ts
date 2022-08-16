@@ -133,10 +133,26 @@ const vcsOptions: Fig.Suggestion[] = [
   },
 ];
 
-const completionSpec: Fig.Spec = {
+const completionSpec: (toolchain?: boolean) => Fig.Spec = (
+  toolchain = true
+) => ({
   name: "cargo",
   icon: "📦",
   description: "CLI Interface for Cargo",
+  args: toolchain
+    ? {
+        name: "toolchain",
+        generators: {
+          script: `rustup toolchain list | awk -F- '{ print "+"$1 }'`,
+          splitOn: "\n",
+          cache: {
+            strategy: "stale-while-revalidate",
+            ttl: 1000 * 60 * 4,
+          },
+        },
+        loadSpec: completionSpec(false),
+      }
+    : undefined,
   subcommands: [
     {
       name: "bench",
@@ -5656,6 +5672,6 @@ const completionSpec: Fig.Spec = {
       subcommands,
     };
   },
-};
+});
 
-export default completionSpec;
+export default completionSpec();
