@@ -5674,4 +5674,4 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
   },
 });
 
-export default completionSpec;
+export default completionSpec();
