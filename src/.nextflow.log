@@ -1,0 +1,1 @@
+Aug-16 15:37:58.494 [main] DEBUG nextflow.cli.Launcher - $> nextflow kuberun -h

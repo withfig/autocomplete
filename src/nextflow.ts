@@ -8,6 +8,51 @@ const completionSpec: Fig.Spec = {
     {
       name: "clean",
       description: "Clean up project cache and work directories",
+      options: [
+        {
+          name: "-after",
+          description: "Clean up runs executed after the specified one",
+          args: {
+            name: "run name",
+          },
+        },
+        {
+          name: "-before",
+          description: "Clean up runs executed before the specified one",
+          args: {
+            name: "run name",
+          },
+        },
+        {
+          name: "-but",
+          description: "Clean up all runs except the specified one",
+          args: {
+            name: "run name",
+          },
+        },
+        {
+          name: ["-n", "-dry-run"],
+          description:
+            "Print names of file to be removed without deleting them (Default: false)",
+        },
+        {
+          name: ["-f", "-force"],
+          description: "Force clean command (Default: false)",
+        },
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: ["-k", "-keep-logs"],
+          description:
+            "Removes only temporary files but retains execution log entries and metadata (Default: false)",
+        },
+        {
+          name: ["-q", "-quiet"],
+          description: "Do not print names of files removed (Default: false)",
+        },
+      ],
     },
     {
       name: "clone",
