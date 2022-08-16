@@ -133,10 +133,19 @@ const vcsOptions: Fig.Suggestion[] = [
   },
 ];
 
-const completionSpec: Fig.Spec = {
+const completionSpec: (toolchain?: boolean) => Fig.Spec = (
+  toolchain = true
+) => ({
   name: "cargo",
   icon: "📦",
   description: "CLI Interface for Cargo",
+  args: toolchain
+    ? {
+        name: "toolchain",
+        suggestions: ["+nightly", "+stable"],
+        loadSpec: completionSpec(false),
+      }
+    : undefined,
   subcommands: [
     {
       name: "bench",
@@ -5656,6 +5665,6 @@ const completionSpec: Fig.Spec = {
       subcommands,
     };
   },
-};
+});
 
 export default completionSpec;
