@@ -1,6 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "xdg-mime",
-  description: "",
+  description:
+    "Command line tool for querying information about file type handling and adding descriptions for new file types",
   subcommands: [
     {
       name: "query",
