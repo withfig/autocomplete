@@ -63,10 +63,21 @@ const infoLines = [
   },
 ];
 
-const onOff = ["on", "off"];
-const onOffTiny = ["on", "off", "tiny"];
-const num = ["[0-9]+"];
-const barInfobar = ["bar", "infobar", "barinfo", "off"];
+const onOff: Fig.Arg = {
+  name: "on/off",
+  suggestions: ["on", "off"],
+};
+const onOffTiny: Fig.Arg = {
+  name: "on/off",
+  suggestions: ["on", "off", "tiny"],
+};
+const num: Fig.Arg = {
+  name: "[0-9]+",
+};
+const barInfobar: Fig.Arg = {
+  name: "mode",
+  suggestions: ["bar", "infobar", "barinfo", "off"],
+};
 
 const completionSpec: Fig.Spec = {
   name: "neofetch",
@@ -80,7 +91,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--disable",
       description: "Disable information line",
-      args: infoLines,
+      args: {
+        name: "infoname",
+        suggestions: infoLines,
+      },
     },
     {
       name: "--title_fqdn",
@@ -205,7 +219,7 @@ const completionSpec: Fig.Spec = {
       description: "What information to append to the Disk subtitle",
       args: [
         { name: "name" },
-        { mount: "mount" },
+        { name: "mount" },
         { name: "dir" },
         { name: "none" },
       ],
@@ -238,30 +252,32 @@ const completionSpec: Fig.Spec = {
     {
       name: "--colors",
       description: "Changes the text colors",
-      args: {
-        name: "#",
-        description: "Title",
-        args: {
+      args: [
+        {
+          name: "#",
+          description: "Title",
+        },
+        {
           name: "#",
           description: "@",
-          args: {
-            name: "#",
-            description: "Underline",
-            args: {
-              name: "#",
-              description: "Subtitle",
-              args: {
-                name: "#",
-                description: "Colon",
-                args: {
-                  name: "#",
-                  description: "Info",
-                },
-              },
-            },
-          },
         },
-      },
+        {
+          name: "#",
+          description: "Underline",
+        },
+        {
+          name: "#",
+          description: "Subtitle",
+        },
+        {
+          name: "#",
+          description: "Colon",
+        },
+        {
+          name: "#",
+          description: "Info",
+        },
+      ],
     },
     {
       name: "--underline",
@@ -306,22 +322,21 @@ const completionSpec: Fig.Spec = {
     {
       name: "--block_range",
       description: "Range of colors to print as blocks",
-      args: {
-        name: "[0-9]+",
-        args: num,
-      },
+      args: [num, num],
     },
     {
       name: "--bar_char",
       description: "Characters to use when drawing bars",
-      args: {
-        name: "...",
-        description: "Elapsed char",
-        args: {
+      args: [
+        {
+          name: "...",
+          description: "Elapsed char",
+        },
+        {
           name: "...",
           description: "Total char",
         },
-      },
+      ],
     },
     {
       name: "--bar_border",
@@ -336,14 +351,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "--bar_colors",
       description: "Colors to make the bar",
-      args: {
-        name: "#",
-        description: "Elapsed",
-        args: {
+      args: [
+        {
+          name: "#",
+          description: "Elapsed",
+        },
+        {
           name: "#",
           description: "Total",
         },
-      },
+      ],
     },
     {
       name: "--cpu_display",
@@ -449,24 +466,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ascii_colors",
       description: "Colors to print the ascii art",
-      args: {
-        name: "#",
-        args: {
+      args: [
+        {
           name: "#",
-          args: {
-            name: "#",
-            args: {
-              name: "#",
-              args: {
-                name: "#",
-                args: {
-                  name: "#",
-                },
-              },
-            },
-          },
         },
-      },
+        {
+          name: "#",
+        },
+        {
+          name: "#",
+        },
+        {
+          name: "#",
+        },
+        {
+          name: "#",
+        },
+        {
+          name: "#",
+        },
+      ],
     },
     {
       name: "--ascii_distro",
