@@ -1,25 +1,25 @@
 const infoLines = {
-    name: "Information lines",
-    suggestions: [
-      "os",
-      "host",
-      "kernel",
-      "uptime",
-      "packages",
-      "shell",
-      "term",
-      "cpu",
-      "gpu",
-      "memory",
-      "disk",
-      "battery",
-      "resolution",
-      "wm",
-      "de",
-      "theme",
-      "wm_theme",
-      "icons"
-  ]
+  name: "Information lines",
+  suggestions: [
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "term",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk",
+    "battery",
+    "resolution",
+    "wm",
+    "de",
+    "theme",
+    "wm_theme",
+    "icons",
+  ],
 };
 
 const onOff: Fig.Arg = {
@@ -32,7 +32,7 @@ const onOffTiny: Fig.Arg = {
   suggestions: ["on", "off", "tiny"],
 };
 
-const anyNum: String = "[0-9]+";
+const anyNum = "[0-9]+";
 
 const num: Fig.Arg = {
   name: anyNum,
@@ -77,8 +77,15 @@ const completionSpec: Fig.Spec = {
       description: "Change the type of cpu speed to display",
       args: {
         name: "type",
-        suggestions: ["current", "min", "bios", "scaling_current", "scaling_min", "scaling_max"]
-      }
+        suggestions: [
+          "current",
+          "min",
+          "bios",
+          "scaling_current",
+          "scaling_min",
+          "scaling_max",
+        ],
+      },
     },
     {
       name: "--speed_shorthand",
@@ -96,7 +103,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "type",
         suggestions: ["logical", "physical", "off"],
-      }
+      },
     },
     {
       name: "--cpu_speed",
@@ -108,7 +115,7 @@ const completionSpec: Fig.Spec = {
       description: "Hide/Show cpu temperature",
       args: {
         name: "unit/off",
-        suggestions: ["C", "F", "off"]
+        suggestions: ["C", "F", "off"],
       },
     },
     {
@@ -141,7 +148,7 @@ const completionSpec: Fig.Spec = {
       description: "Which GPU to display",
       args: {
         name: "type",
-        suggestions: ["all", "dedicated", "integrated"]
+        suggestions: ["all", "dedicated", "integrated"],
       },
     },
     {
@@ -183,8 +190,8 @@ const completionSpec: Fig.Spec = {
         "/dev/mmcblk",
         "/dev/mapper",
         "/mnt",
-        "/run/media"
-      ]
+        "/run/media",
+      ],
       // todo write function to get block devices and current mountpoints
     },
     {
@@ -192,8 +199,8 @@ const completionSpec: Fig.Spec = {
       description: "What information to append to the Disk subtitle",
       args: {
         name: "type",
-        suggestions: ["name", "mount", "dir", "none"]
-      }
+        suggestions: ["name", "mount", "dir", "none"],
+      },
     },
     {
       name: "--disk_percent",
@@ -220,7 +227,7 @@ const completionSpec: Fig.Spec = {
       description: "Memory output unit",
       args: {
         name: "unit",
-        suggestions: ["kib", "mib", "gib"]
+        suggestions: ["kib", "mib", "gib"],
       },
     },
     {
@@ -265,7 +272,7 @@ const completionSpec: Fig.Spec = {
       description: "Left-padding of color blocks",
       args: {
         name: "number",
-        suggestions: ["auto", anyNum]
+        suggestions: ["auto", anyNum],
       },
     },
     {
@@ -286,10 +293,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--bar_char",
       description: "Characters to use when drawing bars",
-      args: [
-        { name: "Elapsed char" },
-        { name: "Total char" },
-      ],
+      args: [{ name: "Elapsed char" }, { name: "Total char" }],
     },
     {
       name: "--bar_border",
@@ -304,10 +308,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--bar_colors",
       description: "Colors to make the bar",
-      args: [
-        { name: "Elapsed" },
-        { name: "Total" },
-      ],
+      args: [{ name: "Elapsed" }, { name: "Total" }],
     },
     {
       name: "--cpu_display",
@@ -349,7 +350,7 @@ const completionSpec: Fig.Spec = {
           "w3m",
           "kitty",
         ],
-      }
+      },
     },
     {
       name: "--source",
@@ -357,7 +358,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "source",
         suggestions: ["auto", "ascii", "wallpaper"],
-        template: "filepaths"
+        template: "filepaths",
       },
     },
     {
@@ -448,14 +449,14 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "size",
         suggestions: ["auto", anyNum + "px", anyNum + "%"],
-      }
+      },
     },
     {
       name: "--crop_mode",
       description: "Which crop mode to use",
       args: {
         name: "mode",
-        suggestions: ["normal", "fit", "fill"]
+        suggestions: ["normal", "fit", "fill"],
       },
     },
     {
@@ -463,20 +464,20 @@ const completionSpec: Fig.Spec = {
       description: "Change the crop offset for normal mode",
       args: {
         name: "offset",
-        suggestions: ["northwest", "north", "northeast"]
+        suggestions: ["northwest", "north", "northeast"],
       },
     },
     {
       name: "--xoffset",
       description:
         "How close the image will be to the left edge of the window. This only works with w3m",
-      args: num
+      args: num,
     },
     {
       name: "--yoffset",
       description:
         "How close the image will be to the top edge of the window. This only works with w3m",
-      args: num
+      args: num,
     },
     {
       name: "--gap",
@@ -491,9 +492,9 @@ const completionSpec: Fig.Spec = {
       name: "--config",
       description: "Specify a path to a custom config file",
       args: {
-          name: "file/none",
-          suggestions: "none",
-          template: "filepaths"
+        name: "file/none",
+        suggestions: "none",
+        template: "filepaths",
       },
     },
     {
