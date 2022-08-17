@@ -13,20 +13,28 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--docker-hub-access-token",
-              description: "",
+              description:
+                "DockerHub access token to use to build and deploy the app",
               hidden: true,
               args: { name: "docker-hub-access-token" },
             },
             {
               name: "--docker-hub-username",
-              description: "",
+              description:
+                "DockerHub username to use to build and deploy the app",
               hidden: true,
               args: { name: "docker-hub-username" },
             },
-            { name: "--path", description: "", args: { name: "path" } },
+            {
+              name: "--path",
+              description:
+                "Path to the app directory (default is local directory)",
+              args: { name: "path" },
+            },
             {
               name: "--spec",
-              description: "",
+              description:
+                "Deployment specification version to use to build and deploy the app",
               hidden: true,
               args: { name: "spec" },
             },
