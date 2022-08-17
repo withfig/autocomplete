@@ -16177,6 +16177,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         description: "Package to install",
         suggestions: packageList,
+        isVariadic: true,
       },
       // options: [
       //   {
