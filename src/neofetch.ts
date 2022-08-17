@@ -46,7 +46,7 @@ const bar: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "neofetch",
   description: "The most complete system information CLI tool",
-  subcommands: infoLines,
+  args: { ...infoLines, isVariadic: true },
   options: [
     {
       name: ["--help", "-h"],
@@ -184,14 +184,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "--disk_show",
       description: "Which disks to display",
-      suggestions: [
-        "/dev/sd",
-        "/dev/nvme",
-        "/dev/mmcblk",
-        "/dev/mapper",
-        "/mnt",
-        "/run/media",
-      ],
+      args: {
+        name: "disk",
+        suggestions: [
+          "/dev/sd",
+          "/dev/nvme",
+          "/dev/mmcblk",
+          "/dev/mapper",
+          "/mnt",
+          "/run/media",
+        ],
+      },
       // todo write function to get block devices and current mountpoints
     },
     {
@@ -493,7 +496,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify a path to a custom config file",
       args: {
         name: "file/none",
-        suggestions: "none",
+        suggestions: ["none"],
         template: "filepaths",
       },
     },
