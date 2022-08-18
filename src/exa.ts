@@ -255,7 +255,7 @@ const completionSpec: Fig.Spec = {
     {
       description: "Displays when a file or folder got changed instead of modified in the header",
       name: "--changed",
-    }
+    },
   ],
 };
 
