@@ -256,7 +256,7 @@ const completionSpec: Fig.Spec = {
     {
       description: "Does not display icons",
       exclusiveOn: ["--icons"],
-      name: "--no-icons", 
+      name: "--no-icons",
     },
   ],
 };
