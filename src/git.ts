@@ -4725,6 +4725,7 @@ const completionSpec: Fig.Spec = {
         suggestions: headSuggestions,
         generators: [
           gitGenerators.commits,
+          gitGenerators.remoteLocalBranches,
           gitGenerators.getChangedTrackedFiles,
         ],
       },
