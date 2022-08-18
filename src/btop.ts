@@ -12,7 +12,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--tty_on", "-t"],
-      description: "Forces ON tty mode, max 16 colors and tty friendly graph symbol",
+      description:
+        "Forces ON tty mode, max 16 colors and tty friendly graph symbol",
       exclusiveOn: ["--tty_off"],
     },
     {
@@ -25,7 +26,7 @@ const completionSpec: Fig.Spec = {
       description: "Start with preset",
       args: {
         name: "id",
-        suggestions: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ],
+        suggestions: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
       },
     },
     {
@@ -34,12 +35,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--debug",
-      description: "Starts in DEBUG mode: shows microsecond timer for information collect and screen draw functions and sets loglevel to DEBUG",
+      description:
+        "Starts in DEBUG mode: shows microsecond timer for information collect and screen draw functions and sets loglevel to DEBUG",
     },
     {
       name: ["--version", "-v"],
       description: "Shows the version of btop",
     },
   ],
-  };
-  export default completionSpec;
+};
+export default completionSpec;
