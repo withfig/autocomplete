@@ -262,6 +262,7 @@ const completionSpec: Fig.Spec = {
               name: ["--config", "-c"],
               description:
                 "Updated environment configuration based on type and provider (e.g.: --config aws_access_key_id=my_access_key --config aws_access_secret=my_access_secret)",
+              isRepeatable: true,
               args: { name: "config" },
             },
             {
