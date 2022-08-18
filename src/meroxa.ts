@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path to the app directory (default is local directory)",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
             {
               name: "--spec",
@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--lang", "-l"],
               description: "Language to use (js|go|py) (required)",
-              args: { name: "lang" },
+              args: { name: "lang", suggestions: ["js", "go", "py"] },
               isRequired: true,
             },
             {
@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path where application will be initialized (current directory as default)",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
             {
               name: "--skip-mod-init",
@@ -101,13 +101,13 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--lang", "-l"],
-              description: "Language to use (go | js)",
-              args: { name: "lang" },
+              description: "Language to use (js|go|py)",
+              args: { name: "lang", suggestions: ["js", "go", "py"] },
             },
             {
               name: "--path",
               description: "Path of application to run",
-              args: { name: "path" },
+              args: { name: "path", template: "filepaths" },
             },
           ],
         },
@@ -170,7 +170,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--protocol", "-p"],
               description: "Protocol, value can be http or grpc (required)",
-              args: { name: "protocol" },
+              args: { name: "protocol", suggestions: ["http", "grpc"] },
               isRequired: true,
             },
             {
@@ -262,6 +262,7 @@ const completionSpec: Fig.Spec = {
               name: ["--config", "-c"],
               description:
                 "Updated environment configuration based on type and provider (e.g.: --config aws_access_key_id=my_access_key --config aws_access_secret=my_access_secret)",
+              isRepeatable: true,
               args: { name: "config" },
             },
             {
@@ -652,7 +653,7 @@ const completionSpec: Fig.Spec = {
       name: "--cli-config-file",
       description: "Meroxa configuration file",
       isPersistent: true,
-      args: { name: "cli-config-file" },
+      args: { name: "cli-config-file", template: "filepaths" },
     },
     {
       name: "--debug",
