@@ -24,7 +24,7 @@ const completionSpec: Fig.Spec = {
         name: ["--preset", "-p"],
         description: "Start with preset",
         args: {
-          name: "delay",
+          name: "id",
           suggestions: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ],
         },
       },
