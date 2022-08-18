@@ -251,6 +251,7 @@ const completionSpec: Fig.Spec = {
     {
       description: "Shows icons before each folder or file",
       name: "--icons",
+      exclusiveOn: ["--no-icons"],
     },
     {
       description: "Does not display icons (This overwrites -icons)",
