@@ -1,3 +1,15 @@
+const runname: Fig.Generator = {
+  script: "cat .nextflow/history | awk '{ print $4 }'",
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((runname) => {
+      return { name: runname.replace("*", "").trim(), description: "Run name" };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "nextflow",
   description: "",
@@ -10,6 +22,7 @@ const completionSpec: Fig.Spec = {
       description: "Clean up project cache and work directories",
       args: {
         name: "run_name|session_id",
+        generators: runname,
       },
       options: [
         {
@@ -17,6 +30,7 @@ const completionSpec: Fig.Spec = {
           description: "Clean up runs executed after the specified one",
           args: {
             name: "run name",
+            generators: runname,
           },
         },
         {
@@ -24,6 +38,7 @@ const completionSpec: Fig.Spec = {
           description: "Clean up runs executed before the specified one",
           args: {
             name: "run name",
+            generators: runname,
           },
         },
         {
@@ -31,6 +46,7 @@ const completionSpec: Fig.Spec = {
           description: "Clean up all runs except the specified one",
           args: {
             name: "run name",
+            generators: runname,
           },
         },
         {
@@ -217,6 +233,7 @@ const completionSpec: Fig.Spec = {
             "Show log entries for runs executed after the specified one",
           args: {
             name: "run name",
+            generators: runname,
           },
         },
         {
@@ -225,6 +242,7 @@ const completionSpec: Fig.Spec = {
             "Show log entries for runs executed before the specified one",
           args: {
             name: "run name",
+            generators: runname,
           },
         },
         {
@@ -232,6 +250,7 @@ const completionSpec: Fig.Spec = {
           description: "Show log entries of all runs except the specified one",
           args: {
             name: "run name",
+            generators: runname,
           },
         },
         {
