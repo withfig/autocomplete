@@ -252,6 +252,11 @@ const completionSpec: Fig.Spec = {
       description: "Shows icons before each folder or file",
       name: "--icons",
     },
+    {
+      description:
+        "Displays when a file or folder got changed instead of modified in the header",
+      name: "--changed",
+    },
   ],
 };
 
