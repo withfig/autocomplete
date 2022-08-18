@@ -255,7 +255,7 @@ const completionSpec: Fig.Spec = {
     {
       description: "Does not display icons (This overwrites -icons)",
       name: "--no-icons", 
-    }
+    },
   ],
 };
 
