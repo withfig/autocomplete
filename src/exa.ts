@@ -248,6 +248,10 @@ const completionSpec: Fig.Spec = {
       description: "List each file's extended attributes and sizes",
       name: ["-@", "--extended"],
     },
+    {
+      description: "Shows icons before each folder or file",
+      name: "--icons",
+    },
   ],
 };
 
