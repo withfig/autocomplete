@@ -131,6 +131,23 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "search",
+      description: "Search for packages",
+      args: {
+        name: "query",
+        description: "The query to search for",
+      },
+    },
+    {
+      name: "show",
+      description: "Show package details",
+      args: {
+        name: "package",
+        description: "The package you want to show",
+        generators: packages,
+      },
+    },
   ],
   options: [
     {
