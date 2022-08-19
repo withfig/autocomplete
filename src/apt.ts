@@ -19,6 +19,7 @@ const packages: Fig.Generator = {
       name,
       description: "Package",
       icon: "📦",
+      priority: 50,
     }));
   },
 };
@@ -80,7 +81,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         description: "The package you want to install",
         isVariadic: true,
-        generators: packages,
+        generators: [packages, filepaths({ extensions: ["deb"] })],
       },
     },
     {
