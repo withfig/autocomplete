@@ -83,6 +83,12 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: [packages, filepaths({ extensions: ["deb"] })],
       },
+      options: [
+        {
+          name: "--reinstall",
+          description: "Reinstall the package if it is already installed",
+        },
+      ],
     },
     {
       name: "reinstall",
@@ -115,7 +121,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "autoremove",
+      name: ["autoremove", "auto-remove"],
       description: "Remove unused packages",
     },
     {
@@ -149,11 +155,115 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
     },
+    {
+      name: "satisfy",
+      description: "Satisfy package dependencies",
+      args: {
+        name: "package",
+        description: "The package you want to satisfy",
+        isVariadic: true,
+        generators: packages,
+      },
+    },
+    {
+      name: "clean",
+      description: "Remove downloaded package files",
+    },
+    {
+      name: "edit-sources",
+      description: "Edit the list of package sources",
+    },
+    {
+      // docs for this weren't the greatest, some descriptions might be slightly (or very) wrong.
+      name: "source",
+      description: "Fetch package source files",
+      args: {
+        name: "package",
+        description: "The package you want to get source files for",
+        isVariadic: true,
+        generators: packages,
+      },
+      options: [
+        {
+          name: "--compile",
+          description:
+            "Compile the package to a binary using dpkg-buildpackage",
+        },
+        {
+          name: "--download-only",
+          description:
+            "Download the package source files but do not unpack them",
+        },
+        {
+          name: "--only-source",
+          // no idea how this works
+        },
+        {
+          name: "--host-architecture",
+          description: "The architecture to build for",
+          args: {
+            name: "architecture",
+            description: "The architecture to build for",
+          },
+        },
+      ],
+    },
+    {
+      name: "build-dep",
+      description:
+        "Install/remove packages in an attempt to satisfy the build dependencies for a source package",
+      args: {
+        name: "package",
+        description: "The package you want to build dependencies for",
+        generators: packages,
+      },
+      options: [
+        {
+          name: "--host-architecture",
+          description: "The architecture to build for",
+          args: {
+            name: "architecture",
+            description: "The architecture to build for",
+          },
+        },
+        {
+          name: "--only-source",
+        },
+      ],
+    },
+    {
+      name: "download",
+      description: "Download package binary into the current directory",
+      args: {
+        name: "package",
+        description: "The package you want to download",
+        generators: packages,
+      },
+    },
+    {
+      name: ["autoclean", "auto-clean"],
+      description:
+        "Like clean, but only removes package files that can no longer be downloaded",
+    },
+    {
+      name: "changelog",
+      description: "Show the changelog for a package",
+      args: {
+        name: "package",
+        description: "The package you want to show the changelog for",
+        generators: packages,
+        isVariadic: true,
+      },
+    },
   ],
   options: [
     {
       name: ["-h", "--help"],
       description: "Print help message and exit",
+    },
+    {
+      name: ["-v", "--version"],
+      description: "Print version information and exit",
     },
   ],
 };
