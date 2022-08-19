@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 const packages: Fig.Generator = {
   // only trigger when the token length transitions to or from 0
   trigger: (current, previous) =>
@@ -34,6 +36,19 @@ const installedPackages: Fig.Generator = {
   },
 };
 
+const upgradablePackages: Fig.Generator = {
+  script: "apt list --upgradable",
+  postProcess: function (a) {
+    return a.split("\n").map((b) => {
+      return {
+        name: b.substring(0, b.indexOf("/")),
+        description: "Package",
+        icon: "📦",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "apt",
   description: "Package manager for Debian-based Linux distributions",
@@ -45,6 +60,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "upgrade",
       description: "Install all available upgrades",
+      args: {
+        name: "package",
+        description: "Package(s) to upgrade",
+        isVariadic: true,
+        isOptional: true,
+        generators: upgradablePackages,
+      },
     },
     {
       name: "full-upgrade",
@@ -80,6 +102,34 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: installedPackages,
       },
+    },
+    {
+      name: "purge",
+      description: "Remove package(s) and their configuration files",
+      args: {
+        name: "package",
+        description: "The package you want to purge",
+        isVariadic: true,
+        generators: installedPackages,
+      },
+    },
+    {
+      name: "autoremove",
+      description: "Remove unused packages",
+    },
+    {
+      name: "list",
+      description: "List packages",
+      options: [
+        {
+          name: "--installed",
+          description: "List installed packages",
+        },
+        {
+          name: "--upgradable",
+          description: "List upgradable packages",
+        },
+      ],
     },
   ],
   options: [
