@@ -212,6 +212,296 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "project name",
       },
+      options: [
+        {
+          name: "-E",
+          description:
+            "Exports all current system environment (Default: false)",
+        },
+        {
+          name: "-ansi-log",
+          description: "Enable/disable ANSI console logging",
+        },
+        {
+          name: "-bucket-dir",
+          description:
+            "Remote bucket where intermediate result files are stored",
+          args: {
+            name: "remote bucket",
+          },
+        },
+        {
+          name: "-cache",
+          description: "Enable/disable processes caching",
+        },
+        {
+          name: "-disable-jobs-cancellation",
+          description:
+            "Prevent the cancellation of child jobs on execution termination",
+        },
+        {
+          name: "-dsl1",
+          description:
+            "Execute the workflow using DSL1 syntax (Default: false)",
+        },
+        {
+          name: "-dsl2",
+          description:
+            "Execute the workflow using DSL2 syntax (Default: false)",
+        },
+        {
+          name: "-dump-channels",
+          description: "Dump channels for debugging purpose",
+        },
+        {
+          name: "-dump-hashes",
+          description:
+            "Dump task hash keys for debugging purpose (Default: false)",
+        },
+        {
+          name: "-e.",
+          description:
+            "Add the specified variable to execution environment. Syntax: -e.key=value (Default: {})",
+          insertValue: "-e.{cursor}",
+          args: {
+            name: "key=value",
+          },
+        },
+        {
+          name: "-entry",
+          description: "Entry workflow name to be executed",
+          args: {
+            name: "entry workflow name",
+          },
+        },
+        {
+          name: "-head-cpus",
+          description:
+            "Specify number of CPUs requested for the Nextflow pod (Default: 0)",
+        },
+        {
+          name: "-head-memory",
+          description:
+            "Specify amount of memory requested for the Nextflow pod",
+        },
+        {
+          name: ["-h", "-help"],
+          description: "Print the command usage (Default: false)",
+        },
+        {
+          name: "-hub",
+          description:
+            "Service hub where the project is hosted (Default: github)",
+          args: {
+            name: "service hub",
+          },
+        },
+        {
+          name: "-latest",
+          description: "Pull latest changes before run (Default: false)",
+        },
+        {
+          name: "-lib",
+          description: "Library extension path",
+          args: {
+            name: "library extension path",
+          },
+        },
+        {
+          name: "-main-script",
+          description:
+            "The script file to be executed when launching a project directory or repository",
+          args: {
+            name: "script file",
+          },
+        },
+        {
+          name: "-name",
+          description: "Assign a mnemonic name to the a pipeline run",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: ["-n", "-namespace"],
+          description: "Specify the K8s namespace to use",
+        },
+        {
+          name: "-offline",
+          description:
+            "Do not check for remote project updates (Default: false)",
+        },
+        {
+          name: "-params-file",
+          description: "Load script parameters from a JSON/YAML file",
+          args: {
+            name: "JSON/YAML file",
+          },
+        },
+        {
+          name: "-plugins",
+          description:
+            "Specify the plugins to be applied for this run e.g. nf-amazon,nf-tower",
+          args: {
+            name: "plugins ids separated by comma",
+          },
+        },
+        {
+          name: "-pod-image",
+          description: "Specify the container image for the Nextflow pod",
+        },
+        {
+          name: "-process.",
+          description:
+            "Set process options. Syntax: -process.key=value (Default: {}",
+          insertValue: "-process.{cursor}",
+          args: {
+            name: "key=value",
+          },
+        },
+        {
+          name: "-profile",
+          description: "Choose a configuration profile",
+          args: {
+            name: "profile",
+          },
+        },
+        {
+          name: ["-qs", "-queue-size"],
+          description:
+            "Max number of processes that can be executed in parallel by each executor",
+          args: {
+            name: "number",
+          },
+        },
+        {
+          name: "-remoteProfile",
+          description: "Choose a configuration profile in the remoteConfig",
+        },
+        {
+          name: "-resume",
+          description:
+            "Execute the script using the cached results, useful to continue executions that was stopped by an error",
+        },
+        {
+          name: ["-r", "-revision"],
+          description:
+            "Revision of the project to run (either a git branch, tag or commit SHA number)",
+          args: {
+            name: "project revision (tag/branch/hash",
+          },
+        },
+        {
+          name: ["-stub-ru", "-stub"],
+          description:
+            "Execute the workflow replacing process scripts with command stubs (Default: false)",
+        },
+        {
+          name: "-test",
+          description: "Test a script function with the name specified",
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "-user",
+          description: "Private repository user name",
+          args: {
+            name: "username",
+          },
+        },
+        {
+          name: ["-v", "-volume-mount"],
+          description: "Volume claim mounts eg. my-pvc:/mnt/path",
+        },
+        {
+          name: "-with-charliecloud",
+          description:
+            "Enable process execution in a Charliecloud container runtime",
+        },
+        {
+          name: "-with-conda",
+          description:
+            "Use the specified Conda environment package or file (must end with .yml|.yaml suffix)",
+          args: {
+            name: "conda .yml/.yaml file",
+          },
+        },
+        {
+          name: "-with-dag",
+          description: "Create pipeline DAG file",
+          args: {
+            name: "filename, e.g. dag.dot",
+          },
+        },
+        {
+          name: "-with-docker",
+          description: "Enable process execution in a Docker container",
+        },
+        {
+          name: ["-N", "-with-notification"],
+          description:
+            "Send a notification email on workflow completion to the specified recipients",
+          args: {
+            name: "email",
+          },
+        },
+        {
+          name: "-with-podman",
+          description: "Enable process execution in a Podman container",
+        },
+        {
+          name: "-with-report",
+          description: "Create processes execution html report",
+          args: {
+            name: "report filename e.g. report.html",
+          },
+        },
+        {
+          name: "-with-singularity",
+          description: "Enable process execution in a Singularity container",
+        },
+        {
+          name: "-with-timeline",
+          description: "Create processes execution timeline file",
+          args: {
+            name: "timeline filename e.g. timeline.html",
+          },
+        },
+        {
+          name: "-with-tower",
+          description: "Monitor workflow execution with Seqera Tower service",
+        },
+        {
+          name: "-with-trace",
+          description: "Create processes execution tracing file",
+          args: {
+            name: "trace text filename e.g. trace.txt",
+          },
+        },
+        {
+          name: "-with-weblog",
+          description: "Send workflow status messages via HTTP to target URL",
+          args: {
+            name: "target web URL",
+          },
+        },
+        {
+          name: "-without-docker",
+          description: "Disable process execution with Docker (Default: false)",
+        },
+        {
+          name: "-without-podman",
+          description: "Disable process execution in a Podman container",
+        },
+        {
+          name: ["-w", "-work-dir"],
+          description: "Directory where intermediate result files are stored",
+          args: {
+            name: "work dir",
+          },
+        },
+      ],
     },
     {
       name: "list",
