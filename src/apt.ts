@@ -27,26 +27,32 @@ const packages: Fig.Generator = {
 const installedPackages: Fig.Generator = {
   script: "apt list --installed",
   postProcess: function (a) {
-    return a.trim().split("\n").map((b) => {
-      return {
-        name: b.substring(0, b.indexOf("/")),
-        description: "Package",
-        icon: "📦",
-      };
-    });
+    return a
+      .trim()
+      .split("\n")
+      .map((b) => {
+        return {
+          name: b.substring(0, b.indexOf("/")),
+          description: "Package",
+          icon: "📦",
+        };
+      });
   },
 };
 
 const upgradablePackages: Fig.Generator = {
   script: "apt list --upgradable",
   postProcess: function (a) {
-    return a.split("\n").map((b) => {
-      return {
-        name: b.substring(0, b.indexOf("/")),
-        description: "Package",
-        icon: "📦",
-      };
-    });
+    return a
+      .trim()
+      .split("\n")
+      .map((b) => {
+        return {
+          name: b.substring(0, b.indexOf("/")),
+          description: "Package",
+          icon: "📦",
+        };
+      });
   },
 };
 
