@@ -50,6 +50,32 @@ const upgradablePackages: Fig.Generator = {
   },
 };
 
+const globalOptions: Fig.Option[] = [
+  {
+    name: ["-s", "--simulate"],
+    description:
+      "Simulate running this command and show it's output, without actually changing anything",
+  },
+  {
+    name: "-y",
+    description: "Assume yes to all prompts",
+  },
+  {
+    name: "--assume-no",
+    description: "Assume no to all prompts",
+  },
+  {
+    name: ["-d", "--download-only"],
+    description:
+      "For any operation that would download packages, download them, but do nothing else",
+  },
+  {
+    name: "--no-download",
+    description:
+      "Do not download packages, attempt to use already downloaded packages",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "apt",
   description: "Package manager for Debian-based Linux distributions",
@@ -57,6 +83,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update the package database",
+      options: globalOptions,
     },
     {
       name: "upgrade",
@@ -68,11 +95,13 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: upgradablePackages,
       },
+      options: globalOptions,
     },
     {
       name: "full-upgrade",
       description:
         "Install available upgrades, removing currently installed packages if needed to upgrade the system as a whole",
+      options: globalOptions,
     },
     {
       name: "install",
@@ -84,9 +113,14 @@ const completionSpec: Fig.Spec = {
         generators: [packages, filepaths({ extensions: ["deb"] })],
       },
       options: [
+        ...globalOptions,
         {
           name: "--reinstall",
           description: "Reinstall the package if it is already installed",
+        },
+        {
+          name: ["-f", "--fix-broken"],
+          description: "Attempt to fix broken packages",
         },
       ],
     },
@@ -99,6 +133,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: installedPackages,
       },
+      options: globalOptions,
     },
     {
       name: "remove",
@@ -109,6 +144,13 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: installedPackages,
       },
+      options: [
+        ...globalOptions,
+        {
+          name: ["-f", "--fix-broken"],
+          description: "Attempt to fix broken packages",
+        },
+      ],
     },
     {
       name: "purge",
@@ -119,15 +161,18 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: installedPackages,
       },
+      options: globalOptions,
     },
     {
       name: ["autoremove", "auto-remove"],
       description: "Remove unused packages",
+      options: globalOptions,
     },
     {
       name: "list",
       description: "List packages",
       options: [
+        ...globalOptions,
         {
           name: "--installed",
           description: "List installed packages",
@@ -145,6 +190,7 @@ const completionSpec: Fig.Spec = {
         name: "query",
         description: "The query to search for",
       },
+      options: globalOptions,
     },
     {
       name: "show",
@@ -154,6 +200,7 @@ const completionSpec: Fig.Spec = {
         description: "The package you want to show",
         generators: packages,
       },
+      options: globalOptions,
     },
     {
       name: "satisfy",
@@ -164,14 +211,17 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: packages,
       },
+      options: globalOptions,
     },
     {
       name: "clean",
       description: "Remove downloaded package files",
+      options: globalOptions,
     },
     {
       name: "edit-sources",
       description: "Edit the list of package sources",
+      options: globalOptions,
     },
     {
       // docs for this weren't the greatest, some descriptions might be slightly (or very) wrong.
@@ -184,15 +234,11 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
       options: [
+        ...globalOptions,
         {
           name: "--compile",
           description:
             "Compile the package to a binary using dpkg-buildpackage",
-        },
-        {
-          name: "--download-only",
-          description:
-            "Download the package source files but do not unpack them",
         },
         {
           name: "--only-source",
@@ -218,6 +264,7 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
       options: [
+        ...globalOptions,
         {
           name: "--host-architecture",
           description: "The architecture to build for",
@@ -239,11 +286,13 @@ const completionSpec: Fig.Spec = {
         description: "The package you want to download",
         generators: packages,
       },
+      options: globalOptions,
     },
     {
       name: ["autoclean", "auto-clean"],
       description:
         "Like clean, but only removes package files that can no longer be downloaded",
+      options: globalOptions,
     },
     {
       name: "changelog",
@@ -254,6 +303,7 @@ const completionSpec: Fig.Spec = {
         generators: packages,
         isVariadic: true,
       },
+      options: globalOptions,
     },
   ],
   options: [
