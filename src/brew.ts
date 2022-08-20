@@ -1204,6 +1204,15 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--prefix",
+      description: "Prefix of <formula>",
+      args: {
+        isVariadic: true,
+        name: "formula",
+        generators: formulaeGenerator,
+      },
+    },
+    {
       name: "cask",
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries",
