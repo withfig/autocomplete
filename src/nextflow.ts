@@ -621,7 +621,7 @@ const completionSpec: Fig.Spec = {
       name: "run",
       description: "Execute a pipeline project",
       args: {
-        name: "project name or repository url",
+        name: "project name, repository url, or local path",
       },
       options: [
         {
