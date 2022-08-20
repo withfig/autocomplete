@@ -27,7 +27,7 @@ const packages: Fig.Generator = {
 const installedPackages: Fig.Generator = {
   script: "apt list --installed",
   postProcess: function (a) {
-    return a.split("\n").map((b) => {
+    return a.trim().split("\n").map((b) => {
       return {
         name: b.substring(0, b.indexOf("/")),
         description: "Package",
