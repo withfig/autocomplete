@@ -186,10 +186,6 @@ const completionSpec: Fig.Spec = {
           description: "Add an environment variable",
           args: [
             {
-              name: "type",
-              description: "Type of env variable to add",
-            },
-            {
               name: "name",
               description: "Name of the env variable to add",
             },
