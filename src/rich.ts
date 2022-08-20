@@ -527,6 +527,7 @@ const completionSpec: Fig.Spec = {
       name: "--theme",
       args: {
         name: "theme",
+        filterStrategy: "fuzzy",
         suggestions: [
           "default",
           "bw",
@@ -593,6 +594,7 @@ const completionSpec: Fig.Spec = {
       name: ["-x", "--lexer"],
       args: {
         name: "lexer",
+        filterStrategy: "fuzzy",
         suggestions: [
           "ActionScript3",
           "ActionScript",
