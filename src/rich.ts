@@ -365,9 +365,7 @@ const completionSpec: Fig.Spec = {
   description: "Rich text and formatting in the terminal",
   args: {
     name: "path/text/url",
-    suggestions: [
-      { name: "-", description: "Read from stdin", hidden: true },
-    ],
+    suggestions: [{ name: "-", description: "Read from stdin", hidden: true }],
     template: "filepaths",
   },
   options: [
