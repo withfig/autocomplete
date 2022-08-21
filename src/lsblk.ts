@@ -85,6 +85,7 @@ const completionSpec: Fig.Spec = {
       description: "Specify which output columns to print",
       args: {
         name: "list",
+        isVariadic: true,
       },
     },
     {
