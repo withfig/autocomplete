@@ -110,6 +110,9 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--tree", "-T"],
       description: "Force tree-like output format",
+      args: {
+        name: "column",
+      },
     },
     {
       name: ["--topology", "-t"],
