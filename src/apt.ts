@@ -56,12 +56,7 @@ const upgradablePackages: Fig.Generator = {
   },
 };
 
-const globalOptions: Fig.Option[] = [
-  {
-    name: ["-s", "--simulate"],
-    description:
-      "Simulate running this command and show it's output, without actually changing anything",
-  },
+const yesNoOptions: Fig.Option[] = [
   {
     name: "-y",
     description: "Assume yes to all prompts",
@@ -70,6 +65,9 @@ const globalOptions: Fig.Option[] = [
     name: "--assume-no",
     description: "Assume no to all prompts",
   },
+];
+
+const instillationOptions: Fig.Option[] = [
   {
     name: ["-d", "--download-only"],
     description:
@@ -82,6 +80,14 @@ const globalOptions: Fig.Option[] = [
   },
 ];
 
+const simulate: Fig.Option[] = [
+  {
+    name: ["-s", "--simulate"],
+    description:
+      "Simulate running this command and show it's output, without actually changing anything",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "apt",
   description: "Package manager for Debian-based Linux distributions",
@@ -89,7 +95,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update the package database",
-      options: globalOptions,
+      options: [...yesNoOptions],
     },
     {
       name: "upgrade",
@@ -101,13 +107,13 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: upgradablePackages,
       },
-      options: globalOptions,
+      options: [...instillationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "full-upgrade",
       description:
         "Install available upgrades, removing currently installed packages if needed to upgrade the system as a whole",
-      options: globalOptions,
+      options: [...instillationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "install",
@@ -119,7 +125,9 @@ const completionSpec: Fig.Spec = {
         generators: [packages, filepaths({ extensions: ["deb"] })],
       },
       options: [
-        ...globalOptions,
+        ...instillationOptions,
+        ...yesNoOptions,
+        ...simulate,
         {
           name: "--reinstall",
           description: "Reinstall the package if it is already installed",
@@ -139,7 +147,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: installedPackages,
       },
-      options: globalOptions,
+      options: [...yesNoOptions, ...simulate],
     },
     {
       name: "remove",
@@ -151,7 +159,8 @@ const completionSpec: Fig.Spec = {
         generators: installedPackages,
       },
       options: [
-        ...globalOptions,
+        ...yesNoOptions,
+        ...simulate,
         {
           name: ["-f", "--fix-broken"],
           description: "Attempt to fix broken packages",
@@ -167,18 +176,17 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: installedPackages,
       },
-      options: globalOptions,
+      options: [...yesNoOptions, ...simulate],
     },
     {
       name: ["autoremove", "auto-remove"],
       description: "Remove unused packages",
-      options: globalOptions,
+      options: [...yesNoOptions, ...simulate],
     },
     {
       name: "list",
       description: "List packages",
       options: [
-        ...globalOptions,
         {
           name: "--installed",
           description: "List installed packages",
@@ -196,7 +204,7 @@ const completionSpec: Fig.Spec = {
         name: "query",
         description: "The query to search for",
       },
-      options: globalOptions,
+      options: [...yesNoOptions],
     },
     {
       name: "show",
@@ -206,7 +214,6 @@ const completionSpec: Fig.Spec = {
         description: "The package you want to show",
         generators: packages,
       },
-      options: globalOptions,
     },
     {
       name: "satisfy",
@@ -217,17 +224,17 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: packages,
       },
-      options: globalOptions,
+      options: [...instillationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "clean",
       description: "Remove downloaded package files",
-      options: globalOptions,
+      options: [...yesNoOptions, ...simulate],
     },
     {
       name: "edit-sources",
       description: "Edit the list of package sources",
-      options: globalOptions,
+      options: [...yesNoOptions],
     },
     {
       // docs for this weren't the greatest, some descriptions might be slightly (or very) wrong.
@@ -240,7 +247,9 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
       options: [
-        ...globalOptions,
+        ...instillationOptions,
+        ...yesNoOptions,
+        ...simulate,
         {
           name: "--compile",
           description:
@@ -261,6 +270,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      // I don't understand this either
       name: "build-dep",
       description:
         "Install/remove packages in an attempt to satisfy the build dependencies for a source package",
@@ -270,7 +280,9 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
       options: [
-        ...globalOptions,
+        ...instillationOptions,
+        ...yesNoOptions,
+        ...simulate,
         {
           name: "--host-architecture",
           description: "The architecture to build for",
@@ -292,13 +304,13 @@ const completionSpec: Fig.Spec = {
         description: "The package you want to download",
         generators: packages,
       },
-      options: globalOptions,
+      options: [...instillationOptions, ...yesNoOptions],
     },
     {
       name: ["autoclean", "auto-clean"],
       description:
         "Like clean, but only removes package files that can no longer be downloaded",
-      options: globalOptions,
+      options: [...instillationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "changelog",
@@ -309,7 +321,7 @@ const completionSpec: Fig.Spec = {
         generators: packages,
         isVariadic: true,
       },
-      options: globalOptions,
+      options: [...instillationOptions, ...yesNoOptions],
     },
   ],
   options: [
