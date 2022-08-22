@@ -100,14 +100,21 @@ const completionSpec: Fig.Spec = {
           description: "Execute a Turbine Data Application locally (Beta)",
           options: [
             {
-              name: ["--lang", "-l"],
-              description: "Language to use (js|go|py)",
-              args: { name: "lang", suggestions: ["js", "go", "py"] },
-            },
-            {
               name: "--path",
               description: "Path of application to run",
-              args: { name: "path", template: "filepaths" },
+              args: { name: "path", template: "folders" },
+            },
+          ],
+        },
+        {
+          name: "upgrade",
+          description: "Upgrade a Turbine Data Application (Beta)",
+          options: [
+            {
+              name: "--path",
+              description:
+                "Path where application exists (current directory as default)",
+              args: { name: "path", template: "folders" },
             },
           ],
         },
@@ -214,6 +221,7 @@ const completionSpec: Fig.Spec = {
               name: ["--config", "-c"],
               description:
                 "Environment configuration based on type and provider (e.g.: --config aws_access_key_id=my_access_key --config aws_secret_access_key=my_access_secret)",
+              isRepeatable: true,
               args: { name: "config" },
             },
             {
@@ -502,6 +510,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "run",
               description: "Execute a Turbine Data Application locally (Beta)",
+            },
+            {
+              name: "upgrade",
+              description: "Upgrade a Turbine Data Application (Beta)",
             },
           ],
         },
