@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path to the app directory (default is local directory)",
-              args: { name: "path", template: "folders" },
+              args: { name: "path" },
             },
             {
               name: "--spec",
@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path where application will be initialized (current directory as default)",
-              args: { name: "path", template: "folders" },
+              args: { name: "path" },
             },
             {
               name: "--skip-mod-init",
@@ -100,14 +100,21 @@ const completionSpec: Fig.Spec = {
           description: "Execute a Turbine Data Application locally (Beta)",
           options: [
             {
-              name: ["--lang", "-l"],
-              description: "Language to use (js|go|py)",
-              args: { name: "lang", suggestions: ["js", "go", "py"] },
-            },
-            {
               name: "--path",
               description: "Path of application to run",
-              args: { name: "path", template: "filepaths" },
+              args: { name: "path" },
+            },
+          ],
+        },
+        {
+          name: "upgrade",
+          description: "Upgrade a Turbine Data Application (Beta)",
+          options: [
+            {
+              name: "--path",
+              description:
+                "Path where application exists (current directory as default)",
+              args: { name: "path" },
             },
           ],
         },
@@ -214,6 +221,7 @@ const completionSpec: Fig.Spec = {
               name: ["--config", "-c"],
               description:
                 "Environment configuration based on type and provider (e.g.: --config aws_access_key_id=my_access_key --config aws_secret_access_key=my_access_secret)",
+              isRepeatable: true,
               args: { name: "config" },
             },
             {
@@ -503,6 +511,10 @@ const completionSpec: Fig.Spec = {
               name: "run",
               description: "Execute a Turbine Data Application locally (Beta)",
             },
+            {
+              name: "upgrade",
+              description: "Upgrade a Turbine Data Application (Beta)",
+            },
           ],
         },
         {
@@ -653,7 +665,7 @@ const completionSpec: Fig.Spec = {
       name: "--cli-config-file",
       description: "Meroxa configuration file",
       isPersistent: true,
-      args: { name: "cli-config-file", template: "filepaths" },
+      args: { name: "cli-config-file" },
     },
     {
       name: "--debug",
