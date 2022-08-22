@@ -15,14 +15,17 @@ const packages: Fig.Generator = {
     const out = await executeShellCommand(
       `apt list | grep '^${finalToken[0]}' | sed 's#/.*##g'`
     );
-    return out.trim().split("\n").map((name) => ({
-      name,
-      description: "Package",
-      icon: "📦",
-      // make the suggestions... actually show up
-      // see https://github.com/withfig/autocomplete/pull/1429#discussion_r950688126
-      priority: 50,
-    }));
+    return out
+      .trim()
+      .split("\n")
+      .map((name) => ({
+        name,
+        description: "Package",
+        icon: "📦",
+        // make the suggestions... actually show up
+        // see https://github.com/withfig/autocomplete/pull/1429#discussion_r950688126
+        priority: 50,
+      }));
   },
 };
 
@@ -69,7 +72,7 @@ const yesNoOptions: Fig.Option[] = [
   },
 ];
 
-const instillationOptions: Fig.Option[] = [
+const installationOptions: Fig.Option[] = [
   {
     name: ["-d", "--download-only"],
     description:
@@ -109,13 +112,13 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: upgradablePackages,
       },
-      options: [...instillationOptions, ...yesNoOptions, ...simulate],
+      options: [...installationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "full-upgrade",
       description:
         "Install available upgrades, removing currently installed packages if needed to upgrade the system as a whole",
-      options: [...instillationOptions, ...yesNoOptions, ...simulate],
+      options: [...installationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "install",
@@ -127,7 +130,7 @@ const completionSpec: Fig.Spec = {
         generators: [packages, filepaths({ extensions: ["deb"] })],
       },
       options: [
-        ...instillationOptions,
+        ...installationOptions,
         ...yesNoOptions,
         ...simulate,
         {
@@ -226,7 +229,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         generators: packages,
       },
-      options: [...instillationOptions, ...yesNoOptions, ...simulate],
+      options: [...installationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "clean",
@@ -249,7 +252,7 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
       options: [
-        ...instillationOptions,
+        ...installationOptions,
         ...yesNoOptions,
         ...simulate,
         {
@@ -282,7 +285,7 @@ const completionSpec: Fig.Spec = {
         generators: packages,
       },
       options: [
-        ...instillationOptions,
+        ...installationOptions,
         ...yesNoOptions,
         ...simulate,
         {
@@ -306,13 +309,13 @@ const completionSpec: Fig.Spec = {
         description: "The package you want to download",
         generators: packages,
       },
-      options: [...instillationOptions, ...yesNoOptions],
+      options: [...installationOptions, ...yesNoOptions],
     },
     {
       name: ["autoclean", "auto-clean"],
       description:
         "Like clean, but only removes package files that can no longer be downloaded",
-      options: [...instillationOptions, ...yesNoOptions, ...simulate],
+      options: [...installationOptions, ...yesNoOptions, ...simulate],
     },
     {
       name: "changelog",
@@ -323,7 +326,7 @@ const completionSpec: Fig.Spec = {
         generators: packages,
         isVariadic: true,
       },
-      options: [...instillationOptions, ...yesNoOptions],
+      options: [...installationOptions, ...yesNoOptions],
     },
   ],
   options: [
