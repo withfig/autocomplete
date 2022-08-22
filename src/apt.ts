@@ -335,10 +335,14 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-h", "--help"],
       description: "Print help message and exit",
+      isPersistent: true,
+      priority: 40,
     },
     {
       name: ["-v", "--version"],
       description: "Print version information and exit",
+      isPersistent: true,
+      priority: 40,
     },
   ],
 };
