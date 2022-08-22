@@ -15,7 +15,7 @@ const packages: Fig.Generator = {
     const out = await executeShellCommand(
       `apt list | grep '^${finalToken[0]}' | sed 's#/.*##g'`
     );
-    return out.split("\n").map((name) => ({
+    return out.trim().split("\n").map((name) => ({
       name,
       description: "Package",
       icon: "📦",
