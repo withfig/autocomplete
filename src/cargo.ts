@@ -280,7 +280,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -525,7 +525,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -760,7 +760,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -919,7 +919,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1004,7 +1004,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -1066,7 +1066,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -1124,7 +1124,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1269,7 +1269,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1400,7 +1400,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1568,7 +1568,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1711,7 +1711,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1769,7 +1769,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1854,7 +1854,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2057,7 +2057,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2172,7 +2172,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2241,7 +2241,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2308,7 +2308,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2401,7 +2401,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2503,7 +2503,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2609,7 +2609,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2731,7 +2731,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2832,7 +2832,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2963,7 +2963,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3050,7 +3050,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3128,7 +3128,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -3186,7 +3186,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -3244,7 +3244,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3381,7 +3381,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3585,7 +3585,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3802,7 +3802,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3935,7 +3935,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4112,7 +4112,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4367,7 +4367,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4487,7 +4487,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4577,7 +4577,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4664,7 +4664,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4757,7 +4757,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4814,7 +4814,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4899,7 +4899,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4963,7 +4963,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -5167,7 +5167,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
     },
     {
       name: "--config",
-      description: "Override a configuration value (unstable)",
+      description: "Override a configuration value",
       isRepeatable: true,
       args: {
         name: "config",
