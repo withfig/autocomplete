@@ -65,10 +65,12 @@ const yesNoOptions: Fig.Option[] = [
   {
     name: "-y",
     description: "Assume yes to all prompts",
+    exclusiveOn: ["--assume-no"],
   },
   {
     name: "--assume-no",
     description: "Assume no to all prompts",
+    exclusiveOn: ["-y"],
   },
 ];
 
