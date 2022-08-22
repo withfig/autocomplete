@@ -337,6 +337,7 @@ const completionSpec: Fig.Spec = {
           description: "Load script parameters from a JSON/YAML file",
           args: {
             name: "JSON/YAML file",
+            template: "filepaths",
           },
         },
         {
