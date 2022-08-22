@@ -12,7 +12,8 @@ const runname: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "nextflow",
-  description: "",
+  description:
+    "Nextflow enables scalable and reproducible scientific workflows using software containers. It allows the adaptation of pipelines written in the most common scripting languages",
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
