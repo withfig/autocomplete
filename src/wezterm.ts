@@ -503,7 +503,8 @@ const completion: Fig.Spec = {
             {
               name: "--workspace",
               description:
-                'When creating a new window, override the default workspace name with the provided name.  The default name is "default". Requires `--new-window`',
+                'When creating a new window, override the default workspace name with the provided name.  The default name is "default"',
+              dependsOn: ["--new-window"],
               args: {
                 name: "workspace",
                 isOptional: true,
@@ -687,7 +688,6 @@ const completion: Fig.Spec = {
         {
           name: "--shell",
           description: "Which shell to generate for",
-          isRepeatable: true,
           args: {
             name: "shell",
             suggestions: [
