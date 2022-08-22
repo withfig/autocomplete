@@ -19,6 +19,8 @@ const packages: Fig.Generator = {
       name,
       description: "Package",
       icon: "📦",
+      // make the suggestions... actually show up
+      // see https://github.com/withfig/autocomplete/pull/1429#discussion_r950688126
       priority: 50,
     }));
   },
