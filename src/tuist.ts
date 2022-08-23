@@ -375,6 +375,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description: "The name of the generate project",
+          args: {
+            name: "name",
+          },
         },
         {
           name: "--platform",
