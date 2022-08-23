@@ -78,6 +78,9 @@ const completionSpec: Fig.Spec = {
       name: ["--getsz", "-s"],
       description:
         "Print the size in 512-byte sectors of each given block device. This option is DEPRECATED in favour of blockdev(8)",
+      deprecated: {
+        description: "This option is DEPRECATED in favour of blockdev(8)",
+      },
     },
     {
       name: ["--type", "-t"],
@@ -124,8 +127,8 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "when",
         description: "The argument when can be auto, never or always",
+        suggestions: ["auto", "never", "always"],
       },
-      suggestions: ["auto", "never", "always"],
     },
     {
       name: ["--wipe-partitions", "-W"],
