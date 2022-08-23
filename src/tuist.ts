@@ -193,6 +193,11 @@ const completionSpec: Fig.Spec = {
           name: ["--algorithm", "-a"],
           description:
             "Available formats: dot, neato, twopi, circo, fdp, sfddp, patchwork (default: dot)",
+          args: {
+            name: "format",
+            suggestions: ["dot", "neato", "twopi", "circo", "fdp", "sfddp", "patchwork"],
+            default: "dot",
+          },
         },
         {
           name: ["--path", "-p"],
