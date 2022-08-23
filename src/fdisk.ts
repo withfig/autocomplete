@@ -139,6 +139,7 @@ const completionSpec: Fig.Spec = {
     name: "device",
     description: "Device to list",
     isOptional: true,
+    template: "filepaths",
   },
 };
 export default completionSpec;
