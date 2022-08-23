@@ -215,6 +215,11 @@ const completionSpec: Fig.Spec = {
       name: "generate",
       description:
         "Generates an Xcode workspace to start working on the project. For more info see https://docs.tuist.io/commands/generate",
+      args: {
+        name: "sources",
+        description:
+          "A list of targets to focus on. Other targets will be linked as binaries if possible. If no target is specified, all the project targets will be generated (except external ones, such as Swift packages)",
+      },
       options: [
         {
           name: ["--path", "-p"],
