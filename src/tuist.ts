@@ -395,7 +395,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--path", "-p"],
           description:
-            "The path to the directory that contains the projectto be tested",
+            "The path to the directory that contains the project to be tested",
+          args: {
+            name: "path",
+            template: "folders",
+          },
         },
         {
           name: ["--clean", "-c"],
