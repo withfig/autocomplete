@@ -248,6 +248,10 @@ const completionSpec: Fig.Spec = {
           name: ["--path", "-p"],
           description:
             "The path to the directory that contains the definition of the project. Default is current directory",
+          args: {
+            name: "path",
+            template: "folders",
+          },
         },
         {
           name: ["--no-open", "-n"],
