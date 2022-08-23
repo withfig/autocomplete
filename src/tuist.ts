@@ -367,6 +367,9 @@ const completionSpec: Fig.Spec = {
           name: ["--path", "-p"],
           description:
             "The path to the folder where the template will be generated (Default: Current directory)",
+          args: {
+            name: "path",
+          },
         },
         {
           name: "--json",
