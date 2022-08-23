@@ -25,7 +25,10 @@ export const configHosts: Fig.Generator = {
   postProcess: function (out) {
     return out
       .split("\n")
-      .filter((line) => line.trim().startsWith("Host ") && !line.includes("*"))
+      .filter(
+        (line) =>
+          line.trim().toLowerCase().startsWith("host ") && !line.includes("*")
+      )
       .map((host) => ({
         name: host.split(" ")[1],
         description: "SSH host",
