@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "mkinitcpio",
-  description: "",
+  description: "Create an initial ramdisk environment",
   options: [
     {
       name: ["--help", "-h"],
