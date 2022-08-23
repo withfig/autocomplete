@@ -121,7 +121,24 @@ const completionSpec: Fig.Spec = {
       name: "--start-debugger-server",
       description:
         "Start the devtools server on a TCP port or Unix domain socket path",
-      //TODO: args
+      args: {
+        name: "port or path",
+        template: "filepaths",
+        generators: {
+          // Needs to trigger on every keystroke
+          trigger: () => true,
+
+          // Suggest current token if it's a port number
+          custom: async (tokens) => {
+            const finalToken = tokens[tokens.length - 1];
+            const port = Number(finalToken);
+            if (Number.isNaN(port)) return [];
+            if (!Number.isInteger(port)) return [];
+            if (port < 0 || port > 65535) return [];
+            return [{ name: finalToken, description: "Port number" }];
+          },
+        },
+      },
     },
     {
       name: "--browser",
