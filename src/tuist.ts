@@ -183,6 +183,11 @@ const completionSpec: Fig.Spec = {
           name: ["--format", "-f"],
           description:
             "If you prefer to have the dot or json representations of the graph and render it separately. Available formats: dot, png, json (default: png)",
+          args: {
+            name: "format",
+            suggestions: ["dot", "png", "json"],
+            default: "png",
+          },
         },
         {
           name: ["--algorithm", "-a"],
