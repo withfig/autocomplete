@@ -30,6 +30,61 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "cache",
+      description:
+        "A set of utilities related to the caching of targets. For more info see https://docs.tuist.io/building-at-scale/caching USAGE: tuist cache <subcommand>",
+      subcommands: [
+        {
+          name: "warm",
+          description: "Warms the local and remote cache",
+          options: [
+            {
+              name: ["--path", "-p"],
+              description:
+                "The path to the directory that contains the project whose targets will be cached",
+            },
+            {
+              name: ["--profile", "-P"],
+              description:
+                "The name of the profile to be used when warming up the cache",
+            },
+            {
+              name: ["--xcframeworks", "-x"],
+              description:
+                "When passed it caches the targets for simulator and device using xcframeworks",
+            },
+            {
+              name: "--dependencies-only",
+              description:
+                "If passed, the command doesn't cache the targets passed in the `--targets` argument, but only their dependencies",
+            },
+          ],
+        },
+        {
+          name: "print-hashes",
+          description:
+            "Print the hashes of the cacheable frameworks in the given project",
+          options: [
+            {
+              name: ["--path", "-p"],
+              description:
+                "The path to the directory that contains the project whose targets will be cached",
+            },
+            {
+              name: ["--profile", "-P"],
+              description:
+                "The name of the profile to be used when warming up the cache",
+            },
+            {
+              name: ["--xcframeworks", "-x"],
+              description:
+                "When passed it caches the targets for simulator and device using xcframeworks",
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "clean",
       args: {
         name: "clean-categories",
