@@ -284,6 +284,11 @@ const completionSpec: Fig.Spec = {
               name: ["--xcodeproj-path", "-p"],
               description:
                 "Required. Path to the Xcode project whose build settings will be extracted",
+              isRequired: true,
+              args: {
+                name: "path",
+                template: "folders",
+              },
             },
             {
               name: ["--xcconfig-path", "-x"],
