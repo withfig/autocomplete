@@ -425,6 +425,10 @@ const completionSpec: Fig.Spec = {
           name: "--retry-count",
           description:
             "Tests will retry <number> of times until success. Example: if 1 is specified, the test will be retried at most once, hence it will run up to 2 times. (default: 0)",
+            args: {
+              name: "times",
+              default: "0",
+            },
         },
       ],
     },
