@@ -37,6 +37,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "when",
         isOptional: true,
+        suggestions: ["always", "never", "auto"],
       },
     },
     {
