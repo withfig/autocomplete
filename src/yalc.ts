@@ -8,6 +8,11 @@ const completionSpec: Fig.Spec = {
         "Copy all the files that should be published in remote NPM registry",
       options: [
         {
+          name: "--push",
+          description:
+            "Publish package to the store and propagate all changes to existing yalc package installations",
+        },
+        {
           name: "--no-scripts",
           description: "Publish without running scripts",
         },
