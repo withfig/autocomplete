@@ -29,6 +29,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         isOptional: true,
+        suggestions: ["dos", "nondos"],
       },
     },
     {
