@@ -16,6 +16,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "mode",
         description: "Valid values are 512, 1024, 2048, and 4096",
+        suggestions: ["512", "1024", "2048", "4096"],
       },
     },
     {
