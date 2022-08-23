@@ -57,6 +57,7 @@ const completionSpec: Fig.Spec = {
         description:
           "Optional argument mode can be yes, no (or 1 and 0) or nonblock",
         isOptional: true,
+        suggestions: ["yes", "no", "nonblock"],
       },
     },
     {
