@@ -382,6 +382,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--platform",
           description: "The platform used by the project",
+          args: {
+            name: "platform",
+          },
         },
       ],
     },
