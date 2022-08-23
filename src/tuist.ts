@@ -404,6 +404,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--device", "-d"],
           description: "Test on a specific device",
+          args: {
+            name: "device",
+          },
         },
         {
           name: ["--os", "-o"],
