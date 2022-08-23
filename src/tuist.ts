@@ -341,6 +341,7 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["--xcodeproj-path", "-p"],
+              isRequired: true,
               description:
                 "Required. Path to the Xcode project whose build settings will be checked",
             },
