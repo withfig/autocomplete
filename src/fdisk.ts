@@ -122,6 +122,7 @@ const completionSpec: Fig.Spec = {
         name: "when",
         description: "The argument when can be auto, never or always",
       },
+      suggestions: ["auto", "never", "always"],
     },
     {
       name: ["--wipe-partitions", "-W"],
