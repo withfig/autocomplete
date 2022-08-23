@@ -267,6 +267,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--profile", "-P"],
           description: "The name of the cache profile",
+          args: {
+            name: "cache profile",
+          },
         },
       ],
     },
