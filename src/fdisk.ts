@@ -92,6 +92,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "unit",
         isOptional: true,
+        suggestions: ["sectors", "cylinders"],
       },
     },
     {
