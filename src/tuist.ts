@@ -408,6 +408,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--os", "-o"],
           description: "Test with a specific version of the OS",
+          args: {
+            name: "os",
+          },
         },
         {
           name: ["--configuration", "-C"],
