@@ -226,7 +226,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--platform", "-l"],
           description:
-            "If set, show only the targets for the given platform. Default is all platforms. Available platforms: ios, macos, tvos, watchos",
+            "If set, show only the targets for the given platform. Default is all platforms. Available platforms: ios, macos, tvos, watchos", 
+          args: {
+            name: "platform",
+            suggestions: ["ios", "macos", "tvos", "watchos"],
+          },
         },
       ],
     },
