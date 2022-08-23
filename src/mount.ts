@@ -10,6 +10,7 @@ const completionSpec: Fig.Spec = {
           script: "cat /proc/partitions", // this way we don't depend on lsblk
           postProcess: (out) => {
             return out
+              .trim()
               .split("\n")
               .splice(2, out.length)
               .map((line) => "/dev/" + line.split(" ").pop())
@@ -20,9 +21,10 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          script: "ls /dev/mapper", // usually LUKS encrypted partitions are here
+          script: "\\command ls -1 /dev/mapper", // usually LUKS encrypted partitions are here
           postProcess: (out) => {
             return out
+              .trim()
               .split("\n")
               .filter((x) => x.length != 0)
               .map((blk) => {
