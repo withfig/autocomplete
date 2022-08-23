@@ -202,6 +202,11 @@ const completionSpec: Fig.Spec = {
           name: ["--output-path", "-o"],
           description:
             "The path to where the image will be exported. When not specified, it exports the image in the current directory",
+          args: {
+            name: "output path",
+            template: "folders",
+            suggestCurrentToken: true,
+          },
         },
         {
           name: ["--no-open", "-n"],
