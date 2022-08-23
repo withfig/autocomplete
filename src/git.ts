@@ -2627,16 +2627,21 @@ const completionSpec: Fig.Spec = {
   name: "git",
   description: "The stupid content tracker",
   generateSpec: async (_, executeShellCommand) => {
-    const out = await executeShellCommand(
-      "compgen -c | grep git- | cut -c5- | sort -u"
-    );
-    const trimmed = out.trim();
-    if (trimmed === "") {
-      return { name: "git" };
+    const out = await executeShellCommand("git help -a");
+    const lines = out.trim().split("\n");
+    const start = lines.findIndex((val) => val.match(/external commands/i));
+    const commands: string[] = [];
+    for (let i = start + 1; i < lines.length; i += 1) {
+      const line = lines[i].trim();
+      if (!line) {
+        break;
+      }
+      const command = line.split(/\s+/)[0];
+      commands.push(command);
     }
     return {
       name: "git",
-      subcommands: trimmed.split("\n").map((name) => ({
+      subcommands: commands.map((name) => ({
         name,
         ...(optionalCommands[name] ?? { description: `Run git-${name}` }),
       })),
