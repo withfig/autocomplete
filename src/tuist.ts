@@ -302,6 +302,9 @@ const completionSpec: Fig.Spec = {
               name: ["--target", "-t"],
               description:
                 "Optional. The name of the target whose build settings will be extracted. When not passed, it extracts the build settings of the project",
+              args: {
+                name: "target",
+              },
             },
           ],
         },
