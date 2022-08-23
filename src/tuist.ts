@@ -195,7 +195,15 @@ const completionSpec: Fig.Spec = {
             "Available formats: dot, neato, twopi, circo, fdp, sfddp, patchwork (default: dot)",
           args: {
             name: "format",
-            suggestions: ["dot", "neato", "twopi", "circo", "fdp", "sfddp", "patchwork"],
+            suggestions: [
+              "dot",
+              "neato",
+              "twopi",
+              "circo",
+              "fdp",
+              "sfddp",
+              "patchwork",
+            ],
             default: "dot",
           },
         },
@@ -226,7 +234,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--platform", "-l"],
           description:
-            "If set, show only the targets for the given platform. Default is all platforms. Available platforms: ios, macos, tvos, watchos", 
+            "If set, show only the targets for the given platform. Default is all platforms. Available platforms: ios, macos, tvos, watchos",
           args: {
             name: "platform",
             suggestions: ["ios", "macos", "tvos", "watchos"],
@@ -445,10 +453,10 @@ const completionSpec: Fig.Spec = {
           name: "--retry-count",
           description:
             "Tests will retry <number> of times until success. Example: if 1 is specified, the test will be retried at most once, hence it will run up to 2 times. (default: 0)",
-            args: {
-              name: "times",
-              default: "0",
-            },
+          args: {
+            name: "times",
+            default: "0",
+          },
         },
       ],
     },
