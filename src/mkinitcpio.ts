@@ -92,6 +92,16 @@ const completionSpec: Fig.Spec = {
       description: "Build initramfs image(s) according to specified preset",
       args: {
         name: "preset",
+        generators: {
+          script: "ls /etc/mkinitcpio.d",
+          postProcess: (out) =>
+            out
+              .trim()
+              .split("\n")
+              .map((line) => ({
+                name: line.replace(/\.preset$/, ""),
+              })),
+        },
       },
     },
     {
