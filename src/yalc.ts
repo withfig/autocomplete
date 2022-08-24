@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "yalc",
-  description: "",
+  description: "Work with yarn/npm packages locally like a boss",
   subcommands: [
     {
       name: "publish",
@@ -26,8 +26,12 @@ const completionSpec: Fig.Spec = {
           description: "Show included files in the published package",
         },
         {
-          name: "-no-workspace-resolve",
+          name: "--no-workspace-resolve",
           description: "Do not resolve 'workspace:' protocol in dependencies",
+        },
+        {
+          name: "--private",
+          description: "Force publishing of private package",
         },
       ],
     },
@@ -104,21 +108,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "clean",
           description: "Unpublish a package published with yalc publish",
-          options: [
-            {
-              name: "package",
-            },
-          ],
+          args: {
+            name: "package",
+          },
         },
         {
           name: "show",
           description:
             "Show all packages to which chosen package has been added",
-          options: [
-            {
-              name: "package",
-            },
-          ],
+          args: {
+            name: "package",
+          },
         },
       ],
     },
