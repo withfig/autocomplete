@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
       description: "Copy the current version from the store to your project",
       args: {
         name: "package",
-        description: "The package you want to publish",
+        description: "The package you want to add",
       },
       options: [
         {
