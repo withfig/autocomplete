@@ -1,3 +1,8 @@
+const generateSessions: Fig.Generator = {
+  script: "zellij list-sessions",
+  splitOn: "\n",
+};
+
 const completion: Fig.Spec = {
   name: "zellij",
   description: "A terminal workspace with batteries included",
@@ -627,6 +632,7 @@ const completion: Fig.Spec = {
       args: {
         name: "session-name",
         isOptional: true,
+        generators: generateSessions,
       },
     },
     {
@@ -641,6 +647,7 @@ const completion: Fig.Spec = {
       args: {
         name: "target-session",
         isOptional: true,
+        generators: generateSessions,
       },
     },
     {
