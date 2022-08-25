@@ -16,6 +16,7 @@ const completionSpec: Fig.Spec = {
     "Nextflow enables scalable and reproducible scientific workflows using software containers. It allows the adaptation of pipelines written in the most common scripting languages",
   parserDirectives: {
     flagsArePosixNoncompliant: true,
+    optionArgSeparators: ["=", "."],
   },
   subcommands: [
     {
@@ -263,7 +264,7 @@ const completionSpec: Fig.Spec = {
           name: "-e.",
           description:
             "Add the specified variable to execution environment. Syntax: -e.key=value (Default: {})",
-          insertValue: "-e.{cursor}",
+          requiresSeparator: ".",
           args: {
             name: "key=value",
           },
@@ -356,7 +357,7 @@ const completionSpec: Fig.Spec = {
           name: "-process.",
           description:
             "Set process options. Syntax: -process.key=value (Default: {}",
-          insertValue: "-process.{cursor}",
+          requiresSeparator: ".",
           args: {
             name: "key=value",
           },
