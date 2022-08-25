@@ -23,7 +23,7 @@ const generateManualPages: Fig.Generator = {
     if (finalToken.length === 0) {
       return [];
     }
-    // Only lines matching the first character, delete characters after '/'
+    // Only lines matching the first character, delete characters after '('
     const out = await executeShellCommand(
       `man -k . | grep '^${finalToken[0]}' | sed 's/(.*//g' | sort -u`
     );
