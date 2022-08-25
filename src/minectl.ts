@@ -55,10 +55,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--filename", "-f"],
           description: "Contains the configuration for minectl",
-          args: {
-            name: "filename",
-            template: "filepaths",
-          },
+          args: { name: "filename" },
         },
         {
           name: ["--wait", "-w"],
@@ -73,10 +70,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--filename", "-f"],
           description: "That contains the configuration for minectl",
-          args: {
-            name: "filename",
-            template: "filepaths",
-          },
+          args: { name: "filename" },
         },
         {
           name: "--id",
@@ -130,18 +124,12 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--destination", "-d"],
           description: "Plugin destination location",
-          args: {
-            name: "destination",
-            template: "filepaths",
-          },
+          args: { name: "destination" },
         },
         {
           name: ["--filename", "-f"],
           description: "Contains the configuration for minectl",
-          args: {
-            name: "filename",
-            template: "filepaths",
-          },
+          args: { name: "filename" },
         },
         {
           name: "--id",
@@ -151,10 +139,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin", "-p"],
           description: "Local plugin file location",
-          args: {
-            name: "plugin",
-            template: "filepaths",
-          },
+          args: { name: "plugin" },
         },
       ],
     },
@@ -165,10 +150,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--filename", "-f"],
           description: "Contains the configuration for minectl",
-          args: {
-            name: "filename",
-            template: "filepaths",
-          },
+          args: { name: "filename" },
         },
         {
           name: "--id",
@@ -184,10 +166,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--filename", "-f"],
           description: "Contains the configuration for minectl",
-          args: {
-            name: "filename",
-            template: "filepaths",
-          },
+          args: { name: "filename" },
         },
         {
           name: "--id",
@@ -205,21 +184,57 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--output", "-o"],
           description:
-            "Output folder for the configuration file for minectl 🗺 (default: ~/.minectl)",
-          args: {
-            name: "output",
-            template: "folders",
-            suggestCurrentToken: true,
-          },
+            "Output folder for the configuration file for minectl 🗺 (default: /home/runner/.minectl)",
+          args: { name: "output", suggestCurrentToken: true },
         },
       ],
     },
     {
       name: "help",
       description: "Help about any command",
-      args: {
-        template: "help",
-      },
+      subcommands: [
+        {
+          name: "completion",
+          description:
+            "Generate the autocompletion script for the specified shell",
+          subcommands: [
+            {
+              name: "bash",
+              description: "Generate the autocompletion script for bash",
+            },
+            {
+              name: "fish",
+              description: "Generate the autocompletion script for fish",
+            },
+            {
+              name: "powershell",
+              description: "Generate the autocompletion script for powershell",
+            },
+            {
+              name: "zsh",
+              description: "Generate the autocompletion script for zsh",
+            },
+          ],
+        },
+        { name: "create", description: "Create an Minecraft Server" },
+        { name: "delete", description: "Delete an Minecraft Server" },
+        { name: "list", description: "List all Minecraft Server" },
+        {
+          name: "plugins",
+          description: "Manage your plugins for a specific server",
+        },
+        { name: "rcon", description: "RCON client to your Minecraft server" },
+        { name: "update", description: "Update an Minecraft Server" },
+        {
+          name: "version",
+          description: "Display the clients version information",
+        },
+        {
+          name: "wizard",
+          description:
+            "Calls the minectl wizard to create interactively a minectl 🗺 config",
+        },
+      ],
     },
   ],
   options: [
