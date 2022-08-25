@@ -1284,7 +1284,6 @@ const completion: Fig.Spec = {
         name: "code_arg",
         isVariadic: true,
       },
-      insertValue: "eval '{cursor}'",
     },
     {
       name: "fmt",
