@@ -1,4 +1,3 @@
-import { filepaths } from "@fig/autocomplete-generators";
 import {
   generateDocs,
   generateInstalledDenoScripts,
