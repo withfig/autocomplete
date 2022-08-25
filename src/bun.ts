@@ -96,7 +96,7 @@ const spec: Fig.Spec = {
     {
       name: "file",
       generators: [
-        // js/jsx/mjs/cjs/mjsx/cjsx etc (and also for typescript)
+        // js jsx mjs cjs ts tsx mts cts
         filepaths({ matches: /\.[mc]?[jt]sx?$/ }),
         npmScriptsGenerator,
       ],
