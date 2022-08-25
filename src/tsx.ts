@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
       description: "Disable clearing the screen on rerun",
       isPersistent: true,
       insertValue: "--clear-screen=false",
-      dependsOn: ["watch", "tsx"],
+      dependsOn: ["watch"],
       args: scriptPathArgs,
     },
 
