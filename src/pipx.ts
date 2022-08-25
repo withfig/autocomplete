@@ -1,3 +1,15 @@
+const packagesGenerator: Fig.Generator = {
+  script: "pipx list --short",
+  postProcess: (out) => {
+    return out.split("\n").map((line) => {
+      return {
+        name: line.split(" ").at(0),
+        description: "Installed package",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "pipx",
   description: "Install and Run Python Applications in Isolated Environments",
@@ -117,6 +129,7 @@ const completionSpec: Fig.Spec = {
           name: "package",
           description:
             "Name of the existing pipx-managed Virtual Environment to inject into",
+          generators: packagesGenerator,
         },
         {
           name: "dependencies",
@@ -171,6 +184,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "package",
+        generators: packagesGenerator,
       },
     },
     {
@@ -214,6 +228,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "package",
+        generators: packagesGenerator,
       },
     },
     {
@@ -245,6 +260,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "package",
+        generators: packagesGenerator,
       },
     },
     {
