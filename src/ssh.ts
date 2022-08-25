@@ -1,9 +1,5 @@
 const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numerical IPs as well as domains/subdomains
 
-type ExecuteShellCommandFunction = (
-  commandToExecute: string
-) => Promise<string>;
-
 const resolveAbsolutePath = (path: string, basePath: string): string => {
   if (path.startsWith("/") || path.startsWith("~/") || path === "~") {
     return path;
@@ -14,7 +10,7 @@ const resolveAbsolutePath = (path: string, basePath: string): string => {
 
 const getConfigLines = async (
   file: string,
-  executeShellCommand: ExecuteShellCommandFunction,
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
   basePath
 ) => {
   const absolutePath = resolveAbsolutePath(file, basePath);
