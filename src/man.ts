@@ -11,28 +11,30 @@ const sections = {
 
 const sectionIcon = "📑";
 
-const sectionNames = new Set(Object.keys(sections));
-
 const generateManualPages: Fig.Generator = {
-  script: (tokens) => {
-    // If the previous token was a section, we want to search for it
-    const maybeSection = tokens[tokens.length - 2];
-    const sectionGlob = sectionNames.has(maybeSection) ? maybeSection : "[18]";
-    return `ls -1 $(man -w | sed 's#:#/man${sectionGlob} #g') 2>/dev/null | cut -f 1 -d . | sort | uniq`;
-  },
-  postProcess: (out) => {
+  // only trigger when the token length transitions to or from 0
+  // soon: { on: "threshold", length: 0 }
+  trigger: (current, previous) =>
+    current.length === 0 || (previous.length === 0 && current.length > 0),
+
+  // have to use `custom` to skip running the script when length is 0
+  custom: async (tokens, executeShellCommand) => {
+    const finalToken = tokens[tokens.length - 1];
+    if (finalToken.length === 0) {
+      return [];
+    }
+    // Only lines matching the first character, delete characters after '('
+    const out = await executeShellCommand(
+      `man -k . | grep '^${finalToken[0]}' | sed 's/(.*//g' | sort -u`
+    );
     return out
+      .trim()
       .split("\n")
-      .filter((line) => {
-        return !(line.length == 0 || line.startsWith("/"));
-      })
-      .map((line) => {
-        return {
-          name: line,
-          description: "Manual page",
-          icon: "fig://icon?type=string",
-        };
-      });
+      .map((name) => ({
+        name,
+        description: "Manual page",
+        icon: "fig://icon?type=string",
+      }));
   },
 };
 
