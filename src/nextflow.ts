@@ -359,7 +359,7 @@ const completionSpec: Fig.Spec = {
           description: "Load script parameters from a JSON/YAML file",
           args: {
             name: "JSON/YAML file",
-            template: "filepaths",
+            template: ["filepaths"],
           },
         },
         {
@@ -759,6 +759,7 @@ const completionSpec: Fig.Spec = {
           description: "Load script parameters from a JSON/YAML file",
           args: {
             name: "JSON/YAML file",
+            template: ["filepaths"],
           },
         },
         {
@@ -954,6 +955,7 @@ const completionSpec: Fig.Spec = {
         "Use the specified configuration file(s) overriding any defaults",
       args: {
         name: "configuration file",
+        template: ["filepaths"],
       },
     },
     {
@@ -973,6 +975,7 @@ const completionSpec: Fig.Spec = {
       description: "Add the specified file to configuration set",
       args: {
         name: "configuration file",
+        template: ["filepaths"],
       },
     },
     {
