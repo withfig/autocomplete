@@ -5,7 +5,7 @@ const resolveAbsolutePath = (path: string, basePath: string): string => {
     return path;
   }
 
-  return basePath.replace(/\/$/, "") + "/" + path;
+  return basePath + (basePath.endsWith("/") ? "" : "/") + path;
 };
 
 const getConfigLines = async (
