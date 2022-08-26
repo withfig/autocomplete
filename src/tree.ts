@@ -3,7 +3,6 @@ const completionSpec: Fig.Spec = {
   description: "Display directories as trees (with optional color/HTML output)",
   args: {
     template: "folders",
-    suggestCurrentToken: true,
   },
   options: [
     {
