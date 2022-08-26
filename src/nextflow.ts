@@ -133,6 +133,7 @@ const completionSpec: Fig.Spec = {
       description: "Print a project configuration",
       args: {
         name: "project name",
+        generators: projectname,
       },
       options: [
         {
@@ -206,6 +207,7 @@ const completionSpec: Fig.Spec = {
       description: "Print project and system runtime information",
       args: {
         name: "project name",
+        generators: projectname,
       },
       options: [
         {
@@ -231,6 +233,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute a workflow in a Kubernetes cluster (experimental)",
       args: {
         name: "project name",
+        generators: projectname,
       },
       options: [
         {
@@ -613,6 +616,7 @@ const completionSpec: Fig.Spec = {
       description: "Download or update a project",
       args: {
         name: "project name or repository url to pull",
+        generators: projectname,
       },
       options: [
         {
@@ -643,6 +647,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute a pipeline project",
       args: {
         name: "project name, repository url, or local path",
+        generators: projectname,
       },
       options: [
         {
@@ -924,6 +929,7 @@ const completionSpec: Fig.Spec = {
       description: "View project script file(s)",
       args: {
         name: "project name",
+        generators: projectname,
       },
       options: [
         {
