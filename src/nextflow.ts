@@ -10,6 +10,22 @@ const runname: Fig.Generator = {
   },
 };
 
+const projectname: Fig.Generator = {
+  script:
+    "find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets",
+  postProcess: (output) => {
+    if (output == "") {
+      return [];
+    }
+    return output.split("\n").map((projectname) => {
+      return {
+        name: projectname.replace("*", "").trim(),
+        description: "Project name",
+      };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "nextflow",
   description:
@@ -21,7 +37,8 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "clean",
-      description: "Clean up project cache and work directories",
+      description:
+        "Clean up project cache and work directories (Default: last run)",
       args: {
         name: "run_name|session_id",
         generators: runname,
@@ -160,6 +177,7 @@ const completionSpec: Fig.Spec = {
       description: "Delete the local copy of a project",
       args: {
         name: "name of the project to drop",
+        generators: projectname,
       },
       options: [
         {
