@@ -3,6 +3,39 @@ const platforms: Fig.Suggestion[] = [
   { name: "ios", icon: "fig://icon?type=apple" },
 ];
 
+function isPlatform(value: string): value is "ios" | "android" {
+  return value === "ios" || value === "android";
+}
+
+const targetGenerator: Fig.Generator = {
+  cache: {
+    ttl: 1000 * 60, // Only caches targets for one minute, in case a new device is connected
+  },
+  custom: async (tokens, executeShellCommand) => {
+    const [cliName, command, platform] = tokens;
+    if (!isPlatform(platform)) {
+      return [];
+    }
+
+    const out = await executeShellCommand(
+      `npx capacitor run ${platform} --list`
+    );
+
+    return out
+      .trim()
+      .split("\n")
+      .slice(2) // Ignore output header lines
+      .map((s) => {
+        const [name, api, targetId] = s.replace(/\s\s+/g, "|").split("|");
+        return {
+          name: targetId,
+          displayName: `${name} ${api}`,
+          icon: "📱",
+        };
+      });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "capacitor",
   description:
@@ -56,18 +89,20 @@ const completionSpec: Fig.Spec = {
         name: "platform",
         suggestions: platforms,
       },
-
       options: [
         {
           name: "--list",
           description:
             "Print a list of target devices available to the given platform",
+          icon: "📱",
         },
         {
           name: "--target",
           description: "Run on a specific target device",
+          icon: "📱",
           args: {
             name: "target",
+            generators: targetGenerator,
           },
         },
       ],
