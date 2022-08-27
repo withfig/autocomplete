@@ -3,12 +3,6 @@ const platforms: Fig.Suggestion[] = [
   { name: "ios", icon: "fig://icon?type=apple" },
 ];
 
-const helpOption: Fig.Option = {
-  name: ["--help", "-h"],
-  description:
-    "Output usage information. Can be used with individual commands too",
-};
-
 const completionSpec: Fig.Spec = {
   name: "capacitor",
   description:
@@ -22,7 +16,6 @@ const completionSpec: Fig.Spec = {
         name: "platform",
         suggestions: platforms,
       },
-      options: [helpOption],
     },
     {
       name: "copy",
@@ -34,7 +27,6 @@ const completionSpec: Fig.Spec = {
         suggestions: platforms,
         isOptional: true,
       },
-      options: [helpOption],
     },
     {
       name: "ls",
@@ -44,7 +36,6 @@ const completionSpec: Fig.Spec = {
         suggestions: platforms,
         isOptional: true,
       },
-      options: [helpOption],
     },
     {
       name: "open",
@@ -55,7 +46,6 @@ const completionSpec: Fig.Spec = {
         name: "platform",
         suggestions: platforms,
       },
-      options: [helpOption],
     },
     {
       name: "run",
@@ -80,7 +70,6 @@ const completionSpec: Fig.Spec = {
             name: "target",
           },
         },
-        helpOption,
       ],
     },
     {
@@ -102,7 +91,6 @@ const completionSpec: Fig.Spec = {
           description:
             "After syncing, all JS source maps will be inlined allowing for debugging an Android Web View in Chromium based browsers",
         },
-        helpOption,
       ],
     },
     {
@@ -120,12 +108,16 @@ const completionSpec: Fig.Spec = {
           description:
             "Podfile.lock won't be deleted and pod install will use --deployment option",
         },
-        helpOption,
       ],
     },
   ],
   options: [
-    helpOption,
+    {
+      name: ["--help", "-h"],
+      description:
+        "Output usage information. Can be used with individual commands too",
+      isPersistent: true,
+    },
     {
       name: ["--version", "-V"],
       description: "Output the version number",
