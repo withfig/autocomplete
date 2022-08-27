@@ -1,6 +1,6 @@
-import clang from "./clang++";
+import clangpp from "./clang++";
 const completionSpec: Fig.Spec = {
-  ...clang,
+  ...clangpp,
   name: "c++",
   description: "C++ compiler",
 };
