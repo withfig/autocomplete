@@ -32,6 +32,8 @@ export const nodeClis = [
   "@redwoodjs/core",
   "create-completion-spec",
   "@fig/publish-spec-to-team",
+  "capacitor",
+  "cap",
 ];
 
 type SearchResult = {

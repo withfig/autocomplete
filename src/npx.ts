@@ -117,6 +117,14 @@ const suggestions: Fig.Suggestion[] = [
   {
     name: "pod-install",
   },
+  {
+    name: "capacitor",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
+  {
+    name: "cap",
+    icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
