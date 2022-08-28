@@ -282,7 +282,7 @@ const completionSpec: Fig.Spec = {
             "Dump task hash keys for debugging purpose (Default: false)",
         },
         {
-          name: "-e.",
+          name: "-e",
           description:
             "Add the specified variable to execution environment. Syntax: -e.key=value (Default: {})",
           requiresSeparator: ".",
@@ -375,7 +375,7 @@ const completionSpec: Fig.Spec = {
           description: "Specify the container image for the Nextflow pod",
         },
         {
-          name: "-process.",
+          name: "-process",
           description:
             "Set process options. Syntax: -process.key=value (Default: {}",
           requiresSeparator: ".",
