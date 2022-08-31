@@ -36,7 +36,8 @@ const lightModuleGenerator: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "mgnl",
-  description: "",
+  description:
+    "Magnolia CLI is a command line interface (CLI) tool to set up and facilitate light development with Magnolia",
   subcommands: [
     {
       name: "add-availability",
