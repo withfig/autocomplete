@@ -81,6 +81,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Delete an existing CORS-origin from your project",
           args: { name: "origin", description: "The origin to delete" },
+          isDangerous: true,
         },
         {
           name: "list",
@@ -107,6 +108,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               args: { name: "alias-name" },
+              isDangerous: true,
             },
             {
               name: "link",
@@ -187,6 +189,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Delete a dataset within your project",
           args: { name: "datasetName" },
+          isDangerous: true,
         },
         {
           name: "export",
@@ -363,6 +366,7 @@ const completionSpec: Fig.Spec = {
             },
           ],
           args: { name: "id", isVariadic: true },
+          isDangerous: true,
         },
         {
           name: "get",
@@ -498,6 +502,7 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description: "Delete a hook within your project",
           args: { name: "name" },
+          isDangerous: true,
         },
         {
           name: "list",
