@@ -280,6 +280,7 @@ const completion: Fig.Spec = {
           name: "files",
           isVariadic: true,
           isOptional: true,
+          template: "filepaths",
         },
         {
           name: "script_arg",
