@@ -29,6 +29,7 @@ const completionSpec: Fig.Spec = {
   name: "mgnl",
   description:
     "Magnolia CLI is a command line interface (CLI) tool to set up and facilitate light development with Magnolia",
+  icon: "https://avatars.githubusercontent.com/u/25686615?s=200&v=4",
   subcommands: [
     {
       name: "add-availability",

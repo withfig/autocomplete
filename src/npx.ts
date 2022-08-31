@@ -125,6 +125,10 @@ const suggestions: Fig.Suggestion[] = [
     name: "cap",
     icon: "https://capacitorjs.com/docs/img/meta/favicon.png",
   },
+  {
+    name: "@magnolia/cli",
+    icon: "https://avatars.githubusercontent.com/u/25686615?s=200&v=4",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
