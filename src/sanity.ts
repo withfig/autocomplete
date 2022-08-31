@@ -5,80 +5,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Displays help information about Sanity",
-      subcommands: [
-        {
-          name: "build",
-        },
-        {
-          name: "codemod",
-        },
-        {
-          name: "configcheck",
-        },
-        {
-          name: "cors",
-        },
-        {
-          name: "dataset",
-        },
-        {
-          name: "debug",
-        },
-        {
-          name: "deploy",
-        },
-        {
-          name: "docs",
-        },
-        {
-          name: "documents",
-        },
-        {
-          name: "exec",
-        },
-        {
-          name: "graphql",
-        },
-        {
-          name: "hook",
-        },
-        {
-          name: "init",
-        },
-        {
-          name: "install",
-        },
-        {
-          name: "login",
-        },
-        {
-          name: "logout",
-        },
-        {
-          name: "manage",
-        },
-        {
-          name: "projects",
-        },
-        {
-          name: "start",
-        },
-        {
-          name: "undeploy",
-        },
-        {
-          name: "uninstall",
-        },
-        {
-          name: "upgrade",
-        },
-        {
-          name: "users",
-        },
-        {
-          name: "versions",
-        },
-      ],
+      args: { name: "command", template: "help", isOptional: true },
     },
     {
       name: "build",
@@ -110,9 +37,10 @@ const completionSpec: Fig.Spec = {
           description: "Dry run (no changes are made to files)",
         },
         {
-          name: "extensions",
+          name: "--extensions",
           description:
             "Transform files with these file extensions (comma separated list) (default: js,ts,tsx)",
+          args: { name: "extensions" },
         },
         {
           name: "--no-verify",
@@ -138,17 +66,21 @@ const completionSpec: Fig.Spec = {
               name: "--credentials",
               description:
                 "Allow credentials (token/cookie) to be sent from this origin",
+              exclusiveOn: ["--no-credentials"],
             },
             {
               name: "--no-credentials",
               description:
                 "Disallow credentials (token/cookie) to be sent from this origin",
+              exclusiveOn: ["--credentials"],
             },
           ],
+          args: { name: "origin", description: "The origin to allow" },
         },
         {
           name: "delete",
           description: "Delete an existing CORS-origin from your project",
+          args: { name: "origin", description: "The origin to delete" },
         },
         {
           name: "list",
@@ -164,28 +96,169 @@ const completionSpec: Fig.Spec = {
         {
           name: "alias",
           description: "You can manage your dataset alias using this command",
+          subcommands: [
+            {
+              name: "create",
+              args: [
+                { name: "alias-name", isOptional: true },
+                { name: "target-dataset", isOptional: true },
+              ],
+            },
+            {
+              name: "delete",
+              args: { name: "alias-name" },
+            },
+            {
+              name: "link",
+              options: [
+                {
+                  name: "--force",
+                  description: "Skips security prompt and forces link command",
+                },
+              ],
+              args: [
+                { name: "alias-name", isOptional: true },
+                { name: "target-dataset", isOptional: true },
+              ],
+            },
+            {
+              name: "unlink",
+              args: { name: "alias-name", isOptional: true },
+            },
+          ],
         },
         {
           name: "copy",
           description:
             "Manages dataset copying, including starting a new copy job, listing copy jobs and following the progress of a running copy job",
+          options: [
+            {
+              name: "--detach",
+              description: "Start the copy without waiting for it to finish",
+            },
+            {
+              name: "--attach",
+              description:
+                "Attach to the running copy process to show progress",
+              args: { name: "job-id" },
+            },
+            {
+              name: "--skip-history",
+              description: "Don't preserve document history on copy",
+            },
+            {
+              name: "--list",
+              description:
+                "Lists all dataset copy jobs corresponding to a certain criteria",
+            },
+            {
+              name: "--offset",
+              description:
+                "Start position in the list of jobs. Default 0. With --list",
+              args: { name: "offset" },
+              dependsOn: ["--list"],
+            },
+            {
+              name: "--limit",
+              description:
+                "Maximum number of jobs returned. Default 10. Maximum 1000. With --list",
+              args: { name: "limit" },
+              dependsOn: ["--list"],
+            },
+          ],
+          args: [
+            { name: "source-dataset", isOptional: true },
+            { name: "target-dataset", isOptional: true },
+          ],
         },
         {
           name: "create",
           description: "Create a new dataset within your project",
+          options: [
+            {
+              name: "--visibility",
+              description: "Set visibility for this dataset (public/private)",
+              args: { name: "visibility", suggestions: ["public", "private"] },
+            },
+          ],
+          args: { name: "name" },
         },
         {
           name: "delete",
           description: "Delete a dataset within your project",
+          args: { name: "datasetName" },
         },
         {
           name: "export",
           description:
             "Export dataset to local filesystem as a gzipped tarball",
+          options: [
+            {
+              name: "--raw",
+              description:
+                "Extract only documents, without rewriting asset references",
+            },
+            {
+              name: "--no-assets",
+              description:
+                "Export only non-asset documents and remove references to image assets",
+            },
+            {
+              name: "--no-drafts",
+              description: "Export only published versions of documents",
+            },
+            {
+              name: "--no-compress",
+              description:
+                "Skips compressing tarball entries (still generates a gzip file)",
+            },
+            {
+              name: "--types",
+              description: "Defines which document types to export",
+              args: { name: "types" },
+            },
+            {
+              name: "--overwrite",
+              description: "Overwrite any file with the same name",
+            },
+            {
+              name: "--asset-concurrency",
+              description: "Concurrent number of asset downloads",
+              args: { name: "num" },
+            },
+          ],
+          args: [
+            { name: "name" },
+            { name: "destination", template: "folders" },
+          ],
         },
         {
           name: "import",
           description: "Import documents to given dataset from ndjson file",
+          options: [
+            {
+              name: "--missing",
+              description:
+                "On duplicate document IDs, skip importing document in question",
+            },
+            {
+              name: "--replace",
+              description:
+                "On duplicate document IDs, replace existing document with imported document",
+            },
+            {
+              name: "--allow-failing-assets",
+              description: "Skip assets that cannot be fetched/uploaded",
+            },
+            {
+              name: "--replace-assets",
+              description: "Skip reuse of existing assets",
+            },
+          ],
+          args: [
+            { name: "file", template: "filepaths" },
+            { name: "target_dataset" },
+          ],
         },
         {
           name: "list",
@@ -194,6 +267,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "visibility",
           description: "Set visibility of a dataset",
+          args: [
+            { name: "dataset" },
+            { name: "mode", suggestions: ["get", "set"] },
+          ],
         },
       ],
     },
@@ -227,6 +304,7 @@ const completionSpec: Fig.Spec = {
             "Don't build the studio prior to deploy, instead deploying the version currently in `dist/`",
         },
       ],
+      args: { name: "source_dir", template: "folders", isOptional: true },
     },
     {
       name: "docs",
@@ -239,18 +317,83 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create one or more documents",
+          options: [
+            {
+              name: "--replace",
+              description:
+                "On duplicate document IDs, replace existing document with specified document(s)",
+            },
+            {
+              name: "--missing",
+              description:
+                "On duplicate document IDs, don't modify the target document(s)",
+            },
+            {
+              name: "--watch",
+              description:
+                "Write the documents whenever the target file or buffer changes",
+            },
+            {
+              name: "--json5",
+              description:
+                'Use JSON5 file type to allow a "simplified" version of JSON',
+            },
+            {
+              name: "--id",
+              description:
+                "Specify a document ID to use. Will fetch remote document ID and populate editor",
+              args: { name: "id" },
+            },
+            {
+              name: "--dataset",
+              description: "NAME to override dataset",
+              args: { name: "dataset" },
+            },
+          ],
+          args: { name: "file", template: "filepaths", isOptional: true },
         },
         {
           name: "delete",
           description: "Delete a document by ID",
+          options: [
+            {
+              name: "--dataset",
+              description: "NAME to override dataset",
+              args: { name: "dataset" },
+            },
+          ],
+          args: { name: "id", isVariadic: true },
         },
         {
           name: "get",
           description: "Get and print a document by ID",
+          options: [
+            { name: "--pretty", description: "Colorized JSON output" },
+            {
+              name: "--dataset",
+              description: "NAME to override dataset",
+              args: { name: "dataset" },
+            },
+          ],
+          args: { name: "document_id" },
         },
         {
           name: "query",
           description: "Query for documents",
+          options: [
+            { name: "--pretty", description: "Colorized JSON output" },
+            {
+              name: "--dataset",
+              description: "NAME to override dataset",
+              args: { name: "dataset" },
+            },
+            {
+              name: "--api-version",
+              description: "API version to use (defaults to `v1`)",
+              args: { name: "version" },
+            },
+          ],
+          args: { name: "query" },
         },
       ],
     },
@@ -268,6 +411,7 @@ const completionSpec: Fig.Spec = {
           description: "Mocks a browser-like environment using jsdom",
         },
       ],
+      args: { name: "script", template: "filepaths" },
     },
     {
       name: "graphql",
@@ -276,6 +420,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "deploy",
           description: "Deploy a GraphQL API from the current Sanity schema",
+          options: [
+            {
+              name: "--dataset",
+              description: "Deploy API for the given dataset",
+              args: { name: "dataset" },
+            },
+            {
+              name: "--tag",
+              description: "Deploy API to given tag (defaults to 'default')",
+              args: { name: "tag" },
+            },
+            {
+              name: "--generation",
+              description: "API generation to deploy (defaults to 'gen3')",
+              args: { name: "generation" },
+            },
+            {
+              name: "--non-null-document-fields",
+              description:
+                "Set document interface fields (_id, _type etc) as non-null",
+            },
+            {
+              name: "--playground",
+              description:
+                "Deploy a GraphQL playground for easily testing queries (public)",
+            },
+            {
+              name: "--no-playground",
+              description:
+                "Skip playground prompt (do not deploy a playground)",
+            },
+            {
+              name: "--force",
+              description: "Deploy API without confirming breaking changes",
+            },
+          ],
         },
         {
           name: "list",
@@ -285,6 +465,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "undeploy",
           description: "Remove a deployed GraphQL API",
+          options: [
+            {
+              name: "--dataset",
+              description: "Delete GraphQL API for the given dataset",
+              args: { name: "dataset" },
+            },
+            {
+              name: "--tag",
+              description:
+                "Delete GraphQL API for the given tag (defaults to 'default')",
+              args: { name: "tag" },
+            },
+          ],
         },
       ],
     },
@@ -295,6 +488,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "attempt",
           description: "Print details of a given webhook delivery attempt",
+          args: { name: "attempt_id" },
         },
         {
           name: "create",
@@ -303,6 +497,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a hook within your project",
+          args: { name: "name" },
         },
         {
           name: "list",
@@ -311,6 +506,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "logs",
           description: "List latest log entries for a given hook",
+          args: { name: "name" },
         },
       ],
     },
@@ -375,6 +571,7 @@ const completionSpec: Fig.Spec = {
           description: "Visibility mode for dataset (public/private)",
           args: {
             name: "mode",
+            suggestions: ["public", "private"],
           },
         },
         {
@@ -385,7 +582,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "project-plan",
+          name: "--project-plan",
           description: "Optionally select a plan for a new project",
           args: {
             name: "name",
@@ -395,6 +592,7 @@ const completionSpec: Fig.Spec = {
           name: "--coupon",
           description:
             "Optionally select a coupon for a new project (cannot be used with --project-plan)",
+          exclusiveOn: ["--project-plan"],
           args: {
             name: "name",
           },
@@ -410,6 +608,7 @@ const completionSpec: Fig.Spec = {
       name: "install",
       description:
         "Installs a Sanity plugin to the current Sanity configuration",
+      args: { name: "plugin" },
     },
     {
       name: "login",
@@ -440,6 +639,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists projects connected to your user",
+          options: [
+            {
+              name: "--sort",
+              description: "Sort output by specified column",
+              args: { name: "field" },
+            },
+            {
+              name: "--order",
+              description: "Sort output ascending/descending",
+              args: { name: "order", suggestions: ["asc", "desc"] },
+            },
+          ],
         },
       ],
     },
@@ -472,6 +683,7 @@ const completionSpec: Fig.Spec = {
       name: "uninstall",
       description:
         "Removes a Sanity plugin from the current Sanity configuration",
+      args: { name: "plugin" },
     },
     {
       name: "upgrade",
@@ -507,10 +719,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "invite",
           description: "Invite a new user to the project",
+          options: [
+            {
+              name: "--role",
+              description: "Role to invite the user as",
+              args: { name: "role" },
+            },
+          ],
+          args: { name: "email" },
         },
         {
           name: "list",
           description: "List users of the project",
+          options: [
+            {
+              name: "--no-invitations",
+              description: "Don't include pending invitations",
+            },
+            {
+              name: "--no-robots",
+              description: "Don't include robots (token users)",
+            },
+            {
+              name: "--sort",
+              description:
+                "Sort users by specified column: id, name, role, date",
+              args: {
+                name: "field",
+                suggestions: ["id", "name", "role", "date"],
+              },
+            },
+            {
+              name: "--order",
+              description: "Sort output ascending/descending",
+              args: { name: "order", suggestions: ["asc", "desc"] },
+            },
+          ],
         },
       ],
     },
