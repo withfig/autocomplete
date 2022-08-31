@@ -19,19 +19,10 @@ const prototypeOption = (description: string): Fig.Option => ({
 
 const lightModuleGenerator: Fig.Generator = {
   ...npmSearchGenerator,
-  custom: async (context, executeShellCommand, shellContext) => {
-    const searchTerm = context[context.length - 1];
-    if (searchTerm === "") {
-      return [];
-    }
-
-    const queryWithKeyword = searchTerm + "+keywords:magnolia-light-module";
-    return npmSearchGenerator.custom(
-      [queryWithKeyword],
-      executeShellCommand,
-      shellContext
-    );
-  },
+  custom: (context, executeShellCommand, shellContext) =>
+    npmSearchGenerator.custom(context, executeShellCommand, shellContext, [
+      "magnolia-light-module",
+    ]),
 };
 
 const completionSpec: Fig.Spec = {
@@ -289,6 +280,7 @@ const completionSpec: Fig.Spec = {
       description: "Searches for Magnolia-related packages available from npm",
       args: {
         name: "query",
+        generators: lightModuleGenerator,
         description:
           "The search query sent to the npm's API. The query can contain multiple terms separated with commas and no spaces",
       },

@@ -14,7 +14,15 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 
 const atsInStr = (s: string) => (s.match(/@/g) || []).length;
 // GENERATORS
-export const npmSearchGenerator: Fig.Generator = {
+interface NpmSearchGenerator extends Fig.Generator {
+  custom: (
+    context: string[],
+    executeShellCommand: Fig.ExecuteShellCommandFunction,
+    shellContext: Fig.ShellContext,
+    keywords?: string[]
+  ) => Promise<Fig.Suggestion[]>;
+}
+export const npmSearchGenerator: NpmSearchGenerator = {
   trigger: (newToken, oldToken) => {
     // If the package name starts with '@', we want to trigger when
     // the 2nd '@' is typed because we'll need to generate version
@@ -32,14 +40,22 @@ export const npmSearchGenerator: Fig.Generator = {
   cache: {
     ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
   },
-  custom: async (context, executeShellCommand) => {
+  custom: async (
+    context: string[],
+    executeShellCommand: Fig.ExecuteShellCommandFunction,
+    shellContext: Fig.ShellContext,
+    keywords?: string[]
+  ): Promise<Fig.Suggestion[]> => {
     const searchTerm = context[context.length - 1];
     if (searchTerm === "") {
       return [];
     }
 
+    // Add optional keyword parameter
+    const keywordParameter =
+      keywords?.length > 0 ? `+keywords:${keywords.join(",")}` : "";
     // Query the API with the package name
-    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}"`;
+    const queryPackages = `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?size=20&q=${searchTerm}${keywordParameter}"`;
     // We need to remove the '@' at the end of the searchTerm before querying versions
     const queryVersions = `curl -s -H "Accept: application/vnd.npm.install-v1+json" https://registry.npmjs.org/${searchTerm.slice(
       0,
