@@ -27,6 +27,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "folder",
             description: "Migrations folder",
+            template: "folders",
             isOptional: true,
           },
         },
@@ -41,6 +42,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "folder",
               description: "Migrations folder",
+              template: "folders",
               isOptional: true,
             },
           ],
@@ -69,7 +71,7 @@ const completionSpec: Fig.Spec = {
           description: 'API HTTP server address (default "127.0.0.1:8090")',
           args: {
             name: "string",
-            description: 'API HTTP server address (default "127.0.0.1:8090")',
+            description: "API HTTP server address",
           },
         },
         {
@@ -87,7 +89,7 @@ const completionSpec: Fig.Spec = {
           description: "CORS allowed domain origins list (default [*])",
           args: {
             name: "strings",
-            description: "CORS allowed domain origins list (default [*])",
+            description: "CORS allowed domain origins list",
           },
         },
       ],
@@ -101,11 +103,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "--dir",
       description: 'PocketBase data directory (default "pb_data")',
+      args: {
+        name: "dir",
+        description: "PocketBase data directory",
+        template: "folders",
+      },
     },
     {
       name: "--encryptionEnv",
       description:
         "Environment variable whose value of 32 chars will be used as encryption key for the app settings (default none)",
+      args: {
+        name: "env",
+        description: "Encryption environment variable name",
+      },
     },
     {
       name: ["-h", "--help"],
