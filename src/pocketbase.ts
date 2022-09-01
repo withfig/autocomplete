@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "pocketbase",
-  description: "",
+  description: "PocketBase CLI",
   subcommands: [
     {
       name: "help",
