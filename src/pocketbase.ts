@@ -5,16 +5,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Help about any command",
-      subcommands: [
-        {
-          name: "migrate",
-          description: "Help about the migrate command",
-        },
-        {
-          name: "serve",
-          description: "Help about the serve command",
-        },
-      ],
+      args: { name: "subcommand", template: "help", isOptional: true },
     },
     {
       name: "migrate",
