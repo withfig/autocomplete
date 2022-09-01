@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "sanity",
-  description: "",
+  description: "Sanity CLI tool for managing Sanity installations, managing plugins, schemas and datasets",
   subcommands: [
     {
       name: "help",
