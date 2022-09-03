@@ -5700,6 +5700,7 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             name: "--all",
             description: "Alias for --workspace (deprecated)",
             hidden: true,
+            deprecated: true,
           },
           {
             name: "--workspace",
@@ -6021,30 +6022,10 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
             name: "help",
             description:
               "Print this message or the help of the given subcommand(s)",
-            subcommands: [
-              {
-                name: "check",
-                description: "Checks a project's crate graph",
-              },
-              {
-                name: "fetch",
-                description: "Fetches remote data",
-              },
-              {
-                name: "help",
-                description:
-                  "Print this message or the help of the given subcommand(s)",
-              },
-              {
-                name: "init",
-                description: "Creates a cargo-deny config from a template",
-              },
-              {
-                name: "list",
-                description:
-                  "Outputs a listing of all licenses and the crates that use them",
-              },
-            ],
+            args: {
+              template: "help",
+              isOptional: true,
+            },
           },
           {
             name: "init",
