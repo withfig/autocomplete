@@ -88,7 +88,7 @@ const targetGenerator: Fig.Generator = {
 };
 
 const dependencyGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1",
+  script: "cargo metadata --format-version 1 --no-deps",
   postProcess: function (data: string) {
     const metadata = JSON.parse(data);
     const seen = new Set<string>();
@@ -103,9 +103,18 @@ const dependencyGenerator: Fig.Generator = {
 };
 
 const rustEditions: Fig.Suggestion[] = [
-  { name: "2015", description: "2015 edition" },
-  { name: "2018", description: "2018 edition" },
-  { name: "2021", description: "2021 edition" },
+  {
+    name: "2015",
+    description: "2015 edition",
+  },
+  {
+    name: "2018",
+    description: "2018 edition",
+  },
+  {
+    name: "2021",
+    description: "2021 edition",
+  },
 ];
 
 const vcsOptions: Fig.Suggestion[] = [
@@ -116,19 +125,22 @@ const vcsOptions: Fig.Suggestion[] = [
   },
   {
     name: "hg",
+    icon: "⚗️",
     description: "Initialize with Mercurial",
   },
   {
     name: "pijul",
+    icon: "🦜",
     description: "Initialize with Pijul",
   },
   {
     name: "fossil",
-    icon: "fig://template?color=818181&badge=🦴",
+    icon: "🦴",
     description: "Initialize with Fossil",
   },
   {
     name: "none",
+    icon: "🚫",
     description: "Initialize with no VCS",
   },
 ];
@@ -5665,6 +5677,806 @@ const completionSpec: (toolchain?: boolean) => Fig.Spec = (
         ],
       };
       subcommands.push(outdated);
+    }
+
+    if (commands.includes("udeps")) {
+      const udeps: Fig.Subcommand = {
+        name: "udeps",
+        icon: "📦",
+        description: "Find unused dependencies in Cargo.toml files",
+        options: [
+          {
+            name: ["-q", "--quiet"],
+            description: "No output printed to stdout",
+          },
+          {
+            name: ["-p", "--package"],
+            description: "Package(s) to check",
+            args: {
+              name: "SPEC",
+            },
+          },
+          {
+            name: "--all",
+            description: "Alias for --workspace (deprecated)",
+            hidden: true,
+            deprecated: true,
+          },
+          {
+            name: "--workspace",
+            description: "Check all packages in the workspace",
+          },
+          {
+            name: "--exclude",
+            description: "Exclude packages from the check",
+            args: {
+              name: "SPEC",
+            },
+          },
+          {
+            name: ["-j", "--jobs"],
+            description: "Number of parallel jobs, defaults to # of CPUs",
+            args: {
+              name: "N",
+            },
+          },
+          {
+            name: "--lib",
+            description: "Check only this package's library",
+          },
+          {
+            name: "--bin",
+            description: "Check only the specified binary",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--bins",
+            description: "Check all binaries",
+          },
+          {
+            name: "--example",
+            description: "Check only the specified example",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--examples",
+            description: "Check all examples",
+          },
+          {
+            name: "--test",
+            description: "Check only the specified test target",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--tests",
+            description: "Check all tests",
+          },
+          {
+            name: "--bench",
+            description: "Check only the specified bench target",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--benches",
+            description: "Check all benches",
+          },
+          {
+            name: "--all-targets",
+            description: "Check all targets",
+          },
+          {
+            name: "--release",
+            description: "Check artifacts in release mode, with optimizations",
+          },
+          {
+            name: "--profile",
+            description: "Check artifacts with the specified profile",
+            args: {
+              name: "PROFILE-NAME",
+            },
+          },
+          {
+            name: "--features",
+            description: "Space-separated list of features to activate",
+            args: {
+              name: "FEATURES",
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--all-features",
+            description: "Activate all available features",
+          },
+          {
+            name: "--no-default-features",
+            description: "Do not activate the `default` feature",
+          },
+          {
+            name: "--target",
+            description: "Check for the target triple",
+            args: {
+              name: "TRIPLE",
+            },
+          },
+          {
+            name: "--target-dir",
+            description: "Directory for all generated artifacts",
+            args: {
+              name: "DIRECTORY",
+            },
+          },
+          {
+            name: "--manifest-path",
+            description: "Path to Cargo.toml",
+            args: {
+              name: "PATH",
+            },
+          },
+          {
+            name: "--message-format",
+            description: "Error format",
+            args: {
+              name: "FMT",
+              default: "human",
+              suggestions: ["human", "json", "short"],
+            },
+          },
+          {
+            name: ["-v", "--verbose"],
+            description:
+              "Use verbose output (-vv very verbose/build.rs output)",
+          },
+          {
+            name: "--color",
+            description: "Coloring",
+            args: {
+              name: "WHEN",
+              suggestions: ["auto", "always", "never"],
+            },
+          },
+          {
+            name: "--frozen",
+            description: "Require Cargo.lock and cache are up to date",
+          },
+          {
+            name: "--locked",
+            description: "Require Cargo.lock is up to date",
+          },
+          {
+            name: "--offline",
+            description: "Run without accessing the network",
+          },
+          {
+            name: "--output",
+            description: "Output format",
+            args: {
+              name: "OUTPUT",
+              default: "human",
+              suggestions: ["human", "json"],
+            },
+          },
+          {
+            name: "--backend",
+            description: "Backend to use for determining unused deps",
+            args: {
+              name: "BACKEND",
+              suggestions: ["save-analysis", "depinfo"],
+            },
+          },
+          {
+            name: "--keep-going",
+            description:
+              "Needed because the keep-going flag is asked about by cargo code",
+          },
+          {
+            name: "--show-unused-transitive",
+            description:
+              "Show unused dependencies that get used transitively by main dependencies. Works only with 'save-analysis' backend",
+            dependsOn: ["--backend"],
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+        ],
+      };
+      subcommands.push(udeps);
+    }
+
+    if (commands.includes("deny")) {
+      const deny: Fig.Subcommand = {
+        name: "deny",
+        icon: "❌",
+        description: "Cargo plugin to help you manage large dependency graphs",
+        subcommands: [
+          {
+            name: "check",
+            description: "Checks a project's crate graph",
+            options: [
+              {
+                name: "--audit-compatible-output",
+                description:
+                  "To ease transition from cargo-audit to cargo-deny, this flag will tell cargo-deny to output the exact same output as cargo-audit would, to `stdout` instead of `stderr`, just as with cargo-audit",
+              },
+              {
+                name: ["-c", "--config"],
+                description:
+                  "Path to the config to use. Defaults to <cwd>/deny.toml if not specified",
+                args: {
+                  name: "CONFIG",
+                  generators: filepaths({ equals: "deny.toml" }),
+                },
+              },
+              {
+                name: ["-d", "--disable-fetch"],
+                description: "Disable fetching of the advisory database",
+              },
+              {
+                name: ["-g", "--graph"],
+                description: "Path to graph_output root directory",
+                args: {
+                  name: "GRAPH",
+                  template: "folders",
+                },
+              },
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+              {
+                name: "--hide-inclusion-graph",
+                description:
+                  "Hides the inclusion graph when printing out info for a crate",
+              },
+              {
+                name: ["-s", "--show-stats"],
+                description:
+                  "Show stats for all the checks, regardless of the log-level",
+              },
+            ],
+            args: {
+              name: "WHICH",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "advisories",
+                  description: "Checks for known security vulnerabilities",
+                },
+                {
+                  name: "ban",
+                  description: "Checks for banned crates",
+                },
+                {
+                  name: "bans",
+                  description: "Checks for banned crates",
+                },
+                {
+                  name: "license",
+                  description: "Checks for crates with unknown licenses",
+                },
+                {
+                  name: "licenses",
+                  description: "Checks for crates with unknown licenses",
+                },
+                {
+                  name: "sources",
+                  description: "Checks for crates with unknown sources",
+                },
+                {
+                  name: "all",
+                  description: "Runs all checks",
+                },
+              ],
+              isVariadic: true,
+            },
+          },
+          {
+            name: "fetch",
+            description: "Fetches remote data",
+            options: [
+              {
+                name: ["-c", "--config"],
+                description: "Path to the config to use",
+                args: {
+                  name: "CONFIG",
+                  generators: filepaths({ equals: "deny.toml" }),
+                },
+              },
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+            ],
+            args: {
+              name: "SOURCES",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "db",
+                  description: "Fetches the advisory database",
+                },
+                {
+                  name: "index",
+                  description: "Fetches the crates.io index",
+                },
+                {
+                  name: "all",
+                  description: "Fetches all remote data",
+                },
+              ],
+            },
+          },
+          {
+            name: "help",
+            description:
+              "Print this message or the help of the given subcommand(s)",
+            args: {
+              template: "help",
+              isOptional: true,
+            },
+          },
+          {
+            name: "init",
+            description: "Creates a cargo-deny config from a template",
+            options: [
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+            ],
+            args: {
+              name: "CONFIG",
+              description: "The path to create",
+              generators: filepaths({ equals: "deny.toml" }),
+            },
+          },
+          {
+            name: "list",
+            description:
+              "Outputs a listing of all licenses and the crates that use them",
+            options: [
+              {
+                name: ["-c", "--config"],
+                description: "Path to the config to use",
+                args: {
+                  name: "CONFIG",
+                  generators: filepaths({ equals: "deny.toml" }),
+                },
+              },
+              {
+                name: ["-f", "--format"],
+                description: "The format of the output",
+                args: {
+                  name: "FORMAT",
+                  suggestions: ["human", "json", "tsv"],
+                },
+              },
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+              {
+                name: ["-l", "--layout"],
+                description: "The layout for the output",
+                args: {
+                  name: "LAYOUT",
+                  suggestions: [{ name: "crate" }, { name: "license" }],
+                },
+              },
+              {
+                name: ["-t", "--threshold"],
+                description: "Minimum confidence threshold for license text",
+                args: {
+                  name: "THRESHOLD",
+                  suggestions: [
+                    "0.0",
+                    "0.1",
+                    "0.2",
+                    "0.3",
+                    "0.4",
+                    "0.5",
+                    "0.6",
+                    "0.7",
+                    "0.8",
+                    "0.9",
+                    "1.0",
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+        options: [
+          {
+            name: "--all-features",
+            description: "Activate all available features",
+          },
+          {
+            name: ["-c", "--color"],
+            description: "Coloring",
+            args: {
+              name: "WHEN",
+              suggestions: ["auto", "always", "never"],
+            },
+          },
+          {
+            name: "--exclude",
+            description:
+              "One or more crates to exclude from the crate graph that is used",
+            args: {
+              name: "EXCLUDE",
+            },
+          },
+          {
+            name: ["-f", "--format"],
+            description: "Specify the format of cargo-deny's output",
+            args: {
+              name: "FORMAT",
+              default: "human",
+              suggestions: ["human", "json"],
+            },
+          },
+          {
+            name: "--features",
+            description:
+              "Space or comma separated list of features to activate",
+            args: {
+              name: "FEATURES",
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--frozen",
+            description: "Require Cargo.lock and cache are up to date",
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-L", "--log-level"],
+            description: "The log level for messages",
+            args: {
+              name: "LOG_LEVEL",
+              default: "warn",
+              suggestions: ["off", "error", "warn", "info", "debug", "trace"],
+            },
+          },
+          {
+            name: "--locked",
+            description: "Require Cargo.lock is up to date",
+          },
+          {
+            name: "--manifest-path",
+            description:
+              "The path of a Cargo.toml to use as the context for the operation",
+            args: {
+              name: "MANIFEST_PATH",
+            },
+          },
+          {
+            name: "--no-default-features",
+            description: "Do not activate the `default` feature",
+          },
+          {
+            name: "--offline",
+            description:
+              "Run without accessing the network. If used with the `check` subcommand, this also disables advisory database fetching",
+          },
+          {
+            name: ["-t", "--target"],
+            description: "One or more platforms to filter crates by",
+            args: {
+              name: "TARGET",
+            },
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: "--workspace",
+            description:
+              "If passed, all workspace packages are used as roots for the crate graph",
+          },
+        ],
+      };
+      subcommands.push(deny);
+    }
+
+    if (commands.includes("bloat")) {
+      const bloat: Fig.Subcommand = {
+        name: "bloat",
+        icon: "⚖️",
+        description: "Find out what takes most of the space in your executable",
+        options: [
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: "--lib",
+            description: "Build only this package's library",
+          },
+          {
+            name: "--bin",
+            description: "Build only the specified binary",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--example",
+            description: "Build only the specified example",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--test",
+            description: "Build only the specified test target",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: ["-p", "--package"],
+            description: "Package to build",
+            args: {
+              name: "SPEC",
+            },
+          },
+          {
+            name: "--release",
+            description: "Build artifacts in release mode, with optimizations",
+          },
+          {
+            name: ["-j", "--jobs"],
+            description: "Number of parallel jobs, defaults to # of CPUs",
+            args: {
+              name: "N",
+            },
+          },
+          {
+            name: "--features",
+            description: "Space-separated list of features to activate",
+            args: {
+              name: "FEATURES",
+            },
+          },
+          {
+            name: "--all-features",
+            description: "Activate all available features",
+          },
+          {
+            name: "--no-default-features",
+            description: "Do not activate the `default` feature",
+          },
+          {
+            name: "--profile",
+            description: "Build with the given profile",
+            args: {
+              name: "PROFILE",
+            },
+          },
+          {
+            name: "--target",
+            description: "Build for the target triple",
+            args: {
+              name: "TARGET",
+            },
+          },
+          {
+            name: "--target-dir",
+            description: "Directory for all generated artifacts",
+            args: {
+              name: "DIRECTORY",
+            },
+          },
+          {
+            name: "--frozen",
+            description: "Require Cargo.lock and cache are up to date",
+          },
+          {
+            name: "--locked",
+            description: "Require Cargo.lock is up to date",
+          },
+          {
+            name: "-Z",
+            description:
+              "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details",
+            args: {
+              name: "FLAG",
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--crates",
+            description: "Per crate bloatedness",
+          },
+          {
+            name: "--time",
+            description: "Per crate build time. Will run `cargo clean` first",
+          },
+          {
+            name: "--filter",
+            description: "Filter functions by crate",
+            args: {
+              name: "CRATE|REGEXP",
+            },
+          },
+          {
+            name: "--split-std",
+            description:
+              "Split the 'std' crate to original crates like core, alloc, etc",
+          },
+          {
+            name: "--symbols-section",
+            description: "Use custom symbols section (ELF-only)",
+            args: {
+              name: "NAME",
+              default: ".text",
+            },
+          },
+          {
+            name: "--no-relative-size",
+            description: "Hide 'File' and '.text' columns",
+          },
+          {
+            name: "--full-fn",
+            description: "Print full function name with hash values",
+          },
+          {
+            name: "-n",
+            description: "Number of lines to show, 0 to show all [default: 20]",
+            args: {
+              name: "NUM",
+              default: "20",
+            },
+          },
+          {
+            name: ["-w", "--wide"],
+            description: "Do not trim long function names",
+          },
+          {
+            name: "--message-format",
+            description: "Output format",
+            args: {
+              name: "FMT",
+              default: "table",
+              suggestions: ["table", "json"],
+            },
+          },
+        ],
+      };
+      subcommands.push(bloat);
+    }
+
+    if (commands.includes("sort")) {
+      const sort: Fig.Subcommand = {
+        name: "sort",
+        icon: "🛠",
+        description: "Ensure Cargo.toml dependency tables are sorted",
+        options: [
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: ["-c", "--check"],
+            description:
+              "Non-zero exit if Cargo.toml is unsorted, overrides default behavior",
+          },
+          {
+            name: ["-g", "--grouped"],
+            description:
+              "When sorting groups of key value pairs blank lines are kept",
+          },
+          {
+            name: ["-p", "--print"],
+            description: "Prints Cargo.toml, lexically sorted, to stdout",
+          },
+          {
+            name: ["-w", "--workspace"],
+            description: "Checks every crate in a workspace",
+          },
+          {
+            name: ["-n", "--no-format"],
+            description: "Skip formatting after sorting",
+            args: {
+              name: "no-format",
+            },
+          },
+          {
+            name: ["-o", "--order"],
+            description:
+              "When sorting groups of key value pairs blank lines are kept",
+            args: {
+              name: "order",
+            },
+          },
+        ],
+        args: {
+          name: "CWD",
+          description: "The directory to run the command in",
+          isOptional: true,
+          template: "folders",
+        },
+      };
+      subcommands.push(sort);
+    }
+
+    if (commands.includes("fuzz")) {
+      const fuzz: Fig.Subcommand = {
+        name: "fuzz",
+        icon: "🛠",
+        description: "A `cargo` subcommand for fuzzing with `libFuzzer`!",
+        subcommands: [
+          {
+            name: "add",
+            description: "Add a new fuzz target",
+          },
+          {
+            name: "build",
+            description: "Build fuzz targets",
+          },
+          {
+            name: "cmin",
+            description: "Minify a corpus",
+          },
+          {
+            name: "coverage",
+            description:
+              "Run program on the generated corpus and generate coverage information",
+          },
+          {
+            name: "fmt",
+            description: "Print the `std::fmt::Debug` output for an input",
+          },
+          {
+            name: "help",
+            description:
+              "Prints this message or the help of the given subcommand(s)",
+          },
+          {
+            name: "init",
+            description: "Initialize the fuzz directory",
+          },
+          {
+            name: "list",
+            description: "List all the existing fuzz targets",
+          },
+          {
+            name: "run",
+            description: "Run a fuzz target",
+          },
+          {
+            name: "tmin",
+            description: "Minify a test case",
+          },
+        ],
+      };
+      subcommands.push(fuzz);
     }
 
     return {
