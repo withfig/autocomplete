@@ -593,11 +593,7 @@ const spec: Fig.Spec = {
       name: "--version",
       description: "Print the current version and exit",
     },
-  ],
+  ].map((option) => ({ ...option, icon })),
 };
-
-for (const option of spec.options!) {
-  option.icon = icon;
-}
 
 export default spec;
