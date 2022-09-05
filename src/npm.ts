@@ -13,38 +13,13 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
 }
 
 const atsInStr = (s: string) => (s.match(/@/g) || []).length;
-// GENERATORS
-interface NpmSearchGenerator extends Fig.Generator {
-  custom: (
-    context: string[],
-    executeShellCommand: Fig.ExecuteShellCommandFunction,
-    shellContext: Fig.ShellContext,
-    keywords?: string[]
-  ) => Promise<Fig.Suggestion[]>;
-}
-export const npmSearchGenerator: NpmSearchGenerator = {
-  trigger: (newToken, oldToken) => {
-    // If the package name starts with '@', we want to trigger when
-    // the 2nd '@' is typed because we'll need to generate version
-    // suggetsions
-    // e.g. @typescript-eslint/types
-    if (oldToken.startsWith("@")) {
-      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
-    }
 
-    // If the package name doesn't start with '@', then trigger when
-    // we see the first '@' so we can generate version suggestions
-    return !(oldToken.includes("@") && newToken.includes("@"));
-  },
-  getQueryTerm: "@",
-  cache: {
-    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
-  },
-  custom: async (
+export const createNpmSearchHandler =
+  (keywords?: string[]) =>
+  async (
     context: string[],
     executeShellCommand: Fig.ExecuteShellCommandFunction,
-    shellContext: Fig.ShellContext,
-    keywords?: string[]
+    shellContext: Fig.ShellContext
   ): Promise<Fig.Suggestion[]> => {
     const searchTerm = context[context.length - 1];
     if (searchTerm === "") {
@@ -103,7 +78,28 @@ export const npmSearchGenerator: NpmSearchGenerator = {
       console.error({ error });
       return [];
     }
+  };
+
+// GENERATORS
+export const npmSearchGenerator: Fig.Generator = {
+  trigger: (newToken, oldToken) => {
+    // If the package name starts with '@', we want to trigger when
+    // the 2nd '@' is typed because we'll need to generate version
+    // suggetsions
+    // e.g. @typescript-eslint/types
+    if (oldToken.startsWith("@")) {
+      return !(atsInStr(oldToken) > 1 && atsInStr(newToken) > 1);
+    }
+
+    // If the package name doesn't start with '@', then trigger when
+    // we see the first '@' so we can generate version suggestions
+    return !(oldToken.includes("@") && newToken.includes("@"));
   },
+  getQueryTerm: "@",
+  cache: {
+    ttl: 1000 * 60 * 60 * 24 * 2, // 2 days
+  },
+  custom: createNpmSearchHandler(),
 };
 
 const workspaceGenerator: Fig.Generator = {

@@ -1,4 +1,4 @@
-import { npmSearchGenerator } from "./npm";
+import { createNpmSearchHandler, npmSearchGenerator } from "./npm";
 
 const pathOption = (description: string): Fig.Option => ({
   name: ["-p", "--path"],
@@ -19,10 +19,7 @@ const prototypeOption = (description: string): Fig.Option => ({
 
 const lightModuleGenerator: Fig.Generator = {
   ...npmSearchGenerator,
-  custom: (context, executeShellCommand, shellContext) =>
-    npmSearchGenerator.custom(context, executeShellCommand, shellContext, [
-      "magnolia-light-module",
-    ]),
+  custom: createNpmSearchHandler(["magnolia-light-module"]),
 };
 
 const completionSpec: Fig.Spec = {
