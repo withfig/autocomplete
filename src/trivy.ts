@@ -166,6 +166,27 @@ const formatOptions: Fig.Option = {
   },
 };
 
+const fsFormatOptions: Fig.Option = {
+  name: ["--format", "-f"],
+  description:
+    'Format (table, json, sarif, template) (default: "table") [$TRIVY_FORMAT]',
+  args: {
+    name: "format",
+    suggestions: [
+      "table",
+      "json",
+      "sarif",
+      "template",
+      "cyclonedx",
+      "spdx",
+      "spdx-json",
+      "github",
+      "cosign-vuln",
+    ],
+    default: "table",
+  },
+};
+
 const exitCodeOption: Fig.Option = {
   name: "--exit-code",
   description:
@@ -350,6 +371,7 @@ const completionSpec: Fig.Spec = {
         "Scan local filesystem for language-specific dependencies and config files",
       subcommands: [
         ...scanOptions,
+        fsFormatOptions,
         skipPolicyUpdateOption,
         ignoreUnfixedOption,
         ...regoPolicyOptions,
