@@ -128,6 +128,7 @@ const completionSpec: Fig.Spec = {
         name: "string",
         description: "The log level",
         default: "info",
+        suggestions: ["info", "warn", "debug", "trace", "error"],
       },
     },
     {
