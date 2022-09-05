@@ -148,6 +148,7 @@ const spec: Fig.Spec = {
       name: "--watch",
       description: "Rebuild on file system changes",
       priority: 51,
+      requiresSeparator: "=",
       args: {
         name: "forever",
         suggestions: ["forever"],
@@ -163,7 +164,7 @@ const spec: Fig.Spec = {
       name: "--analyze",
       description: "Print a report about the contents of the bundle",
       requiresSeparator: "=",
-      args: { name: "verbose?", isOptional: true, suggestions: ["verbose"] },
+      args: { name: "verbose", isOptional: true, suggestions: ["verbose"] },
     },
     {
       name: "--asset-names",
@@ -279,6 +280,7 @@ const spec: Fig.Spec = {
       name: "--jsx-import-source",
       description:
         "Overrides the root import for runtime functions (default: react)",
+      requiresSeparator: "=",
       args: { name: "source", default: "react" },
     },
     {
