@@ -60,6 +60,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         description: "The path to a cert file",
+        template: "filepaths",
       },
     },
     {
@@ -68,6 +69,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         description: "The path to a client key file",
+        template: "filepaths",
       },
     },
     {
@@ -110,6 +112,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         description: "The path to the kubeconfig file",
+        template: "filepaths",
       },
     },
     {
@@ -118,6 +121,8 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "string",
         description: "The path of the log file",
+        template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
