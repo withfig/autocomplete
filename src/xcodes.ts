@@ -1,9 +1,36 @@
+const processXcodeList = (out: string, tokens: string[]) =>
+  out
+    .split("\n")
+    .reverse()
+    .map((line) => ({
+      name: line.slice(0, line.indexOf(" (")),
+      icon: line.includes("Selected")
+        ? "⭐️"
+        : line.includes("Installed")
+        ? "🔨"
+        : tokens.includes("select") || tokens.includes("uninstall")
+        ? "🔨"
+        : "⬇️",
+      description: line.slice(line.indexOf("(")).replaceAll(/[\(\)]/g, ""),
+    }));
+
+const allXcodes: Fig.Generator = {
+  script: "xcodes list",
+  postProcess: processXcodeList,
+};
+
+const installedXcodes: Fig.Generator = {
+  script: "xcodes installed",
+  postProcess: processXcodeList,
+};
+
 const completionSpec: Fig.Spec = {
   name: "xcodes",
   description: "Manage the Xcode versions installed on your Mac",
   subcommands: [
     {
       name: "help",
+      icon: "ℹ️",
       args: {
         name: "command",
         template: "help",
@@ -13,6 +40,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "download",
       description: "Download a specific version of Xcode",
+      icon: "⬇️",
       options: [
         {
           name: "--latest",
@@ -50,20 +78,18 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
       args: {
         name: "version",
         description: "The version to install",
         isOptional: true,
+        generators: allXcodes,
       },
     },
     {
       name: "install",
       description: "Download and install a specific version of Xcode",
+      icon: "⬇️",
       options: [
         {
           name: "--path",
@@ -111,20 +137,18 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
       args: {
         name: "version",
         description: "The version to install",
         isOptional: true,
+        generators: allXcodes,
       },
     },
     {
       name: "installed",
       description: "List the versions of Xcode that are installed",
+      icon: "🔨",
       options: [
         {
           name: "--directory",
@@ -134,15 +158,12 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
     },
     {
       name: "list",
       description: "List all versions of Xcode available to install",
+      icon: "🔍",
       options: [
         {
           name: "--directory",
@@ -158,15 +179,12 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
     },
     {
       name: "select",
       description: "Change the selected Xcode",
+      icon: "☑️",
       options: [
         {
           name: ["-p", "--print-path"],
@@ -180,22 +198,25 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
       args: {
         name: "version-or-path",
         description: "Version or path of Xcode to select",
-        template: "filepaths",
         isOptional: true,
+        generators: installedXcodes,
       },
     },
     {
       name: "uninstall",
       description: "Uninstall a version of Xcode",
-      args: { name: "version", isOptional: true },
+      icon: "❌",
+      isDangerous: true,
+      args: {
+        name: "version",
+        isOptional: true,
+        generators: installedXcodes,
+        isDangerous: true,
+      },
       options: [
         {
           name: "--directory",
@@ -205,15 +226,12 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
     },
     {
       name: "update",
       description: "Update the list of available versions of Xcode",
+      icon: "🔄",
       options: [
         {
           name: "--directory",
@@ -229,10 +247,6 @@ const completionSpec: Fig.Spec = {
         },
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
     },
     {
@@ -253,10 +267,6 @@ const completionSpec: Fig.Spec = {
       options: [
         { name: "--color", description: "Color the output" },
         { name: "--no-color", description: "Do not color the output" },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information",
-        },
       ],
     },
   ],
@@ -264,6 +274,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help information",
+      isPersistent: true,
     },
   ],
 };
