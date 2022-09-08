@@ -1,3 +1,34 @@
+const generatePackages: Fig.Generator = {
+  script: "\\find ~/.yalc/packages -maxdepth 4 -iname 'package.json'",
+  postProcess: (out) =>
+    out
+      .split("\n")
+      .map((path) => {
+        const pathArr = path.split("/");
+        const subPath = pathArr.slice(
+          pathArr.findIndex((val) => val === "packages") + 1,
+          pathArr.length - 2
+        );
+        const version = pathArr[pathArr.length - 2];
+        return `${subPath.join("/")}@${version}`;
+      })
+      .map((path) => ({
+        name: path,
+        icon: "📦",
+        description: path,
+      })),
+};
+
+const getRemovablePackages: Fig.Generator = {
+  script: "ls .yalc",
+  postProcess: (out) =>
+    out.split("\n").map((path) => ({
+      name: path,
+      icon: "📦",
+      description: path,
+    })),
+};
+
 const completionSpec: Fig.Spec = {
   name: "yalc",
   description: "Work with yarn/npm packages locally like a boss",
@@ -46,6 +77,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         description: "The package you want to add",
+        generators: generatePackages,
       },
       options: [
         {
@@ -78,6 +110,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         description: "The package to update",
         isOptional: true,
+        generators: generatePackages,
       },
       options: [
         {
@@ -93,6 +126,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         description: "The package you want to remove",
         isOptional: true,
+        generators: getRemovablePackages,
       },
       options: [
         {
@@ -110,6 +144,7 @@ const completionSpec: Fig.Spec = {
           description: "Unpublish a package published with yalc publish",
           args: {
             name: "package",
+            generators: generatePackages,
           },
         },
         {
@@ -118,6 +153,7 @@ const completionSpec: Fig.Spec = {
             "Show all packages to which chosen package has been added",
           args: {
             name: "package",
+            generators: generatePackages,
           },
         },
       ],
