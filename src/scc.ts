@@ -335,6 +335,7 @@ const completionSpec: Fig.Spec = {
         name: "string",
         generators: keyValueList({
           cache: true,
+          separator: ":",
           values: generateLanguages,
         }),
       },
@@ -347,6 +348,7 @@ const completionSpec: Fig.Spec = {
         name: "string",
         generators: keyValueList({
           cache: true,
+          separator: ":",
           values: generateLanguages,
         }),
       },
