@@ -123,7 +123,7 @@ const completionSpec: Fig.Spec = {
         name: "string",
         generators: keyValueList({
           cache: true,
-          separator: "=",
+          separator: ":",
           keys: async (_, executeShellCommand) => {
             const out = await executeShellCommand("scc --languages");
             const { extensions } = processSccLanguages(out);
