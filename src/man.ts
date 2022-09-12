@@ -1,3 +1,16 @@
+import { valueList } from "@fig/autocomplete-generators";
+
+const sections = {
+  "1": "General commands",
+  "2": "System calls",
+  "3": "C library functions",
+  "4": "Devices and special files",
+  "5": "File formats and conventions",
+  "6": "Games, etc",
+  "7": "Miscellanea",
+  "8": "System admin and daemons",
+};
+
 /** Cache of page suggestions. The key is the first letter of the `name` */
 const pageSuggestionCache = new Map<string, Fig.Suggestion[]>();
 
@@ -140,18 +153,15 @@ const completionSpec: Fig.Spec = {
         "Specify a colon-separated list of manual sections to search",
       args: {
         name: "sections",
-        generators: {
-          getQueryTerm: ":",
-          custom: async (tokens) =>
-            Object.entries(sections)
-              .filter(([name]) => !tokens[tokens.length - 1].includes(name))
-              .map(([name, description]) => ({
-                name,
-                description,
-                insertValue: name + ":",
-                icon: sectionIcon,
-              })),
-        },
+        generators: valueList({
+          delimiter: ":",
+          insertDelimiter: true,
+          values: Object.entries(sections).map(([name, description]) => ({
+            name,
+            description,
+            icon: "📑",
+          })),
+        }),
       },
     },
     {
