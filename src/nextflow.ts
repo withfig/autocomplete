@@ -11,8 +11,7 @@ const runname: Fig.Generator = {
 };
 
 const projectname: Fig.Generator = {
-  script:
-    "{ find * -maxdepth 0 -type f -name '*.nf' 2> /dev/null && find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets; } 2> /dev/null",
+  script: `/bin/sh -c "{ find * -maxdepth 0 -type f -name '*.nf' 2> /dev/null && find $HOME/.nextflow/assets/* -maxdepth 1 -type d | cut -d/ -f6,7 | grep / | grep -v assets; } 2> /dev/null"`,
   postProcess: (output) => {
     if (output == "") {
       return [];
