@@ -16,8 +16,8 @@ const pageSuggestionCache = new Map<string, Fig.Suggestion[]>();
 
 // JS time, so this is in milliseconds
 let lastCachedAt = 0;
-// 10m ttl
-const pageSuggestionCacheTTL = 1000 * 60 * 10;
+// 60m ttl
+const pageSuggestionCacheTTL = 1000 * 60 * 60;
 // A lock-ish thing to prevent running the command multiple times. Without this
 // lock, `man -k .` can be run multiple times, causing some visual slowness/jank
 let isGeneratingSuggestions = false;
