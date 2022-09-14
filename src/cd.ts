@@ -3,6 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "Change the shell working directory",
   args: {
     template: ["folders"],
+    filterStrategy: "fuzzy",
     // Add an additional hidden suggestion so users can execute on it if they want to
     suggestions: [
       {

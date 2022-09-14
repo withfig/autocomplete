@@ -71,7 +71,7 @@ const brewInfo = (name: string): Fig.Subcommand => ({
     description: "Formula or cask to summarize",
     generators: {
       script:
-        "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
+        "HBPATH=$(brew --repository) ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
       postProcess: (out) =>
         [...new Set(out.split("\n"))].map((formula) => ({
           name: formula.replace(".rb", ""),
@@ -1087,7 +1087,7 @@ const completionSpec: Fig.Spec = {
         description: "Formula or cask to install",
         generators: {
           script:
-            "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
+            "HBPATH=$(brew --repository) ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
           postProcess: function (out) {
             return out.split("\n").map((formula) => {
               return {
@@ -1538,7 +1538,7 @@ const completionSpec: Fig.Spec = {
         description: "Formula or cask to install",
         generators: {
           script:
-            "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
+            "HBPATH=$(brew --repository) ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
           postProcess: function (out) {
             return out.split("\n").map((formula) => {
               return {

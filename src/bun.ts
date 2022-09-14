@@ -1,4 +1,4 @@
-import { keyValueList } from "@fig/autocomplete-generators";
+import { keyValueList, filepaths } from "@fig/autocomplete-generators";
 import {
   npmScriptsGenerator,
   npmSearchGenerator,
@@ -92,10 +92,23 @@ const spec: Fig.Spec = {
   name: "bun",
   description:
     "A fast bundler, transpiler, JavaScript Runtime and package manager for web software",
+  args: [
+    {
+      name: "file",
+      generators: [
+        // js jsx mjs cjs ts tsx mts cts
+        filepaths({ matches: /\.[mc]?[jt]sx?$/ }),
+        npmScriptsGenerator,
+      ],
+    },
+    {
+      name: "args",
+    },
+  ],
   options: [
     {
       name: "--use",
-      args: { name: "framework", suggestions: ["next"] },
+      args: { name: "framework", suggestions: ["next"], template: "folders" },
       description: `Choose a framework, e.g. "--use next". It checks first for a package named "bun-framework-packagename" and then "packagename"`,
     },
     {
@@ -250,7 +263,19 @@ const spec: Fig.Spec = {
       args: [
         {
           name: "template",
-          suggestions: ["react", "next"],
+          description: "Package from @bun-examples, GitHub repo, or local file",
+          suggestions: [
+            "react",
+            "next",
+            "hono",
+            "discord-interactions",
+            "blank",
+            "bun-bakery",
+          ],
+          generators: [
+            { template: "folders" },
+            { script: "command ls -1 ~/.bun-create", splitOn: "\n" },
+          ],
         },
         {
           name: "name",
@@ -277,11 +302,18 @@ const spec: Fig.Spec = {
       name: "run",
       icon: "🛠️",
       description: "Run a package.json script or executable",
-      args: {
-        name: "script",
-        filterStrategy: "fuzzy",
-        generators: npmScriptsGenerator,
-      },
+      args: [
+        {
+          name: "script",
+          filterStrategy: "fuzzy",
+          generators: npmScriptsGenerator,
+        },
+        {
+          name: "args",
+          isVariadic: true,
+          isOptional: true,
+        },
+      ],
     },
     {
       name: ["i", "install"],
@@ -296,8 +328,10 @@ const spec: Fig.Spec = {
       options: dependencyOptions,
       args: {
         name: "package",
+        isVariadic: true,
         debounce: true,
         generators: npmSearchGenerator,
+        filterStrategy: "fuzzy",
       },
     },
     {
@@ -309,6 +343,7 @@ const spec: Fig.Spec = {
         name: "package",
         filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
+        isVariadic: true,
       },
     },
     {

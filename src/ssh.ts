@@ -1,5 +1,37 @@
 const knownHostRegex = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+/; // will match numerical IPs as well as domains/subdomains
 
+const resolveAbsolutePath = (path: string, basePath: string): string => {
+  if (path.startsWith("/") || path.startsWith("~/") || path === "~") {
+    return path;
+  }
+
+  return basePath + (basePath.endsWith("/") ? "" : "/") + path;
+};
+
+const getConfigLines = async (
+  file: string,
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  basePath
+) => {
+  const absolutePath = resolveAbsolutePath(file, basePath);
+
+  const out = await executeShellCommand(`cat ${absolutePath}`);
+  const configLines = out.split("\n").map((line) => line.trim());
+
+  // Get list of includes in the config file
+  const includes = configLines
+    .filter((line) => line.toLowerCase().startsWith("include "))
+    .map((line) => line.split(" ")[1]);
+
+  // Get the lines of every include file
+  const includeLines = await Promise.all(
+    includes.map((file) => getConfigLines(file, executeShellCommand, basePath))
+  );
+
+  // Combine config lines with includes config lines
+  return [...configLines, ...includeLines.flat()];
+};
+
 export const knownHosts: Fig.Generator = {
   script: "cat ~/.ssh/known_hosts",
   postProcess: function (out, tokens) {
@@ -21,11 +53,18 @@ export const knownHosts: Fig.Generator = {
 };
 
 export const configHosts: Fig.Generator = {
-  script: "cat ~/.ssh/config",
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .filter((line) => line.trim().startsWith("Host ") && !line.includes("*"))
+  custom: async (tokens, executeShellCommand) => {
+    const configLines = await getConfigLines(
+      "config",
+      executeShellCommand,
+      "~/.ssh"
+    );
+
+    return configLines
+      .filter(
+        (line) =>
+          line.trim().toLowerCase().startsWith("host ") && !line.includes("*")
+      )
       .map((host) => ({
         name: host.split(" ")[1],
         description: "SSH host",

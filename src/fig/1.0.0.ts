@@ -10,6 +10,7 @@ import {
   workflowsSpecGenerator,
   sshHostsGenerator,
   sshIdentityGenerator,
+  userGenerator,
 } from "./shared";
 
 const completion: Fig.Subcommand = {
@@ -3577,7 +3578,7 @@ versions["1.4.3"] = {
           description: "Identity to connect with",
           args: {
             name: "auth",
-            isOptional: true,
+            isOptional: false,
             generators: sshIdentityGenerator,
           },
         },
@@ -4051,6 +4052,202 @@ versions["1.4.7"] = {
     {
       name: "integrations",
       description: "Manage system integrations",
+    },
+  ],
+};
+
+versions["1.4.10"] = {
+  subcommands: [
+    {
+      name: "ssh",
+      options: [
+        {
+          name: ["-a", "--auth"],
+          args: {
+            isOptional: true,
+          },
+        },
+      ],
+    },
+    {
+      name: "login",
+      options: [
+        {
+          name: "--switchable",
+          hidden: true,
+        },
+      ],
+      args: {
+        name: "email",
+        isOptional: true,
+      },
+    },
+    {
+      name: "user",
+      subcommands: [
+        {
+          name: "login",
+          options: [
+            {
+              name: "--switchable",
+              hidden: true,
+            },
+          ],
+          args: {
+            name: "email",
+            isOptional: true,
+          },
+        },
+        {
+          name: "tokens",
+          description: "Subcommand for dealing with tokens",
+        },
+        {
+          name: "whoami",
+          description: "Prints details about the current user",
+        },
+        {
+          name: "plan",
+          description: "Prints details about the user's plan",
+          hidden: true,
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Output format to use",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "list-accounts",
+          description: "List all accounts that can be switch to",
+          hidden: true,
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Output format to use",
+              args: {
+                name: "format",
+                isOptional: true,
+                suggestions: [
+                  {
+                    name: "plain",
+                    description: "Outputs the results as markdown",
+                  },
+                  {
+                    name: "json",
+                    description: "Outputs the results as JSON",
+                  },
+                  {
+                    name: "json-pretty",
+                    description: "Outputs the results as pretty print JSON",
+                  },
+                ],
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "switch",
+          description: "Switch to a switchable account",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "email",
+            generators: userGenerator,
+          },
+        },
+      ],
+    },
+    {
+      name: ["internal", "_"],
+      subcommands: [
+        {
+          name: "fig-socket-path",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+        },
+        {
+          name: "figterm-socket-path",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help information",
+            },
+          ],
+          args: {
+            name: "session-id",
+          },
+        },
+      ],
+    },
+    {
+      name: "ai",
+      description: "English -> Bash translation",
+      options: [
+        {
+          name: ["-n", "--n"],
+          description: "Number of completions to generate (must be <=5)",
+          hidden: true,
+          args: {
+            name: "n",
+            isOptional: true,
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
+      args: {
+        name: "input",
+        isVariadic: true,
+        isOptional: true,
+      },
+    },
+    {
+      name: "pro",
+      description: "Fig Pro",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+      ],
     },
   ],
 };

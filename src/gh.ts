@@ -136,19 +136,26 @@ const ghGenerators: Record<string, Fig.Generator> = {
     },
   },
   listPR: {
-    script: "gh pr list",
-    postProcess: (out) =>
-      out.split("\n").map((line) => {
-        const { id, name, branch, status } = line.match(
-          /^(?<id>[\d]+)\t(?<name>.+)\t(?<branch>.*)\t(?<status>OPEN|DRAFT)$/
-        ).groups;
+    cache: { strategy: "stale-while-revalidate" },
+    script: "gh pr list --json=number,title,headRefName,state",
+    postProcess: (out) => {
+      interface PR {
+        headRefName: string;
+        number: number;
+        state: string;
+        title: string;
+      }
+      const items = JSON.parse(out) as PR[];
+      return items.map((line) => {
+        const { number, title, headRefName, state } = line;
         return {
-          name: id,
-          displayName: name,
-          description: `#${id} | ${branch}`,
-          icon: status === "OPEN" ? "✅" : "☑️",
+          name: number.toString(),
+          displayName: title,
+          description: `#${number} | ${headRefName}`,
+          icon: state === "OPEN" ? "✅" : "☑️",
         };
-      }),
+      });
+    },
   },
   listAlias: {
     script: "gh alias list",
