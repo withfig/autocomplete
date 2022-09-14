@@ -372,6 +372,54 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "browse",
+      description: "Open the repository in the browser",
+      args: {
+        name: "[pr | issue | path[:line]",
+        generators: ghGenerators.listPR,
+        suggestCurrentToken: true,
+      },
+      options: [
+        ghOptions.help,
+        {
+          name: ["-b", "--branch"],
+          description: "Select another branch by passing in the branch name",
+          args: {
+            name: "branch",
+            generators: ghGenerators.remoteBranches,
+          },
+        },
+        {
+          name: ["-c", "--commit"],
+          description: "Open the last commit",
+        },
+        {
+          name: ["-n", "--no-browser"],
+          description: "Print destination URL instead of opening the browser",
+        },
+        {
+          name: ["-p", "--projects"],
+          description: "Open repository projects",
+        },
+        {
+          name: ["-R", "--repo"],
+          description:
+            "Select another repository using the [HOST/]OWNER/REPO format",
+          args: {
+            name: "[HOST/]OWNER/REPO",
+          },
+        },
+        {
+          name: ["-s", "--settings"],
+          description: "Open repository settings",
+        },
+        {
+          name: ["-w", "--wiki"],
+          description: "Open repository wiki",
+        },
+      ],
+    },
+    {
       name: "completion",
       description: "Generate shell completion scripts",
       options: [

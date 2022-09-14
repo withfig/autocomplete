@@ -1,8 +1,15 @@
-import {
-  npmParserDirectives,
-  npmScriptsGenerator,
-  npmSearchGenerator,
-} from "./npm";
+import { npmScriptsGenerator, npmSearchGenerator } from "./npm";
+
+export const yarnScriptParserDirectives: Fig.Arg["parserDirectives"] = {
+  alias: async (token, executeShellCommand) => {
+    const out = await executeShellCommand("cat $(npm prefix)/package.json");
+    const script: string = JSON.parse(out).scripts?.[token];
+    if (!script) {
+      throw new Error(`Script not found: '${token}'`);
+    }
+    return script;
+  },
+};
 
 export const nodeClis = [
   "vue",
@@ -23,6 +30,8 @@ export const nodeClis = [
   "remotion",
   "@withfig/autocomplete-tools",
   "@redwoodjs/core",
+  "create-completion-spec",
+  "@fig/publish-spec-to-team",
 ];
 
 type SearchResult = {
@@ -36,7 +45,7 @@ type SearchResult = {
 // generate global package list from global package.json file
 const getGlobalPackagesGenerator: Fig.Generator = {
   script: 'cat "$(yarn global dir)/package.json"',
-  postProcess: (out, context) => {
+  postProcess: (out, tokens) => {
     if (out.trim() == "") return [];
 
     try {
@@ -49,7 +58,7 @@ const getGlobalPackagesGenerator: Fig.Generator = {
       ];
 
       const filteredDependencies = dependencies.filter(
-        (dependency) => !context.includes(dependency)
+        (dependency) => !tokens.includes(dependency)
       );
 
       return filteredDependencies.map((dependencyName) => ({
@@ -347,11 +356,12 @@ export const createCLIsGenerator: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (_tokens, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 
     const packages = postProcess(
-      await executeShellCommand(script as string)
+      await executeShellCommand(script as string),
+      tokens
     ).map(({ name }) => name as string);
 
     const subcommands = packages
@@ -369,7 +379,8 @@ const completionSpec: Fig.Spec = {
   },
   args: {
     generators: npmScriptsGenerator,
-    parserDirectives: npmParserDirectives,
+    filterStrategy: "fuzzy",
+    parserDirectives: yarnScriptParserDirectives,
     isOptional: true,
     isCommand: true,
   },
@@ -881,6 +892,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove globally installed packages",
           args: {
             name: "package",
+            filterStrategy: "fuzzy",
             generators: getGlobalPackagesGenerator,
             isVariadic: true,
           },
@@ -1193,6 +1205,7 @@ const completionSpec: Fig.Spec = {
       name: "remove",
       description: "Remove installed package",
       args: {
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -1220,7 +1233,8 @@ const completionSpec: Fig.Spec = {
           name: "script",
           description: "Script to run from your package.json",
           generators: npmScriptsGenerator,
-          parserDirectives: npmParserDirectives,
+          filterStrategy: "fuzzy",
+          parserDirectives: yarnScriptParserDirectives,
           isCommand: true,
         },
         {
@@ -1254,6 +1268,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         generators: dependenciesGenerator,
+        filterStrategy: "fuzzy",
         isVariadic: true,
         isOptional: true,
       },
@@ -1335,6 +1350,7 @@ const completionSpec: Fig.Spec = {
       description: "Show information about why a package is installed",
       args: {
         name: "package",
+        filterStrategy: "fuzzy",
         generators: allDependenciesGenerator,
       },
       options: [
@@ -1348,6 +1364,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
+      filterStrategy: "fuzzy",
       generateSpec: async (_tokens, executeShellCommand) => {
         const version = await executeShellCommand("yarn --version");
         const isYarnV1 = version.startsWith("1.");

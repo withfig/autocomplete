@@ -47,7 +47,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-stream",
           description:
-            "Consume results as stream. Streaming search only supports a subset of flags and parameters: trace, insecure-skip-verify, display, json.	",
+            "Consume results as stream. Streaming search only supports a subset of flags and parameters: trace, insecure-skip-verify, display, json",
         },
         {
           name: "-trace",

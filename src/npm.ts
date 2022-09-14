@@ -5,6 +5,7 @@ function uninstallSubcommand(named: string | string[]): Fig.Subcommand {
     args: {
       name: "package",
       generators: dependenciesGenerator,
+      filterStrategy: "fuzzy",
       isVariadic: true,
     },
     options: npmUninstallOptions,
@@ -90,7 +91,7 @@ export const npmSearchGenerator: Fig.Generator = {
 };
 
 const workspaceGenerator: Fig.Generator = {
-  script: "cat package.json",
+  script: "cat $(npm prefix)/package.json",
   postProcess: function (out: string) {
     const suggestions = [];
 
@@ -122,9 +123,7 @@ export const dependenciesGenerator: Fig.Generator = {
   trigger: (newToken) => newToken === "-g" || newToken === "--global",
   custom: async function (tokens, executeShellCommand) {
     if (!tokens.includes("-g") && !tokens.includes("--global")) {
-      const out = await executeShellCommand(
-        "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json"
-      );
+      const out = await executeShellCommand("cat $(npm prefix)/package.json");
       const packageContent = JSON.parse(out);
       const dependencies = packageContent["dependencies"] ?? {};
       const devDependencies = packageContent["devDependencies"];
@@ -160,6 +159,7 @@ export const dependenciesGenerator: Fig.Generator = {
 export const npmScriptsGenerator: Fig.Generator = {
   cache: {
     strategy: "stale-while-revalidate",
+    cacheByDirectory: true,
   },
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
@@ -197,17 +197,6 @@ export const npmScriptsGenerator: Fig.Generator = {
     }
 
     return [];
-  },
-};
-
-export const npmParserDirectives: Fig.Arg["parserDirectives"] = {
-  alias: async (token, executeShellCommand) => {
-    const out = await executeShellCommand("cat $(npm prefix)/package.json");
-    const script: string = JSON.parse(out).scripts?.[token];
-    if (!script) {
-      throw new Error(`Script not found: '${token}'`);
-    }
-    return script;
   },
 };
 
@@ -455,13 +444,20 @@ const completionSpec: Fig.Spec = {
         },
         ignoreScriptsOption,
         scriptShellOption,
+        {
+          name: "--",
+          args: {
+            name: "args",
+            isVariadic: true,
+            // TODO: load the spec based on the runned script (see yarn spec `yarnScriptParsedDirectives`)
+          },
+        },
       ],
       args: {
         name: "script",
         description: "Script to run from your package.json",
+        filterStrategy: "fuzzy",
         generators: npmScriptsGenerator,
-        parserDirectives: npmParserDirectives,
-        isCommand: true,
       },
     },
     {
@@ -672,10 +668,6 @@ const completionSpec: Fig.Spec = {
           options: [
             { name: "--global", description: "Edits the global config" },
           ],
-          args: {
-            name: "package",
-            generators: dependenciesGenerator,
-          },
         },
       ],
     },
@@ -737,6 +729,7 @@ const completionSpec: Fig.Spec = {
       description: "Browse an installed package",
       args: {
         name: "package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
       },
     },

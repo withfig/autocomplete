@@ -140,7 +140,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
 </p>
 
 ## 🧑‍💻 Teams / Enterprise
-Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at work but have security / compliance concerns.
+Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at work but have security / compliance concerns?
 
 We would love to help get you set up. Please email [enterprise@fig.io](mailto:enterprise@fig.io)
 
@@ -169,11 +169,11 @@ Fig uses the Accessibility API on Mac to position the window, and integrates wit
 
 #### Does Fig work on Windows or Linux?
 
-Not yet, Fig is only available on MacOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
+Not yet, Fig is only available on macOS for now. [Windows](https://github.com/withfig/fig/issues/35) and [Linux](https://github.com/withfig/fig/issues/34) support is in progress!
 
 #### How can I download Fig?
 
-Run `brew install fig` or, downloading the app at [fig.io/download](https://fig.io/download). Then, launch the Fig app!
+Run `brew install --cask fig` or, downloading the app at [fig.io/download](https://fig.io/download). Then, launch the Fig app!
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 

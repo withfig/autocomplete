@@ -36,6 +36,11 @@ const getInstalledPackages: Fig.Generator = {
 
 const getCondaEnvironments: Fig.Generator = {
   script: "conda env list",
+  scriptTimeout: 10000,
+  cache: {
+    ttl: 10000,
+    strategy: "stale-while-revalidate",
+  },
   postProcess: function (out) {
     const lines = out.split("\n");
     const installedPackages: Fig.Suggestion[] = [];
@@ -1223,6 +1228,7 @@ const completionSpec: Fig.Spec = {
       name: "env",
       description: "",
       args: {},
+      subcommands: [{ name: "list" }],
     },
     {
       name: "index",

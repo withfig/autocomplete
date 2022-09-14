@@ -239,7 +239,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--login-path",
-      description: "Read login path options from .mylogin.cnf	",
+      description: "Read login path options from .mylogin.cnf",
       args: {
         name: "name",
       },
