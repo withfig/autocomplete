@@ -179,7 +179,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--output", "-o"],
               description: "The filename to write the generated client code to",
-              args: { 
+              args: {
                 name: "output",
                 template: ["filepaths"],
                 suggestCurrentToken: true,
