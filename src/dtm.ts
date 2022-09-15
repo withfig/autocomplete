@@ -35,11 +35,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
         {
           name: ["--yes", "-y"],
@@ -86,11 +82,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
         {
           name: ["--yes", "-y"],
@@ -113,6 +105,7 @@ const completionSpec: Fig.Spec = {
             generators: dtmGenerators.yamlFiles,
           },
         },
+        { name: "--force", description: "Force destroy by config" },
         {
           name: ["--yes", "-y"],
           description: "Destroy directly without confirmation",
@@ -171,11 +164,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
       ],
     },
@@ -243,7 +232,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--plugin-dir", "-d"],
               description: "Plugins directory",
-              args: { name: "plugin-dir", default: ".devstream" },
+              args: { name: "plugin-dir" },
             },
           ],
         },
@@ -277,11 +266,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: {
-            name: "plugin-dir",
-            default: ".devstream",
-            template: ["folders"],
-          },
+          args: { name: "plugin-dir", template: ["folders"] },
         },
       ],
     },
