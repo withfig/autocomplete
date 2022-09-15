@@ -182,7 +182,7 @@ const completionSpec: Fig.Spec = {
               args: { 
                 name: "output",
                 template: ["filepaths"],
-                suggestCurrentToken: true
+                suggestCurrentToken: true,
               },
             },
           ],
