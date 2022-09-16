@@ -539,6 +539,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "log",
       description: "Print executions log and runtime info",
+      args: {
+        name: "run name",
+        generators: runname,
+      },
       options: [
         {
           name: "-after",
