@@ -18,11 +18,11 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 
 ## ⚡️ Installation
 
-* **macOS**:
-  * **Homebrew**: `brew install --cask fig`
-  * **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
-* **Windows/Linux**:
-  * Join the [waitlist](https://withfig.typeform.com/linux)
+- **macOS**:
+  - **Homebrew**: `brew install --cask fig`
+  - **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
+- **Windows/Linux**:
+  - Join the [waitlist](https://withfig.typeform.com/linux)
 
 > NOTE: Once it's downloaded, launch the app to set up Fig!
 
@@ -75,7 +75,6 @@ Use the steps below or follow our getting started guide: [fig.io/docs](https://f
 
 3. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
 
-
 #### Other things to know
 
 - Edit your spec in TypeScript in the `src/` folder
@@ -121,11 +120,12 @@ npm run lint:fix
 ## 🔥 Contributions
 
 We would love contributions for:
-* new completion specs
-* errors with existing completion specs (e.g. missing subcommands, options, or arguments)
-* [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
-* better descriptions, icons etc
-* [themes](https://github.com/withfig/themes)!
+
+- new completion specs
+- errors with existing completion specs (e.g. missing subcommands, options, or arguments)
+- [generators](https://fig.io/docs/getting-started/generating-argument-suggestions) for argument suggestions
+- better descriptions, icons etc
+- [themes](https://github.com/withfig/themes)!
 
 If you aren't able to contribute, please feel free to open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
@@ -140,6 +140,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
 </p>
 
 ## 🧑‍💻 Teams / Enterprise
+
 Want to use Fig to add autocomplete internal CLI tools? Or want to use Fig at work but have security / compliance concerns?
 
 We would love to help get you set up. Please email [enterprise@fig.io](mailto:enterprise@fig.io)
@@ -150,16 +151,16 @@ We would love to help get you set up. Please email [enterprise@fig.io](mailto:en
 
 Fig works with the native macOS Terminal app, [iTerm], [Tabby], [Hyper], [Kitty], [WezTerm], and [Alacritty]. It also works in the integrated terminals of [VSCode], [JetBrains IDEs], [Android Studio], and [Nova].
 
-[iTerm]: https://iterm2.com
-[Tabby]: https://tabby.sh
-[Hyper]: https://hyper.is
-[Kitty]: https://sw.kovidgoyal.net/kitty
-[WezTerm]: https://wezfurlong.org/wezterm/
-[Alacritty]: https://alacritty.org/
-[VSCode]: https://code.visualstudio.com/
-[JetBrains IDEs]: https://www.jetbrains.com/
-[Android Studio]: https://developer.android.com/studio
-[Nova]: https://nova.app/
+[iterm]: https://iterm2.com
+[tabby]: https://tabby.sh
+[hyper]: https://hyper.is
+[kitty]: https://sw.kovidgoyal.net/kitty
+[wezterm]: https://wezfurlong.org/wezterm/
+[alacritty]: https://alacritty.org/
+[vscode]: https://code.visualstudio.com/
+[jetbrains ides]: https://www.jetbrains.com/
+[android studio]: https://developer.android.com/studio
+[nova]: https://nova.app/
 
 Want to see another terminal included? Check our [issue tracker](https://github.com/withfig/fig) and add your support for it!
 
