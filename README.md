@@ -98,7 +98,7 @@ cd ~/.fig/autocomplete
 
 # Create your completions!
 npm run create-spec xyz
-npm run build
+npm run publish-spec -p src/xyz.ts
 ```
 
 You can also create completions for project scripts, or even add custom suggestions to official specs. Read more at [fig.io/docs/guides/private-autocomplete](https://fig.io/docs/guides/private-autocomplete)
