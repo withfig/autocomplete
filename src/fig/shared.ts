@@ -367,7 +367,6 @@ export const sshHostsGenerator: Fig.Generator = {
   script: "fig _ request --method GET --route /access/hosts/all",
   cache: {
     strategy: "stale-while-revalidate",
-    ttl: 1000 * 60 * 3,
   },
   postProcess: (out) => {
     return (JSON.parse(out) as { nickName: string; namespace: string }[]).map(
