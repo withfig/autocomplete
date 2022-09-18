@@ -671,27 +671,45 @@ export const generateInstalledDenoScripts: Fig.Generator = {
 
 // --- Suggest URLs from clipboard
 
-const urlTests: ((str: string) => boolean)[] = [
-  (str) => /^https:.*\.(?:m?[jt]sx?)$/.test(str),
+// Our transpilation causes this to become `new RegExp` which we don't want to
+// run on every invocation of the function
+const httpsRe = /^(https?:\/\/.*\.(?:m?[jt]sx?))(?:\?.*)?(?:\#.*)?$/;
+
+const clipboardTests: ((str: string) => string | boolean)[] = [
+  // HTTPS test
+  (str) => {
+    const match = str.match(httpsRe);
+    if (!match) {
+      return false;
+    }
+    return match[1];
+  },
+  // NPM test
   (str) => str.startsWith("npm:"),
 ];
+
 export const generateUrlScript: Fig.Generator = {
-  script: `[ "$(uname)" = "Darwin" ] && pbpaste`,
+  // There's no simple solution for pasting on Linux, it depends on
+  // whether you use X11 or Wayland. For Wayland on some (most?) distros,
+  // you would have to manually install wl-paste.
+  script: `pbpaste`,
   postProcess: (clipboard) => {
     clipboard = clipboard.trim();
-    console.log(clipboard);
     if (!clipboard) {
       return [];
     }
-    if (!urlTests.some((test) => test(clipboard))) {
-      return [];
+    for (const test of clipboardTests) {
+      const match = test(clipboard);
+      if (!match) {
+        continue;
+      }
+      return [
+        {
+          name: match === true ? clipboard : match,
+          icon: "fig://template?badge=📋&color=000000",
+          priority: 100,
+        },
+      ];
     }
-    return [
-      {
-        name: clipboard,
-        icon: "📋",
-        priority: 100,
-      },
-    ];
   },
 };

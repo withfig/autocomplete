@@ -900,9 +900,8 @@ const completion: Fig.Spec = {
       args: {
         name: "script_arg",
         isVariadic: true,
-        template: "filepaths",
         isScript: true,
-        generators: generateUrlScript,
+        generators: [{ template: "filepaths" }, generateUrlScript],
       },
       parserDirectives: {
         optionsMustPrecedeArguments: true,
@@ -1078,8 +1077,7 @@ const completion: Fig.Spec = {
         {
           name: "source_file",
           isOptional: true,
-          template: "filepaths",
-          generators: generateUrlScript,
+          generators: [{ template: "filepaths" }, generateUrlScript],
           suggestions: [
             {
               name: "--builtin",
@@ -1824,9 +1822,8 @@ const completion: Fig.Spec = {
       args: {
         name: "cmd",
         isVariadic: true,
-        template: "filepaths",
         isScript: true,
-        generators: generateUrlScript,
+        generators: [{ template: "filepaths" }, generateUrlScript],
       },
       parserDirectives: {
         optionsMustPrecedeArguments: true,
@@ -2494,7 +2491,6 @@ const completion: Fig.Spec = {
       args: {
         name: "script_arg",
         isVariadic: true,
-        template: "filepaths",
         isScript: true,
         suggestions: [
           {
@@ -2503,7 +2499,7 @@ const completion: Fig.Spec = {
             hidden: true,
           },
         ],
-        generators: generateUrlScript,
+        generators: [{ template: "filepaths" }, generateUrlScript],
       },
       parserDirectives: {
         optionsMustPrecedeArguments: true,
