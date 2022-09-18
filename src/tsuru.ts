@@ -1,4 +1,4 @@
-const formatTusuruOutput = (output: string) => {
+const formatTsuruOutput = (output: string) => {
   return output
     .split("\n")
     .filter((line) => line.startsWith("|"))
@@ -10,7 +10,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   plans: {
     script: "tsuru plan list",
     postProcess: function (out) {
-      const plans = formatTusuruOutput(out);
+      const plans = formatTsuruOutput(out);
       return plans.map((plan) => {
         return { name: plan, description: "Plan" };
       });
@@ -20,7 +20,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   teams: {
     script: "tsuru team list",
     postProcess: function (out) {
-      const teams = formatTusuruOutput(out);
+      const teams = formatTsuruOutput(out);
       return teams.map((team) => {
         return { name: team, description: "Team" };
       });
@@ -30,7 +30,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   apps: {
     script: "tsuru app list",
     postProcess: function (out) {
-      const apps = formatTusuruOutput(out);
+      const apps = formatTsuruOutput(out);
       return apps.map((app) => {
         return { name: app, description: "Apps" };
       });
@@ -52,7 +52,7 @@ const tsuruGenerators: Record<string, Fig.Generator> = {
   pools: {
     script: "tsuru pool list",
     postProcess: function (out) {
-      const pools = formatTusuruOutput(out);
+      const pools = formatTsuruOutput(out);
       return pools.map((pool) => {
         return { name: pool, description: "Pool" };
       });
@@ -195,22 +195,117 @@ const completionSpec: Fig.Spec = {
         {
           name: "grant",
           description: "Allows a team to access an application",
+          args: {
+            name: "team",
+            description: "Team name",
+            generators: tsuruGenerators.teams,
+          },
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+          ],
         },
         {
           name: "info",
           description: "Shows information about an app",
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+          ],
         },
         {
           name: "list",
           description: "List all apps",
+          options: [
+            {
+              name: ["-n", "--name"],
+              description: "Filter applications by name",
+            },
+            {
+              name: ["-o", "--pool"],
+              description: "Filter applications by pool",
+              args: {
+                name: "pool",
+                description: "Poll name",
+                generators: tsuruGenerators.pools,
+              },
+            },
+            {
+              name: ["-p", "--platform"],
+              description: "Filter applications by platform",
+              args: {
+                name: "platform",
+                description: "Platform",
+                generators: tsuruGenerators.platforms,
+              },
+            },
+            {
+              name: "-q",
+              description: "Display only applications name",
+            },
+            {
+              name: ["-s", "--status"],
+              description:
+                "Filter applications by unit status. Accepts multiple values separated by commas. Possible values can be: building, created, starting, error, started, stopped, asleep",
+            },
+            {
+              name: ["-t", "--team"],
+              description: "Filter applications by team owner",
+              args: {
+                name: "team",
+                description: "Team name",
+                generators: tsuruGenerators.teams,
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "Filter applications by owner",
+            },
+          ],
         },
         {
           name: "log",
           description: "Shows the logs of an app",
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+          ],
         },
         {
           name: "remove",
           description: "Removes an app",
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+          ],
         },
         {
           name: "revoke",
@@ -236,6 +331,69 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
+    },
+    {
+      name: "env",
+      description: "App environment variables",
+      subcommands: [
+        {
+          name: "get",
+          description: "Get environment variables from an app",
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+          ],
+        },
+        {
+          name: "set",
+          description: "Set environment variables to an app",
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+            {
+              name: ["-p", "--private"],
+              description: "Private environment variables",
+            },
+            {
+              name: "--no-restart",
+              description: "Don't restart the app after setting the env vars",
+            },
+          ],
+        },
+        {
+          name: "unset",
+          description: "Unset environment variables from an app",
+          options: [
+            {
+              name: ["-a", "--app"],
+              description: "App name",
+              args: {
+                name: "app",
+                description: "App name",
+                generators: tsuruGenerators.apps,
+              },
+            },
+            {
+              name: "--no-restart",
+              description: "Don't restart the app after setting the env vars",
+            },
+          ],
+        },
+      ],
       options: [
         {
           name: ["-a", "--app"],
@@ -246,7 +404,21 @@ const completionSpec: Fig.Spec = {
             generators: tsuruGenerators.apps,
           },
         },
+        {
+          name: ["-p", "--private"],
+          description: "Private environment variables",
+        },
+        {
+          name: "--no-restart",
+          description: "Don't restart the app after setting the env vars",
+        },
       ],
+    },
+  ],
+  options: [
+    {
+      name: ["--help", "-h"],
+      description: "Show help for tsuru",
     },
   ],
 };
