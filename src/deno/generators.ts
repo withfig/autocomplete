@@ -657,7 +657,7 @@ export const generateTasks: Fig.Generator = {
 // --- Generate installed deno scripts
 
 export const generateInstalledDenoScripts: Fig.Generator = {
-  script: "\\find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
+  script: "command find ~/.deno/bin -maxdepth 1 -perm -111 -type f",
   postProcess: (out) =>
     out
       .split("\n")
@@ -667,4 +667,31 @@ export const generateInstalledDenoScripts: Fig.Generator = {
         icon: "📦",
         description: path,
       })),
+};
+
+// --- Suggest URLs from clipboard
+
+const urlTests: ((str: string) => boolean)[] = [
+  (str) => /^https:.*\.(?:m?[jt]sx?)$/.test(str),
+  (str) => str.startsWith("npm:"),
+];
+export const generateUrlScript: Fig.Generator = {
+  script: `[ "$(uname)" = "Darwin" ] && pbpaste`,
+  postProcess: (clipboard) => {
+    clipboard = clipboard.trim();
+    console.log(clipboard);
+    if (!clipboard) {
+      return [];
+    }
+    if (!urlTests.some((test) => test(clipboard))) {
+      return [];
+    }
+    return [
+      {
+        name: clipboard,
+        icon: "📋",
+        priority: 100,
+      },
+    ];
+  },
 };
