@@ -250,21 +250,13 @@ const completionSpec: Fig.Spec = {
       description: "Manage disks",
       subcommands: [
         {
-          name: "ls",
-          description: "List disks",
+          name: ["ls", "list"],
+          description: "List disk partitions",
           args: {
             name: "path",
-            description: "Path to list disks",
+            description: "Path to the disk file",
             isOptional: true,
-          },
-        },
-        {
-          name: "list",
-          description: "List disks",
-          args: {
-            name: "path",
-            description: "Path to list disks",
-            isOptional: true,
+            generators: [{ template: "filepaths" }, generateDisks],
           },
         },
         {
