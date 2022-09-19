@@ -1198,6 +1198,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "username",
             description: "Username",
+            generators: generateUsers,
           },
         },
         {
@@ -1210,6 +1211,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "username",
             description: "Username",
+            generators: generateUsers,
           },
         },
       ],
