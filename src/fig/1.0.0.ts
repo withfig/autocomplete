@@ -1700,65 +1700,6 @@ versions["1.3.1"] = {
       ],
     },
     {
-      name: "ssh",
-      description: "Enable/disable fig SSH integration",
-      subcommands: [
-        {
-          name: "enable",
-          description: "Enable ssh integration",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "disable",
-          description: "Disable ssh integration",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-        },
-        {
-          name: "help",
-          description:
-            "Print this message or the help of the given subcommand(s)",
-          options: [
-            {
-              name: "--version",
-              description: "Print version information",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "Print help information",
-            },
-          ],
-          args: {
-            name: "subcommand",
-            isOptional: true,
-          },
-        },
-      ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-      ],
-    },
-    {
       name: "diagnostic",
       options: [
         {
