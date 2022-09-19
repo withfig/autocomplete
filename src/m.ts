@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "m-cli",
-  description: " Swiss Army Knife for macOS",
+  description: "Swiss Army Knife for macOS",
   subcommands: [
     {
       name: "airdrop",
