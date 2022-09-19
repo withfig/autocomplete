@@ -202,6 +202,7 @@ const completionSpec: Fig.Spec = {
                 name: "path",
                 description: "Path to delete empty folders",
                 isOptional: true,
+                template: "folders",
               },
             },
             {
