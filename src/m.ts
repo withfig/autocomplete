@@ -876,6 +876,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "name",
                 description: "Name of the location",
+                generators: generateNetworkLocations,
               },
             },
             {
