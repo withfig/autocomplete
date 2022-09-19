@@ -240,6 +240,7 @@ const completionSpec: Fig.Spec = {
             name: "path",
             description: "Path to calculate folder size",
             isOptional: true,
+            template: "folders",
           },
         },
       ],
