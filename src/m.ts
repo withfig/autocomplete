@@ -1096,6 +1096,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "service",
             description: "Service name",
+            generators: generateServices,
           },
         },
         {
@@ -1104,6 +1105,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "service",
             description: "Service name",
+            generators: generateServices,
           },
         },
         {
@@ -1112,6 +1114,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "service",
             description: "Service name",
+            generators: generateServices,
           },
         },
         {
@@ -1120,6 +1123,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "service",
             description: "Service name",
+            generators: generateServices,
           },
         },
       ],
