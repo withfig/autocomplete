@@ -574,6 +574,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "Path of the app to add to firewall",
+            template: "filepaths",
           },
         },
         {
