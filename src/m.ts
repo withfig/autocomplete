@@ -24,6 +24,32 @@ const generateVolumes: Fig.Generator = {
         priority: 100,
       })),
 };
+
+const generateUsers: Fig.Generator = {
+  script: "m user list | awk '{ print $1 }'",
+  postProcess: (out) =>
+    out
+      .trim()
+      .split("\n")
+      .map((user) => ({
+        name: user,
+        icon: "👤",
+        hidden: user.startsWith("_"),
+      })),
+};
+
+const generateGroups: Fig.Generator = {
+  script: "m group list | awk '{ print $1 }'",
+  postProcess: (out) =>
+    out
+      .trim()
+      .split("\n")
+      .map((group) => ({
+        name: group,
+        icon: "👥",
+        hidden: group.startsWith("_"),
+      })),
+};
 const completionSpec: Fig.Spec = {
   name: "m-cli",
   description: "Swiss Army Knife for macOS",
