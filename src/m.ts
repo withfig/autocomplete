@@ -187,6 +187,7 @@ const completionSpec: Fig.Spec = {
             name: "path",
             description: "Path to show tree view of folders",
             isOptional: true,
+            template: "folders",
           },
         },
         {
