@@ -369,13 +369,18 @@ export const sshHostsGenerator: Fig.Generator = {
     strategy: "stale-while-revalidate",
   },
   postProcess: (out) => {
-    return (JSON.parse(out) as { nickName: string; namespace: string }[]).map(
-      (host) => ({
-        insertValue: `'@${host.namespace}/${host.nickName}'`,
-        displayName: `${host.nickName} (${host.namespace})`,
-        name: [host.namespace, host.nickName],
-      })
-    );
+    return (
+      JSON.parse(out) as {
+        nickName: string;
+        namespace: string;
+        description: string;
+      }[]
+    ).map((host) => ({
+      insertValue: `'@${host.namespace}/${host.nickName}'`,
+      displayName: `${host.nickName} (${host.namespace})`,
+      name: [host.namespace, host.nickName],
+      description: host.description,
+    }));
   },
 };
 
