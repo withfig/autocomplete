@@ -56,6 +56,11 @@ const generateNetworkLocations: Fig.Generator = {
   splitOn: "\n",
 };
 
+const generateServices: Fig.Generator = {
+  script: "launchctl list | awk '{ print $3 }'",
+  splitOn: "\n",
+};
+
 function getPidIcon(path: string): string {
   const idx = path.indexOf(".app/");
   if (idx === -1) {
