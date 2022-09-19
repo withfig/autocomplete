@@ -55,6 +55,29 @@ const generateNetworkLocations: Fig.Generator = {
   script: "m network list | grep -e 'Device: ' | cut -d' ' -f2-",
   splitOn: "\n",
 };
+
+function getPidIcon(path: string): string {
+  const idx = path.indexOf(".app/");
+  if (idx === -1) {
+    return "fig://icon?type=gear";
+  }
+  return "fig://" + path.slice(0, idx + 4);
+}
+const generatePids: Fig.Generator = {
+  script: "ps axo pid,comm | sed 1d",
+  postProcess: (result) => {
+    return result.split("\n").map((line) => {
+      const [pid, path] = line.trim().split(/\s+/);
+      const name = path.slice(path.lastIndexOf("/") + 1);
+      return {
+        name: pid,
+        description: path,
+        displayName: `${pid} (${name})`,
+        icon: getPidIcon(path),
+      };
+    });
+  },
+};
 const completionSpec: Fig.Spec = {
   name: "m-cli",
   description: "Swiss Army Knife for macOS",
