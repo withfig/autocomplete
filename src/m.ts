@@ -712,10 +712,12 @@ const completionSpec: Fig.Spec = {
             {
               name: "user",
               description: "User to remove from group",
+              generators: generateUsers,
             },
             {
               name: "group",
               description: "Group to remove user from",
+              generators: generateGroups,
             },
           ],
         },
@@ -726,10 +728,12 @@ const completionSpec: Fig.Spec = {
             {
               name: "user",
               description: "User to check membership",
+              generators: generateUsers,
             },
             {
               name: "group",
               description: "Group to check membership",
+              generators: generateGroups,
             },
           ],
         },
