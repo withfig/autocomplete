@@ -3572,19 +3572,24 @@ versions["1.4.3"] = {
   subcommands: [
     {
       name: "ssh",
+      subcommands: [
+        { name: "enable", remove: true },
+        { name: "disable", remove: true },
+        { name: "help", remove: true },
+      ],
       options: [
         {
           name: ["-a", "--auth"],
           description: "Identity to connect with",
           args: {
             name: "auth",
-            isOptional: false,
             generators: sshIdentityGenerator,
           },
         },
       ],
       args: {
         name: "host",
+        filterStrategy: "fuzzy",
         generators: sshHostsGenerator,
       },
     },
