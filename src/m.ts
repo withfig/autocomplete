@@ -1,3 +1,16 @@
+const generateDisks: Fig.Generator = {
+  // ? is a bash/fish/zsh glob pattern for "any character, exactly once"
+  script: "command ls /dev/disk?",
+  postProcess: (out) =>
+    out
+      .trim()
+      .split("\n")
+      .map((disk) => ({
+        name: disk,
+        type: "file",
+        priority: 100,
+      })),
+};
 const completionSpec: Fig.Spec = {
   name: "m-cli",
   description: "Swiss Army Knife for macOS",
