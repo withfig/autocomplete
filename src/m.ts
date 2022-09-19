@@ -214,6 +214,7 @@ const completionSpec: Fig.Spec = {
                 description:
                   "Delete .DS_Store files recursively in a specific path",
                 isOptional: true,
+                template: "folders",
               },
             },
           ],
