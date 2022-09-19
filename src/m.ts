@@ -11,6 +11,19 @@ const generateDisks: Fig.Generator = {
         priority: 100,
       })),
 };
+
+const generateVolumes: Fig.Generator = {
+  script: "command ls /Volumes",
+  postProcess: (out) =>
+    out
+      .trim()
+      .split("\n")
+      .map((volume) => ({
+        name: volume,
+        type: "file",
+        priority: 100,
+      })),
+};
 const completionSpec: Fig.Spec = {
   name: "m-cli",
   description: "Swiss Army Knife for macOS",
@@ -278,6 +291,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "Path to show disk information",
+            generators: [{ template: "filepaths" }, generateDisks],
           },
         },
         {
@@ -294,6 +308,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path to verify volume",
+                generators: [{ template: "filepaths" }, generateVolumes],
               },
             },
             {
@@ -302,6 +317,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path to verify disk",
+                generators: [{ template: "filepaths" }, generateDisks],
               },
             },
           ],
@@ -316,6 +332,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path to repair volume",
+                generators: [{ template: "filepaths" }, generateVolumes],
               },
             },
             {
@@ -324,6 +341,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "path",
                 description: "Path to repair disk",
+                generators: [{ template: "filepaths" }, generateDisks],
               },
             },
           ],
@@ -344,6 +362,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "path",
                   description: "Path to format the entire disk",
+                  generators: [{ template: "filepaths" }, generateDisks],
                 },
               ],
             },
@@ -358,6 +377,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "path",
                   description: "Path to format the volume",
+                  generators: [{ template: "filepaths" }, generateVolumes],
                 },
               ],
             },
@@ -369,6 +389,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             description: "Path to reformat a volume",
+            generators: [{ template: "filepaths" }, generateVolumes],
           },
         },
         {
@@ -378,6 +399,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "currentName",
               description: "Current name of the volume",
+              generators: [{ template: "filepaths" }, generateVolumes],
             },
             {
               name: "newName",
