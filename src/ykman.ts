@@ -1,3 +1,31 @@
+const configModeGenerator = {
+  trigger: "+",
+  custom: async (tokens, _) => {
+    const previouslyAdded = tokens[tokens.length - 1].split("+");
+    // this has to be an alias map of the possible suggestions
+    const possibleSuggestionsMap = new Map([
+      ["OTP", ["o"]],
+      ["o", ["OTP"]],
+      ["FIDO", ["f"]],
+      ["f", ["FIDO"]],
+      ["CCID", ["c"]],
+      ["c", ["CCID"]],
+    ]);
+    const suggestions = new Set(possibleSuggestionsMap.values());
+
+    for (const token of previouslyAdded) {
+      suggestions.delete(token);
+      const aliases = possibleSuggestionsMap.get(token);
+      if (aliases) {
+        aliases.forEach((v) => {
+          suggestions.delete([v]);
+        });
+      }
+    }
+    return [...suggestions].map((v) => ({ name: v }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "ykman",
   description: "Configure your YubiKey via the command line",
@@ -49,10 +77,7 @@ const completionSpec: Fig.Spec = {
             name: "MODE",
             description:
               "MODE can be a string, such as 'OTP+FIDO+CCID', or a shortened form: 'o+f+c'. It can also be a mode number",
-            generators: {
-              getQueryTerm: "+",
-            },
-            suggestions: ["OTP", "FIDO", "CCID"],
+            generators: configModeGenerator,
           },
           options: [
             {
