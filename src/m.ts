@@ -122,6 +122,10 @@ const completionSpec: Fig.Spec = {
           name: "disable",
           description: "Disable AirDrop",
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -234,6 +238,10 @@ const completionSpec: Fig.Spec = {
             ],
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -243,6 +251,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "status",
           description: "Show battery status",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -269,6 +281,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "disable",
           description: "Disable bluetooth",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -338,6 +354,10 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
             template: "folders",
           },
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -477,6 +497,10 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -508,6 +532,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "flush",
           description: "Flush local DNS cache",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -572,6 +600,10 @@ const completionSpec: Fig.Spec = {
           name: "prune",
           description: "Remove all items from dock",
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -616,6 +648,10 @@ const completionSpec: Fig.Spec = {
             suggestions: ["YES", "NO"],
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -655,6 +691,10 @@ const completionSpec: Fig.Spec = {
             description: "Path of the app to remove from firewall",
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -668,6 +708,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "on",
           description: "Turn flight mode on",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -714,6 +758,10 @@ const completionSpec: Fig.Spec = {
               description: "Path to the program",
             },
           ],
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -781,6 +829,10 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -791,11 +843,19 @@ const completionSpec: Fig.Spec = {
           name: "newhostname",
           description: "Set new hostname",
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
       name: "info",
       description: "Show system information",
+    },
+    {
+      name: "help",
+      description: `Show help`,
     },
     {
       name: "itunes",
@@ -847,6 +907,10 @@ const completionSpec: Fig.Spec = {
           name: "quit",
           description: "Quit iTunes",
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -878,6 +942,10 @@ const completionSpec: Fig.Spec = {
             name: "HOSTNAME",
             description: "Hostname of the host",
           },
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -928,6 +996,10 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -962,6 +1034,10 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -977,6 +1053,10 @@ const completionSpec: Fig.Spec = {
             suggestions: ["YES", "NO"],
             isOptional: true,
           },
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1004,6 +1084,10 @@ const completionSpec: Fig.Spec = {
             description: "Network time server",
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -1030,6 +1114,10 @@ const completionSpec: Fig.Spec = {
           name: "web",
           description: "Enable and show web interface",
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -1039,6 +1127,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description: "Restart computer (without confirmation)",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1057,6 +1149,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "disable",
           description: "Disable safeboot",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1077,6 +1173,10 @@ const completionSpec: Fig.Spec = {
             suggestions: ["YES", "NO"],
             isOptional: true,
           },
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1137,6 +1237,10 @@ const completionSpec: Fig.Spec = {
             generators: generateServices,
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -1146,6 +1250,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "-f",
           description: "Shutdown computer (without confirmation)",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1169,6 +1277,10 @@ const completionSpec: Fig.Spec = {
             description: "Timezone",
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -1178,6 +1290,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "reset",
           description: "Reset touchbar",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1192,6 +1308,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "clean",
           description: "Clean trash",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
     },
@@ -1225,6 +1345,10 @@ const completionSpec: Fig.Spec = {
             generators: generateUsers,
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -1242,6 +1366,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "ismute",
           description: "Check the volume status",
+        },
+        {
+          name: "help",
+          description: `Show help`,
         },
       ],
       args: {
@@ -1312,6 +1440,10 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
           },
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
     {
@@ -1322,6 +1454,12 @@ const completionSpec: Fig.Spec = {
         description: "Path to the wallpaper",
         template: "filepaths",
       },
+      subcommands: [
+        {
+          name: "help",
+          description: `Show help`,
+        },
+      ],
     },
     {
       name: "wifi",
@@ -1385,6 +1523,10 @@ const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "help",
+          description: `Show help`,
+        },
       ],
     },
   ],
@@ -1396,11 +1538,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "--uninstall",
       description: "Uninstall m-cli",
-    },
-    {
-      name: "help",
-      description: "Show help for specific command",
-      isPersistent: true,
     },
   ],
 };
