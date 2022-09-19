@@ -1021,7 +1021,7 @@ const completionSpec: Fig.Spec = {
       description: "Restart computer (needs confirmation)",
       subcommands: [
         {
-          name: "-f",
+          name: ["-f", "--force"],
           description: "Restart computer (without confirmation)",
         },
       ],
