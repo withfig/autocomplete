@@ -592,7 +592,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage flight mode",
       subcommands: [
         {
-          name: "of",
+          name: "off",
           description: "Turn flight mode off",
         },
         {
