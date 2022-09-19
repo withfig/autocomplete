@@ -942,6 +942,7 @@ const completionSpec: Fig.Spec = {
               name: "script",
               description: "Path to script",
               isOptional: true,
+              template: "filepaths",
             },
           ],
         },
