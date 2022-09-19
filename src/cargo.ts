@@ -88,7 +88,7 @@ const targetGenerator: Fig.Generator = {
 };
 
 const dependencyGenerator: Fig.Generator = {
-  script: "cargo metadata --format-version 1",
+  script: "cargo metadata --format-version 1 --no-deps",
   postProcess: function (data: string) {
     const metadata = JSON.parse(data);
     const seen = new Set<string>();
@@ -103,9 +103,18 @@ const dependencyGenerator: Fig.Generator = {
 };
 
 const rustEditions: Fig.Suggestion[] = [
-  { name: "2015", description: "2015 edition" },
-  { name: "2018", description: "2018 edition" },
-  { name: "2021", description: "2021 edition" },
+  {
+    name: "2015",
+    description: "2015 edition",
+  },
+  {
+    name: "2018",
+    description: "2018 edition",
+  },
+  {
+    name: "2021",
+    description: "2021 edition",
+  },
 ];
 
 const vcsOptions: Fig.Suggestion[] = [
@@ -116,27 +125,46 @@ const vcsOptions: Fig.Suggestion[] = [
   },
   {
     name: "hg",
+    icon: "⚗️",
     description: "Initialize with Mercurial",
   },
   {
     name: "pijul",
+    icon: "🦜",
     description: "Initialize with Pijul",
   },
   {
     name: "fossil",
-    icon: "fig://template?color=818181&badge=🦴",
+    icon: "🦴",
     description: "Initialize with Fossil",
   },
   {
     name: "none",
+    icon: "🚫",
     description: "Initialize with no VCS",
   },
 ];
 
-const completionSpec: Fig.Spec = {
+const completionSpec: (toolchain?: boolean) => Fig.Spec = (
+  toolchain = true
+) => ({
   name: "cargo",
   icon: "📦",
   description: "CLI Interface for Cargo",
+  args: toolchain
+    ? {
+        name: "toolchain",
+        generators: {
+          script: `rustup toolchain list | awk -F- '{ print "+"$1 }'`,
+          splitOn: "\n",
+          cache: {
+            strategy: "stale-while-revalidate",
+            ttl: 1000 * 60 * 4,
+          },
+        },
+        loadSpec: completionSpec(false),
+      }
+    : undefined,
   subcommands: [
     {
       name: "bench",
@@ -264,7 +292,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -509,7 +537,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -744,7 +772,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -903,7 +931,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -988,7 +1016,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -1050,7 +1078,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -1108,7 +1136,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1253,7 +1281,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1384,7 +1412,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1552,7 +1580,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1695,7 +1723,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1753,7 +1781,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -1838,7 +1866,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2041,7 +2069,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2156,7 +2184,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2225,7 +2253,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2292,7 +2320,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2385,7 +2413,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2487,7 +2515,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2593,7 +2621,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2715,7 +2743,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2816,7 +2844,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -2947,7 +2975,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3034,7 +3062,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3112,7 +3140,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -3170,7 +3198,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--config",
-              description: "Override a configuration value (unstable)",
+              description: "Override a configuration value",
               isRepeatable: true,
               args: {
                 name: "config",
@@ -3228,7 +3256,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3365,7 +3393,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3569,7 +3597,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3786,7 +3814,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -3919,7 +3947,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4096,7 +4124,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4351,7 +4379,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4471,7 +4499,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4561,7 +4589,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4648,7 +4676,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4741,7 +4769,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4798,7 +4826,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4883,7 +4911,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -4947,7 +4975,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--config",
-          description: "Override a configuration value (unstable)",
+          description: "Override a configuration value",
           isRepeatable: true,
           args: {
             name: "config",
@@ -5151,7 +5179,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--config",
-      description: "Override a configuration value (unstable)",
+      description: "Override a configuration value",
       isRepeatable: true,
       args: {
         name: "config",
@@ -5208,451 +5236,1247 @@ const completionSpec: Fig.Spec = {
       .filter((_, i) => i != 0)
       .map((line) => line.trim().split(/\s+/, 1)[0]);
 
-    const fmt: Fig.Subcommand = {
-      name: "fmt",
-      icon: "🛠",
-      description:
-        "This utility formats all bin and lib files of the current crate using rustfmt",
-      subcommands: [
-        {
-          name: "--",
-          description: "All other arguments are passed to rustfmt",
-          args: {
-            generators: filepaths({
-              extensions: ["rs"],
-            }),
-          },
-          options: [
-            {
-              name: "--check",
-              description:
-                "Run in 'check' mode. Exits with 0 if input is formatted correctly. Exits with 1 and prints a diff if formatting is required",
-            },
-            {
-              name: "--emit",
-              description: "What data to emit and how",
-              args: {
-                suggestions: ["files", "stdout"],
-              },
-            },
-            {
-              name: "--backup",
-              description: "Backup any modified files",
-            },
-            {
-              name: "--config-path",
-              description: "Path for the configuration file",
-              args: {
-                generators: filepaths({
-                  equals: ["rustfmt.toml"],
-                }),
-              },
-            },
-            {
-              name: "--edition",
-              description: "Rust edition to use",
-              args: {
-                suggestions: rustEditions,
-              },
-            },
-            {
-              name: "--print-config",
-              description: "Dumps a default or minimal config to PATH",
-              args: [
-                {
-                  name: "verbosity",
-                  suggestions: ["default", "minimal", "current"],
-                },
-                {
-                  name: "PATH",
-                  template: "filepaths",
-                },
-              ],
-            },
-            {
-              name: ["-l", "--files-with-diff"],
-              description:
-                "Prints the names of mismatched files that were formatted",
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: "--check",
-          description: "Run rustfmt in check mode",
-        },
-        {
-          name: "--all",
-          description:
-            "Format all packages, and also their local path-based dependencies",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "No output printed to stdout",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description: "Use verbose output",
-        },
-        {
-          name: "--version",
-          description: "Print rustfmt version and exit",
-        },
-        {
-          name: "--manifest-path",
-          description: "Specify path to Cargo.toml",
-          args: {
-            name: "manifest-path",
-            generators: filepaths({
-              equals: ["Cargo.toml"],
-            }),
-          },
-        },
-        {
-          name: "--message-format",
-          description: "Specify message-format",
-          args: {
-            name: "message-format",
-            suggestions: ["short", "json", "human"],
-          },
-        },
-        {
-          name: ["-p", "--package"],
-          description: "Specify package to format",
-          args: {
-            name: "package",
-          },
-        },
-      ],
-    };
-
     if (commands.includes("fmt")) {
+      const fmt: Fig.Subcommand = {
+        name: "fmt",
+        icon: "🛠",
+        description:
+          "This utility formats all bin and lib files of the current crate using rustfmt",
+        subcommands: [
+          {
+            name: "--",
+            description: "All other arguments are passed to rustfmt",
+            args: {
+              generators: filepaths({
+                extensions: ["rs"],
+              }),
+            },
+            options: [
+              {
+                name: "--check",
+                description:
+                  "Run in 'check' mode. Exits with 0 if input is formatted correctly. Exits with 1 and prints a diff if formatting is required",
+              },
+              {
+                name: "--emit",
+                description: "What data to emit and how",
+                args: {
+                  suggestions: ["files", "stdout"],
+                },
+              },
+              {
+                name: "--backup",
+                description: "Backup any modified files",
+              },
+              {
+                name: "--config-path",
+                description: "Path for the configuration file",
+                args: {
+                  generators: filepaths({
+                    equals: ["rustfmt.toml"],
+                  }),
+                },
+              },
+              {
+                name: "--edition",
+                description: "Rust edition to use",
+                args: {
+                  suggestions: rustEditions,
+                },
+              },
+              {
+                name: "--print-config",
+                description: "Dumps a default or minimal config to PATH",
+                args: [
+                  {
+                    name: "verbosity",
+                    suggestions: ["default", "minimal", "current"],
+                  },
+                  {
+                    name: "PATH",
+                    template: "filepaths",
+                  },
+                ],
+              },
+              {
+                name: ["-l", "--files-with-diff"],
+                description:
+                  "Prints the names of mismatched files that were formatted",
+              },
+            ],
+          },
+        ],
+        options: [
+          {
+            name: "--check",
+            description: "Run rustfmt in check mode",
+          },
+          {
+            name: "--all",
+            description:
+              "Format all packages, and also their local path-based dependencies",
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-q", "--quiet"],
+            description: "No output printed to stdout",
+          },
+          {
+            name: ["-v", "--verbose"],
+            description: "Use verbose output",
+          },
+          {
+            name: "--version",
+            description: "Print rustfmt version and exit",
+          },
+          {
+            name: "--manifest-path",
+            description: "Specify path to Cargo.toml",
+            args: {
+              name: "manifest-path",
+              generators: filepaths({
+                equals: ["Cargo.toml"],
+              }),
+            },
+          },
+          {
+            name: "--message-format",
+            description: "Specify message-format",
+            args: {
+              name: "message-format",
+              suggestions: ["short", "json", "human"],
+            },
+          },
+          {
+            name: ["-p", "--package"],
+            description: "Specify package to format",
+            args: {
+              name: "package",
+            },
+          },
+        ],
+      };
       subcommands.push(fmt);
     }
 
-    const clippy: Fig.Subcommand = {
-      name: "clippy",
-      icon: "📎",
-      description: "Runs the Clippy linter",
-      subcommands: [
-        {
-          name: "--",
-          description: "All other arguments are passed to clippy",
-          options: [
-            {
-              name: ["-W", "--warn"],
-              description: "Set lint warnings",
-              args: {},
-            },
-            {
-              name: ["-A", "--allow"],
-              description: "Set lint allowed",
-              args: {},
-            },
-            {
-              name: ["-D", "--deny"],
-              description: "Set lint denied",
-              args: {},
-            },
-            {
-              name: ["-F", "--forbid"],
-              description: "Set lint forbidden",
-              args: {},
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: "--no-deps",
-          description:
-            "Run Clippy only on the given crate, without linting the dependencies",
-        },
-        {
-          name: "--fix",
-          description:
-            "Automatically apply lint suggestions. This flag implies `--no-deps`",
-        },
-        {
-          name: "--allow-dirty",
-          description:
-            "Allow fix to apply even if the working directory is dirty",
-          dependsOn: ["--fix"],
-        },
-        {
-          name: "--allow-staged",
-          description:
-            "Allow fix to apply even if the working directory has staged changes",
-          dependsOn: ["--fix"],
-        },
-      ],
-    };
-
     if (commands.includes("clippy")) {
+      const clippy: Fig.Subcommand = {
+        name: "clippy",
+        icon: "📎",
+        description: "Runs the Clippy linter",
+        subcommands: [
+          {
+            name: "--",
+            description: "All other arguments are passed to clippy",
+            options: [
+              {
+                name: ["-W", "--warn"],
+                description: "Set lint warnings",
+                args: {},
+              },
+              {
+                name: ["-A", "--allow"],
+                description: "Set lint allowed",
+                args: {},
+              },
+              {
+                name: ["-D", "--deny"],
+                description: "Set lint denied",
+                args: {},
+              },
+              {
+                name: ["-F", "--forbid"],
+                description: "Set lint forbidden",
+                args: {},
+              },
+            ],
+          },
+        ],
+        options: [
+          {
+            name: "--no-deps",
+            description:
+              "Run Clippy only on the given crate, without linting the dependencies",
+          },
+          {
+            name: "--fix",
+            description:
+              "Automatically apply lint suggestions. This flag implies `--no-deps`",
+          },
+          {
+            name: "--allow-dirty",
+            description:
+              "Allow fix to apply even if the working directory is dirty",
+            dependsOn: ["--fix"],
+          },
+          {
+            name: "--allow-staged",
+            description:
+              "Allow fix to apply even if the working directory has staged changes",
+            dependsOn: ["--fix"],
+          },
+        ],
+      };
       subcommands.push(clippy);
     }
 
-    const flamegraph: Fig.Subcommand = {
-      name: "flamegraph",
-      icon: "🔥",
-      description: "Generates a flamegraph of the current crate",
-      options: [
-        {
-          name: "--deterministic",
-          description:
-            "Colors are selected such that the color of a function does not change between runs",
-        },
-        {
-          name: "--dev",
-          description: "Build with the dev profile",
-        },
-        {
-          name: ["-i", "--inverted"],
-          description: "Plot the flame graph up-side-down",
-        },
-        {
-          name: "--no-default-features",
-          description: "Disable default features",
-        },
-        {
-          name: "--open",
-          description: "Open the output .svg file with default program",
-        },
-        {
-          name: "--reverse",
-          description: "Generate stack-reversed flame graph",
-        },
-        {
-          name: "--root",
-          description: "Run with root privileges (using `sudo`)",
-        },
-        {
-          name: "--no-inline",
-          description:
-            "Disable inlining for perf script because of performance issues",
-        },
-      ],
-    };
-
     if (commands.includes("flamegraph")) {
+      const flamegraph: Fig.Subcommand = {
+        name: "flamegraph",
+        icon: "🔥",
+        description: "Generates a flamegraph of the current crate",
+        options: [
+          {
+            name: "--deterministic",
+            description:
+              "Colors are selected such that the color of a function does not change between runs",
+          },
+          {
+            name: "--dev",
+            description: "Build with the dev profile",
+          },
+          {
+            name: ["-i", "--inverted"],
+            description: "Plot the flame graph up-side-down",
+          },
+          {
+            name: "--no-default-features",
+            description: "Disable default features",
+          },
+          {
+            name: "--open",
+            description: "Open the output .svg file with default program",
+          },
+          {
+            name: "--reverse",
+            description: "Generate stack-reversed flame graph",
+          },
+          {
+            name: "--root",
+            description: "Run with root privileges (using `sudo`)",
+          },
+          {
+            name: "--no-inline",
+            description:
+              "Disable inlining for perf script because of performance issues",
+          },
+        ],
+      };
       subcommands.push(flamegraph);
     }
 
-    const audit: Fig.Subcommand = {
-      name: "audit",
-      icon: "📚",
-      description: "Runs the cargo audit tool",
-      options: [
-        {
-          name: ["-d", "--db"],
-          description: "Advisory database git repo path",
-          args: {
-            name: "DB",
-            template: "folders",
-          },
-        },
-        {
-          name: ["-D", "--deny"],
-          description: "Exit with an error on the argument",
-          args: {
-            isVariadic: true,
-            suggestions: [
-              { name: "warnings", description: "Warnings (any)" },
-              { name: "unmaintained", description: "Unmaintained crates" },
-              { name: "unsound", description: "Unsound Rust code" },
-              { name: "yanked", description: "Yanked crates" },
-            ],
-          },
-        },
-        {
-          name: ["-f", "--file"],
-          description: "Cargo lockfile to inspect",
-          args: {
-            suggestions: [{ name: "-", description: "Stdin" }],
-            generators: filepaths({
-              equals: ["Cargo.lock"],
-            }),
-          },
-        },
-        {
-          name: ["-n", "--no-fetch"],
-          description: "Do not perform a git fetch on the advisory DB",
-        },
-        {
-          name: "--stale",
-          description: "Allow stale database",
-        },
-        {
-          name: "--target-arch",
-          description: "Filter vulnerabilities by CPU",
-          args: {},
-        },
-        {
-          name: "--target-os",
-          description: "Filter vulnerabilities by OS",
-          args: {},
-        },
-        {
-          name: ["-u", "--url"],
-          description: "URL for advisory database git repo",
-        },
-        {
-          name: "--json",
-          description: "Output report in JSON format",
-        },
-        {
-          name: "--no-local-crates",
-          description: "Vulnerability querying does not consider local crates",
-        },
-      ],
-    };
-
     if (commands.includes("audit")) {
+      const audit: Fig.Subcommand = {
+        name: "audit",
+        icon: "📚",
+        description: "Runs the cargo audit tool",
+        options: [
+          {
+            name: ["-d", "--db"],
+            description: "Advisory database git repo path",
+            args: {
+              name: "DB",
+              template: "folders",
+            },
+          },
+          {
+            name: ["-D", "--deny"],
+            description: "Exit with an error on the argument",
+            args: {
+              isVariadic: true,
+              suggestions: [
+                { name: "warnings", description: "Warnings (any)" },
+                { name: "unmaintained", description: "Unmaintained crates" },
+                { name: "unsound", description: "Unsound Rust code" },
+                { name: "yanked", description: "Yanked crates" },
+              ],
+            },
+          },
+          {
+            name: ["-f", "--file"],
+            description: "Cargo lockfile to inspect",
+            args: {
+              suggestions: [{ name: "-", description: "Stdin" }],
+              generators: filepaths({
+                equals: ["Cargo.lock"],
+              }),
+            },
+          },
+          {
+            name: ["-n", "--no-fetch"],
+            description: "Do not perform a git fetch on the advisory DB",
+          },
+          {
+            name: "--stale",
+            description: "Allow stale database",
+          },
+          {
+            name: "--target-arch",
+            description: "Filter vulnerabilities by CPU",
+            args: {},
+          },
+          {
+            name: "--target-os",
+            description: "Filter vulnerabilities by OS",
+            args: {},
+          },
+          {
+            name: ["-u", "--url"],
+            description: "URL for advisory database git repo",
+          },
+          {
+            name: "--json",
+            description: "Output report in JSON format",
+          },
+          {
+            name: "--no-local-crates",
+            description:
+              "Vulnerability querying does not consider local crates",
+          },
+        ],
+      };
       subcommands.push(audit);
     }
 
-    const outdated: Fig.Subcommand = {
-      name: "outdated",
-      icon: "📦",
-      description: "Displays information about project dependency versions",
-      options: [
-        {
-          name: ["-a", "--aggressive"],
-          description: "Ignores channels for latest updates",
-        },
-        {
-          name: "--color",
-          description: "Output coloring",
-          args: {
-            name: "COLOR",
-            suggestions: ["always", "never", "auto"],
-            default: "auto",
-          },
-        },
-        {
-          name: ["-d", "--depth"],
-          description:
-            "How deep in the dependency chain to search (Defaults to all dependencies when omitted)",
-          args: {
-            name: "DEPTH",
-          },
-          exclusiveOn: ["-R", "--root-deps-only"],
-        },
-        {
-          name: ["-x", "--exclude"],
-          description: "Exclude a dependency from the output",
-          isRequired: true,
-          args: {
-            name: "DEPENDENCY",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: "--exit-code",
-          description: "The exit code to return on new versions found",
-          args: {
-            name: "NUM",
-            suggestions: ["0", "1"],
-            default: "0",
-          },
-        },
-        {
-          name: "--features",
-          description: "Space-separated list of features",
-          args: {
-            name: "FEATURES",
-            generators: featuresGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: "--format",
-          description: "Output formatting",
-          args: {
-            name: "FORMAT",
-            suggestions: ["json", "list"],
-            default: "list",
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-        {
-          name: ["-i", "--ignore"],
-          description: "Dependencies to not print in the output",
-          args: {
-            name: "DEPENDENCY",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: ["-e", "--ignore-external-rel"],
-          description:
-            "Ignore relative dependencies external to workspace and check root dependencies only",
-        },
-        {
-          name: ["-m", "--manifest-path"],
-          description: "Path to the Cargo.toml file to use",
-          args: {
-            name: "PATH",
-            generators: filepaths({
-              equals: ["Cargo.toml"],
-            }),
-          },
-        },
-        {
-          name: ["-o", "--offline"],
-          description: "Run without accessing the network",
-        },
-        {
-          name: ["-p", "--packages"],
-          description: "Packages to inspect for updates",
-          args: {
-            name: "PACKAGES",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Suppresses warnings",
-        },
-        {
-          name: ["-r", "--root"],
-          description: "Package to treat as the root package",
-          args: {
-            name: "PACKAGE",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: ["-R", "--root-deps-only"],
-          description: "Only check root dependencies",
-          exclusiveOn: ["-d", "--depth"],
-        },
-        {
-          name: ["-V", "--version"],
-          description: "Prints version information",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description: "Use verbose output",
-        },
-        {
-          name: ["-w", "--workspace"],
-          description:
-            "Checks updates for all workspace members rather than only the root package",
-        },
-      ],
-    };
-
     if (commands.includes("outdated")) {
+      const outdated: Fig.Subcommand = {
+        name: "outdated",
+        icon: "📦",
+        description: "Displays information about project dependency versions",
+        options: [
+          {
+            name: ["-a", "--aggressive"],
+            description: "Ignores channels for latest updates",
+          },
+          {
+            name: "--color",
+            description: "Output coloring",
+            args: {
+              name: "COLOR",
+              suggestions: ["always", "never", "auto"],
+              default: "auto",
+            },
+          },
+          {
+            name: ["-d", "--depth"],
+            description:
+              "How deep in the dependency chain to search (Defaults to all dependencies when omitted)",
+            args: {
+              name: "DEPTH",
+            },
+            exclusiveOn: ["-R", "--root-deps-only"],
+          },
+          {
+            name: ["-x", "--exclude"],
+            description: "Exclude a dependency from the output",
+            isRequired: true,
+            args: {
+              name: "DEPENDENCY",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: "--exit-code",
+            description: "The exit code to return on new versions found",
+            args: {
+              name: "NUM",
+              suggestions: ["0", "1"],
+              default: "0",
+            },
+          },
+          {
+            name: "--features",
+            description: "Space-separated list of features",
+            args: {
+              name: "FEATURES",
+              generators: featuresGenerator,
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--format",
+            description: "Output formatting",
+            args: {
+              name: "FORMAT",
+              suggestions: ["json", "list"],
+              default: "list",
+            },
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Prints help information",
+          },
+          {
+            name: ["-i", "--ignore"],
+            description: "Dependencies to not print in the output",
+            args: {
+              name: "DEPENDENCY",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: ["-e", "--ignore-external-rel"],
+            description:
+              "Ignore relative dependencies external to workspace and check root dependencies only",
+          },
+          {
+            name: ["-m", "--manifest-path"],
+            description: "Path to the Cargo.toml file to use",
+            args: {
+              name: "PATH",
+              generators: filepaths({
+                equals: ["Cargo.toml"],
+              }),
+            },
+          },
+          {
+            name: ["-o", "--offline"],
+            description: "Run without accessing the network",
+          },
+          {
+            name: ["-p", "--packages"],
+            description: "Packages to inspect for updates",
+            args: {
+              name: "PACKAGES",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: ["-q", "--quiet"],
+            description: "Suppresses warnings",
+          },
+          {
+            name: ["-r", "--root"],
+            description: "Package to treat as the root package",
+            args: {
+              name: "PACKAGE",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: ["-R", "--root-deps-only"],
+            description: "Only check root dependencies",
+            exclusiveOn: ["-d", "--depth"],
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Prints version information",
+          },
+          {
+            name: ["-v", "--verbose"],
+            description: "Use verbose output",
+          },
+          {
+            name: ["-w", "--workspace"],
+            description:
+              "Checks updates for all workspace members rather than only the root package",
+          },
+        ],
+      };
       subcommands.push(outdated);
+    }
+
+    if (commands.includes("udeps")) {
+      const udeps: Fig.Subcommand = {
+        name: "udeps",
+        icon: "📦",
+        description: "Find unused dependencies in Cargo.toml files",
+        options: [
+          {
+            name: ["-q", "--quiet"],
+            description: "No output printed to stdout",
+          },
+          {
+            name: ["-p", "--package"],
+            description: "Package(s) to check",
+            args: {
+              name: "SPEC",
+            },
+          },
+          {
+            name: "--all",
+            description: "Alias for --workspace (deprecated)",
+            hidden: true,
+            deprecated: true,
+          },
+          {
+            name: "--workspace",
+            description: "Check all packages in the workspace",
+          },
+          {
+            name: "--exclude",
+            description: "Exclude packages from the check",
+            args: {
+              name: "SPEC",
+            },
+          },
+          {
+            name: ["-j", "--jobs"],
+            description: "Number of parallel jobs, defaults to # of CPUs",
+            args: {
+              name: "N",
+            },
+          },
+          {
+            name: "--lib",
+            description: "Check only this package's library",
+          },
+          {
+            name: "--bin",
+            description: "Check only the specified binary",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--bins",
+            description: "Check all binaries",
+          },
+          {
+            name: "--example",
+            description: "Check only the specified example",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--examples",
+            description: "Check all examples",
+          },
+          {
+            name: "--test",
+            description: "Check only the specified test target",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--tests",
+            description: "Check all tests",
+          },
+          {
+            name: "--bench",
+            description: "Check only the specified bench target",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--benches",
+            description: "Check all benches",
+          },
+          {
+            name: "--all-targets",
+            description: "Check all targets",
+          },
+          {
+            name: "--release",
+            description: "Check artifacts in release mode, with optimizations",
+          },
+          {
+            name: "--profile",
+            description: "Check artifacts with the specified profile",
+            args: {
+              name: "PROFILE-NAME",
+            },
+          },
+          {
+            name: "--features",
+            description: "Space-separated list of features to activate",
+            args: {
+              name: "FEATURES",
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--all-features",
+            description: "Activate all available features",
+          },
+          {
+            name: "--no-default-features",
+            description: "Do not activate the `default` feature",
+          },
+          {
+            name: "--target",
+            description: "Check for the target triple",
+            args: {
+              name: "TRIPLE",
+            },
+          },
+          {
+            name: "--target-dir",
+            description: "Directory for all generated artifacts",
+            args: {
+              name: "DIRECTORY",
+            },
+          },
+          {
+            name: "--manifest-path",
+            description: "Path to Cargo.toml",
+            args: {
+              name: "PATH",
+            },
+          },
+          {
+            name: "--message-format",
+            description: "Error format",
+            args: {
+              name: "FMT",
+              default: "human",
+              suggestions: ["human", "json", "short"],
+            },
+          },
+          {
+            name: ["-v", "--verbose"],
+            description:
+              "Use verbose output (-vv very verbose/build.rs output)",
+          },
+          {
+            name: "--color",
+            description: "Coloring",
+            args: {
+              name: "WHEN",
+              suggestions: ["auto", "always", "never"],
+            },
+          },
+          {
+            name: "--frozen",
+            description: "Require Cargo.lock and cache are up to date",
+          },
+          {
+            name: "--locked",
+            description: "Require Cargo.lock is up to date",
+          },
+          {
+            name: "--offline",
+            description: "Run without accessing the network",
+          },
+          {
+            name: "--output",
+            description: "Output format",
+            args: {
+              name: "OUTPUT",
+              default: "human",
+              suggestions: ["human", "json"],
+            },
+          },
+          {
+            name: "--backend",
+            description: "Backend to use for determining unused deps",
+            args: {
+              name: "BACKEND",
+              suggestions: ["save-analysis", "depinfo"],
+            },
+          },
+          {
+            name: "--keep-going",
+            description:
+              "Needed because the keep-going flag is asked about by cargo code",
+          },
+          {
+            name: "--show-unused-transitive",
+            description:
+              "Show unused dependencies that get used transitively by main dependencies. Works only with 'save-analysis' backend",
+            dependsOn: ["--backend"],
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+        ],
+      };
+      subcommands.push(udeps);
+    }
+
+    if (commands.includes("deny")) {
+      const deny: Fig.Subcommand = {
+        name: "deny",
+        icon: "❌",
+        description: "Cargo plugin to help you manage large dependency graphs",
+        subcommands: [
+          {
+            name: "check",
+            description: "Checks a project's crate graph",
+            options: [
+              {
+                name: "--audit-compatible-output",
+                description:
+                  "To ease transition from cargo-audit to cargo-deny, this flag will tell cargo-deny to output the exact same output as cargo-audit would, to `stdout` instead of `stderr`, just as with cargo-audit",
+              },
+              {
+                name: ["-c", "--config"],
+                description:
+                  "Path to the config to use. Defaults to <cwd>/deny.toml if not specified",
+                args: {
+                  name: "CONFIG",
+                  generators: filepaths({ equals: "deny.toml" }),
+                },
+              },
+              {
+                name: ["-d", "--disable-fetch"],
+                description: "Disable fetching of the advisory database",
+              },
+              {
+                name: ["-g", "--graph"],
+                description: "Path to graph_output root directory",
+                args: {
+                  name: "GRAPH",
+                  template: "folders",
+                },
+              },
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+              {
+                name: "--hide-inclusion-graph",
+                description:
+                  "Hides the inclusion graph when printing out info for a crate",
+              },
+              {
+                name: ["-s", "--show-stats"],
+                description:
+                  "Show stats for all the checks, regardless of the log-level",
+              },
+            ],
+            args: {
+              name: "WHICH",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "advisories",
+                  description: "Checks for known security vulnerabilities",
+                },
+                {
+                  name: "ban",
+                  description: "Checks for banned crates",
+                },
+                {
+                  name: "bans",
+                  description: "Checks for banned crates",
+                },
+                {
+                  name: "license",
+                  description: "Checks for crates with unknown licenses",
+                },
+                {
+                  name: "licenses",
+                  description: "Checks for crates with unknown licenses",
+                },
+                {
+                  name: "sources",
+                  description: "Checks for crates with unknown sources",
+                },
+                {
+                  name: "all",
+                  description: "Runs all checks",
+                },
+              ],
+              isVariadic: true,
+            },
+          },
+          {
+            name: "fetch",
+            description: "Fetches remote data",
+            options: [
+              {
+                name: ["-c", "--config"],
+                description: "Path to the config to use",
+                args: {
+                  name: "CONFIG",
+                  generators: filepaths({ equals: "deny.toml" }),
+                },
+              },
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+            ],
+            args: {
+              name: "SOURCES",
+              isOptional: true,
+              suggestions: [
+                {
+                  name: "db",
+                  description: "Fetches the advisory database",
+                },
+                {
+                  name: "index",
+                  description: "Fetches the crates.io index",
+                },
+                {
+                  name: "all",
+                  description: "Fetches all remote data",
+                },
+              ],
+            },
+          },
+          {
+            name: "help",
+            description:
+              "Print this message or the help of the given subcommand(s)",
+            args: {
+              template: "help",
+              isOptional: true,
+            },
+          },
+          {
+            name: "init",
+            description: "Creates a cargo-deny config from a template",
+            options: [
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+            ],
+            args: {
+              name: "CONFIG",
+              description: "The path to create",
+              generators: filepaths({ equals: "deny.toml" }),
+            },
+          },
+          {
+            name: "list",
+            description:
+              "Outputs a listing of all licenses and the crates that use them",
+            options: [
+              {
+                name: ["-c", "--config"],
+                description: "Path to the config to use",
+                args: {
+                  name: "CONFIG",
+                  generators: filepaths({ equals: "deny.toml" }),
+                },
+              },
+              {
+                name: ["-f", "--format"],
+                description: "The format of the output",
+                args: {
+                  name: "FORMAT",
+                  suggestions: ["human", "json", "tsv"],
+                },
+              },
+              {
+                name: ["-h", "--help"],
+                description: "Print help information",
+              },
+              {
+                name: ["-l", "--layout"],
+                description: "The layout for the output",
+                args: {
+                  name: "LAYOUT",
+                  suggestions: [{ name: "crate" }, { name: "license" }],
+                },
+              },
+              {
+                name: ["-t", "--threshold"],
+                description: "Minimum confidence threshold for license text",
+                args: {
+                  name: "THRESHOLD",
+                  suggestions: [
+                    "0.0",
+                    "0.1",
+                    "0.2",
+                    "0.3",
+                    "0.4",
+                    "0.5",
+                    "0.6",
+                    "0.7",
+                    "0.8",
+                    "0.9",
+                    "1.0",
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+        options: [
+          {
+            name: "--all-features",
+            description: "Activate all available features",
+          },
+          {
+            name: ["-c", "--color"],
+            description: "Coloring",
+            args: {
+              name: "WHEN",
+              suggestions: ["auto", "always", "never"],
+            },
+          },
+          {
+            name: "--exclude",
+            description:
+              "One or more crates to exclude from the crate graph that is used",
+            args: {
+              name: "EXCLUDE",
+            },
+          },
+          {
+            name: ["-f", "--format"],
+            description: "Specify the format of cargo-deny's output",
+            args: {
+              name: "FORMAT",
+              default: "human",
+              suggestions: ["human", "json"],
+            },
+          },
+          {
+            name: "--features",
+            description:
+              "Space or comma separated list of features to activate",
+            args: {
+              name: "FEATURES",
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--frozen",
+            description: "Require Cargo.lock and cache are up to date",
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-L", "--log-level"],
+            description: "The log level for messages",
+            args: {
+              name: "LOG_LEVEL",
+              default: "warn",
+              suggestions: ["off", "error", "warn", "info", "debug", "trace"],
+            },
+          },
+          {
+            name: "--locked",
+            description: "Require Cargo.lock is up to date",
+          },
+          {
+            name: "--manifest-path",
+            description:
+              "The path of a Cargo.toml to use as the context for the operation",
+            args: {
+              name: "MANIFEST_PATH",
+            },
+          },
+          {
+            name: "--no-default-features",
+            description: "Do not activate the `default` feature",
+          },
+          {
+            name: "--offline",
+            description:
+              "Run without accessing the network. If used with the `check` subcommand, this also disables advisory database fetching",
+          },
+          {
+            name: ["-t", "--target"],
+            description: "One or more platforms to filter crates by",
+            args: {
+              name: "TARGET",
+            },
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: "--workspace",
+            description:
+              "If passed, all workspace packages are used as roots for the crate graph",
+          },
+        ],
+      };
+      subcommands.push(deny);
+    }
+
+    if (commands.includes("bloat")) {
+      const bloat: Fig.Subcommand = {
+        name: "bloat",
+        icon: "⚖️",
+        description: "Find out what takes most of the space in your executable",
+        options: [
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: "--lib",
+            description: "Build only this package's library",
+          },
+          {
+            name: "--bin",
+            description: "Build only the specified binary",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--example",
+            description: "Build only the specified example",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: "--test",
+            description: "Build only the specified test target",
+            args: {
+              name: "NAME",
+            },
+          },
+          {
+            name: ["-p", "--package"],
+            description: "Package to build",
+            args: {
+              name: "SPEC",
+            },
+          },
+          {
+            name: "--release",
+            description: "Build artifacts in release mode, with optimizations",
+          },
+          {
+            name: ["-j", "--jobs"],
+            description: "Number of parallel jobs, defaults to # of CPUs",
+            args: {
+              name: "N",
+            },
+          },
+          {
+            name: "--features",
+            description: "Space-separated list of features to activate",
+            args: {
+              name: "FEATURES",
+            },
+          },
+          {
+            name: "--all-features",
+            description: "Activate all available features",
+          },
+          {
+            name: "--no-default-features",
+            description: "Do not activate the `default` feature",
+          },
+          {
+            name: "--profile",
+            description: "Build with the given profile",
+            args: {
+              name: "PROFILE",
+            },
+          },
+          {
+            name: "--target",
+            description: "Build for the target triple",
+            args: {
+              name: "TARGET",
+            },
+          },
+          {
+            name: "--target-dir",
+            description: "Directory for all generated artifacts",
+            args: {
+              name: "DIRECTORY",
+            },
+          },
+          {
+            name: "--frozen",
+            description: "Require Cargo.lock and cache are up to date",
+          },
+          {
+            name: "--locked",
+            description: "Require Cargo.lock is up to date",
+          },
+          {
+            name: "-Z",
+            description:
+              "Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details",
+            args: {
+              name: "FLAG",
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--crates",
+            description: "Per crate bloatedness",
+          },
+          {
+            name: "--time",
+            description: "Per crate build time. Will run `cargo clean` first",
+          },
+          {
+            name: "--filter",
+            description: "Filter functions by crate",
+            args: {
+              name: "CRATE|REGEXP",
+            },
+          },
+          {
+            name: "--split-std",
+            description:
+              "Split the 'std' crate to original crates like core, alloc, etc",
+          },
+          {
+            name: "--symbols-section",
+            description: "Use custom symbols section (ELF-only)",
+            args: {
+              name: "NAME",
+              default: ".text",
+            },
+          },
+          {
+            name: "--no-relative-size",
+            description: "Hide 'File' and '.text' columns",
+          },
+          {
+            name: "--full-fn",
+            description: "Print full function name with hash values",
+          },
+          {
+            name: "-n",
+            description: "Number of lines to show, 0 to show all [default: 20]",
+            args: {
+              name: "NUM",
+              default: "20",
+            },
+          },
+          {
+            name: ["-w", "--wide"],
+            description: "Do not trim long function names",
+          },
+          {
+            name: "--message-format",
+            description: "Output format",
+            args: {
+              name: "FMT",
+              default: "table",
+              suggestions: ["table", "json"],
+            },
+          },
+        ],
+      };
+      subcommands.push(bloat);
+    }
+
+    if (commands.includes("sort")) {
+      const sort: Fig.Subcommand = {
+        name: "sort",
+        icon: "🛠",
+        description: "Ensure Cargo.toml dependency tables are sorted",
+        options: [
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Print version information",
+          },
+          {
+            name: ["-c", "--check"],
+            description:
+              "Non-zero exit if Cargo.toml is unsorted, overrides default behavior",
+          },
+          {
+            name: ["-g", "--grouped"],
+            description:
+              "When sorting groups of key value pairs blank lines are kept",
+          },
+          {
+            name: ["-p", "--print"],
+            description: "Prints Cargo.toml, lexically sorted, to stdout",
+          },
+          {
+            name: ["-w", "--workspace"],
+            description: "Checks every crate in a workspace",
+          },
+          {
+            name: ["-n", "--no-format"],
+            description: "Skip formatting after sorting",
+            args: {
+              name: "no-format",
+            },
+          },
+          {
+            name: ["-o", "--order"],
+            description:
+              "When sorting groups of key value pairs blank lines are kept",
+            args: {
+              name: "order",
+            },
+          },
+        ],
+        args: {
+          name: "CWD",
+          description: "The directory to run the command in",
+          isOptional: true,
+          template: "folders",
+        },
+      };
+      subcommands.push(sort);
+    }
+
+    if (commands.includes("fuzz")) {
+      const fuzz: Fig.Subcommand = {
+        name: "fuzz",
+        icon: "🛠",
+        description: "A `cargo` subcommand for fuzzing with `libFuzzer`!",
+        subcommands: [
+          {
+            name: "add",
+            description: "Add a new fuzz target",
+          },
+          {
+            name: "build",
+            description: "Build fuzz targets",
+          },
+          {
+            name: "cmin",
+            description: "Minify a corpus",
+          },
+          {
+            name: "coverage",
+            description:
+              "Run program on the generated corpus and generate coverage information",
+          },
+          {
+            name: "fmt",
+            description: "Print the `std::fmt::Debug` output for an input",
+          },
+          {
+            name: "help",
+            description:
+              "Prints this message or the help of the given subcommand(s)",
+          },
+          {
+            name: "init",
+            description: "Initialize the fuzz directory",
+          },
+          {
+            name: "list",
+            description: "List all the existing fuzz targets",
+          },
+          {
+            name: "run",
+            description: "Run a fuzz target",
+          },
+          {
+            name: "tmin",
+            description: "Minify a test case",
+          },
+        ],
+      };
+      subcommands.push(fuzz);
     }
 
     return {
@@ -5660,6 +6484,6 @@ const completionSpec: Fig.Spec = {
       subcommands,
     };
   },
-};
+});
 
-export default completionSpec;
+export default completionSpec();

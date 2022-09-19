@@ -186,10 +186,6 @@ const completionSpec: Fig.Spec = {
           description: "Add an environment variable",
           args: [
             {
-              name: "type",
-              description: "Type of env variable to add",
-            },
-            {
               name: "name",
               description: "Name of the env variable to add",
             },
@@ -198,15 +194,15 @@ const completionSpec: Fig.Spec = {
               description: "Environment to add the variable to",
               suggestions: [
                 {
-                  name: "Production",
+                  name: "production",
                   icon: "🔵",
                 },
                 {
-                  name: "Preview",
+                  name: "preview",
                   icon: "🟠",
                 },
                 {
-                  name: "Development",
+                  name: "development",
                   icon: "🟡",
                 },
               ],
@@ -227,15 +223,15 @@ const completionSpec: Fig.Spec = {
               description: "Environment to remove from",
               suggestions: [
                 {
-                  name: "Production",
+                  name: "production",
                   icon: "🔵",
                 },
                 {
-                  name: "Preview",
+                  name: "preview",
                   icon: "🟠",
                 },
                 {
-                  name: "Development",
+                  name: "development",
                   icon: "🟡",
                 },
               ],

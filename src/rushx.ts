@@ -8,6 +8,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "Scripts",
     description: "Script to run from your package.json",
+    filterStrategy: "fuzzy",
     generators: npmScriptsGenerator,
     parserDirectives: yarnScriptParserDirectives,
     isCommand: true,

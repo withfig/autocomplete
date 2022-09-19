@@ -3,7 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "Hyperextensible Vim-based text editor",
   args: {
     template: ["filepaths", "folders"],
-    suggestCurrentToken: true,
+    // suggestCurrentToken: true,
   },
   parserDirectives: {
     flagsArePosixNoncompliant: true,

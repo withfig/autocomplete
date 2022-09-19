@@ -32,6 +32,7 @@ const completionSpec: Fig.Spec = {
   ],
   args: {
     name: "package",
+    filterStrategy: "fuzzy",
     generators: dependenciesGenerator,
     isVariadic: true,
   },

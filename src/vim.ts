@@ -1,10 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "vim",
-  description:
-    "Vi[m] is an one of two powerhouse text editors in the Unix world, the other being EMACS",
+  description: "Vi IMproved, a programmer's text editor",
   args: {
     template: "filepaths",
-    suggestCurrentToken: true,
+    // suggestCurrentToken: true,
   },
   options: [
     {

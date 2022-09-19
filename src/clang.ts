@@ -1,4 +1,191 @@
-const completionSpec: Fig.Spec = {
+export const stdCSuggestions: Fig.Suggestion[] = [
+  {
+    name: ["c89", "c90", "iso9899:1990"],
+    description: "ISO C 1990",
+  },
+  {
+    name: "iso9899:199409",
+    description: "ISO C 1990 with amendment 1",
+  },
+  {
+    name: ["gnu89", "gnu90"],
+    description: "ISO C 1990 with GNU extensions",
+  },
+  {
+    name: ["c99", "iso9899:1999"],
+    description: "ISO C 1999",
+  },
+  {
+    name: "gnu99",
+    description: "ISO C 1999 with GNU extensions",
+  },
+  {
+    name: ["c11", "iso9899:2011"],
+    description: "ISO C 2011",
+  },
+  {
+    name: "gnu11",
+    description: "ISO C 2011 with GNU extensions",
+  },
+  {
+    name: ["c17", "iso9899:2017", "c18", "iso9899:2018"],
+    description: "ISO C 2017",
+  },
+  {
+    name: ["gnu17", "gnu18"],
+    description: "ISO C 2017 with GNU extensions",
+  },
+  {
+    name: "c2x",
+    description: "Working Draft for ISO C2x",
+  },
+  {
+    name: "gnu2x",
+    description: "Working Draft for ISO C2x with GNU extensions",
+  },
+];
+
+export const stdCPPSuggestions: Fig.Suggestion[] = [
+  {
+    name: ["c++98", "c++03"],
+    description: "ISO C++ 1998 with amendments",
+  },
+  {
+    name: ["gnu++98", "gnu++03"],
+    description: "ISO C++ 1998 with amendments and GNU extensions",
+  },
+  {
+    name: "c++11",
+    description: "ISO C++ 2011 with amendments",
+  },
+  {
+    name: "gnu++11",
+    description: "ISO C++ 2011 with amendments and GNU extensions",
+  },
+  {
+    name: "c++14",
+    description: "ISO C++ 2014 with amendments",
+  },
+  {
+    name: "gnu++14",
+    description: "ISO C++ 2014 with amendments and GNU extensions",
+  },
+  {
+    name: "c++17",
+    description: "ISO C++ 2017 with amendments",
+  },
+  {
+    name: "gnu++17",
+    description: "ISO C++ 2017 with amendments and GNU extensions",
+  },
+  {
+    name: "c++20",
+    description: "ISO C++ 2020 DIS",
+  },
+  {
+    name: "gnu++20",
+    description: "ISO C++ 2020 DIS with GNU extensions",
+  },
+  {
+    name: "c++2b",
+    description: "Working draft for ISO C++ 2023 DIS",
+  },
+  {
+    name: "gnu++2b",
+    description: "Working draft for ISO C++ 2023 DIS with GNU extensions",
+  },
+];
+
+export const stdOpenCLSuggestions: Fig.Suggestion[] = [
+  {
+    name: "cl1.0",
+    description: "OpenCL 1.0",
+  },
+  {
+    name: "cl1.1",
+    description: "OpenCL 1.1",
+  },
+  {
+    name: "cl1.2",
+    description: "OpenCL 1.2",
+  },
+  {
+    name: "cl2.0",
+    description: "OpenCL 2.0",
+  },
+  {
+    name: "cl3.0",
+    description: "OpenCL 3.0",
+  },
+];
+
+export const stdOpenCLCPPSuggestions: Fig.Suggestion[] = [
+  {
+    name: ["clc++", "clc++1.0"],
+    description: "C++ for OpenCL 1.0",
+  },
+  {
+    name: "clc++2021",
+    description: "C++ for OpenCL 2021",
+  },
+];
+
+export const stdHLSLSuggestions: Fig.Suggestion[] = [
+  {
+    name: "hlsl",
+    description: "High Level Shader Language",
+  },
+  {
+    name: "hlsl2015",
+    description: "High Level Shader Language 2015",
+  },
+  {
+    name: "hlsl2016",
+    description: "High Level Shader Language 2016",
+  },
+  {
+    name: "hlsl2017",
+    description: "High Level Shader Language 2017",
+  },
+  {
+    name: "hlsl2018",
+    description: "High Level Shader Language 2018",
+  },
+  {
+    name: "hlsl2021",
+    description: "High Level Shader Language 2021",
+  },
+  {
+    name: "hlsl202x",
+    description: "High Level Shader Language 202x",
+  },
+];
+
+export const stdOption: Fig.Option = {
+  name: "-std",
+  description: "Language standard to compile for",
+  args: {
+    name: "value",
+    suggestions: [
+      ...stdCSuggestions,
+      ...stdCPPSuggestions,
+      ...stdOpenCLSuggestions,
+      ...stdOpenCLCPPSuggestions,
+      {
+        name: "cuda",
+        description: "NVIDIA CUDA(tm)",
+      },
+      {
+        name: "hip",
+        description: "HIP",
+      },
+      ...stdHLSLSuggestions,
+    ],
+  },
+  requiresSeparator: true,
+};
+
+export const clangBase: Fig.Spec = {
   name: "clang",
   description: "Clang LLVM compiler",
   args: {
@@ -4404,14 +4591,6 @@ const completionSpec: Fig.Spec = {
       description: "Use the static host OpenMP runtime while linking",
     },
     {
-      name: "-std",
-      description: "Language standard to compile for",
-      args: {
-        name: "value",
-      },
-      requiresSeparator: true,
-    },
-    {
       name: "-stdlib++-isystem",
       description: "Use directory as the C++ standard library include path",
       args: {
@@ -4680,4 +4859,8 @@ const completionSpec: Fig.Spec = {
   ],
 };
 
+const completionSpec: Fig.Spec = {
+  ...clangBase,
+  options: [...clangBase.options, stdOption],
+};
 export default completionSpec;

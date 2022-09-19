@@ -200,11 +200,7 @@ export const pluginsGenerator = (init: {
 });
 
 /**
- *
- *
  * Fig team
- *
- *
  */
 
 // For insertions like `fig user tokens <subcommand> --team <team name> <arg holding this generator>`
@@ -297,6 +293,118 @@ export const invitationsGenerators: Fig.Generator = {
         description: `Role: ${invitation.role}`,
       };
     });
+  },
+};
+
+/**
+ * Fig workflows
+ */
+
+export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
+  _,
+  exec
+) => {
+  const response = await exec(
+    "fig _ request --route '/workflows' --method GET"
+  );
+  const workflows = JSON.parse(response);
+  const subcommands = workflows.map((workflow) => {
+    const displayName = `${workflow.displayName ?? workflow.name} | @${
+      workflow.namespace
+    }`;
+
+    const options = workflow.parameters.map((param) => {
+      const option: Fig.Option = {
+        name: `--${param.name}`,
+        description: param.description,
+      };
+      switch (param.type) {
+        case "text":
+          option.args = {
+            name: param.name,
+          };
+        case "selector":
+          let generators: Fig.Generator[] = [];
+          if (param.typeData.generators) {
+            generators = param.typeData.generators
+              .filter((generator) => generator.type === "script")
+              .map((generator) => ({
+                script: generator.script,
+                splitOn: "\n",
+              }));
+          }
+          option.args = {
+            name: param.name,
+            suggestions: param.typeData.suggestions,
+            generators,
+          };
+      }
+      return option;
+    });
+
+    // Add @namespace/name and name (if this workflow is associated with user's namespace)
+    const name = [`@${workflow.namespace}/${workflow.name}`];
+    if (workflow.isOwnedByUser) {
+      name.push(workflow.name);
+    }
+
+    return {
+      displayName,
+      icon: "⚡️",
+      name,
+      insertValue: `${workflow.isOwnedByUser ? workflow.name : name[0]} `,
+      description: workflow.description,
+      options,
+    };
+  });
+  return {
+    name: "run",
+    subcommands,
+  };
+};
+
+export const sshHostsGenerator: Fig.Generator = {
+  script: "fig _ request --method GET --route /access/hosts/all",
+  cache: {
+    strategy: "stale-while-revalidate",
+  },
+  postProcess: (out) => {
+    return (JSON.parse(out) as { nickName: string; namespace: string }[]).map(
+      (host) => ({
+        insertValue: `'@${host.namespace}/${host.nickName}'`,
+        displayName: `${host.nickName} (${host.namespace})`,
+        name: [host.namespace, host.nickName],
+      })
+    );
+  },
+};
+
+export const sshIdentityGenerator: Fig.Generator = {
+  custom: async (tokens, executeShellCommand) => {
+    const host = tokens.slice(2).find((value) => !value.startsWith("-"));
+    if (host === undefined) {
+      return [];
+    }
+    const hosts = JSON.parse(
+      await executeShellCommand(`fig ssh ${host} --get-identities`)
+    ) as { displayName: string; username: string }[];
+
+    return hosts.map((host) => ({
+      name: host.displayName,
+    }));
+  },
+};
+
+export const userGenerator: Fig.Generator = {
+  script: "fig user list-accounts",
+  postProcess: (out) => {
+    if (out.startsWith("error: ")) {
+      return [];
+    }
+    return out
+      .trim()
+      .split("\n")
+      .map((name) => ({ name, icon: "👤" }));
   },
 };
 
