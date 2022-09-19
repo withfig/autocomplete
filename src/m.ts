@@ -1331,6 +1331,7 @@ const completionSpec: Fig.Spec = {
             name: "ESSID",
             description: "ESSID",
             isOptional: true,
+            generators: generateWifiNetworks,
           },
         },
         {
