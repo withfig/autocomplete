@@ -696,10 +696,12 @@ const completionSpec: Fig.Spec = {
             {
               name: "user",
               description: "User to add to group",
+              generators: generateUsers,
             },
             {
               name: "group",
               description: "Group to add user to",
+              generators: generateGroups,
             },
           ],
         },
