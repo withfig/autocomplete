@@ -83,6 +83,17 @@ const generatePids: Fig.Generator = {
     });
   },
 };
+
+const generateWifiNetworks: Fig.Generator = {
+  script:
+    "networksetup -listallhardwareports | awk '/Wi-Fi/{getline; print $2}' | xargs networksetup -listpreferredwirelessnetworks | tail -n +2",
+  postProcess: (out) =>
+    out
+      .trim()
+      .split("\n")
+      .map((network) => ({ name: network, icon: "fig://icon?type=string" })),
+};
+
 const completionSpec: Fig.Spec = {
   name: "m-cli",
   description: "Swiss Army Knife for macOS",
@@ -1335,11 +1346,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "ls",
-          description: "List known wifi networks",
-        },
-        {
-          name: "list",
+          name: ["ls", "list"],
           description: "List known wifi networks",
         },
         {
@@ -1348,6 +1355,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "ESSID",
             description: "ESSID",
+            generators: generateWifiNetworks,
           },
         },
         {
