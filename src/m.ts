@@ -928,6 +928,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "pid",
                 description: "Process id",
+                generators: generatePids,
               },
             },
           ],
