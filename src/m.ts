@@ -50,6 +50,11 @@ const generateGroups: Fig.Generator = {
         hidden: group.startsWith("_"),
       })),
 };
+
+const generateNetworkLocations: Fig.Generator = {
+  script: "m network list | grep -e 'Device: ' | cut -d' ' -f2-",
+  splitOn: "\n",
+};
 const completionSpec: Fig.Spec = {
   name: "m-cli",
   description: "Swiss Army Knife for macOS",
