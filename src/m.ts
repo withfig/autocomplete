@@ -1306,12 +1306,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "wallpaper",
       description: "Change wallpaper",
-      options: [
-        {
-          name: "",
-          description: "Path to the wallpaper",
-        },
-      ],
+      args: {
+        name: "image",
+        description: "Path to the wallpaper",
+        template: "filepaths",
+      },
     },
     {
       name: "wifi",
