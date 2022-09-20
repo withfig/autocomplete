@@ -32,6 +32,11 @@ const completionSpec: Fig.Spec = {
               args: { name: "path", template: "folders" },
             },
             {
+              name: "--skip-collection-validation",
+              description:
+                "Skips unique destination collection and looping validations",
+            },
+            {
               name: "--spec",
               description:
                 "Deployment specification version to use to build and deploy the app",
