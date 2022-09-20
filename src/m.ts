@@ -7,7 +7,7 @@ const generateDisks: Fig.Generator = {
       .split("\n")
       .map((disk) => ({
         name: disk,
-        type: "file",
+        icon: "💽",
         priority: 100,
       })),
 };
