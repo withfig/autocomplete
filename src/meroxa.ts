@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path to the app directory (default is local directory)",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
             {
               name: "--skip-collection-validation",
