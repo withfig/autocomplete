@@ -1805,6 +1805,14 @@ const completionSpec: Fig.Spec = {
           description: "Check the volume status",
         },
         {
+          name: "up",
+          description: "Increase the volume by 6.25",
+        },
+        {
+          name: "down",
+          description: "Decrease the volume by 6.25",
+        },
+        {
           name: "help",
           description: `Show help`,
         },
@@ -1812,17 +1820,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "volume",
         description: "Volume level up/down/(+/-)number",
-        isOptional: true,
-        suggestions: [
-          {
-            name: "up",
-            description: "Increase the volume by 6.25",
-          },
-          {
-            name: "down",
-            description: "Decrease the volume by 6.25",
-          },
-        ],
       },
     },
     {
