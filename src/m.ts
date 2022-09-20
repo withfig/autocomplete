@@ -99,7 +99,7 @@ const generateWifiNetworks: Fig.Generator = {
 };
 
 const completionSpec: Fig.Spec = {
-  name: "m-cli",
+  name: "m",
   description: "Swiss Army Knife for macOS",
   subcommands: [
     {
