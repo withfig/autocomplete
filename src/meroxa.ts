@@ -107,7 +107,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--path",
               description: "Path of application to run",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
           ],
         },
