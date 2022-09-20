@@ -1711,6 +1711,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "timezone",
             description: "Timezone",
+            suggestions: timezones.map((name) => ({ name, icon: "🕑" })),
           },
         },
         {
