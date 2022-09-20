@@ -1024,19 +1024,10 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "time",
-              description: "Time in seconds",
-              isOptional: true,
-            },
-            {
-              name: "script",
-              description: "Path to script",
-              isOptional: true,
-              template: "filepaths",
-            },
-          ],
+          args: {
+            name: "time or script",
+            template: "filepaths",
+          },
         },
         {
           name: "help",
@@ -1084,7 +1075,7 @@ const completionSpec: Fig.Spec = {
           name: "set",
           description: "Set network time server",
           args: {
-            name: "timehost1.net.sap.corp",
+            name: "hostname",
             description: "Network time server",
           },
         },
@@ -1193,11 +1184,7 @@ const completionSpec: Fig.Spec = {
           description: "List all services",
         },
         {
-          name: "--list",
-          description: "List all services",
-        },
-        {
-          name: "--ls",
+          name: ["--ls", "--list"],
           description: "List all services",
           args: {
             name: "service",
@@ -1264,13 +1251,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "sleep",
       description: "Put computer to sleep",
+      subcommands: [{ name: "help", description: "Show help" }],
     },
     {
       name: "timezone",
       description: "Get current timezone",
       subcommands: [
         {
-          name: "ls",
+          name: ["ls", "list"],
           description: "List available timezones",
         },
         {
@@ -1324,7 +1312,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage user",
       subcommands: [
         {
-          name: "ls",
+          name: ["ls", "list"],
           description: "List all users",
         },
         {
@@ -1397,7 +1385,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage VPN connections",
       subcommands: [
         {
-          name: "ls",
+          name: ["ls", "list"],
           description: "List VPN connections",
         },
         {
