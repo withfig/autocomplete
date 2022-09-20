@@ -92,7 +92,10 @@ const generateWifiNetworks: Fig.Generator = {
     out
       .trim()
       .split("\n")
-      .map((network) => ({ name: network, icon: "fig://icon?type=string" })),
+      .map((network) => ({
+        name: network.trim(),
+        icon: "📶",
+      })),
 };
 
 const completionSpec: Fig.Spec = {
