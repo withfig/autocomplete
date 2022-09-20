@@ -53,7 +53,7 @@ const generateGroups: Fig.Generator = {
 };
 
 const generateNetworkLocations: Fig.Generator = {
-  script: "m network list | grep -e 'Device: ' | cut -d' ' -f2-",
+  script: "m network location list | tail -n +2",
   splitOn: "\n",
 };
 
