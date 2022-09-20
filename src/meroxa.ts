@@ -670,7 +670,7 @@ const completionSpec: Fig.Spec = {
       name: "--cli-config-file",
       description: "Meroxa configuration file",
       isPersistent: true,
-      args: { name: "cli-config-file" },
+      args: { name: "cli-config-file", template: "filepaths" },
     },
     {
       name: "--debug",
