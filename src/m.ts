@@ -922,7 +922,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage localhost",
       subcommands: [
         {
-          name: "ls",
+          name: ["ls", "list"],
           description: "List current records in localhost",
         },
         {
@@ -962,7 +962,7 @@ const completionSpec: Fig.Spec = {
       description: "Manage network",
       subcommands: [
         {
-          name: "ls",
+          name: ["ls", "list"],
           description: "List network interfaces",
         },
         {
@@ -970,7 +970,7 @@ const completionSpec: Fig.Spec = {
           description: "Manage location",
           subcommands: [
             {
-              name: "ls",
+              name: ["ls", "list"],
               description: "List locations",
             },
             {
