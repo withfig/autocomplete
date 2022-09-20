@@ -68,7 +68,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path where application will be initialized (current directory as default)",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
             {
               name: "--skip-mod-init",
