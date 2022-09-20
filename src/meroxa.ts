@@ -119,7 +119,7 @@ const completionSpec: Fig.Spec = {
               name: "--path",
               description:
                 "Path where application exists (current directory as default)",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
           ],
         },
