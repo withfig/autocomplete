@@ -13,11 +13,12 @@ const generateDisks: Fig.Generator = {
 };
 
 const generateVolumes: Fig.Generator = {
-  script: "command ls /Volumes",
+  script: "command ls -d /Volumes/*",
   postProcess: (out) =>
     out
       .trim()
       .split("\n")
+      .filter((volume) => volume !== "Macintosh HD")
       .map((volume) => ({
         name: volume,
         type: "file",
