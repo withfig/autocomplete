@@ -11,14 +11,14 @@ const configModeGenerator = {
       ["CCID", ["c"]],
       ["c", ["CCID"]],
     ]);
-    const suggestions = new Set(possibleSuggestionsMap.values());
+    const suggestions = new Set([...possibleSuggestionsMap.values()].flat());
 
     for (const token of previouslyAdded) {
       suggestions.delete(token);
       const aliases = possibleSuggestionsMap.get(token);
       if (aliases) {
         aliases.forEach((v) => {
-          suggestions.delete([v]);
+          suggestions.delete(v);
         });
       }
     }
