@@ -1,5 +1,3 @@
-import { version } from "os";
-
 const formatTsuruOutput = (output: string) => {
   return output
     .split("\n")
