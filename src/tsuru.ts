@@ -114,7 +114,8 @@ const tsuruOptions: Record<string, Fig.Option> = {
 
 const completionSpec: Fig.Spec = {
   name: "tsuru",
-  description: "",
+  description:
+    "Tsuru is the command line utility used by application developers, that will allow users to create, list, bind and manage apps",
   subcommands: [
     {
       name: "app",
