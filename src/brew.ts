@@ -44,6 +44,19 @@ const outdatedformulaeGenerator: Fig.Generator = {
   },
 };
 
+const generateAllInstallableItems: Fig.Generator = {
+  script:
+    "brew --repository | xargs -I% ls -1 %/Library/Taps/homebrew/homebrew-core/Formula %/Library/Taps/homebrew/homebrew-cask/Casks",
+  postProcess: (out) =>
+    [...new Set(out.split("\n"))].map((formula) => ({
+      name: formula.replace(".rb", ""),
+      description: "Formula",
+      icon: "🍺",
+      hidden: formula[0] == "/",
+      priority: formula[0] >= "0" && formula[0] <= "9" ? 0 : 51,
+    })),
+};
+
 const commonOptions: Fig.Option[] = [
   {
     name: ["-d", "--debug"],
@@ -69,20 +82,7 @@ const brewInfo = (name: string): Fig.Subcommand => ({
     isOptional: true,
     name: "formula",
     description: "Formula or cask to summarize",
-    generators: {
-      script:
-        "HBPATH=$(brew --repository) ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
-      postProcess: (out) =>
-        [...new Set(out.split("\n"))].map((formula) => ({
-          name: formula.replace(".rb", ""),
-          description: "Formula",
-          icon: "🍺",
-          priority:
-            (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
-              ? 0
-              : 51,
-        })),
-    },
+    generators: generateAllInstallableItems,
   },
   options: [
     {
@@ -1085,23 +1085,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
-        generators: {
-          script:
-            "HBPATH=$(brew --repository) ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
-          postProcess: function (out) {
-            return out.split("\n").map((formula) => {
-              return {
-                name: formula.replace(".rb", ""),
-                description: "Formula",
-                icon: "🍺",
-                priority:
-                  (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
-                    ? 0
-                    : 51,
-              };
-            });
-          },
-        },
+        generators: generateAllInstallableItems,
       },
     },
     {
@@ -1536,23 +1520,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         name: "formula",
         description: "Formula or cask to install",
-        generators: {
-          script:
-            "HBPATH=$(brew --repository) ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
-          postProcess: function (out) {
-            return out.split("\n").map((formula) => {
-              return {
-                name: formula.replace(".rb", ""),
-                description: "Formula",
-                icon: "🍺",
-                priority:
-                  (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
-                    ? 0
-                    : 51,
-              };
-            });
-          },
-        },
+        generators: generateAllInstallableItems,
       },
       options: [
         ...commonOptions,
