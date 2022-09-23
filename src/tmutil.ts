@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "tmutil",
-  description: "Time machine util",
+  description: "Time Machine utility",
   subcommands: [
     { name: "version", description: "Print the current version" },
     {
