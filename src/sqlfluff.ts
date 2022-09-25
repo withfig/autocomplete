@@ -4,6 +4,10 @@ const completionSpec: Fig.Spec = {
   subcommands: [{
     name: "lint",
     description: "Lint SQL files via passing a list of files or using stdin",
+		args: {
+			template: "filepaths",
+			isOptional: true
+		},
 		options: [
 			{
 				name: ["--nocolor", "-n"], 
@@ -123,6 +127,10 @@ const completionSpec: Fig.Spec = {
 	{
 		name: "fix",
 		description: "Fix SQL files.",
+		args: {
+			template: "filepaths",
+			isOptional: true
+		},
 		options: [
 			{
 				name: ["--nocolor", "-n"], 
@@ -231,6 +239,10 @@ const completionSpec: Fig.Spec = {
 	{
 		name: "parse",
 		description: "Parse SQL files and just spit out the result.",
+		args: {
+			template: "filepaths",
+			isOptional: false
+		},
 		options: [
 			{
 				name: ["--nocolor", "-n"], 
