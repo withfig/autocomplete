@@ -228,6 +228,24 @@ const completionSpec: Fig.Spec = {
 			},
 		]
 	},
+	{
+		name: "dialects",
+		description: "Show the current dialects available.",
+		options: [
+			{
+				name: ["--nocolor", "-n"],
+				description: "No color - output will be without ANSI color codes."
+			},
+			{
+				name: ["--verbose", "-v"], 
+				description: "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv." 
+			},
+			{
+				name: "--version",
+				description: "Show the version and exit."
+			},
+		],
+	},
 	],
 };
 export default completionSpec;
