@@ -16250,6 +16250,7 @@ const completionSpec: Fig.Spec = {
           name: ["-r", "--requirement"],
           description:
             "Install from the given requirements file. This option can be used multiple times",
+          isRepeatable: true,
           args: {
             name: "requirements file",
             template: "filepaths",
