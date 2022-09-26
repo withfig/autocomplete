@@ -1,6 +1,18 @@
 const completionSpec: Fig.Spec = {
   name: "sqlfluff",
   description: "A dialect-flexible and configurable SQL linter",
+  options: [
+    {
+      name: "--version",
+      description: "Show the version and exit",
+      persistent: true,
+    },
+    {
+      name: ["--help", "-h"],
+      description: "Show help for sqlfluff",
+      persistent: true,
+    },
+  ],
   subcommands: [
     {
       name: "lint",
@@ -8,6 +20,7 @@ const completionSpec: Fig.Spec = {
       args: {
         template: "filepaths",
         isOptional: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -18,6 +31,7 @@ const completionSpec: Fig.Spec = {
           name: ["--ignore", "-i"],
           description:
             "Ignore particular families of errors so that they don’t cause a failed run. -–ignore behaves somewhat like noqa comments, except it applies globally",
+          args: { name: "error" },
         },
         {
           name: ["--verbose", "-v"],
@@ -25,17 +39,28 @@ const completionSpec: Fig.Spec = {
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
         },
         {
-          name: ["--exclude_rules", "-e"],
+          name: ["--exclude-rules", "-e"],
           description:
             "Exclude specific rules. This could either be the allowlist, or the general set if there is no specific allowlist",
+          args: {
+            name: "exclude_rules",
+          },
         },
         {
           name: ["--rules", "-r"],
           description: "Narrow the search to only specific rules",
+          args: {
+            name: "rules",
+          },
         },
         {
           name: ["--templater", "-t"],
           description: "The templater to use (default=jinja)",
+          args: {
+            name: "templater",
+            description: "Name of templater to use, eg. raw",
+            suggestions: ["raw", "jinja", "python", "placeholders"],
+          },
         },
         {
           name: ["--dialect", "-d"],
@@ -64,15 +89,24 @@ const completionSpec: Fig.Spec = {
           name: ["--format", "-f"],
           description:
             "What format to return the lint result in (default=human)",
+          args: {
+            name: "format",
+            suggestions: [
+              "human",
+              "json",
+              "yaml",
+              "github-annotation",
+              "github-annotation-native",
+            ],
+          },
         },
         {
           name: ["--processes", "-p"],
           description:
             "The number of parallel processes to run. Positive numbers work as expected. Zero and negative numbers will work as number_of_cpus - number. e.g -1 means all cpus except one. 0 means all cpus",
-        },
-        {
-          name: "--version",
-          description: "Show the version and exit",
+          args: {
+            name: "processes",
+          },
         },
         {
           name: "--disable-noqa",
@@ -95,6 +129,9 @@ const completionSpec: Fig.Spec = {
           name: "--encoding",
           description:
             "Specify encoding to use when reading and writing files. Defaults to autodetect",
+          args: {
+            name: "encoding",
+          },
         },
         {
           name: "--ignore-local-config",
@@ -105,11 +142,19 @@ const completionSpec: Fig.Spec = {
           name: "--config",
           description:
             "Include additional config file. By default the config is generated from the standard configuration files described in the documentation. This argument allows you to specify an additional configuration file that overrides the standard configuration files. N.B. cfg format is required",
+          args: {
+            name: "extra_config_path",
+            template: "filepaths",
+          },
         },
         {
           name: "--write-output",
           description:
             "Optionally provide a filename to write the results to, mostly used in tandem with –format. NB: Setting an output file re-enables normal stdout logging",
+          args: {
+            name: "write_output",
+            template: "filepaths",
+          },
         },
         {
           name: "--annotation-level",
@@ -147,6 +192,7 @@ const completionSpec: Fig.Spec = {
       args: {
         template: "filepaths",
         isOptional: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -157,6 +203,9 @@ const completionSpec: Fig.Spec = {
           name: ["--ignore", "-i"],
           description:
             "Ignore particular families of errors so that they don’t cause a failed run. -–ignore behaves somewhat like noqa comments, except it applies globally",
+          args: {
+            name: "errors",
+          },
         },
         {
           name: ["--verbose", "-v"],
@@ -164,17 +213,28 @@ const completionSpec: Fig.Spec = {
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
         },
         {
-          name: ["--exclude_rules", "-e"],
+          name: ["--exclude-rules", "-e"],
           description:
             "Exclude specific rules. This could either be the allowlist, or the general set if there is no specific allowlist",
+          args: {
+            name: "exclude_rules",
+          },
         },
         {
           name: ["--rules", "-r"],
           description: "Narrow the search to only specific rules",
+          args: {
+            name: "rules",
+          },
         },
         {
           name: ["--templater", "-t"],
           description: "The templater to use (default=jinja)",
+          args: {
+            name: "templater",
+            description: "Name of templater to use, eg. raw",
+            suggestions: ["raw", "jinja", "python", "placeholders"],
+          },
         },
         {
           name: ["--dialect", "-d"],
@@ -203,19 +263,31 @@ const completionSpec: Fig.Spec = {
           name: ["--format", "-f"],
           description:
             "What format to return the lint result in (default=human)",
+          args: {
+            name: "format",
+            suggestions: [
+              "human",
+              "json",
+              "yaml",
+              "github-annotation",
+              "github-annotation-native",
+            ],
+          },
         },
         {
           name: ["--processes", "-p"],
           description:
             "The number of parallel processes to run. Positive numbers work as expected. Zero and negative numbers will work as number_of_cpus - number. e.g -1 means all cpus except one. 0 means all cpus",
+          args: {
+            name: "processes",
+          },
         },
         {
           name: ["--fixed-suffix", "-x"],
           description: "An optional suffix to add to fixed files",
-        },
-        {
-          name: "--version",
-          description: "Show the version and exit",
+          args: {
+            name: "fixed_suffix",
+          },
         },
         {
           name: "--disable-noqa",
@@ -238,6 +310,9 @@ const completionSpec: Fig.Spec = {
           name: "--encoding",
           description:
             "Specify encoding to use when reading and writing files. Defaults to autodetect",
+          args: {
+            name: "encoding",
+          },
         },
         {
           name: "--ignore-local-config",
@@ -248,11 +323,19 @@ const completionSpec: Fig.Spec = {
           name: "--config",
           description:
             "Include additional config file. By default the config is generated from the standard configuration files described in the documentation. This argument allows you to specify an additional configuration file that overrides the standard configuration files. N.B. cfg format is required",
+          args: {
+            name: "extra_config_path",
+            template: "filepaths",
+          },
         },
         {
           name: "--write-output",
           description:
             "Optionally provide a filename to write the results to, mostly used in tandem with –format. NB: Setting an output file re-enables normal stdout logging",
+          args: {
+            name: "write_output",
+            template: "filepaths",
+          },
         },
         {
           name: "--disable-progress-bar",
@@ -284,6 +367,9 @@ const completionSpec: Fig.Spec = {
           name: ["--ignore", "-i"],
           description:
             "Ignore particular families of errors so that they don’t cause a failed run. -–ignore behaves somewhat like noqa comments, except it applies globally",
+          args: {
+            name: "errors",
+          },
         },
         {
           name: ["--verbose", "-v"],
@@ -291,17 +377,28 @@ const completionSpec: Fig.Spec = {
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
         },
         {
-          name: ["--exclude_rules", "-e"],
+          name: ["--exclude-rules", "-e"],
           description:
             "Exclude specific rules. This could either be the allowlist, or the general set if there is no specific allowlist",
+          args: {
+            name: "exclude_rules",
+          },
         },
         {
           name: ["--rules", "-r"],
           description: "Narrow the search to only specific rules",
+          args: {
+            name: "rules",
+          },
         },
         {
           name: ["--templater", "-t"],
           description: "The templater to use (default=jinja)",
+          args: {
+            name: "templater",
+            description: "Name of templater to use, eg. raw",
+            suggestions: ["raw", "jinja", "python", "placeholders"],
+          },
         },
         {
           name: ["--dialect", "-d"],
@@ -339,10 +436,16 @@ const completionSpec: Fig.Spec = {
           name: ["--format", "-f"],
           description:
             "What format to return the lint result in (default=human)",
-        },
-        {
-          name: "--version",
-          description: "Show the version and exit",
+          args: {
+            name: "format",
+            suggestions: [
+              "human",
+              "json",
+              "yaml",
+              "github-annotation",
+              "github-annotation-native",
+            ],
+          },
         },
         {
           name: "--disable-noqa",
@@ -355,6 +458,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--recurse",
           description: "The depth to recursively parse to (0 for unlimited)",
+          args: {
+            name: "recurse",
+          },
         },
         {
           name: "--logger",
@@ -369,6 +475,9 @@ const completionSpec: Fig.Spec = {
           name: "--encoding",
           description:
             "Specify encoding to use when reading and writing files. Defaults to autodetect",
+          args: {
+            name: "encoding",
+          },
         },
         {
           name: "--ignore-local-config",
@@ -379,11 +488,19 @@ const completionSpec: Fig.Spec = {
           name: "--config",
           description:
             "Include additional config file. By default the config is generated from the standard configuration files described in the documentation. This argument allows you to specify an additional configuration file that overrides the standard configuration files. N.B. cfg format is required",
+          args: {
+            name: "extra_config_path",
+            template: "filepaths",
+          },
         },
         {
           name: "--write-output",
           description:
             "Optionally provide a filename to write the results to, mostly used in tandem with –format. NB: Setting an output file re-enables normal stdout logging",
+          args: {
+            name: "write_output",
+            template: "filepaths",
+          },
         },
         {
           name: "--profiler",
@@ -409,10 +526,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
         },
-        {
-          name: "--version",
-          description: "Show the version and exit",
-        },
       ],
     },
     {
@@ -428,10 +541,6 @@ const completionSpec: Fig.Spec = {
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
         },
-        {
-          name: "--version",
-          description: "Show the version and exit",
-        },
       ],
     },
     {
@@ -446,10 +555,6 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
-        },
-        {
-          name: "--version",
-          description: "Show the version and exit",
         },
       ],
     },
