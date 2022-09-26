@@ -5,12 +5,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--version",
       description: "Show the version and exit",
-      persistent: true,
+      isPersistent: true,
     },
     {
       name: ["--help", "-h"],
       description: "Show help for sqlfluff",
-      persistent: true,
+      isPersistent: true,
     },
   ],
   subcommands: [
