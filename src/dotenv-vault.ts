@@ -5,11 +5,6 @@ const yesOption: Fig.Option = {
     "Automatic yes to prompts. Assume yes to all prompts and run non-interactively",
 };
 
-const helpOption: Fig.Option = {
-  name: "--help",
-  description: "Get documentation for the command",
-};
-
 const dotenvMeOption: Fig.Option = {
   name: ["-m", "--dotenvMe"],
   description:
@@ -44,62 +39,70 @@ const filenameArg = {
   description:
     "Set input filename. Defaults to .env for development and .env.{environment} for other environments",
   isOptional: true,
+  template: "filepaths",
 };
 
 const completionSpec: Fig.Spec = {
   name: "dotenv-vault",
   description: "CLI for dotenv-vault",
+  options: [
+    {
+      name: "--help",
+      description: "Get documentation for the command",
+      isPersistent: true,
+    },
+  ],
   subcommands: [
     {
       name: "new",
       description: "Create your project",
-      options: [helpOption, yesOption],
+      options: [yesOption],
       args: dotenvVaultArg,
     },
     {
       name: "login",
       description: "Log in to dotenv-vault",
-      options: [helpOption, yesOption],
+      options: [yesOption],
       args: dotenvMeArg,
     },
     {
       name: "logout",
       description: "Log out from dotenv-vault",
-      options: [helpOption, yesOption],
+      options: [yesOption],
     },
     {
       name: "open",
       description: "Opens project page in a browser",
-      options: [helpOption, yesOption],
+      options: [yesOption],
       args: environmentArg,
     },
     {
       name: "push",
       description: "Push .env securely",
-      options: [helpOption, yesOption, dotenvMeOption],
+      options: [yesOption, dotenvMeOption],
       args: [environmentArg, filenameArg],
     },
     {
       name: "pull",
       description: "Pull .env securely",
-      options: [helpOption, yesOption, dotenvMeOption],
+      options: [yesOption, dotenvMeOption],
       args: [environmentArg, filenameArg],
     },
     {
       name: "versions",
       description: "List version history",
-      options: [helpOption, yesOption, dotenvMeOption],
+      options: [yesOption, dotenvMeOption],
       args: [environmentArg, filenameArg],
     },
     {
       name: "whoami",
       description: "Display the current logged in user",
-      options: [helpOption, dotenvMeOption],
+      options: [dotenvMeOption],
     },
     {
       name: "status",
       description: "Check dotenv-operational status",
-      options: [helpOption, yesOption],
+      options: [yesOption],
     },
     {
       name: "help",
@@ -108,7 +111,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Update the dotenv-vault CLI",
-      options: [helpOption, yesOption],
+      options: [yesOption],
     },
   ],
 };
