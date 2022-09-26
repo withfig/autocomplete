@@ -16179,221 +16179,226 @@ const completionSpec: Fig.Spec = {
         suggestions: packageList,
         isVariadic: true,
       },
-      // options: [
-      //   {
-      //     name: ["--compile"],
-      //     description: "Do not compile Python source files to bytecode",
-      //   },
-      //   {
-      //     name: ["-U", "--upgrade"],
-      //     description:
-      //       "Upgrade all specified packages to the newest available version.",
-      //   },
-      //   {
-      //     name: ["--upgrade-strategy"],
-      //     description:
-      //       "Determines how dependency upgrading should be handled [default: only-if-needed].",
-      //   },
-      //   {
-      //     name: ["--no-deps"],
-      //     description: "Don’t install package dependencies.",
-      //   },
-      //   {
-      //     name: ["--root"],
-      //     description:
-      //       "Install everything relative to this alternate root directory.",
-      //     args: {
-      //       template: "folders",
-      //     },
-      //   },
-      //   {
-      //     name: ["--require-hashes"],
-      //     description:
-      //       "Require a hash to check each requirement against, for repeatable installs.",
-      //   },
-      //   {
-      //     name: ["--prefix"],
-      //     description:
-      //       "Installation prefix where lib, bin and other top-level folders are placed",
-      //     args: {
-      //       template: "folders",
-      //     },
-      //   },
-      //   {
-      //     name: ["-t", "--target"],
-      //     description: "Install packages into <dir>.",
-      //     args: {
-      //       name: "dir",
-      //       template: "folders",
-      //     },
-      //   },
-      //   {
-      //     name: ["--no-compile"],
-      //     description: "Do not compile Python source files to bytecode",
-      //   },
-      //   {
-      //     name: ["--install-option"],
-      //     description:
-      //       "Extra arguments to be supplied to the setup.py install command",
-      //   },
-      //   {
-      //     name: ["--no-build-isolation"],
-      //     description:
-      //       "Disable isolation when building a modern source distribution.",
-      //   },
-      //   {
-      //     name: ["-c", "--constraint"],
-      //     description:
-      //       "Constrain versions using the given constraints file. This option can be used multiple times.",
-      //   },
-      //   {
-      //     name: ["-r", "--requirement"],
-      //     description:
-      //       "Install from the given requirements file. This option can be used multiple times.",
-      //   },
-      //   {
-      //     name: ["--no-deps"],
-      //     description: "Don’t install package dependencies.",
-      //   },
-      //   {
-      //     name: ["--global-option"],
-      //     description:
-      //       "Extra global options to be supplied to the setup.py call before the install command.",
-      //   },
-      //   {
-      //     name: ["--no-binary"],
-      //     description:
-      //       "Constrain versions using the given constraints file. This option can be used multiple times.",
-      //   },
-      //   {
-      //     name: ["--only-binary"],
-      //     description: "Do not use source packages",
-      //     args: {
-      //       suggestions: [
-      //         {
-      //           name: ":all:",
-      //           description: "Disable all source packages",
-      //         },
-      //         {
-      //           name: ":none:",
-      //           description: "Empty the set",
-      //         },
-      //       ],
-      //     },
-      //   },
-      //   {
-      //     name: ["--prefer-binary"],
-      //     description:
-      //       "Prefer older binary packages over newer source packages.",
-      //   },
-      //   {
-      //     name: ["--src"],
-      //     description: "Directory to check out editable projects into.",
-      //     args: {
-      //       name: "source folder",
-      //       template: "folders",
-      //     },
-      //   },
-      //   {
-      //     name: ["--pre"],
-      //     description:
-      //       "Include pre-release and development versions. By default, pip only finds stable versions.",
-      //   },
-      //   {
-      //     name: ["--require-hashes"],
-      //     description:
-      //       "Require a hash to check each requirement against, for repeatable installs.",
-      //   },
-      //   {
-      //     name: ["--progress-bar"],
-      //     description: "Specify type of progress to be displayed",
-      //     args: {
-      //       suggestions: [
-      //         { name: "off" },
-      //         { name: "on" },
-      //         { name: "ascii" },
-      //         { name: "pretty" },
-      //         { name: "emoji" },
-      //       ],
-      //     },
-      //   },
-      //   {
-      //     name: ["--no-build-isolation"],
-      //     description:
-      //       "Disable isolation when building a modern source distribution.",
-      //   },
-      //   {
-      //     name: ["--use-pep517"],
-      //     description: "Use PEP 517 for building source distributions",
-      //   },
-      //   {
-      //     name: ["--ignore-requires-python"],
-      //     description: "Ignore the Requires-Python information.",
-      //   },
-      //   {
-      //     name: ["-d", "--dest"],
-      //     description:
-      //       "Require a hash to check each requirement against, for repeatable installs.",
-      //     args: {
-      //       name: "dir",
-      //       template: "folders",
-      //     },
-      //   },
-      //   {
-      //     name: ["--platform"],
-      //     description: "Only use wheels compatible with platform.",
-      //     args: { name: "platform" },
-      //   },
-      //   {
-      //     name: ["--python-version"],
-      //     description:
-      //       "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
-      //   },
-      //   {
-      //     name: ["--implementation"],
-      //     description: "Only use wheels compatible with Python implementation",
-      //     args: {
-      //       name: "implementation",
-      //     },
-      //   },
-      //   {
-      //     name: ["--abi"],
-      //     description:
-      //       "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’.",
-      //     args: {
-      //       name: "abi",
-      //     },
-      //   },
-      //   {
-      //     name: ["--no-clean"],
-      //     description: "Don’t clean up build directories.",
-      //   },
-      //   {
-      //     name: ["-i", "--index-url"],
-      //     description: "Base URL of the Python Package Index",
-      //     args: {
-      //       name: "url",
-      //     },
-      //   },
-      //   {
-      //     name: ["--no-index"],
-      //     description:
-      //       "Ignore package index (only looking at --find-links URLs instead).",
-      //   },
-      //   {
-      //     name: ["--extra-index-url"],
-      //     description:
-      //       "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url.",
-      //   },
-      //   {
-      //     name: ["-f", "--find-links"],
-      //     description: "Look for archives in the directory listing",
-      //     args: {
-      //       name: "url",
-      //       template: "filepaths",
-      //     },
-      //   },
-      // ],
+      options: [
+        //   {
+        //     name: ["--compile"],
+        //     description: "Do not compile Python source files to bytecode",
+        //   },
+        //   {
+        //     name: ["-U", "--upgrade"],
+        //     description:
+        //       "Upgrade all specified packages to the newest available version.",
+        //   },
+        //   {
+        //     name: ["--upgrade-strategy"],
+        //     description:
+        //       "Determines how dependency upgrading should be handled [default: only-if-needed].",
+        //   },
+        //   {
+        //     name: ["--no-deps"],
+        //     description: "Don’t install package dependencies.",
+        //   },
+        //   {
+        //     name: ["--root"],
+        //     description:
+        //       "Install everything relative to this alternate root directory.",
+        //     args: {
+        //       template: "folders",
+        //     },
+        //   },
+        //   {
+        //     name: ["--require-hashes"],
+        //     description:
+        //       "Require a hash to check each requirement against, for repeatable installs.",
+        //   },
+        //   {
+        //     name: ["--prefix"],
+        //     description:
+        //       "Installation prefix where lib, bin and other top-level folders are placed",
+        //     args: {
+        //       template: "folders",
+        //     },
+        //   },
+        //   {
+        //     name: ["-t", "--target"],
+        //     description: "Install packages into <dir>.",
+        //     args: {
+        //       name: "dir",
+        //       template: "folders",
+        //     },
+        //   },
+        //   {
+        //     name: ["--no-compile"],
+        //     description: "Do not compile Python source files to bytecode",
+        //   },
+        //   {
+        //     name: ["--install-option"],
+        //     description:
+        //       "Extra arguments to be supplied to the setup.py install command",
+        //   },
+        //   {
+        //     name: ["--no-build-isolation"],
+        //     description:
+        //       "Disable isolation when building a modern source distribution.",
+        //   },
+        //   {
+        //     name: ["-c", "--constraint"],
+        //     description:
+        //       "Constrain versions using the given constraints file. This option can be used multiple times.",
+        //   },
+        {
+          name: ["-r", "--requirement"],
+          description:
+            "Install from the given requirements file. This option can be used multiple times",
+          isRepeatable: true,
+          args: {
+            name: "requirements file",
+            template: "filepaths",
+          },
+        },
+        //   {
+        //     name: ["--no-deps"],
+        //     description: "Don’t install package dependencies.",
+        //   },
+        //   {
+        //     name: ["--global-option"],
+        //     description:
+        //       "Extra global options to be supplied to the setup.py call before the install command.",
+        //   },
+        //   {
+        //     name: ["--no-binary"],
+        //     description:
+        //       "Constrain versions using the given constraints file. This option can be used multiple times.",
+        //   },
+        //   {
+        //     name: ["--only-binary"],
+        //     description: "Do not use source packages",
+        //     args: {
+        //       suggestions: [
+        //         {
+        //           name: ":all:",
+        //           description: "Disable all source packages",
+        //         },
+        //         {
+        //           name: ":none:",
+        //           description: "Empty the set",
+        //         },
+        //       ],
+        //     },
+        //   },
+        //   {
+        //     name: ["--prefer-binary"],
+        //     description:
+        //       "Prefer older binary packages over newer source packages.",
+        //   },
+        //   {
+        //     name: ["--src"],
+        //     description: "Directory to check out editable projects into.",
+        //     args: {
+        //       name: "source folder",
+        //       template: "folders",
+        //     },
+        //   },
+        //   {
+        //     name: ["--pre"],
+        //     description:
+        //       "Include pre-release and development versions. By default, pip only finds stable versions.",
+        //   },
+        //   {
+        //     name: ["--require-hashes"],
+        //     description:
+        //       "Require a hash to check each requirement against, for repeatable installs.",
+        //   },
+        //   {
+        //     name: ["--progress-bar"],
+        //     description: "Specify type of progress to be displayed",
+        //     args: {
+        //       suggestions: [
+        //         { name: "off" },
+        //         { name: "on" },
+        //         { name: "ascii" },
+        //         { name: "pretty" },
+        //         { name: "emoji" },
+        //       ],
+        //     },
+        //   },
+        //   {
+        //     name: ["--no-build-isolation"],
+        //     description:
+        //       "Disable isolation when building a modern source distribution.",
+        //   },
+        //   {
+        //     name: ["--use-pep517"],
+        //     description: "Use PEP 517 for building source distributions",
+        //   },
+        //   {
+        //     name: ["--ignore-requires-python"],
+        //     description: "Ignore the Requires-Python information.",
+        //   },
+        //   {
+        //     name: ["-d", "--dest"],
+        //     description:
+        //       "Require a hash to check each requirement against, for repeatable installs.",
+        //     args: {
+        //       name: "dir",
+        //       template: "folders",
+        //     },
+        //   },
+        //   {
+        //     name: ["--platform"],
+        //     description: "Only use wheels compatible with platform.",
+        //     args: { name: "platform" },
+        //   },
+        //   {
+        //     name: ["--python-version"],
+        //     description:
+        //       "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
+        //   },
+        //   {
+        //     name: ["--implementation"],
+        //     description: "Only use wheels compatible with Python implementation",
+        //     args: {
+        //       name: "implementation",
+        //     },
+        //   },
+        //   {
+        //     name: ["--abi"],
+        //     description:
+        //       "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’.",
+        //     args: {
+        //       name: "abi",
+        //     },
+        //   },
+        //   {
+        //     name: ["--no-clean"],
+        //     description: "Don’t clean up build directories.",
+        //   },
+        //   {
+        //     name: ["-i", "--index-url"],
+        //     description: "Base URL of the Python Package Index",
+        //     args: {
+        //       name: "url",
+        //     },
+        //   },
+        //   {
+        //     name: ["--no-index"],
+        //     description:
+        //       "Ignore package index (only looking at --find-links URLs instead).",
+        //   },
+        //   {
+        //     name: ["--extra-index-url"],
+        //     description:
+        //       "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url.",
+        //   },
+        //   {
+        //     name: ["-f", "--find-links"],
+        //     description: "Look for archives in the directory listing",
+        //     args: {
+        //       name: "url",
+        //       template: "filepaths",
+        //     },
+        //   },
+      ],
     },
     {
       name: "download",
