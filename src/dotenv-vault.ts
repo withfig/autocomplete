@@ -1,3 +1,5 @@
+import { filepaths } from "@fig/autocomplete-generators";
+
 // Common Options
 const yesOption: Fig.Option = {
   name: ["--yes", "-y"],
@@ -39,7 +41,7 @@ const filenameArg = {
   description:
     "Set input filename. Defaults to .env for development and .env.{environment} for other environments",
   isOptional: true,
-  template: "filepaths",
+  generators: filepaths({ matches: /^\.env.*$/ }),
 };
 
 const completionSpec: Fig.Spec = {
