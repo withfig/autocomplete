@@ -37,6 +37,7 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
+          isRepeatable: 5,
         },
         {
           name: ["--exclude-rules", "-e"],
@@ -211,6 +212,7 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
+          isRepeatable: 5,
         },
         {
           name: ["--exclude-rules", "-e"],
@@ -375,6 +377,7 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
+          isRepeatable: 5,
         },
         {
           name: ["--exclude-rules", "-e"],
@@ -525,6 +528,7 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
+          isRepeatable: 5,
         },
       ],
     },
@@ -540,6 +544,7 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
+          isRepeatable: 5,
         },
       ],
     },
@@ -555,6 +560,7 @@ const completionSpec: Fig.Spec = {
           name: ["--verbose", "-v"],
           description:
             "Verbosity, how detailed should the output be. This is stackable, so -vv is more verbose than -v. For the most verbose option try -vvvv or -vvvvv",
+          isRepeatable: 5,
         },
       ],
     },
