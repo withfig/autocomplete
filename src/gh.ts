@@ -218,6 +218,20 @@ const completionSpec: Fig.Spec = {
     description: "Custom user defined gh alias",
     isOptional: true,
     generators: ghGenerators.listAlias,
+    parserDirectives: {
+      alias: async (token, executeShellCommand) => {
+        const out = await executeShellCommand(`gh alias list`);
+        const alias = out
+          .split("\n")
+          .find((line) => line.startsWith(`${token}:\t`));
+
+        if (!alias) {
+          throw new Error("Failed to parse alias");
+        }
+
+        return alias.slice(token.length + 1).trim();
+      },
+    },
   },
   subcommands: [
     {
