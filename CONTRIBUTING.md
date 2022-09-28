@@ -45,6 +45,17 @@ A few things to keep in mind when writing your spec:
 
 We use GitHub issues to track public bugs as well as new feature requests. If you have any input, [open a new issue](https://github.com/withfig/fig)! Note that all issues should be filed under the [withfig/fig](https://github.com/withfig/fig) repo, not under independent feature repos.
 
+## Hacktoberfest
+
+We welcome all contributions! However, to reduce maintenance burden, we will mark PRs that **do not significantly contribute** as invalid for Hacktoberfest.
+
+- Small typo fixes will be marked as invalid
+  - However, contributing typo checking to our CI would **definitely** be valid!
+- Contributions to our README will be marked as invalid
+- Fixes to incorrect specs are **valid**
+- Fixes to generators are **valid**
+- Contributing new completions specs is **valid**
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under its MIT License.
