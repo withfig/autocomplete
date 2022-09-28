@@ -352,7 +352,7 @@ export const workflowsSpecGenerator: Fig.Subcommand["generateSpec"] = async (
       displayName,
       icon: workflow.icon ?? "⚡️",
       name,
-      insertValue: `${workflow.isOwnedByUser ? workflow.name : name[0]} `,
+      insertValue: workflow.isOwnedByUser ? workflow.name : name[0],
       description: workflow.description,
       options,
     };
