@@ -16,10 +16,36 @@ const gems: Fig.Generator = {
   },
 };
 
+const httpProxyOptions: Fig.Option[] = [
+  {
+    name: ["-p", "--http-proxy"],
+    description: "Use HTTP proxy for remote operations",
+    args: {
+      name: "URL",
+      description: "The URL",
+      isOptional: true,
+    },
+  },
+  {
+    name: "--no-http-proxy",
+    description: "Do not use HTTP proxy for remote operations",
+    args: {
+      name: "URL",
+      description: "The URL",
+      isOptional: true,
+    },
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "gem",
   description: "Ruby package manager",
   subcommands: [
+    {
+      name: "help",
+      description: "Help about any command",
+      args: { name: "command", isOptional: true, template: "help" },
+    },
     {
       name: ["install", "i"],
       description: "Install a gem into the local repository",
@@ -28,6 +54,204 @@ const completionSpec: Fig.Spec = {
         generators: gems,
         debounce: true,
       },
+      options: [
+        {
+          name: "--platform",
+          description: "Specify the platform of gem to install",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+      ],
+    },
+    {
+      name: "list",
+      description: "Display local gems whose name matches REGEXP",
+      args: {
+        name: "REGEXP",
+        description: "Regexp to look for in gem name",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: ["-i", "--installed"],
+          description: "Check for installed gem",
+        },
+        {
+          name: ["-I", "--no-installed"],
+          description: "Check for not installed gem",
+        },
+        {
+          name: ["-v", "--version"],
+          description:
+            "Specify version of gem to list for use with --installed",
+          args: {
+            name: "VERSION",
+            description: "The version of gem",
+          },
+        },
+        {
+          name: ["-d", "--details"],
+          description: "Display detailed information of gem(s)",
+        },
+        {
+          name: "--no-details",
+          description: "Do not display detailed information of gem(s)",
+        },
+        {
+          name: "--versions",
+          description: "Display only gem names and versions",
+        },
+        {
+          name: "--no-versions",
+          description: "Display only gem names",
+        },
+        {
+          name: ["-a", "--all"],
+          description: "Display all gem versions",
+        },
+        {
+          name: ["-e", "--exact"],
+          description: "Name of gem(s) to query on matches the provided STRING",
+        },
+        {
+          name: "--prerelease",
+          description: "Display prerelease versions",
+        },
+        {
+          name: "--no-prerelease",
+          description: "Do not display prerelease versions",
+        },
+        {
+          name: ["-u", "--update-sources"],
+          description: "[Deprecated] Update local source cache",
+        },
+        {
+          name: "--no-update-sources",
+          description: "[Deprecated] Do not update local source cache",
+        },
+        {
+          name: ["-l", "--local"],
+          description: "Restrict operations to the LOCAL domain",
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "Restrict operations to the REMOTE domain",
+        },
+        {
+          name: ["-b", "--both"],
+          description: "Allow LOCAL and REMOTE operations",
+        },
+        {
+          name: ["-B", "--bulk-threshold"],
+          description:
+            "Threshold for switching to bulk synchronization (default 1000)",
+          args: {
+            name: "COUNT",
+            description: "The threshold",
+          },
+        },
+        {
+          name: "--clear-sources",
+          description: "Clear the gem sources",
+        },
+        {
+          name: ["-s", "--source"],
+          description: "Append URL to list of remote gem sources",
+          args: {
+            name: "URL",
+            description: "The URL",
+          },
+        },
+        ...httpProxyOptions,
+      ],
+    },
+    {
+      name: "build",
+      description: "Build a gem from a gemspec",
+      args: {
+        name: "GEMSPEC_FILE",
+        description: "Gemspec file name to build a gem for",
+      },
+      options: [
+        {
+          name: "--platform",
+          description: "Specify the platform of gem to build",
+          args: {
+            name: "PLATFORM",
+            description: "The platform of gem",
+          },
+        },
+        {
+          name: "--force",
+          description: "Skip validation of the spec",
+        },
+        {
+          name: "--strict",
+          description: "Consider warnings as errors when validating the spec",
+        },
+        {
+          name: ["-o", "--output"],
+          description: "Output gem with the given filename",
+          args: {
+            name: "FILE",
+            description: "The filename",
+          },
+        },
+        {
+          name: "-C",
+          description:
+            "Run as if gem build was started in <PATH> instead of the current working directory",
+          args: {
+            name: "PATH",
+            description: "The filename",
+            template: "folders",
+          },
+        },
+      ],
+    },
+    {
+      name: "push",
+      description: "Push a gem up to the gem server",
+      args: {
+        name: "GEM",
+        description: "Built gem to push up",
+      },
+      options: [
+        {
+          name: ["-k", "--key"],
+          description: "Use the given API key",
+          args: {
+            name: "KEYNAME",
+            description: "The API key",
+          },
+        },
+        {
+          name: "--otp",
+          description:
+            "Digit code for multifactor authentication You can also use the environment variable GEM_HOST_OTP_CODE",
+          args: {
+            name: "CODE",
+            description: "The GEM host otp code",
+          },
+        },
+        {
+          name: "--host",
+          description:
+            "Push to another gemcutter-compatible host (e.g. https://rubygems.org)",
+          args: {
+            name: "HOST",
+            description: "The gemcutter-compatible host",
+          },
+        },
+        ...httpProxyOptions,
+      ],
+    },
+    {
+      name: "server",
+      description:
+        "Starts up a web server that hosts the RDoc (requires rubygems-server)",
     },
     {
       name: "outdated",
@@ -213,6 +437,56 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show help for gem",
+      isPersistent: true,
+    },
+    {
+      name: ["-V", "--verbose"],
+      description: "Set the verbose level of output",
+      isPersistent: true,
+    },
+    {
+      name: "--no-verbose",
+      description: "Do not set the verbose level of output",
+      isPersistent: true,
+    },
+    {
+      name: ["-q", "--quiet"],
+      description: "Silence command progress meter",
+      isPersistent: true,
+    },
+    {
+      name: "--silent",
+      description: "Silence RubyGems output",
+      isPersistent: true,
+    },
+    {
+      name: "-config-file",
+      description: "Use this config file instead of default",
+      args: {
+        name: "FILE",
+        description: "The config file",
+        template: "filepaths",
+      },
+      isPersistent: true,
+    },
+    {
+      name: "--backtrace",
+      description: "Show stack backtrace on errors",
+      isPersistent: true,
+    },
+    {
+      name: "--debug",
+      description: "Turn on Ruby debugging",
+      isPersistent: true,
+    },
+    {
+      name: "--norc",
+      description: "Avoid loading any .gemrc file",
+      isPersistent: true,
+    },
+    {
+      name: ["-v", "--version"],
+      description: "Show the gem version",
     },
   ],
 };
