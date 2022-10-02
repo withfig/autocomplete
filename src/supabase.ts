@@ -183,7 +183,10 @@ const completionSpec: Fig.Spec = {
               name: "--env-file",
               description:
                 "Path to an env file to be populated to the Function environment",
-              args: { name: "env-file" },
+              args: {
+                name: "env-file",
+                template: "filepaths",
+              },
             },
             {
               name: "--no-verify-jwt",
