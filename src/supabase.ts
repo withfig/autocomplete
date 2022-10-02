@@ -69,7 +69,11 @@ const completionSpec: Fig.Spec = {
             {
               name: ["--file", "-f"],
               description: "Saves schema diff to a file",
-              args: { name: "file" },
+              args: {
+                name: "file",
+                template: "filepaths",
+                suggestCurrentToken: true,
+              },
             },
             {
               name: ["--schema", "-s"],
