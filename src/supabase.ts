@@ -315,7 +315,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "--env-file",
               description: "Read secrets from a .env file",
-              args: { name: "env-file" },
+              args: {
+                name: "env-file",
+                template: "filepaths",
+              },
             },
           ],
         },
