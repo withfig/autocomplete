@@ -1669,6 +1669,60 @@ Pass '--push' to push any local commits to the new repository`,
           ],
         },
         {
+          name: "deploy-key",
+          description: "Manage deploy keys in a repository",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a deploy key to a GitHub repository",
+              args: {
+                name: "key-file",
+                description: "Path to the public key file",
+                template: "filepaths",
+              },
+              options: [
+                ghOptions.help,
+                {
+                  name: ["-w", "--allow-write"],
+                  description: "Allow write access for the key",
+                },
+                {
+                  name: ["-t", "--title"],
+                  description: "Title of the new key",
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a deploy key from a GitHub repository",
+              args: {
+                name: "key-id",
+                description: "ID of the key to delete",
+              },
+              options: [ghOptions.help],
+            },
+            {
+              name: "list",
+              description: "List deploy keys in a GitHub repository",
+              options: [ghOptions.help],
+            },
+          ],
+          options: [
+            ghOptions.help,
+            {
+              name: ["-R", "--repo"],
+              description:
+                "Select another repository using the `[HOST/]OWNER/REPO` format",
+              args: {
+                name: "[HOST/]OWNER/REPO",
+              },
+            },
+          ],
+        },
+        {
           name: "delete",
           description: `Delete a GitHub repository.
 With no argument, deletes the current repository. Otherwise, deletes the specified repository.
