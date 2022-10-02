@@ -190,6 +190,7 @@ const ghOptions: Record<string, Fig.Option> = {
     args: {
       name: "flags",
       description: "Flags to pass to git when cloning",
+      isVariadic: true,
     },
   },
   confirm: {
