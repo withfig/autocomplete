@@ -1,3 +1,5 @@
+import { keyValueList } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "airflow",
   description: "Subcommand",
@@ -21,6 +23,11 @@ const completionSpec: Fig.Spec = {
                 name: "basic_auth",
                 description:
                   "Securing Flower with Basic Authentication. Accepts user:password pairs separated by a comma. Example: flower_basic_auth = user1:password1,user2:password2",
+                generators: keyValueList({
+                  separator: ":",
+                  keys: ["user"],
+                  values: ["password"],
+                }),
               },
             },
             {
