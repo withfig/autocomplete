@@ -24,9 +24,23 @@ const completionSpec: Fig.Spec = {
       name: ["install", "i"],
       description: "Install a gem into the local repository",
       args: {
-        name: "GEMNAME",
+        name: "gem",
         generators: gems,
         debounce: true,
+      },
+    },
+    {
+      name: "outdated",
+      description: "Display all gems that need updates",
+    },
+    {
+      name: "update",
+      description: "Update installed gems to the latest version",
+      args: {
+        name: "gems",
+        description: "The gem(s) you want to update",
+        isVariadic: true,
+        isOptional: true,
       },
     },
   ],
