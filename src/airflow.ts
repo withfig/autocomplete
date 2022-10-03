@@ -27,6 +27,7 @@ const completionSpec: Fig.Spec = {
                   separator: ":",
                   keys: ["user"],
                   values: ["password"],
+                  cache: true,
                 }),
               },
             },
