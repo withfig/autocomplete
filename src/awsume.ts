@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "awsume",
   description: "Awsume",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   options: [
     {
       name: ["--help", "-h"],
