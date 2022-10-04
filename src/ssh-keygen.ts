@@ -1,49 +1,11 @@
-const capitalBExclusives = [
-  "-a",
-  "-b",
-  "-C",
-  "-c",
-  "-D",
-  "-E",
-  "-e",
-  "-F",
-  "-g",
-  "-H",
-  "-h",
-  "-I",
-  "-i",
-  "-K",
-  "-k",
-  "-L",
-  "-l",
-  "-M",
-  "-m",
-  "-N",
-  "-n",
-  "-O",
-  "-P",
-  "-p",
-  "-Q",
-  "-q",
-  "-R",
-  "-r",
-  "-s",
-  "-t",
-  "-u",
-  "-V",
-  "-v",
-  "-w",
-  "-Y",
-  "-y",
-  "-Z",
-  "-z",
-];
-const capitalDExclusives = [
+const allOptions = [
+  "-A",
   "-a",
   "-B",
   "-b",
   "-C",
   "-c",
+  "-D",
   "-E",
   "-e",
   "-F",
@@ -70,6 +32,7 @@ const capitalDExclusives = [
   "-r",
   "-s",
   "-t",
+  "-U",
   "-u",
   "-V",
   "-v",
@@ -83,6 +46,14 @@ const completionSpec: Fig.Spec = {
   name: "ssh-keygen",
   description: "Generates, manages and converts authentication keys for ssh",
   options: [
+    {
+      name: "-A",
+      description:
+        "For each of the key types (rsa, dsa, ecdsa and ed25519) for which host keys do not exist, generate the host keys with the default key file path, an empty passphrase, default bits for the key type, and default comment",
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-a" && option !== "-f"
+      ),
+    },
     {
       name: "-a",
       description:
@@ -99,7 +70,7 @@ const completionSpec: Fig.Spec = {
       name: "-B",
       description:
         "Show the bubblebabble digest of specified private or public key file",
-      exclusiveOn: capitalBExclusives,
+      exclusiveOn: allOptions.filter((option) => option !== "-f"),
     },
     {
       name: "-b",
@@ -123,6 +94,13 @@ const completionSpec: Fig.Spec = {
       name: "-c",
       description:
         "Requests changing the comment in the private and public key files",
+      exclusiveOn: allOptions.filter(
+        (option) =>
+          option !== "-a" &&
+          option !== "-C" &&
+          option !== "-f" &&
+          option !== "-P"
+      ),
     },
     {
       name: "-D",
@@ -131,7 +109,7 @@ const completionSpec: Fig.Spec = {
         name: "pkcs11",
         description: "PKCS#11 public keys",
       },
-      exclusiveOn: capitalDExclusives,
+      exclusiveOn: allOptions,
     },
     {
       name: "-E",
@@ -146,6 +124,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "-e",
       description: "Read a OpenSSH key file and print to stdout",
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-f" && option !== "-m"
+      ),
     },
     {
       name: "-F",
@@ -155,6 +136,9 @@ const completionSpec: Fig.Spec = {
         name: "hostname",
         description: "Hostname with optional port number",
       },
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-l" && option !== "-v" && option !== "-f"
+      ),
     },
     {
       name: "-f",
@@ -173,6 +157,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-H",
       description: "Hash a known_hosts file",
+      exclusiveOn: allOptions.filter((option) => option !== "-f"),
     },
     {
       name: "-h",
@@ -186,26 +171,51 @@ const completionSpec: Fig.Spec = {
         description: "Key identity value",
         template: "filepaths",
       },
+      exclusiveOn: allOptions.filter(
+        (option) =>
+          option !== "-s" &&
+          option !== "-h" &&
+          option !== "-U" &&
+          option !== "-D"
+      ),
     },
     {
       name: "-i",
       description: "Read an unencrypted private (or public) key file",
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-f" && option !== "-m"
+      ),
     },
     {
       name: "-K",
       description: "Download resident keys from a FIDO	authenticator",
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-a" && option !== "-w"
+      ),
     },
     {
       name: "-k",
       description: "Generate a	KRL file",
+      dependsOn: ["-f"],
+      exclusiveOn: allOptions.filter(
+        (option) =>
+          option !== "-f" &&
+          option !== "-u" &&
+          option !== "-s" &&
+          option !== "-z"
+      ),
     },
     {
       name: "-L",
       description: "Generate a	KRL file",
+      exclusiveOn: allOptions.filter((option) => option !== "-f"),
     },
     {
       name: "-l",
       description: "Show fingerprint of specified public key file",
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-v" && option !== "-E" && option !== "-f"
+      ),
     },
     {
       name: "-M",
@@ -215,6 +225,9 @@ const completionSpec: Fig.Spec = {
         description: "Use generate or screen",
         suggestions: [{ name: "generate" }, { name: "screen" }],
       },
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-f" && option !== "-O"
+      ),
     },
     {
       name: "-m",
@@ -264,10 +277,20 @@ const completionSpec: Fig.Spec = {
       name: "-p",
       description:
         "Requests changing the passphrase of a private key file instead of creating a new private key",
+      exclusiveOn: allOptions.filter(
+        (option) =>
+          option !== "-a" &&
+          option !== "-f" &&
+          option !== "-m" &&
+          option !== "-N"
+      ),
     },
     {
       name: "-Q",
       description: "Test whether keys have been revoked in a KRL",
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-l" && option !== "-f"
+      ),
     },
     {
       name: "-q",
@@ -280,6 +303,7 @@ const completionSpec: Fig.Spec = {
         name: "hostname",
         description: "Hostname to remove keys from a known_hosts file",
       },
+      exclusiveOn: allOptions.filter((option) => option !== "-f"),
     },
     {
       name: "-r",
@@ -289,6 +313,9 @@ const completionSpec: Fig.Spec = {
         name: "hostname",
         description: "Hostname for the specified public key file",
       },
+      exclusiveOn: allOptions.filter(
+        (option) => option !== "-g" && option !== "-f"
+      ),
     },
     {
       name: "-s",
@@ -313,6 +340,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "-U",
+      description:
+        "When used in combination with -s, this option indicates that a CA key resides in a ssh-agent(1)",
+    },
+    {
       name: "-u",
       description: "Update a KRL",
     },
@@ -323,6 +355,11 @@ const completionSpec: Fig.Spec = {
         name: "validity_interval",
         description: "Value for validity interval",
       },
+    },
+    {
+      name: "-v",
+      description: "Verbose mode",
+      isRepeatable: 3,
     },
     {
       name: "-w",
@@ -362,13 +399,22 @@ const completionSpec: Fig.Spec = {
               "Request to verify a signature generated using ssh-keygen -Y",
           },
         ],
+
         isVariadic: true,
       },
+      exclusiveOn: allOptions.filter(
+        (option) =>
+          option !== "-s" &&
+          option !== "-f" &&
+          option !== "-n" &&
+          option !== "-r"
+      ),
     },
     {
       name: "-y",
       description:
         "Read a private OpenSSH format file and print an OpenSSH public key to stdout",
+      exclusiveOn: allOptions.filter((option) => option !== "-f"),
     },
     {
       name: "-Z",
