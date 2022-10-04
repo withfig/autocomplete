@@ -17,10 +17,6 @@ const completionSpec: Fig.Spec = {
           name: ["-v", "--verbose"],
           description: "Enable verbose logging",
         },
-        {
-          name: ["-h", "--help"],
-          description: "Display help for the command",
-        },
       ],
     },
     {
@@ -36,12 +32,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "name",
           description: "File name",
-        },
-      ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for the command",
+          template: "filepaths",
+          suggestCurrentToken: true,
         },
       ],
     },
@@ -50,12 +42,6 @@ const completionSpec: Fig.Spec = {
       priority: 80,
       description: "Creates a config file on an existing Sapphire project",
       displayName: "Initalize CLI on an existing project ⚙️",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Display help for the command",
-        },
-      ],
     },
     {
       name: "help",
@@ -66,6 +52,7 @@ const completionSpec: Fig.Spec = {
         name: "command",
         description: "Command to display help for",
         isOptional: true,
+        template: "help",
       },
     },
   ],
@@ -74,6 +61,7 @@ const completionSpec: Fig.Spec = {
       name: ["--help", "-h"],
       priority: 10,
       description: "Show help for sapphire",
+      isPersistent: true,
     },
     {
       name: ["--version", "-V"],
