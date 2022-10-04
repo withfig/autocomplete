@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
               // to work regardless of any amount over that limit.
               // Fig should defer assigning priority to z.
               // 75 added to keep args above options.
-              priority: 75 + weight,
+              priority: 75 + (weight >= 100 ? 100 : weight),
             };
           }
         });
