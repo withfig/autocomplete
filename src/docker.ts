@@ -3756,6 +3756,7 @@ const completionSpec: Fig.Spec = {
               description: "Build definition file",
               args: {
                 name: "string",
+                isVariadic: true,
               },
             },
             {
@@ -3793,6 +3794,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "progress",
                 default: "auto",
+                suggestions: ["auto", "plain", "tty"],
               },
             },
             {
@@ -4049,6 +4051,7 @@ const completionSpec: Fig.Spec = {
               args: {
                 name: "progress",
                 default: "auto",
+                suggestions: ["auto", "plain", "tty"],
               },
             },
             {
@@ -4304,6 +4307,7 @@ const completionSpec: Fig.Spec = {
                   args: {
                     name: "progress",
                     default: "auto",
+                    suggestions: ["auto", "plain", "tty"],
                   },
                 },
                 {
