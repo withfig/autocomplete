@@ -174,7 +174,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-cls", "csl"],
+      name: ["-cls", "-csl"],
       description: "Get a sign-on url to a specific service",
       args: {
         name: "service",
