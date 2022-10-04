@@ -47,6 +47,13 @@ const localRenderAndStillOptions: Fig.Option[] = [
       template: "filepaths",
     },
   },
+  {
+    name: "--public-dir",
+    description: "Location of the public/ directory",
+    args: {
+      template: "filepaths",
+    },
+  },
 ];
 
 const lambdaRenderAndStillOptions: Fig.Option[] = [
@@ -66,6 +73,9 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       suggestions: ["public", "private"],
     },
   },
+];
+
+const lambdaRenderOptions: Fig.Option[] = [
   {
     name: "--frames-per-lambda",
     description: "How many frames should be rendered per chunk",
@@ -80,6 +90,10 @@ const lambdaRenderAndStillOptions: Fig.Option[] = [
       name: "concurrencyPerLambda",
     },
   },
+  {
+    name: "--overwrite",
+    description: "Overwrite a video if it already exists in the S3 bucket",
+  },
 ];
 
 const localRenderOptions: Fig.Option[] = [
@@ -90,6 +104,14 @@ const localRenderOptions: Fig.Option[] = [
   {
     name: "--concurrency",
     description: "How many frames to render in parallel",
+  },
+  {
+    name: "--enforce-audio-track",
+    description: "Include an audio track even if it's silent",
+  },
+  {
+    name: "--muted",
+    description: "Mute the output video",
   },
 ];
 
@@ -442,6 +464,7 @@ const completionSpec: Fig.Spec = {
           ],
           options: [
             ...lambdaRenderAndStillOptions,
+            ...lambdaRenderOptions,
             ...renderOptions,
             ...globalLambdaOptions,
           ],
@@ -709,6 +732,10 @@ const completionSpec: Fig.Spec = {
               },
             ],
           },
+        },
+        {
+          name: "--disable-keyboard-shortcuts",
+          description: "Disable all keyboard shortcuts",
         },
       ],
     },
