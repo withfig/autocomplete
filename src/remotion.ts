@@ -51,7 +51,7 @@ const localRenderAndStillOptions: Fig.Option[] = [
     name: "--public-dir",
     description: "Location of the public/ directory",
     args: {
-      template: "filepaths",
+      template: "folders",
     },
   },
 ];
