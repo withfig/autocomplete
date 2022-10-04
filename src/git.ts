@@ -45,43 +45,71 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
   ];
 };
 
-const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
-  const output = filterMessages(out);
+interface PostProcessBranchesOptions {
+  insertWithoutRemotes?: true;
+}
+const postProcessBranches =
+  (options: PostProcessBranchesOptions = {}): Fig.Generator["postProcess"] =>
+  (out) => {
+    const { insertWithoutRemotes = false } = options;
 
-  if (output.startsWith("fatal:")) {
-    return [];
-  }
+    const output = filterMessages(out);
 
-  return output.split("\n").map((elm) => {
-    let name = elm.trim();
-    const parts = elm.match(/\S+/g);
-    if (parts.length > 1) {
-      if (parts[0] === "*") {
-        // We are in a detached HEAD state
-        if (elm.includes("HEAD detached")) {
-          return {};
-        }
-        // Current branch
-        return {
-          name: elm.replace("*", "").trim(),
-          description: "Current branch",
-          priority: 100,
-          icon: "⭐️",
-        };
-      } else if (parts[0] === "+") {
-        // Branch checked out in another worktree.
-        name = elm.replace("+", "").trim();
-      }
+    if (output.startsWith("fatal:")) {
+      return [];
     }
 
-    return {
-      name,
-      description: "Branch",
-      icon: "fig://icon?type=git",
-      priority: 75,
-    };
-  });
-};
+    const seen = new Set<string>();
+    return output
+      .split("\n")
+      .filter((line) => !line.trim().startsWith("HEAD"))
+      .map((branch) => {
+        let name = branch.trim();
+        const parts = branch.match(/\S+/g);
+        if (parts.length > 1) {
+          if (parts[0] === "*") {
+            // We are in a detached HEAD state
+            if (branch.includes("HEAD detached")) {
+              return null;
+            }
+            // Current branch
+            return {
+              name: branch.replace("*", "").trim(),
+              description: "Current branch",
+              priority: 100,
+              icon: "⭐️",
+            };
+          } else if (parts[0] === "+") {
+            // Branch checked out in another worktree.
+            name = branch.replace("+", "").trim();
+          }
+        }
+
+        let description = "Branch";
+
+        if (insertWithoutRemotes && name.startsWith("remotes/")) {
+          name = name.slice(name.indexOf("/", 8) + 1);
+          description = "Remote branch";
+        }
+
+        const space = name.indexOf(" ");
+        if (space !== -1) {
+          name = name.slice(0, space);
+        }
+
+        return {
+          name,
+          description,
+          icon: "fig://icon?type=git",
+          priority: 75,
+        };
+      })
+      .filter((suggestion) => {
+        if (seen.has(suggestion.name)) return false;
+        seen.add(suggestion.name);
+        return true;
+      });
+  };
 
 export const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
@@ -120,12 +148,12 @@ export const gitGenerators: Record<string, Fig.Generator> = {
           icon: "fig://icon?type=commandkey",
         };
       });
-      const names = {};
+      const seen = new Set();
       return suggestions.filter((suggestion) => {
-        if (names[suggestion.name]) {
+        if (seen.has(suggestion.name)) {
           return false;
         }
-        names[suggestion.name] = true;
+        seen.add(suggestion.name);
         return true;
       });
     },
@@ -201,27 +229,28 @@ export const gitGenerators: Record<string, Fig.Generator> = {
   remoteLocalBranches: {
     script:
       "git --no-optional-locks branch -a --no-color --sort=-committerdate",
-    postProcess: postProcessBranches,
+    postProcess: postProcessBranches({ insertWithoutRemotes: true }),
   },
 
   localBranches: {
     script: "git --no-optional-locks branch --no-color --sort=-committerdate",
-    postProcess: postProcessBranches,
+    postProcess: postProcessBranches({ insertWithoutRemotes: true }),
   },
 
   // custom generator to display local branches by default or
   // remote branches if '-r' flag is used. See branch -d for use
   localOrRemoteBranches: {
     custom: async (tokens, executeShellCommand) => {
+      const pp = postProcessBranches({ insertWithoutRemotes: true });
       if (tokens.includes("-r")) {
-        return postProcessBranches(
+        return pp(
           await executeShellCommand(
             "git --no-optional-locks branch -r --no-color --sort=-committerdate"
           ),
           tokens
         );
       } else {
-        return postProcessBranches(
+        return pp(
           await executeShellCommand(
             "git --no-optional-locks branch --no-color --sort=-committerdate"
           ),
@@ -3771,11 +3800,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "base",
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
           isOptional: true,
         },
         {
           name: "new base",
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
           isOptional: true,
         },
       ],
@@ -4226,11 +4257,13 @@ const completionSpec: Fig.Spec = {
           name: "remote",
           isOptional: true,
           generators: gitGenerators.remotes,
+          filterStrategy: "fuzzy",
         },
         {
           name: "branch",
           isOptional: true,
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
         },
       ],
     },
@@ -4247,6 +4280,7 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
             name: "remote",
             generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
             suggestions: ["false", "true", "merges", "preserve", "interactive"],
           },
         },
@@ -4626,11 +4660,13 @@ const completionSpec: Fig.Spec = {
           name: "remote",
           isOptional: true,
           generators: gitGenerators.remotes,
+          filterStrategy: "fuzzy",
         },
         {
           name: "branch",
           isOptional: true,
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
         },
       ],
     },
@@ -4936,6 +4972,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "remote",
             generators: gitGenerators.remotes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -4945,6 +4982,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "old remote",
               generators: gitGenerators.remotes,
+              filterStrategy: "fuzzy",
             },
             {
               name: "new remote name",
@@ -5074,11 +5112,13 @@ const completionSpec: Fig.Spec = {
           name: "remote",
           isOptional: true,
           generators: gitGenerators.remotes,
+          filterStrategy: "fuzzy",
         },
         {
           name: "branch",
           isOptional: true,
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
         },
         {
           name: "refspec",
@@ -5342,6 +5382,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "stash",
+      insertValue: "stash{cursor}",
       description: "Temporarily stores all the modified tracked files",
       subcommands: [
         {
@@ -5398,6 +5439,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5452,6 +5494,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5473,6 +5516,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5498,6 +5542,7 @@ const completionSpec: Fig.Spec = {
             name: "stash",
             isOptional: true,
             generators: gitGenerators.stashes,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -5508,11 +5553,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "branch",
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               name: "stash",
               isOptional: true,
               generators: gitGenerators.stashes,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6204,9 +6251,11 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6216,9 +6265,11 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6234,6 +6285,7 @@ const completionSpec: Fig.Spec = {
           description: "Edit the description for the branch",
           args: {
             generators: gitGenerators.localBranches,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6322,6 +6374,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "branch",
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               name: "start point",
@@ -6338,10 +6391,12 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               isOptional: true,
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -6352,6 +6407,7 @@ const completionSpec: Fig.Spec = {
             name: "upstream",
             isOptional: true,
             generators: gitGenerators.localBranches,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6361,6 +6417,7 @@ const completionSpec: Fig.Spec = {
             name: "upstream",
             isOptional: true,
             generators: gitGenerators.localBranches,
+            filterStrategy: "fuzzy",
           },
         },
         {
@@ -6560,6 +6617,7 @@ const completionSpec: Fig.Spec = {
           name: "branch, file, tag or commit",
           description: "Branch, file, tag or commit to switch to",
           isOptional: true,
+          filterStrategy: "fuzzy",
           generators: [
             gitGenerators.remoteLocalBranches,
             gitGenerators.tags,
@@ -7145,6 +7203,7 @@ const completionSpec: Fig.Spec = {
       description: "Join two or more development histories together",
       args: {
         name: "branch",
+        filterStrategy: "fuzzy",
         generators: gitGenerators.remoteLocalBranches,
         isVariadic: true,
         isOptional: true,
@@ -7676,6 +7735,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "branch",
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               name: "start point",
@@ -7692,10 +7752,12 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
             {
               isOptional: true,
               generators: gitGenerators.localBranches,
+              filterStrategy: "fuzzy",
             },
           ],
         },
@@ -7728,6 +7790,7 @@ const completionSpec: Fig.Spec = {
           name: "branch name",
           description: "Branch or commit to switch to",
           generators: gitGenerators.localBranches,
+          filterStrategy: "fuzzy",
           suggestions: [
             {
               name: "-",

@@ -1,5 +1,4 @@
 import { filepaths } from "@fig/autocomplete-generators";
-
 const dtmGenerators: Record<string, Fig.Generator> = {
   plugins: {
     script: "dtm list plugins",
@@ -12,10 +11,8 @@ const dtmGenerators: Record<string, Fig.Generator> = {
       });
     },
   },
-
   yamlFiles: filepaths({ extensions: ["yaml", "yml"] }),
 };
-
 const completionSpec: Fig.Spec = {
   name: "dtm",
   description: "DevStream is an open-source DevOps toolchain manager",
@@ -31,13 +28,18 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "config-file",
             default: "config.yaml",
+            template: ["filepaths"],
             generators: dtmGenerators.yamlFiles,
           },
         },
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: { name: "plugin-dir", default: ".devstream" },
+          args: {
+            name: "plugin-dir",
+            default: ".devstream",
+            template: ["folders"],
+          },
         },
         {
           name: ["--yes", "-y"],
@@ -47,48 +49,22 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "completion",
-      description: "Generate the autocompletion script for the specified shell",
+      description:
+        "Generate the autocompletion script for dtm for the specified shell",
       subcommands: [
         {
           name: "bash",
-          description: "Generate the autocompletion script for bash",
-          options: [
-            {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-            },
-          ],
+          description: "Generate autocompletion script for bash",
         },
         {
           name: "fish",
-          description: "Generate the autocompletion script for fish",
-          options: [
-            {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-            },
-          ],
+          description: "Generate autocompletion script for fish",
         },
         {
           name: "powershell",
-          description: "Generate the autocompletion script for powershell",
-          options: [
-            {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-            },
-          ],
+          description: "Generate autocompletion script for powershell",
         },
-        {
-          name: "zsh",
-          description: "Generate the autocompletion script for zsh",
-          options: [
-            {
-              name: "--no-descriptions",
-              description: "Disable completion descriptions",
-            },
-          ],
-        },
+        { name: "zsh", description: "Generate autocompletion script for zsh" },
       ],
     },
     {
@@ -102,6 +78,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "config-file",
             default: "config.yaml",
+            template: ["filepaths"],
             generators: dtmGenerators.yamlFiles,
           },
         },
@@ -109,7 +86,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: { name: "plugin-dir", default: ".devstream" },
+          args: {
+            name: "plugin-dir",
+            default: ".devstream",
+            template: ["folders"],
+          },
         },
         {
           name: ["--yes", "-y"],
@@ -128,6 +109,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "config-file",
             default: "config.yaml",
+            template: ["filepaths"],
             generators: dtmGenerators.yamlFiles,
           },
         },
@@ -182,13 +164,18 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "config-file",
             default: "config.yaml",
+            template: ["filepaths"],
             generators: dtmGenerators.yamlFiles,
           },
         },
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: { name: "plugin-dir", default: ".devstream" },
+          args: {
+            name: "plugin-dir",
+            default: ".devstream",
+            template: ["folders"],
+          },
         },
       ],
     },
@@ -222,6 +209,11 @@ const completionSpec: Fig.Spec = {
               name: ["--plugin", "-p"],
               description: "Specify name with the plugin",
               args: { name: "plugin", generators: dtmGenerators.plugins },
+            },
+            {
+              name: ["--template", "-t"],
+              description: "Print a template config, e.g. quickstart/gitops/",
+              args: { name: "template" },
             },
           ],
         },
@@ -258,6 +250,16 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "upgrade",
+      description: "Upgrade dtm to the latest release version",
+      options: [
+        {
+          name: ["--yes", "-y"],
+          description: "Apply directly without confirmation",
+        },
+      ],
+    },
+    {
       name: "verify",
       description:
         "Verify DevOps tools according to DevStream config file and state",
@@ -268,13 +270,18 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "config-file",
             default: "config.yaml",
+            template: ["filepaths"],
             generators: dtmGenerators.yamlFiles,
           },
         },
         {
           name: ["--plugin-dir", "-d"],
           description: "Plugins directory",
-          args: { name: "plugin-dir", default: ".devstream" },
+          args: {
+            name: "plugin-dir",
+            default: ".devstream",
+            template: ["folders"],
+          },
         },
       ],
     },
@@ -291,23 +298,23 @@ const completionSpec: Fig.Spec = {
         {
           name: "completion",
           description:
-            "Generate the autocompletion script for the specified shell",
+            "Generate the autocompletion script for dtm for the specified shell",
           subcommands: [
             {
               name: "bash",
-              description: "Generate the autocompletion script for bash",
+              description: "Generate autocompletion script for bash",
             },
             {
               name: "fish",
-              description: "Generate the autocompletion script for fish",
+              description: "Generate autocompletion script for fish",
             },
             {
               name: "powershell",
-              description: "Generate the autocompletion script for powershell",
+              description: "Generate autocompletion script for powershell",
             },
             {
               name: "zsh",
-              description: "Generate the autocompletion script for zsh",
+              description: "Generate autocompletion script for zsh",
             },
           ],
         },
@@ -345,6 +352,10 @@ const completionSpec: Fig.Spec = {
             { name: "config", description: "Show configuration information" },
             { name: "status", description: "Show status information" },
           ],
+        },
+        {
+          name: "upgrade",
+          description: "Upgrade dtm to the latest release version",
         },
         {
           name: "verify",

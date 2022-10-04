@@ -18,9 +18,18 @@ const completionSpec: Fig.Spec = {
         "Explicitly tell the CLI to not initialize a new git repo in the project (default: false)",
     },
     {
+      name: "--noInstall",
+      description:
+        "Explicitly tell the CLI to not run the package manager's install command (default: false)",
+    },
+    {
       name: ["-y", "--default"],
       description:
         "Bypass the CLI and use all default options to bootstrap a new t3-app (default: false)",
+    },
+    {
+      name: ["-v", "--version"],
+      description: "Display the version number",
     },
     {
       name: ["--help", "-h"],

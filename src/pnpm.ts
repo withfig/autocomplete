@@ -220,6 +220,7 @@ When used without arguments, updates all dependencies. You can use patterns to u
     args: {
       name: "Package",
       isOptional: true,
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -268,6 +269,7 @@ If specific packages are updated, the command will fail if any of the updated de
     description: `Removes packages from node_modules and from the project's package.json`,
     args: {
       name: "Package",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -302,6 +304,7 @@ When used not inside a workspace, removes a dependency (or dependencies) from ev
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -327,6 +330,7 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -351,6 +355,7 @@ This is similar to yarn unlink, except pnpm re-installs the dependency after rem
     args: [
       {
         name: "Package",
+        filterStrategy: "fuzzy",
         generators: dependenciesGenerator,
         isVariadic: true,
       },
@@ -400,6 +405,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     description: "Runs a script defined in the package's manifest file",
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: npmScriptsGenerator,
       isVariadic: true,
     },
@@ -432,6 +438,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
 node_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies`,
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -589,6 +596,7 @@ pnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will li
     description: `Shows all packages that depend on the specified package`,
     args: {
       name: "Scripts",
+      filterStrategy: "fuzzy",
       generators: dependenciesGenerator,
       isVariadic: true,
     },
@@ -853,9 +861,11 @@ const completionSpec: Fig.Spec = {
   description: "Fast, disk space efficient package manager",
   args: {
     name: "Scripts",
+    filterStrategy: "fuzzy",
     generators: npmScriptsGenerator,
     isVariadic: true,
   },
+  filterStrategy: "fuzzy",
   generateSpec: async (tokens, executeShellCommand) => {
     const { script, postProcess } = dependenciesGenerator;
 

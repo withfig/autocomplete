@@ -28,9 +28,7 @@ const testList: Fig.Generator = {
 };
 
 const binList: Fig.Generator = {
-  script: function () {
-    return `cargo read-manifest`;
-  },
+  script: "cargo read-manifest",
   postProcess: function (data: string) {
     const manifest = JSON.parse(data);
     return manifest.targets
@@ -41,21 +39,28 @@ const binList: Fig.Generator = {
   },
 };
 
+export interface CrateSearchResults {
+  crates: Crate[];
+}
+
+export interface Crate {
+  description: null | string;
+  name: string;
+  newest_version: string;
+}
+
 const searchGenerator: Fig.Generator = {
   script: function (context) {
-    if (context[context.length - 1] === "") return "";
-    const searchTerm = context[context.length - 1];
-    return `cargo search "${searchTerm}" | \\grep -E "^\\w"`;
+    const query = encodeURIComponent(context[context.length - 1]);
+    return `curl -sfL 'https://crates.io/api/v1/crates?q=${query}&per_page=60'`;
   },
   postProcess: function (out) {
-    return out.split("\n").map((line) => {
-      const regex = /([a-zA-Z0-9-_]+)\s=\s"(.*)"\s+#\s(.*)/;
-      const matches = regex.exec(line);
-      return {
-        name: matches[1],
-        description: `v${matches[2]} - ${matches[3]}`,
-      };
-    });
+    const json = JSON.parse(out) as CrateSearchResults;
+    return json.crates.map((crate) => ({
+      name: crate.name,
+      description: crate.description || "v" + crate.newest_version,
+      icon: "📦",
+    }));
   },
 };
 
@@ -86,15 +91,14 @@ const dependencyGenerator: Fig.Generator = {
   script: "cargo metadata --format-version 1",
   postProcess: function (data: string) {
     const metadata = JSON.parse(data);
+    const seen = new Set<string>();
     return metadata.packages
-      .map(({ name, description }) => ({
-        name,
-        description,
-      }))
-      .filter(
-        (value, index, self) =>
-          self.findIndex((v) => v.name === value.name) === index
-      );
+      .map(({ name, description }) => ({ name, description }))
+      .filter((item: { name: string; description: string }) => {
+        if (seen.has(item.name)) return false;
+        seen.add(item.name);
+        return true;
+      });
   },
 };
 
@@ -357,6 +361,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: [
         {
@@ -603,6 +611,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
     },
     {
@@ -829,6 +841,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
     },
@@ -1330,6 +1346,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
     },
     {
@@ -1645,6 +1665,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
     },
@@ -2088,6 +2112,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
       args: {
@@ -3397,6 +3425,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: {
         name: "args",
@@ -3626,6 +3658,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: {
         name: "args",
@@ -3838,6 +3874,10 @@ const completionSpec: Fig.Spec = {
           name: "--offline",
           description: "Run without accessing the network",
         },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
+        },
       ],
       args: {
         name: "args",
@@ -3922,7 +3962,10 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "query",
+        generators: searchGenerator,
+        debounce: true,
         isVariadic: true,
+        suggestCurrentToken: true,
       },
     },
     {
@@ -4162,6 +4205,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--offline",
           description: "Run without accessing the network",
+        },
+        {
+          name: "--timings",
+          description: "Timing output formats (unstable)",
         },
       ],
       args: [
@@ -4937,6 +4984,154 @@ const completionSpec: Fig.Spec = {
         name: "subcommand",
       },
     },
+    {
+      name: "add",
+      icon: "📦",
+      description: "Add dependencies to a Cargo.toml manifest file",
+      options: [
+        {
+          name: "--no-default-features",
+          description: "Disable the default features",
+        },
+        {
+          name: "--default-features",
+          description: "Re-enable the default features",
+        },
+        {
+          name: ["-F", "--features"],
+          description: "Space or comma separated list of features to activate",
+        },
+        {
+          name: "--optional",
+          description: "Mark the dependency as optional",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Use verbose output",
+        },
+        {
+          name: "--no-optional",
+          description: "Mark the dependency as required",
+        },
+        {
+          name: "--color",
+          args: {
+            name: "WHEN",
+            suggestions: ["auto", "always", "never"],
+          },
+        },
+        {
+          name: "--rename",
+          description: "Rename the dependency",
+          args: {
+            name: "NAME",
+          },
+        },
+        {
+          name: "--frozen",
+          description: "Require Cargo.lock and cache are up to date",
+        },
+        {
+          name: "--manifest-path",
+          description: "Path to Cargo.toml",
+        },
+        {
+          name: "--locked",
+          description: "Require Cargo.lock is up to date",
+        },
+        {
+          name: ["-p", "--package"],
+          description: "Package to modify",
+          args: {
+            name: "SPEC",
+          },
+        },
+        {
+          name: "--offline",
+          description: "Run without accessing the network",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Do not print cargo log messages",
+        },
+        {
+          name: "--dry-run",
+          description: "Don't actually write the manifest",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: "--path",
+          description: "Filesystem path to local crate to add",
+          args: {
+            name: "PATH",
+            template: "folders",
+          },
+        },
+        {
+          name: "--git",
+          description: "Git repository location",
+          args: {
+            name: "URI",
+          },
+        },
+        {
+          name: "--branch",
+          description: "Git branch to download the crate from",
+          dependsOn: ["--git"],
+          args: {
+            name: "BRANCH",
+          },
+        },
+        {
+          name: "--tag",
+          description: "Git tag to download the crate from",
+          dependsOn: ["--git"],
+          args: {
+            name: "TAG",
+          },
+        },
+        {
+          name: "--rev",
+          description: "Git reference to download the crate from",
+          dependsOn: ["--git"],
+          args: {
+            name: "REV",
+          },
+        },
+        {
+          name: "--registry",
+          description: "Package registry for this dependency",
+          args: {
+            name: "NAME",
+          },
+        },
+        {
+          name: "--dev",
+          description: "Add as development dependency",
+        },
+        {
+          name: "--build",
+          description: "Add as build dependency",
+        },
+        {
+          name: "--target",
+          description: "Add as dependency to the given target platform",
+          args: {
+            name: "TARGET",
+            generators: targetGenerator,
+          },
+        },
+      ],
+      args: {
+        name: "DEP_ID",
+        generators: searchGenerator,
+        debounce: true,
+        isVariadic: true,
+      },
+    },
   ],
   options: [
     {
@@ -5013,450 +5208,446 @@ const completionSpec: Fig.Spec = {
       .filter((_, i) => i != 0)
       .map((line) => line.trim().split(/\s+/, 1)[0]);
 
-    const fmt: Fig.Subcommand = {
-      name: "fmt",
-      icon: "🛠",
-      description:
-        "This utility formats all bin and lib files of the current crate using rustfmt",
-      subcommands: [
-        {
-          name: "--",
-          description: "All other arguments are passed to rustfmt",
-          args: {
-            generators: filepaths({
-              extensions: ["rs"],
-            }),
-          },
-          options: [
-            {
-              name: "--check",
-              description:
-                "Run in 'check' mode. Exits with 0 if input is formatted correctly. Exits with 1 and prints a diff if formatting is required",
-            },
-            {
-              name: "--emit",
-              description: "What data to emit and how",
-              args: {
-                suggestions: ["files", "stdout"],
-              },
-            },
-            {
-              name: "--backup",
-              description: "Backup any modified files",
-            },
-            {
-              name: "--config-path",
-              description: "Path for the configuration file",
-              args: {
-                generators: filepaths({
-                  equals: ["rustfmt.toml"],
-                }),
-              },
-            },
-            {
-              name: "--edition",
-              description: "Rust edition to use",
-              args: {
-                suggestions: rustEditions,
-              },
-            },
-            {
-              name: "--print-config",
-              description: "Dumps a default or minimal config to PATH",
-              args: [
-                {
-                  name: "verbosity",
-                  suggestions: ["default", "minimal", "current"],
-                },
-                {
-                  name: "PATH",
-                  template: "filepaths",
-                },
-              ],
-            },
-            {
-              name: ["-l", "--files-with-diff"],
-              description:
-                "Prints the names of mismatched files that were formatted",
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: "--check",
-          description: "Run rustfmt in check mode",
-        },
-        {
-          name: "--all",
-          description:
-            "Format all packages, and also their local path-based dependencies",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Print help information",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "No output printed to stdout",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description: "Use verbose output",
-        },
-        {
-          name: "--version",
-          description: "Print rustfmt version and exit",
-        },
-        {
-          name: "--manifest-path",
-          description: "Specify path to Cargo.toml",
-          args: {
-            name: "manifest-path",
-            generators: filepaths({
-              equals: ["Cargo.toml"],
-            }),
-          },
-        },
-        {
-          name: "--message-format",
-          description: "Specify message-format",
-          args: {
-            name: "message-format",
-            suggestions: ["short", "json", "human"],
-          },
-        },
-        {
-          name: ["-p", "--package"],
-          description: "Specify package to format",
-          args: {
-            name: "package",
-          },
-        },
-      ],
-    };
-
     if (commands.includes("fmt")) {
+      const fmt: Fig.Subcommand = {
+        name: "fmt",
+        icon: "🛠",
+        description:
+          "This utility formats all bin and lib files of the current crate using rustfmt",
+        subcommands: [
+          {
+            name: "--",
+            description: "All other arguments are passed to rustfmt",
+            args: {
+              generators: filepaths({
+                extensions: ["rs"],
+              }),
+            },
+            options: [
+              {
+                name: "--check",
+                description:
+                  "Run in 'check' mode. Exits with 0 if input is formatted correctly. Exits with 1 and prints a diff if formatting is required",
+              },
+              {
+                name: "--emit",
+                description: "What data to emit and how",
+                args: {
+                  suggestions: ["files", "stdout"],
+                },
+              },
+              {
+                name: "--backup",
+                description: "Backup any modified files",
+              },
+              {
+                name: "--config-path",
+                description: "Path for the configuration file",
+                args: {
+                  generators: filepaths({
+                    equals: ["rustfmt.toml"],
+                  }),
+                },
+              },
+              {
+                name: "--edition",
+                description: "Rust edition to use",
+                args: {
+                  suggestions: rustEditions,
+                },
+              },
+              {
+                name: "--print-config",
+                description: "Dumps a default or minimal config to PATH",
+                args: [
+                  {
+                    name: "verbosity",
+                    suggestions: ["default", "minimal", "current"],
+                  },
+                  {
+                    name: "PATH",
+                    template: "filepaths",
+                  },
+                ],
+              },
+              {
+                name: ["-l", "--files-with-diff"],
+                description:
+                  "Prints the names of mismatched files that were formatted",
+              },
+            ],
+          },
+        ],
+        options: [
+          {
+            name: "--check",
+            description: "Run rustfmt in check mode",
+          },
+          {
+            name: "--all",
+            description:
+              "Format all packages, and also their local path-based dependencies",
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Print help information",
+          },
+          {
+            name: ["-q", "--quiet"],
+            description: "No output printed to stdout",
+          },
+          {
+            name: ["-v", "--verbose"],
+            description: "Use verbose output",
+          },
+          {
+            name: "--version",
+            description: "Print rustfmt version and exit",
+          },
+          {
+            name: "--manifest-path",
+            description: "Specify path to Cargo.toml",
+            args: {
+              name: "manifest-path",
+              generators: filepaths({
+                equals: ["Cargo.toml"],
+              }),
+            },
+          },
+          {
+            name: "--message-format",
+            description: "Specify message-format",
+            args: {
+              name: "message-format",
+              suggestions: ["short", "json", "human"],
+            },
+          },
+          {
+            name: ["-p", "--package"],
+            description: "Specify package to format",
+            args: {
+              name: "package",
+            },
+          },
+        ],
+      };
       subcommands.push(fmt);
     }
 
-    const clippy: Fig.Subcommand = {
-      name: "clippy",
-      icon: "📎",
-      description: "Runs the Clippy linter",
-      subcommands: [
-        {
-          name: "--",
-          description: "All other arguments are passed to clippy",
-          options: [
-            {
-              name: ["-W", "--warn"],
-              description: "Set lint warnings",
-              args: {},
-            },
-            {
-              name: ["-A", "--allow"],
-              description: "Set lint allowed",
-              args: {},
-            },
-            {
-              name: ["-D", "--deny"],
-              description: "Set lint denied",
-              args: {},
-            },
-            {
-              name: ["-F", "--forbid"],
-              description: "Set lint forbidden",
-              args: {},
-            },
-          ],
-        },
-      ],
-      options: [
-        {
-          name: "--no-deps",
-          description:
-            "Run Clippy only on the given crate, without linting the dependencies",
-        },
-        {
-          name: "--fix",
-          description:
-            "Automatically apply lint suggestions. This flag implies `--no-deps`",
-        },
-        {
-          name: "--allow-dirty",
-          description:
-            "Allow fix to apply even if the working directory is dirty",
-          dependsOn: ["--fix"],
-        },
-        {
-          name: "--allow-staged",
-          description:
-            "Allow fix to apply even if the working directory has staged changes",
-          dependsOn: ["--fix"],
-        },
-      ],
-    };
-
     if (commands.includes("clippy")) {
+      const clippy: Fig.Subcommand = {
+        name: "clippy",
+        icon: "📎",
+        description: "Runs the Clippy linter",
+        subcommands: [
+          {
+            name: "--",
+            description: "All other arguments are passed to clippy",
+            options: [
+              {
+                name: ["-W", "--warn"],
+                description: "Set lint warnings",
+                args: {},
+              },
+              {
+                name: ["-A", "--allow"],
+                description: "Set lint allowed",
+                args: {},
+              },
+              {
+                name: ["-D", "--deny"],
+                description: "Set lint denied",
+                args: {},
+              },
+              {
+                name: ["-F", "--forbid"],
+                description: "Set lint forbidden",
+                args: {},
+              },
+            ],
+          },
+        ],
+        options: [
+          {
+            name: "--no-deps",
+            description:
+              "Run Clippy only on the given crate, without linting the dependencies",
+          },
+          {
+            name: "--fix",
+            description:
+              "Automatically apply lint suggestions. This flag implies `--no-deps`",
+          },
+          {
+            name: "--allow-dirty",
+            description:
+              "Allow fix to apply even if the working directory is dirty",
+            dependsOn: ["--fix"],
+          },
+          {
+            name: "--allow-staged",
+            description:
+              "Allow fix to apply even if the working directory has staged changes",
+            dependsOn: ["--fix"],
+          },
+        ],
+      };
       subcommands.push(clippy);
     }
 
-    const flamegraph: Fig.Subcommand = {
-      name: "flamegraph",
-      icon: "🔥",
-      description: "Generates a flamegraph of the current crate",
-      options: [
-        {
-          name: "--deterministic",
-          description:
-            "Colors are selected such that the color of a function does not change between runs",
-        },
-        {
-          name: "--dev",
-          description: "Build with the dev profile",
-        },
-        {
-          name: ["-i", "--inverted"],
-          description: "Plot the flame graph up-side-down",
-        },
-        {
-          name: "--no-default-features",
-          description: "Disable default features",
-        },
-        {
-          name: "--open",
-          description: "Open the output .svg file with default program",
-        },
-        {
-          name: "--reverse",
-          description: "Generate stack-reversed flame graph",
-        },
-        {
-          name: "--root",
-          description: "Run with root privileges (using `sudo`)",
-        },
-        {
-          name: "--no-inline",
-          description:
-            "Disable inlining for perf script because of performance issues",
-        },
-      ],
-    };
-
     if (commands.includes("flamegraph")) {
+      const flamegraph: Fig.Subcommand = {
+        name: "flamegraph",
+        icon: "🔥",
+        description: "Generates a flamegraph of the current crate",
+        options: [
+          {
+            name: "--deterministic",
+            description:
+              "Colors are selected such that the color of a function does not change between runs",
+          },
+          {
+            name: "--dev",
+            description: "Build with the dev profile",
+          },
+          {
+            name: ["-i", "--inverted"],
+            description: "Plot the flame graph up-side-down",
+          },
+          {
+            name: "--no-default-features",
+            description: "Disable default features",
+          },
+          {
+            name: "--open",
+            description: "Open the output .svg file with default program",
+          },
+          {
+            name: "--reverse",
+            description: "Generate stack-reversed flame graph",
+          },
+          {
+            name: "--root",
+            description: "Run with root privileges (using `sudo`)",
+          },
+          {
+            name: "--no-inline",
+            description:
+              "Disable inlining for perf script because of performance issues",
+          },
+        ],
+      };
       subcommands.push(flamegraph);
     }
 
-    const audit: Fig.Subcommand = {
-      name: "audit",
-      icon: "📚",
-      description: "Runs the cargo audit tool",
-      options: [
-        {
-          name: ["-d", "--db"],
-          description: "Advisory database git repo path",
-          args: {
-            name: "DB",
-            template: "folders",
-          },
-        },
-        {
-          name: ["-D", "--deny"],
-          description: "Exit with an error on the argument",
-          args: {
-            isVariadic: true,
-            suggestions: [
-              { name: "warnings", description: "Warnings (any)" },
-              { name: "unmaintained", description: "Unmaintained crates" },
-              { name: "unsound", description: "Unsound Rust code" },
-              { name: "yanked", description: "Yanked crates" },
-            ],
-          },
-        },
-        {
-          name: ["-f", "--file"],
-          description: "Cargo lockfile to inspect",
-          args: {
-            suggestions: [{ name: "-", description: "Stdin" }],
-            generators: filepaths({
-              equals: ["Cargo.lock"],
-            }),
-          },
-        },
-        {
-          name: ["-n", "--no-fetch"],
-          description: "Do not perform a git fetch on the advisory DB",
-        },
-        {
-          name: "--stale",
-          description: "Allow stale database",
-        },
-        {
-          name: "--target-arch",
-          description: "Filter vulnerabilities by CPU",
-          args: {},
-        },
-        {
-          name: "--target-os",
-          description: "Filter vulnerabilities by OS",
-          args: {},
-        },
-        {
-          name: ["-u", "--url"],
-          description: "URL for advisory database git repo",
-        },
-        {
-          name: "--json",
-          description: "Output report in JSON format",
-        },
-        {
-          name: "--no-local-crates",
-          description: "Vulnerability querying does not consider local crates",
-        },
-      ],
-    };
-
     if (commands.includes("audit")) {
+      const audit: Fig.Subcommand = {
+        name: "audit",
+        icon: "📚",
+        description: "Runs the cargo audit tool",
+        options: [
+          {
+            name: ["-d", "--db"],
+            description: "Advisory database git repo path",
+            args: {
+              name: "DB",
+              template: "folders",
+            },
+          },
+          {
+            name: ["-D", "--deny"],
+            description: "Exit with an error on the argument",
+            args: {
+              isVariadic: true,
+              suggestions: [
+                { name: "warnings", description: "Warnings (any)" },
+                { name: "unmaintained", description: "Unmaintained crates" },
+                { name: "unsound", description: "Unsound Rust code" },
+                { name: "yanked", description: "Yanked crates" },
+              ],
+            },
+          },
+          {
+            name: ["-f", "--file"],
+            description: "Cargo lockfile to inspect",
+            args: {
+              suggestions: [{ name: "-", description: "Stdin" }],
+              generators: filepaths({
+                equals: ["Cargo.lock"],
+              }),
+            },
+          },
+          {
+            name: ["-n", "--no-fetch"],
+            description: "Do not perform a git fetch on the advisory DB",
+          },
+          {
+            name: "--stale",
+            description: "Allow stale database",
+          },
+          {
+            name: "--target-arch",
+            description: "Filter vulnerabilities by CPU",
+            args: {},
+          },
+          {
+            name: "--target-os",
+            description: "Filter vulnerabilities by OS",
+            args: {},
+          },
+          {
+            name: ["-u", "--url"],
+            description: "URL for advisory database git repo",
+          },
+          {
+            name: "--json",
+            description: "Output report in JSON format",
+          },
+          {
+            name: "--no-local-crates",
+            description:
+              "Vulnerability querying does not consider local crates",
+          },
+        ],
+      };
       subcommands.push(audit);
     }
 
-    const outdated: Fig.Subcommand = {
-      name: "outdated",
-      icon: "📦",
-      description: "Displays information about project dependency versions",
-      options: [
-        {
-          name: ["-a", "--aggressive"],
-          description: "Ignores channels for latest updates",
-        },
-        {
-          name: "--color",
-          description: "Output coloring",
-          args: {
-            name: "COLOR",
-            suggestions: ["always", "never", "auto"],
-            default: "auto",
-          },
-        },
-        {
-          name: ["-d", "--depth"],
-          description:
-            "How deep in the dependency chain to search (Defaults to all dependencies when omitted)",
-          args: {
-            name: "DEPTH",
-          },
-          exclusiveOn: ["-R", "--root-deps-only"],
-        },
-        {
-          name: ["-x", "--exclude"],
-          description: "Exclude a dependency from the output",
-          isRequired: true,
-          args: {
-            name: "DEPENDENCY",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: "--exit-code",
-          description: "The exit code to return on new versions found",
-          args: {
-            name: "NUM",
-            suggestions: ["0", "1"],
-            default: "0",
-          },
-        },
-        {
-          name: "--features",
-          description: "Space-separated list of features",
-          args: {
-            name: "FEATURES",
-            generators: featuresGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: "--format",
-          description: "Output formatting",
-          args: {
-            name: "FORMAT",
-            suggestions: ["json", "list"],
-            default: "list",
-          },
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-        {
-          name: ["-i", "--ignore"],
-          description: "Dependencies to not print in the output",
-          args: {
-            name: "DEPENDENCY",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: ["-e", "--ignore-external-rel"],
-          description:
-            "Ignore relative dependencies external to workspace and check root dependencies only",
-        },
-        {
-          name: ["-m", "--manifest-path"],
-          description: "Path to the Cargo.toml file to use",
-          args: {
-            name: "PATH",
-            generators: filepaths({
-              equals: ["Cargo.toml"],
-            }),
-          },
-        },
-        {
-          name: ["-o", "--offline"],
-          description: "Run without accessing the network",
-        },
-        {
-          name: ["-p", "--packages"],
-          description: "Packages to inspect for updates",
-          args: {
-            name: "PACKAGES",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Suppresses warnings",
-        },
-        {
-          name: ["-r", "--root"],
-          description: "Package to treat as the root package",
-          args: {
-            name: "PACKAGE",
-            generators: dependencyGenerator,
-          },
-        },
-        {
-          name: ["-R", "--root-deps-only"],
-          description: "Only check root dependencies",
-          exclusiveOn: ["-d", "--depth"],
-        },
-        {
-          name: ["-V", "--version"],
-          description: "Prints version information",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description: "Use verbose output",
-        },
-        {
-          name: ["-w", "--workspace"],
-          description:
-            "Checks updates for all workspace members rather than only the root package",
-        },
-      ],
-    };
-
     if (commands.includes("outdated")) {
+      const outdated: Fig.Subcommand = {
+        name: "outdated",
+        icon: "📦",
+        description: "Displays information about project dependency versions",
+        options: [
+          {
+            name: ["-a", "--aggressive"],
+            description: "Ignores channels for latest updates",
+          },
+          {
+            name: "--color",
+            description: "Output coloring",
+            args: {
+              name: "COLOR",
+              suggestions: ["always", "never", "auto"],
+              default: "auto",
+            },
+          },
+          {
+            name: ["-d", "--depth"],
+            description:
+              "How deep in the dependency chain to search (Defaults to all dependencies when omitted)",
+            args: {
+              name: "DEPTH",
+            },
+            exclusiveOn: ["-R", "--root-deps-only"],
+          },
+          {
+            name: ["-x", "--exclude"],
+            description: "Exclude a dependency from the output",
+            isRequired: true,
+            args: {
+              name: "DEPENDENCY",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: "--exit-code",
+            description: "The exit code to return on new versions found",
+            args: {
+              name: "NUM",
+              suggestions: ["0", "1"],
+              default: "0",
+            },
+          },
+          {
+            name: "--features",
+            description: "Space-separated list of features",
+            args: {
+              name: "FEATURES",
+              generators: featuresGenerator,
+              isVariadic: true,
+            },
+          },
+          {
+            name: "--format",
+            description: "Output formatting",
+            args: {
+              name: "FORMAT",
+              suggestions: ["json", "list"],
+              default: "list",
+            },
+          },
+          {
+            name: ["-h", "--help"],
+            description: "Prints help information",
+          },
+          {
+            name: ["-i", "--ignore"],
+            description: "Dependencies to not print in the output",
+            args: {
+              name: "DEPENDENCY",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: ["-e", "--ignore-external-rel"],
+            description:
+              "Ignore relative dependencies external to workspace and check root dependencies only",
+          },
+          {
+            name: ["-m", "--manifest-path"],
+            description: "Path to the Cargo.toml file to use",
+            args: {
+              name: "PATH",
+              generators: filepaths({
+                equals: ["Cargo.toml"],
+              }),
+            },
+          },
+          {
+            name: ["-o", "--offline"],
+            description: "Run without accessing the network",
+          },
+          {
+            name: ["-p", "--packages"],
+            description: "Packages to inspect for updates",
+            args: {
+              name: "PACKAGES",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: ["-q", "--quiet"],
+            description: "Suppresses warnings",
+          },
+          {
+            name: ["-r", "--root"],
+            description: "Package to treat as the root package",
+            args: {
+              name: "PACKAGE",
+              generators: dependencyGenerator,
+            },
+          },
+          {
+            name: ["-R", "--root-deps-only"],
+            description: "Only check root dependencies",
+            exclusiveOn: ["-d", "--depth"],
+          },
+          {
+            name: ["-V", "--version"],
+            description: "Prints version information",
+          },
+          {
+            name: ["-v", "--verbose"],
+            description: "Use verbose output",
+          },
+          {
+            name: ["-w", "--workspace"],
+            description:
+              "Checks updates for all workspace members rather than only the root package",
+          },
+        ],
+      };
       subcommands.push(outdated);
     }
 

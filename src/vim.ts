@@ -4,6 +4,7 @@ const completionSpec: Fig.Spec = {
     "Vi[m] is an one of two powerhouse text editors in the Unix world, the other being EMACS",
   args: {
     template: "filepaths",
+    suggestCurrentToken: true,
   },
   options: [
     {

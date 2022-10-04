@@ -107,6 +107,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package name",
         generators: dependenciesGenerator,
+        filterStrategy: "fuzzy",
       },
     },
     {
@@ -147,6 +148,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package | url",
         generators: dependenciesGenerator,
+        filterStrategy: "fuzzy",
       },
     },
     {
