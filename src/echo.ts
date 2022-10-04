@@ -6,7 +6,11 @@ const environmentVariableGenerator: Fig.Generator = {
       : out
           .split("\n")
           .map((env) => env.split("=")[0])
-          .map((suggestion) => ({ name: `$${suggestion}`, type: "option" })),
+          .map((suggestion) => ({
+            name: `$${suggestion}`,
+            type: "arg",
+            description: "Environment Variable",
+          })),
 };
 
 const completionSpec: Fig.Spec = {
