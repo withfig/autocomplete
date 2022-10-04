@@ -14,6 +14,7 @@ const completionSpec: Fig.Spec = {
     name: "names",
     isVariadic: true,
     generators: programGenerator,
+    filterStrategy: "fuzzy",
   },
   options: [
     {
