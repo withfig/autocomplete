@@ -1,6 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "charm",
-  description: "",
+  description:
+    "Do Charm stuff; run without arguments for a TUI or use the sub-commands like a pro",
   subcommands: [
     {
       name: "backup-keys",
