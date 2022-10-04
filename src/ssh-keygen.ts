@@ -147,6 +147,7 @@ const completionSpec: Fig.Spec = {
         name: "filename",
         description: "Filename of the key file",
         template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
