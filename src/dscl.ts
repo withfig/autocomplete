@@ -4,6 +4,59 @@ const satisfies =
   <U extends T>(u: U) =>
     u;
 
+const dsclOptions: Fig.Option[] = [
+  {
+    name: "-p",
+    description: "Prompt for password",
+  },
+  {
+    name: "-u",
+    description: "Authenticate as user",
+    args: {
+      name: "user",
+      description: "User to authenticate as",
+    },
+  },
+  {
+    name: "-P",
+    description: "Authenticate with password",
+    args: {
+      name: "password",
+      description: "Password to authenticate with",
+    },
+  },
+  {
+    name: "-f",
+    description: "Targeted local node database file path",
+    args: {
+      name: "file",
+      description: "File path",
+    },
+  },
+  {
+    name: "-raw",
+    description: "Don't strip off prefix from DirectoryService API constants",
+  },
+  {
+    name: "-plist",
+    description: "Print out record(s) or attribute(s) in XML plist format",
+  },
+  {
+    name: "-url",
+    description: "Print record attribute values in URL-style encoding",
+  },
+  {
+    name: "-q",
+    description: "Quiet - no interactive prompt",
+  },
+];
+
+const dsclOptionsWithArgs = new Set<string>(
+  dsclOptions
+    .filter((option) => option.args !== undefined)
+    .flatMap((option) => option.name)
+);
+
 const generateDsclPath: Fig.Generator = {
   trigger: "/",
   getQueryTerm: "/",
@@ -14,7 +67,7 @@ const generateDsclPath: Fig.Generator = {
     }
     // can't guarantee that dscl is the first token. If it's not found,
     // this is -1, so searching for `datasource` will start from index 0
-    const dsclIndex = tokens.findIndex((token) => token === "dscl");
+    const dsclIndex = tokens.indexOf("dscl");
     let datasource: string;
     for (let i = dsclIndex + 1; i < tokens.length; i++) {
       const token = tokens[i];
@@ -24,11 +77,7 @@ const generateDsclPath: Fig.Generator = {
       }
       // skip if the previous token is a flag that takes an argument
       const prev = tokens[i - 1];
-      if (
-        dsclOptions.find(
-          (option) => [option.name].flat().includes(prev) && !!option.args
-        )
-      ) {
+      if (dsclOptionsWithArgs.has(prev)) {
         continue;
       }
       datasource = token;
@@ -44,9 +93,7 @@ const generateDsclPath: Fig.Generator = {
       .map((line) => ({
         name: line,
         icon: "📁",
-        priority: line.slice(line.lastIndexOf("/") + 1).startsWith("_")
-          ? 49
-          : 50,
+        priority: line[line.lastIndexOf("/") + 1] === "_" ? 49 : 50,
       }));
   },
 };
@@ -252,53 +299,6 @@ const dsclSubcommands: Fig.Subcommand = {
     },
   ],
 };
-
-const dsclOptions: Fig.Option[] = [
-  {
-    name: "-p",
-    description: "Prompt for password",
-  },
-  {
-    name: "-u",
-    description: "Authenticate as user",
-    args: {
-      name: "user",
-      description: "User to authenticate as",
-    },
-  },
-  {
-    name: "-P",
-    description: "Authenticate with password",
-    args: {
-      name: "password",
-      description: "Password to authenticate with",
-    },
-  },
-  {
-    name: "-f",
-    description: "Targeted local node database file path",
-    args: {
-      name: "file",
-      description: "File path",
-    },
-  },
-  {
-    name: "-raw",
-    description: "Don't strip off prefix from DirectoryService API constants",
-  },
-  {
-    name: "-plist",
-    description: "Print out record(s) or attribute(s) in XML plist format",
-  },
-  {
-    name: "-url",
-    description: "Print record attribute values in URL-style encoding",
-  },
-  {
-    name: "-q",
-    description: "Quiet - no interactive prompt",
-  },
-];
 
 const completionSpec: Fig.Spec = {
   name: "dscl",
