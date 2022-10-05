@@ -166,17 +166,27 @@ const completionSpec: Fig.Spec = {
 
         const token = tokens.pop();
 
-        return out.split("\n").map((line) => {
-          const space = line.indexOf(" ");
-          const hash = line.slice(0, space);
+        return [
+          ...out.split("\n").map((line) => {
+            const space = line.indexOf(" ");
+            const hash = line.slice(0, space);
 
-          return {
-            name: hash,
-            insertValue: hash + (token?.includes("..") ? "" : ".."),
+            return {
+              name: hash,
+              insertValue: hash + (token?.includes("..") ? "" : ".."),
+              icon: "fig://icon?type=node",
+              description: line.slice(space + 1),
+              priority: 1,
+            };
+          }),
+          {
+            name: "HEAD",
+            insertValue: "HEAD" + (token?.includes("..") ? "" : ".."),
             icon: "fig://icon?type=node",
-            description: line.slice(space + 1),
-          };
-        });
+            description: "The current commit",
+            priority: 5,
+          },
+        ];
       },
     },
   },
