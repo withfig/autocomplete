@@ -160,7 +160,7 @@ const countryCodeSuggestion: Fig.Suggestion[] = [
 
 const completionSpec: Fig.Spec = {
   name: "ncal",
-  description: "",
+  description: "Displays a calendar and the date of Easter",
   options: [
     {
       name: "-h",
