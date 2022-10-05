@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
               // Fig should defer assigning priority to z.
               // 75 added to keep args above options.
               // NOTE: 9000 is the default max priority. If a custom value is set this will work if "custom_value <= 9000" but not otherwise
-              priority: 75 + (weight * 25 / 9000),
+              priority: 75 + (weight * 25) / 9000,
             };
           }
         });
