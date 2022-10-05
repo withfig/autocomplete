@@ -135,7 +135,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
   Join our community
   <br/>
   <a href="https://fig.io/community">
-    <img alt="Discord logo" src="./.github/discord-square.png" width="80px" height="80px" />
+    <img alt="Discord logo" src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" />
   </a>
 </p>
 
