@@ -9,7 +9,7 @@
 [![Badge: Sign up (public beta)](https://img.shields.io/badge/signup-public%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
 [![Badge: Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/)
 [![Badge: contributors](https://img.shields.io/github/contributors/withfig/autocomplete)](#Contributors)
-[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)](https://fig.io/community)
+[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=5865F2&label=discord)](https://fig.io/community)
 [![Badge: Follow on Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
 **[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
@@ -135,7 +135,7 @@ If you aren't able to contribute, please feel free to open an [issue](https://gi
   Join our community
   <br/>
   <a href="https://fig.io/community">
-    <img alt="Discord logo" src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" />
+    <img alt="Discord logo" src="./github/discord-square.png" width="80px" height="80px" />
   </a>
 </p>
 
