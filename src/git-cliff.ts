@@ -151,6 +151,34 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "range",
     description: "Sets the commit range to process",
+    generators: {
+      trigger: "..",
+      getQueryTerm: ".",
+      script: "git rev-list --all --oneline --abbrev-commit",
+      postProcess: (out, tokens) => {
+        if (out.startsWith("fatal:")) {
+          return [];
+        }
+
+        if (out.startsWith("warning:") || out.startsWith("error:")) {
+          out = out.slice(out.indexOf("\n") + 1);
+        }
+
+        const token = tokens.pop();
+
+        return out.split("\n").map((line) => {
+          const space = line.indexOf(" ");
+          const hash = line.slice(0, space);
+
+          return {
+            name: hash,
+            insertValue: hash + (token?.includes("..") ? "" : ".."),
+            icon: "fig://icon?type=node",
+            description: line.slice(space + 1),
+          };
+        });
+      },
+    },
   },
 };
 export default completionSpec;
