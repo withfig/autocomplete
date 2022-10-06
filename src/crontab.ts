@@ -13,6 +13,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-r",
       description: "Remove the current crontab",
+      isDangerous: true,
     },
     {
       name: "-u",
