@@ -3,23 +3,13 @@ const completionSpec: Fig.Spec = {
   description: "Query and manipulate for macOS Installer packages and receipts",
   subcommands: [
     {
-      name: "--packages",
+      name: ["--packages", "--pkgs"],
       description: "List all installed package IDs on the specified --volume",
     },
     {
       name: "--pkgs-plist",
       description:
         "List all installed package IDs, in Mac OS X plist(5) format, on the specified --volume",
-    },
-    {
-      name: "--pkgs",
-      description:
-        "List all installed package IDs, optionally matching kwarg REGEXP, on the specified --volume",
-      args: {
-        name: "key=value",
-        description: "Regular expression",
-        isOptional: true,
-      },
     },
     {
       name: "--files",
@@ -218,6 +208,16 @@ const completionSpec: Fig.Spec = {
       name: "--regexp",
       description:
         "Use regex to match package-id arguments, if an exact match isn't found",
+    },
+    {
+      name: "--pkgs",
+      description:
+        "List all installed package IDs, optionally matching kwarg REGEXP, on the specified --volume",
+      requiresSeparator: true,
+      args: {
+        name: "REGEXP",
+        description: "Regular expression",
+      },
     },
   ],
 };
