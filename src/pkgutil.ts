@@ -1,3 +1,34 @@
+export const pkgutilGenerators: Record<string, Fig.Generator> = {
+  // BOM files
+  bom: {
+    script: "find . -type f -name '*.bom' -maxdepth 1",
+    postProcess: function (out) {
+      return out.split("\n").map((filepath) => ({
+        name: filepath.replace("./", ""),
+      }));
+    },
+  },
+  // Installed package ids
+  packageIds: {
+    script: "pkgutil --pkgs",
+    splitOn: "\n",
+  },
+  // .pkg files
+  pkgs: {
+    script: "find . -type f -name '*.pkg' -maxdepth 1",
+    postProcess: function (out) {
+      return out.split("\n").map((filepath) => ({
+        name: filepath.replace("./", ""),
+      }));
+    },
+  },
+  // group ids
+  groupIds: {
+    script: "pkgutil --groups",
+    splitOn: "\n",
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "pkgutil",
   description: "Query and manipulate for macOS Installer packages and receipts",
@@ -17,6 +48,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "The package ID to list the files of",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
@@ -26,6 +58,25 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "The package ID to export the plist of",
+        generators: pkgutilGenerators.packageIds,
+      },
+    },
+    {
+      name: "--verify",
+      description: "Run repair_packages(8) to verify the specified package-id",
+      args: {
+        name: "package-id",
+        description: "The package ID to verify",
+        generators: pkgutilGenerators.packageIds,
+      },
+    },
+    {
+      name: "--repair",
+      description: "Run repair_packages(8) to repair the specified package-id",
+      args: {
+        name: "package-id",
+        description: "The package ID to repair",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
@@ -34,6 +85,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "The package ID to print the info of",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
@@ -43,6 +95,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "The package ID to print the info of",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
@@ -52,6 +105,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "The package ID to forget",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
@@ -70,6 +124,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "The package ID to list the groups of",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
@@ -87,6 +142,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "group-id",
         description: "The group ID to list the packages of",
+        generators: pkgutilGenerators.groupIds,
       },
     },
     {
@@ -95,6 +151,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to show the metadata of",
+        template: "filepaths",
       },
     },
     {
@@ -104,6 +161,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to show the metadata of",
+        template: "filepaths",
       },
     },
     {
@@ -114,10 +172,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "pkg-path",
           description: "The path to the flat package to expand",
+          template: "filepaths",
         },
         {
           name: "dir-path",
           description: "The path to the directory to expand the package into",
+          template: "folders",
         },
       ],
     },
@@ -129,10 +189,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "dir-path",
           description: "The path to the directory to flatten",
+          template: "folders",
         },
         {
           name: "pkg-path",
           description: "The path to the flat package to create",
+          template: "filepaths",
         },
       ],
     },
@@ -143,6 +205,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to the flat package to extract the BOM from",
+        generators: pkgutilGenerators.bom,
       },
     },
     {
@@ -153,6 +216,7 @@ const completionSpec: Fig.Spec = {
         name: "path",
         description:
           "The path to the flat package to list the archived files of",
+        generators: pkgutilGenerators.pkgs,
       },
     },
     {
@@ -162,6 +226,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pkg-path",
         description: "The path to the flat package to check the signature of",
+        generators: pkgutilGenerators.pkgs,
       },
     },
   ],
@@ -185,6 +250,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "volume",
         description: "Volume to perform operations on",
+        template: "folders",
       },
     },
     {
@@ -194,6 +260,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package-id",
         description: "Package ID of the receipt to modify",
+        generators: pkgutilGenerators.packageIds,
       },
     },
     {
