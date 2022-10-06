@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "pkgutil",
-  description: "Package manager for macOS",
+  description: "Query and manipulate for macOS Installer packages and receipts",
   subcommands: [
     {
       name: "--packages",
@@ -149,7 +149,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--bom",
       description:
-        "Extract any BOM files from the flat pkg at path into /tml and return the filename(s)",
+        "Extract any BOM files from the flat pkg at path into /tmp and return the filename(s)",
       args: {
         name: "path",
         description: "The path to the flat package to extract the BOM from",
