@@ -255,6 +255,14 @@ const completionSpec: Fig.Spec = {
         name: "tos",
       },
     },
+    {
+      name: "--apple-connect",
+      description: "Connects the socket to the destination address",
+    },
+    {
+      name: "--apple-time",
+      description: "Prints the time a packet was received",
+    },
   ],
 };
 export default completionSpec;
