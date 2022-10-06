@@ -1,3 +1,5 @@
+import { keyValue } from "@fig/autocomplete-generators";
+
 const commonOptions: Fig.Option[] = [
   {
     name: ["--help", "-h", "-help"],
@@ -62,8 +64,12 @@ const completionSpec: Fig.Spec = {
       name: "-coverage-prefix-map",
       description: "Remap source paths in coverage info",
       args: {
-        name: "prefix=replacement",
+        name: "prefix",
         description: "The remap source paths in coverage info",
+        generators: keyValue({
+          separator: "=",
+          keys: ["prefix", "original"],
+        }),
       },
     },
     {
@@ -226,9 +232,13 @@ const completionSpec: Fig.Spec = {
       name: "-file-prefix-map",
       description: "Remap source paths in debug, coverage, and index info",
       args: {
-        name: "prefix=replacement",
+        name: "prefix",
         description:
           "The remap source paths in debug, coverage, and index info",
+        generators: keyValue({
+          separator: "=",
+          keys: ["prefix", "original"],
+        }),
       },
     },
     {
@@ -363,8 +373,12 @@ const completionSpec: Fig.Spec = {
       description:
         "If a source file imports or references module <alias_name>, the <underlying_name> is used for the contents of the file",
       args: {
-        name: "alias_name=underlying_name",
+        name: "alias",
         description: "The module alias and the contents of the file to be used",
+        generators: keyValue({
+          separator: "=",
+          keys: ["alias_name"],
+        }),
       },
     },
     {
