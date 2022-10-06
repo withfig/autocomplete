@@ -1,19 +1,6 @@
 // https://www.mongodb.com/docs/database-tools/mongoimport
 
-const filepathWithExtension = (extension: string | string[]): Fig.Generator => {
-  return {
-    template: "filepaths",
-    filterTemplateSuggestions: function (paths) {
-      return paths.filter((file) => {
-        if (file.type === "folder") return true;
-
-        return typeof extension === "string"
-          ? file.name.includes(extension)
-          : extension.some((ext) => file.name.includes(ext));
-      });
-    },
-  };
-};
+import { filepaths } from "@fig/autocomplete-generators";
 
 const completionSpec: Fig.Spec = {
   name: "mongoimport",
@@ -44,7 +31,7 @@ const completionSpec: Fig.Spec = {
         "Specifies the full path to a YAML configuration file containing sensitive values for the following options to mongoimport",
       args: {
         name: "filename",
-        generators: filepathWithExtension(".yml"),
+        generators: filepaths({ extensions: ["yaml", "yml"] }),
       },
     },
     {
@@ -107,7 +94,7 @@ const completionSpec: Fig.Spec = {
         "Specifies the .pem file that contains the root certificate chain from the Certificate Authority",
       args: {
         name: "filename",
-        generators: filepathWithExtension(".pem"),
+        generators: filepaths({ extensions: ["pem"] }),
       },
     },
     {
@@ -116,7 +103,7 @@ const completionSpec: Fig.Spec = {
         "Specifies the .pem file that contains both the TLS/SSL certificate and key",
       args: {
         name: "filename",
-        generators: filepathWithExtension(".pem"),
+        generators: filepaths({ extensions: ["pem"] }),
       },
     },
     {
@@ -135,7 +122,7 @@ const completionSpec: Fig.Spec = {
         "Specifies the .pem file that contains the Certificate Revocation List",
       args: {
         name: "filename",
-        generators: filepathWithExtension(".pem"),
+        generators: filepaths({ extensions: ["pem"] }),
       },
     },
     {
@@ -241,7 +228,7 @@ const completionSpec: Fig.Spec = {
       exclusiveOn: ["--fields", "-f"],
       args: {
         name: "filename",
-        generators: filepathWithExtension([".csv", ".tsv"]),
+        generators: filepaths({ extensions: ["csv", "tsv"] }),
       },
     },
     {
@@ -276,7 +263,7 @@ const completionSpec: Fig.Spec = {
       priority: 80,
       args: {
         name: "filename",
-        generators: filepathWithExtension([".json", ".csv", ".tsv"]),
+        generators: filepaths({ extensions: ["json", "csv", "tsv"] }),
       },
     },
     {
@@ -380,7 +367,6 @@ const completionSpec: Fig.Spec = {
       name: "--columnsHaveTypes",
       description:
         "Instructs mongoimport that the field list specified in --fields, --fieldFile, or --headerline specifies the types of each field",
-      dependsOn: ["--fields", "--fieldFile", "--headerline"],
     },
     {
       name: "--parseGrace",
