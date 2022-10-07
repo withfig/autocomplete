@@ -1,3 +1,12 @@
+const generateUsers: Fig.Generator = {
+  script: "dscl . -list /Users | grep -E -v '^_'",
+  postProcess: (out) =>
+    out
+      .trim()
+      .split("\n")
+      .map((name) => ({ name, icon: "👤" })),
+};
+
 const completionSpec: Fig.Spec = {
   name: "passwd",
   description: "Modify a user's password",
@@ -28,6 +37,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "authname",
         description: "The user name",
+        generators: generateUsers,
       },
     },
   ],
