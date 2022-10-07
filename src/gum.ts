@@ -1,8 +1,16 @@
 const alignValues = ["left", "center", "right", "bottom", "middle", "top"];
 
 const styleOptions: Fig.Option[] = [
-  { name: "--background", description: "Background Color", args: {} },
-  { name: "--foreground", description: "Foreground Color", args: {} },
+  {
+    name: "--background",
+    description: "Background Color",
+    args: { name: "color" },
+  },
+  {
+    name: "--foreground",
+    description: "Foreground Color",
+    args: { name: "color" },
+  },
   {
     name: "--border",
     description: "Border Style",
@@ -13,22 +21,22 @@ const styleOptions: Fig.Option[] = [
   {
     name: "--border-background",
     description: "Border Background Color",
-    args: {},
+    args: { name: "color" },
   },
   {
     name: "--border-foreground",
     description: "Border Foreground Color",
-    args: {},
+    args: { name: "color" },
   },
   {
     name: "--align",
     description: "Text Alignment",
     args: { suggestions: alignValues },
   },
-  { name: "--height", description: "Text height", args: {} },
-  { name: "--width", description: "Text width", args: {} },
-  { name: "--margin", description: "Text margin", args: {} },
-  { name: "--padding", description: "Text padding", args: {} },
+  { name: "--height", description: "Text height", args: { name: "lines" } },
+  { name: "--width", description: "Text width", args: { name: "width" } },
+  { name: "--margin", description: "Text margin", args: { name: "margin" } },
+  { name: "--padding", description: "Text padding", args: { name: "padding" } },
   { name: "--bold", description: "Bold text" },
   { name: "--faint", description: "Faint text" },
   { name: "--italic", description: "Italicize text" },
@@ -61,39 +69,39 @@ const completionSpec: Fig.Spec = {
         {
           name: "--height",
           description: "Height of the list",
-          args: {},
+          args: { name: "lines" },
         },
         {
           name: "--cursor",
           description:
             "Prefix to show on item that corresponds to the cursor position",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--cursor-prefix",
           description: "Prefix to show on the cursor item",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--selected-prefix",
           description: "Prefix to show on selected items",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--unselected-prefix",
           description: "Prefix to show on unselected items",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--selected",
           description: "Options that should start as selected",
           isRepeatable: true,
-          args: {},
+          args: { name: "option" },
         },
         {
           name: "--limit",
           description: "Maximum number of options to pick",
-          args: {},
+          args: { name: "number" },
         },
         {
           name: "--no-limit",
@@ -113,14 +121,14 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: "--afirmative",
+          name: "--affirmative",
           description: "The title of the affirmative action",
-          args: {},
+          args: { name: "title" },
         },
         {
           name: "--negative",
           description: "The title of the negative action",
-          args: {},
+          args: { name: "title" },
         },
         {
           name: "--default",
@@ -129,7 +137,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--timeout",
           description: "Timeout for confirmation",
-          args: {},
+          args: { name: "duration" },
         },
         ...styleOptionGenerator("prompt"),
         ...styleOptionGenerator("selected"),
@@ -143,42 +151,42 @@ const completionSpec: Fig.Spec = {
         {
           name: "--indicator",
           description: "Character for selection",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--selected-prefix",
           description: "Character to indicate selected items",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--unselected-prefix",
           description: "Character to indicate unselected items",
-          args: {},
+          args: { name: "symbol" },
         },
         {
           name: "--placeholder",
           description: "Placeholder value",
-          args: {},
+          args: { name: "placeholder" },
         },
         {
           name: "--prompt",
           description: "Prompt to display",
-          args: {},
+          args: { name: "prompt" },
         },
         {
           name: "--width",
           description: "Input width",
-          args: {},
+          args: { name: "width" },
         },
         {
           name: "--height",
           description: "Input height",
-          args: {},
+          args: { name: "lines" },
         },
         {
           name: "--value",
           description: "Initial filter",
-          args: {},
+          args: { name: "value" },
         },
         ...styleOptionGenerator("indicator"),
         ...styleOptionGenerator("selected-indicator"),
@@ -211,27 +219,27 @@ const completionSpec: Fig.Spec = {
         {
           name: "--placeholder",
           description: "Placeholder value",
-          args: {},
+          args: { name: "placeholder" },
         },
         {
           name: "--prompt",
           description: "Prompt to display",
-          args: {},
+          args: { name: "prompt" },
         },
         {
           name: "--value",
           description: "Initial value",
-          args: {},
+          args: { name: "value" },
         },
         {
           name: "--char-limit",
           description: "Maximum value length",
-          args: {},
+          args: { name: "limit" },
         },
         {
           name: "--width",
           description: "Input width",
-          args: {},
+          args: { name: "width" },
         },
         {
           name: "--password",
@@ -297,7 +305,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--title",
           description: "Text to display to user while spinning",
-          args: {},
+          args: { name: "text" },
         },
         {
           name: ["--align", "-a"],
@@ -375,13 +383,13 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--help", "-h"],
       description: "Show context-sensitive help",
+      isPersistent: true,
     },
     {
       name: ["--version", "-v"],
       description: "Print the version number",
+      isPersistent: true,
     },
   ],
-  // Only uncomment if gum takes an argument
-  // args: {}
 };
 export default completionSpec;
