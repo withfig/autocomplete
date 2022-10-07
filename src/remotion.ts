@@ -275,6 +275,25 @@ const renderOptions: Fig.Option[] = [
   },
 ];
 
+const benchmarkOptions: Fig.Option[] = [
+  ...renderOptions,
+  ...localRenderOptions,
+  ...localRenderAndStillOptions,
+  {
+    name: "--concurrencies",
+    description:
+      "Comma-separated list of concurrency values to include in benchmark",
+  },
+].filter((b) => {
+  if (b.name === "--overwrite") {
+    return false;
+  }
+  if (b.name === "--concurrency") {
+    return false;
+  }
+  return true;
+});
+
 const globalLambdaOptions: Fig.Option[] = [
   {
     name: "--quiet",
@@ -738,6 +757,29 @@ const completionSpec: Fig.Spec = {
           description: "Disable all keyboard shortcuts",
         },
       ],
+    },
+    {
+      name: "benchmark",
+
+      priority: 45,
+      description: "Measure and compare multiple render configurations",
+      args: [
+        {
+          name: "entry",
+          template: ["filepaths"],
+        },
+        {
+          name: "comp-ids",
+          description: "Composition IDs, comma-separated",
+          suggestions: [
+            {
+              type: "arg",
+              displayName: "[comp-ids]",
+            },
+          ],
+        },
+      ],
+      options: benchmarkOptions,
     },
     {
       name: "upgrade",
