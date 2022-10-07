@@ -10,7 +10,52 @@ const categoryKeysMapping = {
   user: ["name", "uid"],
 };
 const categories = Array.from(Object.keys(categoryKeysMapping));
-const associatedKeys = Array.from(Object.values(categoryKeysMapping));
+
+interface PostProcessQuery {
+  attributeKey: string;
+}
+
+const postProcessQuery =
+  (options: PostProcessQuery): Fig.Generator["postProcess"] =>
+  (out) => {
+    const { attributeKey } = options;
+    const values = new Set<string>();
+    out.split("\n\n").map((entry) => {
+      entry.split("\n").forEach((line) => {
+        const [key, value] = line.trim().split(": ");
+        if (key === attributeKey) {
+          values.add(value);
+        }
+      });
+    });
+
+    const suggestions = [];
+    values.forEach((value) => suggestions.push({ name: value }));
+
+    return suggestions;
+  };
+
+const dscacheutilGenerators: Record<string, Fig.Generator> = {
+  keys: {
+    custom: async (tokens, executeShellCommand) => {
+      const category = tokens[tokens.length - 2];
+      return categoryKeysMapping[category].map((key: string) => ({
+        name: key,
+      }));
+    },
+  },
+  values: {
+    custom: async (tokens, executeShellCommand) => {
+      const category = tokens[tokens.length - 4];
+      const attributeKey = tokens[tokens.length - 2];
+      const pp = postProcessQuery({ attributeKey });
+      return pp(
+        await executeShellCommand(`dscacheutil -q ${category}`),
+        tokens
+      );
+    },
+  },
+};
 
 const completionSpec: Fig.Spec = {
   name: "dscacheutil",
@@ -27,13 +72,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "-a",
           description: "Attribute to query",
-          args: {
-            name: "name value",
-            generators: keyValue({
-              separator: " ",
-              keys: ["name", "gid", "ip_address", "port", "uid"],
-            }),
-          },
+          args: [
+            {
+              name: "attributeKey",
+              generators: dscacheutilGenerators.keys,
+            },
+            {
+              name: "attributeValue",
+              generators: dscacheutilGenerators.values,
+            },
+          ],
         },
       ],
       args: {
