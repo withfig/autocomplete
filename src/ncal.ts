@@ -1,8 +1,11 @@
-const monthSuggestions: Fig.Suggestion[] = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december].map((month) => ({name: month, icon: "🗓", type: "arg"}));
+export const monthSuggestions: Fig.Suggestion[] = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"].map((month) => ({ name: month, icon: "🗓", type: "arg" }));
 const countryCodeSuggestion: Fig.Suggestion[] = [["AL","Albania"],["AT","Austria"],["AU","Australia"],["BE","Belgium"],["BG","Bulgaria"],["CA","Canada"],["CH","Switzerland"],["CN","China"],["CZ","Czech Republic"],["DE","Germany"],["DK","Denmark"],["ES","Spain"],["FI","Finland"],["FR","France"],["GB","United Kingdom"],["GR","Greece"],["HU","Hungary"],["IS","Iceland"],["IT","Italy"],["JP","Japan"],["LI","Lithuania"],["LN","Latin"],["LU","Luxembourg"],["LV","Latvia"],["NL","Netherlands"],["NO","Norway"],["PL","Poland"],["PT","Portugal"],["RO","Romania"],["RU","Russia"],["SI","Slovenia"],["SW","Sweden"],["TR","Turkey"],["US","United States"],["YU","Yugoslavia"]].map((country) => ({name: country[0], description: country[1], icon: "🌎", type: "arg"}));
 
 const completionSpec: Fig.Spec = {
   name: "ncal",
+  parserDirectives: {
+    optionsMustPrecedeArguments: true,
+  },
   description: "Displays a calendar and the date of Easter",
   options: [
     {
