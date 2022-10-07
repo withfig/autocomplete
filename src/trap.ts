@@ -1,14 +1,20 @@
 /*
+ * Certain shells output signals as "1) SIGHUP 2) SIGINT 3) SIGQUIT" (bash, zsh, ...)
+ * Other shells output looks like "HUP INT QUIT" (fish, csh, ...)
+ */
+const re = /(\d+\)\s)?([\w-+]+)/g;
+
+/*
  * Generators
  */
 
 const availableSignalsGenerator = (
   suggestOptions?: Partial<Fig.Suggestion>
 ): Fig.Generator => ({
-  script: "trap -l",
+  script: "command kill -l",
   postProcess: (output) =>
-    output.split(" ").map((signal) => ({
-      name: signal,
+    [...output.matchAll(re)].map((signal) => ({
+      name: signal[2],
     })),
 });
 
@@ -17,10 +23,6 @@ const completionSpec: Fig.Spec = {
   description:
     "Automatically execute commands after receiving signals by processes or the operating system",
   options: [
-    {
-      name: ["--list-signals", "-l"],
-      description: "Prints a list of signal names",
-    },
     {
       name: ["--print", "-p"],
       description: "Prints all defined signal handlers",
@@ -31,7 +33,7 @@ const completionSpec: Fig.Spec = {
     },
   ],
   args: [
-    { name: "arg", isOptional: true },
+    { name: "function name", isOptional: true },
     { name: "reason", generators: availableSignalsGenerator() },
   ],
 };
