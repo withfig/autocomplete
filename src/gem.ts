@@ -77,6 +77,7 @@ const completionSpec: Fig.Spec = {
           description: "Gem repository directory to get installed gems",
           args: {
             name: "DIR",
+            template: "folders",
           },
         },
         {
@@ -85,6 +86,7 @@ const completionSpec: Fig.Spec = {
             "Directory where executables will be placed when the gem is installed",
           args: {
             name: "DIR",
+            template: "folders",
           },
         },
         {
@@ -92,6 +94,7 @@ const completionSpec: Fig.Spec = {
           description: "Generate documentation for installed gems",
           args: {
             name: "TYPES",
+            suggestions: ["rdoc", "ri"],
           },
         },
         {
@@ -100,6 +103,7 @@ const completionSpec: Fig.Spec = {
             "Temporary installation root. Useful for building packages. Do not use this when installing remote gems",
           args: {
             name: "DIR",
+            template: "folders",
           },
         },
         {
@@ -173,6 +177,7 @@ const completionSpec: Fig.Spec = {
             "Read from a gem dependencies API file and install the listed gems",
           args: {
             name: "FILE",
+            template: "filepaths",
           },
         },
         {
