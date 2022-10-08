@@ -1,7 +1,7 @@
 const commonOptions: Fig.Option[] = [
   {
     name: ["-"],
-    description: "Read from stdin",
+    description: "Read from stdin (e.g. 'ps aux | grep code | code -')",
   },
   {
     name: ["-d", "--diff"],
@@ -165,7 +165,7 @@ const extensionManagementOptions: Fig.Option[] = [
   {
     name: "--install-extension",
     description:
-      "Installs or updates the extension. The identifier of an extension is always `${publisher}.${name}\n\nUse `--force` argument to update to latest version. To install a specific version provide `@${version}`. For example: 'vscode.csharp@1.2.3'",
+      "Installs or updates an extension. The argument is either an extension id or a path to a VSIX. The identifier of an extension is '${publisher}.${name}'. Use '--force' argument to update to latest version. To install a specific version provide '@${version}'. For example: 'vscode.csharp@1.2.3'",
     args: {
       // TODO: Create extension ID generator
       name: "extension-id[@version] | path-to-vsix",
