@@ -1,4 +1,4 @@
-import { monthSuggestions } from "./ncal"
+import { monthSuggestions } from "./ncal";
 
 const completionSpec: Fig.Spec = {
   name: "cal",
