@@ -195,11 +195,6 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-X", "--remoteexit"],
       description: "Exit the remote servers at end  of test (non-GUI)",
-      args: {
-        isOptional: false,
-        name: "remoteexit",
-        description: "Exit the remote servers at end of test (non-GUI)",
-      },
     },
     {
       name: ["-g", "--reportonly"],
