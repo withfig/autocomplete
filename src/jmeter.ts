@@ -169,6 +169,9 @@ const completionSpec: Fig.Spec = {
       args: {
         isOptional: false,
         name: "loglevel",
+        generators: keyValue({
+	        values: ["INFO", "WARN", "DEBUG"],
+	      }),
         description: "[category=]level e.g. jorphan=INFO, jmeter.util=DEBUG or com.example.foo=WARN",
       },
     },
