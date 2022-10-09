@@ -1,6 +1,6 @@
 const commonOptions: Fig.Option[] = [
   {
-    name: ["-"],
+    name: "-",
     description: "Read from stdin (e.g. 'ps aux | grep code | code -')",
   },
   {
