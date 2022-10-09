@@ -41,6 +41,14 @@ const completionSpec: Fig.Spec = {
         description: "Print all numbers using format",
       },
     },
+    {
+      name: "--help",
+      description: "Display the program usage",
+    },
+    {
+      name: "--version",
+      description: "Display the version number",
+    },
   ],
 };
 export default completionSpec;
