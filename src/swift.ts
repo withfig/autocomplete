@@ -376,7 +376,6 @@ const completionSpec: Fig.Spec = {
         description: "The module alias and the contents of the file to be used",
         generators: keyValue({
           separator: "=",
-          keys: ["alias_name"],
         }),
       },
     },
