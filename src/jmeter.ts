@@ -38,6 +38,7 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "testfile",
         description: "the jmeter test(.jmx) file to run. \"-t LAST\" will load last used file ",
+        template: "filepaths",
       },      
     },
     {
