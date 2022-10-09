@@ -211,6 +211,7 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "reportoutputfolder",
         description: "output folder for report dashboard",
+        template: "folders",
       },
     },
 
