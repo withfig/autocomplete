@@ -48,6 +48,8 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "logfile",
         description: "the file to log samples to",
+        template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
