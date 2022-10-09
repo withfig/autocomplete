@@ -19,12 +19,12 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: "-w",
+      name: ["-w", "--fixed-width"],
       description:
         "Equalize the widths of all numbers by padding with zeros as necessary",
     },
     {
-      name: "-s",
+      name: ["-s", "--separator"],
       description: "String separator between numbers. Default is newline",
       insertValue: `-s "{cursor}"`,
       args: {
@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "-f",
+      name: ["-f", "--format"],
       description: "Use a printf(3) style format to print each number",
       insertValue: `-f %{cursor}`,
       args: {
