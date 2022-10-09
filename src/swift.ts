@@ -68,7 +68,6 @@ const completionSpec: Fig.Spec = {
         description: "The remap source paths in coverage info",
         generators: keyValue({
           separator: "=",
-          keys: ["prefix", "original"],
         }),
       },
     },
