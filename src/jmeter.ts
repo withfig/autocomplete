@@ -190,7 +190,6 @@ const completionSpec: Fig.Spec = {
       args: {
         isOptional: false,
         name: "homedir",
-        description: "the jmeter home directory to use",
       },
     },
     {
