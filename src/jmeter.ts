@@ -69,6 +69,8 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "jmeterlogfile",
         description: "jmeter run log file",
+        template: "filepaths",
+        suggestCurrentToken: true,
       },
     },
     {
