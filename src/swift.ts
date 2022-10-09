@@ -236,7 +236,6 @@ const completionSpec: Fig.Spec = {
           "The remap source paths in debug, coverage, and index info",
         generators: keyValue({
           separator: "=",
-          keys: ["prefix", "original"],
         }),
       },
     },
