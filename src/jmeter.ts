@@ -24,7 +24,9 @@ const completionSpec: Fig.Spec = {
       description: "additional JMeter property file(s)",
       args: {
         isOptional: false,
-        name: "addprop",
+        name: "files...",
+        template: "filepaths",
+        isVariadic: true,
         description: "additional JMeter property file(s)",
       },
     },
