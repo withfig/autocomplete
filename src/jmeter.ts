@@ -17,6 +17,7 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "property",
         description: "Your jmeter property file",
+        template: "filepaths",
       },
     },
     {
