@@ -178,7 +178,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-R", "--remotestart"],
-      description: "Start these remote servers (overrides remote_hosts)",      
+      description: "Start these remote servers (overrides remote_hosts)",
+      args: {
+        name: "servers",
+        isVariadic: true,
+      },
     },
     {
       name: ["-d", "--homedir"],
