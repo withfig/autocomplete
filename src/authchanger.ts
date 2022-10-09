@@ -1,5 +1,8 @@
 const completionSpec: Fig.Spec = {
   name: "authchanger",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   description:
     "Authchanger is a utility included with Jamf Connect to help you manage the authorization database used by macOS to determine how the login process progresses",
   options: [
