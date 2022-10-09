@@ -59,6 +59,7 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "jmeterlogconf",
         description: "jmeter logging configuration file",
+        template: "filepaths",
       },
     },
     {
