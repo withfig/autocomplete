@@ -93,6 +93,9 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "prefix=replacement",
         description: "The remap source paths in debug info",
+        generators: keyValue({
+          separator: "=",
+        }),
       },
     },
     {
