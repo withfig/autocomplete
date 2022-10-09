@@ -25,7 +25,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--jobs", "j"],
+      name: ["--jobs", "-j"],
       description: "Number of parallel job to dump",
       args: { name: "num" },
     },
@@ -86,7 +86,7 @@ const completionSpec: Fig.Spec = {
       args: { name: "encoding" },
     },
     {
-      name: ["--schema", "n"],
+      name: ["--schema", "-n"],
       description: "Dump the specified schema(s) only",
       args: { name: "pattern" },
       isRepeatable: true,
@@ -123,7 +123,7 @@ const completionSpec: Fig.Spec = {
       isRepeatable: true,
     },
     {
-      name: ["--no-privileges", "-x"],
+      name: ["--no-privileges", "-x", "--no-acl"],
       description: "Do not dump privileges (grant/revoke)",
     },
     {
@@ -131,7 +131,7 @@ const completionSpec: Fig.Spec = {
       description: "For use by upgrade utilities only",
     },
     {
-      name: "--column-inserts",
+      name: ["--column-inserts", "--attribute-inserts"],
       description: "Dump data as INSERT commands with column names",
     },
     {
