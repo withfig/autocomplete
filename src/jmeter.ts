@@ -165,6 +165,7 @@ const completionSpec: Fig.Spec = {
         isOptional: false,
         name: "systemPropertyFile",
         description: "additional system property file(s)",
+        template: "filepaths",
       },
     },
     {
