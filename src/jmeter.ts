@@ -99,7 +99,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-P", "--proxyPort"],
-      description: "Set proxy server port for JMeter to use",      
+      description: "Set proxy server port for JMeter to use",
+      args: {
+        name: "port",
+      },
     },
     {
       name: ["-N", "--nonProxyHosts"],
