@@ -89,7 +89,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "-debug-prefix-map",
       description: "Remap source paths in debug info",
-
       args: {
         name: "prefix=replacement",
         description: "The remap source paths in debug info",
