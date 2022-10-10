@@ -1328,6 +1328,13 @@ const completionSpec: Fig.Spec = {
       name: "version",
       description: "Update version of your package",
       options: [
+        ...commonOptions,
+        { name: ["-h", "--help"], description: "Output usage information" },
+        {
+          name: "--new-version",
+          description: "New version",
+          args: { name: "version" },
+        },
         {
           name: "--major",
           description: "Auto-increment major version number",
@@ -1340,6 +1347,39 @@ const completionSpec: Fig.Spec = {
           name: "--patch",
           description: "Auto-increment patch version number",
         },
+        {
+          name: "--premajor",
+          description: "Auto-increment premajor version number",
+        },
+        {
+          name: "--preminor",
+          description: "Auto-increment preminor version number",
+        },
+        {
+          name: "--prepatch",
+          description: "Auto-increment prepatch version number",
+        },
+        {
+          name: "--prerelease",
+          description: "Auto-increment prerelease version number",
+        },
+        {
+          name: "--preid",
+          description: "Add a custom identifier to the prerelease",
+          args: { name: "preid" },
+        },
+        {
+          name: "--message",
+          description: "Message",
+          args: { name: "message" },
+        },
+        { name: "--no-git-tag-version", description: "No git tag version" },
+        {
+          name: "--no-commit-hooks",
+          description: "Bypass git hooks when committing new version",
+        },
+        { name: "--access", description: "Access", args: { name: "access" } },
+        { name: "--tag", description: "Tag", args: { name: "tag" } },
       ],
     },
     {

@@ -9,7 +9,7 @@
 [![Badge: Sign up (public beta)](https://img.shields.io/badge/signup-public%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
 [![Badge: Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/)
 [![Badge: contributors](https://img.shields.io/github/contributors/withfig/autocomplete)](#Contributors)
-[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)](https://fig.io/community)
+[![Badge: Join the Discord server](https://img.shields.io/discord/837809111248535583?color=5865F2&label=discord)](https://fig.io/community)
 [![Badge: Follow on Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
 **[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
@@ -19,7 +19,7 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 ## ⚡️ Installation
 
 - **macOS**:
-  - **Homebrew**: `brew install --cask fig`
+  - **Homebrew**: `brew install fig`
   - **DMG**: Download from our website: [fig.io](https://fig.io/welcome)
 - **Windows/Linux**:
   - Join the [waitlist](https://withfig.typeform.com/linux)
