@@ -94,6 +94,16 @@ const lambdaRenderOptions: Fig.Option[] = [
     name: "--overwrite",
     description: "Overwrite a video if it already exists in the S3 bucket",
   },
+  {
+    name: "--webhook",
+    description:
+      "URL of webhook to be called when render is done. To be used together with --webhook-secret",
+  },
+  {
+    name: "--webhook-secret",
+    description:
+      "Secret to sign payload of the webhook that is called upon render finish. To be used together with --webhook",
+  },
 ];
 
 const localRenderOptions: Fig.Option[] = [
