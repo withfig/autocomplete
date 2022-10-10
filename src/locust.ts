@@ -182,16 +182,17 @@ const completionSpec: Fig.Spec = {
         "Choose between DEBUG/INFO/WARNING/ERROR/CRITICAL. Default is INFO",
       args: {
         name: "loglevel",
-        generators: keyValue({
-          values: ["INFO", "WARNING", "DEBUG", "ERROR", "CRITICAL"],
-        }),
-        description:
-          "Choose between DEBUG/INFO/WARNING/ERROR/CRITICAL. Default is INFO",
+        suggestions: ["INFO", "WARNING", "DEBUG", "ERROR", "CRITICAL"],
       },
     },
     {
       name: "--logfile",
       description: "Path to log file. If not set, log will go to stderr",
+      args: {
+        name: "logfile",
+        description: "Path to log file",
+        template: "filepaths",
+      },
     },
     {
       name: "--show-task-ratio",
@@ -227,19 +228,6 @@ const completionSpec: Fig.Spec = {
       name: ["--E", "--exclude-tags"],
       description:
         "List of tags to exclude from the test, so only tasks with no matching tags will be executed",
-    },
-  ],
-  subcommands: [
-    {
-      name: "my_subcommand",
-      description: "Example subcommand",
-      subcommands: [
-        {
-          name: "my_nested_subcommand",
-          description:
-            "Nested subcommand, example usage: 'locust my_subcommand my_nested_subcommand'",
-        },
-      ],
     },
   ],
 };
