@@ -40,7 +40,7 @@ const sharedOpts: Record<string, Fig.Option> = {
 
 const multipassGenerators: Record<string, Fig.Generator> = {
   allAvailableInstances: {
-    script: "multipass list --format=csv | tail -n +2 | cut -d, -f1",
+    script: "multipass list --format=csv | tail -n +2",
     postProcess: (out) => {
       return out.split("\n").map((instance) => {
         const instanceSplit = instance.split(",");
@@ -64,7 +64,7 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     },
   },
   allRunningInstances: {
-    script: "multipass list --format=csv | tail -n +2 | cut -d, -f1",
+    script: "multipass list --format=csv | tail -n +2",
     postProcess: (out) => {
       // out = Name,State,IPv4,IPv6,Release,AllIPv4
       // only return instances that are running
