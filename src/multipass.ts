@@ -39,41 +39,37 @@ const sharedOpts: Record<string, Fig.Option> = {
 };
 
 const multipassGenerators: Record<string, Fig.Generator> = {
-  allAvailableInstances: {
-    script: "multipass list --format=csv | tail -n +2",
+  allAvailableImages: {
+    script: "multipass find --format=json",
     postProcess: (out) => {
-      return out.split("\n").map((instance) => {
-        const instanceSplit = instance.split(",");
+      const images = JSON.parse(out).images;
+      return Object.keys(images).map((key) => {
         return {
-          name: instanceSplit[0],
-          description: instanceSplit[4],
+          name: key,
+          description: images[key].os + " " + images[key].release,
         };
       });
     },
   },
-  allAvailableImages: {
-    script: "multipass find --format=csv | tail -n +2",
+  allAvailableInstances: {
+    script: "multipass list --format=json",
     postProcess: (out) => {
-      return out.split("\n").map((image) => {
-        const imageSplit = image.split(",");
+      return JSON.parse(out).list.map((instance) => {
         return {
-          name: imageSplit[0],
-          description: imageSplit[3] + " " + imageSplit[4],
+          name: instance.name,
+          description: instance.release,
         };
       });
     },
   },
   allRunningInstances: {
-    script: "multipass list --format=csv | tail -n +2",
+    script: "multipass list --format=json",
     postProcess: (out) => {
-      // out = Name,State,IPv4,IPv6,Release,AllIPv4
-      // only return instances that are running
-      return out.split("\n").map((instance) => {
-        const instanceSplit = instance.split(",");
-        if (instanceSplit[1] === "RUNNING") {
+      return JSON.parse(out).list.map((instance) => {
+        if (instance.state === "Running") {
           return {
-            name: instanceSplit[0],
-            description: instanceSplit[4],
+            name: instance.name,
+            description: instance.release,
           };
         }
       });
