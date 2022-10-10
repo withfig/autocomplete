@@ -1148,6 +1148,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "policies",
       description: "Defines project-wide policies for your project",
+      subcommands: [
+        {
+          name: "set-version",
+          description: "Will download the latest stable release",
+        },
+        {
+          name: "set-version --rc",
+          description: "Will download the latest rc release",
+        },
+      ]
     },
     {
       name: "publish",
