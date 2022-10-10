@@ -32,11 +32,11 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-t", "--testfile"],
       description:
-        'The jmeter test(.jmx) file to run. "-t LAST" will load last used file',
+        'The JMeter test(.jmx) file to run. "-t LAST" will load last used file',
       args: {
         name: "testfile",
         description:
-          'The jmeter test(.jmx) file to run. "-t LAST" will load last used file',
+          'The JMeter test(.jmx) file to run. "-t LAST" will load last used file',
         template: "filepaths",
       },
     },
