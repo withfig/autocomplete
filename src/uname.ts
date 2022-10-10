@@ -4,7 +4,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "-a",
-      description: "Enables the options -mnrsv",
+      description: "Print all available system information",
     },
     {
       name: "-m",
@@ -12,7 +12,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-n",
-      description: "Print the nodename",
+      description: "Print the system hostname",
     },
     {
       name: "-p",
