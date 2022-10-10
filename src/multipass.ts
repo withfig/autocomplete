@@ -10,7 +10,9 @@ const sharedOpts: Record<string, Fig.Option> = {
   verbose: {
     name: ["-v", "--verbose"],
     description:
-      "Increase logging verbosity. Repeat the 'v' in the short option for more detail. Maximum verbosity is obtained with 4 (or more) v's, i.e. -vvvv",
+      "Increase logging verbosity. Repeat the 'v' in the short " +
+      "option for more detail. Maximum verbosity is obtained " +
+      "with 4 (or more) v's, i.e. -vvvv",
   },
   format: {
     name: "--format",
@@ -22,10 +24,22 @@ const sharedOpts: Record<string, Fig.Option> = {
       default: "table",
     },
   },
+  timeout: {
+    name: "--timeout",
+    description:
+      "Maximum time, in seconds, to wait for the command to " +
+      "complete. Note that some background operations may " +
+      "continue beyond that. By default, instance startup and " +
+      "initialization is limited to 5 minutes each",
+    args: {
+      name: "timeout",
+      default: "300",
+    },
+  },
 };
 
 const multipassGenerators: Record<string, Fig.Generator> = {
-  allInstances: {
+  allAvailableInstances: {
     script: "multipass list --format=csv | tail -n +2 | cut -d, -f1",
     postProcess: (out) => {
       return out.split("\n").map((instance) => {
@@ -46,6 +60,22 @@ const multipassGenerators: Record<string, Fig.Generator> = {
           name: imageSplit[0],
           description: imageSplit[3] + " " + imageSplit[4],
         };
+      });
+    },
+  },
+  allRunningInstances: {
+    script: "multipass list --format=csv | tail -n +2 | cut -d, -f1",
+    postProcess: (out) => {
+      // out = Name,State,IPv4,IPv6,Release,AllIPv4
+      // only return instances that are running
+      return out.split("\n").map((instance) => {
+        const instanceSplit = instance.split(",");
+        if (instanceSplit[1] === "RUNNING") {
+          return {
+            name: instanceSplit[0],
+            description: instanceSplit[4],
+          };
+        }
       });
     },
   },
@@ -89,11 +119,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "delete",
       description: "Delete instances",
-      args: {
-        isVariadic: true,
-        name: "name",
-        description: "Name of instances to delete",
-      },
       options: [
         sharedOpts.help,
         sharedOpts.helpAll,
@@ -107,6 +132,12 @@ const completionSpec: Fig.Spec = {
           description: "Purge instances immediately",
         },
       ],
+      args: {
+        isVariadic: true,
+        name: "name",
+        description: "Name of instances to delete",
+        generators: multipassGenerators.allAvailableInstances,
+      },
     },
     {
       name: "exec",
@@ -115,6 +146,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "name",
           description: "Name of the instance to run the command on",
+          generators: multipassGenerators.allAvailableInstances,
         },
         {
           name: "command",
@@ -196,6 +228,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "name",
         description: "Names of instances to display information about",
+        generators: multipassGenerators.allAvailableInstances,
       },
     },
     {
@@ -205,6 +238,7 @@ const completionSpec: Fig.Spec = {
         sharedOpts.help,
         sharedOpts.helpAll,
         sharedOpts.verbose,
+        sharedOpts.timeout,
         {
           name: ["-c", "--cpus"],
           description: "Number of CPUs to allocate. Minimum: 1, default: 1",
@@ -250,15 +284,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "--bridged",
           description: "Adds one `--network bridged` network",
-        },
-        {
-          name: "--timeout",
-          description:
-            "Maximum time, in seconds, to wait for the command to complete. Note that some background operations may continue beyond that. By default, instance startup and initialization is limited to 5 minutes each",
-          args: {
-            name: "timeout",
-            default: "300",
-          },
         },
       ],
       args: {
@@ -316,6 +341,161 @@ const completionSpec: Fig.Spec = {
             "Target mount points, in <name>[:<path>] format, where <name> is an instance name, and optional <path> is the mount point. If omitted, the mount point will be the same as the source's absolute path",
         },
       ],
+    },
+    {
+      name: "networks",
+      description: "List all available networks interfaces",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.format,
+      ],
+    },
+    {
+      name: "purge",
+      description: "Purge all deleted instances permanently",
+      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+    },
+    {
+      name: "recover",
+      description: "Recover deleted instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        {
+          name: "--all",
+          description: "Recover all deleted instances",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        name: "name",
+        description: "Names of instances to recover",
+      },
+    },
+    {
+      name: "restart",
+      description: "Restart instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.timeout,
+        {
+          name: "--all",
+          description: "Restart all instances",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "name",
+        description:
+          "Names of instances to restart. If omitted, and without the --all option, 'primary' will be assumed",
+        generators: multipassGenerators.allAvailableInstances,
+      },
+    },
+    {
+      name: "set",
+      description: "Set a configuration setting",
+      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+      args: {
+        name: "key=value",
+        description:
+          "A key-value pair. The key specifies a path to the setting to configure. The value is its intended value",
+        suggestions: [
+          "client.gui.autostart=",
+          "client.gui.hotkey=",
+          "client.primary-name=",
+          "local.bridged-network=",
+          "local.driver=",
+          "local.privileged-mounts=",
+        ],
+      },
+    },
+    {
+      name: "shell",
+      description: "Open a shell on a running instance",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.timeout,
+      ],
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "name",
+        description:
+          "Name of the instance to open a shell on. If omitted, " +
+          "'primary' (the configured primary instance name) will be " +
+          "assumed. If the instance is not running, an attempt is " +
+          "made to start it (see `start` for more info)",
+        generators: multipassGenerators.allAvailableInstances,
+      },
+    },
+    {
+      name: "start",
+      description: "Start instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.timeout,
+        {
+          name: "--all",
+          description: "Start all instances",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "name",
+        description:
+          "Names of instances to start. If omitted, and without the " +
+          "--all option, 'primary' (the configured primary instance " +
+          "name) will be assumed. If 'primary' does not exist but is " +
+          "included in a successful start command either implicitly " +
+          "or explicitly), it is launched automatically (see" +
+          "`launch` for more info).",
+        generators: multipassGenerators.allAvailableInstances,
+      },
+    },
+    {
+      name: "stop",
+      description: "Stop running instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        {
+          name: "--all",
+          description: "Stop all instances",
+        },
+        {
+          name: ["-t", "--time"],
+          description:
+            "Time from now, in minutes, to delay shutdown of the instance",
+          args: {
+            name: "time",
+          },
+        },
+        {
+          name: ["-c", "--cancel"],
+          description: "Cancel a pending delayed shutdown",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "name",
+        description:
+          "Names of instances to stop. If omitted, and without the " +
+          "--all option, 'primary' will be assumed.",
+        generators: multipassGenerators.allRunningInstances,
+      },
     },
   ],
   options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
