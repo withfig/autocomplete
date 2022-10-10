@@ -51,14 +51,6 @@ const completionSpec: Fig.Spec = {
         description: "Terminator",
       },
     },
-    {
-      name: "--help",
-      description: "Display the program usage",
-    },
-    {
-      name: "--version",
-      description: "Display the version number",
-    },
   ],
 };
 export default completionSpec;
