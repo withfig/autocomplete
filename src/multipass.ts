@@ -24,6 +24,33 @@ const sharedOpts: Record<string, Fig.Option> = {
   },
 };
 
+const multipassGenerators: Record<string, Fig.Generator> = {
+  allInstances: {
+    script: "multipass list --format=csv | tail -n +2 | cut -d, -f1",
+    postProcess: (out) => {
+      return out.split("\n").map((instance) => {
+        const instanceSplit = instance.split(",");
+        return {
+          name: instanceSplit[0],
+          description: instanceSplit[4],
+        };
+      });
+    },
+  },
+  allAvailableImages: {
+    script: "multipass find --format=csv | tail -n +2",
+    postProcess: (out) => {
+      return out.split("\n").map((image) => {
+        const imageSplit = image.split(",");
+        return {
+          name: imageSplit[0],
+          description: imageSplit[3] + " " + imageSplit[4],
+        };
+      });
+    },
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "multipass",
   description: "Create, control and connect to Ubuntu instances",
@@ -170,6 +197,125 @@ const completionSpec: Fig.Spec = {
         name: "name",
         description: "Names of instances to display information about",
       },
+    },
+    {
+      name: "launch",
+      description: "Create and start an Ubuntu instance",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        {
+          name: ["-c", "--cpus"],
+          description: "Number of CPUs to allocate. Minimum: 1, default: 1",
+          args: {
+            name: "cpus",
+            default: "1",
+          },
+        },
+        {
+          name: ["-d", "--disk"],
+          description:
+            "Disk space to allocate. Positive integers, in bytes, or with K, M, G suffix",
+          args: {
+            name: "disk",
+          },
+        },
+        {
+          name: ["-m", "--mem"],
+          description:
+            "Amount of memory to allocate. Positive integers, in bytes, or with K, M, G suffix",
+        },
+        {
+          name: ["-n", "--name"],
+          description:
+            "Name for the instance. If it is 'primary' (the configured primary instance name), the user's home directory is mounted inside the newly launched instance, in 'Home'",
+        },
+        {
+          name: "--cloud-init",
+          description:
+            "Path to a user-data cloud-init configuration, or '-' for stdin",
+          args: {
+            name: "file",
+          },
+        },
+        {
+          name: "--network",
+          description:
+            'Add a network interface to the instance, where <spec> is in the "key=value,key=value" format',
+          args: {
+            name: "spec",
+          },
+        },
+        {
+          name: "--bridged",
+          description: "Adds one `--network bridged` network",
+        },
+        {
+          name: "--timeout",
+          description:
+            "Maximum time, in seconds, to wait for the command to complete. Note that some background operations may continue beyond that. By default, instance startup and initialization is limited to 5 minutes each",
+          args: {
+            name: "timeout",
+            default: "300",
+          },
+        },
+      ],
+      args: {
+        isOptional: true,
+        name: "image",
+        description:
+          "Optional image to launch. If omitted, then the default Ubuntu LTS will be used",
+        generators: multipassGenerators.allAvailableImages,
+      },
+    },
+    {
+      name: "list",
+      description: "List all available instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.format,
+      ],
+    },
+    {
+      name: "mount",
+      description: "Mount a local directory in the instance",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        {
+          name: ["-g", "--gid-map"],
+          description:
+            "A mapping of group IDs for use in the mount. File and folder ownership will be mapped from <host> to <instance> inside the instance. Can be used multiple times",
+          args: {
+            name: "host:instance",
+          },
+        },
+        {
+          name: ["-u", "--uid-map"],
+          description:
+            "A mapping of user IDs for use in the mount. File and folder ownership will be mapped from <host> to <instance> inside the instance. Can be used multiple times",
+          args: {
+            name: "host:instance",
+          },
+        },
+      ],
+      args: [
+        {
+          name: "source",
+          description: "Path to the local directory to mount",
+          template: "folders",
+        },
+        {
+          isVariadic: true,
+          name: "target",
+          description:
+            "Target mount points, in <name>[:<path>] format, where <name> is an instance name, and optional <path> is the mount point. If omitted, the mount point will be the same as the source's absolute path",
+        },
+      ],
     },
   ],
   options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
