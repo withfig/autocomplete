@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-i", "--jmeterlogconf"],
-      description: "Jmeter logging configuration file",
+      description: "JMeter logging configuration file",
       args: {
         name: "jmeterlogconf",
         description: "Jmeter logging configuration file",
@@ -61,10 +61,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-j", "--jmeterlogfile"],
-      description: "Jmeter run log file",
+      description: "JMeter run log file",
       args: {
         name: "jmeterlogfile",
-        description: "Jmeter run log file",
+        description: "JMeter run log file",
         template: "filepaths",
         suggestCurrentToken: true,
       },
@@ -189,7 +189,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-d", "--homedir"],
-      description: "The jmeter home directory to use",
+      description: "The JMeter home directory to use",
       args: {
         name: "homedir",
       },
