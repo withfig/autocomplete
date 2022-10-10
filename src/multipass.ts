@@ -12,6 +12,16 @@ const sharedOpts: Record<string, Fig.Option> = {
     description:
       "Increase logging verbosity. Repeat the 'v' in the short option for more detail. Maximum verbosity is obtained with 4 (or more) v's, i.e. -vvvv",
   },
+  format: {
+    name: "--format",
+    description:
+      "Output list in the requested format. Valid formats are: table (default), json, csv and yaml",
+    args: {
+      name: "format",
+      suggestions: ["table", "json", "csv", "yaml"],
+      default: "table",
+    },
+  },
 };
 
 const completionSpec: Fig.Spec = {
@@ -46,15 +56,7 @@ const completionSpec: Fig.Spec = {
         sharedOpts.help,
         sharedOpts.helpAll,
         sharedOpts.verbose,
-        {
-          name: "--format",
-          description:
-            "Output list in the requested format. Valid formats are: table (default), json, csv and yaml",
-          args: {
-            name: "format",
-            suggestions: ["table", "csv", "json", "yaml"],
-          },
-        },
+        sharedOpts.format,
       ],
     },
     {
@@ -93,6 +95,81 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+    },
+    {
+      name: "find",
+      description: "Display available images to create instances from",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.format,
+        {
+          name: "--show-unsupported",
+          description: "Show unsupported cloud images as well",
+        },
+      ],
+      args: {
+        name: "string",
+        description:
+          "An optional value to search for in [<remote:>]<string> format, where <remote> can be either 'release’ or 'daily’. If <remote> is omitted, it will search 'release' first, and if no matches are found, it will then search 'daily'. <string> can be a partial image hash or an Ubuntu release version, codename or alias",
+      },
+    },
+    {
+      name: "get",
+      description: "Get a configuration setting",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        {
+          name: "--raw",
+          description:
+            'Output in raw format. For now, this affects only the representation of empty values (i.e. "" instead of "<empty>")',
+        },
+      ],
+      args: {
+        name: "key",
+        description:
+          "Path to the setting whose configured value should be obtained",
+        suggestions: [
+          "client.gui.autostart",
+          "client.gui.hotkey",
+          "client.primary-name",
+          "local.bridged-network",
+          "local.driver",
+          "local.privileged-mounts",
+        ],
+      },
+    },
+    {
+      name: "help",
+      description: "Display help about a command",
+      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+      args: {
+        name: "command",
+        description: "Name of command to display help for",
+        isOptional: true,
+      },
+    },
+    {
+      name: "info",
+      description: "Display information about instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.format,
+        {
+          name: "--all",
+          description: "Display info for all instances",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        name: "name",
+        description: "Names of instances to display information about",
+      },
     },
   ],
   options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
