@@ -1264,6 +1264,49 @@ const completionSpec: Fig.Spec = {
     {
       name: "team",
       description: "Maintain team memberships",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new team",
+          args: {
+            name: "<scope:team>",
+            isOptional: true,
+          },
+        },
+        {
+          name: "destroy",
+          description: "Destroys an existing team",
+          args: {
+            name: "<scope:team>",
+            isOptional: true,
+          },
+        },
+        {
+          name: "add",
+          description: "Add a user to an existing team",
+          args: {
+            name: "<scope:team> <user>",
+            isOptional: true,
+          },
+        },
+        {
+          name: "remove",
+          description: "Remove a user from a team they belong to",
+          args: {
+            name: "<scope:team> <user>",
+            isOptional: true,
+          },
+        },
+        {
+          name: "list",
+          description:
+            "If performed on an organization name, will return a list of existing teams under that organization. If performed on a team, it will instead return a list of all users belonging to that particular team",
+          args: {
+            name: "<scope>|<scope:team>",
+            isOptional: true,
+          },
+        },
+      ]
     },
     {
       name: "unlink",
