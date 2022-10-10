@@ -1,3 +1,5 @@
+import { keyValue } from "@fig/autocomplete-generators";
+
 const completionSpec: Fig.Spec = {
   name: "jmeter",
   description: "Apache JMeter - 100% Java Load Testing Tool",
@@ -169,7 +171,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "loglevel",
         generators: keyValue({
-          values: ["INFO", "WARN", "DEBUG"],
+          keys: ["OFF", "FATAL", "WARN", "INFO", "DEBUG", "TRACE", "ALL"],
         }),
         description:
           "[category=]level e.g. jorphan=INFO, jmeter.util=DEBUG or com.example.foo=WARN",
