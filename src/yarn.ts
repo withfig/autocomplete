@@ -1152,12 +1152,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-version",
           description: "Will download the latest stable release",
-      options: [{
-        name: "--rc",
-        description: "Download the latest rc release",
-      }],
+          options: [
+            {
+              name: "--rc",
+              description: "Download the latest rc release",
+            },
+          ],
         },
-      ]
+      ],
     },
     {
       name: "publish",
@@ -1282,11 +1284,14 @@ const completionSpec: Fig.Spec = {
         {
           name: "add",
           description: "Add a user to an existing team",
-          args: [{
-            name: "<scope:team>",
-          }, {
-            name: "<user>",
-          }],
+          args: [
+            {
+              name: "<scope:team>",
+            },
+            {
+              name: "<user>",
+            },
+          ],
         },
         {
           name: "remove",
@@ -1303,7 +1308,7 @@ const completionSpec: Fig.Spec = {
             name: "<scope>|<scope:team>",
           },
         },
-      ]
+      ],
     },
     {
       name: "unlink",
