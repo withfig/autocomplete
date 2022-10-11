@@ -1303,7 +1303,6 @@ const completionSpec: Fig.Spec = {
             "If performed on an organization name, will return a list of existing teams under that organization. If performed on a team, it will instead return a list of all users belonging to that particular team",
           args: {
             name: "<scope>|<scope:team>",
-            isOptional: true,
           },
         },
       ]
