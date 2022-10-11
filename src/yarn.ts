@@ -1277,7 +1277,6 @@ const completionSpec: Fig.Spec = {
           description: "Destroys an existing team",
           args: {
             name: "<scope:team>",
-            isOptional: true,
           },
         },
         {
