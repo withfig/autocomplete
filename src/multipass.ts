@@ -17,7 +17,8 @@ const sharedOpts: Record<string, Fig.Option> = {
   format: {
     name: "--format",
     description:
-      "Output list in the requested format. Valid formats are: table (default), json, csv and yaml",
+      "Output list in the requested format. " +
+      "Valid formats are: table (default), json, csv and yaml",
     args: {
       name: "format",
       suggestions: ["table", "json", "csv", "yaml"],
@@ -55,10 +56,12 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     script: "multipass list --format=json",
     postProcess: (out) => {
       return JSON.parse(out).list.map((instance) => {
-        return {
-          name: instance.name,
-          description: instance.release,
-        };
+        if (instance.state !== "Deleted") {
+          return {
+            name: instance.name,
+            description: instance.release,
+          };
+        }
       });
     },
   },
@@ -67,6 +70,32 @@ const multipassGenerators: Record<string, Fig.Generator> = {
     postProcess: (out) => {
       return JSON.parse(out).list.map((instance) => {
         if (instance.state === "Running") {
+          return {
+            name: instance.name,
+            description: instance.release,
+          };
+        }
+      });
+    },
+  },
+  allStoppedInstances: {
+    script: "multipass list --format=json",
+    postProcess: (out) => {
+      return JSON.parse(out).list.map((instance) => {
+        if (instance.state === "Stopped") {
+          return {
+            name: instance.name,
+            description: instance.release,
+          };
+        }
+      });
+    },
+  },
+  allDeletedInstances: {
+    script: "multipass list --format=json",
+    postProcess: (out) => {
+      return JSON.parse(out).list.map((instance) => {
+        if (instance.state === "Deleted") {
           return {
             name: instance.name,
             description: instance.release,
@@ -165,9 +194,15 @@ const completionSpec: Fig.Spec = {
         },
       ],
       args: {
+        isOptional: true,
         name: "string",
         description:
-          "An optional value to search for in [<remote:>]<string> format, where <remote> can be either 'release’ or 'daily’. If <remote> is omitted, it will search 'release' first, and if no matches are found, it will then search 'daily'. <string> can be a partial image hash or an Ubuntu release version, codename or alias",
+          "An optional value to search for in [<remote:>]<string> " +
+          "format, where <remote> can be either 'release' or 'daily'. " +
+          "If <remote> is omitted, it will search 'release' first, " +
+          "and if no matches are found, it will then search 'daily'. " +
+          "<string> can be a partial image hash or an Ubuntu release " +
+          "version, codename or alias.",
       },
     },
     {
@@ -180,7 +215,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "--raw",
           description:
-            'Output in raw format. For now, this affects only the representation of empty values (i.e. "" instead of "<empty>")',
+            "Output in raw format. For now, this affects only the " +
+            'representation of empty values (i.e. "" instead of "<empty>")',
         },
       ],
       args: {
@@ -246,25 +282,42 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-d", "--disk"],
           description:
-            "Disk space to allocate. Positive integers, in bytes, or with K, M, G suffix",
+            "Disk space to allocate. Positive integers, in bytes, or " +
+            "with K, M, G suffix " +
+            "Minimum: 512M, default: 5G.",
           args: {
             name: "disk",
+            default: "5G",
           },
         },
         {
           name: ["-m", "--mem"],
           description:
-            "Amount of memory to allocate. Positive integers, in bytes, or with K, M, G suffix",
+            "Amount of memory to allocate. Positive integers, in " +
+            "bytes, or with K, M, G suffix " +
+            "Minimum: 128M, default: 1G.",
+          args: {
+            name: "mem",
+            default: "1G",
+          },
         },
         {
           name: ["-n", "--name"],
           description:
-            "Name for the instance. If it is 'primary' (the configured primary instance name), the user's home directory is mounted inside the newly launched instance, in 'Home'",
+            "Name for the instance. If it is 'primary' (the " +
+            "configured primary instance name), the user's home " +
+            "directory is mounted inside the newly launched instance, " +
+            "in 'Home'",
+          args: {
+            name: "name",
+            default: "primary",
+          },
         },
         {
           name: "--cloud-init",
           description:
-            "Path to a user-data cloud-init configuration, or '-' for stdin",
+            "Path to a user-data cloud-init configuration, or '-' for" +
+            "stdin",
           args: {
             name: "file",
           },
@@ -272,7 +325,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "--network",
           description:
-            'Add a network interface to the instance, where <spec> is in the "key=value,key=value" format',
+            "Add a network interface to the instance, where <spec> is " +
+            'in the "key=value,key=value" format',
           args: {
             name: "spec",
           },
@@ -286,7 +340,8 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         name: "image",
         description:
-          "Optional image to launch. If omitted, then the default Ubuntu LTS will be used",
+          "Optional image to launch. If omitted, then the default " +
+          "Ubuntu LTS will be used",
         generators: multipassGenerators.allAvailableImages,
       },
     },
@@ -310,7 +365,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-g", "--gid-map"],
           description:
-            "A mapping of group IDs for use in the mount. File and folder ownership will be mapped from <host> to <instance> inside the instance. Can be used multiple times",
+            "A mapping of group IDs for use in the mount. " +
+            "File and folder ownership will be mapped from " +
+            "<host> to <instance> inside the instance. Can " +
+            "be used multiple times",
           args: {
             name: "host:instance",
           },
@@ -318,7 +376,10 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-u", "--uid-map"],
           description:
-            "A mapping of user IDs for use in the mount. File and folder ownership will be mapped from <host> to <instance> inside the instance. Can be used multiple times",
+            "A mapping of user IDs for use in the mount. " +
+            "File and folder ownership will be mapped from " +
+            "<host> to <instance> inside the instance. Can " +
+            "be used multiple times",
           args: {
             name: "host:instance",
           },
@@ -334,7 +395,11 @@ const completionSpec: Fig.Spec = {
           isVariadic: true,
           name: "target",
           description:
-            "Target mount points, in <name>[:<path>] format, where <name> is an instance name, and optional <path> is the mount point. If omitted, the mount point will be the same as the source's absolute path",
+            "Target mount points, in <name>[:<path>] " +
+            "format, where <name> is an instance name, and " +
+            "optional <path> is the mount point. If " +
+            "omitted, the mount point will be the same as " +
+            "the source's absolute path",
         },
       ],
     },
@@ -369,6 +434,7 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
         name: "name",
         description: "Names of instances to recover",
+        generators: multipassGenerators.allDeletedInstances,
       },
     },
     {
@@ -389,7 +455,8 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         name: "name",
         description:
-          "Names of instances to restart. If omitted, and without the --all option, 'primary' will be assumed",
+          "Names of instances to restart. If omitted, and without " +
+          "the --all option, 'primary' will be assumed",
         generators: multipassGenerators.allAvailableInstances,
       },
     },
@@ -400,7 +467,8 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "key=value",
         description:
-          "A key-value pair. The key specifies a path to the setting to configure. The value is its intended value",
+          "A key-value pair. The key specifies a path to " +
+          "the setting to configure. The value is its intended value",
         suggestions: [
           "client.gui.autostart=",
           "client.gui.hotkey=",
@@ -456,7 +524,7 @@ const completionSpec: Fig.Spec = {
           "included in a successful start command either implicitly " +
           "or explicitly), it is launched automatically (see" +
           "`launch` for more info).",
-        generators: multipassGenerators.allAvailableInstances,
+        generators: multipassGenerators.allStoppedInstances,
       },
     },
     {
@@ -492,6 +560,82 @@ const completionSpec: Fig.Spec = {
           "--all option, 'primary' will be assumed.",
         generators: multipassGenerators.allRunningInstances,
       },
+    },
+    {
+      name: "suspend",
+      description: "Suspend running instances",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        {
+          name: "--all",
+          description: "Suspend all instances",
+        },
+      ],
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "name",
+        description:
+          "Names of instances to suspend. If omitted, and without the " +
+          "--all option, 'primary' will be assumed.",
+        generators: multipassGenerators.allRunningInstances,
+      },
+    },
+    {
+      name: "transfer",
+      description: "Transfer files between the host and instances",
+      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+      args: [
+        {
+          isVariadic: true,
+          name: "source",
+          description:
+            "One or more paths to transfer, prefixed with <name:> for paths " +
+            "inside the instance, or '-' for stdin",
+          template: "filepaths",
+        },
+        {
+          name: "destination",
+          description:
+            "The destination path, prefixed with <name:> for paths inside " +
+            "the instance, or '-' for stdout",
+          template: "filepaths",
+        },
+      ],
+    },
+    {
+      name: "umount",
+      description: "Unmount a directory from an instance",
+      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+      args: {
+        isVariadic: true,
+        name: "mount",
+        description:
+          "Mount points, in <name>[:<path>] format, where <name> are " +
+          "instance names, and optional <path> are mount points. If " +
+          "omitted, all mounts will be removed from the named instances.",
+      },
+    },
+    {
+      name: "unalias",
+      description: "Remove an alias",
+      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
+      args: {
+        name: "name",
+        description: "The name of the alias to remove",
+      },
+    },
+    {
+      name: "version",
+      description: "Show version details",
+      options: [
+        sharedOpts.help,
+        sharedOpts.helpAll,
+        sharedOpts.verbose,
+        sharedOpts.format,
+      ],
     },
   ],
   options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
