@@ -1152,10 +1152,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "set-version",
           description: "Will download the latest stable release",
-        },
-        {
-          name: "set-version --rc",
-          description: "Will download the latest rc release",
+      options: [{
+        name: "--rc",
+        description: "Download the latest rc release",
+      }],
         },
       ]
     },
