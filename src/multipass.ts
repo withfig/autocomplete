@@ -2,10 +2,12 @@ const sharedOpts: Record<string, Fig.Option> = {
   help: {
     name: ["-h", "--help"],
     description: "Displays help on commandline options",
+    isPersistent: true,
   },
   helpAll: {
     name: "--help-all",
     description: "Displays help including Qt specific options",
+    isPersistent: true,
   },
   verbose: {
     name: ["-v", "--verbose"],
@@ -13,6 +15,7 @@ const sharedOpts: Record<string, Fig.Option> = {
       "Increase logging verbosity. Repeat the 'v' in the short " +
       "option for more detail. Maximum verbosity is obtained " +
       "with 4 (or more) v's, i.e. -vvvv",
+    isPersistent: true,
   },
   format: {
     name: "--format",
@@ -129,25 +132,16 @@ const completionSpec: Fig.Spec = {
             "Name given to the alias being defined, defaults to <command>",
         },
       ],
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
     },
     {
       name: "aliases",
       description: "List available aliases",
-      options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
-        sharedOpts.format,
-      ],
+      options: [sharedOpts.format],
     },
     {
       name: "delete",
       description: "Delete instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         {
           name: "--all",
           description: "Delete all instances",
@@ -178,15 +172,11 @@ const completionSpec: Fig.Spec = {
           description: "Command to execute on the instance",
         },
       ],
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
     },
     {
       name: "find",
       description: "Display available images to create instances from",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         sharedOpts.format,
         {
           name: "--show-unsupported",
@@ -209,9 +199,6 @@ const completionSpec: Fig.Spec = {
       name: "get",
       description: "Get a configuration setting",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         {
           name: "--raw",
           description:
@@ -236,7 +223,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Display help about a command",
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
       args: {
         name: "command",
         description: "Name of command to display help for",
@@ -247,9 +233,6 @@ const completionSpec: Fig.Spec = {
       name: "info",
       description: "Display information about instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         sharedOpts.format,
         {
           name: "--all",
@@ -267,9 +250,6 @@ const completionSpec: Fig.Spec = {
       name: "launch",
       description: "Create and start an Ubuntu instance",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         sharedOpts.timeout,
         {
           name: ["-c", "--cpus"],
@@ -348,20 +328,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List all available instances",
-      options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
-        sharedOpts.format,
-      ],
+      options: [sharedOpts.format],
     },
     {
       name: "mount",
       description: "Mount a local directory in the instance",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         {
           name: ["-g", "--gid-map"],
           description:
@@ -406,25 +378,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "networks",
       description: "List all available networks interfaces",
-      options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
-        sharedOpts.format,
-      ],
+      options: [sharedOpts.format],
     },
     {
       name: "purge",
       description: "Purge all deleted instances permanently",
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
     },
     {
       name: "recover",
       description: "Recover deleted instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         {
           name: "--all",
           description: "Recover all deleted instances",
@@ -441,9 +404,6 @@ const completionSpec: Fig.Spec = {
       name: "restart",
       description: "Restart instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         sharedOpts.timeout,
         {
           name: "--all",
@@ -463,7 +423,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "set",
       description: "Set a configuration setting",
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
       args: {
         name: "key=value",
         description:
@@ -482,12 +441,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "shell",
       description: "Open a shell on a running instance",
-      options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
-        sharedOpts.timeout,
-      ],
+      options: [sharedOpts.timeout],
       args: {
         isVariadic: true,
         isOptional: true,
@@ -504,9 +458,6 @@ const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         sharedOpts.timeout,
         {
           name: "--all",
@@ -531,9 +482,6 @@ const completionSpec: Fig.Spec = {
       name: "stop",
       description: "Stop running instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         {
           name: "--all",
           description: "Stop all instances",
@@ -565,9 +513,6 @@ const completionSpec: Fig.Spec = {
       name: "suspend",
       description: "Suspend running instances",
       options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
         {
           name: "--all",
           description: "Suspend all instances",
@@ -586,7 +531,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "transfer",
       description: "Transfer files between the host and instances",
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
       args: [
         {
           isVariadic: true,
@@ -608,7 +552,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "umount",
       description: "Unmount a directory from an instance",
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
       args: {
         isVariadic: true,
         name: "mount",
@@ -621,7 +564,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "unalias",
       description: "Remove an alias",
-      options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
       args: {
         name: "name",
         description: "The name of the alias to remove",
@@ -630,12 +572,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description: "Show version details",
-      options: [
-        sharedOpts.help,
-        sharedOpts.helpAll,
-        sharedOpts.verbose,
-        sharedOpts.format,
-      ],
+      options: [sharedOpts.format],
     },
   ],
   options: [sharedOpts.help, sharedOpts.helpAll, sharedOpts.verbose],
