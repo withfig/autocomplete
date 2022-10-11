@@ -170,11 +170,7 @@ const completionSpec: Fig.Spec = {
         "[category=]level e.g. jorphan=INFO, jmeter.util=DEBUG or com.example.foo=WARN",
       args: {
         name: "loglevel",
-        generators: keyValue({
-          keys: ["OFF", "FATAL", "WARN", "INFO", "DEBUG", "TRACE", "ALL"],
-        }),
-        description:
-          "[category=]level e.g. jorphan=INFO, jmeter.util=DEBUG or com.example.foo=WARN",
+        suggestions: ["OFF", "FATAL", "WARN", "INFO", "DEBUG", "TRACE", "ALL"],
       },
     },
     {
