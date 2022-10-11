@@ -1,3 +1,27 @@
+interface PostProcessPkgFilenames {
+  pathPrefix?: string;
+}
+
+const postProcessPkgFilenames =
+  (options: PostProcessPkgFilenames = {}): Fig.Generator["postProcess"] =>
+  (out) => {
+    const { pathPrefix = "" } = options;
+    const names = new Set<string>();
+    out.split("\n").map((line) => {
+      if (line.startsWith(pathPrefix)) {
+        const result = line.replace(pathPrefix, "").split("/")[0];
+        if (result) {
+          names.add(result + "/");
+        }
+      }
+    });
+
+    const suggestions = [];
+    names.forEach((name) => suggestions.push({ name }));
+
+    return suggestions;
+  };
+
 export const pkgutilGenerators: Record<string, Fig.Generator> = {
   // BOM files
   bom: {
@@ -26,6 +50,22 @@ export const pkgutilGenerators: Record<string, Fig.Generator> = {
   groupIds: {
     script: "pkgutil --groups",
     splitOn: "\n",
+  },
+  // filenames within a package
+  pkgFilenames: {
+    custom: async (tokens, executeShellCommand) => {
+      const editPkgIndex = tokens.indexOf("--edit-pkg");
+      const pkgIdIndex = editPkgIndex + 1;
+      if (editPkgIndex === -1 || pkgIdIndex >= tokens.length) {
+        return [];
+      }
+
+      const pkgId = tokens[pkgIdIndex];
+      const pathPrefix = tokens[tokens.length - 1];
+      const pp = postProcessPkgFilenames({ pathPrefix });
+      return pp(await executeShellCommand(`pkgutil --files ${pkgId}`), tokens);
+    },
+    trigger: "/",
   },
 };
 
@@ -115,6 +155,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "The path to update ACLs on",
+        generators: pkgutilGenerators.pkgFilenames,
       },
     },
     {
