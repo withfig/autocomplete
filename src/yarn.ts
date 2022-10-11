@@ -1270,7 +1270,6 @@ const completionSpec: Fig.Spec = {
           description: "Create a new team",
           args: {
             name: "<scope:team>",
-            isOptional: true,
           },
         },
         {
