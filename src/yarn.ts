@@ -1284,10 +1284,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "add",
           description: "Add a user to an existing team",
-          args: {
-            name: "<scope:team> <user>",
-            isOptional: true,
-          },
+          args: [{
+            name: "<scope:team>",
+          }, {
+            name: "<user>",
+          }],
         },
         {
           name: "remove",
