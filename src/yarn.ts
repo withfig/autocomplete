@@ -1295,7 +1295,6 @@ const completionSpec: Fig.Spec = {
           description: "Remove a user from a team they belong to",
           args: {
             name: "<scope:team> <user>",
-            isOptional: true,
           },
         },
         {
