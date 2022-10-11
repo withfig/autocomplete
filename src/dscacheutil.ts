@@ -1,5 +1,3 @@
-import { keyValue } from "@fig/autocomplete-generators";
-
 const categoryKeysMapping = {
   group: ["name", "gid"],
   host: ["name", "ip_address"],
@@ -38,7 +36,11 @@ const postProcessQuery =
 const dscacheutilGenerators: Record<string, Fig.Generator> = {
   keys: {
     custom: async (tokens, executeShellCommand) => {
-      const category = tokens[tokens.length - 2];
+      const category = tokens[tokens.length - 3];
+      if (!categories.includes(category)) {
+        return [];
+      }
+
       return categoryKeysMapping[category].map((key: string) => ({
         name: key,
       }));
