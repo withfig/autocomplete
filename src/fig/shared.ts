@@ -65,7 +65,7 @@ const disableForCommandsGenerator: Fig.Generator = {
 };
 
 export const themesGenerator: Fig.Generator = {
-  script: "\\ls -1 ~/.fig/themes",
+  script: "fig theme --list",
   postProcess: (output) => {
     const builtinThemes = [
       {
