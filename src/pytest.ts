@@ -10,6 +10,14 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
+      name: "-c",
+      description:
+        "Load configuration from `file` instead of trying to locate one of the implicit configuration files",
+      args: {
+        name: "File",
+      },
+    },
+    {
       name: "--cache-clear",
       description: "Remove all cache contents at start of test run",
     },
@@ -41,12 +49,32 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: ["--co", "--collect-only"],
+      description: "Only collect tests, don't execute them",
+    },
+    {
+      name: "--collect-in-virtualenv",
+      description: "Don't ignore tests in a local virtualenv directory",
+    },
+    {
       name: "--color",
       description: "Color terminal output",
       args: {
         name: "Color",
         description: "(yes/no/auto)",
       },
+    },
+    {
+      name: "--confcutdir",
+      description: "Only load conftest.py's relative to specified dir",
+      args: {
+        name: "Dir",
+      },
+    },
+
+    {
+      name: "--continue-on-collection-errors",
+      description: "Force test execution even if collection errors occur",
     },
     {
       name: "--durations",
@@ -65,8 +93,44 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--deselect",
+      description:
+        "Deselect item (via node id prefix) during collection (multi-allowed)",
+      args: {
+        name: "nodeid_prefix",
+      },
+    },
+    {
       name: ["--disable-warnings", "--disable-pytest-warnings"],
       description: "Disable warnings summary",
+    },
+    {
+      name: "--doctest-continue-on-failure",
+      description:
+        "For a given doctest, continue to run after the first failure",
+    },
+    {
+      name: "--doctest-ignore-import-errors",
+      description: "Ignore doctest ImportErrors",
+    },
+    {
+      name: "--doctest-modules",
+      description: "Run doctests in all .py modules",
+    },
+    {
+      name: "--doctest-report",
+      description: "Choose another output format for diffs on doctest failure",
+      args: {
+        name: "Output format",
+        description: "None,cdiff,ndiff,udiff,only_first_failure",
+      },
+    },
+    {
+      name: "--doctest-glob",
+      description: "Doctests file matching pattern, default: test*.txt",
+      args: {
+        name: "Pattern",
+      },
     },
     {
       name: ["--exitfirst", "-x"],
@@ -95,6 +159,29 @@ const completionSpec: Fig.Spec = {
       description: "This shows help on command line and config-line options",
     },
     {
+      name: "--ignore",
+      description: "Ignore path during collection (multi-allowed)",
+      args: {
+        name: "Path",
+      },
+    },
+    {
+      name: "--ignore-glob",
+      description: "Ignore path pattern during collection (multi-allowed)",
+      args: {
+        name: "Path",
+      },
+    },
+    {
+      name: "--import-mode",
+      description:
+        "Prepend/append to sys.path when importing test modules and conftest files, default is to prepend",
+      args: {
+        name: "Mode",
+        default: "prepend",
+      },
+    },
+    {
       name: "--junit-xml",
       description: "Create junit-xml style report file at given path",
       args: {
@@ -121,6 +208,10 @@ const completionSpec: Fig.Spec = {
         name: "Expression",
         description: "Ex: 'test_method or test_other'",
       },
+    },
+    {
+      name: "--keep-duplicates",
+      description: "Keep duplicate tests",
     },
     {
       name: ["--showlocals", "-l"],
@@ -152,9 +243,20 @@ const completionSpec: Fig.Spec = {
       description: "Show markers (builtin, plugin and per-project ones)",
     },
     {
+      name: "--maxfail",
+      description: "Exit after first num failures or errors",
+      args: {
+        name: "num",
+      },
+    },
+    {
       name: ["--new-first", "--nf"],
       description:
         "Run tests from new files first, then the rest of the tests sorted by file mtime",
+    },
+    {
+      name: "--noconftest",
+      description: "Don't load any conftest.py files",
     },
     {
       name: "--no-header",
@@ -186,6 +288,10 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "--pyargs",
+      description: "Try to interpret all arguments as python packages",
+    },
+    {
       name: ["--quiet", "-q"],
       description: "Decrease verbosity",
     },
@@ -197,6 +303,15 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "chars",
         description: "",
+      },
+    },
+    {
+      name: "--rootdir",
+      description:
+        "Define root directory for tests. Can be relative path: 'root_dir', './root_dir', 'root_dir/another_dir/'; absolute path: '/home/user/root_dir'; path with variables:\
+                    '$HOME/root_dir'",
+      args: {
+        name: "ROOTDIR",
       },
     },
     {
@@ -229,6 +344,20 @@ const completionSpec: Fig.Spec = {
         "Ignore the first failing test but stop on the next failing test",
     },
     {
+      name: "--strict",
+      description: "(deprecated) alias to --strict-markers",
+    },
+    {
+      name: "--strict-config",
+      description:
+        "Any warnings encountered while parsing the `pytest` section of the configuration file raise errors",
+    },
+    {
+      name: "--strict-markers",
+      description:
+        "Markers not registered in the `markers` section of the configuration file raise errors",
+    },
+    {
       name: "--tb",
       description: "Traceback print mode",
       args: {
@@ -257,6 +386,14 @@ const completionSpec: Fig.Spec = {
       description:
         "Display pytest version and information about plugins. \
         When given twice, also display information about plugins",
+    },
+    {
+      name: "--pythonwarnings, -W",
+      description:
+        "Set which warnings to report, see -W option of python itself",
+      args: {
+        name: "Python Warnings",
+      },
     },
   ],
 };
